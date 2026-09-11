@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_e747432f",
+ "item_sha": "321ee03204780c1c369712433d88ea4cbaf5456f47320793e62cf5c0331e729b",
+ "auditor_option": null,
+ "auditor_value": "Proof: R_max = u²/g at θ = 45° (sin 2θ = 1); H at 45° = u² sin²45°/(2g) = u²/(4g); hence R_max = 4H.",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "All three equations follow: sin 90° = 1; sin²45° = 1/2 so H = u²/(4g); 4H = u²/g = R_max. The mistake entry reproduces its claim (dropping the 2 gives H = u²/(2g), 4H = 2u²/g, twice the range).",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-07",
+  "at": "2026-09-11T19:37:35+05:30"
+ }
+}

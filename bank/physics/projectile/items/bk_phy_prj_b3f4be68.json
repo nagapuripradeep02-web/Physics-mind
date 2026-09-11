@@ -1,0 +1,101 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_prj_b3f4be68",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "Three separate particles are each launched from the top of the same 40 m tall tower, one per case, with different launch conditions.",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "First case: the particle is launched at 45° above the horizontal, up and away from the tower, with speed 20√2 m/s. Find the landing time and the horizontal landing distance from the tower's base."
+   },
+   {
+    "label": "b",
+    "asks": "Second case: the particle is launched horizontally with speed 20 m/s. Find the landing time and the horizontal landing distance from the tower's base."
+   },
+   {
+    "label": "c",
+    "asks": "Third case: the particle is launched at 45° below the horizontal, downward and away from the tower, with speed 20√2 m/s. Find the landing time and the horizontal landing distance from the tower's base."
+   }
+  ],
+  "conditions": [
+   "three particles, each launched from the top of the same 40 m tower in a separate case",
+   "case i: launched at 45° above horizontal, away from the tower",
+   "case ii: launched horizontally",
+   "case iii: launched at 45° below horizontal, away from the tower"
+  ],
+  "figure": {
+   "description": "A 40 m tall tower is shown three times, once per case. In case i a particle leaves the top of the tower at 45° above the horizontal, moving up and away from the tower, with speed 20√2 m/s. In case ii a particle leaves the top horizontally with speed 20 m/s. In case iii a particle leaves the top at 45° below the horizontal, moving down and away from the tower, with speed 20√2 m/s. An x-y axis convention (x horizontal, y vertical) is shown alongside."
+  }
+ },
+ "solution": {
+  "approach": "Resolve each throw into horizontal and vertical components and solve the vertical drop equation for each case, taking g = 10 m/s² since it is not stated.",
+  "steps": [
+   {
+    "text": "Resolve each launch velocity into components; the 20√2 m/s at 45° throws split into equal horizontal and vertical parts, while case (ii) is purely horizontal.",
+    "equation": "20√2×cos45° = 20√2×sin45° = 20 m/s (cases i and iii); case ii: vx = 20 m/s, vy0 = 0"
+   },
+   {
+    "text": "Case (i), thrown upward and away: solve the vertical drop equation for a net fall of 40 m below the launch point.",
+    "equation": "20t − 5t² = −40 ⇒ t² − 4t − 8 = 0 ⇒ t = 2+2√3 ≈ 5.46 s; horizontal distance = 20×5.46 ≈ 109.3 m"
+   },
+   {
+    "text": "Case (ii), thrown horizontally: solve the same drop equation with zero initial vertical velocity.",
+    "equation": "−5t² = −40 ⇒ t = 2√2 ≈ 2.83 s; horizontal distance = 20×2.83 ≈ 56.6 m"
+   },
+   {
+    "text": "Case (iii), thrown downward and away: solve the drop equation with initial vertical velocity 20 m/s downward.",
+    "equation": "−20t − 5t² = −40 ⇒ t² + 4t − 8 = 0 ⇒ t = −2+2√3 ≈ 1.46 s; horizontal distance = 20×1.46 ≈ 29.3 m"
+   },
+   {
+    "text": "Collect all three cases.",
+    "equation": "(i) t ≈ 5.46 s, 109.3 m; (ii) t ≈ 2.83 s, 56.6 m; (iii) t ≈ 1.46 s, 29.3 m"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(i) t ≈ 5.46 s, distance ≈ 109.3 m; (ii) t ≈ 2.83 s, distance ≈ 56.6 m; (iii) t ≈ 1.46 s, distance ≈ 29.3 m (using g = 10 m/s²)"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Using the horizontal-only time from case (ii), t = 2√2 ≈ 2.83 s, for case (i) and case (iii) too, ignoring that their initial vertical velocity is not zero."
+   }
+  ],
+  "concept_tags": [
+   "projectile from a height",
+   "initial vertical velocity",
+   "quadratic equation for time"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "812a268c62263fb87b9dcf109d14ca3c1956e70032b33ec245efb2836dc2f39e"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "cf5128bea8c66ecd84a7fdf05cb3983faaa0f290db5e6f02c8d27b953552e4b0",
+  "audited_by": "W01-U-prj-04"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-01",
+  "at": "2026-09-11T18:54:00+05:30"
+ }
+}

@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_e3f4653c",
+ "item_sha": "93c0673fa001f0a2de1f1bbac3d0cf4b673407a5365575c92eed5dd914a31987",
+ "auditor_option": 4,
+ "auditor_value": "Assertion false, Reason true (standard A–R scheme option 4). The velocity vector changes by g×1 s = 10 m/s every second; the speed |v| = √(vₓ² + vᵧ²) changes by a varying amount (d|v|/dt = −g sinφ), so it is not 10 m/s per second.",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": "The served options list is empty, yet an Assertion–Reason item is answered by choosing among the standard five statements; the solution's final_answer.option = 4 and common_mistakes options 1 and 3 refer to that unserved scheme. The solution handled it by also giving the verdict in words (Assertion false, Reason true), which is correct.",
+ "notes": "All five steps checked: vᵧ(t+1) − vᵧ(t) = −10 m/s is correct with upward positive; speed change per second = −g sinφ is indeed largest near the ground and smallest at the top, as step 4 says. Both mistake entries are genuine student errors that lead to the stated options.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-07",
+  "at": "2026-09-11T19:33:41+05:30"
+ }
+}

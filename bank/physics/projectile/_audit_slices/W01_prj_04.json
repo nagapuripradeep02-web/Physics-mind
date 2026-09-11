@@ -1,0 +1,668 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter": "projectile",
+ "slice": 4,
+ "round": 0,
+ "agent_label": "W01-U-prj-04",
+ "items": [
+  {
+   "question_id": "prj_87e27883",
+   "audit_file": "prj_87e27883.1159db5a.json",
+   "item_sha": "1159db5ad5e6ee9678a93a24352dd9ce03c7996ee1ce6a1f00c2614d1a5485e6",
+   "question_text": "From the top of a tower, two particles are launched at the same instant, moving horizontally but away from each other — one at 10 m/s, the other at 20 m/s. Using g = 10 m/s², work out after how long their velocity directions become perpendicular to each other.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Write each particle's velocity vector including gravity's effect on the vertical component, then set the dot product to zero.",
+    "steps": [
+     {
+      "text": "Write the velocity of each particle at time t, taking their horizontal launch directions as opposite and both falling under gravity.",
+      "equation": "v₁ = (10, −10t), v₂ = (−20, −10t)"
+     },
+     {
+      "text": "The vectors are mutually perpendicular when their dot product is zero.",
+      "equation": "v₁·v₂ = (10)(−20) + (−10t)(−10t) = 0"
+     },
+     {
+      "text": "Simplify this equation.",
+      "equation": "−200 + 100t² = 0"
+     },
+     {
+      "text": "Solve for the time.",
+      "equation": "t² = 2, t = √2 s ≈ 1.41 s"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "t = √2 s ≈ 1.41 s"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Solving t² = 2 by dividing 200 by 100 and stopping there, giving t = 2 s instead of taking the square root to get t = √2 s."
+     }
+    ],
+    "concept_tags": [
+     "projectile motion",
+     "perpendicular vectors",
+     "dot product"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "prj_812a268c",
+   "audit_file": "prj_812a268c.cf5128be.json",
+   "item_sha": "cf5128bea8c66ecd84a7fdf05cb3983faaa0f290db5e6f02c8d27b953552e4b0",
+   "question_text": "Three separate particles are each launched from the top of the same 40 m tall tower, one per case, with different launch conditions.\n(a) First case: the particle is launched at 45° above the horizontal, up and away from the tower, with speed 20√2 m/s. Find the landing time and the horizontal landing distance from the tower's base.\n(b) Second case: the particle is launched horizontally with speed 20 m/s. Find the landing time and the horizontal landing distance from the tower's base.\n(c) Third case: the particle is launched at 45° below the horizontal, downward and away from the tower, with speed 20√2 m/s. Find the landing time and the horizontal landing distance from the tower's base.",
+   "options": [],
+   "figure_description": "A 40 m tall tower is shown three times, once per case. In case i a particle leaves the top of the tower at 45° above the horizontal, moving up and away from the tower, with speed 20√2 m/s. In case ii a particle leaves the top horizontally with speed 20 m/s. In case iii a particle leaves the top at 45° below the horizontal, moving down and away from the tower, with speed 20√2 m/s. An x-y axis convention (x horizontal, y vertical) is shown alongside.",
+   "solution": {
+    "approach": "Resolve each throw into horizontal and vertical components and solve the vertical drop equation for each case, taking g = 10 m/s² since it is not stated.",
+    "steps": [
+     {
+      "text": "Resolve each launch velocity into components; the 20√2 m/s at 45° throws split into equal horizontal and vertical parts, while case (ii) is purely horizontal.",
+      "equation": "20√2×cos45° = 20√2×sin45° = 20 m/s (cases i and iii); case ii: vx = 20 m/s, vy0 = 0"
+     },
+     {
+      "text": "Case (i), thrown upward and away: solve the vertical drop equation for a net fall of 40 m below the launch point.",
+      "equation": "20t − 5t² = −40 ⇒ t² − 4t − 8 = 0 ⇒ t = 2+2√3 ≈ 5.46 s; horizontal distance = 20×5.46 ≈ 109.3 m"
+     },
+     {
+      "text": "Case (ii), thrown horizontally: solve the same drop equation with zero initial vertical velocity.",
+      "equation": "−5t² = −40 ⇒ t = 2√2 ≈ 2.83 s; horizontal distance = 20×2.83 ≈ 56.6 m"
+     },
+     {
+      "text": "Case (iii), thrown downward and away: solve the drop equation with initial vertical velocity 20 m/s downward.",
+      "equation": "−20t − 5t² = −40 ⇒ t² + 4t − 8 = 0 ⇒ t = −2+2√3 ≈ 1.46 s; horizontal distance = 20×1.46 ≈ 29.3 m"
+     },
+     {
+      "text": "Collect all three cases.",
+      "equation": "(i) t ≈ 5.46 s, 109.3 m; (ii) t ≈ 2.83 s, 56.6 m; (iii) t ≈ 1.46 s, 29.3 m"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "(i) t ≈ 5.46 s, distance ≈ 109.3 m; (ii) t ≈ 2.83 s, distance ≈ 56.6 m; (iii) t ≈ 1.46 s, distance ≈ 29.3 m (using g = 10 m/s²)"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Using the horizontal-only time from case (ii), t = 2√2 ≈ 2.83 s, for case (i) and case (iii) too, ignoring that their initial vertical velocity is not zero."
+     }
+    ],
+    "concept_tags": [
+     "projectile from a height",
+     "initial vertical velocity",
+     "quadratic equation for time"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "prj_8ccf08b9",
+   "audit_file": "prj_8ccf08b9.43f83239.json",
+   "item_sha": "43f83239666a9a026102a1ab5a151e22da8963d46d25bd53bce8678b93ac76bb",
+   "question_text": "Assertion: When the time of flight of a projectile is doubled, its maximum height increases to four times its earlier value. Reason: For a projectile, the maximum height H is proportional to the square of the time of flight T, that is H ∝ T².",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Time of flight and maximum height both come from the same vertical launch speed, so height is proportional to the square of the time of flight.",
+    "steps": [
+     {
+      "text": "Write time of flight and maximum height in terms of the vertical component of the launch velocity.",
+      "equation": "T = 2uᵧ/g, H = uᵧ²/(2g)"
+     },
+     {
+      "text": "Solve the time of flight equation for the vertical launch speed and substitute it into the height formula.",
+      "equation": "uᵧ = gT/2, so H = (gT/2)²/(2g) = gT²/8"
+     },
+     {
+      "text": "With g fixed, this shows the maximum height is proportional to the square of the time of flight.",
+      "equation": "H ∝ T²"
+     },
+     {
+      "text": "Doubling the time of flight squares that factor of two inside the height formula.",
+      "equation": "H_new/H_old = (T_new/T_old)² = 2² = 4"
+     },
+     {
+      "text": "So doubling the time of flight makes the maximum height four times as large, and the Reason (H ∝ T²) is exactly the relation that gives this result, so both statements are true and the Reason explains the Assertion."
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "If both Assertion and Reason are true and the Reason is the correct explanation of the Assertion."
+    },
+    "common_mistakes": [
+     {
+      "option": 3,
+      "text": "Assuming H ∝ T² is false because height is usually written in terms of launch speed and angle rather than directly in terms of time of flight."
+     },
+     {
+      "option": 2,
+      "text": "Accepting both statements as true but treating H ∝ T² as a side fact rather than the direct algebraic reason for the fourfold increase."
+     }
+    ],
+    "concept_tags": [
+     "time of flight",
+     "maximum height",
+     "proportionality"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "prj_70ed35c7",
+   "audit_file": "prj_70ed35c7.375f3286.json",
+   "item_sha": "375f3286b27a32cbd839378800ed06ce40bb19615afcb3c69ded8ebb7a9a25fc",
+   "question_text": "A projectile launched at angle θ, with a certain speed, covers a horizontal range that equals half the maximum range obtainable at that same speed. What is the angle θ?",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "15°"
+    },
+    {
+     "label": "(b)",
+     "text": "30°"
+    },
+    {
+     "label": "(c)",
+     "text": "60°"
+    },
+    {
+     "label": "(d)",
+     "text": "not enough information is given"
+    }
+   ],
+   "figure_description": "",
+   "solution": {
+    "approach": "Set the range formula at angle θ equal to half the maximum range and solve for θ.",
+    "steps": [
+     {
+      "text": "Write the range at angle θ and the maximum range, both at the same speed u.",
+      "equation": "R(θ) = u²sin2θ / g, R_max = u² / g (at θ = 45°)"
+     },
+     {
+      "text": "Set the range at θ equal to half the maximum range.",
+      "equation": "u²sin2θ / g = ½ × u² / g"
+     },
+     {
+      "text": "Cancel u²/g from both sides and solve for 2θ, then θ.",
+      "equation": "sin2θ = ½, 2θ = 30°, θ = 15°"
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "15°"
+    },
+    "common_mistakes": [
+     {
+      "option": 2,
+      "text": "Taking 2θ = 30° but then forgetting to divide by 2 gives θ = 30°."
+     },
+     {
+      "option": 3,
+      "text": "Using the other solution of sin2θ = ½ that lies past 45°, namely 2θ = 150°, then halving it wrongly gives θ = 60°."
+     }
+    ],
+    "concept_tags": [
+     "projectile motion",
+     "range",
+     "maximum range"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "prj_7ce39cdf",
+   "audit_file": "prj_7ce39cdf.3ca6aa14.json",
+   "item_sha": "3ca6aa140886863628302e28fafb626699f349e8761f5d9cf1464de47926e89c",
+   "question_text": "Demonstrate that a projectile passes through the same height at two separate instants, and prove algebraically that adding those two times together gives exactly the total time of flight.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Write the height reached at time t as a quadratic equation, and use the sum-of-roots relation to show the two times at that height add to the time of flight.",
+    "steps": [
+     {
+      "text": "Write the vertical displacement at time t as a quadratic equation in t, for a chosen height y₀.",
+      "equation": "½gt² − (u sinθ)t + y₀ = 0"
+     },
+     {
+      "text": "This quadratic has two positive roots t₁ and t₂ for any height below the maximum, since the same height is crossed once going up and once coming down.",
+      "equation": "t₁, t₂ = [u sinθ ± √(u²sin²θ − 2gy₀)] / g"
+     },
+     {
+      "text": "Add the two roots; the square-root terms cancel and the sum matches the standard time-of-flight formula.",
+      "equation": "t₁ + t₂ = 2u sinθ/g = T",
+      "why_this_step": "The sum of the roots of at² + bt + c = 0 is −b/a, which here gives 2u sinθ/g directly, without needing the individual root values."
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "t₁ + t₂ = 2u sinθ/g = T, the time of flight."
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Multiplying the two roots instead of adding them, getting t₁×t₂ = 2y₀/g, a quantity unrelated to the time of flight."
+     }
+    ],
+    "concept_tags": [
+     "quadratic in time",
+     "time of flight",
+     "sum of roots"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "prj_6e73404f",
+   "audit_file": "prj_6e73404f.894973f2.json",
+   "item_sha": "894973f21e437acda8123ec1f196ded486f2518f2bd26de7adcc12a494dc6ef0",
+   "question_text": "Someone stands at the top of a sloping hill and throws a stone purely horizontally, giving it speed v₀. Using an x-y axis system with its origin at the throwing point, work out the x and y coordinates of the spot on the hillside where the stone eventually lands.",
+   "options": [],
+   "figure_description": "The hill's top is at the origin (0,0) of an x-y axis system, with the x-axis horizontal (pointing in the direction of throw) and the y-axis vertical. The stone is thrown horizontally with speed v₀ along the positive x direction from the origin. The hillside slopes downward from the origin at angle θ below the horizontal x-axis, and the stone's curved path meets this sloped hillside at a point (x, y), with y measured as negative below the origin.",
+   "solution": {
+    "approach": "Write the horizontal and vertical distances travelled as functions of time, then find where the path meets the sloped hill surface.",
+    "steps": [
+     {
+      "text": "Set up coordinates at the launch point, with x horizontal along v₀ and y taken positive down the slope's vertical direction; write x and y as functions of time.",
+      "equation": "x(t) = v₀t, y(t) = ½gt²"
+     },
+     {
+      "text": "The hill surface is the straight line y = x tanθ through the origin; set the path equal to this line and solve for t.",
+      "equation": "½gt² = v₀t·tanθ ⇒ t = 2v₀tanθ/g (rejecting t = 0, the launch point)"
+     },
+     {
+      "text": "Substitute this time back into x(t) and y(t) to get the landing coordinates.",
+      "equation": "x = 2v₀²tanθ/g, y = x·tanθ = 2v₀²tan²θ/g"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "The stone lands at (2v₀²tanθ/g, 2v₀²tan²θ/g), with y measured vertically downward from the launch point."
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Writing the incline's equation the wrong way round, x = y tanθ instead of y = x tanθ, which changes the tanθ power in the landing time and coordinates."
+     }
+    ],
+    "concept_tags": [
+     "projectile on an incline",
+     "horizontal projection",
+     "coordinate geometry"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "prj_6606ae74",
+   "audit_file": "prj_6606ae74.9b7fd736.json",
+   "item_sha": "9b7fd736592281a97f0bb0a393818868fb6377a0854122f6012ae3f68509ef9c",
+   "question_text": "Two balls, A and B, are thrown at the same instant from the tops of two towers standing distance d apart. Ball A is thrown from the shorter tower, of height 10 m, at 10√2 m/s directed 45° above the horizontal toward the other tower. Ball B is thrown from the taller tower, of height 20 m, horizontally toward the first tower at 10 m/s. The two balls meet while both are still in the air. Find d.",
+   "options": [],
+   "figure_description": "Two vertical towers stand on level ground, distance d apart. The left tower is 10 m tall; from its top, particle A is launched at 45° above the horizontal at 10√2 m/s, aimed toward the right tower. The right tower is 20 m tall; from its top, particle B is launched horizontally at 10 m/s, aimed toward the left tower.",
+   "solution": {
+    "approach": "Write the height of each particle above the ground as a function of time and find when the heights match; use that time to find the horizontal gap to close.",
+    "steps": [
+     {
+      "text": "Resolve particle A's launch velocity into horizontal and vertical parts.",
+      "equation": "vₓA = 10√2×cos45° = 10 m/s, v_yA = 10√2×sin45° = 10 m/s"
+     },
+     {
+      "text": "Write the height of each particle above the ground as a function of time, measuring from its own tower.",
+      "equation": "y_A(t) = 20 + 10t − 5t², y_B(t) = 20 − 5t²"
+     },
+     {
+      "text": "Set the two heights equal and solve for the collision time; the −5t² term cancels on both sides.",
+      "equation": "10 + 10t = 20 → t = 1 s"
+     },
+     {
+      "text": "At this time, A has moved a horizontal distance 10t toward B, and B has moved 10t toward A; together they cover the full gap d.",
+      "equation": "d = 10×1 + 10×1 = 20 m"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "d = 20 m"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Treating the fall term as different for the two particles instead of letting it cancel leads to an incorrect collision time and a wrong horizontal distance."
+     }
+    ],
+    "concept_tags": [
+     "projectile motion",
+     "relative motion",
+     "collision in air"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "prj_7c08c47c",
+   "audit_file": "prj_7c08c47c.183d9953.json",
+   "item_sha": "183d9953b1fc0410bc6fb610db26f2320b55e94f8178d4914743fd17f1a18225",
+   "question_text": "A particle is launched at 20 m/s, at 60° above the horizontal. Using g = 10 m/s², find the time at which the particle's speed has dropped to half of its initial value.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "The horizontal component of velocity never changes and equals u cos60° = u/2, so the total speed equals half the initial speed only when the vertical component vanishes.",
+    "steps": [
+     {
+      "text": "Find the constant horizontal component of velocity.",
+      "equation": "vₓ = u cos60° = 20×0.5 = 10 m/s"
+     },
+     {
+      "text": "Note that the total speed at any time is at least vₓ, since v = √(vₓ² + v_y²), and equals vₓ exactly when v_y = 0.",
+      "equation": "v_min = vₓ = 10 m/s = u/2"
+     },
+     {
+      "text": "Since the target speed u/2 equals this minimum, find the time at which v_y = 0, which is the time to reach the highest point.",
+      "equation": "v_y(t) = u sin60° − gt = 0"
+     },
+     {
+      "text": "Solve for that time.",
+      "equation": "t = u sin60°/g = 20×(√3/2)/10 = √3 ≈ 1.73 s"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "t = √3 s ≈ 1.73 s"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Setting the vertical component itself equal to half the initial speed, instead of the total speed, gives v_y = u/2 and a wrong time of about 0.73 s."
+     }
+    ],
+    "concept_tags": [
+     "projectile motion",
+     "speed at a point",
+     "maximum height"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "prj_83670542",
+   "audit_file": "prj_83670542.3fc30a9c.json",
+   "item_sha": "3fc30a9c5369d33262a9846805fba9578c45232efcbc260d2216dc72e2915ec4",
+   "question_text": "From a point O at the foot of a slope that rises at 30° to the horizontal, a particle is thrown with speed 10 m/s along a direction making 30° with the slope surface (that is, 60° above the horizontal). It lands on the slope at a point A. Take g = 10 m/s². At the instant it reaches A, find the component of its velocity perpendicular to the slope surface.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "In axes along and perpendicular to the incline, the perpendicular motion is like a simple up-and-down toss, so the perpendicular speed at landing equals the launch value, reversed in direction.",
+    "steps": [
+     {
+      "text": "Recall the perpendicular component of the launch velocity from the earlier problem, using the 30° angle between the velocity and the incline.",
+      "equation": "u⊥ = 10sin30° = 5 m/s, away from the incline"
+     },
+     {
+      "text": "The perpendicular motion is decelerated uniformly by g⊥ = g cos30° and returns to zero perpendicular displacement, exactly like a ball tossed straight up and caught at the same level.",
+      "equation": "v⊥ at landing = −u⊥"
+     },
+     {
+      "text": "So the perpendicular component at A has the same size as at launch, but points into the incline.",
+      "equation": "v⊥ = 5 m/s, directed into the plane"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "5 m/s, directed into the inclined plane"
+    },
+    "common_mistakes": [],
+    "concept_tags": [
+     "projectile motion",
+     "motion on an inclined plane",
+     "symmetry of a toss"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "prj_909c238b",
+   "audit_file": "prj_909c238b.fd18935d.json",
+   "item_sha": "fd18935dd1bdd8dd109cfa5dbfd7266344e21521353a919dfe9f7c64d654d051",
+   "question_text": "At the highest point of its path, a projectile's speed equals √(2/5) times its speed at a height equal to half the maximum height reached. Work out the angle at which it was projected.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Write the speed at the top and at half the maximum height in terms of u and θ, then use the given ratio to solve for θ.",
+    "steps": [
+     {
+      "text": "At the greatest height, the vertical velocity is zero, so the speed is only the horizontal component.",
+      "equation": "v_top = u cosθ"
+     },
+     {
+      "text": "At half the greatest height H/2, use the vertical velocity-height relation, with H the maximum height.",
+      "equation": "v_y² = u²sin²θ − 2g(H/2), H = u²sin²θ/(2g)"
+     },
+     {
+      "text": "Substitute H into the vertical velocity expression and simplify.",
+      "equation": "v_y² = u²sin²θ − u²sin²θ/2 = u²sin²θ/2"
+     },
+     {
+      "text": "The speed at half height combines both components.",
+      "equation": "v_half² = u²cos²θ + u²sin²θ/2"
+     },
+     {
+      "text": "Apply the given ratio v_top = √(2/5) v_half and square both sides.",
+      "equation": "cos²θ = (2/5)(cos²θ + sin²θ/2)"
+     },
+     {
+      "text": "Solve for the angle of projection.",
+      "equation": "3cos²θ = sin²θ, tan²θ = 3, θ = 60°"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "θ = 60°"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Using half the time to reach the top instead of half the maximum height, which gives tan²θ = 6 and θ ≈ 67.8° instead of 60°."
+     }
+    ],
+    "concept_tags": [
+     "projectile motion",
+     "velocity-height relation",
+     "angle of projection"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "prj_872ec629",
+   "audit_file": "prj_872ec629.9bc12b2e.json",
+   "item_sha": "9bc12b2e27ea619db6ffef6d8fda0bd0988268fca2ca0f34a38c2c0cb7071eeb",
+   "question_text": "Which of the following statements correctly describes the motion of a projectile?",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "The acceleration stays the same, in both magnitude and direction, at every point of the path."
+    },
+    {
+     "label": "(b)",
+     "text": "The acceleration is uniform throughout the path, except that at the topmost point the object moves with constant velocity."
+    },
+    {
+     "label": "(c)",
+     "text": "At no point of the flight is the acceleration vector perpendicular to the velocity vector."
+    },
+    {
+     "label": "(d)",
+     "text": "None of these is correct."
+    }
+   ],
+   "figure_description": "",
+   "solution": {
+    "approach": "Gravity keeps acting with the same constant value throughout the flight, including at the highest point, which rules out the other statements.",
+    "steps": [
+     {
+      "text": "Through the whole flight, the only acceleration acting on the projectile is gravity, which stays constant in magnitude and direction.",
+      "equation": "a = (0, −g) at every instant"
+     },
+     {
+      "text": "Even at the highest point, where the vertical velocity is momentarily zero, gravity still acts, so the acceleration there is the same nonzero constant value as everywhere else."
+     },
+     {
+      "text": "So the motion is uniformly accelerated at every point of the path, including the top, which rules out the statement that velocity becomes constant there."
+     },
+     {
+      "text": "At the highest point the velocity is purely horizontal while the acceleration is purely vertical, so their dot product is zero there, meaning acceleration and velocity are perpendicular at that instant, which rules out the statement that they are never perpendicular.",
+      "equation": "a·v = (0)(vₓ) + (−g)(0) = 0"
+     },
+     {
+      "text": "The only statement that holds throughout the flight is that projectile motion is uniformly accelerated everywhere."
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "It is uniformly accelerated everywhere"
+    },
+    "common_mistakes": [
+     {
+      "option": 2,
+      "text": "Thinking that zero vertical velocity at the highest point means zero acceleration there, mistaking momentarily zero velocity for constant velocity."
+     },
+     {
+      "option": 3,
+      "text": "Assuming acceleration and velocity can never be perpendicular in projectile motion, missing that this happens exactly at the highest point."
+     }
+    ],
+    "concept_tags": [
+     "projectile motion",
+     "acceleration",
+     "highest point"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "prj_6f699f92",
+   "audit_file": "prj_6f699f92.78b81f51.json",
+   "item_sha": "78b81f51f4b09922c2af03ccce6ca5f1a67a95d63010b0f4f565c94788197ccb",
+   "question_text": "Assertion: Whenever the acceleration of a particle does not change, the only path it can trace is a parabola. Reason: The trajectory in projectile motion is a parabola because, near the ground, the acceleration is treated as unchanging.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Constant acceleration alone does not force a curved path; a velocity launched along the acceleration direction gives a straight line instead.",
+    "steps": [
+     {
+      "text": "Consider a particle given an initial velocity pointing along the same line as the constant acceleration, for example thrown straight up under gravity."
+     },
+     {
+      "text": "Its sideways coordinate never changes, since there is no sideways velocity and no sideways acceleration.",
+      "equation": "x(t) = 0 for every t"
+     },
+     {
+      "text": "So this particle moves along a straight vertical line, not a parabola, even though its acceleration is constant the whole time."
+     },
+     {
+      "text": "This counterexample shows the Assertion is false: constant acceleration does not by itself force a parabolic path."
+     },
+     {
+      "text": "The Reason is a separate, true statement — projectile motion is parabolic because its acceleration is treated as constant at low heights — but a true Reason cannot rescue a false Assertion, so the Assertion is false and the Reason is true.",
+      "why_this_step": "This combination matches the option for a false Assertion with a true Reason."
+     }
+    ],
+    "final_answer": {
+     "option": 4,
+     "value": "If the Assertion is false but the Reason is true."
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Believing constant acceleration always produces a curved path, missing the case where the initial velocity points along the acceleration."
+     },
+     {
+      "option": 2,
+      "text": "Judging both statements true without checking whether a straight-line counterexample exists under constant acceleration."
+     }
+    ],
+    "concept_tags": [
+     "constant acceleration",
+     "parabolic path",
+     "kinematics"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "prj_822434a2",
+   "audit_file": "prj_822434a2.a8d3ff73.json",
+   "item_sha": "a8d3ff73abd85be26884875d9a763747fcad382088e727f8c71acb6c227a3682",
+   "question_text": "One particle is launched straight upward at 20 m/s. At the same instant, a second particle is launched at 20√2 m/s directed 45° above the horizontal, with g = 10 m/s².\n(a) Find the acceleration of the first particle as measured relative to the second particle.\n(b) Find the initial velocity of the first particle as measured relative to the second particle.\n(c) Find the separation between the two particles 2 s after launch.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Both particles fall under the same gravity, so their relative acceleration is zero and the gap between them grows at a constant rate.",
+    "steps": [
+     {
+      "text": "Write each particle's initial velocity in horizontal and vertical components.",
+      "equation": "u₁ = (0, 20) m/s, u₂ = (20√2cos45°, 20√2sin45°) = (20, 20) m/s"
+     },
+     {
+      "text": "Both particles are in free flight under gravity alone, so each has the same downward acceleration.",
+      "equation": "a₁ = a₂ = (0, −10) m/s²"
+     },
+     {
+      "text": "The acceleration of the first particle relative to the second is the difference of the two accelerations.",
+      "equation": "a₁ − a₂ = (0, 0) m/s², so part (a) is 0"
+     },
+     {
+      "text": "The initial velocity of the first particle relative to the second is the difference of the two initial velocities.",
+      "equation": "u₁ − u₂ = (0−20, 20−20) = (−20, 0) m/s, magnitude 20 m/s, so part (b) is 20 m/s"
+     },
+     {
+      "text": "Since the relative acceleration is zero, the relative velocity stays (−20, 0) m/s for the whole flight, so the separation after any time t is this relative velocity times t.",
+      "equation": "Δr(t) = (u₁ − u₂)·t"
+     },
+     {
+      "text": "At t = 2 s the separation along this constant relative velocity gives the distance between the particles.",
+      "equation": "Δr(2) = 20 × 2 = 40 m, so part (c) is 40 m",
+      "why_this_step": "With zero relative acceleration the two particles move apart in a straight line at a fixed relative speed."
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "(a) 0 (the relative acceleration is zero), (b) 20 m/s, (c) 40 m"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Assuming the second particle has a different acceleration because part of its velocity is horizontal, which wrongly makes the relative acceleration nonzero."
+     },
+     {
+      "option": null,
+      "text": "Using only one particle's own displacement after 2 s instead of the relative displacement between the two particles to find the separation."
+     }
+    ],
+    "concept_tags": [
+     "relative velocity",
+     "relative acceleration",
+     "projectile motion"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  }
+ ]
+}

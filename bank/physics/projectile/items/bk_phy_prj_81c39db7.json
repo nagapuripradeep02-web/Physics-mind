@@ -1,0 +1,80 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_prj_81c39db7",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "Someone stands at the top of a sloping hill and throws a stone purely horizontally, giving it speed v₀. Using an x-y axis system with its origin at the throwing point, work out the x and y coordinates of the spot on the hillside where the stone eventually lands.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "stone thrown horizontally from the hill top with speed v₀",
+   "origin of coordinates placed at the point of projection",
+   "x-axis horizontal, y-axis vertical",
+   "hill surface (incline) makes angle θ with the horizontal"
+  ],
+  "figure": {
+   "description": "The hill's top is at the origin (0,0) of an x-y axis system, with the x-axis horizontal (pointing in the direction of throw) and the y-axis vertical. The stone is thrown horizontally with speed v₀ along the positive x direction from the origin. The hillside slopes downward from the origin at angle θ below the horizontal x-axis, and the stone's curved path meets this sloped hillside at a point (x, y), with y measured as negative below the origin."
+  }
+ },
+ "solution": {
+  "approach": "Write the horizontal and vertical distances travelled as functions of time, then find where the path meets the sloped hill surface.",
+  "steps": [
+   {
+    "text": "Use the axes given in the question: origin at the launch point, x horizontal along v₀, y vertical and positive upward. Then x(t) = v₀t and y(t) = −½gt².",
+    "equation": "x(t) = v₀t, y(t) = −½gt²"
+   },
+   {
+    "text": "The hill surface is the straight line y = −x tanθ through the origin; set the path equal to this line and solve for t.",
+    "equation": "−½gt² = −v₀t·tanθ ⇒ t = 2v₀tanθ/g (rejecting t = 0, the launch point)"
+   },
+   {
+    "text": "Substitute this time back into x(t) and y(t) to get the landing coordinates.",
+    "equation": "x = 2v₀²tanθ/g, y = −x·tanθ = −2v₀²tan²θ/g"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "The stone lands at (x, y) = (2v₀²tanθ/g, −2v₀²tan²θ/g); the negative sign shows the landing point lies below the launch point, as in the figure."
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Writing the hill's equation with the angle on the wrong side, y = −x cotθ instead of y = −x tanθ, which replaces every tanθ in the landing time and coordinates by cotθ."
+   }
+  ],
+  "concept_tags": [
+   "projectile on an incline",
+   "horizontal projection",
+   "coordinate geometry"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "6e73404f1ce153e0ba04456b5b85f26e8727523f1f1f13004a0635418c161ef3"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "3d38b3476be9754c0faf22583ae7b5c7ce5831e25dbb8af9001300ce5e5173be",
+  "audited_by": "W03-U-prj-01"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-01",
+  "at": "2026-09-11T18:48:00+05:30"
+ }
+}

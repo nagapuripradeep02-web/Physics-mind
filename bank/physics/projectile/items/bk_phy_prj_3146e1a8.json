@@ -1,0 +1,89 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_prj_3146e1a8",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A projectile is launched from one corner of a horizontal base, just skims past the top vertex of a triangle, and comes down at the base's far corner. Taking α and β as the two base angles and θ as the projection angle, show that tan θ equals tan α plus tan β.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "particle launched from one end of a horizontal base of a triangle",
+   "particle grazes (just touches) the opposite vertex of the triangle during flight",
+   "particle lands at the other end of the same horizontal base",
+   "α and β are the two base angles of the triangle",
+   "θ is the angle of projection"
+  ],
+  "figure": {
+   "description": "The trajectory is drawn from origin O, rising and falling back to the horizontal X-axis at range R. A point A on the curve marks the vertex grazed by the projectile, at horizontal distance x from O and height y above the axis. At O, the launch angle θ and the angle α between line OA and the axis are marked. At the landing point, the angle β between the line from A to that point and the axis is marked. The horizontal distance from the foot of A to the landing point is R − x."
+  }
+ },
+ "solution": {
+  "approach": "Write the trajectory using the range R, then read off tanα and tanβ from the vertex point A and add them.",
+  "steps": [
+   {
+    "text": "Rewrite the standard trajectory equation using the range R, since R = u²sin2θ/g gives g/(2u²cos²θ) = tanθ/R.",
+    "equation": "y = x tanθ (1 − x/R)"
+   },
+   {
+    "text": "At the vertex A(x, y), the slope of the line OA gives α.",
+    "equation": "tanα = y/x"
+   },
+   {
+    "text": "The slope of the line from A to the landing point at (R, 0) gives β.",
+    "equation": "tanβ = y/(R − x)"
+   },
+   {
+    "text": "Substitute the trajectory equation into these two slope expressions.",
+    "equation": "tanα = tanθ(R − x)/R, tanβ = x tanθ/R"
+   },
+   {
+    "text": "Add the two results; the R terms cancel, giving the required identity.",
+    "equation": "tanα + tanβ = tanθ[(R − x) + x]/R = tanθ"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "tanθ = tanα + tanβ (proved)"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Assuming A is the highest point of the path and using x = R/2, which only checks the identity for that special case, not for a general point A."
+   }
+  ],
+  "concept_tags": [
+   "projectile trajectory equation",
+   "range of a projectile",
+   "slope relations"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "b504b14a00626972a467eb30c7de4f7c3e02710ec30c640ab18745596bcb07b8"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "d23cbbc80d0db286db890a0f0b0636f415573a96d4f9bc973edfb8e2c44b55f1",
+  "audited_by": "W01-U-prj-05"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-02",
+  "at": "2026-09-11T11:36:00+05:30"
+ }
+}

@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_8ccf08b9",
+ "item_sha": "43f83239666a9a026102a1ab5a151e22da8963d46d25bd53bce8678b93ac76bb",
+ "auditor_option": 1,
+ "auditor_value": "Both Assertion and Reason are true and the Reason is the correct explanation: H = uᵧ²/(2g) and T = 2uᵧ/g give H = gT²/8, so H ∝ T² and doubling T makes H four times larger.",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Re-derived H = gT²/8 (numeric check 26.407 both ways). The served question carries no option list; the solution answers with the standard four-option Assertion-Reason set, option 1, and its value text spells the choice out, so the option number is not load-bearing.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-04",
+  "at": "2026-09-11T19:32:51+05:30"
+ }
+}

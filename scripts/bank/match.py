@@ -2,6 +2,7 @@
 question NOT in the bank (or a numbers-changed twin of one) stay unmatched?
 
     python scripts/bank/match.py fingerprint            # signature + simhash + embeddings (restatement AND verbatim) -> _fingerprints.jsonl
+    python scripts/bank/match.py fingerprint --no-embed # the same without the embedding column ($0; embed the whole bank later in one pass)
     python scripts/bank/match.py negatives              # the negative set: EAPCET p1-02 PYQs, other-chapter PYQs, the same book's Level-2 page bands Level 1, 50 twins
     python scripts/bank/match.py probe [--real DIR]     # synthetic photos of every crop (+ real phone photos) -> transcribe -> match -> report
     python scripts/bank/match.py report
@@ -106,18 +107,22 @@ def cmd_fingerprint(a):
     by_bid = {}
     for wid, rt in RS.items():
         if rt.get("question_text"):
-            by_bid["bk_phy_kin_" + S.restatement_sha(rt)[:8]] = wid
+            by_bid["bk_phy_%s_" % L.PREFIX + S.restatement_sha(rt)[:8]] = wid
     served = [(it["id"], by_bid[it["id"]]) for it in rel["items"] if it["id"] in by_bid]
     rows = {r["id"]: r for r in rows}
-    er = L.gemini_embed([rows[wid]["restatement"] for _, wid in served])
+    if getattr(a, "no_embed", False):
+        # no metered call: the embedding column stays null until the whole bank is embedded in one pass later
+        er = [None] * len(served)
+    else:
+        er = L.gemini_embed([rows[wid]["restatement"] for _, wid in served])
     if os.path.exists(FP):
         os.remove(FP)
     for (bid, wid), e1 in zip(served, er):
         r = rows[wid]
         L.jsonl_append(FP, {"id": bid, "signature": L.numeric_signature(r["restatement"]), "signature_source": L.numeric_signature(r["verbatim"]),
                             "simhash": simhash(r["restatement"]), "tokens": L.tokens(r["restatement"]),
-                            "emb_restatement": [round(x, 6) for x in e1]})
-    print("fingerprint (served): %d released items -> %s" % (len(served), FP))
+                            "emb_restatement": [round(x, 6) for x in e1] if e1 else None})
+    print("fingerprint (served): %d released items -> %s%s" % (len(served), FP, "  (embedding: null)" if getattr(a, "no_embed", False) else ""))
 
 
 # ---------------------------------------------------------------- negatives
@@ -168,7 +173,7 @@ def cmd_negatives(a):
     rows = []
     bank = L.load(CORPUS_BANK) or sys.exit("no EAPCET bank at %s" % CORPUS_BANK)
     qs = [q for q in bank["questions"] if q.get("transcription_confidence") == "high" and not q.get("needs_figure")]
-    KIN = ("Motion in a Straight Line", "Motion in a Plane")
+    KIN = tuple(L.CFG["syllabus"])
     p102 = [q for q in qs if q.get("chapter") in KIN][:80]
     other = [q for q in qs if q.get("chapter") not in KIN][:150]
     for tag, group in (("pyq_p1-02", p102), ("pyq_other", other)):
@@ -342,7 +347,11 @@ def main():
     ap.add_argument("--limit", type=int)
     ap.add_argument("--twins", type=int, default=50)
     ap.add_argument("--probe", action="store_true")
+    ap.add_argument("--no-embed", action="store_true", help="fingerprint without the embedding column (no API call)")
     a = ap.parse_args()
+    metered = a.cmd == "probe" or (a.cmd == "fingerprint" and not a.no_embed)
+    if metered and not os.environ.get("BANK_ALLOW_API"):
+        sys.exit("%s calls the metered Gemini API (embeddings / transcription): set BANK_ALLOW_API=1 to allow it" % a.cmd)
     globals()["cmd_" + a.cmd](a)
 
 

@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_9518a298",
+ "item_sha": "439d9c7ded09f495839bdf6fc6f2459b3ef5a86e3cb6cf532e98d3cff4ea10ad",
+ "auditor_option": null,
+ "auditor_value": "u cos α, horizontal (net displacement R over time T)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Independent solve: R/T = (u² sin2α/g)/(2u sinα/g) = u cosα, horizontal. Every line follows; no mistake entries to check.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-05",
+  "at": "2026-09-11T19:33:41+05:30"
+ }
+}

@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_47c119c1",
+ "item_sha": "3ba4ec35ea465b1d8a6efe8d81b45ea94cf25b774ee0797db6c508f6a6f9c685",
+ "auditor_option": null,
+ "auditor_value": "tanθ = 4, θ = tan⁻¹(4) ≈ 75.96°",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Answer agrees. Mistake entry checks: H = u²sin²θ/g leads to tanθ = 2, about 63.4°.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-02",
+  "at": "2026-09-11T19:34:42+05:30"
+ }
+}

@@ -1,0 +1,20 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "prj_e747432f",
+ "approach": "Evaluate the range and the maximum height at the angle that gives maximum range, then show one is four times the other.",
+ "steps": [
+  {"text": "The horizontal range is maximum at 45°, so evaluate the range formula there.", "equation": "R_max = u²sin(2×45°)/g = u²sin90°/g = u²/g"},
+  {"text": "Evaluate the maximum height reached at this same 45° angle.", "equation": "H = u²sin²45°/(2g) = u²×(1/2)/(2g) = u²/(4g)"},
+  {"text": "Multiply this height by 4 and compare it with the range found above.", "equation": "4H = 4×u²/(4g) = u²/g = R_max",
+   "why_this_step": "Both expressions reduce to the same quantity u²/g, so the range at the angle of maximum range equals four times the height reached at that angle."}
+ ],
+ "final_answer": {"option": null, "value": "At the 45° angle of maximum range, R_max = u²/g and 4H = u²/g, so R_max equals 4H."},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Using H = u²sin²45°/g in the height formula, forgetting the factor 2 in the denominator; this makes 4H = 2u²/g, twice the correct range instead of equal to it."}
+ ],
+ "concept_tags": ["maximum range", "maximum height", "angle of projection"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-prj-01", "at": "2026-09-11T18:42:00+05:30"}
+}

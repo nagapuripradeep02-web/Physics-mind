@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_3938c125",
+ "item_sha": "5651b48ce39515124e2968ac81cb58b540b9728e9e1bb5d19a4b030817bfa37d",
+ "auditor_option": 4,
+ "auditor_value": "R = ½ gT₁T₂ (T₁T₂ = 4u² sinθ cosθ/g² = 2R/g)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Answer agrees, option (d). The mistake entry's arithmetic checks: with T = u sinθ/g the product gives R = 2gT₁T₂, option (b).",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-02",
+  "at": "2026-09-11T19:34:41+05:30"
+ }
+}

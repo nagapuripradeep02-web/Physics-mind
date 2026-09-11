@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_c10fa827",
+ "item_sha": "d33cab636fdd600f2293e344b73da98f49f30f6b5059b843ca9b856ac75c594a",
+ "auditor_option": null,
+ "auditor_value": "α = 45° + β/2 = 45° + 15° = 60° from the horizontal (30° from the incline surface)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Range-along-incline formula R = 2u² cos α sin(α−β)/(g cos²β) is the standard one; its maximum is at α = 45° + β/2. Both mistake entries name genuine errors (45° flat-ground habit; reporting 30° measured from the incline).",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-06",
+  "at": "2026-09-11T19:33:03+05:30"
+ }
+}

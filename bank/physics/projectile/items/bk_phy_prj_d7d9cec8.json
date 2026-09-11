@@ -1,0 +1,89 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_prj_d7d9cec8",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "numerical",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "At the highest point of its path, a projectile's speed equals √(2/5) times its speed at a height equal to half the maximum height reached. Work out the angle at which it was projected.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "speed at the greatest height is compared with the speed at half the greatest height",
+   "ratio of the two speeds is √(2/5)",
+   "standard projectile motion under gravity"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Write the speed at the top and at half the maximum height in terms of u and θ, then use the given ratio to solve for θ.",
+  "steps": [
+   {
+    "text": "At the greatest height, the vertical velocity is zero, so the speed is only the horizontal component.",
+    "equation": "v_top = u cosθ"
+   },
+   {
+    "text": "At half the greatest height H/2, use the vertical velocity-height relation, with H the maximum height.",
+    "equation": "v_y² = u²sin²θ − 2g(H/2), H = u²sin²θ/(2g)"
+   },
+   {
+    "text": "Substitute H into the vertical velocity expression and simplify.",
+    "equation": "v_y² = u²sin²θ − u²sin²θ/2 = u²sin²θ/2"
+   },
+   {
+    "text": "The speed at half height combines both components.",
+    "equation": "v_half² = u²cos²θ + u²sin²θ/2"
+   },
+   {
+    "text": "Apply the given ratio v_top = √(2/5) v_half and square both sides.",
+    "equation": "cos²θ = (2/5)(cos²θ + sin²θ/2)"
+   },
+   {
+    "text": "Solve for the angle of projection.",
+    "equation": "3cos²θ = sin²θ, tan²θ = 3, θ = 60°"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "θ = 60°"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Using half the time to reach the top instead of half the maximum height, which gives tan²θ = 6 and θ ≈ 67.8° instead of 60°."
+   }
+  ],
+  "concept_tags": [
+   "projectile motion",
+   "velocity-height relation",
+   "angle of projection"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "909c238be889844f4b6b2343ae319b0a51275ac9570213bdf19e98613db83672"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "fd18935dd1bdd8dd109cfa5dbfd7266344e21521353a919dfe9f7c64d654d051",
+  "audited_by": "W01-U-prj-04"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-02",
+  "at": "2026-09-11T11:42:00+05:30"
+ }
+}

@@ -1,0 +1,79 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_prj_bb056ed7",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A particle is launched with speed u, directed at angle θ above the horizontal. Determine at what time its velocity becomes perpendicular to the velocity it had at launch.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "particle undergoes projectile motion under gravity g",
+   "later velocity is perpendicular to the launch velocity"
+  ],
+  "figure": {
+   "description": "The particle starts at the origin moving along direction θ above the horizontal ground with speed u; at some later instant its velocity vector points in a direction making a right angle with the original launch direction, as the particle follows a curved (parabolic) path under gravity."
+  }
+ },
+ "solution": {
+  "approach": "Set up velocity components at time t, and require zero component along the initial velocity direction, since that is what perpendicularity to it means.",
+  "steps": [
+   {
+    "text": "Write the velocity components at time t using the projection angle θ.",
+    "equation": "vx = u cosθ (constant), vy = u sinθ − gt"
+   },
+   {
+    "text": "The velocity is perpendicular to the initial velocity u when their dot product is zero.",
+    "equation": "v·u = (u cosθ)(u cosθ) + (u sinθ − gt)(u sinθ) = 0"
+   },
+   {
+    "text": "Expand and simplify, then solve for t.",
+    "equation": "u²cos²θ + u²sin²θ − ugt sinθ = 0 ⇒ u² = ugt sinθ ⇒ t = u/(g sinθ)",
+    "why_this_step": "This is the instant the component of velocity along the original direction has fallen to zero, leaving only the perpendicular component."
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "t = u/(g sinθ)"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Using the time to reach maximum height, t = u sinθ/g, mistaking it for the perpendicular-velocity condition; the two times are different unless θ = 90°."
+   }
+  ],
+  "concept_tags": [
+   "projectile motion",
+   "perpendicular velocity vectors",
+   "dot product condition"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "b528c2f4c822162d709e8fa12a20aa01faa399d26b37b7a9cec8260346205e80"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "76d8fca111a25a82e8925b4fac07f030a55845bd67cf6e5a92242a59531de991",
+  "audited_by": "W01-U-prj-05"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-01",
+  "at": "2026-09-11T18:34:00+05:30"
+ }
+}

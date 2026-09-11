@@ -1,0 +1,63 @@
+{
+ "question_id": "prj_70ed35c7",
+ "audit_file": "prj_70ed35c7.1ed675bf.json",
+ "item_sha": "1ed675bf7b46de965ca6c22030bff109cc1ebf7850f79bf83bd6cac218e9987b",
+ "question_text": "A projectile launched at angle θ, with a certain speed, covers a horizontal range that equals half the maximum range obtainable at that same speed. What is the angle θ?",
+ "options": [
+  {
+   "label": "(a)",
+   "text": "15°"
+  },
+  {
+   "label": "(b)",
+   "text": "30°"
+  },
+  {
+   "label": "(c)",
+   "text": "60°"
+  },
+  {
+   "label": "(d)",
+   "text": "not enough information is given"
+  }
+ ],
+ "figure_description": "",
+ "solution": {
+  "approach": "Set the range formula at angle θ equal to half the maximum range and solve for θ.",
+  "steps": [
+   {
+    "text": "Write the range at angle θ and the maximum range, both at the same speed u.",
+    "equation": "R(θ) = u²sin2θ / g, R_max = u² / g (at θ = 45°)"
+   },
+   {
+    "text": "Set the range at θ equal to half the maximum range.",
+    "equation": "u²sin2θ / g = ½ × u² / g"
+   },
+   {
+    "text": "Cancel u²/g from both sides and solve for 2θ, then θ.",
+    "equation": "sin2θ = ½, so 2θ = 30° or 150°, θ = 15° or 75°; of these only 15° is among the options"
+   }
+  ],
+  "final_answer": {
+   "option": 1,
+   "value": "15°"
+  },
+  "common_mistakes": [
+   {
+    "option": 2,
+    "text": "Taking 2θ = 30° but then forgetting to divide by 2 gives θ = 30°."
+   },
+   {
+    "option": 3,
+    "text": "Writing 2θ = 120° instead of 30° or 150°, by confusing sin 120° (which is √3/2) with ½, gives θ = 60°."
+   }
+  ],
+  "concept_tags": [
+   "projectile motion",
+   "range",
+   "maximum range"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "calculation"
+ }
+}

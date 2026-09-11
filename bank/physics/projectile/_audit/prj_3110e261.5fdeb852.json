@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_3110e261",
+ "item_sha": "5fdeb8526fd688a62c28e645b3366a2e63631e8fd653ede431c06a05f25ae7dd",
+ "auditor_option": null,
+ "auditor_value": "Proof verified: u² sin2α/g = R − a and u² sin2β/g = R + b give (b sin2α + a sin2β)/(a + b) = gR/u² = sin2γ, so γ = ½ sin⁻¹[(b sin2α + a sin2β)/(a + b)]",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Each step checked algebraically and numerically (α = 20°, β = 50°, u = 30 m/s): step 2's R, step 3's sin2γ = R sin2α/(R − a) and step 4's simplification all reproduce the target range. The swapped form in the mistake entry gives a different value, as stated.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-02",
+  "at": "2026-09-11T19:34:42+05:30"
+ }
+}

@@ -1,0 +1,90 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_prj_a974d1e3",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "mcq_single",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "From the top of a 70 m tower a ball is thrown at 50 ms⁻¹, 30° above the horizontal. Taking g = 10 ms⁻², after how many seconds does it reach the ground?",
+  "options": {
+   "1": "2 s",
+   "2": "5 s",
+   "3": "7 s",
+   "4": "9 s"
+  },
+  "parts": null,
+  "conditions": [
+   "thrown from the top of a tower of height 70 m",
+   "thrown upward at 30° above the horizontal",
+   "g = 10 ms⁻²"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Write the vertical displacement as a function of time, set it to minus the tower height since the ball lands below the launch point, and solve the quadratic for time.",
+  "steps": [
+   {
+    "text": "Find the vertical component of the launch velocity.",
+    "equation": "u_y = 50 sin30° = 25 ms⁻¹"
+   },
+   {
+    "text": "Write the vertical displacement equation, taking upward as positive, with the ground 70 m below the launch point.",
+    "equation": "−70 = 25t − ½(10)t²"
+   },
+   {
+    "text": "Rearrange into standard quadratic form and simplify.",
+    "equation": "5t² − 25t − 70 = 0, t² − 5t − 14 = 0"
+   },
+   {
+    "text": "Solve the quadratic. Only the positive root is a physical time.",
+    "equation": "t = (5 ± 9)/2 = 7 s or −2 s, so t = 7 s"
+   }
+  ],
+  "final_answer": {
+   "option": 3,
+   "value": "7 s"
+  },
+  "common_mistakes": [
+   {
+    "option": 1,
+    "text": "Taking the magnitude of the rejected negative root instead of discarding it gives 2 s."
+   },
+   {
+    "option": 2,
+    "text": "Ignoring the tower height and finding only the time to return to the launch height, 2u_y/g, gives 5 s."
+   }
+  ],
+  "concept_tags": [
+   "projectile motion",
+   "projectile from a height",
+   "quadratic equation"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "63e47bfed7767fbb65459322df56ee83ad998c8f53472b076484d83d1c37279e"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "22af12d2e96c1c9835f34665f043675c0dcbf2abc5034f0d4f3f59fe724e5b15",
+  "audited_by": "W01-U-prj-03"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-05",
+  "at": "2026-09-11T00:00:00+05:30"
+ }
+}

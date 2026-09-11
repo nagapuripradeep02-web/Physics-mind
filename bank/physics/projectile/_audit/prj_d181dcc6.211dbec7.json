@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_d181dcc6",
+ "item_sha": "211dbec77b422f5db8d63aa5b9c44ad416a0c5f0a802ad31fd2d8a785c12c365",
+ "auditor_option": null,
+ "auditor_value": "The claim is incorrect: projectile motion is two-dimensional, confined to the vertical plane containing the initial velocity and g.",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Plane argument (initial velocity and g fix one vertical plane; no force acts out of it) is correct and plainly worded.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-06",
+  "at": "2026-09-11T19:34:53+05:30"
+ }
+}

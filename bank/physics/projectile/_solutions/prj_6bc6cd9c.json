@@ -1,0 +1,19 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "prj_6bc6cd9c",
+ "approach": "Maximum range happens at 45°, and the horizontal velocity component stays constant through the flight, so it equals the speed at the highest point.",
+ "steps": [
+  {"text": "The range is maximum when the angle of projection is 45°.", "equation": "θ = 45°"},
+  {"text": "At the highest point the vertical velocity component is zero, so the speed there equals the horizontal component, which never changes.", "equation": "v_top = u cos θ"},
+  {"text": "Substitute u = 20 ms⁻¹ and θ = 45° and compute the value, which rounds to the nearest printed option.", "equation": "v_top = 20 × cos 45° = 20/√2 = 14.14 ms⁻¹ ≈ 14 ms⁻¹"}
+ ],
+ "final_answer": {"option": 2, "value": "14 ms⁻¹"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 1, "text": "Wrongly assuming the maximum-range angle is 60° instead of 45° and computing 20 × cos 60° gives 10 ms⁻¹."}
+ ],
+ "concept_tags": ["projectile motion", "maximum range", "velocity at highest point"],
+ "difficulty": "easy",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-prj-05", "at": "2026-09-11T00:00:00+05:30"}
+}

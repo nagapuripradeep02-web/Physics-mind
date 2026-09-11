@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_dea1c6ba",
+ "item_sha": "fe26e748d59d5a132a1340d3c1f272e79703427106f0f1b0ed0f62e7defc733b",
+ "auditor_option": 3,
+ "auditor_value": "πv₀⁴/g² (area = π R_max² with R_max = v₀²/g)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "R_max = v₀²/g at 45°, circle of that radius, area π(v₀²/g)² = πv₀⁴/g² — every line follows. The single mistake entry (π × R_max = πv₀²/g) is a genuine not-squaring error and does point at option (a).",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-07",
+  "at": "2026-09-11T19:33:41+05:30"
+ }
+}

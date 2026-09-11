@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_969f827d",
+ "item_sha": "583414d0d2880aba12d46d295e392cd89995a464c2760cd5c44a133798948f2b",
+ "auditor_option": null,
+ "auditor_value": "(a) R = 80 m, H = 20 m, T = 4 s (g = 10); (b) 20î + 10ĵ m/s, 10√5 ≈ 22.4 m/s at tan⁻¹(1/2) ≈ 26.6° above horizontal; (c) 20î − 20ĵ m/s, 20√2 ≈ 28.3 m/s at 45° below horizontal",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Independent solve matches every part. The mistake entry's 40 m follows from H = u_y²/g as stated. Step 5 calls the landing 'the time of collision'; the ball does strike the ground, so not filed, but 'landing' would be clearer.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-05",
+  "at": "2026-09-11T19:34:09+05:30"
+ }
+}

@@ -1,0 +1,76 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_prj_b72ec17a",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "Show that when a projectile is launched at the angle that gives the greatest possible horizontal range, that maximum range works out to four times the greatest height it reaches.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "projectile launched at the angle giving the greatest horizontal range"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Evaluate the range and the maximum height at the angle that gives maximum range, then show one is four times the other.",
+  "steps": [
+   {
+    "text": "The horizontal range is maximum at 45°, so evaluate the range formula there.",
+    "equation": "R_max = u²sin(2×45°)/g = u²sin90°/g = u²/g"
+   },
+   {
+    "text": "Evaluate the maximum height reached at this same 45° angle.",
+    "equation": "H = u²sin²45°/(2g) = u²×(1/2)/(2g) = u²/(4g)"
+   },
+   {
+    "text": "Multiply this height by 4 and compare it with the range found above.",
+    "equation": "4H = 4×u²/(4g) = u²/g = R_max",
+    "why_this_step": "Both expressions reduce to the same quantity u²/g, so the range at the angle of maximum range equals four times the height reached at that angle."
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "At the 45° angle of maximum range, R_max = u²/g and 4H = u²/g, so R_max equals 4H."
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Using H = u²sin²45°/g in the height formula, forgetting the factor 2 in the denominator; this makes 4H = 2u²/g, twice the correct range instead of equal to it."
+   }
+  ],
+  "concept_tags": [
+   "maximum range",
+   "maximum height",
+   "angle of projection"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "e747432fd66c3955bdca004d0ecc7063f6d631628e4c8e0e5d5eae47fb70a3cb"
+ },
+ "verification": {
+  "key_match": false,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "321ee03204780c1c369712433d88ea4cbaf5456f47320793e62cf5c0331e729b",
+  "audited_by": "W01-U-prj-07"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-01",
+  "at": "2026-09-11T18:42:00+05:30"
+ }
+}

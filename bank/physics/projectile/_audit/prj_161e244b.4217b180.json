@@ -1,0 +1,31 @@
+{
+ "question_id": "prj_161e244b",
+ "item_sha": "4217b180f5624651e839afb32bb0170eb9d9f52069a5406af22f5330f45f1880",
+ "auditor_option": null,
+ "auditor_value": "5/√2 ≈ 3.54 m/s, running toward the trainer (T = 2√2 s, R = 40 m, gap = 50 − 40 = 10 m)",
+ "findings": [
+  {
+   "grade": "weak",
+   "field": "steps[4].equation",
+   "quote": "v = 10/(2√2) = 5√2/2 ≈ 3.54 m/s, running toward the coach",
+   "note": "The served question names the thrower 'the trainer'; no coach is mentioned. The number and direction are right.",
+   "fix": "v = 10/(2√2) = 5√2/2 ≈ 3.54 m/s, running toward the trainer"
+  },
+  {
+   "grade": "weak",
+   "field": "final_answer.value",
+   "quote": "about 3.54 m/s, running toward the coach",
+   "note": "Same naming mismatch: the question says 'trainer', not 'coach'.",
+   "fix": "about 3.54 m/s, running toward the trainer"
+  }
+ ],
+ "verdict": "weak",
+ "question_defect": null,
+ "notes": "Re-computed: T = 2√2 s, R = 40 m, Δd = 10 m, v = 10/(2√2) = 3.536 m/s toward the thrower. Mistake entry verified: 50/(2√2) = 17.68 m/s. All physics correct.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-01",
+  "at": "2026-09-11T19:34:46+05:30"
+ }
+}

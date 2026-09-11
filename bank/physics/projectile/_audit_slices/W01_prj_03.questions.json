@@ -1,0 +1,138 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter": "projectile",
+ "slice": 3,
+ "round": 0,
+ "items": [
+  {
+   "question_id": "prj_578d72ff",
+   "question_text": "A body is thrown upward so that its position vector, in metres, changes with time t (in seconds) as r = 3t î + (4t − 5t²)ĵ. Find the time at which its y-coordinate becomes zero, and the x-coordinate of the body at that time.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_600354a4",
+   "question_text": "A particle undergoes projectile motion, launched at speed u at an angle θ above the horizontal. What is its average velocity between the launch point and the highest point of its path?",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "u cos θ"
+    },
+    {
+     "label": "(b)",
+     "text": "(u/2)√(1 + 3cos²θ)"
+    },
+    {
+     "label": "(c)",
+     "text": "(u/2)√(2 + cos²θ)"
+    },
+    {
+     "label": "(d)",
+     "text": "(u/2)√(1 + cos²θ)"
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_6606ae74",
+   "question_text": "Two balls, A and B, are thrown at the same instant from the tops of two towers standing distance d apart. Ball A is thrown from the shorter tower, of height 10 m, at 10√2 m/s directed 45° above the horizontal toward the other tower. Ball B is thrown from the taller tower, of height 20 m, horizontally toward the first tower at 10 m/s. The two balls meet while both are still in the air. Find d.",
+   "options": [],
+   "figure_description": "Two vertical towers stand on level ground, distance d apart. The left tower is 10 m tall; from its top, particle A is launched at 45° above the horizontal at 10√2 m/s, aimed toward the right tower. The right tower is 20 m tall; from its top, particle B is launched horizontally at 10 m/s, aimed toward the left tower."
+  },
+  {
+   "question_id": "prj_65607d30",
+   "question_text": "A projectile leaves a cliff top moving purely horizontally at 98 m/s; the cliff is 490 m tall.\n(a) How long does the projectile take before it lands?\n(b) How far from the base of the cliff does the projectile land?\n(c) With what velocity (magnitude and direction) does the projectile strike the ground? Use g = 9.8 m/s².",
+   "options": [],
+   "figure_description": "The projectile starts at the top of the cliff moving horizontally, follows a curving downward path, and lands at a point on the ground level with the foot of the cliff; at landing its velocity has a horizontal component and a vertical component making an angle with the horizontal."
+  },
+  {
+   "question_id": "prj_25d4bf73",
+   "question_text": "In the diagram, a projectile is launched from point O with speed 20√2 m/s directed 90° above the horizontal. The incline through O slopes downward at 37° to the horizontal, and the projectile comes down on this incline at point P.\n(a) Determine how long the projectile is in the air before it lands on the sloped surface at P.\n(b) Determine the distance OP, measured along the slope, from the launch point O to the landing point P.",
+   "options": [],
+   "figure_description": "The particle leaves O with velocity 20√2 m/s at 45° above the horizontal. The slope through O runs downward at 37° to the horizontal, both close to O and at its lower end. The particle's curved path rises then falls, meeting the slope at point P, below and to the side of O. A right-angled construction with a vertical segment from O and a horizontal segment to P marks the drop and horizontal shift used to locate P."
+  },
+  {
+   "question_id": "prj_4838690c",
+   "question_text": "A small ball leaves point A at t = 0, launched at 60 m/s at an angle of 60° to the horizontal. Ignoring air resistance, find the two instants t₁ and t₂ at which the ball's velocity is directed 45° from the horizontal x-axis.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_5c4a8a8b",
+   "question_text": "Launched from the ground at 50 m/s, a particle makes an angle of 37° with the horizontal. Taking sin 37° = 3/5, determine both its velocity and its displacement 2 seconds after launch.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_51e4cf12",
+   "question_text": "For a fixed launch speed u, two different projection angles can give the same horizontal range. Prove that adding together the maximum heights reached for these two angles gives a result that does not depend on which of the two angles was used.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_63e47bfe",
+   "question_text": "From the top of a 70 m tower a ball is thrown at 50 ms⁻¹, 30° above the horizontal. Taking g = 10 ms⁻², after how many seconds does it reach the ground?",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "2 s"
+    },
+    {
+     "label": "(b)",
+     "text": "5 s"
+    },
+    {
+     "label": "(c)",
+     "text": "7 s"
+    },
+    {
+     "label": "(d)",
+     "text": "9 s"
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_4c3a2b6e",
+   "question_text": "Assertion: We describe projectile motion as two-dimensional even though the motion actually happens within three-dimensional space. Reason: Even in three-dimensional space, the motion stays confined to a single flat plane.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_6bc6cd9c",
+   "question_text": "A ball is launched at a speed of 20 m/s, at whatever angle to the horizontal gives it the greatest possible horizontal range. What is its speed when it is at the topmost point of its path?",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "10 ms⁻¹"
+    },
+    {
+     "label": "(b)",
+     "text": "14 ms⁻¹"
+    },
+    {
+     "label": "(c)",
+     "text": "18 ms⁻¹"
+    },
+    {
+     "label": "(d)",
+     "text": "16 ms⁻¹"
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_63c34056",
+   "question_text": "From the foot of a slope inclined at 30° to the horizontal, a particle is launched at 40 m/s, directed 60° above the horizontal. Taking g = 10 m/s², find the particle's speed at the moment its velocity is directed parallel to the slope.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_54c95e72",
+   "question_text": "Two particles, A and B, are launched at the same instant from two points on level ground. Particle A leaves the ground at speed 20 m/s, directed at an unknown angle θ above the line joining the two points, toward B. Particle B leaves the ground moving straight up at 10 m/s. The two particles meet in the air half a second after launch.\n(a) Find the angle θ.\n(b) Find the horizontal distance x between the two launch points.",
+   "options": [],
+   "figure_description": "Two points, A and B, lie on level ground a horizontal distance x apart. From A, a particle is launched toward B at 20 m/s, at an unknown angle θ above the ground. From B, a particle is launched straight upward at 10 m/s."
+  }
+ ]
+}

@@ -1,0 +1,103 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_prj_c40e9d6d",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A lift is moving upward, accelerating at 1 m/s². At the moment its speed reaches 2 m/s, a stone is thrown from the lift's floor, its speed relative to the lift being 2 m/s, launched upward at 30° elevation.",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "Work out how long the stone takes before it lands back on the lift's floor."
+   },
+   {
+    "label": "b",
+    "asks": "Draw the trajectory the stone follows, as seen by someone standing outside the lift."
+   },
+   {
+    "label": "c",
+    "asks": "Suppose instead the lift accelerates downward at a rate equal to g. Describe how the stone's motion would then differ."
+   }
+  ],
+  "conditions": [
+   "lift accelerating upward at 1 m/s²",
+   "stone launched from the lift's floor with velocity given relative to the lift",
+   "elevation angle of launch is 30° relative to the lift"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Inside the accelerating elevator the stone feels an increased effective gravity g + a, so its relative flight time follows the usual projectile formula with that effective value.",
+  "steps": [
+   {
+    "text": "Find the stone's vertical velocity component relative to the elevator at launch.",
+    "equation": "v_rel = 2 sin30° = 1 m/s"
+   },
+   {
+    "text": "Inside the upward-accelerating elevator, the effective downward acceleration felt by the stone relative to the elevator is g plus the elevator's own acceleration.",
+    "equation": "g_eff = g + a = 10 + 1 = 11 m/s² (taking g = 10 m/s²)"
+   },
+   {
+    "text": "Use the usual projectile time-of-flight formula with this effective gravity to find when the stone returns to the elevator floor.",
+    "equation": "t = 2v_rel/g_eff = 2×1/11 = 2/11 s ≈ 0.18 s, with g = 9.8 m/s², g_eff = 10.8 m/s² and t ≈ 0.185 s"
+   },
+   {
+    "text": "For an observer outside the elevator, the stone's initial velocity is the elevator's velocity plus the stone's velocity relative to the elevator. After release the stone moves under ordinary gravity g alone, so it follows a normal parabolic path; the elevator floor, still accelerating upward, rises to meet the stone.",
+    "equation": "vₓ = 2cos30° ≈ 1.73 m/s, v_y = 2 + 2sin30° = 3 m/s, both measured from the ground"
+   },
+   {
+    "text": "If the elevator instead accelerates downward at g, it is in free fall, so the effective gravity felt inside it becomes zero.",
+    "equation": "g_eff = g − g = 0"
+   },
+   {
+    "text": "State all three results together.",
+    "equation": "(a) t = 2/11 s ≈ 0.18 s taking g = 10 m/s² (≈ 0.185 s with g = 9.8 m/s²), (b) a parabola in the ground frame with initial velocity 1.73 m/s horizontal and 3 m/s upward, (c) with downward acceleration g the effective gravity inside is zero, so relative to the elevator the stone moves in a straight line at constant velocity and never returns to the floor"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) t = 2 sin30°·2/(g + 1) = 2/11 s ≈ 0.18 s taking g = 10 m/s² (≈ 0.185 s with g = 9.8 m/s²), (b) a parabola in the ground frame with initial velocity 1.73 m/s horizontal and 3 m/s upward, while the elevator floor, still accelerating upward, rises to meet the stone, (c) with downward acceleration g the elevator is in free fall, so relative to it the stone moves in a straight line at constant velocity and never returns to the floor"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Using ordinary gravity g instead of the effective gravity g + a for the time in part (a) gives 0.2 s instead of the correct 0.18 s."
+   }
+  ],
+  "concept_tags": [
+   "relative motion",
+   "non-inertial frame",
+   "pseudo-force",
+   "projectile motion"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "5bf47e868e529235bfb01aea9c4b8073198923d464ac4480b454417733e7e55c"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "2447fbdeb1896b6df5c1b33a8c23b76c2a5006aeaa990eb470ae964b2aceb2e6",
+  "audited_by": "W03-U-prj-01"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-07",
+  "at": "2026-09-11T16:45:00+05:30"
+ }
+}

@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_a7653f21",
+ "item_sha": "195995351a28eaa4473f628789805ad9a1e5d80e133cdd3dd186ebc3d7483a65",
+ "auditor_option": 2,
+ "auditor_value": "K/3",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Independent solve: u_x constant gives v = u cos60°/cos30° = u/√3, so K' = K/3, option (b). Every line checked; the common-mistakes entry reproduces 3K/4 as stated.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-05",
+  "at": "2026-09-11T19:33:23+05:30"
+ }
+}

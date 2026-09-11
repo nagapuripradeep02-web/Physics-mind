@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_be6fa5c3",
+ "item_sha": "b7165f49f49b9f9b52cae3254618545bd4981a03adc6afd7df20783852fa9e2f",
+ "auditor_option": 4,
+ "auditor_value": "25 m (v_y = 10 − 2t = 0 at t = 5 s; y_max = 50 − 25 = 25 m; equivalently u_y²/2g = 100/4 with g = 2 m/s²)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Differentiation, zero-crossing time and substitution all check. The mistake entry (g read as 1 instead of 2, giving 50 m = option c) reproduces its stated number.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-06",
+  "at": "2026-09-11T19:33:57+05:30"
+ }
+}

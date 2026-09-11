@@ -1,0 +1,100 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_prj_4c6a8b1a",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "assertion_reason",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "Assertion: Object A is thrown straight upward from a point on the ground. At the same instant, object B is launched from a different point on the ground and follows a curved projectile path, as pictured. Object A comes back down to the ground after 4 seconds, and at that same instant object B lands on object A. For this to happen, the peak height H reached by B works out to be 20 m. (Take g = 10 m/s².) Reason: For this situation to occur, the two objects must be launched with equal speeds.",
+  "options": {
+   "1": "If both Assertion and Reason are true and the Reason is the correct explanation of the Assertion.",
+   "2": "If both Assertion and Reason are true but the Reason is not the correct explanation of the Assertion.",
+   "3": "If the Assertion is true, but the Reason is false.",
+   "4": "If the Assertion is false but the Reason is true."
+  },
+  "parts": null,
+  "conditions": [
+   "A is thrown vertically upward from the ground",
+   "B is launched at the same instant along a curved projectile path from a different ground point",
+   "B lands on A exactly when A returns to the ground",
+   "g = 10 m/s²"
+  ],
+  "figure": {
+   "description": "B starts from a point on the ground and follows a parabolic path that climbs to a peak height H before coming back down to ground level exactly at the point where A is thrown straight up from and returns to."
+  }
+ },
+ "solution": {
+  "approach": "Particle A's flight time fixes its own launch speed; requiring B to land on A at the same instant fixes only B's vertical launch speed, not B's full speed.",
+  "steps": [
+   {
+    "text": "Particle A is thrown straight up and returns to the ground in 4 s, so find its launch speed from the time of flight.",
+    "equation": "T_A = 2u_A/g ⇒ u_A = gT_A/2 = 10×4/2 = 20 m/s"
+   },
+   {
+    "text": "Particle B collides with A at the instant A returns to the ground, so B is also in flight for 4 s.",
+    "equation": "T_B = 4 s"
+   },
+   {
+    "text": "Find the vertical component of B's launch velocity from its own time of flight, using the same relation as for A.",
+    "equation": "T_B = 2uᵧ_B/g ⇒ uᵧ_B = gT_B/2 = 10×4/2 = 20 m/s"
+   },
+   {
+    "text": "The maximum height of a projectile depends only on the vertical component of its launch velocity.",
+    "equation": "H = uᵧ_B²/(2g) = 20²/(2×10) = 20 m"
+   },
+   {
+    "text": "This confirms the Assertion: H = 20 m, and this value does not depend on B's horizontal launch speed, which the given data never fixes."
+   },
+   {
+    "text": "Because B's horizontal speed is unknown and generally nonzero, B's full launch speed need not equal A's 20 m/s, so the Reason is false even though the Assertion is true.",
+    "why_this_step": "Only the vertical launch component is pinned down by the 4 s flight time; the horizontal component is free."
+   }
+  ],
+  "final_answer": {
+   "option": 3,
+   "value": "If the Assertion is true, but the Reason is false."
+  },
+  "common_mistakes": [
+   {
+    "option": 1,
+    "text": "Assuming B must be launched at exactly A's speed because the two particles meet at the same point at the same time, which makes the Reason look correct."
+   },
+   {
+    "option": 4,
+    "text": "Accepting the Reason as u_B = 20 m/s and computing H = u_B² sin²θ/(2g), which is below 20 m for any angle under 90°, so wrongly rejecting the Assertion."
+   }
+  ],
+  "concept_tags": [
+   "projectile motion",
+   "time of flight",
+   "maximum height"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "dad3bbb3586fc5d65253f34d3c563777b1e149d9d4b997799bbc5b92dc2e955c"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "3f9a945d257f61f21f299294180e75e15bfc58bf89fd5def4597c57c2a354e42",
+  "audited_by": "W02-U-prj-02"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-04",
+  "at": "2026-09-11T16:10:00+05:30"
+ }
+}

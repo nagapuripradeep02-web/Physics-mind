@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_cc910cc5",
+ "item_sha": "ac6978ae65edffe3fce1b2cef563c068630e453d4fdddf78817de2e148c79971",
+ "auditor_option": null,
+ "auditor_value": "v = 5/√(2×4/g): ≈ 5.53 m/s with g = 9.8 m/s² (t ≈ 0.904 s); ≈ 5.59 m/s with g = 10 m/s²",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Question gives no g; the solution states g = 9.8 explicitly and every number follows (t = 0.9035 s, v = 5.534 m/s). The mistake entry's numbers (√(4/9.8) ≈ 0.64 s, 5/0.64 ≈ 7.8 m/s) follow from its stated cause.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-06",
+  "at": "2026-09-11T19:34:09+05:30"
+ }
+}

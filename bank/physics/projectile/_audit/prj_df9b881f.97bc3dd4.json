@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_df9b881f",
+ "item_sha": "97bc3dd44f0ee95650e73aee0542932296c40d8436fe60d07dd19e952c3fb65f",
+ "auditor_option": null,
+ "auditor_value": "|v| = sqrt(a(1 + p^2)/(2q)), directed at tan^-1(p) above the +x axis; components u_x = sqrt(a/(2q)), u_y = p*sqrt(a/(2q))",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Independent solve agrees on both magnitude and direction. Every line follows from the one above (t = x/u_x substituted into y, coefficients matched, 1/2 kept). The common-mistake number sqrt(a/q) is what dropping the 1/2 produces. Numerically checked with a = 10, p = 1, q = 0.1: u_x = u_y = 7.07, |u| = 10, and the trajectory reproduces y = px - qx^2.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-prj-03",
+  "at": "2026-09-11T19:53:34+05:30"
+ }
+}

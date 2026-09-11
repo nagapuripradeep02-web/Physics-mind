@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_63c34056",
+ "item_sha": "f7b0d50d07a48e2d3d730a01617500e5cb9cf6c623cde97ac3799278876658ce",
+ "auditor_option": null,
+ "auditor_value": "40/√3 = 40√3/3 ≈ 23.1 m/s (at t = 4/√3 ≈ 2.31 s, half the time of flight on the incline)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-03",
+  "at": "2026-09-11T19:35:50+05:30"
+ }
+}

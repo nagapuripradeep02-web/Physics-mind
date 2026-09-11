@@ -1,0 +1,109 @@
+{
+ "wave": 2,
+ "role": "audit",
+ "chapter": "projectile",
+ "slice": 1,
+ "round": 0,
+ "items": [
+  {
+   "question_id": "prj_6e73404f",
+   "question_text": "Someone stands at the top of a sloping hill and throws a stone purely horizontally, giving it speed v₀. Using an x-y axis system with its origin at the throwing point, work out the x and y coordinates of the spot on the hillside where the stone eventually lands.",
+   "options": [],
+   "figure_description": "The hill's top is at the origin (0,0) of an x-y axis system, with the x-axis horizontal (pointing in the direction of throw) and the y-axis vertical. The stone is thrown horizontally with speed v₀ along the positive x direction from the origin. The hillside slopes downward from the origin at angle θ below the horizontal x-axis, and the stone's curved path meets this sloped hillside at a point (x, y), with y measured as negative below the origin."
+  },
+  {
+   "question_id": "prj_6f699f92",
+   "question_text": "Assertion: Whenever the acceleration of a particle does not change, the only path it can trace is a parabola. Reason: The trajectory in projectile motion is a parabola because, near the ground, the acceleration is treated as unchanging.",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "If both Assertion and Reason are true and the Reason is the correct explanation of the Assertion."
+    },
+    {
+     "label": "(b)",
+     "text": "If both Assertion and Reason are true but the Reason is not the correct explanation of the Assertion."
+    },
+    {
+     "label": "(c)",
+     "text": "If the Assertion is true, but the Reason is false."
+    },
+    {
+     "label": "(d)",
+     "text": "If the Assertion is false but the Reason is true."
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_161e244b",
+   "question_text": "A trainer launches a baseball to a teammate, sending it off at 20 m/s at 45° above horizontal. The instant the throw happens, the teammate is standing 50 m away. Using g = 10 m/s², determine the running speed and direction the teammate needs so the catch happens exactly at the height the ball started from.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_2896697e",
+   "question_text": "Two particles are launched at the same instant, moving horizontally, from two different points on a riverbank that sit at some height above the water. Particle 1 has initial speed v₁ = 5 m/s and particle 2 has initial speed v₂ = 7.5 m/s. Both particles land in the water simultaneously. The first particle lands at a horizontal distance s = 10 m from the bank.\n(a) Find how long each particle remains airborne before hitting the water.\n(b) Find the height of the riverbank above the water surface.\n(c) Work out where the second particle lands in the water, measured from the bank.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_3103a693",
+   "question_text": "A bullet launched at 30° to the horizontal lands 3.0 km from where it was fired. If the launch angle is changed while everything else about the shot is kept the same, is it possible to strike a target sitting 5.0 km away? The bullet leaves the barrel at a constant speed, and air drag can be ignored.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_12e9721f",
+   "question_text": "A projectile launches at elevation angle α above the horizontal. Viewed from the launch point, after t seconds it appears to be at elevation angle β. Determine the launch speed of the projectile.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_5bf47e86",
+   "question_text": "A lift is moving upward, accelerating at 1 m/s². At the moment its speed reaches 2 m/s, a stone is thrown from the lift's floor, its speed relative to the lift being 2 m/s, launched upward at 30° elevation.\n(a) Work out how long the stone takes before it lands back on the lift's floor.\n(b) Draw the trajectory the stone follows, as seen by someone standing outside the lift.\n(c) Suppose instead the lift accelerates downward at a rate equal to g. Describe how the stone's motion would then differ.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_4c3a2b6e",
+   "question_text": "Assertion: We describe projectile motion as two-dimensional even though the motion actually happens within three-dimensional space. Reason: Even in three-dimensional space, the motion stays confined to a single flat plane.",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "If both Assertion and Reason are true and the Reason is the correct explanation of the Assertion."
+    },
+    {
+     "label": "(b)",
+     "text": "If both Assertion and Reason are true but the Reason is not the correct explanation of the Assertion."
+    },
+    {
+     "label": "(c)",
+     "text": "If the Assertion is true, but the Reason is false."
+    },
+    {
+     "label": "(d)",
+     "text": "If the Assertion is false but the Reason is true."
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_6606ae74",
+   "question_text": "Two balls, A and B, are thrown at the same instant from the tops of two towers standing distance d apart. Ball A is thrown from the shorter tower, of height 10 m, at 10√2 m/s directed 45° above the horizontal toward the other tower. Ball B is thrown from the taller tower, of height 20 m, horizontally toward the first tower at 10 m/s. The two balls meet while both are still in the air. Find d.",
+   "options": [],
+   "figure_description": "Two vertical towers stand on level ground, distance d apart. The left tower is 10 m tall; from its top, particle A is launched at 45° above the horizontal at 10√2 m/s, aimed toward the right tower. The right tower is 20 m tall; from its top, particle B is launched horizontally at 10 m/s, aimed toward the left tower."
+  },
+  {
+   "question_id": "prj_0376ab08",
+   "question_text": "Referring to the launch angles marked in the sketch, determine the projectile's time of flight and its range measured along the slope, with g = 10 m/s².",
+   "options": [],
+   "figure_description": "A slope rises from left to right, meeting the horizontal ground at 30° (the angle is marked at the bottom-left corner, where the slope meets the ground). From a launch point partway up the slope a dashed horizontal reference line is drawn; the velocity arrow of 20√2 m/s starts at that point and points up and to the left, that is, away from the rising slope and toward the downhill side, making 45° with the dashed horizontal line."
+  },
+  {
+   "question_id": "prj_25d4bf73",
+   "question_text": "In the diagram, a projectile is launched from point O with speed 20√2 m/s directed 45° above the horizontal. The incline through O slopes downward at 37° to the horizontal, and the projectile comes down on this incline at point P.\n(a) Determine how long the projectile is in the air before it lands on the sloped surface at P.\n(b) Determine the distance OP, measured along the slope, from the launch point O to the landing point P.",
+   "options": [],
+   "figure_description": "The particle leaves O with velocity 20√2 m/s at 45° above the horizontal. The slope through O runs downward at 37° to the horizontal, both close to O and at its lower end. The particle's curved path rises then falls, meeting the slope at point P, below and to the side of O. A right-angled construction with a vertical segment from O and a horizontal segment to P marks the drop and horizontal shift used to locate P."
+  }
+ ]
+}

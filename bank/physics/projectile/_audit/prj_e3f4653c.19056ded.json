@@ -1,0 +1,24 @@
+{
+ "question_id": "prj_e3f4653c",
+ "item_sha": "19056dedcc1eaaec7a124531e8f62a1031ce2801a79958c40a9b73727fec98ed",
+ "auditor_option": 4,
+ "auditor_value": "(d): Assertion false (the velocity vector changes by 10 m/s each second; the speed changes by g|sin(phi)| per second, less than 10 m/s whenever there is a horizontal component), Reason true (definition of acceleration)",
+ "findings": [
+  {
+   "grade": "wrong",
+   "field": "common_mistakes[1].text",
+   "quote": "Judging the Reason false by treating rate of change of velocity as if it only meant rate of change of speed.",
+   "note": "A student who reads 'rate of change of velocity' as 'rate of change of speed' accepts the Reason as true and also accepts the Assertion, which leads to option 1 (already entry [0]), not option 3. The stated cause gives no route to marking the Reason false, so it does not produce the option it names.",
+   "fix": "Accepting the Assertion, and marking the Reason false because the student believes acceleration is defined as the rate of change of speed, so a definition worded in terms of velocity looks wrong to them."
+  }
+ ],
+ "verdict": "wrong",
+ "question_defect": "The served Reason contains the word 'simply' ('Acceleration is simply defined as ...'); register only, no physics defect.",
+ "notes": "Option 4 agrees with mine. Step 4's claim that the per-second change in speed is largest near the ground and smallest near the top is correct: d(speed)/dt = -g*v_y/|v| = -g*sin(phi), which is largest in magnitude at launch and landing and zero at the top (checked numerically for u = 20 m/s at 60 deg: speeds 20.0, 12.4, 10.4, 16.1 at t = 0, 1, 2, 3 s). Steps 1 and 4 carry no equation but have real content.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-prj-03",
+  "at": "2026-09-11T19:53:34+05:30"
+ }
+}

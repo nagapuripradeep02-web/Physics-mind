@@ -1,0 +1,121 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter": "projectile",
+ "slice": 1,
+ "round": 0,
+ "items": [
+  {
+   "question_id": "prj_24ec27c3",
+   "question_text": "Someone kicks a ball upward from level ground. When the ball is 9.1 m up, an instrument records its velocity as v = 7.6î + 6.1ĵ, in metres per second, with î along the horizontal and ĵ pointing up. Approximate values are acceptable.\n(a) What is the greatest height the ball reaches?\n(b) How far along the ground does the ball go before it comes down?\n(c) Just before the ball hits the ground, what is the size of its velocity?\n(d) Just before the ball hits the ground, what is the direction of its velocity?",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_14f26fa5",
+   "question_text": "A stationary mortar launches a bomb upward at 53° to the horizontal, leaving the muzzle at 80 ms⁻¹. At the instant of firing, a tank begins moving straight toward the mortar across flat ground at a steady 5 m/s. Taking g = 10 ms⁻², find how far apart the mortar and tank must initially be for the bomb to strike the tank.",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "662.4 m"
+    },
+    {
+     "label": "(b)",
+     "text": "526.3 m"
+    },
+    {
+     "label": "(c)",
+     "text": "486.6 m"
+    },
+    {
+     "label": "(d)",
+     "text": "None of these"
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_2259e411",
+   "question_text": "An object is released moving only horizontally from a tower's top. It lands on the ground 3 seconds later, striking it at 45° to the horizontal. Using g = 9.8 m/s², calculate the tower's height and the horizontal launch speed of the object.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_114744c1",
+   "question_text": "A particle leaves the ground at 20√2 m/s, launched at 45° above the horizontal. Consider the 3 s stretch beginning at launch, that is, from t = 0 s up to t = 3 s.\n(a) Work out the particle's change in velocity over this interval.\n(b) Work out the size of the particle's average velocity over this interval.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_248833bb",
+   "question_text": "A particle is launched horizontally at 50 ms⁻¹ from a plane tilted 30° to the horizontal. With g = 10 ms⁻², determine the distance travelled along the slope from the launch point to where the particle lands.",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "500 m"
+    },
+    {
+     "label": "(b)",
+     "text": "1000/3 m"
+    },
+    {
+     "label": "(c)",
+     "text": "200√2 m"
+    },
+    {
+     "label": "(d)",
+     "text": "100√3 m"
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_0929c46e",
+   "question_text": "A particle travels in the xy-plane under a constant acceleration of magnitude a, always pointing along the negative y-direction. Its trajectory follows y = bx − cx², with b and c both fixed positive numbers. Work out the particle's velocity right at the coordinate origin.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_161e244b",
+   "question_text": "A trainer launches a baseball to a teammate, sending it off at 20 m/s at 45° above horizontal. The instant the throw happens, the teammate is standing 100 m away. Using g = 10 m/s², determine the running speed and direction the teammate needs so the catch happens exactly at the height the ball started from.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_161e244b",
+   "question_text": "A trainer launches a baseball to a teammate, sending it off at 20 m/s at 45° above horizontal. The instant the throw happens, the teammate is standing 50 m away. Using g = 10 m/s², determine the running speed and direction the teammate needs so the catch happens exactly at the height the ball started from.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_1fce3d4c",
+   "question_text": "In the diagram, a projectile is launched from point O with an initial speed of 20√2 m/s, directed 45° above the horizontal, up a slope that rises at 37° to the horizontal. The projectile comes down on the slope's surface at point P.\n(a) Determine how long the projectile stays in the air before landing on the slope at P.\n(b) Determine the distance OP measured along the slope, from the launch point O to the landing point P.",
+   "options": [],
+   "figure_description": "O is the launch point at the origin. The velocity vector, of magnitude 20√2 m/s, points up and to the right, making a 45° angle with the horizontal line OQ. A second line from O, representing the slope, rises at 37° to the same horizontal and reaches point P, where the projectile lands (a dotted vertical line drops from P down to Q on the horizontal). Reference x and y axes are shown beside the figure."
+  },
+  {
+   "question_id": "prj_0376ab08",
+   "question_text": "Referring to the launch angles marked in the sketch, determine the projectile's time of flight and its range measured along the slope, with g = 10 m/s².",
+   "options": [],
+   "figure_description": "A slope rises from left to right, meeting the horizontal ground at 30° (the angle is marked at the bottom-left corner, where the slope meets the ground). From a launch point partway up the slope a dashed horizontal reference line is drawn; the velocity arrow of 20√2 m/s starts at that point and points up and to the left, that is, away from the rising slope and toward the downhill side, making 45° with the dashed horizontal line."
+  },
+  {
+   "question_id": "prj_149429ba",
+   "question_text": "A projectile leaves the ground at a launch speed of 50 m/s, directed at 37° from the horizontal. Using g = 10 m/s², with sin 37° taken as 0.6 and cos 37° taken as 0.8, work out the projectile's velocity, its displacement, and its x–y position relative to the launch point, 2 seconds after being fired.",
+   "options": [],
+   "figure_description": "The projectile starts at the origin of an x-y axis system and moves at 37° above the horizontal x-axis with initial speed 50 m/s, while gravity of magnitude 10 m/s² pulls it downward."
+  },
+  {
+   "question_id": "prj_12e9721f",
+   "question_text": "A projectile launches at elevation angle α above the horizontal. Viewed from the launch point, after t seconds it appears to be at elevation angle β. Determine the launch speed of the projectile.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_00c6b523",
+   "question_text": "Two particles are launched from ground level toward each other, from two points 15 m apart. The particle at the first point moves at 10 m/s, directed 30° above the horizontal toward the second point. The particle at the second point moves at 5√2 m/s, directed 45° above the horizontal toward the first point. Do the two particles meet in the air?",
+   "options": [],
+   "figure_description": "Two points on level ground, 15 m apart. From the left point, a particle is launched toward the right point at 10 m/s, 30° above the horizontal. From the right point, a particle is launched toward the left point at 5√2 m/s, 45° above the horizontal."
+  }
+ ]
+}

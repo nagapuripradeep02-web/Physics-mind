@@ -1,0 +1,54 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "prj_25a50447",
+ "approach": "The overall speed at height h follows from energy conservation, and it splits into an unchanged horizontal part plus a vertical part that obeys its own kinematic equation.",
+ "steps": [
+  {
+   "text": "Use energy conservation between the launch point and height h to relate the overall speed to height.",
+   "equation": "½u² = ½v² + gh ⇒ v² = u² − 2gh"
+  },
+  {
+   "text": "Split the launch velocity into horizontal and vertical components; the horizontal component never changes during the flight.",
+   "equation": "u² = uₓ² + uᵧ²"
+  },
+  {
+   "text": "Apply the same kinematic equation to the vertical component alone, which can be positive or negative depending on whether the particle is rising or falling through height h.",
+   "equation": "vᵧ = ±√(uᵧ² − 2gh)"
+  },
+  {
+   "text": "Combine the unchanged horizontal component with this vertical component to get the overall speed.",
+   "equation": "v² = uₓ² + (uᵧ² − 2gh) = (uₓ² + uᵧ²) − 2gh = u² − 2gh"
+  },
+  {
+   "text": "This matches the energy-conservation result exactly, so the Assertion v = √(u² − 2gh) is true, and it follows directly from the vertical-component formula given in the Reason, so both statements are true and the Reason explains the Assertion."
+  }
+ ],
+ "final_answer": {
+  "option": 1,
+  "value": "If both Assertion and Reason are true and the Reason is the correct explanation of the Assertion."
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": 3,
+   "text": "Believing the vertical-component formula in the Reason only works for a purely vertical throw and cannot combine with the unchanged horizontal component."
+  },
+  {
+   "option": 4,
+   "text": "Doubting the Assertion because it looks like it ignores the launch angle, without checking that the angle dependence cancels out through the horizontal component."
+  }
+ ],
+ "concept_tags": [
+  "energy conservation",
+  "projectile motion",
+  "velocity components"
+ ],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-04",
+  "at": "2026-09-11T16:12:00+05:30"
+ }
+}

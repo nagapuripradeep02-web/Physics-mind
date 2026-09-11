@@ -1,0 +1,24 @@
+{
+ "question_id": "prj_dad3bbb3",
+ "item_sha": "a60764386d42ece6088261a658ec09f2a4c227785677656c152bb5729aeb034b",
+ "auditor_option": 3,
+ "auditor_value": "Assertion true, Reason false (standard A–R scheme option 3). Assertion true (T = 4 s ⇒ u_A = 20 m/s and u_By = 20 m/s ⇒ H = 20²/20 = 20 m); Reason false (B is launched from a different point, so it needs a horizontal component and its speed √(20² + uₓ²) exceeds A's 20 m/s).",
+ "findings": [
+  {
+   "grade": "weak",
+   "field": "common_mistakes[1].text",
+   "quote": "Doubting the Assertion because B's parabolic path looks different from A's straight throw, without checking that only B's vertical launch component decides its maximum height.",
+   "note": "Vague: 'looks different' is not a physics error a student makes, and the entry gives no reason why such a student would also accept the Reason, which option 4 requires. A concrete route to option 4 exists and should be named.",
+   "fix": "Accepting the Reason (u_B = u_A = 20 m/s) and then computing H = u_B² sin²θ/(2g) = 20 sin²θ m, which is below 20 m for any launch angle under 90°, so the Assertion is wrongly rejected."
+  }
+ ],
+ "verdict": "weak",
+ "question_defect": "The served options list is empty while the answer is keyed to the standard five Assertion–Reason statements (final_answer.option = 3, mistake options 1 and 4); the solution also gives the verdict in words.",
+ "notes": "Steps 1–4 checked: u_A = 10×4/2 = 20; T_B = 4 s; u_By = 20; H = 400/20 = 20 m. Step 6 says B's speed 'need not equal' 20 m/s; since B starts from a different point its horizontal component is necessarily nonzero, so its speed is necessarily greater — the wording is weaker than the truth but not false.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-07",
+  "at": "2026-09-11T19:37:13+05:30"
+ }
+}

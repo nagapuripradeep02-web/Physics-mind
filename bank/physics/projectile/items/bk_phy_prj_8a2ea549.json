@@ -1,0 +1,84 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_prj_8a2ea549",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "numerical",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "Two balls, A and B, are thrown at the same instant from the tops of two towers standing distance d apart. Ball A is thrown from the shorter tower, of height 10 m, at 10√2 m/s directed 45° above the horizontal toward the other tower. Ball B is thrown from the taller tower, of height 20 m, horizontally toward the first tower at 10 m/s. The two balls meet while both are still in the air. Find d.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "particle A projected from a 10 m tower at 10√2 m/s, 45° above horizontal, toward the other tower",
+   "particle B projected from a 20 m tower horizontally toward A at 10 m/s",
+   "both particles launched at the same instant",
+   "the particles collide while airborne"
+  ],
+  "figure": {
+   "description": "Two vertical towers stand on level ground, distance d apart. The left tower is 10 m tall; from its top, particle A is launched at 45° above the horizontal at 10√2 m/s, aimed toward the right tower. The right tower is 20 m tall; from its top, particle B is launched horizontally at 10 m/s, aimed toward the left tower."
+  }
+ },
+ "solution": {
+  "approach": "Write the height of each particle above the ground as a function of time and find when the heights match; use that time to find the horizontal gap to close.",
+  "steps": [
+   {
+    "text": "Resolve particle A's launch velocity into horizontal and vertical parts.",
+    "equation": "vₓA = 10√2×cos45° = 10 m/s, v_yA = 10√2×sin45° = 10 m/s"
+   },
+   {
+    "text": "Write the height of each particle above the ground as a function of time, measuring from its own tower.",
+    "equation": "y_A(t) = 10 + 10t − 5t², y_B(t) = 20 − 5t²"
+   },
+   {
+    "text": "Set the two heights equal and solve for the collision time; the −5t² term cancels on both sides.",
+    "equation": "10 + 10t = 20 → t = 1 s"
+   },
+   {
+    "text": "At this time, A has moved a horizontal distance 10t toward B, and B has moved 10t toward A; together they cover the full gap d.",
+    "equation": "d = 10×1 + 10×1 = 20 m"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "d = 20 m"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Using only ball A's horizontal motion for the gap gives d = 10 m; adding ball B's 10 m motion toward A in the same time gives the correct d = 20 m."
+   }
+  ],
+  "concept_tags": [
+   "projectile motion",
+   "relative motion",
+   "collision in air"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "6606ae744c97ac322ab3708bcbc8672fca1e9e5ef59895963630e294139ac808"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "9810aa48c162bdcac42f21837118468f86cb6ac778765f61eea1e936c478a8f9",
+  "audited_by": "W02-U-prj-01"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-06",
+  "at": "2026-09-11T12:03:00+05:30"
+ }
+}

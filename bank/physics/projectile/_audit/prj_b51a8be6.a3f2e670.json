@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_b51a8be6",
+ "item_sha": "a3f2e670798c2784fc407916089418ea3566697ed322b71642873b0dbea0827a",
+ "auditor_option": null,
+ "auditor_value": "(u₁cosθ₁ + u₂cosθ₂) t = 20 m and (u₁sinθ₁ − u₂sinθ₂) t = 10 m",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Independent solve gives the same two conditions from x_A = x_B and y_A = y_B with the ½gt² terms cancelling. Signs match the figure (A moves right from x = 10 m, B moves left from x = 30 m).",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-05",
+  "at": "2026-09-11T19:33:41+05:30"
+ }
+}

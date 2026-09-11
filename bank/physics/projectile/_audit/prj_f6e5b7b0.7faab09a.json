@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_f6e5b7b0",
+ "item_sha": "7faab09a8726551f1b6b5d5d22c9f130bc17fee4723f8a3d394f94efa085494f",
+ "auditor_option": null,
+ "auditor_value": "t = 1 s (rising) and t = 3 s (falling)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Independent solve: u_y = 20 m/s, 15 = 20t - 5t^2 -> t^2 - 4t + 3 = 0 -> t = 1 s, 3 s (max height 20 m at t = 2 s, so 1 s is rising and 3 s falling). Every step line follows from the one above; the factorization (t-1)(t-3) is correct; the common_mistakes entry names a genuine error. Minor wording only: the question says 'ball', steps[3].text and common_mistakes[0].text say 'particle' - not filed.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-08",
+  "at": "2026-09-11T19:33:08+05:30"
+ }
+}

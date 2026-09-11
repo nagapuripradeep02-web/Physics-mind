@@ -1,0 +1,20 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "prj_e09a21d4",
+ "approach": "The horizontal velocity stays constant, and the speed at the wall-crossing height satisfies a mini-projectile range condition that forces the horizontal and vertical velocities there to be equal.",
+ "steps": [
+  {"text": "The horizontal velocity component never changes during flight, so the speed at height h relates to the launch speed through the usual height-velocity equation.", "equation": "vₓ² + v_y1² = u² − 2gh = (2√(gh))² − 2gh = 2gh"},
+  {"text": "Treat the point where the particle first reaches height h as a new launch point. It returns to the same height h after a horizontal distance of 2h, exactly like a projectile range.", "equation": "2vₓv_y1/g = 2h ⟹ vₓv_y1 = gh"},
+  {"text": "Combine the two relations above; they force the horizontal and vertical velocities at height h to be equal.", "equation": "vₓ² + v_y1² = 2gh and vₓv_y1 = gh ⟹ (vₓ − v_y1)² = 0 ⟹ vₓ = v_y1 = √(gh)"},
+  {"text": "The time between the walls is the flight time of the mini-projectile, which is twice the vertical velocity at height h divided by g.", "equation": "t = 2v_y1/g = 2√(gh)/g = 2√(h/g)"}
+ ],
+ "final_answer": {"option": null, "value": "t = 2√(h/g)"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Using the full launch speed u in place of the horizontal velocity between the walls gives t = 2h/u, which is exactly half the correct time."}
+ ],
+ "concept_tags": ["projectile motion", "range formula", "relative launch point"],
+ "difficulty": "hard",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-prj-07", "at": "2026-09-11T16:45:00+05:30"}
+}

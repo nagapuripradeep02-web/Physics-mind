@@ -1,0 +1,24 @@
+{
+ "question_id": "prj_f688743c",
+ "item_sha": "b8e73558f4bca3314d81234129d9ad5922bbc98e6b976726cc12dc8c0cdde947",
+ "auditor_option": null,
+ "auditor_value": "T = 4(1 - 1/√3) s ≈ 1.69 s ; R = 160(√3 - 1)/3 m ≈ 39.0 m along the incline",
+ "findings": [
+  {
+   "grade": "weak",
+   "field": "steps[3].equation",
+   "quote": "T = 4(3−√3)/3 s ≈ 1.69 s ; R = 160(√3−1)/3 m ≈ 39.04 m",
+   "note": "The step text says the range uses the along-incline part of gravity, but the equation only restates T (already found in step 3) and asserts R with no working; a student cannot see how 39.04 m was obtained. Both numbers are correct.",
+   "fix": "R = (u cos15°)T − ½(g sin30°)T² = (27.32)(1.69) − (2.5)(1.69)² ≈ 46.19 − 7.15 ≈ 39.04 m"
+  }
+ ],
+ "verdict": "weak",
+ "question_defect": null,
+ "notes": "Independent solve (both incline axes and ground axes): T = 2u sin15°/(g cos30°) = 1.6906 s; R = u cos15° T − ½ g sin30° T² = 39.043 m (ground axes: x = 33.8 m, y = 19.5 m, y/x = tan30°). Closed forms 4(3−√3)/3 and 160(√3−1)/3 verified. common_mistakes[0]: flat-ground formulas give 4 s and 80 m - correct. common_mistakes[1]: sin(45°+30°) in place of sin(45°−30°) in T = 2u sin(θ−β)/(g cosβ) and R = 2u² cosθ sin(θ−β)/(g cos²β) gives 6.31 s and 145.71 m, which are the down-incline formulas - the entry is correct as written. Register: 'decides the motion' in steps[0].why_this_step would read more plainly as 'determines' - not filed.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-08",
+  "at": "2026-09-11T19:33:45+05:30"
+ }
+}

@@ -1,0 +1,92 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_prj_deca8c15",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "Two particles are launched at the same instant, moving horizontally, from two different points on a riverbank that sit at some height above the water. Particle 1 has initial speed v₁ = 5 m/s and particle 2 has initial speed v₂ = 7.5 m/s. Both particles land in the water simultaneously. The first particle lands at a horizontal distance s = 10 m from the bank.",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "Find how long each particle remains airborne before hitting the water."
+   },
+   {
+    "label": "b",
+    "asks": "Find the height of the riverbank above the water surface."
+   },
+   {
+    "label": "c",
+    "asks": "Work out where the second particle lands in the water, measured from the bank."
+   }
+  ],
+  "conditions": [
+   "thrown horizontally, simultaneously, from two points on a riverbank at some height above the water surface",
+   "both particles land in the water at the same time"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Both particles fall from the same height for the same time; the first particle's range gives that time, which then gives the height and the second particle's landing point.",
+  "steps": [
+   {
+    "text": "Find the time of flight from the first particle's horizontal speed and its landing distance.",
+    "equation": "t = s/v₁ = 10/5 = 2 s"
+   },
+   {
+    "text": "Since both particles are in the air for the same time and start from the same height, use free fall from rest to find that height.",
+    "equation": "h = ½gt² = ½ × 9.8 × 2² = 19.6 m"
+   },
+   {
+    "text": "The second particle travels horizontally at its own constant speed for the same time to find where it lands.",
+    "equation": "x₂ = v₂t = 7.5 × 2 = 15 m"
+   },
+   {
+    "text": "State the three results together.",
+    "equation": "(a) t = 2 s, (b) h = 19.6 m, (c) x₂ = 15 m from the bank"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) t = 2 s, (b) h = 19.6 m, (c) second particle lands 15 m from the bank"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Leaving out the ½ in h = ½gt² gives h = 9.8 × 2² = 39.2 m, twice the correct 19.6 m."
+   }
+  ],
+  "concept_tags": [
+   "horizontal projectile",
+   "free fall"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "2896697e6f6b35c4c082a0a8d785e0887a69d938b0f6ffee9982cf0b71f25593"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "7f466e380ee00f0ff335932f2c40520ec2b92635531a43b1127581bd4272ef4a",
+  "audited_by": "W03-U-prj-01"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-07",
+  "at": "2026-09-11T16:45:00+05:30"
+ }
+}

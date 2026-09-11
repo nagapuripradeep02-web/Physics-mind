@@ -1,0 +1,85 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_prj_9e3cbe05",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "mcq_single",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "Two objects are launched with identical initial speeds, one at an angle θ above the horizontal and the other at an angle (90° − θ) above the horizontal. What is the ratio of the maximum heights they reach?",
+  "options": {
+   "1": "1 : 1",
+   "2": "sin θ : cos θ",
+   "3": "sin²θ : cos²θ",
+   "4": "cos θ : sin θ"
+  },
+  "parts": null,
+  "conditions": [
+   "both objects launched with the same initial speed",
+   "launch angles are θ and (90° − θ) measured from the horizontal"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Maximum height depends on sin squared of the angle of projection, so write it for both angles and compare.",
+  "steps": [
+   {
+    "text": "Write the maximum height formula for a body launched at angle θ with speed u.",
+    "equation": "H = u²sin²θ / 2g"
+   },
+   {
+    "text": "Write the maximum height for the second body, launched at angle (90° − θ) with the same speed.",
+    "equation": "H₂ = u²sin²(90° − θ) / 2g = u²cos²θ / 2g"
+   },
+   {
+    "text": "Divide the two heights. The u² and 2g cancel, leaving the ratio of the squared sine and cosine terms.",
+    "equation": "H₁ : H₂ = sin²θ : cos²θ"
+   }
+  ],
+  "final_answer": {
+   "option": 3,
+   "value": "sin²θ : cos²θ"
+  },
+  "common_mistakes": [
+   {
+    "option": 1,
+    "text": "Assuming the two complementary angles always give equal maximum height, like they give equal range, gives the ratio 1 : 1."
+   },
+   {
+    "option": 2,
+    "text": "Writing the ratio with sine and cosine to the first power instead of squared gives sin θ : cos θ."
+   }
+  ],
+  "concept_tags": [
+   "projectile motion",
+   "maximum height",
+   "complementary angles"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "9bc1af04e8a9707fee23ca333342bd9bc9d8ad98344a35eb072815955ed9c0a0"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "78b5c79fea1e723039af66a68c1fb4fd3219e8153279a18f9d6ad64249f3439e",
+  "audited_by": "W01-U-prj-05"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-05",
+  "at": "2026-09-11T00:00:00+05:30"
+ }
+}

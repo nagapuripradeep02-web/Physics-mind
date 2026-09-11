@@ -1,0 +1,46 @@
+{
+ "question_id": "prj_7004b298",
+ "audit_file": "prj_7004b298.e570c3a7.json",
+ "item_sha": "e570c3a795283a889fabb21625e07f2b8ab9838f6b5d2dbeb4740de246dd7338",
+ "question_text": "Two particles start from the same point above a tower and, at that instant, move horizontally in opposite directions with speeds v₁ = 3 m/s and v₂ = 4 m/s, falling freely under gravity g afterward. Find how far apart they are at the moment their two velocity vectors are perpendicular to each other.",
+ "options": [],
+ "figure_description": "",
+ "solution": {
+  "approach": "Write each particle's velocity vector as a function of time, set the dot product to zero for perpendicularity, then find the horizontal separation at that time, since both fall equally.",
+  "steps": [
+   {
+    "text": "Write the velocity vectors of the two particles in one set of axes, rightward and upward positive; the first particle moves rightward and the second leftward.",
+    "equation": "v₁ = (v₁, −gt), v₂ = (−v₂, −gt)"
+   },
+   {
+    "text": "Set the dot product of the two velocity vectors to zero for perpendicularity.",
+    "equation": "−v₁v₂ + g²t² = 0"
+   },
+   {
+    "text": "Solve for the time at which the vectors are perpendicular.",
+    "equation": "t = √(v₁v₂)/g = √(3×4)/g = 2√3/g s; with g = 10 m/s², t = 2√3/10 = √3/5 ≈ 0.35 s; with g = 9.8 m/s², t ≈ 0.35 s"
+   },
+   {
+    "text": "Since both particles fall the same vertical distance from the same height, the distance between them is purely horizontal, equal to the sum of their horizontal speeds times this time.",
+    "equation": "distance = (v₁ + v₂)t = (v₁ + v₂)√(v₁v₂)/g = 7×2√3/g = 14√3/g m; with g = 10 m/s², d = 14√3/10 = 7√3/5 ≈ 2.42 m; with g = 9.8 m/s², d ≈ 2.47 m ≈ 2.5 m"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "distance = 14√3/g m: ≈ 2.42 m with g = 10 m/s² (t = 2√3/g ≈ 0.35 s), ≈ 2.47 m ≈ 2.5 m with g = 9.8 m/s² (t ≈ 0.35 s)"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Using t = (v₁ + v₂)/g in place of t = √(v₁v₂)/g gives a wrong time of 0.7 s and a wrong distance of 4.9 m (with g = 10 m/s²)."
+   }
+  ],
+  "concept_tags": [
+   "projectile motion",
+   "relative velocity",
+   "perpendicular vectors"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "calculation"
+ }
+}

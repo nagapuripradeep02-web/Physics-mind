@@ -1,0 +1,4536 @@
+{
+ "prj_00c6b523": {
+  "content_sha": "f9f67c30d4cc6ca9289b77d24b005bc6322e0cef1f3dae5c81ff1db61258bb77",
+  "format": "conceptual",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "one_item_match",
+    "sha:1ea442a1"
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "No, they will not collide: both have vertical component 5 m/s (same height at all times), the horizontal closing speed is 5√3 + 5 ≈ 13.66 m/s, so they need ≈ 1.10 s to cover 15 m, but both land at T = 1 s (≈ 1.34 m still apart)"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.622,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "No — the two particles do not meet in the air. Both land (t≈1.0–1.02 s) before their horizontal positions would coincide (t≈1.10 s).",
+    "one_item_match"
+   ]
+  },
+  "restatement_sha": "a1036d55f4cd0d3640fa17dcdc7554fdb7135213431ab4e19dddcdf7461e35d9",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_0376ab08": {
+  "content_sha": "494ca6267731b2ae613d4175bf1f419445e10526aa7becfadfa999ab98fc303d",
+  "format": "subjective",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "list",
+    "sha:687bdb19"
+   ],
+   "B": [
+    true,
+    "list_subset",
+    null,
+    "T = 4(1 + 1/√3) s ≈ 6.31 s, R = 160(√3 + 1)/3 m ≈ 145.7 m down the incline (velocity 20√2 m/s at 45° above horizontal, directed toward the down-slope side of a 30° incline, so 75° between velocity and the down-slope direction)"
+   ],
+   "hint": [
+    true,
+    "list",
+    "sha:dc115e86"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "conditions added (fidelity ok): projectile launched toward the downhill side of the slope"
+  ],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.641,
+   "conditions_dropped": [],
+   "conditions_added": [
+    "projectile launched toward the downhill side of the slope"
+   ],
+   "fidelity": [
+    null,
+    "(a) T = 4 + 4√3/3 s ≈ 6.31 s, (b) Range along slope ≈ 145.7 m",
+    "one_part_match a"
+   ]
+  },
+  "restatement_sha": "e171103c1865684cf3c36f3f8434483fb5967c5290b933ffa62d13c18a8046b1",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_0929c46e": {
+  "content_sha": "6f13aa35492c544977cd08af273992ccc43b6b8fba7320c852687b7e70d0bd8e",
+  "format": "subjective",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "one_item_match",
+    "sha:b938ce27"
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "v₀ = √(a/(2c)) î + b√(a/(2c)) ĵ, i.e. speed √(a(1+b²)/(2c)) directed at tan⁻¹ b above the x-axis"
+   ],
+   "hint": [
+    true,
+    "one_item_match",
+    "sha:2e35ce6b"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.533,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "v = √(a/2c) î + b√(a/2c) ĵ (i.e. vx = √(a/2c), vy = b√(a/2c))",
+    "judge(cached)"
+   ]
+  },
+  "restatement_sha": "dca59379b84d23c9e2a9cc5149b09d03542d2d517a6ac356f49b48d8f0417866",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_114744c1": {
+  "content_sha": "78da6ddd07b6da7fc271d74024ff3ed5709b34853bae077668f1c793b5e4e21b",
+  "format": "subjective",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "parts",
+    "sha:5daf4c85"
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "(a) Δv = −30ĵ m/s, i.e. 30 m/s vertically downward, (b) |v_avg| = 5√17 ≈ 20.6 m/s (v_avg = 20î + 5ĵ m/s)"
+   ],
+   "hint": [
+    true,
+    "judge(cached)",
+    "sha:67558579"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "numbers added by the restatement: 3"
+  ],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.667,
+   "signature": [
+    [
+     "0",
+     "2",
+     "20",
+     "3",
+     "45"
+    ],
+    [
+     "0",
+     "2",
+     "20",
+     "3",
+     "3",
+     "45"
+    ]
+   ],
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "(a) Δv = 30 m/s vertically downward (g = 10 m/s²) or 29.4 m/s vertically downward (g = 9.8 m/s²); horizontal velocity is unchanged, (b) average velocity magnitude ≈ 20.6 m/s (g = 10 m/s²) or ≈ 20.7 m/s (g = 9.8 m/s²)",
+    "judge(cached)"
+   ]
+  },
+  "restatement_sha": "2e009acac2280a465b00806499f8e0a6469d730e2f1afa08cb32e695c9bf674c",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_12e9721f": {
+  "content_sha": "8d12b75b58ec7858e57069a803f13f0850a9662ed41c6dda721df4970b6d8099",
+  "format": "subjective",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "words",
+    "sha:2ef081b1"
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "u = g t cos β / (2 sin(α − β)) [equivalently u = g t / (2 cos α (tan α − tan β))]"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": false,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.647,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "u = g t cos β / (2 sin(α − β))",
+    "judge(cached)"
+   ]
+  },
+  "restatement_sha": "a2f939d8dce0442c02c055333b3a81a336356cf7d0cada5535b44e27df5b27b2",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_149429ba": {
+  "content_sha": "8fc5ea4e2b60f21b545febf7aada5f32e26a8c21aa5cafed851d880c326395fe",
+  "format": "subjective",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "judge(cached)",
+    "sha:1d16fe3d"
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "velocity = (40 î + 10 ĵ) m/s, |v| = 10√17 ≈ 41.2 m/s at tan⁻¹(1/4) above horizontal; displacement = (80 î + 40 ĵ) m, |s| = 40√5 ≈ 89.4 m at tan⁻¹(1/2) above horizontal; co-ordinates (80 m, 40 m)"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "conditions added (fidelity ok): projectile launched from ground level (origin)"
+  ],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.631,
+   "conditions_dropped": [],
+   "conditions_added": [
+    "projectile launched from ground level (origin)"
+   ],
+   "fidelity": [
+    null,
+    "Velocity v = 40î + 10ĵ m/s (|v|≈41.23 m/s, ≈14.04° above horizontal); displacement s = 80î + 40ĵ m (|s|≈89.44 m, ≈26.57° above horizontal); position (x, y) = (80 m, 40 m)",
+    "judge(cached)"
+   ]
+  },
+  "restatement_sha": "15b286516671ca6e5d990b166950d986231427ee573f3799f08e546c32218fe5",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_14f26fa5": {
+  "content_sha": "e2aa30b08e66ff2cbd760d83732238223314bfec3644dee6266df9ef82b702af",
+  "format": "mcq_single",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "option~letter",
+    "sha:77cabbc3"
+   ],
+   "B": [
+    true,
+    "option",
+    4,
+    "678.4 m (None of these)"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.6,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    4,
+    "None of these — the required initial separation is ≈678.4 m",
+    "option"
+   ]
+  },
+  "restatement_sha": "e77f15872a18d942882e3e5fda4f4257984342c582dde5d92540be2a7528cb9e",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_161e244b": {
+  "content_sha": "063fca4ea6cad847fd26b10b0dcbd113b12ab0f35734d7d3295166fbd9ab10db",
+  "format": "subjective",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "one_item_match",
+    "sha:dd0554d8"
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "5/√2 m/s ≈ 3.54 m/s, running toward the coach (ball lands 40 m from the coach, 10 m short of the player, in T = 2√2 s)"
+   ],
+   "hint": [
+    true,
+    "one_item_match",
+    "sha:3e2906d8"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "conditions dropped (fidelity ok): ball thrown by coach to player",
+   "conditions added (fidelity ok): ball launched by trainer to teammate"
+  ],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.622,
+   "conditions_dropped": [
+    "ball thrown by coach to player"
+   ],
+   "conditions_added": [
+    "ball launched by trainer to teammate"
+   ],
+   "fidelity": [
+    null,
+    "≈3.54 m/s (5/√2 m/s), running directly toward the thrower along the line joining them",
+    "judge(cached)"
+   ]
+  },
+  "restatement_sha": "839168fab39098f783360946bbcdc1e8365f04c73c9d534c2864b569863abf7b",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_1fce3d4c": {
+  "content_sha": "5ce60e11b38215c29c98cc1a725093af5e0116dbff4882f1eca69be6522017ff",
+  "format": "subjective",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "parts",
+    "sha:1d7feb45"
+   ],
+   "B": [
+    true,
+    "parts",
+    null,
+    "(a) T = 1 s, (b) OP = 25 m"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "numbers added by the restatement: 2 20 37 45"
+  ],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.794,
+   "signature": [
+    [],
+    [
+     "2",
+     "20",
+     "37",
+     "45"
+    ]
+   ],
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "(a) t = 1 s, (b) OP = 25 m (g = 10 m/s² assumed — not stated anywhere in the text)",
+    "parts"
+   ]
+  },
+  "restatement_sha": "a2254d59c3f30ecbe2641ceee9744feefb87563203ac13d1cea7a5a04b3bef6f",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_2259e411": {
+  "content_sha": "00af6beb12ec2f63d8aac497e6b53250c61532584678ed627d28d00e9c4b08e5",
+  "format": "subjective",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "list",
+    "sha:e00c54e5"
+   ],
+   "B": [
+    true,
+    "list",
+    null,
+    "height = 44.1 m, projection speed = 29.4 m/s"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "numbers added by the restatement: 3"
+  ],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.613,
+   "signature": [
+    [
+     "45",
+     "9.8"
+    ],
+    [
+     "3",
+     "45",
+     "9.8"
+    ]
+   ],
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "Tower height ≈ 44.1 m; horizontal launch speed ≈ 29.4 m/s",
+    "list"
+   ]
+  },
+  "restatement_sha": "59e1ffa55d75cfe18147a2aa6e15dba686aabeecba9d904d71f6c67655977cc0",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_248833bb": {
+  "content_sha": "03bb1c8f6f39dee015a2a15cfeff3b0185470a53e9cc4681fb984f3c487f0d84",
+  "format": "mcq_single",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "option~letter",
+    "sha:8cca9bdc"
+   ],
+   "B": [
+    true,
+    "option",
+    2,
+    "1000/3 m"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.545,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    2,
+    "1000/3 m (≈333.3 m)",
+    "option"
+   ]
+  },
+  "restatement_sha": "61202e1076e8d1b69b799a289283e16f5d6223957dd826102feb70a8b3df0f4b",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_24ec27c3": {
+  "content_sha": "68a51260f3637cd19f79afe32ba9a1260ff85d8a7ce215f9bfa8ffc6a4d453cc",
+  "format": "subjective",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "parts",
+    "sha:04143834"
+   ],
+   "B": [
+    true,
+    "parts",
+    null,
+    "(a) H ≈ 11 m, (b) R ≈ 23 m (22.8 m with g = 9.8; 22.5 m with g = 10), (c) v ≈ 16.5 m/s (16.6 m/s with g = 10), (d) ≈ 63° below the horizontal (tan⁻¹(14.7/7.6))"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.57,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "(a) Maximum height ≈ 11.0 m; (b) horizontal range ≈ 22.8 m; (c) landing speed ≈ 16.5 m/s; (d) ≈62.6° below horizontal (g=9.8 m/s² assumed — not stated in the text)",
+    "parts"
+   ]
+  },
+  "restatement_sha": "77dcf03d0f9743d79bee893a97b29ce79b2e89c7cda6e9942a36143165253e5f",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_2548ca25": {
+  "content_sha": "2a527e28457d917df355526fb8b1ec0908361ea7f7b8be262207479b6ed52262",
+  "format": "numerical",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "number+unit",
+    "sha:20ea0262"
+   ],
+   "B": [
+    true,
+    "number+unit",
+    null,
+    "v = 10/√3 m/s ≈ 5.77 m/s"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "numbers added by the restatement: 10 30 30"
+  ],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.665,
+   "signature": [
+    [
+     "10"
+    ],
+    [
+     "10",
+     "10",
+     "30",
+     "30"
+    ]
+   ],
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "Speed at landing (point A) = 10/√3 m/s ≈ 5.77 m/s",
+    "number+unit"
+   ]
+  },
+  "restatement_sha": "64c1162c3e5c6c62df8d6c5bd1c5665d6205bbe282a6f2bc3c70717fbb7d5093",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_25a50447": {
+  "content_sha": "beaeedee9e4cdcd92dc219a7b00fe118ac94d9629b812698cc6f92088ce99916",
+  "format": "assertion_reason",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    false,
+    "option~letter",
+    "sha:8cca9bdc"
+   ],
+   "B": [
+    true,
+    "option",
+    1,
+    "(a) — v² = uₓ² + (uᵧ² − 2gh) = u² − 2gh ⇒ v = √(u² − 2gh); both true, the reason (with uₓ constant) explains the assertion"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": false,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Motion in a Plane",
+  "bucket": "dropped_ar",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.558,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    1,
+    "Assertion true, Reason true, and Reason is the correct explanation of Assertion",
+    "option"
+   ]
+  },
+  "restatement_sha": "10719776ef8445717c3d09eff6dfda4e50b90040b5f6143bff7ea8a250a89014",
+  "restatement_ok": true,
+  "verdict": "reject",
+  "reason": "dropped_ar"
+ },
+ "prj_25d4bf73": {
+  "content_sha": "dbd3e741c2f044eb1d6d306bc2af7548901826d83187eefbe95735734e8700c4",
+  "format": "subjective",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "parts",
+    "sha:5747d1b0"
+   ],
+   "B": [
+    true,
+    "parts",
+    null,
+    "(a) T = 7 s, (b) OP = 175 m"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "numbers added by the restatement: 2 20 37 45"
+  ],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.802,
+   "signature": [
+    [],
+    [
+     "2",
+     "20",
+     "37",
+     "45"
+    ]
+   ],
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "(a) t = 7 s, (b) OP = 175 m",
+    "parts"
+   ]
+  },
+  "restatement_sha": "c04500736b96054098697139bafbad2b224f01422f055785282d1d061898067b",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_27b92f47": {
+  "content_sha": "b12138aaedd8d1becdf8c147687d25b486f4498accefc199d21eb4d256d21f61",
+  "format": "subjective",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "judge(cached)",
+    "sha:c560d25c"
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "R = 2u² sin θ / (g cos² θ) = (2u²/g) tan θ sec θ, with time of flight T = 2u/(g cos θ)"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.575,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "R = 2u² sinθ / (g cos²θ) [equivalently R = 2u² tanθ secθ / g]",
+    "judge(cached)"
+   ]
+  },
+  "restatement_sha": "633210f0597a6b956673e5d84e67fc0359c4cf3d577e3d478a1c2286fd3a7c50",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_2896697e": {
+  "content_sha": "718cabc21748bba9efb1e98bb63d74f1dc6995625f44f63d962cd7af98570d5c",
+  "format": "subjective",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "parts",
+    "sha:f0c56419"
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "(a) 2 s (same for both), (b) h = ½gt² = 19.6 m with g = 9.8 m/s² (20 m with g = 10 m/s²), (c) 15 m from the bank"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "numbers added by the restatement: 1 2",
+   "fidelity: the first crossed re-solve disagreed (part b: number+unit); the second (Gemini) agrees"
+  ],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.542,
+   "signature": [
+    [
+     "10",
+     "5",
+     "7.5"
+    ],
+    [
+     "1",
+     "10",
+     "2",
+     "5",
+     "7.5"
+    ]
+   ],
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "(a) t = 2 s for each particle, (b) bank height h = 20 m, (c) second particle lands 15 m from the bank",
+    "part b: number+unit"
+   ],
+   "fidelity2": [
+    null,
+    "(a) t = 2 s for both particles, (b) h = ½gt² = 20 m (g = 10 m/s²) or 19.6 m (g = 9.8 m/s²), (c) 15 m from the bank (horizontal)",
+    "parts"
+   ]
+  },
+  "restatement_sha": "deca8c1525c686a5a36c15b0c8beb02a64f9fa2cf85c448352c49420a4f9346d",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_2b909aaa": {
+  "content_sha": "a3c8963bc9b26c3df8f001acf3115b27a27c3d614f4f079a16bdaf76ed28e188",
+  "format": "assertion_reason",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    false,
+    "option~letter",
+    "sha:8cca9bdc"
+   ],
+   "B": [
+    true,
+    "option",
+    1,
+    "(a) — u·v = u² − ugt/√2 = 0 at t = √2u/g (the landing instant, t = T ≠ 0), where v is at 90° to u; both true, reason explains"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": false,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "numbers added by the restatement: "
+  ],
+  "chapter": "Motion in a Plane",
+  "bucket": "dropped_ar",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.545,
+   "signature": [
+    [
+     "0",
+     "45",
+     "90"
+    ],
+    [
+     "45",
+     "90"
+    ]
+   ],
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    1,
+    "Assertion true, Reason true, and Reason is the correct explanation of Assertion",
+    "option"
+   ]
+  },
+  "restatement_sha": "3639b7a6527f4281e2077e0aef79b988caadda1eee1a9a7e99da261d80633b40",
+  "restatement_ok": true,
+  "verdict": "reject",
+  "reason": "dropped_ar"
+ },
+ "prj_2c1d3911": {
+  "content_sha": "7043893816a2ef6c49176f61d599e4f951d0b69cc016be700f7bc48332770e14",
+  "format": "subjective",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "parts",
+    "sha:86886e50"
+   ],
+   "B": [
+    true,
+    "parts",
+    null,
+    "(a) t = 2 s, (b) v = 10 m/s (perpendicular to OB, directed along OA), (c) h = 5 m (OP = 10 m), (d) PQ = 20 m (OQ = 10√3 m)"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.485,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "(a) t = 2 s, (b) speed at Q = 10 m/s, (c) h = 5 m, (d) PQ = 20 m",
+    "parts"
+   ]
+  },
+  "restatement_sha": "a55adc711ed4a9a620394b1d833be1ceab4bb46b26b25f3f1775d5afcc0bbdf6",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_2c40ba4c": {
+  "content_sha": "b8df33ea016e6ca0da0ec9cb2676ccfa929b52068c4b5509605b0424ec8c8c97",
+  "format": "conceptual",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "parts",
+    "sha:b0c5a5dc"
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "(a) A vertical straight line (free fall straight down) — relative to the passenger the stone has zero initial velocity and acceleration g downward, (b) A parabola — relative to the ground the stone starts with the train's horizontal velocity and accelerates downward at g, i.e. a horizontal projectile"
+   ],
+   "hint": [
+    true,
+    "judge(cached)",
+    "sha:c5135096"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.586,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "(a) A straight vertical line, (b) a parabola",
+    "parts"
+   ]
+  },
+  "restatement_sha": "29b482824b8c2ddced5ce08c03511e0d439a68e114becf19abf4e89534931620",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_2e22e519": {
+  "content_sha": "6717ddac7f4ed9e41ea3d6845a7d42fc67315b0693c2e6bf29ef31393561b740",
+  "format": "subjective",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "judge(cached)",
+    "sha:26f22ca4"
+   ],
+   "B": [
+    true,
+    "list_subset",
+    null,
+    "T = 5 s; horizontal distance = 100 m; v = (20î − 30ĵ) m/s, |v| = 10√13 ≈ 36.1 m/s directed tan⁻¹(3/2) ≈ 56.3° below horizontal"
+   ],
+   "hint": [
+    true,
+    "one_item_match",
+    "sha:adf41ed1"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "conditions dropped (fidelity ok): î horizontal, ĵ vertically upward (per the note)"
+  ],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.673,
+   "conditions_dropped": [
+    "î horizontal, ĵ vertically upward (per the note)"
+   ],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "t = 5 s, horizontal distance = 100 m, landing speed = 10√13 ≈ 36.06 m/s directed about 56.3° below the horizontal",
+    "list"
+   ]
+  },
+  "restatement_sha": "1b5e569578a5634d1a38608ba0ddcd9c37f4d92f52859d10d58bb7e22f1b0033",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_3103a693": {
+  "content_sha": "95b736580ff7e21a0496684d56abf8683ee4543a1733d2db47880c34bc6171a4",
+  "format": "conceptual",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "judge(cached)",
+    "sha:1ea442a1"
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "No. From R = u² sin2θ/g, u²/g = 3.0/sin60° = 2√3 km ≈ 3.46 km, so the maximum range (at 45°) is ≈ 3.46 km < 5.0 km; the target cannot be hit by changing the angle alone"
+   ],
+   "hint": [
+    true,
+    "judge(cached)",
+    "sha:250e7a8a"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "conditions added (fidelity ok): launch speed kept constant; only the launch angle is changed"
+  ],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.642,
+   "conditions_dropped": [],
+   "conditions_added": [
+    "launch speed kept constant",
+    "only the launch angle is changed"
+   ],
+   "fidelity": [
+    null,
+    "No — maximum possible range at this speed is ≈3.46 km (< 5.0 km), so the target cannot be struck at any launch angle",
+    "judge(cached)"
+   ]
+  },
+  "restatement_sha": "e8a9a8b39130e43bdeabd31932c5b50bbe39498d1b2a334b83eaac6b69439d7c",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_3110e261": {
+  "content_sha": "e85395265e0052ce16e91d4d9a6eecf1045877a1626c37df7d4669d68d2aff50",
+  "format": "subjective",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    null,
+    "no_key",
+    null
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "With u²/g = (a + b)/(sin 2β − sin 2α) and d = (b sin 2α + a sin 2β)/(sin 2β − sin 2α), the proper elevation satisfies sin 2θ = d g/u² = (b sin 2α + a sin 2β)/(a + b), so θ = ½ sin⁻¹[(b sin 2α + a sin 2β)/(a + b)]"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": null,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "no usable printed answer: author and second reader agree; the auditor is the third reader"
+  ],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass_no_key",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.494,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "Confirmed: sin2θ = (b sin2α + a sin2β)/(a+b), i.e. θ = ½ sin⁻¹[(b sin2α + a sin2β)/(a+b)]",
+    "one_item_match"
+   ]
+  },
+  "restatement_sha": "e92efe0a0b51562e161292e7e22229457d74de2c9d07867a8ff409cc1487c1c6",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_3938c125": {
+  "content_sha": "e04d2781f5e3ada24c572d88224109adb19ce204f47bef4699d2e37e09145814",
+  "format": "mcq_single",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "option~letter",
+    "sha:77cabbc3"
+   ],
+   "B": [
+    true,
+    "option",
+    4,
+    "R = ½ g T₁T₂"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.651,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    4,
+    "R = ½ g T₁T₂",
+    "option"
+   ]
+  },
+  "restatement_sha": "de88ade2d733ae4b8249e42d2a9b9a4aa976075157f50646e4054f6b2e87a22e",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_3d0ab8fd": {
+  "content_sha": "d13ffd2b18457fc33e3c82b8d6d9931af2c9c4f8d0bf121eb1f242f618b15736",
+  "format": "subjective",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "parts",
+    "sha:30db2b81"
+   ],
+   "B": [
+    true,
+    "parts",
+    null,
+    "(a) t = √20 = 2√5 s ≈ 4.47 s, (b) x = 40√5 m ≈ 89.4 m, (c) v = 20√6 m/s ≈ 49.0 m/s at tan⁻¹(√5) ≈ 65.9° below the horizontal (with g = 10 m/s²; with g = 9.8: 4.52 s, 90.4 m, 48.6 m/s at 65.7°)"
+   ],
+   "hint": [
+    true,
+    "parts",
+    "sha:a87d9fb6"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.585,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "(a) t = 2√5 ≈ 4.47 s, (b) horizontal distance = 40√5 ≈ 89.44 m, (c) landing speed = 20√6 ≈ 48.99 m/s at ≈65.9° below the horizontal",
+    "parts"
+   ]
+  },
+  "restatement_sha": "02de07d8cbac9af30c22c0ab45b2e153a1af3ee79a46c1d61eaa8408ab9ad97b",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_47c119c1": {
+  "content_sha": "509898edea66868eb925f2ee0a0c9223c3bab2ef858d4f27e3c53e45d1a92e5b",
+  "format": "subjective",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "number",
+    "sha:641ebd13"
+   ],
+   "B": [
+    true,
+    "number",
+    null,
+    "θ = tan⁻¹(4) ≈ 76°"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.567,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "θ = tan⁻¹(4) ≈ 76.0°",
+    "number"
+   ]
+  },
+  "restatement_sha": "61e223477228f5729fc42e5e51a4f467d8681816f938deff4ede8aa2139af819",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_4838690c": {
+  "content_sha": "4c6c77070fa46abf19a9c5706b5302c95f88bc69cbbfc048a99cb321011955d4",
+  "format": "subjective",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "list",
+    "sha:cd5e37e0"
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "t₁ = 30(√3 − 1)/g ≈ 2.24 s, t₂ = 30(√3 + 1)/g ≈ 8.36 s (g = 9.8 m/s²; with g = 10: 2.20 s and 8.20 s)"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.508,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "t₁ ≈ 2.20 s, t₂ ≈ 8.20 s",
+    "list"
+   ]
+  },
+  "restatement_sha": "eab3b23b7b1f73b5c867d2704da8d7a1d254bf9684ecf25dae1fdb81fd0df5da",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_4c3a2b6e": {
+  "content_sha": "48044a47dbd554af26c2c5a6aff2abe8fc3c355f6bb73da46b43483f78a93b7b",
+  "format": "assertion_reason",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "option~letter",
+    "sha:f89bf797"
+   ],
+   "B": [
+    true,
+    "option",
+    1,
+    "(a) Both true and the Reason explains the Assertion — the motion stays in the vertical plane containing the initial velocity and g, so only two coordinates are needed"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "conditions added (fidelity ok): motion stays confined to a single flat plane"
+  ],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.562,
+   "conditions_dropped": [],
+   "conditions_added": [
+    "motion stays confined to a single flat plane"
+   ],
+   "fidelity": [
+    1,
+    "Both assertion and reason are true, and the reason is the correct explanation of the assertion",
+    "option"
+   ]
+  },
+  "restatement_sha": "adf48c0c68f8fd25b18e3322f0313713c4218f7bfa3e20f43f969841ff3906c9",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_51e4cf12": {
+  "content_sha": "d50cf1c83965e86147a56700de1630e5666812e0159aa9cfcd0544dab2cfe215",
+  "format": "subjective",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "judge(cached)",
+    "sha:883a623a"
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "H₁ + H₂ = u²/(2g), independent of θ (angles θ and 90° − θ give the same range)"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.539,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "H₁ + H₂ = u²/(2g), independent of the angle chosen",
+    "judge(cached)"
+   ]
+  },
+  "restatement_sha": "9cc77ad9a44bb54ae80632a74814eaf50b3411b1fc8f13927bf06aa4d478c86a",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_54c95e72": {
+  "content_sha": "9e32eecc1b1495709337e9e40938451531b8e44b2fc1a222498c6279355c2ee0",
+  "format": "subjective",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "parts",
+    "sha:1bb2ca2a"
+   ],
+   "B": [
+    true,
+    "parts",
+    null,
+    "(a) θ = 30°, (b) x = 5√3 m ≈ 8.66 m"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "conditions dropped (fidelity ok): projected simultaneously"
+  ],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.661,
+   "conditions_dropped": [
+    "projected simultaneously"
+   ],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "(a) θ = 30°, (b) x = 5√3 m ≈ 8.66 m",
+    "parts"
+   ]
+  },
+  "restatement_sha": "92d9858d5f4fca3b4ea37d28294c02b04b76ef00a10534a4452a1a7303080816",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_578d72ff": {
+  "content_sha": "5ff4840f770f9c0d685d64dd4e22ac48fd7d0f1f6ec731c20b2625ac322a70df",
+  "format": "subjective",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "list_subset",
+    "sha:bdb16f79"
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "t = 0.8 s, x = 2.4 m (the trivial t = 0, x = 0 is the launch point)"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.515,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "t = 0.8 s, x = 2.4 m",
+    "list"
+   ]
+  },
+  "restatement_sha": "059b0e782764b0dcf9960e532c57d3352e7f072ec5b552571ca56f95ba9a608c",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_5bf47e86": {
+  "content_sha": "097c3fe574b7732def6b55f1a318559403dbbd5082fb25a75a86f4893fb6a12e",
+  "format": "subjective",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "judge(cached)",
+    "sha:92b59d6f"
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "(a) T = 2u sin30°/(g + 1) = 2/10.8 ≈ 0.185 s ≈ 0.19 s with g = 9.8 (2/11 ≈ 0.182 s with g = 10); (b) a parabola relative to the ground with initial velocity (√3 m/s horizontal, 3 m/s upward) and acceleration g down — only the rising part of the parabola is traced, the floor catches the stone (at ≈0.39 m above the release level) while it is still moving upward; (c) with the elevator accelerating downward at g the effective gravity in the elevator is zero, so the stone moves in a straight line at 2 m/s along the 30° direction relative to the elevator and never returns to the floor"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.579,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "(a) t = 2/11 s ≈ 0.18 s, (b) a normal downward-curving parabola in the ground frame (horizontal velocity √3 m/s constant, initial vertical velocity 3 m/s upward decelerating under g), (c) with the lift in free fall (a=g downward) the effective gravity relative to the lift becomes zero, so the stone would move in a straight line at constant relative velocity 2 m/s at 30°, never returning to the floor by itself",
+    "judge(cached)"
+   ]
+  },
+  "restatement_sha": "c40e9d6d852e4e0eb092426111c6491bbce207a62899ea95ad8c6bffd7c24e9a",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_5c4a8a8b": {
+  "content_sha": "e16923389a68befeba39a50aaac7e36953a024ab71b5ba616eeef4d0fa0d7c80",
+  "format": "subjective",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "judge(cached)",
+    "sha:02279013"
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "v = (40î + 10ĵ) m/s, |v| = 10√17 ≈ 41.2 m/s at tan⁻¹(1/4) above horizontal; s = (80î + 40ĵ) m, |s| = 40√5 ≈ 89.4 m at tan⁻¹(1/2) above horizontal"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.653,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "Velocity: vx = 40 m/s, vy = 10 m/s, |v| = √1700 ≈ 41.23 m/s at ≈14.0° above horizontal. Displacement: x = 80 m, y = 40 m, |s| = √8000 ≈ 89.44 m at ≈26.6° above horizontal",
+    "judge(cached)"
+   ]
+  },
+  "restatement_sha": "4e43fb06ff6690584f81bab367ed53ca734f2e0e08645303a5e9e6dac183d6a8",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_600354a4": {
+  "content_sha": "3d77284c1335b2d017183965b8e8ac33a246d7ba2d473e30a8214c9a26d3a528",
+  "format": "mcq_single",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "option~letter",
+    "sha:8cca9bdc"
+   ],
+   "B": [
+    true,
+    "option",
+    2,
+    "(u/2)√(1 + 3cos²θ)"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.726,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    2,
+    "(u/2)√(1 + 3cos²θ)",
+    "option"
+   ]
+  },
+  "restatement_sha": "4ae7354e3101d9758eda17bdd9240a265bc013ba3859c4e7f4867beca7b39ada",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_63c34056": {
+  "content_sha": "a072b7fb7941fb592c49b7bb553384f01bf8f97fa30545a707841e3bba7155f4",
+  "format": "numerical",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "number+unit",
+    "sha:0034f9c6"
+   ],
+   "B": [
+    true,
+    "one_item_match",
+    null,
+    "v = 40/√3 m/s ≈ 23.1 m/s (at t = 4/√3 s ≈ 2.31 s, the highest point relative to the incline)"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "conditions dropped (fidelity ok): projected from bottom of the inclined plane",
+   "conditions added (fidelity ok): launched from the foot of the slope"
+  ],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.661,
+   "conditions_dropped": [
+    "projected from bottom of the inclined plane"
+   ],
+   "conditions_added": [
+    "launched from the foot of the slope"
+   ],
+   "fidelity": [
+    null,
+    "v = 40/√3 ≈ 23.09 m/s",
+    "number unit_missing_one_side"
+   ]
+  },
+  "restatement_sha": "34e4f94f96f9526f42ff3dada4601bcd556b5918fe23cb70761707f10d2746f1",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_63e47bfe": {
+  "content_sha": "f570bcc08c8d70a1cb6cb4c569952a9e301f4e62503bee24bd71ea9cec06f5dc",
+  "format": "mcq_single",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "option~letter",
+    "sha:be0b40ec"
+   ],
+   "B": [
+    true,
+    "option",
+    3,
+    "7 s"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.558,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    3,
+    "7 s",
+    "option"
+   ]
+  },
+  "restatement_sha": "a974d1e37022e8ccac6afc3137a433a116b47abd3f736f8a03e1579b79b49f6e",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_65607d30": {
+  "content_sha": "415488a82f8cc05f7e5373e7d9dbb564a5f1b4323588f8c4a5cce17b21388f7a",
+  "format": "subjective",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "parts",
+    "sha:1d286d17"
+   ],
+   "B": [
+    true,
+    "parts",
+    null,
+    "(a) 10 s, (b) 980 m, (c) 98√2 ≈ 138.6 m/s at 45° below the horizontal"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.588,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "(a) t = 10 s, (b) x = 980 m, (c) speed = 98√2 ≈ 138.6 m/s directed 45° below the horizontal",
+    "parts"
+   ]
+  },
+  "restatement_sha": "29b6147a20bdd8ac6c8a44f5ffb9cdc03f0472b6f8f2b1b97639566dd6c37b4f",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_6606ae74": {
+  "content_sha": "7dcbeb28013a86f394375ce7ec45776a4ace6541f6d6b4132090340469582777",
+  "format": "numerical",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "number+unit",
+    "sha:379a48e5"
+   ],
+   "B": [
+    true,
+    "number+unit",
+    null,
+    "d = 20 m (collision at t = 1 s, 15 m above ground)"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "conditions dropped (fidelity ok): projected simultaneously",
+   "conditions added (fidelity ok): launched at the same instant"
+  ],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.627,
+   "conditions_dropped": [
+    "projected simultaneously"
+   ],
+   "conditions_added": [
+    "launched at the same instant"
+   ],
+   "fidelity": [
+    null,
+    "d = 20 m",
+    "number+unit"
+   ]
+  },
+  "restatement_sha": "8a2ea549e3d7430589ed93517805b5a8de7c9932dcc3fe5e578c88f5bce5f2e8",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_6bc6cd9c": {
+  "content_sha": "663ff108f9a39822c7450c9606aded4f869add60b7ddeacab073760b883bebee",
+  "format": "mcq_single",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "option~letter",
+    "sha:8cca9bdc"
+   ],
+   "B": [
+    true,
+    "option",
+    2,
+    "20/√2 = 10√2 ≈ 14.1 m/s"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.516,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    2,
+    "14 ms⁻¹",
+    "option"
+   ]
+  },
+  "restatement_sha": "3b9c8158045669e10030fe8567fe077f874a627588850743b5245c7b288401be",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_6e73404f": {
+  "content_sha": "e84cd66d1a493b1f021ec12a7d41ced8de8ecd89f7b19b05498e2c6675e28dfb",
+  "format": "subjective",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "list_subset",
+    "sha:50b8927a"
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "(x, y) = (2v₀² tan θ/g, −2v₀² tan²θ/g) with y measured upward from the hill top (if y is taken downward, y = +2v₀² tan²θ/g); t = 2v₀ tan θ/g"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.588,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "x = 2v₀²tanθ/g, y = −2v₀²tan²θ/g",
+    "list_subset"
+   ]
+  },
+  "restatement_sha": "81c39db790d5ddcfdcbbde587febde3fa82eb3babc8d55e067f3f9d827df6c90",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_6f699f92": {
+  "content_sha": "fc7d26405bd91fe736b59a194f5c9d3ac48ace6fdc5f22ab422de8844339ee02",
+  "format": "assertion_reason",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "option~letter",
+    "sha:77cabbc3"
+   ],
+   "B": [
+    true,
+    "option",
+    4,
+    "(d) Assertion false, Reason true — constant acceleration gives a parabola only when the initial velocity is not along the acceleration; if it is (or is zero) the path is a straight line, while projectile motion is parabolic because g is taken constant near the surface"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.603,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    4,
+    "Assertion false, Reason true",
+    "option"
+   ]
+  },
+  "restatement_sha": "324a60b78843b1d6cb462495e167e9d332567e698d18579654b780175f48d5fe",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_7004b298": {
+  "content_sha": "c81ef40bccdfc2ee7747e829074674e66dc35f73b415e1ef5d98ab3fb47e695f",
+  "format": "numerical",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "judge(cached)",
+    "sha:1763cba4"
+   ],
+   "B": [
+    true,
+    "words",
+    null,
+    "d = (v₁ + v₂)·√(v₁v₂)/g = 14√3/g m ≈ 2.42 m (g = 10 m/s²) or ≈ 2.47 m (g = 9.8 m/s²), at t = 2√3/g s"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": false,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.601,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "≈2.42 m (= 7√12/g = 1.4√3 m, taking g = 10 m/s²)",
+    "judge(cached)"
+   ]
+  },
+  "restatement_sha": "a165ac29839c0ec4803d4e90780b85487bd164e7221736a2eacf8f1555eb0a99",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_70ed35c7": {
+  "content_sha": "4615f97f0d1f4ad5bdbcd60bb975b7b518680ea73726091ba914327aea6a1251",
+  "format": "mcq_single",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "option~letter",
+    "sha:f89bf797"
+   ],
+   "B": [
+    true,
+    "option",
+    1,
+    "15° (the complementary angle 75° also gives half the maximum range)"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.656,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    1,
+    "θ = 15°",
+    "option"
+   ]
+  },
+  "restatement_sha": "9b111ef755f7b068b0fe6135655fce2d5c94de7d08d669a25da7a1dd4818aa16",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_78ea1db0": {
+  "content_sha": "4ca5850eaff91d1861f68a2a61b0c3da01732d3d56f2f604a935cfdf6b1ec79c",
+  "format": "subjective",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    false,
+    "part a: two_spans_mismatch",
+    "sha:ab8d2fd5"
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "(a) v = (40î + 20ĵ) m/s, |v| = 20√5 ≈ 44.7 m/s at tan⁻¹(1/2) above horizontal, (b) s = (80î + 60ĵ) m, |s| = 100 m at 37° (tan⁻¹(3/4)) above horizontal"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": false,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "numbers added by the restatement: 2"
+  ],
+  "chapter": "Motion in a Plane",
+  "bucket": "escalate_key",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.618,
+   "signature": [
+    [
+     "10",
+     "2",
+     "2",
+     "40",
+     "45"
+    ],
+    [
+     "10",
+     "2",
+     "2",
+     "2",
+     "40",
+     "45"
+    ]
+   ],
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "(a) v = 40i + 20j m/s, magnitude ≈44.7 m/s at 26.6° above horizontal; (b) displacement = 80i + 60j m, magnitude = 100 m at 36.9° above horizontal",
+    "parts"
+   ]
+  },
+  "restatement_sha": "4f41f5886d4c1e314fe89bbdc2d3f9315c4c8247f25ea4c44f589988a6b739d8",
+  "restatement_ok": true,
+  "verdict": "reject",
+  "reason": "escalate_key"
+ },
+ "prj_7c08c47c": {
+  "content_sha": "28b77637ff204f7090103f9e2ea55e8e1a288220e88cfaccf29fec3911855875",
+  "format": "numerical",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "number+unit",
+    "sha:c8bfdf2a"
+   ],
+   "B": [
+    true,
+    "one_item_match",
+    null,
+    "t = √3 s ≈ 1.73 s (at the highest point, where speed = horizontal component = 10 m/s)"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.457,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "t = √3 ≈ 1.73 s",
+    "number unit_missing_one_side"
+   ]
+  },
+  "restatement_sha": "6988d198a4215b3cca5d6284f25e2e5c834311bdee0f06e246b1e565f97fa914",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_7ce39cdf": {
+  "content_sha": "a075c1a374c23380a22ceee011fd4b76f5163c3762e9392f65eb971f68d8214a",
+  "format": "subjective",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    null,
+    "no_key",
+    null
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "h = (u sin θ)t − ½gt² is a quadratic in t with two roots t₁, t₂ = [u sin θ ± √(u² sin²θ − 2gh)]/g (real for h ≤ H); t₁ + t₂ = 2u sin θ/g = T"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": null,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "prove/show item: the printed key is not a reader",
+   "conditions dropped (fidelity ok): projectile in vertical component of motion",
+   "no usable printed answer: author and second reader agree; the auditor is the third reader"
+  ],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass_no_key",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.589,
+   "conditions_dropped": [
+    "projectile in vertical component of motion"
+   ],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "t₁ + t₂ = T = 2u sinθ/g",
+    "one_item_match"
+   ]
+  },
+  "restatement_sha": "f9bfea076c13c1562fc7f478caa572db2694bc8a6de09ce82f70145f4a6525a6",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_812a268c": {
+  "content_sha": "910cdd759294952e6ed7847283f6043c801919409336b2b0a1a694631d536a67",
+  "format": "subjective",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "parts",
+    "sha:cd612031"
+   ],
+   "B": [
+    true,
+    "parts",
+    null,
+    "(i) t = 2 + 2√3 ≈ 5.46 s, distance = 40 + 40√3 ≈ 109.3 m; (ii) t = 2√2 ≈ 2.83 s, distance = 40√2 ≈ 56.6 m; (iii) t = 2√3 − 2 ≈ 1.46 s, distance = 40√3 − 40 ≈ 29.3 m (g = 10 m/s² assumed, not stated in the item)"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "numbers added by the restatement: 2 2 20 20 20 45 45"
+  ],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.704,
+   "signature": [
+    [
+     "40"
+    ],
+    [
+     "2",
+     "2",
+     "20",
+     "20",
+     "20",
+     "40",
+     "45",
+     "45"
+    ]
+   ],
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "(a) t ≈5.46 s, horizontal distance ≈109.3 m; (b) t ≈2.83 s, horizontal distance ≈56.6 m; (c) t ≈1.46 s, horizontal distance ≈29.3 m",
+    "judge(cached)"
+   ]
+  },
+  "restatement_sha": "b3f4be681d1923d882aa1d922bdc6624f00cb16d6cb9ea09ecb9fd907c4b3dc4",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_822434a2": {
+  "content_sha": "3e0e1e09d929330289cefb1c59a4793005dd1602a15dcc66aa1718ec5ca7e0d3",
+  "format": "subjective",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "parts",
+    "sha:13a0a009"
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "(a) 0 (both have acceleration g downward), (b) 20 m/s horizontally, directed opposite to the horizontal component of the second particle's velocity (u₁ − u₂ = −20 î with u₂ = 20 î + 20 ĵ), (c) 40 m"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "conditions added (fidelity ok): both particles launched at the same instant"
+  ],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.485,
+   "conditions_dropped": [],
+   "conditions_added": [
+    "both particles launched at the same instant"
+   ],
+   "fidelity": [
+    null,
+    "(a) relative acceleration = 0; (b) relative initial velocity = 20 m/s horizontal (opposite to particle 2's horizontal component); (c) separation at t=2s = 40 m",
+    "parts"
+   ]
+  },
+  "restatement_sha": "a1edcfcf3f7b76a3246ea8546b33baa8ffa037055bea7bd83b3bf01b42b09871",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_83670542": {
+  "content_sha": "1abba874fd5bf89dc6d634286ba3f2fb697a2da829f3904d53a1515121745254",
+  "format": "numerical",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "one_item_match",
+    "sha:2f308df7"
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "5 m/s, directed into the plane (equal in magnitude to the initial perpendicular component u sin30°)"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "numbers added by the restatement: 10 10 30 30 60",
+   "givens differ",
+   "conditions dropped (fidelity ok): refers to the setup described in the previous problem",
+   "conditions added (fidelity ok): slope inclined at 30° to the horizontal; launch speed 10 m/s at 30° to the slope"
+  ],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.783,
+   "signature": [
+    [],
+    [
+     "10",
+     "10",
+     "30",
+     "30",
+     "60"
+    ]
+   ],
+   "givens": [
+    [],
+    [
+     [
+      [
+       "10",
+       "A"
+      ],
+      1
+     ],
+     [
+      [
+       "10",
+       "V"
+      ],
+      1
+     ],
+     [
+      [
+       "30",
+       "ANG"
+      ],
+      2
+     ]
+    ]
+   ],
+   "conditions_dropped": [
+    "refers to the setup described in the previous problem"
+   ],
+   "conditions_added": [
+    "slope inclined at 30° to the horizontal",
+    "launch speed 10 m/s at 30° to the slope surface",
+    "g = 10 m/s²",
+    "the particle lands on the slope at A"
+   ],
+   "fidelity": [
+    null,
+    "5 m/s, directed into the slope (perpendicular component reverses sign, same magnitude as launch)",
+    "judge(cached)"
+   ]
+  },
+  "restatement_sha": "487bafdc0cf4b49115d6abfb5091ea91f06141cd597dabd6a116023a11cfbd48",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_872ec629": {
+  "content_sha": "d9a36531ba894521ea6e4c95af2036f8d77b47c994e12c2848eed684c5a53618",
+  "format": "mcq_single",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "option~letter",
+    "sha:f89bf797"
+   ],
+   "B": [
+    true,
+    "option",
+    1,
+    "(a) It is uniformly accelerated everywhere (a = g constant, including at the top where v ≠ 0 and a ⟂ v)"
+   ],
+   "hint": [
+    true,
+    "words",
+    "sha:d3b595d9"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.625,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    1,
+    "(a) The acceleration stays the same, in both magnitude and direction, at every point of the path",
+    "option"
+   ]
+  },
+  "restatement_sha": "5353baddf2ac3773fd4573c02a6ed7a43408cf8abcbc16ca164abb7a4e2ba4c4",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_87e27883": {
+  "content_sha": "036bb6f03a76300a30e70e055ef6e540641222c56a7f2732ccd81e121a54374a",
+  "format": "numerical",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "number+unit",
+    "sha:53b0399b"
+   ],
+   "B": [
+    true,
+    "number+unit",
+    null,
+    "√2 s ≈ 1.41 s"
+   ],
+   "hint": [
+    true,
+    "number+unit",
+    "sha:5ad8c11b"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "conditions added (fidelity ok): moving away from each other"
+  ],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.577,
+   "conditions_dropped": [],
+   "conditions_added": [
+    "moving away from each other"
+   ],
+   "fidelity": [
+    null,
+    "t = √2 ≈ 1.41 s",
+    "number unit_missing_one_side"
+   ]
+  },
+  "restatement_sha": "d29929d3e4e22a250932a8d7409b45bc33bef4debc9b1707b32cb6f2ec056e35",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_8ccf08b9": {
+  "content_sha": "0af26ab798088c3a17551ff774d461fca25d0b5e440ff506439ee2848389590b",
+  "format": "assertion_reason",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "option~letter",
+    "sha:f89bf797"
+   ],
+   "B": [
+    true,
+    "option",
+    1,
+    "(a) Both true and the Reason explains the Assertion — T = 2u_y/g and H = u_y²/2g give H = gT²/8 ∝ T², so doubling T makes H four times"
+   ],
+   "hint": [
+    false,
+    "words_disjoint",
+    "sha:9f8c2e91"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "hint disagrees with printed answer"
+  ],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.496,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    1,
+    "Assertion true, Reason true, and reason correctly explains assertion",
+    "option"
+   ]
+  },
+  "restatement_sha": "8b1092458e7549c4ff2753d021d8eff16a2232a337011675207371d605930307",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_909c238b": {
+  "content_sha": "8703646078d0bedd71705a2368836cca482612f17862676c9514c5c7a90e5c0b",
+  "format": "numerical",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "number+unit",
+    "sha:f122a265"
+   ],
+   "B": [
+    true,
+    "number+unit",
+    null,
+    "θ = 60°"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.652,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "θ = 60°",
+    "number+unit"
+   ]
+  },
+  "restatement_sha": "d7d9cec85bf9a519f4fa78e9eb1a709a83bb6a23fa232cf51b1f1ddd72391478",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_9518a298": {
+  "content_sha": "a3c45d58a070ffe57cb62a9c468df891c64aef401633cfcc29cbe3b67784bfc3",
+  "format": "subjective",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "one_item_match",
+    "sha:75c223f7"
+   ],
+   "B": [
+    true,
+    "list",
+    null,
+    "v_avg = u cos α, directed horizontally (along the direction of projection)"
+   ],
+   "hint": [
+    true,
+    "one_item_match",
+    "sha:ffb87563"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.694,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "u cos α, directed horizontally (same direction as the horizontal component of launch)",
+    "list"
+   ]
+  },
+  "restatement_sha": "6f466a5166d5975bc5ca49c8848c6bbf9e2d53b1d8f0877d8642d3ee31727863",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_9648e5fe": {
+  "content_sha": "21fdbef2b2ddd9398fde3184503e4a14743caa208139c90a91cff9bd74acd26d",
+  "format": "assertion_reason",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "option~letter",
+    "sha:f89bf797"
+   ],
+   "B": [
+    true,
+    "option",
+    1,
+    "(a) — (v₂ − v₁)/(t₂ − t₁) = g (downward) for every pair of instants; both true, reason explains"
+   ],
+   "hint": [
+    false,
+    "judge(cached)",
+    "sha:34722420"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "hint disagrees with printed answer"
+  ],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.581,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    1,
+    "Both assertion and reason are true, and the reason correctly explains the assertion",
+    "option"
+   ]
+  },
+  "restatement_sha": "79547bd9a855419419600f45e44091e43f9f021400d5f65ef5f8f65ea59307b4",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_969f827d": {
+  "content_sha": "8df8834e89b7706eb9a1441b22579b43c1c89408807535064ddbdd0fd2319eb6",
+  "format": "subjective",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "judge(cached)",
+    "sha:a2a097a5"
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "(a) R = 80 m, H = 20 m, T = 4 s, (b) v = (20î + 10ĵ) m/s, |v| = 10√5 ≈ 22.4 m/s at tan⁻¹(1/2) above horizontal, (c) v = (20î − 20ĵ) m/s, |v| = 20√2 ≈ 28.3 m/s at 45° below horizontal"
+   ],
+   "hint": [
+    true,
+    "judge(cached)",
+    "sha:09f64f2e"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.628,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "(a) R = 80 m, H = 20 m, T = 4 s; (b) v = 10√5 m/s ≈ 22.4 m/s at 26.6° above horizontal (vₓ = 20 m/s, v_y = 10 m/s); (c) v = 20√2 m/s ≈ 28.3 m/s at 45° below horizontal (vₓ = 20 m/s, v_y = −20 m/s)",
+    "judge(cached)"
+   ]
+  },
+  "restatement_sha": "8f45392712555298e21d6ac83098c294697aa4df85cad5b9d18d474351226888",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_9722adfb": {
+  "content_sha": "c9879713f06996617e7f054ee65d724dd38cf19f001a52b165ba3b917960f65d",
+  "format": "assertion_reason",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "option~letter",
+    "sha:77cabbc3"
+   ],
+   "B": [
+    true,
+    "option",
+    4,
+    "(d) — Assertion false (any constant acceleration not parallel to the initial velocity gives a parabola, e.g. a = 3î − 4ĵ with u = 5î + 2ĵ), Reason true (in projectile motion aₓ = 0)"
+   ],
+   "hint": [
+    false,
+    "words_disjoint",
+    "sha:fc23b48d"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "hint disagrees with printed answer"
+  ],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.582,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    4,
+    "Assertion is false, reason is true",
+    "option"
+   ]
+  },
+  "restatement_sha": "a99b6ec3109d9b6789caa8bd74695c6477dace53b8640433b767a4cb5ec3b01d",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_9bc1af04": {
+  "content_sha": "d1407b5291052654aa9e07f24de35ff579a29bbe855ebccd977d8f9f55605e07",
+  "format": "mcq_single",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "option~letter",
+    "sha:be0b40ec"
+   ],
+   "B": [
+    true,
+    "option",
+    3,
+    "sin²θ : cos²θ"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.568,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    3,
+    "sin²θ : cos²θ",
+    "option"
+   ]
+  },
+  "restatement_sha": "9e3cbe050abde0077006890b35dd961e650998cb6c39ea2156ba1efde2e5ac06",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_a06421a6": {
+  "content_sha": "faa3f0c9799fa54d7521239a66e970096e1ca75559c457acd54f0f18b27973d5",
+  "format": "numerical",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "number",
+    "sha:8462160b"
+   ],
+   "B": [
+    true,
+    "number",
+    null,
+    "θ = tan⁻¹(2/3) ≈ 33.7°"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.508,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "θ = arctan(2/3) ≈ 33.7°",
+    "number"
+   ]
+  },
+  "restatement_sha": "6e1749440bad3e82f170e380765304a5def4ef3326365152b5908e7bf54c5ea2",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_a7653f21": {
+  "content_sha": "62e6335aca40bf6fa30916af26bf8627f94bacd73a4ac8e8355bd66ffe8031f7",
+  "format": "mcq_single",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "option~letter",
+    "sha:8cca9bdc"
+   ],
+   "B": [
+    true,
+    "option",
+    2,
+    "K/3"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.525,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    2,
+    "K/3",
+    "option"
+   ]
+  },
+  "restatement_sha": "36f9e40998f0b295a153bf38134ea0663955594f50de4c9404e78097037d29c1",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_aa74029b": {
+  "content_sha": "7b44f572050d09c3feef07c4767adc20e1545f40472ad4525d2507bee9d4852b",
+  "format": "mcq_single",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "option~letter",
+    "sha:f89bf797"
+   ],
+   "B": [
+    false,
+    "option",
+    2,
+    "90√3 m"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": false,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "author = printed answer; the second reader could not confirm (option); the auditor is the third reader"
+  ],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass_unconfirmed",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.642,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    1,
+    "90 m",
+    "option"
+   ]
+  },
+  "restatement_sha": "147c7e004c53abfaeaeef60b3ba05f792d6a345ae15abc07e581bf0900ac1b5c",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_ac01c142": {
+  "content_sha": "dd335610f49edc5ef028476ba25b230d55c12955e4db32bf482051b08c27bda0",
+  "format": "subjective",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "judge(cached)",
+    "sha:be03c8c0"
+   ],
+   "B": [
+    true,
+    "list",
+    null,
+    "u = (30î + 50ĵ) m/s (|u| = √3400 ≈ 58.3 m/s), T = 10 s, H_max = 125 m, R = 300 m (g = 10 m/s²)"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.647,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "Initial velocity u₀ = 10√34 m/s ≈ 58.3 m/s at ≈59.0° above horizontal (uₓ=30 m/s, u_y=50 m/s); total time of flight T = 10 s; maximum height H = 125 m; horizontal range R = 300 m",
+    "judge(cached)"
+   ]
+  },
+  "restatement_sha": "2debca7f69ac077ca0d36f17514a4eec1db863108ffdf366813d4c281c2fd3c4",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_b504b14a": {
+  "content_sha": "310b0d3add2035b9543393cceba852b58cc9fc1ca59a837b1ce0cf7aebc278a2",
+  "format": "subjective",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "words",
+    "sha:37be65f8"
+   ],
+   "B": [
+    true,
+    "one_item_match",
+    null,
+    "tan θ = tan α + tan β (proved): tan α = y/x = tan θ·(R−x)/R and tan β = y/(R−x) = tan θ·x/R, whose sum is tan θ"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.533,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "tan θ = tan α + tan β (proved)",
+    "words"
+   ]
+  },
+  "restatement_sha": "3146e1a8c2a683885c07462299deb948bdf3140e77e20a9ed63282ef784734c2",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_b51a8be6": {
+  "content_sha": "49fe1beda8d562fe8bcbbcc9c0657d6fb0c4776efc728efaead5c33fd3b44929",
+  "format": "subjective",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "list",
+    "sha:b7b8b69f"
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "Horizontal: 10 + u₁ cos θ₁·t = 30 − u₂ cos θ₂·t, i.e. (u₁ cos θ₁ + u₂ cos θ₂) t = 20; Vertical: 10 + u₁ sin θ₁·t − ½gt² = 20 + u₂ sin θ₂·t − ½gt², i.e. (u₁ sin θ₁ − u₂ sin θ₂) t = 10 [equivalently the relative velocity of A w.r.t. B is along AB: (u₁ sin θ₁ − u₂ sin θ₂)/(u₁ cos θ₁ + u₂ cos θ₂) = 1/2, with t = 20/(u₁ cos θ₁ + u₂ cos θ₂)]"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "conditions added (fidelity ok): A and B launched at the same instant in one common vertical plane; the two parti"
+  ],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.634,
+   "conditions_dropped": [],
+   "conditions_added": [
+    "A and B launched at the same instant in one common vertical plane",
+    "the two particles meet while still airborne"
+   ],
+   "fidelity": [
+    null,
+    "10 + u₁cosθ₁·t = 30 − u₂cosθ₂·t (horizontal positions equal); and 10 + u₁sinθ₁·t − ½gt² = 20 + u₂sinθ₂·t − ½gt², i.e. u₁sinθ₁·t − u₂sinθ₂·t = 10 (vertical positions equal)",
+    "judge(cached)"
+   ]
+  },
+  "restatement_sha": "27644440acc202a1d306cc7274bf9c0b284408e311daa7e23e297817458237bd",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_b528c2f4": {
+  "content_sha": "c0fcb055d736e7fd1876e381709be99ca603c75e5c12f543037e1b3b92f46719",
+  "format": "subjective",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "expression",
+    "sha:1527ccf9"
+   ],
+   "B": [
+    true,
+    "expression",
+    null,
+    "t = u/(g sin θ)"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.418,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "t = u / (g sin θ)",
+    "expression"
+   ]
+  },
+  "restatement_sha": "bb056ed7e09c2f9f92108d98d98c9fb2b1aee0c23c03e7eb21c1dd7f135f1cfd",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_b8c9ecd0": {
+  "content_sha": "484e6fb78d04161ebd889734476656e2b55c8dfb81f47ddbb67409672734dc85",
+  "format": "subjective",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "judge(cached)",
+    "sha:5ef0d71e"
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "Δv = −2u sin α ĵ, i.e. 2u sin α vertically downward"
+   ],
+   "hint": [
+    true,
+    "judge(cached)",
+    "sha:7f4a0c6f"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "conditions dropped (fidelity ok): refers to the setup of the previous question (same particle, same time interval)",
+   "conditions added (fidelity ok): launched from ground level; the interval is the whole flight, launch to landing"
+  ],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.835,
+   "conditions_dropped": [
+    "refers to the setup of the previous question (same particle, same time interval)"
+   ],
+   "conditions_added": [
+    "launched from ground level",
+    "the interval is the whole flight, launch to landing"
+   ],
+   "fidelity": [
+    null,
+    "2u sinα, directed vertically downward",
+    "list"
+   ]
+  },
+  "restatement_sha": "47f3afe59f10d5dbb2300c88a740a119c67acb0acc08b6481a91775843f948f2",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_bad7455f": {
+  "content_sha": "22303085af727477e7b3e1bfdb7652945423b45657a7d564f4c360326519ebb5",
+  "format": "subjective",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "parts",
+    "sha:f5d63fa4"
+   ],
+   "B": [
+    true,
+    "parts",
+    null,
+    "(a) α = sin⁻¹(0.6) = 37°, (b) t = 100/(30√3 + 40) ≈ 1.09 s, (c) P is ≈ 56.5 m horizontally from A at height ≈ 26.7 m, i.e. straight-line distance AP ≈ 62.5 m"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.612,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "(a) α ≈ 36.87° (arcsin 0.6, ≈37° above horizontal), (b) t ≈ 1.09 s, (c) AP ≈ 62.5 m",
+    "parts"
+   ]
+  },
+  "restatement_sha": "401eefe2c48b8a39727d677fe28ef7dc441dc612602ba75ab1a76c1c446eabf4",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_be6fa5c3": {
+  "content_sha": "90f43ecbee199eae3698381b582ec69ded7b06098461815d2e72f87afe68622c",
+  "format": "mcq_single",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "option~letter",
+    "sha:77cabbc3"
+   ],
+   "B": [
+    true,
+    "option",
+    4,
+    "25 m"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.594,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    4,
+    "25 m",
+    "option"
+   ]
+  },
+  "restatement_sha": "f9024163829ab50d82504a78cd69440b04721e6f8eecbf09b40f455a7a74f963",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_c04cc4d5": {
+  "content_sha": "30a311ba7303b98ab0738862186d534533816aab9bfc118b47ab3f801b84873f",
+  "format": "assertion_reason",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "one_item_match",
+    "sha:07e57e0a"
+   ],
+   "B": [
+    true,
+    "option",
+    1,
+    "(a) — uᵧ ratio 2:1 ⇒ T ratio 2:1 ⇒ for equal R = uₓT the uₓ ratio is 1:2; both true, reason explains"
+   ],
+   "hint": [
+    false,
+    "judge(cached)",
+    "sha:b8e83421"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.572,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    1,
+    "Both Assertion and Reason are true, and the Reason correctly explains the Assertion",
+    "option"
+   ]
+  },
+  "restatement_sha": "bd89bce3bb923b817491fd69b02509c9ab996ff69596339bd9927d673b843e7f",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_c10fa827": {
+  "content_sha": "3a7d42562a1a5f55a1bd98b6ddae93ae081bab571027ffed9c529c5b2dd9315b",
+  "format": "numerical",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "number+unit",
+    "sha:b58e60ce"
+   ],
+   "B": [
+    true,
+    "one_item_match",
+    null,
+    "α = 60° from the horizontal (i.e. 30° above the incline, bisecting the angle between the incline and the vertical)"
+   ],
+   "hint": [
+    true,
+    "number+unit",
+    "sha:da27f361"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "conditions dropped (fidelity ok): particle projected from the bottom of the incline",
+   "conditions added (fidelity ok): particle launched from the base of the ramp"
+  ],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.53,
+   "conditions_dropped": [
+    "particle projected from the bottom of the incline"
+   ],
+   "conditions_added": [
+    "particle launched from the base of the ramp"
+   ],
+   "fidelity": [
+    null,
+    "α = 60° from the horizontal",
+    "number+unit +qualifier"
+   ]
+  },
+  "restatement_sha": "34f1dd90ec4ac1053136cfc769db102d97fd230a5f588b154e045916755a286c",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_c274ab22": {
+  "content_sha": "8ce3c62e22f4acb165565d472719e4f6692584c0e1be8bdcc3645fdf0d17e3b1",
+  "format": "numerical",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "number+unit",
+    "sha:c714f52a"
+   ],
+   "B": [
+    true,
+    "number+unit",
+    null,
+    "AB ≈ 3333 m ≈ 3.33 km"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.655,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "AB ≈ 3333.3 m (≈ 10/3 km)",
+    "words"
+   ]
+  },
+  "restatement_sha": "a253f9ec65f632c46c0ffe55f020ccf23c9fb6b3e2717d1dc8c1ee903eb6874a",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_c550c7cd": {
+  "content_sha": "69ed3f0ba86f752225600d512dc94547a377702829a9267d1ec8514ae1ce93f8",
+  "format": "subjective",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    false,
+    "judge(cached)",
+    "sha:a9f9d991"
+   ],
+   "B": [
+    true,
+    "list_subset",
+    null,
+    "t ≈ 3.55 s and impact speed ≈ 32.0 m/s (g = 9.8; with g = 10: t ≈ 3.51 s, v ≈ 32.3 m/s); components at impact vₓ = 5.56 m/s, v_y ≈ 31.5 m/s down"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Motion in a Plane",
+  "bucket": "escalate_key",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.527,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "t ≈ 3.55 s, landing speed ≈ 31.97 m/s",
+    "list"
+   ]
+  },
+  "restatement_sha": "67767b34add31a33b7b5f9b6810c8741721b3e80ba8c5c7eef6c2fdf0d2b6e59",
+  "restatement_ok": true,
+  "verdict": "reject",
+  "reason": "escalate_key"
+ },
+ "prj_c5581e32": {
+  "content_sha": "a412a237100a94f8dd4d2fac5e0b45af09cc8616ff6c25da2de989b6cb48d307",
+  "format": "mcq_single",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "option~letter",
+    "sha:8cca9bdc"
+   ],
+   "B": [
+    true,
+    "option",
+    2,
+    "parabolic"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.561,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    2,
+    "parabolic",
+    "option"
+   ]
+  },
+  "restatement_sha": "011f18565ada0f3ab8f295d769c95b6f1c14a9f8576ae84ccfeaa9369bceea3f",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_c90f12d9": {
+  "content_sha": "3afdb9850ff4d0492b7b630f4de16d145e6f2dc0d93a40afc864e85c15ec0ffa",
+  "format": "conceptual",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "judge(cached)",
+    "sha:3cbc87c7"
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "True — at low speed (air resistance neglected) the only acceleration is g, constant in magnitude and direction, so the motion is uniformly accelerated"
+   ],
+   "hint": [
+    true,
+    "one_item_match",
+    "sha:79c3094b"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.602,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "Correct — the acceleration (g, vertically downward) stays constant throughout the flight",
+    "judge(cached)"
+   ]
+  },
+  "restatement_sha": "f23db0e898ee1293748bf6511f7c515a2f78e046f22a1f3fff885a36ea5f0cee",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_cc910cc5": {
+  "content_sha": "76e26d9e3e3e05ff649543aea6c31f16e6a49ce09baf47cf861ed3dfa46efc21",
+  "format": "numerical",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "number+unit",
+    "sha:3e01589f"
+   ],
+   "B": [
+    true,
+    "one_item_match",
+    null,
+    "5.53 m/s ≈ 5.5 m/s (taking g = 9.8 m/s²; 5.59 m/s if g = 10 m/s²)"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.587,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "u ≈ 5.53 m/s",
+    "number+unit"
+   ]
+  },
+  "restatement_sha": "544df9f69818fe48fc7b9f1b2ebb2cfdc77628ff55938f29ff92e011585a52d5",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_cf05f843": {
+  "content_sha": "71b63976450cf099996fe09e6bf87db2f7a263424bfe1e32ae1c3afdd1797491",
+  "format": "subjective",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    false,
+    "judge(cached)",
+    "sha:c0e8814c"
+   ],
+   "B": [
+    true,
+    "list",
+    null,
+    "T = 4/√3 s ≈ 2.31 s, R = 160/3 m ≈ 53.3 m down the incline (horizontal 20 m/s launched toward the down-slope side of a 30° incline)"
+   ],
+   "hint": [
+    true,
+    "list",
+    "sha:e6c9e116"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "printed answer disagrees; the printed hint agrees with both readers (key misprint)",
+   "hint disagrees with printed answer"
+  ],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.617,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "t ≈ 2.31 s, distance along incline ≈ 53.3 m",
+    "list"
+   ]
+  },
+  "restatement_sha": "8c824e9f9cae5b2bf7d0b56280379fdb5a1209f157215068a694e61a0ada7ef8",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_d181dcc6": {
+  "content_sha": "02c557cf4b23d76f167fed9144cfd3df241bbec2aa2f9f473d3eac722f15dfc7",
+  "format": "conceptual",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "judge(cached)",
+    "sha:60a33e6c"
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "False — projectile motion is a 2-dimensional motion (the path lies in the vertical plane containing the initial velocity and g)"
+   ],
+   "hint": [
+    true,
+    "judge(cached)",
+    "sha:04a914a0"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.569,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "Incorrect — projectile motion (no wind/spin effects) is 2-dimensional, confined to the single vertical plane containing the initial velocity and gravity",
+    "judge(cached)"
+   ]
+  },
+  "restatement_sha": "141091983ddf38f8e20ac328a36b52fa19647409db2530e777f666ea9b0dbd75",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_d479e276": {
+  "content_sha": "03262deb6a0970215c88d8a0ac065643a3adf6be8baaba09c7071763a6086a94",
+  "format": "conceptual",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "judge(cached)",
+    "sha:bd4ddb00"
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "When the projectile is fired from and lands on the same horizontal level (point of projection and point of landing at the same height, e.g. ground to ground), with the angle measured from the horizontal, acceleration constant g (air resistance neglected)"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.585,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "When the point of launch and the point of landing are at the same horizontal level, with no air resistance and constant vertical g — never when launched from a height, or landing on a slope or a different level.",
+    "judge(cached)"
+   ]
+  },
+  "restatement_sha": "3c9fa2450a8da50b9e1276a6ada75580b715eca4a7887c0241c7243b5f134ffc",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_dad3bbb3": {
+  "content_sha": "c8f130e46f3d6e428e7241e9180c6ccfe1f40baaf17b9d7822dfd8751c4a76fb",
+  "format": "assertion_reason",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "option~letter",
+    "sha:be0b40ec"
+   ],
+   "B": [
+    true,
+    "option",
+    3,
+    "(c) — Assertion true: B's time of flight = 4 s ⇒ u_By = 20 m/s ⇒ H = 20²/(2·10) = 20 m; Reason false: B also has a horizontal component, so its speed √(uₓ² + 20²) > 20 m/s = speed of A"
+   ],
+   "hint": [
+    false,
+    "judge(cached)",
+    "sha:3ad69736"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "hint disagrees with printed answer"
+  ],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.637,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    3,
+    "Assertion true (H = 20 m); Reason false — only B's vertical launch-speed component must equal 20 m/s, not B's total speed, which must exceed A's 20 m/s since B follows a curved (nonzero horizontal component) path.",
+    "option"
+   ]
+  },
+  "restatement_sha": "4c6a8b1a1f23af1392a28d12f61b9b8ec952ff8041dd770c23f2f60228d0f3a8",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_db0a9de7": {
+  "content_sha": "2745ce8c7817c59cd256c9dc92b7a20b76dc66d372c82cb6646ce74dcbbb344d",
+  "format": "subjective",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "parts",
+    "sha:ff91f22d"
+   ],
+   "B": [
+    true,
+    "parts",
+    null,
+    "(a) T = 4 s, (b) OP = 80√2 m ≈ 113 m (with g = 10 m/s²; with g = 9.8: T ≈ 4.08 s, OP ≈ 115 m)"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "numbers added by the restatement: 20 45 45"
+  ],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.831,
+   "signature": [
+    [],
+    [
+     "20",
+     "45",
+     "45"
+    ]
+   ],
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "(a) t = 4 s, (b) OP = 80√2 m ≈ 113.1 m",
+    "parts"
+   ]
+  },
+  "restatement_sha": "ff99a6da85d9ca60cf59cb08987057f13a823b78f30cc0d92713a8cf8f1f9393",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_dea1c6ba": {
+  "content_sha": "14c62f29e63c86b62ddfc8b645e527d76b494874443bb304320fd48bec533e40",
+  "format": "mcq_single",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "option~letter",
+    "sha:be0b40ec"
+   ],
+   "B": [
+    true,
+    "option",
+    3,
+    "πv₀⁴/g²"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.587,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    3,
+    "πv₀⁴/g²",
+    "option"
+   ]
+  },
+  "restatement_sha": "b830801e359cbddaca59f918a3efc63ae2d12a84f2959b047ba0c329774ef7f6",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_df0030fd": {
+  "content_sha": "d9fd0bdf54e3ba46a16e9d2f2e7f7a8b3f356a37f709ab88b436f013d526ad74",
+  "format": "mcq_single",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "option~letter",
+    "sha:77cabbc3"
+   ],
+   "B": [
+    true,
+    "option",
+    4,
+    "40 m"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.565,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    4,
+    "40 m",
+    "option"
+   ]
+  },
+  "restatement_sha": "c03837fb4a1e3b68b6e2368ea34e71d07f1859baa784d3aa97cea300fd8d7d0d",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_df9b881f": {
+  "content_sha": "82219c7bd66f5fbafd441a54dabda25388e148f218f529b1528f6d6ab301140d",
+  "format": "subjective",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "one_item_match",
+    "sha:c9b3d25e"
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "u = √(a(1+p²)/(2q)) at angle tan⁻¹p to the x-axis; components uₓ = √(a/2q), u_y = p√(a/2q)"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.498,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "v = √[a(1+p²)/(2q)]",
+    "one_item_match"
+   ]
+  },
+  "restatement_sha": "2f1b9dc908ea220ddb2003b37389dbcc588401d6837009655f55ff28cdf6151e",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_e09a21d4": {
+  "content_sha": "98ba9f5291b932de7953fa536ae0def83537a68b8ccc414fb086f3d90d1e4b4e",
+  "format": "subjective",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    null,
+    "no_key",
+    null
+   ],
+   "B": [
+    true,
+    "one_item_match",
+    null,
+    "Speed at height h is v = √(2gh); between the walls the motion is a symmetric projectile of range 2h, so sin 2φ = 1, φ = 45°; time between walls T = 2v sin φ/g = 2√(h/g) (launch angle from ground works out to 60°)"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": null,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "no usable printed answer: author and second reader agree; the auditor is the third reader"
+  ],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass_no_key",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.509,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "Proven: t = 2√(h/g). (Consistent solution: launch at 60° with Ux=√(gh), Uy=√(3gh), so v_y at height h = √(gh), giving t=2√(gh)/g=2√(h/g).)",
+    "one_item_match"
+   ]
+  },
+  "restatement_sha": "3b86a01f8c972c4277d91c6d038f117268781b5b1d256ffe9434764e657e36bb",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_e3f4653c": {
+  "content_sha": "8e82e6116e9dde0b97063019ccdc98371f9384d86b4b732717c7d315624e963a",
+  "format": "assertion_reason",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "option~letter",
+    "sha:77cabbc3"
+   ],
+   "B": [
+    true,
+    "option",
+    4,
+    "(d) — Assertion false: the VELOCITY vector changes by 10 m/s each second, but the speed (magnitude) does not (e.g. u = 20 m/s at 60°: speeds 20.0, 12.4, 10.4, 16.1, 24.8 m/s at t = 0…4 s); Reason true"
+   ],
+   "hint": [
+    false,
+    "judge(cached)",
+    "sha:32abe679"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "hint disagrees with printed answer"
+  ],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.485,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    4,
+    "Assertion false, Reason true.",
+    "option"
+   ]
+  },
+  "restatement_sha": "46eff2e1498a47ee9f44562f87aa416a708ed8c627fe2d03554e0635b83a3936",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_e517e4e8": {
+  "content_sha": "c5028f267ba3fe85bd1410094a6d3030b087e23d93cb5d4bbc56de340ca0806d",
+  "format": "numerical",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "one_item_match",
+    "sha:d3ae5f01"
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "v = (6î + 20ĵ + 30k̂) m/s relative to the ground (|v| = √1336 ≈ 36.6 m/s); relative to the car (moving at 8î m/s at t = 4 s) it is (−2î + 20ĵ + 30k̂) m/s"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.559,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "Velocity of projection = 6î + 20ĵ + 30k̂ m/s (magnitude ≈ 36.55 m/s)",
+    "one_item_match"
+   ]
+  },
+  "restatement_sha": "c83c1883d8b52bf38134e6142b213bc83c5bc76abdcdeef8bcd9ccfa8a7fb2fe",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_e747432f": {
+  "content_sha": "1899c5eb278040b38af2c03f988450eb95267ac0c3fa6366e42a0f91f0e689c1",
+  "format": "subjective",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    null,
+    "no_key",
+    null
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "R_max = u²/g (θ = 45°), H = u²/(4g), so R_max = 4H"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": null,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "prove/show item: the printed key is not a reader",
+   "no usable printed answer: author and second reader agree; the auditor is the third reader"
+  ],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass_no_key",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.75,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "Proven: at the angle of maximum range (θ=45°), R = 4H.",
+    "judge(cached)"
+   ]
+  },
+  "restatement_sha": "b72ec17acbc8e10c063b31517e94e966bb91c8a923fb4afd4a56f3cde2d8ad0e",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_e797820c": {
+  "content_sha": "694a0fc22ae8afa3f93c47aca37ffe6edc2c8d94b97fe789ff840cd285637b31",
+  "format": "subjective",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "parts",
+    "sha:6224a792"
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "(a) t = 3 s, (b) QP = 120 m, (c) v = 50 m/s at tan⁻¹(3/4) ≈ 37° below the horizontal (components 40 m/s horizontal, 30 m/s downward)"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.549,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "(a) t = 3 s, (b) QP = 120 m, (c) speed = 50 m/s directed 37° below the horizontal",
+    "parts"
+   ]
+  },
+  "restatement_sha": "a7269b02cc2be92e119c2fa3865e74440b7c52c904025b23847821856dc7aa66",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_e96585b4": {
+  "content_sha": "e466649ec4bb2f1319489242d5b7846bd662936334b0ef2d10c99ef5b864fdac",
+  "format": "subjective",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "judge(cached)",
+    "sha:034a2ac5"
+   ],
+   "B": [
+    true,
+    "parts",
+    null,
+    "(a) 25 m/s (both while rising and while falling), (b) t₁ = (2√3 − 1.5) s ≈ 1.96 s rising, t₂ = (2√3 + 1.5) s ≈ 4.96 s falling, (c) height h = 48.75 m in both cases; horizontal distance x₁ ≈ 39.3 m (at t₁) and x₂ ≈ 99.3 m (at t₂)"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.547,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "(a) v = 25 m/s, (b) t₁ ≈ 1.96 s (rising) and t₂ ≈ 4.96 s (falling), (c) h = 48.75 m at both instants; x₁ ≈ 39.28 m (at t₁), x₂ ≈ 99.28 m (at t₂)",
+    "parts"
+   ]
+  },
+  "restatement_sha": "202f7650e7dda3c63833d025c2d5466da938eface262e6fef2b3d58ffc0dd86e",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_f14efb9a": {
+  "content_sha": "8ecb7439207a74d771719e680e3ca49a7b6522fdbc07f8b1b073533bfece7457",
+  "format": "mcq_single",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "option~letter",
+    "sha:77cabbc3"
+   ],
+   "B": [
+    true,
+    "option",
+    4,
+    "34 m"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.498,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    4,
+    "34 m",
+    "option"
+   ]
+  },
+  "restatement_sha": "5c4064707a7ddbf6eb76bb95a02fd27de63c609adccdf0a5bd4da265f5013b04",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_f688743c": {
+  "content_sha": "ec3ca6c61d98ac196a8c00f3787dc728c4fc8cf890dc8197269d70e2a9d6b4c6",
+  "format": "subjective",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "list",
+    "sha:9fa59784"
+   ],
+   "B": [
+    true,
+    "one_part_match a",
+    null,
+    "(a) T = 4(1 − 1/√3) ≈ 1.69 s, (b) R = 160(√3 − 1)/3 ≈ 39.0 m"
+   ],
+   "hint": [
+    true,
+    "list",
+    "sha:08124ac4"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.637,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "Time of flight ≈ 1.69 s; distance along the incline ≈ 39.04 m",
+    "list"
+   ]
+  },
+  "restatement_sha": "2bb200e158cf5b73c20fee244c69dbf3ec8e849fa4774b3e76840dd01a776b16",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "prj_f6e5b7b0": {
+  "content_sha": "4bc0400780bf19f38506492b893de7300f598a04af6430e48cc0ca37356a4598",
+  "format": "numerical",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "list",
+    "sha:debc8dda"
+   ],
+   "B": [
+    true,
+    "list",
+    null,
+    "t = 1 s (going up) and t = 3 s (coming down)"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "conditions added (fidelity ok): launch angle 45° above horizontal"
+  ],
+  "chapter": "Motion in a Plane",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.678,
+   "conditions_dropped": [],
+   "conditions_added": [
+    "launch angle 45° above horizontal"
+   ],
+   "fidelity": [
+    null,
+    "t = 1 s and t = 3 s",
+    "list"
+   ]
+  },
+  "restatement_sha": "dc88d45fb6872ec8ed899e7570bf302e3a8aebc944737895ce272dfcdcd42cb4",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ }
+}

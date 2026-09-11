@@ -1,0 +1,82 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_prj_633210f0",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A projectile is launched with speed u directed perpendicular to an inclined surface that makes angle θ with the horizontal ground. Obtain a formula for the distance R, measured along the slope, from the launch point to where the projectile lands.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "launch velocity u points perpendicular to the slope's surface",
+   "slope makes angle θ with the horizontal"
+  ],
+  "figure": {
+   "description": "A projectile launches from the top of an inclined slope, with initial velocity u perpendicular to the slope's surface. The slope makes angle θ with the horizontal. The projectile arcs through the air and lands back on the slope, a distance R (measured along the slope) from the launch point."
+  }
+ },
+ "solution": {
+  "approach": "Resolve motion along axes parallel and perpendicular to the incline; the perpendicular motion gives the time to land back on the slope, and the parallel motion gives the distance R.",
+  "steps": [
+   {
+    "text": "Take axes along the slope and perpendicular to it. Along the slope gravity contributes g sinθ with no initial velocity; perpendicular to the slope gravity contributes g cosθ opposing the initial velocity u.",
+    "equation": "a∥ = g sinθ, a⊥ = −g cosθ, u⊥ = u, u∥ = 0"
+   },
+   {
+    "text": "The projectile lands back on the slope when the perpendicular displacement returns to zero.",
+    "equation": "u t − ½g cosθ t² = 0 ⟹ t = 2u/(g cosθ)"
+   },
+   {
+    "text": "The distance along the slope at that time is the parallel displacement.",
+    "equation": "R = ½g sinθ t² = ½g sinθ × [2u/(g cosθ)]²"
+   },
+   {
+    "text": "Simplify to reach the expression for R.",
+    "equation": "R = 2u² sinθ / (g cos²θ)"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "R = 2u² sinθ / (g cos²θ)"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Using t = 2u/g instead of t = 2u/(g cosθ) ignores that gravity's component perpendicular to the slope is g cosθ, not g, and gives a smaller value of R."
+   }
+  ],
+  "concept_tags": [
+   "projectile on incline",
+   "resolving gravity",
+   "range formula"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "27b92f471e97a6ffb2f3c360e4f80e59d6bc71f45cf8d98d7d52433b3f648c79"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "8dbcf32cdce03f06f0578deb94a348b8ec384d73c6acd933b650cd19e2dd0493",
+  "audited_by": "W01-U-prj-02"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-07",
+  "at": "2026-09-11T16:45:00+05:30"
+ }
+}

@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_70ed35c7",
+ "item_sha": "1ed675bf7b46de965ca6c22030bff109cc1ebf7850f79bf83bd6cac218e9987b",
+ "auditor_option": 1,
+ "auditor_value": "15° (sin 2θ = ½ gives θ = 15° or 75°; only 15° is offered)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Independent solve agrees: R/R_max = sin 2θ = ½, so 2θ = 30° or 150°. The solution names both roots and picks the one offered. Both distractor entries produce the option they point at (30° from not halving 2θ = 30°; 60° from taking 2θ = 120°).",
+ "audited_by": {
+  "model": "opus",
+  "wave": 3,
+  "agent": "W03-U-prj-01",
+  "at": "2026-09-11T20:05:37+05:30"
+ }
+}

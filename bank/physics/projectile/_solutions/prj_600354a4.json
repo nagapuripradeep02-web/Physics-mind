@@ -1,0 +1,52 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "prj_600354a4",
+ "approach": "Average velocity is displacement over time. Find the horizontal and vertical displacement to the highest point and divide by the time taken to reach it.",
+ "steps": [
+  {
+   "text": "The time to reach the highest point is when the vertical velocity becomes zero.",
+   "equation": "t = u sinθ / g"
+  },
+  {
+   "text": "Find the horizontal and vertical displacement reached in this time.",
+   "equation": "x = u cosθ · t = u² sinθ cosθ / g ; y = u² sin²θ / (2g)"
+  },
+  {
+   "text": "Average velocity is this displacement divided by the time taken, giving its horizontal and vertical parts separately.",
+   "equation": "vx = x / t = u cosθ ; vy = y / t = u sinθ / 2",
+   "why_this_step": "Dividing each displacement part by the same time gives the two parts of the average velocity vector."
+  },
+  {
+   "text": "The size of the average velocity combines both parts, matching option (b).",
+   "equation": "average velocity = √(vx² + vy²) = √(u²cos²θ + u²sin²θ/4) = (u/2)√(1 + 3cos²θ)"
+  }
+ ],
+ "final_answer": {
+  "option": 2,
+  "value": "(u/2)√(1 + 3cos²θ)"
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": 1,
+   "text": "Taking the velocity at the highest point, which is purely horizontal with size u cosθ, and mistaking it for the average velocity between the start and the highest point gives option (a)."
+  },
+  {
+   "option": 4,
+   "text": "Combining the initial speed u with the horizontal speed at the top, u cosθ, as if they were two perpendicular sides and halving the result gives option (d) instead of averaging the velocity parts properly."
+  }
+ ],
+ "concept_tags": [
+  "projectile motion",
+  "average velocity",
+  "highest point of trajectory"
+ ],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 2,
+  "agent": "W02-A-prj-01",
+  "at": "2026-09-11T14:00:00+05:30"
+ }
+}

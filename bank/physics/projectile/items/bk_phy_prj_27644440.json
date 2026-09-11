@@ -1,0 +1,78 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_prj_27644440",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "Particles A and B are launched at the same instant, both moving in a single vertical plane, starting from the positions and launch angles given in the figure. At some later time t, the two particles meet each other while still airborne. State two equations that must both hold for this in-air collision to occur.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "A and B launched simultaneously into one common vertical plane",
+   "starting positions and launch angles for A and B are as given in the figure",
+   "the particles meet in the air at time t"
+  ],
+  "figure": {
+   "description": "A graph with horizontal axis x (m) and vertical axis y (m). Particle A starts at (x = 10 m, y = 10 m) and is launched with speed u₁ at angle θ₁ above the horizontal, heading up and to the right, toward B's side. Particle B starts at (x = 30 m, y = 20 m) and is launched with speed u₂ at angle θ₂ above the horizontal, heading up and to the left, toward A's side."
+  }
+ },
+ "solution": {
+  "approach": "For the particles to collide, their horizontal positions must match and their vertical positions must match at the same instant t, since both fall under the same gravity.",
+  "steps": [
+   {
+    "text": "Write the position of each particle at time t using its own launch point, speed and angle. A moves up and to the right, B moves up and to the left.",
+    "equation": "x_A = 10 + u₁cosθ₁·t, y_A = 10 + u₁sinθ₁·t − ½gt²; x_B = 30 − u₂cosθ₂·t, y_B = 20 + u₂sinθ₂·t − ½gt²"
+   },
+   {
+    "text": "For a collision at time t, both coordinates must be equal at that instant.",
+    "equation": "x_A = x_B and y_A = y_B"
+   },
+   {
+    "text": "In the vertical equation the −½gt² term is the same for both particles, so it cancels, leaving a simple linear equation.",
+    "equation": "10 + u₁sinθ₁t = 20 + u₂sinθ₂t ⟹ t(u₁sinθ₁ − u₂sinθ₂) = 10"
+   },
+   {
+    "text": "The horizontal equation gives the second necessary condition.",
+    "equation": "10 + u₁cosθ₁t = 30 − u₂cosθ₂t ⟹ t(u₁cosθ₁ + u₂cosθ₂) = 20"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "t(u₁cosθ₁ + u₂cosθ₂) = 20 and t(u₁sinθ₁ − u₂sinθ₂) = 10"
+  },
+  "common_mistakes": [],
+  "concept_tags": [
+   "projectile motion",
+   "relative position",
+   "collision condition"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "b51a8be6301dbc1235fa809e60bc06780d0a078e25c5e7eec38a954a63805747"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "a3f2e670798c2784fc407916089418ea3566697ed322b71642873b0dbea0827a",
+  "audited_by": "W01-U-prj-05"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-07",
+  "at": "2026-09-11T16:45:00+05:30"
+ }
+}

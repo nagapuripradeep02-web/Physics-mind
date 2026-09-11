@@ -1,0 +1,24 @@
+{
+ "question_id": "prj_a7653f21",
+ "item_sha": "6c680703f3bd1ea9fafcbc1af0aa7abf71154932aebd2f6ae1c23bebe9df6b63",
+ "auditor_option": 2,
+ "auditor_value": "K/3",
+ "findings": [
+  {
+   "grade": "harmful",
+   "field": "steps[1].equation",
+   "quote": "v cos60° = u cos60°",
+   "note": "At the instant the velocity makes 30° with the horizontal, its horizontal component is v cos30°, not v cos60°. As printed the line gives v = u, and the next line's v/u = cos60°/cos30° does not follow from it.",
+   "fix": "v cos30° = u cos60°"
+  }
+ ],
+ "verdict": "harmful",
+ "question_defect": null,
+ "notes": "Independent solve: K' = K (cos60°/cos30°)² = K/3, option (b); the final answer is right, but the printed step-2 equation is false and contradicts both its own text and step 3. This is a second copy of prj_a7653f21 in the slice; the other copy (item_sha 19599535…) prints the line correctly.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-05",
+  "at": "2026-09-11T19:36:08+05:30"
+ }
+}

@@ -1,0 +1,19 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "prj_51e4cf12",
+ "approach": "For a given range, the two projection angles are complementary; write the maximum height for each and add them.",
+ "steps": [
+  {"text": "Two angles giving the same range are θ and (90°−θ); write the maximum height for each.", "equation": "H₁ = u²sin²θ/(2g), H₂ = u²sin²(90°−θ)/(2g) = u²cos²θ/(2g)"},
+  {"text": "Add the two heights and use sin²θ + cos²θ = 1.", "equation": "H₁ + H₂ = u²(sin²θ + cos²θ)/(2g) = u²/(2g)",
+   "why_this_step": "The angle θ cancels out completely, leaving only u and g, so the sum does not depend on which pair of complementary angles is used."}
+ ],
+ "final_answer": {"option": null, "value": "H₁ + H₂ = u²/(2g), a constant that does not depend on θ."},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Adding the two range formulas instead of the two height formulas, getting R₁+R₂ = 2u²sin2θ/g, which still depends on θ and does not show the required result."}
+ ],
+ "concept_tags": ["complementary angles of projection", "maximum height", "range"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-prj-01", "at": "2026-09-11T18:44:00+05:30"}
+}

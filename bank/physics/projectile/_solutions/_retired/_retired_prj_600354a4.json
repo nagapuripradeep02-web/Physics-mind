@@ -1,0 +1,20 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "prj_600354a4",
+ "approach": "Average velocity is displacement over time, and since the horizontal velocity is constant while the vertical velocity falls linearly to zero, average each component separately and combine.",
+ "steps": [
+  {"text": "The horizontal velocity stays u cosθ throughout, so its average over the rise to the highest point is also u cosθ.", "equation": "v_x,avg = u cosθ"},
+  {"text": "The vertical velocity falls linearly from u sinθ at launch to 0 at the highest point, so its average is half the initial value.", "equation": "v_y,avg = (u sinθ + 0)/2 = u sinθ/2"},
+  {"text": "Combine the two average components into the magnitude of the average velocity.", "equation": "v_avg = √(u²cos²θ + u²sin²θ/4)"},
+  {"text": "Write sin²θ as (1 − cos²θ) and simplify the expression under the root.", "equation": "v_avg = u√((1 + 3cos²θ)/4) = (u/2)√(1 + 3cos²θ)"}
+ ],
+ "final_answer": {"option": 4, "value": "(u/2)√(1 + 3cos²θ)"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 1, "text": "Treating the average velocity as only its horizontal component and ignoring the vertical component's contribution to the magnitude gives u cosθ."}
+ ],
+ "concept_tags": ["projectile motion", "average velocity", "vectors"],
+ "difficulty": "hard",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-prj-05", "at": "2026-09-11T00:00:00+05:30"}
+}

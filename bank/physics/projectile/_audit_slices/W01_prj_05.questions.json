@@ -1,0 +1,155 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter": "projectile",
+ "slice": 5,
+ "round": 0,
+ "items": [
+  {
+   "question_id": "prj_a7653f21",
+   "question_text": "A ball leaves the ground moving at 60° above the horizontal; its kinetic energy at launch is K. At a later instant its velocity is directed at 30° above the horizontal. What is the kinetic energy at that instant?",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "K/2"
+    },
+    {
+     "label": "(b)",
+     "text": "K/3"
+    },
+    {
+     "label": "(c)",
+     "text": "2K/3"
+    },
+    {
+     "label": "(d)",
+     "text": "3K/4"
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_ac01c142",
+   "question_text": "At a point 45 m above the ground, a projectile's velocity is v = (30î + 40ĵ) m/s, where î and ĵ are unit vectors along the horizontal and vertical directions respectively. Work out the projectile's initial velocity, its total time in the air, the greatest height it reaches, and the horizontal distance it covers.",
+   "options": [],
+   "figure_description": "A parabolic path starts at origin O and rises then falls back to the horizontal ground far to the right. Near the launch point, the initial velocity's horizontal and vertical components are marked. Higher up on the curve, at a point 45 m above the ground, the velocity components at that point are marked, the horizontal one equal in length to the launch value and the vertical one shorter."
+  },
+  {
+   "question_id": "prj_9bc1af04",
+   "question_text": "Two objects are launched with identical initial speeds, one at an angle θ above the horizontal and the other at an angle (90° − θ) above the horizontal. What is the ratio of the maximum heights they reach?",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "1 : 1"
+    },
+    {
+     "label": "(b)",
+     "text": "sin θ : cos θ"
+    },
+    {
+     "label": "(c)",
+     "text": "sin²θ : cos²θ"
+    },
+    {
+     "label": "(d)",
+     "text": "cos θ : sin θ"
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_9518a298",
+   "question_text": "A particle is launched from ground level at speed u, making angle α with the horizontal. Determine its average velocity for the entire duration — from the instant of launch to the instant it lands back on the ground.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_b51a8be6",
+   "question_text": "Particles A and B are launched at the same instant, both moving in a single vertical plane, starting from the positions and launch angles given in the figure. At some later time t, the two particles meet each other while still airborne. State two equations that must both hold for this in-air collision to occur.",
+   "options": [],
+   "figure_description": "A graph with horizontal axis x (m) and vertical axis y (m). Particle A starts at (x = 10 m, y = 10 m) and is launched with speed u₁ at angle θ₁ above the horizontal, heading up and to the right, toward B's side. Particle B starts at (x = 30 m, y = 20 m) and is launched with speed u₂ at angle θ₂ above the horizontal, heading up and to the left, toward A's side."
+  },
+  {
+   "question_id": "prj_b504b14a",
+   "question_text": "A projectile is launched from one corner of a horizontal base, just skims past the top vertex of a triangle, and comes down at the base's far corner. Taking α and β as the two base angles and θ as the projection angle, show that tan θ equals tan α plus tan β.",
+   "options": [],
+   "figure_description": "The trajectory is drawn from origin O, rising and falling back to the horizontal X-axis at range R. A point A on the curve marks the vertex grazed by the projectile, at horizontal distance x from O and height y above the axis. At O, the launch angle θ and the angle α between line OA and the axis are marked. At the landing point, the angle β between the line from A to that point and the axis is marked. The horizontal distance from the foot of A to the landing point is R − x."
+  },
+  {
+   "question_id": "prj_969f827d",
+   "question_text": "A particle leaves the ground with initial speed u = 20√2 m/s at an angle θ = 45° to the horizontal, taken as the x-axis.\n(a) Find the horizontal range R, the maximum height H, and the total time of flight T.\n(b) Find the particle's velocity 1 second after launch.\n(c) Find the particle's velocity at the moment it lands back on the ground, that is, on the x-axis.",
+   "options": [],
+   "figure_description": "A small sketch shows the x-y coordinate axes with the initial velocity vector u drawn from the origin, making angle θ with the horizontal x-axis."
+  },
+  {
+   "question_id": "prj_a06421a6",
+   "question_text": "A ball is thrown from ground level. It just clears a wall of height 3 m standing 6 m from the launch point, and lands on the ground 18 m beyond the wall. Find the angle at which the ball was thrown.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_9648e5fe",
+   "question_text": "Assertion: For a projectile, if you pick any two positions along its path with velocities v₁, v₂ occurring at times t₁, t₂, the ratio (v₂ − v₁)/(t₂ − t₁) always works out to the same value. Reason: This ratio is the average acceleration, and it stays fixed because the acceleration of the projectile does not change.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_aa74029b",
+   "question_text": "A train travels along a straight track at 30 ms⁻¹. Someone on the train throws a ball at 30 ms⁻¹, directed at 45° above the horizontal and perpendicular to the train's motion. Calculate the separation between the spot on the train where the ball left and the spot on the ground where it lands.",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "90 m"
+    },
+    {
+     "label": "(b)",
+     "text": "90√3 m"
+    },
+    {
+     "label": "(c)",
+     "text": "60 m"
+    },
+    {
+     "label": "(d)",
+     "text": "60√3 m"
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_a7653f21",
+   "question_text": "A ball leaves the ground moving at 60° above the horizontal; its kinetic energy at launch is K. At a later instant its velocity is directed at 30° above the horizontal. What is the kinetic energy at that instant?",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "K/2"
+    },
+    {
+     "label": "(b)",
+     "text": "K/3"
+    },
+    {
+     "label": "(c)",
+     "text": "2K/3"
+    },
+    {
+     "label": "(d)",
+     "text": "3K/4"
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_9722adfb",
+   "question_text": "Assertion: In the x-y plane a particle moves with an unchanging acceleration whose two components aₓ and aᵧ are both non-zero. Such a particle can never trace a parabola. Reason: A projectile has no acceleration along the horizontal.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_b528c2f4",
+   "question_text": "A particle is launched with speed u, directed at angle θ above the horizontal. Determine at what time its velocity becomes perpendicular to the velocity it had at launch.",
+   "options": [],
+   "figure_description": "The particle starts at the origin moving along direction θ above the horizontal ground with speed u; at some later instant its velocity vector points in a direction making a right angle with the original launch direction, as the particle follows a curved (parabolic) path under gravity."
+  }
+ ]
+}

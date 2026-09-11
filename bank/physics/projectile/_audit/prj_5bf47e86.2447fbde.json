@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_5bf47e86",
+ "item_sha": "2447fbdeb1896b6df5c1b33a8c23b76c2a5006aeaa990eb470ae964b2aceb2e6",
+ "auditor_option": null,
+ "auditor_value": "(a) t = 2u sin30°/(g + a) = 2/11 s ≈ 0.18 s (g = 10; 2/10.8 ≈ 0.185 s with g = 9.8); (b) parabola in the ground frame, initial velocity √3 î + 3 ĵ m/s (1.73 m/s horizontal, 3 m/s up); (c) lift in free fall, effective gravity zero, stone moves in a straight line at 2 m/s along 30° relative to the lift and never returns to the floor",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Independent solve agrees on all three parts. The question fixes neither g value; the solution states g = 10 and also gives the g = 9.8 result. Common-mistake number 2 × 1/10 = 0.2 s checks. Part (b) can only be described, not drawn, in this format; the description (parabola, ground-frame initial velocity) is correct.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 3,
+  "agent": "W03-U-prj-01",
+  "at": "2026-09-11T20:06:30+05:30"
+ }
+}

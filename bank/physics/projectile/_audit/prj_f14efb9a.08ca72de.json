@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_f14efb9a",
+ "item_sha": "08ca72dee1c87d87ebb0ca72a7c023b86c1c02918cbd6f14564237fb752141f2",
+ "auditor_option": 4,
+ "auditor_value": "34 m (complementary angles π/3 and π/6; H₂/H₁ = sin²30°/sin²60° = 1/3; 102/3 = 34)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Every line follows: θ₂ = 30°; ratio (1/4)/(3/4) = 1/3; 102 × 1/3 = 34 → option (d). The mistake entry's number reproduces (102 × 3 = 306) and it correctly notes that value is not an option.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-07",
+  "at": "2026-09-11T19:38:00+05:30"
+ }
+}

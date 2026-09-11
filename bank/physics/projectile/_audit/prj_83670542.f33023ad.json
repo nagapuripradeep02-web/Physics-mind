@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_83670542",
+ "item_sha": "f33023ad47de9eba7178ee1caa23bba2b2c269d4d34b48e8d7111d575789a8d6",
+ "auditor_option": null,
+ "auditor_value": "5 m/s, directed into the slope (u⊥ = 10 sin30° = 5 m/s, a⊥ = −g cos30°, T = 2/√3 s, v⊥ = 5 − 5√3·(2/√3) = −5 m/s).",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "The symmetry argument (zero perpendicular displacement under uniform perpendicular deceleration, so v⊥ = −u⊥) is valid and matches my explicit time-of-flight calculation, cross-checked in ground axes (landing point (5.77, 3.33) m lies on the 30° slope, v·n = −5 m/s). The given g = 10 m/s² is not needed numerically by this method, which is legitimate since the answer is independent of g. No common_mistakes entries are given.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-prj-02",
+  "at": "2026-09-11T19:54:08+05:30"
+ }
+}

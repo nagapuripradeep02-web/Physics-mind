@@ -1,0 +1,24 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "prj_e517e4e8",
+ "approach": "Find the car's position when the bullet is fired, then use the bullet's projectile motion over 4 s to match the bird's given position.",
+ "steps": [
+  {"text": "Find the car's position at t = 4 s, when the bullet is fired, since the car starts from rest at the origin.", "equation": "x₀ = ½(2)(4²) = 16 m"},
+  {"text": "The bullet travels from t = 4 s to t = 8 s before reaching the bird.", "equation": "Δt = 8 − 4 = 4 s"},
+  {"text": "The x and y directions have no acceleration, so match the bird's x and y coordinates using the launch velocity components and the starting point found above.", "equation": "16 + vₓ(4) = 40, 0 + v_y(4) = 80"},
+  {"text": "Solve for the horizontal launch velocity components.", "equation": "vₓ = 6 m/s, v_y = 20 m/s"},
+  {"text": "The z direction has acceleration −g, so match the bird's height using the vertical launch component.", "equation": "v_z(4) − ½(10)(4²) = 40"},
+  {"text": "Solve for the vertical launch component.", "equation": "v_z = 30 m/s"},
+  {"text": "The velocity of projection is the vector with these three components, and its magnitude follows from them. This is the velocity relative to the ground.", "equation": "v (ground frame) = 6î + 20ĵ + 30k̂ m/s, |v| = √(6² + 20² + 30²) = 2√334 ≈ 36.6 m/s"},
+  {"text": "The gun is mounted on the car, which is still accelerating, so the velocity of projection relative to the gun is the ground-frame velocity minus the car's velocity at the firing instant t = 4 s.", "equation": "car velocity at t = 4 s = 2(4) = 8 m/s along x; v (relative to gun) = (6−8)î + 20ĵ + 30k̂ = −2î + 20ĵ + 30k̂ m/s, |v| = √(2² + 20² + 30²) = √1304 ≈ 36.1 m/s"}
+ ],
+ "final_answer": {"option": null, "value": "Relative to the ground: v = 6î + 20ĵ + 30k̂ m/s, magnitude 2√334 m/s ≈ 36.6 m/s. Relative to the gun (which moves with the car at 8î m/s at t = 4 s): v = −2î + 20ĵ + 30k̂ m/s, magnitude √1304 ≈ 36.1 m/s"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Measuring the bullet's motion from the origin instead of from the car's position at firing, which gives vₓ = 10 m/s and a wrong speed of 10√14 ≈ 37.4 m/s."}
+ ],
+ "concept_tags": ["projectile motion in three dimensions", "relative position", "vector kinematics"],
+ "difficulty": "hard",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-prj-02", "at": "2026-09-11T11:48:00+05:30"}
+}

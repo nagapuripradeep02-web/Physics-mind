@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_6606ae74",
+ "item_sha": "9810aa48c162bdcac42f21837118468f86cb6ac778765f61eea1e936c478a8f9",
+ "auditor_option": null,
+ "auditor_value": "d = 20 m (heights equal at t = 1 s, both at 15 m above ground; 10 m + 10 m)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-prj-01",
+  "at": "2026-09-11T19:52:15+05:30"
+ }
+}

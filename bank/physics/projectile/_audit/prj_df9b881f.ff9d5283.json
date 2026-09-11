@@ -1,0 +1,31 @@
+{
+ "question_id": "prj_df9b881f",
+ "item_sha": "ff9d52834bcfc9cf02f73eece4cbebe8e14979eb43d65c8ce523e2b019148ccd",
+ "auditor_option": null,
+ "auditor_value": "speed at the origin u = √( a(1 + p²) / (2q) )  (from tanθ = p and a/(2u²cos²θ) = q; velocity vector √(a/(2q)) (î + p ĵ))",
+ "findings": [
+  {
+   "grade": "harmful",
+   "field": "final_answer",
+   "quote": "v = √(a/(2q)) î + p√(a/(2q)) ĵ, that is v = √(a/(2q)) (î + p ĵ)",
+   "note": "The question asks for the particle's speed, a scalar; the solution stops at the velocity vector and never takes its magnitude, so the quantity asked for is not stated anywhere in the solution. The vector itself is correct.",
+   "fix": "Velocity at the origin v = √(a/(2q)) (î + p ĵ), so the speed is |v| = √(a/(2q)) × √(1 + p²) = √( a(1 + p²) / (2q) )."
+  },
+  {
+   "grade": "wrong",
+   "field": "steps[4].text",
+   "quote": "Use the first equation to get the vertical velocity component, then state the full velocity vector at the origin.",
+   "note": "The last step must end at the speed the question asks for; stating the vector and stopping leaves the question unanswered.",
+   "fix": "Use the first equation to get the vertical velocity component, then take the magnitude of the velocity vector to get the speed at the origin."
+  }
+ ],
+ "verdict": "harmful",
+ "question_defect": null,
+ "notes": "Trajectory matching checked: y = (u_y/uₓ)x − (a/(2uₓ²))x² gives uₓ = √(a/(2q)), u_y = p√(a/(2q)); numerically verified against the curve. The mistake entry (dropping ½ gives √(a/q)) is genuine.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-07",
+  "at": "2026-09-11T19:37:13+05:30"
+ }
+}

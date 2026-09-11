@@ -1,0 +1,20 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "prj_f14efb9a",
+ "approach": "Equal range at the same speed means the two angles are complementary, so find the second angle and scale the given maximum height by the ratio of sine squares.",
+ "steps": [
+  {"text": "For the same speed, two angles give the same range only if they are complementary, so the second angle is 90° − 60° = 30°.", "equation": "θ₁ = 60°, θ₂ = 30°"},
+  {"text": "Write the maximum height formula for both angles at the same speed u.", "equation": "H = u²sin²θ / 2g"},
+  {"text": "Divide the height at 30° by the height at 60°; the u² and 2g cancel.", "equation": "H₂ / H₁ = sin²30° / sin²60° = (0.5)² / (√3/2)² = 1/3"},
+  {"text": "Multiply the given height by this ratio to get the second height.", "equation": "H₂ = 102 × 1/3 = 34 m"}
+ ],
+ "final_answer": {"option": 4, "value": "34"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Inverting the ratio, dividing the 60° height's sine-square term by the 30° height's sine-square term instead, gives 306 m, which is not among the printed options."}
+ ],
+ "concept_tags": ["projectile motion", "maximum height", "complementary angles", "equal range"],
+ "difficulty": "medium",
+ "mistake_type_hint": "calculation",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-prj-05", "at": "2026-09-11T00:00:00+05:30"}
+}

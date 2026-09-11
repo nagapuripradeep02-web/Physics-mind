@@ -1,0 +1,45 @@
+{
+ "question_id": "prj_2896697e",
+ "audit_file": "prj_2896697e.7f466e38.json",
+ "item_sha": "7f466e380ee00f0ff335932f2c40520ec2b92635531a43b1127581bd4272ef4a",
+ "question_text": "Two particles are launched at the same instant, moving horizontally, from two different points on a riverbank that sit at some height above the water. Particle 1 has initial speed v₁ = 5 m/s and particle 2 has initial speed v₂ = 7.5 m/s. Both particles land in the water simultaneously. The first particle lands at a horizontal distance s = 10 m from the bank.\n(a) Find how long each particle remains airborne before hitting the water.\n(b) Find the height of the riverbank above the water surface.\n(c) Work out where the second particle lands in the water, measured from the bank.",
+ "options": [],
+ "figure_description": "",
+ "solution": {
+  "approach": "Both particles fall from the same height for the same time; the first particle's range gives that time, which then gives the height and the second particle's landing point.",
+  "steps": [
+   {
+    "text": "Find the time of flight from the first particle's horizontal speed and its landing distance.",
+    "equation": "t = s/v₁ = 10/5 = 2 s"
+   },
+   {
+    "text": "Since both particles are in the air for the same time and start from the same height, use free fall from rest to find that height.",
+    "equation": "h = ½gt² = ½ × 9.8 × 2² = 19.6 m"
+   },
+   {
+    "text": "The second particle travels horizontally at its own constant speed for the same time to find where it lands.",
+    "equation": "x₂ = v₂t = 7.5 × 2 = 15 m"
+   },
+   {
+    "text": "State the three results together.",
+    "equation": "(a) t = 2 s, (b) h = 19.6 m, (c) x₂ = 15 m from the bank"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) t = 2 s, (b) h = 19.6 m, (c) second particle lands 15 m from the bank"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Leaving out the ½ in h = ½gt² gives h = 9.8 × 2² = 39.2 m, twice the correct 19.6 m."
+   }
+  ],
+  "concept_tags": [
+   "horizontal projectile",
+   "free fall"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "application"
+ }
+}

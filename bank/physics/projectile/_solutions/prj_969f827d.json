@@ -1,0 +1,55 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "prj_969f827d",
+ "approach": "Find the horizontal and vertical velocity parts, then use the range, height and time formulas and the velocity equation at each time asked.",
+ "steps": [
+  {
+   "text": "Find the horizontal and vertical parts of the initial velocity.",
+   "equation": "ux = 20√2 cos45° = 20 m/s, uy = 20√2 sin45° = 20 m/s"
+  },
+  {
+   "text": "Find the time of flight, maximum height and range using g = 10 m/s².",
+   "equation": "T = 2uy/g = 4 s, H = uy²/(2g) = 20 m, R = ux T = 80 m"
+  },
+  {
+   "text": "Find the velocity components 1 s after projection.",
+   "equation": "vx = 20 m/s, vy = uy − g(1) = 10 m/s"
+  },
+  {
+   "text": "Combine these for the speed and direction at t = 1 s.",
+   "equation": "v = √(20² + 10²) = 10√5 ≈ 22.36 m/s, about 26.6° above the horizontal"
+  },
+  {
+   "text": "Find the velocity components at the time of collision, t = T = 4 s.",
+   "equation": "vx = 20 m/s, vy = 20 − 10(4) = −20 m/s"
+  },
+  {
+   "text": "Combine these for the speed and direction at landing; this gives the final answer.",
+   "equation": "v = √(20² + 20²) = 20√2 ≈ 28.28 m/s, 45° below the horizontal"
+  }
+ ],
+ "final_answer": {
+  "option": null,
+  "value": "(a) R = 80 m, H = 20 m, T = 4 s; (b) v ≈ 22.36 m/s at about 26.6° above the horizontal at t = 1 s; (c) v ≈ 28.28 m/s at 45° below the horizontal at landing"
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": null,
+   "text": "Leaving out the factor 2 in the height formula and using H = uy²/g gives 40 m instead of the correct 20 m."
+  }
+ ],
+ "concept_tags": [
+  "projectile motion",
+  "range and height formulas",
+  "velocity at a given time"
+ ],
+ "difficulty": "medium",
+ "mistake_type_hint": "calculation",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-03",
+  "at": "2026-09-11T15:30:00+05:30"
+ }
+}

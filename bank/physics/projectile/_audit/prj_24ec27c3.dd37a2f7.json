@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_24ec27c3",
+ "item_sha": "dd37a2f72635d06c6879b1b6785cd4b0cb48f1e279b63a013654f6b88771ba51",
+ "auditor_option": null,
+ "auditor_value": "(a) H ≈ 11.0 m; (b) R ≈ 22.8 m; (c) ≈ 16.5 m/s; (d) ≈ 63° below the horizontal (g = 9.8 m/s²; independently: Δh = 1.90 m, v_y0 = 14.68 m/s, T = 3.00 s, R = 22.77 m, v = 16.53 m/s, 62.6°)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Every equation re-computed: 6.1²/19.6 = 1.898; √(37.21+178.36) = 14.68; T = 2.996 s; R = 22.77 m; √(57.76+216.09) = 16.55; tan⁻¹(14.7/7.6) = 62.7°. All rounded values match. Method, prose and the one mistake entry are correct for this question.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-01",
+  "at": "2026-09-11T19:32:42+05:30"
+ }
+}

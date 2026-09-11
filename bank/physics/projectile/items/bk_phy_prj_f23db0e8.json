@@ -1,0 +1,73 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_prj_f23db0e8",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "conceptual",
+ "key_kind": "words",
+ "figure_required": false,
+ "question": {
+  "text": "For a projectile moving at low speed, its acceleration stays constant throughout the flight. Judge whether this claim is right or wrong.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "projectile moves at low speed"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Check whether the acceleration stays constant in magnitude and direction throughout the motion.",
+  "steps": [
+   {
+    "text": "At low speed, air resistance is negligible, so the only force on the particle is its own weight.",
+    "equation": "a = g (constant, directed downward)"
+   },
+   {
+    "text": "Since this acceleration stays fixed in both magnitude and direction throughout the flight, the motion is uniformly accelerated, even though the velocity direction keeps changing along the curved path."
+   },
+   {
+    "text": "So the statement is true."
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "True. At low speed, the only acceleration acting is g, constant in magnitude and direction, so the motion is uniformly accelerated."
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Assuming a curved path means the acceleration is changing, but a curved path only shows that the velocity direction changes, not the acceleration."
+   }
+  ],
+  "concept_tags": [
+   "projectile motion",
+   "uniform acceleration",
+   "constant acceleration due to gravity"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "c90f12d9339942e1b87725976b09713e4d4c96c2cf0b6cb1395b10ba7a212239"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "96787c6198246ef513975d7ab841f12fcf1710a02bb98cef31ed5dfbed15c458",
+  "audited_by": "W01-U-prj-06"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-02",
+  "at": "2026-09-11T12:08:00+05:30"
+ }
+}

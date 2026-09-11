@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_3d0ab8fd",
+ "item_sha": "4bd1316041114653271312d53494dc703f24e7b0b9750ee38f482afaa51e3454",
+ "auditor_option": null,
+ "auditor_value": "(a) t = √(2h/g) = 2√5 ≈ 4.47 s; (b) x = 40√5 ≈ 89.4 m; (c) v = 20√6 ≈ 49.0 m/s at tan⁻¹(√5) ≈ 65.9° below the horizontal (g = 10 m/s²; with 9.8: 4.52 s, 90.4 m, 48.6 m/s, 65.7°)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Answer agrees. The question does not state g; the solution uses g = 10 m/s² inside the first equation (200/10) without saying so in the text. Mistake entry checks: √(h/g) = √10 ≈ 3.16 s.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-02",
+  "at": "2026-09-11T19:34:42+05:30"
+ }
+}

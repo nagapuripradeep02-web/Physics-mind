@@ -1,0 +1,85 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_prj_de88ade2",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "mcq_single",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "A pair of complementary projection angles have flight durations T₁ and T₂. Which expression correctly gives the projectile's range R?",
+  "options": {
+   "1": "R = 4gT₁T₂",
+   "2": "R = 2gT₁T₂",
+   "3": "R = ¼ gT₁T₂",
+   "4": "R = ½ gT₁T₂"
+  },
+  "parts": null,
+  "conditions": [
+   "T₁ and T₂ are flight durations for a pair of complementary projection angles"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Write the times of flight for the two complementary angles, multiply them, and compare with the range formula for the same speed.",
+  "steps": [
+   {
+    "text": "Write the times of flight for the two complementary angles θ and (90° − θ), both launched at the same speed u.",
+    "equation": "T₁ = 2u sinθ/g, T₂ = 2u cosθ/g"
+   },
+   {
+    "text": "Multiply the two times of flight.",
+    "equation": "T₁T₂ = 4u² sinθcosθ/g² = 2u² sin2θ/g²"
+   },
+   {
+    "text": "Write the range formula and substitute u²sin2θ from it into the T₁T₂ expression.",
+    "equation": "R = u²sin2θ/g, so u²sin2θ = Rg, T₁T₂ = 2Rg/g² = 2R/g"
+   },
+   {
+    "text": "Rearrange for the range in terms of T₁ and T₂.",
+    "equation": "R = ½ gT₁T₂"
+   }
+  ],
+  "final_answer": {
+   "option": 4,
+   "value": "R = ½ gT₁T₂"
+  },
+  "common_mistakes": [
+   {
+    "option": 2,
+    "text": "Writing the time of flight without the factor of 2, as T = u sinθ/g, gives R = 2gT₁T₂ instead."
+   }
+  ],
+  "concept_tags": [
+   "projectile motion",
+   "time of flight",
+   "range",
+   "complementary angles"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "calculation"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "3938c12505d2087f2a9ac6884b2ab64349e388bee46aaf7cc4b6052281edef11"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "5651b48ce39515124e2968ac81cb58b540b9728e9e1bb5d19a4b030817bfa37d",
+  "audited_by": "W01-U-prj-02"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-05",
+  "at": "2026-09-11T00:00:00+05:30"
+ }
+}

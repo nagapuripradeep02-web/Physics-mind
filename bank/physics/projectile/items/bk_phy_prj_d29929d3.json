@@ -1,0 +1,81 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_prj_d29929d3",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "numerical",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "From the top of a tower, two particles are launched at the same instant, moving horizontally but away from each other — one at 10 m/s, the other at 20 m/s. Using g = 10 m/s², work out after how long their velocity directions become perpendicular to each other.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "projected horizontally from a tower",
+   "particles move in opposite horizontal directions",
+   "g = 10 m/s²"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Write each particle's velocity vector including gravity's effect on the vertical component, then set the dot product to zero.",
+  "steps": [
+   {
+    "text": "Write the velocity of each particle at time t, taking their horizontal launch directions as opposite and both falling under gravity.",
+    "equation": "v₁ = (10, −10t), v₂ = (−20, −10t)"
+   },
+   {
+    "text": "The vectors are mutually perpendicular when their dot product is zero.",
+    "equation": "v₁·v₂ = (10)(−20) + (−10t)(−10t) = 0"
+   },
+   {
+    "text": "Simplify this equation.",
+    "equation": "−200 + 100t² = 0"
+   },
+   {
+    "text": "Solve for the time.",
+    "equation": "t² = 2, t = √2 s ≈ 1.41 s"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "t = √2 s ≈ 1.41 s"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Solving t² = 2 by dividing 200 by 100 and stopping there, giving t = 2 s instead of taking the square root to get t = √2 s."
+   }
+  ],
+  "concept_tags": [
+   "projectile motion",
+   "perpendicular vectors",
+   "dot product"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "calculation"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "87e278832c317fe83e387a9ec0ede0449fda9ac8ca8ca15eaa0ca4ff783a13f1"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "1159db5ad5e6ee9678a93a24352dd9ce03c7996ee1ce6a1f00c2614d1a5485e6",
+  "audited_by": "W01-U-prj-04"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-02",
+  "at": "2026-09-11T12:01:00+05:30"
+ }
+}

@@ -1,0 +1,53 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "prj_2c40ba4c",
+ "approach": "The stone keeps the train's horizontal velocity, so the passenger and the man on the ground see two different paths for the same drop.",
+ "steps": [
+  {
+   "text": "The passenger keeps moving forward with the train at the same horizontal velocity as the stone, so relative to the passenger the stone has no horizontal velocity."
+  },
+  {
+   "text": "Relative to the passenger, the stone only has a vertical acceleration g acting on it, so the passenger sees the stone fall straight down.",
+   "equation": "path (passenger) = straight vertical line"
+  },
+  {
+   "text": "The man on the ground sees the stone keep the train's horizontal velocity while it also picks up vertical velocity from gravity."
+  },
+  {
+   "text": "A constant horizontal velocity combined with a vertical acceleration traces a curved path, the same shape as a horizontal projectile.",
+   "equation": "path (ground) = parabola"
+  },
+  {
+   "text": "So the passenger sees a straight vertical line, and the man on the ground sees a parabolic path.",
+   "why_this_step": "The two observers are in different frames: one moves with the stone's horizontal motion, the other does not."
+  }
+ ],
+ "final_answer": {
+  "option": null,
+  "value": "(a) A straight vertical line, as seen by the passenger. (b) A parabola, as seen by the man on the ground."
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": null,
+   "text": "Thinking the man on the ground also sees the stone fall straight down, forgetting the stone keeps the train's horizontal velocity after release."
+  },
+  {
+   "option": null,
+   "text": "Thinking the passenger sees a curved path, forgetting the passenger is also moving forward with the train at the stone's own horizontal speed."
+  }
+ ],
+ "concept_tags": [
+  "relative motion",
+  "projectile motion",
+  "frames of reference"
+ ],
+ "difficulty": "easy",
+ "mistake_type_hint": "concept",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-04",
+  "at": "2026-09-11T16:01:00+05:30"
+ }
+}

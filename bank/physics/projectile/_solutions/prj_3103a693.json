@@ -1,0 +1,47 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "prj_3103a693",
+ "approach": "Find the maximum possible range at this fixed muzzle speed and compare it with the target distance.",
+ "steps": [
+  {
+   "text": "Write the range formula and use the given range at 30° to relate it to the muzzle speed.",
+   "equation": "R(θ) = u²sin2θ/g, so u²/g = R(30°)/sin60°"
+  },
+  {
+   "text": "The maximum range for a fixed speed occurs at 45°, where sin2θ = 1, so the maximum range equals u²/g.",
+   "equation": "Rmax = R(30°)/sin60° = 3.0/sin60°"
+  },
+  {
+   "text": "Compute this value.",
+   "equation": "Rmax = 3.0/0.866 ≈ 3.46 km"
+  },
+  {
+   "text": "Compare this maximum with the target distance to answer the question; this gives the final answer.",
+   "equation": "5.0 km is greater than 3.46 km, so no angle can reach the target"
+  }
+ ],
+ "final_answer": {
+  "option": null,
+  "value": "No. The maximum range at this muzzle speed is about 3.46 km, less than 5.0 km, so no angle of projection can hit the target."
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": null,
+   "text": "Dividing the given range by sin30° instead of sin60° gives a wrong maximum range of 6.0 km, wrongly suggesting the target can be hit."
+  }
+ ],
+ "concept_tags": [
+  "range formula",
+  "maximum range",
+  "projectile motion"
+ ],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-03",
+  "at": "2026-09-11T15:50:00+05:30"
+ }
+}

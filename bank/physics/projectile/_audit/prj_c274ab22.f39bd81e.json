@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_c274ab22",
+ "item_sha": "f39bd81e69337ab8a5a3190c6c4467293205f5a4d8e768b37aacc83a81a71327",
+ "auditor_option": null,
+ "auditor_value": "AB = (500/3 m/s) × 20 s ≈ 3333 m ≈ 3.33 km (t = √(2×1960/9.8) = 20 s)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "1960 = 9.8 × 200 fixes g = 9.8 m/s²; conversion, fall time and product all check. The mistake entry's number (600 × 20 = 12000 m) follows from its stated cause.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-06",
+  "at": "2026-09-11T19:32:50+05:30"
+ }
+}

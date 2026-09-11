@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_5c4a8a8b",
+ "item_sha": "ad08b0331317ea218c6670d1026b1796dbc6f4217ee5c3a6a5365f32b8158b27",
+ "auditor_option": null,
+ "auditor_value": "v = 40î + 10ĵ m/s, |v| = 10√17 ≈ 41.2 m/s at tan⁻¹(1/4) above horizontal; s = 80î + 40ĵ m, |s| = 40√5 ≈ 89.4 m at tan⁻¹(1/2) above horizontal (g = 10)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-03",
+  "at": "2026-09-11T19:34:17+05:30"
+ }
+}

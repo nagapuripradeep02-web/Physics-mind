@@ -1,0 +1,22 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "prj_14f26fa5",
+ "approach": "The bomb's time of flight and range depend only on its own speed and angle; the tank must be at the landing point exactly when the bomb arrives there.",
+ "steps": [
+  {"text": "Find the time of flight of the bomb using the vertical launch speed and gravity.", "equation": "T = 2u sin53°/g = 2×80×0.8/10 = 12.8 s"},
+  {"text": "Find the horizontal range of the bomb using the horizontal launch speed and the time of flight.", "equation": "R = u cos53° × T = 80×0.6×12.8 = 614.4 m"},
+  {"text": "In this time the tank moves toward the mortar at its own constant speed.", "equation": "tank's travel = 5×12.8 = 64 m"},
+  {"text": "For a hit, the tank's distance from the mortar must fall from the initial separation D to exactly the bomb's range R in this same time.", "equation": "D − 64 = 614.4"},
+  {"text": "Solve for D and compare with the printed values; 678.4 m equals none of the first three options, so the fourth option is correct.", "equation": "D = 614.4 + 64 = 678.4 m → option (d), None of these"}
+ ],
+ "final_answer": {"option": 4, "value": "678.4 m (None of these)"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 1, "text": "Swapping sin 53° and cos 53° (using 0.6 and 0.8 the wrong way round) keeps the range the same but shortens the flight time, giving 662.4 m."},
+  {"option": null, "text": "Taking the separation as equal to the bomb's range alone, ignoring that the tank also moves toward the mortar, gives 614.4 m, which matches no option."}
+ ],
+ "concept_tags": ["projectile motion", "time of flight", "range", "relative motion"],
+ "difficulty": "hard",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-prj-06", "at": "2026-09-11T12:00:00+05:30"}
+}

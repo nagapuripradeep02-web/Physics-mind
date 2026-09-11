@@ -1,0 +1,80 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_prj_011f1856",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "mcq_single",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "A particle's motion begins with a velocity given by v = 3î + 4ĵ. A steady force, F = 4î − 3ĵ, acts on the particle throughout its motion. What shape does its trajectory take?",
+  "options": {
+   "1": "straight line",
+   "2": "parabolic",
+   "3": "circular",
+   "4": "elliptical"
+  },
+  "parts": null,
+  "conditions": [
+   "force acting on the particle is constant"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Check whether the constant force is perpendicular to the initial velocity, which is the same setup as ordinary projectile motion turned sideways.",
+  "steps": [
+   {
+    "text": "Find the dot product of the initial velocity and the force to check if they are perpendicular.",
+    "equation": "v · F = (3)(4) + (4)(−3) = 12 − 12 = 0"
+   },
+   {
+    "text": "The dot product is zero, so the constant force acts perpendicular to the initial velocity direction, at every instant, since both stay fixed vectors.",
+    "equation": "v · F = 0"
+   },
+   {
+    "text": "A constant force acting perpendicular to the initial velocity produces the same shape of path as a projectile launched horizontally under gravity, which is a parabola.",
+    "equation": "path = parabola"
+   }
+  ],
+  "final_answer": {
+   "option": 2,
+   "value": "parabolic"
+  },
+  "common_mistakes": [
+   {
+    "option": 3,
+    "text": "Since the force is perpendicular to the velocity at the start, a student may wrongly assume circular motion; but circular motion needs the force direction to keep turning, while here it stays fixed."
+   }
+  ],
+  "concept_tags": [
+   "projectile motion",
+   "vectors",
+   "constant force"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "c5581e3290ec4938d2c9851d315849b06de7c593b4cd124136274b7ac1196672"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "22ba0b15e069efde9fe15be1e87259d1189039b8068b02721b23c73ad5372b81",
+  "audited_by": "W01-U-prj-06"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-05",
+  "at": "2026-09-11T00:00:00+05:30"
+ }
+}

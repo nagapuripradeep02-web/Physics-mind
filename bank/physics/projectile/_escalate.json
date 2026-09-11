@@ -1,0 +1,30 @@
+[
+ {
+  "id": "prj_78ea1db0",
+  "author": [
+   null,
+   "(a) velocity ≈ 44.72 m/s at about 26.6° above the horizontal; (b) displacement = 100 m at about 36.9° above the horizontal"
+  ],
+  "second_reader": [
+   null,
+   "(a) v = (40î + 20ĵ) m/s, |v| = 20√5 ≈ 44.7 m/s at tan⁻¹(1/2) above horizontal, (b) s = (80î + 60ĵ) m, |s| = 100 m at 37° (tan⁻¹(3/4)) above horizontal"
+  ],
+  "printed": "(a) 20√2 m/s at angle tan⁻¹(1/2) with horizontal (b) 100 m",
+  "hint": null,
+  "format": "subjective"
+ },
+ {
+  "id": "prj_c550c7cd",
+  "author": [
+   null,
+   "t ≈ 3.55 s, impact speed ≈ 31.97 m/s"
+  ],
+  "second_reader": [
+   null,
+   "t ≈ 3.55 s and impact speed ≈ 32.0 m/s (g = 9.8; with g = 10: t ≈ 3.51 s, v ≈ 32.3 m/s); components at impact vₓ = 5.56 m/s, v_y ≈ 31.5 m/s down"
+  ],
+  "printed": "3.55 s, 32.7 m/s",
+  "hint": null,
+  "format": "subjective"
+ }
+]

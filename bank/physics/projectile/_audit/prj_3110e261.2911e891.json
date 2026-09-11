@@ -1,0 +1,24 @@
+{
+ "question_id": "prj_3110e261",
+ "item_sha": "2911e8916ee15f95a0c557f95db3851fb7375f731531eedc5c5032c822b0d27e",
+ "auditor_option": null,
+ "auditor_value": "sin 2γ = (b sin 2α + a sin 2β)/(a + b), so γ = ½ sin⁻¹[(b sin 2α + a sin 2β)/(a + b)]. The served statement's 'a sin 4β' cannot be proved: the range formula contains sin 2β only, and with sin 4β the angle does not hit the target (checked numerically).",
+ "findings": [
+  {
+   "grade": "wrong",
+   "field": "steps[3].text",
+   "quote": "Substitute R from the earlier step and simplify the fraction to reach the stated result.",
+   "note": "The result reached, (b sin2α + a sin2β)/(a+b), is not the result the served question states, which has 'a sin 4β'. The solution silently proves a different (correct) identity and calls it the stated one; it must name the discrepancy so the student knows the printed 4β is a misprint for 2β and not a step they missed.",
+   "fix": "Substitute R from the earlier step and simplify. The result is sin 2γ = (b sin 2α + a sin 2β)/(a + b). Note: the question as printed shows 'a sin 4β'; that is a misprint, since the range formula contains sin 2β, and the identity with sin 2β is the one that holds."
+  }
+ ],
+ "verdict": "wrong",
+ "question_defect": "The formula to be proved is printed with 'a sin 4β'; the correct identity has 'a sin 2β'. As served, the statement is false and cannot be proved (verified numerically: with sin 4β the resulting angle does not give range R).",
+ "notes": "Each equation line was checked numerically for random u, α, β, R: R = (a sin2β + b sin2α)/(sin2β − sin2α), sin2γ = R sin2α/(R − a), and sin2γ = (b sin2α + a sin2β)/(a+b) all agree with gR/u². The solution's physics and final value are correct; the finding is that it does not say it is proving a corrected statement. The swapped-a-and-b mistake entry is genuine.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-prj-02",
+  "at": "2026-09-11T19:53:44+05:30"
+ }
+}

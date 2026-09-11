@@ -1,0 +1,76 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_prj_f9bfea07",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "Demonstrate that a projectile passes through the same height at two separate instants, and prove algebraically that adding those two times together gives exactly the total time of flight.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "projectile reaches the same height at two different times"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Write the height reached at time t as a quadratic equation, and use the sum-of-roots relation to show the two times at that height add to the time of flight.",
+  "steps": [
+   {
+    "text": "Write the vertical displacement at time t as a quadratic equation in t, for a chosen height y₀.",
+    "equation": "½gt² − (u sinθ)t + y₀ = 0"
+   },
+   {
+    "text": "This quadratic has two positive roots t₁ and t₂ for any height below the maximum, since the same height is crossed once going up and once coming down.",
+    "equation": "t₁, t₂ = [u sinθ ± √(u²sin²θ − 2gy₀)] / g"
+   },
+   {
+    "text": "Add the two roots; the square-root terms cancel and the sum matches the standard time-of-flight formula.",
+    "equation": "t₁ + t₂ = 2u sinθ/g = T",
+    "why_this_step": "The sum of the roots of at² + bt + c = 0 is −b/a, which here gives 2u sinθ/g directly, without needing the individual root values."
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "t₁ + t₂ = 2u sinθ/g = T, the time of flight."
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Multiplying the two roots instead of adding them, getting t₁×t₂ = 2y₀/g, a quantity unrelated to the time of flight."
+   }
+  ],
+  "concept_tags": [
+   "quadratic in time",
+   "time of flight",
+   "sum of roots"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "7ce39cdf3ff130f031e584866b46d12bd3205572d76b2b43d1239bc617e5e6a7"
+ },
+ "verification": {
+  "key_match": false,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "3ca6aa140886863628302e28fafb626699f349e8761f5d9cf1464de47926e89c",
+  "audited_by": "W01-U-prj-04"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-01",
+  "at": "2026-09-11T18:46:00+05:30"
+ }
+}

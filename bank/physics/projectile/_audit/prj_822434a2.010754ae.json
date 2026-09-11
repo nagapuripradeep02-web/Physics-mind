@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_822434a2",
+ "item_sha": "010754aeb96da8ad5da41ba613f338ac12b4d0ce2fe064e8febdcc7c4d2113cf",
+ "auditor_option": null,
+ "auditor_value": "(a) 0; (b) 20 m/s horizontal, directed opposite to the second particle's horizontal velocity, i.e. (−20, 0) m/s; (c) 40 m.",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "u₂ = (20, 20) m/s, a₁ − a₂ = 0, u₁ − u₂ = (−20, 0) m/s, separation at 2 s = 40 m; all lines check. Both mistake entries are genuine.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-prj-02",
+  "at": "2026-09-11T19:54:42+05:30"
+ }
+}

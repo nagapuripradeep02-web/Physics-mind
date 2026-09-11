@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_ac01c142",
+ "item_sha": "51c1797465c49b8597f46dfce06eaa5810b699767de8e2b119a7624dbafbc9d8",
+ "auditor_option": null,
+ "auditor_value": "u = 30î + 50ĵ m/s (10√34 ≈ 58.3 m/s at tan⁻¹(5/3) ≈ 59° above horizontal); T = 10 s; H = 125 m; R = 300 m (g = 10 m/s²)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Independent solve matches on all four quantities. 40² = u_y² − 2(10)(45) gives u_y = 50 m/s; T = 10 s, H = 125 m, R = 300 m. The mistake entry's 8 s and 80 m follow from u_y = 40 as stated. Minor: step 3 justifies the positive root by 'still rising at this height'; the actual reason is that the launch is upward, but the statement is not false for this question, so not filed.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-05",
+  "at": "2026-09-11T19:33:23+05:30"
+ }
+}

@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_0929c46e",
+ "item_sha": "038da6a0a44972c41f898c8f79a10650b62dab4d0789e522f2663f6bf0d7b5b0",
+ "auditor_option": null,
+ "auditor_value": "v = √(a/(2c)) (î + b ĵ); speed √(a(1+b²)/(2c)) at tan⁻¹ b above the +x axis",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Coefficient match verified: tanθ = b, u²cos²θ = a/(2c); numeric simulation (a=10, b=1.5, c=0.2) reproduces y = bx − cx². Every line follows. common_mistakes is empty, which the brief does not list as a defect.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-01",
+  "at": "2026-09-11T19:34:01+05:30"
+ }
+}

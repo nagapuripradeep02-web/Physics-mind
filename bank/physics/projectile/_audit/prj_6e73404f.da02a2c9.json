@@ -1,0 +1,24 @@
+{
+ "question_id": "prj_6e73404f",
+ "item_sha": "da02a2c92618b286869d75f3d08fb3c1daccba12ffe02d25f37791f3a40e5e60",
+ "auditor_option": null,
+ "auditor_value": "(x, y) = (2v₀² tanθ / g, −2v₀² tan²θ / g); landing time t = 2v₀ tanθ / g",
+ "findings": [
+  {
+   "grade": "weak",
+   "field": "common_mistakes[0].text",
+   "quote": "Writing the incline's equation the wrong way round, x = y tanθ instead of y = x tanθ, which changes the tanθ power in the landing time and coordinates.",
+   "note": "Imprecise: in the solution's own axes the correct hill line is y = −x tanθ (step 2), not y = x tanθ, so the entry names a form that contradicts the worked step; and 'changes the tanθ power' is an unclear way of saying tanθ becomes cotθ.",
+   "fix": "Writing the hill's equation with the angle on the wrong side, y = −x cotθ (that is x = −y tanθ) instead of y = −x tanθ, which replaces every tanθ in the landing time and coordinates by cotθ."
+  }
+ ],
+ "verdict": "weak",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-prj-01",
+  "at": "2026-09-11T19:52:15+05:30"
+ }
+}

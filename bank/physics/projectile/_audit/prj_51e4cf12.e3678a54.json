@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_51e4cf12",
+ "item_sha": "e3678a5492b2dbdaaef27018eeeaa72e56527283fe407ff6a849a43296492973",
+ "auditor_option": null,
+ "auditor_value": "H₁ + H₂ = u²sin²θ/(2g) + u²cos²θ/(2g) = u²/(2g), independent of θ",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "The step that the two equal-range angles are θ and 90° − θ is asserted rather than derived from sin2θ = sin(180° − 2θ); it is a standard result and the line is true, so not filed.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-03",
+  "at": "2026-09-11T19:34:39+05:30"
+ }
+}

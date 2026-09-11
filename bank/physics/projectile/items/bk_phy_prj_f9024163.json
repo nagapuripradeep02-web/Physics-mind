@@ -1,0 +1,82 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_prj_f9024163",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "mcq_single",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "At t = 0, a body is launched from a spot on a planet's surface (taken as horizontal), moving with some fixed speed at some fixed angle. As time t (in seconds) elapses, its horizontal displacement x and vertical displacement y, both in metres, follow x = (10√3)t and y = 10t − t². What is the greatest height the body reaches?",
+  "options": {
+   "1": "75 m",
+   "2": "100 m",
+   "3": "50 m",
+   "4": "25 m"
+  },
+  "parts": null,
+  "conditions": [
+   "projected at t = 0 from the planet's surface",
+   "planet's surface is taken as horizontal",
+   "x = (10√3)t and y = 10t − t², x and y in metres, t in seconds"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "The maximum height is reached when the vertical velocity becomes zero, so differentiate the given vertical displacement and set it to zero.",
+  "steps": [
+   {
+    "text": "Differentiate the vertical displacement with respect to time to get the vertical velocity.",
+    "equation": "y = 10t − t², v_y = dy/dt = 10 − 2t"
+   },
+   {
+    "text": "Set the vertical velocity to zero to find the time of maximum height.",
+    "equation": "10 − 2t = 0, t = 5 s"
+   },
+   {
+    "text": "Substitute t = 5 s back into the vertical displacement equation.",
+    "equation": "y_max = 10(5) − 5² = 50 − 25 = 25 m"
+   }
+  ],
+  "final_answer": {
+   "option": 4,
+   "value": "25 m"
+  },
+  "common_mistakes": [
+   {
+    "option": 3,
+    "text": "Comparing y = 10t − t² with y = u_yt − ½gt², the coefficient of t² is read as g instead of g/2, giving g = 1; then u_y²/2g gives 100/(2×1) = 50 m."
+   }
+  ],
+  "concept_tags": [
+   "projectile motion",
+   "maximum height",
+   "calculus"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "calculation"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "be6fa5c30fd0a163af25c52585df90fa02627cc7345306ff2c43c66af6b6c69e"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "b7165f49f49b9f9b52cae3254618545bd4981a03adc6afd7df20783852fa9e2f",
+  "audited_by": "W01-U-prj-06"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-05",
+  "at": "2026-09-11T00:00:00+05:30"
+ }
+}

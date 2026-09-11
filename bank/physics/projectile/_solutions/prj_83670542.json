@@ -1,0 +1,17 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "prj_83670542",
+ "approach": "In axes along and perpendicular to the incline, the perpendicular motion is like a simple up-and-down toss, so the perpendicular speed at landing equals the launch value, reversed in direction.",
+ "steps": [
+  {"text": "Resolve the launch velocity perpendicular to the incline, using the 30° angle between the velocity and the incline.", "equation": "u⊥ = 10sin30° = 5 m/s, away from the incline"},
+  {"text": "The perpendicular motion is decelerated uniformly by g⊥ = g cos30° and returns to zero perpendicular displacement, exactly like a ball tossed straight up and caught at the same level.", "equation": "v⊥ at landing = −u⊥"},
+  {"text": "So the perpendicular component at A has the same size as at launch, but points into the incline.", "equation": "v⊥ = 5 m/s, directed into the plane"}
+ ],
+ "final_answer": {"option": null, "value": "5 m/s, directed into the inclined plane"},
+ "confidence": "sure",
+ "common_mistakes": [],
+ "concept_tags": ["projectile motion", "motion on an inclined plane", "symmetry of a toss"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-prj-06", "at": "2026-09-11T12:10:00+05:30"}
+}

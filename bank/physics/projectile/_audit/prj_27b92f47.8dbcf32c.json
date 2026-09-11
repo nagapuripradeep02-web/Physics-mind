@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_27b92f47",
+ "item_sha": "8dbcf32cdce03f06f0578deb94a348b8ec384d73c6acd933b650cd19e2dd0493",
+ "auditor_option": null,
+ "auditor_value": "R = 2u² sinθ/(g cos²θ), equivalently 2u² tanθ secθ/g",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Answer agrees; cross-checked numerically against a horizontal-vertical solution at θ = 25°.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-02",
+  "at": "2026-09-11T19:34:42+05:30"
+ }
+}

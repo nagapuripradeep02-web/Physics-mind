@@ -1,0 +1,31 @@
+{
+ "question_id": "prj_d479e276",
+ "item_sha": "603a6a5cd29f9296b40d934d07214be6f90842b14b798e96fb18e22f8ee69f5c",
+ "auditor_option": null,
+ "auditor_value": "Only when the projectile is launched from and lands on the same horizontal level (ground-to-ground), with g constant and no air resistance.",
+ "findings": [
+  {
+   "grade": "wrong",
+   "field": "steps[0].text",
+   "quote": "The formulas R = u²sin2θ/g, T = 2u sinθ/g and H = u²sin²θ/(2g) are derived by setting the net vertical displacement to zero when the particle lands.",
+   "note": "True for R and T, false for H: the maximum-height formula comes from setting the vertical velocity to zero at the highest point (v_y² = u_y² − 2gH), not from the landing condition. The stated derivation is wrong for one of the three formulas named.",
+   "fix": "The formulas R = u²sin2θ/g and T = 2u sinθ/g are derived by setting the net vertical displacement to zero when the particle lands; H = u²sin²θ/(2g) is derived by setting the vertical velocity to zero at the highest point."
+  },
+  {
+   "grade": "weak",
+   "field": "steps[3].text",
+   "quote": "State the condition in full; this is the final answer.",
+   "note": "The step has no equation and no content of its own; it only points at the final_answer field.",
+   "fix": "So the three formulas can be used directly only when the particle is projected from and lands on the same horizontal level, with g constant and no air resistance."
+  }
+ ],
+ "verdict": "wrong",
+ "question_defect": null,
+ "notes": "The final answer (same-level projection, constant g, no air resistance) is the standard and correct condition; the defects are in the explanation, not the answer.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-06",
+  "at": "2026-09-11T19:33:46+05:30"
+ }
+}

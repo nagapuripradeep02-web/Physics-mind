@@ -1,0 +1,19 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "prj_dea1c6ba",
+ "approach": "The farthest any bullet can land is the maximum range, so the covered region is a circle of that radius, and its area is π times the radius squared.",
+ "steps": [
+  {"text": "Write the maximum range of a bullet fired with speed v₀, which occurs at 45° and sets the farthest distance reached in any direction.", "equation": "R_max = v₀²/g"},
+  {"text": "As the gun rotates through 360°, the set of farthest points forms a circle of radius R_max.", "equation": "radius = v₀²/g"},
+  {"text": "The area covered is π times the square of this radius.", "equation": "Area = π(v₀²/g)² = πv₀⁴/g²"}
+ ],
+ "final_answer": {"option": 3, "value": "πv₀⁴/g²"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 1, "text": "Using the maximum range itself as the area instead of squaring it gives πv₀²/g."}
+ ],
+ "concept_tags": ["projectile motion", "maximum range", "area"],
+ "difficulty": "easy",
+ "mistake_type_hint": "calculation",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-prj-05", "at": "2026-09-11T00:00:00+05:30"}
+}

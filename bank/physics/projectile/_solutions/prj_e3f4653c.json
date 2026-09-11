@@ -1,0 +1,53 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "prj_e3f4653c",
+ "approach": "Acceleration changes the velocity vector by a fixed amount each second, but speed is the length of that vector, which does not change by that same fixed amount.",
+ "steps": [
+  {
+   "text": "Take a projectile with both horizontal and vertical velocity components, and track its speed second by second."
+  },
+  {
+   "text": "The vertical component of velocity does change by exactly 10 m/s every second, since the vertical acceleration is constant.",
+   "equation": "vᵧ(t+1) − vᵧ(t) = −10 m/s"
+  },
+  {
+   "text": "The horizontal component never changes, and speed is the length of the full velocity vector, not only its vertical part.",
+   "equation": "speed = √(vₓ² + vᵧ²)"
+  },
+  {
+   "text": "Because speed combines both components through a square root, its change from one second to the next is not a fixed 10 m/s; it is largest near the ground and smallest near the top of the flight."
+  },
+  {
+   "text": "So the Assertion is false because it confuses the constant change in the velocity vector with the varying change in speed, while the Reason — that acceleration is the rate of change of velocity — is a true, separate statement.",
+   "why_this_step": "The Reason describes the vector velocity correctly; the Assertion wrongly applies that fact to the scalar speed."
+  }
+ ],
+ "final_answer": {
+  "option": 4,
+  "value": "If the Assertion is false but the Reason is true."
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": 1,
+   "text": "Confusing velocity with speed, so a constant 10 m/s change in the velocity vector is wrongly read as a constant 10 m/s change in speed."
+  },
+  {
+   "option": 3,
+   "text": "Accepting the Assertion, and marking the Reason false because the student believes acceleration is defined as the rate of change of speed, so a definition worded in terms of velocity looks wrong to them."
+  }
+ ],
+ "concept_tags": [
+  "speed versus velocity",
+  "acceleration",
+  "projectile motion"
+ ],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-04",
+  "at": "2026-09-11T16:13:00+05:30"
+ }
+}

@@ -1,0 +1,20 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "prj_3110e261",
+ "approach": "Both shots share the same range formula and the same unknown target range R; eliminating u and R between the two elevation equations gives the elevation that hits the mark.",
+ "steps": [
+  {"text": "Let R be the true distance to the mark. At elevation α the shot falls short by a, so the range achieved is R − a; at elevation β it goes b beyond, so the range achieved is R + b.", "equation": "u² sin2α/g = R − a, u² sin2β/g = R + b"},
+  {"text": "Divide the two equations to eliminate u, then solve for R in terms of a, b, α and β.", "equation": "R = (a sin2β + b sin2α)/(sin2β − sin2α)"},
+  {"text": "The correct elevation γ gives range R with the same speed, so its sine of double angle equals gR divided by u². Use u² = g(R − a)/sin2α from the first equation.", "equation": "sin2γ = R sin2α/(R − a)"},
+  {"text": "Substitute R from the earlier step and simplify the fraction to reach the stated result.", "equation": "sin2γ = (b sin2α + a sin2β)/(a + b), so γ = ½ sin⁻¹[(b sin2α + a sin2β)/(a+b)]"}
+ ],
+ "final_answer": {"option": null, "value": "γ = ½ sin⁻¹[(b sin2α + a sin2β)/(a+b)]"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Swapping a and b in the final formula, writing (a sin2α + b sin2β)/(a+b) instead, gives a different value for a general pair of angles and distances."}
+ ],
+ "concept_tags": ["projectile motion", "range formula", "algebraic elimination"],
+ "difficulty": "hard",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-prj-07", "at": "2026-09-11T16:45:00+05:30"}
+}

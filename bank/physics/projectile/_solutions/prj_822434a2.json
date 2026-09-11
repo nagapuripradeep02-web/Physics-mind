@@ -1,0 +1,60 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "prj_822434a2",
+ "approach": "Both particles fall under the same gravity, so their relative acceleration is zero and the gap between them grows at a constant rate.",
+ "steps": [
+  {
+   "text": "Write each particle's initial velocity in horizontal and vertical components.",
+   "equation": "u₁ = (0, 20) m/s, u₂ = (20√2cos45°, 20√2sin45°) = (20, 20) m/s"
+  },
+  {
+   "text": "Both particles are in free flight under gravity alone, so each has the same downward acceleration.",
+   "equation": "a₁ = a₂ = (0, −10) m/s²"
+  },
+  {
+   "text": "The acceleration of the first particle relative to the second is the difference of the two accelerations.",
+   "equation": "a₁ − a₂ = (0, 0) m/s², so part (a) is 0"
+  },
+  {
+   "text": "The initial velocity of the first particle relative to the second is the difference of the two initial velocities.",
+   "equation": "u₁ − u₂ = (0−20, 20−20) = (−20, 0) m/s, magnitude 20 m/s, so part (b) is 20 m/s"
+  },
+  {
+   "text": "Since the relative acceleration is zero, the relative velocity stays (−20, 0) m/s for the whole flight, so the separation after any time t is this relative velocity times t.",
+   "equation": "Δr(t) = (u₁ − u₂)·t"
+  },
+  {
+   "text": "At t = 2 s the separation along this constant relative velocity gives the distance between the particles.",
+   "equation": "Δr(2) = 20 × 2 = 40 m, so part (c) is 40 m",
+   "why_this_step": "With zero relative acceleration the two particles move apart in a straight line at a fixed relative speed."
+  }
+ ],
+ "final_answer": {
+  "option": null,
+  "value": "(a) 0 (the relative acceleration is zero), (b) 20 m/s horizontally, directed opposite to the second particle's horizontal motion, i.e. (−20, 0) m/s, (c) 40 m"
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": null,
+   "text": "Assuming the second particle has a different acceleration because part of its velocity is horizontal, which wrongly makes the relative acceleration nonzero."
+  },
+  {
+   "option": null,
+   "text": "Using only one particle's own displacement after 2 s instead of the relative displacement between the two particles to find the separation."
+  }
+ ],
+ "concept_tags": [
+  "relative velocity",
+  "relative acceleration",
+  "projectile motion"
+ ],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-04",
+  "at": "2026-09-11T16:02:00+05:30"
+ }
+}

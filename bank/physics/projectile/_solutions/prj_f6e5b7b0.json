@@ -1,0 +1,20 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "prj_f6e5b7b0",
+ "approach": "Write the height above ground as a function of time and solve for the times at which it equals 15 m.",
+ "steps": [
+  {"text": "Find the vertical component of the launch velocity.", "equation": "v_y = u sin45° = 20√2×(√2/2) = 20 m/s"},
+  {"text": "Write the height as a function of time.", "equation": "y(t) = v_y t − ½gt² = 20t − 5t²"},
+  {"text": "Set the height equal to 15 m and simplify to a quadratic.", "equation": "20t − 5t² = 15 → t² − 4t + 3 = 0"},
+  {"text": "Factor the quadratic to find both times the particle is at this height.", "equation": "(t − 1)(t − 3) = 0 → t = 1 s or t = 3 s"}
+ ],
+ "final_answer": {"option": null, "value": "t = 1 s (going up) and t = 3 s (coming down)"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Reporting only t = 1 s and stopping there misses the second passage through 15 m as the particle falls back down."}
+ ],
+ "concept_tags": ["projectile motion", "height as a function of time", "quadratic equation"],
+ "difficulty": "easy",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-prj-06", "at": "2026-09-11T12:02:00+05:30"}
+}

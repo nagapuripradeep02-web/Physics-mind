@@ -1,0 +1,90 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_prj_4ae7354e",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "mcq_single",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "A particle undergoes projectile motion, launched at speed u at an angle θ above the horizontal. What is its average velocity between the launch point and the highest point of its path?",
+  "options": {
+   "1": "u cos θ",
+   "2": "(u/2)√(1 + 3cos²θ)",
+   "3": "(u/2)√(2 + cos²θ)",
+   "4": "(u/2)√(1 + cos²θ)"
+  },
+  "parts": null,
+  "conditions": [
+   "projection speed is u",
+   "angle of projection from horizontal is θ"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Average velocity is displacement over time. Find the horizontal and vertical displacement to the highest point and divide by the time taken to reach it.",
+  "steps": [
+   {
+    "text": "The time to reach the highest point is when the vertical velocity becomes zero.",
+    "equation": "t = u sinθ / g"
+   },
+   {
+    "text": "Find the horizontal and vertical displacement reached in this time.",
+    "equation": "x = u cosθ · t = u² sinθ cosθ / g ; y = u² sin²θ / (2g)"
+   },
+   {
+    "text": "Average velocity is this displacement divided by the time taken, giving its horizontal and vertical parts separately.",
+    "equation": "vx = x / t = u cosθ ; vy = y / t = u sinθ / 2",
+    "why_this_step": "Dividing each displacement part by the same time gives the two parts of the average velocity vector."
+   },
+   {
+    "text": "The size of the average velocity combines both parts, matching option (b).",
+    "equation": "average velocity = √(vx² + vy²) = √(u²cos²θ + u²sin²θ/4) = (u/2)√(1 + 3cos²θ)"
+   }
+  ],
+  "final_answer": {
+   "option": 2,
+   "value": "(u/2)√(1 + 3cos²θ)"
+  },
+  "common_mistakes": [
+   {
+    "option": 1,
+    "text": "Taking the velocity at the highest point, which is purely horizontal with size u cosθ, and mistaking it for the average velocity between the start and the highest point gives option (a)."
+   },
+   {
+    "option": 4,
+    "text": "Combining the initial speed u with the horizontal speed at the top, u cosθ, as if they were two perpendicular sides and halving the result gives option (d) instead of averaging the velocity parts properly."
+   }
+  ],
+  "concept_tags": [
+   "projectile motion",
+   "average velocity",
+   "highest point of trajectory"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "600354a49341ad37835f3778037a1357720975230d6feb4fa0f3447830342fae"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "f1c691c2c210bf8d2e2176ba64fed7548e50e3c8fee9f4e58c3785115c4e775b",
+  "audited_by": "W01-U-prj-03"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 2,
+  "agent": "W02-A-prj-01",
+  "at": "2026-09-11T14:00:00+05:30"
+ }
+}

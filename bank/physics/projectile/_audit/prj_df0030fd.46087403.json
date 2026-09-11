@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_df0030fd",
+ "item_sha": "460874035aae2b3b3087fb0a5c2b6b381dc860d35326760225d15ca4d7f35bbb",
+ "auditor_option": 4,
+ "auditor_value": "40 m (u = 4 m/s from R_max = u²/g = 1.6 m with g = 10; T = 0.4√2 s per jump; 25 jumps × 1.6 m; equivalently horizontal speed 2√2 m/s × 10√2 s)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Every equation checked: 1.6 = u²/10 → u = 4; T = 8/(10√2) = 0.5657 s; 10√2/0.5657 = 25.0; 25 × 1.6 = 40. g = 10 is not stated in the question but only that value gives an option exactly (g = 9.8 gives 39.6 m, still option d). common_mistakes is empty; the brief does not require an entry, so no finding.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-07",
+  "at": "2026-09-11T19:35:03+05:30"
+ }
+}

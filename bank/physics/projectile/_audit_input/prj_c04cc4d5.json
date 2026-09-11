@@ -1,0 +1,74 @@
+{
+ "question_id": "prj_c04cc4d5",
+ "audit_file": "prj_c04cc4d5.c8f173df.json",
+ "item_sha": "c8f173dfc4351bb693f26a77ed7a8e36bac98b35216e740f92816fa9a7d34373",
+ "question_text": "Assertion: Two objects are launched as projectiles; one climbs to a maximum height of 4H while the other climbs to a maximum height of H. For the two to land the same horizontal distance away, their horizontal velocity components need to be in a 1 : 2 ratio. Reason: A projectile's horizontal range equals its horizontal velocity component multiplied by its total time of flight.",
+ "options": [
+  {
+   "label": "(a)",
+   "text": "If both Assertion and Reason are true and the Reason is the correct explanation of the Assertion."
+  },
+  {
+   "label": "(b)",
+   "text": "If both Assertion and Reason are true but the Reason is not the correct explanation of the Assertion."
+  },
+  {
+   "label": "(c)",
+   "text": "If the Assertion is true, but the Reason is false."
+  },
+  {
+   "label": "(d)",
+   "text": "If the Assertion is false but the Reason is true."
+  }
+ ],
+ "figure_description": "",
+ "solution": {
+  "approach": "The heights 4H and H fix the ratio of vertical launch speeds, which fixes the ratio of flight times; equal ranges then fix the ratio of horizontal launch speeds.",
+  "steps": [
+   {
+    "text": "Write the maximum height of each projectile in terms of its own vertical launch speed.",
+    "equation": "H₁ = uᵧ₁²/(2g) = 4H, H₂ = uᵧ₂²/(2g) = H"
+   },
+   {
+    "text": "Divide the two height equations to get the ratio of vertical launch speeds.",
+    "equation": "uᵧ₁²/uᵧ₂² = 4 ⇒ uᵧ₁/uᵧ₂ = 2"
+   },
+   {
+    "text": "Time of flight is proportional to the vertical launch speed, so this gives the ratio of the two times of flight.",
+    "equation": "T₁/T₂ = uᵧ₁/uᵧ₂ = 2"
+   },
+   {
+    "text": "Range equals the horizontal launch speed times the time of flight, and the Reason states exactly this formula; set the two ranges equal.",
+    "equation": "R = uₓ·T, so uₓ₁·T₁ = uₓ₂·T₂"
+   },
+   {
+    "text": "Substitute T₁ = 2T₂ and solve for the ratio of horizontal launch speeds.",
+    "equation": "uₓ₁·2T₂ = uₓ₂·T₂ ⇒ uₓ₁/uₓ₂ = 1/2"
+   },
+   {
+    "text": "This ratio of 1 : 2 matches the Assertion exactly, and the Reason (R = uₓ·T) is the very formula used to derive it, so both statements are true and the Reason explains the Assertion."
+   }
+  ],
+  "final_answer": {
+   "option": 1,
+   "value": "If both Assertion and Reason are true and the Reason is the correct explanation of the Assertion."
+  },
+  "common_mistakes": [
+   {
+    "option": 4,
+    "text": "Taking the ratio of horizontal speeds equal to the ratio of vertical speeds instead of its reciprocal, giving 2 : 1 instead of 1 : 2."
+   },
+   {
+    "option": 2,
+    "text": "Accepting both statements as true but treating R = uₓ×T as unrelated background information rather than the formula that proves the ratio."
+   }
+  ],
+  "concept_tags": [
+   "range",
+   "maximum height",
+   "time of flight"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "calculation"
+ }
+}

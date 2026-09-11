@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_9bc1af04",
+ "item_sha": "78b5c79fea1e723039af66a68c1fb4fd3219e8153279a18f9d6ad64249f3439e",
+ "auditor_option": 3,
+ "auditor_value": "sin²θ : cos²θ",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Independent solve: H ∝ sin² of the launch angle, sin²(90° − θ) = cos²θ, ratio sin²θ : cos²θ, option (c). Both mistake entries name genuine errors that produce the options cited.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-05",
+  "at": "2026-09-11T19:33:41+05:30"
+ }
+}

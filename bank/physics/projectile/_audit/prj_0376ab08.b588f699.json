@@ -1,0 +1,24 @@
+{
+ "question_id": "prj_0376ab08",
+ "item_sha": "b588f6994cef1b1b7e680658049054774f7082fdf52b77c1760380f83f977d15",
+ "auditor_option": null,
+ "auditor_value": "T = 4(1 + 1/√3) ≈ 6.31 s; range down the slope = 160/√3 + 160/3 ≈ 145.7 m (velocity at 75° to the incline, thrown downhill)",
+ "findings": [
+  {
+   "grade": "weak",
+   "field": "steps[3].equation",
+   "quote": "T = 4(3+√3)/3 s ≈ 6.31 s ; R = 160(√3+1)/3 m ≈ 145.71 m",
+   "note": "The step's text says the range is the along-incline distance covered in time T with gravity's along-incline part adding, but the equation only restates the results; the along-incline equation that produces 145.71 m is never written, so a student cannot follow how R was obtained.",
+   "fix": "R = (u cos75°)T + ½(g sin30°)T² = (20√2 × 0.2588)(6.31) + ½(5)(6.31)² ≈ 46.2 + 99.5 ≈ 145.71 m ; T = 4(3+√3)/3 s ≈ 6.31 s"
+  }
+ ],
+ "verdict": "weak",
+ "question_defect": null,
+ "notes": "Re-computed in ground axes (x = 20t, y = 20t − 5t² meeting y = −x tan30°): t = 6.309 s, x = 126.19 m, R = x/cos30° = 145.71 m; incline axes agree (T = 2u sin75°/(g cos30°) = 6.309 s; R = 7.32·6.31 + 2.5·39.8 = 145.7 m). Exact forms 4(3+√3)/3 and 160(√3+1)/3 verified. Mistake entries verified: 15° to incline gives 1.69 s / 39.04 m; flat ground gives 4 s / 80 m.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-01",
+  "at": "2026-09-11T19:35:25+05:30"
+ }
+}

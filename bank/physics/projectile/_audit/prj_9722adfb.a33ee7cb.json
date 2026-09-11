@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_9722adfb",
+ "item_sha": "a33ee7cb82bf8ad66514b31871c5cc22944daedef57a35cb22a74e3e7247b3c6",
+ "auditor_option": 4,
+ "auditor_value": "Assertion false: any constant acceleration with the initial velocity not parallel to it gives a parabola, whatever axes are used (for example a = (1, 1), u = (1, 0) gives y = ½(x − y)², a parabola). Reason true: a projectile has zero horizontal acceleration.",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "The tilted-axes argument is valid: the path shape is independent of the axes, so nonzero aₓ and aᵧ in some axes do not stop the path being a parabola. The steps carry no equations, which suits a qualitative item; an explicit example (a = (a, a), u = (u, 0)) would make it more concrete but nothing written is false.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-prj-02",
+  "at": "2026-09-11T19:53:28+05:30"
+ }
+}

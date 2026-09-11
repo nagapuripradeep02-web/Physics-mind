@@ -1,0 +1,93 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_prj_02de07d8",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A ball leaves a thrower's hand moving exactly horizontally, starting from a height of 100 m over the ground, with a horizontal launch speed of 20 m/s.",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "Work out how long the ball takes before it lands."
+   },
+   {
+    "label": "b",
+    "asks": "Work out how far horizontally the ball travels before landing."
+   },
+   {
+    "label": "c",
+    "asks": "Work out the landing velocity, giving both its size and its direction."
+   }
+  ],
+  "conditions": [
+   "ball thrown horizontally",
+   "launched from a point 100 m above the ground"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Use the vertical fall to find the time, the constant horizontal speed for the distance, and combine both velocity parts at landing.",
+  "steps": [
+   {
+    "text": "Find the time to fall 100 m from rest in the vertical direction.",
+    "equation": "h = ½gt², so t = √(2h/g) = √(200/10) = √20 = 2√5 ≈ 4.47 s"
+   },
+   {
+    "text": "Find the horizontal distance travelled using the constant horizontal speed.",
+    "equation": "x = ut = 20 × 2√5 = 40√5 ≈ 89.44 m"
+   },
+   {
+    "text": "Find the vertical velocity at landing.",
+    "equation": "vy = gt = 10 × 2√5 = 20√5 ≈ 44.72 m/s"
+   },
+   {
+    "text": "Combine the horizontal and vertical parts for the speed and direction at landing; this gives the final answer.",
+    "equation": "v = √(20² + (20√5)²) = 20√6 ≈ 48.99 m/s, about 65.9° below the horizontal"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) t ≈ 4.47 s; (b) x ≈ 89.44 m; (c) v ≈ 48.99 m/s at about 65.9° below the horizontal"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Leaving out the factor ½ in the fall equation and using t = √(h/g) instead of √(2h/g) gives a wrong time of about 3.16 s."
+   }
+  ],
+  "concept_tags": [
+   "horizontal projectile",
+   "time of fall",
+   "velocity at landing"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "calculation"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "3d0ab8fd380a226e032828ec9637b9db3795c14a47648e5d817bb862b33e976d"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "4bd1316041114653271312d53494dc703f24e7b0b9750ee38f482afaa51e3454",
+  "audited_by": "W01-U-prj-02"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-03",
+  "at": "2026-09-11T15:45:00+05:30"
+ }
+}

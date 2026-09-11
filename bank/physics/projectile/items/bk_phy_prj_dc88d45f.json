@@ -1,0 +1,82 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_prj_dc88d45f",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "numerical",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A ball leaves the ground moving at 20√2 m/s, directed 45° above the horizontal. Take g = 10 m/s². Find the time (or times) at which it is 15 m above the ground.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "projected from ground level",
+   "initial speed 20√2 m/s",
+   "launch angle 45° above horizontal",
+   "g = 10 m/s²"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Write the height above ground as a function of time and solve for the times at which it equals 15 m.",
+  "steps": [
+   {
+    "text": "Find the vertical component of the launch velocity.",
+    "equation": "v_y = u sin45° = 20√2×(√2/2) = 20 m/s"
+   },
+   {
+    "text": "Write the height as a function of time.",
+    "equation": "y(t) = v_y t − ½gt² = 20t − 5t²"
+   },
+   {
+    "text": "Set the height equal to 15 m and simplify to a quadratic.",
+    "equation": "20t − 5t² = 15 → t² − 4t + 3 = 0"
+   },
+   {
+    "text": "Factor the quadratic to find both times the particle is at this height.",
+    "equation": "(t − 1)(t − 3) = 0 → t = 1 s or t = 3 s"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "t = 1 s (going up) and t = 3 s (coming down)"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Reporting only t = 1 s and stopping there misses the second passage through 15 m as the particle falls back down."
+   }
+  ],
+  "concept_tags": [
+   "projectile motion",
+   "height as a function of time",
+   "quadratic equation"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "f6e5b7b045a9adc0e10da9dad5af9657af0769cebce5bf4f10b03c4055342a12"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "7faab09a8726551f1b6b5d5d22c9f130bc17fee4723f8a3d394f94efa085494f",
+  "audited_by": "W01-U-prj-08"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-06",
+  "at": "2026-09-11T12:02:00+05:30"
+ }
+}

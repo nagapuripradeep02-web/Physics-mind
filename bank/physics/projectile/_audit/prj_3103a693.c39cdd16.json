@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_3103a693",
+ "item_sha": "c39cdd160356dffaf07f4f4ea7157469f208c72f7ddb4df64521bbe3e5be154b",
+ "auditor_option": null,
+ "auditor_value": "No. u²/g = 3.0/sin60° ≈ 3.46 km is the maximum range (at 45°), which is less than 5.0 km.",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-prj-01",
+  "at": "2026-09-11T19:52:15+05:30"
+ }
+}

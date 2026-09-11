@@ -1,0 +1,58 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "prj_c04cc4d5",
+ "approach": "The heights 4H and H fix the ratio of vertical launch speeds, which fixes the ratio of flight times; equal ranges then fix the ratio of horizontal launch speeds.",
+ "steps": [
+  {
+   "text": "Write the maximum height of each projectile in terms of its own vertical launch speed.",
+   "equation": "H₁ = uᵧ₁²/(2g) = 4H, H₂ = uᵧ₂²/(2g) = H"
+  },
+  {
+   "text": "Divide the two height equations to get the ratio of vertical launch speeds.",
+   "equation": "uᵧ₁²/uᵧ₂² = 4 ⇒ uᵧ₁/uᵧ₂ = 2"
+  },
+  {
+   "text": "Time of flight is proportional to the vertical launch speed, so this gives the ratio of the two times of flight.",
+   "equation": "T₁/T₂ = uᵧ₁/uᵧ₂ = 2"
+  },
+  {
+   "text": "Range equals the horizontal launch speed times the time of flight, and the Reason states exactly this formula; set the two ranges equal.",
+   "equation": "R = uₓ·T, so uₓ₁·T₁ = uₓ₂·T₂"
+  },
+  {
+   "text": "Substitute T₁ = 2T₂ and solve for the ratio of horizontal launch speeds.",
+   "equation": "uₓ₁·2T₂ = uₓ₂·T₂ ⇒ uₓ₁/uₓ₂ = 1/2"
+  },
+  {
+   "text": "This ratio of 1 : 2 matches the Assertion exactly, and the Reason (R = uₓ·T) is the very formula used to derive it, so both statements are true and the Reason explains the Assertion."
+  }
+ ],
+ "final_answer": {
+  "option": 1,
+  "value": "If both Assertion and Reason are true and the Reason is the correct explanation of the Assertion."
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": 4,
+   "text": "Taking the ratio of horizontal speeds equal to the ratio of vertical speeds instead of its reciprocal, giving 2 : 1 instead of 1 : 2."
+  },
+  {
+   "option": 2,
+   "text": "Accepting both statements as true but treating R = uₓ×T as unrelated background information rather than the formula that proves the ratio."
+  }
+ ],
+ "concept_tags": [
+  "range",
+  "maximum height",
+  "time of flight"
+ ],
+ "difficulty": "medium",
+ "mistake_type_hint": "calculation",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-04",
+  "at": "2026-09-11T16:11:00+05:30"
+ }
+}

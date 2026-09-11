@@ -1,0 +1,114 @@
+{
+ "wave": 3,
+ "role": "audit",
+ "chapter": "projectile",
+ "slice": 1,
+ "round": 0,
+ "items": [
+  {
+   "question_id": "prj_2896697e",
+   "question_text": "Two particles are launched at the same instant, moving horizontally, from two different points on a riverbank that sit at some height above the water. Particle 1 has initial speed v₁ = 5 m/s and particle 2 has initial speed v₂ = 7.5 m/s. Both particles land in the water simultaneously. The first particle lands at a horizontal distance s = 10 m from the bank.\n(a) Find how long each particle remains airborne before hitting the water.\n(b) Find the height of the riverbank above the water surface.\n(c) Work out where the second particle lands in the water, measured from the bank.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_161e244b",
+   "question_text": "A trainer launches a baseball to a teammate, sending it off at 20 m/s at 45° above horizontal. The instant the throw happens, the teammate is standing 50 m away. Using g = 10 m/s², determine the running speed and direction the teammate needs so the catch happens exactly at the height the ball started from.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_6e73404f",
+   "question_text": "Someone stands at the top of a sloping hill and throws a stone purely horizontally, giving it speed v₀. Using an x-y axis system with its origin at the throwing point, work out the x and y coordinates of the spot on the hillside where the stone eventually lands.",
+   "options": [],
+   "figure_description": "The hill's top is at the origin (0,0) of an x-y axis system, with the x-axis horizontal (pointing in the direction of throw) and the y-axis vertical. The stone is thrown horizontally with speed v₀ along the positive x direction from the origin. The hillside slopes downward from the origin at angle θ below the horizontal x-axis, and the stone's curved path meets this sloped hillside at a point (x, y), with y measured as negative below the origin."
+  },
+  {
+   "question_id": "prj_70ed35c7",
+   "question_text": "A projectile launched at angle θ, with a certain speed, covers a horizontal range that equals half the maximum range obtainable at that same speed. What is the angle θ?",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "15°"
+    },
+    {
+     "label": "(b)",
+     "text": "30°"
+    },
+    {
+     "label": "(c)",
+     "text": "60°"
+    },
+    {
+     "label": "(d)",
+     "text": "not enough information is given"
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_7ce39cdf",
+   "question_text": "Demonstrate that a projectile passes through the same height at two separate instants, and prove algebraically that adding those two times together gives exactly the total time of flight.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_7004b298",
+   "question_text": "Two particles start from the same point above a tower and, at that instant, move horizontally in opposite directions with speeds v₁ = 3 m/s and v₂ = 4 m/s, falling freely under gravity g afterward. Find how far apart they are at the moment their two velocity vectors are perpendicular to each other.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_e3f4653c",
+   "question_text": "Assertion: Taking g = 10 m/s², the claim is that in projectile motion the particle's speed changes by 10 m/s during every second of flight. Reason: Acceleration is defined as the rate at which velocity changes.",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "If both Assertion and Reason are true and the Reason is the correct explanation of the Assertion."
+    },
+    {
+     "label": "(b)",
+     "text": "If both Assertion and Reason are true but the Reason is not the correct explanation of the Assertion."
+    },
+    {
+     "label": "(c)",
+     "text": "If the Assertion is true, but the Reason is false."
+    },
+    {
+     "label": "(d)",
+     "text": "If the Assertion is false but the Reason is true."
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_c04cc4d5",
+   "question_text": "Assertion: Two objects are launched as projectiles; one climbs to a maximum height of 4H while the other climbs to a maximum height of H. For the two to land the same horizontal distance away, their horizontal velocity components need to be in a 1 : 2 ratio. Reason: A projectile's horizontal range equals its horizontal velocity component multiplied by its total time of flight.",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "If both Assertion and Reason are true and the Reason is the correct explanation of the Assertion."
+    },
+    {
+     "label": "(b)",
+     "text": "If both Assertion and Reason are true but the Reason is not the correct explanation of the Assertion."
+    },
+    {
+     "label": "(c)",
+     "text": "If the Assertion is true, but the Reason is false."
+    },
+    {
+     "label": "(d)",
+     "text": "If the Assertion is false but the Reason is true."
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_5bf47e86",
+   "question_text": "A lift is moving upward, accelerating at 1 m/s². At the moment its speed reaches 2 m/s, a stone is thrown from the lift's floor, its speed relative to the lift being 2 m/s, launched upward at 30° elevation.\n(a) Work out how long the stone takes before it lands back on the lift's floor.\n(b) Draw the trajectory the stone follows, as seen by someone standing outside the lift.\n(c) Suppose instead the lift accelerates downward at a rate equal to g. Describe how the stone's motion would then differ.",
+   "options": [],
+   "figure_description": ""
+  }
+ ]
+}

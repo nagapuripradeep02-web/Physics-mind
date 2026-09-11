@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_2896697e",
+ "item_sha": "7f466e380ee00f0ff335932f2c40520ec2b92635531a43b1127581bd4272ef4a",
+ "auditor_option": null,
+ "auditor_value": "(a) t = 2 s for both; (b) h = ½gt² = 19.6 m with g = 9.8 (20 m with g = 10); (c) 15 m from the bank",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Independent solve agrees: t = s/v₁ = 2 s, h = ½gt², x₂ = v₂t = 15 m. Nothing in the question fixes g; the solution states g = 9.8 in the equation and its 19.6 m follows. Common-mistake arithmetic (9.8 × 4 = 39.2 = 2 × 19.6) checks.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 3,
+  "agent": "W03-U-prj-01",
+  "at": "2026-09-11T20:04:31+05:30"
+ }
+}

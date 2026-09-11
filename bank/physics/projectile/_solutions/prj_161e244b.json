@@ -1,0 +1,51 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "prj_161e244b",
+ "approach": "Find where the ball lands using the range formula, then find the speed needed to close the remaining gap in the time of flight.",
+ "steps": [
+  {
+   "text": "Find the horizontal and vertical parts of the throw's initial velocity.",
+   "equation": "ux = 20 cos45° = 10√2 m/s, uy = 20 sin45° = 10√2 m/s"
+  },
+  {
+   "text": "Find the time of flight, since the ball returns to the height it was released at.",
+   "equation": "T = 2uy/g = 2(10√2)/10 = 2√2 ≈ 2.83 s"
+  },
+  {
+   "text": "Find how far the ball travels horizontally in that time.",
+   "equation": "R = ux T = 10√2 × 2√2 = 40 m"
+  },
+  {
+   "text": "The player starts 50 m away and must reach the point 40 m away where the ball lands, so find the distance to close.",
+   "equation": "Δd = 50 − 40 = 10 m"
+  },
+  {
+   "text": "Divide this distance by the time of flight for the running speed; this gives the final answer.",
+   "equation": "v = 10/(2√2) = 5√2/2 ≈ 3.54 m/s, running toward the trainer"
+  }
+ ],
+ "final_answer": {
+  "option": null,
+  "value": "about 3.54 m/s, running toward the trainer"
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": null,
+   "text": "Dividing the full initial separation of 50 m by the time of flight, instead of the 10 m gap left to close, gives a wrong speed of about 17.68 m/s."
+  }
+ ],
+ "concept_tags": [
+  "projectile motion",
+  "range formula",
+  "relative motion"
+ ],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-03",
+  "at": "2026-09-11T15:40:00+05:30"
+ }
+}

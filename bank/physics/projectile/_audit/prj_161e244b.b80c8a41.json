@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_161e244b",
+ "item_sha": "b80c8a410107d6bd02c1cd4bf6f94112a7b91b4630d6d1b64088ad6d004fbf55",
+ "auditor_option": null,
+ "auditor_value": "5/√2 ≈ 3.54 m/s, running toward the trainer (ball lands at R = 40 m, T = 2√2 s, gap 10 m)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Independent solve agrees: R = u² sin 90°/g = 40 m, T = 2√2 s, teammate closes 10 m toward the thrower at 10/(2√2) = 5√2/2 ≈ 3.54 m/s. Common-mistake number 50/(2√2) = 17.68 m/s checks.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 3,
+  "agent": "W03-U-prj-01",
+  "at": "2026-09-11T20:04:31+05:30"
+ }
+}

@@ -1,0 +1,73 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_prj_487bafdc",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "numerical",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "From a point O at the foot of a slope that rises at 30° to the horizontal, a particle is thrown with speed 10 m/s along a direction making 30° with the slope surface (that is, 60° above the horizontal). It lands on the slope at a point A. Take g = 10 m/s². At the instant it reaches A, find the component of its velocity perpendicular to the slope surface.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "slope inclined at 30° to the horizontal",
+   "launch speed 10 m/s at 30° to the slope surface",
+   "g = 10 m/s²",
+   "the particle lands on the slope at A"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "In axes along and perpendicular to the incline, the perpendicular motion is like a simple up-and-down toss, so the perpendicular speed at landing equals the launch value, reversed in direction.",
+  "steps": [
+   {
+    "text": "Resolve the launch velocity perpendicular to the incline, using the 30° angle between the velocity and the incline.",
+    "equation": "u⊥ = 10sin30° = 5 m/s, away from the incline"
+   },
+   {
+    "text": "The perpendicular motion is decelerated uniformly by g⊥ = g cos30° and returns to zero perpendicular displacement, exactly like a ball tossed straight up and caught at the same level.",
+    "equation": "v⊥ at landing = −u⊥"
+   },
+   {
+    "text": "So the perpendicular component at A has the same size as at launch, but points into the incline.",
+    "equation": "v⊥ = 5 m/s, directed into the plane"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "5 m/s, directed into the inclined plane"
+  },
+  "common_mistakes": [],
+  "concept_tags": [
+   "projectile motion",
+   "motion on an inclined plane",
+   "symmetry of a toss"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "8367054269dd7f59fd24c4e386185a73710aaa38ba9891ed78e712632d078242"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "f33023ad47de9eba7178ee1caa23bba2b2c269d4d34b48e8d7111d575789a8d6",
+  "audited_by": "W02-U-prj-02"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-06",
+  "at": "2026-09-11T12:10:00+05:30"
+ }
+}

@@ -1,0 +1,101 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_prj_a7269b02",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "In the diagram, take g = 10 m/s².",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "Find how long after being launched the particle reaches the ground at point P."
+   },
+   {
+    "label": "b",
+    "asks": "Find the horizontal separation between Q and P."
+   },
+   {
+    "label": "c",
+    "asks": "Find the particle's velocity, magnitude and direction, when it reaches point P."
+   }
+  ],
+  "conditions": [
+   "particle launched horizontally from O at the top of a tower",
+   "tower height (O above Q) is 45 m",
+   "g = 10 m/s²",
+   "Q is the foot of the tower on the ground and P is the landing point"
+  ],
+  "figure": {
+   "description": "The particle is launched horizontally with velocity 40 m/s from point O, at the top of a vertical tower of height 45 m. Q is the point directly below O at the base of the tower on the ground. The particle follows a curved path from O and lands at point P on the ground, to the right of Q."
+  }
+ },
+ "solution": {
+  "approach": "Horizontal projectile from height 45 m; find the fall time from the height, then use it for the horizontal distance and the two velocity components at landing.",
+  "steps": [
+   {
+    "text": "Write the height fallen as a function of time for a horizontal launch, using g = 10 m/s².",
+    "equation": "45 = ½(10)t²"
+   },
+   {
+    "text": "Solve for the time of flight (part a).",
+    "equation": "t = 3 s"
+   },
+   {
+    "text": "Find the horizontal distance QP, since the horizontal velocity stays constant (part b).",
+    "equation": "QP = 40 × 3 = 120 m"
+   },
+   {
+    "text": "Find the horizontal and vertical velocity components at P.",
+    "equation": "vₓ = 40 m/s, v_y = 10 × 3 = 30 m/s"
+   },
+   {
+    "text": "Combine the components to get the speed and direction at P: the magnitude is the hypotenuse of the 40 m/s and 30 m/s components, and the direction is the angle whose tangent is 30/40.",
+    "equation": "(a) t = 3 s (b) QP = 120 m (c) v = √(40² + 30²) = 50 m/s at 37° below the horizontal"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) t = 3 s, (b) QP = 120 m, (c) v = 50 m/s at 37° below the horizontal"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Adding the horizontal and vertical speeds directly instead of combining them as vectors, giving 40 + 30 = 70 m/s instead of 50 m/s."
+   }
+  ],
+  "concept_tags": [
+   "horizontal projectile motion",
+   "equations of motion",
+   "vector addition of velocity"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "e797820c9c699ff8318f8629ae9936bf66bf6b71a92b87776b3dcdc9eed585f0"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "6b120c9b795f8a7a8b0a5ca5b3afb95dfd28f2cc5457d4baec8cb7ae4a0d45f9",
+  "audited_by": "W02-U-prj-03"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-02",
+  "at": "2026-09-11T11:06:00+05:30"
+ }
+}

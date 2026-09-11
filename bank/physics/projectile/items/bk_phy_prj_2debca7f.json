@@ -1,0 +1,91 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_prj_2debca7f",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "At a point 45 m above the ground, a projectile's velocity is v = (30î + 40ĵ) m/s, where î and ĵ are unit vectors along the horizontal and vertical directions respectively. Work out the projectile's initial velocity, its total time in the air, the greatest height it reaches, and the horizontal distance it covers.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "projectile's velocity at a height of 45 m above the ground is v = (30î + 40ĵ) m/s",
+   "î and ĵ are unit vectors along the horizontal and vertical directions respectively",
+   "standard projectile motion under gravity, launched from ground level"
+  ],
+  "figure": {
+   "description": "A parabolic path starts at origin O and rises then falls back to the horizontal ground far to the right. Near the launch point, the initial velocity's horizontal and vertical components are marked. Higher up on the curve, at a point 45 m above the ground, the velocity components at that point are marked, the horizontal one equal in length to the launch value and the vertical one shorter."
+  }
+ },
+ "solution": {
+  "approach": "Use the vertical velocity-height equation between the launch point and height 45 m to find the initial vertical component, then get every other quantity from it.",
+  "steps": [
+   {
+    "text": "The horizontal velocity component stays constant throughout the flight.",
+    "equation": "uₓ = vₓ = 30 m/s"
+   },
+   {
+    "text": "Relate the vertical velocity at height 45 m to the initial vertical velocity, using g = 10 m/s².",
+    "equation": "v_y² = u_y² − 2g(45)"
+   },
+   {
+    "text": "Solve for the initial vertical velocity, taking the positive root since the particle is still rising at this height.",
+    "equation": "40² = u_y² − 900, u_y = √2500 = 50 m/s"
+   },
+   {
+    "text": "The initial velocity is the vector sum of the two components.",
+    "equation": "u = 30î + 50ĵ m/s, |u| = √(30² + 50²) = 10√34 m/s ≈ 58.3 m/s"
+   },
+   {
+    "text": "Find the time of flight and the maximum height from the initial vertical component.",
+    "equation": "T = 2(50)/10 = 10 s, H = 50²/(2×10) = 125 m"
+   },
+   {
+    "text": "Find the horizontal range using the time of flight. Restating every quantity: initial velocity 30î + 50ĵ m/s (10√34 m/s), time of flight 10 s, maximum height 125 m, range 300 m.",
+    "equation": "R = 30 × 10 = 300 m"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "initial velocity u = 30î + 50ĵ m/s (magnitude 10√34 m/s ≈ 58.3 m/s); time of flight T = 10 s; maximum height H = 125 m; horizontal range R = 300 m"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Treating the given vertical velocity 40 m/s at height 45 m as the initial vertical velocity, which gives a wrong time of flight of 8 s and a wrong maximum height of 80 m."
+   }
+  ],
+  "concept_tags": [
+   "projectile motion",
+   "velocity-height relation",
+   "time of flight and range"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "ac01c142eef4c0b41c83301bf066c26527eaed3b5dfb9f157f2d5b7365cfbcba"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "51c1797465c49b8597f46dfce06eaa5810b699767de8e2b119a7624dbafbc9d8",
+  "audited_by": "W01-U-prj-05"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-02",
+  "at": "2026-09-11T11:30:00+05:30"
+ }
+}

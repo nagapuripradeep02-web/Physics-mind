@@ -1,0 +1,19 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "prj_be6fa5c3",
+ "approach": "The maximum height is reached when the vertical velocity becomes zero, so differentiate the given vertical displacement and set it to zero.",
+ "steps": [
+  {"text": "Differentiate the vertical displacement with respect to time to get the vertical velocity.", "equation": "y = 10t − t², v_y = dy/dt = 10 − 2t"},
+  {"text": "Set the vertical velocity to zero to find the time of maximum height.", "equation": "10 − 2t = 0, t = 5 s"},
+  {"text": "Substitute t = 5 s back into the vertical displacement equation.", "equation": "y_max = 10(5) − 5² = 50 − 25 = 25 m"}
+ ],
+ "final_answer": {"option": 4, "value": "25 m"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 3, "text": "Comparing y = 10t − t² with y = u_yt − ½gt², the coefficient of t² is read as g instead of g/2, giving g = 1; then u_y²/2g gives 100/(2×1) = 50 m."}
+ ],
+ "concept_tags": ["projectile motion", "maximum height", "calculus"],
+ "difficulty": "medium",
+ "mistake_type_hint": "calculation",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-prj-05", "at": "2026-09-11T00:00:00+05:30"}
+}

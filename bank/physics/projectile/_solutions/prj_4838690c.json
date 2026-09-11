@@ -1,0 +1,22 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "prj_4838690c",
+ "approach": "The horizontal speed stays fixed at u cos60°; the velocity is at 45° to the horizontal when the vertical speed equals the horizontal speed, once rising and once falling.",
+ "steps": [
+  {"text": "Write the constant horizontal component of velocity.", "equation": "vₓ = u cos60° = 60×0.5 = 30 m/s"},
+  {"text": "Write the vertical component of velocity as a function of time.", "equation": "v_y(t) = u sin60° − gt = 30√3 − 10t"},
+  {"text": "The velocity makes 45° with the horizontal when the size of the vertical component equals the horizontal component.", "equation": "|v_y| = vₓ = 30 m/s"},
+  {"text": "Solve for the rising case, where the vertical component is still upward.", "equation": "30√3 − 10t₁ = 30 → t₁ = 3√3 − 3 ≈ 2.2 s"},
+  {"text": "Solve for the falling case, where the vertical component now points downward.", "equation": "30√3 − 10t₂ = −30 → t₂ = 3√3 + 3 ≈ 8.2 s"}
+ ],
+ "final_answer": {"option": null, "value": "t₁ ≈ 2.2 s (rising) and t₂ ≈ 8.2 s (falling)"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Solving only the rising case and stopping at t ≈ 2.2 s misses the second moment, after the peak, when the velocity again makes 45° with the horizontal."},
+  {"option": null, "text": "Mistaking the question for the total time of flight and computing 2u sin60°/g gives about 10.4 s, which is neither correct time."}
+ ],
+ "concept_tags": ["projectile motion", "velocity components", "angle of velocity"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-prj-06", "at": "2026-09-11T12:01:00+05:30"}
+}

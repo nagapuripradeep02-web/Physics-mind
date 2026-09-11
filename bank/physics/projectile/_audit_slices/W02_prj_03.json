@@ -1,0 +1,387 @@
+{
+ "wave": 2,
+ "role": "audit",
+ "chapter": "projectile",
+ "slice": 3,
+ "round": 0,
+ "agent_label": "W02-U-prj-03",
+ "items": [
+  {
+   "question_id": "prj_df9b881f",
+   "audit_file": "prj_df9b881f.97bc3dd4.json",
+   "item_sha": "97bc3dd44f0ee95650e73aee0542932296c40d8436fe60d07dd19e952c3fb65f",
+   "question_text": "A particle travels in the xy plane under a constant acceleration 'a' pointing along the negative y-direction. Its path is described by y = px − qx², with p and q both positive constants. Determine the particle's velocity, magnitude and direction, as it passes through the origin.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Match the given trajectory to the standard projectile path written in terms of time, so the coefficients of x and x² give the two velocity components.",
+    "steps": [
+     {
+      "text": "Since the acceleration is only along −y, the horizontal velocity stays constant and the horizontal position is uₓt.",
+      "equation": "x = uₓt, so t = x/uₓ"
+     },
+     {
+      "text": "Write the vertical position using this time, with a as the acceleration magnitude and u_y the initial vertical velocity.",
+      "equation": "y = u_y t − ½at² = (u_y/uₓ)x − (a/(2uₓ²))x²"
+     },
+     {
+      "text": "Compare this with the given equation term by term.",
+      "equation": "p = u_y/uₓ, q = a/(2uₓ²)"
+     },
+     {
+      "text": "Solve the second equation for the horizontal velocity component.",
+      "equation": "uₓ = √(a/(2q))"
+     },
+     {
+      "text": "Use the first equation to get the vertical velocity component, then combine the components to get the velocity's magnitude and direction at the origin.",
+      "equation": "u_y = p√(a/(2q)); v = √(a/(2q)) (î + p ĵ), |v| = √(a/(2q)) × √(1 + p²) = √(a(1 + p²)/(2q)), direction tan⁻¹p above the x-axis"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "v = √(a/(2q)) î + p√(a/(2q)) ĵ; magnitude |v| = √(a(1 + p²)/(2q)), direction tan⁻¹p above the x-axis."
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Dropping the factor ½ in the vertical position equation, which gives the horizontal component as √(a/q) instead of √(a/(2q))."
+     }
+    ],
+    "concept_tags": [
+     "projectile trajectory equation",
+     "constant acceleration",
+     "vector velocity"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "prj_db0a9de7",
+   "audit_file": "prj_db0a9de7.328b6318.json",
+   "item_sha": "328b6318fabd21be213c6f5e57e2c7e265bccf2b482a7d41911d3816f5a922f6",
+   "question_text": "A ball is thrown horizontally with a speed of 20 m/s from a point O at the top edge of a wedge-shaped incline. Point Q lies directly beneath O, and the sloped surface of the wedge falls away at 45° to the horizontal. The ball follows a curved path and lands on the sloped surface at point P, where the angle OPQ equals 45°.\n(a) Find the flight time of the ball before it lands on the sloped surface at P.\n(b) Find the straight-line distance OP that the ball covers from launch to landing on the slope.",
+   "options": [],
+   "figure_description": "O is the launch point at the top of a right-angled wedge; Q lies directly below O. The sloped face of the wedge runs down toward the base, meeting the horizontal base at 45°. The ball's curved path from O meets the slope at P, and the angle OPQ between line OP and the horizontal line QP is 45°.",
+   "solution": {
+    "approach": "On a 45° incline, the vertical drop equals the horizontal distance travelled, so equate them to find the time, then find OP from the two legs.",
+    "steps": [
+     {
+      "text": "Write the horizontal distance and the vertical drop as functions of time for the horizontal launch, taking g = 10 m/s².",
+      "equation": "x(t) = 20t, y(t) = ½(10)t² = 5t²"
+     },
+     {
+      "text": "The particle lands on the incline where the drop equals the horizontal distance, because the incline makes 45° with the horizontal.",
+      "equation": "5t² = 20t",
+      "why_this_step": "On a 45° incline through O, every point has its vertical drop equal to its horizontal distance from O."
+     },
+     {
+      "text": "Solve this equation for the time of flight (part a).",
+      "equation": "t = 4 s"
+     },
+     {
+      "text": "Find the horizontal distance and the vertical drop at t = 4 s.",
+      "equation": "x = 80 m, y = 80 m"
+     },
+     {
+      "text": "OP is the straight-line distance from O to P, the hypotenuse of the right triangle with legs x = 80 m and y = 80 m.",
+      "equation": "(a) t = 4 s (b) OP = √(80² + 80²) = 80√2 m ≈ 113.1 m"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "(a) t = 4 s, (b) OP = 80√2 m ≈ 113.1 m"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Taking the range OP as the horizontal distance 80 m instead of the slanted distance along the incline, missing the factor √2."
+     },
+     {
+      "option": null,
+      "text": "Writing the vertical drop as g t² instead of ½ g t², which gives t = 2 s and OP = 40√2 m ≈ 56.6 m."
+     }
+    ],
+    "concept_tags": [
+     "horizontal projectile motion",
+     "projectile on an incline",
+     "equations of motion"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "prj_e797820c",
+   "audit_file": "prj_e797820c.6b120c9b.json",
+   "item_sha": "6b120c9b795f8a7a8b0a5ca5b3afb95dfd28f2cc5457d4baec8cb7ae4a0d45f9",
+   "question_text": "In the diagram, take g = 10 m/s².\n(a) Find how long after being launched the particle reaches the ground at point P.\n(b) Find the horizontal separation between Q and P.\n(c) Find the particle's velocity, magnitude and direction, when it reaches point P.",
+   "options": [],
+   "figure_description": "The particle is launched horizontally with velocity 40 m/s from point O, at the top of a vertical tower of height 45 m. Q is the point directly below O at the base of the tower on the ground. The particle follows a curved path from O and lands at point P on the ground, to the right of Q.",
+   "solution": {
+    "approach": "Horizontal projectile from height 45 m; find the fall time from the height, then use it for the horizontal distance and the two velocity components at landing.",
+    "steps": [
+     {
+      "text": "Write the height fallen as a function of time for a horizontal launch, using g = 10 m/s².",
+      "equation": "45 = ½(10)t²"
+     },
+     {
+      "text": "Solve for the time of flight (part a).",
+      "equation": "t = 3 s"
+     },
+     {
+      "text": "Find the horizontal distance QP, since the horizontal velocity stays constant (part b).",
+      "equation": "QP = 40 × 3 = 120 m"
+     },
+     {
+      "text": "Find the horizontal and vertical velocity components at P.",
+      "equation": "vₓ = 40 m/s, v_y = 10 × 3 = 30 m/s"
+     },
+     {
+      "text": "Combine the components to get the speed and direction at P: the magnitude is the hypotenuse of the 40 m/s and 30 m/s components, and the direction is the angle whose tangent is 30/40.",
+      "equation": "(a) t = 3 s (b) QP = 120 m (c) v = √(40² + 30²) = 50 m/s at 37° below the horizontal"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "(a) t = 3 s, (b) QP = 120 m, (c) v = 50 m/s at 37° below the horizontal"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Adding the horizontal and vertical speeds directly instead of combining them as vectors, giving 40 + 30 = 70 m/s instead of 50 m/s."
+     }
+    ],
+    "concept_tags": [
+     "horizontal projectile motion",
+     "equations of motion",
+     "vector addition of velocity"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "prj_51e4cf12",
+   "audit_file": "prj_51e4cf12.83abcd24.json",
+   "item_sha": "83abcd2446bdf863749cb8353cb43b4b24b1b08ca80e1d2e8984f94aa85904db",
+   "question_text": "For a fixed launch speed u, two different projection angles can give the same horizontal range. Prove that adding together the maximum heights reached for these two angles gives a result that does not depend on which of the two angles was used.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "For a given range, the two projection angles are complementary; write the maximum height for each and add them.",
+    "steps": [
+     {
+      "text": "Two angles giving the same range are θ and (90°−θ); write the maximum height for each.",
+      "equation": "H₁ = u²sin²θ/(4g), H₂ = u²sin²(90°−θ)/(2g) = u²cos²θ/(2g)"
+     },
+     {
+      "text": "Add the two heights and use sin²θ + cos²θ = 1.",
+      "equation": "H₁ + H₂ = u²(sin²θ + cos²θ)/(2g) = u²/(2g)",
+      "why_this_step": "The angle θ cancels out completely, leaving only u and g, so the sum does not depend on which pair of complementary angles is used."
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "H₁ + H₂ = u²/(2g), a constant that does not depend on θ."
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Adding the two range formulas instead of the two height formulas, getting R₁+R₂ = 2u²sin2θ/g, which still depends on θ and does not show the required result."
+     }
+    ],
+    "concept_tags": [
+     "complementary angles of projection",
+     "maximum height",
+     "range"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "prj_e517e4e8",
+   "audit_file": "prj_e517e4e8.d4eb976a.json",
+   "item_sha": "d4eb976ae68b5b603a1b7a58b31f4b77cf7981442f3206aa9a474b8462724c8b",
+   "question_text": "A car starts from rest at the origin and accelerates at 2 m/s² along the positive x-axis. A man stands at the back of the car holding a gun. He fires a bullet at time t = 4 s, and this bullet meets a bird in flight at the later time t = 8 s. At that instant the bird's position vector is 40î + 80ĵ + 40k̂. Find the bullet's velocity of projection, given that the y-axis lies in the horizontal plane and g = 10 m/s².",
+   "options": [],
+   "figure_description": "A small illustration shows a man standing at the back of a moving car, arms outstretched, suggesting he holds a gun while the vehicle accelerates forward; no numeric values are marked on it.",
+   "solution": {
+    "approach": "Find the car's position when the bullet is fired, then use the bullet's projectile motion over 4 s to match the bird's given position.",
+    "steps": [
+     {
+      "text": "Find the car's position at t = 4 s, when the bullet is fired, since the car starts from rest at the origin.",
+      "equation": "x₀ = ½(2)(4²) = 16 m"
+     },
+     {
+      "text": "The bullet travels from t = 4 s to t = 8 s before reaching the bird.",
+      "equation": "Δt = 8 − 4 = 4 s"
+     },
+     {
+      "text": "The x and y directions have no acceleration, so match the bird's x and y coordinates using the launch velocity components and the starting point found above.",
+      "equation": "16 + vₓ(4) = 40, 0 + v_y(4) = 80"
+     },
+     {
+      "text": "Solve for the horizontal launch velocity components.",
+      "equation": "vₓ = 6 m/s, v_y = 20 m/s"
+     },
+     {
+      "text": "The z direction has acceleration −g, so match the bird's height using the vertical launch component.",
+      "equation": "v_z(4) − ½(10)(4²) = 40"
+     },
+     {
+      "text": "Solve for the vertical launch component.",
+      "equation": "v_z = 30 m/s"
+     },
+     {
+      "text": "The velocity of projection is the vector with these three components, and its magnitude follows from them. This is the velocity relative to the ground.",
+      "equation": "v (ground frame) = 6î + 20ĵ + 30k̂ m/s, |v| = √(6² + 20² + 30²) = 2√334 ≈ 36.6 m/s"
+     },
+     {
+      "text": "The gun is mounted on the car, which is still accelerating, so the velocity of projection relative to the gun is the ground-frame velocity minus the car's velocity at the firing instant t = 4 s.",
+      "equation": "car velocity at t = 4 s = 2(4) = 8 m/s along x; v (relative to gun) = (6−8)î + 20ĵ + 30k̂ = −2î + 20ĵ + 30k̂ m/s, |v| = √(2² + 20² + 30²) = √1304 ≈ 36.1 m/s"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "Relative to the ground: v = 6î + 20ĵ + 30k̂ m/s, magnitude 2√334 m/s ≈ 36.6 m/s. Relative to the gun (which moves with the car at 8î m/s at t = 4 s): v = −2î + 20ĵ + 30k̂ m/s, magnitude √1304 ≈ 36.1 m/s"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Measuring the bullet's motion from the origin instead of from the car's position at firing, which gives vₓ = 10 m/s and a wrong speed of 10√14 ≈ 37.4 m/s."
+     }
+    ],
+    "concept_tags": [
+     "projectile motion in three dimensions",
+     "relative position",
+     "vector kinematics"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "prj_e3f4653c",
+   "audit_file": "prj_e3f4653c.19056ded.json",
+   "item_sha": "19056dedcc1eaaec7a124531e8f62a1031ce2801a79958c40a9b73727fec98ed",
+   "question_text": "Assertion: Taking g = 10 m/s², the claim is that in projectile motion the particle's speed changes by 10 m/s during every second of flight. Reason: Acceleration is simply defined as the rate at which velocity changes.",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "If both Assertion and Reason are true and the Reason is the correct explanation of the Assertion."
+    },
+    {
+     "label": "(b)",
+     "text": "If both Assertion and Reason are true but the Reason is not the correct explanation of the Assertion."
+    },
+    {
+     "label": "(c)",
+     "text": "If the Assertion is true, but the Reason is false."
+    },
+    {
+     "label": "(d)",
+     "text": "If the Assertion is false but the Reason is true."
+    }
+   ],
+   "figure_description": "",
+   "solution": {
+    "approach": "Acceleration changes the velocity vector by a fixed amount each second, but speed is the length of that vector, which does not change by that same fixed amount.",
+    "steps": [
+     {
+      "text": "Take a projectile with both horizontal and vertical velocity components, and track its speed second by second."
+     },
+     {
+      "text": "The vertical component of velocity does change by exactly 10 m/s every second, since the vertical acceleration is constant.",
+      "equation": "vᵧ(t+1) − vᵧ(t) = −10 m/s"
+     },
+     {
+      "text": "The horizontal component never changes, and speed is the length of the full velocity vector, not only its vertical part.",
+      "equation": "speed = √(vₓ² + vᵧ²)"
+     },
+     {
+      "text": "Because speed combines both components through a square root, its change from one second to the next is not a fixed 10 m/s; it is largest near the ground and smallest near the top of the flight."
+     },
+     {
+      "text": "So the Assertion is false because it confuses the constant change in the velocity vector with the varying change in speed, while the Reason — that acceleration is the rate of change of velocity — is a true, separate statement.",
+      "why_this_step": "The Reason describes the vector velocity correctly; the Assertion wrongly applies that fact to the scalar speed."
+     }
+    ],
+    "final_answer": {
+     "option": 4,
+     "value": "If the Assertion is false but the Reason is true."
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Confusing velocity with speed, so a constant 10 m/s change in the velocity vector is wrongly read as a constant 10 m/s change in speed."
+     },
+     {
+      "option": 3,
+      "text": "Judging the Reason false by treating rate of change of velocity as if it only meant rate of change of speed."
+     }
+    ],
+    "concept_tags": [
+     "speed versus velocity",
+     "acceleration",
+     "projectile motion"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "prj_f688743c",
+   "audit_file": "prj_f688743c.b384bcc3.json",
+   "item_sha": "b384bcc34bba1628921eb83c38f0baffede85f0dc71f59186cd04138db771888",
+   "question_text": "Using the launch data marked in the diagram, work out how long the projectile stays in the air and how far it travels along the slanted surface, taking g = 10 m/s².",
+   "options": [],
+   "figure_description": "An inclined plane rises to the right from a point on level ground at 30° to the horizontal. From that same point a projectile is launched at 20√2 m/s, its velocity making 45° with the horizontal, so that it is steeper than the incline by 15° and lands on the incline.",
+   "solution": {
+    "approach": "Resolve the velocity and gravity along and perpendicular to the incline; the projectile lands on the incline when the perpendicular displacement returns to zero.",
+    "steps": [
+     {
+      "text": "In the figure the velocity is drawn steeper than the incline. It makes 45° with the horizontal while the incline makes 30° with the horizontal, both measured from the same point at the base of the incline. So the velocity makes 45° minus 30° with the incline surface, and the projectile lands further up the slope.",
+      "equation": "45° − 30° = 15°",
+      "why_this_step": "The angle between the velocity and the incline surface, not the angle with the horizontal, decides the motion along the incline."
+     },
+     {
+      "text": "Take axes along the incline and perpendicular to it. Resolve the initial velocity into these two directions, and resolve gravity the same way.",
+      "equation": "along incline: u cos15° ; perpendicular: u sin15° ; g along incline: g sin30° ; g perpendicular: g cos30°"
+     },
+     {
+      "text": "The projectile returns to the incline surface when the perpendicular displacement becomes zero again. This gives the time of flight.",
+      "equation": "T = 2u sin15° / (g cos30°) = 2(20√2)sin15° / (10cos30°) ≈ 1.69 s"
+     },
+     {
+      "text": "Range along the incline is the along-incline distance covered in time T, using the along-incline part of gravity that slows the climb.",
+      "equation": "R = (u cos15°)T − ½(g sin30°)T² = (27.32)(1.69) − (2.5)(1.69)² ≈ 46.19 − 7.15 ≈ 39.04 m"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "T ≈ 1.69 s, R ≈ 39.04 m"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Ignoring the incline and using the flat-ground formulas T = 2u sinθ/g and R = u² sin2θ/g gives T = 4 s and R = 80 m, missing that the ground here is sloped."
+     },
+     {
+      "option": null,
+      "text": "Using the angle sum 45°+30° instead of the difference 45°−30° gives T ≈ 6.31 s and R ≈ 145.71 m, which is the answer for the projectile fired down the incline, not up it."
+     }
+    ],
+    "concept_tags": [
+     "projectile motion",
+     "inclined plane",
+     "time of flight",
+     "range up an incline"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "application"
+   }
+  }
+ ]
+}

@@ -1,0 +1,31 @@
+{
+ "question_id": "prj_df0030fd",
+ "item_sha": "e72783cf9c1b50513cb088149dc3a3b4dd5908e2b901965cc1c4aefe983199e4",
+ "auditor_option": 4,
+ "auditor_value": "40 m (u = 4 m/s, T = 0.4√2 s per jump, n = 10√2/(0.4√2) = 25 jumps, 25 × 1.6 m = 40 m; equivalently u cos45° × 10√2 = 2√2 × 10√2 = 40 m)",
+ "findings": [
+  {
+   "grade": "harmful",
+   "field": "steps[3].equation",
+   "quote": "distance = 45 m",
+   "note": "The step's own text says to multiply the number of jumps by the distance per jump: 25 × 1.6 m = 40 m, not 45 m. The printed number does not follow from the line above it.",
+   "fix": "distance = n × R_max = 25 × 1.6 = 40 m"
+  },
+  {
+   "grade": "harmful",
+   "field": "final_answer",
+   "quote": "45 m",
+   "note": "The correct total is 40 m, which is option (d), not option (a). A student copying this loses the mark.",
+   "fix": "option 4, value \"40 m\""
+  }
+ ],
+ "verdict": "harmful",
+ "question_defect": null,
+ "notes": "Steps 1 to 3 are right (u = 4 m/s with g = 10, T = 0.5657 s, n = 25). Only the final multiplication and the option are wrong.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-06",
+  "at": "2026-09-11T19:33:19+05:30"
+ }
+}

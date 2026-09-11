@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_87e27883",
+ "item_sha": "1159db5ad5e6ee9678a93a24352dd9ce03c7996ee1ce6a1f00c2614d1a5485e6",
+ "auditor_option": null,
+ "auditor_value": "t = √2 s ≈ 1.41 s",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Independent solve: v₁=(10,−10t), v₂=(−20,−10t); dot product zero at t²=2, t=√2 s. Every line follows; the one mistake entry is a genuine slip.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-04",
+  "at": "2026-09-11T19:32:00+05:30"
+ }
+}

@@ -1,0 +1,45 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "prj_9518a298",
+ "approach": "Average velocity is total displacement over total time; since the particle lands at the same height, only the horizontal part of the displacement survives.",
+ "steps": [
+  {
+   "text": "Write the time of flight and the range for a particle projected from and landing on the ground.",
+   "equation": "T = 2u sinα/g, R = u²sin2α/g"
+  },
+  {
+   "text": "Over this interval the particle starts and ends at the same height, so the net vertical displacement is zero and the horizontal range is the only displacement."
+  },
+  {
+   "text": "Average velocity is the total displacement divided by the total time.",
+   "equation": "v_avg = R/T"
+  },
+  {
+   "text": "Substitute R and T and simplify.",
+   "equation": "v_avg = (u²sin2α/g) divided by (2u sinα/g) = (2u²sinα cosα)/(2u sinα) = u cosα"
+  },
+  {
+   "text": "State the result; this is the final answer.",
+   "equation": "v_avg = u cosα, directed horizontally"
+  }
+ ],
+ "final_answer": {
+  "option": null,
+  "value": "u cosα, directed horizontally (equal to the constant horizontal part of the initial velocity)"
+ },
+ "confidence": "sure",
+ "common_mistakes": [],
+ "concept_tags": [
+  "average velocity",
+  "projectile motion",
+  "range and time of flight"
+ ],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-03",
+  "at": "2026-09-11T15:20:00+05:30"
+ }
+}

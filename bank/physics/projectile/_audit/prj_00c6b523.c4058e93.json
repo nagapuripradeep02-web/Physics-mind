@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_00c6b523",
+ "item_sha": "c4058e93c36ce64de2536c0d62cf822554246fa9dfc619c38e311fdb17135aff",
+ "auditor_option": null,
+ "auditor_value": "No — vertical components are equal (5 m/s), so both land at T = 1 s (g = 10), but closing the 15 m horizontal gap at 5√3 + 5 ≈ 13.66 m/s takes 1.098 s; they land about 1.34 m apart without meeting",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Re-computed: v_yA = v_yB = 5 m/s; T = 1 s; t_close = 15/13.66 = 1.098 s > T; same conclusion with g = 9.8 (T = 1.02 s). Every line follows; the mistake entry names the genuine error.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-01",
+  "at": "2026-09-11T19:36:04+05:30"
+ }
+}

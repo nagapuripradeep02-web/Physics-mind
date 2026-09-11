@@ -29,7 +29,7 @@ SYLLABUS_CLAUSE = ("Use only methods from the Indian Class 11-12 syllabus (NCERT
 
 
 def wid_of(tr):
-    return "kin_" + tr["sha"][:8]
+    return L.PREFIX + "_" + tr["sha"][:8]
 
 
 def transcripts():
@@ -138,7 +138,7 @@ SOLVE_SCHEMA = {"type": "OBJECT", "properties": {
     "method": {"type": "STRING", "description": "one line naming the method used"},
     "solvable": {"type": "BOOLEAN", "description": "false if the item cannot be solved from what is given"}},
     "required": ["final_value", "method", "solvable"]}
-SOLVE_PROMPT = ("Solve this Class 11 physics (kinematics) problem. " + SYLLABUS_CLAUSE +
+SOLVE_PROMPT = ("Solve this Class 11 physics (%s) problem. " % L.CFG["topic"] + SYLLABUS_CLAUSE +
                 " Work it out fully in your reasoning, then report only the final result. If the item has options, "
                 "give the option number (1-4) whose text equals your result; if none does, give 0 and your value. "
                 "For an assertion-reason item the options are: (1) both true and the reason explains the assertion; "
@@ -321,13 +321,23 @@ def cmd_chapter(a):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("role", choices=["solveB", "syllabus", "restate", "givens", "fidelity", "examplekey", "chapter"])
+    ap.add_argument("role", choices=["solveB", "syllabus", "restate", "givens", "fidelity", "examplekey", "chapter", "collect"])
+    ap.add_argument("--role", dest="collect_role", default="")
     ap.add_argument("--model", default="")
     ap.add_argument("--only", nargs="*")
     ap.add_argument("--force", action="store_true")
     ap.add_argument("--limit", type=int)
     ap.add_argument("--workers", type=int, default=6)
     a = ap.parse_args()
+    if a.role == "collect":
+        import roles
+        led = L.load(os.path.join(L.BANK, "_dispatch.json"), [])
+        roles.collect(led, a.collect_role, a.force)
+        L.save(os.path.join(L.BANK, "_dispatch.json"), led)      # a discredited syllabus batch is recorded
+        return
+    if not os.environ.get("BANK_ALLOW_API"):
+        sys.exit("%s would call a paid API. The bank runs on the subscription (audit.py plan --role %s / solve.py collect); "
+                 "set BANK_ALLOW_API=1 to override." % (a.role, {"restate": "reader", "givens": "reader", "examplekey": "reader"}.get(a.role, a.role)))
     globals()["cmd_" + a.role](a)
 
 

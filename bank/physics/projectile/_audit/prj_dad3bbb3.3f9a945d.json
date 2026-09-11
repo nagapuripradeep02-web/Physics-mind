@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_dad3bbb3",
+ "item_sha": "3f9a945d257f61f21f299294180e75e15bfc58bf89fd5def4597c57c2a354e42",
+ "auditor_option": 3,
+ "auditor_value": "Assertion true (B is in flight 4 s, so uᵧ = 20 m/s and H = 20²/(2×10) = 20 m); Reason false (B launches from a different point, so it has a nonzero horizontal component and its speed exceeds A's 20 m/s).",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "All lines check: u_A = 20 m/s, T_B = 4 s, uᵧ_B = 20 m/s, H = 20 m. Step 6 says B's horizontal speed is 'generally nonzero' and its speed 'need not' equal 20 m/s; since B starts from a different point and lands at A's point, the horizontal component is necessarily nonzero and B's speed is necessarily greater than 20 m/s. The hedge is weaker than the data allows but not false, and the conclusion (Reason false) is right. Mistake entry for option 4 checked: with u_B = 20 m/s, H = 20 sin²θ m < 20 m for θ < 90°.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-prj-02",
+  "at": "2026-09-11T19:53:07+05:30"
+ }
+}

@@ -1,0 +1,20 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "prj_2259e411",
+ "approach": "Use the 45° landing angle to link the vertical and horizontal velocity components, then get the height from the time of fall.",
+ "steps": [
+  {"text": "Find the vertical velocity built up in 3 s of fall.", "equation": "vy = gt = 9.8×3 = 29.4 m/s"},
+  {"text": "At a 45° landing angle the horizontal and vertical components are equal, since tan45° = 1, so the projection speed equals this vertical component.", "equation": "u = vy = 29.4 m/s"},
+  {"text": "Find the height using the vertical-fall formula for the same 3 s.", "equation": "h = ½gt² = ½×9.8×3² = 44.1 m"},
+  {"text": "Collect both results.", "equation": "u = 29.4 m/s, h = 44.1 m"}
+ ],
+ "final_answer": {"option": null, "value": "Height of tower = 44.1 m, speed of projection = 29.4 m/s"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Computing the height as h = u×t = 29.4×3 = 88.2 m instead of h = ½gt², missing the one-half factor and getting exactly double the correct height."}
+ ],
+ "concept_tags": ["horizontal projectile", "angle of landing", "time of flight"],
+ "difficulty": "medium",
+ "mistake_type_hint": "calculation",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-prj-01", "at": "2026-09-11T18:38:00+05:30"}
+}

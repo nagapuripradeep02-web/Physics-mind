@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_d479e276",
+ "item_sha": "307888ae74c7bff151874cfa419b3c1c2da7ae4f018d4e431bd9a76ff274a28e",
+ "auditor_option": null,
+ "auditor_value": "Only when the projectile is launched from and lands on the same horizontal level (zero net vertical displacement), with g constant and air resistance neglected.",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Matches my answer. One refinement, not filed as a finding: step 1 correctly says H = u²sin²θ/(2g) comes from vᵧ = 0 at the top, so H measured above the launch point holds for any landing level provided the peak is reached; the same-level condition is what T and R need. As a statement about the three formulas used together, step 4 is true.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-prj-02",
+  "at": "2026-09-11T19:54:29+05:30"
+ }
+}

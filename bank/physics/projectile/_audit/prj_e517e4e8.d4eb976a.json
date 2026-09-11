@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_e517e4e8",
+ "item_sha": "d4eb976ae68b5b603a1b7a58b31f4b77cf7981442f3206aa9a474b8462724c8b",
+ "auditor_option": null,
+ "auditor_value": "Ground frame: v = 6i + 20j + 30k m/s, |v| = sqrt(1336) = 36.6 m/s (car at x = 16 m, moving at 8 m/s, when fired; 4 s of flight). Relative to the car: -2i + 20j + 30k m/s, |v| = sqrt(1304) = 36.1 m/s",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Independent solve matches both the ground-frame vector and the car-relative vector. The solution uses every given quantity (from rest, 2 m/s^2, t = 4 s and 8 s, the bird's position, g = 10, y horizontal so z vertical) with the served values. The magnitudes 2*sqrt(334) = 36.55 and sqrt(1304) = 36.11 check, and the common-mistake number 10*sqrt(14) = 37.4 m/s is what measuring from the origin (v_x = 10) produces. The question's 'velocity of projection' is ambiguous between the two frames; the solution names both and labels each, which is acceptable handling. Step 8 says the gun is 'mounted on the car' while the question says a man holds it; the physics (gun moves with the car at 8 m/s) is unchanged, so not filed.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-prj-03",
+  "at": "2026-09-11T19:53:34+05:30"
+ }
+}

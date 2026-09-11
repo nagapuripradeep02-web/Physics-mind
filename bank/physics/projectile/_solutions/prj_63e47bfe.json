@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "prj_63e47bfe",
+ "approach": "Write the vertical displacement as a function of time, set it to minus the tower height since the ball lands below the launch point, and solve the quadratic for time.",
+ "steps": [
+  {"text": "Find the vertical component of the launch velocity.", "equation": "u_y = 50 sin30° = 25 ms⁻¹"},
+  {"text": "Write the vertical displacement equation, taking upward as positive, with the ground 70 m below the launch point.", "equation": "−70 = 25t − ½(10)t²"},
+  {"text": "Rearrange into standard quadratic form and simplify.", "equation": "5t² − 25t − 70 = 0, t² − 5t − 14 = 0"},
+  {"text": "Solve the quadratic. Only the positive root is a physical time.", "equation": "t = (5 ± 9)/2 = 7 s or −2 s, so t = 7 s"}
+ ],
+ "final_answer": {"option": 3, "value": "7 s"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 1, "text": "Taking the magnitude of the rejected negative root instead of discarding it gives 2 s."},
+  {"option": 2, "text": "Ignoring the tower height and finding only the time to return to the launch height, 2u_y/g, gives 5 s."}
+ ],
+ "concept_tags": ["projectile motion", "projectile from a height", "quadratic equation"],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-prj-05", "at": "2026-09-11T00:00:00+05:30"}
+}

@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_6e73404f",
+ "item_sha": "3d38b3476be9754c0faf22583ae7b5c7ce5831e25dbb8af9001300ce5e5173be",
+ "auditor_option": null,
+ "auditor_value": "(x, y) = (2v₀² tanθ / g, −2v₀² tan²θ / g), landing time t = 2v₀ tanθ / g",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Independent solve agrees: y = −½gt² meets the hill line y = −x tanθ at t = 2v₀ tanθ/g; numeric check (v₀ = 10, θ = 30°, g = 10) confirms x = 11.55, y = −6.67 lies on the slope. Sign convention matches the figure description.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 3,
+  "agent": "W03-U-prj-01",
+  "at": "2026-09-11T20:04:31+05:30"
+ }
+}

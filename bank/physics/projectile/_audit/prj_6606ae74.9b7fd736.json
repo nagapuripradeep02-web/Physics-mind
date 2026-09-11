@@ -1,0 +1,31 @@
+{
+ "question_id": "prj_6606ae74",
+ "item_sha": "9b7fd736592281a97f0bb0a393818868fb6377a0854122f6012ae3f68509ef9c",
+ "auditor_option": null,
+ "auditor_value": "d = 20 m (heights equal at t = 1 s, both balls 15 m above the ground; each ball covers 10 m horizontally).",
+ "findings": [
+  {
+   "grade": "harmful",
+   "field": "steps[1].equation",
+   "quote": "y_A(t) = 20 + 10t − 5t², y_B(t) = 20 − 5t²",
+   "note": "Ball A starts from the 10 m tower, so its height above the ground is 10 + 10t − 5t², not 20 + 10t − 5t². With the printed 20 the two heights differ by 10t and the balls would meet only at t = 0; the next line silently uses 10, so the printed equation is false and contradicts the step that follows it.",
+   "fix": "y_A(t) = 10 + 10t − 5t², y_B(t) = 20 − 5t²"
+  },
+  {
+   "grade": "weak",
+   "field": "common_mistakes[0].text",
+   "quote": "Treating the fall term as different for the two particles instead of letting it cancel leads to an incorrect collision time and a wrong horizontal distance.",
+   "note": "Both balls carry the same −½gt² term from the same instant, so no natural student error makes the fall terms differ; the entry names no concrete wrong step and no wrong number, so it does not describe a real mistake for this question.",
+   "fix": "Measuring each height from its own tower top instead of from the ground drops the 10 m difference in tower heights, giving 10t − 5t² = −5t² and t = 0, so no meeting time is found."
+  }
+ ],
+ "verdict": "harmful",
+ "question_defect": null,
+ "notes": "Final answer d = 20 m matches mine and steps 3 and 4 are correct; the defect is the false printed height equation in step 2 (tower A height doubled from 10 to 20).",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-04",
+  "at": "2026-09-11T19:34:18+05:30"
+ }
+}

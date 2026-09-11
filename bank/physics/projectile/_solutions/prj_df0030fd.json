@@ -1,0 +1,18 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "prj_df0030fd",
+ "approach": "Find the launch speed from the maximum jump distance, then find how many jumps fit in the given time and multiply by the distance per jump.",
+ "steps": [
+  {"text": "The farthest jump is the maximum range, reached at 45°, so use it to find the launch speed.", "equation": "R_max = u²/g, 1.6 = u²/10, u² = 16, u = 4 ms⁻¹"},
+  {"text": "Find the time spent in the air for one maximum-range jump, at 45°.", "equation": "T = 2u sin45°/g = 2(4)(1/√2)/10 = 0.5657 s"},
+  {"text": "The grasshopper spends no time on the ground, so the number of jumps in the given time is the total time divided by the time per jump.", "equation": "n = 10√2 / 0.5657 = 25"},
+  {"text": "Multiply the number of jumps by the distance covered per jump to get the total distance.", "equation": "distance = 25 × 1.6 = 40 m"}
+ ],
+ "final_answer": {"option": 4, "value": "40 m"},
+ "confidence": "sure",
+ "common_mistakes": [],
+ "concept_tags": ["projectile motion", "maximum range", "time of flight"],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-prj-05", "at": "2026-09-11T00:00:00+05:30"}
+}

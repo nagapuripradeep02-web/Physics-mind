@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_2c1d3911",
+ "item_sha": "d13b8e59273f50da9e101e886572dbc0a3ee7d73b190bf1eb683783fc37acecf",
+ "auditor_option": null,
+ "auditor_value": "(a) t = 2 s; (b) 10 m/s; (c) h = 5 m; (d) PQ = 20 m",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Answer agrees on all four parts; verified numerically that Q = (5√3, 15) lies on y = √3x and that the velocity (5√3, −5) is perpendicular to OB. Mistake entry checks: using tan30° for OB gives h + 10 = 10 − h, h = 0.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-02",
+  "at": "2026-09-11T19:34:42+05:30"
+ }
+}

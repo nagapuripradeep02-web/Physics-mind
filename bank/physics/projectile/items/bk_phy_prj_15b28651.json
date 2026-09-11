@@ -1,0 +1,93 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_prj_15b28651",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A projectile leaves the ground at a launch speed of 50 m/s, directed at 37° from the horizontal. Using g = 10 m/s², with sin 37° taken as 0.6 and cos 37° taken as 0.8, work out the projectile's velocity, its displacement, and its x–y position relative to the launch point, 2 seconds after being fired.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "projectile launched from ground level (origin)",
+   "g = 10 m/s²",
+   "sin 37° = 0.6",
+   "cos 37° = 0.8"
+  ],
+  "figure": {
+   "description": "The projectile starts at the origin of an x-y axis system and moves at 37° above the horizontal x-axis with initial speed 50 m/s, while gravity of magnitude 10 m/s² pulls it downward."
+  }
+ },
+ "solution": {
+  "approach": "Resolve the initial velocity into horizontal and vertical parts, then apply the constant horizontal velocity and accelerated vertical velocity equations at t = 2 s.",
+  "steps": [
+   {
+    "text": "Resolve the initial velocity into components using the given angle.",
+    "equation": "ux = 50×0.8 = 40 m/s, uy = 50×0.6 = 30 m/s"
+   },
+   {
+    "text": "Horizontal velocity stays constant; find the vertical velocity at t = 2 s using v = u − gt.",
+    "equation": "vx = 40 m/s, vy = 30 − 10×2 = 10 m/s"
+   },
+   {
+    "text": "Combine the two velocity components into the resultant velocity and its direction.",
+    "equation": "v = √(40²+10²) = 10√17 ≈ 41.2 m/s, at tan⁻¹(10/40) ≈ 14° above the horizontal",
+    "why_this_step": "The resultant speed and direction come from combining the unchanged horizontal part with the reduced vertical part."
+   },
+   {
+    "text": "Find the displacement components using x = uxt and y = uyt − ½gt², then their magnitude.",
+    "equation": "x = 40×2 = 80 m, y = 30×2 − ½×10×2² = 40 m, displacement = √(80²+40²) ≈ 89.4 m"
+   },
+   {
+    "text": "Collect the three results asked for.",
+    "equation": "velocity ≈ 41.2 m/s at ≈14° above horizontal; displacement ≈ 89.4 m; coordinates (80 m, 40 m)"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "Velocity ≈ 41.2 m/s at about 14° above the horizontal; displacement ≈ 89.4 m; coordinates (80 m, 40 m)."
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Assuming the speed stays 50 m/s since gravity does not change the horizontal part, without recomputing the vertical component 30 − 10×2 = 10 m/s; this gives 50 m/s instead of about 41.2 m/s."
+   },
+   {
+    "option": null,
+    "text": "Finding the vertical displacement as uy×t = 30×2 = 60 m and leaving out the −½gt² term, giving 60 m instead of 40 m."
+   }
+  ],
+  "concept_tags": [
+   "projectile motion",
+   "resolving velocity into components",
+   "equations of motion"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "149429ba4ad3a807c2b1b6aa288ec7875a46c5108027880640006d516c0a7f1b"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "b446a73f5471f0547b32cc997a755bea48ee96892035e484b9f5893672c06de8",
+  "audited_by": "W01-U-prj-01"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-01",
+  "at": "2026-09-11T18:32:00+05:30"
+ }
+}

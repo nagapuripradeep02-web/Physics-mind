@@ -1,0 +1,68 @@
+{
+ "wave": 2,
+ "role": "audit",
+ "chapter": "projectile",
+ "slice": 3,
+ "round": 0,
+ "items": [
+  {
+   "question_id": "prj_df9b881f",
+   "question_text": "A particle travels in the xy plane under a constant acceleration 'a' pointing along the negative y-direction. Its path is described by y = px − qx², with p and q both positive constants. Determine the particle's velocity, magnitude and direction, as it passes through the origin.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_db0a9de7",
+   "question_text": "A ball is thrown horizontally with a speed of 20 m/s from a point O at the top edge of a wedge-shaped incline. Point Q lies directly beneath O, and the sloped surface of the wedge falls away at 45° to the horizontal. The ball follows a curved path and lands on the sloped surface at point P, where the angle OPQ equals 45°.\n(a) Find the flight time of the ball before it lands on the sloped surface at P.\n(b) Find the straight-line distance OP that the ball covers from launch to landing on the slope.",
+   "options": [],
+   "figure_description": "O is the launch point at the top of a right-angled wedge; Q lies directly below O. The sloped face of the wedge runs down toward the base, meeting the horizontal base at 45°. The ball's curved path from O meets the slope at P, and the angle OPQ between line OP and the horizontal line QP is 45°."
+  },
+  {
+   "question_id": "prj_e797820c",
+   "question_text": "In the diagram, take g = 10 m/s².\n(a) Find how long after being launched the particle reaches the ground at point P.\n(b) Find the horizontal separation between Q and P.\n(c) Find the particle's velocity, magnitude and direction, when it reaches point P.",
+   "options": [],
+   "figure_description": "The particle is launched horizontally with velocity 40 m/s from point O, at the top of a vertical tower of height 45 m. Q is the point directly below O at the base of the tower on the ground. The particle follows a curved path from O and lands at point P on the ground, to the right of Q."
+  },
+  {
+   "question_id": "prj_51e4cf12",
+   "question_text": "For a fixed launch speed u, two different projection angles can give the same horizontal range. Prove that adding together the maximum heights reached for these two angles gives a result that does not depend on which of the two angles was used.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_e517e4e8",
+   "question_text": "A car starts from rest at the origin and accelerates at 2 m/s² along the positive x-axis. A man stands at the back of the car holding a gun. He fires a bullet at time t = 4 s, and this bullet meets a bird in flight at the later time t = 8 s. At that instant the bird's position vector is 40î + 80ĵ + 40k̂. Find the bullet's velocity of projection, given that the y-axis lies in the horizontal plane and g = 10 m/s².",
+   "options": [],
+   "figure_description": "A small illustration shows a man standing at the back of a moving car, arms outstretched, suggesting he holds a gun while the vehicle accelerates forward; no numeric values are marked on it."
+  },
+  {
+   "question_id": "prj_e3f4653c",
+   "question_text": "Assertion: Taking g = 10 m/s², the claim is that in projectile motion the particle's speed changes by 10 m/s during every second of flight. Reason: Acceleration is simply defined as the rate at which velocity changes.",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "If both Assertion and Reason are true and the Reason is the correct explanation of the Assertion."
+    },
+    {
+     "label": "(b)",
+     "text": "If both Assertion and Reason are true but the Reason is not the correct explanation of the Assertion."
+    },
+    {
+     "label": "(c)",
+     "text": "If the Assertion is true, but the Reason is false."
+    },
+    {
+     "label": "(d)",
+     "text": "If the Assertion is false but the Reason is true."
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_f688743c",
+   "question_text": "Using the launch data marked in the diagram, work out how long the projectile stays in the air and how far it travels along the slanted surface, taking g = 10 m/s².",
+   "options": [],
+   "figure_description": "An inclined plane rises to the right from a point on level ground at 30° to the horizontal. From that same point a projectile is launched at 20√2 m/s, its velocity making 45° with the horizontal, so that it is steeper than the incline by 15° and lands on the incline."
+  }
+ ]
+}

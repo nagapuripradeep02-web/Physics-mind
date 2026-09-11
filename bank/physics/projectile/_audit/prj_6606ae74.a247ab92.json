@@ -1,0 +1,24 @@
+{
+ "question_id": "prj_6606ae74",
+ "item_sha": "a247ab922aa794e8ec7a6e087c96ec6aeffb057903c700de74de632ce0441b7a",
+ "auditor_option": null,
+ "auditor_value": "d = 20 m (collision at t = 1 s)",
+ "findings": [
+  {
+   "grade": "weak",
+   "field": "common_mistakes[0].text",
+   "quote": "Treating the fall term as different for the two particles instead of letting it cancel leads to an incorrect collision time and a wrong horizontal distance.",
+   "note": "Vague: it names no concrete error a student makes and no number. Both balls carry the same −5t² term, so there is no natural way to make the fall terms differ; the real error on this question is on the horizontal step.",
+   "fix": "Using only ball A's horizontal motion for the gap gives d = 10×1 = 10 m; ball B also moves 10 m toward A in the same 1 s, so the gap closed is the sum, d = 20 m."
+  }
+ ],
+ "verdict": "weak",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-03",
+  "at": "2026-09-11T19:32:47+05:30"
+ }
+}

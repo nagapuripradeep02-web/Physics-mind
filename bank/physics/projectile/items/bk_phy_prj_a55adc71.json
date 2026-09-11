@@ -1,0 +1,119 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_prj_a55adc71",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "Two slopes OA and OB, tilted at 30° and 60° to the horizontal ground respectively, meet each other at point O, as illustrated. A particle is launched from point P with speed u = 10√3 m/s along a direction perpendicular to slope OA, and it strikes slope OB perpendicularly at point Q. Taking g = 10 m/s², work out the following.",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "The duration of the particle's flight."
+   },
+   {
+    "label": "b",
+    "asks": "The speed at which the particle hits plane OB."
+   },
+   {
+    "label": "c",
+    "asks": "How far above point O is point P located (call this vertical height h)."
+   },
+   {
+    "label": "d",
+    "asks": "The distance PQ."
+   }
+  ],
+  "conditions": [
+   "slope OA is inclined at 30° to the horizontal",
+   "slope OB is inclined at 60° to the horizontal",
+   "the two slopes meet at point O",
+   "particle launched from P with speed 10√3 m/s, perpendicular to slope OA",
+   "particle strikes slope OB perpendicularly at point Q",
+   "g = 10 m/s²"
+  ],
+  "figure": {
+   "description": "Two inclined lines meet at O on a horizontal ground line: OA rises to the upper left at 30° to the ground, OB rises to the upper right at 60° to the ground. Point P lies on OA, at height h above O. At P, the velocity u is drawn perpendicular to OA. Point Q lies on OB, with a right-angle mark showing the velocity there is perpendicular to OB. Tilted reference axes are shown near B, aligned along OB and OA."
+  }
+ },
+ "solution": {
+  "approach": "Set up horizontal-vertical coordinates, place P using its height above O, then use the perpendicular-landing condition on OB together with OB's line equation.",
+  "steps": [
+   {
+    "text": "Resolve the launch velocity, which is perpendicular to the 30° incline OA, into horizontal and vertical parts.",
+    "equation": "uₓ = 10√3 cos60° = 5√3 m/s, u_y = 10√3 sin60° = 15 m/s"
+   },
+   {
+    "text": "Write P's coordinates using its height h above O, since P lies on the 30° incline.",
+    "equation": "P = (−h√3, h)"
+   },
+   {
+    "text": "Write the velocity components at time t; the horizontal part stays fixed and the vertical part changes under gravity.",
+    "equation": "vₓ = 5√3 m/s, v_y = 15 − 10t"
+   },
+   {
+    "text": "Landing perpendicular to the 60° incline OB fixes the ratio of the velocity components at Q.",
+    "equation": "v_y/vₓ = −1/√3"
+   },
+   {
+    "text": "Solve for the time of flight (part a).",
+    "equation": "15 − 10t = −5, t = 2 s"
+   },
+   {
+    "text": "The speed at Q combines the two components (part b).",
+    "equation": "v = √((5√3)² + 5²) = 10 m/s"
+   },
+   {
+    "text": "Use the position at t = 2 s together with Q lying on OB (y = √3 x) to solve for h (part c).",
+    "equation": "h + 10 = √3 × √3(10 − h), h = 5 m"
+   },
+   {
+    "text": "Find P and Q and take the distance between them. Restating every part: time of flight 2 s, speed at Q 10 m/s, height h of P is 5 m, distance PQ is 20 m.",
+    "equation": "P = (−5√3, 5), Q = (5√3, 15), PQ = √((10√3)² + 10²) = 20 m"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) t = 2 s, (b) v = 10 m/s (perpendicular to OB), (c) h = 5 m, (d) PQ = 20 m"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Using the 30° angle in OB's line equation instead of the 60° angle, which gives a wrong height h = 0 m for part (c)."
+   }
+  ],
+  "concept_tags": [
+   "projectile on an incline",
+   "resolving velocity perpendicular to a plane",
+   "coordinate geometry"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "2c1d391182d02344c793646ffda0e545644a21a27233fe1800a76a97f5e21e6c"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "d13b8e59273f50da9e101e886572dbc0a3ee7d73b190bf1eb683783fc37acecf",
+  "audited_by": "W01-U-prj-02"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-02",
+  "at": "2026-09-11T11:55:00+05:30"
+ }
+}

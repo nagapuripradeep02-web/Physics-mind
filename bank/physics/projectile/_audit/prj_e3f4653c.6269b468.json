@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_e3f4653c",
+ "item_sha": "6269b4687872f05060d6ea6cfcaa240fe087bc993de43ebc7768f3a4c3c64691",
+ "auditor_option": 4,
+ "auditor_value": "Assertion false (the velocity vector changes by 10 m/s each second, the speed √(vₓ² + vᵧ²) does not, e.g. 20 → 12.4 → 10.4 m/s for u = 20 m/s at 60°), Reason true",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Independent solve agrees: only the vertical component changes by g per second; speed change per second is largest at the ends of the flight and smallest near the top, as step 4 states. Both distractor entries produce the option they point at.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 3,
+  "agent": "W03-U-prj-01",
+  "at": "2026-09-11T20:06:29+05:30"
+ }
+}

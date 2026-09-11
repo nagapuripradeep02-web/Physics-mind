@@ -1,0 +1,31 @@
+{
+ "question_id": "prj_7004b298",
+ "item_sha": "fb76defb602c4d190f298e3aa833d64823d6d15a7eb3c1a45f11cc7e364e33cd",
+ "auditor_option": null,
+ "auditor_value": "14√3/g ≈ 2.42 m (g = 10 m/s²), ≈ 2.47 m (g = 9.8 m/s²); at t = √(v₁v₂)/g = 2√3/g ≈ 0.35 s",
+ "findings": [
+  {
+   "grade": "wrong",
+   "field": "steps[0].text",
+   "quote": "taking rightward as positive for the first and leftward as positive for the second",
+   "note": "The text describes two different sign conventions, one per particle, but the equation on the same line uses a single axis (rightward positive) for both, which is what a dot product requires. If leftward were positive for the second particle its x-component would be +v₂, not −v₂, and the dot product −v₁v₂ + g²t² would not follow.",
+   "fix": "Write the velocity vectors of the two particles in one set of axes, rightward and upward positive; the first particle moves rightward and the second leftward."
+  },
+  {
+   "grade": "weak",
+   "field": "common_mistakes[0].text",
+   "quote": "Adding the speeds instead of multiplying them under the square root, using t = (v₁ + v₂)/g",
+   "note": "The cause is stated in a muddled way: 'adding under the square root' would give t = √7/g ≈ 0.26 s, while the formula actually named, t = (v₁ + v₂)/g, has no square root and does give 0.7 s. The numbers follow only from the formula, not from the wording.",
+   "fix": "Using t = (v₁ + v₂)/g in place of t = √(v₁v₂)/g gives a wrong time of 0.7 s and a wrong distance of 4.9 m (with g = 10 m/s²)."
+  }
+ ],
+ "verdict": "wrong",
+ "question_defect": null,
+ "notes": "Final answer and every equation line agree with my own solution. The vector line reuses the symbols v₁, v₂ both for the vectors and for the speeds, which the fix above also removes by naming the axes.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-prj-02",
+  "at": "2026-09-11T19:52:43+05:30"
+ }
+}

@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_872ec629",
+ "item_sha": "9bc12b2e27ea619db6ffef6d8fda0bd0988268fca2ca0f34a38c2c0cb7071eeb",
+ "auditor_option": 1,
+ "auditor_value": "Option (a): the acceleration is g downward, constant in magnitude and direction, at every point including the highest point; (b) is false because the acceleration is still g at the top; (c) is false because a ⊥ v at the top.",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "All statements checked; both mistake entries point at the correct options and describe genuine confusions.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-04",
+  "at": "2026-09-11T19:34:53+05:30"
+ }
+}

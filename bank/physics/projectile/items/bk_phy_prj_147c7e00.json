@@ -1,0 +1,81 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_prj_147c7e00",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "mcq_single",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "A train travels along a straight track at 30 ms⁻¹. Someone on the train throws a ball at 30 ms⁻¹, directed at 45° above the horizontal and perpendicular to the train's motion. Calculate the separation between the spot on the train where the ball left and the spot on the ground where it lands.",
+  "options": {
+   "1": "90 m",
+   "2": "90√3 m",
+   "3": "60 m",
+   "4": "60√3 m"
+  },
+  "parts": null,
+  "conditions": [
+   "train moves at constant 30 ms⁻¹ along the track",
+   "ball thrown perpendicular to the train's direction of motion",
+   "ball thrown at 45° above the horizontal"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "The ball keeps the train's velocity along the track, so only the sideways and vertical motion from the throw separate it from the point on the train where it launched.",
+  "steps": [
+   {
+    "text": "Split the thrown velocity, given perpendicular to the train's motion at 45° above horizontal, into its sideways and vertical parts.",
+    "equation": "v_sideways = 30 cos45°, v_up = 30 sin45°, both equal 30/√2 ms⁻¹"
+   },
+   {
+    "text": "Along the track, the ball moves with the train's own speed the whole time, so it stays directly alongside the point on the train where it was thrown; that separation stays zero.",
+    "equation": "along-track separation = 0"
+   },
+   {
+    "text": "Find the time of flight from the vertical motion, using g = 10 ms⁻² and landing back at the same height it was thrown from.",
+    "equation": "t = 2v_up/g = 2(30/√2)/10 = 3√2 s"
+   },
+   {
+    "text": "The only separation from the launch point on the train is the sideways displacement, since the along-track and vertical net displacements are both zero.",
+    "equation": "distance = v_sideways × t = (30/√2)(3√2) = 90 m"
+   }
+  ],
+  "final_answer": {
+   "option": 1,
+   "value": "90 m"
+  },
+  "common_mistakes": [],
+  "concept_tags": [
+   "projectile motion",
+   "relative velocity",
+   "vectors"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "aa74029b726d4f8b40158e4f60dae80e55428213140f7ebd70fd4b875be21b68"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": false,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "cd2326bed2a8ca9ead06808bf6a810959497245544b6b58ee439f60331f21f5c",
+  "audited_by": "W01-U-prj-05"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-05",
+  "at": "2026-09-11T00:00:00+05:30"
+ }
+}

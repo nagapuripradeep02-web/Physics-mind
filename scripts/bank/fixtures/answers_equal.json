@@ -474,6 +474,77 @@
    "b": "5 m²/s³",
    "expect": false,
    "why": "unknown unit, different numbers"
+  },
+  {
+   "a": "3.54 m/s",
+   "b": "5/√2 m/s",
+   "kind": "auto",
+   "expect": true,
+   "why": "a bare root after a slash: 5/√2 = 3.536"
+  },
+  {
+   "a": "about 3.54 m/s, running toward the coach",
+   "b": "5/√2 ms⁻¹",
+   "kind": "auto",
+   "expect": true,
+   "why": "qualifier + unit spelt ms⁻¹"
+  },
+  {
+   "a": "2.31 s, 53.33 m",
+   "b": "2.31 s, 53.33 mm",
+   "kind": "auto",
+   "expect": null,
+   "why": "m vs mm: the comparator defers to the judge; the hint rule forgives a misprint",
+   "judge": true
+  },
+  {
+   "a": "t = u/(g sinθ)",
+   "b": "t = u / (g sin θ)",
+   "kind": "auto",
+   "expect": true,
+   "why": "sinθ without a space is sin(θ), not s·i·n·θ"
+  },
+  {
+   "a": "t = u/(g sin θ)",
+   "b": "(u cosec θ)/g",
+   "kind": "auto",
+   "expect": true,
+   "why": "cosec is csc"
+  },
+  {
+   "a": "v = 50 m/s at 37° below the horizontal",
+   "b": "speed = 50 m/s directed 37° below the horizontal",
+   "kind": "auto",
+   "expect": true,
+   "why": "a word label before = is stripped like a symbol"
+  },
+  {
+   "a": "(a) t ≈ 4.47 s; (b) x ≈ 89.44 m; (c) v ≈ 48.99 m/s at about 65.9° below the horizontal",
+   "b": "(a) t = 2√5 ≈ 4.47 s, (b) horizontal distance = 40√5 ≈ 89.44 m, (c) landing speed = 20√6 ≈ 48.99 m/s at ≈65.9° below the horizontal",
+   "kind": "auto",
+   "expect": true,
+   "why": "exact form ≈ decimal per part, labels stripped"
+  },
+  {
+   "a": "(a) velocity ≈ 44.72 m/s at about 26.6° above the horizontal; (b) displacement = 100 m at about 36.9° above the horizontal",
+   "b": "(a) 20√2 m/s at angle tan⁻¹(1/2) with horizontal (b) 100 m",
+   "kind": "auto",
+   "expect": false,
+   "why": "44.72 m/s vs 20√2 m/s: the magnitudes differ although the angle agrees; both spans must match"
+  },
+  {
+   "a": "(a) 0 (the relative acceleration is zero), (b) 20 m/s, (c) 40 m",
+   "b": "(a) 0 (both have acceleration g downward), (b) 20 m/s horizontally, directed opposite to the horizontal component of the second particle's velocity (u₁ − u₂ = −20 î with u₂ = 20 î + 20 ĵ), (c) 40 m",
+   "kind": "auto",
+   "expect": true,
+   "why": "a parenthetical explanation is not a second value; the two-span rule counts values only"
+  },
+  {
+   "a": "44.72 m/s at 26.6° above the horizontal",
+   "b": "28.28 m/s at 45° below the horizontal",
+   "kind": "auto",
+   "expect": false,
+   "why": "two values on each side, neither matches"
   }
  ]
 }

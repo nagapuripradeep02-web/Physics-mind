@@ -1,0 +1,154 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter": "projectile",
+ "slice": 8,
+ "round": 0,
+ "agent_label": "W01-U-prj-08",
+ "items": [
+  {
+   "question_id": "prj_f6e5b7b0",
+   "audit_file": "prj_f6e5b7b0.7faab09a.json",
+   "item_sha": "7faab09a8726551f1b6b5d5d22c9f130bc17fee4723f8a3d394f94efa085494f",
+   "question_text": "A ball leaves the ground moving at 20√2 m/s, directed 45° above the horizontal. Take g = 10 m/s². Find the time (or times) at which it is 15 m above the ground.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Write the height above ground as a function of time and solve for the times at which it equals 15 m.",
+    "steps": [
+     {
+      "text": "Find the vertical component of the launch velocity.",
+      "equation": "v_y = u sin45° = 20√2×(√2/2) = 20 m/s"
+     },
+     {
+      "text": "Write the height as a function of time.",
+      "equation": "y(t) = v_y t − ½gt² = 20t − 5t²"
+     },
+     {
+      "text": "Set the height equal to 15 m and simplify to a quadratic.",
+      "equation": "20t − 5t² = 15 → t² − 4t + 3 = 0"
+     },
+     {
+      "text": "Factor the quadratic to find both times the particle is at this height.",
+      "equation": "(t − 1)(t − 3) = 0 → t = 1 s or t = 3 s"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "t = 1 s (going up) and t = 3 s (coming down)"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Reporting only t = 1 s and stopping there misses the second passage through 15 m as the particle falls back down."
+     }
+    ],
+    "concept_tags": [
+     "projectile motion",
+     "height as a function of time",
+     "quadratic equation"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "prj_f688743c",
+   "audit_file": "prj_f688743c.b8e73558.json",
+   "item_sha": "b8e73558f4bca3314d81234129d9ad5922bbc98e6b976726cc12dc8c0cdde947",
+   "question_text": "Using the launch data marked in the diagram, work out how long the projectile stays in the air and how far it travels along the slanted surface, taking g = 10 m/s².",
+   "options": [],
+   "figure_description": "An inclined plane rises to the right from a point on level ground at 30° to the horizontal. From that same point a projectile is launched at 20√2 m/s, its velocity making 45° with the horizontal, so that it is steeper than the incline by 15° and lands on the incline.",
+   "solution": {
+    "approach": "Resolve the velocity and gravity along and perpendicular to the incline; the projectile lands on the incline when the perpendicular displacement returns to zero.",
+    "steps": [
+     {
+      "text": "In the figure the velocity is drawn steeper than the incline. It makes 45° with the horizontal while the incline makes 30° with the horizontal, both measured from the same point at the base of the incline. So the velocity makes 45° minus 30° with the incline surface, and the projectile lands further up the slope.",
+      "equation": "45° − 30° = 15°",
+      "why_this_step": "The angle between the velocity and the incline surface, not the angle with the horizontal, decides the motion along the incline."
+     },
+     {
+      "text": "Take axes along the incline and perpendicular to it. Resolve the initial velocity into these two directions, and resolve gravity the same way.",
+      "equation": "along incline: u cos15° ; perpendicular: u sin15° ; g along incline: g sin30° ; g perpendicular: g cos30°"
+     },
+     {
+      "text": "The projectile returns to the incline surface when the perpendicular displacement becomes zero again. This gives the time of flight.",
+      "equation": "T = 2u sin15° / (g cos30°) = 2(20√2)sin15° / (10cos30°) ≈ 1.69 s"
+     },
+     {
+      "text": "Range along the incline is the along-incline distance covered in time T, using the along-incline part of gravity that slows the climb. Time of flight and range along the incline are both stated below.",
+      "equation": "T = 4(3−√3)/3 s ≈ 1.69 s ; R = 160(√3−1)/3 m ≈ 39.04 m"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "T ≈ 1.69 s, R ≈ 39.04 m"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Ignoring the incline and using the flat-ground formulas T = 2u sinθ/g and R = u² sin2θ/g gives T = 4 s and R = 80 m, missing that the ground here is sloped."
+     },
+     {
+      "option": null,
+      "text": "Using the angle sum 45°+30° instead of the difference 45°−30° gives T ≈ 6.31 s and R ≈ 145.71 m, which is the answer for the projectile fired down the incline, not up it."
+     }
+    ],
+    "concept_tags": [
+     "projectile motion",
+     "inclined plane",
+     "time of flight",
+     "range up an incline"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "prj_f6e5b7b0",
+   "audit_file": "prj_f6e5b7b0.ff7743a1.json",
+   "item_sha": "ff7743a195e70ef1b442fe0dc30c9c9404c74d74951f8b5ff43d7d0139c8dbf7",
+   "question_text": "A ball leaves the ground moving at 20√2 m/s, directed 45° above the horizontal. Take g = 10 m/s². Find the time (or times) at which it is 15 m above the ground.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Write the height above ground as a function of time and solve for the times at which it equals 15 m.",
+    "steps": [
+     {
+      "text": "Find the vertical component of the launch velocity.",
+      "equation": "v_y = u sin45° = 20√2×(√2/2) = 20 m/s"
+     },
+     {
+      "text": "Write the height as a function of time.",
+      "equation": "y(t) = v_y t − ½gt² = 20t − 5t²"
+     },
+     {
+      "text": "Set the height equal to 15 m and simplify to a quadratic.",
+      "equation": "20t − 5t² = 15 → t² − 4t + 3 = 0"
+     },
+     {
+      "text": "Factor the quadratic to find both times the particle is at this height.",
+      "equation": "(t − 2)(t − 3) = 0 → t = 1 s or t = 3 s"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "t = 2 s (going up) and t = 3 s (coming down)"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Reporting only t = 1 s and stopping there misses the second passage through 15 m as the particle falls back down."
+     }
+    ],
+    "concept_tags": [
+     "projectile motion",
+     "height as a function of time",
+     "quadratic equation"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "application"
+   }
+  }
+ ]
+}

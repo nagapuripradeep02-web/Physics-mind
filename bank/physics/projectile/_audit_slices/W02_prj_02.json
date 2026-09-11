@@ -1,0 +1,650 @@
+{
+ "wave": 2,
+ "role": "audit",
+ "chapter": "projectile",
+ "slice": 2,
+ "round": 0,
+ "agent_label": "W02-U-prj-02",
+ "items": [
+  {
+   "question_id": "prj_7004b298",
+   "audit_file": "prj_7004b298.fb76defb.json",
+   "item_sha": "fb76defb602c4d190f298e3aa833d64823d6d15a7eb3c1a45f11cc7e364e33cd",
+   "question_text": "Two particles start from the same point above a tower and, at that instant, move horizontally in opposite directions with speeds v₁ = 3 m/s and v₂ = 4 m/s, falling freely under gravity g afterward. Find how far apart they are at the moment their two velocity vectors are perpendicular to each other.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Write each particle's velocity vector as a function of time, set the dot product to zero for perpendicularity, then find the horizontal separation at that time, since both fall equally.",
+    "steps": [
+     {
+      "text": "Write the velocity vectors of the two particles, taking rightward as positive for the first and leftward as positive for the second.",
+      "equation": "v₁ = (v₁, −gt), v₂ = (−v₂, −gt)"
+     },
+     {
+      "text": "Set the dot product of the two velocity vectors to zero for perpendicularity.",
+      "equation": "−v₁v₂ + g²t² = 0"
+     },
+     {
+      "text": "Solve for the time at which the vectors are perpendicular.",
+      "equation": "t = √(v₁v₂)/g = √(3×4)/g = 2√3/g s; with g = 10 m/s², t = 2√3/10 = √3/5 ≈ 0.35 s; with g = 9.8 m/s², t ≈ 0.35 s"
+     },
+     {
+      "text": "Since both particles fall the same vertical distance from the same height, the distance between them is purely horizontal, equal to the sum of their horizontal speeds times this time.",
+      "equation": "distance = (v₁ + v₂)t = (v₁ + v₂)√(v₁v₂)/g = 7×2√3/g = 14√3/g m; with g = 10 m/s², d = 14√3/10 = 7√3/5 ≈ 2.42 m; with g = 9.8 m/s², d ≈ 2.47 m ≈ 2.5 m"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "distance = 14√3/g m: ≈ 2.42 m with g = 10 m/s² (t = 2√3/g ≈ 0.35 s), ≈ 2.47 m ≈ 2.5 m with g = 9.8 m/s² (t ≈ 0.35 s)"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Adding the speeds instead of multiplying them under the square root, using t = (v₁ + v₂)/g, gives a wrong time of 0.7 s and a wrong distance of 4.9 m."
+     }
+    ],
+    "concept_tags": [
+     "projectile motion",
+     "relative velocity",
+     "perpendicular vectors"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "prj_8ccf08b9",
+   "audit_file": "prj_8ccf08b9.74dac546.json",
+   "item_sha": "74dac546bdec9bc331f9bae85737ea1a2c951fbfed11d9f18885c9e570ea2445",
+   "question_text": "Assertion: When the time of flight of a projectile is doubled, its maximum height increases to four times its earlier value. Reason: For a projectile, the maximum height H is proportional to the square of the time of flight T, that is H ∝ T².",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "If both Assertion and Reason are true and the Reason is the correct explanation of the Assertion."
+    },
+    {
+     "label": "(b)",
+     "text": "If both Assertion and Reason are true but the Reason is not the correct explanation of the Assertion."
+    },
+    {
+     "label": "(c)",
+     "text": "If the Assertion is true, but the Reason is false."
+    },
+    {
+     "label": "(d)",
+     "text": "If the Assertion is false but the Reason is true."
+    }
+   ],
+   "figure_description": "",
+   "solution": {
+    "approach": "Time of flight and maximum height both come from the same vertical launch speed, so height is proportional to the square of the time of flight.",
+    "steps": [
+     {
+      "text": "Write time of flight and maximum height in terms of the vertical component of the launch velocity.",
+      "equation": "T = 2uᵧ/g, H = uᵧ²/(2g)"
+     },
+     {
+      "text": "Solve the time of flight equation for the vertical launch speed and substitute it into the height formula.",
+      "equation": "uᵧ = gT/2, so H = (gT/2)²/(2g) = gT²/8"
+     },
+     {
+      "text": "With g fixed, this shows the maximum height is proportional to the square of the time of flight.",
+      "equation": "H ∝ T²"
+     },
+     {
+      "text": "Doubling the time of flight squares that factor of two inside the height formula.",
+      "equation": "H_new/H_old = (T_new/T_old)² = 2² = 4"
+     },
+     {
+      "text": "So doubling the time of flight makes the maximum height four times as large, and the Reason (H ∝ T²) is exactly the relation that gives this result, so both statements are true and the Reason explains the Assertion."
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "If both Assertion and Reason are true and the Reason is the correct explanation of the Assertion."
+    },
+    "common_mistakes": [
+     {
+      "option": 3,
+      "text": "Assuming H ∝ T² is false because height is usually written in terms of launch speed and angle rather than directly in terms of time of flight."
+     },
+     {
+      "option": 2,
+      "text": "Accepting both statements as true but treating H ∝ T² as a side fact rather than the direct algebraic reason for the fourfold increase."
+     }
+    ],
+    "concept_tags": [
+     "time of flight",
+     "maximum height",
+     "proportionality"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "prj_dad3bbb3",
+   "audit_file": "prj_dad3bbb3.3f9a945d.json",
+   "item_sha": "3f9a945d257f61f21f299294180e75e15bfc58bf89fd5def4597c57c2a354e42",
+   "question_text": "Assertion: Object A is thrown straight upward from a point on the ground. At the same instant, object B is launched from a different point on the ground and follows a curved projectile path, as pictured. Object A comes back down to the ground after 4 seconds, and at that same instant object B lands on object A. For this to happen, the peak height H reached by B works out to be 20 m. (Take g = 10 m/s².) Reason: For this situation to occur, the two objects must be launched with equal speeds.",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "If both Assertion and Reason are true and the Reason is the correct explanation of the Assertion."
+    },
+    {
+     "label": "(b)",
+     "text": "If both Assertion and Reason are true but the Reason is not the correct explanation of the Assertion."
+    },
+    {
+     "label": "(c)",
+     "text": "If the Assertion is true, but the Reason is false."
+    },
+    {
+     "label": "(d)",
+     "text": "If the Assertion is false but the Reason is true."
+    }
+   ],
+   "figure_description": "B starts from a point on the ground and follows a parabolic path that climbs to a peak height H before coming back down to ground level exactly at the point where A is thrown straight up from and returns to.",
+   "solution": {
+    "approach": "Particle A's flight time fixes its own launch speed; requiring B to land on A at the same instant fixes only B's vertical launch speed, not B's full speed.",
+    "steps": [
+     {
+      "text": "Particle A is thrown straight up and returns to the ground in 4 s, so find its launch speed from the time of flight.",
+      "equation": "T_A = 2u_A/g ⇒ u_A = gT_A/2 = 10×4/2 = 20 m/s"
+     },
+     {
+      "text": "Particle B collides with A at the instant A returns to the ground, so B is also in flight for 4 s.",
+      "equation": "T_B = 4 s"
+     },
+     {
+      "text": "Find the vertical component of B's launch velocity from its own time of flight, using the same relation as for A.",
+      "equation": "T_B = 2uᵧ_B/g ⇒ uᵧ_B = gT_B/2 = 10×4/2 = 20 m/s"
+     },
+     {
+      "text": "The maximum height of a projectile depends only on the vertical component of its launch velocity.",
+      "equation": "H = uᵧ_B²/(2g) = 20²/(2×10) = 20 m"
+     },
+     {
+      "text": "This confirms the Assertion: H = 20 m, and this value does not depend on B's horizontal launch speed, which the given data never fixes."
+     },
+     {
+      "text": "Because B's horizontal speed is unknown and generally nonzero, B's full launch speed need not equal A's 20 m/s, so the Reason is false even though the Assertion is true.",
+      "why_this_step": "Only the vertical launch component is pinned down by the 4 s flight time; the horizontal component is free."
+     }
+    ],
+    "final_answer": {
+     "option": 3,
+     "value": "If the Assertion is true, but the Reason is false."
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Assuming B must be launched at exactly A's speed because the two particles meet at the same point at the same time, which makes the Reason look correct."
+     },
+     {
+      "option": 4,
+      "text": "Accepting the Reason as u_B = 20 m/s and computing H = u_B² sin²θ/(2g), which is below 20 m for any angle under 90°, so wrongly rejecting the Assertion."
+     }
+    ],
+    "concept_tags": [
+     "projectile motion",
+     "time of flight",
+     "maximum height"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "prj_c04cc4d5",
+   "audit_file": "prj_c04cc4d5.1db31640.json",
+   "item_sha": "1db31640dc08c5520a8952576f98e65c2f386d3099545d72d3d48b56b3e4ee8e",
+   "question_text": "Assertion: Two objects are launched as projectiles; one climbs to a maximum height of 4H while the other climbs to a maximum height of H. For the two to land the same horizontal distance away, their horizontal velocity components need to be in a 1 : 2 ratio. Reason: A projectile's horizontal range equals its horizontal velocity component multiplied by its total time of flight.",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "If both Assertion and Reason are true and the Reason is the correct explanation of the Assertion."
+    },
+    {
+     "label": "(b)",
+     "text": "If both Assertion and Reason are true but the Reason is not the correct explanation of the Assertion."
+    },
+    {
+     "label": "(c)",
+     "text": "If the Assertion is true, but the Reason is false."
+    },
+    {
+     "label": "(d)",
+     "text": "If the Assertion is false but the Reason is true."
+    }
+   ],
+   "figure_description": "",
+   "solution": {
+    "approach": "Equal heights fix the ratio of vertical launch speeds, which fixes the ratio of flight times, and equal ranges then fix the ratio of horizontal launch speeds.",
+    "steps": [
+     {
+      "text": "Write the maximum height of each projectile in terms of its own vertical launch speed.",
+      "equation": "H₁ = uᵧ₁²/(2g) = 4H, H₂ = uᵧ₂²/(2g) = H"
+     },
+     {
+      "text": "Divide the two height equations to get the ratio of vertical launch speeds.",
+      "equation": "uᵧ₁²/uᵧ₂² = 4 ⇒ uᵧ₁/uᵧ₂ = 2"
+     },
+     {
+      "text": "Time of flight is proportional to the vertical launch speed, so this gives the ratio of the two times of flight.",
+      "equation": "T₁/T₂ = uᵧ₁/uᵧ₂ = 2"
+     },
+     {
+      "text": "Range equals the horizontal launch speed times the time of flight, and the Reason states exactly this formula; set the two ranges equal.",
+      "equation": "R = uₓ·T, so uₓ₁·T₁ = uₓ₂·T₂"
+     },
+     {
+      "text": "Substitute T₁ = 2T₂ and solve for the ratio of horizontal launch speeds.",
+      "equation": "uₓ₁·2T₂ = uₓ₂·T₂ ⇒ uₓ₁/uₓ₂ = 1/2"
+     },
+     {
+      "text": "This ratio of 1 : 2 matches the Assertion exactly, and the Reason (R = uₓ·T) is the very formula used to derive it, so both statements are true and the Reason explains the Assertion."
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "If both Assertion and Reason are true and the Reason is the correct explanation of the Assertion."
+    },
+    "common_mistakes": [
+     {
+      "option": 4,
+      "text": "Taking the ratio of horizontal speeds equal to the ratio of vertical speeds instead of its reciprocal, giving 2 : 1 instead of 1 : 2."
+     },
+     {
+      "option": 2,
+      "text": "Accepting both statements as true but treating R = uₓ×T as unrelated background information rather than the formula that proves the ratio."
+     }
+    ],
+    "concept_tags": [
+     "range",
+     "maximum height",
+     "time of flight"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "prj_9722adfb",
+   "audit_file": "prj_9722adfb.a33ee7cb.json",
+   "item_sha": "a33ee7cb82bf8ad66514b31871c5cc22944daedef57a35cb22a74e3e7247b3c6",
+   "question_text": "Assertion: In the x-y plane a particle moves with an unchanging acceleration whose two components aₓ and aᵧ are both non-zero. Such a particle can never trace a parabola. Reason: A projectile has no acceleration along the horizontal.",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "If both Assertion and Reason are true and the Reason is the correct explanation of the Assertion."
+    },
+    {
+     "label": "(b)",
+     "text": "If both Assertion and Reason are true but the Reason is not the correct explanation of the Assertion."
+    },
+    {
+     "label": "(c)",
+     "text": "If the Assertion is true, but the Reason is false."
+    },
+    {
+     "label": "(d)",
+     "text": "If the Assertion is false but the Reason is true."
+    }
+   ],
+   "figure_description": "",
+   "solution": {
+    "approach": "A parabolic path only needs a constant acceleration that is not along the velocity; it does not need the acceleration's components to vanish in one particular pair of axes.",
+    "steps": [
+     {
+      "text": "Choose x and y axes tilted away from the direction of the constant acceleration, so both its components aₓ and aᵧ are nonzero in these axes."
+     },
+     {
+      "text": "Give the particle an initial velocity that is not along the acceleration direction, and follow its path using these tilted axes."
+     },
+     {
+      "text": "The traced path is still the same physical parabola it would be in axes aligned with the acceleration; only its equation looks different when written in the tilted axes."
+     },
+     {
+      "text": "So a particle can still have a parabolic path even when neither aₓ nor aᵧ is zero, which makes the Assertion false."
+     },
+     {
+      "text": "The Reason is a true statement about projectile motion described in axes aligned with gravity, but a true Reason does not make a false Assertion true.",
+      "why_this_step": "The Assertion is about the shape of the path, which does not depend on the choice of axes."
+     }
+    ],
+    "final_answer": {
+     "option": 4,
+     "value": "If the Assertion is false but the Reason is true."
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Assuming the shape of the path depends on which axes are chosen, so nonzero aₓ and aᵧ are mistaken for proof that the path cannot be a parabola."
+     },
+     {
+      "option": 2,
+      "text": "Treating the Assertion as true because it resembles the usual projectile description, without checking it against a tilted choice of axes."
+     }
+    ],
+    "concept_tags": [
+     "parabolic path",
+     "constant acceleration",
+     "choice of axes"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "prj_3110e261",
+   "audit_file": "prj_3110e261.2911e891.json",
+   "item_sha": "2911e8916ee15f95a0c557f95db3851fb7375f731531eedc5c5032c822b0d27e",
+   "question_text": "A projectile is aimed at a target that lies in the same horizontal level as the launch point. Launched at elevation α, it lands a cm short of the target; launched at elevation β with the same launch speed, it overshoots the target by b cm. Prove that the elevation angle that would hit the target exactly is ½ sin⁻¹[(b sin 2α + a sin 4β)/(a + b)].",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Both shots share the same range formula and the same unknown target range R; eliminating u and R between the two elevation equations gives the elevation that hits the mark.",
+    "steps": [
+     {
+      "text": "Let R be the true distance to the mark. At elevation α the shot falls short by a, so the range achieved is R − a; at elevation β it goes b beyond, so the range achieved is R + b.",
+      "equation": "u² sin2α/g = R − a, u² sin2β/g = R + b"
+     },
+     {
+      "text": "Divide the two equations to eliminate u, then solve for R in terms of a, b, α and β.",
+      "equation": "R = (a sin2β + b sin2α)/(sin2β − sin2α)"
+     },
+     {
+      "text": "The correct elevation γ gives range R with the same speed, so its sine of double angle equals gR divided by u². Use u² = g(R − a)/sin2α from the first equation.",
+      "equation": "sin2γ = R sin2α/(R − a)"
+     },
+     {
+      "text": "Substitute R from the earlier step and simplify the fraction to reach the stated result.",
+      "equation": "sin2γ = (b sin2α + a sin2β)/(a + b), so γ = ½ sin⁻¹[(b sin2α + a sin2β)/(a+b)]"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "γ = ½ sin⁻¹[(b sin2α + a sin2β)/(a+b)]"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Swapping a and b in the final formula, writing (a sin2α + b sin2β)/(a+b) instead, gives a different value for a general pair of angles and distances."
+     }
+    ],
+    "concept_tags": [
+     "projectile motion",
+     "range formula",
+     "algebraic elimination"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "prj_70ed35c7",
+   "audit_file": "prj_70ed35c7.b858c990.json",
+   "item_sha": "b858c990f0bc5fd14b5945fcc02263c5eb8e4b79c875b8d170cbdd6514065735",
+   "question_text": "A projectile launched at angle θ, with a certain speed, covers a horizontal range that equals half the maximum range obtainable at that same speed. What is the angle θ?",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "15°"
+    },
+    {
+     "label": "(b)",
+     "text": "30°"
+    },
+    {
+     "label": "(c)",
+     "text": "60°"
+    },
+    {
+     "label": "(d)",
+     "text": "not enough information is given"
+    }
+   ],
+   "figure_description": "",
+   "solution": {
+    "approach": "Set the range formula at angle θ equal to half the maximum range and solve for θ.",
+    "steps": [
+     {
+      "text": "Write the range at angle θ and the maximum range, both at the same speed u.",
+      "equation": "R(θ) = u²sin2θ / g, R_max = u² / g (at θ = 45°)"
+     },
+     {
+      "text": "Set the range at θ equal to half the maximum range.",
+      "equation": "u²sin2θ / g = ½ × u² / g"
+     },
+     {
+      "text": "Cancel u²/g from both sides and solve for 2θ, then θ.",
+      "equation": "sin2θ = ½, 2θ = 30°, θ = 15°"
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "15°"
+    },
+    "common_mistakes": [
+     {
+      "option": 2,
+      "text": "Taking 2θ = 30° but then forgetting to divide by 2 gives θ = 30°."
+     },
+     {
+      "option": 3,
+      "text": "Mistaking ½ for the sine of 60° turns sin 2θ = ½ into 2θ = 120°, which gives θ = 60°."
+     }
+    ],
+    "concept_tags": [
+     "projectile motion",
+     "range",
+     "maximum range"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "prj_83670542",
+   "audit_file": "prj_83670542.f33023ad.json",
+   "item_sha": "f33023ad47de9eba7178ee1caa23bba2b2c269d4d34b48e8d7111d575789a8d6",
+   "question_text": "From a point O at the foot of a slope that rises at 30° to the horizontal, a particle is thrown with speed 10 m/s along a direction making 30° with the slope surface (that is, 60° above the horizontal). It lands on the slope at a point A. Take g = 10 m/s². At the instant it reaches A, find the component of its velocity perpendicular to the slope surface.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "In axes along and perpendicular to the incline, the perpendicular motion is like a simple up-and-down toss, so the perpendicular speed at landing equals the launch value, reversed in direction.",
+    "steps": [
+     {
+      "text": "Resolve the launch velocity perpendicular to the incline, using the 30° angle between the velocity and the incline.",
+      "equation": "u⊥ = 10sin30° = 5 m/s, away from the incline"
+     },
+     {
+      "text": "The perpendicular motion is decelerated uniformly by g⊥ = g cos30° and returns to zero perpendicular displacement, exactly like a ball tossed straight up and caught at the same level.",
+      "equation": "v⊥ at landing = −u⊥"
+     },
+     {
+      "text": "So the perpendicular component at A has the same size as at launch, but points into the incline.",
+      "equation": "v⊥ = 5 m/s, directed into the plane"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "5 m/s, directed into the inclined plane"
+    },
+    "common_mistakes": [],
+    "concept_tags": [
+     "projectile motion",
+     "motion on an inclined plane",
+     "symmetry of a toss"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "prj_9648e5fe",
+   "audit_file": "prj_9648e5fe.b1fc19a7.json",
+   "item_sha": "b1fc19a7df382c9e3197bd190f392a5e12911dc362b5240c9fdde67d533ddb46",
+   "question_text": "Assertion: For a projectile, if you pick any two positions along its path with velocities v₁, v₂ occurring at times t₁, t₂, the ratio (v₂ − v₁)/(t₂ − t₁) always works out to the same value. Reason: This ratio is the average acceleration, and it stays fixed because the acceleration of the projectile does not change.",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "If both Assertion and Reason are true and the Reason is the correct explanation of the Assertion."
+    },
+    {
+     "label": "(b)",
+     "text": "If both Assertion and Reason are true but the Reason is not the correct explanation of the Assertion."
+    },
+    {
+     "label": "(c)",
+     "text": "If the Assertion is true, but the Reason is false."
+    },
+    {
+     "label": "(d)",
+     "text": "If the Assertion is false but the Reason is true."
+    }
+   ],
+   "figure_description": "",
+   "solution": {
+    "approach": "The ratio of the change in velocity to the change in time between any two instants is by definition the average acceleration, which equals the constant acceleration in projectile motion.",
+    "steps": [
+     {
+      "text": "Write the definition of average acceleration between two instants of time.",
+      "equation": "a_avg = (v₂ − v₁)/(t₂ − t₁)"
+     },
+     {
+      "text": "In projectile motion the acceleration is constant and equal to g downward at every instant, with no other force acting.",
+      "equation": "a(t) = (0, −g) for every t"
+     },
+     {
+      "text": "Since the instantaneous acceleration never changes, the average acceleration between any two chosen instants must also equal this same constant value."
+     },
+     {
+      "text": "So the ratio (v₂ − v₁)/(t₂ − t₁) always equals g downward, whichever two positions are chosen, and the Reason correctly names this ratio as the average acceleration, which is why it stays constant.",
+      "why_this_step": "The Reason states the definition that directly explains why the Assertion holds for any pair of instants."
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "If both Assertion and Reason are true and the Reason is the correct explanation of the Assertion."
+    },
+    "common_mistakes": [
+     {
+      "option": 4,
+      "text": "Assuming the ratio changes with the chosen positions because velocity itself keeps changing throughout the flight."
+     },
+     {
+      "option": 2,
+      "text": "Accepting both statements as true but treating the Reason as a separate fact rather than the definition that directly explains the Assertion."
+     }
+    ],
+    "concept_tags": [
+     "average acceleration",
+     "constant acceleration",
+     "projectile motion"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "prj_d479e276",
+   "audit_file": "prj_d479e276.307888ae.json",
+   "item_sha": "307888ae74c7bff151874cfa419b3c1c2da7ae4f018d4e431bd9a76ff274a28e",
+   "question_text": "In which specific situations can the standard equations for time of flight, maximum height and horizontal range be used directly for a projectile's motion, without any adjustment?",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "State the condition under which the range, time of flight and maximum height formulas hold, based on how they are derived.",
+    "steps": [
+     {
+      "text": "The formulas R = u²sin2θ/g and T = 2u sinθ/g are derived by setting the net vertical displacement to zero when the particle lands; H = u²sin²θ/(2g) is derived by setting the vertical velocity to zero at the highest point."
+     },
+     {
+      "text": "Setting the vertical displacement to zero at landing is correct only when the point of landing is at the same height as the point of projection."
+     },
+     {
+      "text": "The derivation also assumes g stays constant through the flight and that no other force, such as air resistance, changes the motion.",
+      "why_this_step": "A changing g or an added resistive force would change the equations of motion the formulas are built from."
+     },
+     {
+      "text": "So the three formulas can be used directly only when the particle is projected from and lands on the same horizontal level, with g constant and no air resistance."
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "The formulas apply directly only when the particle is projected from and lands on the same horizontal level, for example ground to ground, with g constant and no air resistance."
+    },
+    "common_mistakes": [],
+    "concept_tags": [
+     "projectile motion",
+     "range formula",
+     "assumptions"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "prj_822434a2",
+   "audit_file": "prj_822434a2.010754ae.json",
+   "item_sha": "010754aeb96da8ad5da41ba613f338ac12b4d0ce2fe064e8febdcc7c4d2113cf",
+   "question_text": "One particle is launched straight upward at 20 m/s. At the same instant, a second particle is launched at 20√2 m/s directed 45° above the horizontal, with g = 10 m/s².\n(a) Find the acceleration of the first particle as measured relative to the second particle.\n(b) Find the initial velocity of the first particle as measured relative to the second particle.\n(c) Find the separation between the two particles 2 s after launch.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Both particles fall under the same gravity, so their relative acceleration is zero and the gap between them grows at a constant rate.",
+    "steps": [
+     {
+      "text": "Write each particle's initial velocity in horizontal and vertical components.",
+      "equation": "u₁ = (0, 20) m/s, u₂ = (20√2cos45°, 20√2sin45°) = (20, 20) m/s"
+     },
+     {
+      "text": "Both particles are in free flight under gravity alone, so each has the same downward acceleration.",
+      "equation": "a₁ = a₂ = (0, −10) m/s²"
+     },
+     {
+      "text": "The acceleration of the first particle relative to the second is the difference of the two accelerations.",
+      "equation": "a₁ − a₂ = (0, 0) m/s², so part (a) is 0"
+     },
+     {
+      "text": "The initial velocity of the first particle relative to the second is the difference of the two initial velocities.",
+      "equation": "u₁ − u₂ = (0−20, 20−20) = (−20, 0) m/s, magnitude 20 m/s, so part (b) is 20 m/s"
+     },
+     {
+      "text": "Since the relative acceleration is zero, the relative velocity stays (−20, 0) m/s for the whole flight, so the separation after any time t is this relative velocity times t.",
+      "equation": "Δr(t) = (u₁ − u₂)·t"
+     },
+     {
+      "text": "At t = 2 s the separation along this constant relative velocity gives the distance between the particles.",
+      "equation": "Δr(2) = 20 × 2 = 40 m, so part (c) is 40 m",
+      "why_this_step": "With zero relative acceleration the two particles move apart in a straight line at a fixed relative speed."
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "(a) 0 (the relative acceleration is zero), (b) 20 m/s horizontally, directed opposite to the second particle's horizontal motion, i.e. (−20, 0) m/s, (c) 40 m"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Assuming the second particle has a different acceleration because part of its velocity is horizontal, which wrongly makes the relative acceleration nonzero."
+     },
+     {
+      "option": null,
+      "text": "Using only one particle's own displacement after 2 s instead of the relative displacement between the two particles to find the separation."
+     }
+    ],
+    "concept_tags": [
+     "relative velocity",
+     "relative acceleration",
+     "projectile motion"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  }
+ ]
+}

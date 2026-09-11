@@ -1,0 +1,24 @@
+{
+ "question_id": "prj_822434a2",
+ "item_sha": "a8d3ff73abd85be26884875d9a763747fcad382088e727f8c71acb6c227a3682",
+ "auditor_option": null,
+ "auditor_value": "(a) 0; (b) (−20, 0) m/s, i.e. 20 m/s horizontal, opposite to the second particle's horizontal motion; (c) 40 m.",
+ "findings": [
+  {
+   "grade": "weak",
+   "field": "final_answer.value",
+   "quote": "(b) 20 m/s",
+   "note": "Part (b) asks for a velocity; the final answer gives only the magnitude although step 4 has already found the vector (−20, 0) m/s. The direction should be stated in the answer.",
+   "fix": "(a) 0 (the relative acceleration is zero), (b) 20 m/s horizontally, directed opposite to the second particle's horizontal motion, i.e. (−20, 0) m/s, (c) 40 m"
+  }
+ ],
+ "verdict": "weak",
+ "question_defect": null,
+ "notes": "All three parts re-derived: equal accelerations cancel, relative velocity (−20, 0) m/s is constant, separation 20 × 2 = 40 m. Every printed line is correct.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-04",
+  "at": "2026-09-11T19:35:24+05:30"
+ }
+}

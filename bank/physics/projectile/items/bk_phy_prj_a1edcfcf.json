@@ -1,0 +1,108 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_prj_a1edcfcf",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "One particle is launched straight upward at 20 m/s. At the same instant, a second particle is launched at 20√2 m/s directed 45° above the horizontal, with g = 10 m/s².",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "Find the acceleration of the first particle as measured relative to the second particle."
+   },
+   {
+    "label": "b",
+    "asks": "Find the initial velocity of the first particle as measured relative to the second particle."
+   },
+   {
+    "label": "c",
+    "asks": "Find the separation between the two particles 2 s after launch."
+   }
+  ],
+  "conditions": [
+   "both particles launched at the same instant",
+   "first particle projected vertically upward at 20 m/s",
+   "second particle projected at 20√2 m/s at 45° to the horizontal",
+   "g = 10 m/s²"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Both particles fall under the same gravity, so their relative acceleration is zero and the gap between them grows at a constant rate.",
+  "steps": [
+   {
+    "text": "Write each particle's initial velocity in horizontal and vertical components.",
+    "equation": "u₁ = (0, 20) m/s, u₂ = (20√2cos45°, 20√2sin45°) = (20, 20) m/s"
+   },
+   {
+    "text": "Both particles are in free flight under gravity alone, so each has the same downward acceleration.",
+    "equation": "a₁ = a₂ = (0, −10) m/s²"
+   },
+   {
+    "text": "The acceleration of the first particle relative to the second is the difference of the two accelerations.",
+    "equation": "a₁ − a₂ = (0, 0) m/s², so part (a) is 0"
+   },
+   {
+    "text": "The initial velocity of the first particle relative to the second is the difference of the two initial velocities.",
+    "equation": "u₁ − u₂ = (0−20, 20−20) = (−20, 0) m/s, magnitude 20 m/s, so part (b) is 20 m/s"
+   },
+   {
+    "text": "Since the relative acceleration is zero, the relative velocity stays (−20, 0) m/s for the whole flight, so the separation after any time t is this relative velocity times t.",
+    "equation": "Δr(t) = (u₁ − u₂)·t"
+   },
+   {
+    "text": "At t = 2 s the separation along this constant relative velocity gives the distance between the particles.",
+    "equation": "Δr(2) = 20 × 2 = 40 m, so part (c) is 40 m",
+    "why_this_step": "With zero relative acceleration the two particles move apart in a straight line at a fixed relative speed."
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) 0 (the relative acceleration is zero), (b) 20 m/s horizontally, directed opposite to the second particle's horizontal motion, i.e. (−20, 0) m/s, (c) 40 m"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Assuming the second particle has a different acceleration because part of its velocity is horizontal, which wrongly makes the relative acceleration nonzero."
+   },
+   {
+    "option": null,
+    "text": "Using only one particle's own displacement after 2 s instead of the relative displacement between the two particles to find the separation."
+   }
+  ],
+  "concept_tags": [
+   "relative velocity",
+   "relative acceleration",
+   "projectile motion"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "822434a2fda69890ad947607934403295a7cb42ac9ef083eb49aa626b8910473"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "010754aeb96da8ad5da41ba613f338ac12b4d0ce2fe064e8febdcc7c4d2113cf",
+  "audited_by": "W02-U-prj-02"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-04",
+  "at": "2026-09-11T16:02:00+05:30"
+ }
+}

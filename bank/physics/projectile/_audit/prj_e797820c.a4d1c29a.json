@@ -1,0 +1,24 @@
+{
+ "question_id": "prj_e797820c",
+ "item_sha": "a4d1c29aef69101ea11ff56937a3991f0c04c94357e2c946783f8212fbdd9574",
+ "auditor_option": null,
+ "auditor_value": "(a) t = √(2×45/10) = 3 s; (b) QP = 40 × 3 = 120 m; (c) v = √(40² + 30²) = 50 m/s at tan⁻¹(30/40) ≈ 37° below the horizontal",
+ "findings": [
+  {
+   "grade": "weak",
+   "field": "steps[4].text",
+   "quote": "Restating every part: the time of flight is 3 s, the distance QP is 120 m, and the velocity at P is 50 m/s at 37° below the horizontal.",
+   "note": "Duplicated prose: the same three results are printed again in this step's equation and a third time in final_answer. The step text should describe only what the equation does.",
+   "fix": "Combine the components to get the speed and direction at P: the magnitude is the hypotenuse of the 40 m/s and 30 m/s components, and the direction is the angle whose tangent is 30/40."
+  }
+ ],
+ "verdict": "weak",
+ "question_defect": "The served question text lists the three parts twice (once in the opening sentence and again as (a)/(b)/(c) lines). The launch speed 40 m/s and tower height 45 m appear only in the figure description, not in the question text.",
+ "notes": "Physics checked: 45 = 5t² → t = 3 s; QP = 120 m; v_y = 30 m/s; √(1600 + 900) = 50 m/s; tan⁻¹(0.75) = 36.87° ≈ 37°. The mistake entry (40 + 30 = 70) is a genuine scalar-addition error.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-07",
+  "at": "2026-09-11T19:38:00+05:30"
+ }
+}

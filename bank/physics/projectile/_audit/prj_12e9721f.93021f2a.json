@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_12e9721f",
+ "item_sha": "93021f2a692a83badcea411edab31c1dd640ec0d21e581f1809dfa5acf237ff1",
+ "auditor_option": null,
+ "auditor_value": "u = g t cos β / (2 sin(α − β)) = g t / (2 cos α (tan α − tan β))",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Derivation verified line by line; numeric check (u = 30 m/s, α = 60°, t = 1.5 s) recovers u exactly from the final formula. Mistake entry verified: dropping ½ gives u' = gt/(cosα(tanα − tanβ)) = 2u.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-01",
+  "at": "2026-09-11T19:35:48+05:30"
+ }
+}

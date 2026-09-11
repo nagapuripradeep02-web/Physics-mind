@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_e09a21d4",
+ "item_sha": "dd50778d8d4e480cd3fe34d2190348813f53c1f24efb57e23f062bdaf1026907",
+ "auditor_option": null,
+ "auditor_value": "Proof holds: speed at height h is √(u² − 2gh) = √(2gh); with 2h as the range of the mini-projectile, 2h = v² sin2α/g forces α = 45°, so vₓ = v_y = √(gh) and t = 2v_y/g = 2√(h/g).",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Every equation checked: 4gh − 2gh = 2gh; 2vₓv_y/g = 2h ⇒ vₓv_y = gh; (vₓ − v_y)² = 2gh − 2gh = 0; 2√(gh)/g = 2√(h/g). The mistake entry's claim reproduces: 2h/u = 2h/(2√(gh)) = √(h/g), half the correct time. The trajectory is consistent (original launch angle 60°).",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-07",
+  "at": "2026-09-11T19:38:23+05:30"
+ }
+}

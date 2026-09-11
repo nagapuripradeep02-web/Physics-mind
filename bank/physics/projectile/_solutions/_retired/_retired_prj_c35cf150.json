@@ -1,0 +1,51 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "prj_c35cf150",
+ "approach": "Resolve the initial velocity and gravity along and perpendicular to the incline, then use the perpendicular equation for the time and the along-incline equation for the range.",
+ "steps": [
+  {
+   "text": "Take axes along the incline, up the slope, and perpendicular to it. Resolve the initial velocity using the 30° angle between the velocity and the incline surface.",
+   "equation": "along the incline: 20√2 cos30°; perpendicular to it: 20√2 sin30°"
+  },
+  {
+   "text": "Resolve the acceleration due to gravity along the same two axes, using the 45° incline angle.",
+   "equation": "along the incline: −g sin45°; perpendicular to it: −g cos45°"
+  },
+  {
+   "text": "The particle returns to the incline when the perpendicular displacement is zero again; solve for the time of flight.",
+   "equation": "T = 2(20√2 sin30°)/(g cos45°) = 4 s"
+  },
+  {
+   "text": "Find the along-incline displacement at this time, which is the range measured along the incline.",
+   "equation": "R = (20√2 cos30°)T − ½(g sin45°)T² = 40√6 − 40√2 ≈ 41.41 m"
+  },
+  {
+   "text": "State the results; this is the final answer.",
+   "equation": "T = 4 s, R ≈ 41.41 m"
+  }
+ ],
+ "final_answer": {
+  "option": null,
+  "value": "time of flight = 4 s, range along the incline ≈ 41.41 m"
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": null,
+   "text": "Using the 30° angle as if it were measured from the horizontal, without adding the 45° incline angle, gives a wrong time of about 2.83 s."
+  }
+ ],
+ "concept_tags": [
+  "projectile on an incline",
+  "resolving vectors",
+  "time of flight"
+ ],
+ "difficulty": "hard",
+ "mistake_type_hint": "application",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-03",
+  "at": "2026-09-11T15:55:00+05:30"
+ }
+}

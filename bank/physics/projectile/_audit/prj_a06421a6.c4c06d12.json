@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_a06421a6",
+ "item_sha": "c4c06d12ae019a21e21895e98a1c7dfa0971212d47b46148c749218f981ad21b",
+ "auditor_option": null,
+ "auditor_value": "tanθ = 2/3, θ = tan⁻¹(2/3) ≈ 33.7° (R = 24 m)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Independent solve: 3 = 6 tanθ(1 − 6/24) gives tanθ = 2/3; cross-checked with tanθ = tanα + tanβ = 3/6 + 3/18 = 2/3. The mistake entry's tanθ = 3/4 (R = 18 m) and 36.9° are reproduced.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-05",
+  "at": "2026-09-11T19:34:09+05:30"
+ }
+}

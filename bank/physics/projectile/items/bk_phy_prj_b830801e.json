@@ -1,0 +1,81 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_prj_b830801e",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "mcq_single",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "A gun sprays bullets at a fixed muzzle speed v₀ as it swings all the way around, covering the full 360° in one horizontal sweep. Find the largest ground area the bullets can land within.",
+  "options": {
+   "1": "πv₀²/g",
+   "2": "π²v₀²/g",
+   "3": "πv₀⁴/g²",
+   "4": "π²v₀⁴/g"
+  },
+  "parts": null,
+  "conditions": [
+   "gun swept through 360° in a horizontal plane",
+   "every bullet leaves the muzzle at speed v₀"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "The farthest any bullet can land is the maximum range, so the covered region is a circle of that radius, and its area is π times the radius squared.",
+  "steps": [
+   {
+    "text": "Write the maximum range of a bullet fired with speed v₀, which occurs at 45° and sets the farthest distance reached in any direction.",
+    "equation": "R_max = v₀²/g"
+   },
+   {
+    "text": "As the gun rotates through 360°, the set of farthest points forms a circle of radius R_max.",
+    "equation": "radius = v₀²/g"
+   },
+   {
+    "text": "The area covered is π times the square of this radius.",
+    "equation": "Area = π(v₀²/g)² = πv₀⁴/g²"
+   }
+  ],
+  "final_answer": {
+   "option": 3,
+   "value": "πv₀⁴/g²"
+  },
+  "common_mistakes": [
+   {
+    "option": 1,
+    "text": "Using the maximum range itself as the area instead of squaring it gives πv₀²/g."
+   }
+  ],
+  "concept_tags": [
+   "projectile motion",
+   "maximum range",
+   "area"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "calculation"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "dea1c6ba07815f4963280b6529847b30015e0bac024ee1d73db50a80480a4c29"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "fe26e748d59d5a132a1340d3c1f272e79703427106f0f1b0ed0f62e7defc733b",
+  "audited_by": "W01-U-prj-07"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-05",
+  "at": "2026-09-11T00:00:00+05:30"
+ }
+}

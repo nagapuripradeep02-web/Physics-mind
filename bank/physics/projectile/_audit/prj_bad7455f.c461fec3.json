@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_bad7455f",
+ "item_sha": "c461fec3c447da8f32eb6e44d361d2bddbba043fb647a02d972e7c81866ca623",
+ "auditor_option": null,
+ "auditor_value": "(a) sin α = 0.6, α ≈ 37°; (b) t = 100/(30√3 + 40) ≈ 1.09 s; (c) PA ≈ 62.5 m (xP ≈ 56.5 m, yP ≈ 26.7 m)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Every line re-derived: equal vertical components give sin α = 0.6; closing speed 51.96 + 40 = 91.96 m/s; t = 1.087 s; xP = 56.5 m, yP = 26.7 m, PA = 62.5 m. The common-mistake number (100/11.96 ≈ 8.4 s) also checks.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-06",
+  "at": "2026-09-11T19:32:06+05:30"
+ }
+}

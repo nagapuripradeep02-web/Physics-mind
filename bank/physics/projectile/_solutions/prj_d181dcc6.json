@@ -1,0 +1,19 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "prj_d181dcc6",
+ "approach": "Check whether the projectile's path can be contained in a single plane.",
+ "steps": [
+  {"text": "The initial velocity and the acceleration due to gravity are two vectors; together they fix a single plane, the vertical plane containing the launch direction."},
+  {"text": "Gravity acts only within that plane, so there is no force pushing the particle out of it, and its path stays inside that one plane for the whole flight."},
+  {"text": "So the statement is false: projectile motion needs only two coordinates and is two-dimensional (planar), not three-dimensional."}
+ ],
+ "final_answer": {"option": null, "value": "False. Projectile motion is two-dimensional; it occurs entirely within one vertical plane containing the initial velocity and gravity."},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Assuming any motion with a curved path in space must need all three directions, without checking that the initial velocity and gravity define only one plane."}
+ ],
+ "concept_tags": ["projectile motion", "plane of motion", "dimensionality"],
+ "difficulty": "easy",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-prj-02", "at": "2026-09-11T12:05:00+05:30"}
+}

@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "prj_2548ca25",
+ "approach": "Work in axes along and perpendicular to the incline, where gravity splits into two components; find the time the particle returns to the incline, then the velocity components there.",
+ "steps": [
+  {"text": "Resolve the launch velocity along and perpendicular to the incline, using the 30° angle between the velocity and the incline.", "equation": "u∥ = 10cos30° = 5√3 m/s, u⊥ = 10sin30° = 5 m/s"},
+  {"text": "Resolve gravity along and perpendicular to the incline, using the 30° angle of the incline with the horizontal.", "equation": "g∥ = g sin30° = 5 m/s², g⊥ = g cos30° = 5√3 m/s²"},
+  {"text": "Find the time to return to the incline surface, where the perpendicular displacement is again zero.", "equation": "T = 2u⊥/g⊥ = 2×5/(5√3) = 2/√3 = 2√3/3 ≈ 1.15 s"},
+  {"text": "Find the along-incline and perpendicular velocity components at this time.", "equation": "v∥ = u∥ − g∥T = 5√3 − 5×(2√3/3) = 5√3/3 m/s, v⊥ = −u⊥ = −5 m/s"},
+  {"text": "Combine the two components to get the speed at A.", "equation": "speed = √(v∥² + v⊥²) = √((5√3/3)² + 5²) = 10√3/3 ≈ 5.77 m/s"}
+ ],
+ "final_answer": {"option": null, "value": "speed at A = 10√3/3 m/s ≈ 5.77 m/s"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Forgetting that gravity also has a component along the incline, and keeping the along-incline speed unchanged at 5√3 m/s, gives a wrong speed of exactly 10 m/s."}
+ ],
+ "concept_tags": ["projectile motion", "motion on an inclined plane", "gravity components"],
+ "difficulty": "hard",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-prj-06", "at": "2026-09-11T12:09:00+05:30"}
+}

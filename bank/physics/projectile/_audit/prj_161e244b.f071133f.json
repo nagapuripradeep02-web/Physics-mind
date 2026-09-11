@@ -1,0 +1,24 @@
+{
+ "question_id": "prj_161e244b",
+ "item_sha": "f071133f2daa603ded110262f9c605906b1e35c06138f849a3d0c4b208563721",
+ "auditor_option": null,
+ "auditor_value": "5/√2 ≈ 3.54 m/s, running toward the thrower (range 40 m, time of flight 2√2 s, gap 10 m)",
+ "findings": [
+  {
+   "grade": "weak",
+   "field": "difficulty",
+   "quote": "hard",
+   "note": "The item is the standard range formula plus one division (10 m gap over 2√2 s); it has no incline, no relative-velocity vector work and no trap. 'medium' matches the rest of this bank's grading.",
+   "fix": "medium"
+  }
+ ],
+ "verdict": "weak",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-prj-01",
+  "at": "2026-09-11T19:52:15+05:30"
+ }
+}

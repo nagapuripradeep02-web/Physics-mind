@@ -1,0 +1,75 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_prj_47f3afe5",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A particle is launched from level ground with speed u at an angle α above the horizontal and comes back down to the ground. Over the whole flight, from the moment of launch until it lands, what is the change in its velocity?",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "launched from ground level",
+   "the interval is the whole flight, launch to landing"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Change in velocity is the vector difference between the velocity just before landing and the velocity at projection.",
+  "steps": [
+   {
+    "text": "Write the initial velocity components, with the horizontal direction as x and vertically upward as y.",
+    "equation": "ux = u cosα, uy = u sinα"
+   },
+   {
+    "text": "By the symmetry of projectile motion the particle returns to the same height with the same speed, with the horizontal part unchanged and the vertical part reversed.",
+    "equation": "vx = u cosα, vy = −u sinα"
+   },
+   {
+    "text": "Subtract the initial velocity from the final velocity, component by component.",
+    "equation": "Δv = (vx − ux, vy − uy) = (0, −2u sinα)"
+   },
+   {
+    "text": "State the magnitude and direction of the change; this is the final answer.",
+    "equation": "|Δv| = 2u sinα, directed vertically downward"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "2u sinα, directed vertically downward"
+  },
+  "common_mistakes": [],
+  "concept_tags": [
+   "change in velocity",
+   "projectile motion",
+   "vectors"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "b8c9ecd0b9905e992999ec24b9970f0ad2a5654afb3744b7fae5d1f6cd80820c"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "691c5aded17ba804ae9aed6c947aea22c21a437467edd38b3664fbe3f7363e0e",
+  "audited_by": "W01-U-prj-06"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-03",
+  "at": "2026-09-11T15:25:00+05:30"
+ }
+}

@@ -1,0 +1,24 @@
+{
+ "question_id": "prj_83670542",
+ "item_sha": "3fc30a9c5369d33262a9846805fba9578c45232efcbc260d2216dc72e2915ec4",
+ "auditor_option": null,
+ "auditor_value": "5 m/s, directed into the slope (perpendicular launch component 10 sin30° = 5 m/s; time of flight 2/√3 s; landing velocity (5, −2.89) m/s has normal component −5 m/s).",
+ "findings": [
+  {
+   "grade": "wrong",
+   "field": "steps[0].text",
+   "quote": "Recall the perpendicular component of the launch velocity from the earlier problem, using the 30° angle between the velocity and the incline.",
+   "note": "The served question is a single stand-alone problem; there is no \"earlier problem\" a reader can recall from, so the step points at material that does not exist in the bank and reads as a leftover from a source sequence.",
+   "fix": "Resolve the launch velocity perpendicular to the incline, using the 30° angle between the velocity and the incline."
+  }
+ ],
+ "verdict": "wrong",
+ "question_defect": null,
+ "notes": "Answer matches mine (checked by full horizontal/vertical integration as well as the incline-axes symmetry argument). common_mistakes is an empty list; not graded, but the reviewer may want one entry (e.g. taking the perpendicular component as 10 sin60° = 8.66 m/s by measuring the 60° from the horizontal instead of the 30° from the slope).",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-04",
+  "at": "2026-09-11T19:34:53+05:30"
+ }
+}

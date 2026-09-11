@@ -1,0 +1,19 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "prj_c5581e32",
+ "approach": "Check whether the constant force is perpendicular to the initial velocity, which is the same setup as ordinary projectile motion turned sideways.",
+ "steps": [
+  {"text": "Find the dot product of the initial velocity and the force to check if they are perpendicular.", "equation": "v · F = (3)(4) + (4)(−3) = 12 − 12 = 0"},
+  {"text": "The dot product is zero, so the constant force acts perpendicular to the initial velocity direction, at every instant, since both stay fixed vectors.", "equation": "v · F = 0"},
+  {"text": "A constant force acting perpendicular to the initial velocity produces the same shape of path as a projectile launched horizontally under gravity, which is a parabola.", "equation": "path = parabola"}
+ ],
+ "final_answer": {"option": 2, "value": "parabolic"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 3, "text": "Since the force is perpendicular to the velocity at the start, a student may wrongly assume circular motion; but circular motion needs the force direction to keep turning, while here it stays fixed."}
+ ],
+ "concept_tags": ["projectile motion", "vectors", "constant force"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-prj-05", "at": "2026-09-11T00:00:00+05:30"}
+}

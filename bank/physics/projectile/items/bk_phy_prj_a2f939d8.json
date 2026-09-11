@@ -1,0 +1,80 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_prj_a2f939d8",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A projectile launches at elevation angle α above the horizontal. Viewed from the launch point, after t seconds it appears to be at elevation angle β. Determine the launch speed of the projectile.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "projected at elevation angle α",
+   "observed elevation angle is β after time t, as seen from the launch point"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "The apparent elevation angle is the angle of the position vector, so its tangent equals the ratio of the vertical to horizontal displacement.",
+  "steps": [
+   {
+    "text": "Write the horizontal and vertical displacements at time t for a projectile launched at angle α with speed u.",
+    "equation": "x = u cos α · t, y = u sin α · t − ½gt²"
+   },
+   {
+    "text": "The apparent elevation β is the angle the line from the launch point to the particle makes with the horizontal, so its tangent is y divided by x.",
+    "equation": "tan β = y/x = tan α − gt/(2u cos α)"
+   },
+   {
+    "text": "Solve this equation for u.",
+    "equation": "u = gt / [2 cos α (tan α − tan β)]"
+   },
+   {
+    "text": "Rewrite the denominator using the difference formula for sine to reach the standard form.",
+    "equation": "u = gt cos β / [2 sin(α − β)]"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "u = gt cos β / [2 sin(α − β)]"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Forgetting the ½ in the vertical displacement formula doubles the g t term inside the tangent equation and gives twice the correct initial velocity."
+   }
+  ],
+  "concept_tags": [
+   "projectile motion",
+   "angle of elevation",
+   "trigonometric identities"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "calculation"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "12e9721f93f692ee2f0684361ffb9f95573426577618327e3b575f3358148ee1"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "93021f2a692a83badcea411edab31c1dd640ec0d21e581f1809dfa5acf237ff1",
+  "audited_by": "W01-U-prj-01"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-07",
+  "at": "2026-09-11T16:45:00+05:30"
+ }
+}

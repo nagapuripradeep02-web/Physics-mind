@@ -1,0 +1,52 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "prj_6f699f92",
+ "approach": "Constant acceleration alone does not force a curved path; a velocity launched along the acceleration direction gives a straight line instead.",
+ "steps": [
+  {
+   "text": "Consider a particle given an initial velocity pointing along the same line as the constant acceleration, for example thrown straight up under gravity."
+  },
+  {
+   "text": "Its sideways coordinate never changes, since there is no sideways velocity and no sideways acceleration.",
+   "equation": "x(t) = 0 for every t"
+  },
+  {
+   "text": "So this particle moves along a straight vertical line, not a parabola, even though its acceleration is constant the whole time."
+  },
+  {
+   "text": "This counterexample shows the Assertion is false: constant acceleration does not by itself force a parabolic path."
+  },
+  {
+   "text": "The Reason is a separate, true statement — projectile motion is parabolic because its acceleration is treated as constant at low heights — but the Reason being true does not make the Assertion true, so the Assertion is false and the Reason is true.",
+   "why_this_step": "This combination matches the option for a false Assertion with a true Reason."
+  }
+ ],
+ "final_answer": {
+  "option": 4,
+  "value": "If the Assertion is false but the Reason is true."
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": 1,
+   "text": "Believing constant acceleration always produces a curved path, missing the case where the initial velocity points along the acceleration."
+  },
+  {
+   "option": 2,
+   "text": "Judging both statements true without checking whether a straight-line counterexample exists under constant acceleration."
+  }
+ ],
+ "concept_tags": [
+  "constant acceleration",
+  "parabolic path",
+  "kinematics"
+ ],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-04",
+  "at": "2026-09-11T16:04:00+05:30"
+ }
+}

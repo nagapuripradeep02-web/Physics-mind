@@ -1,0 +1,79 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_prj_dca59379",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A particle travels in the xy-plane under a constant acceleration of magnitude a, always pointing along the negative y-direction. Its trajectory follows y = bx − cx², with b and c both fixed positive numbers. Work out the particle's velocity right at the coordinate origin.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "acceleration of magnitude a directed along the negative y-axis",
+   "trajectory y = bx − cx², with b and c positive constants"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Compare the given path with the standard projectile trajectory equation to read off the angle and speed of projection.",
+  "steps": [
+   {
+    "text": "Write the standard equation of a projectile's path for initial speed u, angle θ, and acceleration a directed along negative y.",
+    "equation": "y = x tanθ − ax²/(2u²cos²θ)"
+   },
+   {
+    "text": "Match this term by term with the given path.",
+    "equation": "y = bx − cx², so tanθ = b and a/(2u²cos²θ) = c"
+   },
+   {
+    "text": "Solve the second relation for the horizontal part of the initial velocity.",
+    "equation": "u²cos²θ = a/(2c), so u cosθ = √(a/(2c))"
+   },
+   {
+    "text": "The velocity at the origin is the initial velocity of projection, so use u cosθ together with the angle θ from step 2 to write the full speed.",
+    "equation": "u = (u cosθ)/cosθ = (u cosθ)√(1+tan²θ) = (u cosθ)√(1+b²)"
+   },
+   {
+    "text": "Substitute u cosθ from step 3 to state the final speed and direction; this gives the final answer.",
+    "equation": "u = √(a(1+b²)/(2c)), directed at angle θ = tan⁻¹b above the x-axis"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "v = √(a(1+b²)/(2c)), directed at angle θ = tan⁻¹b above the x-axis"
+  },
+  "common_mistakes": [],
+  "concept_tags": [
+   "projectile trajectory equation",
+   "comparing coefficients",
+   "vector velocity"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "0929c46ea3ac3c35a7aee66cb43b59b0741f6ce6c7d527950290afa9b827aa40"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "038da6a0a44972c41f898c8f79a10650b62dab4d0789e522f2663f6bf0d7b5b0",
+  "audited_by": "W01-U-prj-01"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-03",
+  "at": "2026-09-11T15:10:00+05:30"
+ }
+}

@@ -1,0 +1,19 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "prj_c274ab22",
+ "approach": "Convert the plane's speed to SI units, find the fall time from the height using g = 9.8 m/s², then multiply to get the horizontal distance covered.",
+ "steps": [
+  {"text": "Convert the horizontal speed from km/h to m/s.", "equation": "v = 600×(1000/3600) = 500/3 ≈ 166.7 m/s"},
+  {"text": "Find the time to fall the given height from rest, using g = 9.8 m/s².", "equation": "t = √(2×1960/9.8) = √400 = 20 s"},
+  {"text": "The dropped body keeps the plane's horizontal velocity throughout the fall, so the horizontal distance AB equals speed times time.", "equation": "AB = 166.7×20 ≈ 3333.3 m ≈ 3.33 km"}
+ ],
+ "final_answer": {"option": null, "value": "AB ≈ 3333.3 m ≈ 3.33 km"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Using 600 directly as the speed in m/s without converting from km/h, giving a wrong distance of 600×20 = 12000 m."}
+ ],
+ "concept_tags": ["horizontal projectile", "unit conversion", "time of fall"],
+ "difficulty": "easy",
+ "mistake_type_hint": "calculation",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-prj-01", "at": "2026-09-11T18:58:00+05:30"}
+}

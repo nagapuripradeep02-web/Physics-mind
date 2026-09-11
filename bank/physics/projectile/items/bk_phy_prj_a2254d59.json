@@ -1,0 +1,99 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_prj_a2254d59",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "In the diagram, a projectile is launched from point O with an initial speed of 20√2 m/s, directed 45° above the horizontal, up a slope that rises at 37° to the horizontal. The projectile comes down on the slope's surface at point P.",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "Determine how long the projectile stays in the air before landing on the slope at P."
+   },
+   {
+    "label": "b",
+    "asks": "Determine the distance OP measured along the slope, from the launch point O to the landing point P."
+   }
+  ],
+  "conditions": [
+   "particle launched from point O",
+   "launch speed is 20√2 m/s",
+   "launch angle is 45° above the horizontal",
+   "the slope rises at 37° to the horizontal",
+   "particle lands on the slope at point P",
+   "Q is the foot of the perpendicular dropped from P onto the horizontal through O"
+  ],
+  "figure": {
+   "description": "O is the launch point at the origin. The velocity vector, of magnitude 20√2 m/s, points up and to the right, making a 45° angle with the horizontal line OQ. A second line from O, representing the slope, rises at 37° to the same horizontal and reaches point P, where the projectile lands (a dotted vertical line drops from P down to Q on the horizontal). Reference x and y axes are shown beside the figure."
+  }
+ },
+ "solution": {
+  "approach": "Write the horizontal and vertical position as functions of time, then find where the path meets the incline's line through O, y = x tan37°.",
+  "steps": [
+   {
+    "text": "Find the horizontal and vertical components of the launch velocity.",
+    "equation": "uₓ = 20√2 cos45° = 20 m/s, u_y = 20√2 sin45° = 20 m/s"
+   },
+   {
+    "text": "Write the horizontal and vertical positions as functions of time, using g = 10 m/s².",
+    "equation": "x(t) = 20t, y(t) = 20t − 5t²"
+   },
+   {
+    "text": "The incline rises at 37° from O, so P lies where the vertical position equals the horizontal position times tan37°.",
+    "equation": "20t − 5t² = 20t × 0.75"
+   },
+   {
+    "text": "Solve for the time of flight (part a).",
+    "equation": "t = 1 s"
+   },
+   {
+    "text": "Find x at this time, then divide by cos37° to get the distance along the incline. Restating both parts: the time of flight is 1 s and the range OP is 25 m.",
+    "equation": "(a) t = 1 s (b) OP = 20/0.8 = 25 m"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) t = 1 s, (b) OP = 25 m"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Using the equation for a particle landing below the launch point instead of above it, which gives t = 7 s and OP = 175 m."
+   }
+  ],
+  "concept_tags": [
+   "projectile on an incline",
+   "components of velocity",
+   "equations of motion"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "1fce3d4c703e6acb85d594cbbb6f5b7c1a1f1b4ae634800337c6d9b16debd69d"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "f107c2929a8a4baa579ba75ca9a963b673b93334f61b4fb763fd83d68230e899",
+  "audited_by": "W01-U-prj-01"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-02",
+  "at": "2026-09-11T11:18:00+05:30"
+ }
+}

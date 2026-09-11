@@ -1,0 +1,704 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter": "projectile",
+ "slice": 7,
+ "round": 0,
+ "agent_label": "W01-U-prj-07",
+ "items": [
+  {
+   "question_id": "prj_e3f4653c",
+   "audit_file": "prj_e3f4653c.93c0673f.json",
+   "item_sha": "93c0673fa001f0a2de1f1bbac3d0cf4b673407a5365575c92eed5dd914a31987",
+   "question_text": "Assertion: Taking g = 10 m/s², the claim is that in projectile motion the particle's speed changes by 10 m/s during every second of flight. Reason: Acceleration is simply defined as the rate at which velocity changes.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Acceleration changes the velocity vector by a fixed amount each second, but speed is the length of that vector, which does not change by that same fixed amount.",
+    "steps": [
+     {
+      "text": "Take a projectile with both horizontal and vertical velocity components, and track its speed second by second."
+     },
+     {
+      "text": "The vertical component of velocity does change by exactly 10 m/s every second, since the vertical acceleration is constant.",
+      "equation": "vᵧ(t+1) − vᵧ(t) = −10 m/s"
+     },
+     {
+      "text": "The horizontal component never changes, and speed is the length of the full velocity vector, not only its vertical part.",
+      "equation": "speed = √(vₓ² + vᵧ²)"
+     },
+     {
+      "text": "Because speed combines both components through a square root, its change from one second to the next is not a fixed 10 m/s; it is largest near the ground and smallest near the top of the flight."
+     },
+     {
+      "text": "So the Assertion is false because it confuses the constant change in the velocity vector with the varying change in speed, while the Reason — that acceleration is the rate of change of velocity — is a true, separate statement.",
+      "why_this_step": "The Reason describes the vector velocity correctly; the Assertion wrongly applies that fact to the scalar speed."
+     }
+    ],
+    "final_answer": {
+     "option": 4,
+     "value": "If the Assertion is false but the Reason is true."
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Confusing velocity with speed, so a constant 10 m/s change in the velocity vector is wrongly read as a constant 10 m/s change in speed."
+     },
+     {
+      "option": 3,
+      "text": "Judging the Reason false by treating rate of change of velocity as if it only meant rate of change of speed."
+     }
+    ],
+    "concept_tags": [
+     "speed versus velocity",
+     "acceleration",
+     "projectile motion"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "prj_dea1c6ba",
+   "audit_file": "prj_dea1c6ba.fe26e748.json",
+   "item_sha": "fe26e748d59d5a132a1340d3c1f272e79703427106f0f1b0ed0f62e7defc733b",
+   "question_text": "A gun sprays bullets at a fixed muzzle speed v₀ as it swings all the way around, covering the full 360° in one horizontal sweep. Find the largest ground area the bullets can land within.",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "πv₀²/g"
+    },
+    {
+     "label": "(b)",
+     "text": "π²v₀²/g"
+    },
+    {
+     "label": "(c)",
+     "text": "πv₀⁴/g²"
+    },
+    {
+     "label": "(d)",
+     "text": "π²v₀⁴/g"
+    }
+   ],
+   "figure_description": "",
+   "solution": {
+    "approach": "The farthest any bullet can land is the maximum range, so the covered region is a circle of that radius, and its area is π times the radius squared.",
+    "steps": [
+     {
+      "text": "Write the maximum range of a bullet fired with speed v₀, which occurs at 45° and sets the farthest distance reached in any direction.",
+      "equation": "R_max = v₀²/g"
+     },
+     {
+      "text": "As the gun rotates through 360°, the set of farthest points forms a circle of radius R_max.",
+      "equation": "radius = v₀²/g"
+     },
+     {
+      "text": "The area covered is π times the square of this radius.",
+      "equation": "Area = π(v₀²/g)² = πv₀⁴/g²"
+     }
+    ],
+    "final_answer": {
+     "option": 3,
+     "value": "πv₀⁴/g²"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Using the maximum range itself as the area instead of squaring it gives πv₀²/g."
+     }
+    ],
+    "concept_tags": [
+     "projectile motion",
+     "maximum range",
+     "area"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "prj_e3f4653c",
+   "audit_file": "prj_e3f4653c.2b4d4d5e.json",
+   "item_sha": "2b4d4d5ea4270c4cb7fc87f5c9f71f8960e933e8f353c5036f1e08b4424267a9",
+   "question_text": "Assertion: Taking g = 10 m/s², the claim is that in projectile motion the particle's speed changes by 20 m/s during every second of flight. Reason: Acceleration is simply defined as the rate at which velocity changes.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Acceleration changes the velocity vector by a fixed amount each second, but speed is the length of that vector, which does not change by that same fixed amount.",
+    "steps": [
+     {
+      "text": "Take a projectile with both horizontal and vertical velocity components, and track its speed second by second."
+     },
+     {
+      "text": "The vertical component of velocity does change by exactly 10 m/s every second, since the vertical acceleration is constant.",
+      "equation": "vᵧ(t+1) − vᵧ(t) = −10 m/s"
+     },
+     {
+      "text": "The horizontal component never changes, and speed is the length of the full velocity vector, not only its vertical part.",
+      "equation": "speed = √(vₓ² + vᵧ²)"
+     },
+     {
+      "text": "Because speed combines both components through a square root, its change from one second to the next is not a fixed 10 m/s; it is largest near the ground and smallest near the top of the flight."
+     },
+     {
+      "text": "So the Assertion is false because it confuses the constant change in the velocity vector with the varying change in speed, while the Reason — that acceleration is the rate of change of velocity — is a true, separate statement.",
+      "why_this_step": "The Reason describes the vector velocity correctly; the Assertion wrongly applies that fact to the scalar speed."
+     }
+    ],
+    "final_answer": {
+     "option": 4,
+     "value": "If the Assertion is false but the Reason is true."
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Confusing velocity with speed, so a constant 10 m/s change in the velocity vector is wrongly read as a constant 10 m/s change in speed."
+     },
+     {
+      "option": 3,
+      "text": "Judging the Reason false by treating rate of change of velocity as if it only meant rate of change of speed."
+     }
+    ],
+    "concept_tags": [
+     "speed versus velocity",
+     "acceleration",
+     "projectile motion"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "prj_df0030fd",
+   "audit_file": "prj_df0030fd.46087403.json",
+   "item_sha": "460874035aae2b3b3087fb0a5c2b6b381dc860d35326760225d15ca4d7f35bbb",
+   "question_text": "A grasshopper's longest possible jump covers 1.6 m, and it spends essentially no time resting on the ground between jumps. What horizontal distance does it cover in 10√2 s?",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "45 m"
+    },
+    {
+     "label": "(b)",
+     "text": "30 m"
+    },
+    {
+     "label": "(c)",
+     "text": "20 m"
+    },
+    {
+     "label": "(d)",
+     "text": "40 m"
+    }
+   ],
+   "figure_description": "",
+   "solution": {
+    "approach": "Find the launch speed from the maximum jump distance, then find how many jumps fit in the given time and multiply by the distance per jump.",
+    "steps": [
+     {
+      "text": "The farthest jump is the maximum range, reached at 45°, so use it to find the launch speed.",
+      "equation": "R_max = u²/g, 1.6 = u²/10, u² = 16, u = 4 ms⁻¹"
+     },
+     {
+      "text": "Find the time spent in the air for one maximum-range jump, at 45°.",
+      "equation": "T = 2u sin45°/g = 2(4)(1/√2)/10 = 0.5657 s"
+     },
+     {
+      "text": "The grasshopper spends no time on the ground, so the number of jumps in the given time is the total time divided by the time per jump.",
+      "equation": "n = 10√2 / 0.5657 = 25"
+     },
+     {
+      "text": "Multiply the number of jumps by the distance covered per jump to get the total distance.",
+      "equation": "distance = 25 × 1.6 = 40 m"
+     }
+    ],
+    "final_answer": {
+     "option": 4,
+     "value": "40 m"
+    },
+    "common_mistakes": [],
+    "concept_tags": [
+     "projectile motion",
+     "maximum range",
+     "time of flight"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "prj_db0a9de7",
+   "audit_file": "prj_db0a9de7.eb5848ca.json",
+   "item_sha": "eb5848ca7132a1c3efdacae3a41029ccaced58803b5d578d1c8fa5023495f795",
+   "question_text": "A ball is thrown horizontally with a speed of 20 m/s from a point O at the top edge of a wedge-shaped incline. Point Q lies directly beneath O, and the sloped surface of the wedge falls away at 45° to the horizontal. The ball follows a curved path and lands on the sloped surface at point P, where the angle OPQ equals 45°.\n(a) Find the flight time of the ball before it lands on the sloped surface at P.\n(b) Find the straight-line distance OP that the ball covers from launch to landing on the slope.",
+   "options": [],
+   "figure_description": "O is the launch point at the top of a right-angled wedge; Q lies directly below O. The sloped face of the wedge runs down toward the base, meeting the horizontal base at 45°. The ball's curved path from O meets the slope at P, and the angle OPQ between line OP and the horizontal line QP is 45°.",
+   "solution": {
+    "approach": "On a 45° incline, the vertical drop equals the horizontal distance travelled, so equate them to find the time, then find OP from the two legs.",
+    "steps": [
+     {
+      "text": "Write the horizontal distance and the vertical drop as functions of time for the horizontal launch, taking g = 10 m/s².",
+      "equation": "x(t) = 20t, y(t) = ½(10)t² = 5t²"
+     },
+     {
+      "text": "The particle lands on the incline where the drop equals the horizontal distance, because the incline makes 45° with the horizontal.",
+      "equation": "5t² = 20t",
+      "why_this_step": "On a 45° incline through O, every point has its vertical drop equal to its horizontal distance from O."
+     },
+     {
+      "text": "Solve this equation for the time of flight (part a).",
+      "equation": "t = 4 s"
+     },
+     {
+      "text": "Find the horizontal distance and the vertical drop at t = 4 s.",
+      "equation": "x = 80 m, y = 80 m"
+     },
+     {
+      "text": "The range OP is the straight-line distance between O and P. Restating both results: the time of flight is 4 s and the range OP is 80√2 m.",
+      "equation": "(a) t = 4 s (b) OP = √(80² + 80²) = 80√2 m ≈ 113.1 m"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "(a) t = 4 s, (b) OP = 80√2 m ≈ 113.1 m"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Taking the range OP as the horizontal distance 80 m instead of the slanted distance along the incline, missing the factor √2."
+     },
+     {
+      "option": null,
+      "text": "Writing the vertical drop as g t² instead of ½ g t², which gives t = 2 s and OP = 40√2 m ≈ 56.6 m."
+     }
+    ],
+    "concept_tags": [
+     "horizontal projectile motion",
+     "projectile on an incline",
+     "equations of motion"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "prj_e517e4e8",
+   "audit_file": "prj_e517e4e8.23f79365.json",
+   "item_sha": "23f79365a208e0d79af7246e328349d0a9492bd97d34cb4f32988b401fd97d8b",
+   "question_text": "A car starts from rest at the origin and accelerates at 2 m/s² along the positive x-axis. A man stands at the back of the car holding a gun. He fires a bullet at time t = 4 s, and this bullet meets a bird in flight at the later time t = 8 s. At that instant the bird's position vector is 40î + 80ĵ + 40k̂. Find the bullet's velocity of projection, given that the y-axis lies in the horizontal plane and g = 10 m/s².",
+   "options": [],
+   "figure_description": "A small illustration shows a man standing at the back of a moving car, arms outstretched, suggesting he holds a gun while the vehicle accelerates forward; no numeric values are marked on it.",
+   "solution": {
+    "approach": "Find the car's position when the bullet is fired, then use the bullet's projectile motion over 4 s to match the bird's given position.",
+    "steps": [
+     {
+      "text": "Find the car's position at t = 4 s, when the bullet is fired, since the car starts from rest at the origin.",
+      "equation": "x₀ = ½(2)(4²) = 16 m"
+     },
+     {
+      "text": "The bullet travels from t = 4 s to t = 8 s before reaching the bird.",
+      "equation": "Δt = 8 − 4 = 4 s"
+     },
+     {
+      "text": "The x and y directions have no acceleration, so match the bird's x and y coordinates using the launch velocity components and the starting point found above.",
+      "equation": "16 + vₓ(4) = 40, 0 + v_y(4) = 80"
+     },
+     {
+      "text": "Solve for the horizontal launch velocity components.",
+      "equation": "vₓ = 6 m/s, v_y = 20 m/s"
+     },
+     {
+      "text": "The z direction has acceleration −g, so match the bird's height using the vertical launch component.",
+      "equation": "v_z(4) − ½(10)(4²) = 40"
+     },
+     {
+      "text": "Solve for the vertical launch component.",
+      "equation": "v_z = 30 m/s"
+     },
+     {
+      "text": "The velocity of projection is the vector with these three components, and its magnitude follows from them.",
+      "equation": "v = 6î + 20ĵ + 30k̂ m/s, |v| = √(6² + 20² + 30²) = 2√334 ≈ 36.6 m/s"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "v = 6î + 20ĵ + 30k̂ m/s, magnitude 2√334 m/s ≈ 36.6 m/s"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Measuring the bullet's motion from the origin instead of from the car's position at firing, which gives vₓ = 10 m/s and a wrong speed of 10√14 ≈ 37.4 m/s."
+     }
+    ],
+    "concept_tags": [
+     "projectile motion in three dimensions",
+     "relative position",
+     "vector kinematics"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "prj_dad3bbb3",
+   "audit_file": "prj_dad3bbb3.a6076438.json",
+   "item_sha": "a60764386d42ece6088261a658ec09f2a4c227785677656c152bb5729aeb034b",
+   "question_text": "Assertion: Object A is thrown straight upward from a point on the ground. At the same instant, object B is launched from a different point on the ground and follows a curved projectile path, as pictured. Object A comes back down to the ground after 4 seconds, and at that same instant object B lands on object A. For this to happen, the peak height H reached by B works out to be 20 m. (Take g = 10 m/s².) Reason: For this situation to occur, the two objects must be launched with equal speeds.",
+   "options": [],
+   "figure_description": "B starts from a point on the ground and follows a parabolic path that climbs to a peak height H before coming back down to ground level exactly at the point where A is thrown straight up from and returns to.",
+   "solution": {
+    "approach": "Particle A's flight time fixes its own launch speed; requiring B to land on A at the same instant fixes only B's vertical launch speed, not B's full speed.",
+    "steps": [
+     {
+      "text": "Particle A is thrown straight up and returns to the ground in 4 s, so find its launch speed from the time of flight.",
+      "equation": "T_A = 2u_A/g ⇒ u_A = gT_A/2 = 10×4/2 = 20 m/s"
+     },
+     {
+      "text": "Particle B collides with A at the instant A returns to the ground, so B is also in flight for 4 s.",
+      "equation": "T_B = 4 s"
+     },
+     {
+      "text": "Find the vertical component of B's launch velocity from its own time of flight, using the same relation as for A.",
+      "equation": "T_B = 2uᵧ_B/g ⇒ uᵧ_B = gT_B/2 = 10×4/2 = 20 m/s"
+     },
+     {
+      "text": "The maximum height of a projectile depends only on the vertical component of its launch velocity.",
+      "equation": "H = uᵧ_B²/(2g) = 20²/(2×10) = 20 m"
+     },
+     {
+      "text": "This confirms the Assertion: H = 20 m, and this value does not depend on B's horizontal launch speed, which the given data never fixes."
+     },
+     {
+      "text": "Because B's horizontal speed is unknown and generally nonzero, B's full launch speed need not equal A's 20 m/s, so the Reason is false even though the Assertion is true.",
+      "why_this_step": "Only the vertical launch component is pinned down by the 4 s flight time; the horizontal component is free."
+     }
+    ],
+    "final_answer": {
+     "option": 3,
+     "value": "If the Assertion is true, but the Reason is false."
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Assuming B must be launched at exactly A's speed because the two particles meet at the same point at the same time, which makes the Reason look correct."
+     },
+     {
+      "option": 4,
+      "text": "Doubting the Assertion because B's parabolic path looks different from A's straight throw, without checking that only B's vertical launch component decides its maximum height."
+     }
+    ],
+    "concept_tags": [
+     "projectile motion",
+     "time of flight",
+     "maximum height"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "prj_df9b881f",
+   "audit_file": "prj_df9b881f.ff9d5283.json",
+   "item_sha": "ff9d52834bcfc9cf02f73eece4cbebe8e14979eb43d65c8ce523e2b019148ccd",
+   "question_text": "A particle travels in the xy plane under a constant acceleration 'a' pointing along the negative y-direction. Its path is described by y = px − qx², with p and q both positive constants. Determine the particle's speed as it passes through the origin.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Match the given trajectory to the standard projectile path written in terms of time, so the coefficients of x and x² give the two velocity components.",
+    "steps": [
+     {
+      "text": "Since the acceleration is only along −y, the horizontal velocity stays constant and the horizontal position is uₓt.",
+      "equation": "x = uₓt, so t = x/uₓ"
+     },
+     {
+      "text": "Write the vertical position using this time, with a as the acceleration magnitude and u_y the initial vertical velocity.",
+      "equation": "y = u_y t − ½at² = (u_y/uₓ)x − (a/(2uₓ²))x²"
+     },
+     {
+      "text": "Compare this with the given equation term by term.",
+      "equation": "p = u_y/uₓ, q = a/(2uₓ²)"
+     },
+     {
+      "text": "Solve the second equation for the horizontal velocity component.",
+      "equation": "uₓ = √(a/(2q))"
+     },
+     {
+      "text": "Use the first equation to get the vertical velocity component, then state the full velocity vector at the origin.",
+      "equation": "u_y = p√(a/(2q)); v = √(a/(2q)) î + p√(a/(2q)) ĵ"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "v = √(a/(2q)) î + p√(a/(2q)) ĵ, that is v = √(a/(2q)) (î + p ĵ)"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Dropping the factor ½ in the vertical position equation, which gives the horizontal component as √(a/q) instead of √(a/(2q))."
+     }
+    ],
+    "concept_tags": [
+     "projectile trajectory equation",
+     "constant acceleration",
+     "vector velocity"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "prj_e747432f",
+   "audit_file": "prj_e747432f.321ee032.json",
+   "item_sha": "321ee03204780c1c369712433d88ea4cbaf5456f47320793e62cf5c0331e729b",
+   "question_text": "Show that when a projectile is launched at the angle that gives the greatest possible horizontal range, that maximum range works out to four times the greatest height it reaches.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Evaluate the range and the maximum height at the angle that gives maximum range, then show one is four times the other.",
+    "steps": [
+     {
+      "text": "The horizontal range is maximum at 45°, so evaluate the range formula there.",
+      "equation": "R_max = u²sin(2×45°)/g = u²sin90°/g = u²/g"
+     },
+     {
+      "text": "Evaluate the maximum height reached at this same 45° angle.",
+      "equation": "H = u²sin²45°/(2g) = u²×(1/2)/(2g) = u²/(4g)"
+     },
+     {
+      "text": "Multiply this height by 4 and compare it with the range found above.",
+      "equation": "4H = 4×u²/(4g) = u²/g = R_max",
+      "why_this_step": "Both expressions reduce to the same quantity u²/g, so the range at the angle of maximum range equals four times the height reached at that angle."
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "At the 45° angle of maximum range, R_max = u²/g and 4H = u²/g, so R_max equals 4H."
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Using H = u²sin²45°/g in the height formula, forgetting the factor 2 in the denominator; this makes 4H = 2u²/g, twice the correct range instead of equal to it."
+     }
+    ],
+    "concept_tags": [
+     "maximum range",
+     "maximum height",
+     "angle of projection"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "prj_e96585b4",
+   "audit_file": "prj_e96585b4.b9f6e669.json",
+   "item_sha": "b9f6e6699bd608fda06f44cc93354a2995a5623f40fdcb8771b1063b42e0a66a",
+   "question_text": "A particle leaves the ground with launch speed 40 m/s, directed 60° from the horizontal.\n(a) Determine the particle's speed at the instant its velocity direction makes 37° with the horizontal.\n(b) Determine the time (or times) at which this occurs.\n(c) At that same instant, find how high up (vertical height) and how far out (horizontal distance) the particle is, measured from where it started. Use g = 10 m/s².",
+   "options": [],
+   "figure_description": "The particle's parabolic path starts at the origin at 60° above the horizontal with speed 40 m/s. On the way up, at time t₁, its velocity vector makes 37° with the horizontal, with vertical rise h and horizontal distance x₁ marked at that point. On the way down, at a later time t₂, the velocity vector again makes 37° with the horizontal, with the same rise h now on the descending side and horizontal distance x₂ marked.",
+   "solution": {
+    "approach": "Use the constant horizontal component with the 37° angle to get the speed, then find the two times and the common height and distances at those instants.",
+    "steps": [
+     {
+      "text": "Resolve the launch velocity into horizontal and vertical parts; the horizontal part stays constant throughout the flight.",
+      "equation": "ux = 40cos60° = 20 m/s, uy = 40sin60° ≈ 34.64 m/s"
+     },
+     {
+      "text": "At the instant the velocity makes 37° with the horizontal, the horizontal component still equals ux, so the speed follows from v = ux/cos37°.",
+      "equation": "v = 20/0.8 = 25 m/s"
+     },
+     {
+      "text": "Find the two times this 37° angle occurs, once rising (vy positive) and once falling (vy negative), from vy = uy − gt.",
+      "equation": "vy = ux tan37° = 15 m/s; t₁ = (34.64−15)/10 ≈ 1.96 s (rising), t₂ = (34.64+15)/10 ≈ 4.96 s (falling)"
+     },
+     {
+      "text": "Since the vertical speed has the same size (15 m/s) at both instants, both are at the same height; find that height and the two horizontal distances.",
+      "equation": "h = (uy²−15²)/(2×10) = 48.75 m; x₁ = 20×1.96 ≈ 39.3 m, x₂ = 20×4.96 ≈ 99.3 m"
+     },
+     {
+      "text": "Collect all three results.",
+      "equation": "(a) v = 25 m/s, (b) t₁ ≈ 1.96 s, t₂ ≈ 4.96 s, (c) h ≈ 48.75 m, x₁ ≈ 39.3 m, x₂ ≈ 99.3 m"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "(a) speed = 25 m/s at both instants, (b) t₁ ≈ 1.96 s (rising) and t₂ ≈ 4.96 s (falling), (c) height ≈ 48.75 m at both instants; horizontal distance ≈ 39.3 m at t₁ and ≈ 99.3 m at t₂"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Finding the speed as v = ux/sin37° = 20/0.6 ≈ 33.3 m/s, mixing up sine and cosine when relating the horizontal component to the resultant speed."
+     }
+    ],
+    "concept_tags": [
+     "velocity components",
+     "angle with horizontal",
+     "symmetry of projectile height"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "prj_f14efb9a",
+   "audit_file": "prj_f14efb9a.08ca72de.json",
+   "item_sha": "08ca72dee1c87d87ebb0ca72a7c023b86c1c02918cbd6f14564237fb752141f2",
+   "question_text": "Two stones leave the ground at the same initial speed but at two different angles above the horizontal, and they both travel the same horizontal range. One of the stones is fired at π/3 and climbs to a peak height of 102 m. Find the peak height reached by the second stone, in metres.",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "76"
+    },
+    {
+     "label": "(b)",
+     "text": "84"
+    },
+    {
+     "label": "(c)",
+     "text": "56"
+    },
+    {
+     "label": "(d)",
+     "text": "34"
+    }
+   ],
+   "figure_description": "",
+   "solution": {
+    "approach": "Equal range at the same speed means the two angles are complementary, so find the second angle and scale the given maximum height by the ratio of sine squares.",
+    "steps": [
+     {
+      "text": "For the same speed, two angles give the same range only if they are complementary, so the second angle is 90° − 60° = 30°.",
+      "equation": "θ₁ = 60°, θ₂ = 30°"
+     },
+     {
+      "text": "Write the maximum height formula for both angles at the same speed u.",
+      "equation": "H = u²sin²θ / 2g"
+     },
+     {
+      "text": "Divide the height at 30° by the height at 60°; the u² and 2g cancel.",
+      "equation": "H₂ / H₁ = sin²30° / sin²60° = (0.5)² / (√3/2)² = 1/3"
+     },
+     {
+      "text": "Multiply the given height by this ratio to get the second height.",
+      "equation": "H₂ = 102 × 1/3 = 34 m"
+     }
+    ],
+    "final_answer": {
+     "option": 4,
+     "value": "34"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Inverting the ratio, dividing the 60° height's sine-square term by the 30° height's sine-square term instead, gives 306 m, which is not among the printed options."
+     }
+    ],
+    "concept_tags": [
+     "projectile motion",
+     "maximum height",
+     "complementary angles",
+     "equal range"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "prj_e797820c",
+   "audit_file": "prj_e797820c.a4d1c29a.json",
+   "item_sha": "a4d1c29aef69101ea11ff56937a3991f0c04c94357e2c946783f8212fbdd9574",
+   "question_text": "In the diagram, taking g = 10 m/s², determine (a) how long after launch the particle lands on the ground at P (b) the horizontal separation between Q and P (c) the particle's velocity as it arrives at P.\n(a) Find how long after being launched the particle reaches the ground at point P.\n(b) Find the horizontal separation between Q and P.\n(c) Find the particle's velocity, magnitude and direction, when it reaches point P.",
+   "options": [],
+   "figure_description": "The particle is launched horizontally with velocity 40 m/s from point O, at the top of a vertical tower of height 45 m. Q is the point directly below O at the base of the tower on the ground. The particle follows a curved path from O and lands at point P on the ground, to the right of Q.",
+   "solution": {
+    "approach": "Horizontal projectile from height 45 m; find the fall time from the height, then use it for the horizontal distance and the two velocity components at landing.",
+    "steps": [
+     {
+      "text": "Write the height fallen as a function of time for a horizontal launch, using g = 10 m/s².",
+      "equation": "45 = ½(10)t²"
+     },
+     {
+      "text": "Solve for the time of flight (part a).",
+      "equation": "t = 3 s"
+     },
+     {
+      "text": "Find the horizontal distance QP, since the horizontal velocity stays constant (part b).",
+      "equation": "QP = 40 × 3 = 120 m"
+     },
+     {
+      "text": "Find the horizontal and vertical velocity components at P.",
+      "equation": "vₓ = 40 m/s, v_y = 10 × 3 = 30 m/s"
+     },
+     {
+      "text": "Combine the components to get the speed and direction at P. Restating every part: the time of flight is 3 s, the distance QP is 120 m, and the velocity at P is 50 m/s at 37° below the horizontal.",
+      "equation": "(a) t = 3 s (b) QP = 120 m (c) v = √(40² + 30²) = 50 m/s at 37° below the horizontal"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "(a) t = 3 s, (b) QP = 120 m, (c) v = 50 m/s at 37° below the horizontal"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Adding the horizontal and vertical speeds directly instead of combining them as vectors, giving 40 + 30 = 70 m/s instead of 50 m/s."
+     }
+    ],
+    "concept_tags": [
+     "horizontal projectile motion",
+     "equations of motion",
+     "vector addition of velocity"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "prj_e09a21d4",
+   "audit_file": "prj_e09a21d4.dd50778d.json",
+   "item_sha": "dd50778d8d4e480cd3fe34d2190348813f53c1f24efb57e23f062bdaf1026907",
+   "question_text": "A projectile is launched with speed 2√(gh). It just skims over two walls, each of height h, separated from each other by a distance 2h. Prove that the duration it spends traveling between the two walls equals 2√(h/g). As a method hint: first work out the speed at height h, then treat that as a fresh initial speed with 2h as the range.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "The horizontal velocity stays constant, and the speed at the wall-crossing height satisfies a mini-projectile range condition that forces the horizontal and vertical velocities there to be equal.",
+    "steps": [
+     {
+      "text": "The horizontal velocity component never changes during flight, so the speed at height h relates to the launch speed through the usual height-velocity equation.",
+      "equation": "vₓ² + v_y1² = u² − 2gh = (2√(gh))² − 2gh = 2gh"
+     },
+     {
+      "text": "Treat the point where the particle first reaches height h as a new launch point. It returns to the same height h after a horizontal distance of 2h, exactly like a projectile range.",
+      "equation": "2vₓv_y1/g = 2h ⟹ vₓv_y1 = gh"
+     },
+     {
+      "text": "Combine the two relations above; they force the horizontal and vertical velocities at height h to be equal.",
+      "equation": "vₓ² + v_y1² = 2gh and vₓv_y1 = gh ⟹ (vₓ − v_y1)² = 0 ⟹ vₓ = v_y1 = √(gh)"
+     },
+     {
+      "text": "The time between the walls is the flight time of the mini-projectile, which is twice the vertical velocity at height h divided by g.",
+      "equation": "t = 2v_y1/g = 2√(gh)/g = 2√(h/g)"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "t = 2√(h/g)"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Using the full launch speed u in place of the horizontal velocity between the walls gives t = 2h/u, which is exactly half the correct time."
+     }
+    ],
+    "concept_tags": [
+     "projectile motion",
+     "range formula",
+     "relative launch point"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "concept"
+   }
+  }
+ ]
+}

@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_6bc6cd9c",
+ "item_sha": "0c7384062f1a557785108af20c1feb69670132542cbfbd79ed1b63132520f772",
+ "auditor_option": 2,
+ "auditor_value": "10√2 ≈ 14 ms⁻¹",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-03",
+  "at": "2026-09-11T19:35:30+05:30"
+ }
+}

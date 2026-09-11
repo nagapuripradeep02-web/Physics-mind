@@ -1,0 +1,31 @@
+{
+ "question_id": "prj_5bf47e86",
+ "item_sha": "04a440fd713f8919f27b2642006acff7ff1c8de7492accbafd383a0619ea37a4",
+ "auditor_option": null,
+ "auditor_value": "(a) t = 2 u sin30° / (g + a) = 2/11 s ≈ 0.18 s with g = 10 (≈ 0.185 s with g = 9.8); (b) a parabola in the ground frame, launch velocity (√3, 3) m/s i.e. 2√3 m/s at 60°, acceleration g downward; (c) with the lift accelerating downward at g the effective gravity in the lift is zero, so relative to the lift the stone moves in a straight line at 2 m/s along the 30° launch direction and never returns to the floor",
+ "findings": [
+  {
+   "grade": "wrong",
+   "field": "steps[3].text",
+   "quote": "so it follows a normal parabolic path while the elevator floor keeps accelerating away beneath it.",
+   "note": "False description: the floor accelerates upward at 1 m/s² while the stone accelerates downward at g, so relative to the stone the floor closes on it at g + 1 = 11 m/s² and rises to meet it after 2/11 s; it does not accelerate away.",
+   "fix": "so it follows a normal parabolic path; the elevator floor, still accelerating upward, rises to meet the stone."
+  },
+  {
+   "grade": "wrong",
+   "field": "final_answer.value",
+   "quote": "while the elevator floor accelerates away beneath the stone",
+   "note": "Same false clause in the stated answer to part (b): the floor accelerates upward toward the stone and catches it at t = 2/11 s; the parabola result itself is correct.",
+   "fix": "while the elevator floor, still accelerating upward, rises to meet the stone"
+  }
+ ],
+ "verdict": "wrong",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-prj-01",
+  "at": "2026-09-11T19:52:15+05:30"
+ }
+}

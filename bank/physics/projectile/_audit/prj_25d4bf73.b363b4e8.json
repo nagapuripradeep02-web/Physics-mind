@@ -1,0 +1,38 @@
+{
+ "question_id": "prj_25d4bf73",
+ "item_sha": "b363b4e8f411aefa9cdd5d1c567b599081841594162c3af7e1d77f80b9bcc526",
+ "auditor_option": null,
+ "auditor_value": "As served (launch 90° above horizontal): vertical launch, x = 0 throughout, projectile returns to O at t = 4√2 ≈ 5.66 s and never reaches a point P on the incline. For the 45° launch in the figure: (a) t = 7 s, (b) OP = 175 m (x = 140 m, drop 105 m).",
+ "findings": [
+  {
+   "grade": "harmful",
+   "field": "final_answer",
+   "quote": "(a) t = 7 s, (b) OP = 175 m",
+   "note": "The question as served says the launch is directed 90° above the horizontal; the solution uses 45° (steps[0]: cos45°, sin45°) without stating that it is departing from the served text. At 90° the launch is vertical, x(t) = 0 for all t, the projectile returns to O at t = 2u/g = 4√2 ≈ 5.66 s and never meets the incline at a point P away from O, so 7 s and 175 m do not answer the problem printed. The answer is correct only for the 45° launch shown in the figure.",
+   "fix": "Either the question text must read 45° (matching the figure), or the solution must open by stating that the figure shows 45° and that the printed 90° is inconsistent with a landing point P on the slope, and then solve for 45°."
+  },
+  {
+   "grade": "harmful",
+   "field": "steps[0].equation",
+   "quote": "uₓ = 20√2 cos45° = 20 m/s, u_y = 20√2 sin45° = 20 m/s",
+   "note": "Uses a launch angle of 45° that the served question does not give; the served text gives 90°, for which uₓ = 0 and u_y = 20√2 m/s.",
+   "fix": null
+  },
+  {
+   "grade": "weak",
+   "field": "steps[0].text",
+   "quote": "taking the incline's direction as positive x",
+   "note": "x is the horizontal axis (x(t) = 20t uses the horizontal component), not the direction along the incline; a reader can take this to mean x runs along the slope.",
+   "fix": "taking the horizontal direction toward the lower end of the incline as positive x"
+  }
+ ],
+ "verdict": "harmful",
+ "question_defect": "Question text gives the launch direction as 90° above the horizontal while the figure_description gives 45°; the two conflict, and with 90° there is no landing point P on the slope, so the served text is internally inconsistent. The solution solves the 45° version without saying so.",
+ "notes": "All other lines are correct for the 45° problem: 20t − 5t² = −15t gives t = 7 s, x = 140 m, OP = 140/0.8 = 175 m. The common_mistakes entry (t = 1 s, OP = 25 m for an upward incline) checks out numerically.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-03",
+  "at": "2026-09-11T19:33:44+05:30"
+ }
+}

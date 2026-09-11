@@ -1,0 +1,93 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_prj_92d9858d",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "Two particles, A and B, are launched at the same instant from two points on level ground. Particle A leaves the ground at speed 20 m/s, directed at an unknown angle θ above the line joining the two points, toward B. Particle B leaves the ground moving straight up at 10 m/s. The two particles meet in the air half a second after launch.",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "Find the angle θ."
+   },
+   {
+    "label": "b",
+    "asks": "Find the horizontal distance x between the two launch points."
+   }
+  ],
+  "conditions": [
+   "A and B launched simultaneously",
+   "A's speed is 20 m/s, directed at angle θ above the ground toward B",
+   "B's speed is 10 m/s, directed straight upward",
+   "the particles collide in the air 1/2 s after launch"
+  ],
+  "figure": {
+   "description": "Two points, A and B, lie on level ground a horizontal distance x apart. From A, a particle is launched toward B at 20 m/s, at an unknown angle θ above the ground. From B, a particle is launched straight upward at 10 m/s."
+  }
+ },
+ "solution": {
+  "approach": "Both particles start on the ground and fall under the same gravity, so matching their heights at the collision time cancels the fall term and fixes the angle directly.",
+  "steps": [
+   {
+    "text": "Write the height above the ground of each particle as a function of time.",
+    "equation": "y_A(t) = v_A sinθ·t − ½gt², y_B(t) = v_B·t − ½gt²"
+   },
+   {
+    "text": "Set the two heights equal at the collision time; the −½gt² term cancels on both sides.",
+    "equation": "v_A sinθ·t = v_B·t → v_A sinθ = v_B"
+   },
+   {
+    "text": "Substitute the given speeds to find the angle.",
+    "equation": "sinθ = v_B/v_A = 10/20 = 0.5 → θ = 30°"
+   },
+   {
+    "text": "Use the given collision time to find A's horizontal distance covered, which equals the separation x since B does not move horizontally.",
+    "equation": "x = v_A cosθ·t = 20×cos30°×0.5 = 5√3 ≈ 8.66 m"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) θ = 30°, (b) x = 5√3 m ≈ 8.66 m"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Forgetting the fall term for particle A only, instead of letting it cancel for both particles, gives a wrong angle of about 22.0° and a wrong distance of about 9.27 m."
+   }
+  ],
+  "concept_tags": [
+   "projectile motion",
+   "relative motion",
+   "collision in air"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "54c95e723f41537c115f787ffde733dcc596c057007e9f0578b24de72e3a01ac"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "283b936f7f20d4d6caaf9bd9364efc25f6af02de70cc5c2a8454170cf9d46d09",
+  "audited_by": "W01-U-prj-03"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-06",
+  "at": "2026-09-11T12:12:00+05:30"
+ }
+}

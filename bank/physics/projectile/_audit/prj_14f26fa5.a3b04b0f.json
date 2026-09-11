@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_14f26fa5",
+ "item_sha": "a3b04b0f2eae54205499ad1a6a60a7da1bc78cee54c4a57aa07d4ed3f13d7722",
+ "auditor_option": 4,
+ "auditor_value": "678.4 m — option (d) None of these (T = 12.8 s, R = 614.4 m, tank closes 64 m)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Re-computed: T = 2·80·0.8/10 = 12.8 s; R = 48·12.8 = 614.4 m; tank 5·12.8 = 64 m; D = 678.4 m, matching none of (a)–(c). Mistake entry for option (a) verified: swapping sin/cos gives T = 9.6 s, R unchanged at 614.4 m, D = 614.4 + 48 = 662.4 m exactly.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-01",
+  "at": "2026-09-11T19:33:02+05:30"
+ }
+}

@@ -1,0 +1,121 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter": "projectile",
+ "slice": 4,
+ "round": 0,
+ "items": [
+  {
+   "question_id": "prj_87e27883",
+   "question_text": "From the top of a tower, two particles are launched at the same instant, moving horizontally but away from each other — one at 10 m/s, the other at 20 m/s. Using g = 10 m/s², work out after how long their velocity directions become perpendicular to each other.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_812a268c",
+   "question_text": "Three separate particles are each launched from the top of the same 40 m tall tower, one per case, with different launch conditions.\n(a) First case: the particle is launched at 45° above the horizontal, up and away from the tower, with speed 20√2 m/s. Find the landing time and the horizontal landing distance from the tower's base.\n(b) Second case: the particle is launched horizontally with speed 20 m/s. Find the landing time and the horizontal landing distance from the tower's base.\n(c) Third case: the particle is launched at 45° below the horizontal, downward and away from the tower, with speed 20√2 m/s. Find the landing time and the horizontal landing distance from the tower's base.",
+   "options": [],
+   "figure_description": "A 40 m tall tower is shown three times, once per case. In case i a particle leaves the top of the tower at 45° above the horizontal, moving up and away from the tower, with speed 20√2 m/s. In case ii a particle leaves the top horizontally with speed 20 m/s. In case iii a particle leaves the top at 45° below the horizontal, moving down and away from the tower, with speed 20√2 m/s. An x-y axis convention (x horizontal, y vertical) is shown alongside."
+  },
+  {
+   "question_id": "prj_8ccf08b9",
+   "question_text": "Assertion: When the time of flight of a projectile is doubled, its maximum height increases to four times its earlier value. Reason: For a projectile, the maximum height H is proportional to the square of the time of flight T, that is H ∝ T².",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_70ed35c7",
+   "question_text": "A projectile launched at angle θ, with a certain speed, covers a horizontal range that equals half the maximum range obtainable at that same speed. What is the angle θ?",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "15°"
+    },
+    {
+     "label": "(b)",
+     "text": "30°"
+    },
+    {
+     "label": "(c)",
+     "text": "60°"
+    },
+    {
+     "label": "(d)",
+     "text": "not enough information is given"
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_7ce39cdf",
+   "question_text": "Demonstrate that a projectile passes through the same height at two separate instants, and prove algebraically that adding those two times together gives exactly the total time of flight.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_6e73404f",
+   "question_text": "Someone stands at the top of a sloping hill and throws a stone purely horizontally, giving it speed v₀. Using an x-y axis system with its origin at the throwing point, work out the x and y coordinates of the spot on the hillside where the stone eventually lands.",
+   "options": [],
+   "figure_description": "The hill's top is at the origin (0,0) of an x-y axis system, with the x-axis horizontal (pointing in the direction of throw) and the y-axis vertical. The stone is thrown horizontally with speed v₀ along the positive x direction from the origin. The hillside slopes downward from the origin at angle θ below the horizontal x-axis, and the stone's curved path meets this sloped hillside at a point (x, y), with y measured as negative below the origin."
+  },
+  {
+   "question_id": "prj_6606ae74",
+   "question_text": "Two balls, A and B, are thrown at the same instant from the tops of two towers standing distance d apart. Ball A is thrown from the shorter tower, of height 10 m, at 10√2 m/s directed 45° above the horizontal toward the other tower. Ball B is thrown from the taller tower, of height 20 m, horizontally toward the first tower at 10 m/s. The two balls meet while both are still in the air. Find d.",
+   "options": [],
+   "figure_description": "Two vertical towers stand on level ground, distance d apart. The left tower is 10 m tall; from its top, particle A is launched at 45° above the horizontal at 10√2 m/s, aimed toward the right tower. The right tower is 20 m tall; from its top, particle B is launched horizontally at 10 m/s, aimed toward the left tower."
+  },
+  {
+   "question_id": "prj_7c08c47c",
+   "question_text": "A particle is launched at 20 m/s, at 60° above the horizontal. Using g = 10 m/s², find the time at which the particle's speed has dropped to half of its initial value.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_83670542",
+   "question_text": "From a point O at the foot of a slope that rises at 30° to the horizontal, a particle is thrown with speed 10 m/s along a direction making 30° with the slope surface (that is, 60° above the horizontal). It lands on the slope at a point A. Take g = 10 m/s². At the instant it reaches A, find the component of its velocity perpendicular to the slope surface.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_909c238b",
+   "question_text": "At the highest point of its path, a projectile's speed equals √(2/5) times its speed at a height equal to half the maximum height reached. Work out the angle at which it was projected.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_872ec629",
+   "question_text": "Which of the following statements correctly describes the motion of a projectile?",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "The acceleration stays the same, in both magnitude and direction, at every point of the path."
+    },
+    {
+     "label": "(b)",
+     "text": "The acceleration is uniform throughout the path, except that at the topmost point the object moves with constant velocity."
+    },
+    {
+     "label": "(c)",
+     "text": "At no point of the flight is the acceleration vector perpendicular to the velocity vector."
+    },
+    {
+     "label": "(d)",
+     "text": "None of these is correct."
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_6f699f92",
+   "question_text": "Assertion: Whenever the acceleration of a particle does not change, the only path it can trace is a parabola. Reason: The trajectory in projectile motion is a parabola because, near the ground, the acceleration is treated as unchanging.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_822434a2",
+   "question_text": "One particle is launched straight upward at 20 m/s. At the same instant, a second particle is launched at 20√2 m/s directed 45° above the horizontal, with g = 10 m/s².\n(a) Find the acceleration of the first particle as measured relative to the second particle.\n(b) Find the initial velocity of the first particle as measured relative to the second particle.\n(c) Find the separation between the two particles 2 s after launch.",
+   "options": [],
+   "figure_description": ""
+  }
+ ]
+}

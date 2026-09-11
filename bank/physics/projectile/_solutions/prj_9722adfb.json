@@ -1,0 +1,51 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "prj_9722adfb",
+ "approach": "A parabolic path only needs a constant acceleration that is not along the velocity; it does not need the acceleration's components to vanish in one particular pair of axes.",
+ "steps": [
+  {
+   "text": "Choose x and y axes tilted away from the direction of the constant acceleration, so both its components aₓ and aᵧ are nonzero in these axes."
+  },
+  {
+   "text": "Give the particle an initial velocity that is not along the acceleration direction, and follow its path using these tilted axes."
+  },
+  {
+   "text": "The traced path is still the same physical parabola it would be in axes aligned with the acceleration; only its equation looks different when written in the tilted axes."
+  },
+  {
+   "text": "So a particle can still have a parabolic path even when neither aₓ nor aᵧ is zero, which makes the Assertion false."
+  },
+  {
+   "text": "The Reason is a true statement about projectile motion described in axes aligned with gravity, but a true Reason does not make a false Assertion true.",
+   "why_this_step": "The Assertion is about the shape of the path, which does not depend on the choice of axes."
+  }
+ ],
+ "final_answer": {
+  "option": 4,
+  "value": "If the Assertion is false but the Reason is true."
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": 1,
+   "text": "Assuming the shape of the path depends on which axes are chosen, so nonzero aₓ and aᵧ are mistaken for proof that the path cannot be a parabola."
+  },
+  {
+   "option": 2,
+   "text": "Treating the Assertion as true because it resembles the usual projectile description, without checking it against a tilted choice of axes."
+  }
+ ],
+ "concept_tags": [
+  "parabolic path",
+  "constant acceleration",
+  "choice of axes"
+ ],
+ "difficulty": "hard",
+ "mistake_type_hint": "concept",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-04",
+  "at": "2026-09-11T16:08:00+05:30"
+ }
+}

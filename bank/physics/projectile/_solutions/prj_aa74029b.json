@@ -1,0 +1,18 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "prj_aa74029b",
+ "approach": "The ball keeps the train's velocity along the track, so only the sideways and vertical motion from the throw separate it from the point on the train where it launched.",
+ "steps": [
+  {"text": "Split the thrown velocity, given perpendicular to the train's motion at 45° above horizontal, into its sideways and vertical parts.", "equation": "v_sideways = 30 cos45°, v_up = 30 sin45°, both equal 30/√2 ms⁻¹"},
+  {"text": "Along the track, the ball moves with the train's own speed the whole time, so it stays directly alongside the point on the train where it was thrown; that separation stays zero.", "equation": "along-track separation = 0"},
+  {"text": "Find the time of flight from the vertical motion, using g = 10 ms⁻² and landing back at the same height it was thrown from.", "equation": "t = 2v_up/g = 2(30/√2)/10 = 3√2 s"},
+  {"text": "The only separation from the launch point on the train is the sideways displacement, since the along-track and vertical net displacements are both zero.", "equation": "distance = v_sideways × t = (30/√2)(3√2) = 90 m"}
+ ],
+ "final_answer": {"option": 1, "value": "90 m"},
+ "confidence": "sure",
+ "common_mistakes": [],
+ "concept_tags": ["projectile motion", "relative velocity", "vectors"],
+ "difficulty": "hard",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-prj-05", "at": "2026-09-11T00:00:00+05:30"}
+}

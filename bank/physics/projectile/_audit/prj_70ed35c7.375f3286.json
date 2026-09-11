@@ -1,0 +1,24 @@
+{
+ "question_id": "prj_70ed35c7",
+ "item_sha": "375f3286b27a32cbd839378800ed06ce40bb19615afcb3c69ded8ebb7a9a25fc",
+ "auditor_option": 1,
+ "auditor_value": "θ = 15° (sin 2θ = ½; the second root 2θ = 150°, θ = 75°, is not offered) — option (a)",
+ "findings": [
+  {
+   "grade": "wrong",
+   "field": "common_mistakes[1].text",
+   "quote": "Using the other solution of sin2θ = ½ that lies past 45°, namely 2θ = 150°, then halving it wrongly gives θ = 60°.",
+   "note": "Halving 150° gives 75°, not 60°; the stated cause cannot produce the number the entry names, so it does not describe a real route to option (c).",
+   "fix": "Mistaking ½ for the sine of 60° turns sin 2θ = ½ into 2θ = 120°, which gives θ = 60°."
+  }
+ ],
+ "verdict": "wrong",
+ "question_defect": null,
+ "notes": "Solution answer 15° matches mine. Steps correct. The steps present θ = 15° as the only root of sin 2θ = ½ (75° also satisfies it), which is harmless here because only 15° is offered.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-04",
+  "at": "2026-09-11T19:32:51+05:30"
+ }
+}

@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_248833bb",
+ "item_sha": "0f1cfca963af7bf57051fc93f44c6f3bcb1c43f0ab48fb8337d4a960d7bb2f02",
+ "auditor_option": 2,
+ "auditor_value": "1000/3 m ≈ 333.3 m — option (b) (t = 10/√3 s, x = 500/√3 m)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Re-computed: 5t² = 50t/√3 → t = 10/√3 s; x = 288.7 m, y = 166.7 m, √(x²+y²) = 333.33 m = 1000/3. Mistake entry for (a) verified: t = 10 s, ut = 500 m.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-01",
+  "at": "2026-09-11T19:33:47+05:30"
+ }
+}

@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_db0a9de7",
+ "item_sha": "328b6318fabd21be213c6f5e57e2c7e265bccf2b482a7d41911d3816f5a922f6",
+ "auditor_option": null,
+ "auditor_value": "(a) t = 40/g = 4 s with g = 10 m/s^2 (4.08 s with g = 9.8); (b) OP = 20t*sqrt(2) = 80*sqrt(2) m = 113.1 m with g = 10 (115.4 m with g = 9.8)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Angle OPQ = 45 deg with Q directly below O gives OQ = QP, so (1/2)gt^2 = 20t; the solution reaches the same condition through the 45 deg incline passing through O (O is the top edge of the incline), which is equivalent. The question does not state g; the solution declares g = 10 m/s^2 in its first step, and the brief treats either value as acceptable. Both common-mistake numbers reproduce: 80 m without the sqrt(2), and gt^2 = 20t gives t = 2 s, OP = 40*sqrt(2) = 56.6 m.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-prj-03",
+  "at": "2026-09-11T19:53:34+05:30"
+ }
+}

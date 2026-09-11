@@ -1,0 +1,24 @@
+{
+ "question_id": "prj_2896697e",
+ "item_sha": "9f65754a920713140cf00f1418d269b2610993b27a774c32a289f90168401f3e",
+ "auditor_option": null,
+ "auditor_value": "(a) t = 2 s for both; (b) h = ½gt² = 19.6 m with g = 9.8 (20 m with g = 10); (c) 15 m from the bank",
+ "findings": [
+  {
+   "grade": "weak",
+   "field": "common_mistakes[0].text",
+   "quote": "Taking the horizontal distance s = 10 m itself as the fall height instead of computing it from the time of flight gives 10 m, well short of the correct 19.6 m.",
+   "note": "Not a genuine error for this question: no student confuses the stated horizontal landing distance with the bank height. The real slips here are dropping the ½ in h = ½gt² or treating the vertical motion as uniform.",
+   "fix": "Leaving out the ½ in h = ½gt² gives h = 9.8 × 2² = 39.2 m, twice the correct 19.6 m."
+  }
+ ],
+ "verdict": "weak",
+ "question_defect": null,
+ "notes": "The question gives no value of g; the solution's g = 9.8 m/s² is an acceptable choice (h = 20 m with g = 10 m/s²).",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-prj-01",
+  "at": "2026-09-11T19:52:15+05:30"
+ }
+}

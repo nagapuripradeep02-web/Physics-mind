@@ -1,0 +1,20 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "prj_c550c7cd",
+ "approach": "The bag keeps the balloon's upward and horizontal velocity at release, so its height equation gives the fall time, and both velocity components together give the impact speed.",
+ "steps": [
+  {"text": "Convert the balloon's ascending speed and the wind speed to metres per second.", "equation": "v = 12 km/h = 10/3 m/s ≈ 3.33 m/s, v_w = 20 km/h = 50/9 m/s ≈ 5.56 m/s"},
+  {"text": "Write the bag's height above the ground as a function of time, taking its release velocity as upward, and set the height to zero at the ground.", "equation": "h + vt − ½gt² = 0 ⟹ ½(9.8)t² − 3.33t − 50 = 0"},
+  {"text": "Solve the quadratic equation for the positive time.", "equation": "t = [3.33 + √(3.33² + 2×9.8×50)]/9.8 ≈ 3.55 s"},
+  {"text": "Find the vertical velocity at impact, then combine it with the constant horizontal wind speed for the impact speed.", "equation": "v_y = v − gt ≈ 3.33 − 9.8×3.55 ≈ −31.48 m/s, speed = √(v_w² + v_y²) ≈ 31.97 m/s"}
+ ],
+ "final_answer": {"option": null, "value": "t ≈ 3.55 s, impact speed ≈ 31.97 m/s"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Treating the bag as dropped from rest and ignoring the balloon's own upward velocity at release gives a shorter fall time of about 3.19 s instead of 3.55 s."}
+ ],
+ "concept_tags": ["projectile motion", "relative velocity", "quadratic equation"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-prj-07", "at": "2026-09-11T16:45:00+05:30"}
+}

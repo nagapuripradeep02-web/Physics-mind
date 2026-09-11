@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_8ccf08b9",
+ "item_sha": "74dac546bdec9bc331f9bae85737ea1a2c951fbfed11d9f18885c9e570ea2445",
+ "auditor_option": 1,
+ "auditor_value": "Both true and the Reason explains: H = uᵧ²/(2g) with uᵧ = gT/2 gives H = gT²/8, so H ∝ T² and doubling T quadruples H.",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Every line checked: T = 2uᵧ/g, H = uᵧ²/(2g), H = gT²/8, ratio 2² = 4. Both mistake entries are genuine reasons a student picks (c) or (b).",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-prj-02",
+  "at": "2026-09-11T19:52:53+05:30"
+ }
+}

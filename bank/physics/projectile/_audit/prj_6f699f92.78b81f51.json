@@ -1,0 +1,24 @@
+{
+ "question_id": "prj_6f699f92",
+ "item_sha": "78b81f51f4b09922c2af03ccce6ca5f1a67a95d63010b0f4f565c94788197ccb",
+ "auditor_option": 4,
+ "auditor_value": "Assertion false (a particle launched along the line of a constant acceleration, or released from rest, moves in a straight line), Reason true: option 4 of the standard Assertion-Reason set.",
+ "findings": [
+  {
+   "grade": "weak",
+   "field": "steps[4].text",
+   "quote": "but a true Reason cannot rescue a false Assertion",
+   "note": "Figurative wording; a statement does not rescue another statement. The rest of the sentence already carries the meaning.",
+   "fix": "but the Reason being true does not make the Assertion true"
+  }
+ ],
+ "verdict": "weak",
+ "question_defect": null,
+ "notes": "Counterexample (vertical throw, x(t) = 0) is valid and the verdict matches mine. The served question carries no option list; the solution's option 4 follows the standard four-option set and its value text spells the choice out.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-04",
+  "at": "2026-09-11T19:35:24+05:30"
+ }
+}

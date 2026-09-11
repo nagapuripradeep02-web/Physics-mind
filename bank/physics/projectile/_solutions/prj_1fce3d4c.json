@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "prj_1fce3d4c",
+ "approach": "Write the horizontal and vertical position as functions of time, then find where the path meets the incline's line through O, y = x tan37°.",
+ "steps": [
+  {"text": "Find the horizontal and vertical components of the launch velocity.", "equation": "uₓ = 20√2 cos45° = 20 m/s, u_y = 20√2 sin45° = 20 m/s"},
+  {"text": "Write the horizontal and vertical positions as functions of time, using g = 10 m/s².", "equation": "x(t) = 20t, y(t) = 20t − 5t²"},
+  {"text": "The incline rises at 37° from O, so P lies where the vertical position equals the horizontal position times tan37°.", "equation": "20t − 5t² = 20t × 0.75"},
+  {"text": "Solve for the time of flight (part a).", "equation": "t = 1 s"},
+  {"text": "Find x at this time, then divide by cos37° to get the distance along the incline. Restating both parts: the time of flight is 1 s and the range OP is 25 m.", "equation": "(a) t = 1 s (b) OP = 20/0.8 = 25 m"}
+ ],
+ "final_answer": {"option": null, "value": "(a) t = 1 s, (b) OP = 25 m"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Using the equation for a particle landing below the launch point instead of above it, which gives t = 7 s and OP = 175 m."}
+ ],
+ "concept_tags": ["projectile on an incline", "components of velocity", "equations of motion"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-prj-02", "at": "2026-09-11T11:18:00+05:30"}
+}

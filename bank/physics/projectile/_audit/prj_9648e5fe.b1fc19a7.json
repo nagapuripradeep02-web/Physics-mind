@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_9648e5fe",
+ "item_sha": "b1fc19a7df382c9e3197bd190f392a5e12911dc362b5240c9fdde67d533ddb46",
+ "auditor_option": 1,
+ "auditor_value": "Both true and the Reason explains: (v₂ − v₁)/(t₂ − t₁) is the average acceleration, which equals the constant g downward for any pair of instants.",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Definition line, a(t) = (0, −g), and the conclusion all check. Both mistake entries are genuine reasons for picking (d) or (b).",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-prj-02",
+  "at": "2026-09-11T19:54:18+05:30"
+ }
+}

@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_f688743c",
+ "item_sha": "b384bcc34bba1628921eb83c38f0baffede85f0dc71f59186cd04138db771888",
+ "auditor_option": null,
+ "auditor_value": "T = 2u sin15/(g cos30) = 4(1 - 1/sqrt(3)) = 1.69 s; range along the incline R = 39.0 m (x = 33.8 m, y = 19.5 m)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Independent solve by horizontal/vertical components (20t - 5t^2 = 20t/sqrt(3)) gives the same T = 1.6906 s and R = 39.04 m as the solution's incline-axes method. Every given quantity (30 deg incline, 20*sqrt(2) m/s at 45 deg to the horizontal, g = 10) is used with the served value. The step 4 arithmetic checks: u cos15 = 27.32, 27.32*1.6906 = 46.19, 2.5*1.6906^2 = 7.15, difference 39.04. Both common-mistake number sets reproduce: flat-ground formulas give T = 4 s, R = 80 m; the angle sum 75 deg in place of 15 deg gives T = 6.31 s and R = 2u^2 sin75 cos45/(g cos^2 30) = 145.71 m, which is indeed the down-incline result.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-prj-03",
+  "at": "2026-09-11T19:53:34+05:30"
+ }
+}

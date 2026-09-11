@@ -1,0 +1,27 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter": "projectile",
+ "slice": 8,
+ "round": 0,
+ "items": [
+  {
+   "question_id": "prj_f6e5b7b0",
+   "question_text": "A ball leaves the ground moving at 20√2 m/s, directed 45° above the horizontal. Take g = 10 m/s². Find the time (or times) at which it is 15 m above the ground.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_f688743c",
+   "question_text": "Using the launch data marked in the diagram, work out how long the projectile stays in the air and how far it travels along the slanted surface, taking g = 10 m/s².",
+   "options": [],
+   "figure_description": "An inclined plane rises to the right from a point on level ground at 30° to the horizontal. From that same point a projectile is launched at 20√2 m/s, its velocity making 45° with the horizontal, so that it is steeper than the incline by 15° and lands on the incline."
+  },
+  {
+   "question_id": "prj_f6e5b7b0",
+   "question_text": "A ball leaves the ground moving at 20√2 m/s, directed 45° above the horizontal. Take g = 10 m/s². Find the time (or times) at which it is 15 m above the ground.",
+   "options": [],
+   "figure_description": ""
+  }
+ ]
+}

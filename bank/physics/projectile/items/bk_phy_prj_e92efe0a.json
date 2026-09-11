@@ -1,0 +1,80 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_prj_e92efe0a",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A projectile is aimed at a target that lies in the same horizontal level as the launch point. Launched at elevation α, it lands a cm short of the target; launched at elevation β with the same launch speed, it overshoots the target by b cm. Prove that the elevation angle that would hit the target exactly is ½ sin⁻¹[(b sin 2α + a sin 2β)/(a + b)].",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "target lies in the horizontal plane through the point of projection",
+   "launch speed is the same for both elevation angles"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Both shots share the same range formula and the same unknown target range R; eliminating u and R between the two elevation equations gives the elevation that hits the mark.",
+  "steps": [
+   {
+    "text": "Let R be the true distance to the mark. At elevation α the shot falls short by a, so the range achieved is R − a; at elevation β it goes b beyond, so the range achieved is R + b.",
+    "equation": "u² sin2α/g = R − a, u² sin2β/g = R + b"
+   },
+   {
+    "text": "Divide the two equations to eliminate u, then solve for R in terms of a, b, α and β.",
+    "equation": "R = (a sin2β + b sin2α)/(sin2β − sin2α)"
+   },
+   {
+    "text": "The correct elevation γ gives range R with the same speed, so its sine of double angle equals gR divided by u². Use u² = g(R − a)/sin2α from the first equation.",
+    "equation": "sin2γ = R sin2α/(R − a)"
+   },
+   {
+    "text": "Substitute R from the earlier step and simplify the fraction to reach the stated result.",
+    "equation": "sin2γ = (b sin2α + a sin2β)/(a + b), so γ = ½ sin⁻¹[(b sin2α + a sin2β)/(a+b)]"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "γ = ½ sin⁻¹[(b sin2α + a sin2β)/(a+b)]"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Swapping a and b in the final formula, writing (a sin2α + b sin2β)/(a+b) instead, gives a different value for a general pair of angles and distances."
+   }
+  ],
+  "concept_tags": [
+   "projectile motion",
+   "range formula",
+   "algebraic elimination"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "3110e2611887350605e7db072e50fed4fab663173ed84d93a000a185290cd3b8"
+ },
+ "verification": {
+  "key_match": false,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "5fdeb8526fd688a62c28e645b3366a2e63631e8fd653ede431c06a05f25ae7dd",
+  "audited_by": "W01-U-prj-02"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-07",
+  "at": "2026-09-11T16:45:00+05:30"
+ }
+}

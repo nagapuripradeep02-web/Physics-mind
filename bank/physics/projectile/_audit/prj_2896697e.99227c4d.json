@@ -1,0 +1,24 @@
+{
+ "question_id": "prj_2896697e",
+ "item_sha": "99227c4d24e27ab384050d2b30b1d48cc4406a07774288cc170edcca468678fc",
+ "auditor_option": null,
+ "auditor_value": "(a) t = 2 s for both; (b) h = ½gt² = 19.6 m (g = 9.8) or 20 m (g = 10); (c) 15 m from the bank",
+ "findings": [
+  {
+   "grade": "weak",
+   "field": "difficulty",
+   "quote": "medium",
+   "note": "Three single-substitution lines (t = s/v₁, h = ½gt², x₂ = v₂t) on a horizontal projectile with no trap; the item in this bank with the same structure (100 m drop, 20 m/s, three parts) is tagged easy.",
+   "fix": "easy"
+  }
+ ],
+ "verdict": "weak",
+ "question_defect": null,
+ "notes": "Answer agrees. concept_tags lists 'relative motion', which plays no part in the solution; not reader-facing, so not filed. The question does not state g; the solution takes 9.8 m/s², which is fine.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-02",
+  "at": "2026-09-11T19:34:41+05:30"
+ }
+}

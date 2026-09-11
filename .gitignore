@@ -166,3 +166,6 @@ smoke.pid
 /eapcet/solutions/_examples/*/_gate/
 # rebuilt from scratch by make_audit_input.py (holds the planted controls)
 /eapcet/solutions/_audit_input/
+
+# bank gate: the offline judge queue holds answer texts in the clear (judged rows live under pdfs/ work/)
+/bank/**/_gate/_judge_pending.jsonl

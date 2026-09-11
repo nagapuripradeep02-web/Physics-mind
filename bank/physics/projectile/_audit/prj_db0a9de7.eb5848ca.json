@@ -1,0 +1,24 @@
+{
+ "question_id": "prj_db0a9de7",
+ "item_sha": "eb5848ca7132a1c3efdacae3a41029ccaced58803b5d578d1c8fa5023495f795",
+ "auditor_option": null,
+ "auditor_value": "(a) t = 2u/g = 4 s (g = 10 m/s²; 4.08 s if g = 9.8); (b) OP = 80√2 m ≈ 113.1 m (115.4 m if g = 9.8)",
+ "findings": [
+  {
+   "grade": "weak",
+   "field": "steps[4].text",
+   "quote": "Restating both results: the time of flight is 4 s and the range OP is 80√2 m.",
+   "note": "Duplicated prose: the same two numbers are then printed again in this step's equation and a third time in final_answer. The text of this step should say only what the equation does (combine the two legs).",
+   "fix": "OP is the straight-line distance from O to P, the hypotenuse of the right triangle with legs x = 80 m and y = 80 m."
+  }
+ ],
+ "verdict": "weak",
+ "question_defect": null,
+ "notes": "Physics checked line by line: x = 20t, y = 5t²; 5t² = 20t → t = 4 s; x = y = 80 m; OP = 80√2 = 113.1 m. g = 10 is assumed in step 1 and stated there; the question gives no g, so this is acceptable. Both mistake entries are genuine and their numbers reproduce (g t² gives t = 2 s, 40√2 = 56.6 m).",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-07",
+  "at": "2026-09-11T19:36:18+05:30"
+ }
+}

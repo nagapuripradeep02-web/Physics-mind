@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_4c3a2b6e",
+ "item_sha": "eb0db389d32fd7c729302db9847c9a5cc98add3426082e337713e28a9021bf80",
+ "auditor_option": 1,
+ "auditor_value": "(a) both true, Reason explains the Assertion (velocity and g fix one plane; no force acts out of it)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-prj-01",
+  "at": "2026-09-11T19:52:15+05:30"
+ }
+}

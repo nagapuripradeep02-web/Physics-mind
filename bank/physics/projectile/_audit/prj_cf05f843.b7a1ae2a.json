@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_cf05f843",
+ "item_sha": "b7a1ae2a31e05d10e95f48f249eab7fcaf3df458dc93ad23c45526b197d0a669",
+ "auditor_option": null,
+ "auditor_value": "time of flight t = 2u tan30°/g = 4/√3 ≈ 2.31 s; distance along incline = ut/cos30° = 160/3 ≈ 53.3 m",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Landing condition ½gt² = ut tan30° is the right one for a horizontal launch onto a 30° slope; cross-checked with incline-axis components (perpendicular: T = 2u sin30°/(g cos30°); along: u cos30° T + ½ g sin30° T² = 53.33 m).",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-06",
+  "at": "2026-09-11T19:35:04+05:30"
+ }
+}

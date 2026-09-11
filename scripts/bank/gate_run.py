@@ -27,8 +27,18 @@ MISTAKE_KEYS = {"option", "text", "distractor"}
 LIMITS = {"approach": 30, "step_text": 60, "mistake": 35, "steps_min": 2, "steps_max": 8, "mistakes_max": 3}
 IDENTITY = re.compile(r"\b(?:pandey|arihant|verma|cengage|resonance|allen|narayana|chaitanya)\b|understanding physics|"
                       r"\bexample\s*\d|\bexercise\s*\d|\bpage\s*\d|\bchapter\s*\d|\bfig\.?\s*\d|\bDCP\b|\bHCV\b|level\s*[12]\b", re.I)
-SEQ_SECTIONS = ["IE 6.1", "IE 6.2", "IE 6.3", "IE 6.4", "IE 6.5", "IE 6.6", "IE 6.7", "IE 6.8", "IE 6.9",
-                "L1 AR", "L1 SC", "L1 SUB", "L2 SC", "L2 MC", "L2 CB", "L2 MT", "L2 SUB"]
+def _ie_sections():
+    """The chapter's introductory-exercise numbers, from the located manifest (never hard-coded per chapter)."""
+    import ingest
+    man = L.load(ingest.MANIFEST) or {"markers": []}
+    return sorted({m["label"][3:-5] for m in man["markers"] if m["kind"] == "boundary" and m["label"].startswith("IE ") and m["label"].endswith(" HEAD")},
+                  key=lambda s: [int(x) for x in s.split(".")])
+
+
+SEQ_SECTIONS = ["IE " + s for s in _ie_sections()] + ["L1 AR", "L1 SC", "L1 SUB", "L2 SC", "L2 MC", "L2 CB", "L2 MT", "L2 SUB"]
+OFFLINE_JUDGE = False                   # True: never call the paid judge; queue the pair for a judge sub-agent
+PENDING = os.path.join(L.GATE, "_judge_pending.jsonl")
+_pending_seen = set()
 
 
 # ---------------------------------------------------------------- readers
@@ -97,6 +107,11 @@ def same(a_opt, a_val, b_opt, b_val, kind, cache):
         k = L.sha256(a_val + "|" + b_val)
         if k in cache:
             return cache[k]["equivalent"], "judge(cached)"
+        if OFFLINE_JUDGE:
+            if k not in _pending_seen:
+                _pending_seen.add(k)
+                L.jsonl_append(PENDING, {"k": k, "a": a_val, "b": b_val})
+            return None, "judge(pending)"
         eq, why = G.equiv_judge(a_val, b_val)
         L.jsonl_append(EQUIV_CACHE, {"k": k, "a": a_val, "b": b_val, "equivalent": eq, "why": why})
         cache[k] = {"equivalent": eq}
@@ -254,7 +269,7 @@ def restatement_checks(wid, tr, rt, gv, fd, sol, cache):
     facts["edit_ratio"] = round(lev_ratio(masked(orig_text), masked(q)), 3)
     if facts["edit_ratio"] < 0.4:
         return "restatement_too_close %.2f" % facts["edit_ratio"], warn, facts
-    orig_for_sig = re.sub(r"\b(?:table|fig\.?|figure|eq\.?|equation|example|exercise)\s*\d+(?:\.\d+)?", " ", orig_text, flags=re.I)
+    orig_for_sig = re.sub(r"\b(?:table|fig\.?|figure|eq\.?|equation|example|exercise|problem|question)s?(?:\s+numbers?)?\s*\d+(?:\.\d+)?(?:\s*(?:and|,|to|–|-)\s*\d+)*", " ", orig_text, flags=re.I)
     so, sq = collections.Counter(L.numeric_signature(orig_for_sig)), collections.Counter(L.numeric_signature(q))
     if so != sq:
         facts["signature"] = [sorted(so.elements()), sorted(sq.elements())]
@@ -315,6 +330,11 @@ def restatement_checks(wid, tr, rt, gv, fd, sol, cache):
 
 # ---------------------------------------------------------------- run
 def run(a):
+    global OFFLINE_JUDGE
+    OFFLINE_JUDGE = bool(getattr(a, "offline_judge", False)) or not os.environ.get("BANK_ALLOW_API")
+    if OFFLINE_JUDGE:
+        _pending_seen.update(r["k"] for r in L.jsonl_read(PENDING))
+        print("judge: OFFLINE (pairs the comparator cannot decide go to %s)" % PENDING)
     idioms = L.idioms_from_ts()
     tr = S.transcripts()
     sols = S.solutions()
@@ -360,7 +380,10 @@ def run(a):
             key_val = ingest.find_key(key, t["label"])
         else:
             key_val = t.get("printed_answer") or (EK.get(wid) or {}).get("final_value") or None
-        row["chapter"] = (CH.get(wid) or {}).get("chapter")
+        if key_val and re.match(r"\s*(?:prove|show)\b", t.get("question_text") or "", re.I):
+            key_val = None                       # the printed "answer" is the statement to be proved; B and the auditor are the readers
+            row["warnings"].append("prove/show item: the printed key is not a reader")
+        row["chapter"] = (CH.get(wid) or {}).get("chapter") or (L.CFG["syllabus"][0] if len(L.CFG["syllabus"]) == 1 else None)
         if key_val and re.fullmatch(r"\[?\s*(?:graph|sketch|see (?:the )?hints?|figure)\s*\]?\.?", key_val.strip(), re.I):
             row["warnings"].append("printed answer is a sketch (%s): only the second reader confirms" % key_val.strip())
             key_val = None
@@ -395,6 +418,9 @@ def run(a):
             bucket = "pass"
         elif k_ok is True:
             bucket = "pass_unconfirmed"          # author = key, but neither B nor the hint could confirm
+        elif k_ok is False and b_ok is True and h_ok is True:
+            bucket = "pass"                      # the printed answer is the odd one out: author = second reader = hint
+            row["warnings"].append("printed answer disagrees; the printed hint agrees with both readers (key misprint)")
         elif k_ok is False and b_ok is True:
             bucket = "escalate_key"              # two blind readers agree against the printed answer
         elif k_ok is False and (bk_ok is True or h_ok is False):

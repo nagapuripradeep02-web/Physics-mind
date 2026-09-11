@@ -1,0 +1,87 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_prj_5353badd",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "mcq_single",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "Which of the following statements correctly describes the motion of a projectile?",
+  "options": {
+   "1": "The acceleration stays the same, in both magnitude and direction, at every point of the path.",
+   "2": "The acceleration is uniform throughout the path, except that at the topmost point the object moves with constant velocity.",
+   "3": "At no point of the flight is the acceleration vector perpendicular to the velocity vector.",
+   "4": "None of these is correct."
+  },
+  "parts": null,
+  "conditions": [],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Gravity keeps acting with the same constant value throughout the flight, including at the highest point, which rules out the other statements.",
+  "steps": [
+   {
+    "text": "Through the whole flight, the only acceleration acting on the projectile is gravity, which stays constant in magnitude and direction.",
+    "equation": "a = (0, −g) at every instant"
+   },
+   {
+    "text": "Even at the highest point, where the vertical velocity is momentarily zero, gravity still acts, so the acceleration there is the same nonzero constant value as everywhere else."
+   },
+   {
+    "text": "So the motion is uniformly accelerated at every point of the path, including the top, which rules out the statement that velocity becomes constant there."
+   },
+   {
+    "text": "At the highest point the velocity is purely horizontal while the acceleration is purely vertical, so their dot product is zero there, meaning acceleration and velocity are perpendicular at that instant, which rules out the statement that they are never perpendicular.",
+    "equation": "a·v = (0)(vₓ) + (−g)(0) = 0"
+   },
+   {
+    "text": "The only statement that holds throughout the flight is that projectile motion is uniformly accelerated everywhere."
+   }
+  ],
+  "final_answer": {
+   "option": 1,
+   "value": "It is uniformly accelerated everywhere"
+  },
+  "common_mistakes": [
+   {
+    "option": 2,
+    "text": "Thinking that zero vertical velocity at the highest point means zero acceleration there, mistaking momentarily zero velocity for constant velocity."
+   },
+   {
+    "option": 3,
+    "text": "Assuming acceleration and velocity can never be perpendicular in projectile motion, missing that this happens exactly at the highest point."
+   }
+  ],
+  "concept_tags": [
+   "projectile motion",
+   "acceleration",
+   "highest point"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "872ec629e8d87b69b14a0e1a86db43433bf3b3e1df61521701d5d48963e8cc3a"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "9bc12b2e27ea619db6ffef6d8fda0bd0988268fca2ca0f34a38c2c0cb7071eeb",
+  "audited_by": "W01-U-prj-04"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-04",
+  "at": "2026-09-11T16:14:00+05:30"
+ }
+}

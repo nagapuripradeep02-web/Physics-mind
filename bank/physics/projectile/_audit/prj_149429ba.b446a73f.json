@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_149429ba",
+ "item_sha": "b446a73f5471f0547b32cc997a755bea48ee96892035e484b9f5893672c06de8",
+ "auditor_option": null,
+ "auditor_value": "v = 40î + 10ĵ m/s (|v| = 10√17 ≈ 41.2 m/s at 14° above x); displacement = 80î + 40ĵ m (|s| = 40√5 ≈ 89.4 m at 26.6°); position (80 m, 40 m)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Re-computed: ux = 40, uy = 30; v(2) = (40, 10), √1700 = 41.23 m/s, tan⁻¹0.25 = 14.0°; s(2) = (80, 40), √8000 = 89.44 m. Both mistake entries name genuine errors whose stated causes produce the numbers given (50 m/s; 60 m).",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-01",
+  "at": "2026-09-11T19:35:37+05:30"
+ }
+}

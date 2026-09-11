@@ -1,0 +1,70 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_prj_14109198",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "conceptual",
+ "key_kind": "words",
+ "figure_required": false,
+ "question": {
+  "text": "A student says that the path of a projectile is a 3-dimensional motion. Decide if this claim is correct or not.",
+  "options": null,
+  "parts": null,
+  "conditions": [],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Check whether the projectile's path can be contained in a single plane.",
+  "steps": [
+   {
+    "text": "The initial velocity and the acceleration due to gravity are two vectors; together they fix a single plane, the vertical plane containing the launch direction."
+   },
+   {
+    "text": "Gravity acts only within that plane, so there is no force pushing the particle out of it, and its path stays inside that one plane for the whole flight."
+   },
+   {
+    "text": "So the statement is false: projectile motion needs only two coordinates and is two-dimensional (planar), not three-dimensional."
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "False. Projectile motion is two-dimensional; it occurs entirely within one vertical plane containing the initial velocity and gravity."
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Assuming any motion with a curved path in space must need all three directions, without checking that the initial velocity and gravity define only one plane."
+   }
+  ],
+  "concept_tags": [
+   "projectile motion",
+   "plane of motion",
+   "dimensionality"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "d181dcc6bb15480824eec9132b0b55bbb69e86348fa0b0aa6a8f399490a97f94"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "211dbec77b422f5db8d63aa5b9c44ad416a0c5f0a802ad31fd2d8a785c12c365",
+  "audited_by": "W01-U-prj-06"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-02",
+  "at": "2026-09-11T12:05:00+05:30"
+ }
+}

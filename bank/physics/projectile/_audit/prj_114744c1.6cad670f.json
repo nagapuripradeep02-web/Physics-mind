@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_114744c1",
+ "item_sha": "6cad670f91b03b8dbdb34bbab212436f67316a5b407f609b6c03d4f95779f71f",
+ "auditor_option": null,
+ "auditor_value": "(a) Δv = 30 m/s vertically downward (0î − 30ĵ); (b) |v_avg| = 5√17 ≈ 20.6 m/s (g = 10 m/s²)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Re-computed with g = 10: v(3) = (20, −10), Δv = (0, −30); s = (60, 15), |s| = √3825 = 15√17 = 61.85 m, v_avg = 20.62 m/s. Mistake entry's numbers verified (√500 = 22.36; mean of speeds 25.32).",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-01",
+  "at": "2026-09-11T19:33:34+05:30"
+ }
+}

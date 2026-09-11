@@ -1,0 +1,31 @@
+{
+ "question_id": "prj_70ed35c7",
+ "item_sha": "b858c990f0bc5fd14b5945fcc02263c5eb8e4b79c875b8d170cbdd6514065735",
+ "auditor_option": 1,
+ "auditor_value": "sin 2θ = ½ gives θ = 15° or 75°; 15° is the listed option.",
+ "findings": [
+  {
+   "grade": "wrong",
+   "field": "common_mistakes[1].text",
+   "quote": "Mistaking ½ for the sine of 60° turns sin 2θ = ½ into 2θ = 120°, which gives θ = 60°.",
+   "note": "The stated cause does not produce the number named: a student who believes sin 60° = ½ would write 2θ = 60° and get θ = 30°, not 2θ = 120°. Reaching 120° needs a different confusion (with sin 150° = ½, or with sin 120°).",
+   "fix": "Writing 2θ = 120° instead of 30° or 150°, by confusing sin 120° (which is √3/2) with ½, gives θ = 60°."
+  },
+  {
+   "grade": "weak",
+   "field": "steps[2].equation",
+   "quote": "sin2θ = ½, 2θ = 30°, θ = 15°",
+   "note": "sin 2θ = ½ has a second solution in the launch range, 2θ = 150°, θ = 75°, which also gives half the maximum range; the line drops it without comment. Only 15° is among the options, so the answer stands, but the step should say so.",
+   "fix": "sin2θ = ½, so 2θ = 30° or 150°, θ = 15° or 75°; of these only 15° is among the options."
+  }
+ ],
+ "verdict": "wrong",
+ "question_defect": null,
+ "notes": "R(15°) = R(75°) = R_max/2 checked. Option-2 mistake entry (forgetting to halve 2θ = 30°) is genuine.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-prj-02",
+  "at": "2026-09-11T19:53:57+05:30"
+ }
+}

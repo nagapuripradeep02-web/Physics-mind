@@ -1,0 +1,75 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_prj_544df9f6",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "numerical",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A ball leaves the edge of a flat tabletop standing 4 m above the ground, rolling off horizontally with no initial drop. It touches down on the ground at a spot located 5 m away, measured horizontally from the table's edge. Determine how fast the ball was travelling the moment it left the tabletop.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "ball rolls off the table edge horizontally (starts with zero vertical velocity)",
+   "table top is 4 m above the ground",
+   "landing point is 5 m horizontally from the table edge"
+  ],
+  "figure": {
+   "description": "A right-angle layout: point A marks the table edge, point B is directly below A at the base of the table on the ground, 4 m below A. The ball leaves A moving horizontally (shown by an arrow v) and follows a curved path down to point C on the ground, which is 5 m horizontally from B."
+  }
+ },
+ "solution": {
+  "approach": "Find the time of fall from the 4 m drop using g = 9.8 m/s² (no value given), then divide the 5 m horizontal distance by that time.",
+  "steps": [
+   {
+    "text": "Find the time to fall the 4 m height from rest, taking g = 9.8 m/s² since no value is given in the problem.",
+    "equation": "h = ½gt² ⇒ t = √(2×4/9.8) ≈ 0.904 s"
+   },
+   {
+    "text": "Divide the 5 m horizontal distance by this time to get the constant horizontal launch speed.",
+    "equation": "v = 5/0.904 ≈ 5.53 m/s"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "v ≈ 5.53 m/s (using g = 9.8 m/s²)"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Finding the time of fall as t = √(h/g) = √(4/9.8) ≈ 0.64 s, dropping the factor of 2 inside the square root, which gives a wrong speed of about 7.8 m/s."
+   }
+  ],
+  "concept_tags": [
+   "horizontal projectile",
+   "time of fall",
+   "launch speed"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "calculation"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "cc910cc5abd4eb8025c8199e6a7dee2ccef1259ec44d3b3a3a293ba9e66f0746"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "ac6978ae65edffe3fce1b2cef563c068630e453d4fdddf78817de2e148c79971",
+  "audited_by": "W01-U-prj-06"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-01",
+  "at": "2026-09-11T18:56:00+05:30"
+ }
+}

@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_3103a693",
+ "item_sha": "3df32cfbfa388d2e7d3d2aff1a290de4b1cdd4dcdc1396d62c6a8e6ba8960e53",
+ "auditor_option": null,
+ "auditor_value": "No. R_max = u²/g = R(30°)/sin60° = 3.0/0.866 ≈ 3.46 km, which is less than 5.0 km.",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": "The target distance is served as '5.0 away' with no unit. km is the only unit consistent with the 3.0 km range given in the same sentence; the solution read it as 5.0 km, which is the only sensible reading.",
+ "notes": "Answer agrees. Mistake entry checks: 3.0/sin30° = 6.0 km.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-02",
+  "at": "2026-09-11T19:34:42+05:30"
+ }
+}

@@ -1,0 +1,104 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter": "projectile",
+ "slice": 2,
+ "round": 0,
+ "items": [
+  {
+   "question_id": "prj_2896697e",
+   "question_text": "Two particles are launched at the same instant, moving horizontally, from two different points on a riverbank that sit at some height above the water. Particle 1 has initial speed v₁ = 5 m/s and particle 2 has initial speed v₂ = 7.5 m/s. Both particles land in the water simultaneously. The first particle lands at a horizontal distance s = 10 m from the bank.\n(a) Find how long each particle remains airborne before hitting the water.\n(b) Find the height of the riverbank above the water surface.\n(c) Work out where the second particle lands in the water, measured from the bank.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_2259e411",
+   "question_text": "An object is released moving only horizontally from a tower's top. It lands on the ground 3 seconds later, striking it at 45° to the horizontal. Using g = 9.8 m/s², calculate the tower's height and the horizontal launch speed of the object.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_3938c125",
+   "question_text": "A pair of complementary projection angles have flight durations T₁ and T₂. Which expression correctly gives the projectile's range R?",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "R = 4gT₁T₂"
+    },
+    {
+     "label": "(b)",
+     "text": "R = 2gT₁T₂"
+    },
+    {
+     "label": "(c)",
+     "text": "R = ¼ gT₁T₂"
+    },
+    {
+     "label": "(d)",
+     "text": "R = ½ gT₁T₂"
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_47c119c1",
+   "question_text": "For a projectile, find the launch angle at which its horizontal range equals its maximum height.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_3103a693",
+   "question_text": "A bullet launched at 30° to the horizontal lands 3.0 km from where it was fired. If the launch angle is changed while everything else about the shot is kept the same, is it possible to strike a target sitting 5.0 away? The bullet leaves the barrel at a constant speed, and air drag can be ignored.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_25d4bf73",
+   "question_text": "In the diagram, a projectile is launched from point O with speed 20√2 m/s directed 45° above the horizontal. The incline through O slopes downward at 37° to the horizontal, and the projectile comes down on this incline at point P.\n(a) Determine how long the projectile is in the air before it lands on the sloped surface at P.\n(b) Determine the distance OP, measured along the slope, from the launch point O to the landing point P.",
+   "options": [],
+   "figure_description": "The particle leaves O with velocity 20√2 m/s at 45° above the horizontal. The slope through O runs downward at 37° to the horizontal, both close to O and at its lower end. The particle's curved path rises then falls, meeting the slope at point P, below and to the side of O. A right-angled construction with a vertical segment from O and a horizontal segment to P marks the drop and horizontal shift used to locate P."
+  },
+  {
+   "question_id": "prj_2c40ba4c",
+   "question_text": "A passenger sitting inside a train releases a stone from their hand while the train keeps moving at a steady speed.\n(a) Describe the shape of the path the stone follows as seen by that same passenger.\n(b) Describe the shape of the path the stone follows as seen by someone standing still on the ground.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_2e22e519",
+   "question_text": "From the top of a 25 m tall tower, a particle is thrown with a speed of 20√2 m/s directed 45° above the horizontal. Work out how long it takes to reach the ground, how far horizontally from the base of the tower it lands, and its velocity at the moment it lands.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_2548ca25",
+   "question_text": "A particle is launched from the bottom of an incline that rises at 30° to the horizontal. Its launch velocity, of magnitude u = 10 m/s, is directed 30° above the incline surface itself. Taking g = 10 m/s², find the particle's speed at the moment it lands back on the incline, at point A.",
+   "options": [],
+   "figure_description": "An inclined plane rises at 30° from a point O on the ground. A particle is launched from O at 10 m/s, its velocity making a 30° angle with the incline surface, and it follows a curved path back down to land on the incline at point A."
+  },
+  {
+   "question_id": "prj_2c1d3911",
+   "question_text": "Two slopes OA and OB, tilted at 30° and 60° to the horizontal ground respectively, meet each other at point O, as illustrated. A particle is launched from point P with speed u = 10√3 m/s along a direction perpendicular to slope OA, and it strikes slope OB perpendicularly at point Q. Taking g = 10 m/s², work out the following.\n(a) The duration of the particle's flight.\n(b) The speed at which the particle hits plane OB.\n(c) How far above point O is point P located (call this vertical height h).\n(d) The distance PQ.",
+   "options": [],
+   "figure_description": "Two inclined lines meet at O on a horizontal ground line: OA rises to the upper left at 30° to the ground, OB rises to the upper right at 60° to the ground. Point P lies on OA, at height h above O. At P, the velocity u is drawn perpendicular to OA. Point Q lies on OB, with a right-angle mark showing the velocity there is perpendicular to OB. Tilted reference axes are shown near B, aligned along OB and OA."
+  },
+  {
+   "question_id": "prj_27b92f47",
+   "question_text": "A projectile is launched with speed u directed perpendicular to an inclined surface that makes angle θ with the horizontal ground. Obtain a formula for the distance R, measured along the slope, from the launch point to where the projectile lands.",
+   "options": [],
+   "figure_description": "A projectile launches from the top of an inclined slope, with initial velocity u perpendicular to the slope's surface. The slope makes angle θ with the horizontal. The projectile arcs through the air and lands back on the slope, a distance R (measured along the slope) from the launch point."
+  },
+  {
+   "question_id": "prj_3d0ab8fd",
+   "question_text": "A ball leaves a thrower's hand moving exactly horizontally, starting from a height of 100 m over the ground, with a horizontal launch speed of 20 m/s.\n(a) Work out how long the ball takes before it lands.\n(b) Work out how far horizontally the ball travels before landing.\n(c) Work out the landing velocity, giving both its size and its direction.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_3110e261",
+   "question_text": "A projectile is aimed at a target that lies in the same horizontal level as the launch point. Launched at elevation α, it lands a cm short of the target; launched at elevation β with the same launch speed, it overshoots the target by b cm. Prove that the elevation angle that would hit the target exactly is ½ sin⁻¹[(b sin 2α + a sin 2β)/(a + b)].",
+   "options": [],
+   "figure_description": ""
+  }
+ ]
+}

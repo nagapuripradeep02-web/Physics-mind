@@ -1,0 +1,20 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "prj_b528c2f4",
+ "approach": "Set up velocity components at time t, and require zero component along the initial velocity direction, since that is what perpendicularity to it means.",
+ "steps": [
+  {"text": "Write the velocity components at time t using the projection angle θ.", "equation": "vx = u cosθ (constant), vy = u sinθ − gt"},
+  {"text": "The velocity is perpendicular to the initial velocity u when their dot product is zero.", "equation": "v·u = (u cosθ)(u cosθ) + (u sinθ − gt)(u sinθ) = 0"},
+  {"text": "Expand and simplify, then solve for t.", "equation": "u²cos²θ + u²sin²θ − ugt sinθ = 0 ⇒ u² = ugt sinθ ⇒ t = u/(g sinθ)",
+   "why_this_step": "This is the instant the component of velocity along the original direction has fallen to zero, leaving only the perpendicular component."}
+ ],
+ "final_answer": {"option": null, "value": "t = u/(g sinθ)"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Using the time to reach maximum height, t = u sinθ/g, mistaking it for the perpendicular-velocity condition; the two times are different unless θ = 90°."}
+ ],
+ "concept_tags": ["projectile motion", "perpendicular velocity vectors", "dot product condition"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-prj-01", "at": "2026-09-11T18:34:00+05:30"}
+}

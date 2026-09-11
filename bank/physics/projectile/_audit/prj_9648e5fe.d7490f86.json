@@ -1,0 +1,24 @@
+{
+ "question_id": "prj_9648e5fe",
+ "item_sha": "d7490f8663a17eaae283ef66d07f3e4dc88a023db3c95ac2ed457f646f145d74",
+ "auditor_option": 1,
+ "auditor_value": "Assertion true, Reason true, and the Reason is the correct explanation (Δv/Δt between any two instants equals the constant acceleration g downward)",
+ "findings": [
+  {
+   "grade": "wrong",
+   "field": "common_mistakes[0].option",
+   "quote": "3",
+   "note": "A student who believes the ratio changes with the chosen positions holds the Assertion to be false, so under the standard assertion-reason scheme (3 = Assertion true, Reason false) this error leads to option 4 (Assertion false, Reason true) or 5 (both false), never to 3. The served question also lists no options, so the pointer has nothing to refer to.",
+   "fix": "null (no options are served); under the standard five-option scheme, 4."
+  }
+ ],
+ "verdict": "wrong",
+ "question_defect": "Assertion-reason item served with an empty options list; the solution's option numbers assume the standard scheme (1: both true, Reason explains; 2: both true, Reason does not explain; 3: A true, R false; 4: A false, R true; 5: both false) that the student does not see.",
+ "notes": "Independent reading agrees: (v₂ − v₁)/(t₂ − t₁) is the average acceleration vector, equal to g downward for every pair of instants because the instantaneous acceleration is constant. Steps and approach are correct.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-05",
+  "at": "2026-09-11T19:36:08+05:30"
+ }
+}

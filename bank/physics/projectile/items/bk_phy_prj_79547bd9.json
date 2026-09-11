@@ -1,0 +1,88 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_prj_79547bd9",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "assertion_reason",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "Assertion: For a projectile, if you pick any two positions along its path with velocities v₁, v₂ occurring at times t₁, t₂, the ratio (v₂ − v₁)/(t₂ − t₁) always works out to the same value. Reason: This ratio is the average acceleration, and it stays fixed because the acceleration of the projectile does not change.",
+  "options": {
+   "1": "If both Assertion and Reason are true and the Reason is the correct explanation of the Assertion.",
+   "2": "If both Assertion and Reason are true but the Reason is not the correct explanation of the Assertion.",
+   "3": "If the Assertion is true, but the Reason is false.",
+   "4": "If the Assertion is false but the Reason is true."
+  },
+  "parts": null,
+  "conditions": [
+   "v₁, v₂ are the velocities at two positions during projectile motion",
+   "t₁, t₂ are the corresponding times"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "The ratio of the change in velocity to the change in time between any two instants is by definition the average acceleration, which equals the constant acceleration in projectile motion.",
+  "steps": [
+   {
+    "text": "Write the definition of average acceleration between two instants of time.",
+    "equation": "a_avg = (v₂ − v₁)/(t₂ − t₁)"
+   },
+   {
+    "text": "In projectile motion the acceleration is constant and equal to g downward at every instant, with no other force acting.",
+    "equation": "a(t) = (0, −g) for every t"
+   },
+   {
+    "text": "Since the instantaneous acceleration never changes, the average acceleration between any two chosen instants must also equal this same constant value."
+   },
+   {
+    "text": "So the ratio (v₂ − v₁)/(t₂ − t₁) always equals g downward, whichever two positions are chosen, and the Reason correctly names this ratio as the average acceleration, which is why it stays constant.",
+    "why_this_step": "The Reason states the definition that directly explains why the Assertion holds for any pair of instants."
+   }
+  ],
+  "final_answer": {
+   "option": 1,
+   "value": "If both Assertion and Reason are true and the Reason is the correct explanation of the Assertion."
+  },
+  "common_mistakes": [
+   {
+    "option": 4,
+    "text": "Assuming the ratio changes with the chosen positions because velocity itself keeps changing throughout the flight."
+   },
+   {
+    "option": 2,
+    "text": "Accepting both statements as true but treating the Reason as a separate fact rather than the definition that directly explains the Assertion."
+   }
+  ],
+  "concept_tags": [
+   "average acceleration",
+   "constant acceleration",
+   "projectile motion"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "9648e5fe94eca32605bbd211dc3453be4291afb022ee1171e7a6dd96b8d1114f"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "b1fc19a7df382c9e3197bd190f392a5e12911dc362b5240c9fdde67d533ddb46",
+  "audited_by": "W02-U-prj-02"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-04",
+  "at": "2026-09-11T16:09:00+05:30"
+ }
+}

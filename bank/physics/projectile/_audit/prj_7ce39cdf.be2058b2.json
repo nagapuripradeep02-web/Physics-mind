@@ -1,0 +1,24 @@
+{
+ "question_id": "prj_7ce39cdf",
+ "item_sha": "be2058b24719fe86c942a94333c147b329e45976019015a225270f236ae0620c",
+ "auditor_option": null,
+ "auditor_value": "½gt² − (u sinθ)t + h = 0 has roots t₁, t₂ = [u sinθ ± √(u² sin²θ − 2gh)]/g; sum of roots t₁ + t₂ = 2u sinθ/g = T",
+ "findings": [
+  {
+   "grade": "harmful",
+   "field": "steps[1].equation",
+   "quote": "t₁, t₂ = [u sinθ ± √(u²sin²θ − 4gy₀)] / g",
+   "note": "For ½gt² − (u sinθ)t + y₀ = 0 the discriminant is b² − 4ac = u²sin²θ − 4(½g)(y₀) = u²sin²θ − 2gy₀, not 4gy₀. The printed formula returns the two times at height 2y₀ (numeric check: u = 20, θ = 60°, y₀ = 5 gives roots at height 10 m), and at y₀ = H its discriminant is negative, contradicting this step's own text that two real roots exist for every height below the maximum. A student copying this root formula loses the mark whenever the individual times are asked.",
+   "fix": "t₁, t₂ = [u sinθ ± √(u²sin²θ − 2gy₀)] / g"
+  }
+ ],
+ "verdict": "harmful",
+ "question_defect": null,
+ "notes": "The final result t₁ + t₂ = 2u sinθ/g = T, the sum-of-roots reasoning in why_this_step (−b/a = 2u sinθ/g), and the product t₁t₂ = 2y₀/g in common_mistakes are all correct; only the explicit root formula in step 2 is false, and its error cancels in the sum, which is why the proof still lands on the right line.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 3,
+  "agent": "W03-U-prj-01",
+  "at": "2026-09-11T20:05:37+05:30"
+ }
+}

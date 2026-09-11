@@ -1,0 +1,85 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_prj_9b111ef7",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "mcq_single",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "A projectile launched at angle θ, with a certain speed, covers a horizontal range that equals half the maximum range obtainable at that same speed. What is the angle θ?",
+  "options": {
+   "1": "15°",
+   "2": "30°",
+   "3": "60°",
+   "4": "not enough information is given"
+  },
+  "parts": null,
+  "conditions": [
+   "range at angle θ is half the maximum range",
+   "same launch speed used for both ranges"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Set the range formula at angle θ equal to half the maximum range and solve for θ.",
+  "steps": [
+   {
+    "text": "Write the range at angle θ and the maximum range, both at the same speed u.",
+    "equation": "R(θ) = u²sin2θ / g, R_max = u² / g (at θ = 45°)"
+   },
+   {
+    "text": "Set the range at θ equal to half the maximum range.",
+    "equation": "u²sin2θ / g = ½ × u² / g"
+   },
+   {
+    "text": "Cancel u²/g from both sides and solve for 2θ, then θ.",
+    "equation": "sin2θ = ½, so 2θ = 30° or 150°, θ = 15° or 75°; of these only 15° is among the options"
+   }
+  ],
+  "final_answer": {
+   "option": 1,
+   "value": "15°"
+  },
+  "common_mistakes": [
+   {
+    "option": 2,
+    "text": "Taking 2θ = 30° but then forgetting to divide by 2 gives θ = 30°."
+   },
+   {
+    "option": 3,
+    "text": "Writing 2θ = 120° instead of 30° or 150°, by confusing sin 120° (which is √3/2) with ½, gives θ = 60°."
+   }
+  ],
+  "concept_tags": [
+   "projectile motion",
+   "range",
+   "maximum range"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "calculation"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "70ed35c7ee1a9bcd09f3516cd216c3668dd4652ddf78526cd1b2effbd8752a68"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "1ed675bf7b46de965ca6c22030bff109cc1ebf7850f79bf83bd6cac218e9987b",
+  "audited_by": "W03-U-prj-01"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-05",
+  "at": "2026-09-11T00:00:00+05:30"
+ }
+}

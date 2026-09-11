@@ -1,0 +1,23 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "prj_db0a9de7",
+ "approach": "On a 45° incline, the vertical drop equals the horizontal distance travelled, so equate them to find the time, then find OP from the two legs.",
+ "steps": [
+  {"text": "Write the horizontal distance and the vertical drop as functions of time for the horizontal launch, taking g = 10 m/s².", "equation": "x(t) = 20t, y(t) = ½(10)t² = 5t²"},
+  {"text": "The particle lands on the incline where the drop equals the horizontal distance, because the incline makes 45° with the horizontal.", "equation": "5t² = 20t",
+   "why_this_step": "On a 45° incline through O, every point has its vertical drop equal to its horizontal distance from O."},
+  {"text": "Solve this equation for the time of flight (part a).", "equation": "t = 4 s"},
+  {"text": "Find the horizontal distance and the vertical drop at t = 4 s.", "equation": "x = 80 m, y = 80 m"},
+  {"text": "OP is the straight-line distance from O to P, the hypotenuse of the right triangle with legs x = 80 m and y = 80 m.", "equation": "(a) t = 4 s (b) OP = √(80² + 80²) = 80√2 m ≈ 113.1 m"}
+ ],
+ "final_answer": {"option": null, "value": "(a) t = 4 s, (b) OP = 80√2 m ≈ 113.1 m"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Taking the range OP as the horizontal distance 80 m instead of the slanted distance along the incline, missing the factor √2."},
+  {"option": null, "text": "Writing the vertical drop as g t² instead of ½ g t², which gives t = 2 s and OP = 40√2 m ≈ 56.6 m."}
+ ],
+ "concept_tags": ["horizontal projectile motion", "projectile on an incline", "equations of motion"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-prj-02", "at": "2026-09-11T11:00:00+05:30"}
+}

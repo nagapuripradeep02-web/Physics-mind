@@ -1,0 +1,661 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter": "projectile",
+ "slice": 2,
+ "round": 0,
+ "agent_label": "W01-U-prj-02",
+ "items": [
+  {
+   "question_id": "prj_2896697e",
+   "audit_file": "prj_2896697e.99227c4d.json",
+   "item_sha": "99227c4d24e27ab384050d2b30b1d48cc4406a07774288cc170edcca468678fc",
+   "question_text": "Two particles are launched at the same instant, moving horizontally, from two different points on a riverbank that sit at some height above the water. Particle 1 has initial speed v₁ = 5 m/s and particle 2 has initial speed v₂ = 7.5 m/s. Both particles land in the water simultaneously. The first particle lands at a horizontal distance s = 10 m from the bank.\n(a) Find how long each particle remains airborne before hitting the water.\n(b) Find the height of the riverbank above the water surface.\n(c) Work out where the second particle lands in the water, measured from the bank.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Both particles fall from the same height for the same time; the first particle's range gives that time, which then gives the height and the second particle's landing point.",
+    "steps": [
+     {
+      "text": "Find the time of flight from the first particle's horizontal speed and its landing distance.",
+      "equation": "t = s/v₁ = 10/5 = 2 s"
+     },
+     {
+      "text": "Since both particles are in the air for the same time and start from the same height, use free fall from rest to find that height.",
+      "equation": "h = ½gt² = ½ × 9.8 × 2² = 19.6 m"
+     },
+     {
+      "text": "The second particle travels horizontally at its own constant speed for the same time to find where it lands.",
+      "equation": "x₂ = v₂t = 7.5 × 2 = 15 m"
+     },
+     {
+      "text": "State the three results together.",
+      "equation": "(a) t = 2 s, (b) h = 19.6 m, (c) x₂ = 15 m from the bank"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "(a) t = 2 s, (b) h = 19.6 m, (c) second particle lands 15 m from the bank"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Taking the horizontal distance s = 10 m itself as the fall height instead of computing it from the time of flight gives 10 m, well short of the correct 19.6 m."
+     }
+    ],
+    "concept_tags": [
+     "horizontal projectile",
+     "free fall",
+     "relative motion"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "prj_2259e411",
+   "audit_file": "prj_2259e411.d4809987.json",
+   "item_sha": "d48099872af0e611341269c5101219d245f06e6cfc32c1c42f9a99afd3aae32a",
+   "question_text": "An object is released moving only horizontally from a tower's top. It lands on the ground 3 seconds later, striking it at 45° to the horizontal. Using g = 9.8 m/s², calculate the tower's height and the horizontal launch speed of the object.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Use the 45° landing angle to link the vertical and horizontal velocity components, then get the height from the time of fall.",
+    "steps": [
+     {
+      "text": "Find the vertical velocity built up in 3 s of fall.",
+      "equation": "vy = gt = 9.8×3 = 29.4 m/s"
+     },
+     {
+      "text": "At a 45° landing angle the horizontal and vertical components are equal, since tan45° = 1, so the projection speed equals this vertical component.",
+      "equation": "u = vy = 29.4 m/s"
+     },
+     {
+      "text": "Find the height using the vertical-fall formula for the same 3 s.",
+      "equation": "h = ½gt² = ½×9.8×3² = 44.1 m"
+     },
+     {
+      "text": "Collect both results.",
+      "equation": "u = 29.4 m/s, h = 88.2 m"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "Height of tower = 88.2 m, speed of projection = 29.4 m/s"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Computing the height as h = u×t = 29.4×3 = 88.2 m instead of h = ½gt², missing the one-half factor and getting exactly double the correct height."
+     }
+    ],
+    "concept_tags": [
+     "horizontal projectile",
+     "angle of landing",
+     "time of flight"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "prj_3938c125",
+   "audit_file": "prj_3938c125.5651b48c.json",
+   "item_sha": "5651b48ce39515124e2968ac81cb58b540b9728e9e1bb5d19a4b030817bfa37d",
+   "question_text": "A pair of complementary projection angles have flight durations T₁ and T₂. Which expression correctly gives the projectile's range R?",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "R = 4gT₁T₂"
+    },
+    {
+     "label": "(b)",
+     "text": "R = 2gT₁T₂"
+    },
+    {
+     "label": "(c)",
+     "text": "R = ¼ gT₁T₂"
+    },
+    {
+     "label": "(d)",
+     "text": "R = ½ gT₁T₂"
+    }
+   ],
+   "figure_description": "",
+   "solution": {
+    "approach": "Write the times of flight for the two complementary angles, multiply them, and compare with the range formula for the same speed.",
+    "steps": [
+     {
+      "text": "Write the times of flight for the two complementary angles θ and (90° − θ), both launched at the same speed u.",
+      "equation": "T₁ = 2u sinθ/g, T₂ = 2u cosθ/g"
+     },
+     {
+      "text": "Multiply the two times of flight.",
+      "equation": "T₁T₂ = 4u² sinθcosθ/g² = 2u² sin2θ/g²"
+     },
+     {
+      "text": "Write the range formula and substitute u²sin2θ from it into the T₁T₂ expression.",
+      "equation": "R = u²sin2θ/g, so u²sin2θ = Rg, T₁T₂ = 2Rg/g² = 2R/g"
+     },
+     {
+      "text": "Rearrange for the range in terms of T₁ and T₂.",
+      "equation": "R = ½ gT₁T₂"
+     }
+    ],
+    "final_answer": {
+     "option": 4,
+     "value": "R = ½ gT₁T₂"
+    },
+    "common_mistakes": [
+     {
+      "option": 2,
+      "text": "Writing the time of flight without the factor of 2, as T = u sinθ/g, gives R = 2gT₁T₂ instead."
+     }
+    ],
+    "concept_tags": [
+     "projectile motion",
+     "time of flight",
+     "range",
+     "complementary angles"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "prj_47c119c1",
+   "audit_file": "prj_47c119c1.3ba4ec35.json",
+   "item_sha": "3ba4ec35ea465b1d8a6efe8d81b45ea94cf25b774ee0797db6c508f6a6f9c685",
+   "question_text": "For a projectile, find the launch angle at which its horizontal range equals its maximum height.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Write range and maximum height in terms of the projection angle, set them equal, and solve for the angle.",
+    "steps": [
+     {
+      "text": "Write the standard range and maximum-height formulas.",
+      "equation": "R = u²sin2θ/g, H = u²sin²θ/(2g)"
+     },
+     {
+      "text": "Set R equal to H and expand sin2θ.",
+      "equation": "2sinθcosθ = sin²θ/2"
+     },
+     {
+      "text": "Divide through by sinθ, which is nonzero for a real projectile, and solve for θ.",
+      "equation": "4cosθ = sinθ ⇒ tanθ = 4 ⇒ θ = tan⁻¹4 ≈ 76°"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "θ = tan⁻¹(4) ≈ 76°"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Writing the maximum-height formula without the factor 2 in the denominator, H = u²sin²θ/g, which gives tanθ = 2 and a different wrong angle of about 63.4°."
+     }
+    ],
+    "concept_tags": [
+     "range of projectile",
+     "maximum height",
+     "trigonometric equation"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "prj_3103a693",
+   "audit_file": "prj_3103a693.3df32cfb.json",
+   "item_sha": "3df32cfbfa388d2e7d3d2aff1a290de4b1cdd4dcdc1396d62c6a8e6ba8960e53",
+   "question_text": "A bullet launched at 30° to the horizontal lands 3.0 km from where it was fired. If the launch angle is changed while everything else about the shot is kept the same, is it possible to strike a target sitting 5.0 away? The bullet leaves the barrel at a constant speed, and air drag can be ignored.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Find the maximum possible range at this fixed muzzle speed and compare it with the target distance.",
+    "steps": [
+     {
+      "text": "Write the range formula and use the given range at 30° to relate it to the muzzle speed.",
+      "equation": "R(θ) = u²sin2θ/g, so u²/g = R(30°)/sin60°"
+     },
+     {
+      "text": "The maximum range for a fixed speed occurs at 45°, where sin2θ = 1, so the maximum range equals u²/g.",
+      "equation": "Rmax = R(30°)/sin60° = 3.0/sin60°"
+     },
+     {
+      "text": "Compute this value.",
+      "equation": "Rmax = 3.0/0.866 ≈ 3.46 km"
+     },
+     {
+      "text": "Compare this maximum with the target distance to answer the question; this gives the final answer.",
+      "equation": "5.0 km is greater than 3.46 km, so no angle can reach the target"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "No. The maximum range at this muzzle speed is about 3.46 km, less than 5.0 km, so no angle of projection can hit the target."
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Dividing the given range by sin30° instead of sin60° gives a wrong maximum range of 6.0 km, wrongly suggesting the target can be hit."
+     }
+    ],
+    "concept_tags": [
+     "range formula",
+     "maximum range",
+     "projectile motion"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "prj_25d4bf73",
+   "audit_file": "prj_25d4bf73.b80b254f.json",
+   "item_sha": "b80b254f3cce3db02fb9e212f7cf864de4b3d6a00af7c26254d5b86b148c25d7",
+   "question_text": "In the diagram, a projectile is launched from point O with speed 20√2 m/s directed 45° above the horizontal. The incline through O slopes downward at 37° to the horizontal, and the projectile comes down on this incline at point P.\n(a) Determine how long the projectile is in the air before it lands on the sloped surface at P.\n(b) Determine the distance OP, measured along the slope, from the launch point O to the landing point P.",
+   "options": [],
+   "figure_description": "The particle leaves O with velocity 20√2 m/s at 45° above the horizontal. The slope through O runs downward at 37° to the horizontal, both close to O and at its lower end. The particle's curved path rises then falls, meeting the slope at point P, below and to the side of O. A right-angled construction with a vertical segment from O and a horizontal segment to P marks the drop and horizontal shift used to locate P.",
+   "solution": {
+    "approach": "Write the horizontal and vertical position as functions of time, then find where the path meets the incline's line through O, y = −x tan37°.",
+    "steps": [
+     {
+      "text": "Find the horizontal and vertical components of the launch velocity, taking the incline's direction as positive x.",
+      "equation": "uₓ = 20√2 cos45° = 20 m/s, u_y = 20√2 sin45° = 20 m/s"
+     },
+     {
+      "text": "Write the horizontal and vertical positions as functions of time, using g = 10 m/s².",
+      "equation": "x(t) = 20t, y(t) = 20t − 5t²"
+     },
+     {
+      "text": "The incline falls away below O at 37° in this direction, so P lies where the vertical position equals minus the horizontal position times tan37°.",
+      "equation": "20t − 5t² = −20t × 0.75"
+     },
+     {
+      "text": "Solve for the time of flight (part a).",
+      "equation": "t = 7 s"
+     },
+     {
+      "text": "Find x at this time, then divide by cos37° to get the distance along the incline. Restating both parts: the time of flight is 7 s and the range OP is 175 m.",
+      "equation": "(a) t = 7 s (b) OP = 140/0.8 = 175 m"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "(a) t = 7 s, (b) OP = 175 m"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Using the equation for a particle landing above the launch point instead of below it, which gives t = 1 s and OP = 25 m."
+     }
+    ],
+    "concept_tags": [
+     "projectile on an incline",
+     "components of velocity",
+     "equations of motion"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "prj_2c40ba4c",
+   "audit_file": "prj_2c40ba4c.a3c41d7f.json",
+   "item_sha": "a3c41d7f25afe964bf2e30529db1c21f8ec321ebff77746402771df76c9a932b",
+   "question_text": "A passenger sitting inside a train releases a stone from their hand while the train keeps moving at a steady speed.\n(a) Describe the shape of the path the stone follows as seen by that same passenger.\n(b) Describe the shape of the path the stone follows as seen by someone standing still on the ground.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "The stone keeps the train's horizontal velocity, so the passenger and the man on the ground see two different paths for the same drop.",
+    "steps": [
+     {
+      "text": "The passenger keeps moving forward with the train at the same horizontal velocity as the stone, so relative to the passenger the stone has no horizontal velocity."
+     },
+     {
+      "text": "Relative to the passenger, the stone only has a vertical acceleration g acting on it, so the passenger sees the stone fall straight down.",
+      "equation": "path (passenger) = straight vertical line"
+     },
+     {
+      "text": "The man on the ground sees the stone keep the train's horizontal velocity while it also picks up vertical velocity from gravity."
+     },
+     {
+      "text": "A constant horizontal velocity combined with a vertical acceleration traces a curved path, the same shape as a horizontal projectile.",
+      "equation": "path (ground) = parabola"
+     },
+     {
+      "text": "So the passenger sees a straight vertical line, and the man on the ground sees a parabolic path.",
+      "why_this_step": "The two observers are in different frames: one moves with the stone's horizontal motion, the other does not."
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "(a) A straight vertical line, as seen by the passenger. (b) A parabola, as seen by the man on the ground."
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Thinking the man on the ground also sees the stone fall straight down, forgetting the stone keeps the train's horizontal velocity after release."
+     },
+     {
+      "option": null,
+      "text": "Thinking the passenger sees a curved path, forgetting the passenger is also moving forward with the train at the stone's own horizontal speed."
+     }
+    ],
+    "concept_tags": [
+     "relative motion",
+     "projectile motion",
+     "frames of reference"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "prj_2e22e519",
+   "audit_file": "prj_2e22e519.90fde8d0.json",
+   "item_sha": "90fde8d045bfc9b04d69436007ce22ac51de2a95e2b625595c2d3ee0c57de443",
+   "question_text": "From the top of a 25 m tall tower, a particle is thrown with a speed of 20√2 m/s directed 45° above the horizontal. Work out how long it takes to reach the ground, how far horizontally from the base of the tower it lands, and its velocity at the moment it lands.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Split the initial velocity into horizontal and vertical parts, then use the vertical motion equation to find when the particle falls 25 m below the launch point.",
+    "steps": [
+     {
+      "text": "Find the horizontal and vertical parts of the initial velocity.",
+      "equation": "ux = 20√2 cos45° = 20 m/s, uy = 20√2 sin45° = 20 m/s"
+     },
+     {
+      "text": "Take upward as positive and write the vertical position from the top of the tower; it equals −25 m when the particle reaches the ground.",
+      "equation": "uy t − ½gt² = −25"
+     },
+     {
+      "text": "Substitute the values and solve the resulting quadratic equation for t.",
+      "equation": "20t − 5t² = −25, so t² − 4t − 5 = 0, giving t = 5 s",
+      "why_this_step": "The other root, t = −1 s, is before the particle is projected, so it is rejected."
+     },
+     {
+      "text": "Find the horizontal distance from the foot of the tower using the constant horizontal velocity.",
+      "equation": "x = ux t = 20 × 5 = 100 m"
+     },
+     {
+      "text": "Find the velocity components at t = 5 s.",
+      "equation": "vx = 20 m/s, vy = uy − gt = 20 − 50 = −30 m/s"
+     },
+     {
+      "text": "Combine the components for the speed and direction at collision; this gives the final answer.",
+      "equation": "speed = √(20² + 30²) = 10√13 ≈ 36.06 m/s, about 56.3° below the horizontal"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "t = 5 s, horizontal distance = 100 m, velocity ≈ 36.06 m/s at about 56.3° below the horizontal"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Ignoring the tower height and using the ground level time of flight formula T = 2uy/g gives t = 4 s and distance 80 m, both wrong since the particle falls an extra 25 m."
+     }
+    ],
+    "concept_tags": [
+     "projectile motion",
+     "motion from a height",
+     "vector components"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "prj_2548ca25",
+   "audit_file": "prj_2548ca25.055febf5.json",
+   "item_sha": "055febf5a48c6124d6caac658c96881479c7bf831aae58e78f45e1e72dbd460e",
+   "question_text": "A particle is launched from the bottom of an incline that rises at 30° to the horizontal. Its launch velocity, of magnitude u = 10 m/s, is directed 30° above the incline surface itself. Taking g = 10 m/s², find the particle's speed at the moment it lands back on the incline, at point A.",
+   "options": [],
+   "figure_description": "An inclined plane rises at 30° from a point O on the ground. A particle is launched from O at 10 m/s, its velocity making a 30° angle with the incline surface, and it follows a curved path back down to land on the incline at point A.",
+   "solution": {
+    "approach": "Work in axes along and perpendicular to the incline, where gravity splits into two components; find the time the particle returns to the incline, then the velocity components there.",
+    "steps": [
+     {
+      "text": "Resolve the launch velocity along and perpendicular to the incline, using the 30° angle between the velocity and the incline.",
+      "equation": "u∥ = 10cos30° = 5√3 m/s, u⊥ = 10sin30° = 5 m/s"
+     },
+     {
+      "text": "Resolve gravity along and perpendicular to the incline, using the 30° angle of the incline with the horizontal.",
+      "equation": "g∥ = g sin30° = 5 m/s², g⊥ = g cos30° = 5√3 m/s²"
+     },
+     {
+      "text": "Find the time to return to the incline surface, where the perpendicular displacement is again zero.",
+      "equation": "T = 2u⊥/g⊥ = 2×5/(5√3) = 2/√3 = 2√3/3 ≈ 1.15 s"
+     },
+     {
+      "text": "Find the along-incline and perpendicular velocity components at this time.",
+      "equation": "v∥ = u∥ − g∥T = 5√3 − 5×(2√3/3) = 5√3/3 m/s, v⊥ = −u⊥ = −5 m/s"
+     },
+     {
+      "text": "Combine the two components to get the speed at A.",
+      "equation": "speed = √(v∥² + v⊥²) = √((5√3/3)² + 5²) = 10√3/3 ≈ 5.77 m/s"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "speed at A = 10√3/3 m/s ≈ 5.77 m/s"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Forgetting that gravity also has a component along the incline, and keeping the along-incline speed unchanged at 5√3 m/s, gives a wrong speed of exactly 10 m/s."
+     }
+    ],
+    "concept_tags": [
+     "projectile motion",
+     "motion on an inclined plane",
+     "gravity components"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "prj_2c1d3911",
+   "audit_file": "prj_2c1d3911.d13b8e59.json",
+   "item_sha": "d13b8e59273f50da9e101e886572dbc0a3ee7d73b190bf1eb683783fc37acecf",
+   "question_text": "Two slopes OA and OB, tilted at 30° and 60° to the horizontal ground respectively, meet each other at point O, as illustrated. A particle is launched from point P with speed u = 10√3 m/s along a direction perpendicular to slope OA, and it strikes slope OB perpendicularly at point Q. Taking g = 10 m/s², work out the following.\n(a) The duration of the particle's flight.\n(b) The speed at which the particle hits plane OB.\n(c) How far above point O is point P located (call this vertical height h).\n(d) The distance PQ.",
+   "options": [],
+   "figure_description": "Two inclined lines meet at O on a horizontal ground line: OA rises to the upper left at 30° to the ground, OB rises to the upper right at 60° to the ground. Point P lies on OA, at height h above O. At P, the velocity u is drawn perpendicular to OA. Point Q lies on OB, with a right-angle mark showing the velocity there is perpendicular to OB. Tilted reference axes are shown near B, aligned along OB and OA.",
+   "solution": {
+    "approach": "Set up horizontal-vertical coordinates, place P using its height above O, then use the perpendicular-landing condition on OB together with OB's line equation.",
+    "steps": [
+     {
+      "text": "Resolve the launch velocity, which is perpendicular to the 30° incline OA, into horizontal and vertical parts.",
+      "equation": "uₓ = 10√3 cos60° = 5√3 m/s, u_y = 10√3 sin60° = 15 m/s"
+     },
+     {
+      "text": "Write P's coordinates using its height h above O, since P lies on the 30° incline.",
+      "equation": "P = (−h√3, h)"
+     },
+     {
+      "text": "Write the velocity components at time t; the horizontal part stays fixed and the vertical part changes under gravity.",
+      "equation": "vₓ = 5√3 m/s, v_y = 15 − 10t"
+     },
+     {
+      "text": "Landing perpendicular to the 60° incline OB fixes the ratio of the velocity components at Q.",
+      "equation": "v_y/vₓ = −1/√3"
+     },
+     {
+      "text": "Solve for the time of flight (part a).",
+      "equation": "15 − 10t = −5, t = 2 s"
+     },
+     {
+      "text": "The speed at Q combines the two components (part b).",
+      "equation": "v = √((5√3)² + 5²) = 10 m/s"
+     },
+     {
+      "text": "Use the position at t = 2 s together with Q lying on OB (y = √3 x) to solve for h (part c).",
+      "equation": "h + 10 = √3 × √3(10 − h), h = 5 m"
+     },
+     {
+      "text": "Find P and Q and take the distance between them. Restating every part: time of flight 2 s, speed at Q 10 m/s, height h of P is 5 m, distance PQ is 20 m.",
+      "equation": "P = (−5√3, 5), Q = (5√3, 15), PQ = √((10√3)² + 10²) = 20 m"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "(a) t = 2 s, (b) v = 10 m/s (perpendicular to OB), (c) h = 5 m, (d) PQ = 20 m"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Using the 30° angle in OB's line equation instead of the 60° angle, which gives a wrong height h = 0 m for part (c)."
+     }
+    ],
+    "concept_tags": [
+     "projectile on an incline",
+     "resolving velocity perpendicular to a plane",
+     "coordinate geometry"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "prj_27b92f47",
+   "audit_file": "prj_27b92f47.8dbcf32c.json",
+   "item_sha": "8dbcf32cdce03f06f0578deb94a348b8ec384d73c6acd933b650cd19e2dd0493",
+   "question_text": "A projectile is launched with speed u directed perpendicular to an inclined surface that makes angle θ with the horizontal ground. Obtain a formula for the distance R, measured along the slope, from the launch point to where the projectile lands.",
+   "options": [],
+   "figure_description": "A projectile launches from the top of an inclined slope, with initial velocity u perpendicular to the slope's surface. The slope makes angle θ with the horizontal. The projectile arcs through the air and lands back on the slope, a distance R (measured along the slope) from the launch point.",
+   "solution": {
+    "approach": "Resolve motion along axes parallel and perpendicular to the incline; the perpendicular motion gives the time to land back on the slope, and the parallel motion gives the distance R.",
+    "steps": [
+     {
+      "text": "Take axes along the slope and perpendicular to it. Along the slope gravity contributes g sinθ with no initial velocity; perpendicular to the slope gravity contributes g cosθ opposing the initial velocity u.",
+      "equation": "a∥ = g sinθ, a⊥ = −g cosθ, u⊥ = u, u∥ = 0"
+     },
+     {
+      "text": "The projectile lands back on the slope when the perpendicular displacement returns to zero.",
+      "equation": "u t − ½g cosθ t² = 0 ⟹ t = 2u/(g cosθ)"
+     },
+     {
+      "text": "The distance along the slope at that time is the parallel displacement.",
+      "equation": "R = ½g sinθ t² = ½g sinθ × [2u/(g cosθ)]²"
+     },
+     {
+      "text": "Simplify to reach the expression for R.",
+      "equation": "R = 2u² sinθ / (g cos²θ)"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "R = 2u² sinθ / (g cos²θ)"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Using t = 2u/g instead of t = 2u/(g cosθ) ignores that gravity's component perpendicular to the slope is g cosθ, not g, and gives a smaller value of R."
+     }
+    ],
+    "concept_tags": [
+     "projectile on incline",
+     "resolving gravity",
+     "range formula"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "prj_3d0ab8fd",
+   "audit_file": "prj_3d0ab8fd.4bd13160.json",
+   "item_sha": "4bd1316041114653271312d53494dc703f24e7b0b9750ee38f482afaa51e3454",
+   "question_text": "A ball leaves a thrower's hand moving exactly horizontally, starting from a height of 100 m over the ground, with a horizontal launch speed of 20 m/s.\n(a) Work out how long the ball takes before it lands.\n(b) Work out how far horizontally the ball travels before landing.\n(c) Work out the landing velocity, giving both its size and its direction.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Use the vertical fall to find the time, the constant horizontal speed for the distance, and combine both velocity parts at landing.",
+    "steps": [
+     {
+      "text": "Find the time to fall 100 m from rest in the vertical direction.",
+      "equation": "h = ½gt², so t = √(2h/g) = √(200/10) = √20 = 2√5 ≈ 4.47 s"
+     },
+     {
+      "text": "Find the horizontal distance travelled using the constant horizontal speed.",
+      "equation": "x = ut = 20 × 2√5 = 40√5 ≈ 89.44 m"
+     },
+     {
+      "text": "Find the vertical velocity at landing.",
+      "equation": "vy = gt = 10 × 2√5 = 20√5 ≈ 44.72 m/s"
+     },
+     {
+      "text": "Combine the horizontal and vertical parts for the speed and direction at landing; this gives the final answer.",
+      "equation": "v = √(20² + (20√5)²) = 20√6 ≈ 48.99 m/s, about 65.9° below the horizontal"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "(a) t ≈ 4.47 s; (b) x ≈ 89.44 m; (c) v ≈ 48.99 m/s at about 65.9° below the horizontal"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Leaving out the factor ½ in the fall equation and using t = √(h/g) instead of √(2h/g) gives a wrong time of about 3.16 s."
+     }
+    ],
+    "concept_tags": [
+     "horizontal projectile",
+     "time of fall",
+     "velocity at landing"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "prj_3110e261",
+   "audit_file": "prj_3110e261.5fdeb852.json",
+   "item_sha": "5fdeb8526fd688a62c28e645b3366a2e63631e8fd653ede431c06a05f25ae7dd",
+   "question_text": "A projectile is aimed at a target that lies in the same horizontal level as the launch point. Launched at elevation α, it lands a cm short of the target; launched at elevation β with the same launch speed, it overshoots the target by b cm. Prove that the elevation angle that would hit the target exactly is ½ sin⁻¹[(b sin 2α + a sin 2β)/(a + b)].",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Both shots share the same range formula and the same unknown target range R; eliminating u and R between the two elevation equations gives the elevation that hits the mark.",
+    "steps": [
+     {
+      "text": "Let R be the true distance to the mark. At elevation α the shot falls short by a, so the range achieved is R − a; at elevation β it goes b beyond, so the range achieved is R + b.",
+      "equation": "u² sin2α/g = R − a, u² sin2β/g = R + b"
+     },
+     {
+      "text": "Divide the two equations to eliminate u, then solve for R in terms of a, b, α and β.",
+      "equation": "R = (a sin2β + b sin2α)/(sin2β − sin2α)"
+     },
+     {
+      "text": "The correct elevation γ gives range R with the same speed, so its sine of double angle equals gR divided by u². Use u² = g(R − a)/sin2α from the first equation.",
+      "equation": "sin2γ = R sin2α/(R − a)"
+     },
+     {
+      "text": "Substitute R from the earlier step and simplify the fraction to reach the stated result.",
+      "equation": "sin2γ = (b sin2α + a sin2β)/(a + b), so γ = ½ sin⁻¹[(b sin2α + a sin2β)/(a+b)]"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "γ = ½ sin⁻¹[(b sin2α + a sin2β)/(a+b)]"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Swapping a and b in the final formula, writing (a sin2α + b sin2β)/(a+b) instead, gives a different value for a general pair of angles and distances."
+     }
+    ],
+    "concept_tags": [
+     "projectile motion",
+     "range formula",
+     "algebraic elimination"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "concept"
+   }
+  }
+ ]
+}

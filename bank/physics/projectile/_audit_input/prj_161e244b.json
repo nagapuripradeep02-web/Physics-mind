@@ -1,0 +1,50 @@
+{
+ "question_id": "prj_161e244b",
+ "audit_file": "prj_161e244b.b80c8a41.json",
+ "item_sha": "b80c8a410107d6bd02c1cd4bf6f94112a7b91b4630d6d1b64088ad6d004fbf55",
+ "question_text": "A trainer launches a baseball to a teammate, sending it off at 20 m/s at 45° above horizontal. The instant the throw happens, the teammate is standing 50 m away. Using g = 10 m/s², determine the running speed and direction the teammate needs so the catch happens exactly at the height the ball started from.",
+ "options": [],
+ "figure_description": "",
+ "solution": {
+  "approach": "Find where the ball lands using the range formula, then find the speed needed to close the remaining gap in the time of flight.",
+  "steps": [
+   {
+    "text": "Find the horizontal and vertical parts of the throw's initial velocity.",
+    "equation": "ux = 20 cos45° = 10√2 m/s, uy = 20 sin45° = 10√2 m/s"
+   },
+   {
+    "text": "Find the time of flight, since the ball returns to the height it was released at.",
+    "equation": "T = 2uy/g = 2(10√2)/10 = 2√2 ≈ 2.83 s"
+   },
+   {
+    "text": "Find how far the ball travels horizontally in that time.",
+    "equation": "R = ux T = 10√2 × 2√2 = 40 m"
+   },
+   {
+    "text": "The player starts 50 m away and must reach the point 40 m away where the ball lands, so find the distance to close.",
+    "equation": "Δd = 50 − 40 = 10 m"
+   },
+   {
+    "text": "Divide this distance by the time of flight for the running speed; this gives the final answer.",
+    "equation": "v = 10/(2√2) = 5√2/2 ≈ 3.54 m/s, running toward the trainer"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "about 3.54 m/s, running toward the trainer"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Dividing the full initial separation of 50 m by the time of flight, instead of the 10 m gap left to close, gives a wrong speed of about 17.68 m/s."
+   }
+  ],
+  "concept_tags": [
+   "projectile motion",
+   "range formula",
+   "relative motion"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "application"
+ }
+}

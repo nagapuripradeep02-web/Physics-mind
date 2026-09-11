@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "prj_e96585b4",
+ "approach": "Use the constant horizontal component with the 37° angle to get the speed, then find the two times and the common height and distances at those instants.",
+ "steps": [
+  {"text": "Resolve the launch velocity into horizontal and vertical parts; the horizontal part stays constant throughout the flight.", "equation": "ux = 40cos60° = 20 m/s, uy = 40sin60° ≈ 34.64 m/s"},
+  {"text": "At the instant the velocity makes 37° with the horizontal, the horizontal component still equals ux, so the speed follows from v = ux/cos37°.", "equation": "v = 20/0.8 = 25 m/s"},
+  {"text": "Find the two times this 37° angle occurs, once rising (vy positive) and once falling (vy negative), from vy = uy − gt.", "equation": "vy = ux tan37° = 15 m/s; t₁ = (34.64−15)/10 ≈ 1.96 s (rising), t₂ = (34.64+15)/10 ≈ 4.96 s (falling)"},
+  {"text": "Since the vertical speed has the same size (15 m/s) at both instants, both are at the same height; find that height and the two horizontal distances.", "equation": "h = (uy²−15²)/(2×10) = 48.75 m; x₁ = 20×1.96 ≈ 39.3 m, x₂ = 20×4.96 ≈ 99.3 m"},
+  {"text": "Collect all three results.", "equation": "(a) v = 25 m/s, (b) t₁ ≈ 1.96 s, t₂ ≈ 4.96 s, (c) h ≈ 48.75 m, x₁ ≈ 39.3 m, x₂ ≈ 99.3 m"}
+ ],
+ "final_answer": {"option": null, "value": "(a) speed = 25 m/s at both instants, (b) t₁ ≈ 1.96 s (rising) and t₂ ≈ 4.96 s (falling), (c) height ≈ 48.75 m at both instants; horizontal distance ≈ 39.3 m at t₁ and ≈ 99.3 m at t₂"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Finding the speed as v = ux/sin37° = 20/0.6 ≈ 33.3 m/s, mixing up sine and cosine when relating the horizontal component to the resultant speed."}
+ ],
+ "concept_tags": ["velocity components", "angle with horizontal", "symmetry of projectile height"],
+ "difficulty": "hard",
+ "mistake_type_hint": "calculation",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-prj-01", "at": "2026-09-11T18:52:00+05:30"}
+}

@@ -1,0 +1,20 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "prj_12e9721f",
+ "approach": "The apparent elevation angle is the angle of the position vector, so its tangent equals the ratio of the vertical to horizontal displacement.",
+ "steps": [
+  {"text": "Write the horizontal and vertical displacements at time t for a projectile launched at angle α with speed u.", "equation": "x = u cos α · t, y = u sin α · t − ½gt²"},
+  {"text": "The apparent elevation β is the angle the line from the launch point to the particle makes with the horizontal, so its tangent is y divided by x.", "equation": "tan β = y/x = tan α − gt/(2u cos α)"},
+  {"text": "Solve this equation for u.", "equation": "u = gt / [2 cos α (tan α − tan β)]"},
+  {"text": "Rewrite the denominator using the difference formula for sine to reach the standard form.", "equation": "u = gt cos β / [2 sin(α − β)]"}
+ ],
+ "final_answer": {"option": null, "value": "u = gt cos β / [2 sin(α − β)]"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Forgetting the ½ in the vertical displacement formula doubles the g t term inside the tangent equation and gives twice the correct initial velocity."}
+ ],
+ "concept_tags": ["projectile motion", "angle of elevation", "trigonometric identities"],
+ "difficulty": "medium",
+ "mistake_type_hint": "calculation",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-prj-07", "at": "2026-09-11T16:45:00+05:30"}
+}

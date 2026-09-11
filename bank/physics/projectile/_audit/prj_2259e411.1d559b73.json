@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_2259e411",
+ "item_sha": "1d559b7301ba87f2ecbd061e0574f27b96b0a655833f90967a96f297e5115595",
+ "auditor_option": null,
+ "auditor_value": "Height = 44.1 m, horizontal launch speed = 29.4 m/s",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Re-computed: v_y = 9.8·3 = 29.4 m/s; 45° landing gives u = v_y = 29.4 m/s; h = ½·9.8·9 = 44.1 m. Mistake entry's number verified: v_y·t = gt² = 88.2 m = 2·44.1 m.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-01",
+  "at": "2026-09-11T19:33:19+05:30"
+ }
+}

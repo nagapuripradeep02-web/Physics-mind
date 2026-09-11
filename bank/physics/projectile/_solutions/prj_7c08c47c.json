@@ -1,0 +1,20 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "prj_7c08c47c",
+ "approach": "The horizontal component of velocity never changes and equals u cos60° = u/2, so the total speed equals half the initial speed only when the vertical component vanishes.",
+ "steps": [
+  {"text": "Find the constant horizontal component of velocity.", "equation": "vₓ = u cos60° = 20×0.5 = 10 m/s"},
+  {"text": "Note that the total speed at any time is at least vₓ, since v = √(vₓ² + v_y²), and equals vₓ exactly when v_y = 0.", "equation": "v_min = vₓ = 10 m/s = u/2"},
+  {"text": "Since the target speed u/2 equals this minimum, find the time at which v_y = 0, which is the time to reach the highest point.", "equation": "v_y(t) = u sin60° − gt = 0"},
+  {"text": "Solve for that time.", "equation": "t = u sin60°/g = 20×(√3/2)/10 = √3 ≈ 1.73 s"}
+ ],
+ "final_answer": {"option": null, "value": "t = √3 s ≈ 1.73 s"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Setting the vertical component itself equal to half the initial speed, instead of the total speed, gives v_y = u/2 and a wrong time of about 0.73 s."}
+ ],
+ "concept_tags": ["projectile motion", "speed at a point", "maximum height"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-prj-06", "at": "2026-09-11T12:04:00+05:30"}
+}

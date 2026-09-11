@@ -1,0 +1,19 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "prj_c90f12d9",
+ "approach": "Check whether the acceleration stays constant in magnitude and direction throughout the motion.",
+ "steps": [
+  {"text": "At low speed, air resistance is negligible, so the only force on the particle is its own weight.", "equation": "a = g (constant, directed downward)"},
+  {"text": "Since this acceleration stays fixed in both magnitude and direction throughout the flight, the motion is uniformly accelerated, even though the velocity direction keeps changing along the curved path."},
+  {"text": "So the statement is true."}
+ ],
+ "final_answer": {"option": null, "value": "True. At low speed, the only acceleration acting is g, constant in magnitude and direction, so the motion is uniformly accelerated."},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Assuming a curved path means the acceleration is changing, but a curved path only shows that the velocity direction changes, not the acceleration."}
+ ],
+ "concept_tags": ["projectile motion", "uniform acceleration", "constant acceleration due to gravity"],
+ "difficulty": "easy",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-prj-02", "at": "2026-09-11T12:08:00+05:30"}
+}

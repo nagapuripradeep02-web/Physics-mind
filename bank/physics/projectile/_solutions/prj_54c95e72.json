@@ -1,0 +1,20 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "prj_54c95e72",
+ "approach": "Both particles start on the ground and fall under the same gravity, so matching their heights at the collision time cancels the fall term and fixes the angle directly.",
+ "steps": [
+  {"text": "Write the height above the ground of each particle as a function of time.", "equation": "y_A(t) = v_A sinθ·t − ½gt², y_B(t) = v_B·t − ½gt²"},
+  {"text": "Set the two heights equal at the collision time; the −½gt² term cancels on both sides.", "equation": "v_A sinθ·t = v_B·t → v_A sinθ = v_B"},
+  {"text": "Substitute the given speeds to find the angle.", "equation": "sinθ = v_B/v_A = 10/20 = 0.5 → θ = 30°"},
+  {"text": "Use the given collision time to find A's horizontal distance covered, which equals the separation x since B does not move horizontally.", "equation": "x = v_A cosθ·t = 20×cos30°×0.5 = 5√3 ≈ 8.66 m"}
+ ],
+ "final_answer": {"option": null, "value": "(a) θ = 30°, (b) x = 5√3 m ≈ 8.66 m"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Forgetting the fall term for particle A only, instead of letting it cancel for both particles, gives a wrong angle of about 22.0° and a wrong distance of about 9.27 m."}
+ ],
+ "concept_tags": ["projectile motion", "relative motion", "collision in air"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-prj-06", "at": "2026-09-11T12:12:00+05:30"}
+}

@@ -1,0 +1,20 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "prj_578d72ff",
+ "approach": "Read the y-coordinate directly from the given position vector, set it to zero, and solve for the non-zero time; then use that time in the x-coordinate.",
+ "steps": [
+  {"text": "Read the y-coordinate as a function of time from the position vector.", "equation": "y(t) = 4t − 5t²"},
+  {"text": "Set the y-coordinate to zero and factor.", "equation": "4t − 5t² = 0 → t(4 − 5t) = 0"},
+  {"text": "Take the non-zero root, since t = 0 is the starting instant.", "equation": "t = 4/5 = 0.8 s"},
+  {"text": "Substitute this time into the x-coordinate.", "equation": "x = 3t = 3×0.8 = 2.4 m"}
+ ],
+ "final_answer": {"option": null, "value": "t = 0.8 s, x = 2.4 m"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Setting the rate of change of y to zero, instead of y itself, finds the time of the highest point (0.4 s) and gives a wrong x-coordinate of 1.2 m."}
+ ],
+ "concept_tags": ["projectile motion", "position vector", "components of motion"],
+ "difficulty": "easy",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-prj-06", "at": "2026-09-11T12:08:00+05:30"}
+}

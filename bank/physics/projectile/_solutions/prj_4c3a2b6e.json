@@ -1,0 +1,48 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "prj_4c3a2b6e",
+ "approach": "Projectile motion happens in three-dimensional space, but the path always lies inside one fixed plane set by the launch velocity and gravity.",
+ "steps": [
+  {
+   "text": "Gravity always points straight down, and the initial velocity has some fixed direction in space."
+  },
+  {
+   "text": "These two directions together fix a single plane that contains the whole path, since nothing pushes the particle sideways out of that plane."
+  },
+  {
+   "text": "Because the entire trajectory stays inside this one plane, only two coordinates are needed to describe the motion at any instant."
+  },
+  {
+   "text": "This is exactly why projectile motion is called two dimensional even though it happens somewhere in three-dimensional space, so the Assertion is true and the Reason correctly explains it.",
+   "why_this_step": "The Reason states the geometric fact — motion confined to one plane — that directly gives the Assertion its two-dimensional description."
+  }
+ ],
+ "final_answer": {
+  "option": 1,
+  "value": "If both Assertion and Reason are true and the Reason is the correct explanation of the Assertion."
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": 3,
+   "text": "Thinking that because projectile motion happens in three-dimensional space, the Reason about it lying in one plane must be false."
+  },
+  {
+   "option": 2,
+   "text": "Agreeing both statements are true but doubting that the Reason actually explains the Assertion, when it directly does."
+  }
+ ],
+ "concept_tags": [
+  "projectile motion",
+  "plane of motion",
+  "vectors"
+ ],
+ "difficulty": "easy",
+ "mistake_type_hint": "concept",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-04",
+  "at": "2026-09-11T16:05:00+05:30"
+ }
+}

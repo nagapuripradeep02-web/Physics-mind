@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "prj_b504b14a",
+ "approach": "Write the trajectory using the range R, then read off tanα and tanβ from the vertex point A and add them.",
+ "steps": [
+  {"text": "Rewrite the standard trajectory equation using the range R, since R = u²sin2θ/g gives g/(2u²cos²θ) = tanθ/R.", "equation": "y = x tanθ (1 − x/R)"},
+  {"text": "At the vertex A(x, y), the slope of the line OA gives α.", "equation": "tanα = y/x"},
+  {"text": "The slope of the line from A to the landing point at (R, 0) gives β.", "equation": "tanβ = y/(R − x)"},
+  {"text": "Substitute the trajectory equation into these two slope expressions.", "equation": "tanα = tanθ(R − x)/R, tanβ = x tanθ/R"},
+  {"text": "Add the two results; the R terms cancel, giving the required identity.", "equation": "tanα + tanβ = tanθ[(R − x) + x]/R = tanθ"}
+ ],
+ "final_answer": {"option": null, "value": "tanθ = tanα + tanβ (proved)"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Assuming A is the highest point of the path and using x = R/2, which only checks the identity for that special case, not for a general point A."}
+ ],
+ "concept_tags": ["projectile trajectory equation", "range of a projectile", "slope relations"],
+ "difficulty": "hard",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-prj-02", "at": "2026-09-11T11:36:00+05:30"}
+}

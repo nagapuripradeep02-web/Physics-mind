@@ -1,0 +1,81 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_prj_3b86a01f",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A projectile is launched with speed 2√(gh). It just skims over two walls, each of height h, separated from each other by a distance 2h. Prove that the duration it spends traveling between the two walls equals 2√(h/g). As a method hint: first work out the speed at height h, then treat that as a fresh initial speed with 2h as the range.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "particle projected so it just grazes the tops of both walls",
+   "the two walls are of equal height h",
+   "the walls are separated by a distance 2h"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "The horizontal velocity stays constant, and the speed at the wall-crossing height satisfies a mini-projectile range condition that forces the horizontal and vertical velocities there to be equal.",
+  "steps": [
+   {
+    "text": "The horizontal velocity component never changes during flight, so the speed at height h relates to the launch speed through the usual height-velocity equation.",
+    "equation": "vₓ² + v_y1² = u² − 2gh = (2√(gh))² − 2gh = 2gh"
+   },
+   {
+    "text": "Treat the point where the particle first reaches height h as a new launch point. It returns to the same height h after a horizontal distance of 2h, exactly like a projectile range.",
+    "equation": "2vₓv_y1/g = 2h ⟹ vₓv_y1 = gh"
+   },
+   {
+    "text": "Combine the two relations above; they force the horizontal and vertical velocities at height h to be equal.",
+    "equation": "vₓ² + v_y1² = 2gh and vₓv_y1 = gh ⟹ (vₓ − v_y1)² = 0 ⟹ vₓ = v_y1 = √(gh)"
+   },
+   {
+    "text": "The time between the walls is the flight time of the mini-projectile, which is twice the vertical velocity at height h divided by g.",
+    "equation": "t = 2v_y1/g = 2√(gh)/g = 2√(h/g)"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "t = 2√(h/g)"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Using the full launch speed u in place of the horizontal velocity between the walls gives t = 2h/u, which is exactly half the correct time."
+   }
+  ],
+  "concept_tags": [
+   "projectile motion",
+   "range formula",
+   "relative launch point"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "e09a21d472275aa27c78c47cdd1cb6067d258666b60ab62fdd6094e79e05b936"
+ },
+ "verification": {
+  "key_match": false,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "dd50778d8d4e480cd3fe34d2190348813f53c1f24efb57e23f062bdaf1026907",
+  "audited_by": "W01-U-prj-07"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-07",
+  "at": "2026-09-11T16:45:00+05:30"
+ }
+}

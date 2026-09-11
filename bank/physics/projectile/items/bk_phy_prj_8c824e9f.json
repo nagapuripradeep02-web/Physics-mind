@@ -1,0 +1,86 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_prj_8c824e9f",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "Based on the angles shown in the figure, calculate how long the projectile remains airborne and the distance it covers along the incline, using g = 10 m/s².",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "projectile launched horizontally from a point on the incline",
+   "g = 10 m/s²"
+  ],
+  "figure": {
+   "description": "An inclined plane rises from the horizontal ground at an angle of 30°, marked at its base. Near the top of the incline, a horizontal velocity arrow of 20 m/s points to the left; the angle between this horizontal arrow and the incline surface is marked as 30°."
+  }
+ },
+ "solution": {
+  "approach": "Use horizontal and vertical motion from the launch point and find when the fall matches the downward slope of the incline.",
+  "steps": [
+   {
+    "text": "Set up horizontal and vertical motion from the launch point, with the horizontal velocity constant and the vertical velocity starting from zero.",
+    "equation": "x = ut, y = −½gt² (taking down as negative)"
+   },
+   {
+    "text": "The incline drops at 30° below horizontal along the direction of motion, so the particle lands when the fall matches the incline's slope times the horizontal distance.",
+    "equation": "½gt² = x tan30° = ut tan30°"
+   },
+   {
+    "text": "Solve for the time of flight.",
+    "equation": "t = 2u tan30°/g = 2(20)(1/√3)/10 = 4√3/3 ≈ 2.31 s"
+   },
+   {
+    "text": "Find the horizontal distance travelled in this time.",
+    "equation": "x = ut = 20 × 2.31 ≈ 46.19 m"
+   },
+   {
+    "text": "Divide by cos30° to get the distance measured along the incline; this gives the final answer.",
+    "equation": "R = x/cos30° = 46.19/0.866 ≈ 53.33 m"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "time of flight ≈ 2.31 s, range along the incline ≈ 53.33 m"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Reporting the horizontal distance of about 46.19 m as the range, instead of dividing by cos30° for the distance along the incline, gives a wrong value."
+   }
+  ],
+  "concept_tags": [
+   "projectile on an incline",
+   "horizontal projection",
+   "time of flight"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "cf05f843a7534023ea0f3f58c76cabd00dfadbc2410954c32056e82706b3213e"
+ },
+ "verification": {
+  "key_match": false,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "b7a1ae2a31e05d10e95f48f249eab7fcaf3df458dc93ad23c45526b197d0a669",
+  "audited_by": "W01-U-prj-06"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-03",
+  "at": "2026-09-11T16:05:00+05:30"
+ }
+}

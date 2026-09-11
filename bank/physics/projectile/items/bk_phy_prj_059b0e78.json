@@ -1,0 +1,80 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_prj_059b0e78",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A body is thrown upward so that its position vector, in metres, changes with time t (in seconds) as r = 3t î + (4t − 5t²)ĵ. Find the time at which its y-coordinate becomes zero, and the x-coordinate of the body at that time.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "position vector r = {3t î + (4t − 5t²)ĵ} m",
+   "t measured in seconds"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Read the y-coordinate directly from the given position vector, set it to zero, and solve for the non-zero time; then use that time in the x-coordinate.",
+  "steps": [
+   {
+    "text": "Read the y-coordinate as a function of time from the position vector.",
+    "equation": "y(t) = 4t − 5t²"
+   },
+   {
+    "text": "Set the y-coordinate to zero and factor.",
+    "equation": "4t − 5t² = 0 → t(4 − 5t) = 0"
+   },
+   {
+    "text": "Take the non-zero root, since t = 0 is the starting instant.",
+    "equation": "t = 4/5 = 0.8 s"
+   },
+   {
+    "text": "Substitute this time into the x-coordinate.",
+    "equation": "x = 3t = 3×0.8 = 2.4 m"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "t = 0.8 s, x = 2.4 m"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Setting the rate of change of y to zero, instead of y itself, finds the time of the highest point (0.4 s) and gives a wrong x-coordinate of 1.2 m."
+   }
+  ],
+  "concept_tags": [
+   "projectile motion",
+   "position vector",
+   "components of motion"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "578d72ff201afc4072fddafe0d9f77daaa519a0f24d332d5a886e8e98c4e9896"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "742b5dde328c03e4881dd3f04fbedb522278b5d689f0b1da9271d1fc0b0ab225",
+  "audited_by": "W01-U-prj-03"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-06",
+  "at": "2026-09-11T12:08:00+05:30"
+ }
+}

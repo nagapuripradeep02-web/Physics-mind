@@ -1,0 +1,31 @@
+{
+ "question_id": "prj_2259e411",
+ "item_sha": "d48099872af0e611341269c5101219d245f06e6cfc32c1c42f9a99afd3aae32a",
+ "auditor_option": null,
+ "auditor_value": "Tower height h = ½gt² = ½×9.8×3² = 44.1 m; horizontal launch speed u = v_y = gt = 29.4 m/s",
+ "findings": [
+  {
+   "grade": "harmful",
+   "field": "steps[3].equation",
+   "quote": "u = 29.4 m/s, h = 88.2 m",
+   "note": "The line above (steps[2]) correctly gives h = ½×9.8×3² = 44.1 m; this line restates the height as 88.2 m, which is gt² = 29.4×3, exactly double the true value, and does not follow from the step above.",
+   "fix": "u = 29.4 m/s, h = 44.1 m"
+  },
+  {
+   "grade": "harmful",
+   "field": "final_answer.value",
+   "quote": "Height of tower = 88.2 m, speed of projection = 29.4 m/s",
+   "note": "The height is wrong. With zero initial vertical velocity, t = 3 s and g = 9.8 m/s², h = ½gt² = 44.1 m. 88.2 m is the number the solution's own common_mistakes entry names as the error of omitting the factor ½.",
+   "fix": "Height of tower = 44.1 m, speed of projection = 29.4 m/s"
+  }
+ ],
+ "verdict": "harmful",
+ "question_defect": null,
+ "notes": "My answer differs from the solution's on the height: 44.1 m vs the solution's 88.2 m. Steps 1–3 are correct and reach 44.1 m; only the collecting line and the final answer carry 88.2 m, and the common_mistakes entry explicitly calls 88.2 m 'exactly double the correct height', so the solution contradicts itself.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-02",
+  "at": "2026-09-11T19:34:41+05:30"
+ }
+}

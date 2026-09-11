@@ -1,0 +1,497 @@
+{
+ "wave": 3,
+ "role": "audit",
+ "chapter": "projectile",
+ "slice": 1,
+ "round": 0,
+ "agent_label": "W03-U-prj-01",
+ "items": [
+  {
+   "question_id": "prj_2896697e",
+   "audit_file": "prj_2896697e.7f466e38.json",
+   "item_sha": "7f466e380ee00f0ff335932f2c40520ec2b92635531a43b1127581bd4272ef4a",
+   "question_text": "Two particles are launched at the same instant, moving horizontally, from two different points on a riverbank that sit at some height above the water. Particle 1 has initial speed v₁ = 5 m/s and particle 2 has initial speed v₂ = 7.5 m/s. Both particles land in the water simultaneously. The first particle lands at a horizontal distance s = 10 m from the bank.\n(a) Find how long each particle remains airborne before hitting the water.\n(b) Find the height of the riverbank above the water surface.\n(c) Work out where the second particle lands in the water, measured from the bank.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Both particles fall from the same height for the same time; the first particle's range gives that time, which then gives the height and the second particle's landing point.",
+    "steps": [
+     {
+      "text": "Find the time of flight from the first particle's horizontal speed and its landing distance.",
+      "equation": "t = s/v₁ = 10/5 = 2 s"
+     },
+     {
+      "text": "Since both particles are in the air for the same time and start from the same height, use free fall from rest to find that height.",
+      "equation": "h = ½gt² = ½ × 9.8 × 2² = 19.6 m"
+     },
+     {
+      "text": "The second particle travels horizontally at its own constant speed for the same time to find where it lands.",
+      "equation": "x₂ = v₂t = 7.5 × 2 = 15 m"
+     },
+     {
+      "text": "State the three results together.",
+      "equation": "(a) t = 2 s, (b) h = 19.6 m, (c) x₂ = 15 m from the bank"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "(a) t = 2 s, (b) h = 19.6 m, (c) second particle lands 15 m from the bank"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Leaving out the ½ in h = ½gt² gives h = 9.8 × 2² = 39.2 m, twice the correct 19.6 m."
+     }
+    ],
+    "concept_tags": [
+     "horizontal projectile",
+     "free fall"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "prj_161e244b",
+   "audit_file": "prj_161e244b.b80c8a41.json",
+   "item_sha": "b80c8a410107d6bd02c1cd4bf6f94112a7b91b4630d6d1b64088ad6d004fbf55",
+   "question_text": "A trainer launches a baseball to a teammate, sending it off at 20 m/s at 45° above horizontal. The instant the throw happens, the teammate is standing 50 m away. Using g = 10 m/s², determine the running speed and direction the teammate needs so the catch happens exactly at the height the ball started from.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Find where the ball lands using the range formula, then find the speed needed to close the remaining gap in the time of flight.",
+    "steps": [
+     {
+      "text": "Find the horizontal and vertical parts of the throw's initial velocity.",
+      "equation": "ux = 20 cos45° = 10√2 m/s, uy = 20 sin45° = 10√2 m/s"
+     },
+     {
+      "text": "Find the time of flight, since the ball returns to the height it was released at.",
+      "equation": "T = 2uy/g = 2(10√2)/10 = 2√2 ≈ 2.83 s"
+     },
+     {
+      "text": "Find how far the ball travels horizontally in that time.",
+      "equation": "R = ux T = 10√2 × 2√2 = 40 m"
+     },
+     {
+      "text": "The player starts 50 m away and must reach the point 40 m away where the ball lands, so find the distance to close.",
+      "equation": "Δd = 50 − 40 = 10 m"
+     },
+     {
+      "text": "Divide this distance by the time of flight for the running speed; this gives the final answer.",
+      "equation": "v = 10/(2√2) = 5√2/2 ≈ 3.54 m/s, running toward the trainer"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "about 3.54 m/s, running toward the trainer"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Dividing the full initial separation of 50 m by the time of flight, instead of the 10 m gap left to close, gives a wrong speed of about 17.68 m/s."
+     }
+    ],
+    "concept_tags": [
+     "projectile motion",
+     "range formula",
+     "relative motion"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "prj_6e73404f",
+   "audit_file": "prj_6e73404f.3d38b347.json",
+   "item_sha": "3d38b3476be9754c0faf22583ae7b5c7ce5831e25dbb8af9001300ce5e5173be",
+   "question_text": "Someone stands at the top of a sloping hill and throws a stone purely horizontally, giving it speed v₀. Using an x-y axis system with its origin at the throwing point, work out the x and y coordinates of the spot on the hillside where the stone eventually lands.",
+   "options": [],
+   "figure_description": "The hill's top is at the origin (0,0) of an x-y axis system, with the x-axis horizontal (pointing in the direction of throw) and the y-axis vertical. The stone is thrown horizontally with speed v₀ along the positive x direction from the origin. The hillside slopes downward from the origin at angle θ below the horizontal x-axis, and the stone's curved path meets this sloped hillside at a point (x, y), with y measured as negative below the origin.",
+   "solution": {
+    "approach": "Write the horizontal and vertical distances travelled as functions of time, then find where the path meets the sloped hill surface.",
+    "steps": [
+     {
+      "text": "Use the axes given in the question: origin at the launch point, x horizontal along v₀, y vertical and positive upward. Then x(t) = v₀t and y(t) = −½gt².",
+      "equation": "x(t) = v₀t, y(t) = −½gt²"
+     },
+     {
+      "text": "The hill surface is the straight line y = −x tanθ through the origin; set the path equal to this line and solve for t.",
+      "equation": "−½gt² = −v₀t·tanθ ⇒ t = 2v₀tanθ/g (rejecting t = 0, the launch point)"
+     },
+     {
+      "text": "Substitute this time back into x(t) and y(t) to get the landing coordinates.",
+      "equation": "x = 2v₀²tanθ/g, y = −x·tanθ = −2v₀²tan²θ/g"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "The stone lands at (x, y) = (2v₀²tanθ/g, −2v₀²tan²θ/g); the negative sign shows the landing point lies below the launch point, as in the figure."
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Writing the hill's equation with the angle on the wrong side, y = −x cotθ instead of y = −x tanθ, which replaces every tanθ in the landing time and coordinates by cotθ."
+     }
+    ],
+    "concept_tags": [
+     "projectile on an incline",
+     "horizontal projection",
+     "coordinate geometry"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "prj_70ed35c7",
+   "audit_file": "prj_70ed35c7.1ed675bf.json",
+   "item_sha": "1ed675bf7b46de965ca6c22030bff109cc1ebf7850f79bf83bd6cac218e9987b",
+   "question_text": "A projectile launched at angle θ, with a certain speed, covers a horizontal range that equals half the maximum range obtainable at that same speed. What is the angle θ?",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "15°"
+    },
+    {
+     "label": "(b)",
+     "text": "30°"
+    },
+    {
+     "label": "(c)",
+     "text": "60°"
+    },
+    {
+     "label": "(d)",
+     "text": "not enough information is given"
+    }
+   ],
+   "figure_description": "",
+   "solution": {
+    "approach": "Set the range formula at angle θ equal to half the maximum range and solve for θ.",
+    "steps": [
+     {
+      "text": "Write the range at angle θ and the maximum range, both at the same speed u.",
+      "equation": "R(θ) = u²sin2θ / g, R_max = u² / g (at θ = 45°)"
+     },
+     {
+      "text": "Set the range at θ equal to half the maximum range.",
+      "equation": "u²sin2θ / g = ½ × u² / g"
+     },
+     {
+      "text": "Cancel u²/g from both sides and solve for 2θ, then θ.",
+      "equation": "sin2θ = ½, so 2θ = 30° or 150°, θ = 15° or 75°; of these only 15° is among the options"
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "15°"
+    },
+    "common_mistakes": [
+     {
+      "option": 2,
+      "text": "Taking 2θ = 30° but then forgetting to divide by 2 gives θ = 30°."
+     },
+     {
+      "option": 3,
+      "text": "Writing 2θ = 120° instead of 30° or 150°, by confusing sin 120° (which is √3/2) with ½, gives θ = 60°."
+     }
+    ],
+    "concept_tags": [
+     "projectile motion",
+     "range",
+     "maximum range"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "prj_7ce39cdf",
+   "audit_file": "prj_7ce39cdf.be2058b2.json",
+   "item_sha": "be2058b24719fe86c942a94333c147b329e45976019015a225270f236ae0620c",
+   "question_text": "Demonstrate that a projectile passes through the same height at two separate instants, and prove algebraically that adding those two times together gives exactly the total time of flight.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Write the height reached at time t as a quadratic equation, and use the sum-of-roots relation to show the two times at that height add to the time of flight.",
+    "steps": [
+     {
+      "text": "Write the vertical displacement at time t as a quadratic equation in t, for a chosen height y₀.",
+      "equation": "½gt² − (u sinθ)t + y₀ = 0"
+     },
+     {
+      "text": "This quadratic has two positive roots t₁ and t₂ for any height below the maximum, since the same height is crossed once going up and once coming down.",
+      "equation": "t₁, t₂ = [u sinθ ± √(u²sin²θ − 4gy₀)] / g"
+     },
+     {
+      "text": "Add the two roots; the square-root terms cancel and the sum matches the standard time-of-flight formula.",
+      "equation": "t₁ + t₂ = 2u sinθ/g = T",
+      "why_this_step": "The sum of the roots of at² + bt + c = 0 is −b/a, which here gives 2u sinθ/g directly, without needing the individual root values."
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "t₁ + t₂ = 2u sinθ/g = T, the time of flight."
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Multiplying the two roots instead of adding them, getting t₁×t₂ = 2y₀/g, a quantity unrelated to the time of flight."
+     }
+    ],
+    "concept_tags": [
+     "quadratic in time",
+     "time of flight",
+     "sum of roots"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "prj_7004b298",
+   "audit_file": "prj_7004b298.e570c3a7.json",
+   "item_sha": "e570c3a795283a889fabb21625e07f2b8ab9838f6b5d2dbeb4740de246dd7338",
+   "question_text": "Two particles start from the same point above a tower and, at that instant, move horizontally in opposite directions with speeds v₁ = 3 m/s and v₂ = 4 m/s, falling freely under gravity g afterward. Find how far apart they are at the moment their two velocity vectors are perpendicular to each other.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Write each particle's velocity vector as a function of time, set the dot product to zero for perpendicularity, then find the horizontal separation at that time, since both fall equally.",
+    "steps": [
+     {
+      "text": "Write the velocity vectors of the two particles in one set of axes, rightward and upward positive; the first particle moves rightward and the second leftward.",
+      "equation": "v₁ = (v₁, −gt), v₂ = (−v₂, −gt)"
+     },
+     {
+      "text": "Set the dot product of the two velocity vectors to zero for perpendicularity.",
+      "equation": "−v₁v₂ + g²t² = 0"
+     },
+     {
+      "text": "Solve for the time at which the vectors are perpendicular.",
+      "equation": "t = √(v₁v₂)/g = √(3×4)/g = 2√3/g s; with g = 10 m/s², t = 2√3/10 = √3/5 ≈ 0.35 s; with g = 9.8 m/s², t ≈ 0.35 s"
+     },
+     {
+      "text": "Since both particles fall the same vertical distance from the same height, the distance between them is purely horizontal, equal to the sum of their horizontal speeds times this time.",
+      "equation": "distance = (v₁ + v₂)t = (v₁ + v₂)√(v₁v₂)/g = 7×2√3/g = 14√3/g m; with g = 10 m/s², d = 14√3/10 = 7√3/5 ≈ 2.42 m; with g = 9.8 m/s², d ≈ 2.47 m ≈ 2.5 m"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "distance = 14√3/g m: ≈ 2.42 m with g = 10 m/s² (t = 2√3/g ≈ 0.35 s), ≈ 2.47 m ≈ 2.5 m with g = 9.8 m/s² (t ≈ 0.35 s)"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Using t = (v₁ + v₂)/g in place of t = √(v₁v₂)/g gives a wrong time of 0.7 s and a wrong distance of 4.9 m (with g = 10 m/s²)."
+     }
+    ],
+    "concept_tags": [
+     "projectile motion",
+     "relative velocity",
+     "perpendicular vectors"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "prj_e3f4653c",
+   "audit_file": "prj_e3f4653c.6269b468.json",
+   "item_sha": "6269b4687872f05060d6ea6cfcaa240fe087bc993de43ebc7768f3a4c3c64691",
+   "question_text": "Assertion: Taking g = 10 m/s², the claim is that in projectile motion the particle's speed changes by 10 m/s during every second of flight. Reason: Acceleration is defined as the rate at which velocity changes.",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "If both Assertion and Reason are true and the Reason is the correct explanation of the Assertion."
+    },
+    {
+     "label": "(b)",
+     "text": "If both Assertion and Reason are true but the Reason is not the correct explanation of the Assertion."
+    },
+    {
+     "label": "(c)",
+     "text": "If the Assertion is true, but the Reason is false."
+    },
+    {
+     "label": "(d)",
+     "text": "If the Assertion is false but the Reason is true."
+    }
+   ],
+   "figure_description": "",
+   "solution": {
+    "approach": "Acceleration changes the velocity vector by a fixed amount each second, but speed is the length of that vector, which does not change by that same fixed amount.",
+    "steps": [
+     {
+      "text": "Take a projectile with both horizontal and vertical velocity components, and track its speed second by second."
+     },
+     {
+      "text": "The vertical component of velocity does change by exactly 10 m/s every second, since the vertical acceleration is constant.",
+      "equation": "vᵧ(t+1) − vᵧ(t) = −10 m/s"
+     },
+     {
+      "text": "The horizontal component never changes, and speed is the length of the full velocity vector, not only its vertical part.",
+      "equation": "speed = √(vₓ² + vᵧ²)"
+     },
+     {
+      "text": "Because speed combines both components through a square root, its change from one second to the next is not a fixed 10 m/s; it is largest near the ground and smallest near the top of the flight."
+     },
+     {
+      "text": "So the Assertion is false because it confuses the constant change in the velocity vector with the varying change in speed, while the Reason — that acceleration is the rate of change of velocity — is a true, separate statement.",
+      "why_this_step": "The Reason describes the vector velocity correctly; the Assertion wrongly applies that fact to the scalar speed."
+     }
+    ],
+    "final_answer": {
+     "option": 4,
+     "value": "If the Assertion is false but the Reason is true."
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Confusing velocity with speed, so a constant 10 m/s change in the velocity vector is wrongly read as a constant 10 m/s change in speed."
+     },
+     {
+      "option": 3,
+      "text": "Accepting the Assertion, and marking the Reason false because the student believes acceleration is defined as the rate of change of speed, so a definition worded in terms of velocity looks wrong to them."
+     }
+    ],
+    "concept_tags": [
+     "speed versus velocity",
+     "acceleration",
+     "projectile motion"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "prj_c04cc4d5",
+   "audit_file": "prj_c04cc4d5.c8f173df.json",
+   "item_sha": "c8f173dfc4351bb693f26a77ed7a8e36bac98b35216e740f92816fa9a7d34373",
+   "question_text": "Assertion: Two objects are launched as projectiles; one climbs to a maximum height of 4H while the other climbs to a maximum height of H. For the two to land the same horizontal distance away, their horizontal velocity components need to be in a 1 : 2 ratio. Reason: A projectile's horizontal range equals its horizontal velocity component multiplied by its total time of flight.",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "If both Assertion and Reason are true and the Reason is the correct explanation of the Assertion."
+    },
+    {
+     "label": "(b)",
+     "text": "If both Assertion and Reason are true but the Reason is not the correct explanation of the Assertion."
+    },
+    {
+     "label": "(c)",
+     "text": "If the Assertion is true, but the Reason is false."
+    },
+    {
+     "label": "(d)",
+     "text": "If the Assertion is false but the Reason is true."
+    }
+   ],
+   "figure_description": "",
+   "solution": {
+    "approach": "The heights 4H and H fix the ratio of vertical launch speeds, which fixes the ratio of flight times; equal ranges then fix the ratio of horizontal launch speeds.",
+    "steps": [
+     {
+      "text": "Write the maximum height of each projectile in terms of its own vertical launch speed.",
+      "equation": "H₁ = uᵧ₁²/(2g) = 4H, H₂ = uᵧ₂²/(2g) = H"
+     },
+     {
+      "text": "Divide the two height equations to get the ratio of vertical launch speeds.",
+      "equation": "uᵧ₁²/uᵧ₂² = 4 ⇒ uᵧ₁/uᵧ₂ = 2"
+     },
+     {
+      "text": "Time of flight is proportional to the vertical launch speed, so this gives the ratio of the two times of flight.",
+      "equation": "T₁/T₂ = uᵧ₁/uᵧ₂ = 2"
+     },
+     {
+      "text": "Range equals the horizontal launch speed times the time of flight, and the Reason states exactly this formula; set the two ranges equal.",
+      "equation": "R = uₓ·T, so uₓ₁·T₁ = uₓ₂·T₂"
+     },
+     {
+      "text": "Substitute T₁ = 2T₂ and solve for the ratio of horizontal launch speeds.",
+      "equation": "uₓ₁·2T₂ = uₓ₂·T₂ ⇒ uₓ₁/uₓ₂ = 1/2"
+     },
+     {
+      "text": "This ratio of 1 : 2 matches the Assertion exactly, and the Reason (R = uₓ·T) is the very formula used to derive it, so both statements are true and the Reason explains the Assertion."
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "If both Assertion and Reason are true and the Reason is the correct explanation of the Assertion."
+    },
+    "common_mistakes": [
+     {
+      "option": 4,
+      "text": "Taking the ratio of horizontal speeds equal to the ratio of vertical speeds instead of its reciprocal, giving 2 : 1 instead of 1 : 2."
+     },
+     {
+      "option": 2,
+      "text": "Accepting both statements as true but treating R = uₓ×T as unrelated background information rather than the formula that proves the ratio."
+     }
+    ],
+    "concept_tags": [
+     "range",
+     "maximum height",
+     "time of flight"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "prj_5bf47e86",
+   "audit_file": "prj_5bf47e86.2447fbde.json",
+   "item_sha": "2447fbdeb1896b6df5c1b33a8c23b76c2a5006aeaa990eb470ae964b2aceb2e6",
+   "question_text": "A lift is moving upward, accelerating at 1 m/s². At the moment its speed reaches 2 m/s, a stone is thrown from the lift's floor, its speed relative to the lift being 2 m/s, launched upward at 30° elevation.\n(a) Work out how long the stone takes before it lands back on the lift's floor.\n(b) Draw the trajectory the stone follows, as seen by someone standing outside the lift.\n(c) Suppose instead the lift accelerates downward at a rate equal to g. Describe how the stone's motion would then differ.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Inside the accelerating elevator the stone feels an increased effective gravity g + a, so its relative flight time follows the usual projectile formula with that effective value.",
+    "steps": [
+     {
+      "text": "Find the stone's vertical velocity component relative to the elevator at launch.",
+      "equation": "v_rel = 2 sin30° = 1 m/s"
+     },
+     {
+      "text": "Inside the upward-accelerating elevator, the effective downward acceleration felt by the stone relative to the elevator is g plus the elevator's own acceleration.",
+      "equation": "g_eff = g + a = 10 + 1 = 11 m/s² (taking g = 10 m/s²)"
+     },
+     {
+      "text": "Use the usual projectile time-of-flight formula with this effective gravity to find when the stone returns to the elevator floor.",
+      "equation": "t = 2v_rel/g_eff = 2×1/11 = 2/11 s ≈ 0.18 s, with g = 9.8 m/s², g_eff = 10.8 m/s² and t ≈ 0.185 s"
+     },
+     {
+      "text": "For an observer outside the elevator, the stone's initial velocity is the elevator's velocity plus the stone's velocity relative to the elevator. After release the stone moves under ordinary gravity g alone, so it follows a normal parabolic path; the elevator floor, still accelerating upward, rises to meet the stone.",
+      "equation": "vₓ = 2cos30° ≈ 1.73 m/s, v_y = 2 + 2sin30° = 3 m/s, both measured from the ground"
+     },
+     {
+      "text": "If the elevator instead accelerates downward at g, it is in free fall, so the effective gravity felt inside it becomes zero.",
+      "equation": "g_eff = g − g = 0"
+     },
+     {
+      "text": "State all three results together.",
+      "equation": "(a) t = 2/11 s ≈ 0.18 s taking g = 10 m/s² (≈ 0.185 s with g = 9.8 m/s²), (b) a parabola in the ground frame with initial velocity 1.73 m/s horizontal and 3 m/s upward, (c) with downward acceleration g the effective gravity inside is zero, so relative to the elevator the stone moves in a straight line at constant velocity and never returns to the floor"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "(a) t = 2 sin30°·2/(g + 1) = 2/11 s ≈ 0.18 s taking g = 10 m/s² (≈ 0.185 s with g = 9.8 m/s²), (b) a parabola in the ground frame with initial velocity 1.73 m/s horizontal and 3 m/s upward, while the elevator floor, still accelerating upward, rises to meet the stone, (c) with downward acceleration g the elevator is in free fall, so relative to it the stone moves in a straight line at constant velocity and never returns to the floor"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Using ordinary gravity g instead of the effective gravity g + a for the time in part (a) gives 0.2 s instead of the correct 0.18 s."
+     }
+    ],
+    "concept_tags": [
+     "relative motion",
+     "non-inertial frame",
+     "pseudo-force",
+     "projectile motion"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "concept"
+   }
+  }
+ ]
+}

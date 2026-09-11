@@ -18,7 +18,9 @@ from gate_solutions import (norm_value, num_of, words, idioms_from_ts, idioms_in
 from check_transcripts import PLACEHOLDER                                                       # noqa: E402
 
 BOOK = "dcp_m1"                      # the evidence folder name; never written into a bank item
-CHAPTER = "kinematics"
+CHAPTER = os.environ.get("BANK_CHAPTER", "kinematics")
+CFG = json.load(io.open(os.path.join(HERE, "chapters.json"), encoding="utf-8"))[CHAPTER]
+PREFIX = CFG["prefix"]              # working ids <prefix>_<sha8>, bank ids bk_phy_<prefix>_<sha8>
 BANK = os.path.join(ROOT, "bank", "physics", CHAPTER)
 ITEMS = os.path.join(BANK, "items")
 GATE = os.path.join(BANK, "_gate")
@@ -26,18 +28,19 @@ EVIDENCE = os.path.join(ROOT, "pdfs", "books", BOOK, CHAPTER)      # gitignored 
 PAGES = os.path.join(EVIDENCE, "pages")
 CROPS = os.path.join(EVIDENCE, "crops")
 WORK = os.path.join(EVIDENCE, "work")
-def _source_pdf():
-    """The source PDF is named only in the gitignored evidence folder (source.json) or BANK_PDF - never in git."""
-    p = os.environ.get("BANK_PDF")
-    if p:
-        return p
+def _source():
+    """The source PDF and the chapter's page geometry live only in the gitignored evidence folder
+    (source.json) - never in git. BANK_PDF overrides the path."""
     f = os.path.join(EVIDENCE, "source.json")
-    if os.path.exists(f):
-        return json.load(open(f, encoding="utf-8")).get("pdf")
-    return None
+    src = json.load(open(f, encoding="utf-8")) if os.path.exists(f) else {}
+    if os.environ.get("BANK_PDF"):
+        src["pdf"] = os.environ["BANK_PDF"]
+    return src
 
 
-PDF = _source_pdf()
+SRC = _source()
+PDF = SRC.get("pdf")
+GEOM = SRC.get("geometry") or {}
 ENV_FILES = [os.path.join(ROOT, ".env.local"), r"C:\Tutor\physics-mind\.env.local"]
 
 GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-3.7-flash")
@@ -63,6 +66,15 @@ def now():
 
 def sha256(s):
     return hashlib.sha256(s.encode("utf-8")).hexdigest()
+
+
+def transcript_sha(j):
+    """The working identity of a transcript: its text, its options and, when a figure carries the data, the values
+    read off the figure (three 'as shown in figure' items can share one sentence and differ only in the drawing)."""
+    f = j.get("figure") or {}
+    fig = (f.get("values_read") or []) + ([f.get("description")] if f.get("description") else []) if f.get("present") else []
+    return sha256(j["question_text"] + "|" + json.dumps(j.get("options") or [], ensure_ascii=False)
+                  + ("|" + json.dumps(fig, ensure_ascii=False) if fig else ""))
 
 
 def sha_of(obj, drop=("authored_by",)):

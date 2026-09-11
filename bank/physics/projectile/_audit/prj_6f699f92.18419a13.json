@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_6f699f92",
+ "item_sha": "18419a139b71834fcaeb45d1c7fc7db672ac88fcce8396fe89c40f2eac4d0139",
+ "auditor_option": 4,
+ "auditor_value": "(d) Assertion false (constant acceleration parallel to the velocity gives a straight line), Reason true",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-prj-01",
+  "at": "2026-09-11T19:52:15+05:30"
+ }
+}

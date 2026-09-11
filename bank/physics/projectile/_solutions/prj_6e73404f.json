@@ -1,0 +1,43 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "prj_6e73404f",
+ "approach": "Write the horizontal and vertical distances travelled as functions of time, then find where the path meets the sloped hill surface.",
+ "steps": [
+  {
+   "text": "Use the axes given in the question: origin at the launch point, x horizontal along v₀, y vertical and positive upward. Then x(t) = v₀t and y(t) = −½gt².",
+   "equation": "x(t) = v₀t, y(t) = −½gt²"
+  },
+  {
+   "text": "The hill surface is the straight line y = −x tanθ through the origin; set the path equal to this line and solve for t.",
+   "equation": "−½gt² = −v₀t·tanθ ⇒ t = 2v₀tanθ/g (rejecting t = 0, the launch point)"
+  },
+  {
+   "text": "Substitute this time back into x(t) and y(t) to get the landing coordinates.",
+   "equation": "x = 2v₀²tanθ/g, y = −x·tanθ = −2v₀²tan²θ/g"
+  }
+ ],
+ "final_answer": {
+  "option": null,
+  "value": "The stone lands at (x, y) = (2v₀²tanθ/g, −2v₀²tan²θ/g); the negative sign shows the landing point lies below the launch point, as in the figure."
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": null,
+   "text": "Writing the hill's equation with the angle on the wrong side, y = −x cotθ instead of y = −x tanθ, which replaces every tanθ in the landing time and coordinates by cotθ."
+  }
+ ],
+ "concept_tags": [
+  "projectile on an incline",
+  "horizontal projection",
+  "coordinate geometry"
+ ],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-01",
+  "at": "2026-09-11T18:48:00+05:30"
+ }
+}

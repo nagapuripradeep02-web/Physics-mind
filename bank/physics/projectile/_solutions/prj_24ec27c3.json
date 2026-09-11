@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "prj_24ec27c3",
+ "approach": "The horizontal speed stays fixed through the flight; use it with the vertical speed and height at the point to rebuild the launch speed and motion, g = 9.8 m/s².",
+ "steps": [
+  {"text": "The extra height gained above the given point, before the vertical speed drops to zero, comes from the vertical speed there.", "equation": "Δh = v_y²/(2g) = 6.1²/(2×9.8) ≈ 1.90 m"},
+  {"text": "Add this to the given height to get the maximum height reached.", "equation": "H = 9.1 + 1.90 ≈ 11.0 m"},
+  {"text": "Find the vertical launch speed by treating the given point as reached after falling from the peak, or equivalently rising from the ground.", "equation": "v_y0 = √(v_y² + 2gy) = √(6.1² + 2×9.8×9.1) ≈ 14.7 m/s"},
+  {"text": "Find the total time of flight and the horizontal range, using the constant horizontal speed.", "equation": "T = 2v_y0/g ≈ 3.0 s, R = v_x·T = 7.6×3.0 ≈ 22.8 m"},
+  {"text": "Just before landing, the vertical speed has the same size as the launch value but points downward; combine it with the constant horizontal speed for the landing speed and its direction below the horizontal.", "equation": "v_land = √(7.6² + 14.7²) ≈ 16.5 m/s, at tan⁻¹(14.7/7.6) ≈ 63° below the horizontal"}
+ ],
+ "final_answer": {"option": null, "value": "(a) H ≈ 11.0 m, (b) R ≈ 22.8 m, (c) speed ≈ 16.5 m/s, (d) direction ≈ 63° below the horizontal"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Taking the given height of 9.1 m directly as the maximum height, since the vertical speed there is nonzero, ignoring that the ball rises further before it stops going up."}
+ ],
+ "concept_tags": ["projectile motion", "maximum height", "range", "landing velocity"],
+ "difficulty": "hard",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-prj-06", "at": "2026-09-11T12:13:00+05:30"}
+}

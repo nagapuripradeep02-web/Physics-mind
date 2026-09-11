@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_54c95e72",
+ "item_sha": "283b936f7f20d4d6caaf9bd9364efc25f6af02de70cc5c2a8454170cf9d46d09",
+ "auditor_option": null,
+ "auditor_value": "(a) θ = 30° (20 sinθ = 10); (b) x = 20 cos30° × 0.5 = 5√3 ≈ 8.66 m",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-03",
+  "at": "2026-09-11T19:36:15+05:30"
+ }
+}

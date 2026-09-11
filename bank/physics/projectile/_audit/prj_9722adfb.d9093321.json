@@ -1,0 +1,24 @@
+{
+ "question_id": "prj_9722adfb",
+ "item_sha": "d9093321292b4183060bb1021ffd050a2c22f2558046d5e8aab8c87a6eba754f",
+ "auditor_option": 4,
+ "auditor_value": "Assertion false (a constant acceleration with an initial velocity not along it gives a parabola whatever axes are used), Reason true",
+ "findings": [
+  {
+   "grade": "weak",
+   "field": "steps[4].text",
+   "quote": "but a true Reason cannot rescue the false Assertion",
+   "note": "'rescue' is a metaphor; the brief asks for literal textbook English.",
+   "fix": "but a true Reason does not make a false Assertion true"
+  }
+ ],
+ "verdict": "weak",
+ "question_defect": "Assertion-reason item served with an empty options list; the solution's option numbers assume the standard scheme the student does not see.",
+ "notes": "Independent reading agrees: the path of a particle under constant acceleration is a parabola (or a straight line if the velocity is along the acceleration) independent of the axes chosen, so the Assertion's 'can never' is false; the Reason is the standard true statement. Option 4 under the standard scheme. The two mistake entries both describe accepting the Assertion, which is the genuine error here.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-05",
+  "at": "2026-09-11T19:36:08+05:30"
+ }
+}

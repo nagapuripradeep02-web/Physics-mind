@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_b528c2f4",
+ "item_sha": "76d8fca111a25a82e8925b4fac07f030a55845bd67cf6e5a92242a59531de991",
+ "auditor_option": null,
+ "auditor_value": "t = u/(g sinθ)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Independent solve: u·v = u²cos²θ + u sinθ(u sinθ − gt) = u² − ugt sinθ = 0 gives t = u/(g sinθ). Every line follows; the why_this_step is correct; the mistake entry's equality at θ = 90° only is right. Not required but worth knowing: this instant occurs before landing only when θ ≥ 45° (t ≤ 2u sinθ/g needs sin²θ ≥ 1/2).",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-05",
+  "at": "2026-09-11T19:36:08+05:30"
+ }
+}

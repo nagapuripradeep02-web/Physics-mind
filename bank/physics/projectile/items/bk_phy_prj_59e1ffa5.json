@@ -1,0 +1,81 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_prj_59e1ffa5",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "An object is released moving only horizontally from a tower's top. It lands on the ground 3 seconds later, striking it at 45° to the horizontal. Using g = 9.8 m/s², calculate the tower's height and the horizontal launch speed of the object.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "object released horizontally from tower top",
+   "lands after 3 s at 45° to the horizontal",
+   "g = 9.8 m/s²"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Use the 45° landing angle to link the vertical and horizontal velocity components, then get the height from the time of fall.",
+  "steps": [
+   {
+    "text": "Find the vertical velocity built up in 3 s of fall.",
+    "equation": "vy = gt = 9.8×3 = 29.4 m/s"
+   },
+   {
+    "text": "At a 45° landing angle the horizontal and vertical components are equal, since tan45° = 1, so the projection speed equals this vertical component.",
+    "equation": "u = vy = 29.4 m/s"
+   },
+   {
+    "text": "Find the height using the vertical-fall formula for the same 3 s.",
+    "equation": "h = ½gt² = ½×9.8×3² = 44.1 m"
+   },
+   {
+    "text": "Collect both results.",
+    "equation": "u = 29.4 m/s, h = 44.1 m"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "Height of tower = 44.1 m, speed of projection = 29.4 m/s"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Computing the height as h = u×t = 29.4×3 = 88.2 m instead of h = ½gt², missing the one-half factor and getting exactly double the correct height."
+   }
+  ],
+  "concept_tags": [
+   "horizontal projectile",
+   "angle of landing",
+   "time of flight"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "calculation"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "2259e411c460afe60537e072bda46fece58264808a066f68f8f665eabac4e39b"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "1d559b7301ba87f2ecbd061e0574f27b96b0a655833f90967a96f297e5115595",
+  "audited_by": "W01-U-prj-01"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-01",
+  "at": "2026-09-11T18:38:00+05:30"
+ }
+}

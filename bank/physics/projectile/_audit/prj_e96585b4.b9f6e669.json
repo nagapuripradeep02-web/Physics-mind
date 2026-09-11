@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_e96585b4",
+ "item_sha": "b9f6e6699bd608fda06f44cc93354a2995a5623f40fdcb8771b1063b42e0a66a",
+ "auditor_option": null,
+ "auditor_value": "(a) v = uₓ/cos37° = 20/0.8 = 25 m/s; (b) t = (20√3 ∓ 15)/10: t₁ = 2√3 − 1.5 ≈ 1.96 s rising, t₂ = 2√3 + 1.5 ≈ 4.96 s falling; (c) h = (1200 − 225)/20 = 48.75 m at both; x₁ ≈ 39.3 m, x₂ ≈ 99.3 m",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Every equation checked with cos37° = 0.8, tan37° = 0.75: uₓ = 20, u_y = 34.64; v = 25; v_y = ±15; t₁ = 1.964, t₂ = 4.964; h = 48.75; x₁ = 39.28, x₂ = 99.28. The mistake entry (20/0.6 = 33.3 m/s) is a genuine sine–cosine swap.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-07",
+  "at": "2026-09-11T19:37:35+05:30"
+ }
+}

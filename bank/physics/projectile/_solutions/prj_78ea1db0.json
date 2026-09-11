@@ -1,0 +1,51 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "prj_78ea1db0",
+ "approach": "Find the horizontal and vertical velocity parts, then use the equations of motion for the velocity and displacement after 2 s.",
+ "steps": [
+  {
+   "text": "Find the horizontal and vertical parts of the initial velocity.",
+   "equation": "ux = 40√2 cos45° = 40 m/s, uy = 40√2 sin45° = 40 m/s"
+  },
+  {
+   "text": "Find the velocity components at t = 2 s.",
+   "equation": "vx = 40 m/s, vy = uy − gt = 40 − 20 = 20 m/s"
+  },
+  {
+   "text": "Combine the components for the speed and direction of the velocity.",
+   "equation": "v = √(40² + 20²) = 20√5 ≈ 44.72 m/s, about 26.6° above the horizontal"
+  },
+  {
+   "text": "Find the horizontal and vertical displacement at t = 2 s.",
+   "equation": "x = ux t = 80 m, y = uy t − ½gt² = 80 − 20 = 60 m"
+  },
+  {
+   "text": "Combine the displacement components for the magnitude and direction; this gives the final answer.",
+   "equation": "s = √(80² + 60²) = 100 m, about 36.9° above the horizontal"
+  }
+ ],
+ "final_answer": {
+  "option": null,
+  "value": "(a) velocity ≈ 44.72 m/s at about 26.6° above the horizontal; (b) displacement = 100 m at about 36.9° above the horizontal"
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": null,
+   "text": "Taking vy = uy + gt instead of uy − gt, as if gravity speeds the particle up, gives vy = 60 m/s and a wrong speed near 72.1 m/s."
+  }
+ ],
+ "concept_tags": [
+  "projectile motion",
+  "velocity components",
+  "displacement"
+ ],
+ "difficulty": "easy",
+ "mistake_type_hint": "calculation",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-03",
+  "at": "2026-09-11T15:05:00+05:30"
+ }
+}

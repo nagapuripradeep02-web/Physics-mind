@@ -1,0 +1,79 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_prj_a253f9ec",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "numerical",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A plane flies level at 600 km/h, cruising 1960 m above the ground. The instant it passes directly over ground point A, a package is released from it. The package touches down at point B. Work out the distance between A and B.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "package is released (dropped) while the plane flies horizontally",
+   "release point is directly above ground point A",
+   "package lands on the ground at point B"
+  ],
+  "figure": {
+   "description": "The plane is shown at point O, height h above point A on the ground, joined by a dotted vertical line, moving horizontally with velocity v (arrow to the right). A curved path leads from O down to landing point B on the ground; A and B lie on the same horizontal ground line, and the distance between them is what must be found."
+  }
+ },
+ "solution": {
+  "approach": "Convert the plane's speed to SI units, find the fall time from the height using g = 9.8 m/s², then multiply to get the horizontal distance covered.",
+  "steps": [
+   {
+    "text": "Convert the horizontal speed from km/h to m/s.",
+    "equation": "v = 600×(1000/3600) = 500/3 ≈ 166.7 m/s"
+   },
+   {
+    "text": "Find the time to fall the given height from rest, using g = 9.8 m/s².",
+    "equation": "t = √(2×1960/9.8) = √400 = 20 s"
+   },
+   {
+    "text": "The dropped body keeps the plane's horizontal velocity throughout the fall, so the horizontal distance AB equals speed times time.",
+    "equation": "AB = 166.7×20 ≈ 3333.3 m ≈ 3.33 km"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "AB ≈ 3333.3 m ≈ 3.33 km"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Using 600 directly as the speed in m/s without converting from km/h, giving a wrong distance of 600×20 = 12000 m."
+   }
+  ],
+  "concept_tags": [
+   "horizontal projectile",
+   "unit conversion",
+   "time of fall"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "calculation"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "c274ab228c1e561477ea6988aa3380891fbc4646e199b63d64ca0f274205862b"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "f39bd81e69337ab8a5a3190c6c4467293205f5a4d8e768b37aacc83a81a71327",
+  "audited_by": "W01-U-prj-06"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-01",
+  "at": "2026-09-11T18:58:00+05:30"
+ }
+}

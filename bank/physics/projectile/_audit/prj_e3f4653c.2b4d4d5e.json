@@ -1,0 +1,38 @@
+{
+ "question_id": "prj_e3f4653c",
+ "item_sha": "2b4d4d5ea4270c4cb7fc87f5c9f71f8960e933e8f353c5036f1e08b4424267a9",
+ "auditor_option": 4,
+ "auditor_value": "Assertion false, Reason true (standard A–R scheme option 4). Even the full velocity vector changes by only g×1 s = 10 m/s each second, and |Δspeed| ≤ |Δv| = 10 m/s, so a 20 m/s change of speed per second is impossible; speed is a scalar whose per-second change varies (−g sinφ).",
+ "findings": [
+  {
+   "grade": "harmful",
+   "field": "final_answer",
+   "quote": "If the Assertion is false but the Reason is true.",
+   "note": "The verdict text happens to be right, but the solution solves a different problem from the one served: the served Assertion claims a change of 20 m/s per second, and no step, equation or mistake entry ever mentions 20 m/s — every line argues against a 10 m/s claim. A solution that ignores the one number the question gives is graded here as required by the brief; the served claim is false for a stronger reason the solution never states (even the velocity vector changes by only 10 m/s per second).",
+   "fix": null
+  },
+  {
+   "grade": "harmful",
+   "field": "steps[3].text",
+   "quote": "its change from one second to the next is not a fixed 10 m/s",
+   "note": "This question's Assertion says 20 m/s, not 10 m/s. The line refutes a claim the served question does not make and leaves the actual claim unaddressed.",
+   "fix": "Because speed combines both components through a square root, its change from one second to the next is not a fixed value, and it can never be 20 m/s: the whole velocity vector changes by only g × 1 s = 10 m/s each second, so the speed can change by at most 10 m/s in a second, and by less than that whenever the velocity is not vertical."
+  },
+  {
+   "grade": "wrong",
+   "field": "common_mistakes[0].text",
+   "quote": "Confusing velocity with speed, so a constant 10 m/s change in the velocity vector is wrongly read as a constant 10 m/s change in speed.",
+   "note": "For the served question this cause cannot produce option 1: a student who confuses speed with velocity still sees a 10 m/s per second change, not the 20 m/s the Assertion claims, and so would still call the Assertion false.",
+   "fix": "Taking the acceleration g = 10 m/s² to mean that the speed changes by 20 m/s over the two halves of every second, or doubling the 10 m/s change without reason, and so accepting the Assertion as true."
+  }
+ ],
+ "verdict": "harmful",
+ "question_defect": "The served options list is empty, yet the answer is keyed to the standard five Assertion–Reason statements (final_answer.option = 4, mistake options 1 and 3). Also, this item shares question_id prj_e3f4653c with another item in the same slice whose text says 10 m/s; the two differ only in that number.",
+ "notes": "The solution is byte-identical to the one attached to the 10 m/s twin of this question (same question_id, different item_sha), which is why it never engages the 20 m/s figure. Steps 1–3 and step 5 are true in themselves; the Reason is correctly judged true.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-07",
+  "at": "2026-09-11T19:34:52+05:30"
+ }
+}

@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_7ce39cdf",
+ "item_sha": "3ca6aa140886863628302e28fafb626699f349e8761f5d9cf1464de47926e89c",
+ "auditor_option": null,
+ "auditor_value": "y₀ = (u sinθ)t − ½gt² is a quadratic in t with two positive roots for 0 < y₀ < H; by the sum-of-roots relation t₁ + t₂ = (u sinθ)/(½g) = 2u sinθ/g = T.",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Quadratic, explicit roots, sum-of-roots (−b/a) and the product c/a = 2y₀/g in the mistake entry all re-derived and correct; numeric check t₁+t₂ = 6.000 = T for uᵧ = 30, y₀ = 20.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-04",
+  "at": "2026-09-11T19:32:51+05:30"
+ }
+}

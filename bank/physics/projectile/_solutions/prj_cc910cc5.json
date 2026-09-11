@@ -1,0 +1,18 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "prj_cc910cc5",
+ "approach": "Find the time of fall from the 4 m drop using g = 9.8 m/s² (no value given), then divide the 5 m horizontal distance by that time.",
+ "steps": [
+  {"text": "Find the time to fall the 4 m height from rest, taking g = 9.8 m/s² since no value is given in the problem.", "equation": "h = ½gt² ⇒ t = √(2×4/9.8) ≈ 0.904 s"},
+  {"text": "Divide the 5 m horizontal distance by this time to get the constant horizontal launch speed.", "equation": "v = 5/0.904 ≈ 5.53 m/s"}
+ ],
+ "final_answer": {"option": null, "value": "v ≈ 5.53 m/s (using g = 9.8 m/s²)"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Finding the time of fall as t = √(h/g) = √(4/9.8) ≈ 0.64 s, dropping the factor of 2 inside the square root, which gives a wrong speed of about 7.8 m/s."}
+ ],
+ "concept_tags": ["horizontal projectile", "time of fall", "launch speed"],
+ "difficulty": "easy",
+ "mistake_type_hint": "calculation",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-prj-01", "at": "2026-09-11T18:56:00+05:30"}
+}

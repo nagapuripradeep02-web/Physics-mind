@@ -20,11 +20,14 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import _lib as L  # noqa: E402
 from crop_questions import crop as crop_span  # noqa: E402  (scripts/eapcet on sys.path via _lib)
 
-# chapter geometry, verified read-only on 2026-09-11 (PDF page numbers, 1-based)
-BODY = (138, 221)          # examples, intro exercises, Level 1, Level 2
-LEVEL1 = (200, 209)
-ANSWERS = (222, 225)
-HINTS_START = 508          # "6. Kinematics" in Hints & Solutions; end found by the next chapter heading
+# chapter geometry (PDF page numbers, 1-based) comes from the gitignored source.json of the chapter:
+# body = examples, intro exercises, Level 1, Level 2; hints_start = the chapter's heading in Hints & Solutions
+if not L.GEOM:
+    sys.exit("no geometry for chapter %s in %s/source.json" % (L.CHAPTER, L.EVIDENCE))
+BODY = tuple(L.GEOM["body"])
+LEVEL1 = tuple(L.GEOM["level1"])
+ANSWERS = tuple(L.GEOM["answers"])
+HINTS_START = L.GEOM["hints_start"]
 DPI = 200
 MANIFEST = os.path.join(L.EVIDENCE, "items_manifest.json")
 TRANSCRIPTS = os.path.join(L.EVIDENCE, "transcripts.jsonl")
@@ -86,7 +89,7 @@ def hints_end(d):
     """The last hints page of this chapter: the page before the next chapter's heading in the hints section."""
     for p in range(HINTS_START + 1, min(d.page_count, HINTS_START + 60)):
         t = d[p - 1].get_text()
-        if re.search(r"^\s*7\.\s*Projectile Motion\s*$", t, re.M):
+        if re.search(r"^\s*" + re.escape(L.GEOM["hints_end_heading"]).replace(r"\ ", r"\s*") + r"\s*$", t, re.M):
             return p - 1
     return HINTS_START + 12
 
@@ -305,7 +308,7 @@ def cmd_transcribe(a):
         for o in j.get("options") or []:
             o["text"] = L.latex_to_unicode(o.get("text", ""))
         row = {"label": m["label"], "tier": m["tier"], "page": m["page"], "crop": m["crop"], **j,
-               "sha": L.sha256(j["question_text"] + "|" + json.dumps(j.get("options") or [], ensure_ascii=False)),
+               "sha": L.transcript_sha(j),
                "usage": r.get("usage"), "ms": r.get("ms"), "model": r.get("model"), "at": L.now()}
         L.jsonl_append(TRANSCRIPTS, row)
         u = r.get("usage") or {}
@@ -340,7 +343,19 @@ def text_layer_key(d):
     """The cheap second reader of the Answers pages: letters and simple values the text layer prints cleanly."""
     out, section = {}, None
     for p in range(ANSWERS[0], ANSWERS[1] + 1):
-        for _, _, t in lines_of(d[p - 1]):
+        # the text layer often prints "1." and its answer as separate lines at the same height: re-join by row
+        lines = lines_of(d[p - 1])
+        used, rows = [False] * len(lines), []
+        for i, (x0, y0, t) in enumerate(lines):
+            if used[i]:
+                continue
+            grp = []
+            for j, (x, y, tt) in enumerate(lines):
+                if not used[j] and abs(y - y0) <= 4:
+                    used[j] = True
+                    grp.append((x, tt))
+            rows.append(" ".join(tt for x, tt in sorted(grp)))
+        for t in rows:
             m = re.match(r"^\s*(Introductory Exercise \d\.\d|LEVEL \d|Assertion and Reason|Objective Questions|Single Correct Option|Subjective Questions|More than One Correct Options?|Comprehension Based Questions|Match the Columns)\s*$", t, re.I)
             if m:
                 s = m.group(1)
@@ -451,6 +466,9 @@ def main():
     ap.add_argument("--force", action="store_true")
     ap.add_argument("--only", nargs="*")
     a = ap.parse_args()
+    if a.cmd in ("transcribe", "key") and not os.environ.get("BANK_ALLOW_API"):
+        sys.exit("%s would call a paid API. Use audit.py plan --role %s + solve.py collect; set BANK_ALLOW_API=1 to override."
+                 % (a.cmd, "reader" if a.cmd == "transcribe" else "keyreader"))
     globals()["cmd_" + a.cmd](a)
 
 

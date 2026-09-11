@@ -1,0 +1,19 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "prj_47c119c1",
+ "approach": "Write range and maximum height in terms of the projection angle, set them equal, and solve for the angle.",
+ "steps": [
+  {"text": "Write the standard range and maximum-height formulas.", "equation": "R = u²sin2θ/g, H = u²sin²θ/(2g)"},
+  {"text": "Set R equal to H and expand sin2θ.", "equation": "2sinθcosθ = sin²θ/2"},
+  {"text": "Divide through by sinθ, which is nonzero for a real projectile, and solve for θ.", "equation": "4cosθ = sinθ ⇒ tanθ = 4 ⇒ θ = tan⁻¹4 ≈ 76°"}
+ ],
+ "final_answer": {"option": null, "value": "θ = tan⁻¹(4) ≈ 76°"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Writing the maximum-height formula without the factor 2 in the denominator, H = u²sin²θ/g, which gives tanθ = 2 and a different wrong angle of about 63.4°."}
+ ],
+ "concept_tags": ["range of projectile", "maximum height", "trigonometric equation"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-prj-01", "at": "2026-09-11T18:40:00+05:30"}
+}

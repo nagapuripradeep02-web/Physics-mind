@@ -1,0 +1,85 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_prj_34f1dd90",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "numerical",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A particle starts its projectile motion from the base of a ramp that is tilted at 30° to the horizontal. Find the angle α, measured from the horizontal, that the particle must be launched at so that its range measured along the ramp is as large as possible.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "particle launched from the base of a 30° incline",
+   "angle sought is measured from the horizontal",
+   "range is to be maximized along the incline"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "The range up an incline is a function of the launch angle from the horizontal, and its maximum sits at a fixed angle above 45° set by the incline's slope.",
+  "steps": [
+   {
+    "text": "For a particle launched from the bottom of an incline of angle β, at an angle α from the horizontal, the range measured along the incline is a known function of α, β, u and g.",
+    "equation": "R = 2u²cos(α)sin(α−β) / (g·cos²β)"
+   },
+   {
+    "text": "Maximizing R with respect to α, holding u, β and g fixed, gives a fixed relation between the best launch angle α and the incline angle β.",
+    "equation": "dR/dα = 0 ⇒ α = 45° + β/2"
+   },
+   {
+    "text": "Substitute the given incline angle into this relation.",
+    "equation": "α = 45° + 30°/2 = 45° + 15°"
+   },
+   {
+    "text": "Add these two angles to get the launch angle that gives the maximum range up the incline.",
+    "equation": "α = 60°"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "α = 60°"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Using the flat-ground result of 45° for maximum range, ignoring that the incline shifts the best angle upward."
+   },
+   {
+    "option": null,
+    "text": "Measuring the launch angle from the incline surface instead of from the horizontal, which changes the numeric value reported."
+   }
+  ],
+  "concept_tags": [
+   "projectile on an incline",
+   "maximum range",
+   "optimization"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "c10fa8274f26c82ca2e9026fdcdf5e8d51e853e85b0d957be22cc1f160726d1b"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "d33cab636fdd600f2293e344b73da98f49f30f6b5059b843ca9b856ac75c594a",
+  "audited_by": "W01-U-prj-06"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-04",
+  "at": "2026-09-11T16:03:00+05:30"
+ }
+}

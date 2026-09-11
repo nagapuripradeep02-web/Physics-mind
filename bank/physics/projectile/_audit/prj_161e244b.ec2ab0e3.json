@@ -1,0 +1,45 @@
+{
+ "question_id": "prj_161e244b",
+ "item_sha": "ec2ab0e3323c65acdeeec6ac4d86290c189f4cb0bf247f413e7d44f09de0ff11",
+ "auditor_option": null,
+ "auditor_value": "15√2 ≈ 21.2 m/s, running toward the trainer (T = 2√2 s, R = 40 m, gap to close = 100 − 40 = 60 m)",
+ "findings": [
+  {
+   "grade": "harmful",
+   "field": "final_answer.value",
+   "quote": "about 3.54 m/s, running toward the coach",
+   "note": "The question as served places the teammate 100 m away, so the gap to close is 100 − 40 = 60 m in 2√2 s, giving 60/(2√2) = 15√2 ≈ 21.2 m/s toward the trainer. 3.54 m/s is the answer to a 50 m separation, which this question does not state.",
+   "fix": "about 21.2 m/s (15√2 m/s), running toward the trainer"
+  },
+  {
+   "grade": "harmful",
+   "field": "steps[3].text",
+   "quote": "The player starts 50 m away and must reach the point 40 m away where the ball lands, so find the distance to close.",
+   "note": "The solution uses 50 m, a number the served question does not give; the question states 100 m. The step and its equation solve a different problem.",
+   "fix": "The teammate starts 100 m away and must reach the point 40 m away where the ball lands, so find the distance to close. Equation: Δd = 100 − 40 = 60 m"
+  },
+  {
+   "grade": "harmful",
+   "field": "steps[4].equation",
+   "quote": "v = 10/(2√2) = 5√2/2 ≈ 3.54 m/s, running toward the coach",
+   "note": "Follows from the wrong 10 m gap. With the served 60 m gap: v = 60/(2√2) = 15√2 ≈ 21.2 m/s toward the trainer.",
+   "fix": "v = 60/(2√2) = 15√2 ≈ 21.2 m/s, running toward the trainer"
+  },
+  {
+   "grade": "wrong",
+   "field": "common_mistakes[0].text",
+   "quote": "Dividing the full initial separation of 50 m by the time of flight, instead of the 10 m gap left to close, gives a wrong speed of about 17.68 m/s.",
+   "note": "The served separation is 100 m and the gap left is 60 m; 100/(2√2) ≈ 35.4 m/s. The entry's numbers belong to the 50 m version of the question.",
+   "fix": "Dividing the full initial separation of 100 m by the time of flight, instead of the 60 m gap left to close, gives a wrong speed of about 35.4 m/s."
+  }
+ ],
+ "verdict": "harmful",
+ "question_defect": "The question as served (100 m) demands a running speed of about 21.2 m/s, faster than any human can run; the solution's numbers (50 m, 10 m gap, 3.54 m/s) indicate the source question said 50 m. The solution nevertheless does not solve the question as printed here.",
+ "notes": "T = 2·10√2/10 = 2√2 s and R = 40 m are correct for either version. The solution also says 'coach' where the question says 'trainer' (steps[4].equation, final_answer.value); noted, not filed separately since both fields already carry a harmful finding.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-01",
+  "at": "2026-09-11T19:34:27+05:30"
+ }
+}

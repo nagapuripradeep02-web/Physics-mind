@@ -1,0 +1,22 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "prj_5bf47e86",
+ "approach": "Inside the accelerating elevator the stone feels an increased effective gravity g + a, so its relative flight time follows the usual projectile formula with that effective value.",
+ "steps": [
+  {"text": "Find the stone's vertical velocity component relative to the elevator at launch.", "equation": "v_rel = 2 sin30° = 1 m/s"},
+  {"text": "Inside the upward-accelerating elevator, the effective downward acceleration felt by the stone relative to the elevator is g plus the elevator's own acceleration.", "equation": "g_eff = g + a = 10 + 1 = 11 m/s² (taking g = 10 m/s²)"},
+  {"text": "Use the usual projectile time-of-flight formula with this effective gravity to find when the stone returns to the elevator floor.", "equation": "t = 2v_rel/g_eff = 2×1/11 = 2/11 s ≈ 0.18 s, with g = 9.8 m/s², g_eff = 10.8 m/s² and t ≈ 0.185 s"},
+  {"text": "For an observer outside the elevator, the stone's initial velocity is the elevator's velocity plus the stone's velocity relative to the elevator. After release the stone moves under ordinary gravity g alone, so it follows a normal parabolic path; the elevator floor, still accelerating upward, rises to meet the stone.", "equation": "vₓ = 2cos30° ≈ 1.73 m/s, v_y = 2 + 2sin30° = 3 m/s, both measured from the ground"},
+  {"text": "If the elevator instead accelerates downward at g, it is in free fall, so the effective gravity felt inside it becomes zero.", "equation": "g_eff = g − g = 0"},
+  {"text": "State all three results together.", "equation": "(a) t = 2/11 s ≈ 0.18 s taking g = 10 m/s² (≈ 0.185 s with g = 9.8 m/s²), (b) a parabola in the ground frame with initial velocity 1.73 m/s horizontal and 3 m/s upward, (c) with downward acceleration g the effective gravity inside is zero, so relative to the elevator the stone moves in a straight line at constant velocity and never returns to the floor"}
+ ],
+ "final_answer": {"option": null, "value": "(a) t = 2 sin30°·2/(g + 1) = 2/11 s ≈ 0.18 s taking g = 10 m/s² (≈ 0.185 s with g = 9.8 m/s²), (b) a parabola in the ground frame with initial velocity 1.73 m/s horizontal and 3 m/s upward, while the elevator floor, still accelerating upward, rises to meet the stone, (c) with downward acceleration g the elevator is in free fall, so relative to it the stone moves in a straight line at constant velocity and never returns to the floor"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Using ordinary gravity g instead of the effective gravity g + a for the time in part (a) gives 0.2 s instead of the correct 0.18 s."}
+ ],
+ "concept_tags": ["relative motion", "non-inertial frame", "pseudo-force", "projectile motion"],
+ "difficulty": "hard",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-prj-07", "at": "2026-09-11T16:45:00+05:30"}
+}

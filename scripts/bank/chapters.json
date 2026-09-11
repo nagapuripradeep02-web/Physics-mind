@@ -1,0 +1,17 @@
+{
+ "kinematics": {
+  "prefix": "kin",
+  "syllabus": [
+   "Motion in a Straight Line",
+   "Motion in a Plane"
+  ],
+  "topic": "kinematics"
+ },
+ "projectile": {
+  "prefix": "prj",
+  "syllabus": [
+   "Motion in a Plane"
+  ],
+  "topic": "projectile motion"
+ }
+}

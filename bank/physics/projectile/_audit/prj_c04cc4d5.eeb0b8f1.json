@@ -1,0 +1,24 @@
+{
+ "question_id": "prj_c04cc4d5",
+ "item_sha": "eeb0b8f15ccf9b3af4fed8e7f69d679cc07d4921366972a15f8db01d3db00d5f",
+ "auditor_option": 1,
+ "auditor_value": "Both Assertion and Reason are true and the Reason is the correct explanation: H ∝ u_y² gives u_y1/u_y2 = 2, T ∝ u_y gives T1/T2 = 2, equal R = u_x T gives u_x1/u_x2 = 1/2 (1 : 2)",
+ "findings": [
+  {
+   "grade": "wrong",
+   "field": "common_mistakes[0].option",
+   "quote": "3",
+   "note": "A student who gets 2 : 1 instead of 1 : 2 would judge the Assertion false while still accepting the Reason (R = u_x T). Under the standard four-option Assertion–Reason list that the solution's own final_answer.option = 1 assumes (1: both true, R explains; 2: both true, R does not explain; 3: A true, R false; 4: A false, R true), that is option 4, not option 3.",
+   "fix": "4"
+  }
+ ],
+ "verdict": "wrong",
+ "question_defect": "Assertion–Reason item served with an empty options list; the solution's option numbers (final_answer.option = 1, mistake options 2 and 3) refer to a standard four-option list that the served question does not show.",
+ "notes": "Every equation checks: u_y1/u_y2 = 2, T1/T2 = 2, u_x1/u_x2 = 1/2. The second mistake entry (both true but Reason treated as unrelated = option 2) is consistent with the standard list.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-06",
+  "at": "2026-09-11T19:34:43+05:30"
+ }
+}

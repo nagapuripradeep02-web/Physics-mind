@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_c04cc4d5",
+ "item_sha": "c8f173dfc4351bb693f26a77ed7a8e36bac98b35216e740f92816fa9a7d34373",
+ "auditor_option": 1,
+ "auditor_value": "uᵧ ratio 2 : 1 from H = uᵧ²/2g, T ratio 2 : 1, equal R = uₓT forces uₓ ratio 1 : 2; Assertion true, Reason true and it is the formula used",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Independent solve agrees (numeric check g = 10, H = 5: uᵧ = 20 and 10 m/s, T = 4 and 2 s, uₓ₁/uₓ₂ = 0.5). The 1 : 2 order matches the 4H-then-H order in the Assertion. Both distractor entries produce the option they point at.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 3,
+  "agent": "W03-U-prj-01",
+  "at": "2026-09-11T20:06:30+05:30"
+ }
+}

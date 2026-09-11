@@ -1,0 +1,89 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_prj_324a60b7",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "assertion_reason",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "Assertion: Whenever the acceleration of a particle does not change, the only path it can trace is a parabola. Reason: The trajectory in projectile motion is a parabola because, near the ground, the acceleration is treated as unchanging.",
+  "options": {
+   "1": "If both Assertion and Reason are true and the Reason is the correct explanation of the Assertion.",
+   "2": "If both Assertion and Reason are true but the Reason is not the correct explanation of the Assertion.",
+   "3": "If the Assertion is true, but the Reason is false.",
+   "4": "If the Assertion is false but the Reason is true."
+  },
+  "parts": null,
+  "conditions": [
+   "acceleration is taken as constant when the heights involved are small (as in projectile motion)"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Constant acceleration alone does not force a curved path; a velocity launched along the acceleration direction gives a straight line instead.",
+  "steps": [
+   {
+    "text": "Consider a particle given an initial velocity pointing along the same line as the constant acceleration, for example thrown straight up under gravity."
+   },
+   {
+    "text": "Its sideways coordinate never changes, since there is no sideways velocity and no sideways acceleration.",
+    "equation": "x(t) = 0 for every t"
+   },
+   {
+    "text": "So this particle moves along a straight vertical line, not a parabola, even though its acceleration is constant the whole time."
+   },
+   {
+    "text": "This counterexample shows the Assertion is false: constant acceleration does not by itself force a parabolic path."
+   },
+   {
+    "text": "The Reason is a separate, true statement — projectile motion is parabolic because its acceleration is treated as constant at low heights — but the Reason being true does not make the Assertion true, so the Assertion is false and the Reason is true.",
+    "why_this_step": "This combination matches the option for a false Assertion with a true Reason."
+   }
+  ],
+  "final_answer": {
+   "option": 4,
+   "value": "If the Assertion is false but the Reason is true."
+  },
+  "common_mistakes": [
+   {
+    "option": 1,
+    "text": "Believing constant acceleration always produces a curved path, missing the case where the initial velocity points along the acceleration."
+   },
+   {
+    "option": 2,
+    "text": "Judging both statements true without checking whether a straight-line counterexample exists under constant acceleration."
+   }
+  ],
+  "concept_tags": [
+   "constant acceleration",
+   "parabolic path",
+   "kinematics"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "6f699f92ea04b2680a18da528cf926b4fc7190744d148180ff710243aa45cfb8"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "18419a139b71834fcaeb45d1c7fc7db672ac88fcce8396fe89c40f2eac4d0139",
+  "audited_by": "W02-U-prj-01"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-04",
+  "at": "2026-09-11T16:04:00+05:30"
+ }
+}

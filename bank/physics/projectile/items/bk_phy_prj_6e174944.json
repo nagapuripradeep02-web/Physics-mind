@@ -1,0 +1,83 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_prj_6e174944",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "numerical",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A ball is thrown from ground level. It just clears a wall of height 3 m standing 6 m from the launch point, and lands on the ground 18 m beyond the wall. Find the angle at which the ball was thrown.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "thrown from ground level",
+   "wall height 3 m",
+   "wall is 6 m from the point of projection",
+   "ball lands 18 m beyond the wall",
+   "ball just clears the wall"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Use the trajectory equation in terms of range; the total range is the sum of the two given distances, and the wall height fixes a point on the path.",
+  "steps": [
+   {
+    "text": "Find the total horizontal range, which is the distance to the wall plus the distance from the wall to the landing point.",
+    "equation": "R = 6 + 18 = 24 m"
+   },
+   {
+    "text": "Write the trajectory equation in the form that uses the range directly.",
+    "equation": "y = x tanθ (1 − x/R)"
+   },
+   {
+    "text": "Substitute the wall's position and height into this equation.",
+    "equation": "3 = 6 tanθ (1 − 6/24) = 4.5 tanθ"
+   },
+   {
+    "text": "Solve for the angle of projection.",
+    "equation": "tanθ = 3/4.5 = 2/3 → θ = tan⁻¹(2/3) ≈ 33.7°"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "θ = tan⁻¹(2/3) ≈ 33.7°"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Using only the distance beyond the wall as the range, instead of adding the distance to the wall, gives tanθ = 3/4 and a wrong angle of about 36.9°."
+   }
+  ],
+  "concept_tags": [
+   "projectile motion",
+   "trajectory equation",
+   "range"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "a06421a6eea34c580ed181f87e852566f244572f513e4590dc087d650251ab57"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "c4c06d12ae019a21e21895e98a1c7dfa0971212d47b46148c749218f981ad21b",
+  "audited_by": "W01-U-prj-05"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-06",
+  "at": "2026-09-11T12:07:00+05:30"
+ }
+}

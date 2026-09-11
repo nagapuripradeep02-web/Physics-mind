@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_b8c9ecd0",
+ "item_sha": "691c5aded17ba804ae9aed6c947aea22c21a437467edd38b3664fbe3f7363e0e",
+ "auditor_option": null,
+ "auditor_value": "Δv = −2u sin α ĵ, i.e. magnitude 2u sin α directed vertically downward",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Components, symmetry argument and subtraction all check; horizontal component cancels, vertical gives −2u sin α.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-06",
+  "at": "2026-09-11T19:32:15+05:30"
+ }
+}

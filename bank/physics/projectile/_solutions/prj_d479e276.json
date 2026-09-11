@@ -1,0 +1,39 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "prj_d479e276",
+ "approach": "State the condition under which the range, time of flight and maximum height formulas hold, based on how they are derived.",
+ "steps": [
+  {
+   "text": "The formulas R = u²sin2θ/g and T = 2u sinθ/g are derived by setting the net vertical displacement to zero when the particle lands; H = u²sin²θ/(2g) is derived by setting the vertical velocity to zero at the highest point."
+  },
+  {
+   "text": "Setting the vertical displacement to zero at landing is correct only when the point of landing is at the same height as the point of projection."
+  },
+  {
+   "text": "The derivation also assumes g stays constant through the flight and that no other force, such as air resistance, changes the motion.",
+   "why_this_step": "A changing g or an added resistive force would change the equations of motion the formulas are built from."
+  },
+  {
+   "text": "So the three formulas can be used directly only when the particle is projected from and lands on the same horizontal level, with g constant and no air resistance."
+  }
+ ],
+ "final_answer": {
+  "option": null,
+  "value": "The formulas apply directly only when the particle is projected from and lands on the same horizontal level, for example ground to ground, with g constant and no air resistance."
+ },
+ "confidence": "sure",
+ "common_mistakes": [],
+ "concept_tags": [
+  "projectile motion",
+  "range formula",
+  "assumptions"
+ ],
+ "difficulty": "easy",
+ "mistake_type_hint": "concept",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-03",
+  "at": "2026-09-11T15:15:00+05:30"
+ }
+}

@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_aa74029b",
+ "item_sha": "cd2326bed2a8ca9ead06808bf6a810959497245544b6b58ee439f60331f21f5c",
+ "auditor_option": 1,
+ "auditor_value": "90 m for the wording as served (the spot on the train moves with the train, so only the sideways range u²sin90°/g = 90 m separates them); 90√3 m ≈ 156 m if the launch location is instead taken as a point fixed on the ground",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": "The wording is ambiguous. 'The spot on the train where the ball left' is a material point that moves with the train, giving 90 m; the usual textbook intent (which is why the train speed 30 m/s is given and 90√3 m is offered) is the distance from the ground location of the throw to the landing point, sideways 90 m and along the track 30 × 3√2 = 90√2 m, total 90√3 m. Both readings appear among the options.",
+ "notes": "The solution takes the literal reading, states it explicitly in step 2 (the ball keeps the train's along-track velocity, so it stays alongside the launch spot on the train), and every line is correct under that reading: components 30/√2, t = 3√2 s, sideways range 90 m. My scratch answer before opening the slice leaned to 90√3 m as the likely intended reading while recording 90 m as the literal one; on the served text the solution's reading is the defensible one, so no finding on final_answer. A common_mistakes entry explaining the 90√3 m distractor would help; its absence is not graded.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-05",
+  "at": "2026-09-11T19:36:08+05:30"
+ }
+}

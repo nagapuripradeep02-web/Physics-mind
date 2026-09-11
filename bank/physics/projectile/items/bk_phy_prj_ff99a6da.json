@@ -1,0 +1,102 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_prj_ff99a6da",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A ball is thrown horizontally with a speed of 20 m/s from a point O at the top edge of a wedge-shaped incline. Point Q lies directly beneath O, and the sloped surface of the wedge falls away at 45° to the horizontal. The ball follows a curved path and lands on the sloped surface at point P, where the angle OPQ equals 45°.",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "Find the flight time of the ball before it lands on the sloped surface at P."
+   },
+   {
+    "label": "b",
+    "asks": "Find the straight-line distance OP that the ball covers from launch to landing on the slope."
+   }
+  ],
+  "conditions": [
+   "ball launched horizontally with speed 20 m/s from point O",
+   "point Q lies directly below O",
+   "the incline (and angle OPQ) makes 45° with the horizontal",
+   "ball lands on the incline at point P"
+  ],
+  "figure": {
+   "description": "O is the launch point at the top of a right-angled wedge; Q lies directly below O. The sloped face of the wedge runs down toward the base, meeting the horizontal base at 45°. The ball's curved path from O meets the slope at P, and the angle OPQ between line OP and the horizontal line QP is 45°."
+  }
+ },
+ "solution": {
+  "approach": "On a 45° incline, the vertical drop equals the horizontal distance travelled, so equate them to find the time, then find OP from the two legs.",
+  "steps": [
+   {
+    "text": "Write the horizontal distance and the vertical drop as functions of time for the horizontal launch, taking g = 10 m/s².",
+    "equation": "x(t) = 20t, y(t) = ½(10)t² = 5t²"
+   },
+   {
+    "text": "The particle lands on the incline where the drop equals the horizontal distance, because the incline makes 45° with the horizontal.",
+    "equation": "5t² = 20t",
+    "why_this_step": "On a 45° incline through O, every point has its vertical drop equal to its horizontal distance from O."
+   },
+   {
+    "text": "Solve this equation for the time of flight (part a).",
+    "equation": "t = 4 s"
+   },
+   {
+    "text": "Find the horizontal distance and the vertical drop at t = 4 s.",
+    "equation": "x = 80 m, y = 80 m"
+   },
+   {
+    "text": "OP is the straight-line distance from O to P, the hypotenuse of the right triangle with legs x = 80 m and y = 80 m.",
+    "equation": "(a) t = 4 s (b) OP = √(80² + 80²) = 80√2 m ≈ 113.1 m"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) t = 4 s, (b) OP = 80√2 m ≈ 113.1 m"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Taking the range OP as the horizontal distance 80 m instead of the slanted distance along the incline, missing the factor √2."
+   },
+   {
+    "option": null,
+    "text": "Writing the vertical drop as g t² instead of ½ g t², which gives t = 2 s and OP = 40√2 m ≈ 56.6 m."
+   }
+  ],
+  "concept_tags": [
+   "horizontal projectile motion",
+   "projectile on an incline",
+   "equations of motion"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "db0a9de7c312330fc16b29403810ffbafdeff33a9f78ca19c331ecae310559ae"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "328b6318fabd21be213c6f5e57e2c7e265bccf2b482a7d41911d3816f5a922f6",
+  "audited_by": "W02-U-prj-03"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-02",
+  "at": "2026-09-11T11:00:00+05:30"
+ }
+}

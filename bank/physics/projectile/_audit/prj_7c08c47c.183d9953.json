@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_7c08c47c",
+ "item_sha": "183d9953b1fc0410bc6fb610db26f2320b55e94f8178d4914743fd17f1a18225",
+ "auditor_option": null,
+ "auditor_value": "t = √3 s ≈ 1.73 s (u cos60° = 10 m/s = u/2 is the minimum speed, reached at the top when vᵧ = 0).",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Re-derived: speed can equal u/2 = 10 m/s only when vᵧ = 0, t = u sin60°/g = √3 s. Mistake entry checked: u sin60° − 10t = 10 gives t = 0.732 s, as stated.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-04",
+  "at": "2026-09-11T19:34:18+05:30"
+ }
+}

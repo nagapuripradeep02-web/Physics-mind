@@ -1,0 +1,86 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_prj_61202e10",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "mcq_single",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "A particle is launched horizontally at 50 ms⁻¹ from a plane tilted 30° to the horizontal. With g = 10 ms⁻², determine the distance travelled along the slope from the launch point to where the particle lands.",
+  "options": {
+   "1": "500 m",
+   "2": "1000/3 m",
+   "3": "200√2 m",
+   "4": "100√3 m"
+  },
+  "parts": null,
+  "conditions": [
+   "fired horizontally, not along the slope",
+   "inclined plane makes 30° with the horizontal",
+   "g = 10 ms⁻²"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Write the horizontal and vertical positions as functions of time, find when the vertical drop matches the incline's slope, then convert that point's horizontal distance to distance along the incline.",
+  "steps": [
+   {
+    "text": "Take the launch point as the origin. The particle moves horizontally at constant speed and falls under gravity.",
+    "equation": "x = ut, y = ½gt² (downward)"
+   },
+   {
+    "text": "The particle lands on the incline when the vertical drop equals the horizontal distance times the incline's slope.",
+    "equation": "½gt² = (ut) tan30°"
+   },
+   {
+    "text": "Cancel one factor of t and solve for the landing time.",
+    "equation": "t = 2u tan30° / g = 2(50)(1/√3)/10 = 10/√3 s"
+   },
+   {
+    "text": "Find the horizontal distance at this time, then divide by cos30° to get the distance measured along the incline.",
+    "equation": "x = ut = 500/√3 m, range along incline = x/cos30° = (500/√3)/(√3/2) = 1000/3 m"
+   }
+  ],
+  "final_answer": {
+   "option": 2,
+   "value": "1000/3 m"
+  },
+  "common_mistakes": [
+   {
+    "option": 1,
+    "text": "Using t = 2u/g, the flat-ground time-of-flight formula, instead of the incline formula 2u tan30°/g, and reporting the horizontal distance ut directly as the final range gives 500 m."
+   }
+  ],
+  "concept_tags": [
+   "projectile motion",
+   "projectile on an incline",
+   "horizontal projection"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "248833bb767909d63b81e129f15a5278b07966c4b56749371d056aa29d7875c2"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "0f1cfca963af7bf57051fc93f44c6f3bcb1c43f0ab48fb8337d4a960d7bb2f02",
+  "audited_by": "W01-U-prj-01"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-05",
+  "at": "2026-09-11T00:00:00+05:30"
+ }
+}

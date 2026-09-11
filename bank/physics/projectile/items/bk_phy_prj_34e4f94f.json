@@ -1,0 +1,83 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_prj_34e4f94f",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "numerical",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "From the foot of a slope inclined at 30° to the horizontal, a particle is launched at 40 m/s, directed 60° above the horizontal. Taking g = 10 m/s², find the particle's speed at the moment its velocity is directed parallel to the slope.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "launched from the bottom of an incline",
+   "incline angle 30° with horizontal",
+   "launch speed 40 m/s",
+   "launch angle 60° with horizontal",
+   "g = 10 m/s²"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "The velocity is parallel to the incline when its direction from the horizontal equals the incline angle; the constant horizontal component then fixes the speed directly.",
+  "steps": [
+   {
+    "text": "Write the constant horizontal component and the time-varying vertical component of velocity.",
+    "equation": "vₓ = 40cos60° = 20 m/s, v_y(t) = 40sin60° − 10t = 20√3 − 10t"
+   },
+   {
+    "text": "The velocity is parallel to the incline when its angle from the horizontal equals the incline's angle of 30°.",
+    "equation": "v_y/vₓ = tan30° = 1/√3"
+   },
+   {
+    "text": "Solve for the time at which this holds.",
+    "equation": "20√3 − 10t = 20/√3 → t = 4√3/3 ≈ 2.31 s"
+   },
+   {
+    "text": "At this angle, the horizontal component and the speed are related through the cosine of 30°, giving the speed directly.",
+    "equation": "speed = vₓ/cos30° = 20/(√3/2) = 40√3/3 ≈ 23.1 m/s"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "speed = 40√3/3 m/s ≈ 23.1 m/s"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Swapping sine and cosine in the horizontal component of the launch velocity gives a wrong horizontal speed and a wrong final speed of exactly 40 m/s."
+   }
+  ],
+  "concept_tags": [
+   "projectile motion",
+   "motion on an inclined plane",
+   "velocity direction"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "calculation"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "63c34056c98540169b0bc9c0531add1a63c71105af35b1f327568d2569facac1"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "f7b0d50d07a48e2d3d730a01617500e5cb9cf6c623cde97ac3799278876658ce",
+  "audited_by": "W01-U-prj-03"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-06",
+  "at": "2026-09-11T12:11:00+05:30"
+ }
+}

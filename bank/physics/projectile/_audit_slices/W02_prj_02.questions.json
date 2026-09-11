@@ -1,0 +1,177 @@
+{
+ "wave": 2,
+ "role": "audit",
+ "chapter": "projectile",
+ "slice": 2,
+ "round": 0,
+ "items": [
+  {
+   "question_id": "prj_7004b298",
+   "question_text": "Two particles start from the same point above a tower and, at that instant, move horizontally in opposite directions with speeds v₁ = 3 m/s and v₂ = 4 m/s, falling freely under gravity g afterward. Find how far apart they are at the moment their two velocity vectors are perpendicular to each other.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_8ccf08b9",
+   "question_text": "Assertion: When the time of flight of a projectile is doubled, its maximum height increases to four times its earlier value. Reason: For a projectile, the maximum height H is proportional to the square of the time of flight T, that is H ∝ T².",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "If both Assertion and Reason are true and the Reason is the correct explanation of the Assertion."
+    },
+    {
+     "label": "(b)",
+     "text": "If both Assertion and Reason are true but the Reason is not the correct explanation of the Assertion."
+    },
+    {
+     "label": "(c)",
+     "text": "If the Assertion is true, but the Reason is false."
+    },
+    {
+     "label": "(d)",
+     "text": "If the Assertion is false but the Reason is true."
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_dad3bbb3",
+   "question_text": "Assertion: Object A is thrown straight upward from a point on the ground. At the same instant, object B is launched from a different point on the ground and follows a curved projectile path, as pictured. Object A comes back down to the ground after 4 seconds, and at that same instant object B lands on object A. For this to happen, the peak height H reached by B works out to be 20 m. (Take g = 10 m/s².) Reason: For this situation to occur, the two objects must be launched with equal speeds.",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "If both Assertion and Reason are true and the Reason is the correct explanation of the Assertion."
+    },
+    {
+     "label": "(b)",
+     "text": "If both Assertion and Reason are true but the Reason is not the correct explanation of the Assertion."
+    },
+    {
+     "label": "(c)",
+     "text": "If the Assertion is true, but the Reason is false."
+    },
+    {
+     "label": "(d)",
+     "text": "If the Assertion is false but the Reason is true."
+    }
+   ],
+   "figure_description": "B starts from a point on the ground and follows a parabolic path that climbs to a peak height H before coming back down to ground level exactly at the point where A is thrown straight up from and returns to."
+  },
+  {
+   "question_id": "prj_c04cc4d5",
+   "question_text": "Assertion: Two objects are launched as projectiles; one climbs to a maximum height of 4H while the other climbs to a maximum height of H. For the two to land the same horizontal distance away, their horizontal velocity components need to be in a 1 : 2 ratio. Reason: A projectile's horizontal range equals its horizontal velocity component multiplied by its total time of flight.",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "If both Assertion and Reason are true and the Reason is the correct explanation of the Assertion."
+    },
+    {
+     "label": "(b)",
+     "text": "If both Assertion and Reason are true but the Reason is not the correct explanation of the Assertion."
+    },
+    {
+     "label": "(c)",
+     "text": "If the Assertion is true, but the Reason is false."
+    },
+    {
+     "label": "(d)",
+     "text": "If the Assertion is false but the Reason is true."
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_9722adfb",
+   "question_text": "Assertion: In the x-y plane a particle moves with an unchanging acceleration whose two components aₓ and aᵧ are both non-zero. Such a particle can never trace a parabola. Reason: A projectile has no acceleration along the horizontal.",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "If both Assertion and Reason are true and the Reason is the correct explanation of the Assertion."
+    },
+    {
+     "label": "(b)",
+     "text": "If both Assertion and Reason are true but the Reason is not the correct explanation of the Assertion."
+    },
+    {
+     "label": "(c)",
+     "text": "If the Assertion is true, but the Reason is false."
+    },
+    {
+     "label": "(d)",
+     "text": "If the Assertion is false but the Reason is true."
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_3110e261",
+   "question_text": "A projectile is aimed at a target that lies in the same horizontal level as the launch point. Launched at elevation α, it lands a cm short of the target; launched at elevation β with the same launch speed, it overshoots the target by b cm. Prove that the elevation angle that would hit the target exactly is ½ sin⁻¹[(b sin 2α + a sin 4β)/(a + b)].",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_70ed35c7",
+   "question_text": "A projectile launched at angle θ, with a certain speed, covers a horizontal range that equals half the maximum range obtainable at that same speed. What is the angle θ?",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "15°"
+    },
+    {
+     "label": "(b)",
+     "text": "30°"
+    },
+    {
+     "label": "(c)",
+     "text": "60°"
+    },
+    {
+     "label": "(d)",
+     "text": "not enough information is given"
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_83670542",
+   "question_text": "From a point O at the foot of a slope that rises at 30° to the horizontal, a particle is thrown with speed 10 m/s along a direction making 30° with the slope surface (that is, 60° above the horizontal). It lands on the slope at a point A. Take g = 10 m/s². At the instant it reaches A, find the component of its velocity perpendicular to the slope surface.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_9648e5fe",
+   "question_text": "Assertion: For a projectile, if you pick any two positions along its path with velocities v₁, v₂ occurring at times t₁, t₂, the ratio (v₂ − v₁)/(t₂ − t₁) always works out to the same value. Reason: This ratio is the average acceleration, and it stays fixed because the acceleration of the projectile does not change.",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "If both Assertion and Reason are true and the Reason is the correct explanation of the Assertion."
+    },
+    {
+     "label": "(b)",
+     "text": "If both Assertion and Reason are true but the Reason is not the correct explanation of the Assertion."
+    },
+    {
+     "label": "(c)",
+     "text": "If the Assertion is true, but the Reason is false."
+    },
+    {
+     "label": "(d)",
+     "text": "If the Assertion is false but the Reason is true."
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_d479e276",
+   "question_text": "In which specific situations can the standard equations for time of flight, maximum height and horizontal range be used directly for a projectile's motion, without any adjustment?",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_822434a2",
+   "question_text": "One particle is launched straight upward at 20 m/s. At the same instant, a second particle is launched at 20√2 m/s directed 45° above the horizontal, with g = 10 m/s².\n(a) Find the acceleration of the first particle as measured relative to the second particle.\n(b) Find the initial velocity of the first particle as measured relative to the second particle.\n(c) Find the separation between the two particles 2 s after launch.",
+   "options": [],
+   "figure_description": ""
+  }
+ ]
+}

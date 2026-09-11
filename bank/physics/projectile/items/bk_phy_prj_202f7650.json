@@ -1,0 +1,100 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_prj_202f7650",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A particle leaves the ground with launch speed 40 m/s, directed 60° from the horizontal.",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "Determine the particle's speed at the instant its velocity direction makes 37° with the horizontal."
+   },
+   {
+    "label": "b",
+    "asks": "Determine the time (or times) at which this occurs."
+   },
+   {
+    "label": "c",
+    "asks": "At that same instant, find how high up (vertical height) and how far out (horizontal distance) the particle is, measured from where it started. Use g = 10 m/s²."
+   }
+  ],
+  "conditions": [
+   "particle launched from ground level",
+   "launch speed 40 m/s at 60° from the horizontal",
+   "g = 10 m/s²"
+  ],
+  "figure": {
+   "description": "The particle's parabolic path starts at the origin at 60° above the horizontal with speed 40 m/s. On the way up, at time t₁, its velocity vector makes 37° with the horizontal, with vertical rise h and horizontal distance x₁ marked at that point. On the way down, at a later time t₂, the velocity vector again makes 37° with the horizontal, with the same rise h now on the descending side and horizontal distance x₂ marked."
+  }
+ },
+ "solution": {
+  "approach": "Use the constant horizontal component with the 37° angle to get the speed, then find the two times and the common height and distances at those instants.",
+  "steps": [
+   {
+    "text": "Resolve the launch velocity into horizontal and vertical parts; the horizontal part stays constant throughout the flight.",
+    "equation": "ux = 40cos60° = 20 m/s, uy = 40sin60° ≈ 34.64 m/s"
+   },
+   {
+    "text": "At the instant the velocity makes 37° with the horizontal, the horizontal component still equals ux, so the speed follows from v = ux/cos37°.",
+    "equation": "v = 20/0.8 = 25 m/s"
+   },
+   {
+    "text": "Find the two times this 37° angle occurs, once rising (vy positive) and once falling (vy negative), from vy = uy − gt.",
+    "equation": "vy = ux tan37° = 15 m/s; t₁ = (34.64−15)/10 ≈ 1.96 s (rising), t₂ = (34.64+15)/10 ≈ 4.96 s (falling)"
+   },
+   {
+    "text": "Since the vertical speed has the same size (15 m/s) at both instants, both are at the same height; find that height and the two horizontal distances.",
+    "equation": "h = (uy²−15²)/(2×10) = 48.75 m; x₁ = 20×1.96 ≈ 39.3 m, x₂ = 20×4.96 ≈ 99.3 m"
+   },
+   {
+    "text": "Collect all three results.",
+    "equation": "(a) v = 25 m/s, (b) t₁ ≈ 1.96 s, t₂ ≈ 4.96 s, (c) h ≈ 48.75 m, x₁ ≈ 39.3 m, x₂ ≈ 99.3 m"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) speed = 25 m/s at both instants, (b) t₁ ≈ 1.96 s (rising) and t₂ ≈ 4.96 s (falling), (c) height ≈ 48.75 m at both instants; horizontal distance ≈ 39.3 m at t₁ and ≈ 99.3 m at t₂"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Finding the speed as v = ux/sin37° = 20/0.6 ≈ 33.3 m/s, mixing up sine and cosine when relating the horizontal component to the resultant speed."
+   }
+  ],
+  "concept_tags": [
+   "velocity components",
+   "angle with horizontal",
+   "symmetry of projectile height"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "calculation"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "e96585b47f42cdc48b554eafe147fd2604bc687cede8a7c4f9da6461cd3f0185"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "b9f6e6699bd608fda06f44cc93354a2995a5623f40fdcb8771b1063b42e0a66a",
+  "audited_by": "W01-U-prj-07"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-01",
+  "at": "2026-09-11T18:52:00+05:30"
+ }
+}

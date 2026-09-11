@@ -1,5 +1,57 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 🔬 SESSION — Book-derived solutions bank, second chapter (projectile motion): 88 verified items on the Claude subscription alone, $0 API (2026-09-11)
+
+**Bottom line: the second chapter of the pre-solved bank exists and is verified — 88 `bank_item_v1`
+items under `bank/physics/projectile/` from 92 in scope — and every model role the pilot bought from
+Gemini/DeepSeek now runs as a Claude Code sub-agent, because the founder cannot pay API bills
+("I just want to use Claude subscription instead").** About 65 sub-agents: 8 readers (transcript +
+OUR restatement + givens), 3 key readers, 8 authors (+1 copy-edit, 4 rework), 9 Opus second readers,
+15 blind re-solvers, 7 judge and 4 syllabus batches, 12 Opus auditors with 12 planted controls
+(12 caught, 0 discredited, closing round clean). The comparator fixture grew 77 → 87 pairs; the
+collector learned to key every re-solve by (item, restatement sha). Report:
+`docs/reports/bank/2026-09-11-projectile-chapter.md` — **the founder reads it before any PR.** The
+twelve held-back kinematics items were not touched; `git diff -- bank/physics/kinematics/` is empty.
+
+### What changed in the pipeline
+
+- `BANK_CHAPTER=<name>` + `scripts/bank/chapters.json` parametrise the chapter; page geometry moved
+  into the gitignored `source.json` (no page number of the book in git any more).
+- `scripts/bank/roles.py`: reader, keyreader, solveB, fidelity, fidelity2, judge, syllabus as
+  planned/dispatched/collected sub-agent roles (`audit.py plan --role X`, `solve.py collect --role X`);
+  the gate runs offline and queues undecided pairs to `_gate/_judge_pending.jsonl` for a judge batch.
+  Every metered call refuses without `BANK_ALLOW_API=1`; `match.py fingerprint --no-embed` writes the
+  fingerprint with `embedding: null` (phase 2 embeds the whole bank once, on a free route).
+- `scripts/bank/hygiene.py`: identity grep, 12-word shingle sweep, page numbers, metered-model rows —
+  exit 0 required before a commit (it caught the chapter number in two briefs and the report title).
+
+### What the gate and the audit found (the session's real work)
+
+Reading every non-pass row again found nine comparator holes (`5/√2`, `sinθ`, word labels before
+"=", prose with numbers, "at ≈", a bare symbol as a form, a global span budget, a magnitude matched
+through its angle, a parenthetical counted as a value) and two collector defects. The readers'
+restatements needed twelve hand corrections in all — the important ones: a figure description that
+never said which way the slope rose (a blind re-solver launched the particle UP the incline), "5.0
+away" served without its unit (the book's own omission), "speed" for velocity, and ten
+assertion–reason items served without the standard four options. The audit's three HARMFUL findings
+were real: a sign convention that overrode the served figure's axes, a bullet velocity with no frame
+named, a vector where the magnitude was asked. Round 2 caught a physics wording error the round-1
+rework itself introduced ("the floor accelerates away" — it rises to meet the stone).
+
+### Held back for the founder (report §5)
+
+2 escalations where all three of our readers agree against the printed key (prj_78ea1db0: printed
+20√2 where the components give 20√5; prj_c550c7cd: printed 32.7 m/s where every reader gets 32.0),
+2 dropped assertion–reason items (the book's call on "correct explanation"), 1 ambiguous train item
+shipped on the book's reading. Two Claude models as author and second reader are weaker evidence
+than Claude + Gemini were; the report says so (§4).
+
+### Next session's first task
+
+The founder reads the report; then phase 2 (wire the two chapters into `ep-solve`'s similarity cache
+with a free embedding route) or the next chapter of the same book with the same commands. No PR
+until the founder has read the report.
+
 ## 🔬 SESSION — Book-derived solutions bank, kinematics pilot: 169 verified items, gate + blind audit + photo-match probe (2026-09-11)
 
 **Bottom line: the first chapter of the pre-solved bank behind the Solutions tab exists and is

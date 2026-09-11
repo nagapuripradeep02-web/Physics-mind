@@ -1,0 +1,20 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "prj_3938c125",
+ "approach": "Write the times of flight for the two complementary angles, multiply them, and compare with the range formula for the same speed.",
+ "steps": [
+  {"text": "Write the times of flight for the two complementary angles θ and (90° − θ), both launched at the same speed u.", "equation": "T₁ = 2u sinθ/g, T₂ = 2u cosθ/g"},
+  {"text": "Multiply the two times of flight.", "equation": "T₁T₂ = 4u² sinθcosθ/g² = 2u² sin2θ/g²"},
+  {"text": "Write the range formula and substitute u²sin2θ from it into the T₁T₂ expression.", "equation": "R = u²sin2θ/g, so u²sin2θ = Rg, T₁T₂ = 2Rg/g² = 2R/g"},
+  {"text": "Rearrange for the range in terms of T₁ and T₂.", "equation": "R = ½ gT₁T₂"}
+ ],
+ "final_answer": {"option": 4, "value": "R = ½ gT₁T₂"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 2, "text": "Writing the time of flight without the factor of 2, as T = u sinθ/g, gives R = 2gT₁T₂ instead."}
+ ],
+ "concept_tags": ["projectile motion", "time of flight", "range", "complementary angles"],
+ "difficulty": "medium",
+ "mistake_type_hint": "calculation",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-prj-05", "at": "2026-09-11T00:00:00+05:30"}
+}

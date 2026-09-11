@@ -1,0 +1,22 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "prj_909c238b",
+ "approach": "Write the speed at the top and at half the maximum height in terms of u and θ, then use the given ratio to solve for θ.",
+ "steps": [
+  {"text": "At the greatest height, the vertical velocity is zero, so the speed is only the horizontal component.", "equation": "v_top = u cosθ"},
+  {"text": "At half the greatest height H/2, use the vertical velocity-height relation, with H the maximum height.", "equation": "v_y² = u²sin²θ − 2g(H/2), H = u²sin²θ/(2g)"},
+  {"text": "Substitute H into the vertical velocity expression and simplify.", "equation": "v_y² = u²sin²θ − u²sin²θ/2 = u²sin²θ/2"},
+  {"text": "The speed at half height combines both components.", "equation": "v_half² = u²cos²θ + u²sin²θ/2"},
+  {"text": "Apply the given ratio v_top = √(2/5) v_half and square both sides.", "equation": "cos²θ = (2/5)(cos²θ + sin²θ/2)"},
+  {"text": "Solve for the angle of projection.", "equation": "3cos²θ = sin²θ, tan²θ = 3, θ = 60°"}
+ ],
+ "final_answer": {"option": null, "value": "θ = 60°"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Using half the time to reach the top instead of half the maximum height, which gives tan²θ = 6 and θ ≈ 67.8° instead of 60°."}
+ ],
+ "concept_tags": ["projectile motion", "velocity-height relation", "angle of projection"],
+ "difficulty": "hard",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-prj-02", "at": "2026-09-11T11:42:00+05:30"}
+}

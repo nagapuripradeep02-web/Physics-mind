@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_c90f12d9",
+ "item_sha": "96787c6198246ef513975d7ab841f12fcf1710a02bb98cef31ed5dfbed15c458",
+ "auditor_option": null,
+ "auditor_value": "The claim is right: with air resistance negligible the only force is the weight, so a = g, constant in magnitude and direction for the whole flight.",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Physics and prose check; the mistake entry (curved path taken to mean changing acceleration) is a genuine student error.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-06",
+  "at": "2026-09-11T19:32:41+05:30"
+ }
+}

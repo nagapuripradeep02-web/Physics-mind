@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_7004b298",
+ "item_sha": "e570c3a795283a889fabb21625e07f2b8ab9838f6b5d2dbeb4740de246dd7338",
+ "auditor_option": null,
+ "auditor_value": "t = √(v₁v₂)/g = 2√3/g; separation = (v₁ + v₂)t = 14√3/g ≈ 2.42 m (g = 10) / ≈ 2.47 m (g = 9.8)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Independent solve agrees: (3, −gt)·(−4, −gt) = 0 gives g²t² = 12, t = 2√3/g; both particles are at the same height at every instant so the separation is horizontal, 7t = 14√3/g. The solution gives both g values since the question fixes neither. Common-mistake numbers (t = 0.7 s, 7 × 0.7 = 4.9 m) check.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 3,
+  "agent": "W03-U-prj-01",
+  "at": "2026-09-11T20:05:37+05:30"
+ }
+}

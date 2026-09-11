@@ -2,8 +2,10 @@
 
 Pre-solved, verified worked solutions to standard JEE-Main-level problems, keyed so that a student's
 photo of a problem can be answered from here (free, verified) instead of by a fresh model call. The
-first chapter is `physics/kinematics/` (pilot, 2026-09-11). Scripts live in `scripts/bank/`; the plan
-that built it is recorded in `docs/reports/bank/`.
+first chapter is `physics/kinematics/` (pilot, 2026-09-11); the second, `physics/projectile/`, was
+built the same day on the Claude Code subscription alone (no metered API). Scripts live in
+`scripts/bank/` (`BANK_CHAPTER=<name>` selects the chapter; `chapters.json` names them); the reports
+that describe each build are in `docs/reports/bank/`.
 
 ## What a bank item is
 
@@ -48,6 +50,15 @@ page, example or exercise number, or the source's wording. A gate greps every st
    every number the source question states to appear in the photo (the fingerprint keeps that numeric
    multiset of the source, never its words); a numbers-changed twin of a bank item must never be
    served as "same", while a photo that also caught the item number or the page number still can.
+
+10. **No metered API call without `BANK_ALLOW_API=1`** (founder, 2026-09-11). Every model role —
+    reader, key reader, author, second reader, re-solver, judge, syllabus judge, auditor — is a
+    planned, dispatched and collected sub-agent (`scripts/bank/roles.py`; `audit.py plan --role X`,
+    `solve.py collect --role X`). The gate runs offline and queues undecided pairs for a judge batch.
+    Independence then rests on different Claude models per role plus the printed key and the blind
+    re-solve of our restatement; the report of each chapter says so.
+11. **`scripts/bank/hygiene.py` must exit 0 before a commit**: identity grep, 12-word shingle sweep,
+    page numbers, metered-model rows.
 
 ## Layout (per chapter)
 

@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_600354a4",
+ "item_sha": "f1c691c2c210bf8d2e2176ba64fed7548e50e3c8fee9f4e58c3785115c4e775b",
+ "auditor_option": 2,
+ "auditor_value": "(u/2)√(1 + 3cos²θ)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-03",
+  "at": "2026-09-11T19:32:26+05:30"
+ }
+}

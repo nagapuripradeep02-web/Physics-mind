@@ -1,0 +1,31 @@
+{
+ "question_id": "prj_6e73404f",
+ "item_sha": "894973f21e437acda8123ec1f196ded486f2518f2bd26de7adcc12a494dc6ef0",
+ "auditor_option": null,
+ "auditor_value": "Landing point (x, y) = (2v₀²tanθ/g, −2v₀²tan²θ/g) in the axes the question defines (y vertical, negative below the origin); t = 2v₀tanθ/g.",
+ "findings": [
+  {
+   "grade": "harmful",
+   "field": "final_answer.value",
+   "quote": "The stone lands at (2v₀²tanθ/g, 2v₀²tan²θ/g), with y measured vertically downward from the launch point.",
+   "note": "The served figure fixes the axes: y is vertical and the landing point has y negative below the origin. In those axes the y-coordinate is −2v₀²tan²θ/g; the solution reports +2v₀²tan²θ/g under a y-downward convention that the question does not use, so the coordinate pair as printed is wrong for the axes the question asks for (the magnitudes are right).",
+   "fix": "The stone lands at (x, y) = (2v₀²tanθ/g, −2v₀²tan²θ/g); the negative sign shows the landing point lies below the launch point, as in the figure."
+  },
+  {
+   "grade": "wrong",
+   "field": "steps[0].text",
+   "quote": "Set up coordinates at the launch point, with x horizontal along v₀ and y taken positive down the slope's vertical direction; write x and y as functions of time.",
+   "note": "The question already gives the axes (origin at the throw point, y vertical, negative below the origin); this step overrides them with y positive downward, and the phrase \"down the slope's vertical direction\" is not a clear statement of any convention.",
+   "fix": "Use the axes given in the question: origin at the launch point, x horizontal along v₀, y vertical and positive upward. Then x(t) = v₀t and y(t) = −½gt²."
+  }
+ ],
+ "verdict": "harmful",
+ "question_defect": null,
+ "notes": "My independent solve: x = v₀t, y = −½gt², hill line y = −x tanθ, so t = 2v₀tanθ/g, x = 2v₀²tanθ/g, y = −2v₀²tan²θ/g. The solution's magnitudes and time agree with mine; the difference is only the sign of y, which follows from the solution swapping the axis convention the served figure states. If the reviewer treats a stated convention as acceptable, this reduces to WRONG; I have followed the brief's rule that a differing final coordinate is filed on final_answer.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-04",
+  "at": "2026-09-11T19:34:18+05:30"
+ }
+}

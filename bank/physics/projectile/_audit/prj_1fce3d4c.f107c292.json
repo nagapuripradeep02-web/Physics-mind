@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_1fce3d4c",
+ "item_sha": "f107c2929a8a4baa579ba75ca9a963b673b93334f61b4fb763fd83d68230e899",
+ "auditor_option": null,
+ "auditor_value": "(a) T = 1 s; (b) OP = 25 m (x = 20 m, y = 15 m; g = 10 m/s²)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Re-computed: 20t − 5t² = 15t → t = 1 s; x = 20 m, y = 15 m, OP = √(400+225) = 25 m = 20/0.8. Mistake entry verified: with y = −0.75x, 20t − 5t² = −15t → t = 7 s, x = 140 m, OP = 175 m.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-01",
+  "at": "2026-09-11T19:34:59+05:30"
+ }
+}

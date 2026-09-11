@@ -1,0 +1,81 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_prj_3b9c8158",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "mcq_single",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "A ball is launched at a speed of 20 m/s, at whatever angle to the horizontal gives it the greatest possible horizontal range. What is its speed when it is at the topmost point of its path?",
+  "options": {
+   "1": "10 ms⁻¹",
+   "2": "14 ms⁻¹",
+   "3": "18 ms⁻¹",
+   "4": "16 ms⁻¹"
+  },
+  "parts": null,
+  "conditions": [
+   "launch speed is 20 m/s",
+   "launch angle chosen for maximum range"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Maximum range happens at 45°, and the horizontal velocity component stays constant through the flight, so it equals the speed at the highest point.",
+  "steps": [
+   {
+    "text": "The range is maximum when the angle of projection is 45°.",
+    "equation": "θ = 45°"
+   },
+   {
+    "text": "At the highest point the vertical velocity component is zero, so the speed there equals the horizontal component, which never changes.",
+    "equation": "v_top = u cos θ"
+   },
+   {
+    "text": "Substitute u = 20 ms⁻¹ and θ = 45° and compute the value, which rounds to the nearest printed option.",
+    "equation": "v_top = 20 × cos 45° = 20/√2 = 14.14 ms⁻¹ ≈ 14 ms⁻¹"
+   }
+  ],
+  "final_answer": {
+   "option": 2,
+   "value": "14 ms⁻¹"
+  },
+  "common_mistakes": [
+   {
+    "option": 1,
+    "text": "Wrongly assuming the maximum-range angle is 60° instead of 45° and computing 20 × cos 60° gives 10 ms⁻¹."
+   }
+  ],
+  "concept_tags": [
+   "projectile motion",
+   "maximum range",
+   "velocity at highest point"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "6bc6cd9c6e1fb4c560250925282f77f8d09fb129849f3cc7f6998bb151b872b1"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "0c7384062f1a557785108af20c1feb69670132542cbfbd79ed1b63132520f772",
+  "audited_by": "W01-U-prj-03"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-05",
+  "at": "2026-09-11T00:00:00+05:30"
+ }
+}

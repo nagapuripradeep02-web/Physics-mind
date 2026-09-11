@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_812a268c",
+ "item_sha": "cf5128bea8c66ecd84a7fdf05cb3983faaa0f290db5e6f02c8d27b953552e4b0",
+ "auditor_option": null,
+ "auditor_value": "(i) t = 2+2√3 ≈ 5.46 s, x = 40(1+√3) ≈ 109.3 m; (ii) t = 2√2 ≈ 2.83 s, x = 40√2 ≈ 56.6 m; (iii) t = 2√3−2 ≈ 1.46 s, x = 40(√3−1) ≈ 29.3 m (g = 10 m/s²)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "All three quadratics, roots and distances re-derived and match. g not stated in the question; the solution says so and takes 10 m/s², which the 20√2 / 40 m numbers fit.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-04",
+  "at": "2026-09-11T19:32:00+05:30"
+ }
+}

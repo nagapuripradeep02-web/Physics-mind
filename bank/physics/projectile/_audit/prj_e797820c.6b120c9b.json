@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_e797820c",
+ "item_sha": "6b120c9b795f8a7a8b0a5ca5b3afb95dfd28f2cc5457d4baec8cb7ae4a0d45f9",
+ "auditor_option": null,
+ "auditor_value": "(a) t = 3 s; (b) QP = 120 m; (c) v = 50 m/s at 37 deg below the horizontal (tan = 30/40 = 3/4)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "All given quantities (40 m/s, 45 m, g = 10) come from the served figure description and are used with the same values. Every line checks: 45 = 5t^2, t = 3, QP = 120, v_y = 30, |v| = 50, angle 36.9 deg. The common-mistake number 70 m/s is 40 + 30.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-prj-03",
+  "at": "2026-09-11T19:53:34+05:30"
+ }
+}

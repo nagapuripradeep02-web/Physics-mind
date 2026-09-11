@@ -1,0 +1,20 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "prj_6606ae74",
+ "approach": "Write the height of each particle above the ground as a function of time and find when the heights match; use that time to find the horizontal gap to close.",
+ "steps": [
+  {"text": "Resolve particle A's launch velocity into horizontal and vertical parts.", "equation": "vₓA = 10√2×cos45° = 10 m/s, v_yA = 10√2×sin45° = 10 m/s"},
+  {"text": "Write the height of each particle above the ground as a function of time, measuring from its own tower.", "equation": "y_A(t) = 10 + 10t − 5t², y_B(t) = 20 − 5t²"},
+  {"text": "Set the two heights equal and solve for the collision time; the −5t² term cancels on both sides.", "equation": "10 + 10t = 20 → t = 1 s"},
+  {"text": "At this time, A has moved a horizontal distance 10t toward B, and B has moved 10t toward A; together they cover the full gap d.", "equation": "d = 10×1 + 10×1 = 20 m"}
+ ],
+ "final_answer": {"option": null, "value": "d = 20 m"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Using only ball A's horizontal motion for the gap gives d = 10 m; adding ball B's 10 m motion toward A in the same time gives the correct d = 20 m."}
+ ],
+ "concept_tags": ["projectile motion", "relative motion", "collision in air"],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-prj-06", "at": "2026-09-11T12:03:00+05:30"}
+}

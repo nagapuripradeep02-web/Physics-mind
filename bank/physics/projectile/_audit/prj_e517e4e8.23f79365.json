@@ -1,0 +1,24 @@
+{
+ "question_id": "prj_e517e4e8",
+ "item_sha": "23f79365a208e0d79af7246e328349d0a9492bd97d34cb4f32988b401fd97d8b",
+ "auditor_option": null,
+ "auditor_value": "Car at t = 4 s: x = 16 m, v = 8î m/s. Bullet flies 4 s; ground-frame velocity at projection = 6î + 20ĵ + 30k̂ m/s (|v| = 2√334 ≈ 36.6 m/s). Velocity of projection relative to the gun (the car): −2î + 20ĵ + 30k̂ m/s (|v| = √1304 ≈ 36.1 m/s).",
+ "findings": [
+  {
+   "grade": "harmful",
+   "field": "final_answer",
+   "quote": "v = 6î + 20ĵ + 30k̂ m/s, magnitude 2√334 m/s ≈ 36.6 m/s",
+   "note": "This is the bullet's velocity relative to the ground, but the solution never says so, and it never uses the gun's own velocity 8î m/s at t = 4 s even though the question supplies 'from rest' and a = 2 m/s² so that this velocity can be found. The velocity of projection from a gun on a moving car is the bullet's velocity relative to the gun, −2î + 20ĵ + 30k̂ m/s (the −2 fits the man standing at the back); a student who copies the ground-frame vector as the projection velocity loses the mark under that reading. Filed as required when the auditor's answer differs; the ground-frame vector itself is correct as far as it goes.",
+   "fix": "Bullet velocity relative to the ground at projection: 6î + 20ĵ + 30k̂ m/s. The gun moves with the car, whose velocity at t = 4 s is 2 × 4 = 8 m/s along x, so the velocity of projection relative to the gun is (6 − 8)î + 20ĵ + 30k̂ = −2î + 20ĵ + 30k̂ m/s, magnitude √(4 + 400 + 900) = √1304 ≈ 36.1 m/s."
+  }
+ ],
+ "verdict": "harmful",
+ "question_defect": "The question does not say whether 'velocity of projection' is wanted relative to the ground or relative to the gun/car; the solution should state its frame and give both.",
+ "notes": "Every equation checked and correct in the ground frame: x₀ = 16 m; 16 + 4vₓ = 40 → vₓ = 6; 4v_y = 80 → v_y = 20; 4v_z − 80 = 40 → v_z = 30; 36 + 400 + 900 = 1336 = 4 × 334. The single mistake entry reproduces its numbers (40/4 = 10, √1400 = 10√14 = 37.4).",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-07",
+  "at": "2026-09-11T19:36:18+05:30"
+ }
+}

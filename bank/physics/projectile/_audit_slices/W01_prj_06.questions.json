@@ -1,0 +1,138 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter": "projectile",
+ "slice": 6,
+ "round": 0,
+ "items": [
+  {
+   "question_id": "prj_bad7455f",
+   "question_text": "Particle A is launched with initial speed 60 m/s, at 30° above the horizontal. At the same moment, particle B is launched from a point 100 m away from A, moving in the reverse horizontal sense, with initial speed 50 m/s. The two particles meet each other while still airborne. Take g = 10 m/s².\n(a) What launch angle α, measured above the horizontal, must particle B use?\n(b) At what time do the two particles meet?\n(c) What is the straight-line distance from A's launch point to the point P where they meet?",
+   "options": [],
+   "figure_description": "Particle A starts at point A moving up and toward B at 60 m/s, 30° above the horizontal ground; particle B starts at point B, 100 m away along the same ground line, moving up and toward A at 50 m/s, at angle α above the horizontal; their curved paths cross at a point above the ground between A and B."
+  },
+  {
+   "question_id": "prj_b8c9ecd0",
+   "question_text": "A particle is launched from level ground with speed u at an angle α above the horizontal and comes back down to the ground. Over the whole flight, from the moment of launch until it lands, what is the change in its velocity?",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_c5581e32",
+   "question_text": "A particle's motion begins with a velocity given by v = 3î + 4ĵ. A steady force, F = 4î − 3ĵ, acts on the particle throughout its motion. What shape does its trajectory take?",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "straight line"
+    },
+    {
+     "label": "(b)",
+     "text": "parabolic"
+    },
+    {
+     "label": "(c)",
+     "text": "circular"
+    },
+    {
+     "label": "(d)",
+     "text": "elliptical"
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_c90f12d9",
+   "question_text": "For a projectile moving at low speed, its acceleration stays constant throughout the flight. Judge whether this claim is right or wrong.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_c274ab22",
+   "question_text": "A plane flies level at 600 km/h, cruising 1960 m above the ground. The instant it passes directly over ground point A, a package is released from it. The package touches down at point B. Work out the distance between A and B.",
+   "options": [],
+   "figure_description": "The plane is shown at point O, height h above point A on the ground, joined by a dotted vertical line, moving horizontally with velocity v (arrow to the right). A curved path leads from O down to landing point B on the ground; A and B lie on the same horizontal ground line, and the distance between them is what must be found."
+  },
+  {
+   "question_id": "prj_c10fa827",
+   "question_text": "A particle starts its projectile motion from the base of a ramp that is tilted at 30° to the horizontal. Find the angle α, measured from the horizontal, that the particle must be launched at so that its range measured along the ramp is as large as possible.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_df0030fd",
+   "question_text": "A grasshopper's longest possible jump covers 1.6 m, and it spends essentially no time resting on the ground between jumps. What horizontal distance does it cover in 10√2 s?",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "45 m"
+    },
+    {
+     "label": "(b)",
+     "text": "30 m"
+    },
+    {
+     "label": "(c)",
+     "text": "20 m"
+    },
+    {
+     "label": "(d)",
+     "text": "40 m"
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_d479e276",
+   "question_text": "In which specific situations can the standard equations for time of flight, maximum height and horizontal range be used directly for a projectile's motion, without any adjustment?",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_be6fa5c3",
+   "question_text": "At t = 0, a body is launched from a spot on a planet's surface (taken as horizontal), moving with some fixed speed at some fixed angle. As time t (in seconds) elapses, its horizontal displacement x and vertical displacement y, both in metres, follow x = (10√3)t and y = 10t − t². What is the greatest height the body reaches?",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "75 m"
+    },
+    {
+     "label": "(b)",
+     "text": "100 m"
+    },
+    {
+     "label": "(c)",
+     "text": "50 m"
+    },
+    {
+     "label": "(d)",
+     "text": "25 m"
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_cc910cc5",
+   "question_text": "A ball leaves the edge of a flat tabletop standing 4 m above the ground, rolling off horizontally with no initial drop. It touches down on the ground at a spot located 5 m away, measured horizontally from the table's edge. Determine how fast the ball was travelling the moment it left the tabletop.",
+   "options": [],
+   "figure_description": "A right-angle layout: point A marks the table edge, point B is directly below A at the base of the table on the ground, 4 m below A. The ball leaves A moving horizontally (shown by an arrow v) and follows a curved path down to point C on the ground, which is 5 m horizontally from B."
+  },
+  {
+   "question_id": "prj_c04cc4d5",
+   "question_text": "Assertion: Two objects are launched as projectiles; one climbs to a maximum height of 4H while the other climbs to a maximum height of H. For the two to land the same horizontal distance away, their horizontal velocity components need to be in a 1 : 2 ratio. Reason: A projectile's horizontal range equals its horizontal velocity component multiplied by its total time of flight.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_d181dcc6",
+   "question_text": "A student says that the path of a projectile is a 3-dimensional motion. Decide if this claim is correct or not.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "prj_cf05f843",
+   "question_text": "Based on the angles shown in the figure, calculate how long the projectile remains airborne and the distance it covers along the incline, using g = 10 m/s².",
+   "options": [],
+   "figure_description": "An inclined plane rises from the horizontal ground at an angle of 30°, marked at its base. Near the top of the incline, a horizontal velocity arrow of 20 m/s points to the left; the angle between this horizontal arrow and the incline surface is marked as 30°."
+  }
+ ]
+}

@@ -1,0 +1,20 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "prj_a06421a6",
+ "approach": "Use the trajectory equation in terms of range; the total range is the sum of the two given distances, and the wall height fixes a point on the path.",
+ "steps": [
+  {"text": "Find the total horizontal range, which is the distance to the wall plus the distance from the wall to the landing point.", "equation": "R = 6 + 18 = 24 m"},
+  {"text": "Write the trajectory equation in the form that uses the range directly.", "equation": "y = x tanθ (1 − x/R)"},
+  {"text": "Substitute the wall's position and height into this equation.", "equation": "3 = 6 tanθ (1 − 6/24) = 4.5 tanθ"},
+  {"text": "Solve for the angle of projection.", "equation": "tanθ = 3/4.5 = 2/3 → θ = tan⁻¹(2/3) ≈ 33.7°"}
+ ],
+ "final_answer": {"option": null, "value": "θ = tan⁻¹(2/3) ≈ 33.7°"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Using only the distance beyond the wall as the range, instead of adding the distance to the wall, gives tanθ = 3/4 and a wrong angle of about 36.9°."}
+ ],
+ "concept_tags": ["projectile motion", "trajectory equation", "range"],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-prj-06", "at": "2026-09-11T12:07:00+05:30"}
+}

@@ -1,0 +1,632 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter": "projectile",
+ "slice": 6,
+ "round": 0,
+ "agent_label": "W01-U-prj-06",
+ "items": [
+  {
+   "question_id": "prj_bad7455f",
+   "audit_file": "prj_bad7455f.c461fec3.json",
+   "item_sha": "c461fec3c447da8f32eb6e44d361d2bddbba043fb647a02d972e7c81866ca623",
+   "question_text": "Particle A is launched with initial speed 60 m/s, at 30° above the horizontal. At the same moment, particle B is launched from a point 100 m away from A, moving in the reverse horizontal sense, with initial speed 50 m/s. The two particles meet each other while still airborne. Take g = 10 m/s².\n(a) What launch angle α, measured above the horizontal, must particle B use?\n(b) At what time do the two particles meet?\n(c) What is the straight-line distance from A's launch point to the point P where they meet?",
+   "options": [],
+   "figure_description": "Particle A starts at point A moving up and toward B at 60 m/s, 30° above the horizontal ground; particle B starts at point B, 100 m away along the same ground line, moving up and toward A at 50 m/s, at angle α above the horizontal; their curved paths cross at a point above the ground between A and B.",
+   "solution": {
+    "approach": "Both particles fall with the same acceleration, so equal vertical velocity components keep them at the same height; use that for α, then match horizontal positions for time and distance.",
+    "steps": [
+     {
+      "text": "Both particles start at the same height with the same downward acceleration g, so they stay at equal heights at every instant only if their initial vertical velocity components are equal.",
+      "equation": "uA sin30° = uB sinα ⇒ 60×0.5 = 50 sinα ⇒ sinα = 0.6 ⇒ α = 37°"
+     },
+     {
+      "text": "With the heights always equal, collision only needs the horizontal positions to meet; write these with A moving toward B and B moving toward A.",
+      "equation": "xA(t) = uA cos30°·t ≈ 51.96t, xB(t) = 100 − uB cos37°·t = 100 − 40t"
+     },
+     {
+      "text": "Set the two horizontal positions equal and solve for the collision time.",
+      "equation": "51.96t = 100 − 40t ⇒ t = 100/91.96 ≈ 1.09 s"
+     },
+     {
+      "text": "Use this time in A's own displacement equations to get the collision point P, then find its distance from A.",
+      "equation": "xP ≈ 56.5 m, yP = 30t − 5t² ≈ 26.7 m, PA = √(xP²+yP²) ≈ 62.5 m",
+      "why_this_step": "PA is the straight-line distance from A's starting point to the actual collision point, found from A's own horizontal and vertical displacement at that instant."
+     },
+     {
+      "text": "Collect all three results.",
+      "equation": "(a) α = 37°, (b) t ≈ 1.09 s, (c) PA ≈ 62.5 m"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "(a) α = 37°, (b) time of collision ≈ 1.09 s, (c) distance of collision point P from A ≈ 62.5 m"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Subtracting the horizontal components instead of adding them, using 51.96 − 40 = 11.96 m/s as the closing speed, which gives a wrong time of about 8.4 s."
+     }
+    ],
+    "concept_tags": [
+     "relative motion in projectile collision",
+     "equal initial vertical velocity",
+     "two-body projectile"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "prj_b8c9ecd0",
+   "audit_file": "prj_b8c9ecd0.691c5ade.json",
+   "item_sha": "691c5aded17ba804ae9aed6c947aea22c21a437467edd38b3664fbe3f7363e0e",
+   "question_text": "A particle is launched from level ground with speed u at an angle α above the horizontal and comes back down to the ground. Over the whole flight, from the moment of launch until it lands, what is the change in its velocity?",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Change in velocity is the vector difference between the velocity just before landing and the velocity at projection.",
+    "steps": [
+     {
+      "text": "Write the initial velocity components, with the horizontal direction as x and vertically upward as y.",
+      "equation": "ux = u cosα, uy = u sinα"
+     },
+     {
+      "text": "By the symmetry of projectile motion the particle returns to the same height with the same speed, with the horizontal part unchanged and the vertical part reversed.",
+      "equation": "vx = u cosα, vy = −u sinα"
+     },
+     {
+      "text": "Subtract the initial velocity from the final velocity, component by component.",
+      "equation": "Δv = (vx − ux, vy − uy) = (0, −2u sinα)"
+     },
+     {
+      "text": "State the magnitude and direction of the change; this is the final answer.",
+      "equation": "|Δv| = 2u sinα, directed vertically downward"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "2u sinα, directed vertically downward"
+    },
+    "common_mistakes": [],
+    "concept_tags": [
+     "change in velocity",
+     "projectile motion",
+     "vectors"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "prj_c5581e32",
+   "audit_file": "prj_c5581e32.22ba0b15.json",
+   "item_sha": "22ba0b15e069efde9fe15be1e87259d1189039b8068b02721b23c73ad5372b81",
+   "question_text": "A particle's motion begins with a velocity given by v = 3î + 4ĵ. A steady force, F = 4î − 3ĵ, acts on the particle throughout its motion. What shape does its trajectory take?",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "straight line"
+    },
+    {
+     "label": "(b)",
+     "text": "parabolic"
+    },
+    {
+     "label": "(c)",
+     "text": "circular"
+    },
+    {
+     "label": "(d)",
+     "text": "elliptical"
+    }
+   ],
+   "figure_description": "",
+   "solution": {
+    "approach": "Check whether the constant force is perpendicular to the initial velocity, which is the same setup as ordinary projectile motion turned sideways.",
+    "steps": [
+     {
+      "text": "Find the dot product of the initial velocity and the force to check if they are perpendicular.",
+      "equation": "v · F = (3)(4) + (4)(−3) = 12 − 12 = 0"
+     },
+     {
+      "text": "The dot product is zero, so the constant force acts perpendicular to the initial velocity direction, at every instant, since both stay fixed vectors.",
+      "equation": "v · F = 0"
+     },
+     {
+      "text": "A constant force acting perpendicular to the initial velocity produces the same shape of path as a projectile launched horizontally under gravity, which is a parabola.",
+      "equation": "path = parabola"
+     }
+    ],
+    "final_answer": {
+     "option": 2,
+     "value": "parabolic"
+    },
+    "common_mistakes": [
+     {
+      "option": 3,
+      "text": "Since the force is perpendicular to the velocity at the start, a student may wrongly assume circular motion; but circular motion needs the force direction to keep turning, while here it stays fixed."
+     }
+    ],
+    "concept_tags": [
+     "projectile motion",
+     "vectors",
+     "constant force"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "prj_c90f12d9",
+   "audit_file": "prj_c90f12d9.96787c61.json",
+   "item_sha": "96787c6198246ef513975d7ab841f12fcf1710a02bb98cef31ed5dfbed15c458",
+   "question_text": "For a projectile moving at low speed, its acceleration stays constant throughout the flight. Judge whether this claim is right or wrong.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Check whether the acceleration stays constant in magnitude and direction throughout the motion.",
+    "steps": [
+     {
+      "text": "At low speed, air resistance is negligible, so the only force on the particle is its own weight.",
+      "equation": "a = g (constant, directed downward)"
+     },
+     {
+      "text": "Since this acceleration stays fixed in both magnitude and direction throughout the flight, the motion is uniformly accelerated, even though the velocity direction keeps changing along the curved path."
+     },
+     {
+      "text": "So the statement is true."
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "True. At low speed, the only acceleration acting is g, constant in magnitude and direction, so the motion is uniformly accelerated."
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Assuming a curved path means the acceleration is changing, but a curved path only shows that the velocity direction changes, not the acceleration."
+     }
+    ],
+    "concept_tags": [
+     "projectile motion",
+     "uniform acceleration",
+     "constant acceleration due to gravity"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "prj_c274ab22",
+   "audit_file": "prj_c274ab22.f39bd81e.json",
+   "item_sha": "f39bd81e69337ab8a5a3190c6c4467293205f5a4d8e768b37aacc83a81a71327",
+   "question_text": "A plane flies level at 600 km/h, cruising 1960 m above the ground. The instant it passes directly over ground point A, a package is released from it. The package touches down at point B. Work out the distance between A and B.",
+   "options": [],
+   "figure_description": "The plane is shown at point O, height h above point A on the ground, joined by a dotted vertical line, moving horizontally with velocity v (arrow to the right). A curved path leads from O down to landing point B on the ground; A and B lie on the same horizontal ground line, and the distance between them is what must be found.",
+   "solution": {
+    "approach": "Convert the plane's speed to SI units, find the fall time from the height using g = 9.8 m/s², then multiply to get the horizontal distance covered.",
+    "steps": [
+     {
+      "text": "Convert the horizontal speed from km/h to m/s.",
+      "equation": "v = 600×(1000/3600) = 500/3 ≈ 166.7 m/s"
+     },
+     {
+      "text": "Find the time to fall the given height from rest, using g = 9.8 m/s².",
+      "equation": "t = √(2×1960/9.8) = √400 = 20 s"
+     },
+     {
+      "text": "The dropped body keeps the plane's horizontal velocity throughout the fall, so the horizontal distance AB equals speed times time.",
+      "equation": "AB = 166.7×20 ≈ 3333.3 m ≈ 3.33 km"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "AB ≈ 3333.3 m ≈ 3.33 km"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Using 600 directly as the speed in m/s without converting from km/h, giving a wrong distance of 600×20 = 12000 m."
+     }
+    ],
+    "concept_tags": [
+     "horizontal projectile",
+     "unit conversion",
+     "time of fall"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "prj_c10fa827",
+   "audit_file": "prj_c10fa827.d33cab63.json",
+   "item_sha": "d33cab636fdd600f2293e344b73da98f49f30f6b5059b843ca9b856ac75c594a",
+   "question_text": "A particle starts its projectile motion from the base of a ramp that is tilted at 30° to the horizontal. Find the angle α, measured from the horizontal, that the particle must be launched at so that its range measured along the ramp is as large as possible.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "The range up an incline is a function of the launch angle from the horizontal, and its maximum sits at a fixed angle above 45° set by the incline's slope.",
+    "steps": [
+     {
+      "text": "For a particle launched from the bottom of an incline of angle β, at an angle α from the horizontal, the range measured along the incline is a known function of α, β, u and g.",
+      "equation": "R = 2u²cos(α)sin(α−β) / (g·cos²β)"
+     },
+     {
+      "text": "Maximizing R with respect to α, holding u, β and g fixed, gives a fixed relation between the best launch angle α and the incline angle β.",
+      "equation": "dR/dα = 0 ⇒ α = 45° + β/2"
+     },
+     {
+      "text": "Substitute the given incline angle into this relation.",
+      "equation": "α = 45° + 30°/2 = 45° + 15°"
+     },
+     {
+      "text": "Add these two angles to get the launch angle that gives the maximum range up the incline.",
+      "equation": "α = 60°"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "α = 60°"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Using the flat-ground result of 45° for maximum range, ignoring that the incline shifts the best angle upward."
+     },
+     {
+      "option": null,
+      "text": "Measuring the launch angle from the incline surface instead of from the horizontal, which changes the numeric value reported."
+     }
+    ],
+    "concept_tags": [
+     "projectile on an incline",
+     "maximum range",
+     "optimization"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "prj_df0030fd",
+   "audit_file": "prj_df0030fd.e72783cf.json",
+   "item_sha": "e72783cf9c1b50513cb088149dc3a3b4dd5908e2b901965cc1c4aefe983199e4",
+   "question_text": "A grasshopper's longest possible jump covers 1.6 m, and it spends essentially no time resting on the ground between jumps. What horizontal distance does it cover in 10√2 s?",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "45 m"
+    },
+    {
+     "label": "(b)",
+     "text": "30 m"
+    },
+    {
+     "label": "(c)",
+     "text": "20 m"
+    },
+    {
+     "label": "(d)",
+     "text": "40 m"
+    }
+   ],
+   "figure_description": "",
+   "solution": {
+    "approach": "Find the launch speed from the maximum jump distance, then find how many jumps fit in the given time and multiply by the distance per jump.",
+    "steps": [
+     {
+      "text": "The farthest jump is the maximum range, reached at 45°, so use it to find the launch speed.",
+      "equation": "R_max = u²/g, 1.6 = u²/10, u² = 16, u = 4 ms⁻¹"
+     },
+     {
+      "text": "Find the time spent in the air for one maximum-range jump, at 45°.",
+      "equation": "T = 2u sin45°/g = 2(4)(1/√2)/10 = 0.5657 s"
+     },
+     {
+      "text": "The grasshopper spends no time on the ground, so the number of jumps in the given time is the total time divided by the time per jump.",
+      "equation": "n = 10√2 / 0.5657 = 25"
+     },
+     {
+      "text": "Multiply the number of jumps by the distance covered per jump to get the total distance.",
+      "equation": "distance = 45 m"
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "45 m"
+    },
+    "common_mistakes": [],
+    "concept_tags": [
+     "projectile motion",
+     "maximum range",
+     "time of flight"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "prj_d479e276",
+   "audit_file": "prj_d479e276.603a6a5c.json",
+   "item_sha": "603a6a5cd29f9296b40d934d07214be6f90842b14b798e96fb18e22f8ee69f5c",
+   "question_text": "In which specific situations can the standard equations for time of flight, maximum height and horizontal range be used directly for a projectile's motion, without any adjustment?",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "State the condition under which the range, time of flight and maximum height formulas hold, based on how they are derived.",
+    "steps": [
+     {
+      "text": "The formulas R = u²sin2θ/g, T = 2u sinθ/g and H = u²sin²θ/(2g) are derived by setting the net vertical displacement to zero when the particle lands."
+     },
+     {
+      "text": "Setting the vertical displacement to zero at landing is correct only when the point of landing is at the same height as the point of projection."
+     },
+     {
+      "text": "The derivation also assumes g stays constant through the flight and that no other force, such as air resistance, changes the motion.",
+      "why_this_step": "A changing g or an added resistive force would change the equations of motion the formulas are built from."
+     },
+     {
+      "text": "State the condition in full; this is the final answer."
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "The formulas apply directly only when the particle is projected from and lands on the same horizontal level, for example ground to ground, with g constant and no air resistance."
+    },
+    "common_mistakes": [],
+    "concept_tags": [
+     "projectile motion",
+     "range formula",
+     "assumptions"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "prj_be6fa5c3",
+   "audit_file": "prj_be6fa5c3.b7165f49.json",
+   "item_sha": "b7165f49f49b9f9b52cae3254618545bd4981a03adc6afd7df20783852fa9e2f",
+   "question_text": "At t = 0, a body is launched from a spot on a planet's surface (taken as horizontal), moving with some fixed speed at some fixed angle. As time t (in seconds) elapses, its horizontal displacement x and vertical displacement y, both in metres, follow x = (10√3)t and y = 10t − t². What is the greatest height the body reaches?",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "75 m"
+    },
+    {
+     "label": "(b)",
+     "text": "100 m"
+    },
+    {
+     "label": "(c)",
+     "text": "50 m"
+    },
+    {
+     "label": "(d)",
+     "text": "25 m"
+    }
+   ],
+   "figure_description": "",
+   "solution": {
+    "approach": "The maximum height is reached when the vertical velocity becomes zero, so differentiate the given vertical displacement and set it to zero.",
+    "steps": [
+     {
+      "text": "Differentiate the vertical displacement with respect to time to get the vertical velocity.",
+      "equation": "y = 10t − t², v_y = dy/dt = 10 − 2t"
+     },
+     {
+      "text": "Set the vertical velocity to zero to find the time of maximum height.",
+      "equation": "10 − 2t = 0, t = 5 s"
+     },
+     {
+      "text": "Substitute t = 5 s back into the vertical displacement equation.",
+      "equation": "y_max = 10(5) − 5² = 50 − 25 = 25 m"
+     }
+    ],
+    "final_answer": {
+     "option": 4,
+     "value": "25 m"
+    },
+    "common_mistakes": [
+     {
+      "option": 3,
+      "text": "Comparing y = 10t − t² with y = u_yt − ½gt², the coefficient of t² is read as g instead of g/2, giving g = 1; then u_y²/2g gives 100/(2×1) = 50 m."
+     }
+    ],
+    "concept_tags": [
+     "projectile motion",
+     "maximum height",
+     "calculus"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "prj_cc910cc5",
+   "audit_file": "prj_cc910cc5.ac6978ae.json",
+   "item_sha": "ac6978ae65edffe3fce1b2cef563c068630e453d4fdddf78817de2e148c79971",
+   "question_text": "A ball leaves the edge of a flat tabletop standing 4 m above the ground, rolling off horizontally with no initial drop. It touches down on the ground at a spot located 5 m away, measured horizontally from the table's edge. Determine how fast the ball was travelling the moment it left the tabletop.",
+   "options": [],
+   "figure_description": "A right-angle layout: point A marks the table edge, point B is directly below A at the base of the table on the ground, 4 m below A. The ball leaves A moving horizontally (shown by an arrow v) and follows a curved path down to point C on the ground, which is 5 m horizontally from B.",
+   "solution": {
+    "approach": "Find the time of fall from the 4 m drop using g = 9.8 m/s² (no value given), then divide the 5 m horizontal distance by that time.",
+    "steps": [
+     {
+      "text": "Find the time to fall the 4 m height from rest, taking g = 9.8 m/s² since no value is given in the problem.",
+      "equation": "h = ½gt² ⇒ t = √(2×4/9.8) ≈ 0.904 s"
+     },
+     {
+      "text": "Divide the 5 m horizontal distance by this time to get the constant horizontal launch speed.",
+      "equation": "v = 5/0.904 ≈ 5.53 m/s"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "v ≈ 5.53 m/s (using g = 9.8 m/s²)"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Finding the time of fall as t = √(h/g) = √(4/9.8) ≈ 0.64 s, dropping the factor of 2 inside the square root, which gives a wrong speed of about 7.8 m/s."
+     }
+    ],
+    "concept_tags": [
+     "horizontal projectile",
+     "time of fall",
+     "launch speed"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "prj_c04cc4d5",
+   "audit_file": "prj_c04cc4d5.eeb0b8f1.json",
+   "item_sha": "eeb0b8f15ccf9b3af4fed8e7f69d679cc07d4921366972a15f8db01d3db00d5f",
+   "question_text": "Assertion: Two objects are launched as projectiles; one climbs to a maximum height of 4H while the other climbs to a maximum height of H. For the two to land the same horizontal distance away, their horizontal velocity components need to be in a 1 : 2 ratio. Reason: A projectile's horizontal range equals its horizontal velocity component multiplied by its total time of flight.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Equal heights fix the ratio of vertical launch speeds, which fixes the ratio of flight times, and equal ranges then fix the ratio of horizontal launch speeds.",
+    "steps": [
+     {
+      "text": "Write the maximum height of each projectile in terms of its own vertical launch speed.",
+      "equation": "H₁ = uᵧ₁²/(2g) = 4H, H₂ = uᵧ₂²/(2g) = H"
+     },
+     {
+      "text": "Divide the two height equations to get the ratio of vertical launch speeds.",
+      "equation": "uᵧ₁²/uᵧ₂² = 4 ⇒ uᵧ₁/uᵧ₂ = 2"
+     },
+     {
+      "text": "Time of flight is proportional to the vertical launch speed, so this gives the ratio of the two times of flight.",
+      "equation": "T₁/T₂ = uᵧ₁/uᵧ₂ = 2"
+     },
+     {
+      "text": "Range equals the horizontal launch speed times the time of flight, and the Reason states exactly this formula; set the two ranges equal.",
+      "equation": "R = uₓ·T, so uₓ₁·T₁ = uₓ₂·T₂"
+     },
+     {
+      "text": "Substitute T₁ = 2T₂ and solve for the ratio of horizontal launch speeds.",
+      "equation": "uₓ₁·2T₂ = uₓ₂·T₂ ⇒ uₓ₁/uₓ₂ = 1/2"
+     },
+     {
+      "text": "This ratio of 1 : 2 matches the Assertion exactly, and the Reason (R = uₓ·T) is the very formula used to derive it, so both statements are true and the Reason explains the Assertion."
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "If both Assertion and Reason are true and the Reason is the correct explanation of the Assertion."
+    },
+    "common_mistakes": [
+     {
+      "option": 3,
+      "text": "Taking the ratio of horizontal speeds equal to the ratio of vertical speeds instead of its reciprocal, giving 2 : 1 instead of 1 : 2."
+     },
+     {
+      "option": 2,
+      "text": "Accepting both statements as true but treating R = uₓ×T as unrelated background information rather than the formula that proves the ratio."
+     }
+    ],
+    "concept_tags": [
+     "range",
+     "maximum height",
+     "time of flight"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "prj_d181dcc6",
+   "audit_file": "prj_d181dcc6.211dbec7.json",
+   "item_sha": "211dbec77b422f5db8d63aa5b9c44ad416a0c5f0a802ad31fd2d8a785c12c365",
+   "question_text": "A student says that the path of a projectile is a 3-dimensional motion. Decide if this claim is correct or not.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Check whether the projectile's path can be contained in a single plane.",
+    "steps": [
+     {
+      "text": "The initial velocity and the acceleration due to gravity are two vectors; together they fix a single plane, the vertical plane containing the launch direction."
+     },
+     {
+      "text": "Gravity acts only within that plane, so there is no force pushing the particle out of it, and its path stays inside that one plane for the whole flight."
+     },
+     {
+      "text": "So the statement is false: projectile motion needs only two coordinates and is two-dimensional (planar), not three-dimensional."
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "False. Projectile motion is two-dimensional; it occurs entirely within one vertical plane containing the initial velocity and gravity."
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Assuming any motion with a curved path in space must need all three directions, without checking that the initial velocity and gravity define only one plane."
+     }
+    ],
+    "concept_tags": [
+     "projectile motion",
+     "plane of motion",
+     "dimensionality"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "prj_cf05f843",
+   "audit_file": "prj_cf05f843.b7a1ae2a.json",
+   "item_sha": "b7a1ae2a31e05d10e95f48f249eab7fcaf3df458dc93ad23c45526b197d0a669",
+   "question_text": "Based on the angles shown in the figure, calculate how long the projectile remains airborne and the distance it covers along the incline, using g = 10 m/s².",
+   "options": [],
+   "figure_description": "An inclined plane rises from the horizontal ground at an angle of 30°, marked at its base. Near the top of the incline, a horizontal velocity arrow of 20 m/s points to the left; the angle between this horizontal arrow and the incline surface is marked as 30°.",
+   "solution": {
+    "approach": "Use horizontal and vertical motion from the launch point and find when the fall matches the downward slope of the incline.",
+    "steps": [
+     {
+      "text": "Set up horizontal and vertical motion from the launch point, with the horizontal velocity constant and the vertical velocity starting from zero.",
+      "equation": "x = ut, y = −½gt² (taking down as negative)"
+     },
+     {
+      "text": "The incline drops at 30° below horizontal along the direction of motion, so the particle lands when the fall matches the incline's slope times the horizontal distance.",
+      "equation": "½gt² = x tan30° = ut tan30°"
+     },
+     {
+      "text": "Solve for the time of flight.",
+      "equation": "t = 2u tan30°/g = 2(20)(1/√3)/10 = 4√3/3 ≈ 2.31 s"
+     },
+     {
+      "text": "Find the horizontal distance travelled in this time.",
+      "equation": "x = ut = 20 × 2.31 ≈ 46.19 m"
+     },
+     {
+      "text": "Divide by cos30° to get the distance measured along the incline; this gives the final answer.",
+      "equation": "R = x/cos30° = 46.19/0.866 ≈ 53.33 m"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "time of flight ≈ 2.31 s, range along the incline ≈ 53.33 m"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Reporting the horizontal distance of about 46.19 m as the range, instead of dividing by cos30° for the distance along the incline, gives a wrong value."
+     }
+    ],
+    "concept_tags": [
+     "projectile on an incline",
+     "horizontal projection",
+     "time of flight"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  }
+ ]
+}

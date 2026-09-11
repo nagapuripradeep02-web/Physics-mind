@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_2c40ba4c",
+ "item_sha": "a3c41d7f25afe964bf2e30529db1c21f8ec321ebff77746402771df76c9a932b",
+ "auditor_option": null,
+ "auditor_value": "(a) a straight vertical line; (b) a parabola",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Answer agrees. Steps 1 and 3 carry text without an equation, which is appropriate for a descriptive question.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-02",
+  "at": "2026-09-11T19:34:42+05:30"
+ }
+}

@@ -1,0 +1,24 @@
+{
+ "question_id": "prj_c04cc4d5",
+ "item_sha": "1db31640dc08c5520a8952576f98e65c2f386d3099545d72d3d48b56b3e4ee8e",
+ "auditor_option": 1,
+ "auditor_value": "Both true and the Reason explains: T ∝ √H so T₁/T₂ = 2; equal ranges R = uₓT give uₓ₁/uₓ₂ = T₂/T₁ = 1/2, i.e. 1 : 2.",
+ "findings": [
+  {
+   "grade": "wrong",
+   "field": "approach",
+   "quote": "Equal heights fix the ratio of vertical launch speeds",
+   "note": "The two heights in this question are 4H and H, not equal; equal heights would give a ratio of 1. The sentence misdescribes the data the argument starts from.",
+   "fix": "The given heights 4H and H fix the ratio of vertical launch speeds, which fixes the ratio of flight times, and equal ranges then fix the ratio of horizontal launch speeds."
+  }
+ ],
+ "verdict": "wrong",
+ "question_defect": null,
+ "notes": "Every equation line checks: uᵧ₁/uᵧ₂ = 2, T₁/T₂ = 2, uₓ₁·2T₂ = uₓ₂·T₂ so uₓ₁/uₓ₂ = 1/2. The option-4 mistake entry (inverting the ratio to 2 : 1, so the student rejects the Assertion) is genuine.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-prj-02",
+  "at": "2026-09-11T19:53:18+05:30"
+ }
+}

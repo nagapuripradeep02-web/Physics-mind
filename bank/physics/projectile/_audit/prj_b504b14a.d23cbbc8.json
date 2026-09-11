@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_b504b14a",
+ "item_sha": "d23cbbc80d0db286db890a0f0b0636f415573a96d4f9bc973edfb8e2c44b55f1",
+ "auditor_option": null,
+ "auditor_value": "tanθ = tanα + tanβ, proved from y = x tanθ(1 − x/R) with tanα = y/x and tanβ = y/(R − x)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Independent proof follows the same route; checked numerically (u = 20 m/s, θ = 50°, x = 0.3R: tanθ = 1.1918 = tanα + tanβ). The identity g/(2u²cos²θ) = tanθ/R in step 1 is correct. The mistake entry (x = R/2 special case) is a genuine error.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-05",
+  "at": "2026-09-11T19:34:09+05:30"
+ }
+}

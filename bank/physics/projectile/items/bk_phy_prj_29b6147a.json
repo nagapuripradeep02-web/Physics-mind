@@ -1,0 +1,97 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_prj_29b6147a",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A projectile leaves a cliff top moving purely horizontally at 98 m/s; the cliff is 490 m tall.",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "How long does the projectile take before it lands?"
+   },
+   {
+    "label": "b",
+    "asks": "How far from the base of the cliff does the projectile land?"
+   },
+   {
+    "label": "c",
+    "asks": "With what velocity (magnitude and direction) does the projectile strike the ground? Use g = 9.8 m/s²."
+   }
+  ],
+  "conditions": [
+   "fired horizontally from the top of a hill",
+   "hill height = 490 m",
+   "g = 9.8 m/s²"
+  ],
+  "figure": {
+   "description": "The projectile starts at the top of the cliff moving horizontally, follows a curving downward path, and lands at a point on the ground level with the foot of the cliff; at landing its velocity has a horizontal component and a vertical component making an angle with the horizontal."
+  }
+ },
+ "solution": {
+  "approach": "Split the motion into a constant horizontal part and a vertical free-fall part timed by the fall height, then combine components for each part asked.",
+  "steps": [
+   {
+    "text": "Find the time to fall the 490 m height from a purely horizontal launch.",
+    "equation": "h = ½gt² ⇒ t = √(2h/g) = √(2×490/9.8) = 10 s"
+   },
+   {
+    "text": "Use the constant horizontal velocity and this time to get the horizontal distance.",
+    "equation": "x = ut = 98×10 = 980 m"
+   },
+   {
+    "text": "Find the vertical velocity built up by gravity at landing, then combine it with the unchanged horizontal velocity.",
+    "equation": "vy = gt = 9.8×10 = 98 m/s, v = √(98²+98²) = 98√2 ≈ 138.6 m/s, β = 45° below horizontal",
+    "why_this_step": "vx equals vy here, so the resultant velocity direction bisects the two, giving exactly 45°."
+   },
+   {
+    "text": "Collect all three results.",
+    "equation": "(a) t = 10 s, (b) 980 m, (c) 98√2 ≈ 138.6 m/s at 45° below the horizontal"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) t = 10 s, (b) 980 m, (c) 98√2 ≈ 138.6 m/s at 45° below the horizontal"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Using t = h/g = 490/9.8 = 50 s instead of t = √(2h/g), forgetting the square root and the factor of 2 in the time-of-fall formula."
+   }
+  ],
+  "concept_tags": [
+   "horizontal projectile",
+   "time of flight",
+   "impact velocity"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "calculation"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "65607d30526f235dabd4b43767e9bcbde684ce5ac799a16df27567a8852a8e24"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "8e8c1d4c45081fa90836854549a9693b0aff2b6b46ec519191005dc734509457",
+  "audited_by": "W01-U-prj-03"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-01",
+  "at": "2026-09-11T18:36:00+05:30"
+ }
+}

@@ -1,0 +1,31 @@
+{
+ "question_id": "prj_51e4cf12",
+ "item_sha": "83abcd2446bdf863749cb8353cb43b4b24b1b08ca80e1d2e8984f94aa85904db",
+ "auditor_option": null,
+ "auditor_value": "H1 + H2 = u^2 sin^2(theta)/(2g) + u^2 cos^2(theta)/(2g) = u^2/(2g), independent of theta",
+ "findings": [
+  {
+   "grade": "harmful",
+   "field": "steps[0].equation",
+   "quote": "H₁ = u²sin²θ/(4g)",
+   "note": "The maximum height of a projectile is u²sin²θ/(2g), not u²sin²θ/(4g); the printed denominator is doubled. The same line writes H₂ with 2g, and the next line adds the two as if both had 2g, so the false formula is never used, but a student copying this line would lose the mark for the height expression.",
+   "fix": "H₁ = u²sin²θ/(2g), H₂ = u²sin²(90°−θ)/(2g) = u²cos²θ/(2g)"
+  },
+  {
+   "grade": "weak",
+   "field": "common_mistakes[0].text",
+   "quote": "Adding the two range formulas instead of the two height formulas, getting R₁+R₂ = 2u²sin2θ/g, which still depends on θ and does not show the required result.",
+   "note": "The arithmetic is consistent (R₁ = R₂ = u²sin2θ/g), but a student asked to add two maximum heights does not add ranges; the entry is not a genuine error for this question. The natural slip is in H₂.",
+   "fix": "Writing sin²(90°−θ) as sin²θ instead of cos²θ, which gives H₁ + H₂ = u²sin²θ/g, a sum that still depends on θ."
+  }
+ ],
+ "verdict": "harmful",
+ "question_defect": null,
+ "notes": "Final answer u^2/(2g) agrees with mine. The solution asserts that equal-range angles are complementary without deriving it from sin(2θ₁) = sin(2θ₂); for a 'prove' question the one-line derivation (2θ₂ = 180° − 2θ₁) would strengthen the proof, but it is a standard result and is not filed as a finding.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-prj-03",
+  "at": "2026-09-11T19:53:34+05:30"
+ }
+}

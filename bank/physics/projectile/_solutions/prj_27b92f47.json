@@ -1,0 +1,20 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "prj_27b92f47",
+ "approach": "Resolve motion along axes parallel and perpendicular to the incline; the perpendicular motion gives the time to land back on the slope, and the parallel motion gives the distance R.",
+ "steps": [
+  {"text": "Take axes along the slope and perpendicular to it. Along the slope gravity contributes g sinθ with no initial velocity; perpendicular to the slope gravity contributes g cosθ opposing the initial velocity u.", "equation": "a∥ = g sinθ, a⊥ = −g cosθ, u⊥ = u, u∥ = 0"},
+  {"text": "The projectile lands back on the slope when the perpendicular displacement returns to zero.", "equation": "u t − ½g cosθ t² = 0 ⟹ t = 2u/(g cosθ)"},
+  {"text": "The distance along the slope at that time is the parallel displacement.", "equation": "R = ½g sinθ t² = ½g sinθ × [2u/(g cosθ)]²"},
+  {"text": "Simplify to reach the expression for R.", "equation": "R = 2u² sinθ / (g cos²θ)"}
+ ],
+ "final_answer": {"option": null, "value": "R = 2u² sinθ / (g cos²θ)"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Using t = 2u/g instead of t = 2u/(g cosθ) ignores that gravity's component perpendicular to the slope is g cosθ, not g, and gives a smaller value of R."}
+ ],
+ "concept_tags": ["projectile on incline", "resolving gravity", "range formula"],
+ "difficulty": "hard",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-prj-07", "at": "2026-09-11T16:45:00+05:30"}
+}

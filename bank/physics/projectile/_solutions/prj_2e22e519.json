@@ -1,0 +1,56 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "prj_2e22e519",
+ "approach": "Split the initial velocity into horizontal and vertical parts, then use the vertical motion equation to find when the particle falls 25 m below the launch point.",
+ "steps": [
+  {
+   "text": "Find the horizontal and vertical parts of the initial velocity.",
+   "equation": "ux = 20√2 cos45° = 20 m/s, uy = 20√2 sin45° = 20 m/s"
+  },
+  {
+   "text": "Take upward as positive and write the vertical position from the top of the tower; it equals −25 m when the particle reaches the ground.",
+   "equation": "uy t − ½gt² = −25"
+  },
+  {
+   "text": "Substitute the values and solve the resulting quadratic equation for t.",
+   "equation": "20t − 5t² = −25, so t² − 4t − 5 = 0, giving t = 5 s",
+   "why_this_step": "The other root, t = −1 s, is before the particle is projected, so it is rejected."
+  },
+  {
+   "text": "Find the horizontal distance from the foot of the tower using the constant horizontal velocity.",
+   "equation": "x = ux t = 20 × 5 = 100 m"
+  },
+  {
+   "text": "Find the velocity components at t = 5 s.",
+   "equation": "vx = 20 m/s, vy = uy − gt = 20 − 50 = −30 m/s"
+  },
+  {
+   "text": "Combine the components for the speed and direction at collision; this gives the final answer.",
+   "equation": "speed = √(20² + 30²) = 10√13 ≈ 36.06 m/s, about 56.3° below the horizontal"
+  }
+ ],
+ "final_answer": {
+  "option": null,
+  "value": "t = 5 s, horizontal distance = 100 m, velocity ≈ 36.06 m/s at about 56.3° below the horizontal"
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": null,
+   "text": "Ignoring the tower height and using the ground level time of flight formula T = 2uy/g gives t = 4 s and distance 80 m, both wrong since the particle falls an extra 25 m."
+  }
+ ],
+ "concept_tags": [
+  "projectile motion",
+  "motion from a height",
+  "vector components"
+ ],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-03",
+  "at": "2026-09-11T15:00:00+05:30"
+ }
+}

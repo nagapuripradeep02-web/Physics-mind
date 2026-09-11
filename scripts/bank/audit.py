@@ -19,6 +19,7 @@ import _lib as L      # noqa: E402
 import gate as G      # noqa: E402
 import solve as S     # noqa: E402
 import gate_run as R  # noqa: E402
+import roles          # noqa: E402  (the subscription-only roles: reader, keyreader, solveB, fidelity, fidelity2, judge, syllabus)
 
 LEDGER = os.path.join(L.BANK, "_dispatch.json")
 SLICES = os.path.join(L.EVIDENCE, "_slices")               # verbatim text -> gitignored
@@ -35,7 +36,7 @@ TIER_ORDER = ["EX", "IE", "L1 AR", "L1 SC", "L1 SUB"]
 
 
 def label(wave, role, k, rnd=None):
-    base = "W%02d-%s-kin-%02d" % (wave, LETTER.get(role, "U"), k)
+    base = "W%02d-%s-%s-%02d" % (wave, LETTER.get(role, "U"), L.PREFIX, k)
     return base if rnd is None else base + "-R%d" % rnd
 
 
@@ -54,7 +55,25 @@ def author_view(wid, t):
          if (t.get("figure") or {}).get("present") else None}
     if t.get("kind") != "worked_example" and t.get("crop"):
         v["crop"] = os.path.join(L.EVIDENCE, t["crop"]).replace("/", os.sep)
+    if re.search(r"\b(?:above|previous|preceding)\s+(?:problem|question)", t.get("question_text") or "", re.I):
+        prev = previous_item(t)
+        if prev:
+            v["context_from_previous_item"] = {"question_text": prev["question_text"], "options": prev.get("options") or [],
+                                               "figure": prev.get("figure") if (prev.get("figure") or {}).get("present") else None,
+                                               "note": "this item says 'the above problem'; that problem is quoted here"}
     return v
+
+
+def previous_item(t):
+    """The transcript printed immediately before this one in the same section (for 'in the above problem')."""
+    m = re.match(r"(.*) Q(\d+)$", t["label"])
+    if not m:
+        return None
+    want = "%s Q%d" % (m.group(1), int(m.group(2)) - 1)
+    for r in L.jsonl_read(S.ingest.TRANSCRIPTS):
+        if r["label"] == want:
+            return r
+    return None
 
 
 def plan_authors(led, wave, size, model):
@@ -68,7 +87,7 @@ def plan_authors(led, wave, size, model):
     for i in range(0, len(order), size):
         k += 1
         ids = order[i:i + size]
-        path = os.path.join(SLICES, "W%02d_kin_%02d.json" % (wave, k))
+        path = os.path.join(SLICES, "W%02d_%s_%02d.json" % (wave, L.PREFIX, k))
         L.save(path, {"wave": wave, "role": "author", "chapter": L.CHAPTER, "slice": k, "agent_label": label(wave, "author", k),
                       "items": [author_view(w, tr[w]) for w in ids]})
         rows.append({"wave": wave, "role": "author", "chapter": L.CHAPTER, "slice": k, "question_ids": ids, "model": model,
@@ -259,7 +278,7 @@ def plan_audits(led, wave, size, model):
         h = int(hashlib.sha256(("order%d%d" % (wave, k)).encode()).hexdigest(), 16)
         items.sort(key=lambda it: hashlib.sha256((str(h) + it["item_sha"]).encode()).hexdigest())
         suffix = "" if rnd == 0 else "_R%d" % rnd
-        path = os.path.join(AUDIT_SLICES, "W%02d_kin_%02d%s.json" % (wave, k, suffix))
+        path = os.path.join(AUDIT_SLICES, "W%02d_%s_%02d%s.json" % (wave, L.PREFIX, k, suffix))
         lab = label(wave, "audit", k, None if rnd == 0 else rnd)
         L.save(path, {"wave": wave, "role": "audit", "chapter": L.CHAPTER, "slice": k, "round": rnd, "agent_label": lab, "items": items})
         L.save(path.replace(".json", ".questions.json"),
@@ -278,6 +297,8 @@ def audit_disk(led):
         if r["role"] == "author":
             present = [i for i in r["question_ids"] if os.path.exists(os.path.join(S.SOLUTIONS, i + ".json"))
                        or os.path.exists(os.path.join(S.SOLUTIONS, "_refusals", i + ".json"))]
+        elif r["role"] in roles.ROLES:
+            present = roles.disk(r)
         else:
             sl = L.load(r["slice_path"]) or {"items": []}
             present = [it["question_id"] for it in sl.get("items", []) if os.path.exists(os.path.join(AUDIT, it["audit_file"]))]
@@ -288,9 +309,9 @@ def audit_disk(led):
 
 
 def status(led):
-    print("%-18s %-7s %-9s %5s/%-5s %s" % ("agent", "role", "status", "have", "want", "slice"))
+    print("%-18s %-9s %-12s %5s/%-5s %s" % ("agent", "role", "status", "have", "want", "slice"))
     for r in led:
-        print("%-18s %-7s %-9s %5d/%-5d %s" % (r["agent_label"], r["role"], r["status"], r["files_present"], r["files_expected"], r["slice_path"]))
+        print("%-18s %-9s %-12s %5d/%-5d %s" % (r["agent_label"], r["role"], r["status"], r["files_present"], r["files_expected"], r["slice_path"]))
     c = collections.Counter((r["role"], r["status"]) for r in led)
     for (role, st), n in sorted(c.items()):
         print("  %-7s %-9s %d" % (role, st, n))
@@ -349,11 +370,11 @@ def release(a):
     items = []
     for wid, (sha, au, agent) in sorted(verified.items()):
         rt, sol, t, row = RS[wid], sols[wid], tr[wid], st[wid]
-        bid = "bk_phy_kin_" + S.restatement_sha(rt)[:8]
+        bid = "bk_phy_%s_" % L.PREFIX + S.restatement_sha(rt)[:8]
         opts = {str(i + 1): o["text"] for i, o in enumerate(rt.get("options") or [])} or None
         item = {
             "schema_version": "bank_item_v1", "id": bid, "subject": "physics",
-            "chapter": row.get("chapter") or "Motion in a Straight Line", "shape": None,
+            "chapter": row.get("chapter") or L.CFG["syllabus"][0], "shape": None,
             "kind": t.get("kind"), "level": "jee_main", "format": t.get("format"),
             "key_kind": "letter" if opts else ("words" if t.get("format") == "conceptual" else "number"),
             "figure_required": bool(rt.get("figure_required")),
@@ -391,13 +412,21 @@ def main():
     ap.add_argument("cmd", choices=["plan", "queue", "mark-dispatched", "audit-disk", "status", "release"])
     ap.add_argument("--role", default="author")
     ap.add_argument("--wave", type=int, default=1)
-    ap.add_argument("--size", type=int, default=15)
-    ap.add_argument("--model", default="sonnet")
+    ap.add_argument("--size", type=int, default=0)
+    ap.add_argument("--model", default="")
+    ap.add_argument("--only", nargs="*")
     ap.add_argument("--no-controls", action="store_true")
     a = ap.parse_args()
     led = ledger()
     if a.cmd == "plan":
-        rows = plan_authors(led, a.wave, a.size, a.model) if a.role == "author" else plan_audits(led, a.wave, a.size, "opus" if a.model == "sonnet" else a.model)
+        if a.role == "author":
+            rows = plan_authors(led, a.wave, a.size or 15, a.model or "sonnet")
+        elif a.role == "audit":
+            rows = plan_audits(led, a.wave, a.size or 15, a.model or "opus")
+        elif a.role in roles.ROLES:
+            rows = roles.plan(led, a.role, a.wave, a.size, a.model, a.only or None)
+        else:
+            sys.exit("unknown role %s" % a.role)
         led += rows
         L.save(LEDGER, led)
         print("ledger: %d rows -> %s" % (len(led), LEDGER))

@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_65607d30",
+ "item_sha": "8e8c1d4c45081fa90836854549a9693b0aff2b6b46ec519191005dc734509457",
+ "auditor_option": null,
+ "auditor_value": "(a) 10 s; (b) 980 m; (c) 98√2 ≈ 138.6 m/s at 45° below the horizontal",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-prj-03",
+  "at": "2026-09-11T19:33:01+05:30"
+ }
+}

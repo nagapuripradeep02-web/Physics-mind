@@ -1,0 +1,16 @@
+{
+ "question_id": "prj_0376ab08",
+ "item_sha": "9fe7e24b85ea0837228c0f19cbf889332432159b4233490b0479a4eee4c862fe",
+ "auditor_option": null,
+ "auditor_value": "T = 2u sin75° / (g cos30°) = 4(3 + √3)/3 s ≈ 6.31 s; range down the slope R ≈ 145.7 m (checked in ground axes: x = 126.2 m, y = −72.9 m, √(x² + y²) = 145.7 m)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Read per the served figure description (velocity pointing to the downhill side, 45° above the horizontal, slope 30°). If the figure had the velocity pointing up the slope the answer would be T ≈ 1.69 s, R ≈ 39.0 m, which the solution's first common_mistakes entry correctly names as the up-slope case.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-prj-01",
+  "at": "2026-09-11T19:52:15+05:30"
+ }
+}

@@ -1,0 +1,18 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "prj_b51a8be6",
+ "approach": "For the particles to collide, their horizontal positions must match and their vertical positions must match at the same instant t, since both fall under the same gravity.",
+ "steps": [
+  {"text": "Write the position of each particle at time t using its own launch point, speed and angle. A moves up and to the right, B moves up and to the left.", "equation": "x_A = 10 + u₁cosθ₁·t, y_A = 10 + u₁sinθ₁·t − ½gt²; x_B = 30 − u₂cosθ₂·t, y_B = 20 + u₂sinθ₂·t − ½gt²"},
+  {"text": "For a collision at time t, both coordinates must be equal at that instant.", "equation": "x_A = x_B and y_A = y_B"},
+  {"text": "In the vertical equation the −½gt² term is the same for both particles, so it cancels, leaving a simple linear equation.", "equation": "10 + u₁sinθ₁t = 20 + u₂sinθ₂t ⟹ t(u₁sinθ₁ − u₂sinθ₂) = 10"},
+  {"text": "The horizontal equation gives the second necessary condition.", "equation": "10 + u₁cosθ₁t = 30 − u₂cosθ₂t ⟹ t(u₁cosθ₁ + u₂cosθ₂) = 20"}
+ ],
+ "final_answer": {"option": null, "value": "t(u₁cosθ₁ + u₂cosθ₂) = 20 and t(u₁sinθ₁ − u₂sinθ₂) = 10"},
+ "confidence": "sure",
+ "common_mistakes": [],
+ "concept_tags": ["projectile motion", "relative position", "collision condition"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-prj-07", "at": "2026-09-11T16:45:00+05:30"}
+}

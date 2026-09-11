@@ -100,6 +100,8 @@ def to_sympy_src(s):
     for k, v in _GREEK.items():
         s = s.replace(k, v)
     s = re.sub(r"\b(sin|cos|tan)\s*(?:⁻¹|\^\s*\(?-1\)?)", r"a\1", s)          # sin⁻¹(0.4) -> asin(0.4)
+    s = re.sub(r"\bcosec\b", "csc", s)
+    s = re.sub(r"\b(a?sin|a?cos|a?tan|cot|sec|csc)(?=[a-zA-Z])", r"\1 ", s)       # sinθ -> sin θ (never sintheta)
     s = re.sub(r"\barc(sin|cos|tan)\b", r"a\1", s)
     s = re.sub(r"([⁰¹²³⁴⁵⁶⁷⁸⁹⁻⁺]+)", lambda m: "^(" + m.group(1).translate(_SUPTR) + ")", s)
     s = re.sub(r"([a-zA-Z])([₀₁₂₃₄₅₆₇₈₉]+)", lambda m: m.group(1) + "_" + m.group(2).translate(_SUBTR), s)
@@ -107,7 +109,7 @@ def to_sympy_src(s):
     s = re.sub(r"(?<![a-zA-Z_\d])([a-zA-Z])(\d+)(?![\d.])", r"\1_\2", s)       # u0 -> u_0 (never u*0)
     s = s.replace("√", "sqrt")
     s = re.sub(r"sqrt(?!\()\s*([0-9a-zA-Z_.]+)", r"sqrt(\1)", s)
-    s = re.sub(r"/(?!\()([0-9.]*[a-zA-Z_][a-zA-Z_0-9]*)", r"/(\1)", s)          # v²/2g -> v²/(2g)
+    s = re.sub(r"/(?!\()([0-9.]*[a-zA-Z_][a-zA-Z_0-9]*(?:\([^()]*\))?)", r"/(\1)", s)   # v²/2g -> v²/(2g); 5/sqrt(2) -> 5/(sqrt(2))
     s = re.sub(r"\s+", " ", s).strip()
     return s
 
@@ -237,7 +239,7 @@ def _number_pair(a, b, tol=0.01):
 
 _APPROX = re.compile(r"^\s*(?:approximately|approx\.?|about|roughly|nearly|almost|≈|~)\s*", re.I)
 _APPROX_TAIL = re.compile(r"\s*\((?:approx\.?|approximately)\)\s*$", re.I)
-_SYMBOL_EQ = re.compile(r"^\s*[A-Za-zΔθωαβ][A-Za-z₀-₉_′'ₓᵧ]{0,4}(?:\([^()]{0,12}\))?\s*=\s*(?!=)")
+_SYMBOL_EQ = re.compile(r"^\s*(?:[A-Za-zΔθωαβ][A-Za-z₀-₉_′'ₓᵧ]{0,4}(?:\([^()]{0,12}\))?|[A-Za-z][A-Za-z ]{2,28}?)\s*=\s*(?!=)")
 _WORDNUM = {"zero": "0", "half": "1/2", "one": "1", "two": "2", "three": "3", "four": "4", "unity": "1"}
 _OPPOSITES = [("up", "down"), ("upward", "downward"), ("upwards", "downwards"), ("east", "west"), ("north", "south"),
               ("positive", "negative"), ("clockwise", "anticlockwise"), ("clockwise", "counterclockwise"),
@@ -281,6 +283,7 @@ def _forms(s):
     '1287 cm (12.87 m)' -> both; 'speed = 60 s' -> '60 s'; a prose answer -> its first short clause and its
     maths spans (at most two, so a value mentioned in passing cannot stand in for the answer)."""
     s = (s or "").strip()
+    s = re.sub(r"\b(at|of|is|are|to|by|and)\s+≈\s*", r"\1 ", s)   # 'at ≈65.9°' is 'at 65.9°' (approximately), not a second reading
     out = []
     for piece in re.split(r"\s*≈\s*|\s+or\s+", s):
         piece = _SYMBOL_EQ.sub("", piece).strip()
@@ -310,7 +313,9 @@ def _forms(s):
     for x in out:
         if x and x not in seen:
             seen.add(x); uniq.append(x)
-    return uniq or [s]
+    # 'v ≈ 48.99 m/s' splits off a bare symbol 'v'; a symbol name is a label, never a reading of the answer
+    named = [x for x in uniq if not re.fullmatch(r"[A-Za-zθωαβ][A-Za-z₀-₉_′ₓᵧ]{0,2}", x)]
+    return named or uniq or [s]
 
 
 def _qualifier_split(s):
@@ -408,7 +413,7 @@ def _scalar_equal(a, b, kind):
         ta, tb = _wordseq(a), _wordseq(b)
         if ta == tb:
             return True, "words"
-        if not (set(ta) & set(tb)):
+        if not (set(ta) & set(tb)) and not (re.search(r"\d", a) or re.search(r"\d", b)):
             return False, "words_disjoint"
         return None, "words_judge"
     return None, "undecided"
@@ -427,8 +432,34 @@ def _wordseq(s):
     return out
 
 
+def _two_spans(a, b, kind):
+    """Both sides state exactly two values (a magnitude and a direction, say): BOTH must match, in either
+    order. Otherwise '44.72 m/s at 26.6°' would equal '28.28 m/s at tan⁻¹(1/2)' through the angle alone."""
+    # only spans that carry a value count: '0 (both have acceleration g downward)' is one value plus a stray 'g',
+    # and 'zero)' is a word the tokenizer failed to read as English
+    value = lambda x: re.search(r"[\d√π]", x) is not None
+    sa, sb = [x for x in _math_spans(a) if value(x)], [x for x in _math_spans(b) if value(x)]
+    if len(sa) != 2 or len(sb) != 2:
+        return None
+    clean = lambda x: re.sub(r"^\s*≈\s*", "", _SYMBOL_EQ.sub("", x)).strip()
+    sa, sb = [clean(x) for x in sa], [clean(x) for x in sb]
+    best = None
+    for order in ((0, 1), (1, 0)):
+        r = [answers_equal(sa[i], sb[j], kind)[0] for i, j in zip((0, 1), order)]
+        if all(v is True for v in r):
+            return True
+        if best is None or r.count(False) < best.count(False):
+            best = r
+    return False if (False in best and None not in best) else None
+
+
 def _single_equal(a, b, kind):
     """Every reading of a against every reading of b: any True wins; all False is False; else undecided."""
+    two = _two_spans(a, b, kind)
+    if two is True:
+        return True, "two_spans"
+    if two is False:
+        return False, "two_spans_mismatch"
     hows, saw_false = [], False
     for x in _forms(a):
         for y in _forms(b):
@@ -503,7 +534,11 @@ def _answers_equal(a, b, kind):
         common = sorted(k for k in keys if pa.get(k) and pb.get(k))
         if not common:
             return None, "parts_labels"
+        global _span_ok
         for k in common:
+            # the "at most two maths spans" budget is per PART: a three-part answer is not a prose answer that
+            # mentions three values in passing
+            _span_ok = len(_math_spans(pa[k])) <= 2 and len(_math_spans(pb[k])) <= 2
             ok, how = answers_equal(pa[k], pb[k], "auto")
             if ok is not True:
                 return ok, "part %s: %s" % (k, how)
@@ -626,6 +661,7 @@ def main():
     ap.add_argument("--baseline", action="store_true")
     ap.add_argument("--freeze-baseline", action="store_true")
     ap.add_argument("--verbose", action="store_true")
+    ap.add_argument("--offline-judge", action="store_true", help="never call the paid judge (the default unless BANK_ALLOW_API=1)")
     a = ap.parse_args()
     if a.cmd == "selftest":
         selftest(a.judges)

@@ -1,0 +1,89 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_prj_a99b6ec3",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "assertion_reason",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "Assertion: In the x-y plane a particle moves with an unchanging acceleration whose two components aₓ and aᵧ are both non-zero. Such a particle can never trace a parabola. Reason: A projectile has no acceleration along the horizontal.",
+  "options": {
+   "1": "If both Assertion and Reason are true and the Reason is the correct explanation of the Assertion.",
+   "2": "If both Assertion and Reason are true but the Reason is not the correct explanation of the Assertion.",
+   "3": "If the Assertion is true, but the Reason is false.",
+   "4": "If the Assertion is false but the Reason is true."
+  },
+  "parts": null,
+  "conditions": [
+   "acceleration is constant in the x-y plane",
+   "neither the x-component nor the y-component of acceleration is zero"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "A parabolic path only needs a constant acceleration that is not along the velocity; it does not need the acceleration's components to vanish in one particular pair of axes.",
+  "steps": [
+   {
+    "text": "Choose x and y axes tilted away from the direction of the constant acceleration, so both its components aₓ and aᵧ are nonzero in these axes."
+   },
+   {
+    "text": "Give the particle an initial velocity that is not along the acceleration direction, and follow its path using these tilted axes."
+   },
+   {
+    "text": "The traced path is still the same physical parabola it would be in axes aligned with the acceleration; only its equation looks different when written in the tilted axes."
+   },
+   {
+    "text": "So a particle can still have a parabolic path even when neither aₓ nor aᵧ is zero, which makes the Assertion false."
+   },
+   {
+    "text": "The Reason is a true statement about projectile motion described in axes aligned with gravity, but a true Reason does not make a false Assertion true.",
+    "why_this_step": "The Assertion is about the shape of the path, which does not depend on the choice of axes."
+   }
+  ],
+  "final_answer": {
+   "option": 4,
+   "value": "If the Assertion is false but the Reason is true."
+  },
+  "common_mistakes": [
+   {
+    "option": 1,
+    "text": "Assuming the shape of the path depends on which axes are chosen, so nonzero aₓ and aᵧ are mistaken for proof that the path cannot be a parabola."
+   },
+   {
+    "option": 2,
+    "text": "Treating the Assertion as true because it resembles the usual projectile description, without checking it against a tilted choice of axes."
+   }
+  ],
+  "concept_tags": [
+   "parabolic path",
+   "constant acceleration",
+   "choice of axes"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "9722adfbd9f6110afbece73d8780c6728e675c1d6fce51b1197f40c65a560b21"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "a33ee7cb82bf8ad66514b31871c5cc22944daedef57a35cb22a74e3e7247b3c6",
+  "audited_by": "W02-U-prj-02"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-04",
+  "at": "2026-09-11T16:08:00+05:30"
+ }
+}

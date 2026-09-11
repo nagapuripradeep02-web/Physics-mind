@@ -1,0 +1,52 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "prj_872ec629",
+ "approach": "Gravity keeps acting with the same constant value throughout the flight, including at the highest point, which rules out the other statements.",
+ "steps": [
+  {
+   "text": "Through the whole flight, the only acceleration acting on the projectile is gravity, which stays constant in magnitude and direction.",
+   "equation": "a = (0, −g) at every instant"
+  },
+  {
+   "text": "Even at the highest point, where the vertical velocity is momentarily zero, gravity still acts, so the acceleration there is the same nonzero constant value as everywhere else."
+  },
+  {
+   "text": "So the motion is uniformly accelerated at every point of the path, including the top, which rules out the statement that velocity becomes constant there."
+  },
+  {
+   "text": "At the highest point the velocity is purely horizontal while the acceleration is purely vertical, so their dot product is zero there, meaning acceleration and velocity are perpendicular at that instant, which rules out the statement that they are never perpendicular.",
+   "equation": "a·v = (0)(vₓ) + (−g)(0) = 0"
+  },
+  {
+   "text": "The only statement that holds throughout the flight is that projectile motion is uniformly accelerated everywhere."
+  }
+ ],
+ "final_answer": {
+  "option": 1,
+  "value": "It is uniformly accelerated everywhere"
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": 2,
+   "text": "Thinking that zero vertical velocity at the highest point means zero acceleration there, mistaking momentarily zero velocity for constant velocity."
+  },
+  {
+   "option": 3,
+   "text": "Assuming acceleration and velocity can never be perpendicular in projectile motion, missing that this happens exactly at the highest point."
+  }
+ ],
+ "concept_tags": [
+  "projectile motion",
+  "acceleration",
+  "highest point"
+ ],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-04",
+  "at": "2026-09-11T16:14:00+05:30"
+ }
+}

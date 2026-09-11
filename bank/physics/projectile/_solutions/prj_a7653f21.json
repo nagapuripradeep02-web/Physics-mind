@@ -1,0 +1,20 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "prj_a7653f21",
+ "approach": "The horizontal velocity component stays constant through the flight, so use it to link the speed at the two angles, then compare kinetic energies.",
+ "steps": [
+  {"text": "Write the initial kinetic energy and the horizontal velocity component, which stays the same throughout the flight.", "equation": "K = ½mu², u_x = u cos60°"},
+  {"text": "At the point where the velocity makes 30° with the horizontal, the horizontal component of the new speed v equals the same constant horizontal component.", "equation": "v cos30° = u cos60°"},
+  {"text": "Solve for v, then form the kinetic energy ratio using v² and u².", "equation": "v/u = cos60°/cos30°, K'/K = (v/u)² = (cos60°/cos30°)² = 1/3"},
+  {"text": "So the kinetic energy at the new angle is one third of the original.", "equation": "K' = K/3"}
+ ],
+ "final_answer": {"option": 2, "value": "K/3"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 4, "text": "Directly computing the new speed as v = u cos30° instead of solving for it from the constant horizontal component gives K' = K cos²30° = 3K/4."}
+ ],
+ "concept_tags": ["projectile motion", "kinetic energy", "horizontal velocity conservation"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-prj-05", "at": "2026-09-11T00:00:00+05:30"}
+}

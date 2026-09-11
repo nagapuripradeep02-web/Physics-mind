@@ -1,0 +1,98 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_prj_2e009aca",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A particle leaves the ground at 20√2 m/s, launched at 45° above the horizontal. Consider the 3 s stretch beginning at launch, that is, from t = 0 s up to t = 3 s.",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "Work out the particle's change in velocity over this interval."
+   },
+   {
+    "label": "b",
+    "asks": "Work out the size of the particle's average velocity over this interval."
+   }
+  ],
+  "conditions": [
+   "projected from the ground",
+   "initial speed 20√2 m/s",
+   "angle 45° above the horizontal"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Find the velocity at t = 3 s for the change in velocity, and the displacement at t = 3 s for the average velocity.",
+  "steps": [
+   {
+    "text": "Find the horizontal and vertical parts of the initial velocity.",
+    "equation": "ux = 20√2 cos45° = 20 m/s, uy = 20√2 sin45° = 20 m/s"
+   },
+   {
+    "text": "Find the velocity components at t = 3 s.",
+    "equation": "vx = 20 m/s, vy = 20 − 10(3) = −10 m/s"
+   },
+   {
+    "text": "Subtract the initial velocity from this to get the change in velocity.",
+    "equation": "Δv = (20 − 20, −10 − 20) = (0, −30)"
+   },
+   {
+    "text": "State the magnitude and direction of the change in velocity.",
+    "equation": "|Δv| = 30 m/s, directed vertically downward"
+   },
+   {
+    "text": "Find the displacement at t = 3 s and its magnitude.",
+    "equation": "x = 60 m, y = 20(3) − 5(9) = 15 m, s = √(60² + 15²) = 15√17 ≈ 61.85 m"
+   },
+   {
+    "text": "Divide the displacement magnitude by the time for the average velocity; this gives the final answer.",
+    "equation": "v_avg = 15√17/3 = 5√17 ≈ 20.62 m/s"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) change in velocity = 30 m/s, directed vertically downward; (b) average velocity ≈ 20.62 m/s"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Averaging the initial speed and the speed at t = 3 s, about (28.28 + 22.36)/2 ≈ 25.32 m/s, instead of dividing displacement by time, gives a wrong average velocity."
+   }
+  ],
+  "concept_tags": [
+   "change in velocity",
+   "average velocity",
+   "projectile motion"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "114744c1277f4b7ffddb2ade8c4eed3e4e011cc8fe990bd6febb7754af53a606"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "6cad670f91b03b8dbdb34bbab212436f67316a5b407f609b6c03d4f95779f71f",
+  "audited_by": "W01-U-prj-01"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-prj-03",
+  "at": "2026-09-11T15:35:00+05:30"
+ }
+}
