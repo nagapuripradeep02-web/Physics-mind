@@ -1,0 +1,19 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_6ff3fae5",
+ "approach": "Write the distance fallen by each stone measured from the same start of timing, and set them equal at the overtaking instant.",
+ "steps": [
+  {"text": "Let t be the time measured from when the first stone is dropped. Write the distance fallen by the first stone.", "equation": "x₁ = ½(10)t² = 5t²"},
+  {"text": "The second stone starts 1 s later with initial speed 20 m/s downward. Write its distance fallen for t ≥ 1 s.", "equation": "x₂ = 20(t − 1) + ½(10)(t − 1)²"},
+  {"text": "Set the two distances equal, since the second stone overtakes the first at the same position.", "equation": "5t² = 20(t − 1) + 5(t − 1)²"},
+  {"text": "Expand and solve for t.", "equation": "5t² = 5t² + 10t − 15 → 10t = 15 → t = 1.5 s"},
+  {"text": "Substitute t = 1.5 s into the first stone's distance to get the overtaking distance.", "equation": "x₁ = 5(1.5)² = 11.25 m"}
+ ],
+ "final_answer": {"option": 3, "value": "11.25 m"},
+ "confidence": "sure",
+ "common_mistakes": [],
+ "concept_tags": ["free fall", "kinematics with a delayed start", "quadratic equation of motion"],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-09", "at": "2026-09-11T15:03:00+05:30"}
+}

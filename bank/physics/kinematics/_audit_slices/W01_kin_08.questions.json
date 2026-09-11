@@ -1,0 +1,156 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter": "kinematics",
+ "slice": 8,
+ "round": 0,
+ "items": [
+  {
+   "question_id": "kin_ad9f5a32",
+   "question_text": "Water in a 400 m wide river moves downstream at a speed of 2.0 m/s. A boat travels at 10.0 m/s relative to the water, keeping its heading aligned perpendicular to the stream.\n(a) Determine the duration required for the boat to arrive at the far bank.\n(b) Calculate the downstream distance between the boat's landing spot and the point located directly across from its launch position.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_b7ba93e1",
+   "question_text": "An elevator is traveling upwards while slowing down. State the respective directions of its velocity and acceleration at this moment.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_aa3ceb25",
+   "question_text": "Water in a river flows horizontally to the right at a constant speed of 2 m/s between two parallel banks. A person starts rowing from point A on the lower bank to reach point B on the upper bank. The straight line connecting A to B makes an angle of 45° with the downstream bank. If the speed of the boat relative to the water is 4 m/s, find the angle θ with the perpendicular to the river bank at which the boat should be steered.",
+   "options": [],
+   "figure_description": "A horizontal river with parallel banks where the current flows to the right at 2 m/s. Point A is located on the bottom bank and point B on the top bank such that the straight line AB is inclined at 45° to the horizontal river bank. A dashed line normal to the banks extends upward from point A. The boat's heading makes an angle θ to the right of this vertical dashed normal."
+  },
+  {
+   "question_id": "kin_b29acc41",
+   "question_text": "An aircraft accelerates from rest along a runway as shown in the given acceleration-time graph. What is the speed of the aircraft at the instant of lift-off at t = 20 s?",
+   "options": [
+    {
+     "label": "a",
+     "text": "40 ms⁻¹"
+    },
+    {
+     "label": "b",
+     "text": "50 ms⁻¹"
+    },
+    {
+     "label": "c",
+     "text": "90 ms⁻¹"
+    },
+    {
+     "label": "d",
+     "text": "180 ms⁻¹"
+    }
+   ],
+   "figure_description": "An acceleration versus time graph (a in ms⁻² versus t in s). The vertical axis represents acceleration 'a (ms⁻²)' with ticks at 0, 3, and 5. The horizontal axis represents time 't (s)' with ticks at 10 and 20. The curve starts at (t = 0, a = 3 ms⁻²) and rises linearly to (t = 10 s, a = 5 ms⁻²), then continues as a horizontal line at a constant value of a = 5 ms⁻² up to and beyond t = 20 s."
+  },
+  {
+   "question_id": "kin_ba6a1a9d",
+   "question_text": "A velocity-time plot for an automobile is a straight line that starts at the origin (0 s, 0 m/s) and passes through the point where velocity is 10 m/s at time t = 4 s. Based on this motion, calculate:\n(a) The acceleration of the automobile.\n(b) The total distance covered by the automobile in 8 s.",
+   "options": [],
+   "figure_description": "A graph with time t (in s) on the horizontal axis and velocity v (in m/s) on the vertical axis. A straight line starts at (0, 0) and goes through the point (4, 10), extending steadily past t = 8 s."
+  },
+  {
+   "question_id": "kin_b635a79a",
+   "question_text": "Ship A and ship B are initially separated by a distance of 10 km along a north-south axis, with ship A positioned to the north of ship B. Ship A moves due west at a constant speed of 20 km/h, while ship B sails due north at a constant speed of 20 km/h. Determine the shortest distance between the two vessels and the time taken to reach this minimum separation.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_b88a594f",
+   "question_text": "A body initially at rest is located at the position (2 m, 4 m) when t = 0. It begins to travel with a uniform acceleration of 2 m/s² directed along the positive x-axis. After a duration of 2 s, another constant acceleration of magnitude 4 m/s² acts on it along the negative y-axis while the original x-acceleration continues. For a time instant 2 s later, determine:\n(a) velocity of the particle\n(b) coordinates of the particle",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_c9d48c69",
+   "question_text": "A ball projected straight upward with an initial speed v₀ attains a peak altitude h. What initial speed is needed to make the ball attain three times this peak altitude?",
+   "options": [
+    {
+     "label": "a",
+     "text": "√3 v₀"
+    },
+    {
+     "label": "b",
+     "text": "3 v₀"
+    },
+    {
+     "label": "c",
+     "text": "9 v₀"
+    },
+    {
+     "label": "d",
+     "text": "3/2 v₀"
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_adbc9454",
+   "question_text": "Explain why the kinematic expression sₜ = u + at − ½ a appears to be dimensionally inconsistent.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_ac0c6757",
+   "question_text": "An object travels along a linear path maintaining a uniform rate of 4 m/s over a duration of 2 s, followed by traveling at 6 m/s throughout the subsequent 3 s. Determine the mean speed of the object across this entire duration.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_b3445329",
+   "question_text": "A stream of water has a width of 20 m and flows at 3 m/s. A small boat moves with a speed of 2√2 m/s relative to the water, directed at an angle of 45° with respect to the downstream flow.\n(a) Calculate the time needed for the boat to reach the opposite side.\n(b) Find the distance from the point straight across from the initial position to where the boat arrives on the opposite bank.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_ad114b2d",
+   "question_text": "A car and a truck begin moving simultaneously from rest in the same direction, with the car situated a certain distance behind the truck at the start. The truck speeds up with a uniform acceleration of 2.2 m/s², whereas the car speeds up with a steady acceleration of 3.5 m/s². By the moment the truck has covered a distance of 60 m, the car catches up with it.\n(a) How much time is needed for the car to catch up with the truck?\n(b) What was the initial separation between the car and the truck?\n(c) What is the speed of each vehicle at the instant the car overtakes the truck?",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_afc24644",
+   "question_text": "The variation of velocity with time for a body executing one-dimensional motion is depicted in the given diagram. The body starts from an initial position of s = −10 m at t = 0 s. Draw the corresponding acceleration-time (a-t) and displacement-time (s-t) graphs for the entire interval from t = 0 s to t = 10 s.\n(a) Plot the acceleration-time (a-t) graph for the interval t = 0 s to t = 10 s.\n(b) Plot the position-time (s-t) graph for the interval t = 0 s to t = 10 s.",
+   "options": [],
+   "figure_description": "A velocity versus time (v-t) graph displaying piecewise linear segments from t = 0 s to t = 10 s. The velocity starts at (0 s, 0 m/s), increases linearly to (2 s, 10 m/s), remains flat at 10 m/s until (4 s, 10 m/s), drops linearly through (6 s, 0 m/s) to reach a minimum of −10 m/s at (8 s, −10 m/s), and finally rises linearly to end at (10 s, 0 m/s)."
+  },
+  {
+   "question_id": "kin_adf4cca8",
+   "question_text": "Assertion: For two particles traveling along a straight path, the displacements vary with time as s₁ = 2t − 4t² and s₂ = − 2t + 4t². The relative velocity between them continually increases.\nReason: An object's speed grows whenever its velocity and acceleration have the same sign.",
+   "options": [
+    {
+     "label": "a",
+     "text": "If both Assertion and Reason are true and the Reason is correct explanation of the Assertion."
+    },
+    {
+     "label": "b",
+     "text": "If both Assertion and Reason are true but Reason is not the correct explanation of Assertion."
+    },
+    {
+     "label": "c",
+     "text": "If Assertion is true, but the Reason is false."
+    },
+    {
+     "label": "d",
+     "text": "If Assertion is false but the Reason is true."
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_af05e9d4",
+   "question_text": "A pair of diamonds are released from rest at an identical elevation, one falling 1.0 s after the other. Find the time elapsed since the release of the initial diamond at which the vertical gap separating the two stones reaches 10 m. (Use g = 10 m/s²)",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_b31f7df2",
+   "question_text": "The velocity-displacement (v-s) curve of a particle executing rectilinear motion is a straight line with a non-zero positive y-intercept and a positive slope. Sketch the corresponding acceleration-displacement (a-s) graph.",
+   "options": [],
+   "figure_description": "A graph with displacement s plotted along the horizontal axis and velocity v along the vertical axis shows a straight line located in the first quadrant, starting from a positive value on the vertical axis and rising with a positive slope."
+  }
+ ]
+}

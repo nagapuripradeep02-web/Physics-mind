@@ -1,0 +1,89 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_1dc3564e",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "numerical",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "An object moves with a uniform speed of 2 m/s for the first half of its total travel duration. Throughout the second half of the time, it covers ¼ of the distance traveled in that interval at a steady speed of 4 m/s, and the other ¾ of the distance at 6 m/s. Determine the average speed of the object over the entire journey.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "motion for first half of total duration is at constant speed 2 m/s",
+   "motion for second half of total duration is split by distance: ¼ at 4 m/s and ¾ at 6 m/s"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Write every distance in terms of the total time, add them up, and divide by the total time so the total time cancels out.",
+  "steps": [
+   {
+    "text": "Let the total time of the journey be T. In the first half of the time, T/2, the particle moves at 2 m/s.",
+    "equation": "d1 = 2 × (T/2) = T"
+   },
+   {
+    "text": "In the second half of the time, T/2, the particle covers some distance d2, one quarter of it at 4 m/s and three quarters of it at 6 m/s; write the time for each part and add them to T/2.",
+    "equation": "(d2/4)/4 + (3d2/4)/6 = T/2"
+   },
+   {
+    "text": "Solve this equation for d2.",
+    "equation": "d2/16 + d2/8 = T/2, so 3d2/16 = T/2, d2 = 8T/3"
+   },
+   {
+    "text": "Add the two distances to get the total distance covered.",
+    "equation": "total distance = T + 8T/3 = 11T/3"
+   },
+   {
+    "text": "Average speed is total distance divided by the total time T, and T cancels out.",
+    "equation": "average speed = (11T/3)/T = 11/3 ≈ 3.67 m/s",
+    "why_this_step": "Since every distance was written proportional to T, the actual value of T never matters."
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "11/3 m/s ≈ 3.67 m/s"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Taking the plain average of the three speeds, (2 + 4 + 6)/3 = 4 m/s, instead of weighting each speed by the time or distance it actually covers."
+   },
+   {
+    "option": null,
+    "text": "Reading the 1/4 and 3/4 split as a split of the second half's time rather than its distance, which gives an average speed of 3.75 m/s instead of 11/3 m/s."
+   }
+  ],
+  "concept_tags": [
+   "average speed",
+   "uniform motion",
+   "weighted average"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "fc2a2e26e1b5e87cec1a01be90face16af9bc63e5391e1e42c368653a1627eb0"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "14a98b38fe633e52f2f590022dc71de9ff7d4093cdddfdccf2ab702c4e0a242a",
+  "audited_by": "W01-U-kin-12"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-05",
+  "at": "2026-09-11T14:07:00+05:30"
+ }
+}

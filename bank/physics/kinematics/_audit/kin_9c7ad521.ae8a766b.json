@@ -1,0 +1,11 @@
+{
+ "question_id": "kin_9c7ad521",
+ "item_sha": "ae8a766b98896cf430c3afaaed0a0638a3748d3721c0796446c8307a644d2882",
+ "auditor_option": null,
+ "auditor_value": "(a) 10 s, (b) 60 m",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "With the standard sin37 = 0.6, cos37 = 0.8: across 3 m/s, along 4 m/s, t = 30/3 = 10 s, drift = (4+2)*10 = 60 m. Both common_mistakes numbers recomputed (30/5 = 6 s; 4*10 = 40 m).",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-kin-07", "at": "2026-09-11T14:39:00+05:30"}
+}

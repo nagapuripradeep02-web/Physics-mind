@@ -1,0 +1,51 @@
+{
+  "schema": "eapcet_solution_v1",
+  "question_id": "kin_64fe014e",
+  "approach": "Find the time of flight from launch to landing below the tower, then use the total path length for average speed and the net displacement for average velocity.",
+  "steps": [
+    {
+      "text": "Take upward as positive from the roof. The particle lands 60 m below the roof, so its displacement is −60 m.",
+      "equation": "−60 = 20t − ½(10)t²"
+    },
+    {
+      "text": "Solve this quadratic for the time of flight.",
+      "equation": "5t² − 20t − 60 = 0 → t² − 4t − 12 = 0 → t = 6 s"
+    },
+    {
+      "text": "Find the extra height it rises above the roof before falling back.",
+      "equation": "h_up = 20²/(2×10) = 20 m"
+    },
+    {
+      "text": "Add the rise above the roof and the fall from that highest point to the ground for the total path length.",
+      "equation": "total distance = 20 + (20 + 60) = 100 m"
+    },
+    {
+      "text": "Divide the total distance by the time of flight for average speed, and the net displacement by the same time for average velocity.",
+      "equation": "average speed = 100/6 ≈ 16.7 ms⁻¹, average velocity = −60/6 = −10 ms⁻¹ (10 ms⁻¹ downward)"
+    }
+  ],
+  "final_answer": {
+    "option": null,
+    "value": "(a) average speed = 100/6 ≈ 16.7 ms⁻¹, (b) average velocity = 10 ms⁻¹, directed downward"
+  },
+  "confidence": "sure",
+  "common_mistakes": [
+    {
+      "option": null,
+      "text": "Reporting the average velocity value, 10 ms⁻¹, as the average speed, which uses the net displacement instead of the full path length travelled."
+    }
+  ],
+  "concept_tags": [
+    "equations of motion",
+    "projectile from a height",
+    "average speed and average velocity"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "application",
+  "authored_by": {
+    "model": "sonnet",
+    "wave": 1,
+    "agent": "W01-A-kin-10",
+    "at": "2026-09-11T14:16:00+05:30"
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "schema": "eapcet_solution_v1",
+  "question_id": "kin_c7bf5937",
+  "approach": "Read the velocity-time equation from the graph and use the area under it to check displacement and distance travelled over 0 to 2 s.",
+  "steps": [
+    {
+      "text": "The line passes through (0, 10) and (1, 0), so write velocity as a function of time.",
+      "equation": "v(t) = 10 − 10t"
+    },
+    {
+      "text": "The displacement from t = 0 to t = 2 s is the signed area under the graph. Compute it.",
+      "equation": "∫₀² (10 − 10t) dt = [10t − 5t²]₀² = 20 − 20 = 0"
+    },
+    {
+      "text": "A zero displacement over this interval means the particle returns to its position at t = 0, so it crosses its initial position at t = 2 s.",
+      "why_this_step": "This holds whatever the particle's actual starting position is; the v-t graph alone does not say whether that position is the origin."
+    },
+    {
+      "text": "Check the distance travelled, which is different from displacement since the velocity changes sign at t = 1 s. Add the magnitudes of area from 0–1 s and 1–2 s.",
+      "equation": "5 m + 5 m = 10 m, average speed = 10/2 = 5 ms⁻¹, not zero"
+    },
+    {
+      "text": "The particle crosses its initial position at t = 2 s, which is the correct statement.",
+      "equation": "Statement (b) is correct"
+    }
+  ],
+  "final_answer": {
+    "option": 2,
+    "value": "The particle crosses its initial position at t = 2 s"
+  },
+  "confidence": "sure",
+  "common_mistakes": [
+    {
+      "option": 3,
+      "text": "Computing the average velocity (displacement/time = 0/2 = 0) and calling it the average speed, which is actually the total distance over time, 10/2 = 5 ms⁻¹."
+    }
+  ],
+  "concept_tags": [
+    "velocity-time graph",
+    "displacement from area under graph",
+    "average speed versus average velocity"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept",
+  "authored_by": {
+    "model": "sonnet",
+    "wave": 1,
+    "agent": "W01-A-kin-09",
+    "at": "2026-09-11T15:18:00+05:30"
+  }
+}

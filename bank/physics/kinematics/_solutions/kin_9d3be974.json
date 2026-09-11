@@ -1,0 +1,22 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_9d3be974",
+ "approach": "Use the standard equations for motion under constant gravity, taking upward as positive and deceleration g.",
+ "steps": [
+  {"text": "Maximum height uses the equation relating v² to u² with v = 0 at the top.", "equation": "0 = u² − 2gH, so H = u²/(2g)"},
+  {"text": "Substitute the values to find the maximum height.", "equation": "H = 50²/(2×10) = 2500/20 = 125 m"},
+  {"text": "Time to reach maximum height uses v = u − gt with v = 0 at the top.", "equation": "t = u/g = 50/10 = 5 s"},
+  {"text": "Half the maximum height is 62.5 m; use v² = u² − 2gh with this height to find the speed there.", "equation": "v² = 50² − 2×10×62.5 = 2500 − 1250 = 1250"},
+  {"text": "Take the square root to get the speed at half the maximum height.", "equation": "v = √1250 = 25√2 ≈ 35.36 m/s", "why_this_step": "This is the last unknown asked for, completing the three parts."}
+ ],
+ "final_answer": {"option": null, "value": "(a) H = 125 m, (b) t = 5 s, (c) v = 25√2 m/s ≈ 35.36 m/s"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Finding the speed at half the time to the top instead of half the height, using v = u − g(t/2) = 50 − 25 = 25 m/s, which answers a different question."},
+  {"option": null, "text": "Dropping the factor of 2 in v² = u² − 2gh and using v² = u² − gh, which gives about 43.3 m/s instead of 35.36 m/s."}
+ ],
+ "concept_tags": ["motion under gravity", "equations of motion"],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-05", "at": "2026-09-11T14:09:00+05:30"}
+}

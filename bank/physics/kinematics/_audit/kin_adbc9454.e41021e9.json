@@ -1,0 +1,16 @@
+{
+ "question_id": "kin_adbc9454",
+ "item_sha": "e41021e9d425509102de10de9e1434302ae689548795b688aab99e2c8e54d33c",
+ "auditor_option": null,
+ "auditor_value": "It is not really inconsistent: sₜ is the displacement in a one-second interval, so each term carries a suppressed factor of 1 s. Restoring it gives sₜ = u(1 s) + ½a(1 s)(2t − 1 s), and every term then has the dimension of length.",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-kin-01-R1",
+  "at": "2026-09-11T18:40:00+05:30"
+ }
+}

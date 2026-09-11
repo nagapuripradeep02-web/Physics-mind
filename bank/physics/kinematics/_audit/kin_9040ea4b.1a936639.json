@@ -1,0 +1,24 @@
+{
+ "question_id": "kin_9040ea4b",
+ "item_sha": "1a9366398ee5459d449b952be23c01a5c61a5313b73c143b38b409eb523d9fcc",
+ "auditor_option": null,
+ "auditor_value": "3 m/s directed east",
+ "findings": [
+  {
+   "grade": "weak",
+   "field": "common_mistakes[1].text",
+   "quote": "Simply subtracting the speeds as 2 − 1 = 1 m/s ignores that the two velocities are opposite in direction.",
+   "note": "Reader-facing text must be plain textbook English without the word \"simply\", which tells the student the step is easy instead of describing it.",
+   "fix": "Subtracting the speeds as 2 − 1 = 1 m/s ignores that the two velocities point in opposite directions."
+  }
+ ],
+ "verdict": "weak",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-kin-06",
+  "at": "2026-09-11T00:00:00+05:30"
+ }
+}

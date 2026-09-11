@@ -1,0 +1,11 @@
+{
+ "question_id": "kin_9e4b45c9",
+ "item_sha": "8b42779845f807d3340bcf64f6640f2327ebd0d7e0ec4dacd95eaf72b3433bcc",
+ "auditor_option": 2,
+ "auditor_value": "75 m",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Solved independently: 40t - 5t^2 = 40(t-2) - 5(t-2)^2 gives t = 5 s and y = 75 m, option b. common_mistakes is empty but the brief does not require entries.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-kin-07", "at": "2026-09-11T14:28:00+05:30"}
+}

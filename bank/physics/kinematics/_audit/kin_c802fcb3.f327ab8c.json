@@ -1,0 +1,16 @@
+{
+ "question_id": "kin_c802fcb3",
+ "item_sha": "f327ab8cf133b6cada343ea5aa8fd478ddc5dab040809aac96cc63dd9d8dcb80",
+ "auditor_option": null,
+ "auditor_value": "KE = ½mg²t² rising from 0 to a peak mgh at t₁ = √(2h/g), then the mirror curve KE = ½mg²(2t₁ − t)² back to 0 at t = 2t₁ = 2√(2h/g)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-kin-09",
+  "at": "2026-09-11T09:50:24+05:30"
+ }
+}

@@ -1,0 +1,43 @@
+{
+ "approach": "Differentiate the position function to get velocity, find the time the particle is at rest, then differentiate again to get acceleration at that time.",
+ "steps": [
+  {
+   "text": "Differentiate the position function to get the velocity.",
+   "equation": "v = dx/dt = 32 − 8t²"
+  },
+  {
+   "text": "Set the velocity to zero and solve for the physically valid (positive) time.",
+   "equation": "32 − 8t² = 0 → t² = 4 → t = 2 s"
+  },
+  {
+   "text": "Differentiate the velocity to get acceleration, then evaluate it at t = 2 s.",
+   "equation": "a = dv/dt = −16t → a(2) = −32 ms⁻²"
+  }
+ ],
+ "final_answer": {
+  "option": 2,
+  "value": "− 32 ms⁻²"
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": 3,
+   "text": "Solving 32 − 8t² = 0 and taking the negative root t = −2 s instead of the physical t = 2 s, giving a(−2) = 32 ms⁻²."
+  }
+ ],
+ "concept_tags": [
+  "differentiation",
+  "velocity and acceleration",
+  "particle at rest"
+ ],
+ "difficulty": "medium",
+ "mistake_type_hint": "calculation",
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_26d7cea3",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-08",
+  "at": "2026-09-11T14:20:00+05:30"
+ }
+}

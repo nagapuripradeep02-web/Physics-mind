@@ -1,0 +1,24 @@
+{
+ "question_id": "kin_d76b373f",
+ "item_sha": "9726a14f1a55e6b8e092307b3d09cd1e8f185e5111949863c5e4efc30312c348",
+ "auditor_option": 2,
+ "auditor_value": "g downward",
+ "findings": [
+  {
+   "grade": "weak",
+   "field": "steps[2].equation",
+   "quote": "a = F/m = g, downward",
+   "note": "The question already uses a for the balloon's upward acceleration, so this line reads as the false statement a = g. The physics is right; only the symbol is reused with a second meaning.",
+   "fix": "a_stone = F/m = g, downward"
+  }
+ ],
+ "verdict": "weak",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-kin-10",
+  "at": "2026-09-11T09:52:15+05:30"
+ }
+}

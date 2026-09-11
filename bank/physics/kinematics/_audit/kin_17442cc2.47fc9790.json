@@ -1,0 +1,11 @@
+{
+ "question_id": "kin_17442cc2",
+ "item_sha": "47fc9790c12241aece3be9c1329e0a1224ce89d8a7dc5c042ae20c36f6005fa5",
+ "auditor_option": null,
+ "auditor_value": "v-t: straight rise 0 to 20 m/s over 0-5 s, then slope -10 m/s^2 crossing zero at t = 7 s and reaching about -37.4 m/s at t = 10.74 s. s-t: upward parabola 0 to 50 m over 0-5 s, peak 70 m at t = 7 s, back to 0 at t = 10.74 s.",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-kin-01", "at": "2026-09-11T06:19:34+05:30"}
+}

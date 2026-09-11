@@ -1,0 +1,84 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_54e66b8d",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "mcq_single",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "A pair of identical balls are launched straight up along the same vertical path, each with an initial speed of 40 ms⁻¹. If the second ball is released 2 s after the first, find the height above the launch point where they collide. (Take g = 10 ms⁻²)",
+  "options": {
+   "1": "50 m",
+   "2": "75 m",
+   "3": "100 m",
+   "4": "125 m"
+  },
+  "parts": null,
+  "conditions": [
+   "motion under gravity",
+   "air resistance neglected",
+   "g = 10 ms⁻²",
+   "initial speed of each ball = 40 ms⁻¹",
+   "time delay between launches = 2 s",
+   "motion along the same vertical line"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Write the height of each ball measured from the moment each is launched, and set the two heights equal at the collision instant.",
+  "steps": [
+   {
+    "text": "Let t be the time measured from when the first ball is launched. Write its height.",
+    "equation": "y₁ = 40t − ½(10)t² = 40t − 5t²"
+   },
+   {
+    "text": "The second ball is launched 2 s later with the same initial velocity. Write its height for t ≥ 2 s.",
+    "equation": "y₂ = 40(t − 2) − 5(t − 2)²"
+   },
+   {
+    "text": "Set the two heights equal, since the balls collide at the same height, and solve for t.",
+    "equation": "40t − 5t² = 40(t − 2) − 5(t − 2)² → 20t = 100 → t = 5 s"
+   },
+   {
+    "text": "Substitute t = 5 s into the first ball's height to get the collision height.",
+    "equation": "y₁ = 40(5) − 5(5)² = 200 − 125 = 75 m"
+   }
+  ],
+  "final_answer": {
+   "option": 2,
+   "value": "75 m"
+  },
+  "common_mistakes": [],
+  "concept_tags": [
+   "vertical projectile motion",
+   "delayed launch",
+   "equations of motion"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "9e4b45c9cd088e64a43811b1889bc3c14323014cb75a347213453040042430ae"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "8b42779845f807d3340bcf64f6640f2327ebd0d7e0ec4dacd95eaf72b3433bcc",
+  "audited_by": "W01-U-kin-07"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-09",
+  "at": "2026-09-11T15:30:00+05:30"
+ }
+}

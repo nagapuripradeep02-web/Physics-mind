@@ -1,0 +1,20 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_d2bbc710",
+ "approach": "Integrate v = 40 − 10t to get the position x(t), then solve x(t) = 60 m and x(t) = −60 m for every non-negative time.",
+ "steps": [
+  {"text": "Integrate the velocity to get the position, starting from x = 0 at t = 0.", "equation": "x(t) = 40t − 5t²"},
+  {"text": "The particle moves in the positive direction until v = 0 at t = 4 s, reaching a maximum x = 80 m, then moves back through the origin into negative x.", "equation": "v = 0 at t = 4 s, x(4) = 80 m"},
+  {"text": "Solve x(t) = 60 m; the particle passes this point once going out and once coming back.", "equation": "40t − 5t² = 60 → t² − 8t + 12 = 0 → t = 2 s or t = 6 s"},
+  {"text": "Solve x(t) = −60 m for the positive root, since the particle also reaches 60 m from the origin on the negative side.", "equation": "40t − 5t² = −60 → t² − 8t − 12 = 0 → t = 4 + 2√7 ≈ 9.29 s"}
+ ],
+ "final_answer": {"option": null, "value": "t = 2 s, t = 6 s, and t = 4 + 2√7 s ≈ 9.29 s"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Stopping after finding t = 2 s and 6 s misses that the particle later reaches 60 m on the negative side too, at t = 4 + 2√7 s."}
+ ],
+ "concept_tags": ["kinematics with variable velocity", "integration", "quadratic equation"],
+ "difficulty": "hard",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-11", "at": "2026-09-11T15:03:00+05:30"}
+}

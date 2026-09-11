@@ -1,0 +1,86 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_33c7e58c",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "numerical",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A body is projected vertically upward from the ground with a launch speed u. It crosses an elevation of 80 m at two different instants, such that the time gap between these two occurrences is 6 s. Calculate the initial speed u. (Take g = 10 m/s²)",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "motion under gravity",
+   "projected vertically upward from ground",
+   "g = 10 m/s²",
+   "air resistance neglected",
+   "height reached twice = 80 m",
+   "time difference between identical heights = 6 s"
+  ],
+  "figure": {
+   "description": "A sketch illustrating the vertical path of an object thrown upwards from the ground with initial speed u, showing it at a height of 80 m during ascent and descent, with an upward positive sign convention."
+  }
+ },
+ "solution": {
+  "approach": "Write the height equation as a quadratic in time, use the sum and product of its two roots, and apply the given 6 s gap between them.",
+  "steps": [
+   {
+    "text": "Write the height reached at time t, taking upward as positive from the ground.",
+    "equation": "s(t) = ut − ½gt² = ut − 5t²"
+   },
+   {
+    "text": "Set the height to 80 m; this gives a quadratic whose two roots t₁ and t₂ are the two times the ball is at that height.",
+    "equation": "5t² − ut + 80 = 0"
+   },
+   {
+    "text": "From the quadratic, write the sum and product of the roots in terms of u.",
+    "equation": "t₁ + t₂ = u/5, t₁t₂ = 16"
+   },
+   {
+    "text": "Use (t₂ − t₁)² = (t₁+t₂)² − 4t₁t₂ with the given 6 s gap to solve for u.",
+    "equation": "36 = (u/5)² − 64 ⇒ (u/5)² = 100 ⇒ u = 50 m/s"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "u = 50 m/s"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Treating the 6 s gap as the single time to reach the height, and solving 80 = 6u − 5(6)² for u, giving about 43.3 m/s."
+   }
+  ],
+  "concept_tags": [
+   "equations of motion",
+   "quadratic in time",
+   "roots of a quadratic"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "52d332aa1a6f7ddb37aeadf9ed943cbf1011726c9fd4480fe8f29e08256eeea1"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "5596a4edf2e6167d5de661caeeab2a9eb98c4a2cff0de97030d6231efac4e6a4",
+  "audited_by": "W01-U-kin-03"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-01",
+  "at": "2026-09-11T15:14:00+05:30"
+ }
+}

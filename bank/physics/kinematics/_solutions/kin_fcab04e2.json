@@ -1,0 +1,40 @@
+{
+ "approach": "Velocity is the slope of the s-t graph, and its direction reverses only where the slope changes sign, not where the curve's concavity changes.",
+ "steps": [
+  {
+   "text": "Recall what the slope of the s-t graph represents.",
+   "equation": "v = ds/dt"
+  },
+  {
+   "text": "Point A is an inflection point, where the curve changes from concave upward to concave downward, meaning the rate of change of slope changes sign, not the slope itself."
+  },
+  {
+   "text": "Since the displacement keeps rising from 0 through A to B, the slope stays positive throughout, so the velocity does not change direction at A."
+  },
+  {
+   "text": "The Reason, that the sign of the slope decides the direction of velocity, is a true general statement, but it does not make the Assertion true here.",
+   "equation": "final answer: option (d)"
+  }
+ ],
+ "final_answer": {
+  "option": 4,
+  "value": "Assertion is false but the Reason is true."
+ },
+ "confidence": "sure",
+ "common_mistakes": [],
+ "concept_tags": [
+  "displacement-time graph",
+  "velocity from slope",
+  "concavity"
+ ],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_fcab04e2",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-08",
+  "at": "2026-09-11T14:20:00+05:30"
+ }
+}

@@ -1,0 +1,16 @@
+{
+ "question_id": "kin_aa3ceb25",
+ "item_sha": "ea5eaa71a8ffa832c2ddbefb371ff81198713effee294246dc48414123efa3b4",
+ "auditor_option": null,
+ "auditor_value": "θ ≈ 24.3° from the perpendicular, tilted downstream",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-kin-08",
+  "at": "2026-09-11T18:40:00+05:30"
+ }
+}

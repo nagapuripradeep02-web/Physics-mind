@@ -1,0 +1,19 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_67587250",
+ "approach": "Write the rain's true velocity in horizontal and vertical parts, use the first condition to fix the horizontal part, then the second condition to fix the vertical part.",
+ "steps": [
+  {"text": "Let the rain's true velocity have horizontal part v_x and vertical part v_y (downward). At 3 km/h the rain appears vertical, so the man's speed cancels the horizontal part of the rain.", "equation": "v_x − 3 = 0, so v_x = 3 km/h"},
+  {"text": "At 6 km/h the rain appears at 45° to the vertical, so the horizontal and vertical parts of the relative velocity are equal in size.", "equation": "|v_x − 6| = |v_y|, |3 − 6| = |v_y|, v_y = 3 km/h"},
+  {"text": "The speed of the rain is the size of its full velocity vector.", "equation": "v = √(3² + 3²) = √18 = 3√2 ≈ 4.24 km/h"}
+ ],
+ "final_answer": {"option": null, "value": "3√2 km/h ≈ 4.24 km/h"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Taking the rain's horizontal speed as 6 km/h instead of 3 km/h, using the second walking speed instead of the first, gives a wrong vertical speed."}
+ ],
+ "concept_tags": ["relative velocity", "vector components"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-03", "at": "2026-09-11T15:30:00+05:30"}
+}

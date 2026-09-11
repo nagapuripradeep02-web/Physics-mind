@@ -1,0 +1,16 @@
+{
+ "question_id": "kin_d9a3c5e7",
+ "item_sha": "daa4b852e71f01ee09a0116e4228a0a2d948d88acdb2c15a120ae12d2b099346",
+ "auditor_option": null,
+ "auditor_value": "Distance = 100 m, Average velocity = 0 m/s",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-kin-10",
+  "at": "2026-09-11T09:50:05+05:30"
+ }
+}

@@ -1,0 +1,101 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_13422286",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "An object travels along a circular path having a radius of 4 cm at a uniform speed of 1 cm/s. Determine:",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "The time period of revolution for the object."
+   },
+   {
+    "label": "b",
+    "asks": "The magnitudes of the average speed, average velocity, and average acceleration over the duration from t = 0 to t = T/4, where T denotes the time period."
+   }
+  ],
+  "conditions": [
+   "circular path of radius = 4 cm",
+   "constant speed = 1 cm/s",
+   "time interval from t = 0 to t = T/4",
+   "T is the time period",
+   "only magnitudes required"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Use circumference over speed for the period, then work out the distance, the chord, and the velocity change over a quarter turn.",
+  "steps": [
+   {
+    "text": "The time period is the circumference divided by the constant speed.",
+    "equation": "T = 2πr/v = 2π(4)/1 = 8π s ≈ 25.13 s"
+   },
+   {
+    "text": "From t = 0 to t = T/4 the particle covers a quarter of the circle, in a time of T/4.",
+    "equation": "T/4 = 2π s ≈ 6.28 s"
+   },
+   {
+    "text": "Since the speed never changes, the average speed over any interval equals this constant speed.",
+    "equation": "average speed = v = 1 cm/s"
+   },
+   {
+    "text": "The displacement is the straight chord joining the start and end points, which are 90° apart on the circle, so the average velocity is this chord divided by the time.",
+    "equation": "displacement = r√2 = 4√2 cm, average velocity = 4√2/(2π) ≈ 0.90 cm/s"
+   },
+   {
+    "text": "Over the quarter turn the velocity direction rotates by 90° while its magnitude stays at 1 cm/s, giving a velocity-vector change of v√2; the average acceleration is this change divided by the time.",
+    "equation": "|Δv| = √2 cm/s, average acceleration = √2/(2π) ≈ 0.23 cm/s²",
+    "why_this_step": "The velocity vectors at the two instants are perpendicular, so their difference has magnitude v√2, not zero."
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) T = 8π s ≈ 25.13 s. (b) average speed = 1 cm/s, average velocity ≈ 0.90 cm/s, average acceleration ≈ 0.23 cm/s²"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Subtracting the two speed values instead of the velocity vectors, 1 − 1 = 0, and concluding the average acceleration is zero, which ignores the change in direction."
+   },
+   {
+    "option": null,
+    "text": "Using the quarter-circle arc length as the displacement instead of the straight chord, which gives an average velocity equal to the average speed, 1 cm/s."
+   }
+  ],
+  "concept_tags": [
+   "uniform circular motion",
+   "average velocity",
+   "average acceleration"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "33fe6acc2840d4143ecba4c9703d06c023e98fe42dc97f98483074e67f698eef"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "3337d1cebc65834cef35aae8e2c2537f42f675dba8d58648eadf6254c5d32afc",
+  "audited_by": "W01-U-kin-02"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-05",
+  "at": "2026-09-11T14:05:00+05:30"
+ }
+}

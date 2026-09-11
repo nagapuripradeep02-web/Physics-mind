@@ -1,0 +1,11 @@
+{
+ "question_id": "kin_ec65d40b",
+ "item_sha": "5162494f238bdef0a9c67b0d1f754a4c56f4965be60706542a86ad0151ca5c58",
+ "auditor_option": null,
+ "auditor_value": "(a) v·a = −2 m²s⁻³; (b) obtuse; (c) speed is decreasing",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-kin-11", "at": "2026-09-11T09:50:48+05:30"}
+}

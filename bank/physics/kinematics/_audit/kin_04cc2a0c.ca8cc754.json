@@ -1,0 +1,16 @@
+{
+ "question_id": "kin_04cc2a0c",
+ "item_sha": "ca8cc75426edcf1e64101fe67a3bf6302128c4a277f9d85f931d9f088074fc9c",
+ "auditor_option": null,
+ "auditor_value": "0.603 m/s^2 (a = 2/sqrt(11), with v = sqrt(44) = 6.633 m/s at t = 3 s)",
+ "findings": [
+  {"grade": "weak", "field": "common_mistakes[1].text",
+   "quote": "Losing the factor of one-half while integrating v dv = 4 dt, writing v = 4t + C instead of v²/2 = 4t + C, which gives a = 0.4 m/s².",
+   "note": "The named cause does not match the equation it then prints. Losing only the one-half gives v² = 4t + C, which leads to a = 0.63 m/s²; the printed wrong equation v = 4t + C drops the whole v²/2 and is what gives 0.4 m/s². The number is right, the label for the error is not.",
+   "fix": "Writing the left side of ∫v dv as v instead of v²/2, so that v = 4t + C, gives v = 10 m/s at t = 3 s and a = 0.4 m/s²."}
+ ],
+ "verdict": "weak",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-kin-01", "at": "2026-09-11T06:24:00+05:30"}
+}

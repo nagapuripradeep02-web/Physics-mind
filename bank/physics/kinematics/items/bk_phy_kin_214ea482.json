@@ -1,0 +1,75 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_214ea482",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "conceptual",
+ "key_kind": "words",
+ "figure_required": false,
+ "question": {
+  "text": "A particle moves with a velocity vector v = (2î + 3ĵ − 4k̂) m/s while experiencing zero acceleration. Determine whether the particle undergoes one-dimensional (1-D), two-dimensional (2-D), or three-dimensional (3-D) motion.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "velocity v = (2î + 3ĵ − 4k̂) m/s",
+   "acceleration is zero"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Zero acceleration keeps the velocity vector fixed in direction, so the particle travels along one straight line however many components its velocity has.",
+  "steps": [
+   {
+    "text": "The acceleration is zero, so the velocity vector never changes in magnitude or direction.",
+    "equation": "a = 0 ⇒ v = constant vector"
+   },
+   {
+    "text": "A velocity that never changes direction means the particle travels along a single fixed straight line in space.",
+    "equation": null
+   },
+   {
+    "text": "A straight-line path is one-dimensional motion, regardless of how many axis components the velocity vector has.",
+    "equation": "motion is 1-D"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "1-D motion (straight-line motion)."
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Calling it 3-D motion because the velocity vector has three nonzero components, instead of checking that its direction stays fixed."
+   }
+  ],
+  "concept_tags": [
+   "dimensionality of motion",
+   "constant velocity"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "def74d972882c009249187a07206bc95c50dc6282b4aeca5f756261c351403be"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "f535670c8aaef9702410ab7df5be0b2fc11db4a7164ab0fd2de30f97a2567a79",
+  "audited_by": "W01-U-kin-11"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-01",
+  "at": "2026-09-11T15:04:00+05:30"
+ }
+}

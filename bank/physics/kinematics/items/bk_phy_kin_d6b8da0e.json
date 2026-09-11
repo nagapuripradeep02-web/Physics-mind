@@ -1,0 +1,79 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_d6b8da0e",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "numerical",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "An object travels along the x-axis under uniform acceleration. Its position coordinate relative to a fixed reference point is 2 m at t = 0 and becomes 0 at t = 10 s. Given that its speed momentarily drops to zero at t = 6 s, calculate its acceleration a and its velocity v at t = 10 s.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "motion along the x-axis",
+   "uniform acceleration",
+   "position x = 2 m at t = 0",
+   "position x = 0 at t = 10 s",
+   "velocity v = 0 at t = 6 s"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Use the zero-velocity instant at t = 6 s to relate the initial velocity to the acceleration, then use the displacement at t = 10 s to solve for both.",
+  "steps": [
+   {
+    "text": "Write velocity as v(t) = v₀ + at and use v(6) = 0 to relate v₀ and a.",
+    "equation": "v₀ = −6a"
+   },
+   {
+    "text": "Write displacement as x(t) = 2 + v₀t + ½at² and use x(10) = 0, substituting v₀ = −6a.",
+    "equation": "2 + (−6a)(10) + ½a(100) = 0 → 2 − 10a = 0"
+   },
+   {
+    "text": "Solve for a, then find v₀ and the velocity at t = 10 s.",
+    "equation": "a = 0.2 m/s², v₀ = −1.2 m/s, v(10) = −1.2 + 0.2(10) = 0.8 m/s"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "a = 0.2 m/s², v(10 s) = 0.8 m/s"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Assuming the particle starts from rest at t = 0 instead of using the given v(6 s) = 0 condition gives a = −0.04 m/s² and v(10) = −0.4 m/s, both wrong."
+   }
+  ],
+  "concept_tags": [
+   "equations of motion",
+   "constant acceleration",
+   "simultaneous equations"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "80d075e4f19bf83bcbc41df6ba6563313bb3b69fc3cb66745415ddfc5b637357"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "98a4602f1deab150771ed519b0e2213227e95a1b632ad976b977b5523f9e0473",
+  "audited_by": "W01-U-kin-06"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-11",
+  "at": "2026-09-11T15:12:00+05:30"
+ }
+}

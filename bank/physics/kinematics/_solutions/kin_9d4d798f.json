@@ -1,0 +1,55 @@
+{
+  "schema": "eapcet_solution_v1",
+  "question_id": "kin_9d4d798f",
+  "approach": "Use the area under the velocity-time graph in each segment to build the x-coordinate step by step, then use total displacement and total distance for the averages.",
+  "steps": [
+    {
+      "text": "Read the graph in five straight segments: 0 to 2 s (v from 0 to 4), 2 to 4 s (v from 4 to 0), 4 to 8 s (v from 0 to −8), 8 to 12 s (v constant at −8), 12 to 16 s (v from −8 to 0).",
+      "equation": "areas: +4 m, +4 m, −16 m, −32 m, −16 m"
+    },
+    {
+      "text": "Add each area to the running x-coordinate, starting from x = 10 m at t = 0.",
+      "equation": "x(2)=14, x(4)=18, x(8)=2, x(12)=−30, x(16)=−46 (all in m)"
+    },
+    {
+      "text": "Average velocity over the whole journey is the total displacement divided by the total time.",
+      "equation": "v_avg = (−46 − 10)/16 = −3.5 m/s"
+    },
+    {
+      "text": "Average speed is the total distance travelled, the sum of the sizes of each segment's area, divided by the total time.",
+      "equation": "distance = 4+4+16+32+16 = 72 m, speed_avg = 72/16 = 4.5 m/s"
+    },
+    {
+      "text": "Average acceleration between t = 2 s and t = 8 s is the change in velocity divided by the change in time, read from the graph.",
+      "equation": "a_avg = (−8 − 4)/(8 − 2) = −2 m/s²"
+    }
+  ],
+  "final_answer": {
+    "option": null,
+    "value": "(a) x goes 10→14→18→2→−30→−46 m at t=0,2,4,8,12,16 s; (b) average velocity = −3.5 m/s, average speed = 4.5 m/s; (c) average acceleration = −2 m/s²"
+  },
+  "confidence": "sure",
+  "common_mistakes": [
+    {
+      "option": null,
+      "text": "Using the total distance instead of the total displacement in the average velocity formula gives 72/16 = 4.5 m/s for both average velocity and average speed."
+    },
+    {
+      "option": null,
+      "text": "Dividing the velocity change by the total time 8 s instead of by the 6 s interval from t = 2 s to t = 8 s gives -1.5 m/s2 instead of -2 m/s2."
+    }
+  ],
+  "concept_tags": [
+    "velocity-time graph",
+    "displacement from graph",
+    "average velocity and speed"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "concept",
+  "authored_by": {
+    "model": "sonnet",
+    "wave": 1,
+    "agent": "W01-A-kin-03",
+    "at": "2026-09-11T15:30:00+05:30"
+  }
+}

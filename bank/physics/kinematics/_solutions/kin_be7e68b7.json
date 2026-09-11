@@ -1,0 +1,51 @@
+{
+  "schema": "eapcet_solution_v1",
+  "question_id": "kin_be7e68b7",
+  "approach": "Find the slope of each straight segment of the x-t graph; that slope is the constant velocity for the corresponding v-t segment.",
+  "steps": [
+    {
+      "text": "From t = 0 to 4 s, x stays constant at 4 m, so the slope, and hence the velocity, is zero.",
+      "equation": "v = (4 − 4)/(4 − 0) = 0"
+    },
+    {
+      "text": "From t = 4 to 10 s, x falls in a straight line from 4 m to −8 m, so the velocity is the constant slope of that line.",
+      "equation": "v = (−8 − 4)/(10 − 4) = −2 m/s"
+    },
+    {
+      "text": "From t = 10 to 14 s, x rises in a straight line from −8 m to 0, so the velocity is the constant slope of that line.",
+      "equation": "v = (0 − (−8))/(14 − 10) = 2 m/s"
+    },
+    {
+      "text": "The v-t graph is therefore three horizontal steps: v = 0 from 0 to 4 s, v = −2 m/s from 4 to 10 s, v = 2 m/s from 10 to 14 s.",
+      "equation": "v(t): 0 m/s, then −2 m/s, then 2 m/s"
+    }
+  ],
+  "final_answer": {
+    "option": null,
+    "value": "v = 0 for 0–4 s, v = −2 m/s for 4–10 s, v = 2 m/s for 10–14 s"
+  },
+  "confidence": "sure",
+  "common_mistakes": [
+    {
+      "option": null,
+      "text": "Reading the middle segment's velocity using the crossing point at t = 6 s instead of the interval from 4 to 10 s gives the same slope but a shortened interval on the v-t plot."
+    },
+    {
+      "option": null,
+      "text": "Giving the last segment's velocity as −2 m/s by keeping the sign of the previous segment instead of recomputing the slope, which is actually positive."
+    }
+  ],
+  "concept_tags": [
+    "position-time graph",
+    "velocity from slope",
+    "piecewise motion"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept",
+  "authored_by": {
+    "model": "sonnet",
+    "wave": 1,
+    "agent": "W01-A-kin-03",
+    "at": "2026-09-11T15:30:00+05:30"
+  }
+}

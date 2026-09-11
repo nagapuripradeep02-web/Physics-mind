@@ -1,0 +1,85 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_f43090b5",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "An object having mass m is dropped from rest at an altitude h. The object collides elastically with the floor, causing its speed to stay unchanged while reversing its motion upward. Draw the curve showing how its kinetic energy varies with elapsed time until the object reaches back to its starting height.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "released from rest (initial speed = 0)",
+   "initial height = h",
+   "mass = m",
+   "elastic collision with the ground (no loss of kinetic energy)",
+   "uniform gravitational acceleration g",
+   "air resistance neglected"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Kinetic energy grows as the square of the falling speed, peaks at the elastic bounce, then falls the same way as the ball rises back to its starting height.",
+  "steps": [
+   {
+    "text": "While falling from height h, speed grows as v = gt, so kinetic energy grows as the square of time.",
+    "equation": "KE(t) = ½m(gt)² = ½mg²t², for 0 ≤ t ≤ t₁ = √(2h/g)"
+   },
+   {
+    "text": "At the ground, all the potential energy has become kinetic energy; the elastic collision reverses the velocity direction but keeps its magnitude.",
+    "equation": "KE(t₁) = mgh, unchanged immediately after the bounce",
+    "why_this_step": "An elastic collision with the ground conserves kinetic energy, so no energy is lost at the bounce."
+   },
+   {
+    "text": "On the way up, the ball's speed is g(2t₁ − t), so kinetic energy falls back to zero as the ball returns to height h.",
+    "equation": "KE(t) = ½mg²(2t₁ − t)², for t₁ ≤ t ≤ 2t₁, total time 2t₁ = 2√(2h/g)"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "KE(t) rises from 0 at t = 0 to a peak mgh at t = t₁ = √(2h/g), following KE = ½mg²t²; at the bounce it stays mgh (elastic collision, no energy lost), then falls back along the mirror-image curve KE = ½mg²(2t₁ − t)² to 0 at t = 2t₁ = 2√(2h/g), when the ball is back at its initial position. The graph is two upward-curving parabolic pieces meeting at a sharp peak mgh at t = t₁."
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Drawing kinetic energy as a straight line rising to mgh and falling back, instead of the curved shape that follows from constant acceleration."
+   },
+   {
+    "option": null,
+    "text": "Assuming energy is lost at the bounce and drawing the rebound peak kinetic energy lower than the peak reached on the way down, even though the collision is elastic."
+   }
+  ],
+  "concept_tags": [
+   "kinetic energy in free fall",
+   "elastic collision with the ground",
+   "energy conservation"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "c802fcb3009dea44b20de6259e830987c89decb750430624211ff808ddaf40b1"
+ },
+ "verification": {
+  "key_match": false,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "f327ab8cf133b6cada343ea5aa8fd478ddc5dab040809aac96cc63dd9d8dcb80",
+  "audited_by": "W01-U-kin-09"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-12",
+  "at": "2026-09-11T16:18:00+05:30"
+ }
+}

@@ -1,0 +1,87 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_bb0a841f",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "mcq_single",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "The velocity components of an object traveling in the xy-plane depend on time according to vₓ = 8t − 2 and v_y = 2. At time t = 2 s, the object is located at the position x = 14 and y = 4. Which of the following expressions represents the equation of its trajectory?",
+  "options": {
+   "1": "x = y² − y + 2",
+   "2": "x = y² − 2",
+   "3": "x = y² + y − 6",
+   "4": "None of these"
+  },
+  "parts": null,
+  "conditions": [
+   "motion in xy-plane",
+   "velocity component vₓ = 8t − 2",
+   "velocity component v_y = 2",
+   "at t = 2 s, x = 14 and y = 4"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Integrate both velocity components with constants of integration, fix the constants from the given point, then eliminate time between x(t) and y(t).",
+  "steps": [
+   {
+    "text": "Integrate the two velocity components to get position, with constants of integration.",
+    "equation": "x(t) = 4t² − 2t + C₁, y(t) = 2t + C₂"
+   },
+   {
+    "text": "Use the given point x = 14, y = 4 at t = 2 s to find the constants.",
+    "equation": "14 = 16 − 4 + C₁ → C₁ = 2; 4 = 4 + C₂ → C₂ = 0"
+   },
+   {
+    "text": "Write x(t) and y(t) explicitly and solve y(t) for t.",
+    "equation": "x = 4t² − 2t + 2, y = 2t → t = y/2"
+   },
+   {
+    "text": "Substitute t = y/2 into x(t) to eliminate time and get the path equation.",
+    "equation": "x = 4(y/2)² − 2(y/2) + 2 = y² − y + 2"
+   }
+  ],
+  "final_answer": {
+   "option": 1,
+   "value": "x = y² − y + 2"
+  },
+  "common_mistakes": [
+   {
+    "option": 4,
+    "text": "Forgetting to solve for the constants of integration (taking C₁ = C₂ = 0) gives x = y² − y, which matches none of the printed algebraic options."
+   }
+  ],
+  "concept_tags": [
+   "integration of velocity",
+   "two-dimensional motion",
+   "equation of path"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "88e2db67d9aa3b3812ce03a49e79a7132dbc5b9a13b8b448e28f1e95386b5ff0"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "69d7f2e520ccdae47c75e47c89ba1f166450bc619a36e8952c7775a2f88276f6",
+  "audited_by": "W01-U-kin-06"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-08",
+  "at": "2026-09-11T14:20:00+05:30"
+ }
+}

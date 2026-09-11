@@ -1,0 +1,79 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_02330fdc",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "numerical",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A particle travels along a semicircular track having a radius of 1.0 m, starting at point A and reaching point B located at the opposite end of the diameter. If this motion takes a duration of 1.0 s, calculate the magnitude of the particle's average velocity.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "motion along a semicircular path",
+   "radius of semicircle = 1.0 m",
+   "time interval = 1.0 s",
+   "points A and B are diametrically opposite ends of the path"
+  ],
+  "figure": {
+   "description": "A semicircular path of radius 1.0 m connects starting position A at the top to final position B at the bottom along the circumference, with a straight vertical diameter of length 2.0 m joining A and B."
+  }
+ },
+ "solution": {
+  "approach": "Average velocity depends only on the straight-line displacement between the start and end points, not on the curved path taken.",
+  "steps": [
+   {
+    "text": "Points A and B are the two ends of the vertical diameter of the semicircle.",
+    "equation": null
+   },
+   {
+    "text": "The displacement from A to B is the diameter, twice the radius.",
+    "equation": "displacement = 2r = 2 × 1.0 m = 2.0 m"
+   },
+   {
+    "text": "Divide the displacement by the time taken to get the average velocity.",
+    "equation": "v_avg = 2.0 m / 1 s = 2.0 m/s"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "2.0 m/s"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Using the curved arc length instead of the straight-line displacement gives π × 1.0 = 3.14 m/s, which is the average speed, not the average velocity."
+   }
+  ],
+  "concept_tags": [
+   "average velocity",
+   "displacement versus distance"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "c7afcfb3ccbbf3569439d035979d2d22a6576f4a769bb63cce17f7e8d955c689"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "25912ef1fea36142e9d3cad04708b0a450e54e62d4def223a155fdb0620bc943",
+  "audited_by": "W01-U-kin-09"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-01",
+  "at": "2026-09-11T15:06:00+05:30"
+ }
+}

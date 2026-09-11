@@ -1,0 +1,11 @@
+{
+ "question_id": "kin_9a86f81d",
+ "item_sha": "4bcec70dcd1cbb10d026254e408060d3bd92a1c347ba316c515a55ed2d45402b",
+ "auditor_option": null,
+ "auditor_value": "(a) heading 3.8 degrees east of AB, i.e. bearing N33.8E, (b) about 2994 s = 49.9 min",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Solved independently by requiring the ground velocity to be parallel to AB: heading 33.82 degrees east of north, ground speed 166.99 m/s, time 2994.2 s. Both common_mistakes numbers recomputed and correct (500000/170 = 2941 s; asin(20/150) + 30 = 37.7 degrees).",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-kin-07", "at": "2026-09-11T14:31:00+05:30"}
+}

@@ -1,0 +1,24 @@
+{
+ "question_id": "kin_276c65a2",
+ "auditor_option": null,
+ "auditor_value": "8 m (at t = 2 s)",
+ "findings": [
+  {
+   "grade": "weak",
+   "field": "common_mistakes[0].text",
+   "quote": "missing that B's larger acceleration later pulls it ahead again",
+   "note": "Personifies acceleration as something that pulls. An acceleration does not pull a body; a student may read this as a force acting on B. Plain literal wording is required.",
+   "fix": "missing that B's larger acceleration makes B faster than A after t = 2 s, so the gap widens again"
+  }
+ ],
+ "verdict": "weak",
+ "question_defect": null,
+ "notes": null,
+ "item_sha": "0ef1678c42773a101cef9d80f3f24d9792528ae5b409013485db379107dd2450",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-kin-02",
+  "at": "2026-09-11T06:30:00+05:30"
+ }
+}

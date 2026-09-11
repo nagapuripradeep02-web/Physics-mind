@@ -1,0 +1,19 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_ab4886aa",
+ "approach": "A straight-line velocity-time graph means constant acceleration; integrating v = u + at over time gives the displacement formula, which is quadratic in time and so traces a parabola.",
+ "steps": [
+  {"text": "A straight line on the v-t graph means the velocity changes at a constant rate, so v = u + at with a constant.", "equation": "v = u + at"},
+  {"text": "Displacement is the area under the v-t graph up to time t, which integrates the linear velocity to a quadratic function of time.", "equation": "s = ut + ½at²"},
+  {"text": "A quadratic function of t traces a parabola on the s-t graph, so the Assertion is true and the Reason gives exactly the relation that produces it, making the Reason the correct explanation.", "equation": "Assertion true, Reason true, Reason explains Assertion"}
+ ],
+ "final_answer": {"option": 1, "value": "If both Assertion and Reason are true and the Reason is correct explanation of the Assertion."},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 3, "text": "Doubting that s = ut + ½at² is a true relation for uniformly accelerated motion and marking the Reason false, even though it is the standard equation of motion."}
+ ],
+ "concept_tags": ["equations of motion", "velocity-time graph", "displacement-time graph"],
+ "difficulty": "easy",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-07", "at": "2026-09-11T14:24:00+05:30"}
+}

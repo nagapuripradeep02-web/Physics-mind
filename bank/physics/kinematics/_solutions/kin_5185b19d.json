@@ -1,0 +1,56 @@
+{
+  "schema": "eapcet_solution_v1",
+  "question_id": "kin_5185b19d",
+  "approach": "Add the elevator's velocity to the ball's relative velocity to get its ground-frame velocity, then use straight-line motion under g = 10 m/s² for all three parts.",
+  "steps": [
+    {
+      "text": "The elevator ascends at constant speed, so it has zero acceleration. The ball's velocity in the ground frame at launch is the elevator's velocity plus the ball's velocity relative to the elevator.",
+      "equation": "u = 10 + 30 = 40 m/s upward"
+    },
+    {
+      "text": "For part (a), find the extra height the ball rises above the launch point using v² = u² − 2g(rise), then add the launch height h = 10 m above the ground.",
+      "equation": "rise = u²/(2g) = 1600/20 = 80 m, max height = 10 + 80 = 90 m"
+    },
+    {
+      "text": "For part (b), measure both positions from the launch point: the ball's height is y_ball(t) = ut − ½gt², and the elevator's floor height is y_elev(t) = 10t. Set them equal to find when the ball meets the elevator again.",
+      "equation": "40t − 5t² = 10t ⟹ 30t = 5t² ⟹ t = 6 s"
+    },
+    {
+      "text": "For part (c), the ground is 10 m below the launch point, so solve y_ball(t) = −10 for the time the ball lands, then subtract the meeting time found in part (b).",
+      "equation": "40t − 5t² = −10 ⟹ t² − 8t − 2 = 0 ⟹ t = 4 + 3√2 ≈ 8.24 s",
+      "why_this_step": "The quadratic has two roots, 4 − 3√2 ≈ −0.24 s and 4 + 3√2 ≈ 8.24 s. The negative root is a time before the throw, so the landing time is t = 4 + 3√2 ≈ 8.24 s."
+    },
+    {
+      "text": "Subtract the meeting time from the landing time to get the time taken after crossing the elevator.",
+      "equation": "(4 + 3√2) − 6 = 3√2 − 2 ≈ 2.24 s"
+    }
+  ],
+  "final_answer": {
+    "option": null,
+    "value": "(a) 90 m above the ground, (b) 6 s, (c) (3√2 − 2) s ≈ 2.24 s"
+  },
+  "confidence": "sure",
+  "common_mistakes": [
+    {
+      "option": null,
+      "text": "Using only the 30 m/s relative velocity as the ball's ground-frame speed, forgetting to add the elevator's 10 m/s, gives a maximum height of 55 m instead of 90 m."
+    },
+    {
+      "option": null,
+      "text": "Treating the elevator as stationary and setting the ball's height above the launch point to zero gives a meeting time of 8 s instead of the correct 6 s."
+    }
+  ],
+  "concept_tags": [
+    "relative velocity",
+    "vertical motion under gravity",
+    "elevator frame"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "concept",
+  "authored_by": {
+    "model": "sonnet",
+    "wave": 1,
+    "agent": "W01-A-kin-04",
+    "at": "2026-09-11T00:10:00+05:30"
+  }
+}

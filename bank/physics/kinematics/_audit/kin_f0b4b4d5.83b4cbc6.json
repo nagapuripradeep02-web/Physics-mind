@@ -1,0 +1,16 @@
+{
+ "question_id": "kin_f0b4b4d5",
+ "item_sha": "83b4cbc6ecd5b5380fc6bbbd93ee68c53e5e8ba306e97d21fa4f0255b84c43ef",
+ "auditor_option": null,
+ "auditor_value": "(a) t = 5/3 s ≈ 1.67 s, (b) both the lift and the ball rise 175/9 m ≈ 19.44 m, (c) distance covered by the ball = 175/9 m ≈ 19.44 m (it is still rising, since its apex is at t = 2 s)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-kin-02-R1",
+  "at": "2026-09-11T10:08:50+05:30"
+ }
+}

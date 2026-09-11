@@ -1,0 +1,79 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_efe73048",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "numerical",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A body is dropped from an elevation of 125 m starting with zero initial velocity. Compute its average velocity for the entire fall until reaching the ground. (Use g = 10 m/s²).",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "released from rest (initial velocity = 0)",
+   "initial height = 125 m",
+   "motion under constant gravitational acceleration",
+   "g = 10 m/s²",
+   "air resistance neglected"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Find the time to fall through the height using free fall kinematics, then divide the height by that time.",
+  "steps": [
+   {
+    "text": "Write the height fallen from rest as a function of time and solve for the time to reach the ground.",
+    "equation": "h = ½gt² → t = √(2h/g)"
+   },
+   {
+    "text": "Substitute the height and g to find the time of fall.",
+    "equation": "t = √(2×125/10) = 5 s"
+   },
+   {
+    "text": "Average velocity is the total displacement divided by the total time.",
+    "equation": "v_avg = h/t = 125/5 = 25 m/s"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "25 m/s"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Forgetting the factor 2 in h = ½gt² and using t = √(h/g) gives a time of about 3.54 s and an average velocity of about 35.4 m/s, which is wrong."
+   }
+  ],
+  "concept_tags": [
+   "free fall",
+   "average velocity",
+   "equations of motion"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "calculation"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "221d167c30d5751b2739396839f1e7884285cdfbb7541febeb3acff6d88c59a2"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "73174fc4e9c9a9d898af4e0dfad835ba79ddd9e6b23d8ce8ef06af6b7e5083a9",
+  "audited_by": "W01-U-kin-01"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-06",
+  "at": "2026-09-11T16:00:00+05:30"
+ }
+}

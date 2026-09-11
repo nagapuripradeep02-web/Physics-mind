@@ -1,0 +1,51 @@
+{
+ "approach": "Find the constant speed of the tip, the angle it sweeps in 15 s, and then the magnitude of the vector difference between the initial and final velocity.",
+ "steps": [
+  {
+   "text": "Find the angular speed of the seconds hand and the speed of its tip.",
+   "equation": "ω = 2π/60 = π/30 rad/s, v = ωr = π/30 cm/s"
+  },
+  {
+   "text": "Find the angle swept by the tip in 15 s.",
+   "equation": "Δθ = ω × 15 = π/2, that is, 90°"
+  },
+  {
+   "text": "The velocity vector keeps the same magnitude but turns through 90°, so find the magnitude of the vector difference between two perpendicular vectors of equal length.",
+   "equation": "|Δv| = √(v² + v² − 2v² cos90°) = v√2"
+  },
+  {
+   "text": "Substitute v = π/30 cm/s to get the change in velocity.",
+   "equation": "|Δv| = (π/30) × √2 = π√2/30 cm/s"
+  }
+ ],
+ "final_answer": {
+  "option": 4,
+  "value": "π√2/30 cm/s"
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": 1,
+   "text": "Assuming that because the speed (magnitude of velocity) stays constant, the velocity itself does not change, giving zero instead of accounting for the change in direction."
+  },
+  {
+   "option": 2,
+   "text": "Using the chord formula without the factor of two, computing v sin(Δθ/2) instead of 2v sin(Δθ/2), which gives π/(30√2) cm/s."
+  }
+ ],
+ "concept_tags": [
+  "circular motion",
+  "change in velocity",
+  "vectors"
+ ],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_82b920c1",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-08",
+  "at": "2026-09-11T14:20:00+05:30"
+ }
+}

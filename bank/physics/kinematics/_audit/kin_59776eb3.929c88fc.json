@@ -1,0 +1,24 @@
+{
+ "question_id": "kin_59776eb3",
+ "auditor_option": null,
+ "auditor_value": "a-t graph: constant −10 m/s² from t = 0 to t = 8 s. v-t graph: straight line from +40 m/s at t = 0 to −40 m/s at t = 8 s, crossing zero at t = 4 s. s-t graph: inverted parabola from 0 m, peak 80 m at t = 4 s, back to 0 m at t = 8 s.",
+ "findings": [
+  {
+   "grade": "harmful",
+   "field": "steps[1].equation",
+   "quote": "hmax = u²/4g = 40²/20 = 80 m",
+   "note": "The printed formula is false. The maximum height of a body thrown up with speed u is u²/2g, not u²/4g; u²/4g gives 1600/40 = 40 m, half the stated 80 m. The substitution that follows actually divides by 2g = 20, so the line contradicts itself, and a student who copies the symbolic form loses the mark.",
+   "fix": "hmax = u²/2g = 40²/20 = 80 m"
+  }
+ ],
+ "verdict": "harmful",
+ "question_defect": null,
+ "notes": "Every other line, the final answer and both common_mistakes entries are correct; only the symbolic denominator in this one line is wrong.",
+ "item_sha": "929c88fc4b0633d69b9b39d2b21b8ffbb82603ef5401cf037ceb89cba38160e4",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-kin-02",
+  "at": "2026-09-11T06:30:00+05:30"
+ }
+}

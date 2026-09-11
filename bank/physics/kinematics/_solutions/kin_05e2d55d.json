@@ -1,0 +1,42 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_05e2d55d",
+ "approach": "Check both parts of the statement against the definition of projectile motion: its plane of motion and its acceleration.",
+ "steps": [
+  {
+   "text": "A projectile moves in a vertical plane, so its motion needs two coordinates: it is two-dimensional.",
+   "equation": null
+  },
+  {
+   "text": "Its only acceleration is gravity, which stays constant in magnitude and direction through the whole flight.",
+   "equation": null
+  },
+  {
+   "text": "Both parts of the statement match the physics of projectile motion, so the statement is true.",
+   "equation": null
+  }
+ ],
+ "final_answer": {
+  "option": null,
+  "value": "True."
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": null,
+   "text": "Believing the acceleration changes because the velocity direction keeps changing during the flight, when only the velocity changes, not the acceleration."
+  }
+ ],
+ "concept_tags": [
+  "projectile motion",
+  "constant acceleration"
+ ],
+ "difficulty": "easy",
+ "mistake_type_hint": "concept",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-01",
+  "at": "2026-09-11T15:05:00+05:30"
+ }
+}

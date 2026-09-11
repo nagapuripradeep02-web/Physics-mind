@@ -1,0 +1,89 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_4f1f6a93",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "mcq_single",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "A rock is projected straight up into the air. As it passes through half of its highest elevation, it travels at a speed of 10 ms⁻¹. Determine the peak elevation achieved by the rock. (Take g = 10 ms⁻²)",
+  "options": {
+   "1": "25 m",
+   "2": "10 m",
+   "3": "15 m",
+   "4": "20 m"
+  },
+  "parts": null,
+  "conditions": [
+   "motion under constant gravitational acceleration",
+   "projected vertically upward",
+   "speed at half of maximum height is 10 ms⁻¹",
+   "speed at maximum height is 0 ms⁻¹",
+   "g = 10 ms⁻²",
+   "air resistance neglected"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Use the equation of motion between the launch point and the halfway point, with speed zero at maximum height, to eliminate the initial speed and find the maximum height.",
+  "steps": [
+   {
+    "text": "Let u be the launch speed and H the maximum height. Since the speed is zero at the top, u² = 2gH.",
+    "equation": "u² = 2gH"
+   },
+   {
+    "text": "Apply v² = u² − 2g(H/2) at the halfway point, where the speed is 10 ms⁻¹.",
+    "equation": "10² = u² − gH"
+   },
+   {
+    "text": "Substitute u² = 2gH into this equation.",
+    "equation": "100 = 2gH − gH = gH"
+   },
+   {
+    "text": "Solve for H using g = 10 ms⁻².",
+    "equation": "H = 100/10 = 10 m"
+   }
+  ],
+  "final_answer": {
+   "option": 2,
+   "value": "10 m"
+  },
+  "common_mistakes": [
+   {
+    "option": 4,
+    "text": "Assuming the speed falls in proportion to height, so the launch speed is twice 10 ms⁻¹, gives H = 20²/(2×10) = 20 m."
+   }
+  ],
+  "concept_tags": [
+   "equations of motion",
+   "vertical motion under gravity",
+   "maximum height"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "66c7db916d2a6f26a06838f4cb5bc92817e84ac9e9ca37a8f74d83d6910c990f"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "0732a5237eaa06ad86bd2af5d20fea1a487c1b5b77ad241e852d59e9213de773",
+  "audited_by": "W01-U-kin-04"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-10",
+  "at": "2026-09-11T14:06:00+05:30"
+ }
+}

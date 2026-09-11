@@ -1,0 +1,173 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter": "kinematics",
+ "slice": 2,
+ "round": 0,
+ "items": [
+  {
+   "question_id": "kin_2ba67bd0",
+   "question_text": "The position-time (x–t) graph of an object moving in one dimension consists of straight-line segments passing through the points (0 s, 0 m), (2.5 s, 50 m), (7.5 s, 50 m), (10.0 s, 100 m), and (15.0 s, 0 m). Using this information, calculate:\n(a) the average velocity over the time interval from 0 to 10 s\n(b) the instantaneous velocity at the time instants t = 2 s, t = 5 s, t = 8 s, and t = 12 s",
+   "options": [],
+   "figure_description": "A graph of position x (in m) plotted against time t (in s). The curve starts at (0, 0), rises with a constant positive slope to (2.5, 50), stays horizontal at x = 50 until t = 7.5, continues upward linearly to (10.0, 100), and then descends linearly to meet the time axis at (15.0, 0)."
+  },
+  {
+   "question_id": "kin_2c8344a3",
+   "question_text": "An elevator begins moving upward from a stationary state, with its acceleration changing over time as shown in the given graph. The acceleration is 2 ms⁻² between t = 0 and t = 4 s, remains 0 from t = 4 s to t = 8 s, and is −2 ms⁻² between t = 8 s and t = 12 s. Determine the total vertical displacement of the elevator from its initial level by the time it stops.",
+   "options": [
+    {
+     "label": "a",
+     "text": "20 m"
+    },
+    {
+     "label": "b",
+     "text": "64 m"
+    },
+    {
+     "label": "c",
+     "text": "32 m"
+    },
+    {
+     "label": "d",
+     "text": "36 m"
+    }
+   ],
+   "figure_description": "An acceleration-time graph showing acceleration a in ms⁻² on the vertical axis and time t in s on the horizontal axis. A horizontal line segment extends from t = 0 to t = 4 s at a = 2 ms⁻². The curve lies on the time axis (a = 0) from t = 4 s to t = 8 s. A horizontal line segment extends from t = 8 s to t = 12 s at a = −2 ms⁻²."
+  },
+  {
+   "question_id": "kin_296aab0c",
+   "question_text": "An object possesses an initial velocity v₀ = 10 ms⁻¹ and is subjected to a deceleration of magnitude 0.2v², where v represents its instantaneous velocity. What will be the velocity of the object at t = 2 s?",
+   "options": [
+    {
+     "label": "a",
+     "text": "+ 2 ms⁻¹"
+    },
+    {
+     "label": "b",
+     "text": "+ 4 ms⁻¹"
+    },
+    {
+     "label": "c",
+     "text": "− 2 ms⁻¹"
+    },
+    {
+     "label": "d",
+     "text": "+ 6 ms⁻¹"
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_26f8ac30",
+   "question_text": "A particle travels along a straight horizontal line with its velocity expressed as v = (3t² − 6t) m/s, where t is the time in seconds. Starting from the origin at t = 0, calculate the following for the duration between t = 0 and t = 3.5 s:\n(a) The total distance covered by the particle\n(b) The average velocity of the particle\n(c) The average speed of the particle",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_33fe6acc",
+   "question_text": "An object travels along a circular path having a radius of 4 cm at a uniform speed of 1 cm/s. Determine:\n(a) The time period of revolution for the object.\n(b) The magnitudes of the average speed, average velocity, and average acceleration over the duration from t = 0 to t = T/4, where T denotes the time period.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_3c9a75c7",
+   "question_text": "A particle travels along a straight path such that its speed v decreases as a linear function of position s, starting at 20 m/s when s = 0 and reaching zero at s = 30 m. Find the acceleration of the body at the position s = 15 m.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_29fe3403",
+   "question_text": "A particle, initially at rest, begins rectilinear motion with a uniform acceleration. When a duration t₀ has elapsed, the direction of this acceleration is reversed while its magnitude remains unchanged. Find the total elapsed time T from the start until the particle arrives back at its starting point.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_276c65a2",
+   "question_text": "At the same instant, two bodies, A and B, travel along a straight path in an identical direction. Particle A has an initial speed of 3 m/s and maintains a constant acceleration of 1 m/s², while particle B has an initial speed of 1 m/s and an acceleration of 2 m/s². If particle A begins at a position 10 m behind particle B, determine the closest distance of approach between the two particles.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_249eeb36",
+   "question_text": "From a height of 12 m, a ball is projected straight up with an initial speed of 18 m/s. Exactly at this moment, an open-platform lift crosses the 5 m mark while ascending at a steady speed of 2 m/s. Taking g = 9.8 m/s², calculate:\n(a) the time and location where the ball encounters the platform,\n(b) the velocity of the ball measured relative to the platform upon collision.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_3c4fc95f",
+   "question_text": "Given below are two statements labeled as Assertion and Reason. Choose the appropriate option that describes them.\n\nAssertion: Based on the formula a = v(dv/ds), whenever the velocity of a body equals zero, its acceleration must likewise vanish.\nReason: The quantity a defined in this expression represents the instantaneous acceleration.",
+   "options": [
+    {
+     "label": "a",
+     "text": "Both Assertion and Reason are true, and Reason is the correct explanation of Assertion."
+    },
+    {
+     "label": "b",
+     "text": "Both Assertion and Reason are true, but Reason is not the correct explanation of Assertion."
+    },
+    {
+     "label": "c",
+     "text": "Assertion is true, but Reason is false."
+    },
+    {
+     "label": "d",
+     "text": "Assertion is false, but Reason is true."
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_258f5b72",
+   "question_text": "A particle travels within the x-y plane such that its position coordinates at instant t are given by (2t, t²). Determine:\n(a) the equation of the particle's trajectory,\n(b) its velocity at time t, and\n(c) its acceleration at any instant t.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_3e4d3273",
+   "question_text": "The position of an object travelling across the xy-plane is given as a function of time by x = 2t² and y = t³, where coordinates x and y are measured in metres and time t is in seconds. Determine the average acceleration of the object over the duration from t = 0 to t = 2 s.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_2d693408",
+   "question_text": "A particle moving in the x-y plane experiences a time-dependent acceleration described by a = (2t î + 3t² ĵ) m/s². At the moment t = 0, it begins moving from the origin with an initial velocity of 2 m/s directed along the positive x-axis. Determine the velocity vector and the position coordinates of the particle at t = 1 s.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_59776eb3",
+   "question_text": "A body is thrown vertically upward with an initial speed of 40 m/s. Taking the upward direction as positive and assuming g = 10 m/s², draw the acceleration-time (a-t), velocity-time (v-t), and displacement-time (s-t) curves representing its entire motion until it returns to the launch level.\n(a) Acceleration-time (a-t) graph\n(b) Velocity-time (v-t) graph\n(c) Displacement-time (s-t) graph",
+   "options": [],
+   "figure_description": "Three kinematic graphs from t = 0 s to t = 8 s:\n1. a-t graph: A horizontal line at a = −10 m/s² spanning from t = 0 s to t = 8 s.\n2. v-t graph: A straight line with a constant negative slope beginning at (0 s, +40 m/s), intersecting the time axis at (4 s, 0 m/s), and ending at (8 s, −40 m/s).\n3. s-t graph: An inverted parabola starting at the origin (0 s, 0 m), reaching a peak at (4 s, 80 m), and returning to zero at (8 s, 0 m)."
+  },
+  {
+   "question_id": "kin_26d7cea3",
+   "question_text": "The position of an object traveling along a straight path varies with time according to the relation x = 32t − (8/3)t³, where the coordinate x is in metres and time t is in seconds. Determine its acceleration at the moment it momentarily comes to a stop.",
+   "options": [
+    {
+     "label": "a",
+     "text": "− 16 ms⁻²"
+    },
+    {
+     "label": "b",
+     "text": "− 32 ms⁻²"
+    },
+    {
+     "label": "c",
+     "text": "32 ms⁻²"
+    },
+    {
+     "label": "d",
+     "text": "16 ms⁻²"
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_33754b80",
+   "question_text": "An object is thrown straight up into the air with a starting speed of 40 m/s. Determine both its total displacement and the overall distance it travels during the first 6 s of its flight. (Use g = 10 m/s²)",
+   "options": [],
+   "figure_description": ""
+  }
+ ]
+}

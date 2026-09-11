@@ -1,0 +1,24 @@
+{
+ "question_id": "kin_f49171eb",
+ "item_sha": "ecce6223c0d8e530d37651074a07982930d4b38a6e077c38c02fc79002653386",
+ "auditor_option": null,
+ "auditor_value": "(a) |dv/dt| is the magnitude of the acceleration vector, which includes both the change of speed and the change of direction; d|v|/dt is the rate of change of speed alone. (b) They are equal when the acceleration is along the velocity, that is straight-line motion in which the speed is increasing; in uniform circular motion d|v|/dt = 0 while |dv/dt| = v²/R.",
+ "findings": [
+  {
+   "grade": "wrong",
+   "field": "steps[2].text",
+   "quote": "In straight-line motion the direction of velocity never changes, so the entire acceleration goes into changing the speed, and the two quantities are equal.",
+   "note": "Straight-line motion alone is not sufficient. If the object moves in a straight line while slowing down, d|v|/dt is negative while |dv/dt| is positive: for v = (5 − 2t) along x, |dv/dt| = 2 m/s² but d|v|/dt = −2 m/s² at t = 1 s. Equality needs the acceleration to point along the velocity, that is the speed increasing. The same claim is repeated in steps[2].equation and in final_answer.value.",
+   "fix": "When the acceleration is along the velocity, so that the object moves in a straight line with its speed increasing, the whole acceleration changes the speed and the two quantities are equal; if it moves in a straight line while slowing down, d|v|/dt is negative and equals −|dv/dt|."
+  }
+ ],
+ "verdict": "wrong",
+ "question_defect": null,
+ "notes": "Parts (a), the circular-motion example and the mistake entry are correct; the only defect is the unqualified claim of equality for all straight-line motion.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-kin-12",
+  "at": "2026-09-11T09:53:17+05:30"
+ }
+}

@@ -1,0 +1,23 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_26f8ac30",
+ "approach": "Split the motion where velocity reverses sign, integrate to get position, add distances in each part for total distance, and use net displacement for average velocity.",
+ "steps": [
+  {"text": "Set v = 3t² − 6t equal to zero to find when the particle reverses direction.", "equation": "3t² − 6t = 0 → t = 0 s, t = 2 s"},
+  {"text": "Integrate v with respect to t, taking the particle at the origin at t = 0, to get its position.", "equation": "x(t) = t³ − 3t²"},
+  {"text": "Find the position at t = 0, t = 2 s and t = 3.5 s.", "equation": "x(0) = 0, x(2) = −4 m, x(3.5) = 6.125 m"},
+  {"text": "From t = 0 to t = 2 s the particle moves from 0 to −4 m; from t = 2 s to t = 3.5 s it moves from −4 m to 6.125 m. Add these distances.", "equation": "4 m + 10.125 m = 14.125 m",
+   "why_this_step": "Total distance adds the length travelled in each leg of the trip, even where the particle doubles back."},
+  {"text": "Average velocity uses net displacement over the interval; average speed uses total distance over the interval.", "equation": "average velocity = 6.125/3.5 = 1.75 m/s, average speed = 14.125/3.5 ≈ 4.04 m/s"}
+ ],
+ "final_answer": {"option": null, "value": "distance travelled = 14.125 m, average velocity = 1.75 m/s, average speed ≈ 4.04 m/s"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Taking the net displacement x(3.5) − x(0) = 6.125 m as the total distance, missing that the particle reverses direction at t = 2 s and travels back and forth."},
+  {"option": null, "text": "Reporting average speed as equal to average velocity, 1.75 m/s, without separating distance from displacement."}
+ ],
+ "concept_tags": ["velocity as a function of time", "distance versus displacement", "average velocity and average speed"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-12", "at": "2026-09-11T16:03:00+05:30"}
+}

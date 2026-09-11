@@ -1,0 +1,11 @@
+{
+ "question_id": "kin_64fe014e",
+ "item_sha": "6221674f6117aa3177a332559beeb0b3535c3b529750993a3db813884352dc28",
+ "auditor_option": null,
+ "auditor_value": "(a) average speed = 100/6 = 16.7 m/s, (b) average velocity = 10 m/s directed downward",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-kin-04", "at": "2026-09-11T12:08:00+05:30"}
+}

@@ -1,0 +1,84 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_3637e32b",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "mcq_single",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "The position x of an object changes with time t according to the relationship √x = t + 3. Which of the following statements about its motion is correct?",
+  "options": {
+   "1": "velocity of the particle is inversely proportional to t",
+   "2": "velocity of particle varies linearly with t",
+   "3": "velocity of particle is proportional to √t",
+   "4": "initial velocity of the particle is zero"
+  },
+  "parts": null,
+  "conditions": [
+   "position-time relationship is √x = t + 3"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Square both sides to write displacement as a function of time, then differentiate to find how velocity depends on time.",
+  "steps": [
+   {
+    "text": "Square both sides of the given relation to write x as a function of t.",
+    "equation": "√x = t + 3 → x = (t + 3)² = t² + 6t + 9"
+   },
+   {
+    "text": "Differentiate x with respect to t to get the velocity.",
+    "equation": "v = dx/dt = 2t + 6"
+   },
+   {
+    "text": "This expression is of the form v = 2t + 6, which is a straight line in t, so velocity varies linearly with time.",
+    "equation": "v = 2t + 6"
+   },
+   {
+    "text": "Check the initial velocity at t = 0 to rule out the other options.",
+    "equation": "v(0) = 2(0) + 6 = 6 ms⁻¹, not zero, not inversely proportional to t, and not proportional to √t"
+   }
+  ],
+  "final_answer": {
+   "option": 2,
+   "value": "velocity of particle varies linearly with t"
+  },
+  "common_mistakes": [
+   {
+    "option": 4,
+    "text": "Differentiating t² + 6t + 9 but dropping the 6t term by mistake, leaving v = 2t, which gives v(0) = 0 instead of the correct 6 ms⁻¹."
+   }
+  ],
+  "concept_tags": [
+   "displacement-time relation",
+   "differentiation",
+   "velocity as a function of time"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "calculation"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "9eb941410c8ed7e13002b882d417f8a7e3141c9474db3c842acbc2265988d623"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "f2000cfe8d0c8cfac1c62a97187f045b45068565de8c7159b9e0337478fa5914",
+  "audited_by": "W01-U-kin-07"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-09",
+  "at": "2026-09-11T15:39:00+05:30"
+ }
+}

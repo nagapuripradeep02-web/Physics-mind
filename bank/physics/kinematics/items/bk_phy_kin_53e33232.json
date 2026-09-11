@@ -1,0 +1,83 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_53e33232",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "numerical",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "From the roof of a 40 m tall building, an object is projected vertically upward at a speed of 10 m/s. Determine the total duration of flight before it reaches the ground below. Assume g = 10 m/s².",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "height of tower = 40 m",
+   "initial velocity = 10 m/s vertically upward",
+   "g = 10 m/s² downwards",
+   "air resistance neglected",
+   "uniform gravitational acceleration"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Take upward as positive from the top of the tower, write the displacement equation, and set it equal to the position of the ground.",
+  "steps": [
+   {
+    "text": "Write the displacement of the ball from the top of the tower as a function of time, taking upward as positive.",
+    "equation": "s(t) = ut − ½gt² = 10t − 5t²"
+   },
+   {
+    "text": "The ground is 40 m below the starting point, so set s(t) equal to −40 m.",
+    "equation": "10t − 5t² = −40"
+   },
+   {
+    "text": "Rearrange into a standard quadratic and solve for t.",
+    "equation": "5t² − 10t − 40 = 0 ⇒ t² − 2t − 8 = 0 ⇒ t = 4 s or t = −2 s"
+   },
+   {
+    "text": "Reject the negative time since it comes before the ball is thrown; the ball strikes the ground at t = 4 s.",
+    "equation": "t = 4 s"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "t = 4 s"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Counting only the trip up and back down to the top of the tower (1 s up, 1 s down), giving 2 s and missing the further fall to the ground."
+   }
+  ],
+  "concept_tags": [
+   "equations of motion",
+   "sign convention",
+   "quadratic in time"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "d4ea68c2abb182ddea2907412f98674d352f66bec6af7d7be1a14e7a1c49a01b"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "d7d3ef5d9ecf8d40fd87691c997c59ce612154f142268e90720633f104b8c588",
+  "audited_by": "W01-U-kin-10"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-01",
+  "at": "2026-09-11T15:13:00+05:30"
+ }
+}

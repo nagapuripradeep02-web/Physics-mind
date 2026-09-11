@@ -1,0 +1,19 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_1bfd0c8d",
+ "approach": "Read the starting position directly from x at t = 0, then differentiate x once and twice for velocity and acceleration.",
+ "steps": [
+  {"text": "The particle's starting position is x at t = 0.", "equation": "x(0) = 2 m"},
+  {"text": "Differentiate x with respect to time to get the velocity, then substitute t = 0.", "equation": "v = dx/dt = 2t + 6t² → v(0) = 0 m/s"},
+  {"text": "Differentiate v with respect to time to get the acceleration, then substitute t = 2 s.", "equation": "a = dv/dt = 2 + 12t → a(2) = 2 + 24 = 26 m/s²"}
+ ],
+ "final_answer": {"option": null, "value": "(a) 2 m, (b) 0 m/s, (c) 26 m/s²"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Reporting the velocity at t = 2 s, which is 28 m/s, instead of differentiating a second time for the acceleration, which is 26 m/s²."}
+ ],
+ "concept_tags": ["differentiation", "initial conditions"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-06", "at": "2026-09-11T16:00:00+05:30"}
+}

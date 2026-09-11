@@ -1,0 +1,173 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter": "kinematics",
+ "slice": 4,
+ "round": 0,
+ "items": [
+  {
+   "question_id": "kin_60bf36d4",
+   "question_text": "An object moves along the positive x-axis having an initial speed of 2.5 m/s and experiences a constant acceleration of 0.50 m/s².\n(a) Determine the total distance traversed during the initial 2 s.\n(b) Calculate the time needed for its speed to reach 7.5 m/s.\n(c) Find the displacement covered by the object when it attains a speed of 7.5 m/s.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_6585ed94",
+   "question_text": "Assertion: When two objects with different masses m₁ and m₂ are released from an identical elevation under identical drag forces from air, they hit the ground simultaneously.\nReason: The downward acceleration during fall differs between masses m₁ and m₂ when they experience identical opposing air forces.",
+   "options": [
+    {
+     "label": "a",
+     "text": "Both Assertion and Reason are true, and Reason is the correct explanation of Assertion."
+    },
+    {
+     "label": "b",
+     "text": "Both Assertion and Reason are true, but Reason is not the correct explanation of Assertion."
+    },
+    {
+     "label": "c",
+     "text": "Assertion is true, but Reason is false."
+    },
+    {
+     "label": "d",
+     "text": "Assertion is false, but Reason is true."
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_64fe014e",
+   "question_text": "From the top of a 60 m tall structure, an object is thrown vertically upward with an initial speed of 20 m/s. Considering the entire duration of motion until it hits the ground, determine: (Use g = 10 m/s²)\n(a) the average speed of the object\n(b) the average velocity of the object",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_57613985",
+   "question_text": "A particle travels along a straight path with a velocity that varies with time as depicted in the graph. Draw the corresponding position-time (s−t) graph of the motion, given that the particle is at s = 0 when t = 0.",
+   "options": [],
+   "figure_description": "A velocity-time (v−t) graph with v (in m/s) on the vertical axis and t (in s) on the horizontal axis. The graph consists of four straight-line segments connecting the points: O(0, 0) to A(2, 10), A(2, 10) to B(4, 10), B(4, 10) to C(6, 20), and C(6, 20) to D(8, 0)."
+  },
+  {
+   "question_id": "kin_5d9d8a37",
+   "question_text": "The trajectory of an object follows the path y = x²/2, with its horizontal position changing over time according to x = t²/2 (where x and y are given in metres and t is given in seconds). Find the velocity vector of this object at the instant t = 2 s (in m s⁻¹).",
+   "options": [
+    {
+     "label": "a",
+     "text": "4î + 6ĵ"
+    },
+    {
+     "label": "b",
+     "text": "2î + 4ĵ"
+    },
+    {
+     "label": "c",
+     "text": "4î + 2ĵ"
+    },
+    {
+     "label": "d",
+     "text": "4î + 4ĵ"
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_583c5b7b",
+   "question_text": "A person starting from point A on one bank of a river intends to reach point B located on the opposing bank downstream. The straight line joining A to B is inclined at an angle of 45° to the line perpendicular to the banks. The water moves at a uniform speed u parallel to the banks.\n(a) Determine the lowest possible speed of the person relative to the water that allows them to reach point B.\n(b) Find the heading angle θ (measured upstream from the line perpendicular to the river bank) at which the person must swim.",
+   "options": [],
+   "figure_description": "A river of uniform width flows horizontally to the right with velocity u. Point A is situated on the bottom bank, and point B is located on the top bank downstream. A perpendicular dashed line across the river from A makes an angle of 45° with the straight line AB connecting A and B."
+  },
+  {
+   "question_id": "kin_59776eb3",
+   "question_text": "A body is thrown vertically upward with an initial speed of 40 m/s. Taking the upward direction as positive and assuming g = 10 m/s², draw the acceleration-time (a-t), velocity-time (v-t), and displacement-time (s-t) curves representing its entire motion until it returns to the launch level.\n(a) Acceleration-time (a-t) graph\n(b) Velocity-time (v-t) graph\n(c) Displacement-time (s-t) graph",
+   "options": [],
+   "figure_description": "Three kinematic graphs from t = 0 s to t = 8 s:\n1. a-t graph: A horizontal line at a = −10 m/s² spanning from t = 0 s to t = 8 s.\n2. v-t graph: A straight line with a constant negative slope beginning at (0 s, +40 m/s), intersecting the time axis at (4 s, 0 m/s), and ending at (8 s, −40 m/s).\n3. s-t graph: An inverted parabola starting at the origin (0 s, 0 m), reaching a peak at (4 s, 80 m), and returning to zero at (8 s, 0 m)."
+  },
+  {
+   "question_id": "kin_67587250",
+   "question_text": "When a person travels horizontally at 3 km/h, raindrops seem to descend straight vertically downwards. If the person speeds up to 6 km/h in the same direction, the falling rain appears to strike at an angle of 45° relative to the vertical. Determine the true speed of the rain.",
+   "options": [],
+   "figure_description": "A standard 2D Cartesian coordinate system with the horizontal axis directed to the right labeled with unit vector î and the vertical axis pointing upward labeled with unit vector ĵ."
+  },
+  {
+   "question_id": "kin_5ac57544",
+   "question_text": "Two bodies travel along the same linear path. At time t = 0, both pass through a fixed point A simultaneously. At this instant, the first body possesses a speed 2u and a uniform acceleration a, while the second body possesses a speed u and a uniform acceleration 2a in the same direction. Determine the distance covered by the bodies from point A up to the moment when one catches up with the other.",
+   "options": [
+    {
+     "label": "a",
+     "text": "6u²/a"
+    },
+    {
+     "label": "b",
+     "text": "2u²/a"
+    },
+    {
+     "label": "c",
+     "text": "4u²/a"
+    },
+    {
+     "label": "d",
+     "text": "8u²/a"
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_6b48a87e",
+   "question_text": "A body travels along a rectilinear path with an acceleration that changes over time as described below. If the body begins its motion from rest at t = 0 s, sketch the corresponding velocity-time graph from t = 0 s to t = 6 s:\n• For 0 ≤ t ≤ 2 s, acceleration a = +2 m/s²\n• For 2 s < t ≤ 4 s, acceleration a = 0 m/s²\n• For 4 s < t ≤ 6 s, acceleration a = −4 m/s²",
+   "options": [],
+   "figure_description": "An acceleration versus time (a-t) plot where acceleration is plotted on the vertical axis in m/s² and time is on the horizontal axis in seconds. The graph has three piecewise horizontal segments: a segment at a = +2 m/s² spanning from t = 0 s to 2 s, a segment along the time axis at a = 0 m/s² from t = 2 s to 4 s, and a segment at a = −4 m/s² extending from t = 4 s to 6 s."
+  },
+  {
+   "question_id": "kin_6cda6779",
+   "question_text": "At the initial instant t = 0, a moving particle has a velocity given by u = (2î + 3ĵ) m/s and experiences a constant acceleration a = (4î + 2ĵ) m/s². Determine both the velocity vector and the displacement vector of the particle at time t = 2 s.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_7a31923d",
+   "question_text": "An object moves along a straight path such that it maintains a constant speed v₁ for the initial half of its total travel duration, and a constant speed v₂ for the final half of the duration. Determine the average speed of the object throughout the entire trip.",
+   "options": [],
+   "figure_description": "A line segment from point A to point B split at a point C into two sections: section AC corresponds to duration t, speed v₁, and distance d₁; section CB corresponds to duration t, speed v₂, and distance d₂."
+  },
+  {
+   "question_id": "kin_68aadf8f",
+   "question_text": "The position-time graphs for two objects, A and B, traveling along the x-direction are depicted in the given figure.\n(a) Determine the initial time when each particle begins moving, as well as the position coordinate at that moment.\n(b) Calculate the constant velocity of each particle.\n(c) Find the time and position where the two particles collide.",
+   "options": [],
+   "figure_description": "A graph of position x (in m) on the vertical axis versus time t (in s) on the horizontal axis. Line A begins at (t = 0 s, x = 10 m) and continues linearly through (t = 8 s, x = 30 m). Line B begins at (t = 4 s, x = 0 m) and continues linearly, intersecting line A at the point (t = 8 s, x = 30 m)."
+  },
+  {
+   "question_id": "kin_670f332e",
+   "question_text": "The motion of a particle along a straight path is represented by the provided velocity–time plot. Over the duration spanning t = 0 to t = 14 s, determine the following:\n(a) The average velocity of the particle\n(b) The average speed of the particle",
+   "options": [],
+   "figure_description": "A plot of velocity v (m/s) versus time t (s). The graph consists of straight line segments connecting the following points sequentially: (0, 0), (2, 10), (4, 20), (6, 20), (10, 0), (12, −10), and (14, 0)."
+  },
+  {
+   "question_id": "kin_66c7db91",
+   "question_text": "A rock is projected straight up into the air. As it passes through half of its highest elevation, it travels at a speed of 10 ms⁻¹. Determine the peak elevation achieved by the rock. (Take g = 10 ms⁻²)",
+   "options": [
+    {
+     "label": "a",
+     "text": "25 m"
+    },
+    {
+     "label": "b",
+     "text": "10 m"
+    },
+    {
+     "label": "c",
+     "text": "15 m"
+    },
+    {
+     "label": "d",
+     "text": "20 m"
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_59c4c694",
+   "question_text": "The length of the second hand of a clock is 2.0 cm. Determine the average speed along with the magnitude of the average velocity of its tip over a time interval of 15 s.",
+   "options": [],
+   "figure_description": ""
+  }
+ ]
+}

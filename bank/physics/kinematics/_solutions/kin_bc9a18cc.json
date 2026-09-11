@@ -1,0 +1,19 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_bc9a18cc",
+ "approach": "Average velocity and average acceleration come from the change in position and velocity over the time interval; average speed needs the path length, which is not given.",
+ "steps": [
+  {"text": "Divide the change in position by the 4 s interval for the average velocity.", "equation": "v_avg = ((6−1)î + (4−2)ĵ)/4 = (1.25î + 0.5ĵ) m/s"},
+  {"text": "Divide the change in velocity by the 4 s interval for the average acceleration.", "equation": "a_avg = ((2−4)î + (10−6)ĵ)/4 = (−0.5î + 1.0ĵ) m/s²"},
+  {"text": "Average speed needs the total path length travelled by the particle, and only its endpoints and instantaneous velocities there are known, not the actual curved path between them, so it cannot be found from this data.", "equation": "average speed: not determinable"}
+ ],
+ "final_answer": {"option": null, "value": "(a) average velocity = (1.25î + 0.5ĵ) m/s, magnitude ≈ 1.35 m/s. (b) average acceleration = (−0.5î + 1.0ĵ) m/s², magnitude ≈ 1.12 m/s². (c) No, average speed cannot be found from the given data because the actual path length travelled is unknown."},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Taking the magnitude of the average velocity vector, about 1.35 m/s, as the average speed wrongly assumes the particle moved in a straight line between the two points."}
+ ],
+ "concept_tags": ["average velocity", "average acceleration", "average speed", "vectors"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-11", "at": "2026-09-11T15:07:00+05:30"}
+}

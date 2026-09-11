@@ -1,0 +1,24 @@
+{
+ "question_id": "kin_d194bd74",
+ "item_sha": "4653e4f78c8f7c1951c7c4ae7b10294d6ee8e170d7279b2e7a041e0dd4ee6f2e",
+ "auditor_option": null,
+ "auditor_value": "v = 10 m/s",
+ "findings": [
+  {
+   "grade": "weak",
+   "field": "common_mistakes[0].text",
+   "quote": "Treating the triangle as base 4, height 4 gives area 8, correct here; misreading the axes as base 4, height 2 gives Δv = 4 m/s and a wrong answer of 6 m/s.",
+   "note": "The entry opens by describing a calculation it then calls correct, so half of a common-mistakes entry is not a mistake at all. Only the second clause names an actual error; the arithmetic in both clauses is right.",
+   "fix": "Misreading the peak of the graph as 2 m/s² instead of 4 m/s² gives Δv = ½ × 4 × 2 = 4 m/s and a wrong answer of 6 m/s."
+  }
+ ],
+ "verdict": "weak",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-kin-10",
+  "at": "2026-09-11T09:52:48+05:30"
+ }
+}

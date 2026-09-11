@@ -1,0 +1,15 @@
+{
+ "question_id": "kin_583c5b7b",
+ "item_sha": "e926e873fe93687eea9d182aa44d3b13870a318dfa2aa0be0d2b0b5f35a88ec0",
+ "auditor_option": null,
+ "auditor_value": "(a) v_min = u sin 45 = u/sqrt(2)  (b) theta = 45 degrees upstream from the perpendicular to the bank",
+ "findings": [
+  {"grade": "weak", "field": "final_answer.value", "quote": "which makes 45\u00b0 with the straight-across direction AN",
+   "note": "The label AN is never defined in the question or in the figure as served; the figure shows only an unlabelled dashed perpendicular from A, so the reader cannot resolve the reference. The physics value, 45 degrees, is correct.",
+   "fix": "which makes 45\u00b0 with the line perpendicular to the banks, tilted upstream"}
+ ],
+ "verdict": "weak",
+ "question_defect": null,
+ "notes": "Part (b) is answered correctly (45 degrees upstream of the normal); only the dangling figure label is at fault.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-kin-04", "at": "2026-09-11T12:20:00+05:30"}
+}

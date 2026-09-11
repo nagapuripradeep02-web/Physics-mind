@@ -1,0 +1,20 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_68aadf8f",
+ "approach": "Read each line's starting point directly from the graph, then use the slope from that start to the meeting point for each particle's velocity.",
+ "steps": [
+  {"text": "Read the starting point of each line from the graph.", "equation": "A starts at t = 0 s, x = 10 m; B starts at t = 4 s, x = 0 m"},
+  {"text": "Find the velocity of A as the slope from its start to the meeting point.", "equation": "vA = (30 − 10)/(8 − 0) = 2.5 m/s"},
+  {"text": "Find the velocity of B as the slope from its start to the meeting point.", "equation": "vB = (30 − 0)/(8 − 4) = 7.5 m/s"},
+  {"text": "The two lines cross at the point read directly from the graph, which is where the particles meet.", "equation": "t = 8 s, x = 30 m"}
+ ],
+ "final_answer": {"option": null, "value": "(a) A starts at t = 0 s, x = 10 m; B starts at t = 4 s, x = 0 m. (b) vA = 2.5 m/s, vB = 7.5 m/s. (c) They meet at t = 8 s, x = 30 m."},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Finding the velocity of B using the slope from t = 0 instead of its actual start at t = 4 s gives 3.75 m/s instead of 7.5 m/s."}
+ ],
+ "concept_tags": ["position-time graph", "relative motion", "slope as velocity"],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-06", "at": "2026-09-11T16:00:00+05:30"}
+}

@@ -1,0 +1,22 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_fc2a2e26",
+ "approach": "Write every distance in terms of the total time, add them up, and divide by the total time so the total time cancels out.",
+ "steps": [
+  {"text": "Let the total time of the journey be T. In the first half of the time, T/2, the particle moves at 2 m/s.", "equation": "d1 = 2 × (T/2) = T"},
+  {"text": "In the second half of the time, T/2, the particle covers some distance d2, one quarter of it at 4 m/s and three quarters of it at 6 m/s; write the time for each part and add them to T/2.", "equation": "(d2/4)/4 + (3d2/4)/6 = T/2"},
+  {"text": "Solve this equation for d2.", "equation": "d2/16 + d2/8 = T/2, so 3d2/16 = T/2, d2 = 8T/3"},
+  {"text": "Add the two distances to get the total distance covered.", "equation": "total distance = T + 8T/3 = 11T/3"},
+  {"text": "Average speed is total distance divided by the total time T, and T cancels out.", "equation": "average speed = (11T/3)/T = 11/3 ≈ 3.67 m/s", "why_this_step": "Since every distance was written proportional to T, the actual value of T never matters."}
+ ],
+ "final_answer": {"option": null, "value": "11/3 m/s ≈ 3.67 m/s"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Taking the plain average of the three speeds, (2 + 4 + 6)/3 = 4 m/s, instead of weighting each speed by the time or distance it actually covers."},
+  {"option": null, "text": "Reading the 1/4 and 3/4 split as a split of the second half's time rather than its distance, which gives an average speed of 3.75 m/s instead of 11/3 m/s."}
+ ],
+ "concept_tags": ["average speed", "uniform motion", "weighted average"],
+ "difficulty": "hard",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-05", "at": "2026-09-11T14:07:00+05:30"}
+}

@@ -1,0 +1,81 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_38dbd3b4",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "conceptual",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "Determine whether the following claim is correct or incorrect: An object's average speed is invariably identical to the absolute value of its average velocity.",
+  "options": {
+   "1": "True",
+   "2": "False"
+  },
+  "parts": null,
+  "conditions": [
+   "motion over a finite time interval"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Compare the definitions: average speed uses total distance, average velocity uses total displacement, and distance can exceed displacement.",
+  "steps": [
+   {
+    "text": "Write the two definitions over the same time interval.",
+    "equation": "average speed = distance/time, average velocity = displacement/time"
+   },
+   {
+    "text": "Distance travelled is always greater than or equal to the magnitude of displacement, with equality only for one-directional straight-line motion."
+   },
+   {
+    "text": "Take a particle that completes one full lap of a circular track and returns to its starting point.",
+    "equation": "distance = full lap length (nonzero), displacement = 0"
+   },
+   {
+    "text": "Here average speed is nonzero but the magnitude of average velocity is zero, so the two are not equal.",
+    "why_this_step": "A single counterexample is enough to disprove an always-true claim."
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "False"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Assuming the statement is true because it holds for straight-line motion in one direction, without checking motion that changes direction or returns to the start."
+   }
+  ],
+  "concept_tags": [
+   "average speed",
+   "average velocity",
+   "distance vs displacement"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "528b43c318003781340f8817c0e99e21c233f32ea2f057130bfa1a938ec9c5b6"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "b8dac1b650ad30b5362c04ebe3d5ab4da477dc696d737c36bf90c956d63a9707",
+  "audited_by": "W01-U-kin-03"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-05",
+  "at": "2026-09-11T14:00:00+05:30"
+ }
+}

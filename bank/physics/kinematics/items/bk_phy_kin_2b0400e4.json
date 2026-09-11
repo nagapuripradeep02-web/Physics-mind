@@ -1,0 +1,98 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_2b0400e4",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "conceptual",
+ "key_kind": "words",
+ "figure_required": false,
+ "question": {
+  "text": "An object is thrown straight up into the air under gravity. State the acceleration of the object:",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "as it travels upward,"
+   },
+   {
+    "label": "b",
+    "asks": "as it falls downward, and"
+   },
+   {
+    "label": "c",
+    "asks": "at the peak of its path."
+   }
+  ],
+  "conditions": [
+   "vertical motion under gravity",
+   "air resistance neglected"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Gravity acts on the particle the whole time it is in the air, so the acceleration stays g downward throughout, including at the highest point.",
+  "steps": [
+   {
+    "text": "Once the particle leaves the hand, the only force on it is its own weight, which acts vertically downward at every instant of the flight.",
+    "equation": "F = mg, downward"
+   },
+   {
+    "text": "By Newton's second law the acceleration equals this force divided by the mass, so it is g downward regardless of whether the particle is moving up or down.",
+    "equation": "a = F/m = g, downward"
+   },
+   {
+    "text": "(i) During the upward journey the acceleration is g downward, opposing the upward velocity and slowing it down."
+   },
+   {
+    "text": "(ii) During the downward journey the acceleration is still g downward, now in the same direction as the velocity, speeding it up."
+   },
+   {
+    "text": "(iii) At the highest point the velocity is momentarily zero, but the force of gravity has not disappeared, so the acceleration there is also g downward, not zero.",
+    "why_this_step": "Acceleration depends on the net force, not on the instantaneous velocity, so a zero velocity does not mean zero acceleration."
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) g downward, (b) g downward, (c) g downward — the acceleration is g downward throughout the flight, including at the highest point"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Concluding the acceleration is zero at the highest point because the velocity is zero there, confusing zero velocity with zero acceleration."
+   },
+   {
+    "option": null,
+    "text": "Assuming the acceleration reverses direction between the upward and downward journeys, when in fact gravity acts downward the whole time and only the velocity's direction changes."
+   }
+  ],
+  "concept_tags": [
+   "motion under gravity",
+   "acceleration"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "dd6ddc94b12d6799541f5830fa8a76ae4b0d14b98ceb456a11f80839890a39c9"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "d846860d4580d14abdf56ab1ca0f08186941ce30fdc4c796532f4ea50b23702d",
+  "audited_by": "W01-U-kin-02-R1"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-05",
+  "at": "2026-09-11T14:11:00+05:30"
+ }
+}

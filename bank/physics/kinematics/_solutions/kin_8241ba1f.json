@@ -1,0 +1,55 @@
+{
+  "schema": "eapcet_solution_v1",
+  "question_id": "kin_8241ba1f",
+  "approach": "Write the total distance covered up to n seconds and up to (n − 1) seconds, and subtract to get the distance in the nth second.",
+  "steps": [
+    {
+      "text": "Here t stands for the number of the second being counted, that is n, a whole number of seconds; write the total distance covered from the start of the motion up to n seconds using the standard distance equation.",
+      "equation": "Sₙ = un + ½an²"
+    },
+    {
+      "text": "Write the same equation for one second earlier, up to (n − 1) seconds.",
+      "equation": "Sₙ₋₁ = u(n − 1) + ½a(n − 1)²"
+    },
+    {
+      "text": "The distance covered during the nth second alone is the difference of these two totals.",
+      "equation": "sₙ = Sₙ − Sₙ₋₁"
+    },
+    {
+      "text": "Expand and simplify the difference.",
+      "equation": "sₙ = u[n − (n − 1)] + ½a[n² − (n − 1)²] = u + ½a(2n − 1)"
+    },
+    {
+      "text": "Write ½a(2n − 1) as an − ½a to reach the required form.",
+      "equation": "sₙ = u + an − ½a",
+      "why_this_step": "This is exactly sₜ = u + at − ½a once t is read as the second number n."
+    }
+  ],
+  "final_answer": {
+    "option": null,
+    "value": "sₜ = u + at − ½a, proved by subtracting the distance covered up to (t − 1) seconds from the distance covered up to t seconds"
+  },
+  "confidence": "sure",
+  "common_mistakes": [
+    {
+      "option": null,
+      "text": "Substituting t directly into s = ut + ½at² and calling the result the distance in the tth second, which gives the total distance up to time t, not the distance during that one second."
+    },
+    {
+      "option": null,
+      "text": "Expanding (n − 1)² as n² − 1 instead of n² − 2n + 1, which drops the −2n term and changes the coefficient of a."
+    }
+  ],
+  "concept_tags": [
+    "equations of motion",
+    "distance in nth second"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept",
+  "authored_by": {
+    "model": "sonnet",
+    "wave": 1,
+    "agent": "W01-A-kin-05",
+    "at": "2026-09-11T14:08:00+05:30"
+  }
+}

@@ -1,0 +1,16 @@
+{
+ "question_id": "kin_8e12024e",
+ "item_sha": "5cbc626117ff7529e767ad5b8b463d19fa171d89fad292e5fc5ce6d39ece21e6",
+ "auditor_option": null,
+ "auditor_value": "(a) oa positive, ab positive and constant, bc positive and falling to zero at c, cd negative. (b) oa positive, ab zero, bc negative, cd negative.",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-kin-06",
+  "at": "2026-09-11T00:00:00+05:30"
+ }
+}

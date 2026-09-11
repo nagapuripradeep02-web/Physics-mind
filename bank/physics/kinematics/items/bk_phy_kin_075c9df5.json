@@ -1,0 +1,91 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_075c9df5",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "Water in a 400 m wide river moves downstream at a speed of 2.0 m/s. A boat travels at 10.0 m/s relative to the water, keeping its heading aligned perpendicular to the stream.",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "Determine the duration required for the boat to arrive at the far bank."
+   },
+   {
+    "label": "b",
+    "asks": "Calculate the downstream distance between the boat's landing spot and the point located directly across from its launch position."
+   }
+  ],
+  "conditions": [
+   "river width = 400 m",
+   "river flow velocity = 2.0 m/s",
+   "boat velocity relative to water = 10.0 m/s",
+   "heading is strictly perpendicular to current"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "The boat's velocity relative to water is perpendicular to the bank, so the crossing time depends only on that component, and the drift is the current speed times this time.",
+  "steps": [
+   {
+    "text": "The boat's velocity relative to water, 10.0 m/s, is entirely perpendicular to the river, since only the current carries it sideways.",
+    "why_this_step": "The perpendicular component alone determines how fast the boat closes the 400 m width."
+   },
+   {
+    "text": "Find the time to cross by dividing the width by the perpendicular velocity.",
+    "equation": "t = 400 m / 10.0 m/s = 40 s"
+   },
+   {
+    "text": "During this time, the current carries the boat downstream at 2.0 m/s; multiply by the crossing time to get the drift.",
+    "equation": "drift = 2.0 m/s × 40 s = 80 m"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) 40 s, (b) 80 m"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Using the resultant speed √(10.0² + 2.0²) = 10.2 m/s instead of only the perpendicular component gives a wrong time of about 39.2 s."
+   },
+   {
+    "option": null,
+    "text": "Swapping the roles of the two given speeds gives a drift of 400 × 10.0/2.0 = 2000 m, an unreasonably large value."
+   }
+  ],
+  "concept_tags": [
+   "river-boat problem",
+   "relative velocity",
+   "perpendicular crossing"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "ad9f5a32499ff527090e0ecf347470854b65f27c9061e7fa2811230d3dea5ab8"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "1ddd63503b9e61a6b7f7ae322941412dec0800c9c5c8d1a29586ed2c608c2e57",
+  "audited_by": "W01-U-kin-08"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-07",
+  "at": "2026-09-11T14:07:00+05:30"
+ }
+}

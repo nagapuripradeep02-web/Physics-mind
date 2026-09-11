@@ -1,0 +1,472 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter": "kinematics",
+ "slice": 12,
+ "round": 0,
+ "agent_label": "W01-U-kin-12",
+ "items": [
+  {
+   "question_id": "kin_fcab04e2",
+   "audit_file": "kin_fcab04e2.620a4890.json",
+   "item_sha": "620a4890fdfe796f4ece700882222eaf5ec6b0a2efae14d03d5c9b64dba13a27",
+   "question_text": "Assertion: Based on the given displacement–time plot of an object, the particle reverses its direction of motion at location A.\nReason: The sign of the gradient of an s–t graph determines whether the velocity is directed along the positive or negative axis.",
+   "options": [
+    {
+     "label": "a",
+     "text": "Both Assertion and Reason are true, and Reason is the correct explanation of Assertion."
+    },
+    {
+     "label": "b",
+     "text": "Both Assertion and Reason are true, but Reason is not the correct explanation of Assertion."
+    },
+    {
+     "label": "c",
+     "text": "Assertion is true, but Reason is false."
+    },
+    {
+     "label": "d",
+     "text": "Assertion is false, but Reason is true."
+    }
+   ],
+   "figure_description": "A plot with displacement s on the vertical axis and time t on the horizontal axis. The curve starts at origin 0, curves upwards (concave upward) up to an inflection point labeled A, and then continues rising while bending downwards (concave downward) to an end point labeled B. Throughout the entire interval from 0 to B, the slope of the curve remains positive.",
+   "solution": {
+    "approach": "Velocity is the slope of the s-t graph, and its direction reverses only where the slope changes sign, not where the curve's concavity changes.",
+    "steps": [
+     {
+      "text": "Recall what the slope of the s-t graph represents.",
+      "equation": "v = ds/dt"
+     },
+     {
+      "text": "Point A is an inflection point, where the curve changes from concave upward to concave downward, meaning the rate of change of slope changes sign, not the slope itself."
+     },
+     {
+      "text": "Since the displacement keeps rising from 0 through A to B, the slope stays positive throughout, so the velocity does not change direction at A."
+     },
+     {
+      "text": "The Reason, that the sign of the slope decides the direction of velocity, is a true general statement, but it does not make the Assertion true here.",
+      "equation": "final answer: option (d)"
+     }
+    ],
+    "final_answer": {
+     "option": 4,
+     "value": "Assertion is false but the Reason is true."
+    },
+    "common_mistakes": [],
+    "concept_tags": [
+     "displacement-time graph",
+     "velocity from slope",
+     "concavity"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_f5577de4",
+   "audit_file": "kin_f5577de4.8a44fb0e.json",
+   "item_sha": "8a44fb0e65829cbfb873ce7918b2d183e27b0f613c29f46ddac811492680a8c3",
+   "question_text": "The variation of velocity with time for an object traveling along a straight path is provided in the figure. Given that its position coordinate is s = 20 m at t = 0, construct the corresponding acceleration versus time (a-t) and position versus time (s-t) graphs for the entire motion.",
+   "options": [],
+   "figure_description": "A plot of velocity v (m/s) versus time t (s) consisting of connected straight line segments: from t = 0 to 4 s, v remains constant at −20 m/s; from t = 4 to 6 s, v rises linearly from −20 m/s to 0 m/s; from t = 6 to 8 s, v falls linearly from 0 m/s to −20 m/s; from t = 8 to 12 s, v increases linearly from −20 m/s to +20 m/s, crossing v = 0 at t = 10 s; from t = 12 to 14 s, v decreases linearly from +20 m/s to 0 m/s.",
+   "solution": {
+    "approach": "Find acceleration as the slope of each straight segment of the v-t graph, then build the s-t graph by adding the signed area under v-t to the starting position.",
+    "steps": [
+     {
+      "text": "Find acceleration on each segment as the slope of the v-t line.",
+      "equation": "a = 0 (0–4 s), a = 10 m/s² (4–6 s), a = −10 m/s² (6–8 s), a = 10 m/s² (8–12 s), a = −10 m/s² (12–14 s)"
+     },
+     {
+      "text": "Start the position at s = 20 m at t = 0 and add the area under v-t up to each breakpoint.",
+      "equation": "s(0) = 20 m, s(4) = −60 m, s(6) = −80 m, s(8) = −100 m, s(12) = −100 m, s(14) = −80 m"
+     },
+     {
+      "text": "Between breakpoints the s-t graph is straight while v is constant, and curved while v is changing linearly.",
+      "equation": "straight falling line for 0≤t≤4 s; curved between 4 and 12 s with a minimum s = −120 m at t = 10 s (where v = 0); curved between 12 and 14 s",
+      "why_this_step": "The minimum of the s-t graph occurs exactly where the velocity crosses zero."
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "a-t graph: a = 0 from t = 0–4 s, a = 10 m/s² from t = 4–6 s, a = −10 m/s² from t = 6–8 s, a = 10 m/s² from t = 8–12 s, a = −10 m/s² from t = 12–14 s (a step graph). s-t graph passes through (0,20), (4,−60), (6,−80), (8,−100), (10,−120) [minimum, since v = 0 here], (12,−100), (14,−80) m — a straight falling line from t = 0–4 s, and curves elsewhere."
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Assuming the particle keeps moving in the same direction throughout, instead of recognising the minimum position occurs at t = 10 s where the velocity is zero."
+     },
+     {
+      "option": null,
+      "text": "Drawing the s-t segment from t = 0 s to t = 4 s as a curve, when the velocity is constant there and the position actually falls in a straight line."
+     }
+    ],
+    "concept_tags": [
+     "v-t graph",
+     "a-t graph from slope",
+     "s-t graph from area under v-t"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_fc2a2e26",
+   "audit_file": "kin_fc2a2e26.14a98b38.json",
+   "item_sha": "14a98b38fe633e52f2f590022dc71de9ff7d4093cdddfdccf2ab702c4e0a242a",
+   "question_text": "An object moves with a uniform speed of 2 m/s for the first half of its total travel duration. Throughout the second half of the time, it covers ¼ of the distance traveled in that interval at a steady speed of 4 m/s, and the other ¾ of the distance at 6 m/s. Determine the average speed of the object over the entire journey.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Write every distance in terms of the total time, add them up, and divide by the total time so the total time cancels out.",
+    "steps": [
+     {
+      "text": "Let the total time of the journey be T. In the first half of the time, T/2, the particle moves at 2 m/s.",
+      "equation": "d1 = 2 × (T/2) = T"
+     },
+     {
+      "text": "In the second half of the time, T/2, the particle covers some distance d2, one quarter of it at 4 m/s and three quarters of it at 6 m/s; write the time for each part and add them to T/2.",
+      "equation": "(d2/4)/4 + (3d2/4)/6 = T/2"
+     },
+     {
+      "text": "Solve this equation for d2.",
+      "equation": "d2/16 + d2/8 = T/2, so 3d2/16 = T/2, d2 = 8T/3"
+     },
+     {
+      "text": "Add the two distances to get the total distance covered.",
+      "equation": "total distance = T + 8T/3 = 11T/3"
+     },
+     {
+      "text": "Average speed is total distance divided by the total time T, and T cancels out.",
+      "equation": "average speed = (11T/3)/T = 11/3 ≈ 3.67 m/s",
+      "why_this_step": "Since every distance was written proportional to T, the actual value of T never matters."
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "11/3 m/s ≈ 3.67 m/s"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Taking the plain average of the three speeds, (2 + 4 + 6)/3 = 4 m/s, instead of weighting each speed by the time or distance it actually covers."
+     },
+     {
+      "option": null,
+      "text": "Reading the 1/4 and 3/4 split as a split of the second half's time rather than its distance, which gives an average speed of 3.75 m/s instead of 11/3 m/s."
+     }
+    ],
+    "concept_tags": [
+     "average speed",
+     "uniform motion",
+     "weighted average"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "kin_f243a15b",
+   "audit_file": "kin_f243a15b.6f11c601.json",
+   "item_sha": "6f11c6012f3506e872f04b9da758d969d30eba3062d922f8c0da98e87bd64798",
+   "question_text": "An object is projected vertically upward from the surface of the earth. Throughout its flight, a steady resistive force acts on it, causing a deceleration of magnitude 2 ms⁻². Taking g = 10 ms⁻², determine the ratio comparing the duration of upward motion to that of downward motion back to the ground.",
+   "options": [
+    {
+     "label": "a",
+     "text": "1 : 1"
+    },
+    {
+     "label": "b",
+     "text": "√(2/3)"
+    },
+    {
+     "label": "c",
+     "text": "2/3"
+    },
+    {
+     "label": "d",
+     "text": "√(3/2)"
+    }
+   ],
+   "figure_description": "",
+   "solution": {
+    "approach": "The resistance adds to gravity on the way up and subtracts from it on the way down, so use the two accelerations to find each time and take the ratio.",
+    "steps": [
+     {
+      "text": "On the way up, both gravity and the resistance act downward, opposing the motion.",
+      "equation": "a_up = g + 2 = 12 ms⁻²"
+     },
+     {
+      "text": "On the way down, the resistance acts upward, against gravity.",
+      "equation": "a_down = g − 2 = 8 ms⁻²"
+     },
+     {
+      "text": "Write the time of ascent and the maximum height reached, for initial speed u.",
+      "equation": "t₁ = u/12, h = u²/24"
+     },
+     {
+      "text": "Write the time of descent from that height using h = ½a_down t₂².",
+      "equation": "t₂ = u/(4√6)"
+     },
+     {
+      "text": "Divide the two times to get the ratio.",
+      "equation": "t₁/t₂ = √(2/3)",
+      "why_this_step": "The u cancels, so the ratio does not depend on the launch speed."
+     }
+    ],
+    "final_answer": {
+     "option": 2,
+     "value": "√(2/3)"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Ignoring the resistance force and using the same acceleration g for both ascent and descent gives a ratio of 1 : 1."
+     },
+     {
+      "option": 4,
+      "text": "Inverting the ratio, computing time of descent to time of ascent instead, gives √(3/2)."
+     }
+    ],
+    "concept_tags": [
+     "equations of motion",
+     "retardation",
+     "vertical motion"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_f3d443f6",
+   "audit_file": "kin_f3d443f6.96a5fd03.json",
+   "item_sha": "96a5fd038ae5c7a1c6c358a478a50fcb2a74030d9e09fb4590ba9a814428dbfe",
+   "question_text": "A pair of balls, labeled A and B, are launched straight up into the air at unequal initial speeds. Determine the acceleration of ball A with respect to ball B during their free flight.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Both balls have exactly the same acceleration, g downward, at every instant, so their relative acceleration is the difference of two equal vectors.",
+    "steps": [
+     {
+      "text": "Write the acceleration of each ball; after leaving the hand, both are in free fall under gravity alone.",
+      "equation": "a_A = −g, a_B = −g"
+     },
+     {
+      "text": "The initial velocities are different, but that does not affect the acceleration, which stays g downward for both balls at every instant.",
+      "why_this_step": "Relative acceleration compares accelerations, not velocities; the different launch speeds only give the balls different velocities, not different accelerations."
+     },
+     {
+      "text": "Relative acceleration of A with respect to B is the difference of the two accelerations.",
+      "equation": "a_AB = a_A − a_B = (−g) − (−g) = 0"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "Zero — the relative acceleration is zero because both balls fall under the same gravitational acceleration g throughout the motion."
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Assuming the ball projected with the higher speed must also have a higher acceleration gives a wrongly nonzero relative acceleration."
+     }
+    ],
+    "concept_tags": [
+     "relative acceleration",
+     "free fall",
+     "projectile motion"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_f160a9c0",
+   "audit_file": "kin_f160a9c0.3baa6ace.json",
+   "item_sha": "3baa6ace14d8faa961b0b3f983069552d9c15d55445c995226fa25ecd9edd176",
+   "question_text": "A soccer ball is launched straight up into the air from ground level. As it ascends, an observer looking through a window located 15.0 m above the ground notes that the ball travels past with an upward speed of 10 m/s. Assume that air drag is negligible and use g = 10 m/s².\n(a) What is the maximum height reached by the ball above the ground?\n(b) What is the total time needed for the ball to rise from the ground to the peak of its trajectory?",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Use v² = u² − 2gh between the ground and the window to find the launch speed, then find the maximum height and time to the top from that speed.",
+    "steps": [
+     {
+      "text": "Apply v² = u² − 2gh between the ground, where the speed is u, and the window, 15 m up, where the speed is 5.00 m/s.",
+      "equation": "5.00² = u² − 2(10)(15) → u² = 325"
+     },
+     {
+      "text": "Find the maximum height using v² = u² − 2gH with v = 0 at the top.",
+      "equation": "H = u²/(2g) = 325/20 = 16.25 m"
+     },
+     {
+      "text": "Find the time to the top using v = u − gt with v = 0 at the top.",
+      "equation": "t = u/g = √325/10 ≈ 1.80 s"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "(a) 16.25 m, (b) ≈1.80 s"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Taking the given 5.00 m/s as the ground launch speed and ignoring the 15 m window height gives a maximum height of only 1.25 m."
+     }
+    ],
+    "concept_tags": [
+     "free fall",
+     "equations of motion",
+     "vertical projectile"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "kin_ff29cf3a",
+   "audit_file": "kin_ff29cf3a.36a36ed8.json",
+   "item_sha": "36a36ed8474ae1dba69ccc4f080727c138d86e628300a6902092733cf0ae1e15",
+   "question_text": "A stone is thrown straight up from a high point A. When it is at a depth h beneath A, the speed of the stone is twice the speed it possessed at an elevation h over A. Prove that the stone reaches a maximum height of (5/3)h above point A.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Write v² = u² − 2g(displacement) for points h above and below A, use the given speed ratio to solve for u², then find the greatest height.",
+    "steps": [
+     {
+      "text": "Let u be the speed of projection at A, taking upward as positive. At height h above A, the speed v₁ satisfies this.",
+      "equation": "v₁² = u² − 2gh"
+     },
+     {
+      "text": "At distance h below A, the displacement from A is −h, so the speed v₂ satisfies this.",
+      "equation": "v₂² = u² − 2g(−h) = u² + 2gh"
+     },
+     {
+      "text": "The speed below A is double the speed above A, so square this relation and substitute.",
+      "equation": "v₂ = 2v₁ ⟹ u² + 2gh = 4(u² − 2gh)"
+     },
+     {
+      "text": "Expand and solve for u².",
+      "equation": "u² + 2gh = 4u² − 8gh ⟹ 10gh = 3u² ⟹ u² = 10gh/3"
+     },
+     {
+      "text": "The greatest height above A is reached when the speed is zero, given by H = u²/(2g). Substitute u².",
+      "equation": "H = (10gh/3)/(2g) = 5h/3",
+      "why_this_step": "H = u²/(2g) follows from v² = u² − 2gH with v = 0 at the highest point."
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "Greatest height above A, H = 5h/3, proved by solving u² = 10gh/3 from the given speed condition and substituting into H = u²/(2g)."
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Writing the speed below A as v₂² = u² − 2gh instead of u² + 2gh for downward displacement gives u² + 2gh = 4(u² − 2gh) misapplied, leading to a height other than 5h/3."
+     }
+    ],
+    "concept_tags": [
+     "equations of motion",
+     "vertical motion under gravity",
+     "v² = u² − 2gs"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_f6b82e81",
+   "audit_file": "kin_f6b82e81.4ef779a5.json",
+   "item_sha": "4ef779a569422c4c841635d68719e6aca4d53731247c6673d7bdd55dfa43887c",
+   "question_text": "At the same instant, two bodies labeled 1 and 2 are launched vertically. Body 1 is released at an elevation of 20 m above the ground heading downward with a speed of 5 m/s, whereas body 2 is projected straight upward from ground level at 20 m/s. Treating the upward direction as positive, determine the following:\n(a) the acceleration of particle 1 relative to particle 2\n(b) the starting velocity of particle 2 relative to particle 1\n(c) the velocity of particle 1 relative to particle 2 at time t = ½ s\n(d) the instant at which the two particles meet",
+   "options": [],
+   "figure_description": "A vertical diagram showing particle 1 at a height of 20 m above the ground moving downward with an arrow labeled 5 m/s, and particle 2 at the ground moving upward with an arrow labeled 20 m/s. An upward arrow indicates the positive (+ve) reference direction.",
+   "solution": {
+    "approach": "Both particles are in free fall, so they share the same acceleration; the relative motion between them is therefore at constant relative velocity, which gives all four parts directly.",
+    "steps": [
+     {
+      "text": "Both particles accelerate at g downward under gravity alone, so their relative acceleration is zero.",
+      "equation": "a₁ = a₂ = −g (upward positive) → a_(1/2) = a₁ − a₂ = 0"
+     },
+     {
+      "text": "Taking upward as positive, particle 1 starts moving down at 5 m/s and particle 2 starts moving up at 20 m/s; find the initial velocity of 2 relative to 1.",
+      "equation": "v₁(0) = −5 m/s, v₂(0) = +20 m/s → v_(2/1) = v₂(0) − v₁(0) = 20 − (−5) = 25 m/s"
+     },
+     {
+      "text": "Since the relative acceleration is zero, the relative velocity of 1 with respect to 2 never changes from its initial value.",
+      "equation": "v_(1/2) = v₁(0) − v₂(0) = −5 − 20 = −25 m/s, same at t = ½ s",
+      "why_this_step": "A zero relative acceleration means the relative velocity stays constant for all time."
+     },
+     {
+      "text": "With separation 20 m and a constant closing speed of 25 m/s, find the time to collide.",
+      "equation": "t = 20/25 = 0.8 s"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "(a) acceleration of 1 with respect to 2 = 0. (b) initial velocity of 2 with respect to 1 = 25 m/s (upward). (c) velocity of 1 with respect to 2 at t = ½ s = 25 m/s (downward), unchanged from t = 0. (d) time to collide = 0.8 s."
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Adding the two initial velocities instead of subtracting, giving an initial relative velocity of 20 + (−5) = 15 m/s."
+     },
+     {
+      "option": null,
+      "text": "Assuming the relative velocity changes with time and recomputing it at t = ½ s from the individual free-fall equations, instead of recognising that a zero relative acceleration keeps it constant."
+     }
+    ],
+    "concept_tags": [
+     "relative velocity",
+     "relative acceleration",
+     "free fall"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_f49171eb",
+   "audit_file": "kin_f49171eb.ecce6223.json",
+   "item_sha": "ecce6223c0d8e530d37651074a07982930d4b38a6e077c38c02fc79002653386",
+   "question_text": "For an object moving with a time-dependent velocity vector v, answer the following questions:\n(a) Explain the physical meaning conveyed by each of the two mathematical expressions |dv/dt| and d|v|/dt.\n(b) Determine whether there are situations in which these two quantities are equal to each other.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "|dv/dt| is the size of the acceleration vector, while d|v|/dt is the rate at which only the speed changes; compare what each one includes to see when they can match.",
+    "steps": [
+     {
+      "text": "dv/dt is the acceleration vector, the rate of change of the velocity vector. Its magnitude |dv/dt| includes any change in the direction of velocity as well as any change in speed.",
+      "equation": "|dv/dt| = |a|"
+     },
+     {
+      "text": "|v| is the speed, a single number with no direction. d|v|/dt is the rate of change of this number, so it tracks only a change in speed.",
+      "equation": "d|v|/dt = rate of change of speed"
+     },
+     {
+      "text": "In straight-line motion the direction of velocity never changes, so the entire acceleration goes into changing the speed, and the two quantities are equal.",
+      "equation": "straight line: |dv/dt| = d|v|/dt"
+     },
+     {
+      "text": "In motion along a curved path, part of the acceleration changes only the direction, not the speed, so the two quantities are not equal in general; for example, in uniform circular motion the speed is constant, d|v|/dt = 0, but |dv/dt| = v²/R, which is not zero.",
+      "equation": "curved path, uniform circular motion: |dv/dt| = v²/R ≠ 0 = d|v|/dt"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "|dv/dt| is the magnitude of the acceleration vector; d|v|/dt is the rate of change of speed. They are equal in straight-line motion, but not equal in general, as shown by uniform circular motion where d|v|/dt = 0 while |dv/dt| = v²/R ≠ 0."
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Treating |dv/dt| and d|v|/dt as always equal because both are formed from the same velocity, missing that one is a vector magnitude and the other is a rate of change of a scalar."
+     }
+    ],
+    "concept_tags": [
+     "acceleration vector",
+     "speed versus velocity",
+     "circular motion"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  }
+ ]
+}

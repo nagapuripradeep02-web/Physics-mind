@@ -1,0 +1,20 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_241ee20d",
+ "approach": "Differentiate v to check whether the acceleration is constant, then integrate v for the displacement.",
+ "steps": [
+  {"text": "Differentiate v with respect to time to get the acceleration.", "equation": "a = dv/dt = 2ĵ m/s²"},
+  {"text": "The acceleration is constant in magnitude and direction for every t, even though v itself changes direction with time.", "equation": "a = 2ĵ m/s² for all t"},
+  {"text": "Integrate v with respect to time from 0 to 1 s to get the displacement.", "equation": "s = ∫₀¹(2î+2tĵ)dt = (2î + ĵ) m"},
+  {"text": "Since the acceleration is constant, v = u + at can be applied; checking it at t = 1 s confirms this matches v(1).", "equation": "u + at = 2î + 2ĵ = v(1), so yes, v = u + at applies"}
+ ],
+ "final_answer": {"option": null, "value": "a = 2ĵ m/s²; displacement = (2î + ĵ) m; yes, v = u + at can be applied because a is constant"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Assuming v = u + at cannot be applied because the velocity's direction changes with time, without checking whether the acceleration itself is constant."}
+ ],
+ "concept_tags": ["vectors", "constant acceleration", "equations of motion"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-06", "at": "2026-09-11T16:00:00+05:30"}
+}

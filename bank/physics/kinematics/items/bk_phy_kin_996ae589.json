@@ -1,0 +1,85 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_996ae589",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A straight rigid rod of length l is placed such that its upper point B slides along a smooth vertical wall while its lower point A slides along a horizontal floor. If point A is drawn away from the wall to the left at a constant speed v, determine the downward speed of point B at the precise moment when the rod is inclined at an angle θ to the floor.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "rod maintains contact with both the vertical wall and horizontal floor",
+   "lower end A moves horizontally away from the wall at constant velocity v",
+   "rod length l remains constant",
+   "angle between the rod and the floor is θ"
+  ],
+  "figure": {
+   "description": "A vertical wall and a horizontal floor form a right-angled corner. A straight rod of length l connects the two surfaces, with its upper end B touching the vertical wall and its lower end A resting on the horizontal floor. Point A is moving horizontally to the left with a constant velocity vector labelled v. The angle between the rod and the ground at point A is denoted as θ."
+  }
+ },
+ "solution": {
+  "approach": "Write the constant-length constraint between the horizontal position of A and the vertical position of B, then differentiate with respect to time.",
+  "steps": [
+   {
+    "text": "Let x be the horizontal distance of A from the corner and y be the height of B on the wall. The rod length is fixed.",
+    "equation": "x² + y² = l², with x = l cos θ, y = l sin θ"
+   },
+   {
+    "text": "Differentiate the constraint with respect to time.",
+    "equation": "2x(dx/dt) + 2y(dy/dt) = 0 ⟹ x(dx/dt) + y(dy/dt) = 0"
+   },
+   {
+    "text": "End A moves away from the wall at the given constant speed v, so dx/dt = v. Substitute x = l cos θ and y = l sin θ.",
+    "equation": "(l cos θ)(v) + (l sin θ)(dy/dt) = 0"
+   },
+   {
+    "text": "Solve for dy/dt.",
+    "equation": "dy/dt = −v cos θ / sin θ = −v cot θ",
+    "why_this_step": "The negative sign shows y is decreasing, meaning B moves downward at this rate."
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "The velocity of end B is v cot θ, directed downward."
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Differentiating x = l cos θ and y = l sin θ but mismatching which trigonometric ratio goes with dx/dt gives v tan θ instead of the correct v cot θ."
+   }
+  ],
+  "concept_tags": [
+   "related rates",
+   "constraint motion",
+   "differentiation with respect to time"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "calculation"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "81640537388d1eace325d147983e4d17cf922dbfb32c612633fce40539b4c3e0"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "ca27b15fec30f01c1ee182e7d1b2dd941f06d831feccad897b5dc60cd09badc8",
+  "audited_by": "W01-U-kin-06"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-04",
+  "at": "2026-09-11T00:25:00+05:30"
+ }
+}

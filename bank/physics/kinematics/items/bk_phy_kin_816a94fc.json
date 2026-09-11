@@ -1,0 +1,82 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_816a94fc",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "assertion_reason",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "Given below are two statements labeled as Assertion and Reason. Choose the appropriate option that describes them.\n\nAssertion: Based on the formula a = v(dv/ds), whenever the velocity of a body equals zero, its acceleration must likewise vanish.\nReason: The quantity a defined in this expression represents the instantaneous acceleration.",
+  "options": {
+   "1": "Both Assertion and Reason are true, and Reason is the correct explanation of Assertion.",
+   "2": "Both Assertion and Reason are true, but Reason is not the correct explanation of Assertion.",
+   "3": "Assertion is true, but Reason is false.",
+   "4": "Assertion is false, but Reason is true."
+  },
+  "parts": null,
+  "conditions": [
+   "motion in one dimension",
+   "kinematic relation a = v(dv/ds)"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Test the claim with free fall from rest: at the starting instant velocity is zero, but the acceleration a = v dv/ds still gives a finite, nonzero value.",
+  "steps": [
+   {
+    "text": "For free fall from rest through a height s, the speed follows v² = 2gs, so v = √(2gs) and dv/ds = g/v.",
+    "equation": "v = √(2gs), dv/ds = g/v"
+   },
+   {
+    "text": "Form the product a = v dv/ds; the v in front cancels the v in the denominator of dv/ds, leaving a constant, even as v approaches zero near the start.",
+    "equation": "a = v × (g/v) = g",
+    "why_this_step": "As s becomes very small, v also becomes very small, but dv/ds grows without bound, so the product v dv/ds stays finite and equal to g rather than going to zero."
+   },
+   {
+    "text": "This shows a = v dv/ds does not force acceleration to zero when velocity is zero; the Assertion's conclusion is false, while the Reason, that a in this formula is the instantaneous acceleration, is a true definition on its own and does not justify the false conclusion.",
+    "equation": "Assertion false, Reason true"
+   }
+  ],
+  "final_answer": {
+   "option": 4,
+   "value": "If Assertion is false but the Reason is true."
+  },
+  "common_mistakes": [
+   {
+    "option": 1,
+    "text": "Substituting v = 0 directly into a = v dv/ds and reading off a = 0, without checking that dv/ds can be infinite at that point."
+   }
+  ],
+  "concept_tags": [
+   "acceleration as v dv/ds",
+   "free fall",
+   "calculus in kinematics"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "3c4fc95f45a1e67f70960dce937e0c3b91a23812edc44d41d20c5099be797550"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "03b21678f3138a68819096267501db0925274bc67fe151140980ea747ce2a930",
+  "audited_by": "W01-U-kin-02"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-07",
+  "at": "2026-09-11T14:30:00+05:30"
+ }
+}

@@ -1,0 +1,872 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter": "kinematics",
+ "slice": 2,
+ "round": 0,
+ "agent_label": "W01-U-kin-02",
+ "items": [
+  {
+   "question_id": "kin_2ba67bd0",
+   "audit_file": "kin_2ba67bd0.16f9ece7.json",
+   "item_sha": "16f9ece7da853617c871e79d583377c1e73a02ac61979c6346d850887f039a04",
+   "question_text": "The position-time (x–t) graph of an object moving in one dimension consists of straight-line segments passing through the points (0 s, 0 m), (2.5 s, 50 m), (7.5 s, 50 m), (10.0 s, 100 m), and (15.0 s, 0 m). Using this information, calculate:\n(a) the average velocity over the time interval from 0 to 10 s\n(b) the instantaneous velocity at the time instants t = 2 s, t = 5 s, t = 8 s, and t = 12 s",
+   "options": [],
+   "figure_description": "A graph of position x (in m) plotted against time t (in s). The curve starts at (0, 0), rises with a constant positive slope to (2.5, 50), stays horizontal at x = 50 until t = 7.5, continues upward linearly to (10.0, 100), and then descends linearly to meet the time axis at (15.0, 0).",
+   "solution": {
+    "approach": "Find the average velocity from the net displacement over 0 to 10 s, then read the slope of the graph at each given time for the instantaneous velocities.",
+    "steps": [
+     {
+      "text": "Average velocity is the net displacement divided by the time interval, from t = 0 to t = 10 s.",
+      "equation": "v_avg = (100 − 0)/(10 − 0) = 10 m/s"
+     },
+     {
+      "text": "At t = 2 s the particle is on the rising segment from (0,0) to (2.5,50); its slope is the velocity.",
+      "equation": "v(2) = (50 − 0)/(2.5 − 0) = 20 m/s"
+     },
+     {
+      "text": "At t = 5 s the particle is on the flat segment from t = 2.5 s to t = 7.5 s, where x stays at 50 m.",
+      "equation": "v(5) = 0 m/s"
+     },
+     {
+      "text": "At t = 8 s the particle is on the segment rising from (7.5,50) to (10,100); its slope is the velocity.",
+      "equation": "v(8) = (100 − 50)/(10 − 7.5) = 20 m/s"
+     },
+     {
+      "text": "At t = 12 s the particle is on the falling segment from (10,100) to (15,0); its slope is the velocity.",
+      "equation": "v(12) = (0 − 100)/(15 − 10) = −20 m/s"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "(a) 10 m/s; (b) v(2) = 20 m/s, v(5) = 0 m/s, v(8) = 20 m/s, v(12) = −20 m/s"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Carrying the slope from the first rising segment forward and reporting v(5) = 20 m/s, without noticing the graph is flat between t = 2.5 s and t = 7.5 s."
+     },
+     {
+      "option": null,
+      "text": "Reporting the speed 20 m/s at t = 12 s without the negative sign that shows the particle is moving back towards the origin."
+     }
+    ],
+    "concept_tags": [
+     "position-time graph",
+     "instantaneous velocity",
+     "average velocity"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_2c8344a3",
+   "audit_file": "kin_2c8344a3.fe40b169.json",
+   "item_sha": "fe40b169c4ad89be0a76c10ed5d382671d4c7e0c2f81b2ad41729e809a4014ad",
+   "question_text": "An elevator begins moving upward from a stationary state, with its acceleration changing over time as shown in the given graph. The acceleration is 2 ms⁻² between t = 0 and t = 4 s, remains 0 from t = 4 s to t = 8 s, and is −2 ms⁻² between t = 8 s and t = 12 s. Determine the total vertical displacement of the elevator from its initial level by the time it stops.",
+   "options": [
+    {
+     "label": "a",
+     "text": "20 m"
+    },
+    {
+     "label": "b",
+     "text": "64 m"
+    },
+    {
+     "label": "c",
+     "text": "32 m"
+    },
+    {
+     "label": "d",
+     "text": "36 m"
+    }
+   ],
+   "figure_description": "An acceleration-time graph showing acceleration a in ms⁻² on the vertical axis and time t in s on the horizontal axis. A horizontal line segment extends from t = 0 to t = 4 s at a = 2 ms⁻². The curve lies on the time axis (a = 0) from t = 4 s to t = 8 s. A horizontal line segment extends from t = 8 s to t = 12 s at a = −2 ms⁻².",
+   "solution": {
+    "approach": "Read the acceleration in each of the three time segments, find the velocity at each segment boundary, and add the distance covered in each segment.",
+    "steps": [
+     {
+      "text": "From t = 0 to 4 s, acceleration is 2 ms⁻² from rest. Find the velocity and distance covered by the end of this segment.",
+      "equation": "v(4) = 0 + 2(4) = 8 ms⁻¹, d₁ = ½(2)(4)² = 16 m"
+     },
+     {
+      "text": "From t = 4 to 8 s, acceleration is 0, so the lift moves at the constant velocity 8 ms⁻¹. Find the distance covered.",
+      "equation": "d₂ = 8 × 4 = 32 m"
+     },
+     {
+      "text": "From t = 8 to 12 s, acceleration is −2 ms⁻². Check that the lift comes to rest exactly at t = 12 s.",
+      "equation": "v(12) = 8 − 2(4) = 0"
+     },
+     {
+      "text": "Find the distance covered while the velocity falls from 8 ms⁻¹ to 0 over this last segment.",
+      "equation": "d₃ = 8(4) + ½(−2)(4)² = 32 − 16 = 16 m"
+     },
+     {
+      "text": "Add the three distances to get the total height above the starting point.",
+      "equation": "16 + 32 + 16 = 64 m"
+     }
+    ],
+    "final_answer": {
+     "option": 2,
+     "value": "64 m"
+    },
+    "common_mistakes": [
+     {
+      "option": 3,
+      "text": "Treating zero acceleration in the middle segment as zero velocity, so skipping the 32 m travelled at constant speed and adding only the first and last segments: 16 + 16 = 32 m."
+     }
+    ],
+    "concept_tags": [
+     "acceleration-time graph",
+     "equations of motion",
+     "area under a graph"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_296aab0c",
+   "audit_file": "kin_296aab0c.dbd9bb44.json",
+   "item_sha": "dbd9bb4478bae27b5c764ffc383b5f3faf9b7829f0864711cd3c6349f5132c1f",
+   "question_text": "An object possesses an initial velocity v₀ = 10 ms⁻¹ and is subjected to a deceleration of magnitude 0.2v², where v represents its instantaneous velocity. What will be the velocity of the object at t = 2 s?",
+   "options": [
+    {
+     "label": "a",
+     "text": "+ 2 ms⁻¹"
+    },
+    {
+     "label": "b",
+     "text": "+ 4 ms⁻¹"
+    },
+    {
+     "label": "c",
+     "text": "− 2 ms⁻¹"
+    },
+    {
+     "label": "d",
+     "text": "+ 6 ms⁻¹"
+    }
+   ],
+   "figure_description": "",
+   "solution": {
+    "approach": "Write the retardation as dv/dt = −0.2v² and separate the variables to find v as a function of t.",
+    "steps": [
+     {
+      "text": "Write the equation of motion using the given retardation.",
+      "equation": "dv/dt = −0.2v²"
+     },
+     {
+      "text": "Separate the variables and integrate from v₀ = 10 at t = 0 to v at time t.",
+      "equation": "∫ dv/v² = −0.2 ∫ dt → 1/v₀ − 1/v = −0.2t"
+     },
+     {
+      "text": "Rearrange to express 1/v.",
+      "equation": "1/v = 1/v₀ + 0.2t"
+     },
+     {
+      "text": "Substitute v₀ = 10 and t = 2 s.",
+      "equation": "1/v = 1/10 + 0.2(2) = 0.1 + 0.4 = 0.5"
+     },
+     {
+      "text": "Take the reciprocal to find the velocity after 2 s.",
+      "equation": "v = 1/0.5 = 2 ms⁻¹"
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "+2 ms⁻¹"
+    },
+    "common_mistakes": [],
+    "concept_tags": [
+     "variable retardation",
+     "separation of variables",
+     "integration of motion"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "kin_26f8ac30",
+   "audit_file": "kin_26f8ac30.a2fea225.json",
+   "item_sha": "a2fea225cc34a4e5a1643910ea81ab6356f1c0d2c25158c1a253eebaaf44e2c3",
+   "question_text": "A particle travels along a straight horizontal line with its velocity expressed as v = (3t² − 6t) m/s, where t is the time in seconds. Starting from the origin at t = 0, calculate the following for the duration between t = 0 and t = 3.5 s:\n(a) The total distance covered by the particle\n(b) The average velocity of the particle\n(c) The average speed of the particle",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Split the motion where velocity reverses sign, integrate to get position, add distances in each part for total distance, and use net displacement for average velocity.",
+    "steps": [
+     {
+      "text": "Set v = 3t² − 6t equal to zero to find when the particle reverses direction.",
+      "equation": "3t² − 6t = 0 → t = 0 s, t = 2 s"
+     },
+     {
+      "text": "Integrate v with respect to t, taking the particle at the origin at t = 0, to get its position.",
+      "equation": "x(t) = t³ − 3t²"
+     },
+     {
+      "text": "Find the position at t = 0, t = 2 s and t = 3.5 s.",
+      "equation": "x(0) = 0, x(2) = −4 m, x(3.5) = 6.125 m"
+     },
+     {
+      "text": "From t = 0 to t = 2 s the particle moves from 0 to −4 m; from t = 2 s to t = 3.5 s it moves from −4 m to 6.125 m. Add these distances.",
+      "equation": "4 m + 10.125 m = 14.125 m",
+      "why_this_step": "Total distance adds the length travelled in each leg of the trip, even where the particle doubles back."
+     },
+     {
+      "text": "Average velocity uses net displacement over the interval; average speed uses total distance over the interval.",
+      "equation": "average velocity = 6.125/3.5 = 1.75 m/s, average speed = 14.125/3.5 ≈ 4.04 m/s"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "distance travelled = 14.125 m, average velocity = 1.75 m/s, average speed ≈ 4.04 m/s"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Taking the net displacement x(3.5) − x(0) = 6.125 m as the total distance, missing that the particle reverses direction at t = 2 s and travels back and forth."
+     },
+     {
+      "option": null,
+      "text": "Reporting average speed as equal to average velocity, 1.75 m/s, without separating distance from displacement."
+     }
+    ],
+    "concept_tags": [
+     "velocity as a function of time",
+     "distance versus displacement",
+     "average velocity and average speed"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_33fe6acc",
+   "audit_file": "kin_33fe6acc.3337d1ce.json",
+   "item_sha": "3337d1cebc65834cef35aae8e2c2537f42f675dba8d58648eadf6254c5d32afc",
+   "question_text": "An object travels along a circular path having a radius of 4 cm at a uniform speed of 1 cm/s. Determine:\n(a) The time period of revolution for the object.\n(b) The magnitudes of the average speed, average velocity, and average acceleration over the duration from t = 0 to t = T/4, where T denotes the time period.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Use circumference over speed for the period, then work out the distance, the chord, and the velocity change over a quarter turn.",
+    "steps": [
+     {
+      "text": "The time period is the circumference divided by the constant speed.",
+      "equation": "T = 2πr/v = 2π(4)/1 = 8π s ≈ 25.13 s"
+     },
+     {
+      "text": "From t = 0 to t = T/4 the particle covers a quarter of the circle, in a time of T/4.",
+      "equation": "T/4 = 2π s ≈ 6.28 s"
+     },
+     {
+      "text": "Since the speed never changes, the average speed over any interval equals this constant speed.",
+      "equation": "average speed = v = 1 cm/s"
+     },
+     {
+      "text": "The displacement is the straight chord joining the start and end points, which are 90° apart on the circle, so the average velocity is this chord divided by the time.",
+      "equation": "displacement = r√2 = 4√2 cm, average velocity = 4√2/(2π) ≈ 0.90 cm/s"
+     },
+     {
+      "text": "Over the quarter turn the velocity direction rotates by 90° while its magnitude stays at 1 cm/s, giving a velocity-vector change of v√2; the average acceleration is this change divided by the time.",
+      "equation": "|Δv| = √2 cm/s, average acceleration = √2/(2π) ≈ 0.23 cm/s²",
+      "why_this_step": "The velocity vectors at the two instants are perpendicular, so their difference has magnitude v√2, not zero."
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "(a) T = 8π s ≈ 25.13 s. (b) average speed = 1 cm/s, average velocity ≈ 0.90 cm/s, average acceleration ≈ 0.23 cm/s²"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Subtracting the two speed values instead of the velocity vectors, 1 − 1 = 0, and concluding the average acceleration is zero, which ignores the change in direction."
+     },
+     {
+      "option": null,
+      "text": "Using the quarter-circle arc length as the displacement instead of the straight chord, which gives an average velocity equal to the average speed, 1 cm/s."
+     }
+    ],
+    "concept_tags": [
+     "uniform circular motion",
+     "average velocity",
+     "average acceleration"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_3c9a75c7",
+   "audit_file": "kin_3c9a75c7.3913322d.json",
+   "item_sha": "3913322dd365a827004a40b40d3c4e53bc3b40c3d5de87291acaee57418c3f8c",
+   "question_text": "A particle travels along a straight path such that its speed v decreases as a linear function of position s, starting at 20 m/s when s = 0 and reaching zero at s = 30 m. Find the acceleration of the body at the position s = 15 m.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Write velocity as a linear function of displacement, then use a = v(dv/ds) at s = 15 m.",
+    "steps": [
+     {
+      "text": "Velocity falls linearly from 20 m/s at s = 0 to 0 at s = 30 m; write v as a function of s.",
+      "equation": "v(s) = 20 − (2/3)s"
+     },
+     {
+      "text": "Differentiate v with respect to s; the slope is constant.",
+      "equation": "dv/ds = −2/3 per second"
+     },
+     {
+      "text": "Find v at s = 15 m.",
+      "equation": "v(15) = 20 − (2/3)(15) = 10 m/s"
+     },
+     {
+      "text": "Use a = v(dv/ds) with v = 10 m/s and dv/ds = −2/3 to find the acceleration.",
+      "equation": "a = 10 × (−2/3) = −6.67 m/s²"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "−6.67 m/s²"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Using the starting velocity 20 m/s instead of the velocity at s = 15 m, giving a = 20 × (−2/3) = −13.3 m/s²."
+     },
+     {
+      "option": null,
+      "text": "Dropping the negative sign on the slope and writing a = 10 × (2/3) = 6.67 m/s²."
+     }
+    ],
+    "concept_tags": [
+     "acceleration as v dv/ds",
+     "linear velocity-displacement relation",
+     "rectilinear motion"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "kin_29fe3403",
+   "audit_file": "kin_29fe3403.dbe10efa.json",
+   "item_sha": "dbe10efa9aad6e1983fcb6906fefa9c672411fcee30f71c05bd3f6b923295d0a",
+   "question_text": "A particle, initially at rest, begins rectilinear motion with a uniform acceleration. When a duration t₀ has elapsed, the direction of this acceleration is reversed while its magnitude remains unchanged. Find the total elapsed time T from the start until the particle arrives back at its starting point.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Split the motion into the first phase of duration t₀ and a second phase with reversed acceleration, then find when the total displacement returns to zero.",
+    "steps": [
+     {
+      "text": "In the first phase, from rest with acceleration a for time t₀, find the velocity and displacement reached.",
+      "equation": "v(t₀) = at₀, x(t₀) = ½at₀²"
+     },
+     {
+      "text": "In the second phase the acceleration becomes −a. Let τ be the time measured after t₀, and write the total displacement at that point.",
+      "equation": "x = ½at₀² + at₀τ − ½aτ²"
+     },
+     {
+      "text": "Set the total displacement to zero and solve the resulting quadratic for τ.",
+      "equation": "½t₀² + t₀τ − ½τ² = 0 → τ² − 2t₀τ − t₀² = 0 → τ = t₀(1 + √2)"
+     },
+     {
+      "text": "Add τ to t₀ for the total time T at which the point mass is back at the start.",
+      "equation": "T = t₀ + t₀(1 + √2) = (2 + √2)t₀ ≈ 3.41 t₀"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "T = (2 + √2) t₀ ≈ 3.41 t₀"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Assuming the second phase exactly mirrors the first and the point mass returns at T = 2t₀ ignores that the mass keeps moving forward for a while in the second phase before it turns back."
+     }
+    ],
+    "concept_tags": [
+     "kinematics with sign-reversing acceleration",
+     "quadratic equation"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_276c65a2",
+   "audit_file": "kin_276c65a2.0ef1678c.json",
+   "item_sha": "0ef1678c42773a101cef9d80f3f24d9792528ae5b409013485db379107dd2450",
+   "question_text": "At the same instant, two bodies, A and B, travel along a straight path in an identical direction. Particle A has an initial speed of 3 m/s and maintains a constant acceleration of 1 m/s², while particle B has an initial speed of 1 m/s and an acceleration of 2 m/s². If particle A begins at a position 10 m behind particle B, determine the closest distance of approach between the two particles.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Write the separation between B and A as a function of time and minimize it with calculus.",
+    "steps": [
+     {
+      "text": "Write each particle's position from its own start, then the separation as B's position minus A's position, starting from the given 10 m gap.",
+      "equation": "s(t) = 10 + (t + t²) − (3t + 0.5t²) = 10 − 2t + 0.5t²"
+     },
+     {
+      "text": "Set the derivative of the separation to zero to find the time of closest approach.",
+      "equation": "ds/dt = −2 + t = 0 → t = 2 s"
+     },
+     {
+      "text": "Substitute t = 2 s back into the separation to get the minimum distance.",
+      "equation": "s(2) = 10 − 4 + 2 = 8 m",
+      "why_this_step": "The second derivative of s(t) is positive, so this turning point is a minimum, not a maximum."
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "8 m"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Using only the initial speeds, 3 m/s and 1 m/s, and ignoring the accelerations suggests the gap keeps closing forever, missing that B's larger acceleration later pulls it ahead again."
+     }
+    ],
+    "concept_tags": [
+     "relative motion",
+     "minimization",
+     "calculus"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "kin_249eeb36",
+   "audit_file": "kin_249eeb36.ad91a02d.json",
+   "item_sha": "ad91a02d2e3089aa2957fcb52f5dff22957eea16f6581538efebe0e93dabd003",
+   "question_text": "From a height of 12 m, a ball is projected straight up with an initial speed of 18 m/s. Exactly at this moment, an open-platform lift crosses the 5 m mark while ascending at a steady speed of 2 m/s. Taking g = 9.8 m/s², calculate:\n(a) the time and location where the ball encounters the platform,\n(b) the velocity of the ball measured relative to the platform upon collision.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Write the ball's height under gravity and the elevator's height at constant speed as functions of time, set them equal to find when they meet, then find their relative velocity.",
+    "steps": [
+     {
+      "text": "Write the ball's height using free-fall kinematics and the elevator's height using constant velocity.",
+      "equation": "y_ball(t) = 12 + 18t − 4.9t², y_elevator(t) = 5 + 2t"
+     },
+     {
+      "text": "Set the two heights equal and simplify to a quadratic in t.",
+      "equation": "12 + 18t − 4.9t² = 5 + 2t → 4.9t² − 16t − 7 = 0"
+     },
+     {
+      "text": "Solve the quadratic and keep the positive root.",
+      "equation": "t = [16 + √(256 + 137.2)]/9.8 = 3.66 s"
+     },
+     {
+      "text": "Find the meeting height using the elevator's equation.",
+      "equation": "y = 5 + 2(3.66) = 12.31 m"
+     },
+     {
+      "text": "Find the relative velocity of the ball with respect to the elevator at this instant.",
+      "equation": "v_ball = 18 − 9.8(3.66) = −17.83 m/s, v_relative = −17.83 − 2 = −19.83 m/s"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "(a) the ball meets the elevator at t ≈ 3.66 s, at a height of about 12.31 m. (b) relative velocity of the ball with respect to the elevator ≈ 19.83 m/s, directed downward."
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Solving for when the ball returns to the elevator's starting height of 5 m, ignoring that the elevator itself keeps moving up, which gives the wrong time t ≈ 4.03 s."
+     },
+     {
+      "option": null,
+      "text": "Assuming the ball is still moving upward at the meeting instant instead of already falling, giving a wrong relative velocity of about 15.83 m/s instead of 19.83 m/s."
+     }
+    ],
+    "concept_tags": [
+     "relative motion",
+     "free fall under gravity",
+     "quadratic equation of motion"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "kin_3c4fc95f",
+   "audit_file": "kin_3c4fc95f.03b21678.json",
+   "item_sha": "03b21678f3138a68819096267501db0925274bc67fe151140980ea747ce2a930",
+   "question_text": "Given below are two statements labeled as Assertion and Reason. Choose the appropriate option that describes them.\n\nAssertion: Based on the formula a = v(dv/ds), whenever the velocity of a body equals zero, its acceleration must likewise vanish.\nReason: The quantity a defined in this expression represents the instantaneous acceleration.",
+   "options": [
+    {
+     "label": "a",
+     "text": "Both Assertion and Reason are true, and Reason is the correct explanation of Assertion."
+    },
+    {
+     "label": "b",
+     "text": "Both Assertion and Reason are true, but Reason is not the correct explanation of Assertion."
+    },
+    {
+     "label": "c",
+     "text": "Assertion is true, but Reason is false."
+    },
+    {
+     "label": "d",
+     "text": "Assertion is false, but Reason is true."
+    }
+   ],
+   "figure_description": "",
+   "solution": {
+    "approach": "Test the claim with free fall from rest: at the starting instant velocity is zero, but the acceleration a = v dv/ds still gives a finite, nonzero value.",
+    "steps": [
+     {
+      "text": "For free fall from rest through a height s, the speed follows v² = 2gs, so v = √(2gs) and dv/ds = g/v.",
+      "equation": "v = √(2gs), dv/ds = g/v"
+     },
+     {
+      "text": "Form the product a = v dv/ds; the v in front cancels the v in the denominator of dv/ds, leaving a constant, even as v approaches zero near the start.",
+      "equation": "a = v × (g/v) = g",
+      "why_this_step": "As s becomes very small, v also becomes very small, but dv/ds grows without bound, so the product v dv/ds stays finite and equal to g rather than going to zero."
+     },
+     {
+      "text": "This shows a = v dv/ds does not force acceleration to zero when velocity is zero; the Assertion's conclusion is false, while the Reason, that a in this formula is the instantaneous acceleration, is a true definition on its own and does not justify the false conclusion.",
+      "equation": "Assertion false, Reason true"
+     }
+    ],
+    "final_answer": {
+     "option": 4,
+     "value": "If Assertion is false but the Reason is true."
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Substituting v = 0 directly into a = v dv/ds and reading off a = 0, without checking that dv/ds can be infinite at that point."
+     }
+    ],
+    "concept_tags": [
+     "acceleration as v dv/ds",
+     "free fall",
+     "calculus in kinematics"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_258f5b72",
+   "audit_file": "kin_258f5b72.827c078b.json",
+   "item_sha": "827c078b85cbbc35e6f9dd02573c83f08539d0486758de481f29962db711a9a4",
+   "question_text": "A particle travels within the x-y plane such that its position coordinates at instant t are given by (2t, t²). Determine:\n(a) the equation of the particle's trajectory,\n(b) its velocity at time t, and\n(c) its acceleration at any instant t.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Eliminate t between the two coordinates to get the path, then differentiate each coordinate once for velocity and again for acceleration.",
+    "steps": [
+     {
+      "text": "The coordinates are x = 2t and y = t². Solve the first for t and substitute into the second.",
+      "equation": "t = x/2, y = (x/2)² = x²/4"
+     },
+     {
+      "text": "This is the equation of the path traced by the particle.",
+      "equation": "y = x²/4, a parabola"
+     },
+     {
+      "text": "Differentiate x and y with respect to t to get the velocity components.",
+      "equation": "vₓ = dx/dt = 2 ms⁻¹, v_y = dy/dt = 2t ms⁻¹"
+     },
+     {
+      "text": "The velocity vector and its magnitude follow from these components.",
+      "equation": "v = √(vₓ² + v_y²) = √(4 + 4t²) = 2√(1 + t²) ms⁻¹"
+     },
+     {
+      "text": "Differentiate the velocity components again to get the acceleration.",
+      "equation": "aₓ = dvₓ/dt = 0, a_y = dv_y/dt = 2 ms⁻², so acceleration is 2 ms⁻² along y, constant for all t"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "(a) y = x²/4 (a parabola), (b) velocity has components vₓ = 2 ms⁻¹, v_y = 2t ms⁻¹, magnitude 2√(1+t²) ms⁻¹, (c) acceleration is constant, 2 ms⁻² along y, at every time t"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Writing the trajectory as y = t² without eliminating t, which leaves the path expressed in terms of time instead of in terms of x and y."
+     }
+    ],
+    "concept_tags": [
+     "motion in a plane",
+     "trajectory",
+     "differentiation of position"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_3e4d3273",
+   "audit_file": "kin_3e4d3273.6bc1a8ee.json",
+   "item_sha": "6bc1a8ee0d47e6de54139bd9f7214d450a9c174c21f9bb7518944335cab4b186",
+   "question_text": "The position of an object travelling across the xy-plane is given as a function of time by x = 2t² and y = t³, where coordinates x and y are measured in metres and time t is in seconds. Determine the average acceleration of the object over the duration from t = 0 to t = 2 s.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Differentiate the coordinates to get the velocity components, then find the average acceleration from the change in velocity over the time interval.",
+    "steps": [
+     {
+      "text": "Differentiate x and y with respect to time to get the velocity components.",
+      "equation": "vₓ = dx/dt = 4t, v_y = dy/dt = 3t²"
+     },
+     {
+      "text": "Evaluate the velocity components at t = 0 and t = 2 s.",
+      "equation": "at t=0: vₓ=0, v_y=0; at t=2: vₓ=8 m/s, v_y=12 m/s"
+     },
+     {
+      "text": "Divide the change in each velocity component by the time interval.",
+      "equation": "aₓ = 8/2 = 4 m/s², a_y = 12/2 = 6 m/s²"
+     },
+     {
+      "text": "Combine the components as a vector and find the magnitude.",
+      "equation": "a_avg = (4î + 6ĵ) m/s², |a_avg| = √(4² + 6²) = 2√13 ≈ 7.21 m/s²"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "a_avg = (4î + 6ĵ) m/s², magnitude ≈ 7.21 m/s² (2√13 m/s²)"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Finding the instantaneous acceleration aₓ=4, a_y=6t at t=2 s instead of averaging, giving (4î + 12ĵ) m/s²."
+     }
+    ],
+    "concept_tags": [
+     "average acceleration",
+     "differentiation of position",
+     "two-dimensional motion"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_2d693408",
+   "audit_file": "kin_2d693408.26273e28.json",
+   "item_sha": "26273e281a370d29da2bd32449556c9afc381cdccbe06320bd374ee9fd733ed0",
+   "question_text": "A particle moving in the x-y plane experiences a time-dependent acceleration described by a = (2t î + 3t² ĵ) m/s². At the moment t = 0, it begins moving from the origin with an initial velocity of 2 m/s directed along the positive x-axis. Determine the velocity vector and the position coordinates of the particle at t = 1 s.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Integrate the acceleration once for velocity, adding the initial velocity, then integrate again for position, starting from the origin.",
+    "steps": [
+     {
+      "text": "Integrate a with respect to time and add the initial velocity to get v(t).",
+      "equation": "v = (2 + t²)î + t³ĵ, using v₀ = 2î"
+     },
+     {
+      "text": "Substitute t = 1 s.",
+      "equation": "v(1) = 3î + ĵ m/s"
+     },
+     {
+      "text": "Integrate v with respect to time, starting from the origin, to get the coordinates.",
+      "equation": "x = 2t + t³/3, y = t⁴/4"
+     },
+     {
+      "text": "Substitute t = 1 s to get the coordinates.",
+      "equation": "x(1) = 2 + 1/3 = 7/3 m ≈ 2.33 m, y(1) = 1/4 = 0.25 m"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "v(1) = (3î + ĵ) m/s; coordinates = (7/3 m, 1/4 m) ≈ (2.33 m, 0.25 m)"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Integrating the acceleration for velocity without adding the initial velocity of 2 m/s along the x-axis gives v(1) = (î + ĵ) m/s instead of (3î + ĵ) m/s."
+     },
+     {
+      "option": null,
+      "text": "Integrating the acceleration components twice without carrying the initial velocity into the position integral gives an x-coordinate of 1/3 m instead of 7/3 m."
+     }
+    ],
+    "concept_tags": [
+     "vectors",
+     "integration",
+     "variable acceleration"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "kin_59776eb3",
+   "audit_file": "kin_59776eb3.929c88fc.json",
+   "item_sha": "929c88fc4b0633d69b9b39d2b21b8ffbb82603ef5401cf037ceb89cba38160e4",
+   "question_text": "A body is thrown vertically upward with an initial speed of 40 m/s. Taking the upward direction as positive and assuming g = 10 m/s², draw the acceleration-time (a-t), velocity-time (v-t), and displacement-time (s-t) curves representing its entire motion until it returns to the launch level.\n(a) Acceleration-time (a-t) graph\n(b) Velocity-time (v-t) graph\n(c) Displacement-time (s-t) graph",
+   "options": [],
+   "figure_description": "Three kinematic graphs from t = 0 s to t = 8 s:\n1. a-t graph: A horizontal line at a = −10 m/s² spanning from t = 0 s to t = 8 s.\n2. v-t graph: A straight line with a constant negative slope beginning at (0 s, +40 m/s), intersecting the time axis at (4 s, 0 m/s), and ending at (8 s, −40 m/s).\n3. s-t graph: An inverted parabola starting at the origin (0 s, 0 m), reaching a peak at (4 s, 80 m), and returning to zero at (8 s, 0 m).",
+   "solution": {
+    "approach": "Use the equations of motion under constant gravity with upward positive to find the times, then plot each quantity against time.",
+    "steps": [
+     {
+      "text": "Find the time to reach the highest point, where velocity becomes zero.",
+      "equation": "t₁ = u/g = 40/10 = 4 s"
+     },
+     {
+      "text": "Find the maximum height reached.",
+      "equation": "hmax = u²/4g = 40²/20 = 80 m"
+     },
+     {
+      "text": "Find the total time of flight back to the starting point.",
+      "equation": "T = 2u/g = 2(40)/10 = 8 s"
+     },
+     {
+      "text": "Describe the a-t graph: acceleration stays constant throughout, since gravity does not change.",
+      "equation": "a = −10 m/s² for the whole interval t = 0 to t = 8 s"
+     },
+     {
+      "text": "Describe the v-t graph using v = u + at.",
+      "equation": "v starts at +40 m/s at t = 0, falls in a straight line, crosses zero at t = 4 s, reaches −40 m/s at t = 8 s"
+     },
+     {
+      "text": "Describe the s-t graph using s = ut + ½at², which is symmetric about the highest point.",
+      "equation": "s rises from 0 to a peak of 80 m at t = 4 s, then falls back to 0 m at t = 8 s"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "a-t graph: constant −10 m/s² from t = 0 to t = 8 s. v-t graph: a straight line from +40 m/s at t = 0 to −40 m/s at t = 8 s, crossing zero at t = 4 s. s-t graph: a curve rising from 0 to a peak of 80 m at t = 4 s and returning to 0 m at t = 8 s."
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Taking the acceleration as zero at the highest point, since velocity is zero there, confuses velocity with acceleration; gravity acts throughout at −10 m/s²."
+     },
+     {
+      "option": null,
+      "text": "Using T = u/g = 4 s as the total flight time instead of 2u/g = 8 s stops the graphs halfway, missing the fall back to the ground."
+     }
+    ],
+    "concept_tags": [
+     "motion under gravity",
+     "a-t v-t s-t graphs",
+     "time of flight"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_26d7cea3",
+   "audit_file": "kin_26d7cea3.ae9cc61a.json",
+   "item_sha": "ae9cc61ae3c4f0a9fcca544406ad3d88c8640992221e094ba9afecd3348b5211",
+   "question_text": "The position of an object traveling along a straight path varies with time according to the relation x = 32t − (8/3)t³, where the coordinate x is in metres and time t is in seconds. Determine its acceleration at the moment it momentarily comes to a stop.",
+   "options": [
+    {
+     "label": "a",
+     "text": "− 16 ms⁻²"
+    },
+    {
+     "label": "b",
+     "text": "− 32 ms⁻²"
+    },
+    {
+     "label": "c",
+     "text": "32 ms⁻²"
+    },
+    {
+     "label": "d",
+     "text": "16 ms⁻²"
+    }
+   ],
+   "figure_description": "",
+   "solution": {
+    "approach": "Differentiate the position function to get velocity, find the time the particle is at rest, then differentiate again to get acceleration at that time.",
+    "steps": [
+     {
+      "text": "Differentiate the position function to get the velocity.",
+      "equation": "v = dx/dt = 32 − 8t²"
+     },
+     {
+      "text": "Set the velocity to zero and solve for the physically valid (positive) time.",
+      "equation": "32 − 8t² = 0 → t² = 4 → t = 2 s"
+     },
+     {
+      "text": "Differentiate the velocity to get acceleration, then evaluate it at t = 2 s.",
+      "equation": "a = dv/dt = −16t → a(2) = −32 ms⁻²"
+     }
+    ],
+    "final_answer": {
+     "option": 2,
+     "value": "− 32 ms⁻²"
+    },
+    "common_mistakes": [
+     {
+      "option": 3,
+      "text": "Solving 32 − 8t² = 0 and taking the negative root t = −2 s instead of the physical t = 2 s, giving a(−2) = 32 ms⁻²."
+     }
+    ],
+    "concept_tags": [
+     "differentiation",
+     "velocity and acceleration",
+     "particle at rest"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "kin_33754b80",
+   "audit_file": "kin_33754b80.410b6719.json",
+   "item_sha": "410b671920bcb2a415c04dc06f1a5e23f91b5adbb152b957c4ef3bea0ad4b699",
+   "question_text": "An object is thrown straight up into the air with a starting speed of 40 m/s. Determine both its total displacement and the overall distance it travels during the first 6 s of its flight. (Use g = 10 m/s²)",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Check whether the particle has already turned back within the 6 s, then add the upward and downward distances separately for the distance covered.",
+    "steps": [
+     {
+      "text": "Displacement in 6 s follows directly from the standard equation of motion, taking upward as positive.",
+      "equation": "s = ut − ½gt² = 40×6 − ½×10×6² = 240 − 180 = 60 m"
+     },
+     {
+      "text": "Find the time taken to reach the highest point, where the velocity becomes zero.",
+      "equation": "t_top = u/g = 40/10 = 4 s"
+     },
+     {
+      "text": "Since 4 s is less than 6 s, the particle has already turned around and is falling back for the last 2 s; find the maximum height it reached.",
+      "equation": "H = u²/(2g) = 1600/20 = 80 m"
+     },
+     {
+      "text": "Find how far it falls back down in the remaining time after reaching the top.",
+      "equation": "fall = ½g(6 − 4)² = ½×10×4 = 20 m"
+     },
+     {
+      "text": "The displacement is the height reached minus the distance fallen back, matching the direct calculation, while the total distance covered is the height reached plus the distance fallen back.",
+      "equation": "displacement = 80 − 20 = 60 m, distance = 80 + 20 = 100 m",
+      "why_this_step": "Distance keeps adding up regardless of direction, while displacement is the net change in position."
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "displacement = 60 m (upward), distance = 100 m"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Reporting the distance as equal to the displacement, 60 m, without checking that the particle reversed direction before 6 s had passed."
+     },
+     {
+      "option": null,
+      "text": "Assuming the particle has returned all the way to the starting point by 6 s and taking the distance as twice the maximum height, 160 m."
+     }
+    ],
+    "concept_tags": [
+     "motion under gravity",
+     "distance vs displacement"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  }
+ ]
+}

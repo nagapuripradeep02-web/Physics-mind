@@ -1,0 +1,24 @@
+{
+ "question_id": "kin_d1f0c906",
+ "item_sha": "df79785931cfb91354081a7e317f282c8c23d36744c226dfdc8e9b06293c7662",
+ "auditor_option": null,
+ "auditor_value": "v = 2√2 m/s ≈ 2.83 m/s at 45° to the initial velocity; s = √5 m ≈ 2.24 m at 26.57° to the initial velocity",
+ "findings": [
+  {
+   "grade": "wrong",
+   "field": "common_mistakes[1].text",
+   "quote": "Using ω = at² for displacement instead of ½at² gives s⊥ = 2 m instead of 1 m.",
+   "note": "ω is the symbol for angular velocity, not displacement; the perpendicular displacement is s⊥. The numbers named are right, but the printed symbol is wrong and a student copying it would write an angular quantity for a length.",
+   "fix": "Using s⊥ = at² for the perpendicular displacement instead of ½at² gives 2 m instead of 1 m."
+  }
+ ],
+ "verdict": "wrong",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-kin-10",
+  "at": "2026-09-11T09:50:23+05:30"
+ }
+}

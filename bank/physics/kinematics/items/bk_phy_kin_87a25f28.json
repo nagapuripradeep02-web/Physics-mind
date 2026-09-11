@@ -1,0 +1,75 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_87a25f28",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "conceptual",
+ "key_kind": "words",
+ "figure_required": false,
+ "question": {
+  "text": "An elevator is traveling upwards while slowing down. State the respective directions of its velocity and acceleration at this moment.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "lift travels upwards",
+   "speed is decreasing (retardation)"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Ascending fixes the direction of velocity as upward; a decreasing speed while moving in that direction means the acceleration opposes the velocity.",
+  "steps": [
+   {
+    "text": "The lift is ascending, so its velocity is directed upward.",
+    "equation": null
+   },
+   {
+    "text": "Its speed is decreasing while it moves upward, so the net force and acceleration must act opposite to the velocity.",
+    "equation": null
+   },
+   {
+    "text": "State both directions.",
+    "equation": "velocity: upward, acceleration: downward"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "Velocity is directed upward; acceleration is directed downward."
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Assuming the acceleration also points upward because the lift is going up, ignoring that its speed is decreasing."
+   }
+  ],
+  "concept_tags": [
+   "velocity and acceleration direction",
+   "retardation"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "b7ba93e1ec5e992b49462390263791aa1b26392e3685fb3370abbf3b16998971"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "604c3d124bbfc9e70d5f21c90a84550bec87dace9af9b1944fb321f21425f9f9",
+  "audited_by": "W01-U-kin-08"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-01",
+  "at": "2026-09-11T15:02:00+05:30"
+ }
+}

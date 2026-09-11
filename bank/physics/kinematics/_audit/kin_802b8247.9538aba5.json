@@ -1,0 +1,16 @@
+{
+ "question_id": "kin_802b8247",
+ "item_sha": "9538aba50a8f49a5b538479e2eb90cefc76d202722d9688a0120235c3fbd328d",
+ "auditor_option": 3,
+ "auditor_value": "8h/9 metre from the ground (option c)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-kin-06",
+  "at": "2026-09-11T00:00:00+05:30"
+ }
+}

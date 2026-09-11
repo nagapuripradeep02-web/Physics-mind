@@ -1,0 +1,16 @@
+{
+ "question_id": "kin_33754b80",
+ "auditor_option": null,
+ "auditor_value": "displacement = 60 m upward, distance = 100 m",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": null,
+ "item_sha": "410b671920bcb2a415c04dc06f1a5e23f91b5adbb152b957c4ef3bea0ad4b699",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-kin-02",
+  "at": "2026-09-11T06:30:00+05:30"
+ }
+}

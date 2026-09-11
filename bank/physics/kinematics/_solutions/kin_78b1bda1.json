@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_78b1bda1",
+ "approach": "Find the peak speed reached after the acceleration phase, then use it to find the distance covered in each phase, and combine everything over the full 12 seconds.",
+ "steps": [
+  {"text": "The particle starts from rest and accelerates at 4 m/s² for 4 s, reaching a peak speed.", "equation": "v_peak = 4 × 4 = 16 ms⁻¹"},
+  {"text": "It then slows uniformly from 16 ms⁻¹ to rest over the next 8 s.", "equation": "retardation = 16/8 = 2 ms⁻²"},
+  {"text": "Find the distance covered in each of the two phases.", "equation": "d₁ = ½(4)(4²) = 32 m, d₂ = ½(16 + 0)(8) = 64 m"},
+  {"text": "Add the two distances and the two times for the total distance and total time.", "equation": "total distance = 32 + 64 = 96 m, total time = 4 + 8 = 12 s"},
+  {"text": "The particle starts and ends at rest, so its total change in velocity over the whole 12 s is zero, giving zero average acceleration; the motion never reverses direction, so the average speed and the average velocity both equal the total distance over the total time.", "equation": "average acceleration = (0 − 0)/12 = 0, average speed = average velocity = 96/12 = 8 ms⁻¹"}
+ ],
+ "final_answer": {"option": null, "value": "(a) average acceleration = 0, (b) average speed = 8 ms⁻¹, (c) average velocity = 8 ms⁻¹"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Averaging the two acceleration magnitudes, 4 m/s² and 2 m/s², directly without weighting by time or sign, gives 3 m/s² for the average acceleration instead of 0."}
+ ],
+ "concept_tags": ["equations of motion", "average acceleration", "average speed"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-10", "at": "2026-09-11T14:20:00+05:30"}
+}

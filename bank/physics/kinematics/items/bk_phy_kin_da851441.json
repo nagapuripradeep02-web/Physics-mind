@@ -1,0 +1,78 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_da851441",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "conceptual",
+ "key_kind": "words",
+ "figure_required": false,
+ "question": {
+  "text": "A pair of balls, labeled A and B, are launched straight up into the air at unequal initial speeds. Determine the acceleration of ball A with respect to ball B during their free flight.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "motion under gravity",
+   "air resistance neglected",
+   "vertical upward projection",
+   "different initial speeds"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Both balls have exactly the same acceleration, g downward, at every instant, so their relative acceleration is the difference of two equal vectors.",
+  "steps": [
+   {
+    "text": "Write the acceleration of each ball; after leaving the hand, both are in free fall under gravity alone.",
+    "equation": "a_A = −g, a_B = −g"
+   },
+   {
+    "text": "The initial velocities are different, but that does not affect the acceleration, which stays g downward for both balls at every instant.",
+    "why_this_step": "Relative acceleration compares accelerations, not velocities; the different launch speeds only give the balls different velocities, not different accelerations."
+   },
+   {
+    "text": "Relative acceleration of A with respect to B is the difference of the two accelerations.",
+    "equation": "a_AB = a_A − a_B = (−g) − (−g) = 0"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "Zero — the relative acceleration is zero because both balls fall under the same gravitational acceleration g throughout the motion."
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Assuming the ball projected with the higher speed must also have a higher acceleration gives a wrongly nonzero relative acceleration."
+   }
+  ],
+  "concept_tags": [
+   "relative acceleration",
+   "free fall",
+   "projectile motion"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "f3d443f6347572a620ec8fb18960ae3250d116554875d6b56d2105fd366a3628"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "96a5fd038ae5c7a1c6c358a478a50fcb2a74030d9e09fb4590ba9a814428dbfe",
+  "audited_by": "W01-U-kin-12"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-07",
+  "at": "2026-09-11T14:05:00+05:30"
+ }
+}

@@ -1,0 +1,20 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_a51e4b4e",
+ "approach": "Integrate da/dt = 2 ms⁻³ starting from zero acceleration to get acceleration as a function of time, then integrate again to see how velocity actually grows.",
+ "steps": [
+  {"text": "Integrate the given constant rate of change of acceleration, starting from zero initial acceleration, to get acceleration as a function of time.", "equation": "da/dt = 2 ⇒ a(t) = 2t"},
+  {"text": "Integrate a(t) = 2t, starting from rest, to get velocity as a function of time.", "equation": "dv/dt = 2t ⇒ v(t) = t²"},
+  {"text": "The rate at which velocity increases at any instant equals a(t) = 2t, which itself grows with time, so velocity does not increase at a constant rate; it only equals 1 ms⁻² at the single instant t = 0.5 s.", "equation": "v(t) = t² is not linear in t, so the rate of increase of velocity is not constant"},
+  {"text": "The Assertion's claim of a constant 1 ms⁻² rate of increase is false, while the Reason correctly derives a = 2t from the given data, so the Reason is true.", "equation": "Assertion false, Reason true"}
+ ],
+ "final_answer": {"option": 4, "value": "If Assertion is false but the Reason is true."},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 1, "text": "Reading a = 2t at the single instant t = 0.5 s, where a = 1 ms⁻², and generalising it to a constant rate for all time."}
+ ],
+ "concept_tags": ["calculus in kinematics", "rate of change of acceleration", "integration"],
+ "difficulty": "hard",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-07", "at": "2026-09-11T14:36:00+05:30"}
+}

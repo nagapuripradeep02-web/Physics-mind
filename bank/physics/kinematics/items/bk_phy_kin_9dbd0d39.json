@@ -1,0 +1,89 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_9dbd0d39",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A body travels along a rectilinear path with an acceleration that changes over time as described below. If the body begins its motion from rest at t = 0 s, sketch the corresponding velocity-time graph from t = 0 s to t = 6 s:\n• For 0 ≤ t ≤ 2 s, acceleration a = +2 m/s²\n• For 2 s < t ≤ 4 s, acceleration a = 0 m/s²\n• For 4 s < t ≤ 6 s, acceleration a = −4 m/s²",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "motion along a straight line",
+   "starts from rest (v = 0 at t = 0 s)",
+   "constant acceleration of +2 m/s² from t = 0 to 2 s",
+   "zero acceleration from t = 2 to 4 s",
+   "constant acceleration of −4 m/s² from t = 4 to 6 s"
+  ],
+  "figure": {
+   "description": "An acceleration versus time (a-t) plot where acceleration is plotted on the vertical axis in m/s² and time is on the horizontal axis in seconds. The graph has three piecewise horizontal segments: a segment at a = +2 m/s² spanning from t = 0 s to 2 s, a segment along the time axis at a = 0 m/s² from t = 2 s to 4 s, and a segment at a = −4 m/s² extending from t = 4 s to 6 s."
+  }
+ },
+ "solution": {
+  "approach": "Add the change in velocity from each interval of the a-t graph one after another, starting from v = 0, to build up the v-t graph.",
+  "steps": [
+   {
+    "text": "From t = 0 to 2 s, acceleration is a constant +2 m/s², so velocity rises in a straight line.",
+    "equation": "v(2) = v(0) + a×t = 0 + 2×2 = 4 m/s"
+   },
+   {
+    "text": "From t = 2 to 4 s, acceleration is 0, so velocity stays constant.",
+    "equation": "v(4) = v(2) = 4 m/s"
+   },
+   {
+    "text": "From t = 4 to 6 s, acceleration is a constant −4 m/s², so velocity falls in a straight line.",
+    "equation": "v(6) = v(4) + a×t = 4 + (−4)(2) = −4 m/s"
+   },
+   {
+    "text": "Find when the falling line crosses zero between t = 4 s and t = 6 s.",
+    "equation": "v(t) = 4 − 4(t − 4) = 0 → t = 5 s"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "The v-t graph rises in a straight line from (0, 0) to (2 s, 4 m/s), stays flat at 4 m/s from 2 s to 4 s, then falls in a straight line through (5 s, 0) down to (6 s, −4 m/s)."
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Treating the flat 0 m/s² interval as zero velocity instead of constant velocity makes the graph drop to zero between 2 s and 4 s."
+   },
+   {
+    "option": null,
+    "text": "Reading the crossing point as t = 4 s, the start of deceleration, instead of solving for where v actually reaches zero, misses that it happens at t = 5 s."
+   }
+  ],
+  "concept_tags": [
+   "a-t graph",
+   "v-t graph construction",
+   "change in velocity"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "6b48a87e31df3f23839ebfa9e8c147eb9e7ed13fc3bc07d8ef5a770d276c358c"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "a99e326a0460561e77e898245b465a557354d161fe719b974ceefb83692ea691",
+  "audited_by": "W01-U-kin-04"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-02",
+  "at": "2026-09-11T00:00:00+05:30"
+ }
+}

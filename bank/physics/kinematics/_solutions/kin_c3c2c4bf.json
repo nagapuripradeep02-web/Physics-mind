@@ -1,0 +1,50 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_c3c2c4bf",
+ "approach": "Split the journey into the first half distance and the second half distance, find the time for each part, then divide the total distance by the total time.",
+ "steps": [
+  {
+   "text": "Let the total distance be 2d; the first half distance d is covered at speed v₁.",
+   "equation": "t₁ = d/v₁"
+  },
+  {
+   "text": "In the second half distance d, a time t splits into 1/3 of t at v₂ and 2/3 of t at v₃, and the distance covered equals d.",
+   "equation": "v₂(t/3) + v₃(2t/3) = d"
+  },
+  {
+   "text": "Solve this equation for t in terms of d, v₂ and v₃.",
+   "equation": "t = 3d / (v₂ + 2v₃)"
+  },
+  {
+   "text": "Add the two times and divide the total distance 2d by the total time.",
+   "equation": "v_avg = 2d / [d/v₁ + 3d/(v₂+2v₃)]"
+  },
+  {
+   "text": "Cancel d and simplify to the final expression.",
+   "equation": "v_avg = 2v₁(v₂ + 2v₃) / (3v₁ + v₂ + 2v₃)"
+  }
+ ],
+ "final_answer": {
+  "option": null,
+  "value": "v_avg = 2v₁(v₂ + 2v₃) / (3v₁ + v₂ + 2v₃)"
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": null,
+   "text": "Treating v₂ and v₃ as covering equal distances instead of the stated time fractions, which changes the time split and gives a different, incorrect expression."
+  }
+ ],
+ "concept_tags": [
+  "average speed",
+  "piecewise motion"
+ ],
+ "difficulty": "hard",
+ "mistake_type_hint": "application",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-01",
+  "at": "2026-09-11T15:12:00+05:30"
+ }
+}

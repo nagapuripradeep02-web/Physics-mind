@@ -1,0 +1,24 @@
+{
+ "question_id": "kin_9d4d798f",
+ "item_sha": "75a9f24b253724e8e006545aab63023e6c0d79bcd6daf1fa5829270944af477c",
+ "auditor_option": null,
+ "auditor_value": "(a) x = 10, 14, 18, 2, -30, -46 m at t = 0, 2, 4, 8, 12, 16 s; (b) average velocity -3.5 m/s, average speed 4.5 m/s; (c) average acceleration -2 m/s^2",
+ "findings": [
+  {
+   "grade": "wrong",
+   "field": "common_mistakes[1].text",
+   "quote": "Reading the acceleration between t = 2 s and t = 8 s directly off the middle segment slope alone instead of using the overall change in velocity over that interval.",
+   "note": "Between t = 2 s and t = 8 s the velocity-time graph is one straight segment from (2, 4) to (8, -8), so its slope is exactly -2 m/s^2, the same value the solution obtains. Reading that slope directly is a correct method, not a mistake, and the entry names no wrong number it could produce.",
+   "fix": "Dividing the velocity change by the total time 8 s instead of by the 6 s interval from t = 2 s to t = 8 s gives -1.5 m/s2 instead of -2 m/s2."
+  }
+ ],
+ "verdict": "wrong",
+ "question_defect": null,
+ "notes": "All computed values agree with my own: areas +4, +4, -16, -32, -16 m; displacement -56 m; distance 72 m.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-kin-07",
+  "at": "2026-09-11T14:45:00+05:30"
+ }
+}

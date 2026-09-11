@@ -1,0 +1,22 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_249eeb36",
+ "approach": "Write the ball's height under gravity and the elevator's height at constant speed as functions of time, set them equal to find when they meet, then find their relative velocity.",
+ "steps": [
+  {"text": "Write the ball's height using free-fall kinematics and the elevator's height using constant velocity.", "equation": "y_ball(t) = 12 + 18t − 4.9t², y_elevator(t) = 5 + 2t"},
+  {"text": "Set the two heights equal and simplify to a quadratic in t.", "equation": "12 + 18t − 4.9t² = 5 + 2t → 4.9t² − 16t − 7 = 0"},
+  {"text": "Solve the quadratic and keep the positive root.", "equation": "t = [16 + √(256 + 137.2)]/9.8 = 3.66 s"},
+  {"text": "Find the meeting height using the elevator's equation.", "equation": "y = 5 + 2(3.66) = 12.31 m"},
+  {"text": "Find the relative velocity of the ball with respect to the elevator at this instant.", "equation": "v_ball = 18 − 9.8(3.66) = −17.83 m/s, v_relative = −17.83 − 2 = −19.83 m/s"}
+ ],
+ "final_answer": {"option": null, "value": "(a) the ball meets the elevator at t ≈ 3.66 s, at a height of about 12.31 m. (b) relative velocity of the ball with respect to the elevator ≈ 19.83 m/s, directed downward."},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Solving for when the ball returns to the elevator's starting height of 5 m, ignoring that the elevator itself keeps moving up, which gives the wrong time t ≈ 4.03 s."},
+  {"option": null, "text": "Assuming the ball is still moving upward at the meeting instant instead of already falling, giving a wrong relative velocity of about 15.83 m/s instead of 19.83 m/s."}
+ ],
+ "concept_tags": ["relative motion", "free fall under gravity", "quadratic equation of motion"],
+ "difficulty": "hard",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-12", "at": "2026-09-11T16:33:00+05:30"}
+}

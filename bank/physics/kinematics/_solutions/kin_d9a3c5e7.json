@@ -1,0 +1,23 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_d9a3c5e7",
+ "approach": "The area under a velocity-time graph gives distance and net displacement, so split the graph into its two triangular parts and combine them.",
+ "steps": [
+  {"text": "The graph forms two triangles: velocity is positive from 0 to 20 s, reaching a peak of 5 m/s, and negative from 20 to 40 s, reaching a minimum of −5 m/s.", "equation": "base = 20 s, height = 5 m/s for each triangle"},
+  {"text": "Find the area of the first triangle, the distance covered while the velocity is positive.", "equation": "Area₁ = ½ × 20 s × 5 m/s = 50 m"},
+  {"text": "Find the area of the second triangle, the distance covered while the velocity is negative.", "equation": "Area₂ = ½ × 20 s × 5 m/s = 50 m"},
+  {"text": "Total distance travelled is the sum of the magnitudes of both areas.", "equation": "Distance = 50 m + 50 m = 100 m"},
+  {"text": "Net displacement is the signed sum: the positive area cancels the negative area, so the particle returns to its starting position.", "equation": "Net displacement = 50 m − 50 m = 0 m", "why_this_step": "Displacement uses the sign of each area, not just its size, while distance adds the sizes."},
+  {"text": "Average velocity is the net displacement divided by the total time; state both results.", "equation": "Average velocity = 0 m / 40 s = 0 m/s; Distance = 100 m, Average velocity = 0 m/s"}
+ ],
+ "final_answer": {"option": null, "value": "Distance = 100 m, Average velocity = 0 m/s"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Taking the net area (50 m − 50 m = 0) as the distance travelled gives 0 m instead of the correct 100 m."},
+  {"option": null, "text": "Using only the first triangle's area as the total distance gives 50 m instead of 100 m."}
+ ],
+ "concept_tags": ["velocity-time graph", "area under a graph", "average velocity"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-07", "at": "2026-09-11T14:00:00+05:30"}
+}

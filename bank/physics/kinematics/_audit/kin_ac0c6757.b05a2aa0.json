@@ -1,0 +1,24 @@
+{
+ "question_id": "kin_ac0c6757",
+ "item_sha": "b05a2aa0c9b9020c1d8db385eea93b1359ddd2655dcc5839b380a2d0cec955d9",
+ "auditor_option": null,
+ "auditor_value": "5.2 m/s",
+ "findings": [
+  {
+   "grade": "wrong",
+   "field": "common_mistakes[0].text",
+   "quote": "Taking the simple average of the two speeds, (4 + 6)/2 = 5 m/s, instead of weighting by the distance each speed covers.",
+   "note": "Average speed is total distance over total time, which weights each speed by the TIME spent at it, not by the distance covered. Weighting by distance here would give (4×8 + 6×18)/26 = 5.38 m/s, not the correct 5.2 m/s.",
+   "fix": "Taking the simple average of the two speeds, (4 + 6)/2 = 5 m/s, instead of weighting each speed by the time spent at it."
+  }
+ ],
+ "verdict": "wrong",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-kin-08",
+  "at": "2026-09-11T18:40:00+05:30"
+ }
+}

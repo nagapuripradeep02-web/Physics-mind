@@ -1,0 +1,11 @@
+{
+ "question_id": "kin_03bdb38a",
+ "item_sha": "0a1a9b029b2f744d7bfdc6bf42f8e4d87ba3567645f54519228c0364620b2777",
+ "auditor_option": null,
+ "auditor_value": "t = v0/g + t0/2 after the first launch",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-kin-01", "at": "2026-09-11T06:26:00+05:30"}
+}

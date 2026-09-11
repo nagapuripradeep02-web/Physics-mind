@@ -1,0 +1,16 @@
+{
+ "question_id": "kin_52d332aa",
+ "item_sha": "5596a4edf2e6167d5de661caeeab2a9eb98c4a2cff0de97030d6231efac4e6a4",
+ "auditor_option": null,
+ "auditor_value": "u = 50 m/s",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Checked: roots t = 2 s and t = 8 s, gap 6 s; the stated mistake value 43.3 m/s reproduces from 80 = 6u - 5(36).",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-kin-03",
+  "at": "2026-09-11T09:53:59+05:30"
+ }
+}

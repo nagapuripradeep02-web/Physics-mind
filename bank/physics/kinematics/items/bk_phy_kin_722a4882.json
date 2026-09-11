@@ -1,0 +1,72 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_722a4882",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "conceptual",
+ "key_kind": "words",
+ "figure_required": false,
+ "question": {
+  "text": "An elevator is moving downwards while speeding up. Determine the direction of its velocity and the direction of its acceleration during this motion.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "lift moves downwards",
+   "speed is increasing"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "A lift descending means its velocity points downward; its speed increasing while descending means the acceleration must point in the same direction as the velocity.",
+  "steps": [
+   {
+    "text": "The lift is descending, so its velocity is directed downward.",
+    "equation": "velocity: downward"
+   },
+   {
+    "text": "The speed is increasing while the lift moves downward, so the acceleration must act in the same sense as the velocity to speed the lift up rather than slow it down.",
+    "equation": "acceleration: downward",
+    "why_this_step": "When acceleration points in the same direction as velocity, speed increases; when it points opposite, speed decreases."
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "Both the velocity and the acceleration of the lift are directed downward."
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Assuming a descending object must always have an upward (retarding) acceleration confuses this case with a lift that is slowing down while descending, not speeding up."
+   }
+  ],
+  "concept_tags": [
+   "direction of velocity and acceleration",
+   "speeding up versus slowing down"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "7fbc29b5e7c7623899cc608ef8edf1053b5f6baea08b9b05aa04dcaba22c3ea2"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "d562583dddc964ffc6fd5448af72981ed0977c76068e1ec5be4505e06cf58ea6",
+  "audited_by": "W01-U-kin-05"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-04",
+  "at": "2026-09-11T01:05:00+05:30"
+ }
+}

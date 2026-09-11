@@ -1,0 +1,96 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_1df52668",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "mcq_single",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "An object is projected vertically upward from the surface of the earth. Throughout its flight, a steady resistive force acts on it, causing a deceleration of magnitude 2 ms⁻². Taking g = 10 ms⁻², determine the ratio comparing the duration of upward motion to that of downward motion back to the ground.",
+  "options": {
+   "1": "1 : 1",
+   "2": "√(2/3)",
+   "3": "2/3",
+   "4": "√(3/2)"
+  },
+  "parts": null,
+  "conditions": [
+   "vertical motion under gravity",
+   "g = 10 ms⁻²",
+   "constant resistive force opposing motion",
+   "resistive retardation = 2 ms⁻²"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "The resistance adds to gravity on the way up and subtracts from it on the way down, so use the two accelerations to find each time and take the ratio.",
+  "steps": [
+   {
+    "text": "On the way up, both gravity and the resistance act downward, opposing the motion.",
+    "equation": "a_up = g + 2 = 12 ms⁻²"
+   },
+   {
+    "text": "On the way down, the resistance acts upward, against gravity.",
+    "equation": "a_down = g − 2 = 8 ms⁻²"
+   },
+   {
+    "text": "Write the time of ascent and the maximum height reached, for initial speed u.",
+    "equation": "t₁ = u/12, h = u²/24"
+   },
+   {
+    "text": "Write the time of descent from that height using h = ½a_down t₂².",
+    "equation": "t₂ = u/(4√6)"
+   },
+   {
+    "text": "Divide the two times to get the ratio.",
+    "equation": "t₁/t₂ = √(2/3)",
+    "why_this_step": "The u cancels, so the ratio does not depend on the launch speed."
+   }
+  ],
+  "final_answer": {
+   "option": 2,
+   "value": "√(2/3)"
+  },
+  "common_mistakes": [
+   {
+    "option": 1,
+    "text": "Ignoring the resistance force and using the same acceleration g for both ascent and descent gives a ratio of 1 : 1."
+   },
+   {
+    "option": 4,
+    "text": "Inverting the ratio, computing time of descent to time of ascent instead, gives √(3/2)."
+   }
+  ],
+  "concept_tags": [
+   "equations of motion",
+   "retardation",
+   "vertical motion"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "f243a15b1c5c81776e1f493a7b90b11549e294dda6c87403ad9999fea9b7cd58"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "6f11c6012f3506e872f04b9da758d969d30eba3062d922f8c0da98e87bd64798",
+  "audited_by": "W01-U-kin-12"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-10",
+  "at": "2026-09-11T14:02:00+05:30"
+ }
+}

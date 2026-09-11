@@ -1,0 +1,44 @@
+{
+  "schema": "eapcet_solution_v1",
+  "question_id": "kin_55c0bbfa",
+  "approach": "The formula v = u + at holds only for constant acceleration; since the acceleration here depends on time, velocity must be found by integrating it over time instead.",
+  "steps": [
+    {
+      "text": "The equation v = u + at is derived by integrating a constant acceleration over time, dv = a dt with a fixed.",
+      "equation": "v = u + at, valid only when a does not change with time"
+    },
+    {
+      "text": "Here the acceleration is a(t) = 4tî + t²ĵ, which changes with time, so v = u + at cannot be applied directly.",
+      "equation": "a(t) depends on t, so v(t) = u + ∫a(t) dt, not u + a(t)·t"
+    },
+    {
+      "text": "As a check, at t = 1 s the wrong formula gives v = u + a(1)×1 = (2,0) + (4,1) = (6,1) m/s, while correctly integrating gives v(1) = (4, 1/3) m/s, a different result.",
+      "equation": "wrong: (6, 1) m/s, correct: (4, 1/3) m/s",
+      "why_this_step": "The mismatch confirms that plugging the instantaneous acceleration into v = u + at gives an incorrect velocity when acceleration is not constant."
+    }
+  ],
+  "final_answer": {
+    "option": null,
+    "value": "No. The equation v = u + at applies only for constant acceleration; here the acceleration depends on time, so velocity must be obtained by integrating a(t) with respect to time."
+  },
+  "confidence": "sure",
+  "common_mistakes": [
+    {
+      "option": null,
+      "text": "Substituting the acceleration at an instant into v = u + at as if it were constant gives v = (6, 1) m/s at t = 1 s instead of the correct (4, 1/3) m/s."
+    }
+  ],
+  "concept_tags": [
+    "equations of motion",
+    "constant versus variable acceleration",
+    "integration of acceleration"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "concept",
+  "authored_by": {
+    "model": "sonnet",
+    "wave": 1,
+    "agent": "W01-A-kin-04",
+    "at": "2026-09-11T01:10:00+05:30"
+  }
+}

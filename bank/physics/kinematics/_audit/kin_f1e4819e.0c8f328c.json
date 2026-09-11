@@ -1,0 +1,16 @@
+{
+ "question_id": "kin_f1e4819e",
+ "item_sha": "0c8f328c4942859799c16671cab62aa10c91d2287b495de1bb526c7700dd06b6",
+ "auditor_option": null,
+ "auditor_value": "(a) x₀ = −20 m; (b) v = +2 m/s; (c) x = (−20 + 2t) m; (d) uniform velocity, reaches the origin at t = 10 s",
+ "findings": [
+  {"grade": "wrong", "field": "final_answer", "quote": "The particle starts at x = −20 m and moves with a constant velocity of +2 m/s (zero acceleration), reaching x = 0 m at t = 10 s; it is in uniform motion in the positive x-direction throughout.",
+   "note": "Part (c) asks for the position as a function of time, and neither the steps nor the final answer ever writes it. A student following this solution has nothing to write for that sub-part.", "fix": "Add the equation of motion: x = x₀ + vt = (−20 + 2t) m, then state the rest as written."},
+  {"grade": "wrong", "field": "common_mistakes[1].text", "quote": "Taking the slope as 20/10 without checking the sign of the intercept gives the wrong starting position.",
+   "note": "The stated cause cannot produce the stated error. 20/10 = +2 m/s is the correct slope and correct velocity, and a slope calculation does not fix the starting position, which is read directly off the intercept.", "fix": "Reading the intercept as +20 m instead of −20 m, because only the size of the marking is read and not its sign, gives the wrong starting position and the wrong equation x = 20 + 2t."}
+ ],
+ "verdict": "wrong",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-kin-11", "at": "2026-09-11T09:50:48+05:30"}
+}

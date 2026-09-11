@@ -1,0 +1,16 @@
+{
+ "question_id": "kin_dd6ddc94",
+ "item_sha": "d846860d4580d14abdf56ab1ca0f08186941ce30fdc4c796532f4ea50b23702d",
+ "auditor_option": null,
+ "auditor_value": "(a) g downward, (b) g downward, (c) g downward — the acceleration is g (about 9.8 m/s²) downward throughout, including at the highest point",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-kin-02-R1",
+  "at": "2026-09-11T10:08:20+05:30"
+ }
+}

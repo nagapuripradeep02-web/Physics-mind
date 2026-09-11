@@ -1,0 +1,148 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter": "kinematics",
+ "slice": 1,
+ "round": 0,
+ "items": [
+  {
+   "question_id": "kin_05e2d55d",
+   "question_text": "Consider the following claim: An object undergoing projectile motion travels along a two-dimensional path while experiencing a uniform acceleration. State whether this proposition is true or false.",
+   "options": [
+    {
+     "label": "A",
+     "text": "True"
+    },
+    {
+     "label": "B",
+     "text": "False"
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_17442cc2",
+   "question_text": "Starting from rest at ground level, a rocket is launched vertically with an effective upward acceleration of 4 m/s². Its engine shuts down after 5 s when all fuel is consumed, after which the rocket moves under the influence of gravity alone (taking g = 10 m/s²). It continues upward while slowing down until momentarily coming to rest at its peak altitude, and subsequently free-falls back to the ground. Sketch the velocity-time and displacement-time curves for the entire duration of the flight.",
+   "options": [],
+   "figure_description": "Two graphs are displayed:\n1. Velocity-time (v in m/s vs t in s): A straight line segment ascends from the origin (0, 0) to point A at (5, 20), followed by a straight line segment with a steeper negative slope passing through point B at (7, 0) and terminating at point C at (10.7, −37.4).\n2. Displacement-time (s in m vs t in s): A parabolic curve opening upward extends from (0, 0) to point A at (5, 50), connects to a parabolic curve opening downward that peaks at point B at (7, 70), and returns to the time axis at point C at (10.7, 0)."
+  },
+  {
+   "question_id": "kin_037428f9",
+   "question_text": "A river has a width of 30 m and flows with a speed of 4 m/s. A boatman can row at a speed of 5 m/s in still water.\n(a) Sketch the velocity vector diagram corresponding to crossing the river in the minimum possible time. Calculate this minimum duration, the resultant speed of the boatman relative to the ground, and the distance drifted downstream.\n(b) Determine whether the boatman can arrive at a point directly opposite the initial location on the opposite bank. If it is possible, provide the velocity diagram, the direction in which the boat must be steered, and the time taken for this crossing.\n(c) Find the total time required for the boatman to travel a distance of 10 m upstream and then row back to the starting location.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_221d167c",
+   "question_text": "A body is dropped from an elevation of 125 m starting with zero initial velocity. Compute its average velocity for the entire fall until reaching the ground. (Use g = 10 m/s²).",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_199747d3",
+   "question_text": "The velocity of an object travelling along a straight line varies with time as v = (3 + 6t + 9t²) cm/s, where t is in seconds. Determine:\n(a) The acceleration of the object at t = 3 s.\n(b) Its displacement during the time interval from t = 5 s to t = 8 s.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_04cc2a0c",
+   "question_text": "During the time interval 2 s ≤ t ≤ 6 s, an object moves along a straight path such that its velocity v and acceleration a (in m/s²) satisfy the relation v = 4/a m/s. Given that the velocity of the object is v = 6 m/s at the instant t = 2 s, calculate its acceleration at t = 3 s.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_49fae7f8",
+   "question_text": "An object moves along the x-axis such that its speed remains constant within each given time period as follows:\n• From 0 s to 2 s, its speed is 2 m/s\n• From 2 s to 5 s, its speed is 3 m/s\n• From 10 s to 10 s, its speed is 4 m/s\n• From 10 s to 15 s, its speed is 2 m/s\n\nDetermine:\n(a) The overall distance covered during the entire motion.\n(b) The average speed of the object over the 15 s interval.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_03bdb38a",
+   "question_text": "From the same location, two objects are launched straight upward with an identical launch speed v₀. If the second object is released a time interval t₀ s following the first, find the time elapsed from the projection of the first object until they meet.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_241ee20d",
+   "question_text": "The velocity vector of a moving body at time t is expressed as v = (2 î + 2t ĵ) m/s. Assuming the body starts from the origin at t = 0, calculate its acceleration vector and displacement vector at t = 1 s. Furthermore, explain whether the kinematic relation v = u + at is applicable to this motion.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_04fc7932",
+   "question_text": "Given below are two statements labeled as Assertion and Reason. Choose the correct option from the given choices.\n\nAssertion: A particle moving with constant acceleration cannot have its average velocity equal to zero over any duration.\nReason: For the average velocity of a moving object to vanish, its non-zero velocity must not stay unchanging.",
+   "options": [
+    {
+     "label": "a",
+     "text": "Both Assertion and Reason are true, and Reason is the correct explanation of Assertion."
+    },
+    {
+     "label": "b",
+     "text": "Both Assertion and Reason are true, but Reason is not the correct explanation of Assertion."
+    },
+    {
+     "label": "c",
+     "text": "Assertion is true, but Reason is false."
+    },
+    {
+     "label": "d",
+     "text": "Assertion is false, but Reason is true."
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_1bfd0c8d",
+   "question_text": "An object travels along a straight line such that its x-coordinate varies with time according to the equation x = (2 + t² + 2t³), where x is expressed in metres and time t is in seconds. Determine:\n(a) the location from which the object began its motion,\n(b) the initial velocity of the object,\n(c) the acceleration of the object at t = 2 s.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_1cf0985b",
+   "question_text": "An object having a mass of 10 kg moves with an initial speed of 10 ms⁻¹. It is subjected to a forward force described by 3t² and a constant resistive force of 32 N. What will be the velocity of the object at t = 5 s?",
+   "options": [
+    {
+     "label": "a",
+     "text": "14.5 ms⁻¹"
+    },
+    {
+     "label": "b",
+     "text": "6.5 ms⁻¹"
+    },
+    {
+     "label": "c",
+     "text": "3.5 ms⁻¹"
+    },
+    {
+     "label": "d",
+     "text": "4.5 ms⁻¹"
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_1a825165",
+   "question_text": "The position–time (x–t) plots for two bodies, A and B, traveling along the x-axis are straight lines. At time t = 0 s, body A is located at x = 10 m while body B is at the origin (x = 0 m). At t = 5 s, both bodies reach x = 12 m. Determine the velocity of body A relative to body B.",
+   "options": [],
+   "figure_description": "A position versus time (x–t) graph showing position x in meters on the vertical axis and time t in seconds on the horizontal axis. Particle A's straight-line trajectory begins at (0 s, 10 m), while particle B's straight-line trajectory begins at the origin (0 s, 0 m). The two lines intersect at the coordinates (5 s, 12 m)."
+  },
+  {
+   "question_id": "kin_10910ccf",
+   "question_text": "An aircraft travels directly from location P to location Q, situated 1000 km to the north. A steady wind moves eastward at 200 km/h, while the aircraft maintains a speed of 500 km/h relative to the surrounding air.\n(a) Determine the heading direction the pilot must steer to arrive at Q.\n(b) Calculate the duration needed to complete the flight from P to Q.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_224e9032",
+   "question_text": "Two vehicles, A and B, begin traveling at the same moment along a straight horizontal path in the identical forward direction. At time t = 0, vehicle A is located 10 m behind vehicle B. Vehicle A accelerates from rest at a uniform rate of a = 4 m/s², whereas vehicle B proceeds at a steady speed of v = 1 m/s. Calculate the time elapsed before vehicle A catches up to vehicle B.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_15d87f22",
+   "question_text": "A body travels in a straight line along the x-axis. When t = 0 s, the location of the body is x = −4 m. The velocity of the body varies with time according to v = 8 − 2t, with v given in m/s and t in s.\n(a) How many distinct instances does the body find itself 8 m away from the origin?\n(b) Determine the exact values of time at which these occurrences take place.",
+   "options": [],
+   "figure_description": "A schematic showing the x-axis with marks at −8 m, −4 m, 0 m, and +8 m. At t = 0, the object starts at x = −4 m with a rightward velocity of 8 m/s and a constant leftward acceleration of 2 m/s². The trajectory illustrates the object moving rightward across x = +8 m at time t₁, halting at v = 0, reversing direction to pass x = +8 m again at time t₂, and eventually reaching x = −8 m at time t₃."
+  }
+ ]
+}

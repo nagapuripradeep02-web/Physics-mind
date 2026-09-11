@@ -1,0 +1,94 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_87c5582f",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "mcq_single",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "An elevator begins moving upward from a stationary state, with its acceleration changing over time as shown in the given graph. The acceleration is 2 ms⁻² between t = 0 and t = 4 s, remains 0 from t = 4 s to t = 8 s, and is −2 ms⁻² between t = 8 s and t = 12 s. Determine the total vertical displacement of the elevator from its initial level by the time it stops.",
+  "options": {
+   "1": "20 m",
+   "2": "64 m",
+   "3": "32 m",
+   "4": "36 m"
+  },
+  "parts": null,
+  "conditions": [
+   "starts from rest (initial velocity is zero)",
+   "vertical upward motion",
+   "acceleration a = 2 ms⁻² for 0 ≤ t ≤ 4 s",
+   "acceleration a = 0 for 4 s < t ≤ 8 s",
+   "acceleration a = −2 ms⁻² for 8 s < t ≤ 12 s"
+  ],
+  "figure": {
+   "description": "An acceleration-time graph showing acceleration a in ms⁻² on the vertical axis and time t in s on the horizontal axis. A horizontal line segment extends from t = 0 to t = 4 s at a = 2 ms⁻². The curve lies on the time axis (a = 0) from t = 4 s to t = 8 s. A horizontal line segment extends from t = 8 s to t = 12 s at a = −2 ms⁻²."
+  }
+ },
+ "solution": {
+  "approach": "Read the acceleration in each of the three time segments, find the velocity at each segment boundary, and add the distance covered in each segment.",
+  "steps": [
+   {
+    "text": "From t = 0 to 4 s, acceleration is 2 ms⁻² from rest. Find the velocity and distance covered by the end of this segment.",
+    "equation": "v(4) = 0 + 2(4) = 8 ms⁻¹, d₁ = ½(2)(4)² = 16 m"
+   },
+   {
+    "text": "From t = 4 to 8 s, acceleration is 0, so the lift moves at the constant velocity 8 ms⁻¹. Find the distance covered.",
+    "equation": "d₂ = 8 × 4 = 32 m"
+   },
+   {
+    "text": "From t = 8 to 12 s, acceleration is −2 ms⁻². Check that the lift comes to rest exactly at t = 12 s.",
+    "equation": "v(12) = 8 − 2(4) = 0"
+   },
+   {
+    "text": "Find the distance covered while the velocity falls from 8 ms⁻¹ to 0 over this last segment.",
+    "equation": "d₃ = 8(4) + ½(−2)(4)² = 32 − 16 = 16 m"
+   },
+   {
+    "text": "Add the three distances to get the total height above the starting point.",
+    "equation": "16 + 32 + 16 = 64 m"
+   }
+  ],
+  "final_answer": {
+   "option": 2,
+   "value": "64 m"
+  },
+  "common_mistakes": [
+   {
+    "option": 3,
+    "text": "Treating zero acceleration in the middle segment as zero velocity, so skipping the 32 m travelled at constant speed and adding only the first and last segments: 16 + 16 = 32 m."
+   }
+  ],
+  "concept_tags": [
+   "acceleration-time graph",
+   "equations of motion",
+   "area under a graph"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "2c8344a398bbc99c0813112e43d571e041fe21140c8926beaa05e17f8fa43df3"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "fe40b169c4ad89be0a76c10ed5d382671d4c7e0c2f81b2ad41729e809a4014ad",
+  "audited_by": "W01-U-kin-02"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-09",
+  "at": "2026-09-11T15:06:00+05:30"
+ }
+}

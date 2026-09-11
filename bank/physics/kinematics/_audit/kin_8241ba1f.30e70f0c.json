@@ -1,0 +1,16 @@
+{
+ "question_id": "kin_8241ba1f",
+ "item_sha": "30e70f0ce42c079c40955184a0c6b717700a029d518021462966f3af9a036080",
+ "auditor_option": null,
+ "auditor_value": "sₜ = s(t) − s(t−1) = [ut + ½at²] − [u(t−1) + ½a(t−1)²] = u + ½a(2t − 1) = u + at − ½a",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-kin-01-R1",
+  "at": "2026-09-11T18:40:00+05:30"
+ }
+}

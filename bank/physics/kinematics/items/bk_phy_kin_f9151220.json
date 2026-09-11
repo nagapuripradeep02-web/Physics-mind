@@ -1,0 +1,82 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_f9151220",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "numerical",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A body travels along the +x-axis such that its velocity varies with time according to the equation v = (40 − 10 t) m/s, where t is expressed in seconds. Given that the body starts at x = 0 when t = 0, determine the time(s) at which it is located at a distance of 60 m from the origin.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "motion along the x-axis",
+   "velocity v = (40 − 10 t) m/s",
+   "initial position x = 0 at t = 0",
+   "distance from origin is 60 m"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Integrate v = 40 − 10t to get the position x(t), then solve x(t) = 60 m and x(t) = −60 m for every non-negative time.",
+  "steps": [
+   {
+    "text": "Integrate the velocity to get the position, starting from x = 0 at t = 0.",
+    "equation": "x(t) = 40t − 5t²"
+   },
+   {
+    "text": "The particle moves in the positive direction until v = 0 at t = 4 s, reaching a maximum x = 80 m, then moves back through the origin into negative x.",
+    "equation": "v = 0 at t = 4 s, x(4) = 80 m"
+   },
+   {
+    "text": "Solve x(t) = 60 m; the particle passes this point once going out and once coming back.",
+    "equation": "40t − 5t² = 60 → t² − 8t + 12 = 0 → t = 2 s or t = 6 s"
+   },
+   {
+    "text": "Solve x(t) = −60 m for the positive root, since the particle also reaches 60 m from the origin on the negative side.",
+    "equation": "40t − 5t² = −60 → t² − 8t − 12 = 0 → t = 4 + 2√7 ≈ 9.29 s"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "t = 2 s, t = 6 s, and t = 4 + 2√7 s ≈ 9.29 s"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Stopping after finding t = 2 s and 6 s misses that the particle later reaches 60 m on the negative side too, at t = 4 + 2√7 s."
+   }
+  ],
+  "concept_tags": [
+   "kinematics with variable velocity",
+   "integration",
+   "quadratic equation"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "d2bbc710d6eb0ade604515fd08a320cbf1261144fb397352a59ea4dcb717bd0e"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "f97aefd139923b4e0f6e85273c161927eec4133ee81542755008dc4df369a70e",
+  "audited_by": "W01-U-kin-10"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-11",
+  "at": "2026-09-11T15:03:00+05:30"
+ }
+}

@@ -1,0 +1,47 @@
+{
+  "schema": "eapcet_solution_v1",
+  "question_id": "kin_7a9b4bd8",
+  "approach": "Test the claim with a particle whose velocity stays positive throughout while its acceleration alternates sign; this shows acceleration can change direction while velocity keeps the same direction.",
+  "steps": [
+    {
+      "text": "Take a particle moving along a line with velocity v(t) = 2 + sin(t), which stays positive for all t, so its direction never changes.",
+      "equation": "v(t) = 2 + sin(t), a(t) = cos(t)"
+    },
+    {
+      "text": "Check the velocity and acceleration at a few times.",
+      "equation": "t = 1 s: v = 2.84 m/s, a = 0.54 m/s²; t = 2 s: v = 2.91 m/s, a = −0.42 m/s²"
+    },
+    {
+      "text": "The velocity stayed positive (same direction) throughout, while the acceleration went from positive to negative, so acceleration can change direction without velocity changing direction; the Assertion is true.",
+      "equation": "Assertion true"
+    },
+    {
+      "text": "The Reason states that a change in the direction of the velocity vector's change means a change in the direction of the acceleration vector; since acceleration is the rate of change of velocity, this is true by definition, but it says nothing about why velocity's own direction can stay fixed, so it is not the correct explanation of the Assertion.",
+      "equation": "Assertion true, Reason true, but Reason does not explain Assertion"
+    }
+  ],
+  "final_answer": {
+    "option": 2,
+    "value": "If both Assertion and Reason are true but Reason is not the correct explanation of Assertion."
+  },
+  "confidence": "sure",
+  "common_mistakes": [
+    {
+      "option": 1,
+      "text": "Treating the Reason as a genuine explanation of the Assertion because both statements are true, without noticing the Reason only restates the definition of acceleration and says nothing about velocity's own direction."
+    }
+  ],
+  "concept_tags": [
+    "direction of acceleration",
+    "direction of velocity",
+    "rectilinear motion"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "concept",
+  "authored_by": {
+    "model": "sonnet",
+    "wave": 1,
+    "agent": "W01-A-kin-07",
+    "at": "2026-09-11T14:42:00+05:30"
+  }
+}

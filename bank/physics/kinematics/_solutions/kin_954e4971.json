@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_954e4971",
+ "approach": "Once the stone leaves the elevator, the elevator's support force is gone and only gravity acts on it.",
+ "steps": [
+  {"text": "Before release, the stone moves with the elevator, which has acceleration g/2 upward, because the elevator floor pushes on the stone.", "equation": "a (with elevator) = g/2 upward"},
+  {"text": "At the instant of release, the stone loses contact with the elevator, so the elevator's push on it becomes zero."},
+  {"text": "The only force left on the stone is its own weight, so apply Newton's second law to the stone alone.", "equation": "a = F_net/m = mg/m = g"},
+  {"text": "The acceleration of the stone just after release is g, directed vertically downward.", "why_this_step": "Once contact is lost, the stone's later motion no longer depends on how the elevator was moving."}
+ ],
+ "final_answer": {"option": null, "value": "g, directed vertically downward"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Assuming the stone keeps the elevator's acceleration g/2 upward after release, forgetting that this required the elevator's push, which is gone."},
+  {"option": null, "text": "Subtracting the elevator's acceleration from g to get g/2 downward, treating the elevator's motion as if it still acted on the released stone."}
+ ],
+ "concept_tags": ["free fall", "Newton's second law", "elevator problem"],
+ "difficulty": "easy",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-05", "at": "2026-09-11T14:02:00+05:30"}
+}

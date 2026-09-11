@@ -1,0 +1,84 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_81398297",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "At the initial instant t = 0, a moving particle has a velocity given by u = (2î + 3ĵ) m/s and experiences a constant acceleration a = (4î + 2ĵ) m/s². Determine both the velocity vector and the displacement vector of the particle at time t = 2 s.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "initial velocity u = (2î + 3ĵ) m/s at t = 0",
+   "uniform acceleration a = (4î + 2ĵ) m/s²",
+   "motion evaluated at t = 2 s"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Apply the vector equations of motion v = u + at and s = ut + ½at² component by component.",
+  "steps": [
+   {
+    "text": "Write the velocity equation with the given vectors and t = 2 s.",
+    "equation": "v = u + at = (2î + 3ĵ) + (4î + 2ĵ)(2) = (2 + 8)î + (3 + 4)ĵ"
+   },
+   {
+    "text": "Add the components to get the velocity vector.",
+    "equation": "v = (10î + 7ĵ) m/s, |v| = √(10² + 7²) = √149 ≈ 12.2 m/s"
+   },
+   {
+    "text": "Write the displacement equation with the given vectors and t = 2 s.",
+    "equation": "s = ut + ½at² = (2î + 3ĵ)(2) + ½(4î + 2ĵ)(2²) = (4 + 8)î + (6 + 4)ĵ"
+   },
+   {
+    "text": "Add the components to get the displacement vector.",
+    "equation": "s = (12î + 10ĵ) m, |s| = √(12² + 10²) = √244 ≈ 15.6 m"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "v = (10î + 7ĵ) m/s, |v| ≈ 12.2 m/s; s = (12î + 10ĵ) m, |s| ≈ 15.6 m"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Using s = ut + at² without the half factor gives s = (20î + 14ĵ) m, with both components too large."
+   },
+   {
+    "option": null,
+    "text": "Forgetting to multiply a by t in v = u + at and adding a directly gives v = (6î + 5ĵ) m/s."
+   }
+  ],
+  "concept_tags": [
+   "vector kinematics",
+   "equations of motion in vector form"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "calculation"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "6cda6779c23507e4c53782c6aa2e00ee1ef881a2ec0a07a28f574f8cd406ea54"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "66831c3205a95bd6edf45fc3bdaeecf9be6d0c91574e37de419faa02b88bfd8f",
+  "audited_by": "W01-U-kin-01-R1"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-02",
+  "at": "2026-09-11T00:00:00+05:30"
+ }
+}

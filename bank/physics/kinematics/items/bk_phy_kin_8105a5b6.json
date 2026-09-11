@@ -1,0 +1,89 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_8105a5b6",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "For an object moving with a time-dependent velocity vector v, answer the following questions:",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "Explain the physical meaning conveyed by each of the two mathematical expressions |dv/dt| and d|v|/dt."
+   },
+   {
+    "label": "b",
+    "asks": "Determine whether there are situations in which these two quantities are equal to each other."
+   }
+  ],
+  "conditions": [
+   "v denotes instantaneous velocity vector",
+   "|v| denotes speed"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "|dv/dt| is the size of the acceleration vector, while d|v|/dt is the rate at which only the speed changes; compare what each one includes to see when they can match.",
+  "steps": [
+   {
+    "text": "dv/dt is the acceleration vector, the rate of change of the velocity vector. Its magnitude |dv/dt| includes any change in the direction of velocity as well as any change in speed.",
+    "equation": "|dv/dt| = |a|"
+   },
+   {
+    "text": "|v| is the speed, a single number with no direction. d|v|/dt is the rate of change of this number, so it tracks only a change in speed.",
+    "equation": "d|v|/dt = rate of change of speed"
+   },
+   {
+    "text": "When the acceleration is along the velocity, so that the object moves in a straight line with its speed increasing, the whole acceleration changes the speed and the two quantities are equal; if it moves in a straight line while slowing down, d|v|/dt is negative and equals −|dv/dt|.",
+    "equation": "speed increasing in a straight line: |dv/dt| = d|v|/dt; speed decreasing: d|v|/dt = −|dv/dt|"
+   },
+   {
+    "text": "In motion along a curved path, part of the acceleration changes only the direction, not the speed, so the two quantities are not equal in general; for example, in uniform circular motion the speed is constant, d|v|/dt = 0, but |dv/dt| = v²/R, which is not zero.",
+    "equation": "curved path, uniform circular motion: |dv/dt| = v²/R ≠ 0 = d|v|/dt"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "|dv/dt| is the magnitude of the acceleration vector; d|v|/dt is the rate of change of speed. They are equal only when the acceleration is along the velocity, as in straight-line motion with increasing speed; they are not equal in general, as shown by uniform circular motion where d|v|/dt = 0 while |dv/dt| = v²/R ≠ 0, and by straight-line motion with decreasing speed where d|v|/dt = −|dv/dt|."
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Treating |dv/dt| and d|v|/dt as always equal because both are formed from the same velocity, missing that one is a vector magnitude and the other is a rate of change of a scalar."
+   }
+  ],
+  "concept_tags": [
+   "acceleration vector",
+   "speed versus velocity",
+   "circular motion"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "f49171eb81ff33a63d92ecd558ab9ab33bd174f91600d2241141f723ec9c8608"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "d902bb11b3e828bc8b92d75cae4883bbacd33d1e8a758431067f8fc5d4f015f0",
+  "audited_by": "W01-U-kin-02-R1"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-10",
+  "at": "2026-09-11T14:08:00+05:30"
+ }
+}

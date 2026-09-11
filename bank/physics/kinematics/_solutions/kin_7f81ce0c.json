@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_7f81ce0c",
+ "approach": "Acceleration equals velocity times the rate of change of velocity with displacement, a = v(dv/ds).",
+ "steps": [
+  {"text": "Write acceleration using the chain rule for motion described by velocity as a function of displacement.", "equation": "a = v (dv/ds)"},
+  {"text": "The velocity decreases at 3 m/s for every metre of displacement, so dv/ds is negative.", "equation": "dv/ds = −3 (m/s)/m"},
+  {"text": "Substitute v = 10 m/s and dv/ds = −3 (m/s)/m into a = v(dv/ds) to get the acceleration.", "equation": "a = 10 × (−3) = −30 m/s²",
+   "why_this_step": "a = v dv/ds is the standard way to find acceleration when velocity is given as a function of position, not time."}
+ ],
+ "final_answer": {"option": null, "value": "−30 m/s²"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Dropping the negative sign on the rate of decrease and writing a = 10 × 3 = 30 m/s²."},
+  {"option": null, "text": "Writing a = dv/ds = −3 m/s² directly, leaving out the factor of v from the chain rule."}
+ ],
+ "concept_tags": ["acceleration as v dv/ds", "rectilinear motion", "velocity-displacement relation"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-12", "at": "2026-09-11T16:00:00+05:30"}
+}

@@ -1,0 +1,89 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_273660d3",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "assertion_reason",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "Given below are two statements labeled as Assertion and Reason. Choose the correct option from the given choices.\n\nAssertion: A particle moving with constant acceleration cannot have its average velocity equal to zero over any duration.\nReason: For the average velocity of a moving object to vanish, its non-zero velocity must not stay unchanging.",
+  "options": {
+   "1": "Both Assertion and Reason are true, and Reason is the correct explanation of Assertion.",
+   "2": "Both Assertion and Reason are true, but Reason is not the correct explanation of Assertion.",
+   "3": "Assertion is true, but Reason is false.",
+   "4": "Assertion is false, but Reason is true."
+  },
+  "parts": null,
+  "conditions": [
+   "uniform acceleration",
+   "finite time interval"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Test the claim with a ball thrown up and caught at the same point; the average velocity over the trip is zero even though the acceleration is uniform throughout.",
+  "steps": [
+   {
+    "text": "Take a ball thrown upward at 20 m/s under gravity g = 10 m/s², a constant, uniform acceleration throughout its flight.",
+    "equation": "u = 20 m/s, a = −g = −10 m/s²"
+   },
+   {
+    "text": "Find the total time of flight, up and back down to the same starting height.",
+    "equation": "T = 2u/g = 2(20)/10 = 4 s"
+   },
+   {
+    "text": "Find the net displacement over this time; it returns exactly to the starting point.",
+    "equation": "s = uT − ½gT² = 20(4) − ½(10)(4²) = 80 − 80 = 0 m"
+   },
+   {
+    "text": "The average velocity is this net displacement divided by the time, giving zero even though the acceleration was uniform and nonzero throughout, so the Assertion is false.",
+    "equation": "Average velocity = 0 m / 4 s = 0 m/s"
+   },
+   {
+    "text": "The Reason correctly states that average velocity can only be zero when the velocity does not stay a fixed nonzero value throughout, which is a true condition, so the Reason is true even though the Assertion is false.",
+    "equation": "Assertion false, Reason true"
+   }
+  ],
+  "final_answer": {
+   "option": 4,
+   "value": "If Assertion is false but the Reason is true."
+  },
+  "common_mistakes": [
+   {
+    "option": 1,
+    "text": "Assuming uniform acceleration always produces a changing, nonzero average velocity, missing the case of a body that returns to its starting point."
+   }
+  ],
+  "concept_tags": [
+   "average velocity",
+   "uniformly accelerated motion",
+   "projectile motion"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "04fc793282ab0d6d9dbbbdd1eb97237336b469d2628e7c871f0218836a73f8db"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "fc8057ed1db38c380a38f070bf20cae111b46baca59ad082a1591938b8976ca5",
+  "audited_by": "W01-U-kin-01"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-07",
+  "at": "2026-09-11T14:39:00+05:30"
+ }
+}

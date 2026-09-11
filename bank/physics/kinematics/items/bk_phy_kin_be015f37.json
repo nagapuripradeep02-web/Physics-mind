@@ -1,0 +1,109 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_be015f37",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "The variation of the velocity of a particle with time is represented in the given v–t graph. Between t = 0 and t = 40 s, the graph forms two identical triangular lobes: it starts from rest at t = 0, increases linearly to a maximum of 5 m/s, returns linearly to 0 at t = 20 s, then drops linearly to a minimum of −5 m/s before increasing linearly back to 0 at t = 40 s. Determine:",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "The total distance covered by the particle in the first 40 s."
+   },
+   {
+    "label": "b",
+    "asks": "The average velocity of the particle throughout this 40 s duration."
+   }
+  ],
+  "conditions": [
+   "one-dimensional motion",
+   "piecewise linear velocity-time profile",
+   "starts from rest at t = 0",
+   "peak positive velocity is 5 m/s between t = 0 and t = 20 s",
+   "velocity reaches 0 at t = 20 s",
+   "minimum negative velocity is −5 m/s between t = 20 s and t = 40 s",
+   "velocity returns to 0 at t = 40 s"
+  ],
+  "figure": {
+   "description": "A velocity-time (v–t) graph with velocity v on the vertical axis and time t in seconds on the horizontal axis. A triangular wave starts at the origin (0, 0), rises to a peak velocity of 5 m/s, and descends linearly to touch the time axis at t = 20 s. From t = 20 s, it continues downward linearly to a trough of −5 m/s, and then rises linearly to meet the time axis again at t = 40 s."
+  }
+ },
+ "solution": {
+  "approach": "The area under a velocity-time graph gives distance and net displacement, so split the graph into its two triangular parts and combine them.",
+  "steps": [
+   {
+    "text": "The graph forms two triangles: velocity is positive from 0 to 20 s, reaching a peak of 5 m/s, and negative from 20 to 40 s, reaching a minimum of −5 m/s.",
+    "equation": "base = 20 s, height = 5 m/s for each triangle"
+   },
+   {
+    "text": "Find the area of the first triangle, the distance covered while the velocity is positive.",
+    "equation": "Area₁ = ½ × 20 s × 5 m/s = 50 m"
+   },
+   {
+    "text": "Find the area of the second triangle, the distance covered while the velocity is negative.",
+    "equation": "Area₂ = ½ × 20 s × 5 m/s = 50 m"
+   },
+   {
+    "text": "Total distance travelled is the sum of the magnitudes of both areas.",
+    "equation": "Distance = 50 m + 50 m = 100 m"
+   },
+   {
+    "text": "Net displacement is the signed sum: the positive area cancels the negative area, so the particle returns to its starting position.",
+    "equation": "Net displacement = 50 m − 50 m = 0 m",
+    "why_this_step": "Displacement uses the sign of each area, not just its size, while distance adds the sizes."
+   },
+   {
+    "text": "Average velocity is the net displacement divided by the total time; state both results.",
+    "equation": "Average velocity = 0 m / 40 s = 0 m/s; Distance = 100 m, Average velocity = 0 m/s"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "Distance = 100 m, Average velocity = 0 m/s"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Taking the net area (50 m − 50 m = 0) as the distance travelled gives 0 m instead of the correct 100 m."
+   },
+   {
+    "option": null,
+    "text": "Using only the first triangle's area as the total distance gives 50 m instead of 100 m."
+   }
+  ],
+  "concept_tags": [
+   "velocity-time graph",
+   "area under a graph",
+   "average velocity"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "d9a3c5e7fd8b02f6bc76ffb427f91b8f010f5092937d567f12cf276e2566a2ac"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "daa4b852e71f01ee09a0116e4228a0a2d948d88acdb2c15a120ae12d2b099346",
+  "audited_by": "W01-U-kin-10"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-07",
+  "at": "2026-09-11T14:00:00+05:30"
+ }
+}

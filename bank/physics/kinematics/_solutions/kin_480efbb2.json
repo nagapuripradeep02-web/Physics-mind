@@ -1,0 +1,22 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_480efbb2",
+ "approach": "Differentiate the position equation to get velocity, differentiate again to get acceleration, then apply the conditions asked.",
+ "steps": [
+  {"text": "Write the velocity and acceleration by differentiating x with respect to time.", "equation": "x = 20 + t³ − 12t, v = dx/dt = 3t² − 12, a = dv/dt = 6t"},
+  {"text": "Substitute t = 0 into x and v.", "equation": "x(0) = 20 m, v(0) = −12 m/s"},
+  {"text": "Check whether acceleration is constant.", "equation": "a = 6t, which changes with time", "why_this_step": "Uniformly accelerated motion needs a constant acceleration; here a depends on t, so it is not."},
+  {"text": "Set v = 0 and solve for t.", "equation": "3t² − 12 = 0 → t² = 4 → t = 2 s (t = −2 s rejected, time cannot be negative)"},
+  {"text": "Substitute t = 2 s into x to get the position where velocity is zero.", "equation": "x(2) = 20 + 8 − 24 = 4 m"}
+ ],
+ "final_answer": {"option": null, "value": "(a) x(0) = 20 m, v(0) = −12 m/s; (b) not uniformly accelerated, since a = 6t is not constant; (c) x = 4 m when v = 0"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Taking both roots t = 2 s and t = −2 s as valid positions gives an extra wrong answer x(−2) = 36 m for a time before the motion starts."},
+  {"option": null, "text": "Assuming acceleration is constant just because it comes from a smooth equation leads to wrongly calling the motion uniformly accelerated."}
+ ],
+ "concept_tags": ["position-velocity-acceleration by differentiation", "uniformly accelerated motion", "velocity zero condition"],
+ "difficulty": "easy",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-02", "at": "2026-09-11T00:00:00+05:30"}
+}

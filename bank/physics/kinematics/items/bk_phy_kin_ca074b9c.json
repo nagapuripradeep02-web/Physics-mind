@@ -1,0 +1,86 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_ca074b9c",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "assertion_reason",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "Assertion: When an object begins moving from rest with an initial acceleration of zero, and its acceleration grows steadily at 2 ms⁻³, its velocity must rise at a steady rate of 1 ms⁻².\nReason: Under the stated circumstances, da/dt = 2 ms⁻³, which implies a = 2t.",
+  "options": {
+   "1": "Both Assertion and Reason are true, and Reason is the correct explanation of Assertion.",
+   "2": "Both Assertion and Reason are true, but Reason is not the correct explanation of Assertion.",
+   "3": "Assertion is true, but Reason is false.",
+   "4": "Assertion is false, but Reason is true."
+  },
+  "parts": null,
+  "conditions": [
+   "starts from rest (initial velocity v₀ = 0)",
+   "initial acceleration a₀ = 0",
+   "constant rate of change of acceleration da/dt = 2 ms⁻³"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Integrate da/dt = 2 ms⁻³ starting from zero acceleration to get acceleration as a function of time, then integrate again to see how velocity actually grows.",
+  "steps": [
+   {
+    "text": "Integrate the given constant rate of change of acceleration, starting from zero initial acceleration, to get acceleration as a function of time.",
+    "equation": "da/dt = 2 ⇒ a(t) = 2t"
+   },
+   {
+    "text": "Integrate a(t) = 2t, starting from rest, to get velocity as a function of time.",
+    "equation": "dv/dt = 2t ⇒ v(t) = t²"
+   },
+   {
+    "text": "The rate at which velocity increases at any instant equals a(t) = 2t, which itself grows with time, so velocity does not increase at a constant rate; it only equals 1 ms⁻² at the single instant t = 0.5 s.",
+    "equation": "v(t) = t² is not linear in t, so the rate of increase of velocity is not constant"
+   },
+   {
+    "text": "The Assertion's claim of a constant 1 ms⁻² rate of increase is false, while the Reason correctly derives a = 2t from the given data, so the Reason is true.",
+    "equation": "Assertion false, Reason true"
+   }
+  ],
+  "final_answer": {
+   "option": 4,
+   "value": "If Assertion is false but the Reason is true."
+  },
+  "common_mistakes": [
+   {
+    "option": 1,
+    "text": "Reading a = 2t at the single instant t = 0.5 s, where a = 1 ms⁻², and generalising it to a constant rate for all time."
+   }
+  ],
+  "concept_tags": [
+   "calculus in kinematics",
+   "rate of change of acceleration",
+   "integration"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "a51e4b4e1da5d3b0deb839a2725a0d07b70b81168973b903965217fd1d6b8ab4"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "79556b272bbd4a1607533a6648a461f3518a7fcb916dbf315a1ae8d19776dea2",
+  "audited_by": "W01-U-kin-07"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-07",
+  "at": "2026-09-11T14:36:00+05:30"
+ }
+}

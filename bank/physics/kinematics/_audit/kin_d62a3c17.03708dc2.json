@@ -1,0 +1,16 @@
+{
+ "question_id": "kin_d62a3c17",
+ "item_sha": "03708dc29f80c2bfb66f7e75985f6793526e786849049226556c06fb09612a42",
+ "auditor_option": null,
+ "auditor_value": "(a) average velocity ≈ 0.83 m/s (chord (21/22)√3 = 1.653 m over 2 s); (b) average acceleration = √3/2 ≈ 0.87 m/s²",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "θ = s/R = 44/21 rad is exactly 120° only with π = 22/7, which is the convention the radius 21/22 m was chosen for; consistent throughout, not a finding.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-kin-10",
+  "at": "2026-09-11T09:50:38+05:30"
+ }
+}

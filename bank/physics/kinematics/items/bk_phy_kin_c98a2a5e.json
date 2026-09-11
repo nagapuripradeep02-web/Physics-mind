@@ -1,0 +1,92 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_c98a2a5e",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "mcq_single",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "The trajectory of an object follows the path y = x²/2, with its horizontal position changing over time according to x = t²/2 (where x and y are given in metres and t is given in seconds). Find the velocity vector of this object at the instant t = 2 s (in m s⁻¹).",
+  "options": {
+   "1": "4î + 6ĵ",
+   "2": "2î + 4ĵ",
+   "3": "4î + 2ĵ",
+   "4": "4î + 4ĵ"
+  },
+  "parts": null,
+  "conditions": [
+   "path equation is y = x²/2",
+   "x-coordinate varies as x = t²/2",
+   "coordinates x and y are in metres",
+   "time t is in seconds",
+   "evaluation instant is t = 2 s"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Write x and y separately as functions of time, differentiate each with respect to time, and evaluate both at t = 2 s.",
+  "steps": [
+   {
+    "text": "Write x as a function of t and differentiate to get the x-component of velocity.",
+    "equation": "x = t²/2 → vₓ = dx/dt = t"
+   },
+   {
+    "text": "Write y in terms of t by substituting x = t²/2 into y = x²/2.",
+    "equation": "y = (t²/2)²/2 = t⁴/8"
+   },
+   {
+    "text": "Differentiate y with respect to t to get the y-component of velocity.",
+    "equation": "v_y = dy/dt = 4t³/8 = t³/2"
+   },
+   {
+    "text": "Evaluate both components at t = 2 s.",
+    "equation": "vₓ = 2, v_y = (2)³/2 = 4"
+   },
+   {
+    "text": "Write the velocity vector at t = 2 s.",
+    "equation": "v = 2î + 4ĵ ms⁻¹"
+   }
+  ],
+  "final_answer": {
+   "option": 2,
+   "value": "2î + 4ĵ"
+  },
+  "common_mistakes": [
+   {
+    "option": 3,
+    "text": "Swapping which component is which, writing vₓ = 4 and v_y = 2 instead of vₓ = 2 and v_y = 4."
+   }
+  ],
+  "concept_tags": [
+   "motion in a plane",
+   "chain rule",
+   "parametric curves"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "calculation"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "5d9d8a371cae6ae8341e38f09c1b0cdd25019700b2b863a6096e775e025d9ed7"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "e050fe7f4ec98b8afbc3c941d8e41045bf59423f0b964966d5a9439df3f8de78",
+  "audited_by": "W01-U-kin-04"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-09",
+  "at": "2026-09-11T15:36:00+05:30"
+ }
+}

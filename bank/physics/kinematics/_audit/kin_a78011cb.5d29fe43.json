@@ -1,0 +1,16 @@
+{
+ "question_id": "kin_a78011cb",
+ "item_sha": "5d29fe438a2c3dca1717bf61ce2584a86dc78e140aec3935917fd55005dbdd51",
+ "auditor_option": null,
+ "auditor_value": "(a) yes, uniform motion; (b) velocity = -2 m/s",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Slope (0-10)/(5-0) = -2 m/s; a straight s-t line is constant velocity by definition.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-kin-07",
+  "at": "2026-09-11T14:58:00+05:30"
+ }
+}

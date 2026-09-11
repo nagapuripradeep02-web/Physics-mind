@@ -1,0 +1,20 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_52fbb95e",
+ "approach": "Write the total displacement as the sum of the three constant-velocity legs, divide by the total time to set it equal to the given average velocity, and solve for T.",
+ "steps": [
+  {"text": "Write the displacement covered in each of the three legs of the journey.", "equation": "leg 1: v t₀, leg 2: 2v t₀, leg 3: 3v T"},
+  {"text": "Add these for the total displacement and add the three times for the total time.", "equation": "total displacement = 3v t₀ + 3vT, total time = 2t₀ + T"},
+  {"text": "Set the total displacement over the total time equal to the given average velocity of 2.5v.", "equation": "(3v t₀ + 3vT)/(2t₀ + T) = 2.5v"},
+  {"text": "Cancel v and solve the resulting linear equation for T.", "equation": "3t₀ + 3T = 5t₀ + 2.5T → 0.5T = 2t₀ → T = 4t₀"}
+ ],
+ "final_answer": {"option": null, "value": "T = 4t₀"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Leaving out the displacement of the first leg, v t₀, from the total when setting up the equation gives T = 6t₀."}
+ ],
+ "concept_tags": ["average velocity", "piecewise constant velocity"],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-10", "at": "2026-09-11T14:18:00+05:30"}
+}

@@ -1,0 +1,16 @@
+{
+ "question_id": "kin_94df6811",
+ "item_sha": "650b38d6e271c843a1ec747eea72e453bc8c27dd770f26e9371fe134cb325d55",
+ "auditor_option": null,
+ "auditor_value": "(a) 1 m/s^2, (b) 43.5 m",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "a = 5 - 2t gives 1 m/s^2 at t = 2 s; integral of (10 + 5t - t^2) from 0 to 3 = 30 + 22.5 - 9 = 43.5 m. Both common_mistakes numbers recomputed (3 m/s^2 and 48 m).",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-kin-07",
+  "at": "2026-09-11T14:58:00+05:30"
+ }
+}

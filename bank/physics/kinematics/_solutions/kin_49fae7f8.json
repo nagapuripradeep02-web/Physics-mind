@@ -1,0 +1,42 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_49fae7f8",
+ "approach": "Multiply each interval's speed by its duration to get the distance in that interval, add them for the total distance, then divide by the total time.",
+ "steps": [
+  {
+   "text": "Find the distance covered in each time interval by multiplying speed by the interval duration.",
+   "equation": "0–2 s: 2×2=4 m; 2–5 s: 3×3=9 m; 5–10 s: 4×5=20 m; 10–15 s: 2×5=10 m"
+  },
+  {
+   "text": "Add the four distances to get the total distance.",
+   "equation": "4 + 9 + 20 + 10 = 43 m"
+  },
+  {
+   "text": "Divide the total distance by the total time of 15 s to get the average speed.",
+   "equation": "average speed = 43/15 ≈ 2.87 m/s"
+  }
+ ],
+ "final_answer": {
+  "option": null,
+  "value": "total distance = 43 m, average speed ≈ 2.87 m/s"
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": null,
+   "text": "Taking the plain average of the four speed values instead of the distance-weighted average, giving (2+3+4+2)/4 = 2.75 m/s."
+  }
+ ],
+ "concept_tags": [
+  "distance from speed-time data",
+  "average speed"
+ ],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-01",
+  "at": "2026-09-11T15:07:00+05:30"
+ }
+}

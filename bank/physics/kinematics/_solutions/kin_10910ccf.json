@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_10910ccf",
+ "approach": "The plane must head upwind of north so that the wind's eastward push is cancelled by a westward component of its airspeed, leaving a net northward velocity.",
+ "steps": [
+  {"text": "Let θ be the angle west of north the pilot heads; the westward component of airspeed must cancel the eastward wind.", "equation": "500 sin θ = 200 → sin θ = 0.4"},
+  {"text": "Solve for θ.", "equation": "θ = sin⁻¹(0.4) ≈ 23.6° west of north"},
+  {"text": "Find the resulting northward component of velocity.", "equation": "v_north = 500cos θ = 500 × 0.9165 ≈ 458.3 km/h"},
+  {"text": "Find the time to cover 1000 km at this northward speed.", "equation": "t = 1000/458.3 ≈ 2.18 h"}
+ ],
+ "final_answer": {"option": null, "value": "(a) the pilot should head about 23.6° west of north. (b) time taken ≈ 2.18 h (about 2 h 11 min)."},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Adding the airspeed and wind speed directly to get a resultant of 700 km/h, giving a wrong time of 1000/700 ≈ 1.43 h."},
+  {"option": null, "text": "Ignoring the wind entirely and using the plane's airspeed alone, giving time = 1000/500 = 2 h."}
+ ],
+ "concept_tags": ["relative velocity", "vector addition", "wind correction angle"],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-12", "at": "2026-09-11T16:42:00+05:30"}
+}

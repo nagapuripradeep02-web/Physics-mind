@@ -1,0 +1,92 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_167b8106",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "At time t = 0, an object begins moving from (0, 0) with an initial velocity of 8.0 ĵ m/s. Throughout its journey across the x-y plane, it experiences a uniform acceleration of (4.0 î + 2.0 ĵ) m/s². When the x-position of the object reaches 29 m, determine:",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "its y-coordinate"
+   },
+   {
+    "label": "b",
+    "asks": "its speed"
+   }
+  ],
+  "conditions": [
+   "starts from origin (0, 0) at t = 0",
+   "initial velocity = 8.0 ĵ m/s",
+   "constant acceleration = (4.0 î + 2.0 ĵ) m/s²",
+   "motion in x-y plane",
+   "x-coordinate = 29 m"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Use the x-motion to find the time when x = 29 m, then substitute that time into the y-motion and the velocity components.",
+  "steps": [
+   {
+    "text": "Write x(t) using zero initial x-velocity and aₓ = 4.0 m/s².",
+    "equation": "x(t) = ½(4.0)t² = 2t²"
+   },
+   {
+    "text": "Set x(t) = 29 m and solve for t.",
+    "equation": "2t² = 29 → t = √14.5 ≈ 3.81 s"
+   },
+   {
+    "text": "Write y(t) using initial y-velocity 8.0 m/s and a_y = 2.0 m/s², then substitute t.",
+    "equation": "y(t) = 8t + t² → y ≈ 8(3.81) + (3.81)² ≈ 44.96 m"
+   },
+   {
+    "text": "Find the velocity components at this time and combine them for the speed.",
+    "equation": "vₓ = 4t ≈ 15.23 m/s, v_y = 8 + 2t ≈ 15.62 m/s → speed = √(vₓ²+v_y²) ≈ 21.8 m/s"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) y ≈ 44.96 m, (b) speed ≈ 21.8 m/s"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Writing x(t) = aₓt² instead of ½aₓt², dropping the one-half factor, gives t ≈ 2.69 s and y ≈ 28.8 m, both wrong."
+   }
+  ],
+  "concept_tags": [
+   "kinematics in two dimensions",
+   "constant acceleration",
+   "equations of motion"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "calculation"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "c3fd0298a3820be8d2e3bea650d337158bd45fc2960227db18a9179d14de6d5a"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "f2a7296823b4ccf202dcfe9f1f6285b3e6c4cf602bc56c9758085c4944915ba0",
+  "audited_by": "W01-U-kin-09"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-11",
+  "at": "2026-09-11T15:14:00+05:30"
+ }
+}

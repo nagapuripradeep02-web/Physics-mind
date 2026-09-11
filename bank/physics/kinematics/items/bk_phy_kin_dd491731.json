@@ -1,0 +1,86 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_dd491731",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "The position–time (x–t) plots for two bodies, A and B, traveling along the x-axis are straight lines. At time t = 0 s, body A is located at x = 10 m while body B is at the origin (x = 0 m). At t = 5 s, both bodies reach x = 12 m. Determine the velocity of body A relative to body B.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "motion along the x-axis",
+   "constant velocity for both particles",
+   "position of A at t = 0 s is 10 m",
+   "position of B at t = 0 s is 0 m",
+   "both particles are at x = 12 m at t = 5 s"
+  ],
+  "figure": {
+   "description": "A position versus time (x–t) graph showing position x in meters on the vertical axis and time t in seconds on the horizontal axis. Particle A's straight-line trajectory begins at (0 s, 10 m), while particle B's straight-line trajectory begins at the origin (0 s, 0 m). The two lines intersect at the coordinates (5 s, 12 m)."
+  }
+ },
+ "solution": {
+  "approach": "The slope of each x-t line is that particle's velocity, and the relative velocity is the difference of the two velocities.",
+  "steps": [
+   {
+    "text": "Find the velocity of A from the slope of its line using the two given points, (t = 0, x = 10 m) and (t = 5 s, x = 12 m).",
+    "equation": "v_A = (12 − 10)/(5 − 0) = 0.4 m/s"
+   },
+   {
+    "text": "Find the velocity of B from the slope of its line using the two given points, (t = 0, x = 0) and (t = 5 s, x = 12 m).",
+    "equation": "v_B = (12 − 0)/(5 − 0) = 2.4 m/s"
+   },
+   {
+    "text": "Velocity of A with respect to B is the vector difference of the two velocities.",
+    "equation": "v_AB = v_A − v_B = 0.4 − 2.4 = −2 m/s",
+    "why_this_step": "Both lines are straight, so each slope is a constant velocity, and the relative velocity is also constant."
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "−2 m/s (2 m/s in the −x direction)"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Subtracting in the wrong order, v_B − v_A, gives +2 m/s instead of −2 m/s."
+   },
+   {
+    "option": null,
+    "text": "Reading A's slope from the intersection point without the 10 m starting offset, as 12/5 = 2.4 m/s, gives v_AB = 0 instead of −2 m/s."
+   }
+  ],
+  "concept_tags": [
+   "x-t graph",
+   "relative velocity",
+   "slope as velocity"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "1a825165f7aeb4c653d6ba1bb220515087dffb424d0929454f12f02e7ba00940"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "b9dc616c9b46be7fd37abc13fcb935efec90eaacf2e79466fcbc6bcfe877db3a",
+  "audited_by": "W01-U-kin-01"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-07",
+  "at": "2026-09-11T14:03:00+05:30"
+ }
+}

@@ -1,0 +1,18 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_9e4b45c9",
+ "approach": "Write the height of each ball measured from the moment each is launched, and set the two heights equal at the collision instant.",
+ "steps": [
+  {"text": "Let t be the time measured from when the first ball is launched. Write its height.", "equation": "y₁ = 40t − ½(10)t² = 40t − 5t²"},
+  {"text": "The second ball is launched 2 s later with the same initial velocity. Write its height for t ≥ 2 s.", "equation": "y₂ = 40(t − 2) − 5(t − 2)²"},
+  {"text": "Set the two heights equal, since the balls collide at the same height, and solve for t.", "equation": "40t − 5t² = 40(t − 2) − 5(t − 2)² → 20t = 100 → t = 5 s"},
+  {"text": "Substitute t = 5 s into the first ball's height to get the collision height.", "equation": "y₁ = 40(5) − 5(5)² = 200 − 125 = 75 m"}
+ ],
+ "final_answer": {"option": 2, "value": "75 m"},
+ "confidence": "sure",
+ "common_mistakes": [],
+ "concept_tags": ["vertical projectile motion", "delayed launch", "equations of motion"],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-09", "at": "2026-09-11T15:30:00+05:30"}
+}

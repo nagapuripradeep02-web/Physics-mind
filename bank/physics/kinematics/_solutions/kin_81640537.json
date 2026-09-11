@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_81640537",
+ "approach": "Write the constant-length constraint between the horizontal position of A and the vertical position of B, then differentiate with respect to time.",
+ "steps": [
+  {"text": "Let x be the horizontal distance of A from the corner and y be the height of B on the wall. The rod length is fixed.", "equation": "x² + y² = l², with x = l cos θ, y = l sin θ"},
+  {"text": "Differentiate the constraint with respect to time.", "equation": "2x(dx/dt) + 2y(dy/dt) = 0 ⟹ x(dx/dt) + y(dy/dt) = 0"},
+  {"text": "End A moves away from the wall at the given constant speed v, so dx/dt = v. Substitute x = l cos θ and y = l sin θ.", "equation": "(l cos θ)(v) + (l sin θ)(dy/dt) = 0"},
+  {"text": "Solve for dy/dt.", "equation": "dy/dt = −v cos θ / sin θ = −v cot θ",
+   "why_this_step": "The negative sign shows y is decreasing, meaning B moves downward at this rate."}
+ ],
+ "final_answer": {"option": null, "value": "The velocity of end B is v cot θ, directed downward."},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Differentiating x = l cos θ and y = l sin θ but mismatching which trigonometric ratio goes with dx/dt gives v tan θ instead of the correct v cot θ."}
+ ],
+ "concept_tags": ["related rates", "constraint motion", "differentiation with respect to time"],
+ "difficulty": "medium",
+ "mistake_type_hint": "calculation",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-04", "at": "2026-09-11T00:25:00+05:30"}
+}

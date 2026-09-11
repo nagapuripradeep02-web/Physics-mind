@@ -1,0 +1,82 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_eb704880",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "An object moves along a straight path such that it maintains a constant speed v₁ for the initial half of its total travel duration, and a constant speed v₂ for the final half of the duration. Determine the average speed of the object throughout the entire trip.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "motion in a straight line",
+   "speed during first half of total time is v₁",
+   "speed during second half of total time is v₂"
+  ],
+  "figure": {
+   "description": "A line segment from point A to point B split at a point C into two sections: section AC corresponds to duration t, speed v₁, and distance d₁; section CB corresponds to duration t, speed v₂, and distance d₂."
+  }
+ },
+ "solution": {
+  "approach": "When the two speeds each last for equal time, the average speed is the arithmetic mean, found from total distance over total time.",
+  "steps": [
+   {
+    "text": "Let each half of the total time be t, so the total time is 2t.",
+    "equation": "time for each half = t"
+   },
+   {
+    "text": "Find the distance covered in each half from distance = speed multiplied by time.",
+    "equation": "d₁ = v₁t, d₂ = v₂t"
+   },
+   {
+    "text": "Average speed is total distance over total time.",
+    "equation": "v_avg = (v₁t + v₂t) / (2t)"
+   },
+   {
+    "text": "Cancel t and simplify.",
+    "equation": "v_avg = (v₁ + v₂) / 2"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "v_avg = (v₁ + v₂) / 2"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Using the harmonic mean 2v₁v₂/(v₁+v₂), which applies only when the two parts are equal in distance, not equal in time."
+   }
+  ],
+  "concept_tags": [
+   "average speed",
+   "arithmetic mean"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "7a31923da72f8d6d5abb4143cd0add70e80e35bc57f8e7529ca1c6da9f173457"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "3df9fdb90e796321e8de3a790f4c0cf16a5aafffec657189c997af8f73dc001d",
+  "audited_by": "W01-U-kin-05"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-01",
+  "at": "2026-09-11T15:11:00+05:30"
+ }
+}

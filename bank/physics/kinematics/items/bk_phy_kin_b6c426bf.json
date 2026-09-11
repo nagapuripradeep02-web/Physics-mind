@@ -1,0 +1,86 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_b6c426bf",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "mcq_single",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "A balloon moves vertically upwards with an acceleration a. When a stone is let go from this balloon, find the acceleration experienced by the stone immediately following its detachment.",
+  "options": {
+   "1": "a upward",
+   "2": "g downward",
+   "3": "(g − a) downward",
+   "4": "(g + a) downward"
+  },
+  "parts": null,
+  "conditions": [
+   "balloon accelerates upward with acceleration a",
+   "stone is released from rest relative to the balloon",
+   "air resistance neglected",
+   "acceleration due to gravity is g downward"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Once the stone is released it is a free body, and only gravity acts on it from that instant, regardless of the balloon's motion.",
+  "steps": [
+   {
+    "text": "Before release the stone shares the balloon's velocity, but not the cause of the balloon's acceleration."
+   },
+   {
+    "text": "At the instant of release, the only force acting on the stone is its own weight.",
+    "equation": "F = mg, downward"
+   },
+   {
+    "text": "Apply Newton's second law to find the stone's acceleration immediately after release.",
+    "equation": "a_stone = F/m = g, downward"
+   }
+  ],
+  "final_answer": {
+   "option": 2,
+   "value": "g downward"
+  },
+  "common_mistakes": [
+   {
+    "option": 1,
+    "text": "Assuming the stone keeps the balloon's upward acceleration a even after release, confusing continuity of velocity with continuity of acceleration."
+   },
+   {
+    "option": 4,
+    "text": "Adding the balloon's acceleration to gravity as if the balloon still pushes the stone after separation, giving (g + a) downward."
+   }
+  ],
+  "concept_tags": [
+   "free fall",
+   "newton's second law",
+   "relative motion"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "d76b373f9feb7e9cd57f0d400a4ac8428f951f47763b9eca4f51d8b7f7e1e88a"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "2877f36bf1886f9245a65ced56e9b5797930b60afb6ac10f265875c871331a07",
+  "audited_by": "W01-U-kin-02-R1"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-08",
+  "at": "2026-09-11T14:20:00+05:30"
+ }
+}

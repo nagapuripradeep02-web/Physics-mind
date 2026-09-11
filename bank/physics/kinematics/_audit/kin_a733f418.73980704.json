@@ -1,0 +1,11 @@
+{
+ "question_id": "kin_a733f418",
+ "item_sha": "7398070446da89d7efaf277b20fe2a925b75e54ff826612812abe57fd6799bd1",
+ "auditor_option": 2,
+ "auditor_value": "Initial speed 5 m/s and constant acceleration 12.5 m/s^2 (option b)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "v^2 = 25 + 25s, so a = d(v^2/2)/ds = 12.5 m/s^2 at every s, and v(0) = 5 m/s. Option b confirmed.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-kin-07", "at": "2026-09-11T14:29:00+05:30"}
+}

@@ -1,0 +1,44 @@
+{
+  "schema": "eapcet_solution_v1",
+  "question_id": "kin_ec65d40b",
+  "approach": "Compute the dot product of v and a component by component, use its sign to classify the angle, and use the same sign for whether speed increases or decreases.",
+  "steps": [
+    {
+      "text": "Compute the dot product of v and a using their components.",
+      "equation": "v·a = (3)(2) + (−4)(1) + (2)(−2) = 6 − 4 − 4 = −2"
+    },
+    {
+      "text": "The dot product is negative, and v·a = |v||a|cos θ with |v|,|a| both positive, so cos θ is negative.",
+      "equation": "cos θ < 0 ⟹ θ is obtuse (between 90° and 180°)"
+    },
+    {
+      "text": "The rate of change of speed equals the component of acceleration along the velocity direction, which is (v·a)/|v|. Since v·a is negative, this rate is negative.",
+      "equation": "d|v|/dt = (v·a)/|v| = −2/√29 < 0",
+      "why_this_step": "A negative rate of change of speed means the speed is decreasing at this instant."
+    }
+  ],
+  "final_answer": {
+    "option": null,
+    "value": "(a) v·a = −2, (b) obtuse, (c) speed is decreasing"
+  },
+  "confidence": "sure",
+  "common_mistakes": [
+    {
+      "option": null,
+      "text": "Mismatching components when computing the dot product, such as pairing the k̂ component of v with the ĵ component of a, gives a wrong value that can wrongly suggest an acute angle and increasing speed."
+    }
+  ],
+  "concept_tags": [
+    "dot product",
+    "angle between vectors",
+    "rate of change of speed"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "calculation",
+  "authored_by": {
+    "model": "sonnet",
+    "wave": 1,
+    "agent": "W01-A-kin-04",
+    "at": "2026-09-11T00:50:00+05:30"
+  }
+}

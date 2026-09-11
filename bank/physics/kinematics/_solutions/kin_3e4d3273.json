@@ -1,0 +1,47 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_3e4d3273",
+ "approach": "Differentiate the coordinates to get the velocity components, then find the average acceleration from the change in velocity over the time interval.",
+ "steps": [
+  {
+   "text": "Differentiate x and y with respect to time to get the velocity components.",
+   "equation": "vₓ = dx/dt = 4t, v_y = dy/dt = 3t²"
+  },
+  {
+   "text": "Evaluate the velocity components at t = 0 and t = 2 s.",
+   "equation": "at t=0: vₓ=0, v_y=0; at t=2: vₓ=8 m/s, v_y=12 m/s"
+  },
+  {
+   "text": "Divide the change in each velocity component by the time interval.",
+   "equation": "aₓ = 8/2 = 4 m/s², a_y = 12/2 = 6 m/s²"
+  },
+  {
+   "text": "Combine the components as a vector and find the magnitude.",
+   "equation": "a_avg = (4î + 6ĵ) m/s², |a_avg| = √(4² + 6²) = 2√13 ≈ 7.21 m/s²"
+  }
+ ],
+ "final_answer": {
+  "option": null,
+  "value": "a_avg = (4î + 6ĵ) m/s², magnitude ≈ 7.21 m/s² (2√13 m/s²)"
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": null,
+   "text": "Finding the instantaneous acceleration aₓ=4, a_y=6t at t=2 s instead of averaging, giving (4î + 12ĵ) m/s²."
+  }
+ ],
+ "concept_tags": [
+  "average acceleration",
+  "differentiation of position",
+  "two-dimensional motion"
+ ],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-01",
+  "at": "2026-09-11T15:09:00+05:30"
+ }
+}

@@ -1,0 +1,19 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_f3d443f6",
+ "approach": "Both balls have exactly the same acceleration, g downward, at every instant, so their relative acceleration is the difference of two equal vectors.",
+ "steps": [
+  {"text": "Write the acceleration of each ball; after leaving the hand, both are in free fall under gravity alone.", "equation": "a_A = −g, a_B = −g"},
+  {"text": "The initial velocities are different, but that does not affect the acceleration, which stays g downward for both balls at every instant.", "why_this_step": "Relative acceleration compares accelerations, not velocities; the different launch speeds only give the balls different velocities, not different accelerations."},
+  {"text": "Relative acceleration of A with respect to B is the difference of the two accelerations.", "equation": "a_AB = a_A − a_B = (−g) − (−g) = 0"}
+ ],
+ "final_answer": {"option": null, "value": "Zero — the relative acceleration is zero because both balls fall under the same gravitational acceleration g throughout the motion."},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Assuming the ball projected with the higher speed must also have a higher acceleration gives a wrongly nonzero relative acceleration."}
+ ],
+ "concept_tags": ["relative acceleration", "free fall", "projectile motion"],
+ "difficulty": "easy",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-07", "at": "2026-09-11T14:05:00+05:30"}
+}

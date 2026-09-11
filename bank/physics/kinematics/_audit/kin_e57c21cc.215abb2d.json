@@ -1,0 +1,11 @@
+{
+ "question_id": "kin_e57c21cc",
+ "item_sha": "215abb2d823908647cf01c1bba3cda0c52f6f94f1564e7139313c79cc2b713a6",
+ "auditor_option": null,
+ "auditor_value": "(a) 1100 m; (b) 500 m, 400 m east and 300 m north, 53.1° east of north; (c) 0.92 m/s; (d) 0.42 m/s, 53.1° east of north",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-kin-11", "at": "2026-09-11T09:50:48+05:30"}
+}

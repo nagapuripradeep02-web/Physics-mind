@@ -1,0 +1,111 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_f06ccad1",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A body is thrown vertically upward with an initial speed of 40 m/s. Taking the upward direction as positive and assuming g = 10 m/s², draw the acceleration-time (a-t), velocity-time (v-t), and displacement-time (s-t) curves representing its entire motion until it returns to the launch level.",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "Acceleration-time (a-t) graph"
+   },
+   {
+    "label": "b",
+    "asks": "Velocity-time (v-t) graph"
+   },
+   {
+    "label": "c",
+    "asks": "Displacement-time (s-t) graph"
+   }
+  ],
+  "conditions": [
+   "initial velocity u = 40 m/s upward",
+   "acceleration due to gravity g = 10 m/s²",
+   "upward direction taken positive",
+   "motion under constant gravitational acceleration",
+   "air resistance neglected",
+   "motion considered from launch until return to the ground"
+  ],
+  "figure": {
+   "description": "Three kinematic graphs from t = 0 s to t = 8 s:\n1. a-t graph: A horizontal line at a = −10 m/s² spanning from t = 0 s to t = 8 s.\n2. v-t graph: A straight line with a constant negative slope beginning at (0 s, +40 m/s), intersecting the time axis at (4 s, 0 m/s), and ending at (8 s, −40 m/s).\n3. s-t graph: An inverted parabola starting at the origin (0 s, 0 m), reaching a peak at (4 s, 80 m), and returning to zero at (8 s, 0 m)."
+  }
+ },
+ "solution": {
+  "approach": "Use the equations of motion under constant gravity with upward positive to find the times, then plot each quantity against time.",
+  "steps": [
+   {
+    "text": "Find the time to reach the highest point, where velocity becomes zero.",
+    "equation": "t₁ = u/g = 40/10 = 4 s"
+   },
+   {
+    "text": "Find the maximum height reached.",
+    "equation": "hmax = u²/2g = 40²/20 = 80 m"
+   },
+   {
+    "text": "Find the total time of flight back to the starting point.",
+    "equation": "T = 2u/g = 2(40)/10 = 8 s"
+   },
+   {
+    "text": "Describe the a-t graph: acceleration stays constant throughout, since gravity does not change.",
+    "equation": "a = −10 m/s² for the whole interval t = 0 to t = 8 s"
+   },
+   {
+    "text": "Describe the v-t graph using v = u + at.",
+    "equation": "v starts at +40 m/s at t = 0, falls in a straight line, crosses zero at t = 4 s, reaches −40 m/s at t = 8 s"
+   },
+   {
+    "text": "Describe the s-t graph using s = ut + ½at², which is symmetric about the highest point.",
+    "equation": "s rises from 0 to a peak of 80 m at t = 4 s, then falls back to 0 m at t = 8 s"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "a-t graph: constant −10 m/s² from t = 0 to t = 8 s. v-t graph: a straight line from +40 m/s at t = 0 to −40 m/s at t = 8 s, crossing zero at t = 4 s. s-t graph: a curve rising from 0 to a peak of 80 m at t = 4 s and returning to 0 m at t = 8 s."
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Taking the acceleration as zero at the highest point, since velocity is zero there, confuses velocity with acceleration; gravity acts throughout at −10 m/s²."
+   },
+   {
+    "option": null,
+    "text": "Using T = u/g = 4 s as the total flight time instead of 2u/g = 8 s stops the graphs halfway, missing the fall back to the ground."
+   }
+  ],
+  "concept_tags": [
+   "motion under gravity",
+   "a-t v-t s-t graphs",
+   "time of flight"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "59776eb3fced6ac1b1a3afbf81e69060738f94423b40fbcff172d49c3ec2c1f0"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "83815d0b62a65f47e65f1fadbdcb79c20f29b4381a3d2221aa3133e0a1727658",
+  "audited_by": "W01-U-kin-04"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-02",
+  "at": "2026-09-11T00:00:00+05:30"
+ }
+}

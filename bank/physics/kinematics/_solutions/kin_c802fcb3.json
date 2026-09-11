@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_c802fcb3",
+ "approach": "Kinetic energy grows as the square of the falling speed, peaks at the elastic bounce, then falls the same way as the ball rises back to its starting height.",
+ "steps": [
+  {"text": "While falling from height h, speed grows as v = gt, so kinetic energy grows as the square of time.", "equation": "KE(t) = ½m(gt)² = ½mg²t², for 0 ≤ t ≤ t₁ = √(2h/g)"},
+  {"text": "At the ground, all the potential energy has become kinetic energy; the elastic collision reverses the velocity direction but keeps its magnitude.", "equation": "KE(t₁) = mgh, unchanged immediately after the bounce",
+   "why_this_step": "An elastic collision with the ground conserves kinetic energy, so no energy is lost at the bounce."},
+  {"text": "On the way up, the ball's speed is g(2t₁ − t), so kinetic energy falls back to zero as the ball returns to height h.", "equation": "KE(t) = ½mg²(2t₁ − t)², for t₁ ≤ t ≤ 2t₁, total time 2t₁ = 2√(2h/g)"}
+ ],
+ "final_answer": {"option": null, "value": "KE(t) rises from 0 at t = 0 to a peak mgh at t = t₁ = √(2h/g), following KE = ½mg²t²; at the bounce it stays mgh (elastic collision, no energy lost), then falls back along the mirror-image curve KE = ½mg²(2t₁ − t)² to 0 at t = 2t₁ = 2√(2h/g), when the ball is back at its initial position. The graph is two upward-curving parabolic pieces meeting at a sharp peak mgh at t = t₁."},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Drawing kinetic energy as a straight line rising to mgh and falling back, instead of the curved shape that follows from constant acceleration."},
+  {"option": null, "text": "Assuming energy is lost at the bounce and drawing the rebound peak kinetic energy lower than the peak reached on the way down, even though the collision is elastic."}
+ ],
+ "concept_tags": ["kinetic energy in free fall", "elastic collision with the ground", "energy conservation"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-12", "at": "2026-09-11T16:18:00+05:30"}
+}

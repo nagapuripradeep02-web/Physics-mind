@@ -1,0 +1,16 @@
+{
+ "question_id": "kin_480efbb2",
+ "item_sha": "648b82388c68c8d7610e2566015c8d3663795483c7b84ee50b98cd4eb20cd672",
+ "auditor_option": null,
+ "auditor_value": "(a) x = 20 m, v = −12 m/s; (b) not uniformly accelerated, a = 6t; (c) x = 4 m (at t = 2 s)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-kin-03",
+  "at": "2026-09-11T09:53:59+05:30"
+ }
+}

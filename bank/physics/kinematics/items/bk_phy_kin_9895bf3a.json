@@ -1,0 +1,92 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_9895bf3a",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "numerical",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "An aeroplane has a speed of 400 km/h relative to calm air. A steady wind blows toward the north at a rate of 200√2 km/h. To reach a destination B located 1000 km directly northeast of the starting position A, determine the heading angle the pilot needs to maintain and calculate the total duration required for the flight.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "speed of aircraft in still air = 400 km/h",
+   "wind velocity = 200√2 km/h due north",
+   "target point B is directly north-east of starting point A (45° north of east)",
+   "straight-line distance AB = 1000 km"
+  ],
+  "figure": {
+   "description": "A vector diagram with origin A. Vector v_w with magnitude 200√2 km/h points due north from A to C. The resultant velocity vector v_a points along the north-east direction (45° east of north) from A toward B. The relative velocity vector v_aw with magnitude 400 km/h goes from C to B, forming an angle α with the line AB."
+  }
+ },
+ "solution": {
+  "approach": "Add the wind velocity and the aircraft's velocity relative to the wind as vectors, using a triangle where their sum points along AB, then solve for missing side and angle.",
+  "steps": [
+   {
+    "text": "Set up the vector triangle: the wind velocity from A to C, the aircraft's velocity relative to the wind from C to B, and their sum, the resultant ground velocity, from A to B along the north-east direction.",
+    "equation": "AC = 200√2 km/h, CB = 400 km/h, angle A = 45°"
+   },
+   {
+    "text": "Use the sine rule with the side opposite angle A being CB, to find the angle at B.",
+    "equation": "sin B = (AC × sin A) / CB = (200√2 × sin 45°) / 400 = 0.5, B = 30°"
+   },
+   {
+    "text": "The remaining angle of the triangle gives the angle at C, and the sine rule gives the resultant ground speed AB.",
+    "equation": "C = 180° − 45° − 30° = 105°, AB = CB × sin C / sin A ≈ 546.4 km/h"
+   },
+   {
+    "text": "The angle α between the steered direction CB and the path AB equals the angle at B, so the pilot steers 30° east of the AB direction, that is, 75° east of north.",
+    "equation": "α = B = 30°, heading = 45° + 30° = 75° east of north"
+   },
+   {
+    "text": "The journey time is the distance divided by the resultant ground speed.",
+    "equation": "t = 1000 / 546.4 ≈ 1.83 h"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "Steer at 75° east of north (30° east of AB), journey time ≈ 1.83 h"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Adding the wind speed and aircraft speed directly as 400 + 200√2 to get the ground speed, ignoring the angle between them, gives a wrong resultant."
+   },
+   {
+    "option": null,
+    "text": "Steering directly along AB (45° from north) without correcting for the wind reaches a point other than B."
+   }
+  ],
+  "concept_tags": [
+   "relative velocity",
+   "vector triangle",
+   "sine rule"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "ede90d55c8077dcfb24ace4717e149d40d0300375356a0d69f45957de95a9418"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "436192ecc34fbe8e5ccd0491f8be07998454550a0bef4271d503697bb942cfa2",
+  "audited_by": "W01-U-kin-11"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-03",
+  "at": "2026-09-11T15:30:00+05:30"
+ }
+}

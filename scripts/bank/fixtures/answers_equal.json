@@ -1,0 +1,479 @@
+{
+ "_about": "Self-test for gate.answers_equal. The first four are the holes verified in gate_solutions.check() on 2026-09-11; a comparator that passes any of them is not believed. `expect` true/false; `judge` marks pairs the comparator may hand to the equivalence judge (result null is allowed there).",
+ "pairs": [
+  {
+   "a": "10⁻¹¹",
+   "b": "10¹¹",
+   "kind": "number",
+   "expect": false,
+   "why": "bare powers of ten parsed to 10.0 by num_of"
+  },
+  {
+   "a": "12.5 m/s",
+   "b": "12.5 km/h",
+   "kind": "number",
+   "expect": false,
+   "why": "unit-blind comparison"
+  },
+  {
+   "a": "1:2:3",
+   "b": "1:2:5",
+   "kind": "number",
+   "expect": false,
+   "why": "only the first two ratio terms consumed"
+  },
+  {
+   "a": "π/4",
+   "b": "3π/4",
+   "kind": "number",
+   "expect": false,
+   "why": "substring pass"
+  },
+  {
+   "a": "ut + ½at²",
+   "b": "ut + at²/2",
+   "kind": "expression",
+   "expect": true
+  },
+  {
+   "a": "u + ½at²",
+   "b": "ut + ½at²",
+   "kind": "expression",
+   "expect": false
+  },
+  {
+   "a": "v²/2g",
+   "b": "v²/(2g)",
+   "kind": "expression",
+   "expect": true
+  },
+  {
+   "a": "√(2gh)",
+   "b": "(2gh)^(1/2)",
+   "kind": "expression",
+   "expect": true
+  },
+  {
+   "a": "u₀ + at",
+   "b": "u0 + a t",
+   "kind": "expression",
+   "expect": true
+  },
+  {
+   "a": "2u/g",
+   "b": "u/g",
+   "kind": "expression",
+   "expect": false
+  },
+  {
+   "a": "√2 m/s",
+   "b": "1.414 m/s",
+   "kind": "number",
+   "expect": true
+  },
+  {
+   "a": "2×10³ m",
+   "b": "2 km",
+   "kind": "number",
+   "expect": true
+  },
+  {
+   "a": "2 × 10³ m",
+   "b": "2000 m",
+   "kind": "number",
+   "expect": true
+  },
+  {
+   "a": "1:3:5",
+   "b": "1 : 3 : 5",
+   "kind": "number",
+   "expect": true
+  },
+  {
+   "a": "−2/3 m/s²",
+   "b": "-0.667 m s⁻²",
+   "kind": "number",
+   "expect": true
+  },
+  {
+   "a": "π/15 cm/s",
+   "b": "0.209 cm/s",
+   "kind": "number",
+   "expect": true
+  },
+  {
+   "a": "20 m s⁻¹",
+   "b": "20 m/s",
+   "kind": "number",
+   "expect": true
+  },
+  {
+   "a": "72 km/h",
+   "b": "20 m/s",
+   "kind": "number",
+   "expect": true
+  },
+  {
+   "a": "2√2",
+   "b": "2",
+   "kind": "number",
+   "expect": false
+  },
+  {
+   "a": "25 m",
+   "b": "25 s",
+   "kind": "number",
+   "expect": false
+  },
+  {
+   "a": "10⁻¹¹",
+   "b": "1 × 10⁻¹¹",
+   "kind": "number",
+   "expect": true
+  },
+  {
+   "a": "4.56 m/s",
+   "b": "4.6 m/s",
+   "kind": "number",
+   "expect": true,
+   "why": "1% tolerance"
+  },
+  {
+   "a": "4.56 m/s",
+   "b": "4.7 m/s",
+   "kind": "number",
+   "expect": false
+  },
+  {
+   "a": "60°",
+   "b": "π/3 rad",
+   "kind": "number",
+   "expect": true
+  },
+  {
+   "a": "(a) 25 m, (b) 5 s",
+   "b": "(a) 25 m (b) 5 s",
+   "kind": "parts",
+   "expect": true
+  },
+  {
+   "a": "(a) 25 m, (b) 5 s",
+   "b": "(a) 25 m, (b) 6 s",
+   "kind": "parts",
+   "expect": false
+  },
+  {
+   "a": "5.2 m/s, 11/3 m/s",
+   "b": "5.2 m/s and 3.67 m/s",
+   "kind": "number",
+   "expect": true
+  },
+  {
+   "a": "(b)",
+   "b": "2",
+   "kind": "letter",
+   "expect": true
+  },
+  {
+   "a": "c",
+   "b": "3",
+   "kind": "letter",
+   "expect": true
+  },
+  {
+   "a": "(a)",
+   "b": "4",
+   "kind": "letter",
+   "expect": false
+  },
+  {
+   "a": "Both downwards",
+   "b": "both downward",
+   "kind": "words",
+   "expect": true
+  },
+  {
+   "a": "False",
+   "b": "false",
+   "kind": "words",
+   "expect": true
+  },
+  {
+   "a": "obtuse",
+   "b": "acute",
+   "kind": "words",
+   "expect": false
+  },
+  {
+   "a": "Always g",
+   "b": "g downwards, always",
+   "kind": "words",
+   "expect": true,
+   "why": "the same claim; 'g' survives tokenising on both sides"
+  },
+  {
+   "a": "zero",
+   "b": "0",
+   "expect": true,
+   "why": "number words"
+  },
+  {
+   "a": "(a) zero (b) 8 ms⁻¹ (c) 8 ms⁻¹",
+   "b": "(a) 0 m/s², (b) 8 m/s, (c) 8 m/s",
+   "expect": true,
+   "why": "zero vs 0 inside parts; unit missing one side"
+  },
+  {
+   "a": "60 m downstream",
+   "b": "60 m",
+   "expect": true,
+   "why": "a direction word after the value"
+  },
+  {
+   "a": "8 m/s",
+   "b": "8 m/s along positive x-axis",
+   "expect": true,
+   "why": "qualifier on one side only"
+  },
+  {
+   "a": "5 m/s upward",
+   "b": "5 m/s downward",
+   "expect": false,
+   "why": "opposite directions"
+  },
+  {
+   "a": "60 m downstream",
+   "b": "60 m upstream",
+   "expect": false,
+   "why": "opposite directions"
+  },
+  {
+   "a": "approximately 35 m/s",
+   "b": "25√2 m/s ≈ 35.36 m/s",
+   "expect": true,
+   "why": "rounded key vs exact≈decimal"
+  },
+  {
+   "a": "1287 cm (12.87 m)",
+   "b": "1287 cm",
+   "expect": true,
+   "why": "parenthesised alternative"
+  },
+  {
+   "a": "49 m",
+   "b": "(a) t = 5 s, (b) x = 49 m, (c) v = (14î − 12ĵ) m/s",
+   "expect": true,
+   "why": "key prints one part"
+  },
+  {
+   "a": "50 m",
+   "b": "(a) 5 s, (b) 49 m",
+   "expect": null,
+   "judge": true,
+   "why": "no part matches: undecided, not false"
+  },
+  {
+   "a": "(c)(i) s = 10 + 2.5t², (c)(ii) s = 30t − 2.5t² − 40",
+   "b": "(c) (i) s = 10+2.5t²; (ii) s = 30t-2.5t²-40",
+   "expect": true,
+   "why": "nested labels, symbol = prefix"
+  },
+  {
+   "a": "(a) 10 s, (b) 60 m",
+   "b": "(a) 10 s; (b) 60 m downstream",
+   "expect": true,
+   "why": "qualifier inside a part"
+  },
+  {
+   "a": "23.6° west of north",
+   "b": "sin⁻¹(0.4) west of north",
+   "expect": true,
+   "why": "degrees vs inverse sine in radians"
+  },
+  {
+   "a": "23.6°",
+   "b": "0.412 rad",
+   "expect": true,
+   "why": "degrees vs radians"
+  },
+  {
+   "a": "Zero — the relative acceleration is zero because both balls fall with g",
+   "b": "0 m/s²",
+   "expect": true,
+   "why": "leading value clause of a prose answer"
+  },
+  {
+   "a": "bc positive (zero at c), cd negative",
+   "b": "bc positive, cd negative",
+   "expect": true,
+   "why": "'at c)' is not a part label; the aside in brackets is dropped and the lists agree"
+  },
+  {
+   "a": "(a) 60 cm/s², (b) 1287 cm",
+   "b": "(a) 60 cm/s²; (b) 1287 cm (12.87 m)",
+   "expect": true,
+   "why": "part with alternative"
+  },
+  {
+   "a": "x = 5 m",
+   "b": "x = 7 m",
+   "expect": false,
+   "why": "symbol prefix must not make everything equal"
+  },
+  {
+   "a": "12.5 m/s",
+   "b": "12.5 m/s upward",
+   "kind": "number",
+   "expect": true,
+   "why": "qualifier with explicit number kind"
+  },
+  {
+   "a": "55 m/min",
+   "b": "11/12 ms⁻¹ ≈ 0.92 ms⁻¹",
+   "expect": true,
+   "why": "m/min in the unit table"
+  },
+  {
+   "a": "25 m/s",
+   "b": "25 m/s (downwards)",
+   "expect": true,
+   "why": "bracketed qualifier"
+  },
+  {
+   "a": "(3.414) t₀",
+   "b": "(2 + √2) t₀",
+   "expect": true,
+   "why": "decimal vs exact expression within 1%"
+  },
+  {
+   "a": "y = 5x − 4x²",
+   "b": "y = 5x − 4x² (parabola)",
+   "expect": true,
+   "why": "bracketed word after an expression"
+  },
+  {
+   "a": "1 min",
+   "b": "time from fuel finish to maximum height = 60 s",
+   "expect": true,
+   "why": "value after the last ="
+  },
+  {
+   "a": "3.65 s, at 12.30 m level",
+   "b": "the ball meets the elevator at t ≈ 3.66 s, at a height of about 12.31 m",
+   "expect": true,
+   "why": "leading words before a value"
+  },
+  {
+   "a": "automobile 25.9 ms⁻¹, truck 16.2 ms⁻¹",
+   "b": "v_truck ≈ 16.25 m/s, v_auto ≈ 25.85 m/s",
+   "expect": true,
+   "why": "list in a different order"
+  },
+  {
+   "a": "125 m, (b) 5 s, (c) approximately 35 m/s",
+   "b": "(a) H = 125 m, (b) t = 5 s, (c) v = 25√2 m/s ≈ 35.36 m/s",
+   "expect": true,
+   "why": "key lost its (a) label"
+  },
+  {
+   "a": "v₀/g + t₀/2",
+   "b": "The bodies meet at t = v₀/g + t₀/2 measured from the first launch, which is v₀/g − t₀/2 measured from the second launch.",
+   "expect": true,
+   "why": "expression inside a prose answer"
+  },
+  {
+   "a": "2v₁v₂ / (v₁ + v₂)",
+   "b": "(2v₁ v₂)/(v₁ + v₂)",
+   "expect": true,
+   "why": "adjacent subscripted symbols"
+  },
+  {
+   "a": "− 2 m/s",
+   "b": "(a) uniform motion, since the s-t graph is a straight line; (b) velocity = −2 m/s",
+   "expect": true,
+   "why": "key prints one part, spaced minus"
+  },
+  {
+   "a": "(a) 200 m, (b) 20 m/min, (c) 12 m/min",
+   "b": "(a) width = 200 m, (b) boat speed relative to water = 20 m/min ≈ 0.33 m/s, (c) current speed = 12 m/min = 0.2 m/s",
+   "expect": true,
+   "why": "named values with conversions"
+  },
+  {
+   "a": "v = (14î − 12ĵ) m/s, speed ≈ 18.4 m/s",
+   "b": "(14î − 12ĵ) m/s",
+   "expect": true,
+   "why": "list item matches the single value"
+  },
+  {
+   "a": "(a) 25 m, (b) 5 s",
+   "b": "(a) 25 m, (b) 6 s, (c) 7 m",
+   "expect": false,
+   "why": "a differing common part is still false"
+  },
+  {
+   "a": "10 m",
+   "b": "after the first 10 m the speed is 20 m/s and after 30 m it is 40 m/s",
+   "expect": null,
+   "judge": true,
+   "why": "three maths spans: no span may stand in for the answer"
+  },
+  {
+   "a": "5 m/s upward",
+   "b": "5 m/s (downwards)",
+   "expect": false,
+   "why": "bracketed opposite direction"
+  },
+  {
+   "a": "36 s, No",
+   "b": "36 s; no, the answer does not depend on the escalator length, since the length cancels out",
+   "expect": true,
+   "why": "No vs no; prose after the verdict"
+  },
+  {
+   "a": "Yes",
+   "b": "No",
+   "expect": false,
+   "why": "yes/no"
+  },
+  {
+   "a": "No",
+   "b": "Not possible",
+   "expect": true,
+   "why": "'not possible' is a no"
+  },
+  {
+   "a": "At t = t₁: velocity is positive, acceleration is negative.",
+   "b": "At t = t₁: velocity is positive, acceleration is positive.",
+   "expect": null,
+   "judge": true,
+   "why": "swapped adjectives are not the same words; never True"
+  },
+  {
+   "a": "velocity positive and acceleration negative",
+   "b": "velocity negative and acceleration positive",
+   "expect": null,
+   "judge": true,
+   "why": "same word bag, different claims"
+  },
+  {
+   "a": "(a) Yes, in uniform circular motion (b) No, yes (projectile motion), yes",
+   "b": "(a) Yes, for example uniform circular motion, where speed is constant but direction changes. (b) A curved path is not possible with zero acceleration; it is possible with constant acceleration, for example a body thrown at an angle, and with variable acceleration",
+   "expect": null,
+   "judge": true,
+   "why": "prose parts go to the judge, not to a word-bag False"
+  },
+  {
+   "a": "v·a = −2",
+   "b": "v · a = -2 m²/s³",
+   "expect": true,
+   "why": "unknown unit dropped, number compared"
+  },
+  {
+   "a": "3 m²/s³",
+   "b": "5 m²/s³",
+   "expect": false,
+   "why": "unknown unit, different numbers"
+  }
+ ]
+}

@@ -1,0 +1,20 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_a78011cb",
+ "approach": "A straight line on the displacement-time graph means the slope, which gives the velocity, stays constant, so the motion is uniform.",
+ "steps": [
+  {"text": "Note the shape of the graph.", "equation": "The S-t graph is a straight line, so its slope is the same at every point.", "why_this_step": "A constant slope on an s-t graph means constant velocity, which is the definition of uniform motion."},
+  {"text": "Find the slope using the two points where the line meets the axes.", "equation": "slope = (0 − 10)/(5 − 0) = −2 m/s"},
+  {"text": "State the velocity from the slope.", "equation": "velocity = −2 m/s (magnitude 2 m/s, displacement decreasing with time)"}
+ ],
+ "final_answer": {"option": null, "value": "(a) uniform motion, since the s-t graph is a straight line; (b) velocity = −2 m/s"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Taking the slope as 10/5 = 2 m/s without the negative sign misses that displacement is decreasing with time."},
+  {"option": null, "text": "Calling the line non-uniform because it decreases confuses a negative constant slope with a changing slope."}
+ ],
+ "concept_tags": ["s-t graph", "uniform motion", "velocity from slope"],
+ "difficulty": "easy",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-02", "at": "2026-09-11T00:00:00+05:30"}
+}

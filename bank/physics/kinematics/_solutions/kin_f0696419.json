@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_f0696419",
+ "approach": "Use the window height and speed to find the launch speed, then check whether 3 s falls before or after the ball reaches its highest point.",
+ "steps": [
+  {"text": "The ball moves upward past the window at 10 ms⁻¹ at a height of 15 m. Use this to find the launch speed u from the ground.", "equation": "10² = u² − 2(10)(15) → u² = 100 + 300 = 400 → u = 20 ms⁻¹"},
+  {"text": "Find the time taken to reach the highest point.", "equation": "t_top = u/g = 20/10 = 2 s"},
+  {"text": "Since 3 s is later than 2 s, the ball has already passed its highest point and is coming down. Find its velocity at t = 3 s using v = u − gt, keeping the upward direction positive.", "equation": "v = 20 − 10(3) = −10 ms⁻¹"},
+  {"text": "A negative value with upward taken as positive means the ball is moving downward at 10 ms⁻¹.", "equation": "v = 10 ms⁻¹, downward"}
+ ],
+ "final_answer": {"option": 4, "value": "10 ms⁻¹, down"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 1, "text": "Computing v = 20 − 10(3) = −10 correctly but not checking that the ball has already passed the top, and reading the 10 ms⁻¹ as still moving upward."},
+  {"option": 3, "text": "Using the window speed 10 ms⁻¹ directly as the launch speed u instead of solving for u from the window height and speed, giving v = 10 − 10(3) = −20 ms⁻¹."}
+ ],
+ "concept_tags": ["vertical projectile motion", "equations of motion", "sign convention"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-09", "at": "2026-09-11T15:21:00+05:30"}
+}

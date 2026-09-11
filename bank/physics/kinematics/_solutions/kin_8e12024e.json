@@ -1,0 +1,20 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_8e12024e",
+ "approach": "The slope of the displacement-time graph gives the sign of velocity in each region, and the way the curve bends (its concavity) gives the sign of acceleration.",
+ "steps": [
+  {"text": "From O to a, the curve is concave upward and rises, so its slope is positive and increasing from zero at O.", "equation": "region oa: velocity positive (zero at O, increasing), acceleration positive"},
+  {"text": "From a to b, the curve is a straight line with positive slope, so the velocity is positive and constant.", "equation": "region ab: velocity positive and constant, acceleration zero"},
+  {"text": "From b to c, the curve is concave downward and still rising to a peak at c, so its slope stays positive but keeps decreasing, reaching zero at the peak.", "equation": "region bc: velocity positive and decreasing to zero at c, acceleration negative"},
+  {"text": "From c to d, the curve falls from its peak while continuing to bend the same way as in bc, so the slope is negative and becoming more negative.", "equation": "region cd: velocity negative and becoming more negative, acceleration negative"}
+ ],
+ "final_answer": {"option": null, "value": "(a) velocity: oa positive (increasing from zero), ab positive and constant, bc positive and decreasing to zero, cd negative. (b) acceleration: oa positive, ab zero, bc negative, cd negative"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Reading a concave downward region as meaning the velocity itself is negative, rather than meaning the velocity is decreasing while the curve is still rising in region bc."}
+ ],
+ "concept_tags": ["displacement-time graph", "sign of velocity", "sign of acceleration"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-10", "at": "2026-09-11T14:28:00+05:30"}
+}

@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_94df6811",
+ "approach": "Differentiate the velocity once for acceleration, and integrate it from 0 to the given time for position.",
+ "steps": [
+  {"text": "Differentiate v with respect to time to get the acceleration.", "equation": "a = dv/dt = 5 − 2t"},
+  {"text": "Substitute t = 2 s.", "equation": "a(2) = 5 − 2×2 = 1 m/s²"},
+  {"text": "Integrate v with respect to time from 0 to 3 s to get the x-coordinate, since x = 0 at t = 0.", "equation": "x(3) = 10t + 5t²/2 − t³/3, evaluated from 0 to 3"},
+  {"text": "Evaluate the integral at t = 3 s.", "equation": "x(3) = 30 + 22.5 − 9 = 43.5 m"}
+ ],
+ "final_answer": {"option": null, "value": "(a) 1 m/s², (b) 43.5 m"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Differentiating −t² as −t instead of −2t gives an acceleration of 3 m/s² at t = 2 s instead of 1 m/s²."},
+  {"option": null, "text": "Multiplying the velocity at t = 3 s by 3 s instead of integrating gives 48 m instead of 43.5 m."}
+ ],
+ "concept_tags": ["differentiation", "integration", "variable acceleration"],
+ "difficulty": "medium",
+ "mistake_type_hint": "calculation",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-06", "at": "2026-09-11T16:00:00+05:30"}
+}

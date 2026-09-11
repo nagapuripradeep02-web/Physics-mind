@@ -1,0 +1,94 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_fb3225f0",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A particle moves within the xy-plane such that its velocity at time t is given by v = (2t î + 3t² ĵ) m/s. Initially, at t = 0, it is located at the point (2 m, 4 m). Determine:",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "the acceleration vector of the particle at t = 1 s."
+   },
+   {
+    "label": "b",
+    "asks": "the position vector and the coordinates of the particle at t = 2 s."
+   }
+  ],
+  "conditions": [
+   "motion in x-y plane",
+   "velocity v = (2t î + 3t² ĵ) m/s",
+   "initial position at t = 0 is (2 m, 4 m)"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Differentiate the velocity components to get acceleration, and integrate them using the given starting coordinates to get position.",
+  "steps": [
+   {
+    "text": "Differentiate each velocity component with respect to time.",
+    "equation": "v = 2t î + 3t² ĵ, a = dv/dt = 2î + 6t ĵ"
+   },
+   {
+    "text": "Substitute t = 1 s into the acceleration equation.",
+    "equation": "a(1) = (2î + 6ĵ) m/s²"
+   },
+   {
+    "text": "Integrate each velocity component with respect to time, using the starting coordinates (2 m, 4 m) as the constants of integration.",
+    "equation": "x(t) = 2 + t², y(t) = 4 + t³"
+   },
+   {
+    "text": "Substitute t = 2 s to get the position vector and coordinates.",
+    "equation": "x(2) = 2 + 4 = 6 m, y(2) = 4 + 8 = 12 m, r = (6î + 12ĵ) m"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) a(1 s) = (2î + 6ĵ) m/s²; (b) r(2 s) = (6î + 12ĵ) m, coordinates (6 m, 12 m)"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Integrating 3t² as t³/3 instead of t³ gives y(2) = 6.67 m instead of 12 m."
+   },
+   {
+    "option": null,
+    "text": "Forgetting to add the starting coordinates 2 and 4 gives the position (4 m, 8 m) instead of (6 m, 12 m)."
+   }
+  ],
+  "concept_tags": [
+   "differentiation for acceleration",
+   "integration for position",
+   "vector kinematics"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "calculation"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "c2e7aa98ada1cdd2657433e65408beed3dce8c4ded8aaae28504cc17e0670a62"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "f603cf617a8cfba731f5b407d3d1ecee2367508b58e6b4b74ad89e5a211aacf3",
+  "audited_by": "W01-U-kin-09"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-02",
+  "at": "2026-09-11T00:00:00+05:30"
+ }
+}

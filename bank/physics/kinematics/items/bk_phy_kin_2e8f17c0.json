@@ -1,0 +1,97 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_2e8f17c0",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "Two particles begin their motion at the same instant along the x-axis. Particle 1 is initially located at x = − 10 m, moving with a speed of 4 m/s in the negative x-direction while experiencing an acceleration of 2 m/s² in the positive x-direction. Particle 2 is initially positioned at x = + 2 m, possessing an initial speed of 6 m/s in the positive x-direction and an acceleration of 2 m/s² in the negative x-direction. Determine:",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "The time elapsed until the particles collide."
+   },
+   {
+    "label": "b",
+    "asks": "The position coordinate (x) at which the collision occurs."
+   }
+  ],
+  "conditions": [
+   "motion along the x-axis",
+   "particles start simultaneously",
+   "Particle 1: initial position x = − 10 m, initial velocity = − 4 m/s, acceleration = + 2 m/s²",
+   "Particle 2: initial position x = + 2 m, initial velocity = + 6 m/s, acceleration = − 2 m/s²"
+  ],
+  "figure": {
+   "description": "A horizontal x-axis displaying two particles. Particle 1 is at coordinate x = − 10 m with an initial velocity vector pointing leftward of magnitude 4 m/s and an acceleration vector pointing rightward of magnitude 2 m/s². Particle 2 is at coordinate x = + 2 m with an initial velocity vector pointing rightward of magnitude 6 m/s and an acceleration vector pointing leftward of magnitude 2 m/s²."
+  }
+ },
+ "solution": {
+  "approach": "Write the position of each particle as a function of time and solve for the time at which the two positions are equal.",
+  "steps": [
+   {
+    "text": "Write the position of particle 1, starting at x = −10 m with velocity −4 m/s and acceleration +2 m/s².",
+    "equation": "x₁(t) = −10 − 4t + t²"
+   },
+   {
+    "text": "Write the position of particle 2, starting at x = +2 m with velocity +6 m/s and acceleration −2 m/s².",
+    "equation": "x₂(t) = 2 + 6t − t²"
+   },
+   {
+    "text": "Set the two positions equal and solve the resulting quadratic for t, keeping the positive root.",
+    "equation": "−10 − 4t + t² = 2 + 6t − t² → t² − 5t − 6 = 0 → t = 6 s"
+   },
+   {
+    "text": "Substitute t = 6 s into either position equation to get the collision point.",
+    "equation": "x₁(6) = −10 − 24 + 36 = 2 m"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) t = 6 s, (b) x = 2 m"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Taking t = −1 s, the other root of the quadratic, as the collision time, which is not physical since time cannot be negative."
+   },
+   {
+    "option": null,
+    "text": "Writing particle 1's acceleration term as −t² instead of +t² by keeping the sign of its velocity for the acceleration too, which changes the quadratic and its root."
+   }
+  ],
+  "concept_tags": [
+   "equations of motion",
+   "relative position",
+   "quadratic in time"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "calculation"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "911c4a451d71fa0129c6d66bafe538a2f85b92ede23dd93513ba21bbf1c092ce"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "4d60e01e46012f28b39350075d19f2f206d6752e1a65c8f5f647f8fa5687245b",
+  "audited_by": "W01-U-kin-06"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-03",
+  "at": "2026-09-11T15:30:00+05:30"
+ }
+}

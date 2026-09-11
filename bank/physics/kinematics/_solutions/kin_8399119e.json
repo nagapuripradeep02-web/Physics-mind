@@ -1,0 +1,48 @@
+{
+  "schema": "eapcet_solution_v1",
+  "question_id": "kin_8399119e",
+  "approach": "Separate variables in v = ds/dt = √(4 + 4s), integrate both sides from the given start, and evaluate the resulting displacement at t = 2 s.",
+  "steps": [
+    {
+      "text": "Write velocity as the derivative of displacement and separate the variables.",
+      "equation": "ds/dt = √(4+4s) ⟹ ds/√(4+4s) = dt"
+    },
+    {
+      "text": "Integrate the left side from s = 0 to s and the right side from t = 0 to t.",
+      "equation": "∫₀ˢ ds/√(4+4s) = ∫₀ᵗ dt ⟹ √(s+1) − 1 = t"
+    },
+    {
+      "text": "Solve for s as a function of t.",
+      "equation": "√(s+1) = t+1 ⟹ s+1 = (t+1)² ⟹ s = t² + 2t"
+    },
+    {
+      "text": "Substitute t = 2 s to get the displacement.",
+      "equation": "s(2) = 2² + 2×2 = 4 + 4 = 8 m",
+      "why_this_step": "This is the closed-form displacement evaluated at the requested time."
+    }
+  ],
+  "final_answer": {
+    "option": null,
+    "value": "8 m"
+  },
+  "confidence": "sure",
+  "common_mistakes": [
+    {
+      "option": null,
+      "text": "Treating v = √(4+4s) as v = √(4+4t) and integrating with respect to time directly, ds = √(4+4t)dt, gives a wrong displacement of about 5.6 m at t = 2 s instead of 8 m."
+    }
+  ],
+  "concept_tags": [
+    "variable velocity",
+    "separation of variables",
+    "displacement from velocity-displacement relation"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept",
+  "authored_by": {
+    "model": "sonnet",
+    "wave": 1,
+    "agent": "W01-A-kin-04",
+    "at": "2026-09-11T00:20:00+05:30"
+  }
+}

@@ -1,0 +1,16 @@
+{
+ "question_id": "kin_4fac0b01",
+ "item_sha": "70552cdec87613139ddc63c4b162e70d16c7fb9c31376dd559eb0b13ba85749c",
+ "auditor_option": 3,
+ "auditor_value": "Option c: Assertion true, Reason false",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-kin-03",
+  "at": "2026-09-11T09:53:59+05:30"
+ }
+}

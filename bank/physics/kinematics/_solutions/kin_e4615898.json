@@ -1,0 +1,43 @@
+{
+ "approach": "Differentiate x(t) and y(t) to get the velocity components, then set their ratio equal to tan 45°.",
+ "steps": [
+  {
+   "text": "Differentiate the position functions to get the velocity components.",
+   "equation": "vₓ = dx/dt = 5, v_y = dy/dt = 4t + 1"
+  },
+  {
+   "text": "A 45° angle with the horizontal means the two velocity components are equal.",
+   "equation": "v_y/vₓ = tan45° = 1 → 4t + 1 = 5"
+  },
+  {
+   "text": "Solve for t.",
+   "equation": "4t = 4 → t = 1 s"
+  }
+ ],
+ "final_answer": {
+  "option": 2,
+  "value": "1 s"
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": 3,
+   "text": "Setting the ratio of the position coordinates y/x equal to 1 instead of the ratio of the velocity components, which gives t = 2 s."
+  }
+ ],
+ "concept_tags": [
+  "two-dimensional motion",
+  "velocity components",
+  "differentiation"
+ ],
+ "difficulty": "easy",
+ "mistake_type_hint": "application",
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_e4615898",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-08",
+  "at": "2026-09-11T14:20:00+05:30"
+ }
+}

@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_03bdb38a",
+ "approach": "Write the height of each body as a function of time measured from the first launch, with the second body's clock starting t₀ later, and set the two heights equal.",
+ "steps": [
+  {"text": "Measure time t from the first launch. Its height above the ground is v₀t − ½gt².", "equation": "y₁(t) = v₀t − ½gt²"},
+  {"text": "The second body is launched t₀ later, so for t ≥ t₀ its height uses time (t − t₀).", "equation": "y₂(t) = v₀(t − t₀) − ½g(t − t₀)²"},
+  {"text": "Set the two heights equal, since the bodies meet at that height.", "equation": "v₀t − ½gt² = v₀(t − t₀) − ½g(t − t₀)²"},
+  {"text": "Expand and simplify; the squared terms combine using the difference of squares, and t₀ cancels from both sides.", "equation": "v₀t₀ = ½g t₀(2t − t₀) → v₀ = ½g(2t − t₀)"},
+  {"text": "Solve for t, the time after the first launch at which the bodies meet.", "equation": "t = v₀/g + t₀/2"}
+ ],
+ "final_answer": {"option": null, "value": "The bodies meet at t = v₀/g + t₀/2 measured from the first launch, which is v₀/g − t₀/2 measured from the second launch."},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Assuming the bodies meet exactly halfway through the time gap, at t = t₀/2 after the first launch, which ignores the actual rise and fall of each body under gravity."}
+ ],
+ "concept_tags": ["vertical motion under gravity", "relative motion", "staggered launch"],
+ "difficulty": "hard",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-10", "at": "2026-09-11T14:26:00+05:30"}
+}

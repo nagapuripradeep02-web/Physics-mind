@@ -1,0 +1,81 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_b53c13f4",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "conceptual",
+ "key_kind": "words",
+ "figure_required": false,
+ "question": {
+  "text": "Explain why the kinematic expression sₜ = u + at − ½ a appears to be dimensionally inconsistent.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "sₜ is distance traveled during the t-th second",
+   "u is initial velocity",
+   "a is uniform acceleration",
+   "t represents the t-th second"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Each term hides a factor of the one-second interval written as the bare number 1; restoring that factor shows the expression is dimensionally consistent.",
+  "steps": [
+   {
+    "text": "sₜ is the displacement during the t-th second, the interval between time t − 1 s and time t, found from the position formula s(τ) = uτ + ½aτ².",
+    "equation": "sₜ = s(t) − s(t − 1 s)"
+   },
+   {
+    "text": "Expanding this difference and grouping terms gives every part of sₜ multiplied by a factor of the one-second interval, which the short form of the equation leaves unwritten.",
+    "equation": "sₜ = u(1 s) + ½a(1 s)(2t − 1 s)"
+   },
+   {
+    "text": "Check the dimension of each term: u(1 s) is a velocity times a time, a length; ½a(1 s)(2t − 1 s) is an acceleration times two time intervals, also a length.",
+    "why_this_step": "Once both time intervals are written out, every term on the right has the dimension of length, matching sₜ."
+   },
+   {
+    "text": "Writing the 1 s factors as the bare number 1, as the short form does, gives sₜ = u + at − ½a; the formula looks unbalanced only because that unit has been dropped, not because it is wrong.",
+    "equation": "sₜ = u + at − ½a, with the 1 s factors suppressed"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "The 1 s interval in each term is written as the bare number 1. Restoring it gives sₜ = u(1 s) + ½a(1 s)(2t − 1 s), where every term is a length, so the equation is dimensionally consistent once the suppressed unit is put back."
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Concluding the relation is dimensionally wrong outright, instead of noticing that its second and third terms carry a suppressed factor of 1 s that restores their dimension of length."
+   }
+  ],
+  "concept_tags": [
+   "dimensional analysis",
+   "distance in nth second"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "adbc94545ac9c293f05ee34e9be8f33d9afcd4043c05bd883bd7007928fed055"
+ },
+ "verification": {
+  "key_match": false,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "e41021e9d425509102de10de9e1434302ae689548795b688aab99e2c8e54d33c",
+  "audited_by": "W01-U-kin-01-R1"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-05",
+  "at": "2026-09-11T14:10:00+05:30"
+ }
+}

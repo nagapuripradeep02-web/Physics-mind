@@ -1,0 +1,94 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_d3997bf6",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "The velocity of a body moving along a one-dimensional path depends on time as v = (10 + 2t + 3t²) in SI units. Determine the following:",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "The body's displacement relative to the mean position at instant t = 1 s, assuming its displacement at t = 0 is 20 m."
+   },
+   {
+    "label": "b",
+    "asks": "The expression representing its acceleration as a function of time."
+   }
+  ],
+  "conditions": [
+   "motion in a straight line",
+   "v = (10 + 2t + 3t²) in SI units",
+   "displacement at t = 0 is 20 m"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Integrate the velocity equation to get the displacement equation using the given value at t = 0, then differentiate velocity to get acceleration.",
+  "steps": [
+   {
+    "text": "Integrate v with respect to time to get x, keeping the integration constant.",
+    "equation": "v = 10 + 2t + 3t², x = 10t + t² + t³ + C"
+   },
+   {
+    "text": "Use the given value x = 20 m at t = 0 to find C.",
+    "equation": "20 = 0 + 0 + 0 + C → C = 20"
+   },
+   {
+    "text": "Write the full displacement equation and substitute t = 1 s.",
+    "equation": "x = t³ + t² + 10t + 20, x(1) = 1 + 1 + 10 + 20 = 32 m"
+   },
+   {
+    "text": "Differentiate v with respect to time to get the acceleration-time equation.",
+    "equation": "a = dv/dt = 2 + 6t"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) x(1 s) = 32 m; (b) a = (2 + 6t) m/s²"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Forgetting the constant of integration and using x = t³ + t² + 10t gives x(1) = 12 m instead of 32 m."
+   },
+   {
+    "option": null,
+    "text": "Integrating v instead of differentiating it to find acceleration gives a wrong result for part (b)."
+   }
+  ],
+  "concept_tags": [
+   "integration of velocity",
+   "differentiation for acceleration",
+   "initial condition"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "calculation"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "cea13196ed9e9edda131386e8a06e786def3c4ad268869ece96f1e9918541ab7"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "f0e7cd0d97472ab4f341c9669bbd79c1dd490c75e5add77c626f4a8ab11c9f70",
+  "audited_by": "W01-U-kin-09"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-02",
+  "at": "2026-09-11T00:00:00+05:30"
+ }
+}

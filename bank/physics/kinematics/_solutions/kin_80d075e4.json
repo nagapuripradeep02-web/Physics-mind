@@ -1,0 +1,19 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_80d075e4",
+ "approach": "Use the zero-velocity instant at t = 6 s to relate the initial velocity to the acceleration, then use the displacement at t = 10 s to solve for both.",
+ "steps": [
+  {"text": "Write velocity as v(t) = v₀ + at and use v(6) = 0 to relate v₀ and a.", "equation": "v₀ = −6a"},
+  {"text": "Write displacement as x(t) = 2 + v₀t + ½at² and use x(10) = 0, substituting v₀ = −6a.", "equation": "2 + (−6a)(10) + ½a(100) = 0 → 2 − 10a = 0"},
+  {"text": "Solve for a, then find v₀ and the velocity at t = 10 s.", "equation": "a = 0.2 m/s², v₀ = −1.2 m/s, v(10) = −1.2 + 0.2(10) = 0.8 m/s"}
+ ],
+ "final_answer": {"option": null, "value": "a = 0.2 m/s², v(10 s) = 0.8 m/s"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Assuming the particle starts from rest at t = 0 instead of using the given v(6 s) = 0 condition gives a = −0.04 m/s² and v(10) = −0.4 m/s, both wrong."}
+ ],
+ "concept_tags": ["equations of motion", "constant acceleration", "simultaneous equations"],
+ "difficulty": "hard",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-11", "at": "2026-09-11T15:12:00+05:30"}
+}

@@ -1,0 +1,88 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_f0c7268e",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A soccer ball is launched straight up into the air from ground level. As it ascends, an observer looking through a window located 15.0 m above the ground notes that the ball travels past with an upward speed of 5.00 m/s. Assume that air drag is negligible and use g = 10 m/s².",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "What is the maximum height reached by the ball above the ground?"
+   },
+   {
+    "label": "b",
+    "asks": "What is the total time needed for the ball to rise from the ground to the peak of its trajectory?"
+   }
+  ],
+  "conditions": [
+   "motion under uniform gravity",
+   "vertical upward projection from ground",
+   "speed at height 15.0 m is 5.00 m/s upward",
+   "air resistance neglected",
+   "g = 10 m/s²"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Use v² = u² − 2gh between the ground and the window to find the launch speed, then find the maximum height and time to the top from that speed.",
+  "steps": [
+   {
+    "text": "Apply v² = u² − 2gh between the ground, where the speed is u, and the window, 15 m up, where the speed is 5.00 m/s.",
+    "equation": "5.00² = u² − 2(10)(15) → u² = 325"
+   },
+   {
+    "text": "Find the maximum height using v² = u² − 2gH with v = 0 at the top.",
+    "equation": "H = u²/(2g) = 325/20 = 16.25 m"
+   },
+   {
+    "text": "Find the time to the top using v = u − gt with v = 0 at the top.",
+    "equation": "t = u/g = √325/10 ≈ 1.80 s"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) 16.25 m, (b) ≈1.80 s"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Taking the given 5.00 m/s as the ground launch speed and ignoring the 15 m window height gives a maximum height of only 1.25 m."
+   }
+  ],
+  "concept_tags": [
+   "free fall",
+   "equations of motion",
+   "vertical projectile"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "f160a9c09364e46323d4680a9f3538dd1a2c3f2110924b276ba2be23088c5ca6"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "6e8370cc9916304d13c692aafcbfecb24aa1ff9782eb18b549760e3544ff353a",
+  "audited_by": "W01-U-kin-11"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-11",
+  "at": "2026-09-11T15:10:00+05:30"
+ }
+}

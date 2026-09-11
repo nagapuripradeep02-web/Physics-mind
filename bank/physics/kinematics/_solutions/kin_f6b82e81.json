@@ -1,0 +1,22 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_f6b82e81",
+ "approach": "Both particles are in free fall, so they share the same acceleration; the relative motion between them is therefore at constant relative velocity, which gives all four parts directly.",
+ "steps": [
+  {"text": "Both particles accelerate at g downward under gravity alone, so their relative acceleration is zero.", "equation": "a₁ = a₂ = −g (upward positive) → a_(1/2) = a₁ − a₂ = 0"},
+  {"text": "Taking upward as positive, particle 1 starts moving down at 5 m/s and particle 2 starts moving up at 20 m/s; find the initial velocity of 2 relative to 1.", "equation": "v₁(0) = −5 m/s, v₂(0) = +20 m/s → v_(2/1) = v₂(0) − v₁(0) = 20 − (−5) = 25 m/s"},
+  {"text": "Since the relative acceleration is zero, the relative velocity of 1 with respect to 2 never changes from its initial value.", "equation": "v_(1/2) = v₁(0) − v₂(0) = −5 − 20 = −25 m/s, same at t = ½ s",
+   "why_this_step": "A zero relative acceleration means the relative velocity stays constant for all time."},
+  {"text": "With separation 20 m and a constant closing speed of 25 m/s, find the time to collide.", "equation": "t = 20/25 = 0.8 s"}
+ ],
+ "final_answer": {"option": null, "value": "(a) acceleration of 1 with respect to 2 = 0. (b) initial velocity of 2 with respect to 1 = 25 m/s (upward). (c) velocity of 1 with respect to 2 at t = ½ s = 25 m/s (downward), unchanged from t = 0. (d) time to collide = 0.8 s."},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Adding the two initial velocities instead of subtracting, giving an initial relative velocity of 20 + (−5) = 15 m/s."},
+  {"option": null, "text": "Assuming the relative velocity changes with time and recomputing it at t = ½ s from the individual free-fall equations, instead of recognising that a zero relative acceleration keeps it constant."}
+ ],
+ "concept_tags": ["relative velocity", "relative acceleration", "free fall"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-12", "at": "2026-09-11T16:30:00+05:30"}
+}

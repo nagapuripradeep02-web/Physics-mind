@@ -1,0 +1,46 @@
+{
+  "schema": "eapcet_solution_v1",
+  "question_id": "kin_d194bd74",
+  "approach": "The change in velocity equals the area under the acceleration-time graph, so add the initial velocity to the total area of the triangular graph.",
+  "steps": [
+    {
+      "text": "Split the triangular a-t graph into two triangles and find the area of each.",
+      "equation": "area (0 to 2 s) = ½ × 2 × 4 = 4 m/s, area (2 to 4 s) = ½ × 2 × 4 = 4 m/s"
+    },
+    {
+      "text": "Add the two areas to get the total change in velocity from t = 0 to t = 4 s.",
+      "equation": "Δv = 4 + 4 = 8 m/s"
+    },
+    {
+      "text": "Add the change in velocity to the initial velocity.",
+      "equation": "v(4 s) = v(0) + Δv = 2 + 8 = 10 m/s"
+    }
+  ],
+  "final_answer": {
+    "option": null,
+    "value": "v = 10 m/s"
+  },
+  "confidence": "sure",
+  "common_mistakes": [
+    {
+      "option": null,
+      "text": "Misreading the peak of the graph as 2 m/s² instead of 4 m/s² gives Δv = ½ × 4 × 2 = 4 m/s and a wrong answer of 6 m/s."
+    },
+    {
+      "option": null,
+      "text": "Forgetting to add the initial velocity of 2 m/s gives v(4 s) = 8 m/s instead of 10 m/s."
+    }
+  ],
+  "concept_tags": [
+    "a-t graph",
+    "area under graph gives change in velocity"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "application",
+  "authored_by": {
+    "model": "sonnet",
+    "wave": 1,
+    "agent": "W01-A-kin-02",
+    "at": "2026-09-11T00:00:00+05:30"
+  }
+}

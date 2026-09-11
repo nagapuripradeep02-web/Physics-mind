@@ -1,0 +1,22 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_59c4c694",
+ "approach": "The tip moves at constant speed around a circle of radius 2.0 cm; find the quarter-turn distance for speed and the chord length for velocity.",
+ "steps": [
+  {"text": "The second hand's tip moves on a circle of radius 2.0 cm and completes one full turn in 60 s.", "equation": "circumference = 2πr = 4π cm"},
+  {"text": "In 15 s the tip sweeps a quarter turn, so the distance travelled is a quarter of the circumference.", "equation": "distance = 4π/4 = π cm ≈ 3.14 cm"},
+  {"text": "Average speed is this distance divided by the time.", "equation": "average speed = π/15 ≈ 0.21 cm/s"},
+  {"text": "The displacement is the straight chord between the start point and the point a quarter turn later, which are 90° apart on the circle.", "equation": "displacement = r√2 = 2√2 ≈ 2.83 cm"},
+  {"text": "Average velocity magnitude is this displacement divided by the time.", "equation": "average velocity = 2√2/15 ≈ 0.19 cm/s", "why_this_step": "Displacement is the straight-line chord, which is shorter than the curved arc distance."}
+ ],
+ "final_answer": {"option": null, "value": "average speed ≈ 0.21 cm/s (π/15 cm/s); average velocity magnitude ≈ 0.19 cm/s (2√2/15 cm/s)"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Using the full circumference 4π cm for the 15 s interval instead of the quarter-turn distance π cm, giving an average speed of about 0.84 cm/s."},
+  {"option": null, "text": "Treating the arc distance and the chord displacement as the same length, giving 0.21 cm/s for both average speed and average velocity."}
+ ],
+ "concept_tags": ["circular motion", "average speed", "average velocity"],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-05", "at": "2026-09-11T14:03:00+05:30"}
+}

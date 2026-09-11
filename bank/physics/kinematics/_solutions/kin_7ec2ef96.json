@@ -1,0 +1,20 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_7ec2ef96",
+ "approach": "Find the walking speed and the escalator speed separately, in escalator lengths per second, then add them for the combined speed.",
+ "steps": [
+  {"text": "Write the walking speed as the escalator length divided by the walking time, and the escalator speed as the length divided by the moving time.", "equation": "w = 15/90 m/s, e = 15/60 m/s"},
+  {"text": "Add the two speeds, since walking on the moving escalator combines both motions.", "equation": "w + e = 1/6 + 1/4 = 5/12 m/s"},
+  {"text": "Divide the escalator length by the combined speed to get the time; notice that the length appears in both the numerator and the denominator.", "equation": "t = 15 ÷ (5/12) = 36 s",
+   "why_this_step": "Since t = L ÷ (L/90 + L/60), the length L cancels, so the time does not depend on how long the escalator is."}
+ ],
+ "final_answer": {"option": null, "value": "36 s; no, the answer does not depend on the escalator length, since the length cancels out of the calculation."},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Averaging the two given times as (90 + 60)/2 gives 75 s, which is not how the walking and escalator speeds combine."}
+ ],
+ "concept_tags": ["relative velocity", "rates", "escalator problem"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-11", "at": "2026-09-11T15:01:00+05:30"}
+}

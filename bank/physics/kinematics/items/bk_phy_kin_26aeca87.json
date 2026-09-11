@@ -1,0 +1,82 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_26aeca87",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "mcq_single",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "Two bodies travel along the same linear path. At time t = 0, both pass through a fixed point A simultaneously. At this instant, the first body possesses a speed 2u and a uniform acceleration a, while the second body possesses a speed u and a uniform acceleration 2a in the same direction. Determine the distance covered by the bodies from point A up to the moment when one catches up with the other.",
+  "options": {
+   "1": "6u²/a",
+   "2": "2u²/a",
+   "3": "4u²/a",
+   "4": "8u²/a"
+  },
+  "parts": null,
+  "conditions": [
+   "motion along the same straight line",
+   "both bodies pass point A at time t = 0",
+   "first body has initial speed 2u and constant acceleration a",
+   "second body has initial speed u and constant acceleration 2a"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Write the position of each object from point A as a function of time and set them equal at the overtaking instant.",
+  "steps": [
+   {
+    "text": "Write the position of the first object (initial velocity 2u, acceleration a) from A.",
+    "equation": "x₁ = 2ut + ½at²"
+   },
+   {
+    "text": "Write the position of the second object (initial velocity u, acceleration 2a) from A.",
+    "equation": "x₂ = ut + ½(2a)t² = ut + at²"
+   },
+   {
+    "text": "Set the positions equal at the overtaking time and solve for t.",
+    "equation": "2ut + ½at² = ut + at² → ut = ½at² → t = 2u/a"
+   },
+   {
+    "text": "Substitute t = 2u/a into the first object's position to get the distance moved.",
+    "equation": "x₁ = 2u(2u/a) + ½a(2u/a)² = 4u²/a + 2u²/a = 6u²/a"
+   }
+  ],
+  "final_answer": {
+   "option": 1,
+   "value": "6u²/a"
+  },
+  "common_mistakes": [],
+  "concept_tags": [
+   "relative motion",
+   "equations of motion",
+   "overtaking problem"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "5ac575448e9d348a8a7c5122784abed31b0cfeb425bb1ec7b4b5e6f9eebf2bfe"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "0f225fa6900c392ee9e6210643a50fe646427ca118a2e30128dfebf02ae02dfd",
+  "audited_by": "W01-U-kin-04"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-09",
+  "at": "2026-09-11T15:12:00+05:30"
+ }
+}

@@ -1,0 +1,46 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_ecbcb240",
+ "approach": "Average speed is total distance divided by total time; find the time for each half from its distance and speed, then combine.",
+ "steps": [
+  {
+   "text": "Let the total distance be 2d, so each half of the journey covers distance d.",
+   "equation": "half distance = d"
+  },
+  {
+   "text": "Find the time taken for each half from time = distance divided by speed.",
+   "equation": "t₁ = d/v₁, t₂ = d/v₂"
+  },
+  {
+   "text": "Average speed is total distance over total time.",
+   "equation": "v_avg = 2d / (d/v₁ + d/v₂)"
+  },
+  {
+   "text": "Cancel d and simplify to the standard form.",
+   "equation": "v_avg = 2v₁v₂ / (v₁ + v₂)"
+  }
+ ],
+ "final_answer": {
+  "option": null,
+  "value": "v_avg = 2v₁v₂ / (v₁ + v₂)"
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": null,
+   "text": "Taking the plain arithmetic mean (v₁+v₂)/2, which is only correct when the two halves take equal time, not equal distance."
+  }
+ ],
+ "concept_tags": [
+  "average speed",
+  "harmonic mean"
+ ],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-01",
+  "at": "2026-09-11T15:10:00+05:30"
+ }
+}

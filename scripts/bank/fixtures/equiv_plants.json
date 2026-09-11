@@ -1,0 +1,13 @@
+{
+ "_about": "Plants for the equivalence JUDGE (a model). Run with `gate.py selftest --judges`. A judge that misses one is not used that run.",
+ "pairs": [
+  {"a": "ut + ½at²", "b": "ut + at²/2", "expect": true},
+  {"a": "√(2gh)", "b": "(2gh)^½", "expect": true},
+  {"a": "72 km/h", "b": "20 m/s", "expect": true},
+  {"a": "Both are directed downwards", "b": "both vectors point downward", "expect": true},
+  {"a": "u + ½at²", "b": "ut + ½at²", "expect": false},
+  {"a": "1:2:3", "b": "1:2:5", "expect": false},
+  {"a": "10⁻¹¹", "b": "10¹¹", "expect": false},
+  {"a": "12.5 m/s", "b": "12.5 km/h", "expect": false}
+ ]
+}

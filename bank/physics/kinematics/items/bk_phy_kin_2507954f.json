@@ -1,0 +1,85 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_2507954f",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "conceptual",
+ "key_kind": "words",
+ "figure_required": false,
+ "question": {
+  "text": "An elevator is ascending vertically with an upward acceleration equal to g/2. A rock is dropped from inside this lift. Immediately after it is let go, determine the acceleration of the rock.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "elevator accelerates upward at g/2",
+   "stone is released freely",
+   "motion under gravity",
+   "air resistance neglected"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Once the stone leaves the elevator, the elevator's support force is gone and only gravity acts on it.",
+  "steps": [
+   {
+    "text": "Before release, the stone moves with the elevator, which has acceleration g/2 upward, because the elevator floor pushes on the stone.",
+    "equation": "a (with elevator) = g/2 upward"
+   },
+   {
+    "text": "At the instant of release, the stone loses contact with the elevator, so the elevator's push on it becomes zero."
+   },
+   {
+    "text": "The only force left on the stone is its own weight, so apply Newton's second law to the stone alone.",
+    "equation": "a = F_net/m = mg/m = g"
+   },
+   {
+    "text": "The acceleration of the stone just after release is g, directed vertically downward.",
+    "why_this_step": "Once contact is lost, the stone's later motion no longer depends on how the elevator was moving."
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "g, directed vertically downward"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Assuming the stone keeps the elevator's acceleration g/2 upward after release, forgetting that this required the elevator's push, which is gone."
+   },
+   {
+    "option": null,
+    "text": "Subtracting the elevator's acceleration from g to get g/2 downward, treating the elevator's motion as if it still acted on the released stone."
+   }
+  ],
+  "concept_tags": [
+   "free fall",
+   "Newton's second law",
+   "elevator problem"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "954e4971727ec6fd50af3ad79bdc234e7380a5c537e442d4276282d758af7d35"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "415d92002af9cda94b345af908e41a1a8694ffd9e0395bfe75591b8809ee54d8",
+  "audited_by": "W01-U-kin-07"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-05",
+  "at": "2026-09-11T14:02:00+05:30"
+ }
+}

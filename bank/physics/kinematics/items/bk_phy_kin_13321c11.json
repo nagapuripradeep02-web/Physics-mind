@@ -1,0 +1,102 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_13321c11",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A car and a truck begin moving simultaneously from rest in the same direction, with the car situated a certain distance behind the truck at the start. The truck speeds up with a uniform acceleration of 2.2 m/s², whereas the car speeds up with a steady acceleration of 3.5 m/s². By the moment the truck has covered a distance of 60 m, the car catches up with it.",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "How much time is needed for the car to catch up with the truck?"
+   },
+   {
+    "label": "b",
+    "asks": "What was the initial separation between the car and the truck?"
+   },
+   {
+    "label": "c",
+    "asks": "What is the speed of each vehicle at the instant the car overtakes the truck?"
+   }
+  ],
+  "conditions": [
+   "both vehicles start from rest simultaneously",
+   "motion is along a straight line",
+   "constant acceleration of truck = 2.2 m/s²",
+   "constant acceleration of car = 3.5 m/s²",
+   "distance moved by truck at overtaking = 60 m",
+   "car is initially behind the truck"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Use s = ½at² for constant-acceleration motion from rest for both vehicles, find the time from the truck's 60 m, then find the initial gap and speeds from that time.",
+  "steps": [
+   {
+    "text": "Find the time for the truck to move 60 m from rest using s = ½at².",
+    "equation": "60 = ½(2.2)t² → t² = 60/1.1 → t = 7.39 s"
+   },
+   {
+    "text": "In the same time, find how far the automobile has moved from its own start.",
+    "equation": "x_auto = ½(3.5)(7.39)² ≈ 95.45 m"
+   },
+   {
+    "text": "The automobile overtakes the truck when its distance from its own start equals the truck's 60 m plus the initial gap; solve for the gap.",
+    "equation": "d = x_auto − 60 = 95.45 − 60 = 35.45 m",
+    "why_this_step": "Overtaking means the two vehicles are at the same absolute position, so the automobile must cover the gap plus the truck's own 60 m."
+   },
+   {
+    "text": "Find the speed of each vehicle at this time using v = at.",
+    "equation": "v_truck = 2.2 × 7.39 = 16.25 m/s, v_auto = 3.5 × 7.39 = 25.85 m/s"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) t ≈ 7.39 s. (b) initial gap d ≈ 35.45 m. (c) v_truck ≈ 16.25 m/s, v_auto ≈ 25.85 m/s."
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Taking the truck's 60 m displacement itself as the initial gap between the vehicles, giving d = 60 m."
+   },
+   {
+    "option": null,
+    "text": "Using the automobile's own acceleration on the 60 m distance to find the time, 60 = ½(3.5)t², giving the wrong time t ≈ 5.86 s."
+   }
+  ],
+  "concept_tags": [
+   "constant acceleration from rest",
+   "relative displacement",
+   "kinematics equations"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "ad114b2d567eaac07162f874d667775f92087fe8422127a030815a0b5a7d93ac"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "35be54c30ae32cddf50be74257ed5eccf2f3598865bd14d996fe982746d92af7",
+  "audited_by": "W01-U-kin-08"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-12",
+  "at": "2026-09-11T16:36:00+05:30"
+ }
+}

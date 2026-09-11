@@ -1,0 +1,85 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_f5a94ae9",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A vehicle A moves with an acceleration of 2 m/s² towards the east, while a vehicle B accelerates at 4 m/s² towards the north. Determine the relative acceleration of vehicle B as observed from vehicle A.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "car A accelerates at 2 m/s² due east",
+   "car B accelerates at 4 m/s² due north",
+   "motion occurs in a horizontal plane"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Relative acceleration is the vector difference of the two accelerations, found by adding the perpendicular east and north components.",
+  "steps": [
+   {
+    "text": "Write the two accelerations as vectors along east and north.",
+    "equation": "a_A = 2î m/s² (east), a_B = 4ĵ m/s² (north)"
+   },
+   {
+    "text": "Apply the relative acceleration formula.",
+    "equation": "a_(B/A) = a_B − a_A = −2î + 4ĵ m/s²"
+   },
+   {
+    "text": "Find the magnitude of the resultant.",
+    "equation": "|a_(B/A)| = √(2² + 4²) = √20 = 2√5 ≈ 4.47 m/s²"
+   },
+   {
+    "text": "Find the direction using the two perpendicular components, −2 (west) and 4 (north).",
+    "equation": "tan α = 4/2 = 2 → α = tan⁻¹(2) ≈ 63.4°, measured from west towards north"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "a_(B/A) = 2√5 m/s² ≈ 4.47 m/s², directed about 63.4° north of west (equivalently about 26.6° west of north)"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Adding a_A and a_B instead of subtracting gives a_(B/A) = (2î + 4ĵ), a different direction, north-east instead of north-west."
+   },
+   {
+    "option": null,
+    "text": "Computing the magnitude as 4 − 2 = 2 m/s² by treating the two accelerations as if they were along the same line, ignoring that they are perpendicular."
+   }
+  ],
+  "concept_tags": [
+   "relative acceleration",
+   "vector subtraction",
+   "two-dimensional motion"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "46b24e6412844c6df3c27ba102c0bb638aed39d35a7821b3e30b56cf80663eee"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "b42364460f841932b6224560c38562f1dc00cf31c7ad929a18851aaaa4a639ec",
+  "audited_by": "W01-U-kin-03"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-02",
+  "at": "2026-09-11T00:00:00+05:30"
+ }
+}

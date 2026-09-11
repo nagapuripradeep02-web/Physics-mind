@@ -1,0 +1,84 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_11d0a550",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "numerical",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "An object travels along a linear path maintaining a uniform rate of 4 m/s over a duration of 2 s, followed by traveling at 6 m/s throughout the subsequent 3 s. Determine the mean speed of the object across this entire duration.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "motion along a straight line",
+   "constant speed of 4 m/s for the first 2 s",
+   "constant speed of 6 m/s for the next 3 s"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Average speed is the total distance covered in both legs divided by the total time taken.",
+  "steps": [
+   {
+    "text": "Find the distance covered in the first leg.",
+    "equation": "d1 = 4 m/s × 2 s = 8 m"
+   },
+   {
+    "text": "Find the distance covered in the second leg.",
+    "equation": "d2 = 6 m/s × 3 s = 18 m"
+   },
+   {
+    "text": "Add the distances and the times.",
+    "equation": "total distance = 8 + 18 = 26 m, total time = 2 + 3 = 5 s"
+   },
+   {
+    "text": "Average speed is total distance divided by total time.",
+    "equation": "average speed = 26/5 = 5.2 m/s"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "5.2 m/s"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Taking the simple average of the two speeds, (4 + 6)/2 = 5 m/s, instead of weighting each speed by the time spent at it."
+   },
+   {
+    "option": null,
+    "text": "Using the equal-distance average-speed formula 2v1v2/(v1 + v2) = 4.8 m/s, which only applies when the two legs cover equal distances, not equal-looking legs with different times."
+   }
+  ],
+  "concept_tags": [
+   "average speed",
+   "uniform motion"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "ac0c675737a7f3e4cf9625084a82fd3f6d425d834c6a067678e9e5729d27cada"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "75742dd9f2df559a7e83c80b0718440d78702a525981f45d3b8c2553a139178e",
+  "audited_by": "W01-U-kin-01-R1"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-05",
+  "at": "2026-09-11T14:06:00+05:30"
+ }
+}

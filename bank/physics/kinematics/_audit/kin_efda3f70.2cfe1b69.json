@@ -1,0 +1,14 @@
+{
+ "question_id": "kin_efda3f70",
+ "item_sha": "2cfe1b693b17ee52c6c3a4f5fc8dc9cd32775b54adbabf56bd613c9b93485b9a",
+ "auditor_option": 4,
+ "auditor_value": "(d) Assertion is false, but the Reason is true",
+ "findings": [
+  {"grade": "wrong", "field": "steps[3].text", "quote": "so the Reason is a true statement on its own",
+   "note": "The Reason as worded says the velocity vector does not change with time, and that is false here: the acceleration is non-zero, so v(t) = (1 − 2t)(î − ĵ) changes with time. Only the acceleration is constant. The solution asserts the Reason is true without noting this, and it also applies the 'not the correct explanation' test, which only applies when the Assertion is also true.", "fix": "The acceleration vector given is constant, so the motion is uniformly accelerated; the option list treats the Reason as true, and since the Assertion is false the only consistent choice is (d)."}
+ ],
+ "verdict": "wrong",
+ "question_defect": "The Reason is self-inconsistent: if the velocity vector did not change with time the acceleration would have to be zero, which contradicts the acceleration given. No option covers 'both false', so (d) is the only key the option list allows.",
+ "notes": null,
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-kin-11", "at": "2026-09-11T09:50:48+05:30"}
+}

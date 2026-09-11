@@ -1,0 +1,55 @@
+{
+  "schema": "eapcet_solution_v1",
+  "question_id": "kin_d1f0c906",
+  "approach": "Since the force is perpendicular to the initial velocity, treat the motion as two independent components: unchanged velocity along the original direction and accelerated motion along the perpendicular direction.",
+  "steps": [
+    {
+      "text": "Find the acceleration produced by the force.",
+      "equation": "a = F/m = 2/1 = 2 m/s², directed perpendicular to u"
+    },
+    {
+      "text": "The velocity along the original direction stays u, and the perpendicular component grows from zero.",
+      "equation": "v∥ = u = 2 m/s, v⊥ = at = 2 × 1 = 2 m/s"
+    },
+    {
+      "text": "Combine the two perpendicular components to get the resultant velocity.",
+      "equation": "v = √(v∥² + v⊥²) = √(2² + 2²) = 2√2 m/s ≈ 2.83 m/s, at α = tan⁻¹(2/2) = 45° to u"
+    },
+    {
+      "text": "Find the displacement along each direction.",
+      "equation": "s∥ = ut = 2 × 1 = 2 m, s⊥ = ½at² = ½ × 2 × 1² = 1 m"
+    },
+    {
+      "text": "Combine the two perpendicular displacements to get the resultant displacement.",
+      "equation": "s = √(2² + 1²) = √5 ≈ 2.24 m, at β = tan⁻¹(1/2) ≈ 26.6° to u"
+    }
+  ],
+  "final_answer": {
+    "option": null,
+    "value": "v = 2√2 m/s ≈ 2.83 m/s at 45° to the initial velocity; s = √5 m ≈ 2.24 m at about 26.6° to the initial velocity"
+  },
+  "confidence": "sure",
+  "common_mistakes": [
+    {
+      "option": null,
+      "text": "Adding the perpendicular components as plain numbers instead of combining them as perpendicular vectors gives v = 4 m/s instead of 2√2 m/s."
+    },
+    {
+      "option": null,
+      "text": "Using s⊥ = at² for the perpendicular displacement instead of ½at² gives 2 m instead of 1 m."
+    }
+  ],
+  "concept_tags": [
+    "motion under perpendicular force",
+    "vector addition of velocity",
+    "vector addition of displacement"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept",
+  "authored_by": {
+    "model": "sonnet",
+    "wave": 1,
+    "agent": "W01-A-kin-02",
+    "at": "2026-09-11T00:00:00+05:30"
+  }
+}

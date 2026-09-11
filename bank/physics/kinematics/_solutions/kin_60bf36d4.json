@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_60bf36d4",
+ "approach": "Apply the equations of motion for uniform acceleration to each part in turn.",
+ "steps": [
+  {"text": "Find the distance in the first 2 seconds using s = ut + ½at².", "equation": "s = 2.5×2 + ½×0.5×2² = 5 + 1 = 6 m"},
+  {"text": "Find the time to reach 7.5 m/s using v = u + at.", "equation": "7.5 = 2.5 + 0.5t → t = 10 s"},
+  {"text": "Find the distance covered in reaching 7.5 m/s using v² = u² + 2as.", "equation": "7.5² = 2.5² + 2×0.5×s → s = 50 m"},
+  {"text": "Collecting the three results gives the full answer.", "equation": "(a) 6 m, (b) 10 s, (c) 50 m"}
+ ],
+ "final_answer": {"option": null, "value": "(a) 6 m, (b) 10 s, (c) 50 m"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Finding the distance in the first 2 seconds using s = ut alone and forgetting the acceleration term gives 5 m instead of 6 m."},
+  {"option": null, "text": "Finding the time to reach 7.5 m/s using t = v/a and forgetting the initial velocity gives 15 s instead of 10 s."}
+ ],
+ "concept_tags": ["uniform acceleration", "equations of motion"],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-06", "at": "2026-09-11T16:00:00+05:30"}
+}

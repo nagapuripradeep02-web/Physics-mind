@@ -1,0 +1,47 @@
+{
+ "approach": "Integrate both velocity components with constants of integration, fix the constants from the given point, then eliminate time between x(t) and y(t).",
+ "steps": [
+  {
+   "text": "Integrate the two velocity components to get position, with constants of integration.",
+   "equation": "x(t) = 4t² − 2t + C₁, y(t) = 2t + C₂"
+  },
+  {
+   "text": "Use the given point x = 14, y = 4 at t = 2 s to find the constants.",
+   "equation": "14 = 16 − 4 + C₁ → C₁ = 2; 4 = 4 + C₂ → C₂ = 0"
+  },
+  {
+   "text": "Write x(t) and y(t) explicitly and solve y(t) for t.",
+   "equation": "x = 4t² − 2t + 2, y = 2t → t = y/2"
+  },
+  {
+   "text": "Substitute t = y/2 into x(t) to eliminate time and get the path equation.",
+   "equation": "x = 4(y/2)² − 2(y/2) + 2 = y² − y + 2"
+  }
+ ],
+ "final_answer": {
+  "option": 1,
+  "value": "x = y² − y + 2"
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": 4,
+   "text": "Forgetting to solve for the constants of integration (taking C₁ = C₂ = 0) gives x = y² − y, which matches none of the printed algebraic options."
+  }
+ ],
+ "concept_tags": [
+  "integration of velocity",
+  "two-dimensional motion",
+  "equation of path"
+ ],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_88e2db67",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-08",
+  "at": "2026-09-11T14:20:00+05:30"
+ }
+}

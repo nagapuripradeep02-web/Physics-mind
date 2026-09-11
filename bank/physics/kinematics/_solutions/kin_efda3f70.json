@@ -1,0 +1,47 @@
+{
+  "schema": "eapcet_solution_v1",
+  "question_id": "kin_efda3f70",
+  "approach": "Check whether the given velocity and acceleration point along the same line; if they do, the path is a straight line, not a two dimensional curve.",
+  "steps": [
+    {
+      "text": "Compare the acceleration vector with the velocity vector to see if one is a scalar multiple of the other.",
+      "equation": "a = −2î + 2ĵ = −2(î − ĵ) = −2v"
+    },
+    {
+      "text": "Since a is exactly −2 times v, the two vectors lie along the same straight line, only pointing opposite ways.",
+      "why_this_step": "When velocity and acceleration stay along one fixed line, the particle can only speed up or slow down along that line; it cannot curve away from it."
+    },
+    {
+      "text": "A particle whose velocity and acceleration are always collinear moves along a single straight line, so this is one dimensional motion along that line, not two dimensional motion; the Assertion is false.",
+      "equation": "Motion is along the line of v, so the Assertion is false"
+    },
+    {
+      "text": "The Reason states that velocity and acceleration are two constant (fixed) vectors, exactly what the question gives as the acceleration and the velocity at the instant, so the Reason is a true statement on its own that does not explain why the motion is one dimensional rather than two dimensional, so it is not the correct explanation of the Assertion.",
+      "equation": "Assertion false, Reason true"
+    }
+  ],
+  "final_answer": {
+    "option": 4,
+    "value": "If Assertion is false but the Reason is true."
+  },
+  "confidence": "sure",
+  "common_mistakes": [
+    {
+      "option": 1,
+      "text": "Seeing that both v and a have nonzero x and y components and concluding the motion must be two dimensional, without checking that a is collinear with v."
+    }
+  ],
+  "concept_tags": [
+    "relative direction of velocity and acceleration",
+    "straight line motion",
+    "vectors"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "concept",
+  "authored_by": {
+    "model": "sonnet",
+    "wave": 1,
+    "agent": "W01-A-kin-07",
+    "at": "2026-09-11T14:22:00+05:30"
+  }
+}

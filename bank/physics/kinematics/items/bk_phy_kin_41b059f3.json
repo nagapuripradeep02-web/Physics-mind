@@ -1,0 +1,79 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_41b059f3",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "conceptual",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "Consider the following claim: An object undergoing projectile motion travels along a two-dimensional path while experiencing a uniform acceleration. State whether this proposition is true or false.",
+  "options": {
+   "1": "True",
+   "2": "False"
+  },
+  "parts": null,
+  "conditions": [
+   "motion in two dimensions",
+   "uniform acceleration (acceleration due to gravity is constant)",
+   "air resistance neglected"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Check both parts of the statement against the definition of projectile motion: its plane of motion and its acceleration.",
+  "steps": [
+   {
+    "text": "A projectile moves in a vertical plane, so its motion needs two coordinates: it is two-dimensional.",
+    "equation": null
+   },
+   {
+    "text": "Its only acceleration is gravity, which stays constant in magnitude and direction through the whole flight.",
+    "equation": null
+   },
+   {
+    "text": "Both parts of the statement match the physics of projectile motion, so the statement is true.",
+    "equation": null
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "True."
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Believing the acceleration changes because the velocity direction keeps changing during the flight, when only the velocity changes, not the acceleration."
+   }
+  ],
+  "concept_tags": [
+   "projectile motion",
+   "constant acceleration"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "05e2d55dc6fbd92469720be615f332a859dd145740a9914b72d70735fef6dd6d"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "ab1d088128d2daa9ca7b6d26fb46fbd9adba50b7ecbc67f4b6442dfadf8c0f68",
+  "audited_by": "W01-U-kin-01"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-01",
+  "at": "2026-09-11T15:05:00+05:30"
+ }
+}

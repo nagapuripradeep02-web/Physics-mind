@@ -1,0 +1,100 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_b1b2a632",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "The velocity-time relation of an object traveling along a straight path is represented in the given plot. Initially, at time t = 0, the object is situated at a distance of 10 m from the reference mean position. Determine the following:",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "The acceleration of the object at the time instants t = 1 s, t = 3 s, and t = 9 s."
+   },
+   {
+    "label": "b",
+    "asks": "The location of the object relative to the reference mean position at t = 10 s."
+   },
+   {
+    "label": "c",
+    "asks": "The displacement-time (s-t) expressions for the periods:\n(i) 0 ≤ t ≤ 2 s\n(ii) 4 s ≤ t ≤ 8 s"
+   }
+  ],
+  "conditions": [
+   "motion along a straight line",
+   "initial displacement from mean position at t = 0 is 10 m",
+   "velocity-time segments are piecewise linear"
+  ],
+  "figure": {
+   "description": "A graph of velocity v (in m/s) on the vertical axis against time t (in s) on the horizontal axis. The curve begins at (0 s, 0 m/s), increases uniformly to (2 s, 10 m/s), remains constant at 10 m/s until t = 4 s, decreases linearly passing through (6 s, 0 m/s) to reach (8 s, −10 m/s), and finally increases linearly to end at (10 s, 0 m/s)."
+  }
+ },
+ "solution": {
+  "approach": "Read acceleration from the slope of each v-t segment, and get position by adding the signed area under v-t to the given starting position.",
+  "steps": [
+   {
+    "text": "Find the slope of the v-t line at t = 1 s, 3 s and 9 s from the segment each falls in.",
+    "equation": "a(1 s) = 5 m/s² (0–2 s segment), a(3 s) = 0 (2–4 s segment, constant v), a(9 s) = 5 m/s² (8–10 s segment)"
+   },
+   {
+    "text": "Start the position at s = 10 m at t = 0 and add the area under v-t up to each breakpoint to find s at t = 10 s.",
+    "equation": "s(2) = 20 m, s(4) = 40 m, s(6) = 50 m, s(8) = 40 m, s(10) = 30 m"
+   },
+   {
+    "text": "For 0 ≤ t ≤ 2 s, v = 5t; integrate to get s(t).",
+    "equation": "s(t) = 10 + 2.5t²"
+   },
+   {
+    "text": "For 4 s ≤ t ≤ 8 s, v = 10 − 5(t − 4), starting from s(4) = 40 m; integrate and collect terms in t.",
+    "equation": "s(t) = −2.5t² + 30t − 40"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) a = 5 m/s², 0, 5 m/s² at t = 1 s, 3 s, 9 s. (b) s(10 s) = 30 m. (c)(i) s(t) = 10 + 2.5t² for 0≤t≤2 s. (c)(ii) s(t) = −2.5t² + 30t − 40 for 4≤t≤8 s."
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Reading the acceleration at t = 3 s as nonzero, forgetting that a straight horizontal segment of the v-t graph means zero acceleration."
+   },
+   {
+    "option": null,
+    "text": "Writing the s-t equation for 4 s ≤ t ≤ 8 s starting the position from zero instead of from s(4) = 40 m, the value already reached by that time."
+   }
+  ],
+  "concept_tags": [
+   "v-t graph",
+   "a-t graph from slope",
+   "s-t equation from integrating velocity"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "4c7c661e38bd054d736b7810ee129b84a23808173e78265624f1fd54dffa0ee2"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "b7075df70ee6e2acdc7dfc455c5c644f3fd98967c2349d19d259fb6d0a11802a",
+  "audited_by": "W01-U-kin-03"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-12",
+  "at": "2026-09-11T16:27:00+05:30"
+ }
+}

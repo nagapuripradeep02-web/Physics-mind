@@ -1,0 +1,93 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_b50f6bd1",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "numerical",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "Ship A and ship B are initially separated by a distance of 10 km along a north-south axis, with ship A positioned to the north of ship B. Ship A moves due west at a constant speed of 20 km/h, while ship B sails due north at a constant speed of 20 km/h. Determine the shortest distance between the two vessels and the time taken to reach this minimum separation.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "initial separation along north-south line = 10 km",
+   "ship A is north of ship B initially",
+   "velocity of ship A = 20 km/h due west (constant)",
+   "velocity of ship B = 20 km/h due north (constant)"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Find the velocity of ship B relative to ship A, then find the shortest distance from A to the straight-line path that B follows relative to A.",
+  "steps": [
+   {
+    "text": "Set up coordinates with east and north as axes. Place B at the origin and A 10 km north of it, and write both velocities as vectors.",
+    "equation": "A = (0, 10) km, B = (0, 0) km, v_A = (−20, 0) km/h (west), v_B = (0, 20) km/h (north)"
+   },
+   {
+    "text": "Find the velocity of B relative to A.",
+    "equation": "v_BA = v_B − v_A = (0 − (−20), 20 − 0) = (20, 20) km/h, |v_BA| = √(20² + 20²) = 20√2 km/h at 45° north of east"
+   },
+   {
+    "text": "Find the position of B relative to A at t = 0.",
+    "equation": "r_BA(0) = B − A = (0, −10) km, that is, 10 km south of A"
+   },
+   {
+    "text": "Write the relative position as a function of time and minimize the squared distance from A (the origin of this relative frame).",
+    "equation": "r_BA(t) = (20t, −10 + 20t), distance² = (20t)² + (−10 + 20t)² = 800t² − 400t + 100"
+   },
+   {
+    "text": "Differentiate the squared distance and set it to zero to find the time of closest approach.",
+    "equation": "d(distance²)/dt = 1600t − 400 = 0 → t = 0.25 h = 15 min"
+   },
+   {
+    "text": "Substitute t = 0.25 h back to get the minimum distance.",
+    "equation": "distance² = 800(0.25)² − 400(0.25) + 100 = 50, distance = √50 = 5√2 ≈ 7.07 km"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "distance of closest approach = 5√2 km ≈ 7.07 km, reached after 0.25 h = 15 minutes"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Using the initial separation of 10 km directly as the closest approach, without accounting for the relative motion, misses that the two ships close in further before moving apart."
+   },
+   {
+    "option": null,
+    "text": "Adding the two speeds as 20 + 20 = 40 km/h for the relative speed instead of combining them as perpendicular vectors gives a wrong relative velocity of 40 km/h instead of 20√2 km/h."
+   }
+  ],
+  "concept_tags": [
+   "relative velocity in two dimensions",
+   "distance of closest approach"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "b635a79ab799c3cb637c1dd165a40259a4ed8557765911d9792001c47d57ccda"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "2fd109e2f5a57d9bbc28d0809d5b17a73199775fe81afc0a0b849c58ee1e03f7",
+  "audited_by": "W01-U-kin-08"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-02",
+  "at": "2026-09-11T00:00:00+05:30"
+ }
+}

@@ -1,0 +1,52 @@
+{
+  "schema": "eapcet_solution_v1",
+  "question_id": "kin_f1e4819e",
+  "approach": "Read the starting position and the slope of the straight line x-t graph, and note that a constant slope means constant velocity.",
+  "steps": [
+    {
+      "text": "Read the position at t = 0 from the graph.",
+      "equation": "x(0) = −20 m"
+    },
+    {
+      "text": "Find the slope of the line using the two given points.",
+      "equation": "slope = (0 − (−20))/(10 − 0) = 2 m/s"
+    },
+    {
+      "text": "State what the constant, positive slope means for the motion.",
+      "equation": "velocity = +2 m/s, constant, so acceleration = 0",
+      "why_this_step": "A straight line on an x-t graph means constant velocity, so the particle moves with uniform motion in the positive x-direction."
+    },
+    {
+      "text": "Read the time at which the particle crosses the origin.",
+      "equation": "x = 0 at t = 10 s"
+    }
+  ],
+  "final_answer": {
+    "option": null,
+    "value": "The particle starts at x = −20 m and moves with a constant velocity of +2 m/s (zero acceleration). The position as a function of time is x = x₀ + vt = (−20 + 2t) m, reaching x = 0 m at t = 10 s; it is in uniform motion in the positive x-direction throughout."
+  },
+  "confidence": "sure",
+  "common_mistakes": [
+    {
+      "option": null,
+      "text": "Reading the y-intercept as the velocity instead of the slope gives a wrong velocity of −20 m/s."
+    },
+    {
+      "option": null,
+      "text": "Reading the intercept as +20 m instead of −20 m, ignoring its sign, gives the wrong starting position and the wrong equation x = 20 + 2t."
+    }
+  ],
+  "concept_tags": [
+    "x-t graph",
+    "uniform motion",
+    "velocity from slope"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "concept",
+  "authored_by": {
+    "model": "sonnet",
+    "wave": 1,
+    "agent": "W01-A-kin-02",
+    "at": "2026-09-11T00:00:00+05:30"
+  }
+}

@@ -1,0 +1,21 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter": "kinematics",
+ "slice": 1,
+ "round": 2,
+ "items": [
+  {
+   "question_id": "kin_b635a79a",
+   "question_text": "Ship A and ship B are initially separated by a distance of 10 km along a north-south axis, with ship A positioned to the north of ship B. Ship A moves due west at a constant speed of 20 km/h, while ship B sails due north at a constant speed of 20 km/h. Determine the shortest distance between the two vessels and the time taken to reach this minimum separation.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_55c0bbfa",
+   "question_text": "A particle has velocity v = (2î) m/s at the start, and its acceleration varies with time t as a = (4tî + t²ĵ) m/s². Can the kinematic relation v = u + at be applied directly to find its velocity at a later time?",
+   "options": [],
+   "figure_description": ""
+  }
+ ]
+}

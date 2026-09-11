@@ -1,0 +1,50 @@
+{
+  "schema": "eapcet_solution_v1",
+  "question_id": "kin_ac0c6757",
+  "approach": "Average speed is the total distance covered in both legs divided by the total time taken.",
+  "steps": [
+    {
+      "text": "Find the distance covered in the first leg.",
+      "equation": "d1 = 4 m/s × 2 s = 8 m"
+    },
+    {
+      "text": "Find the distance covered in the second leg.",
+      "equation": "d2 = 6 m/s × 3 s = 18 m"
+    },
+    {
+      "text": "Add the distances and the times.",
+      "equation": "total distance = 8 + 18 = 26 m, total time = 2 + 3 = 5 s"
+    },
+    {
+      "text": "Average speed is total distance divided by total time.",
+      "equation": "average speed = 26/5 = 5.2 m/s"
+    }
+  ],
+  "final_answer": {
+    "option": null,
+    "value": "5.2 m/s"
+  },
+  "confidence": "sure",
+  "common_mistakes": [
+    {
+      "option": null,
+      "text": "Taking the simple average of the two speeds, (4 + 6)/2 = 5 m/s, instead of weighting each speed by the time spent at it."
+    },
+    {
+      "option": null,
+      "text": "Using the equal-distance average-speed formula 2v1v2/(v1 + v2) = 4.8 m/s, which only applies when the two legs cover equal distances, not equal-looking legs with different times."
+    }
+  ],
+  "concept_tags": [
+    "average speed",
+    "uniform motion"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "application",
+  "authored_by": {
+    "model": "sonnet",
+    "wave": 1,
+    "agent": "W01-A-kin-05",
+    "at": "2026-09-11T14:06:00+05:30"
+  }
+}

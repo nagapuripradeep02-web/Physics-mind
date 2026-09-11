@@ -1,0 +1,24 @@
+{
+ "question_id": "kin_94df6811",
+ "item_sha": "081547fc6453d684e9c2f33dac64e008c1c2c5e0a68a5dc09d10bfee23f29c5e",
+ "auditor_option": null,
+ "auditor_value": "(a) 1 m/s^2; (b) 43.5 m",
+ "findings": [
+  {
+   "grade": "harmful",
+   "field": "final_answer.value",
+   "quote": "(a) 2 m/s², (b) 43.5 m",
+   "note": "Since a = dv/dt = 5 − 2t, a(2 s) = 5 − 4 = 1 m/s², which is exactly what the step above prints. The stated final answer of 2 m/s² contradicts that step and is the value a student would copy and lose the mark for. The first common-mistakes entry also names 1 m/s² as the correct value.",
+   "fix": "(a) 1 m/s², (b) 43.5 m"
+  }
+ ],
+ "verdict": "harmful",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-kin-05",
+  "at": "2026-09-11T04:19:11+05:30"
+ }
+}

@@ -1,0 +1,814 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter": "kinematics",
+ "slice": 9,
+ "round": 0,
+ "agent_label": "W01-U-kin-09",
+ "items": [
+  {
+   "question_id": "kin_be7e68b7",
+   "audit_file": "kin_be7e68b7.3bdef9dd.json",
+   "item_sha": "3bdef9dd0be49952f9fe40c2acb5be0564ab7e75b0b8af4021511bbcdd63dd3f",
+   "question_text": "The position (x) as a function of time (t) for a body constrained to travel along a straight line is described as follows: from t = 0 to 4 s, the position is steady at x = 4 m; between t = 4 s and t = 10 s, it decreases at a steady rate, passing through x = 0 at t = 6 s to reach x = −8 m at t = 10 s; from t = 10 s to t = 14 s, it increases at a constant rate until reaching x = 0 at t = 14 s. Construct the corresponding velocity-time (v-t) plot for this interval.",
+   "options": [],
+   "figure_description": "An x-t graph showing position x (in meters) on the vertical axis against time t (in seconds) on the horizontal axis. The graph consists of three straight-line segments: a horizontal line at x = 4 m from t = 0 to 4 s; a downward sloping line connecting (4 s, 4 m) through (6 s, 0 m) to (10 s, −8 m); and an upward sloping line connecting (10 s, −8 m) to (14 s, 0 m).",
+   "solution": {
+    "approach": "Find the slope of each straight segment of the x-t graph; that slope is the constant velocity for the corresponding v-t segment.",
+    "steps": [
+     {
+      "text": "From t = 0 to 4 s, x stays constant at 4 m, so the slope, and hence the velocity, is zero.",
+      "equation": "v = (4 − 4)/(4 − 0) = 0"
+     },
+     {
+      "text": "From t = 4 to 10 s, x falls in a straight line from 4 m to −8 m, so the velocity is the constant slope of that line.",
+      "equation": "v = (−8 − 4)/(10 − 4) = −2 m/s"
+     },
+     {
+      "text": "From t = 10 to 14 s, x rises in a straight line from −8 m to 0, so the velocity is the constant slope of that line.",
+      "equation": "v = (0 − (−8))/(14 − 10) = 2 m/s"
+     },
+     {
+      "text": "The v-t graph is therefore three horizontal steps: v = 0 from 0 to 4 s, v = −2 m/s from 4 to 10 s, v = 2 m/s from 10 to 14 s.",
+      "equation": "v(t): 0 m/s, then −2 m/s, then 2 m/s"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "v = 0 for 0–4 s, v = −2 m/s for 4–10 s, v = 2 m/s for 10–14 s"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Reading the middle segment's velocity using the crossing point at t = 6 s instead of the interval from 4 to 10 s gives the same slope but a shortened interval on the v-t plot."
+     },
+     {
+      "option": null,
+      "text": "Giving the last segment's velocity as −2 m/s by keeping the sign of the previous segment instead of recomputing the slope, which is actually positive."
+     }
+    ],
+    "concept_tags": [
+     "position-time graph",
+     "velocity from slope",
+     "piecewise motion"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_c7afcfb3",
+   "audit_file": "kin_c7afcfb3.25912ef1.json",
+   "item_sha": "25912ef1fea36142e9d3cad04708b0a450e54e62d4def223a155fdb0620bc943",
+   "question_text": "A particle travels along a semicircular track having a radius of 1.0 m, starting at point A and reaching point B located at the opposite end of the diameter. If this motion takes a duration of 1.0 s, calculate the magnitude of the particle's average velocity.",
+   "options": [],
+   "figure_description": "A semicircular path of radius 1.0 m connects starting position A at the top to final position B at the bottom along the circumference, with a straight vertical diameter of length 2.0 m joining A and B.",
+   "solution": {
+    "approach": "Average velocity depends only on the straight-line displacement between the start and end points, not on the curved path taken.",
+    "steps": [
+     {
+      "text": "Points A and B are the two ends of the vertical diameter of the semicircle.",
+      "equation": null
+     },
+     {
+      "text": "The displacement from A to B is the diameter, twice the radius.",
+      "equation": "displacement = 2r = 2 × 1.0 m = 2.0 m"
+     },
+     {
+      "text": "Divide the displacement by the time taken to get the average velocity.",
+      "equation": "v_avg = 2.0 m / 1 s = 2.0 m/s"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "2.0 m/s"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Using the curved arc length instead of the straight-line displacement gives π × 1.0 = 3.14 m/s, which is the average speed, not the average velocity."
+     }
+    ],
+    "concept_tags": [
+     "average velocity",
+     "displacement versus distance"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_c3c8a6b0",
+   "audit_file": "kin_c3c8a6b0.f0928688.json",
+   "item_sha": "f09286887b3498ee43f550bd606883b72c727ad612f38600a120c8d03a80a328",
+   "question_text": "A vehicle completes a journey lasting a total of 60 min. For the initial 18 min, it moves with a mean speed of 11 ms⁻¹. In order to achieve an overall mean speed of 21 ms⁻¹ throughout the whole journey, determine the required mean speed over the remaining 42 min.",
+   "options": [
+    {
+     "label": "a",
+     "text": "25.3 ms⁻¹"
+    },
+    {
+     "label": "b",
+     "text": "29.2 ms⁻¹"
+    },
+    {
+     "label": "c",
+     "text": "31 ms⁻¹"
+    },
+    {
+     "label": "d",
+     "text": "35.6 ms⁻¹"
+    }
+   ],
+   "figure_description": "",
+   "solution": {
+    "approach": "Find the total distance needed for the whole trip's average speed, subtract the distance already covered, and divide by the remaining time.",
+    "steps": [
+     {
+      "text": "Convert the total trip time to seconds and find the total distance needed for an average speed of 21 m/s over the whole 60 min trip.",
+      "equation": "t_total = 3600 s, d_total = 21 × 3600 = 75600 m"
+     },
+     {
+      "text": "Find the distance covered in the first 18 min at 11 m/s.",
+      "equation": "t₁ = 1080 s, d₁ = 11 × 1080 = 11880 m"
+     },
+     {
+      "text": "Find the distance that must be covered in the remaining 42 min.",
+      "equation": "d₂ = 75600 − 11880 = 63720 m"
+     },
+     {
+      "text": "Divide this distance by the remaining time to get the required average speed.",
+      "equation": "t₂ = 2520 s, v₂ = 63720/2520 ≈ 25.3 ms⁻¹"
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "25.3 ms⁻¹"
+    },
+    "common_mistakes": [
+     {
+      "option": 3,
+      "text": "Assuming the required speed is twice the target average speed minus the first-phase speed, using 2 × 21 − 11 = 31 ms⁻¹ instead of weighting by the actual times."
+     }
+    ],
+    "concept_tags": [
+     "average speed",
+     "distance and time"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "kin_c12f3cc2",
+   "audit_file": "kin_c12f3cc2.bef6ecb5.json",
+   "item_sha": "bef6ecb5c54678d42933173739f1042102c9fd800aa93172aceee94beb2e6ff4",
+   "question_text": "A particle moves such that its instantaneous velocity is v = (2î − 4ĵ) m/s while its acceleration is given by a = (−2î + 4ĵ) m/s². What kind of motion does the particle undergo?",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Compare the directions of v and a component by component; if acceleration always stays exactly along the same line as velocity, the path is a straight line.",
+    "steps": [
+     {
+      "text": "Compare the components of a with the components of v.",
+      "equation": "a = (−2, 4) = −1 × (2, −4) = −v"
+     },
+     {
+      "text": "Since a is exactly opposite to v along the same line, and both are constant, the particle never gains a velocity component perpendicular to its original line of motion.",
+      "equation": "v and a lie on the same straight line at every instant"
+     },
+     {
+      "text": "Acceleration directly opposite to the velocity means the particle is slowing down along that line; it is a one-dimensional (straight-line) motion, not a curved path.",
+      "equation": "motion is rectilinear with uniform retardation",
+      "why_this_step": "A cross product of v and a being zero confirms the two vectors are collinear, which is the condition for straight-line motion."
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "Straight-line (rectilinear) motion with uniform retardation, since the acceleration is constant and directed exactly opposite to the velocity."
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Seeing that both v and a have nonzero components in two directions and concluding the path must be two-dimensional (curved), without checking that a is a scalar multiple of v."
+     }
+    ],
+    "concept_tags": [
+     "collinear vectors",
+     "rectilinear motion",
+     "retardation"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_cea13196",
+   "audit_file": "kin_cea13196.f0e7cd0d.json",
+   "item_sha": "f0e7cd0d97472ab4f341c9669bbd79c1dd490c75e5add77c626f4a8ab11c9f70",
+   "question_text": "The velocity of a body moving along a one-dimensional path depends on time as v = (10 + 2t + 3t²) in SI units. Determine the following:\n(a) The body's displacement relative to the mean position at instant t = 1 s, assuming its displacement at t = 0 is 20 m.\n(b) The expression representing its acceleration as a function of time.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Integrate the velocity equation to get the displacement equation using the given value at t = 0, then differentiate velocity to get acceleration.",
+    "steps": [
+     {
+      "text": "Integrate v with respect to time to get x, keeping the integration constant.",
+      "equation": "v = 10 + 2t + 3t², x = 10t + t² + t³ + C"
+     },
+     {
+      "text": "Use the given value x = 20 m at t = 0 to find C.",
+      "equation": "20 = 0 + 0 + 0 + C → C = 20"
+     },
+     {
+      "text": "Write the full displacement equation and substitute t = 1 s.",
+      "equation": "x = t³ + t² + 10t + 20, x(1) = 1 + 1 + 10 + 20 = 32 m"
+     },
+     {
+      "text": "Differentiate v with respect to time to get the acceleration-time equation.",
+      "equation": "a = dv/dt = 2 + 6t"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "(a) x(1 s) = 32 m; (b) a = (2 + 6t) m/s²"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Forgetting the constant of integration and using x = t³ + t² + 10t gives x(1) = 12 m instead of 32 m."
+     },
+     {
+      "option": null,
+      "text": "Integrating v instead of differentiating it to find acceleration gives a wrong result for part (b)."
+     }
+    ],
+    "concept_tags": [
+     "integration of velocity",
+     "differentiation for acceleration",
+     "initial condition"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "kin_c802fcb3",
+   "audit_file": "kin_c802fcb3.f327ab8c.json",
+   "item_sha": "f327ab8cf133b6cada343ea5aa8fd478ddc5dab040809aac96cc63dd9d8dcb80",
+   "question_text": "An object having mass m is dropped from rest at an altitude h. The object collides elastically with the floor, causing its speed to stay unchanged while reversing its motion upward. Draw the curve showing how its kinetic energy varies with elapsed time until the object reaches back to its starting height.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Kinetic energy grows as the square of the falling speed, peaks at the elastic bounce, then falls the same way as the ball rises back to its starting height.",
+    "steps": [
+     {
+      "text": "While falling from height h, speed grows as v = gt, so kinetic energy grows as the square of time.",
+      "equation": "KE(t) = ½m(gt)² = ½mg²t², for 0 ≤ t ≤ t₁ = √(2h/g)"
+     },
+     {
+      "text": "At the ground, all the potential energy has become kinetic energy; the elastic collision reverses the velocity direction but keeps its magnitude.",
+      "equation": "KE(t₁) = mgh, unchanged immediately after the bounce",
+      "why_this_step": "An elastic collision with the ground conserves kinetic energy, so no energy is lost at the bounce."
+     },
+     {
+      "text": "On the way up, the ball's speed is g(2t₁ − t), so kinetic energy falls back to zero as the ball returns to height h.",
+      "equation": "KE(t) = ½mg²(2t₁ − t)², for t₁ ≤ t ≤ 2t₁, total time 2t₁ = 2√(2h/g)"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "KE(t) rises from 0 at t = 0 to a peak mgh at t = t₁ = √(2h/g), following KE = ½mg²t²; at the bounce it stays mgh (elastic collision, no energy lost), then falls back along the mirror-image curve KE = ½mg²(2t₁ − t)² to 0 at t = 2t₁ = 2√(2h/g), when the ball is back at its initial position. The graph is two upward-curving parabolic pieces meeting at a sharp peak mgh at t = t₁."
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Drawing kinetic energy as a straight line rising to mgh and falling back, instead of the curved shape that follows from constant acceleration."
+     },
+     {
+      "option": null,
+      "text": "Assuming energy is lost at the bounce and drawing the rebound peak kinetic energy lower than the peak reached on the way down, even though the collision is elastic."
+     }
+    ],
+    "concept_tags": [
+     "kinetic energy in free fall",
+     "elastic collision with the ground",
+     "energy conservation"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_d4ea68c2",
+   "audit_file": "kin_d4ea68c2.0e41d4df.json",
+   "item_sha": "0e41d4dfe8c2d87189898d9ab9c172586e0401f97b5e42a0a282af9080a408cb",
+   "question_text": "From the roof of a 40 m tall building, an object is projected vertically upward at a speed of 10 m/s. Determine the total duration of flight before it reaches the ground below. Assume g = 10 m/s².",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Take upward as positive from the top of the tower, write the displacement equation, and set it equal to the position of the ground.",
+    "steps": [
+     {
+      "text": "Write the displacement of the ball from the top of the tower as a function of time, taking upward as positive.",
+      "equation": "s(t) = ut − ½gt² = 10t − 5t²"
+     },
+     {
+      "text": "The ground is 40 m below the starting point, so set s(t) equal to −40 m.",
+      "equation": "10t − 5t² = −40"
+     },
+     {
+      "text": "Rearrange into a standard quadratic and solve for t.",
+      "equation": "5t² − 10t − 40 = 0 ⇒ t² − 2t − 8 = 0 ⇒ t = 4 s or t = −2 s"
+     },
+     {
+      "text": "Reject the negative time since it comes before the ball is thrown; the ball strikes the ground at t = 8 s.",
+      "equation": "t = 8 s"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "t = 8 s"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Counting only the trip up and back down to the top of the tower (1 s up, 1 s down), giving 2 s and missing the further fall to the ground."
+     }
+    ],
+    "concept_tags": [
+     "equations of motion",
+     "sign convention",
+     "quadratic in time"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "kin_c9d48c69",
+   "audit_file": "kin_c9d48c69.efb82cc6.json",
+   "item_sha": "efb82cc6c36f77ce75c6d2a33acb44b6dd6333a34ca1711d1b60bb54a67cc384",
+   "question_text": "A ball projected straight upward with an initial speed v₀ attains a peak altitude h. What initial speed is needed to make the ball attain three times this peak altitude?",
+   "options": [
+    {
+     "label": "a",
+     "text": "√3 v₀"
+    },
+    {
+     "label": "b",
+     "text": "3 v₀"
+    },
+    {
+     "label": "c",
+     "text": "9 v₀"
+    },
+    {
+     "label": "d",
+     "text": "3/2 v₀"
+    }
+   ],
+   "figure_description": "",
+   "solution": {
+    "approach": "Use the relation between launch speed and maximum height, and compare the speeds needed for height h and for height 3h.",
+    "steps": [
+     {
+      "text": "Write the relation between the launch speed and the maximum height reached.",
+      "equation": "h = v₀²/(2g)"
+     },
+     {
+      "text": "Write the same relation for the new speed v′ that gives triple the height.",
+      "equation": "3h = v′²/(2g)"
+     },
+     {
+      "text": "Divide the two equations to eliminate g and h.",
+      "equation": "v′²/v₀² = 3 → v′ = √3 v₀"
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "√3 v₀"
+    },
+    "common_mistakes": [
+     {
+      "option": 2,
+      "text": "Assuming height is directly proportional to speed instead of to the square of the speed, and tripling the speed to 3v₀."
+     }
+    ],
+    "concept_tags": [
+     "equations of motion",
+     "maximum height"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_cc0d8c5a",
+   "audit_file": "kin_cc0d8c5a.244275c2.json",
+   "item_sha": "244275c26474c78e312aca4f24a1388540cb47b9374898a86c5cbad8421058fd",
+   "question_text": "Answer the following conceptual questions about motion in kinematics:\n(a) Can an object experience an acceleration while maintaining an unchanging speed?\n(b) Can a body travel along a curved trajectory when its acceleration is: (i) zero, (ii) constant, or (iii) variable?",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Acceleration depends on the change of the velocity vector, so a change of direction alone, or a change of speed alone, can each produce it.",
+    "steps": [
+     {
+      "text": "Acceleration is the rate of change of the velocity vector, which has both a magnitude, the speed, and a direction.",
+      "equation": "a = dv/dt"
+     },
+     {
+      "text": "(a) In uniform circular motion the speed stays constant, but the direction of velocity keeps changing, so the acceleration is not zero.",
+      "why_this_step": "A constant magnitude does not mean a constant vector."
+     },
+     {
+      "text": "So the answer to (a) is yes: a body can accelerate while travelling at constant speed."
+     },
+     {
+      "text": "(b) A curved path means the direction of velocity keeps changing along the path, and a change of direction alone needs a nonzero acceleration, so zero acceleration cannot give a curved path."
+     },
+     {
+      "text": "A constant acceleration can still give a curved path when it is not always along the velocity, as in a body thrown at an angle under constant gravity, which follows a curved path.",
+      "equation": "a = constant (e.g. g, downward), path = curved"
+     },
+     {
+      "text": "A variable acceleration can also give a curved path, for example a body going around a curve at changing speed, so both constant and variable acceleration are possible on a curved path, but zero acceleration is not.",
+      "why_this_step": "Combines (a) and (b) into the complete answer."
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "(a) Yes, for example uniform circular motion, where speed is constant but direction changes. (b) A curved path is not possible with zero acceleration; it is possible with constant acceleration, for example a body thrown at an angle under gravity, and with variable acceleration, for example a curve taken at changing speed."
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Answering no to part (a) by treating constant speed as meaning constant velocity, missing that direction can still change."
+     },
+     {
+      "option": null,
+      "text": "Assuming a curved path always needs a changing acceleration, missing that a constant acceleration not along the velocity, as under gravity, also curves the path."
+     }
+    ],
+    "concept_tags": [
+     "acceleration",
+     "circular motion",
+     "projectile motion"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_c3c2c4bf",
+   "audit_file": "kin_c3c2c4bf.36894216.json",
+   "item_sha": "36894216c84d50f4cc583a3dcc5661ff6e89cb5000443e591efbf3b4e94a62da",
+   "question_text": "A body moves along a straight path covering the initial half of its total path length at a constant speed v₁. For the remaining half of the path length, it travels with a uniform speed v₂ for one-third of the duration taken for this half, and with a uniform speed v₃ for the other two-thirds of that duration. Determine the average speed of the body across the entire journey.",
+   "options": [],
+   "figure_description": "A line segment AB representing the entire journey of distance 2d is split at point C into two equal lengths of distance d. Segment AC is traversed at speed v₁. Segment CB is split at point D such that the duration for CD is t/3 with speed v₂ and the duration for DB is 2t/3 with speed v₃.",
+   "solution": {
+    "approach": "Split the journey into the first half distance and the second half distance, find the time for each part, then divide the total distance by the total time.",
+    "steps": [
+     {
+      "text": "Let the total distance be 2d; the first half distance d is covered at speed v₁.",
+      "equation": "t₁ = d/v₁"
+     },
+     {
+      "text": "In the second half distance d, a time t splits into 1/3 of t at v₂ and 2/3 of t at v₃, and the distance covered equals d.",
+      "equation": "v₂(t/3) + v₃(2t/3) = d"
+     },
+     {
+      "text": "Solve this equation for t in terms of d, v₂ and v₃.",
+      "equation": "t = 3d / (v₂ + 2v₃)"
+     },
+     {
+      "text": "Add the two times and divide the total distance 2d by the total time.",
+      "equation": "v_avg = 2d / [d/v₁ + 3d/(v₂+2v₃)]"
+     },
+     {
+      "text": "Cancel d and simplify to the final expression.",
+      "equation": "v_avg = 2v₁(v₂ + 2v₃) / (3v₁ + v₂ + 2v₃)"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "v_avg = 2v₁(v₂ + 2v₃) / (3v₁ + v₂ + 2v₃)"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Treating v₂ and v₃ as covering equal distances instead of the stated time fractions, which changes the time split and gives a different, incorrect expression."
+     }
+    ],
+    "concept_tags": [
+     "average speed",
+     "piecewise motion"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "kin_c3fd0298",
+   "audit_file": "kin_c3fd0298.f2a72968.json",
+   "item_sha": "f2a7296823b4ccf202dcfe9f1f6285b3e6c4cf602bc56c9758085c4944915ba0",
+   "question_text": "At time t = 0, an object begins moving from (0, 0) with an initial velocity of 8.0 ĵ m/s. Throughout its journey across the x-y plane, it experiences a uniform acceleration of (4.0 î + 2.0 ĵ) m/s². When the x-position of the object reaches 29 m, determine:\n(a) its y-coordinate\n(b) its speed",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Use the x-motion to find the time when x = 29 m, then substitute that time into the y-motion and the velocity components.",
+    "steps": [
+     {
+      "text": "Write x(t) using zero initial x-velocity and aₓ = 4.0 m/s².",
+      "equation": "x(t) = ½(4.0)t² = 2t²"
+     },
+     {
+      "text": "Set x(t) = 29 m and solve for t.",
+      "equation": "2t² = 29 → t = √14.5 ≈ 3.81 s"
+     },
+     {
+      "text": "Write y(t) using initial y-velocity 8.0 m/s and a_y = 2.0 m/s², then substitute t.",
+      "equation": "y(t) = 8t + t² → y ≈ 8(3.81) + (3.81)² ≈ 44.96 m"
+     },
+     {
+      "text": "Find the velocity components at this time and combine them for the speed.",
+      "equation": "vₓ = 4t ≈ 15.23 m/s, v_y = 8 + 2t ≈ 15.62 m/s → speed = √(vₓ²+v_y²) ≈ 21.8 m/s"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "(a) y ≈ 44.96 m, (b) speed ≈ 21.8 m/s"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Writing x(t) = aₓt² instead of ½aₓt², dropping the one-half factor, gives t ≈ 2.69 s and y ≈ 28.8 m, both wrong."
+     }
+    ],
+    "concept_tags": [
+     "kinematics in two dimensions",
+     "constant acceleration",
+     "equations of motion"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "kin_c2398834",
+   "audit_file": "kin_c2398834.a82c2dd3.json",
+   "item_sha": "a82c2dd3060934a730afc87eb8252d2961d7ad7210a2dcd6dab4e7dbe53eaa01",
+   "question_text": "A body moves along a straight path such that its acceleration varies with time t according to the relation a = bt, where b is a constant. If the body sets off from the origin with an initial velocity v₀ at t = 0, find the total distance covered by it in time t.",
+   "options": [
+    {
+     "label": "a",
+     "text": "v₀t + 1/6 bt³"
+    },
+    {
+     "label": "b",
+     "text": "v₀t + 1/3 bt³"
+    },
+    {
+     "label": "c",
+     "text": "v₀t + 1/3 bt²"
+    },
+    {
+     "label": "d",
+     "text": "v₀t + 1/2 bt²"
+    }
+   ],
+   "figure_description": "",
+   "solution": {
+    "approach": "Integrate the given acceleration once to get velocity as a function of time, then integrate again to get the distance travelled.",
+    "steps": [
+     {
+      "text": "Integrate the acceleration a(t) = bt to find the velocity, using the initial velocity v₀ as the constant of integration.",
+      "equation": "v(t) = v₀ + ∫₀ᵗ bt′ dt′ = v₀ + ½bt²"
+     },
+     {
+      "text": "Integrate the velocity to find the distance travelled, starting from the origin.",
+      "equation": "x(t) = ∫₀ᵗ v(t′) dt′ = v₀t + (1/6)bt³"
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "v₀t + 1/6 bt³"
+    },
+    "common_mistakes": [
+     {
+      "option": 2,
+      "text": "Dropping the factor of one-half when integrating acceleration, using v(t) = v₀ + bt² instead of v₀ + ½bt², which on integrating gives v₀t + 1/3 bt³."
+     },
+     {
+      "option": 4,
+      "text": "Misreading the increasing acceleration bt as a constant rate b, so using v(t) = v₀ + bt for the velocity, which on integrating gives v₀t + 1/2 bt²."
+     }
+    ],
+    "concept_tags": [
+     "variable acceleration",
+     "integration",
+     "equations of motion"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "kin_bc9a18cc",
+   "audit_file": "kin_bc9a18cc.48afbea9.json",
+   "item_sha": "48afbea9f86e966ff722f0e27349ecc878ac82e976395c0f43cf371228f99b55",
+   "question_text": "An object moves across the x-y plane. Initially, at t = 0, its position coordinates are (1 m, 2 m) and its velocity is (4î + 6ĵ) m/s. Later, at t = 4 s, it reaches the location (6 m, 4 m) with a velocity of (2î + 10ĵ) m/s. For this duration, determine:\n(a) the average velocity\n(b) the average acceleration\n(c) whether the average speed can be calculated using the provided information",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Average velocity and average acceleration come from the change in position and velocity over the time interval; average speed needs the path length, which is not given.",
+    "steps": [
+     {
+      "text": "Divide the change in position by the 4 s interval for the average velocity.",
+      "equation": "v_avg = ((6−1)î + (4−2)ĵ)/4 = (1.25î + 0.5ĵ) m/s"
+     },
+     {
+      "text": "Divide the change in velocity by the 4 s interval for the average acceleration.",
+      "equation": "a_avg = ((2−4)î + (10−6)ĵ)/4 = (−0.5î + 1.0ĵ) m/s²"
+     },
+     {
+      "text": "Average speed needs the total path length travelled by the particle, and only its endpoints and instantaneous velocities there are known, not the actual curved path between them, so it cannot be found from this data.",
+      "equation": "average speed: not determinable"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "(a) average velocity = (1.25î + 0.5ĵ) m/s, magnitude ≈ 1.35 m/s. (b) average acceleration = (−0.5î + 1.0ĵ) m/s², magnitude ≈ 1.12 m/s². (c) No, average speed cannot be found from the given data because the actual path length travelled is unknown."
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Taking the magnitude of the average velocity vector, about 1.35 m/s, as the average speed wrongly assumes the particle moved in a straight line between the two points."
+     }
+    ],
+    "concept_tags": [
+     "average velocity",
+     "average acceleration",
+     "average speed",
+     "vectors"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_c7bf5937",
+   "audit_file": "kin_c7bf5937.34218834.json",
+   "item_sha": "34218834ff74174422ed1e766732a3054e017641637721be10ac26361bb1979c",
+   "question_text": "The plot of velocity v (in m/s) against time t (in s) for a body executing one-dimensional motion is a straight line that begins at v = 10 m/s when t = 0, decreases uniformly to intersect the horizontal time axis at t = 1 s, and continues downward to v = −10 m/s at t = 2 s. Based on this motion, select the correct statement.",
+   "options": [
+    {
+     "label": "a",
+     "text": "The particle starts from the origin"
+    },
+    {
+     "label": "b",
+     "text": "The particle crosses its initial position at t = 2 s"
+    },
+    {
+     "label": "c",
+     "text": "The average speed of the particle in the time interval, 0 ≤ t ≤ 2 s is zero"
+    },
+    {
+     "label": "d",
+     "text": "All of the above"
+    }
+   ],
+   "figure_description": "A velocity-time graph showing a straight line with a constant negative slope. The vertical axis represents velocity v in m/s (marked at 10, 0, −10, −20) and the horizontal axis represents time t in s (marked at 0, 1, 2, 3). The line starts at (0, 10), passes through the time axis at (1, 0), and continues straight through (2, −10).",
+   "solution": {
+    "approach": "Read the velocity-time equation from the graph and use the area under it to check displacement and distance travelled over 0 to 2 s.",
+    "steps": [
+     {
+      "text": "The line passes through (0, 10) and (1, 0), so write velocity as a function of time.",
+      "equation": "v(t) = 10 − 10t"
+     },
+     {
+      "text": "The displacement from t = 0 to t = 2 s is the signed area under the graph. Compute it.",
+      "equation": "∫₀² (10 − 10t) dt = [10t − 5t²]₀² = 20 − 20 = 0"
+     },
+     {
+      "text": "A zero displacement over this interval means the particle returns to its position at t = 0, so it crosses its initial position at t = 2 s.",
+      "why_this_step": "This holds whatever the particle's actual starting position is; the v-t graph alone does not say whether that position is the origin."
+     },
+     {
+      "text": "Check the distance travelled, which is different from displacement since the velocity changes sign at t = 1 s. Add the magnitudes of area from 0–1 s and 1–2 s.",
+      "equation": "5 m + 5 m = 10 m, average speed = 10/2 = 5 ms⁻¹, not zero"
+     },
+     {
+      "text": "The particle crosses its initial position at t = 2 s, which is the correct statement.",
+      "equation": "Statement (b) is correct"
+     }
+    ],
+    "final_answer": {
+     "option": 2,
+     "value": "The particle crosses it initial position at t = 2 s"
+    },
+    "common_mistakes": [
+     {
+      "option": 3,
+      "text": "Computing the average velocity (displacement/time = 0/2 = 0) and calling it the average speed, which is actually the total distance over time, 10/2 = 5 ms⁻¹."
+     }
+    ],
+    "concept_tags": [
+     "velocity-time graph",
+     "displacement from area under graph",
+     "average speed versus average velocity"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_c2e7aa98",
+   "audit_file": "kin_c2e7aa98.f603cf61.json",
+   "item_sha": "f603cf617a8cfba731f5b407d3d1ecee2367508b58e6b4b74ad89e5a211aacf3",
+   "question_text": "A particle moves within the xy-plane such that its velocity at time t is given by v = (2t î + 3t² ĵ) m/s. Initially, at t = 0, it is located at the point (2 m, 4 m). Determine:\n(a) the acceleration vector of the particle at t = 1 s.\n(b) the position vector and the coordinates of the particle at t = 2 s.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Differentiate the velocity components to get acceleration, and integrate them using the given starting coordinates to get position.",
+    "steps": [
+     {
+      "text": "Differentiate each velocity component with respect to time.",
+      "equation": "v = 2t î + 3t² ĵ, a = dv/dt = 2î + 6t ĵ"
+     },
+     {
+      "text": "Substitute t = 1 s into the acceleration equation.",
+      "equation": "a(1) = (2î + 6ĵ) m/s²"
+     },
+     {
+      "text": "Integrate each velocity component with respect to time, using the starting coordinates (2 m, 4 m) as the constants of integration.",
+      "equation": "x(t) = 2 + t², y(t) = 4 + t³"
+     },
+     {
+      "text": "Substitute t = 2 s to get the position vector and coordinates.",
+      "equation": "x(2) = 2 + 4 = 6 m, y(2) = 4 + 8 = 12 m, r = (6î + 12ĵ) m"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "(a) a(1 s) = (2î + 6ĵ) m/s²; (b) r(2 s) = (6î + 12ĵ) m, coordinates (6 m, 12 m)"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Integrating 3t² as t³/3 instead of t³ gives y(2) = 6.67 m instead of 12 m."
+     },
+     {
+      "option": null,
+      "text": "Forgetting to add the starting coordinates 2 and 4 gives the position (4 m, 8 m) instead of (6 m, 12 m)."
+     }
+    ],
+    "concept_tags": [
+     "differentiation for acceleration",
+     "integration for position",
+     "vector kinematics"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "kin_bd2bf424",
+   "audit_file": "kin_bd2bf424.4dd52068.json",
+   "item_sha": "4dd52068aa6b70f7f7390a224549d2fa580d69e5e4bfacdb1524feee2d550207",
+   "question_text": "State two common examples of motion occurring in two dimensions.",
+   "options": [],
+   "figure_description": "Two diagrams are shown: the first illustrates a closed circular path labeled 'Circular motion', and the second depicts a curved parabolic trajectory on an x-y coordinate frame labeled 'Projectile motion'.",
+   "solution": {
+    "approach": "Two-dimensional motion needs two coordinates to describe the path, such as the two motions shown in the figure.",
+    "steps": [
+     {
+      "text": "A particle moving on a circular path needs both x and y coordinates to describe its position at every instant, so it is two-dimensional motion.",
+      "equation": null
+     },
+     {
+      "text": "A projectile launched at an angle to the ground moves along a curved path in a vertical plane, also needing two coordinates.",
+      "equation": null
+     },
+     {
+      "text": "State both examples.",
+      "equation": null
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "Circular motion and projectile motion are two examples of two-dimensional motion."
+    },
+    "common_mistakes": [],
+    "concept_tags": [
+     "two-dimensional motion",
+     "circular motion",
+     "projectile motion"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "concept"
+   }
+  }
+ ]
+}

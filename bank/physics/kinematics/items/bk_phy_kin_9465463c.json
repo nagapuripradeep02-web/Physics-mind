@@ -1,0 +1,82 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_9465463c",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "mcq_single",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "The relationship between the speed v (in m s⁻¹) and the position s (in metres) of a body travelling along a straight track is given by v = 5√(1 + s). Choose the correct statement among the following.",
+  "options": {
+   "1": "The body is at rest at the start",
+   "2": "The initial speed is 5 m s⁻¹ and the body undergoes a constant acceleration of 12.5 m s⁻²",
+   "3": "The body continues to move at a constant speed",
+   "4": "None of the above"
+  },
+  "parts": null,
+  "conditions": [
+   "motion along a straight line",
+   "velocity-displacement relation is v = 5√(1 + s)",
+   "v is measured in m s⁻¹",
+   "s is measured in metres"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Square the velocity-displacement equation and differentiate with respect to displacement to get the acceleration, then check the velocity at s = 0.",
+  "steps": [
+   {
+    "text": "Write the given relation and square both sides.",
+    "equation": "v = 5√(1 + s) → v² = 25 + 25s"
+   },
+   {
+    "text": "Use a = v dv/ds = d(v²/2)/ds to find the acceleration.",
+    "equation": "a = 25/2 = 12.5 ms⁻²",
+    "why_this_step": "This form avoids differentiating the square root directly and gives acceleration straight from v²."
+   },
+   {
+    "text": "Find the velocity at s = 0, the start of the motion.",
+    "equation": "v(0) = 5√1 = 5 ms⁻¹"
+   },
+   {
+    "text": "The particle starts at 5 ms⁻¹ and its acceleration stays 12.5 ms⁻² for every s, so it is a constant acceleration.",
+    "equation": "v(0) = 5 ms⁻¹, a = 12.5 ms⁻²"
+   }
+  ],
+  "final_answer": {
+   "option": 2,
+   "value": "The motion begins with a speed of 5 m/s, and this speed keeps rising so that the rate at which it rises, the acceleration, stays fixed at 12.5 ms⁻² all along the path."
+  },
+  "common_mistakes": [],
+  "concept_tags": [
+   "velocity-displacement relation",
+   "a = v dv/ds"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "a733f418d1f5ee97d21d90fa0b3a1001fe9b7eac16f1de1ff7f4e213cc5cdcf8"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "681263d82f56022bc371f89b7293530f3c784abb653ae8aa98f0ac0c19a83d4e",
+  "audited_by": "W01-U-kin-01-R1"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-10",
+  "at": "2026-09-11T14:00:00+05:30"
+ }
+}

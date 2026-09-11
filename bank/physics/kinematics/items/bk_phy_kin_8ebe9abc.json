@@ -1,0 +1,68 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_8ebe9abc",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "conceptual",
+ "key_kind": "words",
+ "figure_required": false,
+ "question": {
+  "text": "State two common examples of motion occurring in two dimensions.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "motion restricted to a two-dimensional plane"
+  ],
+  "figure": {
+   "description": "Two diagrams are shown: the first illustrates a closed circular path labeled 'Circular motion', and the second depicts a curved parabolic trajectory on an x-y coordinate frame labeled 'Projectile motion'."
+  }
+ },
+ "solution": {
+  "approach": "Two-dimensional motion needs two coordinates to describe the path, such as the two motions shown in the figure.",
+  "steps": [
+   {
+    "text": "A particle moving on a circular path needs both x and y coordinates to describe its position at every instant, so it is two-dimensional motion.",
+    "equation": null
+   },
+   {
+    "text": "A projectile launched at an angle to the ground moves along a curved path in a vertical plane, also needing two coordinates.",
+    "equation": null
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "Circular motion and projectile motion are two examples of two-dimensional motion."
+  },
+  "common_mistakes": [],
+  "concept_tags": [
+   "two-dimensional motion",
+   "circular motion",
+   "projectile motion"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "bd2bf424faaa5878a16ed65e3642919028c9bca764c82983dad0af59c9469071"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": false,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "d26ac0939b6483c9fd553a7a614fdf0870ac1cb9cebff49ed4c4c46e975b11e6",
+  "audited_by": "W01-U-kin-01-R1"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-01",
+  "at": "2026-09-11T15:03:00+05:30"
+ }
+}

@@ -1,0 +1,20 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_930b6b36",
+ "approach": "Find how long each train keeps moving toward the other before it stops, since the faster-decelerating train stops first, then add the two stopping distances.",
+ "steps": [
+  {"text": "Find how long each train takes to stop under its own retardation.", "equation": "t₁ = v₁/a₁ = 10/2 = 5 s, t₂ = v₂/a₂ = 20/1 = 20 s"},
+  {"text": "Train 1 stops first, at t = 5 s. After that only train 2 is still moving toward train 1's stopped position, so the two trains keep closing until train 2 also stops at t = 20 s.", "why_this_step": "The trains avoid collision only if the total ground each covers before stopping is less than the initial separation, so the minimum safe separation equals the sum of their stopping distances."},
+  {"text": "Find the stopping distance of each train using v² = 2 a s.", "equation": "s₁ = v₁²/(2a₁) = 100/4 = 25 m, s₂ = v₂²/(2a₂) = 400/2 = 200 m"},
+  {"text": "Add the two stopping distances to get the minimum separation needed to avoid collision.", "equation": "25 + 200 = 225 m"}
+ ],
+ "final_answer": {"option": 2, "value": "225 m"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 1, "text": "Using the single formula (v₁+v₂)²/[2(a₁+a₂)] for the closing distance, which only applies while both trains are still moving; this gives 30²/6 = 150 m, ignoring that train 1 stops at 5 s."}
+ ],
+ "concept_tags": ["retardation", "stopping distance", "relative motion"],
+ "difficulty": "hard",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-09", "at": "2026-09-11T15:27:00+05:30"}
+}

@@ -1,0 +1,19 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_296aab0c",
+ "approach": "Write the retardation as dv/dt = −0.2v² and separate the variables to find v as a function of t.",
+ "steps": [
+  {"text": "Write the equation of motion using the given retardation.", "equation": "dv/dt = −0.2v²"},
+  {"text": "Separate the variables and integrate from v₀ = 10 at t = 0 to v at time t.", "equation": "∫ dv/v² = −0.2 ∫ dt → 1/v₀ − 1/v = −0.2t"},
+  {"text": "Rearrange to express 1/v.", "equation": "1/v = 1/v₀ + 0.2t"},
+  {"text": "Substitute v₀ = 10 and t = 2 s.", "equation": "1/v = 1/10 + 0.2(2) = 0.1 + 0.4 = 0.5"},
+  {"text": "Take the reciprocal to find the velocity after 2 s.", "equation": "v = 1/0.5 = 2 ms⁻¹"}
+ ],
+ "final_answer": {"option": 1, "value": "+2 ms⁻¹"},
+ "confidence": "sure",
+ "common_mistakes": [],
+ "concept_tags": ["variable retardation", "separation of variables", "integration of motion"],
+ "difficulty": "hard",
+ "mistake_type_hint": "calculation",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-09", "at": "2026-09-11T15:24:00+05:30"}
+}

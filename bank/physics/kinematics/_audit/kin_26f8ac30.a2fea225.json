@@ -1,0 +1,16 @@
+{
+ "question_id": "kin_26f8ac30",
+ "auditor_option": null,
+ "auditor_value": "distance travelled = 14.125 m, average velocity = 1.75 m/s, average speed ≈ 4.04 m/s",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": null,
+ "item_sha": "a2fea225cc34a4e5a1643910ea81ab6356f1c0d2c25158c1a253eebaaf44e2c3",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-kin-02",
+  "at": "2026-09-11T06:30:00+05:30"
+ }
+}

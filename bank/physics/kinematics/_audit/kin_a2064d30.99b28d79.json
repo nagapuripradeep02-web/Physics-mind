@@ -1,0 +1,16 @@
+{
+ "question_id": "kin_a2064d30",
+ "item_sha": "99b28d79dad73e1441dc577a123e8ca57468c139e04afa049d0177769e372f44",
+ "auditor_option": null,
+ "auditor_value": "v_avg = u + (1/2)at",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "s = ut + at^2/2, divided by t, gives u + at/2, which equals (u+v)/2. Matches.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-kin-07",
+  "at": "2026-09-11T14:45:00+05:30"
+ }
+}

@@ -1,0 +1,11 @@
+{
+ "question_id": "kin_def74d97",
+ "item_sha": "f535670c8aaef9702410ab7df5be0b2fc11db4a7164ab0fd2de30f97a2567a79",
+ "auditor_option": null,
+ "auditor_value": "1-D motion (the path is a straight line)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-kin-11", "at": "2026-09-11T09:50:48+05:30"}
+}

@@ -1,0 +1,11 @@
+{
+ "question_id": "kin_05e2d55d",
+ "item_sha": "ab1d088128d2daa9ca7b6d26fb46fbd9adba50b7ecbc67f4b6442dfadf8c0f68",
+ "auditor_option": 1,
+ "auditor_value": "True",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "final_answer.option is null although the item carries options A/B; the value 'True.' identifies option A unambiguously, so this is a data-completeness gap, not a reader-facing defect.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-kin-01", "at": "2026-09-11T06:19:34+05:30"}
+}

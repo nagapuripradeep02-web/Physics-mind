@@ -1,0 +1,87 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_1b46a5e0",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "numerical",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A rock is released from rest at the summit of a vertical structure. At the moment it descends past a level 5 m beneath the summit, a second rock is released from rest at a location 25 m beneath the summit. If both objects hit the ground at the same instant, calculate the total height of the structure. (Take g = 10 m/s²).",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "both stones start from rest",
+   "first stone dropped from top of tower",
+   "second stone released when first stone has fallen 5 m",
+   "second stone released from a height 25 m below the top",
+   "both stones reach the ground at the same time",
+   "air resistance neglected",
+   "motion purely under uniform vertical gravity",
+   "g = 10 m/s²"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Find the head-start time of the first stone, write each stone's arrival time at the bottom in terms of the tower height, and set them equal.",
+  "steps": [
+   {
+    "text": "The first stone falls 5 m before the second stone is released. Find this time from the free-fall equation.",
+    "equation": "5 = ½(10)t₁² → t₁ = 1 s"
+   },
+   {
+    "text": "Let H be the tower height. The first stone reaches the bottom at time T given by falling the full height H, and the second stone (released 1 s later, from 25 m below the top) reaches the bottom after falling (H − 25) m.",
+    "equation": "T = √(H/5), t₂ = √((H−25)/5)"
+   },
+   {
+    "text": "Both stones reach the bottom at the same instant, so the second stone's fall time plus its 1 s delay equals the first stone's total fall time.",
+    "equation": "√(H/5) = 1 + √((H−25)/5)"
+   },
+   {
+    "text": "Solve this equation for H.",
+    "equation": "H = 45 m",
+    "why_this_step": "Checking: T = √(45/5) = 3 s, and t₂ = √(20/5) = 2 s, so the second stone arrives at 1 + 2 = 3 s, matching T."
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "45 m"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Using the linear relation t = d/g instead of d = ½gt² for the first stone's 5 m fall gives t₁ = 0.5 s instead of the correct 1 s."
+   }
+  ],
+  "concept_tags": [
+   "free fall",
+   "relative timing",
+   "equations of motion"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "773bdab6dea1ce9faf5d7f1fd569208400e62c1b84c62654601767a6412585c5"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "8bbe13223e6af294f78de1ae5a9ebc32a9bfd21eba885e2c1b06922acfb73fbb",
+  "audited_by": "W01-U-kin-05"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-11",
+  "at": "2026-09-11T15:08:00+05:30"
+ }
+}

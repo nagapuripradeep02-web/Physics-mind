@@ -1,0 +1,16 @@
+{
+ "question_id": "kin_a51e4b4e",
+ "item_sha": "79556b272bbd4a1607533a6648a461f3518a7fcb916dbf315a1ae8d19776dea2",
+ "auditor_option": 4,
+ "auditor_value": "Option d - Assertion is false, Reason is true",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "da/dt = 2 gives a = 2t and v = t^2, so dv/dt = 2t is not constant; a = 1 m/s^2 only at t = 0.5 s. Assertion false, Reason true.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-kin-07",
+  "at": "2026-09-11T14:52:00+05:30"
+ }
+}

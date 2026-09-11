@@ -1,0 +1,51 @@
+{
+ "approach": "Differentiate both displacement equations to get the relative velocity and relative acceleration, then check their signs at t = 0.",
+ "steps": [
+  {
+   "text": "Differentiate each displacement equation to get the two velocities.",
+   "equation": "v₁ = 2 − 8t, v₂ = −2 + 8t"
+  },
+  {
+   "text": "Find the relative velocity of particle 1 with respect to particle 2.",
+   "equation": "v_rel = v₁ − v₂ = 4 − 16t"
+  },
+  {
+   "text": "Differentiate again to get the relative acceleration, which is constant.",
+   "equation": "a_rel = dv_rel/dt = −16"
+  },
+  {
+   "text": "At t = 0, v_rel = +4 and a_rel = −16 have opposite signs, so by the Reason's own rule the relative speed decreases at first instead of increasing throughout.",
+   "equation": "v_rel(0) = 4, a_rel = −16, opposite signs"
+  },
+  {
+   "text": "The Assertion is therefore false, while the Reason states a true general rule about velocity and acceleration signs.",
+   "equation": "final answer: option (d)"
+  }
+ ],
+ "final_answer": {
+  "option": 4,
+  "value": "Assertion is false but the Reason is true."
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": 1,
+   "text": "Seeing a nonzero constant relative acceleration and assuming the relative speed must keep increasing, without checking the signs of v_rel and a_rel at t = 0, wrongly marks both statements true."
+  }
+ ],
+ "concept_tags": [
+  "relative velocity",
+  "acceleration",
+  "equations of motion"
+ ],
+ "difficulty": "hard",
+ "mistake_type_hint": "concept",
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_adf4cca8",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-08",
+  "at": "2026-09-11T14:20:00+05:30"
+ }
+}

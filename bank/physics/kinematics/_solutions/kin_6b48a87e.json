@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_6b48a87e",
+ "approach": "Add the change in velocity from each interval of the a-t graph one after another, starting from v = 0, to build up the v-t graph.",
+ "steps": [
+  {"text": "From t = 0 to 2 s, acceleration is a constant +2 m/s², so velocity rises in a straight line.", "equation": "v(2) = v(0) + a×t = 0 + 2×2 = 4 m/s"},
+  {"text": "From t = 2 to 4 s, acceleration is 0, so velocity stays constant.", "equation": "v(4) = v(2) = 4 m/s"},
+  {"text": "From t = 4 to 6 s, acceleration is a constant −4 m/s², so velocity falls in a straight line.", "equation": "v(6) = v(4) + a×t = 4 + (−4)(2) = −4 m/s"},
+  {"text": "Find when the falling line crosses zero between t = 4 s and t = 6 s.", "equation": "v(t) = 4 − 4(t − 4) = 0 → t = 5 s"}
+ ],
+ "final_answer": {"option": null, "value": "The v-t graph rises in a straight line from (0, 0) to (2 s, 4 m/s), stays flat at 4 m/s from 2 s to 4 s, then falls in a straight line through (5 s, 0) down to (6 s, −4 m/s)."},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Treating the flat 0 m/s² interval as zero velocity instead of constant velocity makes the graph drop to zero between 2 s and 4 s."},
+  {"option": null, "text": "Reading the crossing point as t = 4 s, the start of deceleration, instead of solving for where v actually reaches zero, misses that it happens at t = 5 s."}
+ ],
+ "concept_tags": ["a-t graph", "v-t graph construction", "change in velocity"],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-02", "at": "2026-09-11T00:00:00+05:30"}
+}

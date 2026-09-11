@@ -1,0 +1,156 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter": "kinematics",
+ "slice": 5,
+ "round": 0,
+ "items": [
+  {
+   "question_id": "kin_75a7091c",
+   "question_text": "A rocket is launched straight upwards from ground level with an effective upward acceleration of 10 m/s². Its propellant burns out completely after 1 min, after which the rocket keeps ascending freely under gravity. Take g = 10 m/s².\n(a) Determine the maximum altitude reached by the rocket above the ground.\n(b) Calculate the time elapsed from the moment the fuel burns out until it reaches this maximum altitude.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_7a31923d",
+   "question_text": "An object moves along a straight path such that it maintains a constant speed v₁ for the initial half of its total travel duration, and a constant speed v₂ for the final half of the duration. Determine the average speed of the object throughout the entire trip.",
+   "options": [],
+   "figure_description": "A line segment from point A to point B split at a point C into two sections: section AC corresponds to duration t, speed v₁, and distance d₁; section CB corresponds to duration t, speed v₂, and distance d₂."
+  },
+  {
+   "question_id": "kin_7f81ce0c",
+   "question_text": "A particle travels along a straight path. At a particular moment, its speed is 10 m/s, and its velocity drops at a rate of 3 m/s per metre of displacement. Calculate the acceleration of the object at that instant.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_77b0f00f",
+   "question_text": "Two automobiles, A and B, start from rest and move along a straight track with constant accelerations a₁ and a₂ respectively to cover the same distance. Car A completes the race in a time interval t shorter than car B, and crosses the endpoint with a speed exceeding that of car B by v. Show that the relationship between these quantities is given by v = √(a₁a₂) t.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_73979942",
+   "question_text": "An insect is situated at one vertex of a cube-shaped enclosure having side length a. If it travels along the inner surfaces at a steady speed u, determine the shortest time needed for it to arrive at the diagonally opposite corner.",
+   "options": [
+    {
+     "label": "a",
+     "text": "3 a / u"
+    },
+    {
+     "label": "b",
+     "text": "√3 a / u"
+    },
+    {
+     "label": "c",
+     "text": "√5 a / u"
+    },
+    {
+     "label": "d",
+     "text": "(√2 + 1) a / u"
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_71613150",
+   "question_text": "An object is projected straight upward into the air. Which one of the following physical properties does not change during its flight: speed, kinetic energy, velocity, or acceleration?",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_7e4e93ab",
+   "question_text": "A vehicle travels horizontally along a direct path at a steady speed of 30 ms⁻¹. An object is launched straight up from this vehicle so that it lands back at its exact launching spot after the vehicle has traveled a distance of 80 m. What is the required launch speed with respect to the vehicle? (Use g = 10 ms⁻²)",
+   "options": [
+    {
+     "label": "a",
+     "text": "10 ms⁻¹"
+    },
+    {
+     "label": "b",
+     "text": "10√8 ms⁻¹"
+    },
+    {
+     "label": "c",
+     "text": "40/3 ms⁻¹"
+    },
+    {
+     "label": "d",
+     "text": "None of these"
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_6d265b74",
+   "question_text": "At the moment t = 0, a particle moves with a speed of 2 m/s. Over a duration of 2 s, it experiences a uniform acceleration of 2 m/s² oriented at an angle of 60° relative to the direction of its initial velocity vector. Calculate the magnitude of the particle's velocity and displacement at t = 2 s.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_773bdab6",
+   "question_text": "A rock is released from rest at the summit of a vertical structure. At the moment it descends past a level 5 m beneath the summit, a second rock is released from rest at a location 25 m beneath the summit. If both objects hit the ground at the same instant, calculate the total height of the structure. (Take g = 10 m/s²).",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_7fbc29b5",
+   "question_text": "An elevator is moving downwards while speeding up. Determine the direction of its velocity and the direction of its acceleration during this motion.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_94df6811",
+   "question_text": "A body travels in a straight line along the x-direction with its velocity governed by the equation v = (10 + 5t − t²), where v is measured in m/s and t in seconds. Given that the body is located at x = 0 when t = 0, determine:\n(a) The acceleration of the object at the instant t = 2 s\n(b) The position coordinate x of the object at the instant t = 3 s",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_78b1bda1",
+   "question_text": "An object initially at rest speeds up with a steady acceleration of 4 m/s² throughout the first 4 s. Following this, it slows down at a constant rate over the subsequent 8 s until it halts completely. For the entire duration of this journey, determine:\n(a) average acceleration\n(b) average speed\n(c) average velocity",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_6ff3fae5",
+   "question_text": "A rock is released from rest at the summit of a tall structure. Exactly 1 s later, another rock is projected straight downwards from the identical spot at a speed of 20 ms⁻¹. Determine how far the second rock falls before it catches up with the first rock. (Take g = 10 ms⁻²)",
+   "options": [
+    {
+     "label": "a",
+     "text": "13 m"
+    },
+    {
+     "label": "b",
+     "text": "15 m"
+    },
+    {
+     "label": "c",
+     "text": "11.25 m"
+    },
+    {
+     "label": "d",
+     "text": "19.5 m"
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_76b52527",
+   "question_text": "At initial moment t = 0, three bodies A, B, and C occupy the corners of an equilateral triangle with side length d. Throughout the motion, each body maintains an unchanging speed v. The direction of motion of A is continuously oriented toward B, B always moves toward C, and C continuously aims at A. Determine the duration after which all three bodies will converge together.",
+   "options": [],
+   "figure_description": "An equilateral triangle ABC has vertices A, B, and C separated by side length d. Velocity vectors of constant magnitude v are directed along AB for particle A, along BC for particle B, and along CA for particle C. The interior angle at each corner is 60°."
+  },
+  {
+   "question_id": "kin_7ec2ef96",
+   "question_text": "An individual takes 90 s to climb up a stationary 15 m escalator. If the individual remains motionless on the same escalator while it operates, they reach the top in 60 s.\n(a) Determine the duration needed for the individual to walk upwards while the escalator is running.\n(b) Does this calculated time rely on the length of the escalator?",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_71769565",
+   "question_text": "A lift with an interior height of 2.7 m begins moving upward from rest with a steady acceleration of 1.2 m/s². Exactly 2 s after it begins its motion, a loose bolt becomes detached from its roof. Take g = 9.8 m/s². Determine:\n(a) the duration of time until the bolt strikes the floor of the lift.\n(b) the total displacement and the total distance covered by the bolt relative to the ground.",
+   "options": [],
+   "figure_description": ""
+  }
+ ]
+}

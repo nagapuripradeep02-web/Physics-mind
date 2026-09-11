@@ -1,0 +1,16 @@
+{
+ "question_id": "kin_4c7c661e",
+ "item_sha": "b7075df70ee6e2acdc7dfc455c5c644f3fd98967c2349d19d259fb6d0a11802a",
+ "auditor_option": null,
+ "auditor_value": "(a) 5 m/s², 0, 5 m/s²; (b) 30 m; (c)(i) s = 10 + 2.5t²; (c)(ii) s = −2.5t² + 30t − 40",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "(c)(ii) was derived independently as s = 40 + 10(t−4) − 2.5(t−4)², which expands to the printed −2.5t² + 30t − 40 and returns 40 m at both t = 4 s and t = 8 s, as the graph requires.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-kin-03",
+  "at": "2026-09-11T09:53:59+05:30"
+ }
+}

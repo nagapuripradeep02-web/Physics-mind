@@ -1,0 +1,42 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_c7afcfb3",
+ "approach": "Average velocity depends only on the straight-line displacement between the start and end points, not on the curved path taken.",
+ "steps": [
+  {
+   "text": "Points A and B are the two ends of the vertical diameter of the semicircle.",
+   "equation": null
+  },
+  {
+   "text": "The displacement from A to B is the diameter, twice the radius.",
+   "equation": "displacement = 2r = 2 × 1.0 m = 2.0 m"
+  },
+  {
+   "text": "Divide the displacement by the time taken to get the average velocity.",
+   "equation": "v_avg = 2.0 m / 1 s = 2.0 m/s"
+  }
+ ],
+ "final_answer": {
+  "option": null,
+  "value": "2.0 m/s"
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": null,
+   "text": "Using the curved arc length instead of the straight-line displacement gives π × 1.0 = 3.14 m/s, which is the average speed, not the average velocity."
+  }
+ ],
+ "concept_tags": [
+  "average velocity",
+  "displacement versus distance"
+ ],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-01",
+  "at": "2026-09-11T15:06:00+05:30"
+ }
+}

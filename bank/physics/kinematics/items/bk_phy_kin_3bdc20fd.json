@@ -1,0 +1,87 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_3bdc20fd",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A body moves along a straight path covering the initial half of its total path length at a constant speed v₁. For the remaining half of the path length, it travels with a uniform speed v₂ for one-third of the duration taken for this half, and with a uniform speed v₃ for the other two-thirds of that duration. Determine the average speed of the body across the entire journey.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "motion along a straight line",
+   "first half of total distance covered at constant speed v₁",
+   "for the second half distance, speed is constant at v₂ for 1/3 of the time taken",
+   "for the remaining 2/3 of the time taken for the second half, speed is constant at v₃"
+  ],
+  "figure": {
+   "description": "A line segment AB representing the entire journey of distance 2d is split at point C into two equal lengths of distance d. Segment AC is traversed at speed v₁. Segment CB is split at point D such that the duration for CD is t/3 with speed v₂ and the duration for DB is 2t/3 with speed v₃."
+  }
+ },
+ "solution": {
+  "approach": "Split the journey into the first half distance and the second half distance, find the time for each part, then divide the total distance by the total time.",
+  "steps": [
+   {
+    "text": "Let the total distance be 2d; the first half distance d is covered at speed v₁.",
+    "equation": "t₁ = d/v₁"
+   },
+   {
+    "text": "In the second half distance d, a time t splits into 1/3 of t at v₂ and 2/3 of t at v₃, and the distance covered equals d.",
+    "equation": "v₂(t/3) + v₃(2t/3) = d"
+   },
+   {
+    "text": "Solve this equation for t in terms of d, v₂ and v₃.",
+    "equation": "t = 3d / (v₂ + 2v₃)"
+   },
+   {
+    "text": "Add the two times and divide the total distance 2d by the total time.",
+    "equation": "v_avg = 2d / [d/v₁ + 3d/(v₂+2v₃)]"
+   },
+   {
+    "text": "Cancel d and simplify to the final expression.",
+    "equation": "v_avg = 2v₁(v₂ + 2v₃) / (3v₁ + v₂ + 2v₃)"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "v_avg = 2v₁(v₂ + 2v₃) / (3v₁ + v₂ + 2v₃)"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Treating v₂ and v₃ as covering equal distances instead of the stated time fractions, which changes the time split and gives a different, incorrect expression."
+   }
+  ],
+  "concept_tags": [
+   "average speed",
+   "piecewise motion"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "c3c2c4bf4d58057ae1c7c7524d7115f4c1acd822341cf9b4370bb88de22947df"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "36894216c84d50f4cc583a3dcc5661ff6e89cb5000443e591efbf3b4e94a62da",
+  "audited_by": "W01-U-kin-09"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-01",
+  "at": "2026-09-11T15:12:00+05:30"
+ }
+}

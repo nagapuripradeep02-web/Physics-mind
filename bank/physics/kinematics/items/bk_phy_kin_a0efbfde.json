@@ -1,0 +1,83 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_a0efbfde",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "An object travels along a straight path at a constant speed v for a duration t₀, after which it continues at 2v for an equal time interval t₀. In the final portion of its motion, it moves at 3v for a duration T. If the mean velocity over the entire journey is equal to 2.5 v, determine the value of T expressed using t₀.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "motion along a straight line",
+   "constant velocity in each phase of motion",
+   "speed is v for duration t₀",
+   "speed is 2v for subsequent duration t₀",
+   "speed is 3v for duration T",
+   "overall average velocity is 2.5 v"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Write the total displacement as the sum of the three constant-velocity legs, divide by the total time to set it equal to the given average velocity, and solve for T.",
+  "steps": [
+   {
+    "text": "Write the displacement covered in each of the three legs of the journey.",
+    "equation": "leg 1: v t₀, leg 2: 2v t₀, leg 3: 3v T"
+   },
+   {
+    "text": "Add these for the total displacement and add the three times for the total time.",
+    "equation": "total displacement = 3v t₀ + 3vT, total time = 2t₀ + T"
+   },
+   {
+    "text": "Set the total displacement over the total time equal to the given average velocity of 2.5v.",
+    "equation": "(3v t₀ + 3vT)/(2t₀ + T) = 2.5v"
+   },
+   {
+    "text": "Cancel v and solve the resulting linear equation for T.",
+    "equation": "3t₀ + 3T = 5t₀ + 2.5T → 0.5T = 2t₀ → T = 4t₀"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "T = 4t₀"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Leaving out the displacement of the first leg, v t₀, from the total when setting up the equation gives T = 6t₀."
+   }
+  ],
+  "concept_tags": [
+   "average velocity",
+   "piecewise constant velocity"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "52fbb95ef0a799157c3b718341610d1b0b7400b47b6fc33ec3893c1ba8d4e10d"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "37730ee6d1a8457ae861216a73a30fd1cde4832c232d4f774b994331bc6e224c",
+  "audited_by": "W01-U-kin-03"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-10",
+  "at": "2026-09-11T14:18:00+05:30"
+ }
+}

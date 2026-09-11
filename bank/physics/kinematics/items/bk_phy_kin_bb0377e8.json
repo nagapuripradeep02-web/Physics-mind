@@ -1,0 +1,86 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_bb0377e8",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "assertion_reason",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "Assertion: One object is released from rest at an elevation h while simultaneously a second object is launched straight upwards with a velocity of √(gh). The two objects will cross each other at an altitude of h/2.\nReason: Each of the two objects requires an identical duration of time to reach the vertical level h/2.",
+  "options": {
+   "1": "Both Assertion and Reason are true, and Reason is the correct explanation of Assertion.",
+   "2": "Both Assertion and Reason are true, but Reason is not the correct explanation of Assertion.",
+   "3": "Assertion is true, but Reason is false.",
+   "4": "Assertion is false, but Reason is true."
+  },
+  "parts": null,
+  "conditions": [
+   "first object dropped from rest at height h",
+   "second object projected vertically upward from ground with speed √(gh)",
+   "both objects move simultaneously under uniform gravitational acceleration g",
+   "air resistance neglected"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Write the height above ground for both bodies as functions of time, find when they add up to h, and check that each independently reaches h/2 at that same time.",
+  "steps": [
+   {
+    "text": "Write the height above ground for the dropped body and the thrown-up body.",
+    "equation": "y_A(t) = h − ½gt², y_B(t) = √(gh)t − ½gt²"
+   },
+   {
+    "text": "The bodies meet when their heights above ground are equal.",
+    "equation": "h − ½gt² = √(gh)t − ½gt² → t = √(h/g)"
+   },
+   {
+    "text": "Substitute this time into y_B to find the meeting height.",
+    "equation": "y_B(√(h/g)) = h − h/2 = h/2, so the meeting height is h/2"
+   },
+   {
+    "text": "Find the time for the dropped body alone to fall a distance h/2, and the time for the thrown-up body alone to first rise to height h/2.",
+    "equation": "both give t = √(h/g)"
+   },
+   {
+    "text": "Both statements are individually true, and the equal time for the two bodies to reach h/2 is exactly why they meet there, so the Reason correctly explains the Assertion.",
+    "equation": "final answer: option (a)"
+   }
+  ],
+  "final_answer": {
+   "option": 1,
+   "value": "Both Assertion and Reason are true and the Reason is the correct explanation of the Assertion."
+  },
+  "common_mistakes": [],
+  "concept_tags": [
+   "free fall",
+   "relative motion",
+   "equations of motion"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "95f3ce011f9221d0637b145108a145b88f3e1e8fabd6e24ac103e7d1a789e04b"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "c88bdd7949b7988acf03e7e4384ca2c48ea0f49d85e951ad30fb7a1caff7c60e",
+  "audited_by": "W01-U-kin-07"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-08",
+  "at": "2026-09-11T14:20:00+05:30"
+ }
+}

@@ -1,0 +1,20 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_9c7ad521",
+ "approach": "Split the rowing velocity into a part across the river and a part along it, then add the river current to the along part.",
+ "steps": [
+  {"text": "Resolve the rowing velocity of 5 m/s at 37° into a part across the river and a part along the river.", "equation": "v_across = 5 sin 37° = 3 m/s, v_along = 5 cos 37° = 4 m/s"},
+  {"text": "Only the across part carries the boat over the width of 30 m, so use it to find the crossing time.", "equation": "t = 30 / 3 = 10 s"},
+  {"text": "Add the river current to the along part to get the total speed along the bank, then multiply by the time to get the drift.", "equation": "v_drift = 4 + 2 = 6 m/s, drift = 6 × 10 = 60 m"}
+ ],
+ "final_answer": {"option": null, "value": "(a) 10 s, (b) 60 m"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Using the full 5 m/s instead of only the across component 3 m/s gives a crossing time of 6 s."},
+  {"option": null, "text": "Forgetting to add the river current to the along component gives a drift of 40 m instead of 60 m."}
+ ],
+ "concept_tags": ["relative velocity", "river crossing", "vector resolution"],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-03", "at": "2026-09-11T15:30:00+05:30"}
+}

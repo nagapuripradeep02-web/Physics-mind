@@ -1,0 +1,16 @@
+{
+ "question_id": "kin_f5577de4",
+ "item_sha": "8a44fb0e65829cbfb873ce7918b2d183e27b0f613c29f46ddac811492680a8c3",
+ "auditor_option": null,
+ "auditor_value": "a-t: 0 (0-4 s), +10 m/s2 (4-6 s), -10 m/s2 (6-8 s), +10 m/s2 (8-12 s), -10 m/s2 (12-14 s). s-t: (0,20), (4,-60), (6,-80), (8,-100), (10,-120) minimum, (12,-100), (14,-80) m; straight line 0-4 s, curved thereafter.",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-kin-12",
+  "at": "2026-09-11T09:50:05+05:30"
+ }
+}

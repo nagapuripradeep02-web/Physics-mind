@@ -1,0 +1,19 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_221d167c",
+ "approach": "Find the time to fall through the height using free fall kinematics, then divide the height by that time.",
+ "steps": [
+  {"text": "Write the height fallen from rest as a function of time and solve for the time to reach the ground.", "equation": "h = ½gt² → t = √(2h/g)"},
+  {"text": "Substitute the height and g to find the time of fall.", "equation": "t = √(2×125/10) = 5 s"},
+  {"text": "Average velocity is the total displacement divided by the total time.", "equation": "v_avg = h/t = 125/5 = 25 m/s"}
+ ],
+ "final_answer": {"option": null, "value": "25 m/s"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Forgetting the factor 2 in h = ½gt² and using t = √(h/g) gives a time of about 3.54 s and an average velocity of about 35.4 m/s, which is wrong."}
+ ],
+ "concept_tags": ["free fall", "average velocity", "equations of motion"],
+ "difficulty": "easy",
+ "mistake_type_hint": "calculation",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-06", "at": "2026-09-11T16:00:00+05:30"}
+}

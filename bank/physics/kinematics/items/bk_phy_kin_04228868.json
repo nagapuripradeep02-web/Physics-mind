@@ -1,0 +1,85 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_04228868",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "assertion_reason",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "Assertion: An object's speed can reduce even while the acceleration it experiences is growing.\nReason: A reduction in speed takes place whenever the acceleration is positive.",
+  "options": {
+   "1": "Both Assertion and Reason are true, and Reason is the correct explanation of Assertion.",
+   "2": "Both Assertion and Reason are true, but Reason is not the correct explanation of Assertion.",
+   "3": "Assertion is true, but Reason is false.",
+   "4": "Assertion is false, but Reason is true."
+  },
+  "parts": null,
+  "conditions": [
+   "motion in one dimension",
+   "speed is the magnitude of velocity"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Test the claim with a particle whose acceleration opposes its velocity and grows in magnitude; speed falls as the acceleration's magnitude rises, but here the acceleration is negative, not positive.",
+  "steps": [
+   {
+    "text": "Take a particle moving in the positive direction with velocity v(t) = 5 − t²/2, so its acceleration is a(t) = −t.",
+    "equation": "v(t) = 5 − t²/2, a(t) = −t"
+   },
+   {
+    "text": "Check the speed and the size of the acceleration at increasing times while v stays positive.",
+    "equation": "at t = 1 s: v = 4.5 m/s, |a| = 1 m/s²; at t = 2 s: v = 3.0 m/s, |a| = 2 m/s²"
+   },
+   {
+    "text": "The speed has fallen from 4.5 m/s to 3.0 m/s while the size of the acceleration has grown from 1 m/s² to 2 m/s², so the Assertion is true; but in this example the acceleration is negative, opposing the velocity, not positive as the Reason claims.",
+    "why_this_step": "Speed falls whenever acceleration opposes velocity, whatever the sign of either one on its own; a positive acceleration acting on a positive velocity would instead increase the speed."
+   },
+   {
+    "text": "The Assertion is true, but the Reason gives an incomplete and, in this example, incorrect condition, so the Reason is false.",
+    "equation": "Assertion true, Reason false"
+   }
+  ],
+  "final_answer": {
+   "option": 3,
+   "value": "If Assertion is true, but the Reason is false."
+  },
+  "common_mistakes": [
+   {
+    "option": 1,
+    "text": "Treating 'acceleration is positive' as the general condition for slowing down, without checking that it actually depends on the acceleration opposing the velocity's direction."
+   }
+  ],
+  "concept_tags": [
+   "speed versus acceleration",
+   "sign convention",
+   "relative direction of velocity and acceleration"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "4fac0b01b017d1fb280400e30e84d61f94ac491d85446b0dbbba6f4f2a05432d"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "70552cdec87613139ddc63c4b162e70d16c7fb9c31376dd559eb0b13ba85749c",
+  "audited_by": "W01-U-kin-03"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-07",
+  "at": "2026-09-11T14:33:00+05:30"
+ }
+}

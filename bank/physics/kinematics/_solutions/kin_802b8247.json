@@ -1,0 +1,43 @@
+{
+ "approach": "Express g in terms of h and T, find the distance fallen in the first T/3, and subtract it from h.",
+ "steps": [
+  {
+   "text": "Write the total height in terms of the total fall time T, using free fall from rest.",
+   "equation": "h = ½gT² → g = 2h/T²"
+  },
+  {
+   "text": "Find the distance fallen in time T/3 using this g.",
+   "equation": "d = ½g(T/3)² = ½ × (2h/T²) × T²/9 = h/9"
+  },
+  {
+   "text": "Subtract the fallen distance from h to get the height above the ground.",
+   "equation": "h − h/9 = 8h/9"
+  }
+ ],
+ "final_answer": {
+  "option": 3,
+  "value": "(8h/9) metre from the ground"
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": 1,
+   "text": "Correctly finding the distance fallen in T/3 as h/9, but stating that distance itself as the answer instead of subtracting it from h to get the height above the ground."
+  }
+ ],
+ "concept_tags": [
+  "free fall",
+  "equations of motion",
+  "distance fallen"
+ ],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_802b8247",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-08",
+  "at": "2026-09-11T14:20:00+05:30"
+ }
+}

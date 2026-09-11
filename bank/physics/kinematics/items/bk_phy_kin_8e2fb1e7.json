@@ -1,0 +1,96 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_8e2fb1e7",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "From the top of a 60 m tall structure, an object is thrown vertically upward with an initial speed of 20 m/s. Considering the entire duration of motion until it hits the ground, determine: (Use g = 10 m/s²)",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "the average speed of the object"
+   },
+   {
+    "label": "b",
+    "asks": "the average velocity of the object"
+   }
+  ],
+  "conditions": [
+   "height of launch point = 60 m",
+   "initial speed = 20 m/s upward",
+   "motion under constant gravity",
+   "g = 10 m/s²",
+   "interval ends when the particle hits the ground"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Find the time of flight from launch to landing below the tower, then use the total path length for average speed and the net displacement for average velocity.",
+  "steps": [
+   {
+    "text": "Take upward as positive from the roof. The particle lands 60 m below the roof, so its displacement is −60 m.",
+    "equation": "−60 = 20t − ½(10)t²"
+   },
+   {
+    "text": "Solve this quadratic for the time of flight.",
+    "equation": "5t² − 20t − 60 = 0 → t² − 4t − 12 = 0 → t = 6 s"
+   },
+   {
+    "text": "Find the extra height it rises above the roof before falling back.",
+    "equation": "h_up = 20²/(2×10) = 20 m"
+   },
+   {
+    "text": "Add the rise above the roof and the fall from that highest point to the ground for the total path length.",
+    "equation": "total distance = 20 + (20 + 60) = 100 m"
+   },
+   {
+    "text": "Divide the total distance by the time of flight for average speed, and the net displacement by the same time for average velocity.",
+    "equation": "average speed = 100/6 ≈ 16.7 ms⁻¹, average velocity = −60/6 = −10 ms⁻¹ (10 ms⁻¹ downward)"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) average speed = 100/6 ≈ 16.7 ms⁻¹, (b) average velocity = 10 ms⁻¹, directed downward"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Reporting the average velocity value, 10 ms⁻¹, as the average speed, which uses the net displacement instead of the full path length travelled."
+   }
+  ],
+  "concept_tags": [
+   "equations of motion",
+   "projectile from a height",
+   "average speed and average velocity"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "64fe014eecdec0a2f6f56e86c1204d8f019ce21dd3cd89f88cd091808201c3ec"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "6221674f6117aa3177a332559beeb0b3535c3b529750993a3db813884352dc28",
+  "audited_by": "W01-U-kin-04"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-10",
+  "at": "2026-09-11T14:16:00+05:30"
+ }
+}

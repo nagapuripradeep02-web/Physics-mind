@@ -1,0 +1,79 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_319a4f8e",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "numerical",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "When a person travels horizontally at 3 km/h, raindrops seem to descend straight vertically downwards. If the person speeds up to 6 km/h in the same direction, the falling rain appears to strike at an angle of 45° relative to the vertical. Determine the true speed of the rain.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "man travels horizontally",
+   "velocity of rain is constant",
+   "apparent velocity of rain is vertical when man's speed is 3 km/h",
+   "apparent velocity of rain makes an angle of 45° with the vertical when man's speed is 6 km/h"
+  ],
+  "figure": {
+   "description": "A standard 2D Cartesian coordinate system with the horizontal axis directed to the right labeled with unit vector î and the vertical axis pointing upward labeled with unit vector ĵ."
+  }
+ },
+ "solution": {
+  "approach": "Write the rain's true velocity in horizontal and vertical parts, use the first condition to fix the horizontal part, then the second condition to fix the vertical part.",
+  "steps": [
+   {
+    "text": "Let the rain's true velocity have horizontal part v_x and vertical part v_y (downward). At 3 km/h the rain appears vertical, so the man's speed cancels the horizontal part of the rain.",
+    "equation": "v_x − 3 = 0, so v_x = 3 km/h"
+   },
+   {
+    "text": "At 6 km/h the rain appears at 45° to the vertical, so the horizontal and vertical parts of the relative velocity are equal in size.",
+    "equation": "|v_x − 6| = |v_y|, |3 − 6| = |v_y|, v_y = 3 km/h"
+   },
+   {
+    "text": "The speed of the rain is the size of its full velocity vector.",
+    "equation": "v = √(3² + 3²) = √18 = 3√2 ≈ 4.24 km/h"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "3√2 km/h ≈ 4.24 km/h"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Taking the rain's horizontal speed as 6 km/h instead of 3 km/h, using the second walking speed instead of the first, gives a wrong vertical speed."
+   }
+  ],
+  "concept_tags": [
+   "relative velocity",
+   "vector components"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "67587250f14c6356f4b4c0eb2c144dbcbd699bc3ed227160e5ac36c31c08ad15"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "4593ffc9580e500f241a42898d3049e9ba72d0a53d1d5a70d00fdd2e793d0096",
+  "audited_by": "W01-U-kin-04"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-03",
+  "at": "2026-09-11T15:30:00+05:30"
+ }
+}

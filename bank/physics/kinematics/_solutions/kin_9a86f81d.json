@@ -1,0 +1,55 @@
+{
+  "schema": "eapcet_solution_v1",
+  "question_id": "kin_9a86f81d",
+  "approach": "The wind's component across AB must be cancelled by an opposite component of the plane's airspeed; this fixes the heading, and the remaining along-path components give the ground speed.",
+  "steps": [
+    {
+      "text": "The wind blows due north while AB is 30° east of north, so resolve the wind across the path AB.",
+      "equation": "wind across AB = 20 sin30° = 10 m/s"
+    },
+    {
+      "text": "For the plane to travel exactly along AB, the component of its 150 m/s airspeed across AB must cancel this 10 m/s, which fixes the angle between the heading and AB.",
+      "equation": "150 sinθ = 10 m/s ⇒ θ = sin⁻¹(1/15) ≈ 3.8°"
+    },
+    {
+      "text": "The pilot must head 3.8° to the east of the line AB, so the heading is 30° + 3.8° = 33.8° east of north.",
+      "why_this_step": "Flying straight along AB with no correction would drift the plane west of B, since north (the wind direction) lies west of AB; aiming further east compensates for this."
+    },
+    {
+      "text": "Find the ground speed by adding the along-AB components of the airspeed and the wind, since their across-AB components have cancelled.",
+      "equation": "v_ground = 150 cosθ + 20 cos30° ≈ 149.7 + 17.3 = 167.0 m/s"
+    },
+    {
+      "text": "Divide the 500 km distance by the ground speed to get the time, and state both results.",
+      "equation": "t = 500000 m / 167.0 m/s ≈ 2994 s ≈ 49.9 min; heading is 3.8° east of AB (bearing ≈ N33.8°E), time ≈ 49.9 min"
+    }
+  ],
+  "final_answer": {
+    "option": null,
+    "value": "(a) Head the plane 3.8° east of the line AB, i.e. along bearing N33.8°E, (b) about 2994 s ≈ 49.9 minutes"
+  },
+  "confidence": "sure",
+  "common_mistakes": [
+    {
+      "option": null,
+      "text": "Adding the wind speed directly to the steering speed, ignoring the 30° angle between the wind and AB, gives a ground speed of 170 m/s and a shorter time of about 2941 s."
+    },
+    {
+      "option": null,
+      "text": "Setting sinθ = 20/150 instead of resolving the wind across AB first gives a wrong heading of about 37.7° east of north instead of 33.8°."
+    }
+  ],
+  "concept_tags": [
+    "relative velocity",
+    "crosswind triangle",
+    "vector resolution"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "application",
+  "authored_by": {
+    "model": "sonnet",
+    "wave": 1,
+    "agent": "W01-A-kin-07",
+    "at": "2026-09-11T14:12:00+05:30"
+  }
+}

@@ -1,0 +1,16 @@
+{
+ "question_id": "kin_d2bbc710",
+ "item_sha": "f97aefd139923b4e0f6e85273c161927eec4133ee81542755008dc4df369a70e",
+ "auditor_option": null,
+ "auditor_value": "t = 2 s, t = 6 s, and t = 4 + 2√7 ≈ 9.29 s",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Checked: x(t) = 40t − 5t², x = 60 at t = 2, 6; x = −60 at t = 4 + 2√7 = 9.2915 s (other root negative). The wording 'travels along the +x-axis' names the starting direction only; the solution's reading of 'distance from the origin' as |x| = 60 is the literal one and its three roots are all correct.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-kin-10",
+  "at": "2026-09-11T09:51:19+05:30"
+ }
+}

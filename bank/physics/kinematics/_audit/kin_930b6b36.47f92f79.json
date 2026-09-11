@@ -1,0 +1,16 @@
+{
+ "question_id": "kin_930b6b36",
+ "item_sha": "47f92f7941a226fa260f157ab5a54485d56328a06c2ce302ad02eace66bf5079",
+ "auditor_option": 2,
+ "auditor_value": "225 m (option b)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-kin-06",
+  "at": "2026-09-11T00:00:00+05:30"
+ }
+}

@@ -1,0 +1,47 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_d4ea68c2",
+ "approach": "Take upward as positive from the top of the tower, write the displacement equation, and set it equal to the position of the ground.",
+ "steps": [
+  {
+   "text": "Write the displacement of the ball from the top of the tower as a function of time, taking upward as positive.",
+   "equation": "s(t) = ut − ½gt² = 10t − 5t²"
+  },
+  {
+   "text": "The ground is 40 m below the starting point, so set s(t) equal to −40 m.",
+   "equation": "10t − 5t² = −40"
+  },
+  {
+   "text": "Rearrange into a standard quadratic and solve for t.",
+   "equation": "5t² − 10t − 40 = 0 ⇒ t² − 2t − 8 = 0 ⇒ t = 4 s or t = −2 s"
+  },
+  {
+   "text": "Reject the negative time since it comes before the ball is thrown; the ball strikes the ground at t = 4 s.",
+   "equation": "t = 4 s"
+  }
+ ],
+ "final_answer": {
+  "option": null,
+  "value": "t = 4 s"
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": null,
+   "text": "Counting only the trip up and back down to the top of the tower (1 s up, 1 s down), giving 2 s and missing the further fall to the ground."
+  }
+ ],
+ "concept_tags": [
+  "equations of motion",
+  "sign convention",
+  "quadratic in time"
+ ],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-01",
+  "at": "2026-09-11T15:13:00+05:30"
+ }
+}

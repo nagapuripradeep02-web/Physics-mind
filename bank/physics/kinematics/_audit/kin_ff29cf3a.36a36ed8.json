@@ -1,0 +1,24 @@
+{
+ "question_id": "kin_ff29cf3a",
+ "item_sha": "36a36ed8474ae1dba69ccc4f080727c138d86e628300a6902092733cf0ae1e15",
+ "auditor_option": null,
+ "auditor_value": "H = 5h/3 above A (from u² = 10gh/3)",
+ "findings": [
+  {
+   "grade": "wrong",
+   "field": "common_mistakes[0].text",
+   "quote": "Writing the speed below A as v₂² = u² − 2gh instead of u² + 2gh for downward displacement gives u² + 2gh = 4(u² − 2gh) misapplied, leading to a height other than 5h/3.",
+   "note": "The equation quoted as the consequence of the error, u² + 2gh = 4(u² − 2gh), is the CORRECT relation already written in step 3; showing it as the product of a mistake could lead a student to reject the right line. The stated error actually gives u² − 2gh = 4(u² − 2gh), hence u² = 2gh and H = h.",
+   "fix": "Writing the speed below A as v₂² = u² − 2gh instead of u² + 2gh gives u² − 2gh = 4(u² − 2gh), so u² = 2gh and a maximum height of h instead of 5h/3."
+  }
+ ],
+ "verdict": "wrong",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-kin-12",
+  "at": "2026-09-11T09:52:03+05:30"
+ }
+}

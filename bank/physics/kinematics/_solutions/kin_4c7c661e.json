@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_4c7c661e",
+ "approach": "Read acceleration from the slope of each v-t segment, and get position by adding the signed area under v-t to the given starting position.",
+ "steps": [
+  {"text": "Find the slope of the v-t line at t = 1 s, 3 s and 9 s from the segment each falls in.", "equation": "a(1 s) = 5 m/s² (0–2 s segment), a(3 s) = 0 (2–4 s segment, constant v), a(9 s) = 5 m/s² (8–10 s segment)"},
+  {"text": "Start the position at s = 10 m at t = 0 and add the area under v-t up to each breakpoint to find s at t = 10 s.", "equation": "s(2) = 20 m, s(4) = 40 m, s(6) = 50 m, s(8) = 40 m, s(10) = 30 m"},
+  {"text": "For 0 ≤ t ≤ 2 s, v = 5t; integrate to get s(t).", "equation": "s(t) = 10 + 2.5t²"},
+  {"text": "For 4 s ≤ t ≤ 8 s, v = 10 − 5(t − 4), starting from s(4) = 40 m; integrate and collect terms in t.", "equation": "s(t) = −2.5t² + 30t − 40"}
+ ],
+ "final_answer": {"option": null, "value": "(a) a = 5 m/s², 0, 5 m/s² at t = 1 s, 3 s, 9 s. (b) s(10 s) = 30 m. (c)(i) s(t) = 10 + 2.5t² for 0≤t≤2 s. (c)(ii) s(t) = −2.5t² + 30t − 40 for 4≤t≤8 s."},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Reading the acceleration at t = 3 s as nonzero, forgetting that a straight horizontal segment of the v-t graph means zero acceleration."},
+  {"option": null, "text": "Writing the s-t equation for 4 s ≤ t ≤ 8 s starting the position from zero instead of from s(4) = 40 m, the value already reached by that time."}
+ ],
+ "concept_tags": ["v-t graph", "a-t graph from slope", "s-t equation from integrating velocity"],
+ "difficulty": "hard",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-12", "at": "2026-09-11T16:27:00+05:30"}
+}

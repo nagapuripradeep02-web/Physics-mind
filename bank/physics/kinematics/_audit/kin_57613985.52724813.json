@@ -1,0 +1,11 @@
+{
+ "question_id": "kin_57613985",
+ "item_sha": "52724813396881021c0ac5976e2f370b3a27e28374cf953f88c7c1c50fc45517",
+ "auditor_option": null,
+ "auditor_value": "s-t passes through (0,0), (2,10 m), (4,30 m), (6,60 m), (8,80 m); concave up on 0-2 s and 4-6 s, straight of slope 10 on 2-4 s, concave down on 6-8 s with horizontal tangent at t = 8 s",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-kin-04", "at": "2026-09-11T12:12:00+05:30"}
+}

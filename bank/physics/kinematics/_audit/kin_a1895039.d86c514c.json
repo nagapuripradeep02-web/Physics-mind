@@ -1,0 +1,31 @@
+{
+ "question_id": "kin_a1895039",
+ "item_sha": "d86c514c308532aa9001752e3b182be8756f97ecb930558d4fe6ae2fa96acba6",
+ "auditor_option": null,
+ "auditor_value": "As served (120 m): (a) 25.0 m/s, (b) 1.67 m/s² deceleration, (c) unanswerable — the car is slowing, so it was never at rest behind the initial point.",
+ "findings": [
+  {
+   "grade": "harmful",
+   "field": "final_answer",
+   "quote": "(a) 5.00 m/s, (b) 5/3 m/s² ≈ 1.67 m/s², (c) 7.50 m",
+   "note": "The question as served gives a 120 m separation, but the solution works with 60 m throughout. For 120 m in 6.00 s the mean speed is 20.0 m/s, so v₁ = 2(20.0) − 15.0 = 25.0 m/s and a = (15.0 − 25.0)/6.00 = −1.67 m/s², a deceleration; part (c) then has no answer because the car was moving faster, not slower, before the initial point. A student copying this answer loses every mark.",
+   "fix": "(a) 25.0 m/s, (b) 1.67 m/s² (deceleration), (c) no such point exists — the car is decelerating, so it was never at rest behind the initial point."
+  },
+  {
+   "grade": "harmful",
+   "field": "steps[0].equation",
+   "quote": "v_avg = 60/6 = 10 m/s",
+   "note": "The separation printed in the question is 120 m, not 60 m, so this line divides a distance the question never gives; the mean speed for this question is 120/6.00 = 20.0 m/s. Every later line inherits the error.",
+   "fix": "v_avg = 120/6.00 = 20.0 m/s"
+  }
+ ],
+ "verdict": "harmful",
+ "question_defect": "The served question states a 120 m separation while the whole solution is built on 60 m. With 120 m part (c) has no answer, because the acceleration comes out negative and the automobile was never at rest behind the initial point; with 60 m all three parts answer cleanly (5.00 m/s, 1.67 m/s², 7.50 m). The distance in the question text appears to have been changed.",
+ "notes": "Graded on the question as served, per the brief.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-kin-06",
+  "at": "2026-09-11T00:00:00+05:30"
+ }
+}

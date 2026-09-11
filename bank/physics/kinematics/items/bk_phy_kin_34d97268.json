@@ -1,0 +1,77 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_34d97268",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "The position of an object travelling in the xy-plane changes with time t such that its coordinates are given by x = 2t and y = 10t − 16t². Determine the equation of the path followed by this object.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "motion in xy-plane",
+   "x = 2t",
+   "y = 10t − 16t²"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Eliminate time between the x and y equations to get y directly in terms of x.",
+  "steps": [
+   {
+    "text": "Write the given x and y coordinates as functions of time.",
+    "equation": "x = 2t, y = 10t − 16t²"
+   },
+   {
+    "text": "Solve the x equation for time.",
+    "equation": "t = x/2"
+   },
+   {
+    "text": "Substitute this time into the y equation and simplify.",
+    "equation": "y = 10(x/2) − 16(x/2)² = 5x − 4x²"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "y = 5x − 4x²"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Substituting t = x/2 into 16t² as 16(x/2) instead of squaring the whole bracket gives y = 5x − 8x = −3x, a wrong linear equation."
+   }
+  ],
+  "concept_tags": [
+   "projectile-like motion",
+   "trajectory equation",
+   "elimination of parameter"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "calculation"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "9114740a42a583af4f508d75c186f686ca188e36b7b07881c3313a115aedf6a2"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "0a4536cef0e939cb807280e384fbe1723a04d4cad4136ed38a0387634bca62bd",
+  "audited_by": "W01-U-kin-06"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-03",
+  "at": "2026-09-11T15:30:00+05:30"
+ }
+}

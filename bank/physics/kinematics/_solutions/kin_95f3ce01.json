@@ -1,0 +1,46 @@
+{
+ "approach": "Write the height above ground for both bodies as functions of time, find when they add up to h, and check that each independently reaches h/2 at that same time.",
+ "steps": [
+  {
+   "text": "Write the height above ground for the dropped body and the thrown-up body.",
+   "equation": "y_A(t) = h − ½gt², y_B(t) = √(gh)t − ½gt²"
+  },
+  {
+   "text": "The bodies meet when their heights above ground are equal.",
+   "equation": "h − ½gt² = √(gh)t − ½gt² → t = √(h/g)"
+  },
+  {
+   "text": "Substitute this time into y_B to find the meeting height.",
+   "equation": "y_B(√(h/g)) = h − h/2 = h/2, so the meeting height is h/2"
+  },
+  {
+   "text": "Find the time for the dropped body alone to fall a distance h/2, and the time for the thrown-up body alone to first rise to height h/2.",
+   "equation": "both give t = √(h/g)"
+  },
+  {
+   "text": "Both statements are individually true, and the equal time for the two bodies to reach h/2 is exactly why they meet there, so the Reason correctly explains the Assertion.",
+   "equation": "final answer: option (a)"
+  }
+ ],
+ "final_answer": {
+  "option": 1,
+  "value": "Both Assertion and Reason are true and the Reason is the correct explanation of the Assertion."
+ },
+ "confidence": "sure",
+ "common_mistakes": [],
+ "concept_tags": [
+  "free fall",
+  "relative motion",
+  "equations of motion"
+ ],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_95f3ce01",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-08",
+  "at": "2026-09-11T14:20:00+05:30"
+ }
+}

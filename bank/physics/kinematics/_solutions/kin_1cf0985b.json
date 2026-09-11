@@ -1,0 +1,20 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_1cf0985b",
+ "approach": "Write the net force as a function of time, divide by mass to get acceleration, and integrate over the 5 seconds to add on to the initial speed.",
+ "steps": [
+  {"text": "Write the net force on the body: the time-varying force minus the constant opposing force.", "equation": "F(t) = 3t² − 32"},
+  {"text": "Divide by the mass to get the acceleration as a function of time.", "equation": "a(t) = (3t² − 32)/10"},
+  {"text": "Integrate the acceleration from 0 to 5 s to get the change in velocity.", "equation": "Δv = ∫₀⁵ (3t² − 32)/10 dt = (t³ − 32t)/10 |₀⁵ = (125 − 160)/10 = −3.5 ms⁻¹"},
+  {"text": "Add this change to the initial speed to get the velocity at t = 5 s.", "equation": "v(5) = 10 − 3.5 = 6.5 ms⁻¹"}
+ ],
+ "final_answer": {"option": 2, "value": "6.5 ms⁻¹"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 3, "text": "Forgetting to add the initial speed of 10 ms⁻¹ and reporting only the magnitude of the change in velocity gives 3.5 ms⁻¹."}
+ ],
+ "concept_tags": ["variable force", "Newton's second law", "integration of acceleration"],
+ "difficulty": "medium",
+ "mistake_type_hint": "calculation",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-10", "at": "2026-09-11T14:04:00+05:30"}
+}

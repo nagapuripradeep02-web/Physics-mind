@@ -1,0 +1,55 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_dbea7b06",
+ "approach": "Find the time to reach maximum height first; before that time distance equals displacement, and after it the distance adds the extra fall back down.",
+ "steps": [
+  {
+   "text": "Find the time to reach maximum height and the maximum height reached.",
+   "equation": "t_top = u/g = 40/10 = 4 s, h_max = u²/(2g) = 1600/20 = 80 m"
+  },
+  {
+   "text": "At t = 2 s the ball is still rising, since 2 s is less than 4 s, so find its position from the displacement equation.",
+   "equation": "s(2) = 40(2) − 5(2)² = 60 m"
+  },
+  {
+   "text": "Since the ball has not yet turned around, the distance travelled equals the displacement.",
+   "equation": "(a) displacement = 60 m, distance = 60 m"
+  },
+  {
+   "text": "At t = 4 s the ball is exactly at the highest point, where displacement and distance are again equal.",
+   "equation": "(b) s(4) = 40(4) − 5(4)² = 80 m; displacement = 80 m, distance = 80 m"
+  },
+  {
+   "text": "At t = 6 s the ball has been falling back for 2 s after reaching the top at t = 4 s; find how far it fell in that time.",
+   "equation": "fall = ½g(2)² = 20 m"
+  },
+  {
+   "text": "The distance travelled adds the rise and the fall, while the displacement is the net position from the start.",
+   "equation": "(c) distance = 80 + 20 = 100 m; s(6) = 40(6) − 5(6)² = 60 m, displacement = 60 m"
+  }
+ ],
+ "final_answer": {
+  "option": null,
+  "value": "(a) 60 m, 60 m; (b) 80 m, 80 m; (c) 60 m, 100 m"
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": null,
+   "text": "For part (c), taking the distance equal to the displacement, 60 m, and ignoring the extra distance covered while falling back down."
+  }
+ ],
+ "concept_tags": [
+  "displacement versus distance",
+  "projectile under gravity",
+  "time of flight"
+ ],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-01",
+  "at": "2026-09-11T15:15:00+05:30"
+ }
+}

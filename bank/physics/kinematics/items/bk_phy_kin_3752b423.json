@@ -1,0 +1,79 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_3752b423",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "numerical",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "At a given moment, the velocity vector of a moving particle is expressed as v = (3î + 4ĵ + 5k̂) m/s. Determine the particle's speed at this moment.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "velocity vector is v = (3î + 4ĵ + 5k̂) m/s at the considered instant"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Speed is the magnitude of the velocity vector, found from the square root of the sum of the squares of its components.",
+  "steps": [
+   {
+    "text": "Write the velocity components along the three axes.",
+    "equation": "vₓ = 3 m/s, v_y = 4 m/s, v_z = 5 m/s"
+   },
+   {
+    "text": "Find the magnitude using the three-dimensional distance formula.",
+    "equation": "v = √(3² + 4² + 5²) = √50 m/s"
+   },
+   {
+    "text": "Simplify the square root to get the speed.",
+    "equation": "v = 5√2 m/s ≈ 7.07 m/s"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "5√2 m/s (≈ 7.07 m/s)"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Adding the three components directly instead of combining them as a vector, giving 3 + 4 + 5 = 12 m/s."
+   },
+   {
+    "option": null,
+    "text": "Leaving out the z-component and computing √(3² + 4²) = 5 m/s."
+   }
+  ],
+  "concept_tags": [
+   "vectors",
+   "speed",
+   "magnitude of a vector"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "e033b86922b5efb7c5f2b6d7bfaad0442e2e075b2dd9d28d4030db3c787e1e20"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "e713285e857dc99d6d21720edcc41258ed2dab0557f59567e75a77cc9d7fa566",
+  "audited_by": "W01-U-kin-11"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-01",
+  "at": "2026-09-11T15:01:00+05:30"
+ }
+}

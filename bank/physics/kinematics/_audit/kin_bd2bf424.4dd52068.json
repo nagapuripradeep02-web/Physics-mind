@@ -1,0 +1,24 @@
+{
+ "question_id": "kin_bd2bf424",
+ "item_sha": "4dd52068aa6b70f7f7390a224549d2fa580d69e5e4bfacdb1524feee2d550207",
+ "auditor_option": null,
+ "auditor_value": "Circular motion and projectile motion",
+ "findings": [
+  {
+   "grade": "weak",
+   "field": "steps[2].text",
+   "quote": "State both examples.",
+   "note": "This step carries no content and no equation; it only repeats the final answer line, adding nothing a student can follow.",
+   "fix": null
+  }
+ ],
+ "verdict": "weak",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-kin-09",
+  "at": "2026-09-11T09:50:24+05:30"
+ }
+}

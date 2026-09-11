@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_64788ccd",
+ "approach": "Use v² = 2gh and v = gt for each fall and rise, halving the speed at each bounce, to find the times and speeds between collisions.",
+ "steps": [
+  {"text": "Find the speed and time for the first 80 m fall using v² = 2gh and v = gt.", "equation": "v₁ = √(2×10×80) = 40 m/s, t₁ = 40/10 = 4 s"},
+  {"text": "The ball loses half its speed at the bounce; find the time to rise to the peak and the height reached.", "equation": "v_after = 20 m/s, t_up = 20/10 = 2 s, height reached = 20²/(2×10) = 20 m"},
+  {"text": "By symmetry the ball takes the same time to fall back from that peak, reaching the same speed at the second collision.", "equation": "t_down = 2 s, v₂ = 20 m/s (2nd collision), total time = 4 + 2 + 2 = 8 s"},
+  {"text": "After the second collision the speed halves again.", "equation": "v_after2 = 10 m/s"}
+ ],
+ "final_answer": {"option": null, "value": "Speed-time graph: rises in a straight line from 0 to 40 m/s over t = 0–4 s (1st collision), drops instantly to 20 m/s, falls in a straight line to 0 at t = 6 s (peak of bounce), rises in a straight line back to 20 m/s at t = 8 s (2nd collision), then drops instantly to 10 m/s. Velocity-time graph (downward taken positive): one straight line of slope +10 m/s² throughout, with a downward jump at each collision — from +40 to −20 at t = 4 s, and from +20 to −10 at t = 8 s."},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Forgetting the ball loses half its speed at each bounce and drawing the rebound speed equal to the impact speed, 40 m/s instead of 20 m/s."},
+  {"option": null, "text": "Drawing the velocity-time graph with a change in slope at each bounce, when gravity alone acts throughout and the slope stays +10 m/s² — only the sign of v jumps at each bounce."}
+ ],
+ "concept_tags": ["free fall under gravity", "elastic-loss collision with the ground", "speed-time and velocity-time graphs"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-12", "at": "2026-09-11T16:21:00+05:30"}
+}

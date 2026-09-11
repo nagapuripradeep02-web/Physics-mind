@@ -1,0 +1,100 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_bc9f2755",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "An object initially at rest speeds up with a steady acceleration of 4 m/s² throughout the first 4 s. Following this, it slows down at a constant rate over the subsequent 8 s until it halts completely. For the entire duration of this journey, determine:",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "average acceleration"
+   },
+   {
+    "label": "b",
+    "asks": "average speed"
+   },
+   {
+    "label": "c",
+    "asks": "average velocity"
+   }
+  ],
+  "conditions": [
+   "starts from rest (initial velocity = 0)",
+   "constant acceleration of 4 m/s² for 4 s",
+   "uniform deceleration for the next 8 s",
+   "comes to rest (final velocity = 0)",
+   "straight-line motion in one direction"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Find the peak speed reached after the acceleration phase, then use it to find the distance covered in each phase, and combine everything over the full 12 seconds.",
+  "steps": [
+   {
+    "text": "The particle starts from rest and accelerates at 4 m/s² for 4 s, reaching a peak speed.",
+    "equation": "v_peak = 4 × 4 = 16 ms⁻¹"
+   },
+   {
+    "text": "It then slows uniformly from 16 ms⁻¹ to rest over the next 8 s.",
+    "equation": "retardation = 16/8 = 2 ms⁻²"
+   },
+   {
+    "text": "Find the distance covered in each of the two phases.",
+    "equation": "d₁ = ½(4)(4²) = 32 m, d₂ = ½(16 + 0)(8) = 64 m"
+   },
+   {
+    "text": "Add the two distances and the two times for the total distance and total time.",
+    "equation": "total distance = 32 + 64 = 96 m, total time = 4 + 8 = 12 s"
+   },
+   {
+    "text": "The particle starts and ends at rest, so its total change in velocity over the whole 12 s is zero, giving zero average acceleration; the motion never reverses direction, so the average speed and the average velocity both equal the total distance over the total time.",
+    "equation": "average acceleration = (0 − 0)/12 = 0, average speed = average velocity = 96/12 = 8 ms⁻¹"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) average acceleration = 0, (b) average speed = 8 ms⁻¹, (c) average velocity = 8 ms⁻¹"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Averaging the two acceleration magnitudes, 4 m/s² and 2 m/s², directly without weighting by time or sign, gives 3 m/s² for the average acceleration instead of 0."
+   }
+  ],
+  "concept_tags": [
+   "equations of motion",
+   "average acceleration",
+   "average speed"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "78b1bda141276935e96c4330367c754c4f7b15f22522a5a39ea4fad5167a4a37"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "b5876722b4c45cc26586d5243a9674e39ebe7d58720563d2fe541beb1b15393e",
+  "audited_by": "W01-U-kin-05"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-10",
+  "at": "2026-09-11T14:20:00+05:30"
+ }
+}

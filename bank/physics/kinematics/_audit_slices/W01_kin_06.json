@@ -1,0 +1,823 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter": "kinematics",
+ "slice": 6,
+ "round": 0,
+ "agent_label": "W01-U-kin-06",
+ "items": [
+  {
+   "question_id": "kin_8ab0e012",
+   "audit_file": "kin_8ab0e012.c63f3cc7.json",
+   "item_sha": "c63f3cc74593d6c0d64a0624104da23c0b5e325046f7a8c53ad0aab92c1962f7",
+   "question_text": "The position of an object travelling along the x-axis depends on time according to the equation X = 2t² + 4t − 6, where X is measured in metres and t in seconds. Determine the average velocity of the object from t = 0 to t = 2 s.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Average velocity over an interval is the change in position divided by the change in time.",
+    "steps": [
+     {
+      "text": "Find the position at the two given times.",
+      "equation": "X(0) = 2(0)² + 4(0) − 6 = −6 m, X(2) = 2(2)² + 4(2) − 6 = 10 m"
+     },
+     {
+      "text": "Divide the change in position by the change in time.",
+      "equation": "v_avg = (10 − (−6)) / (2 − 0) = 16/2"
+     },
+     {
+      "text": "State the result.",
+      "equation": "v_avg = 8 m/s"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "8 m/s"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Computing the instantaneous velocity dX/dt = 4t + 4 at t = 2 s and calling it the average velocity, giving 12 m/s."
+     },
+     {
+      "option": null,
+      "text": "Dividing X(2) alone by 2 as if the particle started from zero, giving 10/2 = 5 m/s."
+     }
+    ],
+    "concept_tags": [
+     "average velocity",
+     "kinematics from a position function"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "kin_a1895039",
+   "audit_file": "kin_a1895039.d86c514c.json",
+   "item_sha": "d86c514c308532aa9001752e3b182be8756f97ecb930558d4fe6ae2fa96acba6",
+   "question_text": "An automobile travels along a straight line under uniform acceleration. It takes 6.00 s to travel the 120 m separation between two specific locations, reaching a speed of 15.0 m/s at the second location.\n(a) Calculate the speed of the automobile as it clears the initial point.\n(b) Determine the magnitude of its acceleration.\n(c) Find the distance behind the initial point at which the automobile was at rest.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Use the average of the two end speeds to find the first speed, then the definition of acceleration, then v² = u² + 2as backward to the point of rest.",
+    "steps": [
+     {
+      "text": "For constant acceleration, average velocity equals the average of the initial and final speeds; find it from the distance and time given.",
+      "equation": "v_avg = 60/6 = 10 m/s"
+     },
+     {
+      "text": "Solve for the speed at the first point using v_avg = (v₁ + v₂)/2.",
+      "equation": "(a) v₁ = 2(10) − 15 = 5.00 m/s"
+     },
+     {
+      "text": "Find the acceleration from the change in speed over the 6.00 s.",
+      "equation": "(b) a = (15.0 − 5.00)/6.00 = 5/3 ≈ 1.67 m/s²"
+     },
+     {
+      "text": "Use v₁² = 2a·d to find the distance travelled from rest to the first point.",
+      "equation": "(c) d = v₁²/(2a) = 25.0/(10/3) = 7.50 m"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "(a) 5.00 m/s, (b) 5/3 m/s² ≈ 1.67 m/s², (c) 7.50 m"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Treating the distance divided by time, 60/6 = 10 m/s, as the speed at the first point instead of the average speed over the interval gives the wrong value for part (a)."
+     }
+    ],
+    "concept_tags": [
+     "equations of motion",
+     "average velocity",
+     "constant acceleration"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_9040ea4b",
+   "audit_file": "kin_9040ea4b.1a936639.json",
+   "item_sha": "1a9366398ee5459d449b952be23c01a5c61a5313b73c143b38b409eb523d9fcc",
+   "question_text": "Anoop travels toward the east at a speed of 1 m/s, whereas Dhyani heads toward the west at 2 m/s. Determine the relative velocity of Anoop as observed by Dhyani.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Relative velocity of one object with respect to another is the vector difference of their velocities, taken along one chosen positive direction.",
+    "steps": [
+     {
+      "text": "Take east as the positive direction and write both velocities.",
+      "equation": "v_Anoop = +1 m/s, v_Dhyani = −2 m/s"
+     },
+     {
+      "text": "Apply the relative velocity formula.",
+      "equation": "v_(Anoop/Dhyani) = v_Anoop − v_Dhyani = 1 − (−2) = 3 m/s"
+     },
+     {
+      "text": "State the direction from the sign of the result.",
+      "equation": "v_(Anoop/Dhyani) = 3 m/s, directed east"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "3 m/s due east"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Adding the two speeds without assigning signs based on direction gives 3 m/s but with no direction, or subtracting the wrong way gives −3 m/s (west) instead of east."
+     },
+     {
+      "option": null,
+      "text": "Simply subtracting the speeds as 2 − 1 = 1 m/s ignores that the two velocities are opposite in direction."
+     }
+    ],
+    "concept_tags": [
+     "relative velocity",
+     "one-dimensional motion"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_930b6b36",
+   "audit_file": "kin_930b6b36.47f92f79.json",
+   "item_sha": "47f92f7941a226fa260f157ab5a54485d56328a06c2ce302ad02eace66bf5079",
+   "question_text": "Two trains travel towards one another along a single railway track with initial speeds v₁ = 10 ms⁻¹ and v₂ = 20 ms⁻¹. Upon applying brakes, they slow down at constant rates of a₁ = 2 ms⁻² and a₂ = 1 ms⁻² respectively. Find the smallest initial gap required between the two trains so that they do not collide.",
+   "options": [
+    {
+     "label": "a",
+     "text": "150 m"
+    },
+    {
+     "label": "b",
+     "text": "225 m"
+    },
+    {
+     "label": "c",
+     "text": "450 m"
+    },
+    {
+     "label": "d",
+     "text": "300 m"
+    }
+   ],
+   "figure_description": "",
+   "solution": {
+    "approach": "Find how long each train keeps moving toward the other before it stops, since the faster-decelerating train stops first, then add the two stopping distances.",
+    "steps": [
+     {
+      "text": "Find how long each train takes to stop under its own retardation.",
+      "equation": "t₁ = v₁/a₁ = 10/2 = 5 s, t₂ = v₂/a₂ = 20/1 = 20 s"
+     },
+     {
+      "text": "Train 1 stops first, at t = 5 s. After that only train 2 is still moving toward train 1's stopped position, so the two trains keep closing until train 2 also stops at t = 20 s.",
+      "why_this_step": "The trains avoid collision only if the total ground each covers before stopping is less than the initial separation, so the minimum safe separation equals the sum of their stopping distances."
+     },
+     {
+      "text": "Find the stopping distance of each train using v² = 2 a s.",
+      "equation": "s₁ = v₁²/(2a₁) = 100/4 = 25 m, s₂ = v₂²/(2a₂) = 400/2 = 200 m"
+     },
+     {
+      "text": "Add the two stopping distances to get the minimum separation needed to avoid collision.",
+      "equation": "25 + 200 = 225 m"
+     }
+    ],
+    "final_answer": {
+     "option": 2,
+     "value": "225 m"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Using the single formula (v₁+v₂)²/[2(a₁+a₂)] for the closing distance, which only applies while both trains are still moving; this gives 30²/6 = 150 m, ignoring that train 1 stops at 5 s."
+     }
+    ],
+    "concept_tags": [
+     "retardation",
+     "stopping distance",
+     "relative motion"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_91b46894",
+   "audit_file": "kin_91b46894.96c6b538.json",
+   "item_sha": "96c6b538578c28e68b084f2d7aecd0a14d596bfd043f2e0874e48d5305a069ea",
+   "question_text": "An object moves in the x-y plane starting from the location (4 m, 10 m) at t = 0. Its initial velocity vector is given by u = (4î + 8ĵ) m/s, and it experiences a constant acceleration of a = (2î − 4ĵ) m/s². Determine:\n(a) the instant of time at which the object intersects the x-axis.\n(b) the value of its x-coordinate at that specific moment.\n(c) its velocity vector at that exact time.",
+   "options": [],
+   "figure_description": "A 2D Cartesian coordinate plane showing a particle initially at point P(4 m, 10 m). Vectors drawn at point P indicate an initial velocity component of 4 m/s and an acceleration component of 2 m/s² along the positive x-axis, an initial velocity component of 8 m/s along the positive y-axis, and an acceleration component of 4 m/s² along the negative y-axis.",
+   "solution": {
+    "approach": "Write the y-coordinate as a function of time and find when it becomes zero, then use that time in the x-coordinate and velocity equations.",
+    "steps": [
+     {
+      "text": "Write the y-coordinate using the initial y-position, initial y-velocity, and y-acceleration.",
+      "equation": "y(t) = 10 + 8t − 2t²"
+     },
+     {
+      "text": "Set y(t) = 0 to find when the particle crosses the x-axis, and solve the quadratic, keeping the positive root.",
+      "equation": "2t² − 8t − 10 = 0 → t² − 4t − 5 = 0 → t = 5 s"
+     },
+     {
+      "text": "Write the x-coordinate using the initial x-position, initial x-velocity, and x-acceleration, and substitute t = 5 s.",
+      "equation": "x(t) = 4 + 4t + t², x(5) = 4 + 20 + 25 = 49 m"
+     },
+     {
+      "text": "Find the velocity components at t = 5 s using the given accelerations, then combine them for the speed.",
+      "equation": "v_x = 4 + 2(5) = 14 m/s, v_y = 8 − 4(5) = −12 m/s"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "(a) t = 5 s, (b) x = 49 m, (c) v = (14î − 12ĵ) m/s, speed ≈ 18.4 m/s"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Taking t = −1 s, the other root of the quadratic, as the crossing time, which is not physical."
+     },
+     {
+      "option": null,
+      "text": "Writing the x-acceleration term as 2t² instead of ½(2)t² = t² gives x(5) = 4 + 20 + 50 = 74 m."
+     }
+    ],
+    "concept_tags": [
+     "equations of motion",
+     "vector motion",
+     "2D kinematics"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "kin_88e2db67",
+   "audit_file": "kin_88e2db67.69d7f2e5.json",
+   "item_sha": "69d7f2e520ccdae47c75e47c89ba1f166450bc619a36e8952c7775a2f88276f6",
+   "question_text": "The velocity components of an object traveling in the xy-plane depend on time according to vₓ = 8t − 2 and v_y = 2. At time t = 2 s, the object is located at the position x = 14 and y = 4. Which of the following expressions represents the equation of its trajectory?",
+   "options": [
+    {
+     "label": "a",
+     "text": "x = y² − y + 2"
+    },
+    {
+     "label": "b",
+     "text": "x = y² − 2"
+    },
+    {
+     "label": "c",
+     "text": "x = y² + y − 6"
+    },
+    {
+     "label": "d",
+     "text": "None of these"
+    }
+   ],
+   "figure_description": "",
+   "solution": {
+    "approach": "Integrate both velocity components with constants of integration, fix the constants from the given point, then eliminate time between x(t) and y(t).",
+    "steps": [
+     {
+      "text": "Integrate the two velocity components to get position, with constants of integration.",
+      "equation": "x(t) = 4t² − 2t + C₁, y(t) = 2t + C₂"
+     },
+     {
+      "text": "Use the given point x = 14, y = 4 at t = 2 s to find the constants.",
+      "equation": "14 = 16 − 4 + C₁ → C₁ = 2; 4 = 4 + C₂ → C₂ = 0"
+     },
+     {
+      "text": "Write x(t) and y(t) explicitly and solve y(t) for t.",
+      "equation": "x = 4t² − 2t + 2, y = 2t → t = y/2"
+     },
+     {
+      "text": "Substitute t = y/2 into x(t) to eliminate time and get the path equation.",
+      "equation": "x = 4(y/2)² − 2(y/2) + 2 = y² − y + 2"
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "x = y² − y + 2"
+    },
+    "common_mistakes": [
+     {
+      "option": 4,
+      "text": "Forgetting to solve for the constants of integration (taking C₁ = C₂ = 0) gives x = y² − y, which matches none of the printed algebraic options."
+     }
+    ],
+    "concept_tags": [
+     "integration of velocity",
+     "two-dimensional motion",
+     "equation of path"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "kin_8cf80a04",
+   "audit_file": "kin_8cf80a04.99118705.json",
+   "item_sha": "99118705075f772fee7a46f4cfa0e21656e0132ee394537bf9c622797dc199f3",
+   "question_text": "A body begins moving with an initial speed u and travels along a straight path. It covers the first half of the total distance with a constant acceleration a₁, and then covers the second half of the distance with a constant acceleration a₂. Demonstrate that its speed at the end of the journey is equal to the final speed it would attain if it traversed the entire path with a single uniform acceleration of (a₁ + a₂)/2.",
+   "options": [],
+   "figure_description": "A diagram comparing two cases of linear motion. Case 1 shows a particle starting with velocity u, traversing a displacement s under constant acceleration a₁ to reach velocity v₁, and then traversing an equal displacement s under constant acceleration a₂ to reach final velocity v₂. Case 2 shows the particle starting with velocity u, traversing the total displacement 2s under uniform acceleration (a₁ + a₂)/2, and attaining final velocity v.",
+   "solution": {
+    "approach": "Apply v² = u² + 2as across each half with a₁ and a₂, then compare the result with the same formula applied to the whole distance under the average acceleration.",
+    "steps": [
+     {
+      "text": "After the first half of distance s with acceleration a₁, the velocity v₁ satisfies this.",
+      "equation": "v₁² = u² + 2a₁s"
+     },
+     {
+      "text": "After the second half of distance s with acceleration a₂, starting from v₁, the velocity v₂ satisfies this.",
+      "equation": "v₂² = v₁² + 2a₂s = u² + 2s(a₁ + a₂)"
+     },
+     {
+      "text": "For the whole distance 2s covered with the uniform acceleration (a₁ + a₂)/2 starting from u, the final velocity v satisfies this.",
+      "equation": "v² = u² + 2 × (a₁ + a₂)/2 × 2s = u² + 2s(a₁ + a₂)"
+     },
+     {
+      "text": "Both expressions for the squared final velocity are the same, so the final speeds are equal.",
+      "equation": "v₂² = v² ⟹ v₂ = v",
+      "why_this_step": "Two non-negative quantities with equal squares must be equal."
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "v₂ = v, so the final velocity covering the whole distance with uniform acceleration (a₁ + a₂)/2 equals the final velocity of the two-stage motion; proved as v₂² = v² = u² + 2s(a₁ + a₂)."
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Applying v² = u² + 2 × (a₁ + a₂)/2 × s with distance s instead of full distance 2s gives u² + s(a₁ + a₂), which does not match v₂² and breaks the proof."
+     }
+    ],
+    "concept_tags": [
+     "equations of motion",
+     "v² = u² + 2as",
+     "average acceleration"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "kin_80d075e4",
+   "audit_file": "kin_80d075e4.98a4602f.json",
+   "item_sha": "98a4602f1deab150771ed519b0e2213227e95a1b632ad976b977b5523f9e0473",
+   "question_text": "An object travels along the x-axis under uniform acceleration. Its position coordinate relative to a fixed reference point is 2 m at t = 0 and becomes 0 at t = 10 s. Given that its speed momentarily drops to zero at t = 6 s, calculate its acceleration a and its velocity v at t = 10 s.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Use the zero-velocity instant at t = 6 s to relate the initial velocity to the acceleration, then use the displacement at t = 10 s to solve for both.",
+    "steps": [
+     {
+      "text": "Write velocity as v(t) = v₀ + at and use v(6) = 0 to relate v₀ and a.",
+      "equation": "v₀ = −6a"
+     },
+     {
+      "text": "Write displacement as x(t) = 2 + v₀t + ½at² and use x(10) = 0, substituting v₀ = −6a.",
+      "equation": "2 + (−6a)(10) + ½a(100) = 0 → 2 − 10a = 0"
+     },
+     {
+      "text": "Solve for a, then find v₀ and the velocity at t = 10 s.",
+      "equation": "a = 0.2 m/s², v₀ = −1.2 m/s, v(10) = −1.2 + 0.2(10) = 0.8 m/s"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "a = 0.2 m/s², v(10 s) = 0.8 m/s"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Assuming the particle starts from rest at t = 0 instead of using the given v(6 s) = 0 condition gives a = −0.04 m/s² and v(10) = −0.4 m/s, both wrong."
+     }
+    ],
+    "concept_tags": [
+     "equations of motion",
+     "constant acceleration",
+     "simultaneous equations"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_911c4a45",
+   "audit_file": "kin_911c4a45.4d60e01e.json",
+   "item_sha": "4d60e01e46012f28b39350075d19f2f206d6752e1a65c8f5f647f8fa5687245b",
+   "question_text": "Two particles begin their motion at the same instant along the x-axis. Particle 1 is initially located at x = − 10 m, moving with a speed of 4 m/s in the negative x-direction while experiencing an acceleration of 2 m/s² in the positive x-direction. Particle 2 is initially positioned at x = + 2 m, possessing an initial speed of 6 m/s in the positive x-direction and an acceleration of 2 m/s² in the negative x-direction. Determine:\n(a) The time elapsed until the particles collide.\n(b) The position coordinate (x) at which the collision occurs.",
+   "options": [],
+   "figure_description": "A horizontal x-axis displaying two particles. Particle 1 is at coordinate x = − 10 m with an initial velocity vector pointing leftward of magnitude 4 m/s and an acceleration vector pointing rightward of magnitude 2 m/s². Particle 2 is at coordinate x = + 2 m with an initial velocity vector pointing rightward of magnitude 6 m/s and an acceleration vector pointing leftward of magnitude 2 m/s².",
+   "solution": {
+    "approach": "Write the position of each particle as a function of time and solve for the time at which the two positions are equal.",
+    "steps": [
+     {
+      "text": "Write the position of particle 1, starting at x = −10 m with velocity −4 m/s and acceleration +2 m/s².",
+      "equation": "x₁(t) = −10 − 4t + t²"
+     },
+     {
+      "text": "Write the position of particle 2, starting at x = +2 m with velocity +6 m/s and acceleration −2 m/s².",
+      "equation": "x₂(t) = 2 + 6t − t²"
+     },
+     {
+      "text": "Set the two positions equal and solve the resulting quadratic for t, keeping the positive root.",
+      "equation": "−10 − 4t + t² = 2 + 6t − t² → t² − 5t − 6 = 0 → t = 6 s"
+     },
+     {
+      "text": "Substitute t = 6 s into either position equation to get the collision point.",
+      "equation": "x₁(6) = −10 − 24 + 36 = 2 m"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "(a) t = 6 s, (b) x = 2 m"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Taking t = −1 s, the other root of the quadratic, as the collision time, which is not physical since time cannot be negative."
+     },
+     {
+      "option": null,
+      "text": "Writing particle 1's acceleration term as −t² instead of +t² by keeping the sign of its velocity for the acceleration too, which changes the quadratic and its root."
+     }
+    ],
+    "concept_tags": [
+     "equations of motion",
+     "relative position",
+     "quadratic in time"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "kin_9114740a",
+   "audit_file": "kin_9114740a.0a4536ce.json",
+   "item_sha": "0a4536cef0e939cb807280e384fbe1723a04d4cad4136ed38a0387634bca62bd",
+   "question_text": "The position of an object travelling in the xy-plane changes with time t such that its coordinates are given by x = 2t and y = 10t − 16t². Determine the equation of the path followed by this object.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Eliminate time between the x and y equations to get y directly in terms of x.",
+    "steps": [
+     {
+      "text": "Write the given x and y coordinates as functions of time.",
+      "equation": "x = 2t, y = 10t − 16t²"
+     },
+     {
+      "text": "Solve the x equation for time.",
+      "equation": "t = x/2"
+     },
+     {
+      "text": "Substitute this time into the y equation and simplify.",
+      "equation": "y = 10(x/2) − 16(x/2)² = 5x − 4x²"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "y = 5x − 4x²"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Substituting t = x/2 into 16t² as 16(x/2) instead of squaring the whole bracket gives y = 5x − 8x = −3x, a wrong linear equation."
+     }
+    ],
+    "concept_tags": [
+     "projectile-like motion",
+     "trajectory equation",
+     "elimination of parameter"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "kin_82b920c1",
+   "audit_file": "kin_82b920c1.b56bff79.json",
+   "item_sha": "b56bff79257ae3ceb5616e6f963a421392bdb6e750d5649513d3f0efd3c885db",
+   "question_text": "A watch features a second hand measuring 1 cm from the pivot to the tip. Determine the magnitude of the change in velocity of this tip over a time interval of 15 s.",
+   "options": [
+    {
+     "label": "a",
+     "text": "zero"
+    },
+    {
+     "label": "b",
+     "text": "π/(30√2) cm/s"
+    },
+    {
+     "label": "c",
+     "text": "π/30 cm/s"
+    },
+    {
+     "label": "d",
+     "text": "π√2/30 cm/s"
+    }
+   ],
+   "figure_description": "",
+   "solution": {
+    "approach": "Find the constant speed of the tip, the angle it sweeps in 15 s, and then the magnitude of the vector difference between the initial and final velocity.",
+    "steps": [
+     {
+      "text": "Find the angular speed of the seconds hand and the speed of its tip.",
+      "equation": "ω = 2π/60 = π/30 rad/s, v = ωr = π/30 cm/s"
+     },
+     {
+      "text": "Find the angle swept by the tip in 15 s.",
+      "equation": "Δθ = ω × 15 = π/2, that is, 90°"
+     },
+     {
+      "text": "The velocity vector keeps the same magnitude but turns through 90°, so find the magnitude of the vector difference between two perpendicular vectors of equal length.",
+      "equation": "|Δv| = √(v² + v² − 2v² cos90°) = v√2"
+     },
+     {
+      "text": "Substitute v = π/30 cm/s to get the change in velocity.",
+      "equation": "|Δv| = (π/30) × √2 = π√2/30 cm/s"
+     }
+    ],
+    "final_answer": {
+     "option": 4,
+     "value": "π√2/30 cm/s"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Assuming that because the speed (magnitude of velocity) stays constant, the velocity itself does not change, giving zero instead of accounting for the change in direction."
+     },
+     {
+      "option": 2,
+      "text": "Using the chord formula without the factor of two, computing v sin(Δθ/2) instead of 2v sin(Δθ/2), which gives π/(30√2) cm/s."
+     }
+    ],
+    "concept_tags": [
+     "circular motion",
+     "change in velocity",
+     "vectors"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "kin_802b8247",
+   "audit_file": "kin_802b8247.9538aba5.json",
+   "item_sha": "9538aba50a8f49a5b538479e2eb90cefc76d202722d9688a0120235c3fbd328d",
+   "question_text": "A sphere is dropped from rest at the summit of a structure measuring h metre tall. If a duration of T second elapses before it hits the ground, find the location of the sphere at time T/3 second.",
+   "options": [
+    {
+     "label": "a",
+     "text": "h/9 metre from the ground"
+    },
+    {
+     "label": "b",
+     "text": "(7h/9) metre from the ground"
+    },
+    {
+     "label": "c",
+     "text": "(8h/9) metre from the ground"
+    },
+    {
+     "label": "d",
+     "text": "(17h/18) metre from the ground"
+    }
+   ],
+   "figure_description": "",
+   "solution": {
+    "approach": "Express g in terms of h and T, find the distance fallen in the first T/3, and subtract it from h.",
+    "steps": [
+     {
+      "text": "Write the total height in terms of the total fall time T, using free fall from rest.",
+      "equation": "h = ½gT² → g = 2h/T²"
+     },
+     {
+      "text": "Find the distance fallen in time T/3 using this g.",
+      "equation": "d = ½g(T/3)² = ½ × (2h/T²) × T²/9 = h/9"
+     },
+     {
+      "text": "Subtract the fallen distance from h to get the height above the ground.",
+      "equation": "h − h/9 = 8h/9"
+     }
+    ],
+    "final_answer": {
+     "option": 3,
+     "value": "(8h/9) metre from the ground"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Correctly finding the distance fallen in T/3 as h/9, but stating that distance itself as the answer instead of subtracting it from h to get the height above the ground."
+     }
+    ],
+    "concept_tags": [
+     "free fall",
+     "equations of motion",
+     "distance fallen"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "kin_8e12024e",
+   "audit_file": "kin_8e12024e.5cbc6261.json",
+   "item_sha": "5cbc626117ff7529e767ad5b8b463d19fa171d89fad292e5fc5ce6d39ece21e6",
+   "question_text": "The position-time (s−t) curve for an object traveling along a straight path is displayed in the figure.\n(a) Determine whether the velocity is positive, negative, or zero in the segments oa, ab, bc, and cd.\n(b) Determine whether the acceleration is positive, negative, or zero in each of these same four segments.",
+   "options": [],
+   "figure_description": "A displacement-time (s-t) graph where s is on the vertical axis and t is on the horizontal axis. Starting at the origin O: from O to a, the curve is concave upwards with an increasing positive slope; from a to b, the curve is a straight line with a constant positive slope; from b to c, the curve is concave downwards with a decreasing positive slope until it reaches a maximum peak at point c (where the tangent is horizontal); from c to d, the curve continues downward with an increasingly negative slope (concave downwards).",
+   "solution": {
+    "approach": "The slope of the displacement-time graph gives the sign of velocity in each region, and the way the curve bends (its concavity) gives the sign of acceleration.",
+    "steps": [
+     {
+      "text": "From O to a, the curve is concave upward and rises, so its slope is positive and increasing from zero at O.",
+      "equation": "region oa: velocity positive (zero at O, increasing), acceleration positive"
+     },
+     {
+      "text": "From a to b, the curve is a straight line with positive slope, so the velocity is positive and constant.",
+      "equation": "region ab: velocity positive and constant, acceleration zero"
+     },
+     {
+      "text": "From b to c, the curve is concave downward and still rising to a peak at c, so its slope stays positive but keeps decreasing, reaching zero at the peak.",
+      "equation": "region bc: velocity positive and decreasing to zero at c, acceleration negative"
+     },
+     {
+      "text": "From c to d, the curve falls from its peak while continuing to bend the same way as in bc, so the slope is negative and becoming more negative.",
+      "equation": "region cd: velocity negative and becoming more negative, acceleration negative"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "(a) velocity: oa positive (increasing from zero), ab positive and constant, bc positive and decreasing to zero, cd negative. (b) acceleration: oa positive, ab zero, bc negative, cd negative"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Reading a concave downward region as meaning the velocity itself is negative, rather than meaning the velocity is decreasing while the curve is still rising in region bc."
+     }
+    ],
+    "concept_tags": [
+     "displacement-time graph",
+     "sign of velocity",
+     "sign of acceleration"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_81640537",
+   "audit_file": "kin_81640537.ca27b15f.json",
+   "item_sha": "ca27b15fec30f01c1ee182e7d1b2dd941f06d831feccad897b5dc60cd09badc8",
+   "question_text": "A straight rigid rod of length l is placed such that its upper point B slides along a smooth vertical wall while its lower point A slides along a horizontal floor. If point A is drawn away from the wall to the left at a constant speed v, determine the downward speed of point B at the precise moment when the rod is inclined at an angle θ to the floor.",
+   "options": [],
+   "figure_description": "A vertical wall and a horizontal floor form a right-angled corner. A straight rod of length l connects the two surfaces, with its upper end B touching the vertical wall and its lower end A resting on the horizontal floor. Point A is moving horizontally to the left with a constant velocity vector labelled v. The angle between the rod and the ground at point A is denoted as θ.",
+   "solution": {
+    "approach": "Write the constant-length constraint between the horizontal position of A and the vertical position of B, then differentiate with respect to time.",
+    "steps": [
+     {
+      "text": "Let x be the horizontal distance of A from the corner and y be the height of B on the wall. The rod length is fixed.",
+      "equation": "x² + y² = l², with x = l cos θ, y = l sin θ"
+     },
+     {
+      "text": "Differentiate the constraint with respect to time.",
+      "equation": "2x(dx/dt) + 2y(dy/dt) = 0 ⟹ x(dx/dt) + y(dy/dt) = 0"
+     },
+     {
+      "text": "End A moves away from the wall at the given constant speed v, so dx/dt = v. Substitute x = l cos θ and y = l sin θ.",
+      "equation": "(l cos θ)(v) + (l sin θ)(dy/dt) = 0"
+     },
+     {
+      "text": "Solve for dy/dt.",
+      "equation": "dy/dt = −v cos θ / sin θ = −v cot θ",
+      "why_this_step": "The negative sign shows y is decreasing, meaning B moves downward at this rate."
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "The velocity of end B is v cot θ, directed downward."
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Differentiating x = l cos θ and y = l sin θ but mismatching which trigonometric ratio goes with dx/dt gives v tan θ instead of the correct v cot θ."
+     }
+    ],
+    "concept_tags": [
+     "related rates",
+     "constraint motion",
+     "differentiation with respect to time"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "kin_8241ba1f",
+   "audit_file": "kin_8241ba1f.2cb08187.json",
+   "item_sha": "2cb08187211bdd0ad2e0b692fd05642496298ac9b9fc02e889ca8f42a4137302",
+   "question_text": "Derive the kinematic formula for the distance traveled by an object during its t-th second of motion under constant acceleration, given by sₜ = u + at − ½ a, where u represents the initial velocity and a is the uniform acceleration.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Write the total distance covered up to n seconds and up to (n − 1) seconds, and subtract to get the distance in the nth second.",
+    "steps": [
+     {
+      "text": "Here t stands for the number of the second being counted, that is n, a whole number of seconds; write the total distance covered from rest of motion up to n seconds using the standard distance equation.",
+      "equation": "Sₙ = un + ½an²"
+     },
+     {
+      "text": "Write the same equation for one second earlier, up to (n − 1) seconds.",
+      "equation": "Sₙ₋₁ = u(n − 1) + ½a(n − 1)²"
+     },
+     {
+      "text": "The distance covered during the nth second alone is the difference of these two totals.",
+      "equation": "sₙ = Sₙ − Sₙ₋₁"
+     },
+     {
+      "text": "Expand and simplify the difference.",
+      "equation": "sₙ = u[n − (n − 1)] + ½a[n² − (n − 1)²] = u + ½a(2n − 1)"
+     },
+     {
+      "text": "Write ½a(2n − 1) as an − ½a to reach the required form.",
+      "equation": "sₙ = u + an − ½a",
+      "why_this_step": "This is exactly sₜ = u + at − ½a once t is read as the second number n."
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "sₜ = u + at − ½a, proved by subtracting the distance covered up to (t − 1) seconds from the distance covered up to t seconds"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Substituting t directly into s = ut + ½at² and calling the result the distance in the tth second, which gives the total distance up to time t, not the distance during that one second."
+     },
+     {
+      "option": null,
+      "text": "Expanding (n − 1)² as n² − 1 instead of n² − 2n + 1, which drops the −2n term and changes the coefficient of a."
+     }
+    ],
+    "concept_tags": [
+     "equations of motion",
+     "distance in nth second"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_8399119e",
+   "audit_file": "kin_8399119e.821aae3b.json",
+   "item_sha": "821aae3bbacbff66541c9c5c1143e663a864e9de3462a97982efe8fb98ffd3f8",
+   "question_text": "A particle travels along a straight path such that its speed depends on its position coordinate s through the relation v = √(4 + 4s) m/s. Given that the particle is located at s = 0 at time t = 0, calculate its position coordinate at t = 2 s.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Separate variables in v = ds/dt = √(4 + 4s), integrate both sides from the given start, and evaluate the resulting displacement at t = 2 s.",
+    "steps": [
+     {
+      "text": "Write velocity as the derivative of displacement and separate the variables.",
+      "equation": "ds/dt = √(4+4s) ⟹ ds/√(4+4s) = dt"
+     },
+     {
+      "text": "Integrate the left side from s = 0 to s and the right side from t = 0 to t.",
+      "equation": "∫₀ˢ ds/√(4+4s) = ∫₀ᵗ dt ⟹ √(s+1) − 1 = t"
+     },
+     {
+      "text": "Solve for s as a function of t.",
+      "equation": "√(s+1) = t+1 ⟹ s+1 = (t+1)² ⟹ s = t² + 2t"
+     },
+     {
+      "text": "Substitute t = 2 s to get the displacement.",
+      "equation": "s(2) = 2² + 2×2 = 4 + 4 = 8 m",
+      "why_this_step": "This is the closed-form displacement evaluated at the requested time."
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "8 m"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Treating v = √(4+4s) as v = √(4+4t) and integrating with respect to time directly, ds = √(4+4t)dt, gives a wrong displacement of about 5.6 m at t = 2 s instead of 8 m."
+     }
+    ],
+    "concept_tags": [
+     "variable velocity",
+     "separation of variables",
+     "displacement from velocity-displacement relation"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  }
+ ]
+}

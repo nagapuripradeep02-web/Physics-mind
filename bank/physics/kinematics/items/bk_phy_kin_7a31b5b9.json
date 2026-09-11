@@ -1,0 +1,83 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_7a31b5b9",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "numerical",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "The position of an object travelling across the xy-plane is given as a function of time by x = 2t² and y = t³, where coordinates x and y are measured in metres and time t is in seconds. Determine the average acceleration of the object over the duration from t = 0 to t = 2 s.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "motion in the xy-plane",
+   "x = 2t² (metres)",
+   "y = t³ (metres)",
+   "t is measured in seconds",
+   "time interval from t = 0 to t = 2 s"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Differentiate the coordinates to get the velocity components, then find the average acceleration from the change in velocity over the time interval.",
+  "steps": [
+   {
+    "text": "Differentiate x and y with respect to time to get the velocity components.",
+    "equation": "vₓ = dx/dt = 4t, v_y = dy/dt = 3t²"
+   },
+   {
+    "text": "Evaluate the velocity components at t = 0 and t = 2 s.",
+    "equation": "at t=0: vₓ=0, v_y=0; at t=2: vₓ=8 m/s, v_y=12 m/s"
+   },
+   {
+    "text": "Divide the change in each velocity component by the time interval.",
+    "equation": "aₓ = 8/2 = 4 m/s², a_y = 12/2 = 6 m/s²"
+   },
+   {
+    "text": "Combine the components as a vector and find the magnitude.",
+    "equation": "a_avg = (4î + 6ĵ) m/s², |a_avg| = √(4² + 6²) = 2√13 ≈ 7.21 m/s²"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "a_avg = (4î + 6ĵ) m/s², magnitude ≈ 7.21 m/s² (2√13 m/s²)"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Finding the instantaneous acceleration aₓ=4, a_y=6t at t=2 s instead of averaging, giving (4î + 12ĵ) m/s²."
+   }
+  ],
+  "concept_tags": [
+   "average acceleration",
+   "differentiation of position",
+   "two-dimensional motion"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "3e4d3273752d8d146667b263f80ba79f83033ea2d8f74710c0e5946b70d2ec19"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "6bc1a8ee0d47e6de54139bd9f7214d450a9c174c21f9bb7518944335cab4b186",
+  "audited_by": "W01-U-kin-02"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-01",
+  "at": "2026-09-11T15:09:00+05:30"
+ }
+}

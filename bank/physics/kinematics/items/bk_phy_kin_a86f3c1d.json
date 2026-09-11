@@ -1,0 +1,86 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_a86f3c1d",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "The position (x) as a function of time (t) for a body constrained to travel along a straight line is described as follows: from t = 0 to 4 s, the position is steady at x = 4 m; between t = 4 s and t = 10 s, it decreases at a steady rate, passing through x = 0 at t = 6 s to reach x = −8 m at t = 10 s; from t = 10 s to t = 14 s, it increases at a constant rate until reaching x = 0 at t = 14 s. Construct the corresponding velocity-time (v-t) plot for this interval.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "motion along x-axis",
+   "piecewise linear position-time profile"
+  ],
+  "figure": {
+   "description": "An x-t graph showing position x (in meters) on the vertical axis against time t (in seconds) on the horizontal axis. The graph consists of three straight-line segments: a horizontal line at x = 4 m from t = 0 to 4 s; a downward sloping line connecting (4 s, 4 m) through (6 s, 0 m) to (10 s, −8 m); and an upward sloping line connecting (10 s, −8 m) to (14 s, 0 m)."
+  }
+ },
+ "solution": {
+  "approach": "Find the slope of each straight segment of the x-t graph; that slope is the constant velocity for the corresponding v-t segment.",
+  "steps": [
+   {
+    "text": "From t = 0 to 4 s, x stays constant at 4 m, so the slope, and hence the velocity, is zero.",
+    "equation": "v = (4 − 4)/(4 − 0) = 0"
+   },
+   {
+    "text": "From t = 4 to 10 s, x falls in a straight line from 4 m to −8 m, so the velocity is the constant slope of that line.",
+    "equation": "v = (−8 − 4)/(10 − 4) = −2 m/s"
+   },
+   {
+    "text": "From t = 10 to 14 s, x rises in a straight line from −8 m to 0, so the velocity is the constant slope of that line.",
+    "equation": "v = (0 − (−8))/(14 − 10) = 2 m/s"
+   },
+   {
+    "text": "The v-t graph is therefore three horizontal steps: v = 0 from 0 to 4 s, v = −2 m/s from 4 to 10 s, v = 2 m/s from 10 to 14 s.",
+    "equation": "v(t): 0 m/s, then −2 m/s, then 2 m/s"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "v = 0 for 0–4 s, v = −2 m/s for 4–10 s, v = 2 m/s for 10–14 s"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Reading the middle segment's velocity using the crossing point at t = 6 s instead of the interval from 4 to 10 s gives the same slope but a shortened interval on the v-t plot."
+   },
+   {
+    "option": null,
+    "text": "Giving the last segment's velocity as −2 m/s by keeping the sign of the previous segment instead of recomputing the slope, which is actually positive."
+   }
+  ],
+  "concept_tags": [
+   "position-time graph",
+   "velocity from slope",
+   "piecewise motion"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "be7e68b7c8465c193b3f0cdc53fe3555d65734106b179237d89712febe30e1b9"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "3bdef9dd0be49952f9fe40c2acb5be0564ab7e75b0b8af4021511bbcdd63dd3f",
+  "audited_by": "W01-U-kin-09"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-03",
+  "at": "2026-09-11T15:30:00+05:30"
+ }
+}

@@ -1,0 +1,106 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_9552bcc7",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A river has a width of 30 m and flows with a speed of 4 m/s. A boatman can row at a speed of 5 m/s in still water.",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "Sketch the velocity vector diagram corresponding to crossing the river in the minimum possible time. Calculate this minimum duration, the resultant speed of the boatman relative to the ground, and the distance drifted downstream."
+   },
+   {
+    "label": "b",
+    "asks": "Determine whether the boatman can arrive at a point directly opposite the initial location on the opposite bank. If it is possible, provide the velocity diagram, the direction in which the boat must be steered, and the time taken for this crossing."
+   },
+   {
+    "label": "c",
+    "asks": "Find the total time required for the boatman to travel a distance of 10 m upstream and then row back to the starting location."
+   }
+  ],
+  "conditions": [
+   "width of river = 30 m",
+   "flow speed of river = 4 m/s",
+   "speed of boatman relative to water = 5 m/s"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "For shortest time row straight across; for reaching the point directly opposite, angle the boat upstream so the along-river components cancel.",
+  "steps": [
+   {
+    "text": "For the shortest time, row the boat straight across the river, perpendicular to the bank, using the full rowing speed to cross.",
+    "equation": "t₁ = width / v_br = 30 / 5 = 6 s"
+   },
+   {
+    "text": "The net velocity of the boatman is the vector sum of the across and along components, and the drift is the along part times the time.",
+    "equation": "v_net = √(5² + 4²) = √41 ≈ 6.4 m/s, drift = 4 × 6 = 24 m"
+   },
+   {
+    "text": "To land directly opposite, the boat must be rowed upstream at an angle θ so its along-river component cancels the river current.",
+    "equation": "sin θ = v_r / v_br = 4/5, θ = 53°"
+   },
+   {
+    "text": "The resulting net speed across the river is the rowing speed times cos θ, and the crossing time follows.",
+    "equation": "v_b = 5 cos 53° = 3 m/s, t₂ = 30 / 3 = 10 s"
+   },
+   {
+    "text": "Rowing 10 m up the stream and back uses the speeds relative to the ground on each leg, since the boat moves along the river direction.",
+    "equation": "t₃ = 10 / (5 − 4) + 10 / (5 + 4) = 10 + 10/9"
+   },
+   {
+    "text": "Add the two times together for the total time up and back.",
+    "equation": "t₃ = 100/9 s ≈ 11.1 s"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) t = 6 s, net velocity ≈ 6.4 m/s, drift = 24 m; (b) yes, row at 53° to the perpendicular (upstream) with t = 10 s; (c) t ≈ 11.1 s"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Using 5 + 4 = 9 m/s for the upstream-and-back leg speeds instead of 5 − 4 and 5 + 4 separately gives a wrong total time."
+   },
+   {
+    "option": null,
+    "text": "Taking the net velocity for shortest-time crossing as only 5 m/s, ignoring the river current, gives a wrong resultant speed."
+   }
+  ],
+  "concept_tags": [
+   "relative velocity",
+   "river crossing",
+   "vector resolution"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "037428f93eb9dcaa1414eba4a7622916f65d8db028888bd815531a045c82648d"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "ec40815a97a1c86e3050e6f375297d67c78dbfe49e3359c4efb7d324e16bf693",
+  "audited_by": "W01-U-kin-01"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-03",
+  "at": "2026-09-11T15:30:00+05:30"
+ }
+}

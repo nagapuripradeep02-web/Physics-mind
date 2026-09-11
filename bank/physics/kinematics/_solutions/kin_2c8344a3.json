@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_2c8344a3",
+ "approach": "Read the acceleration in each of the three time segments, find the velocity at each segment boundary, and add the distance covered in each segment.",
+ "steps": [
+  {"text": "From t = 0 to 4 s, acceleration is 2 ms⁻² from rest. Find the velocity and distance covered by the end of this segment.", "equation": "v(4) = 0 + 2(4) = 8 ms⁻¹, d₁ = ½(2)(4)² = 16 m"},
+  {"text": "From t = 4 to 8 s, acceleration is 0, so the lift moves at the constant velocity 8 ms⁻¹. Find the distance covered.", "equation": "d₂ = 8 × 4 = 32 m"},
+  {"text": "From t = 8 to 12 s, acceleration is −2 ms⁻². Check that the lift comes to rest exactly at t = 12 s.", "equation": "v(12) = 8 − 2(4) = 0"},
+  {"text": "Find the distance covered while the velocity falls from 8 ms⁻¹ to 0 over this last segment.", "equation": "d₃ = 8(4) + ½(−2)(4)² = 32 − 16 = 16 m"},
+  {"text": "Add the three distances to get the total height above the starting point.", "equation": "16 + 32 + 16 = 64 m"}
+ ],
+ "final_answer": {"option": 2, "value": "64 m"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 3, "text": "Treating zero acceleration in the middle segment as zero velocity, so skipping the 32 m travelled at constant speed and adding only the first and last segments: 16 + 16 = 32 m."}
+ ],
+ "concept_tags": ["acceleration-time graph", "equations of motion", "area under a graph"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-09", "at": "2026-09-11T15:06:00+05:30"}
+}

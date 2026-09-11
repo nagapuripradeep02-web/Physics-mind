@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_258f5b72",
+ "approach": "Eliminate t between the two coordinates to get the path, then differentiate each coordinate once for velocity and again for acceleration.",
+ "steps": [
+  {"text": "The coordinates are x = 2t and y = t². Solve the first for t and substitute into the second.", "equation": "t = x/2, y = (x/2)² = x²/4"},
+  {"text": "This is the equation of the path traced by the particle.", "equation": "y = x²/4, a parabola"},
+  {"text": "Differentiate x and y with respect to t to get the velocity components.", "equation": "vₓ = dx/dt = 2 ms⁻¹, v_y = dy/dt = 2t ms⁻¹"},
+  {"text": "The velocity vector and its magnitude follow from these components.", "equation": "v = √(vₓ² + v_y²) = √(4 + 4t²) = 2√(1 + t²) ms⁻¹"},
+  {"text": "Differentiate the velocity components again to get the acceleration.", "equation": "aₓ = dvₓ/dt = 0, a_y = dv_y/dt = 2 ms⁻², so acceleration is 2 ms⁻² along y, constant for all t"}
+ ],
+ "final_answer": {"option": null, "value": "(a) y = x²/4 (a parabola), (b) velocity has components vₓ = 2 ms⁻¹, v_y = 2t ms⁻¹, magnitude 2√(1+t²) ms⁻¹, (c) acceleration is constant, 2 ms⁻² along y, at every time t"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Writing the trajectory as y = t² without eliminating t, which leaves the path expressed in terms of time instead of in terms of x and y."}
+ ],
+ "concept_tags": ["motion in a plane", "trajectory", "differentiation of position"],
+ "difficulty": "easy",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-10", "at": "2026-09-11T14:10:00+05:30"}
+}

@@ -1,0 +1,82 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_67d955b6",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "numerical",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "The position of an object travelling along the x-axis depends on time according to the equation X = 2t² + 4t − 6, where X is measured in metres and t in seconds. Determine the average velocity of the object from t = 0 to t = 2 s.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "motion along x-axis",
+   "position-time relation is X = 2t² + 4t − 6",
+   "X is in metres",
+   "t is in seconds",
+   "time interval from t = 0 to t = 2 s"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Average velocity over an interval is the change in position divided by the change in time.",
+  "steps": [
+   {
+    "text": "Find the position at the two given times.",
+    "equation": "X(0) = 2(0)² + 4(0) − 6 = −6 m, X(2) = 2(2)² + 4(2) − 6 = 10 m"
+   },
+   {
+    "text": "Divide the change in position by the change in time.",
+    "equation": "v_avg = (10 − (−6)) / (2 − 0) = 16/2"
+   },
+   {
+    "text": "State the result.",
+    "equation": "v_avg = 8 m/s"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "8 m/s"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Computing the instantaneous velocity dX/dt = 4t + 4 at t = 2 s and calling it the average velocity, giving 12 m/s."
+   },
+   {
+    "option": null,
+    "text": "Dividing X(2) alone by 2 as if the particle started from zero, giving 10/2 = 5 m/s."
+   }
+  ],
+  "concept_tags": [
+   "average velocity",
+   "kinematics from a position function"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "8ab0e0126867c30fd838491ef20012d240649a34562d4794bc49c8727f57061e"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "c63f3cc74593d6c0d64a0624104da23c0b5e325046f7a8c53ad0aab92c1962f7",
+  "audited_by": "W01-U-kin-06"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-01",
+  "at": "2026-09-11T15:08:00+05:30"
+ }
+}

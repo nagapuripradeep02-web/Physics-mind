@@ -1,0 +1,849 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter": "kinematics",
+ "slice": 7,
+ "round": 0,
+ "agent_label": "W01-U-kin-07",
+ "items": [
+  {
+   "question_id": "kin_9ee5a9e8",
+   "audit_file": "kin_9ee5a9e8.395ce58f.json",
+   "item_sha": "395ce58fa248619309ea39faf641f5eb1252f6ea901d335277c7de6432df50e0",
+   "question_text": "A person uses a boat to travel across a flowing river to the opposite bank. To cross in the least possible time, the journey takes 10 min, resulting in a downstream displacement of 120 m. If the crossing is instead made along the shortest possible route straight across the stream, the trip takes 12.5 min. Calculate the following quantities:\n(a) the river's width\n(b) the boat's velocity relative to the water\n(c) the flow speed of the current",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "The minimum-time crossing uses the boat's full speed across the bank; the shortest-path crossing uses the speed left after cancelling the current, giving two equations for width and boat speed.",
+    "steps": [
+     {
+      "text": "In the minimum-time crossing the boat heads straight across, so the width equals boat speed times 10 min, and the current speed follows from the drift in that same time.",
+      "equation": "d = v_b × 10 min; v_r = 120 m / 10 min = 12 m/min"
+     },
+     {
+      "text": "In the shortest-path crossing the boat angles upstream so its resultant path is straight across; the effective crossing speed is reduced by the current.",
+      "equation": "d = 12.5 min × √(v_b² − 12²)"
+     },
+     {
+      "text": "Equate the two expressions for the width and solve for the boat speed.",
+      "equation": "10 v_b = 12.5√(v_b² − 144) ⇒ 16 v_b² = 25 v_b² − 3600 ⇒ v_b = 20 m/min"
+     },
+     {
+      "text": "Substitute the boat speed back to find the width, and state all three results.",
+      "equation": "d = 10 min × 20 m/min = 200 m; v_b = 20 m/min ≈ 0.33 m/s; v_r = 12 m/min = 0.2 m/s"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "(a) width = 200 m, (b) boat speed relative to water = 20 m/min ≈ 0.33 m/s, (c) current speed = 12 m/min = 0.2 m/s"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Dividing the 120 m drift by the 12.5 min shortest-path time instead of the 10 min minimum-time gives a wrong current speed of 9.6 m/min instead of 12 m/min."
+     },
+     {
+      "option": null,
+      "text": "Writing the shortest-path speed as v_b − v_r instead of √(v_b² − v_r²) gives a wrong boat speed of 60 m/min."
+     }
+    ],
+    "concept_tags": [
+     "river-boat problem",
+     "minimum time crossing",
+     "shortest path crossing"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "kin_954e4971",
+   "audit_file": "kin_954e4971.415d9200.json",
+   "item_sha": "415d92002af9cda94b345af908e41a1a8694ffd9e0395bfe75591b8809ee54d8",
+   "question_text": "An elevator is ascending vertically with an upward acceleration equal to g/2. A rock is dropped from inside this lift. Immediately after it is let go, determine the acceleration of the rock.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Once the stone leaves the elevator, the elevator's support force is gone and only gravity acts on it.",
+    "steps": [
+     {
+      "text": "Before release, the stone moves with the elevator, which has acceleration g/2 upward, because the elevator floor pushes on the stone.",
+      "equation": "a (with elevator) = g/2 upward"
+     },
+     {
+      "text": "At the instant of release, the stone loses contact with the elevator, so the elevator's push on it becomes zero."
+     },
+     {
+      "text": "The only force left on the stone is its own weight, so apply Newton's second law to the stone alone.",
+      "equation": "a = F_net/m = mg/m = g"
+     },
+     {
+      "text": "The acceleration of the stone just after release is g, directed vertically downward.",
+      "why_this_step": "Once contact is lost, the stone's later motion no longer depends on how the elevator was moving."
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "g, directed vertically downward"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Assuming the stone keeps the elevator's acceleration g/2 upward after release, forgetting that this required the elevator's push, which is gone."
+     },
+     {
+      "option": null,
+      "text": "Subtracting the elevator's acceleration from g to get g/2 downward, treating the elevator's motion as if it still acted on the released stone."
+     }
+    ],
+    "concept_tags": [
+     "free fall",
+     "Newton's second law",
+     "elevator problem"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_9e4b45c9",
+   "audit_file": "kin_9e4b45c9.8b427798.json",
+   "item_sha": "8b42779845f807d3340bcf64f6640f2327ebd0d7e0ec4dacd95eaf72b3433bcc",
+   "question_text": "A pair of identical balls are launched straight up along the same vertical path, each with an initial speed of 40 ms⁻¹. If the second ball is released 2 s after the first, find the height above the launch point where they collide. (Take g = 10 ms⁻²)",
+   "options": [
+    {
+     "label": "a",
+     "text": "50 m"
+    },
+    {
+     "label": "b",
+     "text": "75 m"
+    },
+    {
+     "label": "c",
+     "text": "100 m"
+    },
+    {
+     "label": "d",
+     "text": "125 m"
+    }
+   ],
+   "figure_description": "",
+   "solution": {
+    "approach": "Write the height of each ball measured from the moment each is launched, and set the two heights equal at the collision instant.",
+    "steps": [
+     {
+      "text": "Let t be the time measured from when the first ball is launched. Write its height.",
+      "equation": "y₁ = 40t − ½(10)t² = 40t − 5t²"
+     },
+     {
+      "text": "The second ball is launched 2 s later with the same initial velocity. Write its height for t ≥ 2 s.",
+      "equation": "y₂ = 40(t − 2) − 5(t − 2)²"
+     },
+     {
+      "text": "Set the two heights equal, since the balls collide at the same height, and solve for t.",
+      "equation": "40t − 5t² = 40(t − 2) − 5(t − 2)² → 20t = 100 → t = 5 s"
+     },
+     {
+      "text": "Substitute t = 5 s into the first ball's height to get the collision height.",
+      "equation": "y₁ = 40(5) − 5(5)² = 200 − 125 = 75 m"
+     }
+    ],
+    "final_answer": {
+     "option": 2,
+     "value": "75 m"
+    },
+    "common_mistakes": [],
+    "concept_tags": [
+     "vertical projectile motion",
+     "delayed launch",
+     "equations of motion"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "kin_a733f418",
+   "audit_file": "kin_a733f418.73980704.json",
+   "item_sha": "7398070446da89d7efaf277b20fe2a925b75e54ff826612812abe57fd6799bd1",
+   "question_text": "The relationship between the speed v (in m s⁻¹) and the position s (in metres) of a body travelling along a straight track is given by v = 5√(1 + s). Choose the correct statement among the following.",
+   "options": [
+    {
+     "label": "a",
+     "text": "The body is at rest at the start"
+    },
+    {
+     "label": "b",
+     "text": "The initial speed is 5 m s⁻¹ and the body undergoes a constant acceleration of 12.5 m s⁻²"
+    },
+    {
+     "label": "c",
+     "text": "The body continues to move at a constant speed"
+    },
+    {
+     "label": "d",
+     "text": "None of the above"
+    }
+   ],
+   "figure_description": "",
+   "solution": {
+    "approach": "Square the velocity-displacement equation and differentiate with respect to displacement to get the acceleration, then check the velocity at s = 0.",
+    "steps": [
+     {
+      "text": "Write the given relation and square both sides.",
+      "equation": "v = 5√(1 + s) → v² = 25 + 25s"
+     },
+     {
+      "text": "Use a = v dv/ds = d(v²/2)/ds to find the acceleration.",
+      "equation": "a = 25/2 = 12.5 ms⁻²",
+      "why_this_step": "This form avoids differentiating the square root directly and gives acceleration straight from v²."
+     },
+     {
+      "text": "Find the velocity at s = 0, the start of the motion.",
+      "equation": "v(0) = 5√1 = 5 ms⁻¹"
+     },
+     {
+      "text": "The particle starts at 5 ms⁻¹ and its acceleration stays 12.5 ms⁻² for every s, so it is a constant acceleration.",
+      "equation": "v(0) = 5 ms⁻¹, a = 12.5 ms⁻²"
+     }
+    ],
+    "final_answer": {
+     "option": 2,
+     "value": "Initially velocity of the particle is 5 m/s and the particle has a constant acceleration of 12.5 ms⁻²"
+    },
+    "common_mistakes": [],
+    "concept_tags": [
+     "velocity-displacement relation",
+     "a = v dv/ds"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_9a86f81d",
+   "audit_file": "kin_9a86f81d.4bcec70d.json",
+   "item_sha": "4bcec70dcd1cbb10d026254e408060d3bd92a1c347ba316c515a55ed2d45402b",
+   "question_text": "An aircraft needs to fly from location A to a destination B, which lies 500 km away along a line 30° east of north. A constant wind blows directly northward at 20 m/s. The speed of the aircraft relative to the air is 150 m/s.\n(a) Determine the heading direction the pilot must steer the aircraft so as to reach destination B directly.\n(b) Calculate the total duration needed for the aircraft to travel from A to B.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "The wind's component across AB must be cancelled by an opposite component of the plane's airspeed; this fixes the heading, and the remaining along-path components give the ground speed.",
+    "steps": [
+     {
+      "text": "The wind blows due north while AB is 30° east of north, so resolve the wind across the path AB.",
+      "equation": "wind across AB = 20 sin30° = 10 m/s"
+     },
+     {
+      "text": "For the plane to travel exactly along AB, the component of its 150 m/s airspeed across AB must cancel this 10 m/s, which fixes the angle between the heading and AB.",
+      "equation": "150 sinθ = 10 m/s ⇒ θ = sin⁻¹(1/15) ≈ 3.8°"
+     },
+     {
+      "text": "The pilot must head 3.8° to the east of the line AB, so the heading is 30° + 3.8° = 33.8° east of north.",
+      "why_this_step": "Flying straight along AB with no correction would drift the plane west of B, since north (the wind direction) lies west of AB; aiming further east compensates for this."
+     },
+     {
+      "text": "Find the ground speed by adding the along-AB components of the airspeed and the wind, since their across-AB components have cancelled.",
+      "equation": "v_ground = 150 cosθ + 20 cos30° ≈ 149.7 + 17.3 = 167.0 m/s"
+     },
+     {
+      "text": "Divide the 500 km distance by the ground speed to get the time, and state both results.",
+      "equation": "t = 500000 m / 167.0 m/s ≈ 2994 s ≈ 49.9 min; heading is 3.8° east of AB (bearing ≈ N33.8°E), time ≈ 49.9 min"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "(a) Head the plane 3.8° east of the line AB, i.e. along bearing N33.8°E, (b) about 2994 s ≈ 49.9 minutes"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Adding the wind speed directly to the steering speed, ignoring the 30° angle between the wind and AB, gives a ground speed of 170 m/s and a shorter time of about 2941 s."
+     },
+     {
+      "option": null,
+      "text": "Setting sinθ = 20/150 instead of resolving the wind across AB first gives a wrong heading of about 37.7° east of north instead of 33.8°."
+     }
+    ],
+    "concept_tags": [
+     "relative velocity",
+     "crosswind triangle",
+     "vector resolution"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "kin_a1895039",
+   "audit_file": "kin_a1895039.6e7d8959.json",
+   "item_sha": "6e7d8959bce3bf3204c43b91187f7156d88e691470c5f34b0130ffbf380df9f7",
+   "question_text": "An automobile travels along a straight line under uniform acceleration. It takes 6.00 s to travel the 60.0 m separation between two specific locations, reaching a speed of 15.0 m/s at the second location.\n(a) Calculate the speed of the automobile as it clears the initial point.\n(b) Determine the magnitude of its acceleration.\n(c) Find the distance behind the initial point at which the automobile was at rest.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Use the average of the two end speeds to find the first speed, then the definition of acceleration, then v² = u² + 2as backward to the point of rest.",
+    "steps": [
+     {
+      "text": "For constant acceleration, average velocity equals the average of the initial and final speeds; find it from the distance and time given.",
+      "equation": "v_avg = 60/6 = 10 m/s"
+     },
+     {
+      "text": "Solve for the speed at the first point using v_avg = (v₁ + v₂)/2.",
+      "equation": "(a) v₁ = 2(10) − 15 = 5.00 m/s"
+     },
+     {
+      "text": "Find the acceleration from the change in speed over the 6.00 s.",
+      "equation": "(b) a = (15.0 − 5.00)/6.00 = 5/3 ≈ 1.67 m/s²"
+     },
+     {
+      "text": "Use v₁² = 2a·d to find the distance travelled from rest to the first point.",
+      "equation": "(c) d = v₁²/(2a) = 25.0/(10/3) = 7.50 m"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "(a) 5.00 m/s, (b) 5/3 m/s² ≈ 1.67 m/s², (c) 7.50 m"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Treating the distance divided by time, 60/6 = 10 m/s, as the speed at the first point instead of the average speed over the interval gives the wrong value for part (a)."
+     }
+    ],
+    "concept_tags": [
+     "equations of motion",
+     "average velocity",
+     "constant acceleration"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_95f3ce01",
+   "audit_file": "kin_95f3ce01.c88bdd79.json",
+   "item_sha": "c88bdd7949b7988acf03e7e4384ca2c48ea0f49d85e951ad30fb7a1caff7c60e",
+   "question_text": "Assertion: One object is released from rest at an elevation h while simultaneously a second object is launched straight upwards with a velocity of √(gh). The two objects will cross each other at an altitude of h/2.\nReason: Each of the two objects requires an identical duration of time to reach the vertical level h/2.",
+   "options": [
+    {
+     "label": "a",
+     "text": "Both Assertion and Reason are true, and Reason is the correct explanation of Assertion."
+    },
+    {
+     "label": "b",
+     "text": "Both Assertion and Reason are true, but Reason is not the correct explanation of Assertion."
+    },
+    {
+     "label": "c",
+     "text": "Assertion is true, but Reason is false."
+    },
+    {
+     "label": "d",
+     "text": "Assertion is false, but Reason is true."
+    }
+   ],
+   "figure_description": "",
+   "solution": {
+    "approach": "Write the height above ground for both bodies as functions of time, find when they add up to h, and check that each independently reaches h/2 at that same time.",
+    "steps": [
+     {
+      "text": "Write the height above ground for the dropped body and the thrown-up body.",
+      "equation": "y_A(t) = h − ½gt², y_B(t) = √(gh)t − ½gt²"
+     },
+     {
+      "text": "The bodies meet when their heights above ground are equal.",
+      "equation": "h − ½gt² = √(gh)t − ½gt² → t = √(h/g)"
+     },
+     {
+      "text": "Substitute this time into y_B to find the meeting height.",
+      "equation": "y_B(√(h/g)) = h − h/2 = h/2, so the meeting height is h/2"
+     },
+     {
+      "text": "Find the time for the dropped body alone to fall a distance h/2, and the time for the thrown-up body alone to first rise to height h/2.",
+      "equation": "both give t = √(h/g)"
+     },
+     {
+      "text": "Both statements are individually true, and the equal time for the two bodies to reach h/2 is exactly why they meet there, so the Reason correctly explains the Assertion.",
+      "equation": "final answer: option (a)"
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "Both Assertion and Reason are true and the Reason is the correct explanation of the Assertion."
+    },
+    "common_mistakes": [],
+    "concept_tags": [
+     "free fall",
+     "relative motion",
+     "equations of motion"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_9c7ad521",
+   "audit_file": "kin_9c7ad521.ae8a766b.json",
+   "item_sha": "ae8a766b98896cf430c3afaaed0a0638a3748d3721c0796446c8307a644d2882",
+   "question_text": "Water in a river of width 30 m flows downstream at a constant speed of 2 m/s. A boatman steers his boat at 5 m/s relative to the water, maintaining an angle of 37° with the direction of the river flow. Determine:\n(a) The time taken by the boatman to cross over to the opposite bank.\n(b) The total downstream drift of the boatman upon reaching the opposite bank.",
+   "options": [],
+   "figure_description": "A river of width 30 m flows horizontally to the right with speed 2 m/s. A boat's velocity vector of magnitude 5 m/s is oriented at an angle of 37° above the horizontal downstream direction. Its components are 4 m/s along the stream (plus the 2 m/s river speed, making 6 m/s horizontally) and 3 m/s perpendicular across the stream.",
+   "solution": {
+    "approach": "Split the rowing velocity into a part across the river and a part along it, then add the river current to the along part.",
+    "steps": [
+     {
+      "text": "Resolve the rowing velocity of 5 m/s at 37° into a part across the river and a part along the river.",
+      "equation": "v_across = 5 sin 37° = 3 m/s, v_along = 5 cos 37° = 4 m/s"
+     },
+     {
+      "text": "Only the across part carries the boat over the width of 30 m, so use it to find the crossing time.",
+      "equation": "t = 30 / 3 = 10 s"
+     },
+     {
+      "text": "Add the river current to the along part to get the total speed along the bank, then multiply by the time to get the drift.",
+      "equation": "v_drift = 4 + 2 = 6 m/s, drift = 6 × 10 = 60 m"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "(a) 10 s, (b) 60 m"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Using the full 5 m/s instead of only the across component 3 m/s gives a crossing time of 6 s."
+     },
+     {
+      "option": null,
+      "text": "Forgetting to add the river current to the along component gives a drift of 40 m instead of 60 m."
+     }
+    ],
+    "concept_tags": [
+     "relative velocity",
+     "river crossing",
+     "vector resolution"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "kin_a2064d30",
+   "audit_file": "kin_a2064d30.99b28d79.json",
+   "item_sha": "99b28d79dad73e1441dc577a123e8ca57468c139e04afa049d0177769e372f44",
+   "question_text": "An object travels along a straight path having a starting velocity u and experiencing a uniform acceleration a. Determine its average velocity over the duration between t = 0 and t = t seconds.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Average velocity is the total displacement in the interval divided by the time, so write the displacement using the standard equation and divide by t.",
+    "steps": [
+     {
+      "text": "Write the displacement from 0 to time t using the standard equation of motion with constant acceleration a.",
+      "equation": "s = ut + ½at²"
+     },
+     {
+      "text": "Average velocity over the interval is this displacement divided by the time taken.",
+      "equation": "v_avg = s/t = (ut + ½at²)/t"
+     },
+     {
+      "text": "Cancel t from each term to reach the simplest form.",
+      "equation": "v_avg = u + ½at",
+      "why_this_step": "This also equals the mean of the initial and final velocities, (u + v)/2, since v = u + at."
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "v_avg = u + ½at"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Taking the average velocity as u, the initial velocity, ignoring that the velocity keeps changing at rate a over the interval."
+     }
+    ],
+    "concept_tags": [
+     "average velocity",
+     "equations of motion"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_9d4d798f",
+   "audit_file": "kin_9d4d798f.75a9f24b.json",
+   "item_sha": "75a9f24b253724e8e006545aab63023e6c0d79bcd6daf1fa5829270944af477c",
+   "question_text": "The motion of a particle traveling along the x-axis is described by a velocity-time graph. At t = 0 s, the position of the particle is x = 10 m.\n\nThe velocity varies with time as follows:\n• From t = 0 s to t = 2 s, velocity increases linearly from 0 m/s to 4 m/s.\n• From t = 2 s to t = 8 s, velocity decreases linearly from 4 m/s to −8 m/s (crossing 0 m/s at t = 4 s).\n• From t = 8 s to t = 12 s, velocity is constant at −8 m/s.\n• From t = 12 s to t = 16 s, velocity increases linearly from −8 m/s to 0 m/s.\n\nAnswer the following questions based on this motion:\n(a) Draw the position-time (x versus t) graph of the particle from t = 0 s to t = 16 s.\n(b) Calculate both the average velocity and the average speed for the entire duration of the motion (from t = 0 s to t = 16 s).\n(c) Determine the average acceleration of the particle in the time span between t = 2 s and t = 8 s.",
+   "options": [],
+   "figure_description": "A velocity-time (v-t) graph where the vertical axis represents velocity v in m/s with marked values −8, 0, 4, and the horizontal axis represents time t in seconds with marked points 2, 4, 8, 12, 16. The plot starts at (0, 0), rises to (2, 4), goes down straight through (4, 0) to (8, −8), runs horizontally from (8, −8) to (12, −8), and then rises linearly to (16, 0).",
+   "solution": {
+    "approach": "Use the area under the velocity-time graph in each segment to build the x-coordinate step by step, then use total displacement and total distance for the averages.",
+    "steps": [
+     {
+      "text": "Read the graph in five straight segments: 0 to 2 s (v from 0 to 4), 2 to 4 s (v from 4 to 0), 4 to 8 s (v from 0 to −8), 8 to 12 s (v constant at −8), 12 to 16 s (v from −8 to 0).",
+      "equation": "areas: +4 m, +4 m, −16 m, −32 m, −16 m"
+     },
+     {
+      "text": "Add each area to the running x-coordinate, starting from x = 10 m at t = 0.",
+      "equation": "x(2)=14, x(4)=18, x(8)=2, x(12)=−30, x(16)=−46 (all in m)"
+     },
+     {
+      "text": "Average velocity over the whole journey is the total displacement divided by the total time.",
+      "equation": "v_avg = (−46 − 10)/16 = −3.5 m/s"
+     },
+     {
+      "text": "Average speed is the total distance travelled, the sum of the sizes of each segment's area, divided by the total time.",
+      "equation": "distance = 4+4+16+32+16 = 72 m, speed_avg = 72/16 = 4.5 m/s"
+     },
+     {
+      "text": "Average acceleration between t = 2 s and t = 8 s is the change in velocity divided by the change in time, read from the graph.",
+      "equation": "a_avg = (−8 − 4)/(8 − 2) = −2 m/s²"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "(a) x goes 10→14→18→2→−30→−46 m at t=0,2,4,8,12,16 s; (b) average velocity = −3.5 m/s, average speed = 4.5 m/s; (c) average acceleration = −2 m/s²"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Using the total distance instead of the total displacement in the average velocity formula gives 72/16 = 4.5 m/s for both average velocity and average speed."
+     },
+     {
+      "option": null,
+      "text": "Reading the acceleration between t = 2 s and t = 8 s directly off the middle segment slope alone instead of using the overall change in velocity over that interval."
+     }
+    ],
+    "concept_tags": [
+     "velocity-time graph",
+     "displacement from graph",
+     "average velocity and speed"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_bc9a18cc",
+   "audit_file": "kin_bc9a18cc.312d1b22.json",
+   "item_sha": "312d1b221a5971b30d8b3743aea884262ee307474cad9707678f9506f0668fab",
+   "question_text": "An object moves across the x-y plane. Initially, at t = 0, its position coordinates are (1 m, 2 m) and its velocity is (4î + 6ĵ) m/s. Later, at t = 4 s, it reaches the location (6 m, 4 m) with a velocity of (2î + 10ĵ) m/s. For this duration, determine:\n(a) the average velocity\n(b) the average acceleration\n(c) whether the average speed can be calculated using the provided information",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Average velocity and average acceleration come from the change in position and velocity over the time interval; average speed needs the path length, which is not given.",
+    "steps": [
+     {
+      "text": "Divide the change in position by the 4 s interval for the average velocity.",
+      "equation": "v_avg = ((6−1)î + (4−2)ĵ)/4 = (1.25î + 0.5ĵ) m/s"
+     },
+     {
+      "text": "Divide the change in velocity by the 4 s interval for the average acceleration.",
+      "equation": "a_avg = ((2−4)î + (10−6)ĵ)/4 = (−0.5î + 1.0ĵ) m/s²"
+     },
+     {
+      "text": "Average speed needs the total path length travelled by the particle, and only its endpoints and instantaneous velocities there are known, not the actual curved path between them, so it cannot be found from this data.",
+      "equation": "average speed: not determinable"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "(a) average velocity = (2.5î + 0.5ĵ) m/s, magnitude ≈ 1.35 m/s. (b) average acceleration = (−0.5î + 1.0ĵ) m/s², magnitude ≈ 1.12 m/s². (c) No, average speed cannot be found from the given data because the actual path length travelled is unknown."
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Taking the magnitude of the average velocity vector, about 1.35 m/s, as the average speed wrongly assumes the particle moved in a straight line between the two points."
+     }
+    ],
+    "concept_tags": [
+     "average velocity",
+     "average acceleration",
+     "average speed",
+     "vectors"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_a51e4b4e",
+   "audit_file": "kin_a51e4b4e.79556b27.json",
+   "item_sha": "79556b272bbd4a1607533a6648a461f3518a7fcb916dbf315a1ae8d19776dea2",
+   "question_text": "Assertion: When an object begins moving from rest with an initial acceleration of zero, and its acceleration grows steadily at 2 ms⁻³, its velocity must rise at a steady rate of 1 ms⁻².\nReason: Under the stated circumstances, da/dt = 2 ms⁻³, which implies a = 2t.",
+   "options": [
+    {
+     "label": "a",
+     "text": "Both Assertion and Reason are true, and Reason is the correct explanation of Assertion."
+    },
+    {
+     "label": "b",
+     "text": "Both Assertion and Reason are true, but Reason is not the correct explanation of Assertion."
+    },
+    {
+     "label": "c",
+     "text": "Assertion is true, but Reason is false."
+    },
+    {
+     "label": "d",
+     "text": "Assertion is false, but Reason is true."
+    }
+   ],
+   "figure_description": "",
+   "solution": {
+    "approach": "Integrate da/dt = 2 ms⁻³ starting from zero acceleration to get acceleration as a function of time, then integrate again to see how velocity actually grows.",
+    "steps": [
+     {
+      "text": "Integrate the given constant rate of change of acceleration, starting from zero initial acceleration, to get acceleration as a function of time.",
+      "equation": "da/dt = 2 ⇒ a(t) = 2t"
+     },
+     {
+      "text": "Integrate a(t) = 2t, starting from rest, to get velocity as a function of time.",
+      "equation": "dv/dt = 2t ⇒ v(t) = t²"
+     },
+     {
+      "text": "The rate at which velocity increases at any instant equals a(t) = 2t, which itself grows with time, so velocity does not increase at a constant rate; it only equals 1 ms⁻² at the single instant t = 0.5 s.",
+      "equation": "v(t) = t² is not linear in t, so the rate of increase of velocity is not constant"
+     },
+     {
+      "text": "The Assertion's claim of a constant 1 ms⁻² rate of increase is false, while the Reason correctly derives a = 2t from the given data, so the Reason is true.",
+      "equation": "Assertion false, Reason true"
+     }
+    ],
+    "final_answer": {
+     "option": 4,
+     "value": "If Assertion is false but the Reason is true."
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Reading a = 2t at the single instant t = 0.5 s, where a = 1 ms⁻², and generalising it to a constant rate for all time."
+     }
+    ],
+    "concept_tags": [
+     "calculus in kinematics",
+     "rate of change of acceleration",
+     "integration"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_9d3be974",
+   "audit_file": "kin_9d3be974.ba21db50.json",
+   "item_sha": "ba21db50ba64c0eb707a7488fcc27dc5d5a465a5d90eef8458eb21537a7c7051",
+   "question_text": "A ball is thrown straight up into the air with an initial speed of 50 m/s. Using g = 10 m/s², determine:\n(a) the maximum height reached by the ball,\n(b) the time taken to arrive at this peak altitude,\n(c) its speed when it is at half of the peak altitude.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Use the standard equations for motion under constant gravity, taking upward as positive and deceleration g.",
+    "steps": [
+     {
+      "text": "Maximum height uses the equation relating v² to u² with v = 0 at the top.",
+      "equation": "0 = u² − 2gH, so H = u²/(2g)"
+     },
+     {
+      "text": "Substitute the values to find the maximum height.",
+      "equation": "H = 50²/(2×10) = 2500/20 = 125 m"
+     },
+     {
+      "text": "Time to reach maximum height uses v = u − gt with v = 0 at the top.",
+      "equation": "t = u/g = 50/10 = 5 s"
+     },
+     {
+      "text": "Half the maximum height is 62.5 m; use v² = u² − 2gh with this height to find the speed there.",
+      "equation": "v² = 50² − 2×10×62.5 = 2500 − 1250 = 1250"
+     },
+     {
+      "text": "Take the square root to get the speed at half the maximum height.",
+      "equation": "v = √1250 = 25√2 ≈ 35.36 m/s",
+      "why_this_step": "This is the last unknown asked for, completing the three parts."
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "(a) H = 125 m, (b) t = 5 s, (c) v = 25√2 m/s ≈ 35.36 m/s"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Finding the speed at half the time to the top instead of half the height, using v = u − g(t/2) = 50 − 25 = 25 m/s, which answers a different question."
+     },
+     {
+      "option": null,
+      "text": "Dropping the factor of 2 in v² = u² − 2gh and using v² = u² − gh, which gives about 43.3 m/s instead of 35.36 m/s."
+     }
+    ],
+    "concept_tags": [
+     "motion under gravity",
+     "equations of motion"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "kin_9eb94141",
+   "audit_file": "kin_9eb94141.f2000cfe.json",
+   "item_sha": "f2000cfe8d0c8cfac1c62a97187f045b45068565de8c7159b9e0337478fa5914",
+   "question_text": "The position x of an object changes with time t according to the relationship √x = t + 3. Which of the following statements about its motion is correct?",
+   "options": [
+    {
+     "label": "a",
+     "text": "velocity of the particle is inversely proportional to t"
+    },
+    {
+     "label": "b",
+     "text": "velocity of particle varies linearly with t"
+    },
+    {
+     "label": "c",
+     "text": "velocity of particle is proportional to √t"
+    },
+    {
+     "label": "d",
+     "text": "initial velocity of the particle is zero"
+    }
+   ],
+   "figure_description": "",
+   "solution": {
+    "approach": "Square both sides to write displacement as a function of time, then differentiate to find how velocity depends on time.",
+    "steps": [
+     {
+      "text": "Square both sides of the given relation to write x as a function of t.",
+      "equation": "√x = t + 3 → x = (t + 3)² = t² + 6t + 9"
+     },
+     {
+      "text": "Differentiate x with respect to t to get the velocity.",
+      "equation": "v = dx/dt = 2t + 6"
+     },
+     {
+      "text": "This expression is of the form v = 2t + 6, which is a straight line in t, so velocity varies linearly with time.",
+      "equation": "v = 2t + 6"
+     },
+     {
+      "text": "Check the initial velocity at t = 0 to rule out the other options.",
+      "equation": "v(0) = 2(0) + 6 = 6 ms⁻¹, not zero, not inversely proportional to t, and not proportional to √t"
+     }
+    ],
+    "final_answer": {
+     "option": 2,
+     "value": "velocity of particle varies linearly with t"
+    },
+    "common_mistakes": [
+     {
+      "option": 4,
+      "text": "Differentiating t² + 6t + 9 but dropping the 6t term by mistake, leaving v = 2t, which gives v(0) = 0 instead of the correct 6 ms⁻¹."
+     }
+    ],
+    "concept_tags": [
+     "displacement-time relation",
+     "differentiation",
+     "velocity as a function of time"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "kin_a78011cb",
+   "audit_file": "kin_a78011cb.5d29fe43.json",
+   "item_sha": "5d29fe438a2c3dca1717bf61ce2584a86dc78e140aec3935917fd55005dbdd51",
+   "question_text": "The position-time (S-t) plot of a moving object is a straight line. At time t = 0 s, its position is S = 10 m, and at time t = 5 s, its position reaches S = 0 m.\n(a) Determine whether this graph portrays uniform motion.\n(b) Calculate the velocity of the object.",
+   "options": [],
+   "figure_description": "A plot with displacement S in meters along the vertical axis and time t in seconds along the horizontal axis shows a straight line with negative slope that starts at the point (0, 10) and crosses the horizontal axis at (5, 0).",
+   "solution": {
+    "approach": "A straight line on the displacement-time graph means the slope, which gives the velocity, stays constant, so the motion is uniform.",
+    "steps": [
+     {
+      "text": "Note the shape of the graph.",
+      "equation": "The S-t graph is a straight line, so its slope is the same at every point.",
+      "why_this_step": "A constant slope on an s-t graph means constant velocity, which is the definition of uniform motion."
+     },
+     {
+      "text": "Find the slope using the two points where the line meets the axes.",
+      "equation": "slope = (0 − 10)/(5 − 0) = −2 m/s"
+     },
+     {
+      "text": "State the velocity from the slope.",
+      "equation": "velocity = −2 m/s (magnitude 2 m/s, displacement decreasing with time)"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "(a) uniform motion, since the s-t graph is a straight line; (b) velocity = −2 m/s"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Taking the slope as 10/5 = 2 m/s without the negative sign misses that displacement is decreasing with time."
+     },
+     {
+      "option": null,
+      "text": "Calling the line non-uniform because it decreases confuses a negative constant slope with a changing slope."
+     }
+    ],
+    "concept_tags": [
+     "s-t graph",
+     "uniform motion",
+     "velocity from slope"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_94df6811",
+   "audit_file": "kin_94df6811.650b38d6.json",
+   "item_sha": "650b38d6e271c843a1ec747eea72e453bc8c27dd770f26e9371fe134cb325d55",
+   "question_text": "A body travels in a straight line along the x-direction with its velocity governed by the equation v = (10 + 5t − t²), where v is measured in m/s and t in seconds. Given that the body is located at x = 0 when t = 0, determine:\n(a) The acceleration of the object at the instant t = 2 s\n(b) The position coordinate x of the object at the instant t = 3 s",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Differentiate the velocity once for acceleration, and integrate it from 0 to the given time for position.",
+    "steps": [
+     {
+      "text": "Differentiate v with respect to time to get the acceleration.",
+      "equation": "a = dv/dt = 5 − 2t"
+     },
+     {
+      "text": "Substitute t = 2 s.",
+      "equation": "a(2) = 5 − 2×2 = 1 m/s²"
+     },
+     {
+      "text": "Integrate v with respect to time from 0 to 3 s to get the x-coordinate, since x = 0 at t = 0.",
+      "equation": "x(3) = 10t + 5t²/2 − t³/3, evaluated from 0 to 3"
+     },
+     {
+      "text": "Evaluate the integral at t = 3 s.",
+      "equation": "x(3) = 30 + 22.5 − 9 = 43.5 m"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "(a) 1 m/s², (b) 43.5 m"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Differentiating −t² as −t instead of −2t gives an acceleration of 3 m/s² at t = 2 s instead of 1 m/s²."
+     },
+     {
+      "option": null,
+      "text": "Multiplying the velocity at t = 3 s by 3 s instead of integrating gives 48 m instead of 43.5 m."
+     }
+    ],
+    "concept_tags": [
+     "differentiation",
+     "integration",
+     "variable acceleration"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "calculation"
+   }
+  }
+ ]
+}

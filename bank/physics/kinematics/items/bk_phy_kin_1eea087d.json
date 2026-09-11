@@ -1,0 +1,90 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_1eea087d",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A train travels between two consecutive stops separated by a distance of 4 km in a total time of 4 min, beginning from rest at the first stop and coming to a halt at the second. If the motion consists first of a constant acceleration x followed immediately by a constant deceleration y, show that 1/x + 1/y = 2, where x and y are expressed in km min⁻².",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "starts from rest",
+   "comes to rest at destination",
+   "total distance = 4 km",
+   "total time = 4 min",
+   "initial phase has uniform acceleration x",
+   "second phase has uniform retardation y",
+   "one-dimensional motion"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Model the speed as a triangle on a velocity-time graph: its area gives the distance, its sides give the two times, linking x, y, T and D.",
+  "steps": [
+   {
+    "text": "The train starts from rest, accelerates at a uniform rate x to a maximum speed v, then retards at a uniform rate y to rest at the next station.",
+    "equation": "v = x·t₁,  v = y·t₂"
+   },
+   {
+    "text": "Add the two times; they must equal the total journey time T.",
+    "equation": "t₁ + t₂ = v/x + v/y = T"
+   },
+   {
+    "text": "The distance covered is the area under the speed-time graph, a triangle of base T and height v.",
+    "equation": "D = ½vT"
+   },
+   {
+    "text": "Solve for v using the given distance and time.",
+    "equation": "v = 2D/T = 2(4 km)/(4 min) = 2 km/min"
+   },
+   {
+    "text": "Substitute this v into the time equation to get 1/x + 1/y.",
+    "equation": "1/x + 1/y = T/v = 4 min ÷ 2 km/min = 2",
+    "why_this_step": "T/v is what v/x + v/y = T becomes after dividing both sides by v."
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "1/x + 1/y = 2, with x and y in km per minute squared"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Using D = vT instead of D = ½vT for the triangle area gives v = 1 km/min and 1/x + 1/y = 4, twice the correct value."
+   }
+  ],
+  "concept_tags": [
+   "velocity-time graph",
+   "uniformly accelerated motion",
+   "uniform retardation"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "e7cb596201015a3da2a8509740e24e80a30892f7d3996a128c98d2d583221e67"
+ },
+ "verification": {
+  "key_match": false,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "bc659bc4b039cb5b21c4de510603af9893210142f004e4ddec7a815ee9d6b8a3",
+  "audited_by": "W01-U-kin-11"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-13",
+  "at": "2026-09-11T02:09:53+05:30"
+ }
+}

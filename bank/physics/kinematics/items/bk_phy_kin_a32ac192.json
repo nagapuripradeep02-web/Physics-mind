@@ -1,0 +1,89 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_a32ac192",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "numerical",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "Water in a river flows horizontally to the right at a constant speed of 2 m/s between two parallel banks. A person starts rowing from point A on the lower bank to reach point B on the upper bank. The straight line connecting A to B makes an angle of 45° with the downstream bank. If the speed of the boat relative to the water is 4 m/s, find the angle θ with the perpendicular to the river bank at which the boat should be steered.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "river flow speed v_r = 2 m/s downstream (to the right)",
+   "speed of boat relative to water |v_br| = 4 m/s",
+   "target path AB makes an angle of 45° with the bank downstream",
+   "resultant velocity of the boat is along line AB",
+   "angle θ is measured relative to the normal to the bank towards downstream"
+  ],
+  "figure": {
+   "description": "A horizontal river with parallel banks where the current flows to the right at 2 m/s. Point A is located on the bottom bank and point B on the top bank such that the straight line AB is inclined at 45° to the horizontal river bank. A dashed line normal to the banks extends upward from point A. The boat's heading makes an angle θ to the right of this vertical dashed normal."
+  }
+ },
+ "solution": {
+  "approach": "Write the resultant of the boat's velocity and the river's velocity, and require it to point along AB, which makes 45° with both the bank and the perpendicular.",
+  "steps": [
+   {
+    "text": "Let x be across the river along the perpendicular and y be along the bank; the boat is rowed at angle θ from the x-axis, tilted toward the flow.",
+    "equation": "resultant_x = 4cos θ, resultant_y = 4sin θ + 2"
+   },
+   {
+    "text": "Since AB makes 45° with the bank, it also makes 45° with the perpendicular, so the resultant's x and y components must be equal.",
+    "equation": "4sin θ + 2 = 4cos θ"
+   },
+   {
+    "text": "Rearrange the equation and simplify.",
+    "equation": "4cos θ − 4sin θ = 2 → cos θ − sin θ = 0.5"
+   },
+   {
+    "text": "Solve this trigonometric equation for θ between 0° and 90°.",
+    "equation": "θ ≈ 24.3°"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "θ ≈ 24.3° from the perpendicular to the bank, tilted toward the direction of flow"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Ignoring the effect of the current and rowing straight along AB, taking θ = 45°."
+   },
+   {
+    "option": null,
+    "text": "Swapping the sine and cosine terms while writing the resultant components, 4sin θ − 4cos θ = 2, which gives the wrong angle θ ≈ 65.7°."
+   }
+  ],
+  "concept_tags": [
+   "relative velocity in a river",
+   "vector addition",
+   "river-boat problem"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "aa3ceb25d2fe5871ad8fd94baa14e85228794b5916c4a69205283a11dafce461"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": false,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "ea5eaa71a8ffa832c2ddbefb371ff81198713effee294246dc48414123efa3b4",
+  "audited_by": "W01-U-kin-08"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-12",
+  "at": "2026-09-11T16:39:00+05:30"
+ }
+}

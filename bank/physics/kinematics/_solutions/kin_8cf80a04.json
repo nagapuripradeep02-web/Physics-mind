@@ -1,0 +1,48 @@
+{
+  "schema": "eapcet_solution_v1",
+  "question_id": "kin_8cf80a04",
+  "approach": "Apply v² = u² + 2as across each half with a₁ and a₂, then compare the result with the same formula applied to the whole distance under the average acceleration.",
+  "steps": [
+    {
+      "text": "After the first half of distance s with acceleration a₁, the velocity v₁ satisfies this.",
+      "equation": "v₁² = u² + 2a₁s"
+    },
+    {
+      "text": "After the second half of distance s with acceleration a₂, starting from v₁, the velocity v₂ satisfies this.",
+      "equation": "v₂² = v₁² + 2a₂s = u² + 2s(a₁ + a₂)"
+    },
+    {
+      "text": "For the whole distance 2s covered with the uniform acceleration (a₁ + a₂)/2 starting from u, the final velocity v satisfies this.",
+      "equation": "v² = u² + 2 × (a₁ + a₂)/2 × 2s = u² + 2s(a₁ + a₂)"
+    },
+    {
+      "text": "Both expressions for the squared final velocity are the same, so the final speeds are equal.",
+      "equation": "v₂² = v² ⟹ v₂ = v",
+      "why_this_step": "Two non-negative quantities with equal squares must be equal."
+    }
+  ],
+  "final_answer": {
+    "option": null,
+    "value": "v₂ = v, so the final velocity covering the whole distance with uniform acceleration (a₁ + a₂)/2 equals the final velocity of the two-stage motion; proved as v₂² = v² = u² + 2s(a₁ + a₂)."
+  },
+  "confidence": "sure",
+  "common_mistakes": [
+    {
+      "option": null,
+      "text": "Applying v² = u² + 2 × (a₁ + a₂)/2 × s with distance s instead of full distance 2s gives u² + s(a₁ + a₂), which does not match v₂² and breaks the proof."
+    }
+  ],
+  "concept_tags": [
+    "equations of motion",
+    "v² = u² + 2as",
+    "average acceleration"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "application",
+  "authored_by": {
+    "model": "sonnet",
+    "wave": 1,
+    "agent": "W01-A-kin-04",
+    "at": "2026-09-11T00:00:00+05:30"
+  }
+}

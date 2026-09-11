@@ -1,0 +1,88 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_3ea62335",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A velocity-time plot for an automobile is a straight line that starts at the origin (0 s, 0 m/s) and passes through the point where velocity is 10 m/s at time t = 4 s. Based on this motion, calculate:",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "The acceleration of the automobile."
+   },
+   {
+    "label": "b",
+    "asks": "The total distance covered by the automobile in 8 s."
+   }
+  ],
+  "conditions": [
+   "starts from rest (v = 0 at t = 0)",
+   "uniform acceleration (linear v-t graph)",
+   "motion along a straight line"
+  ],
+  "figure": {
+   "description": "A graph with time t (in s) on the horizontal axis and velocity v (in m/s) on the vertical axis. A straight line starts at (0, 0) and goes through the point (4, 10), extending steadily past t = 8 s."
+  }
+ },
+ "solution": {
+  "approach": "Read the slope of the straight line for the acceleration, then use the area under the v-t graph for the distance travelled.",
+  "steps": [
+   {
+    "text": "Find the slope of the line using the origin and the marked point.",
+    "equation": "a = (10 − 0)/(4 − 0) = 2.5 m/s²"
+   },
+   {
+    "text": "Find the velocity at t = 8 s using the same slope.",
+    "equation": "v(8) = 2.5×8 = 20 m/s"
+   },
+   {
+    "text": "The distance travelled is the area under the v-t graph, a triangle from t = 0 to t = 8 s.",
+    "equation": "s = ½×8×20 = 80 m"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "distance = 80 m; acceleration = 2.5 m/s²"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Taking the area under the graph as a rectangle with height 20 m/s instead of a triangle gives 160 m instead of 80 m."
+   }
+  ],
+  "concept_tags": [
+   "velocity-time graph",
+   "area under graph",
+   "uniform acceleration"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "ba6a1a9d45f8fae53ce3048c5fa60d291178cba8bbda5fafaecc2d43bf151606"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "269d6f0d6de9087a802ebebce81f788ce94291ee286710a11bdaf0a8a9264929",
+  "audited_by": "W01-U-kin-08"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-06",
+  "at": "2026-09-11T16:00:00+05:30"
+ }
+}

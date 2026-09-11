@@ -1,0 +1,46 @@
+{
+  "approach": "Once the stone is released it is a free body, and only gravity acts on it from that instant, regardless of the balloon's motion.",
+  "steps": [
+    {
+      "text": "Before release the stone shares the balloon's velocity, but not the cause of the balloon's acceleration."
+    },
+    {
+      "text": "At the instant of release, the only force acting on the stone is its own weight.",
+      "equation": "F = mg, downward"
+    },
+    {
+      "text": "Apply Newton's second law to find the stone's acceleration immediately after release.",
+      "equation": "a_stone = F/m = g, downward"
+    }
+  ],
+  "final_answer": {
+    "option": 2,
+    "value": "g downward"
+  },
+  "confidence": "sure",
+  "common_mistakes": [
+    {
+      "option": 1,
+      "text": "Assuming the stone keeps the balloon's upward acceleration a even after release, confusing continuity of velocity with continuity of acceleration."
+    },
+    {
+      "option": 4,
+      "text": "Adding the balloon's acceleration to gravity as if the balloon still pushes the stone after separation, giving (g + a) downward."
+    }
+  ],
+  "concept_tags": [
+    "free fall",
+    "newton's second law",
+    "relative motion"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "concept",
+  "schema": "eapcet_solution_v1",
+  "question_id": "kin_d76b373f",
+  "authored_by": {
+    "model": "sonnet",
+    "wave": 1,
+    "agent": "W01-A-kin-08",
+    "at": "2026-09-11T14:20:00+05:30"
+  }
+}

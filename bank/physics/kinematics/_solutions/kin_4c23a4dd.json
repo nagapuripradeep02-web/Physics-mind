@@ -1,0 +1,17 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_4c23a4dd",
+ "approach": "For uniform acceleration, velocity is a linear function of time, so its average over any interval equals the average of the endpoint values.",
+ "steps": [
+  {"text": "Write velocity as a linear function of time for uniform acceleration.", "equation": "v(t) = v₁ + at"},
+  {"text": "Average velocity over 0 to t is the mean value of this linear function.", "equation": "v_avg = v₁ + at/2"},
+  {"text": "Since v₂ = v₁ + at, substitute at = v₂ − v₁ into the average. This gives the stated formula, so the statement is true.", "equation": "v_avg = v₁ + (v₂ − v₁)/2 = (v₁ + v₂)/2"}
+ ],
+ "final_answer": {"option": null, "value": "True"},
+ "confidence": "sure",
+ "common_mistakes": [],
+ "concept_tags": ["uniform acceleration", "average velocity"],
+ "difficulty": "easy",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-06", "at": "2026-09-11T16:00:00+05:30"}
+}

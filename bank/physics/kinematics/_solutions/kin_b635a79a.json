@@ -1,0 +1,23 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_b635a79a",
+ "approach": "Find the velocity of ship B relative to ship A, then find the shortest distance from A to the straight-line path that B follows relative to A.",
+ "steps": [
+  {"text": "Set up coordinates with east and north as axes. Place B at the origin and A 10 km north of it, and write both velocities as vectors.", "equation": "A = (0, 10) km, B = (0, 0) km, v_A = (−20, 0) km/h (west), v_B = (0, 20) km/h (north)"},
+  {"text": "Find the velocity of B relative to A.", "equation": "v_BA = v_B − v_A = (0 − (−20), 20 − 0) = (20, 20) km/h, |v_BA| = √(20² + 20²) = 20√2 km/h at 45° north of east"},
+  {"text": "Find the position of B relative to A at t = 0.", "equation": "r_BA(0) = B − A = (0, −10) km, that is, 10 km south of A"},
+  {"text": "Write the relative position as a function of time and minimize the squared distance from A (the origin of this relative frame).", "equation": "r_BA(t) = (20t, −10 + 20t), distance² = (20t)² + (−10 + 20t)² = 800t² − 400t + 100"},
+  {"text": "Differentiate the squared distance and set it to zero to find the time of closest approach.", "equation": "d(distance²)/dt = 1600t − 400 = 0 → t = 0.25 h = 15 min"},
+  {"text": "Substitute t = 0.25 h back to get the minimum distance.", "equation": "distance² = 800(0.25)² − 400(0.25) + 100 = 50, distance = √50 = 5√2 ≈ 7.07 km"}
+ ],
+ "final_answer": {"option": null, "value": "distance of closest approach = 5√2 km ≈ 7.07 km, reached after 0.25 h = 15 minutes"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Using the initial separation of 10 km directly as the closest approach, without accounting for the relative motion, misses that the two ships close in further before moving apart."},
+  {"option": null, "text": "Adding the two speeds as 20 + 20 = 40 km/h for the relative speed instead of combining them as perpendicular vectors gives a wrong relative velocity of 40 km/h instead of 20√2 km/h."}
+ ],
+ "concept_tags": ["relative velocity in two dimensions", "distance of closest approach"],
+ "difficulty": "hard",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-02", "at": "2026-09-11T00:00:00+05:30"}
+}

@@ -1,0 +1,45 @@
+{
+ "question_id": "kin_f160a9c0",
+ "item_sha": "3baa6ace14d8faa961b0b3f983069552d9c15d55445c995226fa25ecd9edd176",
+ "auditor_option": null,
+ "auditor_value": "(a) 20.0 m  (b) 2.0 s",
+ "findings": [
+  {
+   "grade": "harmful",
+   "field": "final_answer",
+   "quote": "(a) 16.25 m, (b) ≈1.80 s",
+   "note": "The question as served gives an upward speed of 10 m/s at the 15.0 m window, so u² = 10² + 2(10)(15) = 400, u = 20 m/s, H = u²/2g = 20.0 m and t = u/g = 2.0 s. The printed answer solves a different problem in which the window speed is 5.00 m/s.",
+   "fix": "(a) 20.0 m, (b) 2.0 s"
+  },
+  {
+   "grade": "harmful",
+   "field": "steps[0].text",
+   "quote": "Apply v² = u² − 2gh between the ground, where the speed is u, and the window, 15 m up, where the speed is 5.00 m/s.",
+   "note": "The question states the speed at the window is 10 m/s, not 5.00 m/s; the solution uses a number the question does not give and ignores the one it does.",
+   "fix": "Apply v² = u² − 2gh between the ground, where the speed is u, and the window, 15.0 m up, where the speed is 10 m/s."
+  },
+  {
+   "grade": "harmful",
+   "field": "steps[0].equation",
+   "quote": "5.00² = u² − 2(10)(15) → u² = 325",
+   "note": "With the served value 10 m/s at the window the line must read 10² = u² − 2(10)(15), giving u² = 400, not 325. Every later line (H = 16.25 m, t ≈ 1.80 s) inherits this wrong u².",
+   "fix": "10² = u² − 2(10)(15) → u² = 400"
+  },
+  {
+   "grade": "wrong",
+   "field": "common_mistakes[0].text",
+   "quote": "Taking the given 5.00 m/s as the ground launch speed and ignoring the 15 m window height gives a maximum height of only 1.25 m.",
+   "note": "5.00 m/s is not given in this question. Making the same error with the served value 10 m/s gives 10²/(2×10) = 5 m, not 1.25 m, so the stated cause cannot produce the number named.",
+   "fix": "Taking the given 10 m/s as the ground launch speed and ignoring the 15.0 m window height gives a maximum height of only 5 m."
+  }
+ ],
+ "verdict": "harmful",
+ "question_defect": null,
+ "notes": "The question as served is complete and solvable (10 m/s at 15.0 m, g = 10 m/s², giving the round values 20 m and 2 s). The solution consistently uses 5.00 m/s at the window, so it solves a different problem than the one printed.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-kin-12",
+  "at": "2026-09-11T09:51:30+05:30"
+ }
+}

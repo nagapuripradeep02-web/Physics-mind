@@ -1,0 +1,90 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_0d036a80",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "An object travels along a straight line such that its x-coordinate varies with time according to the equation x = (2 + t² + 2t³), where x is expressed in metres and time t is in seconds. Determine:",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "the location from which the object began its motion,"
+   },
+   {
+    "label": "b",
+    "asks": "the initial velocity of the object,"
+   },
+   {
+    "label": "c",
+    "asks": "the acceleration of the object at t = 2 s."
+   }
+  ],
+  "conditions": [
+   "motion along the x-axis",
+   "x = 2 + t² + 2t³",
+   "x is in metres",
+   "t is in seconds"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Read the starting position directly from x at t = 0, then differentiate x once and twice for velocity and acceleration.",
+  "steps": [
+   {
+    "text": "The particle's starting position is x at t = 0.",
+    "equation": "x(0) = 2 m"
+   },
+   {
+    "text": "Differentiate x with respect to time to get the velocity, then substitute t = 0.",
+    "equation": "v = dx/dt = 2t + 6t² → v(0) = 0 m/s"
+   },
+   {
+    "text": "Differentiate v with respect to time to get the acceleration, then substitute t = 2 s.",
+    "equation": "a = dv/dt = 2 + 12t → a(2) = 2 + 24 = 26 m/s²"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) 2 m, (b) 0 m/s, (c) 26 m/s²"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Reporting the velocity at t = 2 s, which is 28 m/s, instead of differentiating a second time for the acceleration, which is 26 m/s²."
+   }
+  ],
+  "concept_tags": [
+   "differentiation",
+   "initial conditions"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "1bfd0c8de8ec9dcba092b8ca6134f41808f141d1b59361053fb107c88cd1aebf"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "9365900c9700938ab69e65386cc6a4b447aeb088fa885c0e4c1e3337571c2c95",
+  "audited_by": "W01-U-kin-01"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-06",
+  "at": "2026-09-11T16:00:00+05:30"
+ }
+}

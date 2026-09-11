@@ -1,0 +1,87 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_18d2d5e0",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "mcq_single",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "A faucet fixed at a height of 5 m releases droplets of water at equal time gaps. At the exact moment the first droplet strikes the floor, the third droplet begins to fall. Determine the height of the second droplet above the floor at this specific moment. (Take g = 10 ms⁻²)",
+  "options": {
+   "1": "1.25 m",
+   "2": "2.50 m",
+   "3": "3.75 m",
+   "4": "4.00 m"
+  },
+  "parts": null,
+  "conditions": [
+   "drops released from rest",
+   "regular time intervals between successive drops",
+   "uniform gravitational acceleration g = 10 ms⁻²",
+   "air resistance is neglected"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Find the fixed interval between drops from the first drop's fall time, then find how long the second drop has fallen at the given instant.",
+  "steps": [
+   {
+    "text": "The first drop falls 5 m from rest, so find the time it takes to reach the ground.",
+    "equation": "5 = ½(10)t₁² → t₁ = 1 s"
+   },
+   {
+    "text": "Drops leave the tap at equal intervals T. When drop 3 leaves, drops 1 and 2 already left, so two intervals separate drop 1's release from drop 3's release, and that equals drop 1's fall time.",
+    "equation": "2T = t₁ = 1 s → T = 0.5 s"
+   },
+   {
+    "text": "At this instant, drop 2 has been falling for one interval T = 0.5 s. Find the distance it has fallen.",
+    "equation": "d = ½(10)(0.5)² = 1.25 m"
+   },
+   {
+    "text": "Subtract this fallen distance from the tap height to get the height above the ground.",
+    "equation": "5 − 1.25 = 3.75 m"
+   }
+  ],
+  "final_answer": {
+   "option": 3,
+   "value": "3.75 m"
+  },
+  "common_mistakes": [
+   {
+    "option": 1,
+    "text": "Stopping after finding the distance the second drop has fallen (1.25 m) and reporting that as the height above the ground, instead of subtracting it from 5 m."
+   }
+  ],
+  "concept_tags": [
+   "free fall",
+   "equally spaced drops",
+   "relative timing"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "d4f42cb69b498d1000b436535cfdf9dbf06f5e16cac7123ffbc8060ecdc341bf"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "e47a4007ad867202b71793e1136715d316b40644f35233098705c41265ea7a7a",
+  "audited_by": "W01-U-kin-10"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-09",
+  "at": "2026-09-11T15:00:00+05:30"
+ }
+}

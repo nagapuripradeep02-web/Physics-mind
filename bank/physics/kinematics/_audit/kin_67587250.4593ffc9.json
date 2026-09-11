@@ -1,0 +1,11 @@
+{
+ "question_id": "kin_67587250",
+ "item_sha": "4593ffc9580e500f241a42898d3049e9ba72d0a53d1d5a70d00fdd2e793d0096",
+ "auditor_option": null,
+ "auditor_value": "3*sqrt(2) km/h = 4.24 km/h",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-kin-04", "at": "2026-09-11T12:28:00+05:30"}
+}

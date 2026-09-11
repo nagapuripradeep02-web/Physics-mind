@@ -1,0 +1,88 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_97a95a5c",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "From the same location, two objects are launched straight upward with an identical launch speed v₀. If the second object is released a time interval t₀ s following the first, find the time elapsed from the projection of the first object until they meet.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "motion under gravity",
+   "uniform downward acceleration g",
+   "air resistance neglected",
+   "launched vertically upwards from the same spot",
+   "same initial speed v₀",
+   "second object launched t₀ s after the first"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Write the height of each body as a function of time measured from the first launch, with the second body's clock starting t₀ later, and set the two heights equal.",
+  "steps": [
+   {
+    "text": "Measure time t from the first launch. Its height above the ground is v₀t − ½gt².",
+    "equation": "y₁(t) = v₀t − ½gt²"
+   },
+   {
+    "text": "The second body is launched t₀ later, so for t ≥ t₀ its height uses time (t − t₀).",
+    "equation": "y₂(t) = v₀(t − t₀) − ½g(t − t₀)²"
+   },
+   {
+    "text": "Set the two heights equal, since the bodies meet at that height.",
+    "equation": "v₀t − ½gt² = v₀(t − t₀) − ½g(t − t₀)²"
+   },
+   {
+    "text": "Expand and simplify; the squared terms combine using the difference of squares, and t₀ cancels from both sides.",
+    "equation": "v₀t₀ = ½g t₀(2t − t₀) → v₀ = ½g(2t − t₀)"
+   },
+   {
+    "text": "Solve for t, the time after the first launch at which the bodies meet.",
+    "equation": "t = v₀/g + t₀/2"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "The bodies meet at t = v₀/g + t₀/2 measured from the first launch, which is v₀/g − t₀/2 measured from the second launch."
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Assuming the bodies meet exactly halfway through the time gap, at t = t₀/2 after the first launch, which ignores the actual rise and fall of each body under gravity."
+   }
+  ],
+  "concept_tags": [
+   "vertical motion under gravity",
+   "relative motion",
+   "staggered launch"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "03bdb38ad674276eab25e02916317f46f2edae347b06d5a2834717b22dcf220c"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "0a1a9b029b2f744d7bfdc6bf42f8e4d87ba3567645f54519228c0364620b2777",
+  "audited_by": "W01-U-kin-01"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-10",
+  "at": "2026-09-11T14:26:00+05:30"
+ }
+}

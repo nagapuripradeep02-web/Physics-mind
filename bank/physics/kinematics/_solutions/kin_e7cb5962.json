@@ -1,0 +1,22 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_e7cb5962",
+ "approach": "Model the speed as a triangle on a velocity-time graph: its area gives the distance, its sides give the two times, linking x, y, T and D.",
+ "steps": [
+  {"text": "The train starts from rest, accelerates at a uniform rate x to a maximum speed v, then retards at a uniform rate y to rest at the next station.", "equation": "v = x·t₁,  v = y·t₂"},
+  {"text": "Add the two times; they must equal the total journey time T.", "equation": "t₁ + t₂ = v/x + v/y = T"},
+  {"text": "The distance covered is the area under the speed-time graph, a triangle of base T and height v.", "equation": "D = ½vT"},
+  {"text": "Solve for v using the given distance and time.", "equation": "v = 2D/T = 2(4 km)/(4 min) = 2 km/min"},
+  {"text": "Substitute this v into the time equation to get 1/x + 1/y.", "equation": "1/x + 1/y = T/v = 4 min ÷ 2 km/min = 2",
+   "why_this_step": "T/v is what v/x + v/y = T becomes after dividing both sides by v."}
+ ],
+ "final_answer": {"option": null, "value": "1/x + 1/y = 2, with x and y in km per minute squared"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Using D = vT instead of D = ½vT for the triangle area gives v = 1 km/min and 1/x + 1/y = 4, twice the correct value."}
+ ],
+ "concept_tags": ["velocity-time graph", "uniformly accelerated motion", "uniform retardation"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-13", "at": "2026-09-11T02:09:53+05:30"}
+}

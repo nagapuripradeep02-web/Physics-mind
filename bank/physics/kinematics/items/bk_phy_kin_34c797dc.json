@@ -1,0 +1,82 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_34c797dc",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "mcq_single",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "A particle moves along a curve with its coordinates changing with time t as x = 5t and y = 2t² + t. Determine the time instant when its velocity is directed at 45° to the horizontal.",
+  "options": {
+   "1": "0.5 s",
+   "2": "1 s",
+   "3": "2 s",
+   "4": "1.5 s"
+  },
+  "parts": null,
+  "conditions": [
+   "horizontal displacement x = 5t",
+   "vertical displacement y = 2t² + t",
+   "angle of velocity vector with horizontal = 45°"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Differentiate x(t) and y(t) to get the velocity components, then set their ratio equal to tan 45°.",
+  "steps": [
+   {
+    "text": "Differentiate the position functions to get the velocity components.",
+    "equation": "vₓ = dx/dt = 5, v_y = dy/dt = 4t + 1"
+   },
+   {
+    "text": "A 45° angle with the horizontal means the two velocity components are equal.",
+    "equation": "v_y/vₓ = tan45° = 1 → 4t + 1 = 5"
+   },
+   {
+    "text": "Solve for t.",
+    "equation": "4t = 4 → t = 1 s"
+   }
+  ],
+  "final_answer": {
+   "option": 2,
+   "value": "1 s"
+  },
+  "common_mistakes": [
+   {
+    "option": 3,
+    "text": "Setting the ratio of the position coordinates y/x equal to 1 instead of the ratio of the velocity components, which gives t = 2 s."
+   }
+  ],
+  "concept_tags": [
+   "two-dimensional motion",
+   "velocity components",
+   "differentiation"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "e461589855a9d4088993f43a7683cebb39e98be47d0128524345ea34fd7aa532"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "5e00fa53869e0df2114dcc0eeaa205a8c0054af68d38c9f80865ea5e71ef203c",
+  "audited_by": "W01-U-kin-11"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-08",
+  "at": "2026-09-11T14:20:00+05:30"
+ }
+}

@@ -1,0 +1,19 @@
+{
+ "question_id": "kin_b635a79a",
+ "item_sha": "4bc853b3d6bd2c84477640c3c1e9820833b86370cea7ada862e7aedf8117239a",
+ "auditor_option": null,
+ "auditor_value": "shortest distance = 5√2 km ≈ 7.07 km, reached after 0.25 h = 15 minutes",
+ "findings": [
+  {
+   "grade": "harmful",
+   "field": "steps[1].equation",
+   "quote": "v_BA = v_B − v_A = (0 − (−40), 20 − 0) = (20, 20) km/h, |v_BA| = √(20² + 20²) = 20√2 km/h at 45° north of east",
+   "note": "Step 1 gives v_A = (−20, 0) km/h, so the east component of v_B − v_A is 0 − (−20) = 20, not 0 − (−40). As printed the line is arithmetically false: 0 − (−40) = 40, yet it is set equal to 20. The final vector (20, 20) and everything after it are correct, so the error is confined to this line, but a student copying it would either carry 40 km/h eastward or conclude that 0 − (−40) = 20.",
+   "fix": "v_BA = v_B − v_A = (0 − (−20), 20 − 0) = (20, 20) km/h, |v_BA| = √(20² + 20²) = 20√2 km/h at 45° north of east"
+  }
+ ],
+ "verdict": "harmful",
+ "question_defect": null,
+ "notes": "Independent check (B at origin, A at (0, 10) km, north = +y, west = −x): r_A(t) = (−20t, 10), r_B(t) = (0, 20t), so d² = 800t² − 400t + 100, minimised at t = 1/4 h = 15 min with d² = 50, d = 5√2 ≈ 7.07 km. A perpendicular-distance check on the relative path gives the same 5√2 km and 15 min. The final answer agrees with mine; steps 0 and 2–5 are all correct.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-kin-01-R2", "at": "2026-09-11T10:15:39+05:30"}
+}

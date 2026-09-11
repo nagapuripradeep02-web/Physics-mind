@@ -1,0 +1,47 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_e033b869",
+ "approach": "Speed is the magnitude of the velocity vector, found from the square root of the sum of the squares of its components.",
+ "steps": [
+  {
+   "text": "Write the velocity components along the three axes.",
+   "equation": "vₓ = 3 m/s, v_y = 4 m/s, v_z = 5 m/s"
+  },
+  {
+   "text": "Find the magnitude using the three-dimensional distance formula.",
+   "equation": "v = √(3² + 4² + 5²) = √50 m/s"
+  },
+  {
+   "text": "Simplify the square root to get the speed.",
+   "equation": "v = 5√2 m/s ≈ 7.07 m/s"
+  }
+ ],
+ "final_answer": {
+  "option": null,
+  "value": "5√2 m/s (≈ 7.07 m/s)"
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": null,
+   "text": "Adding the three components directly instead of combining them as a vector, giving 3 + 4 + 5 = 12 m/s."
+  },
+  {
+   "option": null,
+   "text": "Leaving out the z-component and computing √(3² + 4²) = 5 m/s."
+  }
+ ],
+ "concept_tags": [
+  "vectors",
+  "speed",
+  "magnitude of a vector"
+ ],
+ "difficulty": "easy",
+ "mistake_type_hint": "concept",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-01",
+  "at": "2026-09-11T15:01:00+05:30"
+ }
+}

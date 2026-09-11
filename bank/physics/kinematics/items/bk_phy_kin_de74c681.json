@@ -1,0 +1,83 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_de74c681",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "mcq_single",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "A sphere is projected straight up into the air from ground level. Let T₁ represent the duration of its ascent to the highest point and T₂ represent the duration of its return to the ground. If air drag is taken into consideration throughout the motion, which relation is correct?",
+  "options": {
+   "1": "T₁ > T₂",
+   "2": "T₁ = T₂",
+   "3": "T₁ < T₂",
+   "4": "nothing can be said"
+  },
+  "parts": null,
+  "conditions": [
+   "motion in a vertical line under gravity",
+   "air resistance is not neglected",
+   "T₁ is the time of ascent",
+   "T₂ is the time of descent"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "With air resistance, the effective deceleration going up is larger than g, and the effective acceleration coming down is smaller than g, so the times are unequal.",
+  "steps": [
+   {
+    "text": "Going up, both gravity and air resistance act downward, opposing the upward motion.",
+    "equation": "a_up = g + f/m"
+   },
+   {
+    "text": "Coming down, gravity acts downward but air resistance acts upward, opposing the downward motion.",
+    "equation": "a_down = g − f/m"
+   },
+   {
+    "text": "A larger deceleration going up brings the ball to rest sooner, while a smaller net acceleration coming down means it takes longer to return to the ground.",
+    "equation": "T₁ < T₂"
+   }
+  ],
+  "final_answer": {
+   "option": 3,
+   "value": "T₁ < T₂"
+  },
+  "common_mistakes": [
+   {
+    "option": 2,
+    "text": "Ignoring air resistance and assuming the upward and downward motions are symmetric, giving T₁ = T₂."
+   }
+  ],
+  "concept_tags": [
+   "projectile motion",
+   "air resistance",
+   "time of flight"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "d84474bad845fadf29044b63eeccf9d590f547d836d06480b19699d623930463"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "b621705e04353d049f998410237acc73a019ba5b546d06691ccdc929b4480eb1",
+  "audited_by": "W01-U-kin-10"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-08",
+  "at": "2026-09-11T14:20:00+05:30"
+ }
+}

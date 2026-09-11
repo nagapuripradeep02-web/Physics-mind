@@ -1,0 +1,97 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter": "kinematics",
+ "slice": 12,
+ "round": 0,
+ "items": [
+  {
+   "question_id": "kin_fcab04e2",
+   "question_text": "Assertion: Based on the given displacement–time plot of an object, the particle reverses its direction of motion at location A.\nReason: The sign of the gradient of an s–t graph determines whether the velocity is directed along the positive or negative axis.",
+   "options": [
+    {
+     "label": "a",
+     "text": "Both Assertion and Reason are true, and Reason is the correct explanation of Assertion."
+    },
+    {
+     "label": "b",
+     "text": "Both Assertion and Reason are true, but Reason is not the correct explanation of Assertion."
+    },
+    {
+     "label": "c",
+     "text": "Assertion is true, but Reason is false."
+    },
+    {
+     "label": "d",
+     "text": "Assertion is false, but Reason is true."
+    }
+   ],
+   "figure_description": "A plot with displacement s on the vertical axis and time t on the horizontal axis. The curve starts at origin 0, curves upwards (concave upward) up to an inflection point labeled A, and then continues rising while bending downwards (concave downward) to an end point labeled B. Throughout the entire interval from 0 to B, the slope of the curve remains positive."
+  },
+  {
+   "question_id": "kin_f5577de4",
+   "question_text": "The variation of velocity with time for an object traveling along a straight path is provided in the figure. Given that its position coordinate is s = 20 m at t = 0, construct the corresponding acceleration versus time (a-t) and position versus time (s-t) graphs for the entire motion.",
+   "options": [],
+   "figure_description": "A plot of velocity v (m/s) versus time t (s) consisting of connected straight line segments: from t = 0 to 4 s, v remains constant at −20 m/s; from t = 4 to 6 s, v rises linearly from −20 m/s to 0 m/s; from t = 6 to 8 s, v falls linearly from 0 m/s to −20 m/s; from t = 8 to 12 s, v increases linearly from −20 m/s to +20 m/s, crossing v = 0 at t = 10 s; from t = 12 to 14 s, v decreases linearly from +20 m/s to 0 m/s."
+  },
+  {
+   "question_id": "kin_fc2a2e26",
+   "question_text": "An object moves with a uniform speed of 2 m/s for the first half of its total travel duration. Throughout the second half of the time, it covers ¼ of the distance traveled in that interval at a steady speed of 4 m/s, and the other ¾ of the distance at 6 m/s. Determine the average speed of the object over the entire journey.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_f243a15b",
+   "question_text": "An object is projected vertically upward from the surface of the earth. Throughout its flight, a steady resistive force acts on it, causing a deceleration of magnitude 2 ms⁻². Taking g = 10 ms⁻², determine the ratio comparing the duration of upward motion to that of downward motion back to the ground.",
+   "options": [
+    {
+     "label": "a",
+     "text": "1 : 1"
+    },
+    {
+     "label": "b",
+     "text": "√(2/3)"
+    },
+    {
+     "label": "c",
+     "text": "2/3"
+    },
+    {
+     "label": "d",
+     "text": "√(3/2)"
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_f3d443f6",
+   "question_text": "A pair of balls, labeled A and B, are launched straight up into the air at unequal initial speeds. Determine the acceleration of ball A with respect to ball B during their free flight.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_f160a9c0",
+   "question_text": "A soccer ball is launched straight up into the air from ground level. As it ascends, an observer looking through a window located 15.0 m above the ground notes that the ball travels past with an upward speed of 10 m/s. Assume that air drag is negligible and use g = 10 m/s².\n(a) What is the maximum height reached by the ball above the ground?\n(b) What is the total time needed for the ball to rise from the ground to the peak of its trajectory?",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_ff29cf3a",
+   "question_text": "A stone is thrown straight up from a high point A. When it is at a depth h beneath A, the speed of the stone is twice the speed it possessed at an elevation h over A. Prove that the stone reaches a maximum height of (5/3)h above point A.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_f6b82e81",
+   "question_text": "At the same instant, two bodies labeled 1 and 2 are launched vertically. Body 1 is released at an elevation of 20 m above the ground heading downward with a speed of 5 m/s, whereas body 2 is projected straight upward from ground level at 20 m/s. Treating the upward direction as positive, determine the following:\n(a) the acceleration of particle 1 relative to particle 2\n(b) the starting velocity of particle 2 relative to particle 1\n(c) the velocity of particle 1 relative to particle 2 at time t = ½ s\n(d) the instant at which the two particles meet",
+   "options": [],
+   "figure_description": "A vertical diagram showing particle 1 at a height of 20 m above the ground moving downward with an arrow labeled 5 m/s, and particle 2 at the ground moving upward with an arrow labeled 20 m/s. An upward arrow indicates the positive (+ve) reference direction."
+  },
+  {
+   "question_id": "kin_f49171eb",
+   "question_text": "For an object moving with a time-dependent velocity vector v, answer the following questions:\n(a) Explain the physical meaning conveyed by each of the two mathematical expressions |dv/dt| and d|v|/dt.\n(b) Determine whether there are situations in which these two quantities are equal to each other.",
+   "options": [],
+   "figure_description": ""
+  }
+ ]
+}

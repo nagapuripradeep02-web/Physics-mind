@@ -1,0 +1,174 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter": "kinematics",
+ "slice": 3,
+ "round": 0,
+ "items": [
+  {
+   "question_id": "kin_46b24e64",
+   "question_text": "A vehicle A moves with an acceleration of 2 m/s² towards the east, while a vehicle B accelerates at 4 m/s² towards the north. Determine the relative acceleration of vehicle B as observed from vehicle A.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_52d332aa",
+   "question_text": "A body is projected vertically upward from the ground with a launch speed u. It crosses an elevation of 80 m at two different instants, such that the time gap between these two occurrences is 6 s. Calculate the initial speed u. (Take g = 10 m/s²)",
+   "options": [],
+   "figure_description": "A sketch illustrating the vertical path of an object thrown upwards from the ground with initial speed u, showing it at a height of 80 m during ascent and descent, with an upward positive sign convention."
+  },
+  {
+   "question_id": "kin_53dfc657",
+   "question_text": "An object is thrown straight up into the air and attains its highest point H after a duration T. Find the vertical position of this object at an arbitrary instant t (where t < T).",
+   "options": [
+    {
+     "label": "a",
+     "text": "g (t − T)²"
+    },
+    {
+     "label": "b",
+     "text": "H − g (t − T)²"
+    },
+    {
+     "label": "c",
+     "text": "½ g (t − T)²"
+    },
+    {
+     "label": "d",
+     "text": "H − ½ g (T − t)²"
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_52fbb95e",
+   "question_text": "An object travels along a straight path at a constant speed v for a duration t₀, after which it continues at 2v for an equal time interval t₀. In the final portion of its motion, it moves at 3v for a duration T. If the mean velocity over the entire journey is equal to 2.5 v, determine the value of T expressed using t₀.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_528b43c3",
+   "question_text": "Determine whether the following claim is correct or incorrect: An object's average speed is invariably identical to the absolute value of its average velocity.",
+   "options": [
+    {
+     "label": "A",
+     "text": "True"
+    },
+    {
+     "label": "B",
+     "text": "False"
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_54869815",
+   "question_text": "Assertion: For the velocity versus time plot shown, the average velocity throughout the duration from 0 to t₀ relies purely on v₀ and does not depend on t₀.\nReason: Throughout this specified time span, the mean velocity has a value of v₀/2.",
+   "options": [
+    {
+     "label": "a",
+     "text": "If both Assertion and Reason are true and the Reason is correct explanation of the Assertion."
+    },
+    {
+     "label": "b",
+     "text": "If both Assertion and Reason are true but Reason is not the correct explanation of Assertion."
+    },
+    {
+     "label": "c",
+     "text": "If Assertion is true, but the Reason is false."
+    },
+    {
+     "label": "d",
+     "text": "If Assertion is false but the Reason is true."
+    }
+   ],
+   "figure_description": "A velocity-time graph with velocity v on the vertical axis and time t on the horizontal axis. Starting from the origin O, the line increases linearly to a maximum velocity v₀ and then decreases linearly back to zero at time t₀, forming a single triangle between the line and the time axis."
+  },
+  {
+   "question_id": "kin_4fac0b01",
+   "question_text": "Assertion: An object's speed can reduce even while the acceleration it experiences is growing.\nReason: A reduction in speed takes place whenever the acceleration is positive.",
+   "options": [
+    {
+     "label": "a",
+     "text": "Both Assertion and Reason are true, and Reason is the correct explanation of Assertion."
+    },
+    {
+     "label": "b",
+     "text": "Both Assertion and Reason are true, but Reason is not the correct explanation of Assertion."
+    },
+    {
+     "label": "c",
+     "text": "Assertion is true, but Reason is false."
+    },
+    {
+     "label": "d",
+     "text": "Assertion is false, but Reason is true."
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_480efbb2",
+   "question_text": "A particle travels along the x-axis such that its position as a function of time is given by the relation x = 20 + t³ − 12t, where all quantities are expressed in SI units.\n(a) Determine the position and velocity of the particle at t = 0.\n(b) State whether the particle moves with uniform acceleration or not.\n(c) Calculate the location of the particle at the instant its velocity drops to zero.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_5185b19d",
+   "question_text": "A roofless lift moves upwards at a steady rate of 10 m/s. While standing inside it at an altitude of 10 m above ground level, a person launches a ball straight upwards with a speed of 30 m/s relative to the lift. Determine:\n(a) the highest elevation reached by the ball from the ground,\n(b) the time elapsed until the ball returns to the lift,\n(c) the additional time needed for the ball to strike the ground after passing the lift on its descent.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_4c23a4dd",
+   "question_text": "Consider an object undergoing rectilinear motion with constant acceleration. At instant t = 0, its velocity equals v₁, while at instant t = t, its velocity reaches v₂. The claim states that its mean velocity over this duration is (v₁ + v₂)/2. State whether this statement is true or false.",
+   "options": [
+    {
+     "label": "A",
+     "text": "True"
+    },
+    {
+     "label": "B",
+     "text": "False"
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_4b95cb5a",
+   "question_text": "A body travels along a straight path with its position given by the relation x = (2t − 3)², in which x denotes metres and t denotes seconds. Calculate:\n(a) its position, velocity, and acceleration at the instant t = 2 s.\n(b) its velocity when it passes through the origin.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_4c7c661e",
+   "question_text": "The velocity-time relation of an object traveling along a straight path is represented in the given plot. Initially, at time t = 0, the object is situated at a distance of 10 m from the reference mean position. Determine the following:\n(a) The acceleration of the object at the time instants t = 1 s, t = 3 s, and t = 9 s.\n(b) The location of the object relative to the reference mean position at t = 10 s.\n(c) The displacement-time (s-t) expressions for the periods:\n(i) 0 ≤ t ≤ 2 s\n(ii) 4 s ≤ t ≤ 8 s",
+   "options": [],
+   "figure_description": "A graph of velocity v (in m/s) on the vertical axis against time t (in s) on the horizontal axis. The curve begins at (0 s, 0 m/s), increases uniformly to (2 s, 10 m/s), remains constant at 10 m/s until t = 4 s, decreases linearly passing through (6 s, 0 m/s) to reach (8 s, −10 m/s), and finally increases linearly to end at (10 s, 0 m/s)."
+  },
+  {
+   "question_id": "kin_77b0f00f",
+   "question_text": "Two automobiles, A and B, start from rest and move along a straight track with constant accelerations a₁ and a₂ respectively to cover the same distance. Car A completes the race in a time interval t shorter than car B, and crosses the endpoint with a speed exceeding that of car B by v. Show that the relationship between these quantities is given by v = √(a₁a₂) t.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_49fae7f8",
+   "question_text": "An object moves along the x-axis such that its speed remains constant within each given time period as follows:\n• From 0 s to 2 s, its speed is 2 m/s\n• From 2 s to 5 s, its speed is 3 m/s\n• From 5 s to 10 s, its speed is 4 m/s\n• From 10 s to 15 s, its speed is 2 m/s\n\nDetermine:\n(a) The overall distance covered during the entire motion.\n(b) The average speed of the object over the 15 s interval.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_5594bddd",
+   "question_text": "Along a straight horizontal line parallel to the positive x-axis, two bodies labeled 1 and 2 are in motion. Initially, body 1 is positioned 40 m to the left of body 2. At the initial instant, body 1 moves with a speed of 12 m/s and experiences a constant acceleration of 4 m/s², while body 2 moves with a speed of 4 m/s and has a constant acceleration of 12 m/s², with all velocities and accelerations oriented toward the positive x-direction. Determine:\n(a) the instant at which the separation between the two bodies reaches its smallest value.\n(b) the smallest separation between the two bodies.",
+   "options": [],
+   "figure_description": "A horizontal straight line representing the x-axis points to the right as the positive direction. Body 1 is located to the left with an initial velocity vector of 12 m/s and an acceleration vector of 4 m/s² directed to the right. Body 2 is located 40 m to the right of body 1, having an initial velocity vector of 4 m/s and an acceleration vector of 12 m/s² pointing to the right."
+  },
+  {
+   "question_id": "kin_55c0bbfa",
+   "question_text": "For the motion described in the preceding problem, is it valid to directly apply the kinematic relation v = u + at?",
+   "options": [],
+   "figure_description": ""
+  }
+ ]
+}

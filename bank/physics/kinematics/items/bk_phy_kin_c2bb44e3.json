@@ -1,0 +1,94 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_c2bb44e3",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A body travels in a straight line along the x-direction with its velocity governed by the equation v = (10 + 5t − t²), where v is measured in m/s and t in seconds. Given that the body is located at x = 0 when t = 0, determine:",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "The acceleration of the object at the instant t = 2 s"
+   },
+   {
+    "label": "b",
+    "asks": "The position coordinate x of the object at the instant t = 3 s"
+   }
+  ],
+  "conditions": [
+   "motion along x-axis",
+   "v = 10 + 5t − t² (v in m/s, t in s)",
+   "x = 0 at t = 0"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Differentiate the velocity once for acceleration, and integrate it from 0 to the given time for position.",
+  "steps": [
+   {
+    "text": "Differentiate v with respect to time to get the acceleration.",
+    "equation": "a = dv/dt = 5 − 2t"
+   },
+   {
+    "text": "Substitute t = 2 s.",
+    "equation": "a(2) = 5 − 2×2 = 1 m/s²"
+   },
+   {
+    "text": "Integrate v with respect to time from 0 to 3 s to get the x-coordinate, since x = 0 at t = 0.",
+    "equation": "x(3) = 10t + 5t²/2 − t³/3, evaluated from 0 to 3"
+   },
+   {
+    "text": "Evaluate the integral at t = 3 s.",
+    "equation": "x(3) = 30 + 22.5 − 9 = 43.5 m"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) 1 m/s², (b) 43.5 m"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Differentiating −t² as −t instead of −2t gives an acceleration of 3 m/s² at t = 2 s instead of 1 m/s²."
+   },
+   {
+    "option": null,
+    "text": "Multiplying the velocity at t = 3 s by 3 s instead of integrating gives 48 m instead of 43.5 m."
+   }
+  ],
+  "concept_tags": [
+   "differentiation",
+   "integration",
+   "variable acceleration"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "calculation"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "94df6811b9b72bd8ba8655111811829adf95436965474eaa3f21fe8dd9637fc4"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "650b38d6e271c843a1ec747eea72e453bc8c27dd770f26e9371fe134cb325d55",
+  "audited_by": "W01-U-kin-07"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-06",
+  "at": "2026-09-11T16:00:00+05:30"
+ }
+}

@@ -1,0 +1,83 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_fa6e45a7",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "numerical",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A particle moves along a straight path. Its acceleration varies with time as depicted in the acceleration-time graph, where the acceleration rises uniformly from 0 at t = 0 to a maximum of 4 m/s² at t = 2 s, and then decreases linearly back to 0 at t = 4 s. Given that the particle has a velocity of 2 m/s at t = 0, calculate its velocity at the end of the fourth second.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "particle travels in a straight line",
+   "initial velocity at t = 0 is 2 m/s",
+   "acceleration increases linearly from 0 m/s² at t = 0 to 4 m/s² at t = 2 s",
+   "acceleration decreases linearly from 4 m/s² at t = 2 s to 0 m/s² at t = 4 s"
+  ],
+  "figure": {
+   "description": "An acceleration-time (a-t) graph showing a triangle. The horizontal axis is time t in seconds, with markings at 0, 2, and 4. The vertical axis is acceleration a in m/s², with a marking at 4. The curve goes linearly from (0, 0) to (2 s, 4 m/s²), and then linearly down to (4 s, 0)."
+  }
+ },
+ "solution": {
+  "approach": "The change in velocity equals the area under the acceleration-time graph, so add the initial velocity to the total area of the triangular graph.",
+  "steps": [
+   {
+    "text": "Split the triangular a-t graph into two triangles and find the area of each.",
+    "equation": "area (0 to 2 s) = ½ × 2 × 4 = 4 m/s, area (2 to 4 s) = ½ × 2 × 4 = 4 m/s"
+   },
+   {
+    "text": "Add the two areas to get the total change in velocity from t = 0 to t = 4 s.",
+    "equation": "Δv = 4 + 4 = 8 m/s"
+   },
+   {
+    "text": "Add the change in velocity to the initial velocity.",
+    "equation": "v(4 s) = v(0) + Δv = 2 + 8 = 10 m/s"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "v = 10 m/s"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Misreading the peak of the graph as 2 m/s² instead of 4 m/s² gives Δv = ½ × 4 × 2 = 4 m/s and a wrong answer of 6 m/s."
+   },
+   {
+    "option": null,
+    "text": "Forgetting to add the initial velocity of 2 m/s gives v(4 s) = 8 m/s instead of 10 m/s."
+   }
+  ],
+  "concept_tags": [
+   "a-t graph",
+   "area under graph gives change in velocity"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "d194bd743e880e435c5a012292c08ca55ce7618c86c3b59e6834b836cf92e590"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "0c62198208ed7703678bf1b1c64ee8cec8150645369152326ff7993f6d5e9516",
+  "audited_by": "W01-U-kin-02-R1"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-02",
+  "at": "2026-09-11T00:00:00+05:30"
+ }
+}

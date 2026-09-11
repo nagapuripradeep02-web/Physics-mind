@@ -1,0 +1,51 @@
+{
+  "schema": "eapcet_solution_v1",
+  "question_id": "kin_17442cc2",
+  "approach": "Split the journey into three phases of constant acceleration, powered rise, coasting rise, and free fall, and find the velocity and displacement at the end of each.",
+  "steps": [
+    {
+      "text": "Phase 1, powered flight for 5 s with acceleration 4 m/s² from rest: find the velocity and height reached.",
+      "equation": "v = 4×5 = 20 m/s, s = ½(4)(5²) = 50 m"
+    },
+    {
+      "text": "Phase 2, after the fuel ends the rocket decelerates under gravity alone until its velocity reaches zero; find the time taken and the extra height gained.",
+      "equation": "Δt = 20/10 = 2 s (total t = 7 s), Δs = 20²/(2×10) = 20 m (total s = 70 m)"
+    },
+    {
+      "text": "Phase 3, the rocket falls freely from rest at 70 m under gravity; find the time to reach the ground.",
+      "equation": "70 = ½(10)t² → t = √14 ≈ 3.74 s (total t ≈ 10.74 s)"
+    },
+    {
+      "text": "The v-t graph rises from 0 to 20 m/s over 0–5 s, then falls to about −37.4 m/s by t ≈ 10.74 s, crossing zero at t = 7 s. The s-t graph rises from 0 to 50 m over 0–5 s, peaks at 70 m at t = 7 s, then falls to 0 at t ≈ 10.74 s.",
+      "equation": "key points: (5 s, 20 m/s, 50 m), (7 s, 0 m/s, 70 m), (10.74 s, −37.4 m/s, 0 m)"
+    }
+  ],
+  "final_answer": {
+    "option": null,
+    "value": "Rises to v = 20 m/s and s = 50 m at t = 5 s; coasts to the highest point s = 70 m at t = 7 s; falls back to the ground at t ≈ 10.74 s, landing at about 37.4 m/s"
+  },
+  "confidence": "sure",
+  "common_mistakes": [
+    {
+      "option": null,
+      "text": "Using the powered-phase acceleration of 4 m/s² instead of g = 10 m/s² for the coasting and falling phases, which changes the peak height and total time."
+    },
+    {
+      "option": null,
+      "text": "Forgetting to add the fall time to the 7 s already elapsed, reporting the total flight time as √14 ≈ 3.74 s instead of about 10.74 s."
+    }
+  ],
+  "concept_tags": [
+    "equations of motion",
+    "multi-phase motion",
+    "free fall"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "application",
+  "authored_by": {
+    "model": "sonnet",
+    "wave": 1,
+    "agent": "W01-A-kin-03",
+    "at": "2026-09-11T15:30:00+05:30"
+  }
+}

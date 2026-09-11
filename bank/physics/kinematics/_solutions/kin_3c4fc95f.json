@@ -1,0 +1,44 @@
+{
+  "schema": "eapcet_solution_v1",
+  "question_id": "kin_3c4fc95f",
+  "approach": "Test the claim with free fall from rest: at the starting instant velocity is zero, but the acceleration a = v dv/ds still gives a finite, nonzero value.",
+  "steps": [
+    {
+      "text": "For free fall from rest through a height s, the speed follows v² = 2gs, so v = √(2gs) and dv/ds = g/v.",
+      "equation": "v = √(2gs), dv/ds = g/v"
+    },
+    {
+      "text": "Form the product a = v dv/ds; the v in front cancels the v in the denominator of dv/ds, leaving a constant, even as v approaches zero near the start.",
+      "equation": "a = v × (g/v) = g",
+      "why_this_step": "As s becomes very small, v also becomes very small, but dv/ds grows without bound, so the product v dv/ds stays finite and equal to g rather than going to zero."
+    },
+    {
+      "text": "This shows a = v dv/ds does not force acceleration to zero when velocity is zero; the Assertion's conclusion is false, while the Reason, that a in this formula is the instantaneous acceleration, is a true definition on its own and does not justify the false conclusion.",
+      "equation": "Assertion false, Reason true"
+    }
+  ],
+  "final_answer": {
+    "option": 4,
+    "value": "If Assertion is false but the Reason is true."
+  },
+  "confidence": "sure",
+  "common_mistakes": [
+    {
+      "option": 1,
+      "text": "Substituting v = 0 directly into a = v dv/ds and reading off a = 0, without checking that dv/ds can be infinite at that point."
+    }
+  ],
+  "concept_tags": [
+    "acceleration as v dv/ds",
+    "free fall",
+    "calculus in kinematics"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "concept",
+  "authored_by": {
+    "model": "sonnet",
+    "wave": 1,
+    "agent": "W01-A-kin-07",
+    "at": "2026-09-11T14:30:00+05:30"
+  }
+}

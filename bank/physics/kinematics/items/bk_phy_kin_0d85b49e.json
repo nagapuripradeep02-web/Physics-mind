@@ -1,0 +1,103 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_0d85b49e",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "The position-time (x–t) graph of an object moving in one dimension consists of straight-line segments passing through the points (0 s, 0 m), (2.5 s, 50 m), (7.5 s, 50 m), (10.0 s, 100 m), and (15.0 s, 0 m). Using this information, calculate:",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "the average velocity over the time interval from 0 to 10 s"
+   },
+   {
+    "label": "b",
+    "asks": "the instantaneous velocity at the time instants t = 2 s, t = 5 s, t = 8 s, and t = 12 s"
+   }
+  ],
+  "conditions": [
+   "motion along x-axis",
+   "piecewise linear position-time graph",
+   "x = 0 m at t = 0 s",
+   "x = 50 m at t = 2.5 s and t = 7.5 s",
+   "x = 100 m at t = 10.0 s",
+   "x = 0 m at t = 15.0 s"
+  ],
+  "figure": {
+   "description": "A graph of position x (in m) plotted against time t (in s). The curve starts at (0, 0), rises with a constant positive slope to (2.5, 50), stays horizontal at x = 50 until t = 7.5, continues upward linearly to (10.0, 100), and then descends linearly to meet the time axis at (15.0, 0)."
+  }
+ },
+ "solution": {
+  "approach": "Find the average velocity from the net displacement over 0 to 10 s, then read the slope of the graph at each given time for the instantaneous velocities.",
+  "steps": [
+   {
+    "text": "Average velocity is the net displacement divided by the time interval, from t = 0 to t = 10 s.",
+    "equation": "v_avg = (100 − 0)/(10 − 0) = 10 m/s"
+   },
+   {
+    "text": "At t = 2 s the particle is on the rising segment from (0,0) to (2.5,50); its slope is the velocity.",
+    "equation": "v(2) = (50 − 0)/(2.5 − 0) = 20 m/s"
+   },
+   {
+    "text": "At t = 5 s the particle is on the flat segment from t = 2.5 s to t = 7.5 s, where x stays at 50 m.",
+    "equation": "v(5) = 0 m/s"
+   },
+   {
+    "text": "At t = 8 s the particle is on the segment rising from (7.5,50) to (10,100); its slope is the velocity.",
+    "equation": "v(8) = (100 − 50)/(10 − 7.5) = 20 m/s"
+   },
+   {
+    "text": "At t = 12 s the particle is on the falling segment from (10,100) to (15,0); its slope is the velocity.",
+    "equation": "v(12) = (0 − 100)/(15 − 10) = −20 m/s"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) 10 m/s; (b) v(2) = 20 m/s, v(5) = 0 m/s, v(8) = 20 m/s, v(12) = −20 m/s"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Carrying the slope from the first rising segment forward and reporting v(5) = 20 m/s, without noticing the graph is flat between t = 2.5 s and t = 7.5 s."
+   },
+   {
+    "option": null,
+    "text": "Reporting the speed 20 m/s at t = 12 s without the negative sign that shows the particle is moving back towards the origin."
+   }
+  ],
+  "concept_tags": [
+   "position-time graph",
+   "instantaneous velocity",
+   "average velocity"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "2ba67bd0832d7aa2082b99cecc873e2913be6df941cf3be55dca142222c166dd"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "16f9ece7da853617c871e79d583377c1e73a02ac61979c6346d850887f039a04",
+  "audited_by": "W01-U-kin-02"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-06",
+  "at": "2026-09-11T16:00:00+05:30"
+ }
+}

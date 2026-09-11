@@ -1,0 +1,38 @@
+{
+  "schema": "eapcet_solution_v1",
+  "question_id": "kin_7e4e93ab",
+  "approach": "Find the time of flight from the cart's speed and distance moved, then use it as the projectile's up-and-down time to find launch speed relative to the cart.",
+  "steps": [
+    {
+      "text": "The cart moves at constant speed 30 ms⁻¹ and covers 80 m while the projectile is in the air. Find the time of flight.",
+      "equation": "t = 80/30 = 8/3 s"
+    },
+    {
+      "text": "Relative to the cart, the projectile only moves vertically: straight up and back down to the same point on the cart. This is the usual vertical time of flight.",
+      "equation": "t = 2v/g"
+    },
+    {
+      "text": "Solve for the vertical launch speed relative to the cart.",
+      "equation": "v = gt/2 = 10(8/3)/2 = 40/3 ms⁻¹"
+    }
+  ],
+  "final_answer": {
+    "option": 3,
+    "value": "40/3 ms⁻¹"
+  },
+  "confidence": "sure",
+  "common_mistakes": [],
+  "concept_tags": [
+    "relative velocity",
+    "projectile motion",
+    "time of flight"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "application",
+  "authored_by": {
+    "model": "sonnet",
+    "wave": 1,
+    "agent": "W01-A-kin-09",
+    "at": "2026-09-11T15:15:00+05:30"
+  }
+}

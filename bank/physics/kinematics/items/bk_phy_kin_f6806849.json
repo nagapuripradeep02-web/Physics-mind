@@ -1,0 +1,92 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_f6806849",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "mcq_single",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "An object is thrown straight up into the air and attains its highest point H after a duration T. Find the vertical position of this object at an arbitrary instant t (where t < T).",
+  "options": {
+   "1": "g (t − T)²",
+   "2": "H − g (t − T)²",
+   "3": "½ g (t − T)²",
+   "4": "H − ½ g (T − t)²"
+  },
+  "parts": null,
+  "conditions": [
+   "motion under constant gravitational acceleration g",
+   "projected vertically upward",
+   "reaches maximum height H at time T",
+   "time instant t < T",
+   "air resistance neglected"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Write the height at time t using the launch speed and g, express the launch speed with H and T, then rewrite the height using H and T alone.",
+  "steps": [
+   {
+    "text": "Since the particle reaches maximum height H at time T, the launch speed is u = gT. Write the height at any time t.",
+    "equation": "y(t) = ut − ½gt² = gTt − ½gt²"
+   },
+   {
+    "text": "Express H using u and g, then substitute u = gT.",
+    "equation": "H = u²/(2g) = g T²/2"
+   },
+   {
+    "text": "Take option d and expand it to check whether it equals y(t).",
+    "equation": "H − ½g(T − t)² = ½gT² − ½g(T² − 2Tt + t²) = gTt − ½gt²"
+   },
+   {
+    "text": "This matches y(t) exactly, so option d is the correct expression for the height at time t.",
+    "equation": "H − ½g(T − t)²"
+   }
+  ],
+  "final_answer": {
+   "option": 4,
+   "value": "H − ½ g (T − t)²"
+  },
+  "common_mistakes": [
+   {
+    "option": 2,
+    "text": "Dropping the factor of ½ while expanding H − ½g(T − t)², giving H − g(T − t)², which is a different, smaller expression."
+   },
+   {
+    "option": 3,
+    "text": "Writing only the offset-from-the-top term ½g(T − t)² and forgetting to subtract it from H, which gives the distance fallen from the top, not the height above the ground."
+   }
+  ],
+  "concept_tags": [
+   "vertical projectile motion",
+   "algebraic manipulation",
+   "maximum height"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "calculation"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "53dfc6579d0cac403cf8041c6c81e14487e4b44466bad147dfac1287a71201ef"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "348412d8930921146ab014e49e62e1e091571e5e095d78af24bc01f3f19c80a2",
+  "audited_by": "W01-U-kin-03"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-09",
+  "at": "2026-09-11T15:33:00+05:30"
+ }
+}

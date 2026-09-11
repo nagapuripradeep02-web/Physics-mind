@@ -1,0 +1,51 @@
+{
+  "schema": "eapcet_solution_v1",
+  "question_id": "kin_04fc7932",
+  "approach": "Test the claim with a ball thrown up and caught at the same point; the average velocity over the trip is zero even though the acceleration is uniform throughout.",
+  "steps": [
+    {
+      "text": "Take a ball thrown upward at 20 m/s under gravity g = 10 m/s², a constant, uniform acceleration throughout its flight.",
+      "equation": "u = 20 m/s, a = −g = −10 m/s²"
+    },
+    {
+      "text": "Find the total time of flight, up and back down to the same starting height.",
+      "equation": "T = 2u/g = 2(20)/10 = 4 s"
+    },
+    {
+      "text": "Find the net displacement over this time; it returns exactly to the starting point.",
+      "equation": "s = uT − ½gT² = 20(4) − ½(10)(4²) = 80 − 80 = 0 m"
+    },
+    {
+      "text": "The average velocity is this net displacement divided by the time, giving zero even though the acceleration was uniform and nonzero throughout, so the Assertion is false.",
+      "equation": "Average velocity = 0 m / 4 s = 0 m/s"
+    },
+    {
+      "text": "The Reason correctly states that average velocity can only be zero when the velocity does not stay a fixed nonzero value throughout, which is a true condition, so the Reason is true even though the Assertion is false.",
+      "equation": "Assertion false, Reason true"
+    }
+  ],
+  "final_answer": {
+    "option": 4,
+    "value": "If Assertion is false but the Reason is true."
+  },
+  "confidence": "sure",
+  "common_mistakes": [
+    {
+      "option": 1,
+      "text": "Assuming uniform acceleration always produces a changing, nonzero average velocity, missing the case of a body that returns to its starting point."
+    }
+  ],
+  "concept_tags": [
+    "average velocity",
+    "uniformly accelerated motion",
+    "projectile motion"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept",
+  "authored_by": {
+    "model": "sonnet",
+    "wave": 1,
+    "agent": "W01-A-kin-07",
+    "at": "2026-09-11T14:39:00+05:30"
+  }
+}

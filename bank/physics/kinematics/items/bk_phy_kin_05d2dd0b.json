@@ -1,0 +1,94 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_05d2dd0b",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "mcq_single",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "The variation of velocity with time for a body executing one-dimensional motion is depicted in the given graph. Which of the following assertions is correct?",
+  "options": {
+   "1": "The particle's journey begins from the origin",
+   "2": "The particle returns to its starting point at t = 2 s",
+   "3": "The particle's mean speed during the duration 0 ≤ t ≤ 2 s is zero",
+   "4": "All of the above"
+  },
+  "parts": null,
+  "conditions": [
+   "motion along a straight line",
+   "initial velocity v = 10 m/s at t = 0 s",
+   "velocity v = 0 m/s at t = 1 s",
+   "velocity decreases linearly with time",
+   "constant acceleration of −10 m/s²"
+  ],
+  "figure": {
+   "description": "A velocity–time (v–t) graph where velocity v (in m/s) is plotted along the vertical axis and time t (in s) along the horizontal axis. A single downward-sloping straight line connects the y-intercept at (0 s, 10 m/s), intersects the time axis at (1 s, 0 m/s), and extends into negative velocities, passing through (2 s, −10 m/s)."
+  }
+ },
+ "solution": {
+  "approach": "Read the velocity-time equation from the graph and use the area under it to check displacement and distance travelled over 0 to 2 s.",
+  "steps": [
+   {
+    "text": "The line passes through (0, 10) and (1, 0), so write velocity as a function of time.",
+    "equation": "v(t) = 10 − 10t"
+   },
+   {
+    "text": "The displacement from t = 0 to t = 2 s is the signed area under the graph. Compute it.",
+    "equation": "∫₀² (10 − 10t) dt = [10t − 5t²]₀² = 20 − 20 = 0"
+   },
+   {
+    "text": "A zero displacement over this interval means the particle returns to its position at t = 0, so it crosses its initial position at t = 2 s.",
+    "why_this_step": "This holds whatever the particle's actual starting position is; the v-t graph alone does not say whether that position is the origin."
+   },
+   {
+    "text": "Check the distance travelled, which is different from displacement since the velocity changes sign at t = 1 s. Add the magnitudes of area from 0–1 s and 1–2 s.",
+    "equation": "5 m + 5 m = 10 m, average speed = 10/2 = 5 ms⁻¹, not zero"
+   },
+   {
+    "text": "The particle crosses its initial position at t = 2 s, which is the correct statement.",
+    "equation": "Statement (b) is correct"
+   }
+  ],
+  "final_answer": {
+   "option": 2,
+   "value": "The particle crosses its initial position at t = 2 s"
+  },
+  "common_mistakes": [
+   {
+    "option": 3,
+    "text": "Computing the average velocity (displacement/time = 0/2 = 0) and calling it the average speed, which is actually the total distance over time, 10/2 = 5 ms⁻¹."
+   }
+  ],
+  "concept_tags": [
+   "velocity-time graph",
+   "displacement from area under graph",
+   "average speed versus average velocity"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "c7bf59370c2a5b378a66b3bc843f2b814429b60f6a7ba5bddf537d5aa1993701"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "0afff5e5046b9514d8ae36b42a1cd036dcc8ace6e7d33f5130302e6a9b619b17",
+  "audited_by": "W01-U-kin-02-R1"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-09",
+  "at": "2026-09-11T15:18:00+05:30"
+ }
+}

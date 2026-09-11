@@ -1,0 +1,43 @@
+{
+  "schema": "eapcet_solution_v1",
+  "question_id": "kin_54869815",
+  "approach": "The area of the triangular v-t graph, and so the average velocity, depends only on the base and height, not on where the peak sits along the base.",
+  "steps": [
+    {
+      "text": "The distance travelled from 0 to t₀ is the area of the triangle formed by the v-t graph.",
+      "equation": "Area = ½ × base × height = ½ × t₀ × v₀"
+    },
+    {
+      "text": "This area formula holds no matter where along the base the peak occurs, so it depends only on t₀ and v₀, and t₀ cancels when finding average velocity.",
+      "equation": "Average velocity = Area / t₀ = (½ t₀ v₀) / t₀ = v₀/2"
+    },
+    {
+      "text": "The average velocity is v₀/2, which depends only on v₀ and not on t₀, so both the Assertion and the Reason are true, and the Reason directly gives the result stated in the Assertion.",
+      "equation": "Assertion true, Reason true, Reason explains Assertion"
+    }
+  ],
+  "final_answer": {
+    "option": 1,
+    "value": "If both Assertion and Reason are true and the Reason is correct explanation of the Assertion."
+  },
+  "confidence": "sure",
+  "common_mistakes": [
+    {
+      "option": 3,
+      "text": "Assuming the average velocity formula v₀/2 only works when the peak is at the midpoint of t₀, and marking the Reason false for a graph where the peak is off-centre."
+    }
+  ],
+  "concept_tags": [
+    "velocity-time graph",
+    "average velocity",
+    "area under a graph"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept",
+  "authored_by": {
+    "model": "sonnet",
+    "wave": 1,
+    "agent": "W01-A-kin-07",
+    "at": "2026-09-11T14:27:00+05:30"
+  }
+}

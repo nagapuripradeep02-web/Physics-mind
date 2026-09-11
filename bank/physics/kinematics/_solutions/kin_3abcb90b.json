@@ -1,0 +1,20 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_3abcb90b",
+ "approach": "Write v as a constant times t to the power three-quarters, then integrate for displacement and differentiate for acceleration.",
+ "steps": [
+  {"text": "Write the velocity as a constant times t raised to the power three-quarters.", "equation": "v = k t^(3/4)"},
+  {"text": "Integrate v with respect to time to get the displacement.", "equation": "x = ∫v dt = (4k/7) t^(7/4)"},
+  {"text": "Differentiate v with respect to time to get the acceleration.", "equation": "a = dv/dt = (3k/4) t^(−1/4)"},
+  {"text": "So displacement grows as t to the power seven-quarters, and acceleration falls as t to the power minus one-quarter.", "equation": "x ∝ t^(7/4), a ∝ t^(−1/4)"}
+ ],
+ "final_answer": {"option": null, "value": "displacement ∝ t^(7/4); acceleration ∝ t^(−1/4)"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Differentiating t to the power three-quarters by only multiplying by three-quarters and keeping the same power gives an acceleration wrongly stated as proportional to t^(3/4) instead of t^(−1/4)."}
+ ],
+ "concept_tags": ["proportionality", "differentiation", "integration"],
+ "difficulty": "hard",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-06", "at": "2026-09-11T16:00:00+05:30"}
+}

@@ -1,0 +1,16 @@
+{
+ "question_id": "kin_af05e9d4",
+ "item_sha": "21a51576f5aa2265333fcf4966a9ae3a34d0ff0f9385f8d1c279c596a5340a0f",
+ "auditor_option": null,
+ "auditor_value": "1.5 s after the first stone is released",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-kin-01-R1",
+  "at": "2026-09-11T18:40:00+05:30"
+ }
+}

@@ -1,0 +1,55 @@
+{
+  "schema": "eapcet_solution_v1",
+  "question_id": "kin_ede90d55",
+  "approach": "Add the wind velocity and the aircraft's velocity relative to the wind as vectors, using a triangle where their sum points along AB, then solve for missing side and angle.",
+  "steps": [
+    {
+      "text": "Set up the vector triangle: the wind velocity from A to C, the aircraft's velocity relative to the wind from C to B, and their sum, the resultant ground velocity, from A to B along the north-east direction.",
+      "equation": "AC = 200√2 km/h, CB = 400 km/h, angle A = 45°"
+    },
+    {
+      "text": "Use the sine rule with the side opposite angle A being CB, to find the angle at B.",
+      "equation": "sin B = (AC × sin A) / CB = (200√2 × sin 45°) / 400 = 0.5, B = 30°"
+    },
+    {
+      "text": "The remaining angle of the triangle gives the angle at C, and the sine rule gives the resultant ground speed AB.",
+      "equation": "C = 180° − 45° − 30° = 105°, AB = CB × sin C / sin A ≈ 546.4 km/h"
+    },
+    {
+      "text": "The angle α between the steered direction CB and the path AB equals the angle at B, so the pilot steers 30° east of the AB direction, that is, 75° east of north.",
+      "equation": "α = B = 30°, heading = 45° + 30° = 75° east of north"
+    },
+    {
+      "text": "The journey time is the distance divided by the resultant ground speed.",
+      "equation": "t = 1000 / 546.4 ≈ 1.83 h"
+    }
+  ],
+  "final_answer": {
+    "option": null,
+    "value": "Steer at 75° east of north (30° east of AB), journey time ≈ 1.83 h"
+  },
+  "confidence": "sure",
+  "common_mistakes": [
+    {
+      "option": null,
+      "text": "Adding the wind speed and aircraft speed directly as 400 + 200√2 to get the ground speed, ignoring the angle between them, gives a wrong resultant."
+    },
+    {
+      "option": null,
+      "text": "Steering directly along AB (45° from north) without correcting for the wind reaches a point other than B."
+    }
+  ],
+  "concept_tags": [
+    "relative velocity",
+    "vector triangle",
+    "sine rule"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "concept",
+  "authored_by": {
+    "model": "sonnet",
+    "wave": 1,
+    "agent": "W01-A-kin-03",
+    "at": "2026-09-11T15:30:00+05:30"
+  }
+}

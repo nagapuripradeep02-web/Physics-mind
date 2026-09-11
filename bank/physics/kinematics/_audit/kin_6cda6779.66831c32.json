@@ -1,0 +1,16 @@
+{
+ "question_id": "kin_6cda6779",
+ "item_sha": "66831c3205a95bd6edf45fc3bdaeecf9be6d0c91574e37de419faa02b88bfd8f",
+ "auditor_option": null,
+ "auditor_value": "v = (10î + 7ĵ) m/s (|v| ≈ 12.2 m/s); s = (12î + 10ĵ) m (|s| ≈ 15.6 m)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-kin-01-R1",
+  "at": "2026-09-11T18:40:00+05:30"
+ }
+}

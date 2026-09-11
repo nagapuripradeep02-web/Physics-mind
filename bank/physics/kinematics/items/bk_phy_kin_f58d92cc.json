@@ -1,0 +1,93 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_f58d92cc",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "An object having a mass of 1 kg moves with an initial velocity of 2 m/s. For a duration of 1 s, an unchanging 2 N force is applied to it at a right angle to its original direction of motion. Determine the object's velocity and displacement when the 1 s interval ends.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "mass = 1 kg",
+   "initial velocity = 2 m/s",
+   "constant force = 2 N",
+   "force duration = 1 s",
+   "applied force is perpendicular to initial velocity"
+  ],
+  "figure": {
+   "description": "Two vector diagrams: (a) shows the velocity components, with horizontal initial velocity u = 2 m/s and vertical component a t = 2 m/s, resulting in velocity vector v at an angle α to the horizontal; (b) shows the displacement components, with horizontal displacement u t = 2 m and vertical displacement ½ a t² = 1 m, resulting in displacement vector s at an angle β to the horizontal."
+  }
+ },
+ "solution": {
+  "approach": "Since the force is perpendicular to the initial velocity, treat the motion as two independent components: unchanged velocity along the original direction and accelerated motion along the perpendicular direction.",
+  "steps": [
+   {
+    "text": "Find the acceleration produced by the force.",
+    "equation": "a = F/m = 2/1 = 2 m/s², directed perpendicular to u"
+   },
+   {
+    "text": "The velocity along the original direction stays u, and the perpendicular component grows from zero.",
+    "equation": "v∥ = u = 2 m/s, v⊥ = at = 2 × 1 = 2 m/s"
+   },
+   {
+    "text": "Combine the two perpendicular components to get the resultant velocity.",
+    "equation": "v = √(v∥² + v⊥²) = √(2² + 2²) = 2√2 m/s ≈ 2.83 m/s, at α = tan⁻¹(2/2) = 45° to u"
+   },
+   {
+    "text": "Find the displacement along each direction.",
+    "equation": "s∥ = ut = 2 × 1 = 2 m, s⊥ = ½at² = ½ × 2 × 1² = 1 m"
+   },
+   {
+    "text": "Combine the two perpendicular displacements to get the resultant displacement.",
+    "equation": "s = √(2² + 1²) = √5 ≈ 2.24 m, at β = tan⁻¹(1/2) ≈ 26.6° to u"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "v = 2√2 m/s ≈ 2.83 m/s at 45° to the initial velocity; s = √5 m ≈ 2.24 m at about 26.6° to the initial velocity"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Adding the perpendicular components as plain numbers instead of combining them as perpendicular vectors gives v = 4 m/s instead of 2√2 m/s."
+   },
+   {
+    "option": null,
+    "text": "Using s⊥ = at² for the perpendicular displacement instead of ½at² gives 2 m instead of 1 m."
+   }
+  ],
+  "concept_tags": [
+   "motion under perpendicular force",
+   "vector addition of velocity",
+   "vector addition of displacement"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "d1f0c906af121145a75016744dea175146efd7b8b05babe1dddd27c449983b6f"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "0727db1bcf7fc818deda217ac984e5cb9459bc1e940163d6ed4affe15981a02d",
+  "audited_by": "W01-U-kin-02-R1"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-02",
+  "at": "2026-09-11T00:00:00+05:30"
+ }
+}

@@ -1,0 +1,11 @@
+{
+ "question_id": "kin_e7cb5962",
+ "item_sha": "bc659bc4b039cb5b21c4de510603af9893210142f004e4ddec7a815ee9d6b8a3",
+ "auditor_option": null,
+ "auditor_value": "v_max = 2 km min⁻¹, so 1/x + 1/y = T/v = 4/2 = 2",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-kin-11", "at": "2026-09-11T09:50:48+05:30"}
+}

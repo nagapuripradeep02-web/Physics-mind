@@ -1,0 +1,44 @@
+{
+  "schema": "eapcet_solution_v1",
+  "question_id": "kin_583c5b7b",
+  "approach": "The resultant velocity must lie along AB, so the swimmer's velocity relative to water is least when perpendicular to AB; find it by resolving flow along and perpendicular to AB.",
+  "steps": [
+    {
+      "text": "Take x along the flow (downstream) and y straight across the river. Since AB makes 45° with the straight-across direction, the flow direction makes 45° with AB.",
+      "equation": "angle between the flow velocity u and the line AB = 45°"
+    },
+    {
+      "text": "The man's resultant velocity relative to the ground must lie along AB. His velocity relative to water, v, satisfies v = v_resultant − u, so v is the vector from the tip of u to some point on the line AB.",
+      "equation": "v = v_resultant − u"
+    },
+    {
+      "text": "Among all points on the line AB, the shortest vector from the tip of u to the line is the perpendicular distance from that point to the line, so the minimum |v| occurs when v is perpendicular to AB.",
+      "equation": "v_min = u sin(45°) = u/√2",
+      "why_this_step": "The perpendicular distance from a point to a line through the origin at angle θ to the point's direction is (distance of point from origin) × sin θ."
+    }
+  ],
+  "final_answer": {
+    "option": null,
+    "value": "Minimum speed relative to water = u/√2, swum in the direction perpendicular to AB (tilted upstream), which makes 45° with the line perpendicular to the banks, tilted upstream."
+  },
+  "confidence": "sure",
+  "common_mistakes": [
+    {
+      "option": null,
+      "text": "Swimming straight across (perpendicular to the bank) at speed u instead of perpendicular to AB gives a larger required speed and does not minimize |v|, since it ignores that AB is tilted from straight across."
+    }
+  ],
+  "concept_tags": [
+    "relative velocity",
+    "river-boat problem",
+    "minimum speed"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "concept",
+  "authored_by": {
+    "model": "sonnet",
+    "wave": 1,
+    "agent": "W01-A-kin-04",
+    "at": "2026-09-11T00:45:00+05:30"
+  }
+}

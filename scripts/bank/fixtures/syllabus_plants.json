@@ -1,0 +1,17 @@
+{
+ "_about": "The six planted solutions of docs/MODEL_PROBES.md Run 13 (2026-09-11), authored here because the run left them undescribed in the repo. Four use a beyond-Class-12 method and must be flagged; two are within syllabus and must pass. Re-run whenever SYLLABUS_PROMPT changes.",
+ "plants": [
+  {"name": "Lagrangian bead on a rotating wire", "expect": "beyond",
+   "solution": "A bead of mass m slides without friction on a straight wire rotating at constant angular speed ω in a horizontal plane. Find its radial motion.\nTake the generalised coordinate r. The kinetic energy is T = ½m(ṙ² + r²ω²) and V = 0, so the Lagrangian is L = ½m(ṙ² + r²ω²).\nThe Euler–Lagrange equation d/dt(∂L/∂ṙ) − ∂L/∂r = 0 gives m r̈ − m r ω² = 0.\nSo r̈ = ω² r, with solution r(t) = A e^{ωt} + B e^{−ωt}.\nFinal answer: r(t) = A e^{ωt} + B e^{−ωt}."},
+  {"name": "Laplace transform of an RC charging circuit", "expect": "beyond",
+   "solution": "A capacitor C in series with resistor R is connected to a battery of emf E at t = 0. Find the charge q(t).\nKVL: R dq/dt + q/C = E. Take the Laplace transform with q(0) = 0: R s Q(s) + Q(s)/C = E/s.\nSo Q(s) = (E/R) · 1/(s (s + 1/RC)). Partial fractions: Q(s) = EC [1/s − 1/(s + 1/RC)].\nInverse transform: q(t) = EC (1 − e^{−t/RC}).\nFinal answer: q(t) = CE(1 − e^{−t/RC})."},
+  {"name": "Residue theorem for a definite integral", "expect": "beyond",
+   "solution": "Evaluate I = ∫_{−∞}^{∞} dx/(1 + x²).\nClose the contour in the upper half plane. The integrand 1/(1+z²) has a simple pole at z = i with residue 1/(2i).\nBy the residue theorem, the contour integral is 2πi × 1/(2i) = π, and the arc contributes zero as R → ∞.\nFinal answer: I = π."},
+  {"name": "Jacobian change of variables for an area", "expect": "beyond",
+   "solution": "Find the area enclosed by the ellipse x²/a² + y²/b² = 1.\nUse the substitution x = a u, y = b v. The Jacobian of the transformation is ∂(x,y)/∂(u,v) = ab.\nThe area is ∬ dx dy = ∬ ab du dv over the unit disc u² + v² ≤ 1, which has area π.\nFinal answer: area = πab."},
+  {"name": "Stopping distance from v² = u² + 2as", "expect": "within",
+   "solution": "A car moving at 20 m/s brakes with a uniform deceleration of 5 m/s². Find the stopping distance.\nUse v² = u² + 2as with v = 0, u = 20 m/s, a = −5 m/s².\n0 = 400 − 10 s, so s = 40 m.\nFinal answer: 40 m."},
+  {"name": "L'Hopital for a limit", "expect": "within",
+   "solution": "Evaluate lim_{x→0} sin x / x.\nBoth numerator and denominator tend to 0, so apply L'Hopital's rule: the limit equals lim cos x / 1 = 1.\nFinal answer: 1."}
+ ]
+}

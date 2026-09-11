@@ -1,0 +1,83 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_3e880ae2",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "mcq_single",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "A body moves along a straight path such that its acceleration varies with time t according to the relation a = bt, where b is a constant. If the body sets off from the origin with an initial velocity v₀ at t = 0, find the total distance covered by it in time t.",
+  "options": {
+   "1": "v₀t + 1/6 bt³",
+   "2": "v₀t + 1/3 bt³",
+   "3": "v₀t + 1/3 bt²",
+   "4": "v₀t + 1/2 bt²"
+  },
+  "parts": null,
+  "conditions": [
+   "acceleration a = bt",
+   "starts from origin at t = 0",
+   "initial velocity v(0) = v₀",
+   "motion along a straight line in one direction"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Integrate the given acceleration once to get velocity as a function of time, then integrate again to get the distance travelled.",
+  "steps": [
+   {
+    "text": "Integrate the acceleration a(t) = bt to find the velocity, using the initial velocity v₀ as the constant of integration.",
+    "equation": "v(t) = v₀ + ∫₀ᵗ bt′ dt′ = v₀ + ½bt²"
+   },
+   {
+    "text": "Integrate the velocity to find the distance travelled, starting from the origin.",
+    "equation": "x(t) = ∫₀ᵗ v(t′) dt′ = v₀t + (1/6)bt³"
+   }
+  ],
+  "final_answer": {
+   "option": 1,
+   "value": "v₀t + 1/6 bt³"
+  },
+  "common_mistakes": [
+   {
+    "option": 2,
+    "text": "Dropping the factor of one-half when integrating acceleration, using v(t) = v₀ + bt² instead of v₀ + ½bt², which on integrating gives v₀t + 1/3 bt³."
+   },
+   {
+    "option": 4,
+    "text": "Misreading the increasing acceleration bt as a constant rate b, so using v(t) = v₀ + bt for the velocity, which on integrating gives v₀t + 1/2 bt²."
+   }
+  ],
+  "concept_tags": [
+   "variable acceleration",
+   "integration",
+   "equations of motion"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "c239883484839940b864934c98ae65fdfffb5c7ee20b098a3224bb56133a0a3b"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "a82c2dd3060934a730afc87eb8252d2961d7ad7210a2dcd6dab4e7dbe53eaa01",
+  "audited_by": "W01-U-kin-09"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-08",
+  "at": "2026-09-11T14:20:00+05:30"
+ }
+}

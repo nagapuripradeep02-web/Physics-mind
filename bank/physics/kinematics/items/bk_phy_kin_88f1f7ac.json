@@ -1,0 +1,91 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_88f1f7ac",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "mcq_single",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "A watch features a second hand measuring 1 cm from the pivot to the tip. Determine the magnitude of the change in velocity of this tip over a time interval of 15 s.",
+  "options": {
+   "1": "zero",
+   "2": "π/(30√2) cm/s",
+   "3": "π/30 cm/s",
+   "4": "π√2/30 cm/s"
+  },
+  "parts": null,
+  "conditions": [
+   "length of second hand r = 1 cm",
+   "time period of rotation T = 60 s",
+   "uniform circular motion",
+   "time elapsed Δt = 15 s"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Find the constant speed of the tip, the angle it sweeps in 15 s, and then the magnitude of the vector difference between the initial and final velocity.",
+  "steps": [
+   {
+    "text": "Find the angular speed of the seconds hand and the speed of its tip.",
+    "equation": "ω = 2π/60 = π/30 rad/s, v = ωr = π/30 cm/s"
+   },
+   {
+    "text": "Find the angle swept by the tip in 15 s.",
+    "equation": "Δθ = ω × 15 = π/2, that is, 90°"
+   },
+   {
+    "text": "The velocity vector keeps the same magnitude but turns through 90°, so find the magnitude of the vector difference between two perpendicular vectors of equal length.",
+    "equation": "|Δv| = √(v² + v² − 2v² cos90°) = v√2"
+   },
+   {
+    "text": "Substitute v = π/30 cm/s to get the change in velocity.",
+    "equation": "|Δv| = (π/30) × √2 = π√2/30 cm/s"
+   }
+  ],
+  "final_answer": {
+   "option": 4,
+   "value": "π√2/30 cm/s"
+  },
+  "common_mistakes": [
+   {
+    "option": 1,
+    "text": "Assuming that because the speed (magnitude of velocity) stays constant, the velocity itself does not change, giving zero instead of accounting for the change in direction."
+   },
+   {
+    "option": 2,
+    "text": "Using the chord formula without the factor of two, computing v sin(Δθ/2) instead of 2v sin(Δθ/2), which gives π/(30√2) cm/s."
+   }
+  ],
+  "concept_tags": [
+   "circular motion",
+   "change in velocity",
+   "vectors"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "82b920c19b84a217e981cd4695e89cd9d4cdddb411d796fc7a5a110c86df9ffe"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "b56bff79257ae3ceb5616e6f963a421392bdb6e750d5649513d3f0efd3c885db",
+  "audited_by": "W01-U-kin-06"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-08",
+  "at": "2026-09-11T14:20:00+05:30"
+ }
+}

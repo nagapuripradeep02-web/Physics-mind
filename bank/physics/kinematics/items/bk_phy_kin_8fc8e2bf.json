@@ -1,0 +1,100 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_8fc8e2bf",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A person uses a boat to travel across a flowing river to the opposite bank. To cross in the least possible time, the journey takes 10 min, resulting in a downstream displacement of 120 m. If the crossing is instead made along the shortest possible route straight across the stream, the trip takes 12.5 min. Calculate the following quantities:",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "the river's width"
+   },
+   {
+    "label": "b",
+    "asks": "the boat's velocity relative to the water"
+   },
+   {
+    "label": "c",
+    "asks": "the flow speed of the current"
+   }
+  ],
+  "conditions": [
+   "constant boat speed relative to water",
+   "constant uniform river current",
+   "minimum time crossing duration = 10 min",
+   "drift during minimum time crossing = 120 m",
+   "shortest path crossing duration = 12.5 min"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "The minimum-time crossing uses the boat's full speed across the bank; the shortest-path crossing uses the speed left after cancelling the current, giving two equations for width and boat speed.",
+  "steps": [
+   {
+    "text": "In the minimum-time crossing the boat heads straight across, so the width equals boat speed times 10 min, and the current speed follows from the drift in that same time.",
+    "equation": "d = v_b × 10 min; v_r = 120 m / 10 min = 12 m/min"
+   },
+   {
+    "text": "In the shortest-path crossing the boat angles upstream so its resultant path is straight across; the effective crossing speed is reduced by the current.",
+    "equation": "d = 12.5 min × √(v_b² − 12²)"
+   },
+   {
+    "text": "Equate the two expressions for the width and solve for the boat speed.",
+    "equation": "10 v_b = 12.5√(v_b² − 144) ⇒ 16 v_b² = 25 v_b² − 3600 ⇒ v_b = 20 m/min"
+   },
+   {
+    "text": "Substitute the boat speed back to find the width, and state all three results.",
+    "equation": "d = 10 min × 20 m/min = 200 m; v_b = 20 m/min ≈ 0.33 m/s; v_r = 12 m/min = 0.2 m/s"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) width = 200 m, (b) boat speed relative to water = 20 m/min ≈ 0.33 m/s, (c) current speed = 12 m/min = 0.2 m/s"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Dividing the 120 m drift by the 12.5 min shortest-path time instead of the 10 min minimum-time gives a wrong current speed of 9.6 m/min instead of 12 m/min."
+   },
+   {
+    "option": null,
+    "text": "Writing the shortest-path speed as v_b − v_r instead of √(v_b² − v_r²) gives a wrong boat speed of 60 m/min."
+   }
+  ],
+  "concept_tags": [
+   "river-boat problem",
+   "minimum time crossing",
+   "shortest path crossing"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "9ee5a9e866bce37c52ec74e00a5c77a370246972cde005013e2ce27d5cd0df8b"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "395ce58fa248619309ea39faf641f5eb1252f6ea901d335277c7de6432df50e0",
+  "audited_by": "W01-U-kin-07"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-07",
+  "at": "2026-09-11T14:16:00+05:30"
+ }
+}

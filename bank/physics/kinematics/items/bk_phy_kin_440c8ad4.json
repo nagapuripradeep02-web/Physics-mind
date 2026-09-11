@@ -1,0 +1,84 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_440c8ad4",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "assertion_reason",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "Assertion: For the velocity versus time plot shown, the average velocity throughout the duration from 0 to t₀ relies purely on v₀ and does not depend on t₀.\nReason: Throughout this specified time span, the mean velocity has a value of v₀/2.",
+  "options": {
+   "1": "If both Assertion and Reason are true and the Reason is correct explanation of the Assertion.",
+   "2": "If both Assertion and Reason are true but Reason is not the correct explanation of Assertion.",
+   "3": "If Assertion is true, but the Reason is false.",
+   "4": "If Assertion is false but the Reason is true."
+  },
+  "parts": null,
+  "conditions": [
+   "motion from time t = 0 to t = t₀",
+   "velocity starts from zero at t = 0, increases linearly to peak v₀, and decreases linearly back to zero at t = t₀",
+   "one-dimensional motion"
+  ],
+  "figure": {
+   "description": "A velocity-time graph with velocity v on the vertical axis and time t on the horizontal axis. Starting from the origin O, the line increases linearly to a maximum velocity v₀ and then decreases linearly back to zero at time t₀, forming a single triangle between the line and the time axis."
+  }
+ },
+ "solution": {
+  "approach": "The area of the triangular v-t graph, and so the average velocity, depends only on the base and height, not on where the peak sits along the base.",
+  "steps": [
+   {
+    "text": "The distance travelled from 0 to t₀ is the area of the triangle formed by the v-t graph.",
+    "equation": "Area = ½ × base × height = ½ × t₀ × v₀"
+   },
+   {
+    "text": "This area formula holds no matter where along the base the peak occurs, so it depends only on t₀ and v₀, and t₀ cancels when finding average velocity.",
+    "equation": "Average velocity = Area / t₀ = (½ t₀ v₀) / t₀ = v₀/2"
+   },
+   {
+    "text": "The average velocity is v₀/2, which depends only on v₀ and not on t₀, so both the Assertion and the Reason are true, and the Reason directly gives the result stated in the Assertion.",
+    "equation": "Assertion true, Reason true, Reason explains Assertion"
+   }
+  ],
+  "final_answer": {
+   "option": 1,
+   "value": "If both Assertion and Reason are true and the Reason is correct explanation of the Assertion."
+  },
+  "common_mistakes": [
+   {
+    "option": 3,
+    "text": "Assuming the average velocity formula v₀/2 only works when the peak is at the midpoint of t₀, and marking the Reason false for a graph where the peak is off-centre."
+   }
+  ],
+  "concept_tags": [
+   "velocity-time graph",
+   "average velocity",
+   "area under a graph"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "548698152b385695a09518d6e8cf0debe207e34e7a94689c121438f1f67966b5"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "036aa03f49b6f095498771aeb6ff3ab07c041df004bd7ba5aca6a2ef56b68291",
+  "audited_by": "W01-U-kin-03"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-07",
+  "at": "2026-09-11T14:27:00+05:30"
+ }
+}

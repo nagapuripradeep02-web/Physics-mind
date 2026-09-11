@@ -1,0 +1,14 @@
+{
+ "question_id": "kin_f0b4b4d5",
+ "item_sha": "36cda53e80bef83874a5afb85235771046f22955bee19578d535bb585e57f556",
+ "auditor_option": null,
+ "auditor_value": "(a) t = 5/3 s ≈ 1.67 s; (b) lift and ball both rise 175/9 m ≈ 19.4 m; (c) distance travelled by ball = 19.4 m",
+ "findings": [
+  {"grade": "wrong", "field": "steps[0].text", "quote": "starting from rest at 10 m/s with an upward acceleration of 2 m/s²",
+   "note": "The lift is not starting from rest; the question states it already has an upward speed of 10 m/s at that instant. The phrase contradicts itself and the equation y_lift = 10t + t² that follows from it.", "fix": "Write the lift's displacement, starting with an upward speed of 10 m/s and an upward acceleration of 2 m/s²."}
+ ],
+ "verdict": "wrong",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-kin-11", "at": "2026-09-11T09:50:48+05:30"}
+}

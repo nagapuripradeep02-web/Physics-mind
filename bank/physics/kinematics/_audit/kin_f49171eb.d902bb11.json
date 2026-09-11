@@ -1,0 +1,16 @@
+{
+ "question_id": "kin_f49171eb",
+ "item_sha": "d902bb11b3e828bc8b92d75cae4883bbacd33d1e8a758431067f8fc5d4f015f0",
+ "auditor_option": null,
+ "auditor_value": "(a) |dv/dt| = magnitude of the acceleration vector (includes direction change); d|v|/dt = rate of change of speed only. (b) Equal only when the acceleration is along the velocity, i.e. straight-line motion with increasing speed; unequal in general (uniform circular motion: d|v|/dt = 0 but |dv/dt| = v²/R).",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-kin-02-R1",
+  "at": "2026-09-11T10:07:19+05:30"
+ }
+}

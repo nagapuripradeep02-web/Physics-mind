@@ -1,0 +1,11 @@
+{
+ "question_id": "kin_954e4971",
+ "item_sha": "415d92002af9cda94b345af908e41a1a8694ffd9e0395bfe75591b8809ee54d8",
+ "auditor_option": null,
+ "auditor_value": "g, directed vertically downward",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "The solution calls the object a stone while the question calls it a rock; not a physics defect, so no finding filed.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-kin-07", "at": "2026-09-11T14:22:00+05:30"}
+}

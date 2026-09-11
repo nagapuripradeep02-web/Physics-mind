@@ -1,0 +1,101 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_9db1b7da",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "To reach his farmland from his house, a cultivator walks 500 m towards the north, then 400 m towards the east, and finally 200 m towards the south. The entire journey takes a time of 20 min.",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "Find the total distance covered to reach the field."
+   },
+   {
+    "label": "b",
+    "asks": "Determine the net displacement vector from the house to the field."
+   },
+   {
+    "label": "c",
+    "asks": "Calculate the average speed of the cultivator during this journey."
+   },
+   {
+    "label": "d",
+    "asks": "Calculate the average velocity of the cultivator during this journey."
+   }
+  ],
+  "conditions": [
+   "displacement segments: 500 m north, 400 m east, 200 m south",
+   "total time taken = 20 min"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Add the three legs of the walk for the distance, combine the north-south and east-west legs as vectors for the displacement, then divide each by the total time.",
+  "steps": [
+   {
+    "text": "Add the three legs walked to get the total distance.",
+    "equation": "distance = 500 + 400 + 200 = 1100 m"
+   },
+   {
+    "text": "Combine the two north-south legs: 500 m north and 200 m south leave a net 300 m north. The east leg stays 400 m east.",
+    "equation": "net north = 500 − 200 = 300 m, net east = 400 m"
+   },
+   {
+    "text": "Find the magnitude of the displacement using these two perpendicular components.",
+    "equation": "displacement = √(300² + 400²) = √250000 = 500 m, directed 53.1° east of north"
+   },
+   {
+    "text": "Convert 20 min to seconds and divide the distance by the time for the average speed.",
+    "equation": "t = 1200 s, average speed = 1100/1200 = 11/12 ≈ 0.92 ms⁻¹"
+   },
+   {
+    "text": "Divide the displacement by the same time for the average velocity.",
+    "equation": "average velocity = 500/1200 = 5/12 ≈ 0.42 ms⁻¹, directed 53.1° east of north"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) distance walked = 1100 m, (b) displacement = 500 m, directed 53.1° east of north, (c) average speed = 11/12 ms⁻¹ ≈ 0.92 ms⁻¹, (d) average velocity = 5/12 ms⁻¹ ≈ 0.42 ms⁻¹, directed 53.1° east of north"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Reporting the average speed value, 0.92 ms⁻¹, as the average velocity, which confuses the total distance walked with the net displacement."
+   }
+  ],
+  "concept_tags": [
+   "distance and displacement",
+   "average speed and average velocity",
+   "vector addition"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "e57c21ccb1471bb30636279d5fe0459d0fce63bc9cd0e4e928fb5e6bc7c3fda2"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "215abb2d823908647cf01c1bba3cda0c52f6f94f1564e7139313c79cc2b713a6",
+  "audited_by": "W01-U-kin-11"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-10",
+  "at": "2026-09-11T14:12:00+05:30"
+ }
+}

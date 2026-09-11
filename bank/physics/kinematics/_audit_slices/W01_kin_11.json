@@ -1,0 +1,861 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter": "kinematics",
+ "slice": 11,
+ "round": 0,
+ "agent_label": "W01-U-kin-11",
+ "items": [
+  {
+   "question_id": "kin_ea905411",
+   "audit_file": "kin_ea905411.87a5d81b.json",
+   "item_sha": "87a5d81ba97b226bd6d580d22a4f70a53bd106d3668a7188bc300179a83c1b42",
+   "question_text": "An elevator travels upward from rest, undergoing a constant acceleration a during the initial stage of its motion, followed by a constant deceleration of 2a until it comes to a complete stop. If the entire upward journey requires a total duration t, calculate the depth of the elevator shaft.",
+   "options": [
+    {
+     "label": "a",
+     "text": "at²/4"
+    },
+    {
+     "label": "b",
+     "text": "at²/3"
+    },
+    {
+     "label": "c",
+     "text": "at²/2"
+    },
+    {
+     "label": "d",
+     "text": "at²/8"
+    }
+   ],
+   "figure_description": "",
+   "solution": {
+    "approach": "Use that the lift reaches the same maximum speed at the end of both phases, split the total time t between phases using that condition, then add the two distances.",
+    "steps": [
+     {
+      "text": "Let t₁ be the time of uniform acceleration a and t₂ the time of uniform retardation 2a, with t₁ + t₂ = t. The maximum speed reached is the same seen from both phases.",
+      "equation": "a t₁ = 2a t₂ → t₁ = 2t₂"
+     },
+     {
+      "text": "Combine with t₁ + t₂ = t to find each time in terms of t.",
+      "equation": "2t₂ + t₂ = t → t₂ = t/3, t₁ = 2t/3"
+     },
+     {
+      "text": "Find the maximum speed and the distance covered while accelerating.",
+      "equation": "vₘₐₓ = a(2t/3) = 2at/3, d₁ = ½a(2t/3)² = 2at²/9"
+     },
+     {
+      "text": "Find the distance covered while retarding from vₘₐₓ to rest.",
+      "equation": "d₂ = ½(2at/3)(t/3) = at²/9"
+     },
+     {
+      "text": "Add the two distances to get the total depth of the shaft.",
+      "equation": "2at²/9 + at²/9 = at²/3"
+     }
+    ],
+    "final_answer": {
+     "option": 2,
+     "value": "at²/3"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Assuming the acceleration phase and the retardation phase take equal time (t/2 each) instead of using the equal-maximum-speed condition, which gives at²/4."
+     }
+    ],
+    "concept_tags": [
+     "equations of motion",
+     "two-phase motion",
+     "maximum velocity"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_f0b4b4d5",
+   "audit_file": "kin_f0b4b4d5.36cda53e.json",
+   "item_sha": "36cda53e80bef83874a5afb85235771046f22955bee19578d535bb585e57f556",
+   "question_text": "An open elevator ascends vertically with an instantaneous speed of 10 m/s while accelerating upward at a rate of 2 m/s². At this moment, a ball is thrown straight up with a speed of 20 m/s relative to the ground from the base of the elevator. Taking g = 10 m/s², calculate the following:\n(a) The time elapsed before the ball returns to the elevator floor.\n(b) The vertical displacement of both the elevator and the ball at that moment.\n(c) The total distance covered by the ball during this duration.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Write the displacement of the lift and of the ball as functions of time from the same starting point, and set them equal to find when they meet again.",
+    "steps": [
+     {
+      "text": "Write the lift's displacement, starting from rest at 10 m/s with an upward acceleration of 2 m/s².",
+      "equation": "y_lift(t) = 10t + t²"
+     },
+     {
+      "text": "Write the ball's displacement, projected upward at 20 m/s and acted on only by gravity.",
+      "equation": "y_ball(t) = 20t − 5t²"
+     },
+     {
+      "text": "Set the two displacements equal and solve for t, keeping the positive, nonzero root.",
+      "equation": "10t+t² = 20t−5t² → 6t²−10t=0 → t = 5/3 s ≈ 1.67 s"
+     },
+     {
+      "text": "Substitute t = 5/3 s into either displacement equation to get the common displacement at that instant.",
+      "equation": "y = 10(5/3) + (5/3)² = 175/9 ≈ 19.4 m"
+     },
+     {
+      "text": "Check the ball's velocity at this instant to see if it has already turned back; since it is still positive, the ball has travelled straight up the whole time, so the distance travelled equals its displacement.",
+      "equation": "v_ball = 20 − 10(5/3) ≈ 3.33 m/s > 0, distance = 175/9 ≈ 19.4 m"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "(a) t = 5/3 s ≈ 1.67 s, (b) both lift and ball at 175/9 m ≈ 19.4 m, (c) distance travelled by ball ≈ 19.4 m"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Taking t = 0 as the meeting time instead of discarding it as the starting instant, since both objects begin together at t = 0."
+     },
+     {
+      "option": null,
+      "text": "Assuming the ball has already reached its highest point by t = 5/3 s and using its full rise time of 2 s to compute distance, when it is in fact still rising."
+     }
+    ],
+    "concept_tags": [
+     "relative motion",
+     "free fall",
+     "equations of motion"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_e033b869",
+   "audit_file": "kin_e033b869.e713285e.json",
+   "item_sha": "e713285e857dc99d6d21720edcc41258ed2dab0557f59567e75a77cc9d7fa566",
+   "question_text": "At a given moment, the velocity vector of a moving particle is expressed as v = (3î + 4ĵ + 5k̂) m/s. Determine the particle's speed at this moment.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Speed is the magnitude of the velocity vector, found from the square root of the sum of the squares of its components.",
+    "steps": [
+     {
+      "text": "Write the velocity components along the three axes.",
+      "equation": "vₓ = 3 m/s, v_y = 4 m/s, v_z = 5 m/s"
+     },
+     {
+      "text": "Find the magnitude using the three-dimensional distance formula.",
+      "equation": "v = √(3² + 4² + 5²) = √50 m/s"
+     },
+     {
+      "text": "Simplify the square root to get the speed.",
+      "equation": "v = 5√2 m/s ≈ 7.07 m/s"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "5√2 m/s (≈ 7.07 m/s)"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Adding the three components directly instead of combining them as a vector, giving 3 + 4 + 5 = 12 m/s."
+     },
+     {
+      "option": null,
+      "text": "Leaving out the z-component and computing √(3² + 4²) = 5 m/s."
+     }
+    ],
+    "concept_tags": [
+     "vectors",
+     "speed",
+     "magnitude of a vector"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_e18239e8",
+   "audit_file": "kin_e18239e8.eb1aa9ff.json",
+   "item_sha": "eb1aa9ff47ca2c2a44dd9d7a6a0d59b6f5a84a9762a8a93ac91f53c63ac47c5c",
+   "question_text": "The variation of acceleration with time for a body moving along a rectilinear path is displayed in the graph. At what time does the body regain its starting velocity?",
+   "options": [],
+   "figure_description": "An acceleration-time (a-t) graph plotted on Cartesian axes with time t (in s) on the horizontal axis and acceleration a (in m/s²) on the vertical axis. From t = 0 to t = 1 s, the curve is a horizontal line at a = 2 m/s². From (1, 2), the graph continues as a straight line sloping downward with constant negative slope, crossing the horizontal axis at t = 2 s and continuing into the negative acceleration region.",
+   "solution": {
+    "approach": "The particle's velocity returns to its initial value when the net area under the a-t graph, from t = 0, becomes zero again.",
+    "steps": [
+     {
+      "text": "From t = 0 to 1 s, acceleration is constant at 2 m/s²; find the area, which is the change in velocity, for this part.",
+      "equation": "Δv₁ = 2 × 1 = 2 m/s"
+     },
+     {
+      "text": "From t = 1 s to 2 s, acceleration falls linearly from 2 m/s² to 0; find this triangular area.",
+      "equation": "Δv₂ = ½ × 1 × 2 = 1 m/s"
+     },
+     {
+      "text": "The total change in velocity up to t = 2 s is positive, so the particle has not returned to its initial velocity yet; for t > 2 s the acceleration keeps the same slope, going negative.",
+      "equation": "Δv(0 to 2 s) = 2 + 1 = 3 m/s; a(t) = 4 − 2t for t ≥ 1"
+     },
+     {
+      "text": "For a later time T, the extra area is a negative triangle of base (T − 2); set the total change in velocity to zero and solve for T.",
+      "equation": "3 − (T − 2)² = 0 → (T − 2)² = 3 → T = 2 + √3 ≈ 3.73 s",
+      "why_this_step": "The velocity equals its initial value again exactly when the positive and negative areas under a-t cancel out."
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "T = 2 + √3 s ≈ 3.73 s"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Assuming the particle is back at its initial velocity when the acceleration itself reaches zero at t = 2 s, without checking that the area under a-t up to that point is not zero."
+     },
+     {
+      "option": null,
+      "text": "Ignoring the velocity change built up from t = 0 to 1 s, and solving only (T − 2)² = 1 for the negative triangle, giving the wrong time T = 3 s."
+     }
+    ],
+    "concept_tags": [
+     "acceleration-time graph",
+     "area under a-t gives change in velocity",
+     "piecewise linear acceleration"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_f0696419",
+   "audit_file": "kin_f0696419.4857b9cb.json",
+   "item_sha": "4857b9cbebc7827947f99e2a1bdd6e32800aec9eff0164a3d425c01352773c5a",
+   "question_text": "An object is launched straight upwards from ground level. As it ascends, a person looking out of a window situated at a height of 15 m observes it passing by with an upward speed of 10 ms⁻¹. What is the velocity of the object 3 s following its release? (Use g = 10 ms⁻²)",
+   "options": [
+    {
+     "label": "a",
+     "text": "10 m/s, up"
+    },
+    {
+     "label": "b",
+     "text": "20 ms⁻¹, up"
+    },
+    {
+     "label": "c",
+     "text": "20 ms⁻¹, down"
+    },
+    {
+     "label": "d",
+     "text": "10 ms⁻¹, down"
+    }
+   ],
+   "figure_description": "",
+   "solution": {
+    "approach": "Use the window height and speed to find the launch speed, then check whether 3 s falls before or after the ball reaches its highest point.",
+    "steps": [
+     {
+      "text": "The ball moves upward past the window at 10 ms⁻¹ at a height of 15 m. Use this to find the launch speed u from the ground.",
+      "equation": "10² = u² − 2(10)(15) → u² = 100 + 300 = 400 → u = 20 ms⁻¹"
+     },
+     {
+      "text": "Find the time taken to reach the highest point.",
+      "equation": "t_top = u/g = 20/10 = 2 s"
+     },
+     {
+      "text": "Since 3 s is later than 2 s, the ball has already passed its highest point and is coming down. Find its velocity at t = 3 s using v = u − gt, keeping the upward direction positive.",
+      "equation": "v = 20 − 10(3) = −10 ms⁻¹"
+     },
+     {
+      "text": "A negative value with upward taken as positive means the ball is moving downward at 10 ms⁻¹.",
+      "equation": "v = 10 ms⁻¹, downward"
+     }
+    ],
+    "final_answer": {
+     "option": 4,
+     "value": "10 ms⁻¹, down"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Computing v = 20 − 10(3) = −10 correctly but not checking that the ball has already passed the top, and reading the 10 ms⁻¹ as still moving upward."
+     },
+     {
+      "option": 3,
+      "text": "Using the window speed 10 ms⁻¹ directly as the launch speed u instead of solving for u from the window height and speed, giving v = 10 − 10(3) = −20 ms⁻¹."
+     }
+    ],
+    "concept_tags": [
+     "vertical projectile motion",
+     "equations of motion",
+     "sign convention"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_ea905411",
+   "audit_file": "kin_ea905411.80361c8f.json",
+   "item_sha": "80361c8f498c60ee126753e3ff3bd8f798444dc4dd25f7dd6d0f02e46aa43ca2",
+   "question_text": "An elevator travels upward from rest, undergoing a constant acceleration a during the initial stage of its motion, followed by a constant deceleration of 2a until it comes to a complete stop. If the entire upward journey requires a total duration t, calculate the depth of the elevator shaft.",
+   "options": [
+    {
+     "label": "a",
+     "text": "at²/4"
+    },
+    {
+     "label": "b",
+     "text": "at²/3"
+    },
+    {
+     "label": "c",
+     "text": "at²/2"
+    },
+    {
+     "label": "d",
+     "text": "at²/8"
+    }
+   ],
+   "figure_description": "",
+   "solution": {
+    "approach": "Use that the lift reaches the same maximum speed at the end of both phases, split the total time t between phases using that condition, then add the two distances.",
+    "steps": [
+     {
+      "text": "Let t₁ be the time of uniform acceleration a and t₂ the time of uniform retardation 2a, with t₁ + t₂ = t. The maximum speed reached is the same seen from both phases.",
+      "equation": "a t₁ = 2a t₂ → t₁ = 2t₂"
+     },
+     {
+      "text": "Combine with t₁ + t₂ = t to find each time in terms of t.",
+      "equation": "4t₂ + t₂ = t → t₂ = t/3, t₁ = 2t/3"
+     },
+     {
+      "text": "Find the maximum speed and the distance covered while accelerating.",
+      "equation": "vₘₐₓ = a(2t/3) = 2at/3, d₁ = ½a(2t/3)² = 2at²/9"
+     },
+     {
+      "text": "Find the distance covered while retarding from vₘₐₓ to rest.",
+      "equation": "d₂ = ½(2at/3)(t/3) = at²/9"
+     },
+     {
+      "text": "Add the two distances to get the total depth of the shaft.",
+      "equation": "2at²/9 + at²/9 = at²/3"
+     }
+    ],
+    "final_answer": {
+     "option": 2,
+     "value": "at²/3"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Assuming the acceleration phase and the retardation phase take equal time (t/2 each) instead of using the equal-maximum-speed condition, which gives at²/4."
+     }
+    ],
+    "concept_tags": [
+     "equations of motion",
+     "two-phase motion",
+     "maximum velocity"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_ecbcb240",
+   "audit_file": "kin_ecbcb240.7567df49.json",
+   "item_sha": "7567df4989be922649ccb0b0d78791bf80d1df5e7d06169e9f1a2e628a42e49e",
+   "question_text": "A body moves along a path such that the initial half of the total distance is covered at a uniform speed v₁ and the remaining half is covered at a uniform speed v₂. Determine the average speed of the body for the entire trip.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Average speed is total distance divided by total time; find the time for each half from its distance and speed, then combine.",
+    "steps": [
+     {
+      "text": "Let the total distance be 2d, so each half of the journey covers distance d.",
+      "equation": "half distance = d"
+     },
+     {
+      "text": "Find the time taken for each half from time = distance divided by speed.",
+      "equation": "t₁ = d/v₁, t₂ = d/v₂"
+     },
+     {
+      "text": "Average speed is total distance over total time.",
+      "equation": "v_avg = 2d / (d/v₁ + d/v₂)"
+     },
+     {
+      "text": "Cancel d and simplify to the standard form.",
+      "equation": "v_avg = 2v₁v₂ / (v₁ + v₂)"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "v_avg = 2v₁v₂ / (v₁ + v₂)"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Taking the plain arithmetic mean (v₁+v₂)/2, which is only correct when the two halves take equal time, not equal distance."
+     }
+    ],
+    "concept_tags": [
+     "average speed",
+     "harmonic mean"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_f160a9c0",
+   "audit_file": "kin_f160a9c0.6e8370cc.json",
+   "item_sha": "6e8370cc9916304d13c692aafcbfecb24aa1ff9782eb18b549760e3544ff353a",
+   "question_text": "A soccer ball is launched straight up into the air from ground level. As it ascends, an observer looking through a window located 15.0 m above the ground notes that the ball travels past with an upward speed of 5.00 m/s. Assume that air drag is negligible and use g = 10 m/s².\n(a) What is the maximum height reached by the ball above the ground?\n(b) What is the total time needed for the ball to rise from the ground to the peak of its trajectory?",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Use v² = u² − 2gh between the ground and the window to find the launch speed, then find the maximum height and time to the top from that speed.",
+    "steps": [
+     {
+      "text": "Apply v² = u² − 2gh between the ground, where the speed is u, and the window, 15 m up, where the speed is 5.00 m/s.",
+      "equation": "5.00² = u² − 2(10)(15) → u² = 325"
+     },
+     {
+      "text": "Find the maximum height using v² = u² − 2gH with v = 0 at the top.",
+      "equation": "H = u²/(2g) = 325/20 = 16.25 m"
+     },
+     {
+      "text": "Find the time to the top using v = u − gt with v = 0 at the top.",
+      "equation": "t = u/g = √325/10 ≈ 1.80 s"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "(a) 16.25 m, (b) ≈1.80 s"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Taking the given 5.00 m/s as the ground launch speed and ignoring the 15 m window height gives a maximum height of only 1.25 m."
+     }
+    ],
+    "concept_tags": [
+     "free fall",
+     "equations of motion",
+     "vertical projectile"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "kin_ec65d40b",
+   "audit_file": "kin_ec65d40b.5162494f.json",
+   "item_sha": "5162494f238bdef0a9c67b0d1f754a4c56f4965be60706542a86ad0151ca5c58",
+   "question_text": "At a specific moment, the velocity and acceleration vectors of a moving body are given by v = (3 î − 4 ĵ + 2 k̂) m/s and a = (2 î + ĵ − 2 k̂) m/s² respectively.\n(a) Calculate the scalar product v · a at this time.\n(b) Is the angle between vectors v and a acute, obtuse, or 90°?\n(c) Determine if the speed of the body is increasing, decreasing, or staying constant at this time.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Compute the dot product of v and a component by component, use its sign to classify the angle, and use the same sign for whether speed increases or decreases.",
+    "steps": [
+     {
+      "text": "Compute the dot product of v and a using their components.",
+      "equation": "v·a = (3)(2) + (−4)(1) + (2)(−2) = 6 − 4 − 4 = −2"
+     },
+     {
+      "text": "The dot product is negative, and v·a = |v||a|cos θ with |v|,|a| both positive, so cos θ is negative.",
+      "equation": "cos θ < 0 ⟹ θ is obtuse (between 90° and 180°)"
+     },
+     {
+      "text": "The rate of change of speed equals the component of acceleration along the velocity direction, which is (v·a)/|v|. Since v·a is negative, this rate is negative.",
+      "equation": "d|v|/dt = (v·a)/|v| = −2/√29 < 0",
+      "why_this_step": "A negative rate of change of speed means the speed is decreasing at this instant."
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "(a) v·a = −2, (b) obtuse, (c) speed is decreasing"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Mismatching components when computing the dot product, such as pairing the k̂ component of v with the ĵ component of a, gives a wrong value that can wrongly suggest an acute angle and increasing speed."
+     }
+    ],
+    "concept_tags": [
+     "dot product",
+     "angle between vectors",
+     "rate of change of speed"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "kin_e7cb5962",
+   "audit_file": "kin_e7cb5962.bc659bc4.json",
+   "item_sha": "bc659bc4b039cb5b21c4de510603af9893210142f004e4ddec7a815ee9d6b8a3",
+   "question_text": "A train travels between two consecutive stops separated by a distance of 4 km in a total time of 4 min, beginning from rest at the first stop and coming to a halt at the second. If the motion consists first of a constant acceleration x followed immediately by a constant deceleration y, show that 1/x + 1/y = 2, where x and y are expressed in km min⁻².",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Model the speed as a triangle on a velocity-time graph: its area gives the distance, its sides give the two times, linking x, y, T and D.",
+    "steps": [
+     {
+      "text": "The train starts from rest, accelerates at a uniform rate x to a maximum speed v, then retards at a uniform rate y to rest at the next station.",
+      "equation": "v = x·t₁,  v = y·t₂"
+     },
+     {
+      "text": "Add the two times; they must equal the total journey time T.",
+      "equation": "t₁ + t₂ = v/x + v/y = T"
+     },
+     {
+      "text": "The distance covered is the area under the speed-time graph, a triangle of base T and height v.",
+      "equation": "D = ½vT"
+     },
+     {
+      "text": "Solve for v using the given distance and time.",
+      "equation": "v = 2D/T = 2(4 km)/(4 min) = 2 km/min"
+     },
+     {
+      "text": "Substitute this v into the time equation to get 1/x + 1/y.",
+      "equation": "1/x + 1/y = T/v = 4 min ÷ 2 km/min = 2",
+      "why_this_step": "T/v is what v/x + v/y = T becomes after dividing both sides by v."
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "1/x + 1/y = 2, with x and y in km per minute squared"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Using D = vT instead of D = ½vT for the triangle area gives v = 1 km/min and 1/x + 1/y = 4, twice the correct value."
+     }
+    ],
+    "concept_tags": [
+     "velocity-time graph",
+     "uniformly accelerated motion",
+     "uniform retardation"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_e57c21cc",
+   "audit_file": "kin_e57c21cc.215abb2d.json",
+   "item_sha": "215abb2d823908647cf01c1bba3cda0c52f6f94f1564e7139313c79cc2b713a6",
+   "question_text": "To reach his farmland from his house, a cultivator walks 500 m towards the north, then 400 m towards the east, and finally 200 m towards the south. The entire journey takes a time of 20 min.\n(a) Find the total distance covered to reach the field.\n(b) Determine the net displacement vector from the house to the field.\n(c) Calculate the average speed of the cultivator during this journey.\n(d) Calculate the average velocity of the cultivator during this journey.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Add the three legs of the walk for the distance, combine the north-south and east-west legs as vectors for the displacement, then divide each by the total time.",
+    "steps": [
+     {
+      "text": "Add the three legs walked to get the total distance.",
+      "equation": "distance = 500 + 400 + 200 = 1100 m"
+     },
+     {
+      "text": "Combine the two north-south legs: 500 m north and 200 m south leave a net 300 m north. The east leg stays 400 m east.",
+      "equation": "net north = 500 − 200 = 300 m, net east = 400 m"
+     },
+     {
+      "text": "Find the magnitude of the displacement using these two perpendicular components.",
+      "equation": "displacement = √(300² + 400²) = √250000 = 500 m, directed 53.1° east of north"
+     },
+     {
+      "text": "Convert 20 min to seconds and divide the distance by the time for the average speed.",
+      "equation": "t = 1200 s, average speed = 1100/1200 = 11/12 ≈ 0.92 ms⁻¹"
+     },
+     {
+      "text": "Divide the displacement by the same time for the average velocity.",
+      "equation": "average velocity = 500/1200 = 5/12 ≈ 0.42 ms⁻¹, directed 53.1° east of north"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "(a) distance walked = 1100 m, (b) displacement = 500 m, directed 53.1° east of north, (c) average speed = 11/12 ms⁻¹ ≈ 0.92 ms⁻¹, (d) average velocity = 5/12 ms⁻¹ ≈ 0.42 ms⁻¹, directed 53.1° east of north"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Reporting the average speed value, 0.92 ms⁻¹, as the average velocity, which confuses the total distance walked with the net displacement."
+     }
+    ],
+    "concept_tags": [
+     "distance and displacement",
+     "average speed and average velocity",
+     "vector addition"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_efda3f70",
+   "audit_file": "kin_efda3f70.2cfe1b69.json",
+   "item_sha": "2cfe1b693b17ee52c6c3a4f5fc8dc9cd32775b54adbabf56bd613c9b93485b9a",
+   "question_text": "Assertion: A particle has a velocity vector v = î − ĵ and an acceleration vector a = − 2î + 2ĵ. The movement of this object represents two-dimensional motion with uniform acceleration.\nReason: The vectors representing velocity and acceleration do not change with time.",
+   "options": [
+    {
+     "label": "a",
+     "text": "Both Assertion and Reason are true and the Reason is the correct explanation of the Assertion."
+    },
+    {
+     "label": "b",
+     "text": "Both Assertion and Reason are true, but the Reason is not the correct explanation of the Assertion."
+    },
+    {
+     "label": "c",
+     "text": "Assertion is true, but the Reason is false."
+    },
+    {
+     "label": "d",
+     "text": "Assertion is false, but the Reason is true."
+    }
+   ],
+   "figure_description": "",
+   "solution": {
+    "approach": "Check whether the given velocity and acceleration point along the same line; if they do, the path is a straight line, not a two dimensional curve.",
+    "steps": [
+     {
+      "text": "Compare the acceleration vector with the velocity vector to see if one is a scalar multiple of the other.",
+      "equation": "a = −2î + 2ĵ = −2(î − ĵ) = −2v"
+     },
+     {
+      "text": "Since a is exactly −2 times v, the two vectors lie along the same straight line, only pointing opposite ways.",
+      "why_this_step": "When velocity and acceleration stay along one fixed line, the particle can only speed up or slow down along that line; it cannot curve away from it."
+     },
+     {
+      "text": "A particle whose velocity and acceleration are always collinear moves along a single straight line, so this is one dimensional motion along that line, not two dimensional motion; the Assertion is false.",
+      "equation": "Motion is along the line of v, so the Assertion is false"
+     },
+     {
+      "text": "The Reason states that velocity and acceleration are two constant (fixed) vectors, exactly what the question gives as the acceleration and the velocity at the instant, so the Reason is a true statement on its own that does not explain why the motion is one dimensional rather than two dimensional, so it is not the correct explanation of the Assertion.",
+      "equation": "Assertion false, Reason true"
+     }
+    ],
+    "final_answer": {
+     "option": 4,
+     "value": "If Assertion is false but the Reason is true."
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Seeing that both v and a have nonzero x and y components and concluding the motion must be two dimensional, without checking that a is collinear with v."
+     }
+    ],
+    "concept_tags": [
+     "relative direction of velocity and acceleration",
+     "straight line motion",
+     "vectors"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_def74d97",
+   "audit_file": "kin_def74d97.f535670c.json",
+   "item_sha": "f535670c8aaef9702410ab7df5be0b2fc11db4a7164ab0fd2de30f97a2567a79",
+   "question_text": "A particle moves with a velocity vector v = (2î + 3ĵ − 4k̂) m/s while experiencing zero acceleration. Determine whether the particle undergoes one-dimensional (1-D), two-dimensional (2-D), or three-dimensional (3-D) motion.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Zero acceleration keeps the velocity vector fixed in direction, so the particle travels along one straight line however many components its velocity has.",
+    "steps": [
+     {
+      "text": "The acceleration is zero, so the velocity vector never changes in magnitude or direction.",
+      "equation": "a = 0 ⇒ v = constant vector"
+     },
+     {
+      "text": "A velocity that never changes direction means the particle travels along a single fixed straight line in space.",
+      "equation": null
+     },
+     {
+      "text": "A straight-line path is one-dimensional motion, regardless of how many axis components the velocity vector has.",
+      "equation": "motion is 1-D"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "1-D motion (straight-line motion)."
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Calling it 3-D motion because the velocity vector has three nonzero components, instead of checking that its direction stays fixed."
+     }
+    ],
+    "concept_tags": [
+     "dimensionality of motion",
+     "constant velocity"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_ede90d55",
+   "audit_file": "kin_ede90d55.436192ec.json",
+   "item_sha": "436192ecc34fbe8e5ccd0491f8be07998454550a0bef4271d503697bb942cfa2",
+   "question_text": "An aeroplane has a speed of 400 km/h relative to calm air. A steady wind blows toward the north at a rate of 200√2 km/h. To reach a destination B located 1000 km directly northeast of the starting position A, determine the heading angle the pilot needs to maintain and calculate the total duration required for the flight.",
+   "options": [],
+   "figure_description": "A vector diagram with origin A. Vector v_w with magnitude 200√2 km/h points due north from A to C. The resultant velocity vector v_a points along the north-east direction (45° east of north) from A toward B. The relative velocity vector v_aw with magnitude 400 km/h goes from C to B, forming an angle α with the line AB.",
+   "solution": {
+    "approach": "Add the wind velocity and the aircraft's velocity relative to the wind as vectors, using a triangle where their sum points along AB, then solve for missing side and angle.",
+    "steps": [
+     {
+      "text": "Set up the vector triangle: the wind velocity from A to C, the aircraft's velocity relative to the wind from C to B, and their sum, the resultant ground velocity, from A to B along the north-east direction.",
+      "equation": "AC = 200√2 km/h, CB = 400 km/h, angle A = 45°"
+     },
+     {
+      "text": "Use the sine rule with the side opposite angle A being CB, to find the angle at B.",
+      "equation": "sin B = (AC × sin A) / CB = (200√2 × sin 45°) / 400 = 0.5, B = 30°"
+     },
+     {
+      "text": "The remaining angle of the triangle gives the angle at C, and the sine rule gives the resultant ground speed AB.",
+      "equation": "C = 180° − 45° − 30° = 105°, AB = CB × sin C / sin A ≈ 546.4 km/h"
+     },
+     {
+      "text": "The angle α between the steered direction CB and the path AB equals the angle at B, so the pilot steers 30° east of the AB direction, that is, 75° east of north.",
+      "equation": "α = B = 30°, heading = 45° + 30° = 75° east of north"
+     },
+     {
+      "text": "The journey time is the distance divided by the resultant ground speed.",
+      "equation": "t = 1000 / 546.4 ≈ 1.83 h"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "Steer at 75° east of north (30° east of AB), journey time ≈ 1.83 h"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Adding the wind speed and aircraft speed directly as 400 + 200√2 to get the ground speed, ignoring the angle between them, gives a wrong resultant."
+     },
+     {
+      "option": null,
+      "text": "Steering directly along AB (45° from north) without correcting for the wind reaches a point other than B."
+     }
+    ],
+    "concept_tags": [
+     "relative velocity",
+     "vector triangle",
+     "sine rule"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_e4615898",
+   "audit_file": "kin_e4615898.5e00fa53.json",
+   "item_sha": "5e00fa53869e0df2114dcc0eeaa205a8c0054af68d38c9f80865ea5e71ef203c",
+   "question_text": "A particle moves along a curve with its coordinates changing with time t as x = 5t and y = 2t² + t. Determine the time instant when its velocity is directed at 45° to the horizontal.",
+   "options": [
+    {
+     "label": "a",
+     "text": "0.5 s"
+    },
+    {
+     "label": "b",
+     "text": "1 s"
+    },
+    {
+     "label": "c",
+     "text": "2 s"
+    },
+    {
+     "label": "d",
+     "text": "1.5 s"
+    }
+   ],
+   "figure_description": "",
+   "solution": {
+    "approach": "Differentiate x(t) and y(t) to get the velocity components, then set their ratio equal to tan 45°.",
+    "steps": [
+     {
+      "text": "Differentiate the position functions to get the velocity components.",
+      "equation": "vₓ = dx/dt = 5, v_y = dy/dt = 4t + 1"
+     },
+     {
+      "text": "A 45° angle with the horizontal means the two velocity components are equal.",
+      "equation": "v_y/vₓ = tan45° = 1 → 4t + 1 = 5"
+     },
+     {
+      "text": "Solve for t.",
+      "equation": "4t = 4 → t = 1 s"
+     }
+    ],
+    "final_answer": {
+     "option": 2,
+     "value": "1 s"
+    },
+    "common_mistakes": [
+     {
+      "option": 3,
+      "text": "Setting the ratio of the position coordinates y/x equal to 1 instead of the ratio of the velocity components, which gives t = 2 s."
+     }
+    ],
+    "concept_tags": [
+     "two-dimensional motion",
+     "velocity components",
+     "differentiation"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "kin_f1e4819e",
+   "audit_file": "kin_f1e4819e.0c8f328c.json",
+   "item_sha": "0c8f328c4942859799c16671cab62aa10c91d2287b495de1bb526c7700dd06b6",
+   "question_text": "A body moves in a straight line along the x-axis. A position-time (x versus t) plot representing its motion is a straight line that intersects the vertical position axis at x = −20 m when t = 0 s, and crosses the horizontal time axis at t = 10 s when x = 0 m. Based on this information, analyze the motion by answering the following:\n(a) Determine the initial location of the particle at t = 0 s.\n(b) Calculate the velocity of the particle.\n(c) Express the position x as a function of time t.\n(d) State whether the motion has uniform or non-uniform velocity, and identify the time at which the object reaches the origin.",
+   "options": [],
+   "figure_description": "A Cartesian coordinate graph showing position x (in meters) along the vertical axis against time t (in seconds) along the horizontal axis. A single straight line with a constant positive slope passes through the points (t = 0 s, x = −20 m) and (t = 10 s, x = 0 m).",
+   "solution": {
+    "approach": "Read the starting position and the slope of the straight line x-t graph, and note that a constant slope means constant velocity.",
+    "steps": [
+     {
+      "text": "Read the position at t = 0 from the graph.",
+      "equation": "x(0) = −20 m"
+     },
+     {
+      "text": "Find the slope of the line using the two given points.",
+      "equation": "slope = (0 − (−20))/(10 − 0) = 2 m/s"
+     },
+     {
+      "text": "State what the constant, positive slope means for the motion.",
+      "equation": "velocity = +2 m/s, constant, so acceleration = 0",
+      "why_this_step": "A straight line on an x-t graph means constant velocity, so the particle moves with uniform motion in the positive x-direction."
+     },
+     {
+      "text": "Read the time at which the particle crosses the origin.",
+      "equation": "x = 0 at t = 10 s"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "The particle starts at x = −20 m and moves with a constant velocity of +2 m/s (zero acceleration), reaching x = 0 m at t = 10 s; it is in uniform motion in the positive x-direction throughout."
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Reading the y-intercept as the velocity instead of the slope gives a wrong velocity of −20 m/s."
+     },
+     {
+      "option": null,
+      "text": "Taking the slope as 20/10 without checking the sign of the intercept gives the wrong starting position."
+     }
+    ],
+    "concept_tags": [
+     "x-t graph",
+     "uniform motion",
+     "velocity from slope"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "concept"
+   }
+  }
+ ]
+}

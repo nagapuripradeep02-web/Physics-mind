@@ -1,0 +1,82 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_9a15329c",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "assertion_reason",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "Assertion: When two objects with different masses m₁ and m₂ are released from an identical elevation under identical drag forces from air, they hit the ground simultaneously.\nReason: The downward acceleration during fall differs between masses m₁ and m₂ when they experience identical opposing air forces.",
+  "options": {
+   "1": "Both Assertion and Reason are true, and Reason is the correct explanation of Assertion.",
+   "2": "Both Assertion and Reason are true, but Reason is not the correct explanation of Assertion.",
+   "3": "Assertion is true, but Reason is false.",
+   "4": "Assertion is false, but Reason is true."
+  },
+  "parts": null,
+  "conditions": [
+   "unequal masses m₁ and m₂",
+   "released from rest at the same height",
+   "equal air resistance on both objects",
+   "acceleration due to gravity is constant"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Apply Newton's second law to each body under gravity and the same air resistance, and compare the resulting accelerations.",
+  "steps": [
+   {
+    "text": "Write the net force equation for each body falling under gravity with the same air resistance R.",
+    "equation": "m₁g − R = m₁a₁, m₂g − R = m₂a₂"
+   },
+   {
+    "text": "Solve each equation for the acceleration.",
+    "equation": "a₁ = g − R/m₁, a₂ = g − R/m₂"
+   },
+   {
+    "text": "Compare the two accelerations for unequal masses.",
+    "equation": "since m₁ ≠ m₂, R/m₁ ≠ R/m₂, so a₁ ≠ a₂"
+   },
+   {
+    "text": "Bodies dropped from the same height with different accelerations reach the ground at different times, so the Assertion is false, while the Reason correctly states that the accelerations differ.",
+    "equation": "final answer: option (d)"
+   }
+  ],
+  "final_answer": {
+   "option": 4,
+   "value": "Assertion is false but the Reason is true."
+  },
+  "common_mistakes": [],
+  "concept_tags": [
+   "free fall",
+   "air resistance",
+   "newton's second law"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "6585ed941915f18cf7302eb51388d085f84632e5d49f6ed5b631ae6f779e1ae9"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "33648c401ec7c62c65f059d01fc134c8311258865897b9cc9dc1235c10e143d5",
+  "audited_by": "W01-U-kin-04"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-08",
+  "at": "2026-09-11T14:20:00+05:30"
+ }
+}

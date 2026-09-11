@@ -1,0 +1,24 @@
+{
+ "question_id": "kin_dd6ddc94",
+ "item_sha": "f37d4c84480bb743ada4027dc486bd0758d93d8cacb4ccc87e49cb464646c32d",
+ "auditor_option": null,
+ "auditor_value": "(a) g downward, (b) g downward, (c) g downward — g throughout, including at the highest point",
+ "findings": [
+  {
+   "grade": "weak",
+   "field": "final_answer.value",
+   "quote": "(i) g downward, (ii) g downward, (iii) g downward",
+   "note": "The question labels its three parts (a), (b) and (c); the steps and the final answer relabel them (i), (ii) and (iii), so the reader has to map the labels back. The physics is correct.",
+   "fix": "(a) g downward, (b) g downward, (c) g downward — the acceleration is g downward throughout the flight, including at the highest point"
+  }
+ ],
+ "verdict": "weak",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-kin-10",
+  "at": "2026-09-11T09:52:30+05:30"
+ }
+}

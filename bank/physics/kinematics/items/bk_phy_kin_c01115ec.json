@@ -1,0 +1,83 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_c01115ec",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "conceptual",
+ "key_kind": "words",
+ "figure_required": false,
+ "question": {
+  "text": "An object is projected straight upward into the air. Which one of the following physical properties does not change during its flight: speed, kinetic energy, velocity, or acceleration?",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "motion under gravity",
+   "projected vertically upward",
+   "air resistance neglected"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Check each quantity through the flight: speed and kinetic energy fall to zero and rise again, velocity keeps changing, only the acceleration stays the same.",
+  "steps": [
+   {
+    "text": "Speed decreases from launch to the highest point, where it becomes zero, then increases again on the way down, so speed does not stay constant."
+   },
+   {
+    "text": "Kinetic energy depends on speed squared, so it also falls to zero at the top and rises again, so it does not stay constant either.",
+    "equation": "KE = ½mv²"
+   },
+   {
+    "text": "Velocity is a vector; its magnitude changes throughout the flight and its direction reverses at the top, so velocity does not stay constant."
+   },
+   {
+    "text": "Acceleration is g downward at every instant of the flight, including at the highest point, since gravity acts the whole time without change, so the acceleration is the one quantity that remains constant.",
+    "why_this_step": "Acceleration depends on the constant force of gravity, not on the changing velocity."
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "Acceleration"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Picking speed as constant by only thinking about the upward journey and forgetting that speed falls to zero at the top and rises again on the way down."
+   },
+   {
+    "option": null,
+    "text": "Picking velocity as constant, confusing it with the constant acceleration; velocity itself keeps changing in both magnitude and direction."
+   }
+  ],
+  "concept_tags": [
+   "motion under gravity",
+   "speed vs velocity",
+   "kinetic energy"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "71613150ed42cea9f456e4c3708e428add640bebd1fb63012cc59debe03d8a21"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "24ef0cc0e00b1f6d16ab69687d0f3dd43857d34623a12ad33cc7b0938a4d34e5",
+  "audited_by": "W01-U-kin-05"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-05",
+  "at": "2026-09-11T14:12:00+05:30"
+ }
+}

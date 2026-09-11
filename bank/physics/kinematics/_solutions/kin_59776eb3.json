@@ -1,0 +1,23 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_59776eb3",
+ "approach": "Use the equations of motion under constant gravity with upward positive to find the times, then plot each quantity against time.",
+ "steps": [
+  {"text": "Find the time to reach the highest point, where velocity becomes zero.", "equation": "t₁ = u/g = 40/10 = 4 s"},
+  {"text": "Find the maximum height reached.", "equation": "hmax = u²/2g = 40²/20 = 80 m"},
+  {"text": "Find the total time of flight back to the starting point.", "equation": "T = 2u/g = 2(40)/10 = 8 s"},
+  {"text": "Describe the a-t graph: acceleration stays constant throughout, since gravity does not change.", "equation": "a = −10 m/s² for the whole interval t = 0 to t = 8 s"},
+  {"text": "Describe the v-t graph using v = u + at.", "equation": "v starts at +40 m/s at t = 0, falls in a straight line, crosses zero at t = 4 s, reaches −40 m/s at t = 8 s"},
+  {"text": "Describe the s-t graph using s = ut + ½at², which is symmetric about the highest point.", "equation": "s rises from 0 to a peak of 80 m at t = 4 s, then falls back to 0 m at t = 8 s"}
+ ],
+ "final_answer": {"option": null, "value": "a-t graph: constant −10 m/s² from t = 0 to t = 8 s. v-t graph: a straight line from +40 m/s at t = 0 to −40 m/s at t = 8 s, crossing zero at t = 4 s. s-t graph: a curve rising from 0 to a peak of 80 m at t = 4 s and returning to 0 m at t = 8 s."},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Taking the acceleration as zero at the highest point, since velocity is zero there, confuses velocity with acceleration; gravity acts throughout at −10 m/s²."},
+  {"option": null, "text": "Using T = u/g = 4 s as the total flight time instead of 2u/g = 8 s stops the graphs halfway, missing the fall back to the ground."}
+ ],
+ "concept_tags": ["motion under gravity", "a-t v-t s-t graphs", "time of flight"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-02", "at": "2026-09-11T00:00:00+05:30"}
+}

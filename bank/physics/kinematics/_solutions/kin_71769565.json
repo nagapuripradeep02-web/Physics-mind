@@ -1,0 +1,52 @@
+{
+  "schema": "eapcet_solution_v1",
+  "question_id": "kin_71769565",
+  "approach": "In the elevator's frame the bolt falls the floor-to-ceiling gap from rest under acceleration g + a; convert the result to the ground frame for displacement and distance.",
+  "steps": [
+    {
+      "text": "At the instant of release, the bolt shares the elevator's velocity, so its velocity relative to the elevator is zero. In the elevator's frame the bolt falls under gravity plus the elevator's own upward acceleration.",
+      "equation": "relative acceleration = g + a = 9.8 + 1.2 = 11.0 m/s², relative initial velocity = 0"
+    },
+    {
+      "text": "The bolt must fall the floor-to-ceiling distance of 2.7 m relative to the car. Use d = ½(g+a)τ² to find the time.",
+      "equation": "2.7 = ½(11.0)τ² ⟹ τ = √(5.4/11.0) ≈ 0.70 s"
+    },
+    {
+      "text": "For part (b), find the elevator's velocity at the moment of release: it started from rest 2 s earlier with acceleration 1.2 m/s².",
+      "equation": "v_release = 1.2 × 2 = 2.4 m/s upward"
+    },
+    {
+      "text": "In the ground frame the bolt's velocity is 2.4 m/s upward at release and then decelerates under g alone; find its net displacement over τ ≈ 0.70 s using y = v_release·τ − ½gτ².",
+      "equation": "y = 2.4(0.70) − ½(9.8)(0.70)² ≈ −0.72 m",
+      "why_this_step": "The negative value means the bolt ends up about 0.72 m below its release point with respect to the earth."
+    },
+    {
+      "text": "The bolt rises before falling back, since it stops rising at τ_top = v_release/g ≈ 0.245 s, reaching a height of about 0.29 m above the release point. The total distance travelled is this rise plus the fall back down to the final position.",
+      "equation": "distance ≈ 0.29 + (0.29 + 0.72) ≈ 1.31 m"
+    }
+  ],
+  "final_answer": {
+    "option": null,
+    "value": "(a) about 0.70 s, (b) net displacement about 0.72 m downward (with respect to the earth) and distance travelled about 1.31 m"
+  },
+  "confidence": "sure",
+  "common_mistakes": [
+    {
+      "option": null,
+      "text": "Assuming the elevator floor moves at the release velocity 2.4 m/s with no further acceleration, instead of accelerating at 1.2 m/s², gives a landing time of about 0.74 s instead of the correct 0.70 s."
+    }
+  ],
+  "concept_tags": [
+    "relative acceleration",
+    "non-inertial frame",
+    "vertical motion under gravity"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "concept",
+  "authored_by": {
+    "model": "sonnet",
+    "wave": 1,
+    "agent": "W01-A-kin-04",
+    "at": "2026-09-11T00:40:00+05:30"
+  }
+}

@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_5d9d8a37",
+ "approach": "Write x and y separately as functions of time, differentiate each with respect to time, and evaluate both at t = 2 s.",
+ "steps": [
+  {"text": "Write x as a function of t and differentiate to get the x-component of velocity.", "equation": "x = t²/2 → vₓ = dx/dt = t"},
+  {"text": "Write y in terms of t by substituting x = t²/2 into y = x²/2.", "equation": "y = (t²/2)²/2 = t⁴/8"},
+  {"text": "Differentiate y with respect to t to get the y-component of velocity.", "equation": "v_y = dy/dt = 4t³/8 = t³/2"},
+  {"text": "Evaluate both components at t = 2 s.", "equation": "vₓ = 2, v_y = (2)³/2 = 4"},
+  {"text": "Write the velocity vector at t = 2 s.", "equation": "v = 2î + 4ĵ ms⁻¹"}
+ ],
+ "final_answer": {"option": 2, "value": "2î + 4ĵ"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 3, "text": "Swapping which component is which, writing vₓ = 4 and v_y = 2 instead of vₓ = 2 and v_y = 4."}
+ ],
+ "concept_tags": ["motion in a plane", "chain rule", "parametric curves"],
+ "difficulty": "medium",
+ "mistake_type_hint": "calculation",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-09", "at": "2026-09-11T15:36:00+05:30"}
+}

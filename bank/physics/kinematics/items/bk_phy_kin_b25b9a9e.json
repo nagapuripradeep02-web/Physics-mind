@@ -1,0 +1,82 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_b25b9a9e",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "numerical",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A particle travels along a straight path. At a particular moment, its speed is 10 m/s, and its velocity drops at a rate of 3 m/s per metre of displacement. Calculate the acceleration of the object at that instant.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "motion along a straight line",
+   "velocity decreases at 3 m/s per metre of displacement",
+   "velocity is 10 m/s at the specified instant"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Acceleration equals velocity times the rate of change of velocity with displacement, a = v(dv/ds).",
+  "steps": [
+   {
+    "text": "Write acceleration using the chain rule for motion described by velocity as a function of displacement.",
+    "equation": "a = v (dv/ds)"
+   },
+   {
+    "text": "The velocity decreases at 3 m/s for every metre of displacement, so dv/ds is negative.",
+    "equation": "dv/ds = −3 (m/s)/m"
+   },
+   {
+    "text": "Substitute v = 10 m/s and dv/ds = −3 (m/s)/m into a = v(dv/ds) to get the acceleration.",
+    "equation": "a = 10 × (−3) = −30 m/s²",
+    "why_this_step": "a = v dv/ds is the standard way to find acceleration when velocity is given as a function of position, not time."
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "−30 m/s²"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Dropping the negative sign on the rate of decrease and writing a = 10 × 3 = 30 m/s²."
+   },
+   {
+    "option": null,
+    "text": "Writing a = dv/ds = −3 m/s² directly, leaving out the factor of v from the chain rule."
+   }
+  ],
+  "concept_tags": [
+   "acceleration as v dv/ds",
+   "rectilinear motion",
+   "velocity-displacement relation"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "7f81ce0c677024231965d0e9f2cba4f5c0b0ba8f74ec1693c85612fb6780a223"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "fb460cf2ffa77757ca57c997466b3898ab3d7ecdc97602a5b19f0cbd0df33e20",
+  "audited_by": "W01-U-kin-05"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-12",
+  "at": "2026-09-11T16:00:00+05:30"
+ }
+}

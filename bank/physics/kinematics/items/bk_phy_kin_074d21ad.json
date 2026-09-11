@@ -1,0 +1,92 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_074d21ad",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "numerical",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "An object is thrown straight up into the air with a starting speed of 40 m/s. Determine both its total displacement and the overall distance it travels during the first 6 s of its flight. (Use g = 10 m/s²)",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "projected vertically upwards",
+   "initial velocity = 40 m/s",
+   "time interval = 6 s",
+   "g = 10 m/s²",
+   "air resistance neglected",
+   "motion under constant gravitational acceleration"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Check whether the particle has already turned back within the 6 s, then add the upward and downward distances separately for the distance covered.",
+  "steps": [
+   {
+    "text": "Displacement in 6 s follows directly from the standard equation of motion, taking upward as positive.",
+    "equation": "s = ut − ½gt² = 40×6 − ½×10×6² = 240 − 180 = 60 m"
+   },
+   {
+    "text": "Find the time taken to reach the highest point, where the velocity becomes zero.",
+    "equation": "t_top = u/g = 40/10 = 4 s"
+   },
+   {
+    "text": "Since 4 s is less than 6 s, the particle has already turned around and is falling back for the last 2 s; find the maximum height it reached.",
+    "equation": "H = u²/(2g) = 1600/20 = 80 m"
+   },
+   {
+    "text": "Find how far it falls back down in the remaining time after reaching the top.",
+    "equation": "fall = ½g(6 − 4)² = ½×10×4 = 20 m"
+   },
+   {
+    "text": "The displacement is the height reached minus the distance fallen back, matching the direct calculation, while the total distance covered is the height reached plus the distance fallen back.",
+    "equation": "displacement = 80 − 20 = 60 m, distance = 80 + 20 = 100 m",
+    "why_this_step": "Distance keeps adding up regardless of direction, while displacement is the net change in position."
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "displacement = 60 m (upward), distance = 100 m"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Reporting the distance as equal to the displacement, 60 m, without checking that the particle reversed direction before 6 s had passed."
+   },
+   {
+    "option": null,
+    "text": "Assuming the particle has returned all the way to the starting point by 6 s and taking the distance as twice the maximum height, 160 m."
+   }
+  ],
+  "concept_tags": [
+   "motion under gravity",
+   "distance vs displacement"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "33754b806059a9ce6da0466578deb6cdc07da51747eef6aeba508e5283153e58"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "410b671920bcb2a415c04dc06f1a5e23f91b5adbb152b957c4ef3bea0ad4b699",
+  "audited_by": "W01-U-kin-02"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-05",
+  "at": "2026-09-11T14:13:00+05:30"
+ }
+}

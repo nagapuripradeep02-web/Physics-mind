@@ -1,0 +1,103 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_09aa0f78",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "An object is thrown straight up into the air with an initial speed of 40 m/s. Determine both the net displacement and the total distance covered by the object after the following time durations (take g = 10 m/s²):",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "2 s"
+   },
+   {
+    "label": "b",
+    "asks": "4 s"
+   },
+   {
+    "label": "c",
+    "asks": "6 s"
+   }
+  ],
+  "conditions": [
+   "initial speed = 40 m/s upwards",
+   "g = 10 m/s² downwards",
+   "motion under gravity",
+   "air resistance neglected"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Find the time to reach maximum height first; before that time distance equals displacement, and after it the distance adds the extra fall back down.",
+  "steps": [
+   {
+    "text": "Find the time to reach maximum height and the maximum height reached.",
+    "equation": "t_top = u/g = 40/10 = 4 s, h_max = u²/(2g) = 1600/20 = 80 m"
+   },
+   {
+    "text": "At t = 2 s the ball is still rising, since 2 s is less than 4 s, so find its position from the displacement equation.",
+    "equation": "s(2) = 40(2) − 5(2)² = 60 m"
+   },
+   {
+    "text": "Since the ball has not yet turned around, the distance travelled equals the displacement.",
+    "equation": "(a) displacement = 60 m, distance = 60 m"
+   },
+   {
+    "text": "At t = 4 s the ball is exactly at the highest point, where displacement and distance are again equal.",
+    "equation": "(b) s(4) = 40(4) − 5(4)² = 80 m; displacement = 80 m, distance = 80 m"
+   },
+   {
+    "text": "At t = 6 s the ball has been falling back for 2 s after reaching the top at t = 4 s; find how far it fell in that time.",
+    "equation": "fall = ½g(2)² = 20 m"
+   },
+   {
+    "text": "The distance travelled adds the rise and the fall, while the displacement is the net position from the start.",
+    "equation": "(c) distance = 80 + 20 = 100 m; s(6) = 40(6) − 5(6)² = 60 m, displacement = 60 m"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) 60 m, 60 m; (b) 80 m, 80 m; (c) 60 m, 100 m"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "For part (c), taking the distance equal to the displacement, 60 m, and ignoring the extra distance covered while falling back down."
+   }
+  ],
+  "concept_tags": [
+   "displacement versus distance",
+   "projectile under gravity",
+   "time of flight"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "dbea7b0693bb59d37ce25a80e3279ba233179b344b7047d255cabbcf9df23107"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "ed002e2bad8dc58a783b010807828cf61c5a0c2767b5c38a6902fb04c1cfab53",
+  "audited_by": "W01-U-kin-10"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-01",
+  "at": "2026-09-11T15:15:00+05:30"
+ }
+}

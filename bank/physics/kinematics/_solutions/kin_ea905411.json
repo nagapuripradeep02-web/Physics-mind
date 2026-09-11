@@ -1,0 +1,51 @@
+{
+  "schema": "eapcet_solution_v1",
+  "question_id": "kin_ea905411",
+  "approach": "Use that the lift reaches the same maximum speed at the end of both phases, split the total time t between phases using that condition, then add the two distances.",
+  "steps": [
+    {
+      "text": "Let t₁ be the time of uniform acceleration a and t₂ the time of uniform retardation 2a, with t₁ + t₂ = t. The maximum speed reached is the same seen from both phases.",
+      "equation": "a t₁ = 2a t₂ → t₁ = 2t₂"
+    },
+    {
+      "text": "Combine with t₁ + t₂ = t to find each time in terms of t.",
+      "equation": "2t₂ + t₂ = t → t₂ = t/3, t₁ = 2t/3"
+    },
+    {
+      "text": "Find the maximum speed and the distance covered while accelerating.",
+      "equation": "vₘₐₓ = a(2t/3) = 2at/3, d₁ = ½a(2t/3)² = 2at²/9"
+    },
+    {
+      "text": "Find the distance covered while retarding from vₘₐₓ to rest.",
+      "equation": "d₂ = ½(2at/3)(t/3) = at²/9"
+    },
+    {
+      "text": "Add the two distances to get the total depth of the shaft.",
+      "equation": "2at²/9 + at²/9 = at²/3"
+    }
+  ],
+  "final_answer": {
+    "option": 2,
+    "value": "at²/3"
+  },
+  "confidence": "sure",
+  "common_mistakes": [
+    {
+      "option": 1,
+      "text": "Assuming the acceleration phase and the retardation phase take equal time (t/2 each) instead of using the equal-maximum-speed condition, which gives at²/4."
+    }
+  ],
+  "concept_tags": [
+    "equations of motion",
+    "two-phase motion",
+    "maximum velocity"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept",
+  "authored_by": {
+    "model": "sonnet",
+    "wave": 1,
+    "agent": "W01-A-kin-09",
+    "at": "2026-09-11T15:09:00+05:30"
+  }
+}

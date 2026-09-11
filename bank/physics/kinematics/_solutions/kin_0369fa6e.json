@@ -1,0 +1,20 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_0369fa6e",
+ "approach": "Integrate the time-varying acceleration to get the velocity as a function of time and check whether it stays along the original direction of v.",
+ "steps": [
+  {"text": "Integrate each component of a with respect to time, using the given velocity v = 2î at t = 0 as the starting values.", "equation": "vₓ(t) = 2 + ∫4t dt = 2 + 2t², v_y(t) = 0 + ∫t² dt = t³/3"},
+  {"text": "At t = 0 the velocity is (2, 0), matching the given v, but for any t greater than 0 the velocity has picked up a nonzero y component.", "equation": "v(t) = (2 + 2t²) î + (t³/3) ĵ, nonzero ĵ component for t > 0"},
+  {"text": "Since the particle starts moving purely along x but develops motion along y as time passes, it is no longer confined to a straight line.", "equation": "path curves away from the x-axis for t > 0",
+   "why_this_step": "A particle whose velocity direction changes over time (other than reversing along the same line) traces a curved path."}
+ ],
+ "final_answer": {"option": null, "value": "Curvilinear (two-dimensional) motion, since the particle develops a velocity component along ĵ while it started moving purely along î."},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Noting that v is given only along î at t = 0 and concluding the motion stays one-dimensional, without checking that the acceleration has a persistent ĵ component that builds up a y-velocity over time."}
+ ],
+ "concept_tags": ["time-varying acceleration", "curvilinear motion", "integration of acceleration"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-04", "at": "2026-09-11T01:00:00+05:30"}
+}

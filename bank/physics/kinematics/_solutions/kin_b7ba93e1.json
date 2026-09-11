@@ -1,0 +1,42 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_b7ba93e1",
+ "approach": "Ascending fixes the direction of velocity as upward; a decreasing speed while moving in that direction means the acceleration opposes the velocity.",
+ "steps": [
+  {
+   "text": "The lift is ascending, so its velocity is directed upward.",
+   "equation": null
+  },
+  {
+   "text": "Its speed is decreasing while it moves upward, so the net force and acceleration must act opposite to the velocity.",
+   "equation": null
+  },
+  {
+   "text": "State both directions.",
+   "equation": "velocity: upward, acceleration: downward"
+  }
+ ],
+ "final_answer": {
+  "option": null,
+  "value": "Velocity is directed upward; acceleration is directed downward."
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": null,
+   "text": "Assuming the acceleration also points upward because the lift is going up, ignoring that its speed is decreasing."
+  }
+ ],
+ "concept_tags": [
+  "velocity and acceleration direction",
+  "retardation"
+ ],
+ "difficulty": "easy",
+ "mistake_type_hint": "concept",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-01",
+  "at": "2026-09-11T15:02:00+05:30"
+ }
+}

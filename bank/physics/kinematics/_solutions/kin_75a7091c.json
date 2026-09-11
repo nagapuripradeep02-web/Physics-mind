@@ -1,0 +1,47 @@
+{
+  "schema": "eapcet_solution_v1",
+  "question_id": "kin_75a7091c",
+  "approach": "Find the speed and height reached at the end of the 1 minute of powered flight, then treat the rest of the rise as free motion decelerating under gravity alone.",
+  "steps": [
+    {
+      "text": "During the powered phase, the rocket starts from rest and accelerates at 10 m/s² for 60 s. Find the speed and height reached at burnout.",
+      "equation": "v = 10 × 60 = 600 ms⁻¹, h₁ = ½ × 10 × 60² = 18000 m"
+    },
+    {
+      "text": "After the fuel finishes, only gravity acts, so the rocket decelerates at g = 10 m/s² until its speed falls to zero.",
+      "equation": "extra time t₂ = v/g = 600/10 = 60 s"
+    },
+    {
+      "text": "Find the extra height gained while decelerating from 600 ms⁻¹ to rest.",
+      "equation": "h₂ = v²/(2g) = 600²/(2×10) = 18000 m"
+    },
+    {
+      "text": "Add the two heights for the maximum height above the ground.",
+      "equation": "H = h₁ + h₂ = 18000 + 18000 = 36000 m"
+    }
+  ],
+  "final_answer": {
+    "option": null,
+    "value": "(a) maximum height = 36000 m (36 km), (b) time from fuel finish to maximum height = 60 s"
+  },
+  "confidence": "sure",
+  "common_mistakes": [
+    {
+      "option": null,
+      "text": "Stopping the calculation at burnout and treating 18000 m, the height at fuel finish, as the maximum height, missing that the rocket keeps rising after the fuel runs out."
+    }
+  ],
+  "concept_tags": [
+    "equations of motion",
+    "two-stage motion",
+    "vertical motion under gravity"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "application",
+  "authored_by": {
+    "model": "sonnet",
+    "wave": 1,
+    "agent": "W01-A-kin-10",
+    "at": "2026-09-11T14:14:00+05:30"
+  }
+}

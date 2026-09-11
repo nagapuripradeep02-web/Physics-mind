@@ -1,0 +1,156 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter": "kinematics",
+ "slice": 10,
+ "round": 0,
+ "items": [
+  {
+   "question_id": "kin_d9a3c5e7",
+   "question_text": "The variation of the velocity of a particle with time is represented in the given v–t graph. Between t = 0 and t = 40 s, the graph forms two identical triangular lobes: it starts from rest at t = 0, increases linearly to a maximum of 5 m/s, returns linearly to 0 at t = 20 s, then drops linearly to a minimum of −5 m/s before increasing linearly back to 0 at t = 40 s. Determine:\n(a) The total distance covered by the particle in the first 40 s.\n(b) The average velocity of the particle throughout this 40 s duration.",
+   "options": [],
+   "figure_description": "A velocity-time (v–t) graph with velocity v on the vertical axis and time t in seconds on the horizontal axis. A triangular wave starts at the origin (0, 0), rises to a peak velocity of 5 m/s, and descends linearly to touch the time axis at t = 20 s. From t = 20 s, it continues downward linearly to a trough of −5 m/s, and then rises linearly to meet the time axis again at t = 40 s."
+  },
+  {
+   "question_id": "kin_d1f0c906",
+   "question_text": "An object having a mass of 1 kg moves with an initial velocity of 2 m/s. For a duration of 1 s, an unchanging 2 N force is applied to it at a right angle to its original direction of motion. Determine the object's velocity and displacement when the 1 s interval ends.",
+   "options": [],
+   "figure_description": "Two vector diagrams: (a) shows the velocity components, with horizontal initial velocity u = 2 m/s and vertical component a t = 2 m/s, resulting in velocity vector v at an angle α to the horizontal; (b) shows the displacement components, with horizontal displacement u t = 2 m and vertical displacement ½ a t² = 1 m, resulting in displacement vector s at an angle β to the horizontal."
+  },
+  {
+   "question_id": "kin_d62a3c17",
+   "question_text": "An object travels along a circular path having a radius R = 21/22 m at a uniform speed of 1 m/s. Over a time span of 2 s, determine:\n(a) the magnitude of its average velocity\n(b) the magnitude of its average acceleration",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_d84474ba",
+   "question_text": "A sphere is projected straight up into the air from ground level. Let T₁ represent the duration of its ascent to the highest point and T₂ represent the duration of its return to the ground. If air drag is taken into consideration throughout the motion, which relation is correct?",
+   "options": [
+    {
+     "label": "a",
+     "text": "T₁ > T₂"
+    },
+    {
+     "label": "b",
+     "text": "T₁ = T₂"
+    },
+    {
+     "label": "c",
+     "text": "T₁ < T₂"
+    },
+    {
+     "label": "d",
+     "text": "nothing can be said"
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_d2bbc710",
+   "question_text": "A body travels along the +x-axis such that its velocity varies with time according to the equation v = (40 − 10 t) m/s, where t is expressed in seconds. Given that the body starts at x = 0 when t = 0, determine the time(s) at which it is located at a distance of 60 m from the origin.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_d4f42cb6",
+   "question_text": "A faucet fixed at a height of 5 m releases droplets of water at equal time gaps. At the exact moment the first droplet strikes the floor, the third droplet begins to fall. Determine the height of the second droplet above the floor at this specific moment. (Take g = 10 ms⁻²)",
+   "options": [
+    {
+     "label": "a",
+     "text": "1.25 m"
+    },
+    {
+     "label": "b",
+     "text": "2.50 m"
+    },
+    {
+     "label": "c",
+     "text": "3.75 m"
+    },
+    {
+     "label": "d",
+     "text": "4.00 m"
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_d9300602",
+   "question_text": "An object travels along a linear path experiencing uniform acceleration. Suppose it covers distances x, y, and z in the pth, qth, and rth seconds of its motion, respectively. Show that (q − r)x + (r − p)y + (p − q)z = 0.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_d9300602",
+   "question_text": "An object travels along a linear path experiencing uniform acceleration. Suppose it covers distances x, y, and z in the pth, qth, and rth seconds of its motion, respectively. Show that (q − r)x + (r − p)y + (p − q)z = 0.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_d76b373f",
+   "question_text": "A balloon moves vertically upwards with an acceleration a. When a stone is let go from this balloon, find the acceleration experienced by the stone immediately following its detachment.",
+   "options": [
+    {
+     "label": "a",
+     "text": "a upward"
+    },
+    {
+     "label": "b",
+     "text": "g downward"
+    },
+    {
+     "label": "c",
+     "text": "(g − a) downward"
+    },
+    {
+     "label": "d",
+     "text": "(g + a) downward"
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_dd6ddc94",
+   "question_text": "An object is thrown straight up into the air under gravity. State the acceleration of the object:\n(a) as it travels upward,\n(b) as it falls downward, and\n(c) at the peak of its path.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_d194bd74",
+   "question_text": "A particle moves along a straight path. Its acceleration varies with time as depicted in the acceleration-time graph, where the acceleration rises uniformly from 0 at t = 0 to a maximum of 4 m/s² at t = 2 s, and then decreases linearly back to 0 at t = 4 s. Given that the particle has a velocity of 2 m/s at t = 0, calculate its velocity at the end of the fourth second.",
+   "options": [],
+   "figure_description": "An acceleration-time (a-t) graph showing a triangle. The horizontal axis is time t in seconds, with markings at 0, 2, and 4. The vertical axis is acceleration a in m/s², with a marking at 4. The curve goes linearly from (0, 0) to (2 s, 4 m/s²), and then linearly down to (4 s, 0)."
+  },
+  {
+   "question_id": "kin_d89284ed",
+   "question_text": "The variation of velocity with respect to time for an object moving along the x-axis is presented in the graph. Calculate:\n(a) the acceleration,\n(b) the total distance covered between t = 0 and t = 10 s, and\n(c) the displacement between t = 0 and t = 10 s.\n(a) acceleration\n(b) distance travelled in 0 to 10 s\n(c) displacement in 0 to 10 s",
+   "options": [],
+   "figure_description": "A Cartesian coordinate graph plotting velocity v (in m/s) on the vertical axis against time t (in s) on the horizontal axis. The vertical axis has tick marks at 0, 2, 4, 6, and 8 m/s. The horizontal axis is marked at 0, 5, and 10 s. A single continuous straight line starts at (t = 0 s, v = 2 m/s) and ends at (t = 10 s, v = 8 m/s)."
+  },
+  {
+   "question_id": "kin_d4ea68c2",
+   "question_text": "From the roof of a 40 m tall building, an object is projected vertically upward at a speed of 10 m/s. Determine the total duration of flight before it reaches the ground below. Assume g = 10 m/s².",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_dbea7b06",
+   "question_text": "An object is thrown straight up into the air with an initial speed of 40 m/s. Determine both the net displacement and the total distance covered by the object after the following time durations (take g = 10 m/s²):\n(a) 2 s\n(b) 4 s\n(c) 6 s",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_d592c9e9",
+   "question_text": "Starting from a stationary state, an automobile speeds up with a uniform acceleration α for a certain duration. Immediately afterward, it slows down with a uniform retardation β until it stops completely. Given that the entire motion takes t seconds, determine:\n(a) the highest speed attained by the automobile\n(b) the overall distance covered during the journey",
+   "options": [],
+   "figure_description": "A velocity-time (v-t) graph shaped like a triangle. The graph begins at the origin (0, 0), rises with a constant slope α for a duration t₁ to reach the maximum velocity v_max at point A, and subsequently drops with a constant slope −β over a duration t₂ to hit the time axis at point B, where the total time is t = t₁ + t₂."
+  },
+  {
+   "question_id": "kin_d38785af",
+   "question_text": "A person walks eastward at a speed of 3 m/s while raindrops fall straight down at a speed of 4 m/s. Determine the angle and orientation at which the person must tilt an umbrella to stay protected from the rain.",
+   "options": [],
+   "figure_description": ""
+  }
+ ]
+}

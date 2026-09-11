@@ -1,0 +1,24 @@
+{
+ "question_id": "kin_8241ba1f",
+ "item_sha": "2cb08187211bdd0ad2e0b692fd05642496298ac9b9fc02e889ca8f42a4137302",
+ "auditor_option": null,
+ "auditor_value": "sₜ = u + at − ½a, derived as Sₜ − Sₜ₋₁ = u + ½a(2t − 1)",
+ "findings": [
+  {
+   "grade": "weak",
+   "field": "steps[0].text",
+   "quote": "write the total distance covered from rest of motion up to n seconds using the standard distance equation",
+   "note": "The phrase \"from rest of motion\" is not readable English, and taken literally it states a condition the question does not have, since the object starts with initial velocity u rather than from rest. The equation printed below it correctly keeps the un term.",
+   "fix": "write the total distance covered from the start of the motion up to n seconds using the standard distance equation"
+  }
+ ],
+ "verdict": "weak",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-kin-06",
+  "at": "2026-09-11T00:00:00+05:30"
+ }
+}

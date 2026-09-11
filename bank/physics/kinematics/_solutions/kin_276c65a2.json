@@ -1,0 +1,44 @@
+{
+  "schema": "eapcet_solution_v1",
+  "question_id": "kin_276c65a2",
+  "approach": "Write the separation between B and A as a function of time and minimize it with calculus.",
+  "steps": [
+    {
+      "text": "Write each particle's position from its own start, then the separation as B's position minus A's position, starting from the given 10 m gap.",
+      "equation": "s(t) = 10 + (t + t²) − (3t + 0.5t²) = 10 − 2t + 0.5t²"
+    },
+    {
+      "text": "Set the derivative of the separation to zero to find the time of closest approach.",
+      "equation": "ds/dt = −2 + t = 0 → t = 2 s"
+    },
+    {
+      "text": "Substitute t = 2 s back into the separation to get the minimum distance.",
+      "equation": "s(2) = 10 − 4 + 2 = 8 m",
+      "why_this_step": "The second derivative of s(t) is positive, so this turning point is a minimum, not a maximum."
+    }
+  ],
+  "final_answer": {
+    "option": null,
+    "value": "8 m"
+  },
+  "confidence": "sure",
+  "common_mistakes": [
+    {
+      "option": null,
+      "text": "Using only the initial speeds and ignoring the accelerations suggests the gap keeps closing forever, missing that B's larger acceleration makes B faster than A after t = 2 s, so the gap widens again."
+    }
+  ],
+  "concept_tags": [
+    "relative motion",
+    "minimization",
+    "calculus"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "application",
+  "authored_by": {
+    "model": "sonnet",
+    "wave": 1,
+    "agent": "W01-A-kin-11",
+    "at": "2026-09-11T15:04:00+05:30"
+  }
+}

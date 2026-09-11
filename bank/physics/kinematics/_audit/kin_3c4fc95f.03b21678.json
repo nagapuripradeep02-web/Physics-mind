@@ -1,0 +1,16 @@
+{
+ "question_id": "kin_3c4fc95f",
+ "auditor_option": 4,
+ "auditor_value": "Assertion is false, but Reason is true",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": null,
+ "item_sha": "03b21678f3138a68819096267501db0925274bc67fe151140980ea747ce2a930",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-kin-02",
+  "at": "2026-09-11T06:30:00+05:30"
+ }
+}

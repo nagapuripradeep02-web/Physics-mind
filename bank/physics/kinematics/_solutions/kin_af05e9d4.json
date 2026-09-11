@@ -1,0 +1,47 @@
+{
+  "schema": "eapcet_solution_v1",
+  "question_id": "kin_af05e9d4",
+  "approach": "Write the distance fallen by each diamond as a function of time from the first diamond's release, then set the gap between them to 10 m to find that time.",
+  "steps": [
+    {
+      "text": "Measure time t from when the first diamond is released. Its distance fallen is ½gt².",
+      "equation": "y₁(t) = ½(10)t² = 5t²"
+    },
+    {
+      "text": "The second diamond is released 1.0 s later, so for t ≥ 1 s its distance fallen is ½g(t − 1)².",
+      "equation": "y₂(t) = 5(t − 1)²"
+    },
+    {
+      "text": "The gap between them, for t ≥ 1 s, is the difference of these two distances.",
+      "equation": "gap = 5t² − 5(t − 1)² = 5(2t − 1) = 10t − 5"
+    },
+    {
+      "text": "Set the gap to 10 m and solve for t.",
+      "equation": "10t − 5 = 10 → t = 1.5 s"
+    }
+  ],
+  "final_answer": {
+    "option": null,
+    "value": "1.5 s"
+  },
+  "confidence": "sure",
+  "common_mistakes": [
+    {
+      "option": null,
+      "text": "Ignoring that the second diamond is already falling and solving 5t² = 10 for the gap gives t = √2 ≈ 1.41 s; the distance fallen since t = 1.0 s must be subtracted."
+    }
+  ],
+  "concept_tags": [
+    "free fall",
+    "relative motion",
+    "staggered start"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "application",
+  "authored_by": {
+    "model": "sonnet",
+    "wave": 1,
+    "agent": "W01-A-kin-10",
+    "at": "2026-09-11T14:24:00+05:30"
+  }
+}

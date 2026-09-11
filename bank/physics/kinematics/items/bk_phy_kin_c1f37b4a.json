@@ -1,0 +1,97 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_c1f37b4a",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A body travels in a straight line along the x-axis. When t = 0 s, the location of the body is x = −4 m. The velocity of the body varies with time according to v = 8 − 2t, with v given in m/s and t in s.",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "How many distinct instances does the body find itself 8 m away from the origin?"
+   },
+   {
+    "label": "b",
+    "asks": "Determine the exact values of time at which these occurrences take place."
+   }
+  ],
+  "conditions": [
+   "motion along the x-axis",
+   "initial position x = −4 m at t = 0",
+   "velocity v = 8 − 2t with v in m/s and t in s",
+   "distance from origin equals 8 m"
+  ],
+  "figure": {
+   "description": "A schematic showing the x-axis with marks at −8 m, −4 m, 0 m, and +8 m. At t = 0, the object starts at x = −4 m with a rightward velocity of 8 m/s and a constant leftward acceleration of 2 m/s². The trajectory illustrates the object moving rightward across x = +8 m at time t₁, halting at v = 0, reversing direction to pass x = +8 m again at time t₂, and eventually reaching x = −8 m at time t₃."
+  }
+ },
+ "solution": {
+  "approach": "Integrate the velocity equation to get x(t), then solve x = 8 and x = −8 separately, keeping only the positive-time roots.",
+  "steps": [
+   {
+    "text": "Integrate the given velocity to get the x-coordinate, using x = −4 m at t = 0.",
+    "equation": "x(t) = −4 + 8t − t²"
+   },
+   {
+    "text": "Set x(t) = 8 and solve the quadratic for t.",
+    "equation": "−4+8t−t² = 8 → t²−8t+12=0 → t = 2 s or t = 6 s"
+   },
+   {
+    "text": "Set x(t) = −8 and solve the quadratic for t, keeping only the positive root.",
+    "equation": "−4+8t−t² = −8 → t²−8t−4=0 → t = 4+2√5 ≈ 8.47 s (the other root is negative)"
+   },
+   {
+    "text": "Count all the positive times found: the particle is at a distance of 8 m from the origin three times.",
+    "equation": "t = 2 s, 6 s, (4+2√5) s ≈ 8.47 s"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) 3 times, (b) t = 2 s, 6 s, and (4+2√5) s ≈ 8.47 s"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Discarding the negative-x case x = −8 entirely and reporting only 2 times, missing that the particle turns back and passes x = −8 later."
+   },
+   {
+    "option": null,
+    "text": "Keeping the negative root t = 4−2√5 ≈ −0.47 s from the x = −8 case as a valid time, which is not physical since t must be positive."
+   }
+  ],
+  "concept_tags": [
+   "equations of motion",
+   "velocity-time equation",
+   "quadratic in time"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "15d87f2270be493c838492c91c4752e6994b3a6901ca0535705d9469da54dc0b"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "e8a7e1f5c921ad27ef2da98b50b6e6ff21d27160efea7e0a1ba2b645217e6090",
+  "audited_by": "W01-U-kin-01"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-03",
+  "at": "2026-09-11T15:30:00+05:30"
+ }
+}

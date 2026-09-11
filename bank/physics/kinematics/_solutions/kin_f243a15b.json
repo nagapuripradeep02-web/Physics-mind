@@ -1,0 +1,56 @@
+{
+  "schema": "eapcet_solution_v1",
+  "question_id": "kin_f243a15b",
+  "approach": "The resistance adds to gravity on the way up and subtracts from it on the way down, so use the two accelerations to find each time and take the ratio.",
+  "steps": [
+    {
+      "text": "On the way up, both gravity and the resistance act downward, opposing the motion.",
+      "equation": "a_up = g + 2 = 12 ms⁻²"
+    },
+    {
+      "text": "On the way down, the resistance acts upward, against gravity.",
+      "equation": "a_down = g − 2 = 8 ms⁻²"
+    },
+    {
+      "text": "Write the time of ascent and the maximum height reached, for initial speed u.",
+      "equation": "t₁ = u/12, h = u²/24"
+    },
+    {
+      "text": "Write the time of descent from that height using h = ½a_down t₂².",
+      "equation": "t₂ = u/(4√6)"
+    },
+    {
+      "text": "Divide the two times to get the ratio.",
+      "equation": "t₁/t₂ = √(2/3)",
+      "why_this_step": "The u cancels, so the ratio does not depend on the launch speed."
+    }
+  ],
+  "final_answer": {
+    "option": 2,
+    "value": "√(2/3)"
+  },
+  "confidence": "sure",
+  "common_mistakes": [
+    {
+      "option": 1,
+      "text": "Ignoring the resistance force and using the same acceleration g for both ascent and descent gives a ratio of 1 : 1."
+    },
+    {
+      "option": 4,
+      "text": "Inverting the ratio, computing time of descent to time of ascent instead, gives √(3/2)."
+    }
+  ],
+  "concept_tags": [
+    "equations of motion",
+    "retardation",
+    "vertical motion"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept",
+  "authored_by": {
+    "model": "sonnet",
+    "wave": 1,
+    "agent": "W01-A-kin-10",
+    "at": "2026-09-11T14:02:00+05:30"
+  }
+}

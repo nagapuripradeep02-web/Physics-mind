@@ -1,0 +1,95 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_30ec7bab",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "The position-time graphs for two objects, A and B, traveling along the x-direction are depicted in the given figure.",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "Determine the initial time when each particle begins moving, as well as the position coordinate at that moment."
+   },
+   {
+    "label": "b",
+    "asks": "Calculate the constant velocity of each particle."
+   },
+   {
+    "label": "c",
+    "asks": "Find the time and position where the two particles collide."
+   }
+  ],
+  "conditions": [
+   "motion along a straight line (x-axis)",
+   "uniform velocity for both particles"
+  ],
+  "figure": {
+   "description": "A graph of position x (in m) on the vertical axis versus time t (in s) on the horizontal axis. Line A begins at (t = 0 s, x = 10 m) and continues linearly through (t = 8 s, x = 30 m). Line B begins at (t = 4 s, x = 0 m) and continues linearly, intersecting line A at the point (t = 8 s, x = 30 m)."
+  }
+ },
+ "solution": {
+  "approach": "Read each line's starting point directly from the graph, then use the slope from that start to the meeting point for each particle's velocity.",
+  "steps": [
+   {
+    "text": "Read the starting point of each line from the graph.",
+    "equation": "A starts at t = 0 s, x = 10 m; B starts at t = 4 s, x = 0 m"
+   },
+   {
+    "text": "Find the velocity of A as the slope from its start to the meeting point.",
+    "equation": "vA = (30 − 10)/(8 − 0) = 2.5 m/s"
+   },
+   {
+    "text": "Find the velocity of B as the slope from its start to the meeting point.",
+    "equation": "vB = (30 − 0)/(8 − 4) = 7.5 m/s"
+   },
+   {
+    "text": "The two lines cross at the point read directly from the graph, which is where the particles meet.",
+    "equation": "t = 8 s, x = 30 m"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) A starts at t = 0 s, x = 10 m; B starts at t = 4 s, x = 0 m. (b) vA = 2.5 m/s, vB = 7.5 m/s. (c) They meet at t = 8 s, x = 30 m."
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Finding the velocity of B using the slope from t = 0 instead of its actual start at t = 4 s gives 3.75 m/s instead of 7.5 m/s."
+   }
+  ],
+  "concept_tags": [
+   "position-time graph",
+   "relative motion",
+   "slope as velocity"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "68aadf8fdd05b27b76d554c820594225056d86bfe284ce52a68109cae7935919"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "25d052c51bb7397df4952124dc838289f86094183bac259d2ab93adf982c4933",
+  "audited_by": "W01-U-kin-04"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-06",
+  "at": "2026-09-11T16:00:00+05:30"
+ }
+}

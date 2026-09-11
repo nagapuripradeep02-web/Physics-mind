@@ -1,0 +1,86 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_9d9c60bc",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A body begins moving with an initial speed u and travels along a straight path. It covers the first half of the total distance with a constant acceleration a₁, and then covers the second half of the distance with a constant acceleration a₂. Demonstrate that its speed at the end of the journey is equal to the final speed it would attain if it traversed the entire path with a single uniform acceleration of (a₁ + a₂)/2.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "motion in a straight line",
+   "particle has initial velocity u",
+   "first half of distance s traversed with constant acceleration a₁",
+   "second half of distance s traversed with constant acceleration a₂",
+   "compared with total distance 2s traversed with uniform acceleration (a₁ + a₂)/2"
+  ],
+  "figure": {
+   "description": "A diagram comparing two cases of linear motion. Case 1 shows a particle starting with velocity u, traversing a displacement s under constant acceleration a₁ to reach velocity v₁, and then traversing an equal displacement s under constant acceleration a₂ to reach final velocity v₂. Case 2 shows the particle starting with velocity u, traversing the total displacement 2s under uniform acceleration (a₁ + a₂)/2, and attaining final velocity v."
+  }
+ },
+ "solution": {
+  "approach": "Apply v² = u² + 2as across each half with a₁ and a₂, then compare the result with the same formula applied to the whole distance under the average acceleration.",
+  "steps": [
+   {
+    "text": "After the first half of distance s with acceleration a₁, the velocity v₁ satisfies this.",
+    "equation": "v₁² = u² + 2a₁s"
+   },
+   {
+    "text": "After the second half of distance s with acceleration a₂, starting from v₁, the velocity v₂ satisfies this.",
+    "equation": "v₂² = v₁² + 2a₂s = u² + 2s(a₁ + a₂)"
+   },
+   {
+    "text": "For the whole distance 2s covered with the uniform acceleration (a₁ + a₂)/2 starting from u, the final velocity v satisfies this.",
+    "equation": "v² = u² + 2 × (a₁ + a₂)/2 × 2s = u² + 2s(a₁ + a₂)"
+   },
+   {
+    "text": "Both expressions for the squared final velocity are the same, so the final speeds are equal.",
+    "equation": "v₂² = v² ⟹ v₂ = v",
+    "why_this_step": "Two non-negative quantities with equal squares must be equal."
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "v₂ = v, so the final velocity covering the whole distance with uniform acceleration (a₁ + a₂)/2 equals the final velocity of the two-stage motion; proved as v₂² = v² = u² + 2s(a₁ + a₂)."
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Applying v² = u² + 2 × (a₁ + a₂)/2 × s with distance s instead of full distance 2s gives u² + s(a₁ + a₂), which does not match v₂² and breaks the proof."
+   }
+  ],
+  "concept_tags": [
+   "equations of motion",
+   "v² = u² + 2as",
+   "average acceleration"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "8cf80a044434ecf7ef1210f9e9c6b3c934efd8663e526ed4a250061ee566b88e"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "99118705075f772fee7a46f4cfa0e21656e0132ee394537bf9c622797dc199f3",
+  "audited_by": "W01-U-kin-06"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-04",
+  "at": "2026-09-11T00:00:00+05:30"
+ }
+}

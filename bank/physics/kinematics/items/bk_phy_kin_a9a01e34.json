@@ -1,0 +1,96 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_a9a01e34",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "An aircraft travels directly from location P to location Q, situated 1000 km to the north. A steady wind moves eastward at 200 km/h, while the aircraft maintains a speed of 500 km/h relative to the surrounding air.",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "Determine the heading direction the pilot must steer to arrive at Q."
+   },
+   {
+    "label": "b",
+    "asks": "Calculate the duration needed to complete the flight from P to Q."
+   }
+  ],
+  "conditions": [
+   "straight-line path from P to Q",
+   "distance from P to Q is 1000 km due north",
+   "wind velocity is 200 km/h due east",
+   "speed of aircraft relative to air is 500 km/h",
+   "resultant velocity of aircraft relative to ground is directed due north"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "The plane must head upwind of north so that the wind's eastward push is cancelled by a westward component of its airspeed, leaving a net northward velocity.",
+  "steps": [
+   {
+    "text": "Let θ be the angle west of north the pilot heads; the westward component of airspeed must cancel the eastward wind.",
+    "equation": "500 sin θ = 200 → sin θ = 0.4"
+   },
+   {
+    "text": "Solve for θ.",
+    "equation": "θ = sin⁻¹(0.4) ≈ 23.6° west of north"
+   },
+   {
+    "text": "Find the resulting northward component of velocity.",
+    "equation": "v_north = 500cos θ = 500 × 0.9165 ≈ 458.3 km/h"
+   },
+   {
+    "text": "Find the time to cover 1000 km at this northward speed.",
+    "equation": "t = 1000/458.3 ≈ 2.18 h"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) the pilot should head about 23.6° west of north. (b) time taken ≈ 2.18 h (about 2 h 11 min)."
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Adding the airspeed and wind speed directly to get a resultant of 700 km/h, giving a wrong time of 1000/700 ≈ 1.43 h."
+   },
+   {
+    "option": null,
+    "text": "Ignoring the wind entirely and using the plane's airspeed alone, giving time = 1000/500 = 2 h."
+   }
+  ],
+  "concept_tags": [
+   "relative velocity",
+   "vector addition",
+   "wind correction angle"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "10910ccf4b85c30174510ac305d9aff3ba4e6b6c6ff660abde2fa3cc8427d74f"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "909f84f3f8ba906538f4536c4f0fa36ccd3bc8f669e650f069eeb2900398ce97",
+  "audited_by": "W01-U-kin-01"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-12",
+  "at": "2026-09-11T16:42:00+05:30"
+ }
+}

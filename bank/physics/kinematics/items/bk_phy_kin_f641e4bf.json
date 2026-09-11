@@ -1,0 +1,81 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_f641e4bf",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "mcq_single",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "A ball projected straight upward with an initial speed v₀ attains a peak altitude h. What initial speed is needed to make the ball attain three times this peak altitude?",
+  "options": {
+   "1": "√3 v₀",
+   "2": "3 v₀",
+   "3": "9 v₀",
+   "4": "3/2 v₀"
+  },
+  "parts": null,
+  "conditions": [
+   "motion under constant gravitational acceleration",
+   "air resistance neglected",
+   "pure vertical upward projection"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Use the relation between launch speed and maximum height, and compare the speeds needed for height h and for height 3h.",
+  "steps": [
+   {
+    "text": "Write the relation between the launch speed and the maximum height reached.",
+    "equation": "h = v₀²/(2g)"
+   },
+   {
+    "text": "Write the same relation for the new speed v′ that gives triple the height.",
+    "equation": "3h = v′²/(2g)"
+   },
+   {
+    "text": "Divide the two equations to eliminate g and h.",
+    "equation": "v′²/v₀² = 3 → v′ = √3 v₀"
+   }
+  ],
+  "final_answer": {
+   "option": 1,
+   "value": "√3 v₀"
+  },
+  "common_mistakes": [
+   {
+    "option": 2,
+    "text": "Assuming height is directly proportional to speed instead of to the square of the speed, and tripling the speed to 3v₀."
+   }
+  ],
+  "concept_tags": [
+   "equations of motion",
+   "maximum height"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "c9d48c699b6807f0eb5a78572ad0e6adc07002c3ea995584d90158353aff56a3"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "efb82cc6c36f77ce75c6d2a33acb44b6dd6333a34ca1711d1b60bb54a67cc384",
+  "audited_by": "W01-U-kin-09"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-08",
+  "at": "2026-09-11T14:20:00+05:30"
+ }
+}

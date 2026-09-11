@@ -1,0 +1,34 @@
+{
+  "schema": "eapcet_solution_v1",
+  "question_id": "kin_bd2bf424",
+  "approach": "Two-dimensional motion needs two coordinates to describe the path, such as the two motions shown in the figure.",
+  "steps": [
+    {
+      "text": "A particle moving on a circular path needs both x and y coordinates to describe its position at every instant, so it is two-dimensional motion.",
+      "equation": null
+    },
+    {
+      "text": "A projectile launched at an angle to the ground moves along a curved path in a vertical plane, also needing two coordinates.",
+      "equation": null
+    }
+  ],
+  "final_answer": {
+    "option": null,
+    "value": "Circular motion and projectile motion are two examples of two-dimensional motion."
+  },
+  "confidence": "sure",
+  "common_mistakes": [],
+  "concept_tags": [
+    "two-dimensional motion",
+    "circular motion",
+    "projectile motion"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "concept",
+  "authored_by": {
+    "model": "sonnet",
+    "wave": 1,
+    "agent": "W01-A-kin-01",
+    "at": "2026-09-11T15:03:00+05:30"
+  }
+}

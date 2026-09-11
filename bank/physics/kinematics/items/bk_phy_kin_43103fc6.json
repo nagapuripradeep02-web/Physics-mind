@@ -1,0 +1,93 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_43103fc6",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "The velocity of an object travelling along a straight line varies with time as v = (3 + 6t + 9t²) cm/s, where t is in seconds. Determine:",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "The acceleration of the object at t = 3 s."
+   },
+   {
+    "label": "b",
+    "asks": "Its displacement during the time interval from t = 5 s to t = 8 s."
+   }
+  ],
+  "conditions": [
+   "velocity function v(t) = (3 + 6t + 9t²) cm/s",
+   "motion along a straight line"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Differentiate the velocity for acceleration and integrate it between the two times for displacement.",
+  "steps": [
+   {
+    "text": "Differentiate v with respect to time to get the acceleration.",
+    "equation": "a = dv/dt = 6 + 18t"
+   },
+   {
+    "text": "Substitute t = 3 s.",
+    "equation": "a(3) = 6 + 18×3 = 60 cm/s²"
+   },
+   {
+    "text": "Integrate v with respect to time from t = 5 s to t = 8 s to get the displacement.",
+    "equation": "Δx = 3t + 3t² + 3t³, evaluated from 5 to 8"
+   },
+   {
+    "text": "Evaluate the integral at the two limits and subtract.",
+    "equation": "Δx = 1752 − 465 = 1287 cm"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) 60 cm/s², (b) 1287 cm"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Differentiating 9t² as 9t instead of 18t gives an acceleration of 33 cm/s² at t = 3 s instead of 60 cm/s²."
+   },
+   {
+    "option": null,
+    "text": "Subtracting the velocity at t = 5 s from the velocity at t = 8 s instead of integrating gives 369 cm instead of 1287 cm."
+   }
+  ],
+  "concept_tags": [
+   "differentiation",
+   "integration",
+   "variable acceleration"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "calculation"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "199747d36f69ac564285085aaa4932989eff8c37ac09c360a84198ef5a083879"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "3f42523a0de1cd5214304b83865e7d560eac6052f0d1729ba062fb946c0ae6cc",
+  "audited_by": "W01-U-kin-01-R1"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-06",
+  "at": "2026-09-11T16:00:00+05:30"
+ }
+}

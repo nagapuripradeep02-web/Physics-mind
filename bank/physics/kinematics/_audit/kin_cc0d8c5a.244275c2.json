@@ -1,0 +1,16 @@
+{
+ "question_id": "kin_cc0d8c5a",
+ "item_sha": "244275c26474c78e312aca4f24a1388540cb47b9374898a86c5cbad8421058fd",
+ "auditor_option": null,
+ "auditor_value": "(a) Yes — uniform circular motion: speed constant, direction of velocity changes, so acceleration is non-zero. (b) (i) no, (ii) yes (projectile under gravity), (iii) yes (circular motion with changing speed)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-kin-09",
+  "at": "2026-09-11T09:50:24+05:30"
+ }
+}

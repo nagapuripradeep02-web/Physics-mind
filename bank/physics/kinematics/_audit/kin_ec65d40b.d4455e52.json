@@ -1,0 +1,59 @@
+{
+ "question_id": "kin_ec65d40b",
+ "item_sha": "d4455e5271f60313b3fc512fe804b5f801bcc248a1cdd1431cfc94fee3cf6c78",
+ "auditor_option": null,
+ "auditor_value": "(a) v·a = +4 m²/s³, (b) acute (about 80.7°), (c) speed is increasing",
+ "findings": [
+  {
+   "grade": "harmful",
+   "field": "steps[0].equation",
+   "quote": "v·a = (3)(2) + (−4)(1) + (2)(−2) = 6 − 4 − 4 = −2",
+   "note": "The î term pairs vₓ = 3 with 2, but the î component of a is 4, so the first product must be (3)(4) = 12. The correct dot product is 12 − 4 − 4 = +4, not −2.",
+   "fix": "v·a = (3)(4) + (−4)(1) + (2)(−2) = 12 − 4 − 4 = 4"
+  },
+  {
+   "grade": "harmful",
+   "field": "steps[1].equation",
+   "quote": "cos θ < 0 ⟹ θ is obtuse (between 90° and 180°)",
+   "note": "v·a = +4 is positive, so cos θ > 0 and the angle is acute (about 80.7°). The printed conclusion is false for these vectors.",
+   "fix": "cos θ > 0 ⟹ θ is acute (between 0° and 90°)"
+  },
+  {
+   "grade": "harmful",
+   "field": "steps[2].equation",
+   "quote": "d|v|/dt = (v·a)/|v| = −2/√29 < 0",
+   "note": "With the correct dot product the tangential rate is +4/√29 = +0.74 m/s², which is positive, so the speed is increasing, not decreasing.",
+   "fix": "d|v|/dt = (v·a)/|v| = 4/√29 ≈ +0.74 m/s² > 0"
+  },
+  {
+   "grade": "harmful",
+   "field": "steps[2].why_this_step",
+   "quote": "A negative rate of change of speed means the speed is decreasing at this instant.",
+   "note": "The rate is positive here (+4/√29), so this reason describes a situation that does not occur in this question and leads to the wrong part (c) answer.",
+   "fix": "A positive rate of change of speed means the speed is increasing at this instant."
+  },
+  {
+   "grade": "harmful",
+   "field": "final_answer.value",
+   "quote": "(a) v·a = −2, (b) obtuse, (c) speed is decreasing",
+   "note": "All three parts are wrong: v·a = 3(4) + (−4)(1) + 2(−2) = +4, so the angle is acute and the speed is increasing.",
+   "fix": "(a) v·a = 4 m²/s³, (b) acute, (c) speed is increasing"
+  },
+  {
+   "grade": "harmful",
+   "field": "common_mistakes[0].text",
+   "quote": "Mismatching components when computing the dot product, such as pairing the k̂ component of v with the ĵ component of a, gives a wrong value that can wrongly suggest an acute angle and increasing speed.",
+   "note": "An acute angle and increasing speed are the CORRECT results for these vectors, so this entry tells the student that the right answer is the mistake. It also describes exactly the mismatch the solution itself committed in step 1.",
+   "fix": "Mismatching components when computing the dot product, such as pairing the î component of v with the k̂ component of a, gives a wrong value and can wrongly suggest an obtuse angle and decreasing speed."
+  }
+ ],
+ "verdict": "harmful",
+ "question_defect": null,
+ "notes": "The question as served gives a = (4 î + ĵ − 2 k̂); step 1 silently uses 2 for the î component of a, and every later line and the final answer inherit the sign flip.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-kin-02-R1",
+  "at": "2026-09-11T10:08:06+05:30"
+ }
+}

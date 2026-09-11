@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_911c4a45",
+ "approach": "Write the position of each particle as a function of time and solve for the time at which the two positions are equal.",
+ "steps": [
+  {"text": "Write the position of particle 1, starting at x = −10 m with velocity −4 m/s and acceleration +2 m/s².", "equation": "x₁(t) = −10 − 4t + t²"},
+  {"text": "Write the position of particle 2, starting at x = +2 m with velocity +6 m/s and acceleration −2 m/s².", "equation": "x₂(t) = 2 + 6t − t²"},
+  {"text": "Set the two positions equal and solve the resulting quadratic for t, keeping the positive root.", "equation": "−10 − 4t + t² = 2 + 6t − t² → t² − 5t − 6 = 0 → t = 6 s"},
+  {"text": "Substitute t = 6 s into either position equation to get the collision point.", "equation": "x₁(6) = −10 − 24 + 36 = 2 m"}
+ ],
+ "final_answer": {"option": null, "value": "(a) t = 6 s, (b) x = 2 m"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Taking t = −1 s, the other root of the quadratic, as the collision time, which is not physical since time cannot be negative."},
+  {"option": null, "text": "Writing particle 1's acceleration term as −t² instead of +t² by keeping the sign of its velocity for the acceleration too, which changes the quadratic and its root."}
+ ],
+ "concept_tags": ["equations of motion", "relative position", "quadratic in time"],
+ "difficulty": "medium",
+ "mistake_type_hint": "calculation",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-03", "at": "2026-09-11T15:30:00+05:30"}
+}

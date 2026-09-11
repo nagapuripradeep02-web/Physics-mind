@@ -1,0 +1,20 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_6e233343",
+ "approach": "Read the slope of the displacement-time graph for the sign of velocity, and its curvature for the sign of acceleration.",
+ "steps": [
+  {"text": "At t = t₁ the curve is rising toward the crest, so the slope is positive, meaning velocity is positive.", "equation": "v(t₁) > 0"},
+  {"text": "At t = t₁ the curve still bends downward there, curving over toward the crest, so acceleration is negative even though the particle is still moving forward.", "equation": "a(t₁) < 0"},
+  {"text": "At t = t₂ the curve is falling after the crest, so the slope is negative, meaning velocity is negative.", "equation": "v(t₂) < 0"},
+  {"text": "At t = t₂ the curve is still bending downward there, falling ever faster (this is before the point where the curve flattens out further along), so acceleration is also negative.", "equation": "a(t₂) < 0"}
+ ],
+ "final_answer": {"option": null, "value": "At t = t₁: velocity is positive, acceleration is negative. At t = t₂: velocity is negative, acceleration is negative."},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Assuming acceleration is positive at t₁ just because the particle is moving forward is wrong; a forward-moving particle that is slowing down as it nears the crest has negative acceleration."}
+ ],
+ "concept_tags": ["displacement-time graph", "sign of velocity", "sign of acceleration", "concavity"],
+ "difficulty": "hard",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-11", "at": "2026-09-11T15:02:00+05:30"}
+}

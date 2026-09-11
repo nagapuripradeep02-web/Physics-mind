@@ -1,0 +1,16 @@
+{
+ "question_id": "kin_ad114b2d",
+ "item_sha": "35be54c30ae32cddf50be74257ed5eccf2f3598865bd14d996fe982746d92af7",
+ "auditor_option": null,
+ "auditor_value": "(a) t ≈ 7.39 s, (b) gap ≈ 35.45 m, (c) truck ≈ 16.25 m/s, car ≈ 25.85 m/s",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Recomputed from the served value a_truck = 2.2 m/s²: t = √(120/2.2) = 7.3855 s, car distance = 95.4545 m, gap = 35.4545 m, v_truck = 16.248 m/s, v_car = 25.849 m/s. Every step of the solution uses the served 2.2 m/s², so the solution does solve the question as printed.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-kin-08",
+  "at": "2026-09-11T18:40:00+05:30"
+ }
+}

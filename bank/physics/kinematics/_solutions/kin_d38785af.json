@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_d38785af",
+ "approach": "Find the velocity of the rain relative to the man by subtracting his velocity from the rain's velocity, and hold the umbrella along that direction.",
+ "steps": [
+  {"text": "Write the rain's velocity and the man's velocity as vectors, taking east and vertically up as positive.", "equation": "v_rain = (0, −4) m/s, v_man = (3, 0) m/s"},
+  {"text": "The velocity of the rain relative to the man is the rain's velocity minus the man's velocity.", "equation": "v_rain,man = (0 − 3, −4 − 0) = (−3, −4) m/s"},
+  {"text": "This vector points west and downward, so the rain reaches the man from the east side, tilted from the vertical by an angle whose tangent is the ratio of the horizontal to vertical parts.", "equation": "tan θ = 3/4, θ = 37°"},
+  {"text": "The man should hold the umbrella tilted 37° from the vertical, towards the east, the direction he is walking.", "equation": "θ = 37° from vertical, towards east"}
+ ],
+ "final_answer": {"option": null, "value": "Tilt the umbrella 37° from the vertical, towards the east"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Adding the man's velocity to the rain's velocity instead of subtracting gives a tilt towards the west instead of the east."},
+  {"option": null, "text": "Using tan θ = 4/3 instead of 3/4 gives 53° instead of 37°."}
+ ],
+ "concept_tags": ["relative velocity", "vector subtraction"],
+ "difficulty": "easy",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-03", "at": "2026-09-11T15:30:00+05:30"}
+}

@@ -1,0 +1,11 @@
+{
+ "question_id": "kin_59776eb3",
+ "item_sha": "83815d0b62a65f47e65f1fadbdcb79c20f29b4381a3d2221aa3133e0a1727658",
+ "auditor_option": null,
+ "auditor_value": "a-t: constant -10 m/s^2 over 0 to 8 s; v-t: straight line from +40 m/s to -40 m/s crossing zero at t = 4 s; s-t: inverted parabola 0 to 80 m at t = 4 s and back to 0 at t = 8 s",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-kin-04", "at": "2026-09-11T12:23:00+05:30"}
+}

@@ -1,0 +1,11 @@
+{
+ "question_id": "kin_a1895039",
+ "item_sha": "6e7d8959bce3bf3204c43b91187f7156d88e691470c5f34b0130ffbf380df9f7",
+ "auditor_option": null,
+ "auditor_value": "(a) 5.00 m/s, (b) 1.67 m/s^2 (5/3), (c) 7.50 m",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "60 = (u+15)/2 * 6 gives u = 5.00 m/s; a = 10/6 = 1.667 m/s^2; d = 25/(2*5/3) = 7.50 m. All three match.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-kin-07", "at": "2026-09-11T14:36:00+05:30"}
+}

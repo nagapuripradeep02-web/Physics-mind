@@ -1,0 +1,16 @@
+{
+ "question_id": "kin_258f5b72",
+ "auditor_option": null,
+ "auditor_value": "(a) y = x²/4 (a parabola); (b) v = 2 î + 2t ĵ ms⁻¹, magnitude 2√(1+t²) ms⁻¹; (c) a = 2 ĵ ms⁻², constant at all t",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": null,
+ "item_sha": "827c078b85cbbc35e6f9dd02573c83f08539d0486758de481f29962db711a9a4",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-kin-02",
+  "at": "2026-09-11T06:30:00+05:30"
+ }
+}

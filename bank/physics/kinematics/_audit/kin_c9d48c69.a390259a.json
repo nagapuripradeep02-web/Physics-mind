@@ -1,0 +1,31 @@
+{
+ "question_id": "kin_c9d48c69",
+ "item_sha": "a390259ab0efd0a82b96c5752a333ba517aec537eb06cc78d410d6447bbb61d3",
+ "auditor_option": 1,
+ "auditor_value": "√3 v₀",
+ "findings": [
+  {
+   "grade": "harmful",
+   "field": "final_answer",
+   "quote": "3 v₀",
+   "note": "Since h = v₀²/2g, tripling the height triples the SQUARE of the launch speed: v′² = 3v₀², so v′ = √3 v₀, which is option (a). The stated answer 3 v₀ would give nine times the height, not three times.",
+   "fix": "√3 v₀ (option a)"
+  },
+  {
+   "grade": "harmful",
+   "field": "steps[2].equation",
+   "quote": "v′²/v₀² = 3 v₀",
+   "note": "Dividing 3h = v′²/(2g) by h = v₀²/(2g) gives v′²/v₀² = 3, a pure number; the printed line equates a dimensionless ratio to a speed and is false as written.",
+   "fix": "v′²/v₀² = 3 → v′ = √3 v₀"
+  }
+ ],
+ "verdict": "harmful",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-kin-08",
+  "at": "2026-09-11T18:40:00+05:30"
+ }
+}

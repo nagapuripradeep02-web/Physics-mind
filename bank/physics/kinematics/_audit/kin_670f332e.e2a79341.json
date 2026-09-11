@@ -1,0 +1,16 @@
+{
+ "question_id": "kin_670f332e",
+ "item_sha": "e2a793417800faf76a136c634e45945bd7513d9e6d83af4918f226dd82bb01a8",
+ "auditor_option": null,
+ "auditor_value": "(a) average velocity = 100/14 = 50/7 ≈ 7.14 m/s, (b) average speed = 140/14 = 10 m/s",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-kin-04",
+  "at": "2026-09-11T12:52:00+05:30"
+ }
+}

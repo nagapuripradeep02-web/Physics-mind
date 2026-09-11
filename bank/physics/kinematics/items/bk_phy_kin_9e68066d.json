@@ -1,0 +1,88 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_9e68066d",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "An object travels along a linear path experiencing uniform acceleration. Suppose it covers distances x, y, and z in the pth, qth, and rth seconds of its motion, respectively. Show that (q − r)x + (r − p)y + (p − q)z = 0.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "motion along a straight line",
+   "uniform acceleration",
+   "distance covered in pth second is x",
+   "distance covered in qth second is y",
+   "distance covered in rth second is z"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Write x, y, z using the distance-in-the-nth-second formula, substitute into the given combination, and show it collects into two brackets that both vanish.",
+  "steps": [
+   {
+    "text": "The distance covered in the nth second of motion with constant acceleration a and initial velocity u is this.",
+    "equation": "sₙ = u + a(n − ½)"
+   },
+   {
+    "text": "Write x, y, z using this formula for n = p, q, r.",
+    "equation": "x = u + a(p − ½), y = u + a(q − ½), z = u + a(r − ½)"
+   },
+   {
+    "text": "Substitute into the given combination and group the u terms and the a terms separately.",
+    "equation": "(q−r)x + (r−p)y + (p−q)z = u[(q−r)+(r−p)+(p−q)] + a[(q−r)(p−½)+(r−p)(q−½)+(p−q)(r−½)]"
+   },
+   {
+    "text": "The coefficient of u is zero because the three bracketed terms cancel in pairs.",
+    "equation": "(q−r)+(r−p)+(p−q) = 0"
+   },
+   {
+    "text": "Expand the coefficient of a; every term in p, q, r of degree two cancels, and the remaining constant terms also cancel, leaving zero.",
+    "equation": "(q−r)(p−½)+(r−p)(q−½)+(p−q)(r−½) = 0",
+    "why_this_step": "With both brackets zero, the whole expression (q−r)x+(r−p)y+(p−q)z equals zero, which is what was to be proved."
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(q − r)x + (r − p)y + (p − q)z = 0, proved by substituting the nth-second distance formula for x, y, z and showing both the u-coefficient and the a-coefficient vanish."
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Using the total distance formula sₙ = un + ½an² instead of the distance-in-the-nth-second formula sₙ = u + a(n − ½) leads to an expression that does not reduce to zero."
+   }
+  ],
+  "concept_tags": [
+   "distance in the nth second",
+   "constant acceleration",
+   "algebraic identity"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "d93006028ae98bbdbdd47192b751b00891dc549448aebd021b97d933f29420df"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "43e0b1305560dedb28859be77c38bd91915d0c1bb728a11f2aa3f56f1aec7238",
+  "audited_by": "W01-U-kin-10"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-04",
+  "at": "2026-09-11T00:30:00+05:30"
+ }
+}

@@ -1,0 +1,20 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_ad9f5a32",
+ "approach": "The boat's velocity relative to water is perpendicular to the bank, so the crossing time depends only on that component, and the drift is the current speed times this time.",
+ "steps": [
+  {"text": "The boat's velocity relative to water, 10.0 m/s, is entirely perpendicular to the river, since only the current carries it sideways.", "why_this_step": "The perpendicular component alone determines how fast the boat closes the 400 m width."},
+  {"text": "Find the time to cross by dividing the width by the perpendicular velocity.", "equation": "t = 400 m / 10.0 m/s = 40 s"},
+  {"text": "During this time, the current carries the boat downstream at 2.0 m/s; multiply by the crossing time to get the drift.", "equation": "drift = 2.0 m/s × 40 s = 80 m"}
+ ],
+ "final_answer": {"option": null, "value": "(a) 40 s, (b) 80 m"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Using the resultant speed √(10.0² + 2.0²) = 10.2 m/s instead of only the perpendicular component gives a wrong time of about 39.2 s."},
+  {"option": null, "text": "Swapping the roles of the two given speeds gives a drift of 400 × 10.0/2.0 = 2000 m, an unreasonably large value."}
+ ],
+ "concept_tags": ["river-boat problem", "relative velocity", "perpendicular crossing"],
+ "difficulty": "easy",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-07", "at": "2026-09-11T14:07:00+05:30"}
+}

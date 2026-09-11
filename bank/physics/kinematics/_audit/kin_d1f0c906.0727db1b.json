@@ -1,0 +1,16 @@
+{
+ "question_id": "kin_d1f0c906",
+ "item_sha": "0727db1bcf7fc818deda217ac984e5cb9459bc1e940163d6ed4affe15981a02d",
+ "auditor_option": null,
+ "auditor_value": "v = 2√2 ≈ 2.83 m/s at 45° to the initial velocity; s = √5 ≈ 2.24 m at 26.6° to the initial velocity",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-kin-02-R1",
+  "at": "2026-09-11T10:07:04+05:30"
+ }
+}

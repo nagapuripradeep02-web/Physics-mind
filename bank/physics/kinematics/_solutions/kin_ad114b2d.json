@@ -1,0 +1,22 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_ad114b2d",
+ "approach": "Use s = ½at² for constant-acceleration motion from rest for both vehicles, find the time from the truck's 60 m, then find the initial gap and speeds from that time.",
+ "steps": [
+  {"text": "Find the time for the truck to move 60 m from rest using s = ½at².", "equation": "60 = ½(2.2)t² → t² = 60/1.1 → t = 7.39 s"},
+  {"text": "In the same time, find how far the automobile has moved from its own start.", "equation": "x_auto = ½(3.5)(7.39)² ≈ 95.45 m"},
+  {"text": "The automobile overtakes the truck when its distance from its own start equals the truck's 60 m plus the initial gap; solve for the gap.", "equation": "d = x_auto − 60 = 95.45 − 60 = 35.45 m",
+   "why_this_step": "Overtaking means the two vehicles are at the same absolute position, so the automobile must cover the gap plus the truck's own 60 m."},
+  {"text": "Find the speed of each vehicle at this time using v = at.", "equation": "v_truck = 2.2 × 7.39 = 16.25 m/s, v_auto = 3.5 × 7.39 = 25.85 m/s"}
+ ],
+ "final_answer": {"option": null, "value": "(a) t ≈ 7.39 s. (b) initial gap d ≈ 35.45 m. (c) v_truck ≈ 16.25 m/s, v_auto ≈ 25.85 m/s."},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Taking the truck's 60 m displacement itself as the initial gap between the vehicles, giving d = 60 m."},
+  {"option": null, "text": "Using the automobile's own acceleration on the 60 m distance to find the time, 60 = ½(3.5)t², giving the wrong time t ≈ 5.86 s."}
+ ],
+ "concept_tags": ["constant acceleration from rest", "relative displacement", "kinematics equations"],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-12", "at": "2026-09-11T16:36:00+05:30"}
+}

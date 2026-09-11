@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_4b95cb5a",
+ "approach": "Differentiate x twice for velocity and acceleration, then find the velocity when x itself is zero.",
+ "steps": [
+  {"text": "Differentiate x with respect to time to get the velocity, using the chain rule.", "equation": "v = dx/dt = 2(2t−3)×2 = 8t − 12"},
+  {"text": "Differentiate v with respect to time to get the acceleration.", "equation": "a = dv/dt = 8 m/s²"},
+  {"text": "Substitute t = 2 s into x, v and a.", "equation": "x(2) = 1 m, v(2) = 4 m/s, a(2) = 8 m/s²"},
+  {"text": "Set x = 0 to find when the particle is at the origin, then find the velocity there.", "equation": "(2t−3)² = 0 → t = 1.5 s, v(1.5) = 8×1.5 − 12 = 0 m/s"}
+ ],
+ "final_answer": {"option": null, "value": "(a) x = 1 m, v = 4 m/s, a = 8 m/s²; (b) velocity at origin = 0 m/s"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Differentiating (2t−3)² without the chain-rule factor of 2 from the inner 2t gives v = 2(2t−3), which is 2 m/s at t = 2 s instead of 4 m/s."},
+  {"option": null, "text": "Reading 'at origin' as t = 0 instead of x = 0 gives a velocity of −12 m/s instead of 0 m/s."}
+ ],
+ "concept_tags": ["differentiation", "chain rule", "turning point"],
+ "difficulty": "medium",
+ "mistake_type_hint": "calculation",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-06", "at": "2026-09-11T16:00:00+05:30"}
+}

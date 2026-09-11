@@ -1,0 +1,190 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter": "kinematics",
+ "slice": 7,
+ "round": 0,
+ "items": [
+  {
+   "question_id": "kin_9ee5a9e8",
+   "question_text": "A person uses a boat to travel across a flowing river to the opposite bank. To cross in the least possible time, the journey takes 10 min, resulting in a downstream displacement of 120 m. If the crossing is instead made along the shortest possible route straight across the stream, the trip takes 12.5 min. Calculate the following quantities:\n(a) the river's width\n(b) the boat's velocity relative to the water\n(c) the flow speed of the current",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_954e4971",
+   "question_text": "An elevator is ascending vertically with an upward acceleration equal to g/2. A rock is dropped from inside this lift. Immediately after it is let go, determine the acceleration of the rock.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_9e4b45c9",
+   "question_text": "A pair of identical balls are launched straight up along the same vertical path, each with an initial speed of 40 ms⁻¹. If the second ball is released 2 s after the first, find the height above the launch point where they collide. (Take g = 10 ms⁻²)",
+   "options": [
+    {
+     "label": "a",
+     "text": "50 m"
+    },
+    {
+     "label": "b",
+     "text": "75 m"
+    },
+    {
+     "label": "c",
+     "text": "100 m"
+    },
+    {
+     "label": "d",
+     "text": "125 m"
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_a733f418",
+   "question_text": "The relationship between the speed v (in m s⁻¹) and the position s (in metres) of a body travelling along a straight track is given by v = 5√(1 + s). Choose the correct statement among the following.",
+   "options": [
+    {
+     "label": "a",
+     "text": "The body is at rest at the start"
+    },
+    {
+     "label": "b",
+     "text": "The initial speed is 5 m s⁻¹ and the body undergoes a constant acceleration of 12.5 m s⁻²"
+    },
+    {
+     "label": "c",
+     "text": "The body continues to move at a constant speed"
+    },
+    {
+     "label": "d",
+     "text": "None of the above"
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_9a86f81d",
+   "question_text": "An aircraft needs to fly from location A to a destination B, which lies 500 km away along a line 30° east of north. A constant wind blows directly northward at 20 m/s. The speed of the aircraft relative to the air is 150 m/s.\n(a) Determine the heading direction the pilot must steer the aircraft so as to reach destination B directly.\n(b) Calculate the total duration needed for the aircraft to travel from A to B.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_a1895039",
+   "question_text": "An automobile travels along a straight line under uniform acceleration. It takes 6.00 s to travel the 60.0 m separation between two specific locations, reaching a speed of 15.0 m/s at the second location.\n(a) Calculate the speed of the automobile as it clears the initial point.\n(b) Determine the magnitude of its acceleration.\n(c) Find the distance behind the initial point at which the automobile was at rest.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_95f3ce01",
+   "question_text": "Assertion: One object is released from rest at an elevation h while simultaneously a second object is launched straight upwards with a velocity of √(gh). The two objects will cross each other at an altitude of h/2.\nReason: Each of the two objects requires an identical duration of time to reach the vertical level h/2.",
+   "options": [
+    {
+     "label": "a",
+     "text": "Both Assertion and Reason are true, and Reason is the correct explanation of Assertion."
+    },
+    {
+     "label": "b",
+     "text": "Both Assertion and Reason are true, but Reason is not the correct explanation of Assertion."
+    },
+    {
+     "label": "c",
+     "text": "Assertion is true, but Reason is false."
+    },
+    {
+     "label": "d",
+     "text": "Assertion is false, but Reason is true."
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_9c7ad521",
+   "question_text": "Water in a river of width 30 m flows downstream at a constant speed of 2 m/s. A boatman steers his boat at 5 m/s relative to the water, maintaining an angle of 37° with the direction of the river flow. Determine:\n(a) The time taken by the boatman to cross over to the opposite bank.\n(b) The total downstream drift of the boatman upon reaching the opposite bank.",
+   "options": [],
+   "figure_description": "A river of width 30 m flows horizontally to the right with speed 2 m/s. A boat's velocity vector of magnitude 5 m/s is oriented at an angle of 37° above the horizontal downstream direction. Its components are 4 m/s along the stream (plus the 2 m/s river speed, making 6 m/s horizontally) and 3 m/s perpendicular across the stream."
+  },
+  {
+   "question_id": "kin_a2064d30",
+   "question_text": "An object travels along a straight path having a starting velocity u and experiencing a uniform acceleration a. Determine its average velocity over the duration between t = 0 and t = t seconds.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_9d4d798f",
+   "question_text": "The motion of a particle traveling along the x-axis is described by a velocity-time graph. At t = 0 s, the position of the particle is x = 10 m.\n\nThe velocity varies with time as follows:\n• From t = 0 s to t = 2 s, velocity increases linearly from 0 m/s to 4 m/s.\n• From t = 2 s to t = 8 s, velocity decreases linearly from 4 m/s to −8 m/s (crossing 0 m/s at t = 4 s).\n• From t = 8 s to t = 12 s, velocity is constant at −8 m/s.\n• From t = 12 s to t = 16 s, velocity increases linearly from −8 m/s to 0 m/s.\n\nAnswer the following questions based on this motion:\n(a) Draw the position-time (x versus t) graph of the particle from t = 0 s to t = 16 s.\n(b) Calculate both the average velocity and the average speed for the entire duration of the motion (from t = 0 s to t = 16 s).\n(c) Determine the average acceleration of the particle in the time span between t = 2 s and t = 8 s.",
+   "options": [],
+   "figure_description": "A velocity-time (v-t) graph where the vertical axis represents velocity v in m/s with marked values −8, 0, 4, and the horizontal axis represents time t in seconds with marked points 2, 4, 8, 12, 16. The plot starts at (0, 0), rises to (2, 4), goes down straight through (4, 0) to (8, −8), runs horizontally from (8, −8) to (12, −8), and then rises linearly to (16, 0)."
+  },
+  {
+   "question_id": "kin_bc9a18cc",
+   "question_text": "An object moves across the x-y plane. Initially, at t = 0, its position coordinates are (1 m, 2 m) and its velocity is (4î + 6ĵ) m/s. Later, at t = 4 s, it reaches the location (6 m, 4 m) with a velocity of (2î + 10ĵ) m/s. For this duration, determine:\n(a) the average velocity\n(b) the average acceleration\n(c) whether the average speed can be calculated using the provided information",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_a51e4b4e",
+   "question_text": "Assertion: When an object begins moving from rest with an initial acceleration of zero, and its acceleration grows steadily at 2 ms⁻³, its velocity must rise at a steady rate of 1 ms⁻².\nReason: Under the stated circumstances, da/dt = 2 ms⁻³, which implies a = 2t.",
+   "options": [
+    {
+     "label": "a",
+     "text": "Both Assertion and Reason are true, and Reason is the correct explanation of Assertion."
+    },
+    {
+     "label": "b",
+     "text": "Both Assertion and Reason are true, but Reason is not the correct explanation of Assertion."
+    },
+    {
+     "label": "c",
+     "text": "Assertion is true, but Reason is false."
+    },
+    {
+     "label": "d",
+     "text": "Assertion is false, but Reason is true."
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_9d3be974",
+   "question_text": "A ball is thrown straight up into the air with an initial speed of 50 m/s. Using g = 10 m/s², determine:\n(a) the maximum height reached by the ball,\n(b) the time taken to arrive at this peak altitude,\n(c) its speed when it is at half of the peak altitude.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_9eb94141",
+   "question_text": "The position x of an object changes with time t according to the relationship √x = t + 3. Which of the following statements about its motion is correct?",
+   "options": [
+    {
+     "label": "a",
+     "text": "velocity of the particle is inversely proportional to t"
+    },
+    {
+     "label": "b",
+     "text": "velocity of particle varies linearly with t"
+    },
+    {
+     "label": "c",
+     "text": "velocity of particle is proportional to √t"
+    },
+    {
+     "label": "d",
+     "text": "initial velocity of the particle is zero"
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_a78011cb",
+   "question_text": "The position-time (S-t) plot of a moving object is a straight line. At time t = 0 s, its position is S = 10 m, and at time t = 5 s, its position reaches S = 0 m.\n(a) Determine whether this graph portrays uniform motion.\n(b) Calculate the velocity of the object.",
+   "options": [],
+   "figure_description": "A plot with displacement S in meters along the vertical axis and time t in seconds along the horizontal axis shows a straight line with negative slope that starts at the point (0, 10) and crosses the horizontal axis at (5, 0)."
+  },
+  {
+   "question_id": "kin_94df6811",
+   "question_text": "A body travels in a straight line along the x-direction with its velocity governed by the equation v = (10 + 5t − t²), where v is measured in m/s and t in seconds. Given that the body is located at x = 0 when t = 0, determine:\n(a) The acceleration of the object at the instant t = 2 s\n(b) The position coordinate x of the object at the instant t = 3 s",
+   "options": [],
+   "figure_description": ""
+  }
+ ]
+}

@@ -1,0 +1,55 @@
+{
+  "schema": "eapcet_solution_v1",
+  "question_id": "kin_f0b4b4d5",
+  "approach": "Write the displacement of the lift and of the ball as functions of time from the same starting point, and set them equal to find when they meet again.",
+  "steps": [
+    {
+      "text": "Write the lift's displacement, starting with an upward speed of 10 m/s and an upward acceleration of 2 m/s².",
+      "equation": "y_lift(t) = 10t + t²"
+    },
+    {
+      "text": "Write the ball's displacement, projected upward at 20 m/s and acted on only by gravity.",
+      "equation": "y_ball(t) = 20t − 5t²"
+    },
+    {
+      "text": "Set the two displacements equal and solve for t, keeping the positive, nonzero root.",
+      "equation": "10t+t² = 20t−5t² → 6t²−10t=0 → t = 5/3 s ≈ 1.67 s"
+    },
+    {
+      "text": "Substitute t = 5/3 s into either displacement equation to get the common displacement at that instant.",
+      "equation": "y = 10(5/3) + (5/3)² = 175/9 ≈ 19.4 m"
+    },
+    {
+      "text": "Check the ball's velocity at this instant to see if it has already turned back; since it is still positive, the ball has travelled straight up the whole time, so the distance travelled equals its displacement.",
+      "equation": "v_ball = 20 − 10(5/3) ≈ 3.33 m/s > 0, distance = 175/9 ≈ 19.4 m"
+    }
+  ],
+  "final_answer": {
+    "option": null,
+    "value": "(a) t = 5/3 s ≈ 1.67 s, (b) both lift and ball at 175/9 m ≈ 19.4 m, (c) distance travelled by ball ≈ 19.4 m"
+  },
+  "confidence": "sure",
+  "common_mistakes": [
+    {
+      "option": null,
+      "text": "Taking t = 0 as the meeting time instead of discarding it as the starting instant, since both objects begin together at t = 0."
+    },
+    {
+      "option": null,
+      "text": "Assuming the ball has already reached its highest point by t = 5/3 s and using its full rise time of 2 s to compute distance, when it is in fact still rising."
+    }
+  ],
+  "concept_tags": [
+    "relative motion",
+    "free fall",
+    "equations of motion"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "concept",
+  "authored_by": {
+    "model": "sonnet",
+    "wave": 1,
+    "agent": "W01-A-kin-03",
+    "at": "2026-09-11T15:30:00+05:30"
+  }
+}

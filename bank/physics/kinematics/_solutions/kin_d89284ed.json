@@ -1,0 +1,19 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_d89284ed",
+ "approach": "Read the slope of the line for the acceleration, then use the area under the v-t graph, a trapezoid, for the distance, which equals the displacement here.",
+ "steps": [
+  {"text": "Find the slope of the line using its two endpoints.", "equation": "a = (8 − 2)/(10 − 0) = 0.6 m/s²"},
+  {"text": "The distance travelled is the area under the v-t graph, a trapezoid with parallel sides 2 m/s and 8 m/s and width 10 s.", "equation": "s = ½×(2+8)×10 = 50 m"},
+  {"text": "The velocity is positive throughout, so the displacement equals the distance travelled.", "equation": "displacement = 50 m"}
+ ],
+ "final_answer": {"option": null, "value": "(a) 0.6 m/s², (b) 50 m, (c) 50 m"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Treating the area as a triangle alone and ignoring the initial velocity of 2 m/s gives 40 m instead of 50 m."}
+ ],
+ "concept_tags": ["velocity-time graph", "area under graph", "uniform acceleration"],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-06", "at": "2026-09-11T16:00:00+05:30"}
+}

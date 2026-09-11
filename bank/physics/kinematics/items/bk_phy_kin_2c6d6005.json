@@ -1,0 +1,77 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_2c6d6005",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "conceptual",
+ "key_kind": "words",
+ "figure_required": false,
+ "question": {
+  "text": "A particle moves such that its instantaneous velocity is v = (2î − 4ĵ) m/s while its acceleration is given by a = (−2î + 4ĵ) m/s². What kind of motion does the particle undergo?",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "velocity v = (2î − 4ĵ) m/s",
+   "acceleration a = (−2î + 4ĵ) m/s²"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Compare the directions of v and a component by component; if acceleration always stays exactly along the same line as velocity, the path is a straight line.",
+  "steps": [
+   {
+    "text": "Compare the components of a with the components of v.",
+    "equation": "a = (−2, 4) = −1 × (2, −4) = −v"
+   },
+   {
+    "text": "Since a is exactly opposite to v along the same line, and both are constant, the particle never gains a velocity component perpendicular to its original line of motion.",
+    "equation": "v and a lie on the same straight line at every instant"
+   },
+   {
+    "text": "Acceleration directly opposite to the velocity means the particle is slowing down along that line; it is a one-dimensional (straight-line) motion, not a curved path.",
+    "equation": "motion is rectilinear with uniform retardation",
+    "why_this_step": "A cross product of v and a being zero confirms the two vectors are collinear, which is the condition for straight-line motion."
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "Straight-line (rectilinear) motion with uniform retardation, since the acceleration is constant and directed exactly opposite to the velocity."
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Seeing that both v and a have nonzero components in two directions and concluding the path must be two-dimensional (curved), without checking that a is a scalar multiple of v."
+   }
+  ],
+  "concept_tags": [
+   "collinear vectors",
+   "rectilinear motion",
+   "retardation"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "c12f3cc2dc616558f883e710261eae4570594f650bf1b8082b1b17f808402b66"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "bef6ecb5c54678d42933173739f1042102c9fd800aa93172aceee94beb2e6ff4",
+  "audited_by": "W01-U-kin-09"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-04",
+  "at": "2026-09-11T00:55:00+05:30"
+ }
+}

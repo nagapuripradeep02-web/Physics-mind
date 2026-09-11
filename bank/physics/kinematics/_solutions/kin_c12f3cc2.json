@@ -1,0 +1,20 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_c12f3cc2",
+ "approach": "Compare the directions of v and a component by component; if acceleration always stays exactly along the same line as velocity, the path is a straight line.",
+ "steps": [
+  {"text": "Compare the components of a with the components of v.", "equation": "a = (−2, 4) = −1 × (2, −4) = −v"},
+  {"text": "Since a is exactly opposite to v along the same line, and both are constant, the particle never gains a velocity component perpendicular to its original line of motion.", "equation": "v and a lie on the same straight line at every instant"},
+  {"text": "Acceleration directly opposite to the velocity means the particle is slowing down along that line; it is a one-dimensional (straight-line) motion, not a curved path.", "equation": "motion is rectilinear with uniform retardation",
+   "why_this_step": "A cross product of v and a being zero confirms the two vectors are collinear, which is the condition for straight-line motion."}
+ ],
+ "final_answer": {"option": null, "value": "Straight-line (rectilinear) motion with uniform retardation, since the acceleration is constant and directed exactly opposite to the velocity."},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Seeing that both v and a have nonzero components in two directions and concluding the path must be two-dimensional (curved), without checking that a is a scalar multiple of v."}
+ ],
+ "concept_tags": ["collinear vectors", "rectilinear motion", "retardation"],
+ "difficulty": "easy",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-04", "at": "2026-09-11T00:55:00+05:30"}
+}

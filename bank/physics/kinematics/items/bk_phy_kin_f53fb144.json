@@ -1,0 +1,93 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_f53fb144",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "The motion of a particle along a straight path is represented by the provided velocity–time plot. Over the duration spanning t = 0 to t = 14 s, determine the following:",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "The average velocity of the particle"
+   },
+   {
+    "label": "b",
+    "asks": "The average speed of the particle"
+   }
+  ],
+  "conditions": [
+   "motion in a straight line",
+   "time interval from t = 0 to t = 14 s"
+  ],
+  "figure": {
+   "description": "A plot of velocity v (m/s) versus time t (s). The graph consists of straight line segments connecting the following points sequentially: (0, 0), (2, 10), (4, 20), (6, 20), (10, 0), (12, −10), and (14, 0)."
+  }
+ },
+ "solution": {
+  "approach": "Split the v-t graph into six straight segments, use the signed area under each for displacement, and the sum of the unsigned areas for distance.",
+  "steps": [
+   {
+    "text": "Find the signed area of each of the six straight segments of the graph, since area under a v-t graph gives displacement.",
+    "equation": "0–2 s: 10 m, 2–4 s: 30 m, 4–6 s: 40 m, 6–10 s: 40 m, 10–12 s: −10 m, 12–14 s: −10 m"
+   },
+   {
+    "text": "Add the six signed areas for the total displacement, then divide by the total time for the average velocity.",
+    "equation": "10+30+40+40−10−10 = 100 m, 100 ÷ 14 = 50/7 m/s"
+   },
+   {
+    "text": "Add the magnitudes of the six areas for the total distance travelled, then divide by the total time for the average speed.",
+    "equation": "10+30+40+40+10+10 = 140 m, 140 ÷ 14 = 10 m/s",
+    "why_this_step": "Average speed uses distance travelled, not net displacement, so the sign of each area is dropped before adding."
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) average velocity = 50/7 m/s ≈ 7.14 m/s, (b) average speed = 10 m/s"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Dividing the total distance 140 m by 14 s and calling it the average velocity gives 10 m/s, which is actually the average speed."
+   },
+   {
+    "option": null,
+    "text": "Dividing the net displacement 100 m by 14 s and calling it the average speed gives 50/7 m/s, which is actually the average velocity."
+   }
+  ],
+  "concept_tags": [
+   "velocity-time graph",
+   "average velocity",
+   "average speed",
+   "area under v-t graph"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "670f332e2a28d3e2c0a0a6d2f020198b1f424ac72c5e87f749d1709ca2c79449"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "e2a793417800faf76a136c634e45945bd7513d9e6d83af4918f226dd82bb01a8",
+  "audited_by": "W01-U-kin-04"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-11",
+  "at": "2026-09-11T15:00:00+05:30"
+ }
+}

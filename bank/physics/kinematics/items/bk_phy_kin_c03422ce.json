@@ -1,0 +1,82 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_c03422ce",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A particle, initially at rest, begins rectilinear motion with a uniform acceleration. When a duration t₀ has elapsed, the direction of this acceleration is reversed while its magnitude remains unchanged. Find the total elapsed time T from the start until the particle arrives back at its starting point.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "starts from rest",
+   "motion along a straight line",
+   "constant acceleration magnitude",
+   "acceleration reverses sign at t = t₀",
+   "returns to the starting point at total time T"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Split the motion into the first phase of duration t₀ and a second phase with reversed acceleration, then find when the total displacement returns to zero.",
+  "steps": [
+   {
+    "text": "In the first phase, from rest with acceleration a for time t₀, find the velocity and displacement reached.",
+    "equation": "v(t₀) = at₀, x(t₀) = ½at₀²"
+   },
+   {
+    "text": "In the second phase the acceleration becomes −a. Let τ be the time measured after t₀, and write the total displacement at that point.",
+    "equation": "x = ½at₀² + at₀τ − ½aτ²"
+   },
+   {
+    "text": "Set the total displacement to zero and solve the resulting quadratic for τ.",
+    "equation": "½t₀² + t₀τ − ½τ² = 0 → τ² − 2t₀τ − t₀² = 0 → τ = t₀(1 + √2)"
+   },
+   {
+    "text": "Add τ to t₀ for the total time T at which the point mass is back at the start.",
+    "equation": "T = t₀ + t₀(1 + √2) = (2 + √2)t₀ ≈ 3.41 t₀"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "T = (2 + √2) t₀ ≈ 3.41 t₀"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Assuming the second phase exactly mirrors the first and the point mass returns at T = 2t₀ ignores that the mass keeps moving forward for a while in the second phase before it turns back."
+   }
+  ],
+  "concept_tags": [
+   "kinematics with sign-reversing acceleration",
+   "quadratic equation"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "29fe340399fdae6b8aa57a6d6a67ffcfb8a983441a7c48ac95d2d43247e2f122"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "dbe10efa9aad6e1983fcb6906fefa9c672411fcee30f71c05bd3f6b923295d0a",
+  "audited_by": "W01-U-kin-02"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-11",
+  "at": "2026-09-11T15:09:00+05:30"
+ }
+}

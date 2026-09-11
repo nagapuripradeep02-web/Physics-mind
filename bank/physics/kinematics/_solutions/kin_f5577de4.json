@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_f5577de4",
+ "approach": "Find acceleration as the slope of each straight segment of the v-t graph, then build the s-t graph by adding the signed area under v-t to the starting position.",
+ "steps": [
+  {"text": "Find acceleration on each segment as the slope of the v-t line.", "equation": "a = 0 (0–4 s), a = 10 m/s² (4–6 s), a = −10 m/s² (6–8 s), a = 10 m/s² (8–12 s), a = −10 m/s² (12–14 s)"},
+  {"text": "Start the position at s = 20 m at t = 0 and add the area under v-t up to each breakpoint.", "equation": "s(0) = 20 m, s(4) = −60 m, s(6) = −80 m, s(8) = −100 m, s(12) = −100 m, s(14) = −80 m"},
+  {"text": "Between breakpoints the s-t graph is straight while v is constant, and curved while v is changing linearly.", "equation": "straight falling line for 0≤t≤4 s; curved between 4 and 12 s with a minimum s = −120 m at t = 10 s (where v = 0); curved between 12 and 14 s",
+   "why_this_step": "The minimum of the s-t graph occurs exactly where the velocity crosses zero."}
+ ],
+ "final_answer": {"option": null, "value": "a-t graph: a = 0 from t = 0–4 s, a = 10 m/s² from t = 4–6 s, a = −10 m/s² from t = 6–8 s, a = 10 m/s² from t = 8–12 s, a = −10 m/s² from t = 12–14 s (a step graph). s-t graph passes through (0,20), (4,−60), (6,−80), (8,−100), (10,−120) [minimum, since v = 0 here], (12,−100), (14,−80) m — a straight falling line from t = 0–4 s, and curves elsewhere."},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Assuming the particle keeps moving in the same direction throughout, instead of recognising the minimum position occurs at t = 10 s where the velocity is zero."},
+  {"option": null, "text": "Drawing the s-t segment from t = 0 s to t = 4 s as a curve, when the velocity is constant there and the position actually falls in a straight line."}
+ ],
+ "concept_tags": ["v-t graph", "a-t graph from slope", "s-t graph from area under v-t"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-12", "at": "2026-09-11T16:15:00+05:30"}
+}

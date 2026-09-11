@@ -1,0 +1,84 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_05be2920",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "The velocity-displacement (v-s) curve of a particle executing rectilinear motion is a straight line with a non-zero positive y-intercept and a positive slope. Sketch the corresponding acceleration-displacement (a-s) graph.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "motion along a straight line",
+   "velocity v depends linearly on displacement s",
+   "positive initial velocity (positive v-intercept)",
+   "positive rate of change dv/ds (positive slope)"
+  ],
+  "figure": {
+   "description": "A graph with displacement s plotted along the horizontal axis and velocity v along the vertical axis shows a straight line located in the first quadrant, starting from a positive value on the vertical axis and rising with a positive slope."
+  }
+ },
+ "solution": {
+  "approach": "Write the v-s line as an equation, use a = v dv/ds to get acceleration as a function of s, and read off its intercept and slope.",
+  "steps": [
+   {
+    "text": "Write the given straight-line v-s graph as an equation with a positive intercept c and a positive slope m.",
+    "equation": "v = c + ms"
+   },
+   {
+    "text": "Use the identity that relates acceleration to velocity and displacement.",
+    "equation": "a = v (dv/ds)"
+   },
+   {
+    "text": "The slope of the v-s line is constant, so dv/ds = m; substitute this and the expression for v.",
+    "equation": "a = (c + ms)(m) = mc + m²s"
+   },
+   {
+    "text": "This is again a straight line in s, with a positive intercept mc and a positive slope m², so the a-s graph is also a straight line with a positive intercept and a positive slope, matching the graph shown.",
+    "equation": "a-s line: intercept = mc, slope = m²"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "a = mc + m²s, a straight line in s with positive intercept mc and positive slope m², matching the graph shown"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Using a = dv/dt directly with the v-s slope m as if it were a time rate gives a as a constant, missing that a depends on s through the v(dv/ds) relation."
+   }
+  ],
+  "concept_tags": [
+   "velocity-displacement graph",
+   "acceleration-displacement relation",
+   "calculus in kinematics"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "b31f7df22aa4e86008e81a7f7c54b0abd70f60851dec505090ccabc79abecc74"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "4dfd1076eddfdfcf8d0f457bc690c91f36ea2621a2faefbef65f46ca0b928471",
+  "audited_by": "W01-U-kin-08"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-03",
+  "at": "2026-09-11T15:30:00+05:30"
+ }
+}

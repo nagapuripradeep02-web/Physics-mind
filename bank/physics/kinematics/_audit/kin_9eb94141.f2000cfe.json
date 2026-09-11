@@ -1,0 +1,16 @@
+{
+ "question_id": "kin_9eb94141",
+ "item_sha": "f2000cfe8d0c8cfac1c62a97187f045b45068565de8c7159b9e0337478fa5914",
+ "auditor_option": 2,
+ "auditor_value": "Option b - velocity varies linearly with t (v = 2t + 6)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "x = (t+3)^2, v = 2t + 6, v(0) = 6 m/s, so options a, c, d are all excluded.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-kin-07",
+  "at": "2026-09-11T14:52:00+05:30"
+ }
+}

@@ -1,0 +1,122 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter": "kinematics",
+ "slice": 1,
+ "round": 1,
+ "items": [
+  {
+   "question_id": "kin_bd2bf424",
+   "question_text": "State two common examples of motion occurring in two dimensions.",
+   "options": [],
+   "figure_description": "Two diagrams are shown: the first illustrates a closed circular path labeled 'Circular motion', and the second depicts a curved parabolic trajectory on an x-y coordinate frame labeled 'Projectile motion'."
+  },
+  {
+   "question_id": "kin_276c65a2",
+   "question_text": "At the same instant, two bodies, A and B, travel along a straight path in an identical direction. Particle A has an initial speed of 3 m/s and maintains a constant acceleration of 1 m/s², while particle B has an initial speed of 1 m/s and an acceleration of 2 m/s². If particle A begins at a position 10 m behind particle B, determine the closest distance of approach between the two particles.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_583c5b7b",
+   "question_text": "A person starting from point A on one bank of a river intends to reach point B located on the opposing bank downstream. The straight line joining A to B is inclined at an angle of 45° to the line perpendicular to the banks. The water moves at a uniform speed u parallel to the banks.\n(a) Determine the lowest possible speed of the person relative to the water that allows them to reach point B.\n(b) Find the heading angle θ (measured upstream from the line perpendicular to the river bank) at which the person must swim.",
+   "options": [],
+   "figure_description": "A river of uniform width flows horizontally to the right with velocity u. Point A is situated on the bottom bank, and point B is located on the top bank downstream. A perpendicular dashed line across the river from A makes an angle of 45° with the straight line AB connecting A and B."
+  },
+  {
+   "question_id": "kin_af05e9d4",
+   "question_text": "A pair of diamonds are released from rest at an identical elevation, one falling 1.0 s after the other. Find the time elapsed since the release of the initial diamond at which the vertical gap separating the two stones reaches 10 m. (Use g = 10 m/s²)",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_55c0bbfa",
+   "question_text": "A particle has velocity v = (2î) m/s at the start, and its acceleration varies with time t as a = (4tî + t²ĵ) m/s². Can the kinematic relation v = u + at be applied directly to find its velocity at a later time?",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_9040ea4b",
+   "question_text": "Anoop travels toward the east at a speed of 1 m/s, whereas Dhyani heads toward the west at 2 m/s. Determine the relative velocity of Anoop as observed by Dhyani.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_a733f418",
+   "question_text": "The relationship between the speed v (in m s⁻¹) and the position s (in metres) of a body travelling along a straight track is given by v = 5√(1 + s). Choose the correct statement among the following.",
+   "options": [
+    {
+     "label": "a",
+     "text": "The body is at rest at the start"
+    },
+    {
+     "label": "b",
+     "text": "The initial speed is 5 m s⁻¹ and the body undergoes a constant acceleration of 12.5 m s⁻²"
+    },
+    {
+     "label": "c",
+     "text": "The body continues to move at a constant speed"
+    },
+    {
+     "label": "d",
+     "text": "None of the above"
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_199747d3",
+   "question_text": "The velocity of an object travelling along a straight line varies with time as v = (3 + 6t + 9t²) cm/s, where t is in seconds. Determine:\n(a) The acceleration of the object at t = 3 s.\n(b) Its displacement during the time interval from t = 5 s to t = 8 s.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_c3fd0298",
+   "question_text": "At time t = 0, an object begins moving from (0, 0) with an initial velocity of 8.0 ĵ m/s. Throughout its journey across the x-y plane, it experiences a uniform acceleration of (4.0 î + 2.0 ĵ) m/s². When the x-position of the object reaches 29 m, determine:\n(a) its y-coordinate\n(b) its speed",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_6cda6779",
+   "question_text": "At the initial instant t = 0, a moving particle has a velocity given by u = (2î + 3ĵ) m/s and experiences a constant acceleration a = (4î + 2ĵ) m/s². Determine both the velocity vector and the displacement vector of the particle at time t = 2 s.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_5185b19d",
+   "question_text": "A roofless lift moves upwards at a steady rate of 10 m/s. While standing inside it at an altitude of 10 m above ground level, a person launches a ball straight upwards with a speed of 30 m/s relative to the lift. Determine:\n(a) the highest elevation reached by the ball from the ground,\n(b) the time elapsed until the ball returns to the lift,\n(c) the additional time needed for the ball to strike the ground after passing the lift on its descent.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_ac0c6757",
+   "question_text": "An object travels along a linear path maintaining a uniform rate of 4 m/s over a duration of 2 s, followed by traveling at 6 m/s throughout the subsequent 3 s. Determine the mean speed of the object across this entire duration.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_9d4d798f",
+   "question_text": "The motion of a particle traveling along the x-axis is described by a velocity-time graph. At t = 0 s, the position of the particle is x = 10 m.\n\nThe velocity varies with time as follows:\n• From t = 0 s to t = 2 s, velocity increases linearly from 0 m/s to 4 m/s.\n• From t = 2 s to t = 8 s, velocity decreases linearly from 4 m/s to −8 m/s (crossing 0 m/s at t = 4 s).\n• From t = 8 s to t = 12 s, velocity is constant at −8 m/s.\n• From t = 12 s to t = 16 s, velocity increases linearly from −8 m/s to 0 m/s.\n\nAnswer the following questions based on this motion:\n(a) Draw the position-time (x versus t) graph of the particle from t = 0 s to t = 16 s.\n(b) Calculate both the average velocity and the average speed for the entire duration of the motion (from t = 0 s to t = 16 s).\n(c) Determine the average acceleration of the particle in the time span between t = 2 s and t = 8 s.",
+   "options": [],
+   "figure_description": "A velocity-time (v-t) graph where the vertical axis represents velocity v in m/s with marked values −8, 0, 4, and the horizontal axis represents time t in seconds with marked points 2, 4, 8, 12, 16. The plot starts at (0, 0), rises to (2, 4), goes down straight through (4, 0) to (8, −8), runs horizontally from (8, −8) to (12, −8), and then rises linearly to (16, 0)."
+  },
+  {
+   "question_id": "kin_adbc9454",
+   "question_text": "Explain why the kinematic expression sₜ = u + at − ½ a appears to be dimensionally inconsistent.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_04cc2a0c",
+   "question_text": "During the time interval 2 s ≤ t ≤ 6 s, an object moves along a straight path such that its velocity v and acceleration a (in m/s²) satisfy the relation v = 4/a m/s. Given that the velocity of the object is v = 6 m/s at the instant t = 2 s, calculate its acceleration at t = 3 s.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_8241ba1f",
+   "question_text": "Derive the kinematic formula for the distance traveled by an object during its t-th second of motion under constant acceleration, given by sₜ = u + at − ½ a, where u represents the initial velocity and a is the uniform acceleration.",
+   "options": [],
+   "figure_description": ""
+  }
+ ]
+}

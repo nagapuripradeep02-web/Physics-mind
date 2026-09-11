@@ -1,0 +1,43 @@
+{
+ "approach": "Integrate the given acceleration once to get velocity as a function of time, then integrate again to get the distance travelled.",
+ "steps": [
+  {
+   "text": "Integrate the acceleration a(t) = bt to find the velocity, using the initial velocity v₀ as the constant of integration.",
+   "equation": "v(t) = v₀ + ∫₀ᵗ bt′ dt′ = v₀ + ½bt²"
+  },
+  {
+   "text": "Integrate the velocity to find the distance travelled, starting from the origin.",
+   "equation": "x(t) = ∫₀ᵗ v(t′) dt′ = v₀t + (1/6)bt³"
+  }
+ ],
+ "final_answer": {
+  "option": 1,
+  "value": "v₀t + 1/6 bt³"
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": 2,
+   "text": "Dropping the factor of one-half when integrating acceleration, using v(t) = v₀ + bt² instead of v₀ + ½bt², which on integrating gives v₀t + 1/3 bt³."
+  },
+  {
+   "option": 4,
+   "text": "Misreading the increasing acceleration bt as a constant rate b, so using v(t) = v₀ + bt for the velocity, which on integrating gives v₀t + 1/2 bt²."
+  }
+ ],
+ "concept_tags": [
+  "variable acceleration",
+  "integration",
+  "equations of motion"
+ ],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_c2398834",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-08",
+  "at": "2026-09-11T14:20:00+05:30"
+ }
+}

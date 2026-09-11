@@ -1,0 +1,20 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_1a825165",
+ "approach": "The slope of each x-t line is that particle's velocity, and the relative velocity is the difference of the two velocities.",
+ "steps": [
+  {"text": "Find the velocity of A from the slope of its line using the two given points, (t = 0, x = 10 m) and (t = 5 s, x = 12 m).", "equation": "v_A = (12 − 10)/(5 − 0) = 0.4 m/s"},
+  {"text": "Find the velocity of B from the slope of its line using the two given points, (t = 0, x = 0) and (t = 5 s, x = 12 m).", "equation": "v_B = (12 − 0)/(5 − 0) = 2.4 m/s"},
+  {"text": "Velocity of A with respect to B is the vector difference of the two velocities.", "equation": "v_AB = v_A − v_B = 0.4 − 2.4 = −2 m/s", "why_this_step": "Both lines are straight, so each slope is a constant velocity, and the relative velocity is also constant."}
+ ],
+ "final_answer": {"option": null, "value": "−2 m/s (2 m/s in the −x direction)"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Subtracting in the wrong order, v_B − v_A, gives +2 m/s instead of −2 m/s."},
+  {"option": null, "text": "Reading A's slope from the intersection point without the 10 m starting offset, as 12/5 = 2.4 m/s, gives v_AB = 0 instead of −2 m/s."}
+ ],
+ "concept_tags": ["x-t graph", "relative velocity", "slope as velocity"],
+ "difficulty": "easy",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-07", "at": "2026-09-11T14:03:00+05:30"}
+}

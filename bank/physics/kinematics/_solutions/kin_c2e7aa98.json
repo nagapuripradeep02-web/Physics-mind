@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_c2e7aa98",
+ "approach": "Differentiate the velocity components to get acceleration, and integrate them using the given starting coordinates to get position.",
+ "steps": [
+  {"text": "Differentiate each velocity component with respect to time.", "equation": "v = 2t î + 3t² ĵ, a = dv/dt = 2î + 6t ĵ"},
+  {"text": "Substitute t = 1 s into the acceleration equation.", "equation": "a(1) = (2î + 6ĵ) m/s²"},
+  {"text": "Integrate each velocity component with respect to time, using the starting coordinates (2 m, 4 m) as the constants of integration.", "equation": "x(t) = 2 + t², y(t) = 4 + t³"},
+  {"text": "Substitute t = 2 s to get the position vector and coordinates.", "equation": "x(2) = 2 + 4 = 6 m, y(2) = 4 + 8 = 12 m, r = (6î + 12ĵ) m"}
+ ],
+ "final_answer": {"option": null, "value": "(a) a(1 s) = (2î + 6ĵ) m/s²; (b) r(2 s) = (6î + 12ĵ) m, coordinates (6 m, 12 m)"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Integrating 3t² as t³/3 instead of t³ gives y(2) = 6.67 m instead of 12 m."},
+  {"option": null, "text": "Forgetting to add the starting coordinates 2 and 4 gives the position (4 m, 8 m) instead of (6 m, 12 m)."}
+ ],
+ "concept_tags": ["differentiation for acceleration", "integration for position", "vector kinematics"],
+ "difficulty": "medium",
+ "mistake_type_hint": "calculation",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-02", "at": "2026-09-11T00:00:00+05:30"}
+}

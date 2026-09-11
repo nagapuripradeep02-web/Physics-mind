@@ -1,0 +1,19 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_ba6a1a9d",
+ "approach": "Read the slope of the straight line for the acceleration, then use the area under the v-t graph for the distance travelled.",
+ "steps": [
+  {"text": "Find the slope of the line using the origin and the marked point.", "equation": "a = (10 − 0)/(4 − 0) = 2.5 m/s²"},
+  {"text": "Find the velocity at t = 8 s using the same slope.", "equation": "v(8) = 2.5×8 = 20 m/s"},
+  {"text": "The distance travelled is the area under the v-t graph, a triangle from t = 0 to t = 8 s.", "equation": "s = ½×8×20 = 80 m"}
+ ],
+ "final_answer": {"option": null, "value": "distance = 80 m; acceleration = 2.5 m/s²"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Taking the area under the graph as a rectangle with height 20 m/s instead of a triangle gives 160 m instead of 80 m."}
+ ],
+ "concept_tags": ["velocity-time graph", "area under graph", "uniform acceleration"],
+ "difficulty": "easy",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-06", "at": "2026-09-11T16:00:00+05:30"}
+}

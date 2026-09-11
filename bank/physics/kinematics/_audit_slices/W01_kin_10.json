@@ -1,0 +1,846 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter": "kinematics",
+ "slice": 10,
+ "round": 0,
+ "agent_label": "W01-U-kin-10",
+ "items": [
+  {
+   "question_id": "kin_d9a3c5e7",
+   "audit_file": "kin_d9a3c5e7.daa4b852.json",
+   "item_sha": "daa4b852e71f01ee09a0116e4228a0a2d948d88acdb2c15a120ae12d2b099346",
+   "question_text": "The variation of the velocity of a particle with time is represented in the given v–t graph. Between t = 0 and t = 40 s, the graph forms two identical triangular lobes: it starts from rest at t = 0, increases linearly to a maximum of 5 m/s, returns linearly to 0 at t = 20 s, then drops linearly to a minimum of −5 m/s before increasing linearly back to 0 at t = 40 s. Determine:\n(a) The total distance covered by the particle in the first 40 s.\n(b) The average velocity of the particle throughout this 40 s duration.",
+   "options": [],
+   "figure_description": "A velocity-time (v–t) graph with velocity v on the vertical axis and time t in seconds on the horizontal axis. A triangular wave starts at the origin (0, 0), rises to a peak velocity of 5 m/s, and descends linearly to touch the time axis at t = 20 s. From t = 20 s, it continues downward linearly to a trough of −5 m/s, and then rises linearly to meet the time axis again at t = 40 s.",
+   "solution": {
+    "approach": "The area under a velocity-time graph gives distance and net displacement, so split the graph into its two triangular parts and combine them.",
+    "steps": [
+     {
+      "text": "The graph forms two triangles: velocity is positive from 0 to 20 s, reaching a peak of 5 m/s, and negative from 20 to 40 s, reaching a minimum of −5 m/s.",
+      "equation": "base = 20 s, height = 5 m/s for each triangle"
+     },
+     {
+      "text": "Find the area of the first triangle, the distance covered while the velocity is positive.",
+      "equation": "Area₁ = ½ × 20 s × 5 m/s = 50 m"
+     },
+     {
+      "text": "Find the area of the second triangle, the distance covered while the velocity is negative.",
+      "equation": "Area₂ = ½ × 20 s × 5 m/s = 50 m"
+     },
+     {
+      "text": "Total distance travelled is the sum of the magnitudes of both areas.",
+      "equation": "Distance = 50 m + 50 m = 100 m"
+     },
+     {
+      "text": "Net displacement is the signed sum: the positive area cancels the negative area, so the particle returns to its starting position.",
+      "equation": "Net displacement = 50 m − 50 m = 0 m",
+      "why_this_step": "Displacement uses the sign of each area, not just its size, while distance adds the sizes."
+     },
+     {
+      "text": "Average velocity is the net displacement divided by the total time; state both results.",
+      "equation": "Average velocity = 0 m / 40 s = 0 m/s; Distance = 100 m, Average velocity = 0 m/s"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "Distance = 100 m, Average velocity = 0 m/s"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Taking the net area (50 m − 50 m = 0) as the distance travelled gives 0 m instead of the correct 100 m."
+     },
+     {
+      "option": null,
+      "text": "Using only the first triangle's area as the total distance gives 50 m instead of 100 m."
+     }
+    ],
+    "concept_tags": [
+     "velocity-time graph",
+     "area under a graph",
+     "average velocity"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_d1f0c906",
+   "audit_file": "kin_d1f0c906.df797859.json",
+   "item_sha": "df79785931cfb91354081a7e317f282c8c23d36744c226dfdc8e9b06293c7662",
+   "question_text": "An object having a mass of 1 kg moves with an initial velocity of 2 m/s. For a duration of 1 s, an unchanging 2 N force is applied to it at a right angle to its original direction of motion. Determine the object's velocity and displacement when the 1 s interval ends.",
+   "options": [],
+   "figure_description": "Two vector diagrams: (a) shows the velocity components, with horizontal initial velocity u = 2 m/s and vertical component a t = 2 m/s, resulting in velocity vector v at an angle α to the horizontal; (b) shows the displacement components, with horizontal displacement u t = 2 m and vertical displacement ½ a t² = 1 m, resulting in displacement vector s at an angle β to the horizontal.",
+   "solution": {
+    "approach": "Since the force is perpendicular to the initial velocity, treat the motion as two independent components: unchanged velocity along the original direction and accelerated motion along the perpendicular direction.",
+    "steps": [
+     {
+      "text": "Find the acceleration produced by the force.",
+      "equation": "a = F/m = 2/1 = 2 m/s², directed perpendicular to u"
+     },
+     {
+      "text": "The velocity along the original direction stays u, and the perpendicular component grows from zero.",
+      "equation": "v∥ = u = 2 m/s, v⊥ = at = 2 × 1 = 2 m/s"
+     },
+     {
+      "text": "Combine the two perpendicular components to get the resultant velocity.",
+      "equation": "v = √(v∥² + v⊥²) = √(2² + 2²) = 2√2 m/s ≈ 2.83 m/s, at α = tan⁻¹(2/2) = 45° to u"
+     },
+     {
+      "text": "Find the displacement along each direction.",
+      "equation": "s∥ = ut = 2 × 1 = 2 m, s⊥ = ½at² = ½ × 2 × 1² = 1 m"
+     },
+     {
+      "text": "Combine the two perpendicular displacements to get the resultant displacement.",
+      "equation": "s = √(2² + 1²) = √5 ≈ 2.24 m, at β = tan⁻¹(1/2) ≈ 26.6° to u"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "v = 2√2 m/s ≈ 2.83 m/s at 45° to the initial velocity; s = √5 m ≈ 2.24 m at about 26.6° to the initial velocity"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Adding the perpendicular components as plain numbers instead of combining them as perpendicular vectors gives v = 4 m/s instead of 2√2 m/s."
+     },
+     {
+      "option": null,
+      "text": "Using ω = at² for displacement instead of ½at² gives s⊥ = 2 m instead of 1 m."
+     }
+    ],
+    "concept_tags": [
+     "motion under perpendicular force",
+     "vector addition of velocity",
+     "vector addition of displacement"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_d62a3c17",
+   "audit_file": "kin_d62a3c17.03708dc2.json",
+   "item_sha": "03708dc29f80c2bfb66f7e75985f6793526e786849049226556c06fb09612a42",
+   "question_text": "An object travels along a circular path having a radius R = 21/22 m at a uniform speed of 1 m/s. Over a time span of 2 s, determine:\n(a) the magnitude of its average velocity\n(b) the magnitude of its average acceleration",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Find the arc length in 2 s and the angle it subtends, then use it for the chord length (average velocity) and the change in velocity direction (average acceleration).",
+    "steps": [
+     {
+      "text": "The speed is constant at 1 ms⁻¹, so the arc length covered in 2 s is 2 m.",
+      "equation": "arc length s = 1 × 2 = 2 m"
+     },
+     {
+      "text": "Find the angle this arc subtends at the centre, using the radius R = 21/22 m.",
+      "equation": "θ = s/R = 2/(21/22) = 44/21 rad = 120°"
+     },
+     {
+      "text": "The displacement is the chord joining the start and end points, which depends on this angle.",
+      "equation": "chord = 2R sin(θ/2) = 2(21/22) sin60° = (21/22)√3 ≈ 1.65 m"
+     },
+     {
+      "text": "Divide the chord length by the time for the average velocity.",
+      "equation": "average velocity = 1.65/2 ≈ 0.83 ms⁻¹"
+     },
+     {
+      "text": "The speed stays 1 ms⁻¹ throughout, but its direction turns through 120°, so the change in the velocity vector has magnitude 2v sin(θ/2); dividing by time gives the average acceleration.",
+      "equation": "|Δv| = 2(1) sin60° = √3 ≈ 1.73 ms⁻¹, average acceleration = 1.73/2 = √3/2 ≈ 0.87 ms⁻²"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "(a) magnitude of average velocity ≈ 0.83 ms⁻¹, (b) magnitude of average acceleration = √3/2 ≈ 0.87 ms⁻²"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Dividing the arc length by time instead of the chord length gives 1 ms⁻¹, which is the constant speed, not the average velocity."
+     },
+     {
+      "option": null,
+      "text": "Using the instantaneous centripetal acceleration v²/R = 22/21 ≈ 1.05 ms⁻² in place of the average acceleration over the 2 s interval."
+     }
+    ],
+    "concept_tags": [
+     "circular motion",
+     "average velocity",
+     "average acceleration"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_d84474ba",
+   "audit_file": "kin_d84474ba.b621705e.json",
+   "item_sha": "b621705e04353d049f998410237acc73a019ba5b546d06691ccdc929b4480eb1",
+   "question_text": "A sphere is projected straight up into the air from ground level. Let T₁ represent the duration of its ascent to the highest point and T₂ represent the duration of its return to the ground. If air drag is taken into consideration throughout the motion, which relation is correct?",
+   "options": [
+    {
+     "label": "a",
+     "text": "T₁ > T₂"
+    },
+    {
+     "label": "b",
+     "text": "T₁ = T₂"
+    },
+    {
+     "label": "c",
+     "text": "T₁ < T₂"
+    },
+    {
+     "label": "d",
+     "text": "nothing can be said"
+    }
+   ],
+   "figure_description": "",
+   "solution": {
+    "approach": "With air resistance, the effective deceleration going up is larger than g, and the effective acceleration coming down is smaller than g, so the times are unequal.",
+    "steps": [
+     {
+      "text": "Going up, both gravity and air resistance act downward, opposing the upward motion.",
+      "equation": "a_up = g + f/m"
+     },
+     {
+      "text": "Coming down, gravity acts downward but air resistance acts upward, opposing the downward motion.",
+      "equation": "a_down = g − f/m"
+     },
+     {
+      "text": "A larger deceleration going up brings the ball to rest sooner, while a smaller net acceleration coming down means it takes longer to return to the ground.",
+      "equation": "T₁ < T₂"
+     }
+    ],
+    "final_answer": {
+     "option": 3,
+     "value": "T₁ < T₂"
+    },
+    "common_mistakes": [
+     {
+      "option": 2,
+      "text": "Ignoring air resistance and assuming the upward and downward motions are symmetric, giving T₁ = T₂."
+     }
+    ],
+    "concept_tags": [
+     "projectile motion",
+     "air resistance",
+     "time of flight"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_d2bbc710",
+   "audit_file": "kin_d2bbc710.f97aefd1.json",
+   "item_sha": "f97aefd139923b4e0f6e85273c161927eec4133ee81542755008dc4df369a70e",
+   "question_text": "A body travels along the +x-axis such that its velocity varies with time according to the equation v = (40 − 10 t) m/s, where t is expressed in seconds. Given that the body starts at x = 0 when t = 0, determine the time(s) at which it is located at a distance of 60 m from the origin.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Integrate v = 40 − 10t to get the position x(t), then solve x(t) = 60 m and x(t) = −60 m for every non-negative time.",
+    "steps": [
+     {
+      "text": "Integrate the velocity to get the position, starting from x = 0 at t = 0.",
+      "equation": "x(t) = 40t − 5t²"
+     },
+     {
+      "text": "The particle moves in the positive direction until v = 0 at t = 4 s, reaching a maximum x = 80 m, then moves back through the origin into negative x.",
+      "equation": "v = 0 at t = 4 s, x(4) = 80 m"
+     },
+     {
+      "text": "Solve x(t) = 60 m; the particle passes this point once going out and once coming back.",
+      "equation": "40t − 5t² = 60 → t² − 8t + 12 = 0 → t = 2 s or t = 6 s"
+     },
+     {
+      "text": "Solve x(t) = −60 m for the positive root, since the particle also reaches 60 m from the origin on the negative side.",
+      "equation": "40t − 5t² = −60 → t² − 8t − 12 = 0 → t = 4 + 2√7 ≈ 9.29 s"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "t = 2 s, t = 6 s, and t = 4 + 2√7 s ≈ 9.29 s"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Stopping after finding t = 2 s and 6 s misses that the particle later reaches 60 m on the negative side too, at t = 4 + 2√7 s."
+     }
+    ],
+    "concept_tags": [
+     "kinematics with variable velocity",
+     "integration",
+     "quadratic equation"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "kin_d4f42cb6",
+   "audit_file": "kin_d4f42cb6.e47a4007.json",
+   "item_sha": "e47a4007ad867202b71793e1136715d316b40644f35233098705c41265ea7a7a",
+   "question_text": "A faucet fixed at a height of 5 m releases droplets of water at equal time gaps. At the exact moment the first droplet strikes the floor, the third droplet begins to fall. Determine the height of the second droplet above the floor at this specific moment. (Take g = 10 ms⁻²)",
+   "options": [
+    {
+     "label": "a",
+     "text": "1.25 m"
+    },
+    {
+     "label": "b",
+     "text": "2.50 m"
+    },
+    {
+     "label": "c",
+     "text": "3.75 m"
+    },
+    {
+     "label": "d",
+     "text": "4.00 m"
+    }
+   ],
+   "figure_description": "",
+   "solution": {
+    "approach": "Find the fixed interval between drops from the first drop's fall time, then find how long the second drop has fallen at the given instant.",
+    "steps": [
+     {
+      "text": "The first drop falls 5 m from rest, so find the time it takes to reach the ground.",
+      "equation": "5 = ½(10)t₁² → t₁ = 1 s"
+     },
+     {
+      "text": "Drops leave the tap at equal intervals T. When drop 3 leaves, drops 1 and 2 already left, so two intervals separate drop 1's release from drop 3's release, and that equals drop 1's fall time.",
+      "equation": "2T = t₁ = 1 s → T = 0.5 s"
+     },
+     {
+      "text": "At this instant, drop 2 has been falling for one interval T = 0.5 s. Find the distance it has fallen.",
+      "equation": "d = ½(10)(0.5)² = 1.25 m"
+     },
+     {
+      "text": "Subtract this fallen distance from the tap height to get the height above the ground.",
+      "equation": "5 − 1.25 = 3.75 m"
+     }
+    ],
+    "final_answer": {
+     "option": 3,
+     "value": "3.75 m"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Stopping after finding the distance the second drop has fallen (1.25 m) and reporting that as the height above the ground, instead of subtracting it from 5 m."
+     }
+    ],
+    "concept_tags": [
+     "free fall",
+     "equally spaced drops",
+     "relative timing"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "kin_d9300602",
+   "audit_file": "kin_d9300602.43e0b130.json",
+   "item_sha": "43e0b1305560dedb28859be77c38bd91915d0c1bb728a11f2aa3f56f1aec7238",
+   "question_text": "An object travels along a linear path experiencing uniform acceleration. Suppose it covers distances x, y, and z in the pth, qth, and rth seconds of its motion, respectively. Show that (q − r)x + (r − p)y + (p − q)z = 0.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Write x, y, z using the distance-in-the-nth-second formula, substitute into the given combination, and show it collects into two brackets that both vanish.",
+    "steps": [
+     {
+      "text": "The distance covered in the nth second of motion with constant acceleration a and initial velocity u is this.",
+      "equation": "sₙ = u + a(n − ½)"
+     },
+     {
+      "text": "Write x, y, z using this formula for n = p, q, r.",
+      "equation": "x = u + a(p − ½), y = u + a(q − ½), z = u + a(r − ½)"
+     },
+     {
+      "text": "Substitute into the given combination and group the u terms and the a terms separately.",
+      "equation": "(q−r)x + (r−p)y + (p−q)z = u[(q−r)+(r−p)+(p−q)] + a[(q−r)(p−½)+(r−p)(q−½)+(p−q)(r−½)]"
+     },
+     {
+      "text": "The coefficient of u is zero because the three bracketed terms cancel in pairs.",
+      "equation": "(q−r)+(r−p)+(p−q) = 0"
+     },
+     {
+      "text": "Expand the coefficient of a; every term in p, q, r of degree two cancels, and the remaining constant terms also cancel, leaving zero.",
+      "equation": "(q−r)(p−½)+(r−p)(q−½)+(p−q)(r−½) = 0",
+      "why_this_step": "With both brackets zero, the whole expression (q−r)x+(r−p)y+(p−q)z equals zero, which is what was to be proved."
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "(q − r)x + (r − p)y + (p − q)z = 0, proved by substituting the nth-second distance formula for x, y, z and showing both the u-coefficient and the a-coefficient vanish."
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Using the total distance formula sₙ = un + ½an² instead of the distance-in-the-nth-second formula sₙ = u + a(n − ½) leads to an expression that does not reduce to zero."
+     }
+    ],
+    "concept_tags": [
+     "distance in the nth second",
+     "constant acceleration",
+     "algebraic identity"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_d9300602",
+   "audit_file": "kin_d9300602.43e0b130.json",
+   "item_sha": "43e0b1305560dedb28859be77c38bd91915d0c1bb728a11f2aa3f56f1aec7238",
+   "question_text": "An object travels along a linear path experiencing uniform acceleration. Suppose it covers distances x, y, and z in the pth, qth, and rth seconds of its motion, respectively. Show that (q − r)x + (r − p)y + (p − q)z = 0.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Write x, y, z using the distance-in-the-nth-second formula, substitute into the given combination, and show it collects into two brackets that both vanish.",
+    "steps": [
+     {
+      "text": "The distance covered in the nth second of motion with constant acceleration a and initial velocity u is this.",
+      "equation": "sₙ = u + a(n − ½)"
+     },
+     {
+      "text": "Write x, y, z using this formula for n = p, q, r.",
+      "equation": "x = u + a(p − ½), y = u + a(q − ½), z = u + a(r − ½)"
+     },
+     {
+      "text": "Substitute into the given combination and group the u terms and the a terms separately.",
+      "equation": "(q−r)x + (r−p)y + (p−q)z = u[(q−r)+(r−p)+(p−q)] + a[(q−r)(p−½)+(r−p)(q−½)+(p−q)(r−½)]"
+     },
+     {
+      "text": "The coefficient of u is zero because the three bracketed terms cancel in pairs.",
+      "equation": "(q−r)+(r−p)+(p−q) = 0"
+     },
+     {
+      "text": "Expand the coefficient of a; every term in p, q, r of degree two cancels, and the remaining constant terms also cancel, leaving zero.",
+      "equation": "(q−r)(p−½)+(r−p)(q−½)+(p−q)(r−½) = 0",
+      "why_this_step": "With both brackets zero, the whole expression (q−r)x+(r−p)y+(p−q)z equals zero, which is what was to be proved."
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "(q − r)x + (r − p)y + (p − q)z = 0, proved by substituting the nth-second distance formula for x, y, z and showing both the u-coefficient and the a-coefficient vanish."
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Using the total distance formula sₙ = un + ½an² instead of the distance-in-the-nth-second formula sₙ = u + a(n − ½) leads to an expression that does not reduce to zero."
+     }
+    ],
+    "concept_tags": [
+     "distance in the nth second",
+     "constant acceleration",
+     "algebraic identity"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_d76b373f",
+   "audit_file": "kin_d76b373f.9726a14f.json",
+   "item_sha": "9726a14f1a55e6b8e092307b3d09cd1e8f185e5111949863c5e4efc30312c348",
+   "question_text": "A balloon moves vertically upwards with an acceleration a. When a stone is let go from this balloon, find the acceleration experienced by the stone immediately following its detachment.",
+   "options": [
+    {
+     "label": "a",
+     "text": "a upward"
+    },
+    {
+     "label": "b",
+     "text": "g downward"
+    },
+    {
+     "label": "c",
+     "text": "(g − a) downward"
+    },
+    {
+     "label": "d",
+     "text": "(g + a) downward"
+    }
+   ],
+   "figure_description": "",
+   "solution": {
+    "approach": "Once the stone is released it is a free body, and only gravity acts on it from that instant, regardless of the balloon's motion.",
+    "steps": [
+     {
+      "text": "Before release the stone shares the balloon's velocity, but not the cause of the balloon's acceleration."
+     },
+     {
+      "text": "At the instant of release, the only force acting on the stone is its own weight.",
+      "equation": "F = mg, downward"
+     },
+     {
+      "text": "Apply Newton's second law to find the stone's acceleration immediately after release.",
+      "equation": "a = F/m = g, downward"
+     }
+    ],
+    "final_answer": {
+     "option": 2,
+     "value": "g downward"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Assuming the stone keeps the balloon's upward acceleration a even after release, confusing continuity of velocity with continuity of acceleration."
+     },
+     {
+      "option": 4,
+      "text": "Adding the balloon's acceleration to gravity as if the balloon still pushes the stone after separation, giving (g + a) downward."
+     }
+    ],
+    "concept_tags": [
+     "free fall",
+     "newton's second law",
+     "relative motion"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_dd6ddc94",
+   "audit_file": "kin_dd6ddc94.f37d4c84.json",
+   "item_sha": "f37d4c84480bb743ada4027dc486bd0758d93d8cacb4ccc87e49cb464646c32d",
+   "question_text": "An object is thrown straight up into the air under gravity. State the acceleration of the object:\n(a) as it travels upward,\n(b) as it falls downward, and\n(c) at the peak of its path.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Gravity acts on the particle the whole time it is in the air, so the acceleration stays g downward throughout, including at the highest point.",
+    "steps": [
+     {
+      "text": "Once the particle leaves the hand, the only force on it is its own weight, which acts vertically downward at every instant of the flight.",
+      "equation": "F = mg, downward"
+     },
+     {
+      "text": "By Newton's second law the acceleration equals this force divided by the mass, so it is g downward regardless of whether the particle is moving up or down.",
+      "equation": "a = F/m = g, downward"
+     },
+     {
+      "text": "(i) During the upward journey the acceleration is g downward, opposing the upward velocity and slowing it down."
+     },
+     {
+      "text": "(ii) During the downward journey the acceleration is still g downward, now in the same direction as the velocity, speeding it up."
+     },
+     {
+      "text": "(iii) At the highest point the velocity is momentarily zero, but the force of gravity has not disappeared, so the acceleration there is also g downward, not zero.",
+      "why_this_step": "Acceleration depends on the net force, not on the instantaneous velocity, so a zero velocity does not mean zero acceleration."
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "(i) g downward, (ii) g downward, (iii) g downward — the acceleration is g downward throughout the flight, including at the highest point"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Concluding the acceleration is zero at the highest point because the velocity is zero there, confusing zero velocity with zero acceleration."
+     },
+     {
+      "option": null,
+      "text": "Assuming the acceleration reverses direction between the upward and downward journeys, when in fact gravity acts downward the whole time and only the velocity's direction changes."
+     }
+    ],
+    "concept_tags": [
+     "motion under gravity",
+     "acceleration"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_d194bd74",
+   "audit_file": "kin_d194bd74.4653e4f7.json",
+   "item_sha": "4653e4f78c8f7c1951c7c4ae7b10294d6ee8e170d7279b2e7a041e0dd4ee6f2e",
+   "question_text": "A particle moves along a straight path. Its acceleration varies with time as depicted in the acceleration-time graph, where the acceleration rises uniformly from 0 at t = 0 to a maximum of 4 m/s² at t = 2 s, and then decreases linearly back to 0 at t = 4 s. Given that the particle has a velocity of 2 m/s at t = 0, calculate its velocity at the end of the fourth second.",
+   "options": [],
+   "figure_description": "An acceleration-time (a-t) graph showing a triangle. The horizontal axis is time t in seconds, with markings at 0, 2, and 4. The vertical axis is acceleration a in m/s², with a marking at 4. The curve goes linearly from (0, 0) to (2 s, 4 m/s²), and then linearly down to (4 s, 0).",
+   "solution": {
+    "approach": "The change in velocity equals the area under the acceleration-time graph, so add the initial velocity to the total area of the triangular graph.",
+    "steps": [
+     {
+      "text": "Split the triangular a-t graph into two triangles and find the area of each.",
+      "equation": "area (0 to 2 s) = ½ × 2 × 4 = 4 m/s, area (2 to 4 s) = ½ × 2 × 4 = 4 m/s"
+     },
+     {
+      "text": "Add the two areas to get the total change in velocity from t = 0 to t = 4 s.",
+      "equation": "Δv = 4 + 4 = 8 m/s"
+     },
+     {
+      "text": "Add the change in velocity to the initial velocity.",
+      "equation": "v(4 s) = v(0) + Δv = 2 + 8 = 10 m/s"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "v = 10 m/s"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Treating the triangle as base 4, height 4 gives area 8, correct here; misreading the axes as base 4, height 2 gives Δv = 4 m/s and a wrong answer of 6 m/s."
+     },
+     {
+      "option": null,
+      "text": "Forgetting to add the initial velocity of 2 m/s gives v(4 s) = 8 m/s instead of 10 m/s."
+     }
+    ],
+    "concept_tags": [
+     "a-t graph",
+     "area under graph gives change in velocity"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "kin_d89284ed",
+   "audit_file": "kin_d89284ed.7b993863.json",
+   "item_sha": "7b9938636a34ede82cf36175948191582281b25fbb56ac9fab91c358a49133d0",
+   "question_text": "The variation of velocity with respect to time for an object moving along the x-axis is presented in the graph. Calculate:\n(a) the acceleration,\n(b) the total distance covered between t = 0 and t = 10 s, and\n(c) the displacement between t = 0 and t = 10 s.\n(a) acceleration\n(b) distance travelled in 0 to 10 s\n(c) displacement in 0 to 10 s",
+   "options": [],
+   "figure_description": "A Cartesian coordinate graph plotting velocity v (in m/s) on the vertical axis against time t (in s) on the horizontal axis. The vertical axis has tick marks at 0, 2, 4, 6, and 8 m/s. The horizontal axis is marked at 0, 5, and 10 s. A single continuous straight line starts at (t = 0 s, v = 2 m/s) and ends at (t = 10 s, v = 8 m/s).",
+   "solution": {
+    "approach": "Read the slope of the line for the acceleration, then use the area under the v-t graph, a trapezoid, for the distance, which equals the displacement here.",
+    "steps": [
+     {
+      "text": "Find the slope of the line using its two endpoints.",
+      "equation": "a = (8 − 2)/(10 − 0) = 0.6 m/s²"
+     },
+     {
+      "text": "The distance travelled is the area under the v-t graph, a trapezoid with parallel sides 2 m/s and 8 m/s and width 10 s.",
+      "equation": "s = ½×(2+8)×10 = 50 m"
+     },
+     {
+      "text": "The velocity is positive throughout, so the displacement equals the distance travelled.",
+      "equation": "displacement = 50 m"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "(a) 0.6 m/s², (b) 50 m, (c) 50 m"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Treating the area as a triangle alone and ignoring the initial velocity of 2 m/s gives 40 m instead of 50 m."
+     }
+    ],
+    "concept_tags": [
+     "velocity-time graph",
+     "area under graph",
+     "uniform acceleration"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "kin_d4ea68c2",
+   "audit_file": "kin_d4ea68c2.d7d3ef5d.json",
+   "item_sha": "d7d3ef5d9ecf8d40fd87691c997c59ce612154f142268e90720633f104b8c588",
+   "question_text": "From the roof of a 40 m tall building, an object is projected vertically upward at a speed of 10 m/s. Determine the total duration of flight before it reaches the ground below. Assume g = 10 m/s².",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Take upward as positive from the top of the tower, write the displacement equation, and set it equal to the position of the ground.",
+    "steps": [
+     {
+      "text": "Write the displacement of the ball from the top of the tower as a function of time, taking upward as positive.",
+      "equation": "s(t) = ut − ½gt² = 10t − 5t²"
+     },
+     {
+      "text": "The ground is 40 m below the starting point, so set s(t) equal to −40 m.",
+      "equation": "10t − 5t² = −40"
+     },
+     {
+      "text": "Rearrange into a standard quadratic and solve for t.",
+      "equation": "5t² − 10t − 40 = 0 ⇒ t² − 2t − 8 = 0 ⇒ t = 4 s or t = −2 s"
+     },
+     {
+      "text": "Reject the negative time since it comes before the ball is thrown; the ball strikes the ground at t = 4 s.",
+      "equation": "t = 4 s"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "t = 4 s"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Counting only the trip up and back down to the top of the tower (1 s up, 1 s down), giving 2 s and missing the further fall to the ground."
+     }
+    ],
+    "concept_tags": [
+     "equations of motion",
+     "sign convention",
+     "quadratic in time"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "kin_dbea7b06",
+   "audit_file": "kin_dbea7b06.ed002e2b.json",
+   "item_sha": "ed002e2bad8dc58a783b010807828cf61c5a0c2767b5c38a6902fb04c1cfab53",
+   "question_text": "An object is thrown straight up into the air with an initial speed of 40 m/s. Determine both the net displacement and the total distance covered by the object after the following time durations (take g = 10 m/s²):\n(a) 2 s\n(b) 4 s\n(c) 6 s",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Find the time to reach maximum height first; before that time distance equals displacement, and after it the distance adds the extra fall back down.",
+    "steps": [
+     {
+      "text": "Find the time to reach maximum height and the maximum height reached.",
+      "equation": "t_top = u/g = 40/10 = 4 s, h_max = u²/(2g) = 1600/20 = 80 m"
+     },
+     {
+      "text": "At t = 2 s the ball is still rising, since 2 s is less than 4 s, so find its position from the displacement equation.",
+      "equation": "s(2) = 40(2) − 5(2)² = 60 m"
+     },
+     {
+      "text": "Since the ball has not yet turned around, the distance travelled equals the displacement.",
+      "equation": "(a) displacement = 60 m, distance = 60 m"
+     },
+     {
+      "text": "At t = 4 s the ball is exactly at the highest point, where displacement and distance are again equal.",
+      "equation": "(b) s(4) = 40(4) − 5(4)² = 80 m; displacement = 80 m, distance = 80 m"
+     },
+     {
+      "text": "At t = 6 s the ball has been falling back for 2 s after reaching the top at t = 4 s; find how far it fell in that time.",
+      "equation": "fall = ½g(2)² = 20 m"
+     },
+     {
+      "text": "The distance travelled adds the rise and the fall, while the displacement is the net position from the start.",
+      "equation": "(c) distance = 80 + 20 = 100 m; s(6) = 40(6) − 5(6)² = 60 m, displacement = 60 m"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "(a) 60 m, 60 m; (b) 80 m, 80 m; (c) 60 m, 100 m"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "For part (c), taking the distance equal to the displacement, 60 m, and ignoring the extra distance covered while falling back down."
+     }
+    ],
+    "concept_tags": [
+     "displacement versus distance",
+     "projectile under gravity",
+     "time of flight"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_d592c9e9",
+   "audit_file": "kin_d592c9e9.d26ae9bf.json",
+   "item_sha": "d26ae9bf1bae5e67e1bdd54b39cde7ae8656556c24ceea7771b32ce8ee823585",
+   "question_text": "Starting from a stationary state, an automobile speeds up with a uniform acceleration α for a certain duration. Immediately afterward, it slows down with a uniform retardation β until it stops completely. Given that the entire motion takes t seconds, determine:\n(a) the highest speed attained by the automobile\n(b) the overall distance covered during the journey",
+   "options": [],
+   "figure_description": "A velocity-time (v-t) graph shaped like a triangle. The graph begins at the origin (0, 0), rises with a constant slope α for a duration t₁ to reach the maximum velocity v_max at point A, and subsequently drops with a constant slope −β over a duration t₂ to hit the time axis at point B, where the total time is t = t₁ + t₂.",
+   "solution": {
+    "approach": "The car reaches the same peak velocity at both phase boundaries; equate the two phase times to total time for peak velocity, then use the v-t triangle's area for distance.",
+    "steps": [
+     {
+      "text": "Let the accelerating phase last t₁ and the decelerating phase last t₂, reaching the same peak velocity v_max in both.",
+      "equation": "v_max = αt₁ = βt₂, so t₁ = v_max/α and t₂ = v_max/β"
+     },
+     {
+      "text": "Use the total time to connect the two phase times.",
+      "equation": "t₁ + t₂ = t → v_max/α + v_max/β = t"
+     },
+     {
+      "text": "Solve for the maximum velocity.",
+      "equation": "v_max(1/α + 1/β) = t → v_max = αβt/(α + β)"
+     },
+     {
+      "text": "The v-t graph is a triangle of base t and height v_max, so the total distance is its area.",
+      "equation": "distance = ½ × t × v_max = ½ × t × αβt/(α + β) = αβt²/[2(α + β)]"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "(a) v_max = αβt/(α + β); (b) total distance = αβt²/[2(α + β)]"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Adding α and β directly and writing v_max = (α + β)t instead of solving the two time equations together gives a completely wrong expression."
+     },
+     {
+      "option": null,
+      "text": "Using distance = v_max × t for the whole trip instead of half of it, since the motion is not at constant velocity, doubles the correct answer."
+     }
+    ],
+    "concept_tags": [
+     "v-t graph",
+     "equations of motion",
+     "area under graph gives distance"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "kin_d38785af",
+   "audit_file": "kin_d38785af.f49c4b41.json",
+   "item_sha": "f49c4b41216b4784a77ee761557313eda947d540fb7f86aeb032a5617e19ad77",
+   "question_text": "A person walks eastward at a speed of 3 m/s while raindrops fall straight down at a speed of 4 m/s. Determine the angle and orientation at which the person must tilt an umbrella to stay protected from the rain.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Find the velocity of the rain relative to the man by subtracting his velocity from the rain's velocity, and hold the umbrella along that direction.",
+    "steps": [
+     {
+      "text": "Write the rain's velocity and the man's velocity as vectors, taking east and vertically up as positive.",
+      "equation": "v_rain = (0, −4) m/s, v_man = (3, 0) m/s"
+     },
+     {
+      "text": "The velocity of the rain relative to the man is the rain's velocity minus the man's velocity.",
+      "equation": "v_rain,man = (0 − 3, −4 − 0) = (−3, −4) m/s"
+     },
+     {
+      "text": "This vector points west and downward, so the rain reaches the man from the east side, tilted from the vertical by an angle whose tangent is the ratio of the horizontal to vertical parts.",
+      "equation": "tan θ = 3/4, θ = 37°"
+     },
+     {
+      "text": "The man should hold the umbrella tilted 37° from the vertical, towards the east, the direction he is walking.",
+      "equation": "θ = 37° from vertical, towards east"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "Tilt the umbrella 37° from the vertical, towards the east"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Adding the man's velocity to the rain's velocity instead of subtracting gives a tilt towards the west instead of the east."
+     },
+     {
+      "option": null,
+      "text": "Using tan θ = 4/3 instead of 3/4 gives 53° instead of 37°."
+     }
+    ],
+    "concept_tags": [
+     "relative velocity",
+     "vector subtraction"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "concept"
+   }
+  }
+ ]
+}

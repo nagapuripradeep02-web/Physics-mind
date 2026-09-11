@@ -1,0 +1,42 @@
+{
+ "approach": "Use the relation between launch speed and maximum height, and compare the speeds needed for height h and for height 3h.",
+ "steps": [
+  {
+   "text": "Write the relation between the launch speed and the maximum height reached.",
+   "equation": "h = v₀²/(2g)"
+  },
+  {
+   "text": "Write the same relation for the new speed v′ that gives triple the height.",
+   "equation": "3h = v′²/(2g)"
+  },
+  {
+   "text": "Divide the two equations to eliminate g and h.",
+   "equation": "v′²/v₀² = 3 → v′ = √3 v₀"
+  }
+ ],
+ "final_answer": {
+  "option": 1,
+  "value": "√3 v₀"
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": 2,
+   "text": "Assuming height is directly proportional to speed instead of to the square of the speed, and tripling the speed to 3v₀."
+  }
+ ],
+ "concept_tags": [
+  "equations of motion",
+  "maximum height"
+ ],
+ "difficulty": "easy",
+ "mistake_type_hint": "concept",
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_c9d48c69",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-08",
+  "at": "2026-09-11T14:20:00+05:30"
+ }
+}

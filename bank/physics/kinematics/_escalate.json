@@ -1,0 +1,58 @@
+[
+ {
+  "id": "kin_0369fa6e",
+  "author": [
+   null,
+   "Curvilinear (two-dimensional) motion, since the particle develops a velocity component along ĵ while it started moving purely along î."
+  ],
+  "second_reader": [
+   0,
+   "Two-dimensional (curvilinear) motion with variable acceleration"
+  ],
+  "printed": "Two dimensional with non-uniform acceleration",
+  "hint": "a is function of time and v and a are neither parallel nor antiparallel.",
+  "format": "subjective"
+ },
+ {
+  "id": "kin_0555f008",
+  "author": [
+   null,
+   "False"
+  ],
+  "second_reader": [
+   0,
+   "False"
+  ],
+  "printed": "True",
+  "hint": "average value in any interval of time is equal to that constant value",
+  "format": "conceptual"
+ },
+ {
+  "id": "kin_3abcb90b",
+  "author": [
+   null,
+   "displacement ∝ t^(7/4); acceleration ∝ t^(−1/4)"
+  ],
+  "second_reader": [
+   0,
+   "Displacement is directly proportional to t^(7/4), acceleration is directly proportional to t^(-1/4)"
+  ],
+  "printed": "s ∝ t⁷/⁴ and a ∝ t⁻¹/⁴",
+  "hint": "a ∝ t^(-1/4), s ∝ t^(7/4)",
+  "format": "subjective"
+ },
+ {
+  "id": "kin_59db942d",
+  "author": [
+   null,
+   "(a) 5 m/s², (b) 90 m/s"
+  ],
+  "second_reader": [
+   0,
+   "(a) 5 m/s², (b) 90 m/s"
+  ],
+  "printed": "(a) -5 ms⁻² (b) 90 ms⁻¹",
+  "hint": null,
+  "format": "subjective"
+ }
+]

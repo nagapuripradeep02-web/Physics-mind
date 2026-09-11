@@ -1,0 +1,51 @@
+{
+  "schema": "eapcet_solution_v1",
+  "question_id": "kin_53dfc657",
+  "approach": "Write the height at time t using the launch speed and g, express the launch speed with H and T, then rewrite the height using H and T alone.",
+  "steps": [
+    {
+      "text": "Since the particle reaches maximum height H at time T, the launch speed is u = gT. Write the height at any time t.",
+      "equation": "y(t) = ut − ½gt² = gTt − ½gt²"
+    },
+    {
+      "text": "Express H using u and g, then substitute u = gT.",
+      "equation": "H = u²/(2g) = g T²/2"
+    },
+    {
+      "text": "Take option d and expand it to check whether it equals y(t).",
+      "equation": "H − ½g(T − t)² = ½gT² − ½g(T² − 2Tt + t²) = gTt − ½gt²"
+    },
+    {
+      "text": "This matches y(t) exactly, so option d is the correct expression for the height at time t.",
+      "equation": "H − ½g(T − t)²"
+    }
+  ],
+  "final_answer": {
+    "option": 4,
+    "value": "H − ½ g (T − t)²"
+  },
+  "confidence": "sure",
+  "common_mistakes": [
+    {
+      "option": 2,
+      "text": "Dropping the factor of ½ while expanding H − ½g(T − t)², giving H − g(T − t)², which is a different, smaller expression."
+    },
+    {
+      "option": 3,
+      "text": "Writing only the offset-from-the-top term ½g(T − t)² and forgetting to subtract it from H, which gives the distance fallen from the top, not the height above the ground."
+    }
+  ],
+  "concept_tags": [
+    "vertical projectile motion",
+    "algebraic manipulation",
+    "maximum height"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "calculation",
+  "authored_by": {
+    "model": "sonnet",
+    "wave": 1,
+    "agent": "W01-A-kin-09",
+    "at": "2026-09-11T15:33:00+05:30"
+  }
+}

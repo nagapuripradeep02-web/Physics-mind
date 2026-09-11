@@ -1,0 +1,19 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_a2064d30",
+ "approach": "Average velocity is the total displacement in the interval divided by the time, so write the displacement using the standard equation and divide by t.",
+ "steps": [
+  {"text": "Write the displacement from 0 to time t using the standard equation of motion with constant acceleration a.", "equation": "s = ut + ½at²"},
+  {"text": "Average velocity over the interval is this displacement divided by the time taken.", "equation": "v_avg = s/t = (ut + ½at²)/t"},
+  {"text": "Cancel t from each term to reach the simplest form.", "equation": "v_avg = u + ½at", "why_this_step": "This also equals the mean of the initial and final velocities, (u + v)/2, since v = u + at."}
+ ],
+ "final_answer": {"option": null, "value": "v_avg = u + ½at"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Taking the average velocity as u, the initial velocity, ignoring that the velocity keeps changing at rate a over the interval."}
+ ],
+ "concept_tags": ["average velocity", "equations of motion"],
+ "difficulty": "easy",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-05", "at": "2026-09-11T14:14:00+05:30"}
+}

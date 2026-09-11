@@ -1,0 +1,87 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_a9d99c12",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A particle moving in the x-y plane experiences a time-dependent acceleration described by a = (2t î + 3t² ĵ) m/s². At the moment t = 0, it begins moving from the origin with an initial velocity of 2 m/s directed along the positive x-axis. Determine the velocity vector and the position coordinates of the particle at t = 1 s.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "motion in x-y plane",
+   "acceleration a = (2t î + 3t² ĵ) m/s²",
+   "initial position r(0) = (0, 0)",
+   "initial velocity v(0) = 2 î m/s",
+   "target time t = 1 s"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Integrate the acceleration once for velocity, adding the initial velocity, then integrate again for position, starting from the origin.",
+  "steps": [
+   {
+    "text": "Integrate a with respect to time and add the initial velocity to get v(t).",
+    "equation": "v = (2 + t²)î + t³ĵ, using v₀ = 2î"
+   },
+   {
+    "text": "Substitute t = 1 s.",
+    "equation": "v(1) = 3î + ĵ m/s"
+   },
+   {
+    "text": "Integrate v with respect to time, starting from the origin, to get the coordinates.",
+    "equation": "x = 2t + t³/3, y = t⁴/4"
+   },
+   {
+    "text": "Substitute t = 1 s to get the coordinates.",
+    "equation": "x(1) = 2 + 1/3 = 7/3 m ≈ 2.33 m, y(1) = 1/4 = 0.25 m"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "v(1) = (3î + ĵ) m/s; coordinates = (7/3 m, 1/4 m) ≈ (2.33 m, 0.25 m)"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Integrating the acceleration for velocity without adding the initial velocity of 2 m/s along the x-axis gives v(1) = (î + ĵ) m/s instead of (3î + ĵ) m/s."
+   },
+   {
+    "option": null,
+    "text": "Integrating the acceleration components twice without carrying the initial velocity into the position integral gives an x-coordinate of 1/3 m instead of 7/3 m."
+   }
+  ],
+  "concept_tags": [
+   "vectors",
+   "integration",
+   "variable acceleration"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "calculation"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "2d693408e74e92dbf393b60d567047f4decbf1a23bac711579e20cdd7e3a9a87"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "26273e281a370d29da2bd32449556c9afc381cdccbe06320bd374ee9fd733ed0",
+  "audited_by": "W01-U-kin-02"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-06",
+  "at": "2026-09-11T16:00:00+05:30"
+ }
+}

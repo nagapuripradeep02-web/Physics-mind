@@ -1,0 +1,103 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter": "kinematics",
+ "slice": 2,
+ "round": 1,
+ "items": [
+  {
+   "question_id": "kin_ff29cf3a",
+   "question_text": "A stone is thrown straight up from a high point A. When it is at a depth h beneath A, the speed of the stone is twice the speed it possessed at an elevation h over A. Prove that the stone reaches a maximum height of (5/3)h above point A.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_d1f0c906",
+   "question_text": "An object having a mass of 1 kg moves with an initial velocity of 2 m/s. For a duration of 1 s, an unchanging 2 N force is applied to it at a right angle to its original direction of motion. Determine the object's velocity and displacement when the 1 s interval ends.",
+   "options": [],
+   "figure_description": "Two vector diagrams: (a) shows the velocity components, with horizontal initial velocity u = 2 m/s and vertical component a t = 2 m/s, resulting in velocity vector v at an angle α to the horizontal; (b) shows the displacement components, with horizontal displacement u t = 2 m and vertical displacement ½ a t² = 1 m, resulting in displacement vector s at an angle β to the horizontal."
+  },
+  {
+   "question_id": "kin_f49171eb",
+   "question_text": "For an object moving with a time-dependent velocity vector v, answer the following questions:\n(a) Explain the physical meaning conveyed by each of the two mathematical expressions |dv/dt| and d|v|/dt.\n(b) Determine whether there are situations in which these two quantities are equal to each other.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_ec65d40b",
+   "question_text": "At a specific moment, the velocity and acceleration vectors of a moving body are given by v = (3 î − 4 ĵ + 2 k̂) m/s and a = (4 î + ĵ − 2 k̂) m/s² respectively.\n(a) Calculate the scalar product v · a at this time.\n(b) Is the angle between vectors v and a acute, obtuse, or 90°?\n(c) Determine if the speed of the body is increasing, decreasing, or staying constant at this time.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_dd6ddc94",
+   "question_text": "An object is thrown straight up into the air under gravity. State the acceleration of the object:\n(a) as it travels upward,\n(b) as it falls downward, and\n(c) at the peak of its path.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_c7bf5937",
+   "question_text": "The variation of velocity with time for a body executing one-dimensional motion is depicted in the given graph. Which of the following assertions is correct?",
+   "options": [
+    {
+     "label": "a",
+     "text": "The particle's journey begins from the origin"
+    },
+    {
+     "label": "b",
+     "text": "The particle returns to its starting point at t = 2 s"
+    },
+    {
+     "label": "c",
+     "text": "The particle's mean speed during the duration 0 ≤ t ≤ 2 s is zero"
+    },
+    {
+     "label": "d",
+     "text": "All of the above"
+    }
+   ],
+   "figure_description": "A velocity–time (v–t) graph where velocity v (in m/s) is plotted along the vertical axis and time t (in s) along the horizontal axis. A single downward-sloping straight line connects the y-intercept at (0 s, 10 m/s), intersects the time axis at (1 s, 0 m/s), and extends into negative velocities, passing through (2 s, −10 m/s)."
+  },
+  {
+   "question_id": "kin_f0b4b4d5",
+   "question_text": "An open elevator ascends vertically with an instantaneous speed of 10 m/s while accelerating upward at a rate of 2 m/s². At this moment, a ball is thrown straight up with a speed of 20 m/s relative to the ground from the base of the elevator. Taking g = 10 m/s², calculate the following:\n(a) The time elapsed before the ball returns to the elevator floor.\n(b) The vertical displacement of both the elevator and the ball at that moment.\n(c) The total distance covered by the ball during this duration.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_d76b373f",
+   "question_text": "A balloon moves vertically upwards with an acceleration a. When a stone is let go from this balloon, find the acceleration experienced by the stone immediately following its detachment.",
+   "options": [
+    {
+     "label": "a",
+     "text": "a upward"
+    },
+    {
+     "label": "b",
+     "text": "g downward"
+    },
+    {
+     "label": "c",
+     "text": "(g − a) downward"
+    },
+    {
+     "label": "d",
+     "text": "(g + a) downward"
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_f1e4819e",
+   "question_text": "A body moves in a straight line along the x-axis. A position-time (x versus t) plot representing its motion is a straight line that intersects the vertical position axis at x = −20 m when t = 0 s, and crosses the horizontal time axis at t = 10 s when x = 0 m. Based on this information, analyze the motion by answering the following:\n(a) Determine the initial location of the particle at t = 0 s.\n(b) Calculate the velocity of the particle.\n(c) Express the position x as a function of time t.\n(d) State whether the motion has uniform or non-uniform velocity, and identify the time at which the object reaches the origin.",
+   "options": [],
+   "figure_description": "A Cartesian coordinate graph showing position x (in meters) along the vertical axis against time t (in seconds) along the horizontal axis. A single straight line with a constant positive slope passes through the points (t = 0 s, x = −20 m) and (t = 10 s, x = 0 m)."
+  },
+  {
+   "question_id": "kin_d194bd74",
+   "question_text": "A particle moves along a straight path. Its acceleration varies with time as depicted in the acceleration-time graph, where the acceleration rises uniformly from 0 at t = 0 to a maximum of 4 m/s² at t = 2 s, and then decreases linearly back to 0 at t = 4 s. Given that the particle has a velocity of 2 m/s at t = 0, calculate its velocity at the end of the fourth second.",
+   "options": [],
+   "figure_description": "An acceleration-time (a-t) graph showing a triangle. The horizontal axis is time t in seconds, with markings at 0, 2, and 4. The vertical axis is acceleration a in m/s², with a marking at 4. The curve goes linearly from (0, 0) to (2 s, 4 m/s²), and then linearly down to (4 s, 0)."
+  }
+ ]
+}

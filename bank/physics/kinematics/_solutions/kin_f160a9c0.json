@@ -1,0 +1,19 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_f160a9c0",
+ "approach": "Use v² = u² − 2gh between the ground and the window to find the launch speed, then find the maximum height and time to the top from that speed.",
+ "steps": [
+  {"text": "Apply v² = u² − 2gh between the ground, where the speed is u, and the window, 15 m up, where the speed is 5.00 m/s.", "equation": "5.00² = u² − 2(10)(15) → u² = 325"},
+  {"text": "Find the maximum height using v² = u² − 2gH with v = 0 at the top.", "equation": "H = u²/(2g) = 325/20 = 16.25 m"},
+  {"text": "Find the time to the top using v = u − gt with v = 0 at the top.", "equation": "t = u/g = √325/10 ≈ 1.80 s"}
+ ],
+ "final_answer": {"option": null, "value": "(a) 16.25 m, (b) ≈1.80 s"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Taking the given 5.00 m/s as the ground launch speed and ignoring the 15 m window height gives a maximum height of only 1.25 m."}
+ ],
+ "concept_tags": ["free fall", "equations of motion", "vertical projectile"],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-11", "at": "2026-09-11T15:10:00+05:30"}
+}

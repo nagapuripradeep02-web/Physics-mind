@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_cea13196",
+ "approach": "Integrate the velocity equation to get the displacement equation using the given value at t = 0, then differentiate velocity to get acceleration.",
+ "steps": [
+  {"text": "Integrate v with respect to time to get x, keeping the integration constant.", "equation": "v = 10 + 2t + 3t², x = 10t + t² + t³ + C"},
+  {"text": "Use the given value x = 20 m at t = 0 to find C.", "equation": "20 = 0 + 0 + 0 + C → C = 20"},
+  {"text": "Write the full displacement equation and substitute t = 1 s.", "equation": "x = t³ + t² + 10t + 20, x(1) = 1 + 1 + 10 + 20 = 32 m"},
+  {"text": "Differentiate v with respect to time to get the acceleration-time equation.", "equation": "a = dv/dt = 2 + 6t"}
+ ],
+ "final_answer": {"option": null, "value": "(a) x(1 s) = 32 m; (b) a = (2 + 6t) m/s²"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Forgetting the constant of integration and using x = t³ + t² + 10t gives x(1) = 12 m instead of 32 m."},
+  {"option": null, "text": "Integrating v instead of differentiating it to find acceleration gives a wrong result for part (b)."}
+ ],
+ "concept_tags": ["integration of velocity", "differentiation for acceleration", "initial condition"],
+ "difficulty": "easy",
+ "mistake_type_hint": "calculation",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-02", "at": "2026-09-11T00:00:00+05:30"}
+}

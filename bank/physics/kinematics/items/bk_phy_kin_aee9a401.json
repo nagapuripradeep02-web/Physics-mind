@@ -1,0 +1,81 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_aee9a401",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "The velocity vector of a moving body at time t is expressed as v = (2 î + 2t ĵ) m/s. Assuming the body starts from the origin at t = 0, calculate its acceleration vector and displacement vector at t = 1 s. Furthermore, explain whether the kinematic relation v = u + at is applicable to this motion.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "velocity given by v = (2 î + 2t ĵ) m/s",
+   "time t = 1 s",
+   "motion starts from t = 0 s"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Differentiate v to check whether the acceleration is constant, then integrate v for the displacement.",
+  "steps": [
+   {
+    "text": "Differentiate v with respect to time to get the acceleration.",
+    "equation": "a = dv/dt = 2ĵ m/s²"
+   },
+   {
+    "text": "The acceleration is constant in magnitude and direction for every t, even though v itself changes direction with time.",
+    "equation": "a = 2ĵ m/s² for all t"
+   },
+   {
+    "text": "Integrate v with respect to time from 0 to 1 s to get the displacement.",
+    "equation": "s = ∫₀¹(2î+2tĵ)dt = (2î + ĵ) m"
+   },
+   {
+    "text": "Since the acceleration is constant, v = u + at can be applied; checking it at t = 1 s confirms this matches v(1).",
+    "equation": "u + at = 2î + 2ĵ = v(1), so yes, v = u + at applies"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "a = 2ĵ m/s²; displacement = (2î + ĵ) m; yes, v = u + at can be applied because a is constant"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Assuming v = u + at cannot be applied because the velocity's direction changes with time, without checking whether the acceleration itself is constant."
+   }
+  ],
+  "concept_tags": [
+   "vectors",
+   "constant acceleration",
+   "equations of motion"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "241ee20d757e2360cd5a7f2c98afd2bfe2cc238674ce619dbc586a99b694a06e"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "1e390c7ab54cdf58ba50b275db89562d8d9ea812ac1574f21a3294d9485a06b3",
+  "audited_by": "W01-U-kin-01"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-06",
+  "at": "2026-09-11T16:00:00+05:30"
+ }
+}

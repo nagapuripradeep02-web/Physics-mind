@@ -1,0 +1,96 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_4add3c28",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "An automobile travels along a straight line under uniform acceleration. It takes 6.00 s to travel the 60.0 m separation between two specific locations, reaching a speed of 15.0 m/s at the second location.",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "Calculate the speed of the automobile as it clears the initial point."
+   },
+   {
+    "label": "b",
+    "asks": "Determine the magnitude of its acceleration."
+   },
+   {
+    "label": "c",
+    "asks": "Find the distance behind the initial point at which the automobile was at rest."
+   }
+  ],
+  "conditions": [
+   "constant acceleration",
+   "motion in a straight line",
+   "separation between two points = 60.0 m",
+   "time interval = 6.00 s",
+   "speed at second point = 15.0 m/s"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Use the average of the two end speeds to find the first speed, then the definition of acceleration, then v² = u² + 2as backward to the point of rest.",
+  "steps": [
+   {
+    "text": "For constant acceleration, average velocity equals the average of the initial and final speeds; find it from the distance and time given.",
+    "equation": "v_avg = 60/6 = 10 m/s"
+   },
+   {
+    "text": "Solve for the speed at the first point using v_avg = (v₁ + v₂)/2.",
+    "equation": "(a) v₁ = 2(10) − 15 = 5.00 m/s"
+   },
+   {
+    "text": "Find the acceleration from the change in speed over the 6.00 s.",
+    "equation": "(b) a = (15.0 − 5.00)/6.00 = 5/3 ≈ 1.67 m/s²"
+   },
+   {
+    "text": "Use v₁² = 2a·d to find the distance travelled from rest to the first point.",
+    "equation": "(c) d = v₁²/(2a) = 25.0/(10/3) = 7.50 m"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) 5.00 m/s, (b) 5/3 m/s² ≈ 1.67 m/s², (c) 7.50 m"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Treating the distance divided by time, 60/6 = 10 m/s, as the speed at the first point instead of the average speed over the interval gives the wrong value for part (a)."
+   }
+  ],
+  "concept_tags": [
+   "equations of motion",
+   "average velocity",
+   "constant acceleration"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "a1895039dee05b57af92d3cf46e1da1d120402c7cee3c1a8ce16b26f32602d49"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "6e7d8959bce3bf3204c43b91187f7156d88e691470c5f34b0130ffbf380df9f7",
+  "audited_by": "W01-U-kin-07"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-11",
+  "at": "2026-09-11T15:11:00+05:30"
+ }
+}

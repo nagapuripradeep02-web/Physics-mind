@@ -1,0 +1,16 @@
+{
+ "question_id": "kin_afc24644",
+ "item_sha": "5fdd3b803fbe329f4f902ec8465164f4876cf1c1eea1a3e738c2a1bb2fbfe3fc",
+ "auditor_option": null,
+ "auditor_value": "a-t: +5 m/s² (0–2 s), 0 (2–4 s), −5 m/s² (4–8 s), +5 m/s² (8–10 s). s-t: (0,−10), (2,0), (4,20), (6,30 peak), (8,20), (10,10) m; parabolic 0–2 s, straight 2–4 s, parabolic 4–8 s and 8–10 s.",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-kin-08",
+  "at": "2026-09-11T18:40:00+05:30"
+ }
+}

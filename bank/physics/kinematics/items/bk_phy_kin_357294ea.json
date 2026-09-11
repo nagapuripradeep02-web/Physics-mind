@@ -1,0 +1,90 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_357294ea",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "assertion_reason",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "Assertion: For two particles traveling along a straight path, the displacements vary with time as s₁ = 2t − 4t² and s₂ = − 2t + 4t². The relative velocity between them continually increases.\nReason: An object's speed grows whenever its velocity and acceleration have the same sign.",
+  "options": {
+   "1": "If both Assertion and Reason are true and the Reason is correct explanation of the Assertion.",
+   "2": "If both Assertion and Reason are true but Reason is not the correct explanation of Assertion.",
+   "3": "If Assertion is true, but the Reason is false.",
+   "4": "If Assertion is false but the Reason is true."
+  },
+  "parts": null,
+  "conditions": [
+   "motion in a straight line",
+   "displacement function s₁ = 2t − 4t²",
+   "displacement function s₂ = − 2t + 4t²"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Differentiate both displacement equations to get the relative velocity and relative acceleration, then check their signs at t = 0.",
+  "steps": [
+   {
+    "text": "Differentiate each displacement equation to get the two velocities.",
+    "equation": "v₁ = 2 − 8t, v₂ = −2 + 8t"
+   },
+   {
+    "text": "Find the relative velocity of particle 1 with respect to particle 2.",
+    "equation": "v_rel = v₁ − v₂ = 4 − 16t"
+   },
+   {
+    "text": "Differentiate again to get the relative acceleration, which is constant.",
+    "equation": "a_rel = dv_rel/dt = −16"
+   },
+   {
+    "text": "At t = 0, v_rel = +4 and a_rel = −16 have opposite signs, so by the Reason's own rule the relative speed decreases at first instead of increasing throughout.",
+    "equation": "v_rel(0) = 4, a_rel = −16, opposite signs"
+   },
+   {
+    "text": "The Assertion is therefore false, while the Reason states a true general rule about velocity and acceleration signs.",
+    "equation": "final answer: option (d)"
+   }
+  ],
+  "final_answer": {
+   "option": 4,
+   "value": "Assertion is false but the Reason is true."
+  },
+  "common_mistakes": [
+   {
+    "option": 1,
+    "text": "Seeing a nonzero constant relative acceleration and assuming the relative speed must keep increasing, without checking the signs of v_rel and a_rel at t = 0, wrongly marks both statements true."
+   }
+  ],
+  "concept_tags": [
+   "relative velocity",
+   "acceleration",
+   "equations of motion"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "adf4cca89bfd05b0620e6da0f9ae747bd4f5b96134c024265e81578523a55aa5"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "4dbfff9789b5a618c0c738c5a9872a21167d39a636414dfd2ba485bf6d9024b7",
+  "audited_by": "W01-U-kin-08"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-08",
+  "at": "2026-09-11T14:20:00+05:30"
+ }
+}

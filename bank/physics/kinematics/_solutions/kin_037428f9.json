@@ -1,0 +1,23 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_037428f9",
+ "approach": "For shortest time row straight across; for reaching the point directly opposite, angle the boat upstream so the along-river components cancel.",
+ "steps": [
+  {"text": "For the shortest time, row the boat straight across the river, perpendicular to the bank, using the full rowing speed to cross.", "equation": "t₁ = width / v_br = 30 / 5 = 6 s"},
+  {"text": "The net velocity of the boatman is the vector sum of the across and along components, and the drift is the along part times the time.", "equation": "v_net = √(5² + 4²) = √41 ≈ 6.4 m/s, drift = 4 × 6 = 24 m"},
+  {"text": "To land directly opposite, the boat must be rowed upstream at an angle θ so its along-river component cancels the river current.", "equation": "sin θ = v_r / v_br = 4/5, θ = 53°"},
+  {"text": "The resulting net speed across the river is the rowing speed times cos θ, and the crossing time follows.", "equation": "v_b = 5 cos 53° = 3 m/s, t₂ = 30 / 3 = 10 s"},
+  {"text": "Rowing 10 m up the stream and back uses the speeds relative to the ground on each leg, since the boat moves along the river direction.", "equation": "t₃ = 10 / (5 − 4) + 10 / (5 + 4) = 10 + 10/9"},
+  {"text": "Add the two times together for the total time up and back.", "equation": "t₃ = 100/9 s ≈ 11.1 s"}
+ ],
+ "final_answer": {"option": null, "value": "(a) t = 6 s, net velocity ≈ 6.4 m/s, drift = 24 m; (b) yes, row at 53° to the perpendicular (upstream) with t = 10 s; (c) t ≈ 11.1 s"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Using 5 + 4 = 9 m/s for the upstream-and-back leg speeds instead of 5 − 4 and 5 + 4 separately gives a wrong total time."},
+  {"option": null, "text": "Taking the net velocity for shortest-time crossing as only 5 m/s, ignoring the river current, gives a wrong resultant speed."}
+ ],
+ "concept_tags": ["relative velocity", "river crossing", "vector resolution"],
+ "difficulty": "hard",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-03", "at": "2026-09-11T15:30:00+05:30"}
+}

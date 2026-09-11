@@ -1,0 +1,11 @@
+{
+ "question_id": "kin_10910ccf",
+ "item_sha": "909f84f3f8ba906538f4536c4f0fa36ccd3bc8f669e650f069eeb2900398ce97",
+ "auditor_option": null,
+ "auditor_value": "(a) about 23.6 degrees west of north; (b) about 2.18 h (2 h 11 min)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-kin-01", "at": "2026-09-11T06:32:00+05:30"}
+}

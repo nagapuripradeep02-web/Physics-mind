@@ -1,0 +1,16 @@
+{
+ "question_id": "kin_199747d3",
+ "item_sha": "39b62f6ffb93467cce3f6e73b0fbf9f3a03a783731d1119a16adc0d22395ff40",
+ "auditor_option": null,
+ "auditor_value": "(a) 60 cm/s^2; (b) 1287 cm (12.87 m)",
+ "findings": [
+  {"grade": "weak", "field": "common_mistakes[1].text",
+   "quote": "Subtracting the velocity at t = 8 s from the velocity at t = 5 s instead of integrating gives 369 cm instead of 1287 cm.",
+   "note": "The order of subtraction is reversed: subtracting v(8) from v(5) gives 258 - 627 = -369, not +369. The error described is real (taking the velocity change instead of the integral) but the wording names the wrong difference.",
+   "fix": "Subtracting the velocity at t = 5 s from the velocity at t = 8 s instead of integrating gives 369 cm instead of 1287 cm."}
+ ],
+ "verdict": "weak",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-kin-01", "at": "2026-09-11T06:22:00+05:30"}
+}

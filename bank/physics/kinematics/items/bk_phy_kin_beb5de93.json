@@ -1,0 +1,96 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_beb5de93",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A stream of water has a width of 20 m and flows at 3 m/s. A small boat moves with a speed of 2√2 m/s relative to the water, directed at an angle of 45° with respect to the downstream flow.",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "Calculate the time needed for the boat to reach the opposite side."
+   },
+   {
+    "label": "b",
+    "asks": "Find the distance from the point straight across from the initial position to where the boat arrives on the opposite bank."
+   }
+  ],
+  "conditions": [
+   "width of river = 20 m",
+   "speed of river current = 3 m/s",
+   "boat speed relative to water = 2√2 m/s",
+   "direction of boat relative to river current = 45°",
+   "constant velocities"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Resolve the boat's velocity relative to water across and along the river; the across part fixes the crossing time, and the along part adds to the current to fix drift.",
+  "steps": [
+   {
+    "text": "Resolve the boat's velocity relative to water, 2√2 m/s at 45° to the current, into components across and along the river.",
+    "equation": "v_across = 2√2 sin45° = 2 m/s, v_along = 2√2 cos45° = 2 m/s"
+   },
+   {
+    "text": "The crossing time depends only on the across component, since that is what closes the 20 m width.",
+    "equation": "t = 20 m / 2 m/s = 10 s"
+   },
+   {
+    "text": "The ground velocity along the river is the current plus the boat's own along-river component, since both point the same way.",
+    "equation": "v_ground,along = 3 m/s + 2 m/s = 5 m/s"
+   },
+   {
+    "text": "The drift is this along-river ground velocity times the crossing time; state both results.",
+    "equation": "drift = 5 m/s × 10 s = 50 m"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) 10 s, (b) 50 m"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Using only the current speed for the drift and ignoring the boat's own along-river component gives 30 m instead of 50 m."
+   },
+   {
+    "option": null,
+    "text": "Using the full boat speed 2√2 m/s instead of only its across-river component to find the crossing time gives 7.1 s instead of 10 s."
+   }
+  ],
+  "concept_tags": [
+   "river-boat problem",
+   "relative velocity",
+   "vector resolution"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "b344532951543347b9963236c8b753f91e4705250a58042f0d60e6601254910f"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "2f775743521e53a32040c52ff33456b94d4ccaa9c7be84dfff1b945465eaf0f2",
+  "audited_by": "W01-U-kin-08"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-07",
+  "at": "2026-09-11T14:19:00+05:30"
+ }
+}

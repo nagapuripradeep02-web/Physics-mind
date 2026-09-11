@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_773bdab6",
+ "approach": "Find the head-start time of the first stone, write each stone's arrival time at the bottom in terms of the tower height, and set them equal.",
+ "steps": [
+  {"text": "The first stone falls 5 m before the second stone is released. Find this time from the free-fall equation.", "equation": "5 = ½(10)t₁² → t₁ = 1 s"},
+  {"text": "Let H be the tower height. The first stone reaches the bottom at time T given by falling the full height H, and the second stone (released 1 s later, from 25 m below the top) reaches the bottom after falling (H − 25) m.", "equation": "T = √(H/5), t₂ = √((H−25)/5)"},
+  {"text": "Both stones reach the bottom at the same instant, so the second stone's fall time plus its 1 s delay equals the first stone's total fall time.", "equation": "√(H/5) = 1 + √((H−25)/5)"},
+  {"text": "Solve this equation for H.", "equation": "H = 45 m",
+   "why_this_step": "Checking: T = √(45/5) = 3 s, and t₂ = √(20/5) = 2 s, so the second stone arrives at 1 + 2 = 3 s, matching T."}
+ ],
+ "final_answer": {"option": null, "value": "45 m"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Using the linear relation t = d/g instead of d = ½gt² for the first stone's 5 m fall gives t₁ = 0.5 s instead of the correct 1 s."}
+ ],
+ "concept_tags": ["free fall", "relative timing", "equations of motion"],
+ "difficulty": "hard",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-11", "at": "2026-09-11T15:08:00+05:30"}
+}

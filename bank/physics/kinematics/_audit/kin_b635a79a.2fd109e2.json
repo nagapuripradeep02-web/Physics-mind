@@ -1,0 +1,16 @@
+{
+ "question_id": "kin_b635a79a",
+ "item_sha": "2fd109e2f5a57d9bbc28d0809d5b17a73199775fe81afc0a0b849c58ee1e03f7",
+ "auditor_option": null,
+ "auditor_value": "5√2 km ≈ 7.07 km, after 0.25 h = 15 min",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-kin-08",
+  "at": "2026-09-11T18:40:00+05:30"
+ }
+}

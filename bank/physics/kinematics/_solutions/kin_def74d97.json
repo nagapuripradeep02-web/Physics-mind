@@ -1,0 +1,42 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_def74d97",
+ "approach": "Zero acceleration keeps the velocity vector fixed in direction, so the particle travels along one straight line however many components its velocity has.",
+ "steps": [
+  {
+   "text": "The acceleration is zero, so the velocity vector never changes in magnitude or direction.",
+   "equation": "a = 0 ⇒ v = constant vector"
+  },
+  {
+   "text": "A velocity that never changes direction means the particle travels along a single fixed straight line in space.",
+   "equation": null
+  },
+  {
+   "text": "A straight-line path is one-dimensional motion, regardless of how many axis components the velocity vector has.",
+   "equation": "motion is 1-D"
+  }
+ ],
+ "final_answer": {
+  "option": null,
+  "value": "1-D motion (straight-line motion)."
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": null,
+   "text": "Calling it 3-D motion because the velocity vector has three nonzero components, instead of checking that its direction stays fixed."
+  }
+ ],
+ "concept_tags": [
+  "dimensionality of motion",
+  "constant velocity"
+ ],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-01",
+  "at": "2026-09-11T15:04:00+05:30"
+ }
+}

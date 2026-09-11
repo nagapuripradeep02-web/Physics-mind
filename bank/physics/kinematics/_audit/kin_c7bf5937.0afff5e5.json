@@ -1,0 +1,16 @@
+{
+ "question_id": "kin_c7bf5937",
+ "item_sha": "0afff5e5046b9514d8ae36b42a1cd036dcc8ace6e7d33f5130302e6a9b619b17",
+ "auditor_option": 2,
+ "auditor_value": "(b) The particle returns to its starting point at t = 2 s (signed area over 0–2 s is zero; average speed is 5 m/s, not zero; the v–t graph cannot fix the starting position)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-kin-02-R1",
+  "at": "2026-09-11T10:08:35+05:30"
+ }
+}

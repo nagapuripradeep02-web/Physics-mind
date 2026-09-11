@@ -1,0 +1,46 @@
+{
+ "approach": "Find the total distance needed for the whole trip's average speed, subtract the distance already covered, and divide by the remaining time.",
+ "steps": [
+  {
+   "text": "Convert the total trip time to seconds and find the total distance needed for an average speed of 21 m/s over the whole 60 min trip.",
+   "equation": "t_total = 3600 s, d_total = 21 × 3600 = 75600 m"
+  },
+  {
+   "text": "Find the distance covered in the first 18 min at 11 m/s.",
+   "equation": "t₁ = 1080 s, d₁ = 11 × 1080 = 11880 m"
+  },
+  {
+   "text": "Find the distance that must be covered in the remaining 42 min.",
+   "equation": "d₂ = 75600 − 11880 = 63720 m"
+  },
+  {
+   "text": "Divide this distance by the remaining time to get the required average speed.",
+   "equation": "t₂ = 2520 s, v₂ = 63720/2520 ≈ 25.3 ms⁻¹"
+  }
+ ],
+ "final_answer": {
+  "option": 1,
+  "value": "25.3 ms⁻¹"
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": 3,
+   "text": "Assuming the required speed is twice the target average speed minus the first-phase speed, using 2 × 21 − 11 = 31 ms⁻¹ instead of weighting by the actual times."
+  }
+ ],
+ "concept_tags": [
+  "average speed",
+  "distance and time"
+ ],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_c3c8a6b0",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-08",
+  "at": "2026-09-11T14:20:00+05:30"
+ }
+}

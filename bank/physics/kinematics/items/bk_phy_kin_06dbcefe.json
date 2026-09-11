@@ -1,0 +1,83 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_06dbcefe",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "mcq_single",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "The position of an object traveling along a straight path varies with time according to the relation x = 32t − (8/3)t³, where the coordinate x is in metres and time t is in seconds. Determine its acceleration at the moment it momentarily comes to a stop.",
+  "options": {
+   "1": "− 16 ms⁻²",
+   "2": "− 32 ms⁻²",
+   "3": "32 ms⁻²",
+   "4": "16 ms⁻²"
+  },
+  "parts": null,
+  "conditions": [
+   "motion along a straight line",
+   "position given by x = 32t − (8/3)t³",
+   "x is in metres and t in seconds",
+   "evaluated at the instant the particle is at rest"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Differentiate the position function to get velocity, find the time the particle is at rest, then differentiate again to get acceleration at that time.",
+  "steps": [
+   {
+    "text": "Differentiate the position function to get the velocity.",
+    "equation": "v = dx/dt = 32 − 8t²"
+   },
+   {
+    "text": "Set the velocity to zero and solve for the physically valid (positive) time.",
+    "equation": "32 − 8t² = 0 → t² = 4 → t = 2 s"
+   },
+   {
+    "text": "Differentiate the velocity to get acceleration, then evaluate it at t = 2 s.",
+    "equation": "a = dv/dt = −16t → a(2) = −32 ms⁻²"
+   }
+  ],
+  "final_answer": {
+   "option": 2,
+   "value": "− 32 ms⁻²"
+  },
+  "common_mistakes": [
+   {
+    "option": 3,
+    "text": "Solving 32 − 8t² = 0 and taking the negative root t = −2 s instead of the physical t = 2 s, giving a(−2) = 32 ms⁻²."
+   }
+  ],
+  "concept_tags": [
+   "differentiation",
+   "velocity and acceleration",
+   "particle at rest"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "calculation"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "26d7cea3a3ba49747e407d21b72580ea115d09f09cc21d09df92920160809c5e"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "ae9cc61ae3c4f0a9fcca544406ad3d88c8640992221e094ba9afecd3348b5211",
+  "audited_by": "W01-U-kin-02"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-08",
+  "at": "2026-09-11T14:20:00+05:30"
+ }
+}

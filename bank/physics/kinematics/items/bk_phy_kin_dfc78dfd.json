@@ -1,0 +1,80 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_dfc78dfd",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A body moves along a path such that the initial half of the total distance is covered at a uniform speed v₁ and the remaining half is covered at a uniform speed v₂. Determine the average speed of the body for the entire trip.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "first half of total distance covered at constant speed v₁",
+   "second half of total distance covered at constant speed v₂",
+   "motion along a straight line path"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Average speed is total distance divided by total time; find the time for each half from its distance and speed, then combine.",
+  "steps": [
+   {
+    "text": "Let the total distance be 2d, so each half of the journey covers distance d.",
+    "equation": "half distance = d"
+   },
+   {
+    "text": "Find the time taken for each half from time = distance divided by speed.",
+    "equation": "t₁ = d/v₁, t₂ = d/v₂"
+   },
+   {
+    "text": "Average speed is total distance over total time.",
+    "equation": "v_avg = 2d / (d/v₁ + d/v₂)"
+   },
+   {
+    "text": "Cancel d and simplify to the standard form.",
+    "equation": "v_avg = 2v₁v₂ / (v₁ + v₂)"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "v_avg = 2v₁v₂ / (v₁ + v₂)"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Taking the plain arithmetic mean (v₁+v₂)/2, which is only correct when the two halves take equal time, not equal distance."
+   }
+  ],
+  "concept_tags": [
+   "average speed",
+   "harmonic mean"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "ecbcb24033fa87fc80d82de3d8ad75aaa2813c89da7dd291feb4452e8a84b103"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "7567df4989be922649ccb0b0d78791bf80d1df5e7d06169e9f1a2e628a42e49e",
+  "audited_by": "W01-U-kin-11"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-01",
+  "at": "2026-09-11T15:10:00+05:30"
+ }
+}

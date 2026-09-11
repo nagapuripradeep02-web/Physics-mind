@@ -1,0 +1,42 @@
+{
+ "approach": "Apply Newton's second law to each body under gravity and the same air resistance, and compare the resulting accelerations.",
+ "steps": [
+  {
+   "text": "Write the net force equation for each body falling under gravity with the same air resistance R.",
+   "equation": "m₁g − R = m₁a₁, m₂g − R = m₂a₂"
+  },
+  {
+   "text": "Solve each equation for the acceleration.",
+   "equation": "a₁ = g − R/m₁, a₂ = g − R/m₂"
+  },
+  {
+   "text": "Compare the two accelerations for unequal masses.",
+   "equation": "since m₁ ≠ m₂, R/m₁ ≠ R/m₂, so a₁ ≠ a₂"
+  },
+  {
+   "text": "Bodies dropped from the same height with different accelerations reach the ground at different times, so the Assertion is false, while the Reason correctly states that the accelerations differ.",
+   "equation": "final answer: option (d)"
+  }
+ ],
+ "final_answer": {
+  "option": 4,
+  "value": "Assertion is false but the Reason is true."
+ },
+ "confidence": "sure",
+ "common_mistakes": [],
+ "concept_tags": [
+  "free fall",
+  "air resistance",
+  "newton's second law"
+ ],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_6585ed94",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-08",
+  "at": "2026-09-11T14:20:00+05:30"
+ }
+}

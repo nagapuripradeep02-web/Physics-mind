@@ -1,0 +1,106 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_5d9cb6cb",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A body moves in a straight line along the x-axis. A position-time (x versus t) plot representing its motion is a straight line that intersects the vertical position axis at x = −20 m when t = 0 s, and crosses the horizontal time axis at t = 10 s when x = 0 m. Based on this information, analyze the motion by answering the following:",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "Determine the initial location of the particle at t = 0 s."
+   },
+   {
+    "label": "b",
+    "asks": "Calculate the velocity of the particle."
+   },
+   {
+    "label": "c",
+    "asks": "Express the position x as a function of time t."
+   },
+   {
+    "label": "d",
+    "asks": "State whether the motion has uniform or non-uniform velocity, and identify the time at which the object reaches the origin."
+   }
+  ],
+  "conditions": [
+   "motion along the x-axis",
+   "position-time graph is a straight line",
+   "x = −20 m at t = 0 s",
+   "x = 0 m at t = 10 s"
+  ],
+  "figure": {
+   "description": "A Cartesian coordinate graph showing position x (in meters) along the vertical axis against time t (in seconds) along the horizontal axis. A single straight line with a constant positive slope passes through the points (t = 0 s, x = −20 m) and (t = 10 s, x = 0 m)."
+  }
+ },
+ "solution": {
+  "approach": "Read the starting position and the slope of the straight line x-t graph, and note that a constant slope means constant velocity.",
+  "steps": [
+   {
+    "text": "Read the position at t = 0 from the graph.",
+    "equation": "x(0) = −20 m"
+   },
+   {
+    "text": "Find the slope of the line using the two given points.",
+    "equation": "slope = (0 − (−20))/(10 − 0) = 2 m/s"
+   },
+   {
+    "text": "State what the constant, positive slope means for the motion.",
+    "equation": "velocity = +2 m/s, constant, so acceleration = 0",
+    "why_this_step": "A straight line on an x-t graph means constant velocity, so the particle moves with uniform motion in the positive x-direction."
+   },
+   {
+    "text": "Read the time at which the particle crosses the origin.",
+    "equation": "x = 0 at t = 10 s"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "The particle starts at x = −20 m and moves with a constant velocity of +2 m/s (zero acceleration). The position as a function of time is x = x₀ + vt = (−20 + 2t) m, reaching x = 0 m at t = 10 s; it is in uniform motion in the positive x-direction throughout."
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Reading the y-intercept as the velocity instead of the slope gives a wrong velocity of −20 m/s."
+   },
+   {
+    "option": null,
+    "text": "Reading the intercept as +20 m instead of −20 m, ignoring its sign, gives the wrong starting position and the wrong equation x = 20 + 2t."
+   }
+  ],
+  "concept_tags": [
+   "x-t graph",
+   "uniform motion",
+   "velocity from slope"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "f1e4819e2c472afcdf05a4ea7500a15fe89292a2add36d1ca2ef5dc2651430c1"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "30f9b9dbf6147cf6266b4a42a61aa4c34a91ee737afe6a806a1da86df51de5d0",
+  "audited_by": "W01-U-kin-02-R1"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-02",
+  "at": "2026-09-11T00:00:00+05:30"
+ }
+}

@@ -1,0 +1,16 @@
+{
+ "question_id": "kin_5594bddd",
+ "item_sha": "aebbc69b5922120c7ebb2440d4c67cf2e6bc591ccd074b9c73a2f76a61faca67",
+ "auditor_option": null,
+ "auditor_value": "(a) t = 1 s; (b) 36 m",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Mistake entry checks out: dropping the ½ gives d(t) = 40 − 8t + 8t², minimum at t = 0.5 s with d = 38 m.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-kin-03",
+  "at": "2026-09-11T09:53:59+05:30"
+ }
+}

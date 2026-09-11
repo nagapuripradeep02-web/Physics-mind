@@ -1,0 +1,16 @@
+{
+ "question_id": "kin_6ff3fae5",
+ "item_sha": "af8c83844e44738208899611aea27bdd02fbcac9f58487d95c9e0886d81da087",
+ "auditor_option": 3,
+ "auditor_value": "11.25 m",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "common_mistakes is empty although the paper offers three wrong options; not graded, since the brief lists no grade for an absent mistake list.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-kin-05",
+  "at": "2026-09-11T04:19:11+05:30"
+ }
+}

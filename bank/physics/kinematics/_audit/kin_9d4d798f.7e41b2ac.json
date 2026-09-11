@@ -1,0 +1,16 @@
+{
+ "question_id": "kin_9d4d798f",
+ "item_sha": "7e41b2ac5b5a8993739251b0f661ee40f9872a705495c7d17333a23b993ac876",
+ "auditor_option": null,
+ "auditor_value": "(a) x = 10, 14, 18, 2, −30, −46 m at t = 0, 2, 4, 8, 12, 16 s; (b) average velocity = −3.5 m/s, average speed = 4.5 m/s; (c) average acceleration = −2 m/s²",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-kin-01-R1",
+  "at": "2026-09-11T18:40:00+05:30"
+ }
+}

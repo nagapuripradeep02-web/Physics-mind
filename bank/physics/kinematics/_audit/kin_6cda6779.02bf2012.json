@@ -1,0 +1,24 @@
+{
+ "question_id": "kin_6cda6779",
+ "item_sha": "02bf20129409dbf73ef9172bbc5fa83584cb17971dfbd8418915891013f0f706",
+ "auditor_option": null,
+ "auditor_value": "v = (10î + 7ĵ) m/s, |v| = √149 ≈ 12.2 m/s; s = (12î + 10ĵ) m, |s| = √244 ≈ 15.6 m",
+ "findings": [
+  {
+   "grade": "wrong",
+   "field": "common_mistakes[0].text",
+   "quote": "Using s = ut + at² without the half factor gives s = (12î + 12ĵ) m, with the y-component wrong.",
+   "note": "Dropping the half factor gives s = ut + at² = (4î + 6ĵ) + (16î + 8ĵ) = (20î + 14ĵ) m, not (12î + 12ĵ) m; the stated cause cannot produce the number named, and it changes both components, not only the y-component.",
+   "fix": "Using s = ut + at² without the half factor gives s = (20î + 14ĵ) m, with both components too large."
+  }
+ ],
+ "verdict": "wrong",
+ "question_defect": null,
+ "notes": "Steps, both velocity and displacement results, and the second mistake entry (u + a = 6î + 5ĵ) are correct.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-kin-04",
+  "at": "2026-09-11T12:38:00+05:30"
+ }
+}

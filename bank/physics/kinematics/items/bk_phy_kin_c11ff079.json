@@ -1,0 +1,93 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_c11ff079",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "mcq_single",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "An elevator travels upward from rest, undergoing a constant acceleration a during the initial stage of its motion, followed by a constant deceleration of 2a until it comes to a complete stop. If the entire upward journey requires a total duration t, calculate the depth of the elevator shaft.",
+  "options": {
+   "1": "at²/4",
+   "2": "at²/3",
+   "3": "at²/2",
+   "4": "at²/8"
+  },
+  "parts": null,
+  "conditions": [
+   "starts from rest",
+   "ends at rest",
+   "uniform upward acceleration a in the first stage",
+   "uniform upward deceleration 2a in the final stage",
+   "total time of ascent is t",
+   "motion is along a straight vertical line"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Use that the lift reaches the same maximum speed at the end of both phases, split the total time t between phases using that condition, then add the two distances.",
+  "steps": [
+   {
+    "text": "Let t₁ be the time of uniform acceleration a and t₂ the time of uniform retardation 2a, with t₁ + t₂ = t. The maximum speed reached is the same seen from both phases.",
+    "equation": "a t₁ = 2a t₂ → t₁ = 2t₂"
+   },
+   {
+    "text": "Combine with t₁ + t₂ = t to find each time in terms of t.",
+    "equation": "2t₂ + t₂ = t → t₂ = t/3, t₁ = 2t/3"
+   },
+   {
+    "text": "Find the maximum speed and the distance covered while accelerating.",
+    "equation": "vₘₐₓ = a(2t/3) = 2at/3, d₁ = ½a(2t/3)² = 2at²/9"
+   },
+   {
+    "text": "Find the distance covered while retarding from vₘₐₓ to rest.",
+    "equation": "d₂ = ½(2at/3)(t/3) = at²/9"
+   },
+   {
+    "text": "Add the two distances to get the total depth of the shaft.",
+    "equation": "2at²/9 + at²/9 = at²/3"
+   }
+  ],
+  "final_answer": {
+   "option": 2,
+   "value": "at²/3"
+  },
+  "common_mistakes": [
+   {
+    "option": 1,
+    "text": "Assuming the acceleration phase and the retardation phase take equal time (t/2 each) instead of using the equal-maximum-speed condition, which gives at²/4."
+   }
+  ],
+  "concept_tags": [
+   "equations of motion",
+   "two-phase motion",
+   "maximum velocity"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "ea90541104659035deb5b9f320902248c06f93e36a4c1b695dcd54a1998c9ea6"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "87a5d81ba97b226bd6d580d22a4f70a53bd106d3668a7188bc300179a83c1b42",
+  "audited_by": "W01-U-kin-11"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-09",
+  "at": "2026-09-11T15:09:00+05:30"
+ }
+}

@@ -1,0 +1,99 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_664c7f6b",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "Along a straight horizontal line parallel to the positive x-axis, two bodies labeled 1 and 2 are in motion. Initially, body 1 is positioned 40 m to the left of body 2. At the initial instant, body 1 moves with a speed of 12 m/s and experiences a constant acceleration of 4 m/s², while body 2 moves with a speed of 4 m/s and has a constant acceleration of 12 m/s², with all velocities and accelerations oriented toward the positive x-direction. Determine:",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "the instant at which the separation between the two bodies reaches its smallest value."
+   },
+   {
+    "label": "b",
+    "asks": "the smallest separation between the two bodies."
+   }
+  ],
+  "conditions": [
+   "motion along positive x-axis",
+   "particle 1 starts 40 m behind particle 2",
+   "initial velocity of particle 1 is 12 m/s in +x direction",
+   "constant acceleration of particle 1 is 4 m/s² in +x direction",
+   "initial velocity of particle 2 is 4 m/s in +x direction",
+   "constant acceleration of particle 2 is 12 m/s² in +x direction"
+  ],
+  "figure": {
+   "description": "A horizontal straight line representing the x-axis points to the right as the positive direction. Body 1 is located to the left with an initial velocity vector of 12 m/s and an acceleration vector of 4 m/s² directed to the right. Body 2 is located 40 m to the right of body 1, having an initial velocity vector of 4 m/s and an acceleration vector of 12 m/s² pointing to the right."
+  }
+ },
+ "solution": {
+  "approach": "Write the separation between the two particles as a function of time and minimize it using calculus.",
+  "steps": [
+   {
+    "text": "Take particle 1 to start at x = 0 and particle 2 at x = 40 m, and write each position using its own velocity and acceleration.",
+    "equation": "x₁(t) = 12t + 2t², x₂(t) = 40 + 4t + 6t²"
+   },
+   {
+    "text": "The separation is particle 2's position minus particle 1's position.",
+    "equation": "d(t) = x₂ − x₁ = 40 − 8t + 4t²"
+   },
+   {
+    "text": "The separation is minimum when its rate of change with time is zero.",
+    "equation": "d'(t) = −8 + 8t = 0, t = 1 s"
+   },
+   {
+    "text": "Substitute t = 1 s into the separation equation to get the minimum distance.",
+    "equation": "d(1) = 40 − 8 + 4 = 36 m"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) t = 1 s, (b) 36 m"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Writing the position as vt + at² instead of vt + ½at² gives a minimum at t = 0.5 s and a wrong minimum distance of 38 m."
+   },
+   {
+    "option": null,
+    "text": "Taking the initial separation of 40 m as the minimum distance, without checking that the gap first closes and then opens again."
+   }
+  ],
+  "concept_tags": [
+   "equations of motion",
+   "relative motion",
+   "minimization"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "5594bddde1abb073fc33f1f5fe78fcf48d2f04cff825cc5d36a424e88cc08400"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "aebbc69b5922120c7ebb2440d4c67cf2e6bc591ccd074b9c73a2f76a61faca67",
+  "audited_by": "W01-U-kin-03"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-03",
+  "at": "2026-09-11T15:30:00+05:30"
+ }
+}

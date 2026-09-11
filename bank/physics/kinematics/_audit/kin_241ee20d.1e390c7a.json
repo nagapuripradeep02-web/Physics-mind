@@ -1,0 +1,11 @@
+{
+ "question_id": "kin_241ee20d",
+ "item_sha": "1e390c7ab54cdf58ba50b275db89562d8d9ea812ac1574f21a3294d9485a06b3",
+ "auditor_option": null,
+ "auditor_value": "a = 2 j m/s^2; displacement at t = 1 s is (2 i + 1 j) m; yes, v = u + at applies because the acceleration is constant",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-kin-01", "at": "2026-09-11T06:26:00+05:30"}
+}

@@ -1,0 +1,84 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_fdd2b4c5",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "The variation of velocity with time for an object traveling along a straight path is provided in the figure. Given that its position coordinate is s = 20 m at t = 0, construct the corresponding acceleration versus time (a-t) and position versus time (s-t) graphs for the entire motion.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "motion in a straight line",
+   "at t = 0, position s = 20 m",
+   "velocity-time profile consists of linear segments from t = 0 to t = 14 s"
+  ],
+  "figure": {
+   "description": "A plot of velocity v (m/s) versus time t (s) consisting of connected straight line segments: from t = 0 to 4 s, v remains constant at −20 m/s; from t = 4 to 6 s, v rises linearly from −20 m/s to 0 m/s; from t = 6 to 8 s, v falls linearly from 0 m/s to −20 m/s; from t = 8 to 12 s, v increases linearly from −20 m/s to +20 m/s, crossing v = 0 at t = 10 s; from t = 12 to 14 s, v decreases linearly from +20 m/s to 0 m/s."
+  }
+ },
+ "solution": {
+  "approach": "Find acceleration as the slope of each straight segment of the v-t graph, then build the s-t graph by adding the signed area under v-t to the starting position.",
+  "steps": [
+   {
+    "text": "Find acceleration on each segment as the slope of the v-t line.",
+    "equation": "a = 0 (0–4 s), a = 10 m/s² (4–6 s), a = −10 m/s² (6–8 s), a = 10 m/s² (8–12 s), a = −10 m/s² (12–14 s)"
+   },
+   {
+    "text": "Start the position at s = 20 m at t = 0 and add the area under v-t up to each breakpoint.",
+    "equation": "s(0) = 20 m, s(4) = −60 m, s(6) = −80 m, s(8) = −100 m, s(12) = −100 m, s(14) = −80 m"
+   },
+   {
+    "text": "Between breakpoints the s-t graph is straight while v is constant, and curved while v is changing linearly.",
+    "equation": "straight falling line for 0≤t≤4 s; curved between 4 and 12 s with a minimum s = −120 m at t = 10 s (where v = 0); curved between 12 and 14 s",
+    "why_this_step": "The minimum of the s-t graph occurs exactly where the velocity crosses zero."
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "a-t graph: a = 0 from t = 0–4 s, a = 10 m/s² from t = 4–6 s, a = −10 m/s² from t = 6–8 s, a = 10 m/s² from t = 8–12 s, a = −10 m/s² from t = 12–14 s (a step graph). s-t graph passes through (0,20), (4,−60), (6,−80), (8,−100), (10,−120) [minimum, since v = 0 here], (12,−100), (14,−80) m — a straight falling line from t = 0–4 s, and curves elsewhere."
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Assuming the particle keeps moving in the same direction throughout, instead of recognising the minimum position occurs at t = 10 s where the velocity is zero."
+   },
+   {
+    "option": null,
+    "text": "Drawing the s-t segment from t = 0 s to t = 4 s as a curve, when the velocity is constant there and the position actually falls in a straight line."
+   }
+  ],
+  "concept_tags": [
+   "v-t graph",
+   "a-t graph from slope",
+   "s-t graph from area under v-t"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "f5577de4050c2633b4c04f359534d008bd6ddf7bf3d3d1bb9d8cb931b5bfc521"
+ },
+ "verification": {
+  "key_match": false,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "8a44fb0e65829cbfb873ce7918b2d183e27b0f613c29f46ddac811492680a8c3",
+  "audited_by": "W01-U-kin-12"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-12",
+  "at": "2026-09-11T16:15:00+05:30"
+ }
+}

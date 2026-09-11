@@ -1,0 +1,19 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_7fbc29b5",
+ "approach": "A lift descending means its velocity points downward; its speed increasing while descending means the acceleration must point in the same direction as the velocity.",
+ "steps": [
+  {"text": "The lift is descending, so its velocity is directed downward.", "equation": "velocity: downward"},
+  {"text": "The speed is increasing while the lift moves downward, so the acceleration must act in the same sense as the velocity to speed the lift up rather than slow it down.", "equation": "acceleration: downward",
+   "why_this_step": "When acceleration points in the same direction as velocity, speed increases; when it points opposite, speed decreases."}
+ ],
+ "final_answer": {"option": null, "value": "Both the velocity and the acceleration of the lift are directed downward."},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Assuming a descending object must always have an upward (retarding) acceleration confuses this case with a lift that is slowing down while descending, not speeding up."}
+ ],
+ "concept_tags": ["direction of velocity and acceleration", "speeding up versus slowing down"],
+ "difficulty": "easy",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-04", "at": "2026-09-11T01:05:00+05:30"}
+}

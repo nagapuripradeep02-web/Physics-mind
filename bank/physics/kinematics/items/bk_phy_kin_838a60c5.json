@@ -1,0 +1,102 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_838a60c5",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "An object moves in the x-y plane starting from the location (4 m, 10 m) at t = 0. Its initial velocity vector is given by u = (4î + 8ĵ) m/s, and it experiences a constant acceleration of a = (2î − 4ĵ) m/s². Determine:",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "the instant of time at which the object intersects the x-axis."
+   },
+   {
+    "label": "b",
+    "asks": "the value of its x-coordinate at that specific moment."
+   },
+   {
+    "label": "c",
+    "asks": "its velocity vector at that exact time."
+   }
+  ],
+  "conditions": [
+   "motion in x-y plane",
+   "initial position (x₀, y₀) = (4 m, 10 m)",
+   "initial velocity u = (4î + 8ĵ) m/s",
+   "constant acceleration a = (2î − 4ĵ) m/s²",
+   "crossing the x-axis corresponds to y = 0"
+  ],
+  "figure": {
+   "description": "A 2D Cartesian coordinate plane showing a particle initially at point P(4 m, 10 m). Vectors drawn at point P indicate an initial velocity component of 4 m/s and an acceleration component of 2 m/s² along the positive x-axis, an initial velocity component of 8 m/s along the positive y-axis, and an acceleration component of 4 m/s² along the negative y-axis."
+  }
+ },
+ "solution": {
+  "approach": "Write the y-coordinate as a function of time and find when it becomes zero, then use that time in the x-coordinate and velocity equations.",
+  "steps": [
+   {
+    "text": "Write the y-coordinate using the initial y-position, initial y-velocity, and y-acceleration.",
+    "equation": "y(t) = 10 + 8t − 2t²"
+   },
+   {
+    "text": "Set y(t) = 0 to find when the particle crosses the x-axis, and solve the quadratic, keeping the positive root.",
+    "equation": "2t² − 8t − 10 = 0 → t² − 4t − 5 = 0 → t = 5 s"
+   },
+   {
+    "text": "Write the x-coordinate using the initial x-position, initial x-velocity, and x-acceleration, and substitute t = 5 s.",
+    "equation": "x(t) = 4 + 4t + t², x(5) = 4 + 20 + 25 = 49 m"
+   },
+   {
+    "text": "Find the velocity components at t = 5 s using the given accelerations, then combine them for the speed.",
+    "equation": "v_x = 4 + 2(5) = 14 m/s, v_y = 8 − 4(5) = −12 m/s"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) t = 5 s, (b) x = 49 m, (c) v = (14î − 12ĵ) m/s, speed ≈ 18.4 m/s"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Taking t = −1 s, the other root of the quadratic, as the crossing time, which is not physical."
+   },
+   {
+    "option": null,
+    "text": "Writing the x-acceleration term as 2t² instead of ½(2)t² = t² gives x(5) = 4 + 20 + 50 = 74 m."
+   }
+  ],
+  "concept_tags": [
+   "equations of motion",
+   "vector motion",
+   "2D kinematics"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "calculation"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "91b468942f0057b533605254d9ecd1119df8b5d51bf5a9a066628721d1956bac"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "96c6b538578c28e68b084f2d7aecd0a14d596bfd043f2e0874e48d5305a069ea",
+  "audited_by": "W01-U-kin-06"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-03",
+  "at": "2026-09-11T15:30:00+05:30"
+ }
+}

@@ -1,0 +1,16 @@
+{
+ "question_id": "kin_d592c9e9",
+ "item_sha": "d26ae9bf1bae5e67e1bdd54b39cde7ae8656556c24ceea7771b32ce8ee823585",
+ "auditor_option": null,
+ "auditor_value": "(a) v_max = αβt/(α + β); (b) distance = αβt²/[2(α + β)]",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-kin-10",
+  "at": "2026-09-11T09:53:33+05:30"
+ }
+}

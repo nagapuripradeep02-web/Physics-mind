@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_afc24644",
+ "approach": "Read the slope of each straight segment of the v-t graph for acceleration, and add the signed area under v-t to the initial position for the s-t graph.",
+ "steps": [
+  {"text": "Find acceleration on each segment as the slope of the v-t line; the acceleration graph is a step function.", "equation": "a = 5 m/s² (0–2 s), a = 0 (2–4 s), a = −5 m/s² (4–8 s), a = 5 m/s² (8–10 s)"},
+  {"text": "Start the position at s = −10 m at t = 0 and add the area under v-t up to each breakpoint.", "equation": "s(0) = −10 m, s(2) = 0, s(4) = 20 m, s(6) = 30 m, s(8) = 20 m, s(10) = 10 m"},
+  {"text": "Between breakpoints, the s-t graph is a parabola while v is changing, and a straight line while v is constant.", "equation": "s(t) = −10 + 2.5t² for 0≤t≤2 s; s(t) = 10t − 20 for 2≤t≤4 s; curved between 4 and 8 s with a peak s = 30 m at t = 6 s (where v = 0); curved between 8 and 10 s",
+   "why_this_step": "The s-t curve bends wherever v itself is changing, and is straight only while v is constant."}
+ ],
+ "final_answer": {"option": null, "value": "a-t graph: a = 5 m/s² from t = 0–2 s, a = 0 from t = 2–4 s, a = −5 m/s² from t = 4–8 s, a = 5 m/s² from t = 8–10 s (a step graph). s-t graph passes through (0,−10), (2,0), (4,20), (6,30) [peak, since v = 0 here], (8,20), (10,10) m — a rising parabola from t = 0–2 s, a straight rising line from t = 2–4 s, and parabolic curves from t = 4–8 s and t = 8–10 s."},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Treating the s-t graph as straight lines between every pair of breakpoints instead of a curve wherever the velocity is itself changing."},
+  {"option": null, "text": "Missing that acceleration is zero during the constant-velocity segment from t = 2 s to t = 4 s, and drawing a nonzero acceleration there instead."}
+ ],
+ "concept_tags": ["v-t graph", "a-t graph from slope", "s-t graph from area under v-t"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-12", "at": "2026-09-11T16:12:00+05:30"}
+}

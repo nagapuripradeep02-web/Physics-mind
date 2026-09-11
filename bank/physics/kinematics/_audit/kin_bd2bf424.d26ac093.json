@@ -1,0 +1,16 @@
+{
+ "question_id": "kin_bd2bf424",
+ "item_sha": "d26ac0939b6483c9fd553a7a614fdf0870ac1cb9cebff49ed4c4c46e975b11e6",
+ "auditor_option": null,
+ "auditor_value": "Circular motion and projectile motion",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-kin-01-R1",
+  "at": "2026-09-11T18:40:00+05:30"
+ }
+}

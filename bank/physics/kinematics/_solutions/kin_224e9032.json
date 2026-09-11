@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_224e9032",
+ "approach": "Write the position of each car as a function of time from a common origin and solve for the time at which the two positions become equal.",
+ "steps": [
+  {"text": "Place car A at the origin at t = 0, with car B 10 m ahead of it. Car A starts from rest with constant acceleration; car B moves at constant velocity.", "equation": "x_A(t) = ½ × 4 × t² = 2t², x_B(t) = 10 + 1×t"},
+  {"text": "Car A overtakes car B when their positions are equal.", "equation": "2t² = 10 + t → 2t² − t − 10 = 0"},
+  {"text": "Solve the quadratic equation for t.", "equation": "t = [1 ± √(1 + 80)]/4 = [1 ± 9]/4"},
+  {"text": "Keep only the positive root, since time cannot be negative.", "equation": "t = 10/4 = 2.5 s"}
+ ],
+ "final_answer": {"option": null, "value": "t = 2.5 s"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Keeping the negative root t = −2 s instead of discarding it can lead to picking the wrong sign in the final answer."},
+  {"option": null, "text": "Writing car A's position as 4t² instead of 2t² by forgetting the half in ½at² gives a wrong quadratic and a wrong time."}
+ ],
+ "concept_tags": ["relative motion", "equations of motion", "quadratic equation in kinematics"],
+ "difficulty": "medium",
+ "mistake_type_hint": "calculation",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-02", "at": "2026-09-11T00:00:00+05:30"}
+}

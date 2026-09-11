@@ -1,0 +1,46 @@
+{
+  "schema": "eapcet_solution_v1",
+  "question_id": "kin_b88a594f",
+  "approach": "Track the x-motion over the full 4 s under its constant acceleration, and the y-motion only over the last 2 s once the second acceleration switches on.",
+  "steps": [
+    {
+      "text": "Find the x-velocity and x-displacement at t = 2 s, starting from rest with acceleration 2 m/s².",
+      "equation": "vₓ(2) = 4 m/s, x-displacement = 4 m, so x = 2 + 4 = 6 m"
+    },
+    {
+      "text": "The x-acceleration keeps acting for the next 2 s, so update x and vₓ over that interval too.",
+      "equation": "vₓ(4) = 4 + 2(2) = 8 m/s, Δx = 4(2) + ½(2)(2²) = 12 m, x(4) = 6 + 12 = 18 m"
+    },
+    {
+      "text": "The y-acceleration of 4 m/s² in the negative direction acts only over the last 2 s, starting from v_y = 0.",
+      "equation": "v_y(4) = 0 − 4(2) = −8 m/s, Δy = ½(−4)(2²) = −8 m, y(4) = 4 − 8 = −4 m"
+    },
+    {
+      "text": "Combine the x and y components for the velocity and the coordinates after the next 2 s.",
+      "equation": "(a) v = (8î − 8ĵ) m/s, |v| ≈ 11.3 m/s. (b) coordinates = (18 m, −4 m)"
+    }
+  ],
+  "final_answer": {
+    "option": null,
+    "value": "(a) v = (8î − 8ĵ) m/s, magnitude ≈ 11.3 m/s. (b) coordinates = (18 m, −4 m)"
+  },
+  "confidence": "sure",
+  "common_mistakes": [
+    {
+      "option": null,
+      "text": "Restarting the x-motion at t = 2 s and ignoring the position and velocity built up in the first 2 s gives only 4 m of x-displacement in the next 2 s, not 12 m."
+    }
+  ],
+  "concept_tags": [
+    "kinematics in two dimensions",
+    "piecewise acceleration"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "application",
+  "authored_by": {
+    "model": "sonnet",
+    "wave": 1,
+    "agent": "W01-A-kin-11",
+    "at": "2026-09-11T15:13:00+05:30"
+  }
+}

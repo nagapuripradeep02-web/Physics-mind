@@ -1,0 +1,16 @@
+{
+ "question_id": "kin_c12f3cc2",
+ "item_sha": "bef6ecb5c54678d42933173739f1042102c9fd800aa93172aceee94beb2e6ff4",
+ "auditor_option": null,
+ "auditor_value": "Straight-line (rectilinear) motion with uniform retardation; a = -v, so the vectors are collinear and the particle slows, stops and reverses along the same line",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-kin-09",
+  "at": "2026-09-11T09:50:24+05:30"
+ }
+}

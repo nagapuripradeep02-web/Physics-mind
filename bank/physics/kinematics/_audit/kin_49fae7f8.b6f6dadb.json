@@ -1,0 +1,20 @@
+{
+ "question_id": "kin_49fae7f8",
+ "item_sha": "b6f6dadbeba81a5ed972e4830083438715a5f86f6216916b5511b6071e8def3a",
+ "auditor_value": "As served the data are incomplete: the third leg is printed as 10 s to 10 s (zero duration) and nothing is given for 5 s to 10 s, so no total is determined. Taking the third leg as 5 s to 10 s at 4 m/s gives 43 m and 2.87 m/s.",
+ "auditor_option": null,
+ "findings": [
+  {"grade": "harmful", "field": "final_answer",
+   "quote": "total distance = 43 m, average speed ≈ 2.87 m/s",
+   "note": "The solution silently replaces the served interval. The question as served lists the 4 m/s leg as 'From 10 s to 10 s' and gives nothing for 5 s to 10 s, yet step 1 computes '5–10 s: 4×5=20 m'. It therefore answers a different problem from the one printed, and does so without flagging the missing data. Read literally, the served data give only 4 + 9 + 0 + 10 = 23 m and 1.53 m/s.",
+   "fix": null},
+  {"grade": "harmful", "field": "steps[0].equation",
+   "quote": "0–2 s: 2×2=4 m; 2–5 s: 3×3=9 m; 5–10 s: 4×5=20 m; 10–15 s: 2×5=10 m",
+   "note": "The third term uses an interval of 5 s to 10 s, which the question as served does not give; the served text says 10 s to 10 s, a zero-length interval. A student following this line cannot match it to the data in front of them.",
+   "fix": null}
+ ],
+ "verdict": "harmful",
+ "question_defect": "The third bullet of the served question reads 'From 10 s to 10 s, its speed is 4 m/s'. That interval has zero duration and it leaves 5 s to 10 s with no speed given, so the question as served has no determinate answer. The intended text is almost certainly 'From 5 s to 10 s'.",
+ "notes": "Graded on how the solution handled the defective question: it used the repaired interval without saying so.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-kin-01", "at": "2026-09-11T06:24:00+05:30"}
+}

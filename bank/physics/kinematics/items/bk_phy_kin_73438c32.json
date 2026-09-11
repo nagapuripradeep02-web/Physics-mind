@@ -1,0 +1,89 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_73438c32",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "numerical",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "The variation of acceleration with time for a body moving along a rectilinear path is displayed in the graph. At what time does the body regain its starting velocity?",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "motion along a straight line",
+   "acceleration a = 2 m/s² for 0 ≤ t ≤ 1 s",
+   "acceleration decreases linearly with time after t = 1 s, passing through a = 0 at t = 2 s",
+   "initial velocity is regained when total change in velocity is zero"
+  ],
+  "figure": {
+   "description": "An acceleration-time (a-t) graph plotted on Cartesian axes with time t (in s) on the horizontal axis and acceleration a (in m/s²) on the vertical axis. From t = 0 to t = 1 s, the curve is a horizontal line at a = 2 m/s². From (1, 2), the graph continues as a straight line sloping downward with constant negative slope, crossing the horizontal axis at t = 2 s and continuing into the negative acceleration region."
+  }
+ },
+ "solution": {
+  "approach": "The particle's velocity returns to its initial value when the net area under the a-t graph, from t = 0, becomes zero again.",
+  "steps": [
+   {
+    "text": "From t = 0 to 1 s, acceleration is constant at 2 m/s²; find the area, which is the change in velocity, for this part.",
+    "equation": "Δv₁ = 2 × 1 = 2 m/s"
+   },
+   {
+    "text": "From t = 1 s to 2 s, acceleration falls linearly from 2 m/s² to 0; find this triangular area.",
+    "equation": "Δv₂ = ½ × 1 × 2 = 1 m/s"
+   },
+   {
+    "text": "The total change in velocity up to t = 2 s is positive, so the particle has not returned to its initial velocity yet; for t > 2 s the acceleration keeps the same slope, going negative.",
+    "equation": "Δv(0 to 2 s) = 2 + 1 = 3 m/s; a(t) = 4 − 2t for t ≥ 1"
+   },
+   {
+    "text": "For a later time T, the extra area is a negative triangle of base (T − 2); set the total change in velocity to zero and solve for T.",
+    "equation": "3 − (T − 2)² = 0 → (T − 2)² = 3 → T = 2 + √3 ≈ 3.73 s",
+    "why_this_step": "The velocity equals its initial value again exactly when the positive and negative areas under a-t cancel out."
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "T = 2 + √3 s ≈ 3.73 s"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Assuming the particle is back at its initial velocity when the acceleration itself reaches zero at t = 2 s, without checking that the area under a-t up to that point is not zero."
+   },
+   {
+    "option": null,
+    "text": "Ignoring the velocity change built up from t = 0 to 1 s, and solving only (T − 2)² = 1 for the negative triangle, giving the wrong time T = 3 s."
+   }
+  ],
+  "concept_tags": [
+   "acceleration-time graph",
+   "area under a-t gives change in velocity",
+   "piecewise linear acceleration"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "e18239e803908809d38fbc131a35f60c1a80cbbc5684468da643252528220ca4"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "eb1aa9ff47ca2c2a44dd9d7a6a0d59b6f5a84a9762a8a93ac91f53c63ac47c5c",
+  "audited_by": "W01-U-kin-11"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-12",
+  "at": "2026-09-11T16:24:00+05:30"
+ }
+}

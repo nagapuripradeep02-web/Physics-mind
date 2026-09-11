@@ -1,0 +1,24 @@
+{
+ "question_id": "kin_c3fd0298",
+ "item_sha": "01712dab2a6f67b51a079ffeebc5a2613feacfd7a22b2fa133f7180c8ae5b230",
+ "auditor_option": null,
+ "auditor_value": "t = √14.5 ≈ 3.81 s; (a) y ≈ 45.0 m  (b) speed ≈ 21.8 m/s",
+ "findings": [
+  {
+   "grade": "harmful",
+   "field": "steps[1].equation",
+   "quote": "4t² = 29 → t = √14.5 ≈ 3.81 s",
+   "note": "The line above correctly gives x(t) = ½(4.0)t² = 2t², so setting x = 29 m must read 2t² = 29. The printed coefficient is doubled; 4t² = 29 gives t = 2.69 s, not the √14.5 = 3.81 s written on the same line, so the equation a student copies is false.",
+   "fix": "2t² = 29 → t = √14.5 ≈ 3.81 s"
+  }
+ ],
+ "verdict": "harmful",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-kin-01-R1",
+  "at": "2026-09-11T18:40:00+05:30"
+ }
+}

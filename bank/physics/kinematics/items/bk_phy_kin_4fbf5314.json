@@ -1,0 +1,93 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_4fbf5314",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "The variation of velocity with respect to time for an object moving along the x-axis is presented in the graph. Calculate:\n(a) the acceleration,\n(b) the total distance covered between t = 0 and t = 10 s, and\n(c) the displacement between t = 0 and t = 10 s.",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "acceleration"
+   },
+   {
+    "label": "b",
+    "asks": "distance travelled in 0 to 10 s"
+   },
+   {
+    "label": "c",
+    "asks": "displacement in 0 to 10 s"
+   }
+  ],
+  "conditions": [
+   "motion along the x-axis",
+   "initial velocity at t = 0 is 2 m/s",
+   "velocity at t = 10 s is 8 m/s",
+   "linear velocity-time relationship (constant acceleration)"
+  ],
+  "figure": {
+   "description": "A Cartesian coordinate graph plotting velocity v (in m/s) on the vertical axis against time t (in s) on the horizontal axis. The vertical axis has tick marks at 0, 2, 4, 6, and 8 m/s. The horizontal axis is marked at 0, 5, and 10 s. A single continuous straight line starts at (t = 0 s, v = 2 m/s) and ends at (t = 10 s, v = 8 m/s)."
+  }
+ },
+ "solution": {
+  "approach": "Read the slope of the line for the acceleration, then use the area under the v-t graph, a trapezoid, for the distance, which equals the displacement here.",
+  "steps": [
+   {
+    "text": "Find the slope of the line using its two endpoints.",
+    "equation": "a = (8 − 2)/(10 − 0) = 0.6 m/s²"
+   },
+   {
+    "text": "The distance travelled is the area under the v-t graph, a trapezoid with parallel sides 2 m/s and 8 m/s and width 10 s.",
+    "equation": "s = ½×(2+8)×10 = 50 m"
+   },
+   {
+    "text": "The velocity is positive throughout, so the displacement equals the distance travelled.",
+    "equation": "displacement = 50 m"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) 0.6 m/s², (b) 50 m, (c) 50 m"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Treating the area as a triangle alone and ignoring the initial velocity of 2 m/s gives 40 m instead of 50 m."
+   }
+  ],
+  "concept_tags": [
+   "velocity-time graph",
+   "area under graph",
+   "uniform acceleration"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "d89284ede72d81abc2a6e7e2e65755fc0792e197d61ccb7599211bb543d85af0"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "7b9938636a34ede82cf36175948191582281b25fbb56ac9fab91c358a49133d0",
+  "audited_by": "W01-U-kin-10"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-06",
+  "at": "2026-09-11T16:00:00+05:30"
+ }
+}

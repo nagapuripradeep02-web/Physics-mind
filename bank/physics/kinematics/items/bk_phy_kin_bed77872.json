@@ -1,0 +1,89 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_bed77872",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "An individual takes 90 s to climb up a stationary 15 m escalator. If the individual remains motionless on the same escalator while it operates, they reach the top in 60 s.",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "Determine the duration needed for the individual to walk upwards while the escalator is running."
+   },
+   {
+    "label": "b",
+    "asks": "Does this calculated time rely on the length of the escalator?"
+   }
+  ],
+  "conditions": [
+   "length of escalator = 15 m",
+   "time taken walking on stationary escalator = 90 s",
+   "time taken standing on moving escalator = 60 s",
+   "walking speed relative to escalator is constant",
+   "escalator moves at a constant speed"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Find the walking speed and the escalator speed separately, in escalator lengths per second, then add them for the combined speed.",
+  "steps": [
+   {
+    "text": "Write the walking speed as the escalator length divided by the walking time, and the escalator speed as the length divided by the moving time.",
+    "equation": "w = 15/90 m/s, e = 15/60 m/s"
+   },
+   {
+    "text": "Add the two speeds, since walking on the moving escalator combines both motions.",
+    "equation": "w + e = 1/6 + 1/4 = 5/12 m/s"
+   },
+   {
+    "text": "Divide the escalator length by the combined speed to get the time; notice that the length appears in both the numerator and the denominator.",
+    "equation": "t = 15 ÷ (5/12) = 36 s",
+    "why_this_step": "Since t = L ÷ (L/90 + L/60), the length L cancels, so the time does not depend on how long the escalator is."
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "36 s; no, the answer does not depend on the escalator length, since the length cancels out of the calculation."
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Averaging the two given times as (90 + 60)/2 gives 75 s, which is not how the walking and escalator speeds combine."
+   }
+  ],
+  "concept_tags": [
+   "relative velocity",
+   "rates",
+   "escalator problem"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "7ec2ef9608bf5d780b19ae67c0497ab9c3ab806c0c33cbd1992e32b6d6854050"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "c958879e3cb2e817504141c1ea28cf365f2d369e1100c1b6f0791b22a73cf185",
+  "audited_by": "W01-U-kin-05"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-11",
+  "at": "2026-09-11T15:01:00+05:30"
+ }
+}

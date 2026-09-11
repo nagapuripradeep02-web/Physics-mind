@@ -1,0 +1,22 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_76b52527",
+ "approach": "By symmetry the triangle stays equilateral while shrinking, so find the constant rate at which side AB shortens using the components of the two particles' velocities along AB.",
+ "steps": [
+  {"text": "By the symmetry of the three particles' motion, the triangle they form stays equilateral at every instant while it shrinks and rotates about the centroid.", "equation": "the interior angle at every vertex stays 60° throughout the motion"},
+  {"text": "Particle A moves along AB with speed v, so its full velocity v is directed along AB, reducing the separation AB at rate v.", "equation": "component of A's velocity along AB = v"},
+  {"text": "Particle B moves along BC with speed v. Since the angle between BA and BC is 60°, B's velocity has a component along BA (toward A) equal to v cos 60°.", "equation": "component of B's velocity toward A = v cos 60° = v/2"},
+  {"text": "The rate at which the distance AB shortens is the sum of these two components, and this rate stays constant because the 60° angle never changes.", "equation": "−d(AB)/dt = v + v/2 = 3v/2"},
+  {"text": "Since AB shortens at the constant rate 3v/2 starting from side d, the particles meet when AB reaches zero.", "equation": "t = d / (3v/2) = 2d/(3v)",
+   "why_this_step": "A quantity decreasing at a constant rate from d to 0 takes time equal to the initial value divided by the rate."}
+ ],
+ "final_answer": {"option": null, "value": "The three particles meet at time t = 2d/(3v)."},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Using only the direct closing speed v (ignoring the second particle's component toward the first) gives a meeting time of d/v instead of the correct 2d/(3v)."}
+ ],
+ "concept_tags": ["relative velocity", "pursuit motion", "symmetry"],
+ "difficulty": "hard",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-04", "at": "2026-09-11T00:35:00+05:30"}
+}

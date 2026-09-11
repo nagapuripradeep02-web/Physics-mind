@@ -1,0 +1,90 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_e26da17b",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "Starting from rest at ground level, a rocket is launched vertically with an effective upward acceleration of 4 m/s². Its engine shuts down after 5 s when all fuel is consumed, after which the rocket moves under the influence of gravity alone (taking g = 10 m/s²). It continues upward while slowing down until momentarily coming to rest at its peak altitude, and subsequently free-falls back to the ground. Sketch the velocity-time and displacement-time curves for the entire duration of the flight.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "starts from rest (initial velocity = 0)",
+   "uniform upward acceleration of 4 m/s² for 0 ≤ t ≤ 5 s",
+   "fuel runs out at t = 5 s",
+   "motion under gravity with g = 10 m/s² downward for t > 5 s",
+   "velocity equals zero at maximum height",
+   "returns to ground level"
+  ],
+  "figure": {
+   "description": "Two graphs are displayed:\n1. Velocity-time (v in m/s vs t in s): A straight line segment ascends from the origin (0, 0) to point A at (5, 20), followed by a straight line segment with a steeper negative slope passing through point B at (7, 0) and terminating at point C at (10.7, −37.4).\n2. Displacement-time (s in m vs t in s): A parabolic curve opening upward extends from (0, 0) to point A at (5, 50), connects to a parabolic curve opening downward that peaks at point B at (7, 70), and returns to the time axis at point C at (10.7, 0)."
+  }
+ },
+ "solution": {
+  "approach": "Split the journey into three phases of constant acceleration, powered rise, coasting rise, and free fall, and find the velocity and displacement at the end of each.",
+  "steps": [
+   {
+    "text": "Phase 1, powered flight for 5 s with acceleration 4 m/s² from rest: find the velocity and height reached.",
+    "equation": "v = 4×5 = 20 m/s, s = ½(4)(5²) = 50 m"
+   },
+   {
+    "text": "Phase 2, after the fuel ends the rocket decelerates under gravity alone until its velocity reaches zero; find the time taken and the extra height gained.",
+    "equation": "Δt = 20/10 = 2 s (total t = 7 s), Δs = 20²/(2×10) = 20 m (total s = 70 m)"
+   },
+   {
+    "text": "Phase 3, the rocket falls freely from rest at 70 m under gravity; find the time to reach the ground.",
+    "equation": "70 = ½(10)t² → t = √14 ≈ 3.74 s (total t ≈ 10.74 s)"
+   },
+   {
+    "text": "The v-t graph rises from 0 to 20 m/s over 0–5 s, then falls to about −37.4 m/s by t ≈ 10.74 s, crossing zero at t = 7 s. The s-t graph rises from 0 to 50 m over 0–5 s, peaks at 70 m at t = 7 s, then falls to 0 at t ≈ 10.74 s.",
+    "equation": "key points: (5 s, 20 m/s, 50 m), (7 s, 0 m/s, 70 m), (10.74 s, −37.4 m/s, 0 m)"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "Rises to v = 20 m/s and s = 50 m at t = 5 s; coasts to the highest point s = 70 m at t = 7 s; falls back to the ground at t ≈ 10.74 s, landing at about 37.4 m/s"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Using the powered-phase acceleration of 4 m/s² instead of g = 10 m/s² for the coasting and falling phases, which changes the peak height and total time."
+   },
+   {
+    "option": null,
+    "text": "Forgetting to add the fall time to the 7 s already elapsed, reporting the total flight time as √14 ≈ 3.74 s instead of about 10.74 s."
+   }
+  ],
+  "concept_tags": [
+   "equations of motion",
+   "multi-phase motion",
+   "free fall"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "17442cc2fe0442f8bb2f51ea813ccacdb7066eadcd2d32bd137c8a7290cc8cea"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "47fc9790c12241aece3be9c1329e0a1224ce89d8a7dc5c042ae20c36f6005fa5",
+  "audited_by": "W01-U-kin-01"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-03",
+  "at": "2026-09-11T15:30:00+05:30"
+ }
+}

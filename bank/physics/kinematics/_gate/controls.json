@@ -1,0 +1,137 @@
+{
+ "b7efd54e5f11d5fabff0c6b24302784b928c11dfd9334b542b9a41b2c4387899": {
+  "question_id": "kin_7a31923d",
+  "wave": 1,
+  "corruption": "a number in a printed line doubled (2 -> 4); final answer untouched",
+  "kind": "line",
+  "real_sha": "3df9fdb90e796321e8de3a790f4c0cf16a5aafffec657189c997af8f73dc001d",
+  "expected": "harmful",
+  "planted_at": "2026-09-11T09:47:06+05:30"
+ },
+ "081547fc6453d684e9c2f33dac64e008c1c2c5e0a68a5dc09d10bfee23f29c5e": {
+  "question_id": "kin_94df6811",
+  "wave": 1,
+  "corruption": "final value doubled (1 -> 2) in final_answer and the last step",
+  "kind": "final_value",
+  "real_sha": "650b38d6e271c843a1ec747eea72e453bc8c27dd770f26e9371fe134cb325d55",
+  "expected": "harmful",
+  "planted_at": "2026-09-11T09:47:06+05:30"
+ },
+ "f0c4ed9585166a33931e320310f3009876c3080f0a692290bc7e1b901d94dc30": {
+  "question_id": "kin_77b0f00f",
+  "wave": 1,
+  "corruption": "a number in a printed line doubled (2 -> 4); final answer untouched",
+  "kind": "line",
+  "real_sha": "084b20f28ea9a2aa38e0e4f6507f13d3c1e8df7041f819e61c96edfc5419148d",
+  "expected": "harmful",
+  "planted_at": "2026-09-11T09:47:06+05:30"
+ },
+ "312d1b221a5971b30d8b3743aea884262ee307474cad9707678f9506f0668fab": {
+  "question_id": "kin_bc9a18cc",
+  "wave": 1,
+  "corruption": "final value doubled (1.25 -> 2.5) in final_answer and the last step",
+  "kind": "final_value",
+  "real_sha": "48afbea9f86e966ff722f0e27349ecc878ac82e976395c0f43cf371228f99b55",
+  "expected": "harmful",
+  "planted_at": "2026-09-11T09:47:06+05:30"
+ },
+ "b6f6dadbeba81a5ed972e4830083438715a5f86f6216916b5511b6071e8def3a": {
+  "question_id": "kin_49fae7f8",
+  "wave": 1,
+  "corruption": "a given quantity in the SERVED question changed (5 -> 10); solution untouched",
+  "kind": "restatement",
+  "real_sha": "c4fcbbe0dc0c790cae9e00608a086b82ff2a3acf1db7eac02b0e165d97d49848",
+  "expected": "harmful",
+  "planted_at": "2026-09-11T09:47:06+05:30"
+ },
+ "80361c8f498c60ee126753e3ff3bd8f798444dc4dd25f7dd6d0f02e46aa43ca2": {
+  "question_id": "kin_ea905411",
+  "wave": 1,
+  "corruption": "a number in a printed line doubled (2 -> 4); final answer untouched",
+  "kind": "line",
+  "real_sha": "87a5d81ba97b226bd6d580d22a4f70a53bd106d3668a7188bc300179a83c1b42",
+  "expected": "harmful",
+  "planted_at": "2026-09-11T09:47:06+05:30"
+ },
+ "0e41d4dfe8c2d87189898d9ab9c172586e0401f97b5e42a0a282af9080a408cb": {
+  "question_id": "kin_d4ea68c2",
+  "wave": 1,
+  "corruption": "final value doubled (4 -> 8) in final_answer and the last step",
+  "kind": "final_value",
+  "real_sha": "d7d3ef5d9ecf8d40fd87691c997c59ce612154f142268e90720633f104b8c588",
+  "expected": "harmful",
+  "planted_at": "2026-09-11T09:47:06+05:30"
+ },
+ "3baa6ace14d8faa961b0b3f983069552d9c15d55445c995226fa25ecd9edd176": {
+  "question_id": "kin_f160a9c0",
+  "wave": 1,
+  "corruption": "a given quantity in the SERVED question changed (5.00 -> 10); solution untouched",
+  "kind": "restatement",
+  "real_sha": "6e8370cc9916304d13c692aafcbfecb24aa1ff9782eb18b549760e3544ff353a",
+  "expected": "harmful",
+  "planted_at": "2026-09-11T09:47:06+05:30"
+ },
+ "43e0b1305560dedb28859be77c38bd91915d0c1bb728a11f2aa3f56f1aec7238": {
+  "question_id": "kin_d9300602",
+  "wave": 1,
+  "corruption": "final value doubled (0 -> 0) in final_answer and the last step",
+  "kind": "final_value",
+  "real_sha": "43e0b1305560dedb28859be77c38bd91915d0c1bb728a11f2aa3f56f1aec7238",
+  "expected": "harmful",
+  "planted_at": "2026-09-11T09:47:06+05:30"
+ },
+ "d86c514c308532aa9001752e3b182be8756f97ecb930558d4fe6ae2fa96acba6": {
+  "question_id": "kin_a1895039",
+  "wave": 1,
+  "corruption": "a given quantity in the SERVED question changed (60.0 -> 120); solution untouched",
+  "kind": "restatement",
+  "real_sha": "6e7d8959bce3bf3204c43b91187f7156d88e691470c5f34b0130ffbf380df9f7",
+  "expected": "harmful",
+  "planted_at": "2026-09-11T09:47:06+05:30"
+ },
+ "929c88fc4b0633d69b9b39d2b21b8ffbb82603ef5401cf037ceb89cba38160e4": {
+  "question_id": "kin_59776eb3",
+  "wave": 1,
+  "corruption": "a number in a printed line doubled (2 -> 4); final answer untouched",
+  "kind": "line",
+  "real_sha": "83815d0b62a65f47e65f1fadbdcb79c20f29b4381a3d2221aa3133e0a1727658",
+  "expected": "harmful",
+  "planted_at": "2026-09-11T09:47:06+05:30"
+ },
+ "a390259ab0efd0a82b96c5752a333ba517aec537eb06cc78d410d6447bbb61d3": {
+  "question_id": "kin_c9d48c69",
+  "wave": 1,
+  "corruption": "final option changed 1 -> 2 and the last line made to end in that option's text",
+  "kind": "final_option",
+  "real_sha": "efb82cc6c36f77ce75c6d2a33acb44b6dd6333a34ca1711d1b60bb54a67cc384",
+  "expected": "harmful",
+  "planted_at": "2026-09-11T09:47:06+05:30"
+ },
+ "d4455e5271f60313b3fc512fe804b5f801bcc248a1cdd1431cfc94fee3cf6c78": {
+  "question_id": "kin_ec65d40b",
+  "wave": 1,
+  "corruption": "a given quantity in the SERVED question changed (2 -> 4); solution untouched",
+  "kind": "restatement",
+  "real_sha": "5162494f238bdef0a9c67b0d1f754a4c56f4965be60706542a86ad0151ca5c58",
+  "expected": "harmful",
+  "planted_at": "2026-09-11T10:05:05+05:30"
+ },
+ "01712dab2a6f67b51a079ffeebc5a2613feacfd7a22b2fa133f7180c8ae5b230": {
+  "question_id": "kin_c3fd0298",
+  "wave": 1,
+  "corruption": "a number in a printed line doubled (2 -> 4); final answer untouched",
+  "kind": "line",
+  "real_sha": "f2a7296823b4ccf202dcfe9f1f6285b3e6c4cf602bc56c9758085c4944915ba0",
+  "expected": "harmful",
+  "planted_at": "2026-09-11T10:05:05+05:30"
+ },
+ "4bc853b3d6bd2c84477640c3c1e9820833b86370cea7ada862e7aedf8117239a": {
+  "question_id": "kin_b635a79a",
+  "wave": 1,
+  "corruption": "a number in a printed line doubled (20 -> 40); final answer untouched",
+  "kind": "line",
+  "real_sha": "2fd109e2f5a57d9bbc28d0809d5b17a73199775fe81afc0a0b849c58ee1e03f7",
+  "expected": "harmful",
+  "planted_at": "2026-09-11T10:14:25+05:30"
+ }
+}

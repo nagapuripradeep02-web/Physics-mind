@@ -1,0 +1,99 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_44fb91ee",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "conceptual",
+ "key_kind": "words",
+ "figure_required": false,
+ "question": {
+  "text": "Answer the following conceptual questions about motion in kinematics:",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "Can an object experience an acceleration while maintaining an unchanging speed?"
+   },
+   {
+    "label": "b",
+    "asks": "Can a body travel along a curved trajectory when its acceleration is: (i) zero, (ii) constant, or (iii) variable?"
+   }
+  ],
+  "conditions": [
+   "motion at constant speed",
+   "motion along a curved path"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Acceleration depends on the change of the velocity vector, so a change of direction alone, or a change of speed alone, can each produce it.",
+  "steps": [
+   {
+    "text": "Acceleration is the rate of change of the velocity vector, which has both a magnitude, the speed, and a direction.",
+    "equation": "a = dv/dt"
+   },
+   {
+    "text": "(a) In uniform circular motion the speed stays constant, but the direction of velocity keeps changing, so the acceleration is not zero.",
+    "why_this_step": "A constant magnitude does not mean a constant vector."
+   },
+   {
+    "text": "So the answer to (a) is yes: a body can accelerate while travelling at constant speed."
+   },
+   {
+    "text": "(b) A curved path means the direction of velocity keeps changing along the path, and a change of direction alone needs a nonzero acceleration, so zero acceleration cannot give a curved path."
+   },
+   {
+    "text": "A constant acceleration can still give a curved path when it is not always along the velocity, as in a body thrown at an angle under constant gravity, which follows a curved path.",
+    "equation": "a = constant (e.g. g, downward), path = curved"
+   },
+   {
+    "text": "A variable acceleration can also give a curved path, for example a body going around a curve at changing speed, so both constant and variable acceleration are possible on a curved path, but zero acceleration is not.",
+    "why_this_step": "Combines (a) and (b) into the complete answer."
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) Yes, for example uniform circular motion, where speed is constant but direction changes. (b) A curved path is not possible with zero acceleration; it is possible with constant acceleration, for example a body thrown at an angle under gravity, and with variable acceleration, for example a curve taken at changing speed."
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Answering no to part (a) by treating constant speed as meaning constant velocity, missing that direction can still change."
+   },
+   {
+    "option": null,
+    "text": "Assuming a curved path always needs a changing acceleration, missing that a constant acceleration not along the velocity, as under gravity, also curves the path."
+   }
+  ],
+  "concept_tags": [
+   "acceleration",
+   "circular motion",
+   "projectile motion"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "cc0d8c5a14d464eae63c380da55a219124e45125234bc8c66b101b0c6b9fca04"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "244275c26474c78e312aca4f24a1388540cb47b9374898a86c5cbad8421058fd",
+  "audited_by": "W01-U-kin-09"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-05",
+  "at": "2026-09-11T14:04:00+05:30"
+ }
+}

@@ -1,0 +1,46 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_8ab0e012",
+ "approach": "Average velocity over an interval is the change in position divided by the change in time.",
+ "steps": [
+  {
+   "text": "Find the position at the two given times.",
+   "equation": "X(0) = 2(0)² + 4(0) − 6 = −6 m, X(2) = 2(2)² + 4(2) − 6 = 10 m"
+  },
+  {
+   "text": "Divide the change in position by the change in time.",
+   "equation": "v_avg = (10 − (−6)) / (2 − 0) = 16/2"
+  },
+  {
+   "text": "State the result.",
+   "equation": "v_avg = 8 m/s"
+  }
+ ],
+ "final_answer": {
+  "option": null,
+  "value": "8 m/s"
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": null,
+   "text": "Computing the instantaneous velocity dX/dt = 4t + 4 at t = 2 s and calling it the average velocity, giving 12 m/s."
+  },
+  {
+   "option": null,
+   "text": "Dividing X(2) alone by 2 as if the particle started from zero, giving 10/2 = 5 m/s."
+  }
+ ],
+ "concept_tags": [
+  "average velocity",
+  "kinematics from a position function"
+ ],
+ "difficulty": "easy",
+ "mistake_type_hint": "application",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-01",
+  "at": "2026-09-11T15:08:00+05:30"
+ }
+}

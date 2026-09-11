@@ -1,0 +1,20 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_9eb94141",
+ "approach": "Square both sides to write displacement as a function of time, then differentiate to find how velocity depends on time.",
+ "steps": [
+  {"text": "Square both sides of the given relation to write x as a function of t.", "equation": "√x = t + 3 → x = (t + 3)² = t² + 6t + 9"},
+  {"text": "Differentiate x with respect to t to get the velocity.", "equation": "v = dx/dt = 2t + 6"},
+  {"text": "This expression is of the form v = 2t + 6, which is a straight line in t, so velocity varies linearly with time.", "equation": "v = 2t + 6"},
+  {"text": "Check the initial velocity at t = 0 to rule out the other options.", "equation": "v(0) = 2(0) + 6 = 6 ms⁻¹, not zero, not inversely proportional to t, and not proportional to √t"}
+ ],
+ "final_answer": {"option": 2, "value": "velocity of particle varies linearly with t"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 4, "text": "Differentiating t² + 6t + 9 but dropping the 6t term by mistake, leaving v = 2t, which gives v(0) = 0 instead of the correct 6 ms⁻¹."}
+ ],
+ "concept_tags": ["displacement-time relation", "differentiation", "velocity as a function of time"],
+ "difficulty": "medium",
+ "mistake_type_hint": "calculation",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-09", "at": "2026-09-11T15:39:00+05:30"}
+}

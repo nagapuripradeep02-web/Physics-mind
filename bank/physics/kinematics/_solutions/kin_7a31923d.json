@@ -1,0 +1,46 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_7a31923d",
+ "approach": "When the two speeds each last for equal time, the average speed is the arithmetic mean, found from total distance over total time.",
+ "steps": [
+  {
+   "text": "Let each half of the total time be t, so the total time is 2t.",
+   "equation": "time for each half = t"
+  },
+  {
+   "text": "Find the distance covered in each half from distance = speed multiplied by time.",
+   "equation": "d₁ = v₁t, d₂ = v₂t"
+  },
+  {
+   "text": "Average speed is total distance over total time.",
+   "equation": "v_avg = (v₁t + v₂t) / (2t)"
+  },
+  {
+   "text": "Cancel t and simplify.",
+   "equation": "v_avg = (v₁ + v₂) / 2"
+  }
+ ],
+ "final_answer": {
+  "option": null,
+  "value": "v_avg = (v₁ + v₂) / 2"
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": null,
+   "text": "Using the harmonic mean 2v₁v₂/(v₁+v₂), which applies only when the two parts are equal in distance, not equal in time."
+  }
+ ],
+ "concept_tags": [
+  "average speed",
+  "arithmetic mean"
+ ],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-01",
+  "at": "2026-09-11T15:11:00+05:30"
+ }
+}

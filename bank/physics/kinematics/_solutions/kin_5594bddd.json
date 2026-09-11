@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_5594bddd",
+ "approach": "Write the separation between the two particles as a function of time and minimize it using calculus.",
+ "steps": [
+  {"text": "Take particle 1 to start at x = 0 and particle 2 at x = 40 m, and write each position using its own velocity and acceleration.", "equation": "x₁(t) = 12t + 2t², x₂(t) = 40 + 4t + 6t²"},
+  {"text": "The separation is particle 2's position minus particle 1's position.", "equation": "d(t) = x₂ − x₁ = 40 − 8t + 4t²"},
+  {"text": "The separation is minimum when its rate of change with time is zero.", "equation": "d'(t) = −8 + 8t = 0, t = 1 s"},
+  {"text": "Substitute t = 1 s into the separation equation to get the minimum distance.", "equation": "d(1) = 40 − 8 + 4 = 36 m"}
+ ],
+ "final_answer": {"option": null, "value": "(a) t = 1 s, (b) 36 m"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Writing the position as vt + at² instead of vt + ½at² gives a minimum at t = 0.5 s and a wrong minimum distance of 38 m."},
+  {"option": null, "text": "Taking the initial separation of 40 m as the minimum distance, without checking that the gap first closes and then opens again."}
+ ],
+ "concept_tags": ["equations of motion", "relative motion", "minimization"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-03", "at": "2026-09-11T15:30:00+05:30"}
+}

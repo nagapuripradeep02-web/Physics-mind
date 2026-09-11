@@ -1,0 +1,88 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_fc232767",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "mcq_single",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "An object having a mass of 10 kg moves with an initial speed of 10 ms⁻¹. It is subjected to a forward force described by 3t² and a constant resistive force of 32 N. What will be the velocity of the object at t = 5 s?",
+  "options": {
+   "1": "14.5 ms⁻¹",
+   "2": "6.5 ms⁻¹",
+   "3": "3.5 ms⁻¹",
+   "4": "4.5 ms⁻¹"
+  },
+  "parts": null,
+  "conditions": [
+   "mass = 10 kg",
+   "time-dependent driving force = 3t²",
+   "constant opposing force = 32 N",
+   "initial speed = 10 ms⁻¹ at t = 0",
+   "motion in a straight line"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Write the net force as a function of time, divide by mass to get acceleration, and integrate over the 5 seconds to add on to the initial speed.",
+  "steps": [
+   {
+    "text": "Write the net force on the body: the time-varying force minus the constant opposing force.",
+    "equation": "F(t) = 3t² − 32"
+   },
+   {
+    "text": "Divide by the mass to get the acceleration as a function of time.",
+    "equation": "a(t) = (3t² − 32)/10"
+   },
+   {
+    "text": "Integrate the acceleration from 0 to 5 s to get the change in velocity.",
+    "equation": "Δv = ∫₀⁵ (3t² − 32)/10 dt = (t³ − 32t)/10 |₀⁵ = (125 − 160)/10 = −3.5 ms⁻¹"
+   },
+   {
+    "text": "Add this change to the initial speed to get the velocity at t = 5 s.",
+    "equation": "v(5) = 10 − 3.5 = 6.5 ms⁻¹"
+   }
+  ],
+  "final_answer": {
+   "option": 2,
+   "value": "6.5 ms⁻¹"
+  },
+  "common_mistakes": [
+   {
+    "option": 3,
+    "text": "Forgetting to add the initial speed of 10 ms⁻¹ and reporting only the magnitude of the change in velocity gives 3.5 ms⁻¹."
+   }
+  ],
+  "concept_tags": [
+   "variable force",
+   "Newton's second law",
+   "integration of acceleration"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "calculation"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "1cf0985b762de817b56a3e223b13cec4f530568981030ddebc2b8be95f44f9bb"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "1cc3f933a0756fdd19a516fda9d1d2ce2123ecce6e844f5a1427f8397751bdcd",
+  "audited_by": "W01-U-kin-01"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-10",
+  "at": "2026-09-11T14:04:00+05:30"
+ }
+}

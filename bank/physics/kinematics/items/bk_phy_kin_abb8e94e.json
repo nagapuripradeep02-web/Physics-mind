@@ -1,0 +1,84 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_abb8e94e",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A person walks eastward at a speed of 3 m/s while raindrops fall straight down at a speed of 4 m/s. Determine the angle and orientation at which the person must tilt an umbrella to stay protected from the rain.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "velocity of person = 3 m/s due east",
+   "velocity of rain = 4 m/s vertically downwards",
+   "umbrella held opposite to the relative velocity of rain with respect to the person"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Find the velocity of the rain relative to the man by subtracting his velocity from the rain's velocity, and hold the umbrella along that direction.",
+  "steps": [
+   {
+    "text": "Write the rain's velocity and the man's velocity as vectors, taking east and vertically up as positive.",
+    "equation": "v_rain = (0, −4) m/s, v_man = (3, 0) m/s"
+   },
+   {
+    "text": "The velocity of the rain relative to the man is the rain's velocity minus the man's velocity.",
+    "equation": "v_rain,man = (0 − 3, −4 − 0) = (−3, −4) m/s"
+   },
+   {
+    "text": "This vector points west and downward, so the rain reaches the man from the east side, tilted from the vertical by an angle whose tangent is the ratio of the horizontal to vertical parts.",
+    "equation": "tan θ = 3/4, θ = 37°"
+   },
+   {
+    "text": "The man should hold the umbrella tilted 37° from the vertical, towards the east, the direction he is walking.",
+    "equation": "θ = 37° from vertical, towards east"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "Tilt the umbrella 37° from the vertical, towards the east"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Adding the man's velocity to the rain's velocity instead of subtracting gives a tilt towards the west instead of the east."
+   },
+   {
+    "option": null,
+    "text": "Using tan θ = 4/3 instead of 3/4 gives 53° instead of 37°."
+   }
+  ],
+  "concept_tags": [
+   "relative velocity",
+   "vector subtraction"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "d38785afa4c1a8c213d8e60b692496274b3976934469c418cff61ab51a941aa7"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "f49c4b41216b4784a77ee761557313eda947d540fb7f86aeb032a5617e19ad77",
+  "audited_by": "W01-U-kin-10"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-03",
+  "at": "2026-09-11T15:30:00+05:30"
+ }
+}

@@ -1,0 +1,19 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_57613985",
+ "approach": "Find the displacement at each corner time from the area under the v-t graph, then describe the curvature of the s-t graph in each interval.",
+ "steps": [
+  {"text": "Find the displacement at t = 2, 4, 6, 8 s by adding the area under each straight segment of the v-t graph.", "equation": "s(2)=10 m, s(4)=30 m, s(6)=60 m, s(8)=80 m"},
+  {"text": "From 0 to 2 s the velocity rises from 0 to 10 m/s, so the s-t curve is concave up, steepening. From 2 to 4 s the velocity is constant at 10 m/s, so the s-t curve is a straight line.", "equation": "0–2 s: concave up, 2–4 s: straight line of slope 10"},
+  {"text": "From 4 to 6 s the velocity rises again from 10 to 20 m/s, so the s-t curve is concave up, steepening further. From 6 to 8 s the velocity falls from 20 to 0, so the s-t curve is concave down, flattening to a horizontal tangent at t = 8 s.", "equation": "4–6 s: concave up, 6–8 s: concave down, tangent horizontal at t = 8 s"}
+ ],
+ "final_answer": {"option": null, "value": "The s-t graph passes through (0,0), (2,10), (4,30), (6,60), (8,80) m in metres and seconds. It is concave up on 0–2 s and 4–6 s, a straight line on 2–4 s, and concave down on 6–8 s, flattening to a horizontal tangent at the maximum displacement of 80 m at t = 8 s."},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Drawing straight lines between the four displacement values ignores that the velocity is changing within each interval, which curves the s-t graph rather than making it a series of straight segments."}
+ ],
+ "concept_tags": ["v-t to s-t graph", "area under v-t graph", "concavity"],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-11", "at": "2026-09-11T15:05:00+05:30"}
+}

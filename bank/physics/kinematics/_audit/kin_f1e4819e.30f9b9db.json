@@ -1,0 +1,16 @@
+{
+ "question_id": "kin_f1e4819e",
+ "item_sha": "30f9b9dbf6147cf6266b4a42a61aa4c34a91ee737afe6a806a1da86df51de5d0",
+ "auditor_option": null,
+ "auditor_value": "(a) x₀ = −20 m, (b) v = +2 m/s (constant), (c) x = (−20 + 2t) m, (d) uniform velocity (zero acceleration); the object reaches the origin at t = 10 s",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-kin-02-R1",
+  "at": "2026-09-11T10:09:37+05:30"
+ }
+}

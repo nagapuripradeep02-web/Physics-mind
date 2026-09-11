@@ -1,0 +1,16 @@
+{
+ "question_id": "kin_9d3be974",
+ "item_sha": "ba21db50ba64c0eb707a7488fcc27dc5d5a465a5d90eef8458eb21537a7c7051",
+ "auditor_option": null,
+ "auditor_value": "(a) 125 m, (b) 5 s, (c) 25*sqrt(2) = 35.36 m/s",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Both common_mistakes numbers recomputed: 50 - 10*2.5 = 25 m/s; sqrt(2500 - 625) = 43.3 m/s.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-kin-07",
+  "at": "2026-09-11T14:52:00+05:30"
+ }
+}

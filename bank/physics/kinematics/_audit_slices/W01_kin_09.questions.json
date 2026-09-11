@@ -1,0 +1,173 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter": "kinematics",
+ "slice": 9,
+ "round": 0,
+ "items": [
+  {
+   "question_id": "kin_be7e68b7",
+   "question_text": "The position (x) as a function of time (t) for a body constrained to travel along a straight line is described as follows: from t = 0 to 4 s, the position is steady at x = 4 m; between t = 4 s and t = 10 s, it decreases at a steady rate, passing through x = 0 at t = 6 s to reach x = −8 m at t = 10 s; from t = 10 s to t = 14 s, it increases at a constant rate until reaching x = 0 at t = 14 s. Construct the corresponding velocity-time (v-t) plot for this interval.",
+   "options": [],
+   "figure_description": "An x-t graph showing position x (in meters) on the vertical axis against time t (in seconds) on the horizontal axis. The graph consists of three straight-line segments: a horizontal line at x = 4 m from t = 0 to 4 s; a downward sloping line connecting (4 s, 4 m) through (6 s, 0 m) to (10 s, −8 m); and an upward sloping line connecting (10 s, −8 m) to (14 s, 0 m)."
+  },
+  {
+   "question_id": "kin_c7afcfb3",
+   "question_text": "A particle travels along a semicircular track having a radius of 1.0 m, starting at point A and reaching point B located at the opposite end of the diameter. If this motion takes a duration of 1.0 s, calculate the magnitude of the particle's average velocity.",
+   "options": [],
+   "figure_description": "A semicircular path of radius 1.0 m connects starting position A at the top to final position B at the bottom along the circumference, with a straight vertical diameter of length 2.0 m joining A and B."
+  },
+  {
+   "question_id": "kin_c3c8a6b0",
+   "question_text": "A vehicle completes a journey lasting a total of 60 min. For the initial 18 min, it moves with a mean speed of 11 ms⁻¹. In order to achieve an overall mean speed of 21 ms⁻¹ throughout the whole journey, determine the required mean speed over the remaining 42 min.",
+   "options": [
+    {
+     "label": "a",
+     "text": "25.3 ms⁻¹"
+    },
+    {
+     "label": "b",
+     "text": "29.2 ms⁻¹"
+    },
+    {
+     "label": "c",
+     "text": "31 ms⁻¹"
+    },
+    {
+     "label": "d",
+     "text": "35.6 ms⁻¹"
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_c12f3cc2",
+   "question_text": "A particle moves such that its instantaneous velocity is v = (2î − 4ĵ) m/s while its acceleration is given by a = (−2î + 4ĵ) m/s². What kind of motion does the particle undergo?",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_cea13196",
+   "question_text": "The velocity of a body moving along a one-dimensional path depends on time as v = (10 + 2t + 3t²) in SI units. Determine the following:\n(a) The body's displacement relative to the mean position at instant t = 1 s, assuming its displacement at t = 0 is 20 m.\n(b) The expression representing its acceleration as a function of time.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_c802fcb3",
+   "question_text": "An object having mass m is dropped from rest at an altitude h. The object collides elastically with the floor, causing its speed to stay unchanged while reversing its motion upward. Draw the curve showing how its kinetic energy varies with elapsed time until the object reaches back to its starting height.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_d4ea68c2",
+   "question_text": "From the roof of a 40 m tall building, an object is projected vertically upward at a speed of 10 m/s. Determine the total duration of flight before it reaches the ground below. Assume g = 10 m/s².",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_c9d48c69",
+   "question_text": "A ball projected straight upward with an initial speed v₀ attains a peak altitude h. What initial speed is needed to make the ball attain three times this peak altitude?",
+   "options": [
+    {
+     "label": "a",
+     "text": "√3 v₀"
+    },
+    {
+     "label": "b",
+     "text": "3 v₀"
+    },
+    {
+     "label": "c",
+     "text": "9 v₀"
+    },
+    {
+     "label": "d",
+     "text": "3/2 v₀"
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_cc0d8c5a",
+   "question_text": "Answer the following conceptual questions about motion in kinematics:\n(a) Can an object experience an acceleration while maintaining an unchanging speed?\n(b) Can a body travel along a curved trajectory when its acceleration is: (i) zero, (ii) constant, or (iii) variable?",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_c3c2c4bf",
+   "question_text": "A body moves along a straight path covering the initial half of its total path length at a constant speed v₁. For the remaining half of the path length, it travels with a uniform speed v₂ for one-third of the duration taken for this half, and with a uniform speed v₃ for the other two-thirds of that duration. Determine the average speed of the body across the entire journey.",
+   "options": [],
+   "figure_description": "A line segment AB representing the entire journey of distance 2d is split at point C into two equal lengths of distance d. Segment AC is traversed at speed v₁. Segment CB is split at point D such that the duration for CD is t/3 with speed v₂ and the duration for DB is 2t/3 with speed v₃."
+  },
+  {
+   "question_id": "kin_c3fd0298",
+   "question_text": "At time t = 0, an object begins moving from (0, 0) with an initial velocity of 8.0 ĵ m/s. Throughout its journey across the x-y plane, it experiences a uniform acceleration of (4.0 î + 2.0 ĵ) m/s². When the x-position of the object reaches 29 m, determine:\n(a) its y-coordinate\n(b) its speed",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_c2398834",
+   "question_text": "A body moves along a straight path such that its acceleration varies with time t according to the relation a = bt, where b is a constant. If the body sets off from the origin with an initial velocity v₀ at t = 0, find the total distance covered by it in time t.",
+   "options": [
+    {
+     "label": "a",
+     "text": "v₀t + 1/6 bt³"
+    },
+    {
+     "label": "b",
+     "text": "v₀t + 1/3 bt³"
+    },
+    {
+     "label": "c",
+     "text": "v₀t + 1/3 bt²"
+    },
+    {
+     "label": "d",
+     "text": "v₀t + 1/2 bt²"
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_bc9a18cc",
+   "question_text": "An object moves across the x-y plane. Initially, at t = 0, its position coordinates are (1 m, 2 m) and its velocity is (4î + 6ĵ) m/s. Later, at t = 4 s, it reaches the location (6 m, 4 m) with a velocity of (2î + 10ĵ) m/s. For this duration, determine:\n(a) the average velocity\n(b) the average acceleration\n(c) whether the average speed can be calculated using the provided information",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_c7bf5937",
+   "question_text": "The plot of velocity v (in m/s) against time t (in s) for a body executing one-dimensional motion is a straight line that begins at v = 10 m/s when t = 0, decreases uniformly to intersect the horizontal time axis at t = 1 s, and continues downward to v = −10 m/s at t = 2 s. Based on this motion, select the correct statement.",
+   "options": [
+    {
+     "label": "a",
+     "text": "The particle starts from the origin"
+    },
+    {
+     "label": "b",
+     "text": "The particle crosses its initial position at t = 2 s"
+    },
+    {
+     "label": "c",
+     "text": "The average speed of the particle in the time interval, 0 ≤ t ≤ 2 s is zero"
+    },
+    {
+     "label": "d",
+     "text": "All of the above"
+    }
+   ],
+   "figure_description": "A velocity-time graph showing a straight line with a constant negative slope. The vertical axis represents velocity v in m/s (marked at 10, 0, −10, −20) and the horizontal axis represents time t in s (marked at 0, 1, 2, 3). The line starts at (0, 10), passes through the time axis at (1, 0), and continues straight through (2, −10)."
+  },
+  {
+   "question_id": "kin_c2e7aa98",
+   "question_text": "A particle moves within the xy-plane such that its velocity at time t is given by v = (2t î + 3t² ĵ) m/s. Initially, at t = 0, it is located at the point (2 m, 4 m). Determine:\n(a) the acceleration vector of the particle at t = 1 s.\n(b) the position vector and the coordinates of the particle at t = 2 s.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_bd2bf424",
+   "question_text": "State two common examples of motion occurring in two dimensions.",
+   "options": [],
+   "figure_description": "Two diagrams are shown: the first illustrates a closed circular path labeled 'Circular motion', and the second depicts a curved parabolic trajectory on an x-y coordinate frame labeled 'Projectile motion'."
+  }
+ ]
+}

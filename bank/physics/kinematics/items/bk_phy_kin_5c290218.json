@@ -1,0 +1,88 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_5c290218",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A stone is thrown straight up from a high point A. When it is at a depth h beneath A, the speed of the stone is twice the speed it possessed at an elevation h over A. Prove that the stone reaches a maximum height of (5/3)h above point A.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "motion under gravity",
+   "uniform downward acceleration g",
+   "air resistance neglected",
+   "stone projected vertically upward from point A",
+   "speed at distance h below A is twice the speed at height h above A"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Write v² = u² − 2g(displacement) for points h above and below A, use the given speed ratio to solve for u², then find the greatest height.",
+  "steps": [
+   {
+    "text": "Let u be the speed of projection at A, taking upward as positive. At height h above A, the speed v₁ satisfies this.",
+    "equation": "v₁² = u² − 2gh"
+   },
+   {
+    "text": "At distance h below A, the displacement from A is −h, so the speed v₂ satisfies this.",
+    "equation": "v₂² = u² − 2g(−h) = u² + 2gh"
+   },
+   {
+    "text": "The speed below A is double the speed above A, so square this relation and substitute.",
+    "equation": "v₂ = 2v₁ ⟹ u² + 2gh = 4(u² − 2gh)"
+   },
+   {
+    "text": "Expand and solve for u².",
+    "equation": "u² + 2gh = 4u² − 8gh ⟹ 10gh = 3u² ⟹ u² = 10gh/3"
+   },
+   {
+    "text": "The greatest height above A is reached when the speed is zero, given by H = u²/(2g). Substitute u².",
+    "equation": "H = (10gh/3)/(2g) = 5h/3",
+    "why_this_step": "H = u²/(2g) follows from v² = u² − 2gH with v = 0 at the highest point."
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "Greatest height above A, H = 5h/3, proved by solving u² = 10gh/3 from the given speed condition and substituting into H = u²/(2g)."
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Writing the speed below A as v₂² = u² − 2gh instead of u² + 2gh gives u² − 2gh = 4(u² − 2gh), so u² = 2gh and height h instead of 5h/3."
+   }
+  ],
+  "concept_tags": [
+   "equations of motion",
+   "vertical motion under gravity",
+   "v² = u² − 2gs"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "ff29cf3a95880609da947d1db91ae08c5bbce732d3904c7156f4a4a136bb264f"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": false,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "699358896ba02198cab4702e92eb61812c0cf0fb4a7426cf34321c427982c33d",
+  "audited_by": "W01-U-kin-02-R1"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-04",
+  "at": "2026-09-11T00:15:00+05:30"
+ }
+}

@@ -1,0 +1,90 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_4d18a6c4",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A person starting from point A on one bank of a river intends to reach point B located on the opposing bank downstream. The straight line joining A to B is inclined at an angle of 45° to the line perpendicular to the banks. The water moves at a uniform speed u parallel to the banks.",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "Determine the lowest possible speed of the person relative to the water that allows them to reach point B."
+   },
+   {
+    "label": "b",
+    "asks": "Find the heading angle θ (measured upstream from the line perpendicular to the river bank) at which the person must swim."
+   }
+  ],
+  "conditions": [
+   "river flows horizontally at constant speed u",
+   "line AB is inclined at 45° downstream relative to the line perpendicular to the banks",
+   "motion relative to water is uniform",
+   "man travels directly along the straight path AB"
+  ],
+  "figure": {
+   "description": "A river of uniform width flows horizontally to the right with velocity u. Point A is situated on the bottom bank, and point B is located on the top bank downstream. A perpendicular dashed line across the river from A makes an angle of 45° with the straight line AB connecting A and B."
+  }
+ },
+ "solution": {
+  "approach": "The resultant velocity must lie along AB, so the swimmer's velocity relative to water is least when perpendicular to AB; find it by resolving flow along and perpendicular to AB.",
+  "steps": [
+   {
+    "text": "Take x along the flow (downstream) and y straight across the river. Since AB makes 45° with the straight-across direction, the flow direction makes 45° with AB.",
+    "equation": "angle between the flow velocity u and the line AB = 45°"
+   },
+   {
+    "text": "The man's resultant velocity relative to the ground must lie along AB. His velocity relative to water, v, satisfies v = v_resultant − u, so v is the vector from the tip of u to some point on the line AB.",
+    "equation": "v = v_resultant − u"
+   },
+   {
+    "text": "Among all points on the line AB, the shortest vector from the tip of u to the line is the perpendicular distance from that point to the line, so the minimum |v| occurs when v is perpendicular to AB.",
+    "equation": "v_min = u sin(45°) = u/√2",
+    "why_this_step": "The perpendicular distance from a point to a line through the origin at angle θ to the point's direction is (distance of point from origin) × sin θ."
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "Minimum speed relative to water = u/√2, swum in the direction perpendicular to AB (tilted upstream), which makes 45° with the line perpendicular to the banks, tilted upstream."
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Swimming straight across (perpendicular to the bank) at speed u instead of perpendicular to AB gives a larger required speed and does not minimize |v|, since it ignores that AB is tilted from straight across."
+   }
+  ],
+  "concept_tags": [
+   "relative velocity",
+   "river-boat problem",
+   "minimum speed"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "583c5b7b15f44ac2e9f9a19706de016edbca6378705374c6a63b1085ceb836ce"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "0d9dd8d0bdb00d28bcd89f34d7a2e2763d199d8ee05f2e8161424983733e6967",
+  "audited_by": "W01-U-kin-01-R1"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-04",
+  "at": "2026-09-11T00:45:00+05:30"
+ }
+}

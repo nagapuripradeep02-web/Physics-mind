@@ -1,0 +1,93 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_314f8bef",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A rocket is launched straight upwards from ground level with an effective upward acceleration of 10 m/s². Its propellant burns out completely after 1 min, after which the rocket keeps ascending freely under gravity. Take g = 10 m/s².",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "Determine the maximum altitude reached by the rocket above the ground."
+   },
+   {
+    "label": "b",
+    "asks": "Calculate the time elapsed from the moment the fuel burns out until it reaches this maximum altitude."
+   }
+  ],
+  "conditions": [
+   "starts from rest at ground level",
+   "motion is strictly vertical",
+   "constant net upward acceleration = 10 m/s² during powered phase",
+   "powered flight duration = 1 min",
+   "free flight under gravity after engine cutoff",
+   "g = 10 m/s²"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Find the speed and height reached at the end of the 1 minute of powered flight, then treat the rest of the rise as free motion decelerating under gravity alone.",
+  "steps": [
+   {
+    "text": "During the powered phase, the rocket starts from rest and accelerates at 10 m/s² for 60 s. Find the speed and height reached at burnout.",
+    "equation": "v = 10 × 60 = 600 ms⁻¹, h₁ = ½ × 10 × 60² = 18000 m"
+   },
+   {
+    "text": "After the fuel finishes, only gravity acts, so the rocket decelerates at g = 10 m/s² until its speed falls to zero.",
+    "equation": "extra time t₂ = v/g = 600/10 = 60 s"
+   },
+   {
+    "text": "Find the extra height gained while decelerating from 600 ms⁻¹ to rest.",
+    "equation": "h₂ = v²/(2g) = 600²/(2×10) = 18000 m"
+   },
+   {
+    "text": "Add the two heights for the maximum height above the ground.",
+    "equation": "H = h₁ + h₂ = 18000 + 18000 = 36000 m"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) maximum height = 36000 m (36 km), (b) time from fuel finish to maximum height = 60 s"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Stopping the calculation at burnout and treating 18000 m, the height at fuel finish, as the maximum height, missing that the rocket keeps rising after the fuel runs out."
+   }
+  ],
+  "concept_tags": [
+   "equations of motion",
+   "two-stage motion",
+   "vertical motion under gravity"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "75a7091c3cbdf2ae95e5023ca832781e79e195e99e5e1cb7ff52c16fa1df05c8"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "9bf27696c5fb88cff24b06747de6b014e7aab25ba03d54535a97d10005f00b26",
+  "audited_by": "W01-U-kin-05"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-10",
+  "at": "2026-09-11T14:14:00+05:30"
+ }
+}

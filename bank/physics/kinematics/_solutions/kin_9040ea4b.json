@@ -1,0 +1,46 @@
+{
+  "schema": "eapcet_solution_v1",
+  "question_id": "kin_9040ea4b",
+  "approach": "Relative velocity of one object with respect to another is the vector difference of their velocities, taken along one chosen positive direction.",
+  "steps": [
+    {
+      "text": "Take east as the positive direction and write both velocities.",
+      "equation": "v_Anoop = +1 m/s, v_Dhyani = −2 m/s"
+    },
+    {
+      "text": "Apply the relative velocity formula.",
+      "equation": "v_(Anoop/Dhyani) = v_Anoop − v_Dhyani = 1 − (−2) = 3 m/s"
+    },
+    {
+      "text": "State the direction from the sign of the result.",
+      "equation": "v_(Anoop/Dhyani) = 3 m/s, directed east"
+    }
+  ],
+  "final_answer": {
+    "option": null,
+    "value": "3 m/s due east"
+  },
+  "confidence": "sure",
+  "common_mistakes": [
+    {
+      "option": null,
+      "text": "Adding the two speeds without assigning signs based on direction gives 3 m/s but with no direction, or subtracting the wrong way gives −3 m/s (west) instead of east."
+    },
+    {
+      "option": null,
+      "text": "Subtracting the speeds as 2 − 1 = 1 m/s ignores that the two velocities point in opposite directions."
+    }
+  ],
+  "concept_tags": [
+    "relative velocity",
+    "one-dimensional motion"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "concept",
+  "authored_by": {
+    "model": "sonnet",
+    "wave": 1,
+    "agent": "W01-A-kin-02",
+    "at": "2026-09-11T00:00:00+05:30"
+  }
+}

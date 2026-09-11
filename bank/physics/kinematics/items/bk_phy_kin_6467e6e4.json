@@ -1,0 +1,93 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_6467e6e4",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "An object moves across the x-y plane. Initially, at t = 0, its position coordinates are (1 m, 2 m) and its velocity is (4î + 6ĵ) m/s. Later, at t = 4 s, it reaches the location (6 m, 4 m) with a velocity of (2î + 10ĵ) m/s. For this duration, determine:",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "the average velocity"
+   },
+   {
+    "label": "b",
+    "asks": "the average acceleration"
+   },
+   {
+    "label": "c",
+    "asks": "whether the average speed can be calculated using the provided information"
+   }
+  ],
+  "conditions": [
+   "motion in x-y plane",
+   "initial position r₁ = (1 m)î + (2 m)ĵ at t₁ = 0",
+   "initial velocity v₁ = (4î + 6ĵ) m/s at t₁ = 0",
+   "final position r₂ = (6 m)î + (4 m)ĵ at t₂ = 4 s",
+   "final velocity v₂ = (2î + 10ĵ) m/s at t₂ = 4 s"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Average velocity and average acceleration come from the change in position and velocity over the time interval; average speed needs the path length, which is not given.",
+  "steps": [
+   {
+    "text": "Divide the change in position by the 4 s interval for the average velocity.",
+    "equation": "v_avg = ((6−1)î + (4−2)ĵ)/4 = (1.25î + 0.5ĵ) m/s"
+   },
+   {
+    "text": "Divide the change in velocity by the 4 s interval for the average acceleration.",
+    "equation": "a_avg = ((2−4)î + (10−6)ĵ)/4 = (−0.5î + 1.0ĵ) m/s²"
+   },
+   {
+    "text": "Average speed needs the total path length travelled by the particle, and only its endpoints and instantaneous velocities there are known, not the actual curved path between them, so it cannot be found from this data.",
+    "equation": "average speed: not determinable"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) average velocity = (1.25î + 0.5ĵ) m/s, magnitude ≈ 1.35 m/s. (b) average acceleration = (−0.5î + 1.0ĵ) m/s², magnitude ≈ 1.12 m/s². (c) No, average speed cannot be found from the given data because the actual path length travelled is unknown."
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Taking the magnitude of the average velocity vector, about 1.35 m/s, as the average speed wrongly assumes the particle moved in a straight line between the two points."
+   }
+  ],
+  "concept_tags": [
+   "average velocity",
+   "average acceleration",
+   "average speed",
+   "vectors"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "bc9a18ccc70852e8f98274b61fa74b5b28e765a2c6f9ab0f979f5ffd75c7eba4"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": false,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "48afbea9f86e966ff722f0e27349ecc878ac82e976395c0f43cf371228f99b55",
+  "audited_by": "W01-U-kin-09"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-11",
+  "at": "2026-09-11T15:07:00+05:30"
+ }
+}

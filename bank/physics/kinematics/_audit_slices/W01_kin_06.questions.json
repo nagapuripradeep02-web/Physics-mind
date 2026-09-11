@@ -1,0 +1,173 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter": "kinematics",
+ "slice": 6,
+ "round": 0,
+ "items": [
+  {
+   "question_id": "kin_8ab0e012",
+   "question_text": "The position of an object travelling along the x-axis depends on time according to the equation X = 2t² + 4t − 6, where X is measured in metres and t in seconds. Determine the average velocity of the object from t = 0 to t = 2 s.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_a1895039",
+   "question_text": "An automobile travels along a straight line under uniform acceleration. It takes 6.00 s to travel the 120 m separation between two specific locations, reaching a speed of 15.0 m/s at the second location.\n(a) Calculate the speed of the automobile as it clears the initial point.\n(b) Determine the magnitude of its acceleration.\n(c) Find the distance behind the initial point at which the automobile was at rest.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_9040ea4b",
+   "question_text": "Anoop travels toward the east at a speed of 1 m/s, whereas Dhyani heads toward the west at 2 m/s. Determine the relative velocity of Anoop as observed by Dhyani.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_930b6b36",
+   "question_text": "Two trains travel towards one another along a single railway track with initial speeds v₁ = 10 ms⁻¹ and v₂ = 20 ms⁻¹. Upon applying brakes, they slow down at constant rates of a₁ = 2 ms⁻² and a₂ = 1 ms⁻² respectively. Find the smallest initial gap required between the two trains so that they do not collide.",
+   "options": [
+    {
+     "label": "a",
+     "text": "150 m"
+    },
+    {
+     "label": "b",
+     "text": "225 m"
+    },
+    {
+     "label": "c",
+     "text": "450 m"
+    },
+    {
+     "label": "d",
+     "text": "300 m"
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_91b46894",
+   "question_text": "An object moves in the x-y plane starting from the location (4 m, 10 m) at t = 0. Its initial velocity vector is given by u = (4î + 8ĵ) m/s, and it experiences a constant acceleration of a = (2î − 4ĵ) m/s². Determine:\n(a) the instant of time at which the object intersects the x-axis.\n(b) the value of its x-coordinate at that specific moment.\n(c) its velocity vector at that exact time.",
+   "options": [],
+   "figure_description": "A 2D Cartesian coordinate plane showing a particle initially at point P(4 m, 10 m). Vectors drawn at point P indicate an initial velocity component of 4 m/s and an acceleration component of 2 m/s² along the positive x-axis, an initial velocity component of 8 m/s along the positive y-axis, and an acceleration component of 4 m/s² along the negative y-axis."
+  },
+  {
+   "question_id": "kin_88e2db67",
+   "question_text": "The velocity components of an object traveling in the xy-plane depend on time according to vₓ = 8t − 2 and v_y = 2. At time t = 2 s, the object is located at the position x = 14 and y = 4. Which of the following expressions represents the equation of its trajectory?",
+   "options": [
+    {
+     "label": "a",
+     "text": "x = y² − y + 2"
+    },
+    {
+     "label": "b",
+     "text": "x = y² − 2"
+    },
+    {
+     "label": "c",
+     "text": "x = y² + y − 6"
+    },
+    {
+     "label": "d",
+     "text": "None of these"
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_8cf80a04",
+   "question_text": "A body begins moving with an initial speed u and travels along a straight path. It covers the first half of the total distance with a constant acceleration a₁, and then covers the second half of the distance with a constant acceleration a₂. Demonstrate that its speed at the end of the journey is equal to the final speed it would attain if it traversed the entire path with a single uniform acceleration of (a₁ + a₂)/2.",
+   "options": [],
+   "figure_description": "A diagram comparing two cases of linear motion. Case 1 shows a particle starting with velocity u, traversing a displacement s under constant acceleration a₁ to reach velocity v₁, and then traversing an equal displacement s under constant acceleration a₂ to reach final velocity v₂. Case 2 shows the particle starting with velocity u, traversing the total displacement 2s under uniform acceleration (a₁ + a₂)/2, and attaining final velocity v."
+  },
+  {
+   "question_id": "kin_80d075e4",
+   "question_text": "An object travels along the x-axis under uniform acceleration. Its position coordinate relative to a fixed reference point is 2 m at t = 0 and becomes 0 at t = 10 s. Given that its speed momentarily drops to zero at t = 6 s, calculate its acceleration a and its velocity v at t = 10 s.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_911c4a45",
+   "question_text": "Two particles begin their motion at the same instant along the x-axis. Particle 1 is initially located at x = − 10 m, moving with a speed of 4 m/s in the negative x-direction while experiencing an acceleration of 2 m/s² in the positive x-direction. Particle 2 is initially positioned at x = + 2 m, possessing an initial speed of 6 m/s in the positive x-direction and an acceleration of 2 m/s² in the negative x-direction. Determine:\n(a) The time elapsed until the particles collide.\n(b) The position coordinate (x) at which the collision occurs.",
+   "options": [],
+   "figure_description": "A horizontal x-axis displaying two particles. Particle 1 is at coordinate x = − 10 m with an initial velocity vector pointing leftward of magnitude 4 m/s and an acceleration vector pointing rightward of magnitude 2 m/s². Particle 2 is at coordinate x = + 2 m with an initial velocity vector pointing rightward of magnitude 6 m/s and an acceleration vector pointing leftward of magnitude 2 m/s²."
+  },
+  {
+   "question_id": "kin_9114740a",
+   "question_text": "The position of an object travelling in the xy-plane changes with time t such that its coordinates are given by x = 2t and y = 10t − 16t². Determine the equation of the path followed by this object.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_82b920c1",
+   "question_text": "A watch features a second hand measuring 1 cm from the pivot to the tip. Determine the magnitude of the change in velocity of this tip over a time interval of 15 s.",
+   "options": [
+    {
+     "label": "a",
+     "text": "zero"
+    },
+    {
+     "label": "b",
+     "text": "π/(30√2) cm/s"
+    },
+    {
+     "label": "c",
+     "text": "π/30 cm/s"
+    },
+    {
+     "label": "d",
+     "text": "π√2/30 cm/s"
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_802b8247",
+   "question_text": "A sphere is dropped from rest at the summit of a structure measuring h metre tall. If a duration of T second elapses before it hits the ground, find the location of the sphere at time T/3 second.",
+   "options": [
+    {
+     "label": "a",
+     "text": "h/9 metre from the ground"
+    },
+    {
+     "label": "b",
+     "text": "(7h/9) metre from the ground"
+    },
+    {
+     "label": "c",
+     "text": "(8h/9) metre from the ground"
+    },
+    {
+     "label": "d",
+     "text": "(17h/18) metre from the ground"
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_8e12024e",
+   "question_text": "The position-time (s−t) curve for an object traveling along a straight path is displayed in the figure.\n(a) Determine whether the velocity is positive, negative, or zero in the segments oa, ab, bc, and cd.\n(b) Determine whether the acceleration is positive, negative, or zero in each of these same four segments.",
+   "options": [],
+   "figure_description": "A displacement-time (s-t) graph where s is on the vertical axis and t is on the horizontal axis. Starting at the origin O: from O to a, the curve is concave upwards with an increasing positive slope; from a to b, the curve is a straight line with a constant positive slope; from b to c, the curve is concave downwards with a decreasing positive slope until it reaches a maximum peak at point c (where the tangent is horizontal); from c to d, the curve continues downward with an increasingly negative slope (concave downwards)."
+  },
+  {
+   "question_id": "kin_81640537",
+   "question_text": "A straight rigid rod of length l is placed such that its upper point B slides along a smooth vertical wall while its lower point A slides along a horizontal floor. If point A is drawn away from the wall to the left at a constant speed v, determine the downward speed of point B at the precise moment when the rod is inclined at an angle θ to the floor.",
+   "options": [],
+   "figure_description": "A vertical wall and a horizontal floor form a right-angled corner. A straight rod of length l connects the two surfaces, with its upper end B touching the vertical wall and its lower end A resting on the horizontal floor. Point A is moving horizontally to the left with a constant velocity vector labelled v. The angle between the rod and the ground at point A is denoted as θ."
+  },
+  {
+   "question_id": "kin_8241ba1f",
+   "question_text": "Derive the kinematic formula for the distance traveled by an object during its t-th second of motion under constant acceleration, given by sₜ = u + at − ½ a, where u represents the initial velocity and a is the uniform acceleration.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "kin_8399119e",
+   "question_text": "A particle travels along a straight path such that its speed depends on its position coordinate s through the relation v = √(4 + 4s) m/s. Given that the particle is located at s = 0 at time t = 0, calculate its position coordinate at t = 2 s.",
+   "options": [],
+   "figure_description": ""
+  }
+ ]
+}

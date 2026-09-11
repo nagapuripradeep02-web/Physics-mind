@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_e57c21cc",
+ "approach": "Add the three legs of the walk for the distance, combine the north-south and east-west legs as vectors for the displacement, then divide each by the total time.",
+ "steps": [
+  {"text": "Add the three legs walked to get the total distance.", "equation": "distance = 500 + 400 + 200 = 1100 m"},
+  {"text": "Combine the two north-south legs: 500 m north and 200 m south leave a net 300 m north. The east leg stays 400 m east.", "equation": "net north = 500 − 200 = 300 m, net east = 400 m"},
+  {"text": "Find the magnitude of the displacement using these two perpendicular components.", "equation": "displacement = √(300² + 400²) = √250000 = 500 m, directed 53.1° east of north"},
+  {"text": "Convert 20 min to seconds and divide the distance by the time for the average speed.", "equation": "t = 1200 s, average speed = 1100/1200 = 11/12 ≈ 0.92 ms⁻¹"},
+  {"text": "Divide the displacement by the same time for the average velocity.", "equation": "average velocity = 500/1200 = 5/12 ≈ 0.42 ms⁻¹, directed 53.1° east of north"}
+ ],
+ "final_answer": {"option": null, "value": "(a) distance walked = 1100 m, (b) displacement = 500 m, directed 53.1° east of north, (c) average speed = 11/12 ms⁻¹ ≈ 0.92 ms⁻¹, (d) average velocity = 5/12 ms⁻¹ ≈ 0.42 ms⁻¹, directed 53.1° east of north"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Reporting the average speed value, 0.92 ms⁻¹, as the average velocity, which confuses the total distance walked with the net displacement."}
+ ],
+ "concept_tags": ["distance and displacement", "average speed and average velocity", "vector addition"],
+ "difficulty": "easy",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-10", "at": "2026-09-11T14:12:00+05:30"}
+}

@@ -1,0 +1,803 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter": "kinematics",
+ "slice": 8,
+ "round": 0,
+ "agent_label": "W01-U-kin-08",
+ "items": [
+  {
+   "question_id": "kin_ad9f5a32",
+   "audit_file": "kin_ad9f5a32.1ddd6350.json",
+   "item_sha": "1ddd63503b9e61a6b7f7ae322941412dec0800c9c5c8d1a29586ed2c608c2e57",
+   "question_text": "Water in a 400 m wide river moves downstream at a speed of 2.0 m/s. A boat travels at 10.0 m/s relative to the water, keeping its heading aligned perpendicular to the stream.\n(a) Determine the duration required for the boat to arrive at the far bank.\n(b) Calculate the downstream distance between the boat's landing spot and the point located directly across from its launch position.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "The boat's velocity relative to water is perpendicular to the bank, so the crossing time depends only on that component, and the drift is the current speed times this time.",
+    "steps": [
+     {
+      "text": "The boat's velocity relative to water, 10.0 m/s, is entirely perpendicular to the river, since only the current carries it sideways.",
+      "why_this_step": "The perpendicular component alone determines how fast the boat closes the 400 m width."
+     },
+     {
+      "text": "Find the time to cross by dividing the width by the perpendicular velocity.",
+      "equation": "t = 400 m / 10.0 m/s = 40 s"
+     },
+     {
+      "text": "During this time, the current carries the boat downstream at 2.0 m/s; multiply by the crossing time to get the drift.",
+      "equation": "drift = 2.0 m/s × 40 s = 80 m"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "(a) 40 s, (b) 80 m"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Using the resultant speed √(10.0² + 2.0²) = 10.2 m/s instead of only the perpendicular component gives a wrong time of about 39.2 s."
+     },
+     {
+      "option": null,
+      "text": "Swapping the roles of the two given speeds gives a drift of 400 × 10.0/2.0 = 2000 m, an unreasonably large value."
+     }
+    ],
+    "concept_tags": [
+     "river-boat problem",
+     "relative velocity",
+     "perpendicular crossing"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "kin_b7ba93e1",
+   "audit_file": "kin_b7ba93e1.604c3d12.json",
+   "item_sha": "604c3d124bbfc9e70d5f21c90a84550bec87dace9af9b1944fb321f21425f9f9",
+   "question_text": "An elevator is traveling upwards while slowing down. State the respective directions of its velocity and acceleration at this moment.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Ascending fixes the direction of velocity as upward; a decreasing speed while moving in that direction means the acceleration opposes the velocity.",
+    "steps": [
+     {
+      "text": "The lift is ascending, so its velocity is directed upward.",
+      "equation": null
+     },
+     {
+      "text": "Its speed is decreasing while it moves upward, so the net force and acceleration must act opposite to the velocity.",
+      "equation": null
+     },
+     {
+      "text": "State both directions.",
+      "equation": "velocity: upward, acceleration: downward"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "Velocity is directed upward; acceleration is directed downward."
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Assuming the acceleration also points upward because the lift is going up, ignoring that its speed is decreasing."
+     }
+    ],
+    "concept_tags": [
+     "velocity and acceleration direction",
+     "retardation"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_aa3ceb25",
+   "audit_file": "kin_aa3ceb25.ea5eaa71.json",
+   "item_sha": "ea5eaa71a8ffa832c2ddbefb371ff81198713effee294246dc48414123efa3b4",
+   "question_text": "Water in a river flows horizontally to the right at a constant speed of 2 m/s between two parallel banks. A person starts rowing from point A on the lower bank to reach point B on the upper bank. The straight line connecting A to B makes an angle of 45° with the downstream bank. If the speed of the boat relative to the water is 4 m/s, find the angle θ with the perpendicular to the river bank at which the boat should be steered.",
+   "options": [],
+   "figure_description": "A horizontal river with parallel banks where the current flows to the right at 2 m/s. Point A is located on the bottom bank and point B on the top bank such that the straight line AB is inclined at 45° to the horizontal river bank. A dashed line normal to the banks extends upward from point A. The boat's heading makes an angle θ to the right of this vertical dashed normal.",
+   "solution": {
+    "approach": "Write the resultant of the boat's velocity and the river's velocity, and require it to point along AB, which makes 45° with both the bank and the perpendicular.",
+    "steps": [
+     {
+      "text": "Let x be across the river along the perpendicular and y be along the bank; the boat is rowed at angle θ from the x-axis, tilted toward the flow.",
+      "equation": "resultant_x = 4cos θ, resultant_y = 4sin θ + 2"
+     },
+     {
+      "text": "Since AB makes 45° with the bank, it also makes 45° with the perpendicular, so the resultant's x and y components must be equal.",
+      "equation": "4sin θ + 2 = 4cos θ"
+     },
+     {
+      "text": "Rearrange the equation and simplify.",
+      "equation": "4cos θ − 4sin θ = 2 → cos θ − sin θ = 0.5"
+     },
+     {
+      "text": "Solve this trigonometric equation for θ between 0° and 90°.",
+      "equation": "θ ≈ 24.3°"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "θ ≈ 24.3° from the perpendicular to the bank, tilted toward the direction of flow"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Ignoring the effect of the current and rowing straight along AB, taking θ = 45°."
+     },
+     {
+      "option": null,
+      "text": "Swapping the sine and cosine terms while writing the resultant components, 4sin θ − 4cos θ = 2, which gives the wrong angle θ ≈ 65.7°."
+     }
+    ],
+    "concept_tags": [
+     "relative velocity in a river",
+     "vector addition",
+     "river-boat problem"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_b29acc41",
+   "audit_file": "kin_b29acc41.3840510c.json",
+   "item_sha": "3840510c6b0cdc792045a3492d688da0d169b8cedeed5155d3905fb62f329c0d",
+   "question_text": "An aircraft accelerates from rest along a runway as shown in the given acceleration-time graph. What is the speed of the aircraft at the instant of lift-off at t = 20 s?",
+   "options": [
+    {
+     "label": "a",
+     "text": "40 ms⁻¹"
+    },
+    {
+     "label": "b",
+     "text": "50 ms⁻¹"
+    },
+    {
+     "label": "c",
+     "text": "90 ms⁻¹"
+    },
+    {
+     "label": "d",
+     "text": "180 ms⁻¹"
+    }
+   ],
+   "figure_description": "An acceleration versus time graph (a in ms⁻² versus t in s). The vertical axis represents acceleration 'a (ms⁻²)' with ticks at 0, 3, and 5. The horizontal axis represents time 't (s)' with ticks at 10 and 20. The curve starts at (t = 0, a = 3 ms⁻²) and rises linearly to (t = 10 s, a = 5 ms⁻²), then continues as a horizontal line at a constant value of a = 5 ms⁻² up to and beyond t = 20 s.",
+   "solution": {
+    "approach": "Find the velocity gained as the area under the acceleration-time graph, splitting the graph into the rising segment and the constant segment.",
+    "steps": [
+     {
+      "text": "From t = 0 to 10 s, acceleration rises linearly from 3 to 5 ms⁻². This segment is a trapezoid; find the velocity gained as its area.",
+      "equation": "Δv₁ = ½(3 + 5)(10) = 40 ms⁻¹"
+     },
+     {
+      "text": "From t = 10 to 20 s, acceleration is constant at 5 ms⁻². Find the velocity gained as this rectangle's area.",
+      "equation": "Δv₂ = 5 × 10 = 50 ms⁻¹"
+     },
+     {
+      "text": "The airplane starts from rest, so add the two velocity gains to get its velocity at lift-off, t = 20 s.",
+      "equation": "v(20) = 0 + 40 + 50 = 90 ms⁻¹"
+     }
+    ],
+    "final_answer": {
+     "option": 3,
+     "value": "90 ms⁻¹"
+    },
+    "common_mistakes": [
+     {
+      "option": 2,
+      "text": "Only counting the area of the constant segment from t = 10 to 20 s and forgetting the velocity gained during the first 10 s, giving 50 ms⁻¹."
+     }
+    ],
+    "concept_tags": [
+     "acceleration-time graph",
+     "area under a graph",
+     "equations of motion"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_ba6a1a9d",
+   "audit_file": "kin_ba6a1a9d.269d6f0d.json",
+   "item_sha": "269d6f0d6de9087a802ebebce81f788ce94291ee286710a11bdaf0a8a9264929",
+   "question_text": "A velocity-time plot for an automobile is a straight line that starts at the origin (0 s, 0 m/s) and passes through the point where velocity is 10 m/s at time t = 4 s. Based on this motion, calculate:\n(a) The acceleration of the automobile.\n(b) The total distance covered by the automobile in 8 s.",
+   "options": [],
+   "figure_description": "A graph with time t (in s) on the horizontal axis and velocity v (in m/s) on the vertical axis. A straight line starts at (0, 0) and goes through the point (4, 10), extending steadily past t = 8 s.",
+   "solution": {
+    "approach": "Read the slope of the straight line for the acceleration, then use the area under the v-t graph for the distance travelled.",
+    "steps": [
+     {
+      "text": "Find the slope of the line using the origin and the marked point.",
+      "equation": "a = (10 − 0)/(4 − 0) = 2.5 m/s²"
+     },
+     {
+      "text": "Find the velocity at t = 8 s using the same slope.",
+      "equation": "v(8) = 2.5×8 = 20 m/s"
+     },
+     {
+      "text": "The distance travelled is the area under the v-t graph, a triangle from t = 0 to t = 8 s.",
+      "equation": "s = ½×8×20 = 80 m"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "distance = 80 m; acceleration = 2.5 m/s²"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Taking the area under the graph as a rectangle with height 20 m/s instead of a triangle gives 160 m instead of 80 m."
+     }
+    ],
+    "concept_tags": [
+     "velocity-time graph",
+     "area under graph",
+     "uniform acceleration"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "kin_b635a79a",
+   "audit_file": "kin_b635a79a.2fd109e2.json",
+   "item_sha": "2fd109e2f5a57d9bbc28d0809d5b17a73199775fe81afc0a0b849c58ee1e03f7",
+   "question_text": "Ship A and ship B are initially separated by a distance of 10 km along a north-south axis, with ship A positioned to the north of ship B. Ship A moves due west at a constant speed of 20 km/h, while ship B sails due north at a constant speed of 20 km/h. Determine the shortest distance between the two vessels and the time taken to reach this minimum separation.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Find the velocity of ship B relative to ship A, then find the shortest distance from A to the straight-line path that B follows relative to A.",
+    "steps": [
+     {
+      "text": "Set up coordinates with east and north as axes. Place B at the origin and A 10 km north of it, and write both velocities as vectors.",
+      "equation": "A = (0, 10) km, B = (0, 0) km, v_A = (−20, 0) km/h (west), v_B = (0, 20) km/h (north)"
+     },
+     {
+      "text": "Find the velocity of B relative to A.",
+      "equation": "v_BA = v_B − v_A = (0 − (−20), 20 − 0) = (20, 20) km/h, |v_BA| = √(20² + 20²) = 20√2 km/h at 45° north of east"
+     },
+     {
+      "text": "Find the position of B relative to A at t = 0.",
+      "equation": "r_BA(0) = B − A = (0, −10) km, that is, 10 km south of A"
+     },
+     {
+      "text": "Write the relative position as a function of time and minimize the squared distance from A (the origin of this relative frame).",
+      "equation": "r_BA(t) = (20t, −10 + 20t), distance² = (20t)² + (−10 + 20t)² = 800t² − 400t + 100"
+     },
+     {
+      "text": "Differentiate the squared distance and set it to zero to find the time of closest approach.",
+      "equation": "d(distance²)/dt = 1600t − 400 = 0 → t = 0.25 h = 15 min"
+     },
+     {
+      "text": "Substitute t = 0.25 h back to get the minimum distance.",
+      "equation": "distance² = 800(0.25)² − 400(0.25) + 100 = 50, distance = √50 = 5√2 ≈ 7.07 km"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "distance of closest approach = 5√2 km ≈ 7.07 km, reached after 0.25 h = 15 minutes"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Using the initial separation of 10 km directly as the closest approach, without accounting for the relative motion, misses that the two ships close in further before moving apart."
+     },
+     {
+      "option": null,
+      "text": "Adding the two speeds as 20 + 20 = 40 km/h for the relative speed instead of combining them as perpendicular vectors gives a wrong relative velocity of 40 km/h instead of 20√2 km/h."
+     }
+    ],
+    "concept_tags": [
+     "relative velocity in two dimensions",
+     "distance of closest approach"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "kin_b88a594f",
+   "audit_file": "kin_b88a594f.0709d316.json",
+   "item_sha": "0709d3166c9bdf1d087ea111d6bf598e8a1ab588f9d587231b60c7a7d89c573e",
+   "question_text": "A body initially at rest is located at the position (2 m, 4 m) when t = 0. It begins to travel with a uniform acceleration of 2 m/s² directed along the positive x-axis. After a duration of 2 s, another constant acceleration of magnitude 4 m/s² acts on it along the negative y-axis while the original x-acceleration continues. For a time instant 2 s later, determine:\n(a) velocity of the particle\n(b) coordinates of the particle",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Track the x-motion over the full 4 s under its constant acceleration, and the y-motion only over the last 2 s once the second acceleration switches on.",
+    "steps": [
+     {
+      "text": "Find the x-velocity and x-displacement at t = 2 s, starting from rest with acceleration 2 m/s².",
+      "equation": "vₓ(2) = 4 m/s, x-displacement = 4 m, so x = 2 + 4 = 6 m"
+     },
+     {
+      "text": "The x-acceleration keeps acting for the next 2 s, so update x and vₓ over that interval too.",
+      "equation": "vₓ(4) = 4 + 2(2) = 8 m/s, Δx = 4(2) + ½(2)(2²) = 12 m, x(4) = 6 + 12 = 18 m"
+     },
+     {
+      "text": "The y-acceleration of 4 m/s² in the negative direction acts only over the last 2 s, starting from v_y = 0.",
+      "equation": "v_y(4) = 0 − 4(2) = −8 m/s, Δy = ½(−4)(2²) = −8 m, y(4) = 4 − 8 = −4 m"
+     },
+     {
+      "text": "Combine the x and y components for the velocity and the coordinates after the next 2 s.",
+      "equation": "(a) v = (8î − 8ĵ) m/s, |v| ≈ 11.3 m/s. (b) coordinates = (18 m, −4 m)"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "(a) v = (8î − 8ĵ) m/s, magnitude ≈ 11.3 m/s. (b) coordinates = (18 m, −4 m)"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Restarting the x-motion at t = 2 s and ignoring the position and velocity built up in the first 2 s gives only 4 m of x-displacement in the next 2 s, not 12 m."
+     }
+    ],
+    "concept_tags": [
+     "kinematics in two dimensions",
+     "piecewise acceleration"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "kin_c9d48c69",
+   "audit_file": "kin_c9d48c69.a390259a.json",
+   "item_sha": "a390259ab0efd0a82b96c5752a333ba517aec537eb06cc78d410d6447bbb61d3",
+   "question_text": "A ball projected straight upward with an initial speed v₀ attains a peak altitude h. What initial speed is needed to make the ball attain three times this peak altitude?",
+   "options": [
+    {
+     "label": "a",
+     "text": "√3 v₀"
+    },
+    {
+     "label": "b",
+     "text": "3 v₀"
+    },
+    {
+     "label": "c",
+     "text": "9 v₀"
+    },
+    {
+     "label": "d",
+     "text": "3/2 v₀"
+    }
+   ],
+   "figure_description": "",
+   "solution": {
+    "approach": "Use the relation between launch speed and maximum height, and compare the speeds needed for height h and for height 3h.",
+    "steps": [
+     {
+      "text": "Write the relation between the launch speed and the maximum height reached.",
+      "equation": "h = v₀²/(2g)"
+     },
+     {
+      "text": "Write the same relation for the new speed v′ that gives triple the height.",
+      "equation": "3h = v′²/(2g)"
+     },
+     {
+      "text": "Divide the two equations to eliminate g and h.",
+      "equation": "v′²/v₀² = 3 v₀"
+     }
+    ],
+    "final_answer": {
+     "option": 2,
+     "value": "3 v₀"
+    },
+    "common_mistakes": [],
+    "concept_tags": [
+     "equations of motion",
+     "maximum height"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_adbc9454",
+   "audit_file": "kin_adbc9454.be18d77f.json",
+   "item_sha": "be18d77f11c65e105898ddecceb6d1edaa2de215c848608f5753d3e951e30581",
+   "question_text": "Explain why the kinematic expression sₜ = u + at − ½ a appears to be dimensionally inconsistent.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "In this equation t stands for the second number being counted, a plain number, not a time interval with the dimension of time.",
+    "steps": [
+     {
+      "text": "In the usual equations of motion, every symbol standing for a time has the dimension of time, so a term like at should have the dimension of velocity, matching u.",
+      "equation": "[at] should equal [u]"
+     },
+     {
+      "text": "Here t is not a duration; it labels which second is being counted, the 1st, 2nd, 3rd second and so on, so it is really the pure number n, with no dimension of time attached."
+     },
+     {
+      "text": "Because n is treated as a bare number, an in this equation is being added to u as if it were already a speed, which only works out correctly when time is measured in seconds.",
+      "why_this_step": "This is why the equation looks dimensionally odd even though it gives the right numerical answer."
+     },
+     {
+      "text": "So the equation is a numerical relation valid only when a, u and the second-number t are all expressed in a consistent set of units such as SI, and it should not be read as a general dimensionally balanced formula.",
+      "equation": "sₜ = u + at − ½a, valid with t as a pure second-number in SI units"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "Because t in this formula denotes the number of the second being counted, a pure number, not a physical time interval, so the equation is a numerical relation tied to seconds as the unit, not a dimensionally balanced physical law."
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Treating t here as an ordinary time interval and concluding the equation is wrong, instead of recognising it as a numerical relation for the nth second."
+     }
+    ],
+    "concept_tags": [
+     "dimensional analysis",
+     "distance in nth second"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_ac0c6757",
+   "audit_file": "kin_ac0c6757.b05a2aa0.json",
+   "item_sha": "b05a2aa0c9b9020c1d8db385eea93b1359ddd2655dcc5839b380a2d0cec955d9",
+   "question_text": "An object travels along a linear path maintaining a uniform rate of 4 m/s over a duration of 2 s, followed by traveling at 6 m/s throughout the subsequent 3 s. Determine the mean speed of the object across this entire duration.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Average speed is the total distance covered in both legs divided by the total time taken.",
+    "steps": [
+     {
+      "text": "Find the distance covered in the first leg.",
+      "equation": "d1 = 4 m/s × 2 s = 8 m"
+     },
+     {
+      "text": "Find the distance covered in the second leg.",
+      "equation": "d2 = 6 m/s × 3 s = 18 m"
+     },
+     {
+      "text": "Add the distances and the times.",
+      "equation": "total distance = 8 + 18 = 26 m, total time = 2 + 3 = 5 s"
+     },
+     {
+      "text": "Average speed is total distance divided by total time.",
+      "equation": "average speed = 26/5 = 5.2 m/s"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "5.2 m/s"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Taking the simple average of the two speeds, (4 + 6)/2 = 5 m/s, instead of weighting by the distance each speed covers."
+     },
+     {
+      "option": null,
+      "text": "Using the equal-distance average-speed formula 2v1v2/(v1 + v2) = 4.8 m/s, which only applies when the two legs cover equal distances, not equal-looking legs with different times."
+     }
+    ],
+    "concept_tags": [
+     "average speed",
+     "uniform motion"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "kin_b3445329",
+   "audit_file": "kin_b3445329.2f775743.json",
+   "item_sha": "2f775743521e53a32040c52ff33456b94d4ccaa9c7be84dfff1b945465eaf0f2",
+   "question_text": "A stream of water has a width of 20 m and flows at 3 m/s. A small boat moves with a speed of 2√2 m/s relative to the water, directed at an angle of 45° with respect to the downstream flow.\n(a) Calculate the time needed for the boat to reach the opposite side.\n(b) Find the distance from the point straight across from the initial position to where the boat arrives on the opposite bank.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Resolve the boat's velocity relative to water across and along the river; the across part fixes the crossing time, and the along part adds to the current to fix drift.",
+    "steps": [
+     {
+      "text": "Resolve the boat's velocity relative to water, 2√2 m/s at 45° to the current, into components across and along the river.",
+      "equation": "v_across = 2√2 sin45° = 2 m/s, v_along = 2√2 cos45° = 2 m/s"
+     },
+     {
+      "text": "The crossing time depends only on the across component, since that is what closes the 20 m width.",
+      "equation": "t = 20 m / 2 m/s = 10 s"
+     },
+     {
+      "text": "The ground velocity along the river is the current plus the boat's own along-river component, since both point the same way.",
+      "equation": "v_ground,along = 3 m/s + 2 m/s = 5 m/s"
+     },
+     {
+      "text": "The drift is this along-river ground velocity times the crossing time; state both results.",
+      "equation": "drift = 5 m/s × 10 s = 50 m"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "(a) 10 s, (b) 50 m"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Using only the current speed for the drift and ignoring the boat's own along-river component gives 30 m instead of 50 m."
+     },
+     {
+      "option": null,
+      "text": "Using the full boat speed 2√2 m/s instead of only its across-river component to find the crossing time gives 7.1 s instead of 10 s."
+     }
+    ],
+    "concept_tags": [
+     "river-boat problem",
+     "relative velocity",
+     "vector resolution"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "kin_ad114b2d",
+   "audit_file": "kin_ad114b2d.35be54c3.json",
+   "item_sha": "35be54c30ae32cddf50be74257ed5eccf2f3598865bd14d996fe982746d92af7",
+   "question_text": "A car and a truck begin moving simultaneously from rest in the same direction, with the car situated a certain distance behind the truck at the start. The truck speeds up with a uniform acceleration of 2.2 m/s², whereas the car speeds up with a steady acceleration of 3.5 m/s². By the moment the truck has covered a distance of 60 m, the car catches up with it.\n(a) How much time is needed for the car to catch up with the truck?\n(b) What was the initial separation between the car and the truck?\n(c) What is the speed of each vehicle at the instant the car overtakes the truck?",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Use s = ½at² for constant-acceleration motion from rest for both vehicles, find the time from the truck's 60 m, then find the initial gap and speeds from that time.",
+    "steps": [
+     {
+      "text": "Find the time for the truck to move 60 m from rest using s = ½at².",
+      "equation": "60 = ½(2.2)t² → t² = 60/1.1 → t = 7.39 s"
+     },
+     {
+      "text": "In the same time, find how far the automobile has moved from its own start.",
+      "equation": "x_auto = ½(3.5)(7.39)² ≈ 95.45 m"
+     },
+     {
+      "text": "The automobile overtakes the truck when its distance from its own start equals the truck's 60 m plus the initial gap; solve for the gap.",
+      "equation": "d = x_auto − 60 = 95.45 − 60 = 35.45 m",
+      "why_this_step": "Overtaking means the two vehicles are at the same absolute position, so the automobile must cover the gap plus the truck's own 60 m."
+     },
+     {
+      "text": "Find the speed of each vehicle at this time using v = at.",
+      "equation": "v_truck = 2.2 × 7.39 = 16.25 m/s, v_auto = 3.5 × 7.39 = 25.85 m/s"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "(a) t ≈ 7.39 s. (b) initial gap d ≈ 35.45 m. (c) v_truck ≈ 16.25 m/s, v_auto ≈ 25.85 m/s."
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Taking the truck's 60 m displacement itself as the initial gap between the vehicles, giving d = 60 m."
+     },
+     {
+      "option": null,
+      "text": "Using the automobile's own acceleration on the 60 m distance to find the time, 60 = ½(3.5)t², giving the wrong time t ≈ 5.86 s."
+     }
+    ],
+    "concept_tags": [
+     "constant acceleration from rest",
+     "relative displacement",
+     "kinematics equations"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "kin_afc24644",
+   "audit_file": "kin_afc24644.5fdd3b80.json",
+   "item_sha": "5fdd3b803fbe329f4f902ec8465164f4876cf1c1eea1a3e738c2a1bb2fbfe3fc",
+   "question_text": "The variation of velocity with time for a body executing one-dimensional motion is depicted in the given diagram. The body starts from an initial position of s = −10 m at t = 0 s. Draw the corresponding acceleration-time (a-t) and displacement-time (s-t) graphs for the entire interval from t = 0 s to t = 10 s.\n(a) Plot the acceleration-time (a-t) graph for the interval t = 0 s to t = 10 s.\n(b) Plot the position-time (s-t) graph for the interval t = 0 s to t = 10 s.",
+   "options": [],
+   "figure_description": "A velocity versus time (v-t) graph displaying piecewise linear segments from t = 0 s to t = 10 s. The velocity starts at (0 s, 0 m/s), increases linearly to (2 s, 10 m/s), remains flat at 10 m/s until (4 s, 10 m/s), drops linearly through (6 s, 0 m/s) to reach a minimum of −10 m/s at (8 s, −10 m/s), and finally rises linearly to end at (10 s, 0 m/s).",
+   "solution": {
+    "approach": "Read the slope of each straight segment of the v-t graph for acceleration, and add the signed area under v-t to the initial position for the s-t graph.",
+    "steps": [
+     {
+      "text": "Find acceleration on each segment as the slope of the v-t line; the acceleration graph is a step function.",
+      "equation": "a = 5 m/s² (0–2 s), a = 0 (2–4 s), a = −5 m/s² (4–8 s), a = 5 m/s² (8–10 s)"
+     },
+     {
+      "text": "Start the position at s = −10 m at t = 0 and add the area under v-t up to each breakpoint.",
+      "equation": "s(0) = −10 m, s(2) = 0, s(4) = 20 m, s(6) = 30 m, s(8) = 20 m, s(10) = 10 m"
+     },
+     {
+      "text": "Between breakpoints, the s-t graph is a parabola while v is changing, and a straight line while v is constant.",
+      "equation": "s(t) = −10 + 2.5t² for 0≤t≤2 s; s(t) = 10t − 20 for 2≤t≤4 s; curved between 4 and 8 s with a peak s = 30 m at t = 6 s (where v = 0); curved between 8 and 10 s",
+      "why_this_step": "The s-t curve bends wherever v itself is changing, and is straight only while v is constant."
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "a-t graph: a = 5 m/s² from t = 0–2 s, a = 0 from t = 2–4 s, a = −5 m/s² from t = 4–8 s, a = 5 m/s² from t = 8–10 s (a step graph). s-t graph passes through (0,−10), (2,0), (4,20), (6,30) [peak, since v = 0 here], (8,20), (10,10) m — a rising parabola from t = 0–2 s, a straight rising line from t = 2–4 s, and parabolic curves from t = 4–8 s and t = 8–10 s."
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Treating the s-t graph as straight lines between every pair of breakpoints instead of a curve wherever the velocity is itself changing."
+     },
+     {
+      "option": null,
+      "text": "Missing that acceleration is zero during the constant-velocity segment from t = 2 s to t = 4 s, and drawing a nonzero acceleration there instead."
+     }
+    ],
+    "concept_tags": [
+     "v-t graph",
+     "a-t graph from slope",
+     "s-t graph from area under v-t"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_adf4cca8",
+   "audit_file": "kin_adf4cca8.4dbfff97.json",
+   "item_sha": "4dbfff9789b5a618c0c738c5a9872a21167d39a636414dfd2ba485bf6d9024b7",
+   "question_text": "Assertion: For two particles traveling along a straight path, the displacements vary with time as s₁ = 2t − 4t² and s₂ = − 2t + 4t². The relative velocity between them continually increases.\nReason: An object's speed grows whenever its velocity and acceleration have the same sign.",
+   "options": [
+    {
+     "label": "a",
+     "text": "If both Assertion and Reason are true and the Reason is correct explanation of the Assertion."
+    },
+    {
+     "label": "b",
+     "text": "If both Assertion and Reason are true but Reason is not the correct explanation of Assertion."
+    },
+    {
+     "label": "c",
+     "text": "If Assertion is true, but the Reason is false."
+    },
+    {
+     "label": "d",
+     "text": "If Assertion is false but the Reason is true."
+    }
+   ],
+   "figure_description": "",
+   "solution": {
+    "approach": "Differentiate both displacement equations to get the relative velocity and relative acceleration, then check their signs at t = 0.",
+    "steps": [
+     {
+      "text": "Differentiate each displacement equation to get the two velocities.",
+      "equation": "v₁ = 2 − 8t, v₂ = −2 + 8t"
+     },
+     {
+      "text": "Find the relative velocity of particle 1 with respect to particle 2.",
+      "equation": "v_rel = v₁ − v₂ = 4 − 16t"
+     },
+     {
+      "text": "Differentiate again to get the relative acceleration, which is constant.",
+      "equation": "a_rel = dv_rel/dt = −16"
+     },
+     {
+      "text": "At t = 0, v_rel = +4 and a_rel = −16 have opposite signs, so by the Reason's own rule the relative speed decreases at first instead of increasing throughout.",
+      "equation": "v_rel(0) = 4, a_rel = −16, opposite signs"
+     },
+     {
+      "text": "The Assertion is therefore false, while the Reason states a true general rule about velocity and acceleration signs.",
+      "equation": "final answer: option (d)"
+     }
+    ],
+    "final_answer": {
+     "option": 4,
+     "value": "Assertion is false but the Reason is true."
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Seeing a nonzero constant relative acceleration and assuming the relative speed must keep increasing, without checking the signs of v_rel and a_rel at t = 0, wrongly marks both statements true."
+     }
+    ],
+    "concept_tags": [
+     "relative velocity",
+     "acceleration",
+     "equations of motion"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_af05e9d4",
+   "audit_file": "kin_af05e9d4.a8c1062b.json",
+   "item_sha": "a8c1062b59d1ec89e4e996fb2266ca02632242c08994a2c8301e81a39975c78d",
+   "question_text": "A pair of diamonds are released from rest at an identical elevation, one falling 1.0 s after the other. Find the time elapsed since the release of the initial diamond at which the vertical gap separating the two stones reaches 10 m. (Use g = 10 m/s²)",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Write the distance fallen by each diamond as a function of time from the first diamond's release, then set the gap between them to 10 m to find that time.",
+    "steps": [
+     {
+      "text": "Measure time t from when the first diamond is released. Its distance fallen is ½gt².",
+      "equation": "y₁(t) = ½(10)t² = 5t²"
+     },
+     {
+      "text": "The second diamond is released 1.0 s later, so for t ≥ 1 s its distance fallen is ½g(t − 1)².",
+      "equation": "y₂(t) = 5(t − 1)²"
+     },
+     {
+      "text": "The gap between them, for t ≥ 1 s, is the difference of these two distances.",
+      "equation": "gap = 5t² − 5(t − 1)² = 5(2t − 1) = 10t − 5"
+     },
+     {
+      "text": "Set the gap to 10 m and solve for t.",
+      "equation": "10t − 5 = 10 → t = 1.5 s"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "1.5 s"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Ignoring that the second diamond has not started falling yet and solving 5t² = 10 for the gap, which gives t = √2 ≈ 1.41 s, a time before the second diamond is even released."
+     }
+    ],
+    "concept_tags": [
+     "free fall",
+     "relative motion",
+     "staggered start"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "kin_b31f7df2",
+   "audit_file": "kin_b31f7df2.4dfd1076.json",
+   "item_sha": "4dfd1076eddfdfcf8d0f457bc690c91f36ea2621a2faefbef65f46ca0b928471",
+   "question_text": "The velocity-displacement (v-s) curve of a particle executing rectilinear motion is a straight line with a non-zero positive y-intercept and a positive slope. Sketch the corresponding acceleration-displacement (a-s) graph.",
+   "options": [],
+   "figure_description": "A graph with displacement s plotted along the horizontal axis and velocity v along the vertical axis shows a straight line located in the first quadrant, starting from a positive value on the vertical axis and rising with a positive slope.",
+   "solution": {
+    "approach": "Write the v-s line as an equation, use a = v dv/ds to get acceleration as a function of s, and read off its intercept and slope.",
+    "steps": [
+     {
+      "text": "Write the given straight-line v-s graph as an equation with a positive intercept c and a positive slope m.",
+      "equation": "v = c + ms"
+     },
+     {
+      "text": "Use the identity that relates acceleration to velocity and displacement.",
+      "equation": "a = v (dv/ds)"
+     },
+     {
+      "text": "The slope of the v-s line is constant, so dv/ds = m; substitute this and the expression for v.",
+      "equation": "a = (c + ms)(m) = mc + m²s"
+     },
+     {
+      "text": "This is again a straight line in s, with a positive intercept mc and a positive slope m², so the a-s graph is also a straight line with a positive intercept and a positive slope, matching the graph shown.",
+      "equation": "a-s line: intercept = mc, slope = m²"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "a = mc + m²s, a straight line in s with positive intercept mc and positive slope m², matching the graph shown"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Using a = dv/dt directly with the v-s slope m as if it were a time rate gives a as a constant, missing that a depends on s through the v(dv/ds) relation."
+     }
+    ],
+    "concept_tags": [
+     "velocity-displacement graph",
+     "acceleration-displacement relation",
+     "calculus in kinematics"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "concept"
+   }
+  }
+ ]
+}

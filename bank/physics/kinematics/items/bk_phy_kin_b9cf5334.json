@@ -1,0 +1,82 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_b9cf5334",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A particle travels along a straight path with a velocity that varies with time as depicted in the graph. Draw the corresponding position-time (s−t) graph of the motion, given that the particle is at s = 0 when t = 0.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "straight-line motion",
+   "initial displacement s = 0 at t = 0",
+   "velocity increases linearly from 0 to 10 m/s between t = 0 and t = 2 s",
+   "velocity remains constant at 10 m/s between t = 2 s and t = 4 s",
+   "velocity increases linearly from 10 m/s to 20 m/s between t = 4 s and t = 6 s",
+   "velocity decreases linearly from 20 m/s to 0 m/s between t = 6 s and t = 8 s"
+  ],
+  "figure": {
+   "description": "A velocity-time (v−t) graph with v (in m/s) on the vertical axis and t (in s) on the horizontal axis. The graph consists of four straight-line segments connecting the points: O(0, 0) to A(2, 10), A(2, 10) to B(4, 10), B(4, 10) to C(6, 20), and C(6, 20) to D(8, 0)."
+  }
+ },
+ "solution": {
+  "approach": "Find the displacement at each corner time from the area under the v-t graph, then describe the curvature of the s-t graph in each interval.",
+  "steps": [
+   {
+    "text": "Find the displacement at t = 2, 4, 6, 8 s by adding the area under each straight segment of the v-t graph.",
+    "equation": "s(2)=10 m, s(4)=30 m, s(6)=60 m, s(8)=80 m"
+   },
+   {
+    "text": "From 0 to 2 s the velocity rises from 0 to 10 m/s, so the s-t curve is concave up, steepening. From 2 to 4 s the velocity is constant at 10 m/s, so the s-t curve is a straight line.",
+    "equation": "0–2 s: concave up, 2–4 s: straight line of slope 10"
+   },
+   {
+    "text": "From 4 to 6 s the velocity rises again from 10 to 20 m/s, so the s-t curve is concave up, steepening further. From 6 to 8 s the velocity falls from 20 to 0, so the s-t curve is concave down, flattening to a horizontal tangent at t = 8 s.",
+    "equation": "4–6 s: concave up, 6–8 s: concave down, tangent horizontal at t = 8 s"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "The s-t graph passes through (0,0), (2,10), (4,30), (6,60), (8,80) m in metres and seconds. It is concave up on 0–2 s and 4–6 s, a straight line on 2–4 s, and concave down on 6–8 s, flattening to a horizontal tangent at the maximum displacement of 80 m at t = 8 s."
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Drawing straight lines between the four displacement values ignores that the velocity is changing within each interval, which curves the s-t graph rather than making it a series of straight segments."
+   }
+  ],
+  "concept_tags": [
+   "v-t to s-t graph",
+   "area under v-t graph",
+   "concavity"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "57613985bb56406eafb907627339122b1730760d62149687988536872c6db06c"
+ },
+ "verification": {
+  "key_match": false,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "52724813396881021c0ac5976e2f370b3a27e28374cf953f88c7c1c50fc45517",
+  "audited_by": "W01-U-kin-04"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-11",
+  "at": "2026-09-11T15:05:00+05:30"
+ }
+}

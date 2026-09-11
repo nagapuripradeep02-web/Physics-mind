@@ -1,0 +1,16 @@
+{
+ "question_id": "kin_c3fd0298",
+ "item_sha": "f2a7296823b4ccf202dcfe9f1f6285b3e6c4cf602bc56c9758085c4944915ba0",
+ "auditor_option": null,
+ "auditor_value": "(a) y ≈ 45 m (44.96 m) at t = √14.5 ≈ 3.81 s; (b) speed ≈ 21.8 m/s",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-kin-09",
+  "at": "2026-09-11T09:50:24+05:30"
+ }
+}

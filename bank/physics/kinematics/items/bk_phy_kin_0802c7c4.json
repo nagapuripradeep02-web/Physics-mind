@@ -1,0 +1,78 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_0802c7c4",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "An object travels along a straight path having a starting velocity u and experiencing a uniform acceleration a. Determine its average velocity over the duration between t = 0 and t = t seconds.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "motion along a straight line",
+   "initial velocity is u",
+   "uniform acceleration is a",
+   "time interval from t = 0 to t = t seconds"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Average velocity is the total displacement in the interval divided by the time, so write the displacement using the standard equation and divide by t.",
+  "steps": [
+   {
+    "text": "Write the displacement from 0 to time t using the standard equation of motion with constant acceleration a.",
+    "equation": "s = ut + ½at²"
+   },
+   {
+    "text": "Average velocity over the interval is this displacement divided by the time taken.",
+    "equation": "v_avg = s/t = (ut + ½at²)/t"
+   },
+   {
+    "text": "Cancel t from each term to reach the simplest form.",
+    "equation": "v_avg = u + ½at",
+    "why_this_step": "This also equals the mean of the initial and final velocities, (u + v)/2, since v = u + at."
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "v_avg = u + ½at"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Taking the average velocity as u, the initial velocity, ignoring that the velocity keeps changing at rate a over the interval."
+   }
+  ],
+  "concept_tags": [
+   "average velocity",
+   "equations of motion"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "a2064d3015a8658f698abd4b1da077d37007c688d30d45ba61f5e84edba3dc2b"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "99b28d79dad73e1441dc577a123e8ca57468c139e04afa049d0177769e372f44",
+  "audited_by": "W01-U-kin-07"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-05",
+  "at": "2026-09-11T14:14:00+05:30"
+ }
+}

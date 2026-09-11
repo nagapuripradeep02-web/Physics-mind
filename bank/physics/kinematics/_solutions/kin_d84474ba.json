@@ -1,0 +1,43 @@
+{
+ "approach": "With air resistance, the effective deceleration going up is larger than g, and the effective acceleration coming down is smaller than g, so the times are unequal.",
+ "steps": [
+  {
+   "text": "Going up, both gravity and air resistance act downward, opposing the upward motion.",
+   "equation": "a_up = g + f/m"
+  },
+  {
+   "text": "Coming down, gravity acts downward but air resistance acts upward, opposing the downward motion.",
+   "equation": "a_down = g − f/m"
+  },
+  {
+   "text": "A larger deceleration going up brings the ball to rest sooner, while a smaller net acceleration coming down means it takes longer to return to the ground.",
+   "equation": "T₁ < T₂"
+  }
+ ],
+ "final_answer": {
+  "option": 3,
+  "value": "T₁ < T₂"
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": 2,
+   "text": "Ignoring air resistance and assuming the upward and downward motions are symmetric, giving T₁ = T₂."
+  }
+ ],
+ "concept_tags": [
+  "projectile motion",
+  "air resistance",
+  "time of flight"
+ ],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_d84474ba",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-08",
+  "at": "2026-09-11T14:20:00+05:30"
+ }
+}

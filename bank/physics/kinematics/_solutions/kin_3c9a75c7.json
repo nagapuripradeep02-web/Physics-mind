@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_3c9a75c7",
+ "approach": "Write velocity as a linear function of displacement, then use a = v(dv/ds) at s = 15 m.",
+ "steps": [
+  {"text": "Velocity falls linearly from 20 m/s at s = 0 to 0 at s = 30 m; write v as a function of s.", "equation": "v(s) = 20 − (2/3)s"},
+  {"text": "Differentiate v with respect to s; the slope is constant.", "equation": "dv/ds = −2/3 per second"},
+  {"text": "Find v at s = 15 m.", "equation": "v(15) = 20 − (2/3)(15) = 10 m/s"},
+  {"text": "Use a = v(dv/ds) with v = 10 m/s and dv/ds = −2/3 to find the acceleration.", "equation": "a = 10 × (−2/3) = −6.67 m/s²"}
+ ],
+ "final_answer": {"option": null, "value": "−6.67 m/s²"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Using the starting velocity 20 m/s instead of the velocity at s = 15 m, giving a = 20 × (−2/3) = −13.3 m/s²."},
+  {"option": null, "text": "Dropping the negative sign on the slope and writing a = 10 × (2/3) = 6.67 m/s²."}
+ ],
+ "concept_tags": ["acceleration as v dv/ds", "linear velocity-displacement relation", "rectilinear motion"],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-12", "at": "2026-09-11T16:09:00+05:30"}
+}

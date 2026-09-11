@@ -1,0 +1,24 @@
+{
+ "question_id": "kin_5185b19d",
+ "item_sha": "4974c65ee75e789a9476c499227cfa2d77fbae81effa98d48a9214cd09f61a3b",
+ "auditor_option": null,
+ "auditor_value": "(a) 90 m above the ground; (b) 6 s; (c) (3√2 − 2) s ≈ 2.24 s",
+ "findings": [
+  {
+   "grade": "weak",
+   "field": "steps[3].why_this_step",
+   "quote": "The quadratic has two roots; the larger positive one is the landing time since the smaller root would occur before the ball even returns to the elevator.",
+   "note": "The two roots of t² − 8t − 2 = 0 are 4 − 3√2 ≈ −0.24 s and 4 + 3√2 ≈ 8.24 s. The smaller root is negative, that is, before the ball was thrown, so it is rejected because it is not a time after launch at all; describing it as an instant occurring before the ball returns to the elevator, and calling the other root 'the larger positive one', suggests both roots are positive times during the flight.",
+   "fix": "The quadratic has two roots, 4 − 3√2 ≈ −0.24 s and 4 + 3√2 ≈ 8.24 s. The negative root is a time before the throw, so the landing time is t = 4 + 3√2 ≈ 8.24 s."
+  }
+ ],
+ "verdict": "weak",
+ "question_defect": null,
+ "notes": "Both mistake values check out: 10 + 30²/20 = 55 m, and 40t − 5t² = 0 gives t = 8 s.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-kin-03",
+  "at": "2026-09-11T09:53:59+05:30"
+ }
+}

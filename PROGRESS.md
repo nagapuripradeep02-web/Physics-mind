@@ -1,5 +1,40 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 🔬 SESSION — Book-derived solutions bank, kinematics pilot: 169 verified items, gate + blind audit + photo-match probe (2026-09-11)
+
+**Bottom line: the first chapter of the pre-solved bank behind the Solutions tab exists and is
+verified — 169 `bank_item_v1` items under `bank/physics/kinematics/`, each our own restatement + our
+own solution + a fingerprint, with the source's words and identity nowhere in git.** Three readers
+had to agree (blind Sonnet author, Gemini on the crop, the printed key), a syllabus judge kept every
+solution inside Class 11–12, and twelve blind Opus auditors with planted controls (14 valid, 14
+caught) closed the wave in three rounds. A 494-query photo-match probe sized phase 2: embedding
+cosine ≥ 0.85 with a numbers gate answers 82 % of synthetic photos from the bank with 0 false hits
+in 225 PYQs. Report: `docs/reports/bank/2026-09-11-kinematics-pilot.md` — **the founder reads it
+before any PR.**
+
+### What the gate found in itself (the session's real work)
+
+The first full gate run passed 115 of 181 items and the counts looked plausible. Reading every
+non-pass row instead of the counts found: the sub-parts of a question were invisible to every
+re-solver (65 of 183 items carry parts); the identity grep matched "fallen"; the words comparator
+de-duplicated tokens so a swapped positive/negative passed as equal; the unit table lacked m/min;
+bracketed qualifiers and decimal-vs-exact forms read as different; the judge cache outlived its
+prompt. Each fix carries a fixture (34 → 77 pairs). Lesson filed in memory.
+
+### Held back for the founder (report §5)
+
+4 escalations where two blind readers agree against the printed key (one true/false item, one sign
+read off a graph, two wording-only), 1 author miss, 1 undecided sketch item, 1 dropped
+assertion–reason (the key was right), 2 AR items with ambiguous printed answers, 1 audit-failed AR
+item. The source PDF carries a Telegram watermark.
+
+### Next session's first task
+
+Founder reads the report and triages §5; then phase 2 — port `sig_gate` + cosine from
+`scripts/bank/match.py` into the `ep-solve` similarity cache on the app desk, run
+`match.py probe --real DIR` on the founder's real phone photos, and pick τ (0.85 vs 0.80). Then the
+next Mechanics-1 chapter through the same scripts (`ingest → solve → gate → audit → release`).
+
 ## 🔬 SESSION — BiPC second year gets the MPC treatment: 314 cards examiner-audited, 3,140 chatbot calls, 24 harmful + 230 of 244 wrong findings repaired (2026-09-04/05, `feat/ipe-answerbook-zoology-2`, PR #173 + platform PR #200)
 
 **Bottom line: Botany-II and Zoology-II — the two BiPC second-year papers where only the answer

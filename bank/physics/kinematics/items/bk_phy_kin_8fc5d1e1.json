@@ -1,0 +1,82 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_8fc5d1e1",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "numerical",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "At the same instant, two bodies, A and B, travel along a straight path in an identical direction. Particle A has an initial speed of 3 m/s and maintains a constant acceleration of 1 m/s², while particle B has an initial speed of 1 m/s and an acceleration of 2 m/s². If particle A begins at a position 10 m behind particle B, determine the closest distance of approach between the two particles.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "motion along a straight line in the same direction",
+   "motion starts simultaneously",
+   "constant acceleration of A is 1 m/s²",
+   "constant acceleration of B is 2 m/s²",
+   "initial speed of A is 3 m/s",
+   "initial speed of B is 1 m/s",
+   "initial separation is 10 m with A behind B"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Write the separation between B and A as a function of time and minimize it with calculus.",
+  "steps": [
+   {
+    "text": "Write each particle's position from its own start, then the separation as B's position minus A's position, starting from the given 10 m gap.",
+    "equation": "s(t) = 10 + (t + t²) − (3t + 0.5t²) = 10 − 2t + 0.5t²"
+   },
+   {
+    "text": "Set the derivative of the separation to zero to find the time of closest approach.",
+    "equation": "ds/dt = −2 + t = 0 → t = 2 s"
+   },
+   {
+    "text": "Substitute t = 2 s back into the separation to get the minimum distance.",
+    "equation": "s(2) = 10 − 4 + 2 = 8 m",
+    "why_this_step": "The second derivative of s(t) is positive, so this turning point is a minimum, not a maximum."
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "8 m"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Using only the initial speeds and ignoring the accelerations suggests the gap keeps closing forever, missing that B's larger acceleration makes B faster than A after t = 2 s, so the gap widens again."
+   }
+  ],
+  "concept_tags": [
+   "relative motion",
+   "minimization",
+   "calculus"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "276c65a29380962f3965d7a58aa0a592eac80784545d0840b0afb5dcd17c9f8a"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "858f2a88c4cab21f1eed484e1d6155552dcb8467da2db3dfbabaa665832c8903",
+  "audited_by": "W01-U-kin-01-R1"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-11",
+  "at": "2026-09-11T15:04:00+05:30"
+ }
+}

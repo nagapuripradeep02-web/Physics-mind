@@ -1,0 +1,19 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_9114740a",
+ "approach": "Eliminate time between the x and y equations to get y directly in terms of x.",
+ "steps": [
+  {"text": "Write the given x and y coordinates as functions of time.", "equation": "x = 2t, y = 10t − 16t²"},
+  {"text": "Solve the x equation for time.", "equation": "t = x/2"},
+  {"text": "Substitute this time into the y equation and simplify.", "equation": "y = 10(x/2) − 16(x/2)² = 5x − 4x²"}
+ ],
+ "final_answer": {"option": null, "value": "y = 5x − 4x²"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Substituting t = x/2 into 16t² as 16(x/2) instead of squaring the whole bracket gives y = 5x − 8x = −3x, a wrong linear equation."}
+ ],
+ "concept_tags": ["projectile-like motion", "trajectory equation", "elimination of parameter"],
+ "difficulty": "easy",
+ "mistake_type_hint": "calculation",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-03", "at": "2026-09-11T15:30:00+05:30"}
+}

@@ -1,0 +1,16 @@
+{
+ "question_id": "kin_583c5b7b",
+ "item_sha": "0d9dd8d0bdb00d28bcd89f34d7a2e2763d199d8ee05f2e8161424983733e6967",
+ "auditor_option": null,
+ "auditor_value": "(a) minimum speed relative to water = u/√2 ≈ 0.71u; (b) θ = 45° upstream from the perpendicular to the banks (i.e. perpendicular to AB)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-kin-01-R1",
+  "at": "2026-09-11T18:40:00+05:30"
+ }
+}

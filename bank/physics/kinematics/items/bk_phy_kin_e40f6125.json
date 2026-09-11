@@ -1,0 +1,95 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_e40f6125",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A body travels along a straight path with its position given by the relation x = (2t − 3)², in which x denotes metres and t denotes seconds. Calculate:",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "its position, velocity, and acceleration at the instant t = 2 s."
+   },
+   {
+    "label": "b",
+    "asks": "its velocity when it passes through the origin."
+   }
+  ],
+  "conditions": [
+   "motion along a straight line",
+   "position given by x = (2t − 3)²",
+   "x in metres",
+   "t in seconds"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Differentiate x twice for velocity and acceleration, then find the velocity when x itself is zero.",
+  "steps": [
+   {
+    "text": "Differentiate x with respect to time to get the velocity, using the chain rule.",
+    "equation": "v = dx/dt = 2(2t−3)×2 = 8t − 12"
+   },
+   {
+    "text": "Differentiate v with respect to time to get the acceleration.",
+    "equation": "a = dv/dt = 8 m/s²"
+   },
+   {
+    "text": "Substitute t = 2 s into x, v and a.",
+    "equation": "x(2) = 1 m, v(2) = 4 m/s, a(2) = 8 m/s²"
+   },
+   {
+    "text": "Set x = 0 to find when the particle is at the origin, then find the velocity there.",
+    "equation": "(2t−3)² = 0 → t = 1.5 s, v(1.5) = 8×1.5 − 12 = 0 m/s"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) x = 1 m, v = 4 m/s, a = 8 m/s²; (b) velocity at origin = 0 m/s"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Differentiating (2t−3)² without the chain-rule factor of 2 from the inner 2t gives v = 2(2t−3), which is 2 m/s at t = 2 s instead of 4 m/s."
+   },
+   {
+    "option": null,
+    "text": "Reading 'at origin' as t = 0 instead of x = 0 gives a velocity of −12 m/s instead of 0 m/s."
+   }
+  ],
+  "concept_tags": [
+   "differentiation",
+   "chain rule",
+   "turning point"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "calculation"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "4b95cb5ad61f538387242b0d48b0af9f5113c21eb98bfc5d4de18f129e054451"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "b7da8c3a4be1a9832c75475d14f0d4825bde355dc3113e4c596fb248a98b3a7b",
+  "audited_by": "W01-U-kin-03"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-06",
+  "at": "2026-09-11T16:00:00+05:30"
+ }
+}

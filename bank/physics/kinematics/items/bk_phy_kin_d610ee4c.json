@@ -1,0 +1,87 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_d610ee4c",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "numerical",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "Two vehicles, A and B, begin traveling at the same moment along a straight horizontal path in the identical forward direction. At time t = 0, vehicle A is located 10 m behind vehicle B. Vehicle A accelerates from rest at a uniform rate of a = 4 m/s², whereas vehicle B proceeds at a steady speed of v = 1 m/s. Calculate the time elapsed before vehicle A catches up to vehicle B.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "motion along a straight line in the same direction",
+   "vehicles begin motion simultaneously at t = 0",
+   "initial separation is 10 m with car A behind car B",
+   "car A starts from rest with uniform acceleration a = 4 m/s²",
+   "car B travels with constant velocity v = 1 m/s"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Write the position of each car as a function of time from a common origin and solve for the time at which the two positions become equal.",
+  "steps": [
+   {
+    "text": "Place car A at the origin at t = 0, with car B 10 m ahead of it. Car A starts from rest with constant acceleration; car B moves at constant velocity.",
+    "equation": "x_A(t) = ½ × 4 × t² = 2t², x_B(t) = 10 + 1×t"
+   },
+   {
+    "text": "Car A overtakes car B when their positions are equal.",
+    "equation": "2t² = 10 + t → 2t² − t − 10 = 0"
+   },
+   {
+    "text": "Solve the quadratic equation for t.",
+    "equation": "t = [1 ± √(1 + 80)]/4 = [1 ± 9]/4"
+   },
+   {
+    "text": "Keep only the positive root, since time cannot be negative.",
+    "equation": "t = 10/4 = 2.5 s"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "t = 2.5 s"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Keeping the negative root t = −2 s instead of discarding it can lead to picking the wrong sign in the final answer."
+   },
+   {
+    "option": null,
+    "text": "Writing car A's position as 4t² instead of 2t² by forgetting the half in ½at² gives a wrong quadratic and a wrong time."
+   }
+  ],
+  "concept_tags": [
+   "relative motion",
+   "equations of motion",
+   "quadratic equation in kinematics"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "calculation"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "224e90327cabfe98b1d9bd87d66d9bfc672a00c2db6a3b1e585541befff819bd"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "939058b4078649e9ec62c126d4341ee6c688b625b82447c6fb096387b8aca746",
+  "audited_by": "W01-U-kin-01"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-02",
+  "at": "2026-09-11T00:00:00+05:30"
+ }
+}

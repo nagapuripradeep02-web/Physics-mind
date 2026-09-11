@@ -1,0 +1,84 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_91dd9834",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "numerical",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "An object moves along the x-axis such that its speed remains constant within each given time period as follows:\n• From 0 s to 2 s, its speed is 2 m/s\n• From 2 s to 5 s, its speed is 3 m/s\n• From 5 s to 10 s, its speed is 4 m/s\n• From 10 s to 15 s, its speed is 2 m/s\n\nDetermine:",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "The overall distance covered during the entire motion."
+   },
+   {
+    "label": "b",
+    "asks": "The average speed of the object over the 15 s interval."
+   }
+  ],
+  "conditions": [
+   "motion along the x-axis",
+   "speed is constant during each specified time interval"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Multiply each interval's speed by its duration to get the distance in that interval, add them for the total distance, then divide by the total time.",
+  "steps": [
+   {
+    "text": "Find the distance covered in each time interval by multiplying speed by the interval duration.",
+    "equation": "0–2 s: 2×2=4 m; 2–5 s: 3×3=9 m; 5–10 s: 4×5=20 m; 10–15 s: 2×5=10 m"
+   },
+   {
+    "text": "Add the four distances to get the total distance.",
+    "equation": "4 + 9 + 20 + 10 = 43 m"
+   },
+   {
+    "text": "Divide the total distance by the total time of 15 s to get the average speed.",
+    "equation": "average speed = 43/15 ≈ 2.87 m/s"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "total distance = 43 m, average speed ≈ 2.87 m/s"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Taking the plain average of the four speed values instead of the distance-weighted average, giving (2+3+4+2)/4 = 2.75 m/s."
+   }
+  ],
+  "concept_tags": [
+   "distance from speed-time data",
+   "average speed"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "49fae7f8505ed43972359b45edc1713ff17580994334114d130138e89ff7bc0c"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "c4fcbbe0dc0c790cae9e00608a086b82ff2a3acf1db7eac02b0e165d97d49848",
+  "audited_by": "W01-U-kin-03"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-01",
+  "at": "2026-09-11T15:07:00+05:30"
+ }
+}

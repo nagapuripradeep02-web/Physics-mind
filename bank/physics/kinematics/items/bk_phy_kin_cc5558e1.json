@@ -1,0 +1,108 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_cc5558e1",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "At the same instant, two bodies labeled 1 and 2 are launched vertically. Body 1 is released at an elevation of 20 m above the ground heading downward with a speed of 5 m/s, whereas body 2 is projected straight upward from ground level at 20 m/s. Treating the upward direction as positive, determine the following:",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "the acceleration of particle 1 relative to particle 2"
+   },
+   {
+    "label": "b",
+    "asks": "the starting velocity of particle 2 relative to particle 1"
+   },
+   {
+    "label": "c",
+    "asks": "the velocity of particle 1 relative to particle 2 at time t = ½ s"
+   },
+   {
+    "label": "d",
+    "asks": "the instant at which the two particles meet"
+   }
+  ],
+  "conditions": [
+   "simultaneous vertical launch",
+   "upward taken positive",
+   "free fall under uniform gravity",
+   "initial height of particle 1 is 20 m",
+   "initial velocity of particle 1 is 5 m/s downwards",
+   "initial velocity of particle 2 is 20 m/s upwards"
+  ],
+  "figure": {
+   "description": "A vertical diagram showing particle 1 at a height of 20 m above the ground moving downward with an arrow labeled 5 m/s, and particle 2 at the ground moving upward with an arrow labeled 20 m/s. An upward arrow indicates the positive (+ve) reference direction."
+  }
+ },
+ "solution": {
+  "approach": "Both particles are in free fall, so they share the same acceleration; the relative motion between them is therefore at constant relative velocity, which gives all four parts directly.",
+  "steps": [
+   {
+    "text": "Both particles accelerate at g downward under gravity alone, so their relative acceleration is zero.",
+    "equation": "a₁ = a₂ = −g (upward positive) → a_(1/2) = a₁ − a₂ = 0"
+   },
+   {
+    "text": "Taking upward as positive, particle 1 starts moving down at 5 m/s and particle 2 starts moving up at 20 m/s; find the initial velocity of 2 relative to 1.",
+    "equation": "v₁(0) = −5 m/s, v₂(0) = +20 m/s → v_(2/1) = v₂(0) − v₁(0) = 20 − (−5) = 25 m/s"
+   },
+   {
+    "text": "Since the relative acceleration is zero, the relative velocity of 1 with respect to 2 never changes from its initial value.",
+    "equation": "v_(1/2) = v₁(0) − v₂(0) = −5 − 20 = −25 m/s, same at t = ½ s",
+    "why_this_step": "A zero relative acceleration means the relative velocity stays constant for all time."
+   },
+   {
+    "text": "With separation 20 m and a constant closing speed of 25 m/s, find the time to collide.",
+    "equation": "t = 20/25 = 0.8 s"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) acceleration of 1 with respect to 2 = 0. (b) initial velocity of 2 with respect to 1 = 25 m/s (upward). (c) velocity of 1 with respect to 2 at t = ½ s = 25 m/s (downward), unchanged from t = 0. (d) time to collide = 0.8 s."
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Adding the two initial velocities instead of subtracting, giving an initial relative velocity of 20 + (−5) = 15 m/s."
+   },
+   {
+    "option": null,
+    "text": "Assuming the relative velocity changes with time and recomputing it at t = ½ s from the individual free-fall equations, instead of recognising that a zero relative acceleration keeps it constant."
+   }
+  ],
+  "concept_tags": [
+   "relative velocity",
+   "relative acceleration",
+   "free fall"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "f6b82e81b02c92fa522480bc6591814049b8b411949082dd71c1b32fa949b331"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "4ef779a569422c4c841635d68719e6aca4d53731247c6673d7bdd55dfa43887c",
+  "audited_by": "W01-U-kin-12"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-12",
+  "at": "2026-09-11T16:30:00+05:30"
+ }
+}

@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_46b24e64",
+ "approach": "Relative acceleration is the vector difference of the two accelerations, found by adding the perpendicular east and north components.",
+ "steps": [
+  {"text": "Write the two accelerations as vectors along east and north.", "equation": "a_A = 2î m/s² (east), a_B = 4ĵ m/s² (north)"},
+  {"text": "Apply the relative acceleration formula.", "equation": "a_(B/A) = a_B − a_A = −2î + 4ĵ m/s²"},
+  {"text": "Find the magnitude of the resultant.", "equation": "|a_(B/A)| = √(2² + 4²) = √20 = 2√5 ≈ 4.47 m/s²"},
+  {"text": "Find the direction using the two perpendicular components, −2 (west) and 4 (north).", "equation": "tan α = 4/2 = 2 → α = tan⁻¹(2) ≈ 63.4°, measured from west towards north"}
+ ],
+ "final_answer": {"option": null, "value": "a_(B/A) = 2√5 m/s² ≈ 4.47 m/s², directed about 63.4° north of west (equivalently about 26.6° west of north)"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Adding a_A and a_B instead of subtracting gives a_(B/A) = (2î + 4ĵ), a different direction, north-east instead of north-west."},
+  {"option": null, "text": "Computing the magnitude as 4 − 2 = 2 m/s² by treating the two accelerations as if they were along the same line, ignoring that they are perpendicular."}
+ ],
+ "concept_tags": ["relative acceleration", "vector subtraction", "two-dimensional motion"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-02", "at": "2026-09-11T00:00:00+05:30"}
+}

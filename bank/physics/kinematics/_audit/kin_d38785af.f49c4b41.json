@@ -1,0 +1,16 @@
+{
+ "question_id": "kin_d38785af",
+ "item_sha": "f49c4b41216b4784a77ee761557313eda947d540fb7f86aeb032a5617e19ad77",
+ "auditor_option": null,
+ "auditor_value": "Tilt the umbrella 37° (tan⁻¹ 3/4) from the vertical, towards the east — the direction of walking",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-kin-10",
+  "at": "2026-09-11T09:53:54+05:30"
+ }
+}

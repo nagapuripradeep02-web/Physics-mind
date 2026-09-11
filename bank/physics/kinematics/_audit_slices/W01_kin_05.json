@@ -1,0 +1,809 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter": "kinematics",
+ "slice": 5,
+ "round": 0,
+ "agent_label": "W01-U-kin-05",
+ "items": [
+  {
+   "question_id": "kin_75a7091c",
+   "audit_file": "kin_75a7091c.9bf27696.json",
+   "item_sha": "9bf27696c5fb88cff24b06747de6b014e7aab25ba03d54535a97d10005f00b26",
+   "question_text": "A rocket is launched straight upwards from ground level with an effective upward acceleration of 10 m/s². Its propellant burns out completely after 1 min, after which the rocket keeps ascending freely under gravity. Take g = 10 m/s².\n(a) Determine the maximum altitude reached by the rocket above the ground.\n(b) Calculate the time elapsed from the moment the fuel burns out until it reaches this maximum altitude.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Find the speed and height reached at the end of the 1 minute of powered flight, then treat the rest of the rise as free motion decelerating under gravity alone.",
+    "steps": [
+     {
+      "text": "During the powered phase, the rocket starts from rest and accelerates at 10 m/s² for 60 s. Find the speed and height reached at burnout.",
+      "equation": "v = 10 × 60 = 600 ms⁻¹, h₁ = ½ × 10 × 60² = 18000 m"
+     },
+     {
+      "text": "After the fuel finishes, only gravity acts, so the rocket decelerates at g = 10 m/s² until its speed falls to zero.",
+      "equation": "extra time t₂ = v/g = 600/10 = 60 s"
+     },
+     {
+      "text": "Find the extra height gained while decelerating from 600 ms⁻¹ to rest.",
+      "equation": "h₂ = v²/(2g) = 600²/(2×10) = 18000 m"
+     },
+     {
+      "text": "Add the two heights for the maximum height above the ground.",
+      "equation": "H = h₁ + h₂ = 18000 + 18000 = 36000 m"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "(a) maximum height = 36000 m (36 km), (b) time from fuel finish to maximum height = 60 s"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Stopping the calculation at burnout and treating 18000 m, the height at fuel finish, as the maximum height, missing that the rocket keeps rising after the fuel runs out."
+     }
+    ],
+    "concept_tags": [
+     "equations of motion",
+     "two-stage motion",
+     "vertical motion under gravity"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "kin_7a31923d",
+   "audit_file": "kin_7a31923d.3df9fdb9.json",
+   "item_sha": "3df9fdb90e796321e8de3a790f4c0cf16a5aafffec657189c997af8f73dc001d",
+   "question_text": "An object moves along a straight path such that it maintains a constant speed v₁ for the initial half of its total travel duration, and a constant speed v₂ for the final half of the duration. Determine the average speed of the object throughout the entire trip.",
+   "options": [],
+   "figure_description": "A line segment from point A to point B split at a point C into two sections: section AC corresponds to duration t, speed v₁, and distance d₁; section CB corresponds to duration t, speed v₂, and distance d₂.",
+   "solution": {
+    "approach": "When the two speeds each last for equal time, the average speed is the arithmetic mean, found from total distance over total time.",
+    "steps": [
+     {
+      "text": "Let each half of the total time be t, so the total time is 2t.",
+      "equation": "time for each half = t"
+     },
+     {
+      "text": "Find the distance covered in each half from distance = speed multiplied by time.",
+      "equation": "d₁ = v₁t, d₂ = v₂t"
+     },
+     {
+      "text": "Average speed is total distance over total time.",
+      "equation": "v_avg = (v₁t + v₂t) / (2t)"
+     },
+     {
+      "text": "Cancel t and simplify.",
+      "equation": "v_avg = (v₁ + v₂) / 2"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "v_avg = (v₁ + v₂) / 2"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Using the harmonic mean 2v₁v₂/(v₁+v₂), which applies only when the two parts are equal in distance, not equal in time."
+     }
+    ],
+    "concept_tags": [
+     "average speed",
+     "arithmetic mean"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_7f81ce0c",
+   "audit_file": "kin_7f81ce0c.fb460cf2.json",
+   "item_sha": "fb460cf2ffa77757ca57c997466b3898ab3d7ecdc97602a5b19f0cbd0df33e20",
+   "question_text": "A particle travels along a straight path. At a particular moment, its speed is 10 m/s, and its velocity drops at a rate of 3 m/s per metre of displacement. Calculate the acceleration of the object at that instant.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Acceleration equals velocity times the rate of change of velocity with displacement, a = v(dv/ds).",
+    "steps": [
+     {
+      "text": "Write acceleration using the chain rule for motion described by velocity as a function of displacement.",
+      "equation": "a = v (dv/ds)"
+     },
+     {
+      "text": "The velocity decreases at 3 m/s for every metre of displacement, so dv/ds is negative.",
+      "equation": "dv/ds = −3 (m/s)/m"
+     },
+     {
+      "text": "Substitute v = 10 m/s and dv/ds = −3 (m/s)/m into a = v(dv/ds) to get the acceleration.",
+      "equation": "a = 10 × (−3) = −30 m/s²",
+      "why_this_step": "a = v dv/ds is the standard way to find acceleration when velocity is given as a function of position, not time."
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "−30 m/s²"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Dropping the negative sign on the rate of decrease and writing a = 10 × 3 = 30 m/s²."
+     },
+     {
+      "option": null,
+      "text": "Writing a = dv/ds = −3 m/s² directly, leaving out the factor of v from the chain rule."
+     }
+    ],
+    "concept_tags": [
+     "acceleration as v dv/ds",
+     "rectilinear motion",
+     "velocity-displacement relation"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_77b0f00f",
+   "audit_file": "kin_77b0f00f.084b20f2.json",
+   "item_sha": "084b20f28ea9a2aa38e0e4f6507f13d3c1e8df7041f819e61c96edfc5419148d",
+   "question_text": "Two automobiles, A and B, start from rest and move along a straight track with constant accelerations a₁ and a₂ respectively to cover the same distance. Car A completes the race in a time interval t shorter than car B, and crosses the endpoint with a speed exceeding that of car B by v. Show that the relationship between these quantities is given by v = √(a₁a₂) t.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Write the time each car takes to reach the same finish distance from rest, then form the given time difference and speed difference and divide one by the other.",
+    "steps": [
+     {
+      "text": "Let d be the distance to the finish line. Since both cars start from rest with constant acceleration, write each car's time to cover d.",
+      "equation": "d = ½a₁t_A² ⟹ t_A = √(2d/a₁), d = ½a₂t_B² ⟹ t_B = √(2d/a₂)"
+     },
+     {
+      "text": "Car A takes a time t less than car B, so form t_B minus t_A.",
+      "equation": "t = t_B − t_A = √(2d/a₂) − √(2d/a₁) = √(2d)(√a₁ − √a₂)/√(a₁a₂)"
+     },
+     {
+      "text": "Car A's finishing speed exceeds car B's by v, so form v_A minus v_B using v = at for each car.",
+      "equation": "v = v_A − v_B = a₁t_A − a₂t_B = √(2d·a₁) − √(2d·a₂) = √(2d)(√a₁ − √a₂)"
+     },
+     {
+      "text": "Divide the speed difference by the time difference; the common factor √(2d)(√a₁ − √a₂) cancels.",
+      "equation": "v/t = √(a₁a₂) ⟹ v = √(a₁a₂) t",
+      "why_this_step": "Both v and t were written in terms of the same distance d, so d cancels out of the ratio and only a₁, a₂, t remain."
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "v = √(a₁a₂) t, proved by expressing t = t_B − t_A and v = v_A − v_B in terms of the common finishing distance d and dividing."
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Using v = a₁t or v = a₂t with one shared t, instead of each car's own finish time, ignores the actual difference and gives no relation to the t and v of the problem."
+     }
+    ],
+    "concept_tags": [
+     "equations of motion",
+     "relative speed",
+     "motion from rest"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "kin_73979942",
+   "audit_file": "kin_73979942.b161660a.json",
+   "item_sha": "b161660a1313e882be6bc9bb407ad423e83a9706b6e052e1505d47a576679830",
+   "question_text": "An insect is situated at one vertex of a cube-shaped enclosure having side length a. If it travels along the inner surfaces at a steady speed u, determine the shortest time needed for it to arrive at the diagonally opposite corner.",
+   "options": [
+    {
+     "label": "a",
+     "text": "3 a / u"
+    },
+    {
+     "label": "b",
+     "text": "√3 a / u"
+    },
+    {
+     "label": "c",
+     "text": "√5 a / u"
+    },
+    {
+     "label": "d",
+     "text": "(√2 + 1) a / u"
+    }
+   ],
+   "figure_description": "",
+   "solution": {
+    "approach": "Unfold two adjacent faces of the cube into a flat rectangle and find the straight-line distance across it, since the ant is restricted to the surface.",
+    "steps": [
+     {
+      "text": "The shortest surface path between opposite corners of a cube is found by unfolding two adjacent faces into one flat rectangle."
+     },
+     {
+      "text": "In the unfolded rectangle, the path from corner to corner runs across a rectangle of length 2a and width a.",
+      "equation": "unfolded rectangle: 2a by a"
+     },
+     {
+      "text": "Find the length of the straight diagonal of this rectangle, which is the shortest surface path.",
+      "equation": "distance = √((2a)² + a²) = √5 a"
+     },
+     {
+      "text": "Divide by the ant's constant speed to get the minimum time.",
+      "equation": "t = √5 a/u"
+     }
+    ],
+    "final_answer": {
+     "option": 3,
+     "value": "√5 a / u"
+    },
+    "common_mistakes": [
+     {
+      "option": 2,
+      "text": "Using the straight-line distance through the inside of the cube (the space diagonal √3 a) instead of the shortest path along the surface, which the ant is restricted to."
+     },
+     {
+      "option": 1,
+      "text": "Treating the shortest route as a path along three edges of the cube, giving a distance of 3a instead of the shorter diagonal path across two unfolded faces."
+     }
+    ],
+    "concept_tags": [
+     "shortest path",
+     "geometry",
+     "constant speed"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_71613150",
+   "audit_file": "kin_71613150.24ef0cc0.json",
+   "item_sha": "24ef0cc0e00b1f6d16ab69687d0f3dd43857d34623a12ad33cc7b0938a4d34e5",
+   "question_text": "An object is projected straight upward into the air. Which one of the following physical properties does not change during its flight: speed, kinetic energy, velocity, or acceleration?",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Check each quantity through the flight: speed and kinetic energy fall to zero and rise again, velocity keeps changing, only the acceleration stays the same.",
+    "steps": [
+     {
+      "text": "Speed decreases from launch to the highest point, where it becomes zero, then increases again on the way down, so speed does not stay constant."
+     },
+     {
+      "text": "Kinetic energy depends on speed squared, so it also falls to zero at the top and rises again, so it does not stay constant either.",
+      "equation": "KE = ½mv²"
+     },
+     {
+      "text": "Velocity is a vector; its magnitude changes throughout the flight and its direction reverses at the top, so velocity does not stay constant."
+     },
+     {
+      "text": "Acceleration is g downward at every instant of the flight, including at the highest point, since gravity acts the whole time without change, so the acceleration is the one quantity that remains constant.",
+      "why_this_step": "Acceleration depends on the constant force of gravity, not on the changing velocity."
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "Acceleration"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Picking speed as constant by only thinking about the upward journey and forgetting that speed falls to zero at the top and rises again on the way down."
+     },
+     {
+      "option": null,
+      "text": "Picking velocity as constant, confusing it with the constant acceleration; velocity itself keeps changing in both magnitude and direction."
+     }
+    ],
+    "concept_tags": [
+     "motion under gravity",
+     "speed vs velocity",
+     "kinetic energy"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_7e4e93ab",
+   "audit_file": "kin_7e4e93ab.2e2c3722.json",
+   "item_sha": "2e2c3722788e69787daacaf5435b87298a413c15ed097f98e35d0e3a5d1dc133",
+   "question_text": "A vehicle travels horizontally along a direct path at a steady speed of 30 ms⁻¹. An object is launched straight up from this vehicle so that it lands back at its exact launching spot after the vehicle has traveled a distance of 80 m. What is the required launch speed with respect to the vehicle? (Use g = 10 ms⁻²)",
+   "options": [
+    {
+     "label": "a",
+     "text": "10 ms⁻¹"
+    },
+    {
+     "label": "b",
+     "text": "10√8 ms⁻¹"
+    },
+    {
+     "label": "c",
+     "text": "40/3 ms⁻¹"
+    },
+    {
+     "label": "d",
+     "text": "None of these"
+    }
+   ],
+   "figure_description": "",
+   "solution": {
+    "approach": "Find the time of flight from the cart's speed and distance moved, then use it as the projectile's up-and-down time to find launch speed relative to the cart.",
+    "steps": [
+     {
+      "text": "The cart moves at constant speed 30 ms⁻¹ and covers 80 m while the projectile is in the air. Find the time of flight.",
+      "equation": "t = 80/30 = 8/3 s"
+     },
+     {
+      "text": "Relative to the cart, the projectile only moves vertically: straight up and back down to the same point on the cart. This is the usual vertical time of flight.",
+      "equation": "t = 2v/g"
+     },
+     {
+      "text": "Solve for the vertical launch speed relative to the cart.",
+      "equation": "v = gt/2 = 10(8/3)/2 = 40/3 ms⁻¹"
+     }
+    ],
+    "final_answer": {
+     "option": 3,
+     "value": "40/3 ms⁻¹"
+    },
+    "common_mistakes": [],
+    "concept_tags": [
+     "relative velocity",
+     "projectile motion",
+     "time of flight"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "kin_6d265b74",
+   "audit_file": "kin_6d265b74.881e22b9.json",
+   "item_sha": "881e22b9114a6cff18921eddcfda1075a262b65e951b4ff88ef536a5e9c97421",
+   "question_text": "At the moment t = 0, a particle moves with a speed of 2 m/s. Over a duration of 2 s, it experiences a uniform acceleration of 2 m/s² oriented at an angle of 60° relative to the direction of its initial velocity vector. Calculate the magnitude of the particle's velocity and displacement at t = 2 s.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Resolve the acceleration into components along and perpendicular to the initial velocity, then combine using v = u + at and s = ut + ½at².",
+    "steps": [
+     {
+      "text": "Take the initial velocity along the x-axis and resolve the acceleration into components at 60° to it.",
+      "equation": "u = (2, 0) m/s, a = (2cos60°, 2sin60°) = (1, √3) m/s²"
+     },
+     {
+      "text": "Find the velocity components at t = 2 s using v = u + at.",
+      "equation": "vₓ = 2 + 1×2 = 4, v_y = 0 + √3×2 = 2√3"
+     },
+     {
+      "text": "Combine the components to get the speed.",
+      "equation": "v = √(4² + (2√3)²) = √28 = 2√7 ≈ 5.29 m/s"
+     },
+     {
+      "text": "Find the displacement components at t = 2 s using s = ut + ½at².",
+      "equation": "sₓ = 2×2 + ½×1×2² = 6, s_y = 0 + ½×√3×2² = 2√3"
+     },
+     {
+      "text": "Combine the components to get the magnitude of the displacement.",
+      "equation": "s = √(6² + (2√3)²) = √48 = 4√3 ≈ 6.93 m"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "v ≈ 5.29 m/s (2√7 m/s); s ≈ 6.93 m (4√3 m)"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Treating the motion as one-dimensional and using v = u + at with plain numbers gives 6 m/s instead of about 5.29 m/s."
+     },
+     {
+      "option": null,
+      "text": "Treating the motion as one-dimensional and using s = ut + ½at² with plain numbers gives 8 m instead of about 6.93 m."
+     }
+    ],
+    "concept_tags": [
+     "vectors",
+     "acceleration at an angle",
+     "equations of motion"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_773bdab6",
+   "audit_file": "kin_773bdab6.8bbe1322.json",
+   "item_sha": "8bbe13223e6af294f78de1ae5a9ebc32a9bfd21eba885e2c1b06922acfb73fbb",
+   "question_text": "A rock is released from rest at the summit of a vertical structure. At the moment it descends past a level 5 m beneath the summit, a second rock is released from rest at a location 25 m beneath the summit. If both objects hit the ground at the same instant, calculate the total height of the structure. (Take g = 10 m/s²).",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Find the head-start time of the first stone, write each stone's arrival time at the bottom in terms of the tower height, and set them equal.",
+    "steps": [
+     {
+      "text": "The first stone falls 5 m before the second stone is released. Find this time from the free-fall equation.",
+      "equation": "5 = ½(10)t₁² → t₁ = 1 s"
+     },
+     {
+      "text": "Let H be the tower height. The first stone reaches the bottom at time T given by falling the full height H, and the second stone (released 1 s later, from 25 m below the top) reaches the bottom after falling (H − 25) m.",
+      "equation": "T = √(H/5), t₂ = √((H−25)/5)"
+     },
+     {
+      "text": "Both stones reach the bottom at the same instant, so the second stone's fall time plus its 1 s delay equals the first stone's total fall time.",
+      "equation": "√(H/5) = 1 + √((H−25)/5)"
+     },
+     {
+      "text": "Solve this equation for H.",
+      "equation": "H = 45 m",
+      "why_this_step": "Checking: T = √(45/5) = 3 s, and t₂ = √(20/5) = 2 s, so the second stone arrives at 1 + 2 = 3 s, matching T."
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "45 m"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Using the linear relation t = d/g instead of d = ½gt² for the first stone's 5 m fall gives t₁ = 0.5 s instead of the correct 1 s."
+     }
+    ],
+    "concept_tags": [
+     "free fall",
+     "relative timing",
+     "equations of motion"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "kin_7fbc29b5",
+   "audit_file": "kin_7fbc29b5.d562583d.json",
+   "item_sha": "d562583dddc964ffc6fd5448af72981ed0977c76068e1ec5be4505e06cf58ea6",
+   "question_text": "An elevator is moving downwards while speeding up. Determine the direction of its velocity and the direction of its acceleration during this motion.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "A lift descending means its velocity points downward; its speed increasing while descending means the acceleration must point in the same direction as the velocity.",
+    "steps": [
+     {
+      "text": "The lift is descending, so its velocity is directed downward.",
+      "equation": "velocity: downward"
+     },
+     {
+      "text": "The speed is increasing while the lift moves downward, so the acceleration must act in the same sense as the velocity to speed the lift up rather than slow it down.",
+      "equation": "acceleration: downward",
+      "why_this_step": "When acceleration points in the same direction as velocity, speed increases; when it points opposite, speed decreases."
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "Both the velocity and the acceleration of the lift are directed downward."
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Assuming a descending object must always have an upward (retarding) acceleration confuses this case with a lift that is slowing down while descending, not speeding up."
+     }
+    ],
+    "concept_tags": [
+     "direction of velocity and acceleration",
+     "speeding up versus slowing down"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_94df6811",
+   "audit_file": "kin_94df6811.081547fc.json",
+   "item_sha": "081547fc6453d684e9c2f33dac64e008c1c2c5e0a68a5dc09d10bfee23f29c5e",
+   "question_text": "A body travels in a straight line along the x-direction with its velocity governed by the equation v = (10 + 5t − t²), where v is measured in m/s and t in seconds. Given that the body is located at x = 0 when t = 0, determine:\n(a) The acceleration of the object at the instant t = 2 s\n(b) The position coordinate x of the object at the instant t = 3 s",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Differentiate the velocity once for acceleration, and integrate it from 0 to the given time for position.",
+    "steps": [
+     {
+      "text": "Differentiate v with respect to time to get the acceleration.",
+      "equation": "a = dv/dt = 5 − 2t"
+     },
+     {
+      "text": "Substitute t = 2 s.",
+      "equation": "a(2) = 5 − 2×2 = 1 m/s²"
+     },
+     {
+      "text": "Integrate v with respect to time from 0 to 3 s to get the x-coordinate, since x = 0 at t = 0.",
+      "equation": "x(3) = 10t + 5t²/2 − t³/3, evaluated from 0 to 3"
+     },
+     {
+      "text": "Evaluate the integral at t = 3 s.",
+      "equation": "x(3) = 30 + 22.5 − 9 = 43.5 m"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "(a) 2 m/s², (b) 43.5 m"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Differentiating −t² as −t instead of −2t gives an acceleration of 3 m/s² at t = 2 s instead of 1 m/s²."
+     },
+     {
+      "option": null,
+      "text": "Multiplying the velocity at t = 3 s by 3 s instead of integrating gives 48 m instead of 43.5 m."
+     }
+    ],
+    "concept_tags": [
+     "differentiation",
+     "integration",
+     "variable acceleration"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "kin_78b1bda1",
+   "audit_file": "kin_78b1bda1.b5876722.json",
+   "item_sha": "b5876722b4c45cc26586d5243a9674e39ebe7d58720563d2fe541beb1b15393e",
+   "question_text": "An object initially at rest speeds up with a steady acceleration of 4 m/s² throughout the first 4 s. Following this, it slows down at a constant rate over the subsequent 8 s until it halts completely. For the entire duration of this journey, determine:\n(a) average acceleration\n(b) average speed\n(c) average velocity",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Find the peak speed reached after the acceleration phase, then use it to find the distance covered in each phase, and combine everything over the full 12 seconds.",
+    "steps": [
+     {
+      "text": "The particle starts from rest and accelerates at 4 m/s² for 4 s, reaching a peak speed.",
+      "equation": "v_peak = 4 × 4 = 16 ms⁻¹"
+     },
+     {
+      "text": "It then slows uniformly from 16 ms⁻¹ to rest over the next 8 s.",
+      "equation": "retardation = 16/8 = 2 ms⁻²"
+     },
+     {
+      "text": "Find the distance covered in each of the two phases.",
+      "equation": "d₁ = ½(4)(4²) = 32 m, d₂ = ½(16 + 0)(8) = 64 m"
+     },
+     {
+      "text": "Add the two distances and the two times for the total distance and total time.",
+      "equation": "total distance = 32 + 64 = 96 m, total time = 4 + 8 = 12 s"
+     },
+     {
+      "text": "The particle starts and ends at rest, so its total change in velocity over the whole 12 s is zero, giving zero average acceleration; the motion never reverses direction, so the average speed and the average velocity both equal the total distance over the total time.",
+      "equation": "average acceleration = (0 − 0)/12 = 0, average speed = average velocity = 96/12 = 8 ms⁻¹"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "(a) average acceleration = 0, (b) average speed = 8 ms⁻¹, (c) average velocity = 8 ms⁻¹"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Averaging the two acceleration magnitudes, 4 m/s² and 2 m/s², directly without weighting by time or sign, gives 3 m/s² for the average acceleration instead of 0."
+     }
+    ],
+    "concept_tags": [
+     "equations of motion",
+     "average acceleration",
+     "average speed"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_6ff3fae5",
+   "audit_file": "kin_6ff3fae5.af8c8384.json",
+   "item_sha": "af8c83844e44738208899611aea27bdd02fbcac9f58487d95c9e0886d81da087",
+   "question_text": "A rock is released from rest at the summit of a tall structure. Exactly 1 s later, another rock is projected straight downwards from the identical spot at a speed of 20 ms⁻¹. Determine how far the second rock falls before it catches up with the first rock. (Take g = 10 ms⁻²)",
+   "options": [
+    {
+     "label": "a",
+     "text": "13 m"
+    },
+    {
+     "label": "b",
+     "text": "15 m"
+    },
+    {
+     "label": "c",
+     "text": "11.25 m"
+    },
+    {
+     "label": "d",
+     "text": "19.5 m"
+    }
+   ],
+   "figure_description": "",
+   "solution": {
+    "approach": "Write the distance fallen by each stone measured from the same start of timing, and set them equal at the overtaking instant.",
+    "steps": [
+     {
+      "text": "Let t be the time measured from when the first stone is dropped. Write the distance fallen by the first stone.",
+      "equation": "x₁ = ½(10)t² = 5t²"
+     },
+     {
+      "text": "The second stone starts 1 s later with initial speed 20 m/s downward. Write its distance fallen for t ≥ 1 s.",
+      "equation": "x₂ = 20(t − 1) + ½(10)(t − 1)²"
+     },
+     {
+      "text": "Set the two distances equal, since the second stone overtakes the first at the same position.",
+      "equation": "5t² = 20(t − 1) + 5(t − 1)²"
+     },
+     {
+      "text": "Expand and solve for t.",
+      "equation": "5t² = 5t² + 10t − 15 → 10t = 15 → t = 1.5 s"
+     },
+     {
+      "text": "Substitute t = 1.5 s into the first stone's distance to get the overtaking distance.",
+      "equation": "x₁ = 5(1.5)² = 11.25 m"
+     }
+    ],
+    "final_answer": {
+     "option": 3,
+     "value": "11.25 m"
+    },
+    "common_mistakes": [],
+    "concept_tags": [
+     "free fall",
+     "kinematics with a delayed start",
+     "quadratic equation of motion"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "kin_76b52527",
+   "audit_file": "kin_76b52527.1ec741fe.json",
+   "item_sha": "1ec741fe297b95a6f20ef824a0aef891dc726732374892fd7b7b6bffdd9f1757",
+   "question_text": "At initial moment t = 0, three bodies A, B, and C occupy the corners of an equilateral triangle with side length d. Throughout the motion, each body maintains an unchanging speed v. The direction of motion of A is continuously oriented toward B, B always moves toward C, and C continuously aims at A. Determine the duration after which all three bodies will converge together.",
+   "options": [],
+   "figure_description": "An equilateral triangle ABC has vertices A, B, and C separated by side length d. Velocity vectors of constant magnitude v are directed along AB for particle A, along BC for particle B, and along CA for particle C. The interior angle at each corner is 60°.",
+   "solution": {
+    "approach": "By symmetry the triangle stays equilateral while shrinking, so find the constant rate at which side AB shortens using the components of the two particles' velocities along AB.",
+    "steps": [
+     {
+      "text": "By the symmetry of the three particles' motion, the triangle they form stays equilateral at every instant while it shrinks and rotates about the centroid.",
+      "equation": "the interior angle at every vertex stays 60° throughout the motion"
+     },
+     {
+      "text": "Particle A moves along AB with speed v, so its full velocity v is directed along AB, reducing the separation AB at rate v.",
+      "equation": "component of A's velocity along AB = v"
+     },
+     {
+      "text": "Particle B moves along BC with speed v. Since the angle between BA and BC is 60°, B's velocity has a component along BA (toward A) equal to v cos 60°.",
+      "equation": "component of B's velocity toward A = v cos 60° = v/2"
+     },
+     {
+      "text": "The rate at which the distance AB shortens is the sum of these two components, and this rate stays constant because the 60° angle never changes.",
+      "equation": "−d(AB)/dt = v + v/2 = 3v/2"
+     },
+     {
+      "text": "Since AB shortens at the constant rate 3v/2 starting from side d, the particles meet when AB reaches zero.",
+      "equation": "t = d / (3v/2) = 2d/(3v)",
+      "why_this_step": "A quantity decreasing at a constant rate from d to 0 takes time equal to the initial value divided by the rate."
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "The three particles meet at time t = 2d/(3v)."
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Using only the direct closing speed v (ignoring the second particle's component toward the first) gives a meeting time of d/v instead of the correct 2d/(3v)."
+     }
+    ],
+    "concept_tags": [
+     "relative velocity",
+     "pursuit motion",
+     "symmetry"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_7ec2ef96",
+   "audit_file": "kin_7ec2ef96.c958879e.json",
+   "item_sha": "c958879e3cb2e817504141c1ea28cf365f2d369e1100c1b6f0791b22a73cf185",
+   "question_text": "An individual takes 90 s to climb up a stationary 15 m escalator. If the individual remains motionless on the same escalator while it operates, they reach the top in 60 s.\n(a) Determine the duration needed for the individual to walk upwards while the escalator is running.\n(b) Does this calculated time rely on the length of the escalator?",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "Find the walking speed and the escalator speed separately, in escalator lengths per second, then add them for the combined speed.",
+    "steps": [
+     {
+      "text": "Write the walking speed as the escalator length divided by the walking time, and the escalator speed as the length divided by the moving time.",
+      "equation": "w = 15/90 m/s, e = 15/60 m/s"
+     },
+     {
+      "text": "Add the two speeds, since walking on the moving escalator combines both motions.",
+      "equation": "w + e = 1/6 + 1/4 = 5/12 m/s"
+     },
+     {
+      "text": "Divide the escalator length by the combined speed to get the time; notice that the length appears in both the numerator and the denominator.",
+      "equation": "t = 15 ÷ (5/12) = 36 s",
+      "why_this_step": "Since t = L ÷ (L/90 + L/60), the length L cancels, so the time does not depend on how long the escalator is."
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "36 s; no, the answer does not depend on the escalator length, since the length cancels out of the calculation."
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Averaging the two given times as (90 + 60)/2 gives 75 s, which is not how the walking and escalator speeds combine."
+     }
+    ],
+    "concept_tags": [
+     "relative velocity",
+     "rates",
+     "escalator problem"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "kin_71769565",
+   "audit_file": "kin_71769565.6550211f.json",
+   "item_sha": "6550211f55b68b9ea8c8b35c0cb5e5610c2871923b4b918ef031109c3b88a88a",
+   "question_text": "A lift with an interior height of 2.7 m begins moving upward from rest with a steady acceleration of 1.2 m/s². Exactly 2 s after it begins its motion, a loose bolt becomes detached from its roof. Take g = 9.8 m/s². Determine:\n(a) the duration of time until the bolt strikes the floor of the lift.\n(b) the total displacement and the total distance covered by the bolt relative to the ground.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "In the elevator's frame the bolt falls the floor-to-ceiling gap from rest under acceleration g + a; convert the result to the ground frame for displacement and distance.",
+    "steps": [
+     {
+      "text": "At the instant of release, the bolt shares the elevator's velocity, so its velocity relative to the elevator is zero. In the elevator's frame the bolt falls under gravity plus the elevator's own upward acceleration.",
+      "equation": "relative acceleration = g + a = 9.8 + 1.2 = 11.0 m/s², relative initial velocity = 0"
+     },
+     {
+      "text": "The bolt must fall the floor-to-ceiling distance of 2.7 m relative to the car. Use d = ½(g+a)τ² to find the time.",
+      "equation": "2.7 = ½(11.0)τ² ⟹ τ = √(5.4/11.0) ≈ 0.70 s"
+     },
+     {
+      "text": "For part (b), find the elevator's velocity at the moment of release: it started from rest 2 s earlier with acceleration 1.2 m/s².",
+      "equation": "v_release = 1.2 × 2 = 2.4 m/s upward"
+     },
+     {
+      "text": "In the ground frame the bolt's velocity is 2.4 m/s upward at release and then decelerates under g alone; find its net displacement over τ ≈ 0.70 s using y = v_release·τ − ½gτ².",
+      "equation": "y = 2.4(0.70) − ½(9.8)(0.70)² ≈ −0.72 m",
+      "why_this_step": "The negative value means the bolt ends up about 0.72 m below its release point with respect to the earth."
+     },
+     {
+      "text": "The bolt rises before falling back, since it stops rising at τ_top = v_release/g ≈ 0.245 s, reaching a height of about 0.29 m above the release point. The total distance travelled is this rise plus the fall back down to the final position.",
+      "equation": "distance ≈ 0.29 + (0.29 + 0.72) ≈ 1.31 m"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "(a) about 0.70 s, (b) net displacement about 0.72 m downward (with respect to the earth) and distance travelled about 1.31 m"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Assuming the elevator floor moves at the release velocity 2.4 m/s with no further acceleration, instead of accelerating at 1.2 m/s², gives a landing time of about 0.74 s instead of the correct 0.70 s."
+     }
+    ],
+    "concept_tags": [
+     "relative acceleration",
+     "non-inertial frame",
+     "vertical motion under gravity"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "concept"
+   }
+  }
+ ]
+}

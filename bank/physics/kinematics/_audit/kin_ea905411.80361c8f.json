@@ -1,0 +1,15 @@
+{
+ "question_id": "kin_ea905411",
+ "item_sha": "80361c8f498c60ee126753e3ff3bd8f798444dc4dd25f7dd6d0f02e46aa43ca2",
+ "auditor_option": 2,
+ "auditor_value": "at²/3",
+ "findings": [
+  {"grade": "harmful", "field": "steps[1].equation", "quote": "4t₂ + t₂ = t → t₂ = t/3, t₁ = 2t/3",
+   "note": "The line above gives t₁ = 2t₂, so substituting into t₁ + t₂ = t must give 2t₂ + t₂ = t, not 4t₂ + t₂ = t. As printed the left side is 5t₂, which would give t₂ = t/5, so the equation contradicts the result stated on the same line and the whole solution below it.",
+   "fix": "2t₂ + t₂ = t → t₂ = t/3, t₁ = 2t/3"}
+ ],
+ "verdict": "harmful",
+ "question_defect": null,
+ "notes": "Final answer at²/3 is correct; only the middle line is false.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-kin-11", "at": "2026-09-11T09:50:48+05:30"}
+}

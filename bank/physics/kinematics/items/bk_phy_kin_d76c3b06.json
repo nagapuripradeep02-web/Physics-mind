@@ -1,0 +1,79 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_d76c3b06",
+ "subject": "physics",
+ "chapter": "Motion in a Plane",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "mcq_single",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "A vehicle travels horizontally along a direct path at a steady speed of 30 ms⁻¹. An object is launched straight up from this vehicle so that it lands back at its exact launching spot after the vehicle has traveled a distance of 80 m. What is the required launch speed with respect to the vehicle? (Use g = 10 ms⁻²)",
+  "options": {
+   "1": "10 ms⁻¹",
+   "2": "10√8 ms⁻¹",
+   "3": "40/3 ms⁻¹",
+   "4": "None of these"
+  },
+  "parts": null,
+  "conditions": [
+   "cart moves horizontally at constant speed 30 ms⁻¹",
+   "particle projected vertically upwards relative to the cart",
+   "particle lands back at its launch point on the cart after the cart travels 80 m",
+   "g = 10 ms⁻²",
+   "air resistance neglected"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Find the time of flight from the cart's speed and distance moved, then use it as the projectile's up-and-down time to find launch speed relative to the cart.",
+  "steps": [
+   {
+    "text": "The cart moves at constant speed 30 ms⁻¹ and covers 80 m while the projectile is in the air. Find the time of flight.",
+    "equation": "t = 80/30 = 8/3 s"
+   },
+   {
+    "text": "Relative to the cart, the projectile only moves vertically: straight up and back down to the same point on the cart. This is the usual vertical time of flight.",
+    "equation": "t = 2v/g"
+   },
+   {
+    "text": "Solve for the vertical launch speed relative to the cart.",
+    "equation": "v = gt/2 = 10(8/3)/2 = 40/3 ms⁻¹"
+   }
+  ],
+  "final_answer": {
+   "option": 3,
+   "value": "40/3 ms⁻¹"
+  },
+  "common_mistakes": [],
+  "concept_tags": [
+   "relative velocity",
+   "projectile motion",
+   "time of flight"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "7e4e93aba7bd454ab8698202bc0a8400981a723b331ecab8682ab54caa547c02"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "2e2c3722788e69787daacaf5435b87298a413c15ed097f98e35d0e3a5d1dc133",
+  "audited_by": "W01-U-kin-05"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-09",
+  "at": "2026-09-11T15:15:00+05:30"
+ }
+}

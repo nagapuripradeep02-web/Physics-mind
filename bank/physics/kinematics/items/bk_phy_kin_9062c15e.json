@@ -1,0 +1,90 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_9062c15e",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "mcq_single",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "An insect is situated at one vertex of a cube-shaped enclosure having side length a. If it travels along the inner surfaces at a steady speed u, determine the shortest time needed for it to arrive at the diagonally opposite corner.",
+  "options": {
+   "1": "3 a / u",
+   "2": "√3 a / u",
+   "3": "√5 a / u",
+   "4": "(√2 + 1) a / u"
+  },
+  "parts": null,
+  "conditions": [
+   "cubical room with edge length a",
+   "motion restricted to the inner surfaces of the cube",
+   "constant speed u",
+   "minimum travel time along the shortest surface path"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Unfold two adjacent faces of the cube into a flat rectangle and find the straight-line distance across it, since the ant is restricted to the surface.",
+  "steps": [
+   {
+    "text": "The shortest surface path between opposite corners of a cube is found by unfolding two adjacent faces into one flat rectangle."
+   },
+   {
+    "text": "In the unfolded rectangle, the path from corner to corner runs across a rectangle of length 2a and width a.",
+    "equation": "unfolded rectangle: 2a by a"
+   },
+   {
+    "text": "Find the length of the straight diagonal of this rectangle, which is the shortest surface path.",
+    "equation": "distance = √((2a)² + a²) = √5 a"
+   },
+   {
+    "text": "Divide by the ant's constant speed to get the minimum time.",
+    "equation": "t = √5 a/u"
+   }
+  ],
+  "final_answer": {
+   "option": 3,
+   "value": "√5 a / u"
+  },
+  "common_mistakes": [
+   {
+    "option": 2,
+    "text": "Using the straight-line distance through the inside of the cube (the space diagonal √3 a) instead of the shortest path along the surface, which the ant is restricted to."
+   },
+   {
+    "option": 1,
+    "text": "Treating the shortest route as a path along three edges of the cube, giving a distance of 3a instead of the shorter diagonal path across two unfolded faces."
+   }
+  ],
+  "concept_tags": [
+   "shortest path",
+   "geometry",
+   "constant speed"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "73979942b3631ceb4555206ab2df55cfd26fd0840a63be159675b8b5197f13ee"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "b161660a1313e882be6bc9bb407ad423e83a9706b6e052e1505d47a576679830",
+  "audited_by": "W01-U-kin-05"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-08",
+  "at": "2026-09-11T14:20:00+05:30"
+ }
+}

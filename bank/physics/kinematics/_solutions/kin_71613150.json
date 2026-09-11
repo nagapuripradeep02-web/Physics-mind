@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_71613150",
+ "approach": "Check each quantity through the flight: speed and kinetic energy fall to zero and rise again, velocity keeps changing, only the acceleration stays the same.",
+ "steps": [
+  {"text": "Speed decreases from launch to the highest point, where it becomes zero, then increases again on the way down, so speed does not stay constant."},
+  {"text": "Kinetic energy depends on speed squared, so it also falls to zero at the top and rises again, so it does not stay constant either.", "equation": "KE = ½mv²"},
+  {"text": "Velocity is a vector; its magnitude changes throughout the flight and its direction reverses at the top, so velocity does not stay constant."},
+  {"text": "Acceleration is g downward at every instant of the flight, including at the highest point, since gravity acts the whole time without change, so the acceleration is the one quantity that remains constant.", "why_this_step": "Acceleration depends on the constant force of gravity, not on the changing velocity."}
+ ],
+ "final_answer": {"option": null, "value": "Acceleration"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Picking speed as constant by only thinking about the upward journey and forgetting that speed falls to zero at the top and rises again on the way down."},
+  {"option": null, "text": "Picking velocity as constant, confusing it with the constant acceleration; velocity itself keeps changing in both magnitude and direction."}
+ ],
+ "concept_tags": ["motion under gravity", "speed vs velocity", "kinetic energy"],
+ "difficulty": "easy",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-05", "at": "2026-09-11T14:12:00+05:30"}
+}

@@ -1,0 +1,82 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_kin_b3b7f656",
+ "subject": "physics",
+ "chapter": "Motion in a Straight Line",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "numerical",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A particle travels along a straight path such that its speed depends on its position coordinate s through the relation v = √(4 + 4s) m/s. Given that the particle is located at s = 0 at time t = 0, calculate its position coordinate at t = 2 s.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "motion in a straight line",
+   "velocity-displacement relation: v = √(4 + 4s) m/s",
+   "at t = 0, s = 0"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Separate variables in v = ds/dt = √(4 + 4s), integrate both sides from the given start, and evaluate the resulting displacement at t = 2 s.",
+  "steps": [
+   {
+    "text": "Write velocity as the derivative of displacement and separate the variables.",
+    "equation": "ds/dt = √(4+4s) ⟹ ds/√(4+4s) = dt"
+   },
+   {
+    "text": "Integrate the left side from s = 0 to s and the right side from t = 0 to t.",
+    "equation": "∫₀ˢ ds/√(4+4s) = ∫₀ᵗ dt ⟹ √(s+1) − 1 = t"
+   },
+   {
+    "text": "Solve for s as a function of t.",
+    "equation": "√(s+1) = t+1 ⟹ s+1 = (t+1)² ⟹ s = t² + 2t"
+   },
+   {
+    "text": "Substitute t = 2 s to get the displacement.",
+    "equation": "s(2) = 2² + 2×2 = 4 + 4 = 8 m",
+    "why_this_step": "This is the closed-form displacement evaluated at the requested time."
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "8 m"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Treating v = √(4+4s) as v = √(4+4t) and integrating with respect to time directly, ds = √(4+4t)dt, gives a wrong displacement of about 5.6 m at t = 2 s instead of 8 m."
+   }
+  ],
+  "concept_tags": [
+   "variable velocity",
+   "separation of variables",
+   "displacement from velocity-displacement relation"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "8399119e3c5752cd73706138fa908eb1cc788974ab6f20d94f5483bb8670c1ea"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "821aae3bbacbff66541c9c5c1143e663a864e9de3462a97982efe8fb98ffd3f8",
+  "audited_by": "W01-U-kin-06"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-kin-04",
+  "at": "2026-09-11T00:20:00+05:30"
+ }
+}

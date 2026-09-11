@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "kin_15d87f22",
+ "approach": "Integrate the velocity equation to get x(t), then solve x = 8 and x = −8 separately, keeping only the positive-time roots.",
+ "steps": [
+  {"text": "Integrate the given velocity to get the x-coordinate, using x = −4 m at t = 0.", "equation": "x(t) = −4 + 8t − t²"},
+  {"text": "Set x(t) = 8 and solve the quadratic for t.", "equation": "−4+8t−t² = 8 → t²−8t+12=0 → t = 2 s or t = 6 s"},
+  {"text": "Set x(t) = −8 and solve the quadratic for t, keeping only the positive root.", "equation": "−4+8t−t² = −8 → t²−8t−4=0 → t = 4+2√5 ≈ 8.47 s (the other root is negative)"},
+  {"text": "Count all the positive times found: the particle is at a distance of 8 m from the origin three times.", "equation": "t = 2 s, 6 s, (4+2√5) s ≈ 8.47 s"}
+ ],
+ "final_answer": {"option": null, "value": "(a) 3 times, (b) t = 2 s, 6 s, and (4+2√5) s ≈ 8.47 s"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Discarding the negative-x case x = −8 entirely and reporting only 2 times, missing that the particle turns back and passes x = −8 later."},
+  {"option": null, "text": "Keeping the negative root t = 4−2√5 ≈ −0.47 s from the x = −8 case as a valid time, which is not physical since t must be positive."}
+ ],
+ "concept_tags": ["equations of motion", "velocity-time equation", "quadratic in time"],
+ "difficulty": "hard",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-kin-03", "at": "2026-09-11T15:30:00+05:30"}
+}
