@@ -79,7 +79,8 @@ The Run 13 judge (DeepSeek, thinking off, JSON; $0.0001; 0 of 506 stored solutio
 { "ok": true, "source": "bank" | "cache" | "model",
   "label": "two_ways" | "once" | "unsure",
   "option": 3, "answer": "0.9 ± 0.023 µF",
-  "working": [ { "step": 1, "text": "…" }, … ],          // the winning solver's working; both workings when unsure
+  "working": [ { "step": 1, "text": "…", "tex": "$…$", "kind": "line" | "cont" | "note" }, … ],   // the answer sheet: tex typeset, text the plain twin; both workings when unsure
+  "answer_tex": "$…$" | null, "format": "tex" | "plain",
   "conventions": [ "EAPCET summed-error rule applied" ],
   "similar": [ { "qid": "tg_eapcet_2023_…_q051", "chapter": "…" } ],
   "models": [ { "model": "deepseek-flash", "effort": "high", "option": 3, "ms": 11200 }, … ],
@@ -158,7 +159,7 @@ Cap: 20 a day per device holds launch cost under $0.06 per student-day worst cas
 
 - **Ask**: the student's own line ("Please solve this question") — this is what every score was measured on.
 - **Syllabus clause** (system): "Use only methods in the NCERT Class 11–12 syllabus and the standard techniques EAPCET/JEE Main coaching teaches. Do not use university-level methods (Lagrangian mechanics, Laplace/Fourier transforms, residues, Jacobians, matrix exponentials, group theory, reagents outside NCERT)." Measured need: ~0 (§24); kept as a guard.
-- **Format clause**: numbered steps, plain English, the final option stated once on its own last line as "Answer: option N" — this is what makes S5's extractor reliable; hedges are still detected.
+- **Format clause** (rewritten 2026-09-11 after the founder's first test — the v1 "numbered steps, plain English, no LaTeX" rule produced a hint list, not a solution): the working is written exactly as a top student writes on the answer sheet — one line of mathematics per line (the given values, the formula or principle, the substitution with the numbers, the result), a continuation line starts with `=` or `\Rightarrow`, words only where a student would write them ("Given:", "By energy conservation,", "Let t = sin x"), never an instruction or commentary to the reader ("Write", "Use", "Cancel", "Now", "We", "You"), every expression in `$…$` on one line, no `$$`/`\[ \]`/`aligned`/`\ce{}`, no headings, bullets, bold, numbering or tables; the final option stated once on its own last line as "Answer: option N" (or "Answer: $<value with unit>$") — this is what makes S5's extractor reliable; hedges are still detected. For the "explain" ask one extra clause allows a student's margin note before each block of lines. The parser (`toLines`) returns `{step, text, tex, kind}` per line — `tex` as written, `text` the plain-text twin for the cache, the judge and the phone's fallback — and the ledger counts `instr_lines` (lines that talk to the reader), the number §8 reads; `EP_SOLVE_FORMAT=plain` restores the v1 rule. The page typesets `tex` with KaTeX from a CDN and falls back to `text`.
 - **Intake schema** (S1) and the **syllabus judge prompt** (S7) are copied from `scripts/model_probes/syllabus_sweep.py` and the intake spec above, and versioned; any change re-runs the positive control (§24).
 
 ## 8. Measurement gate before ship
