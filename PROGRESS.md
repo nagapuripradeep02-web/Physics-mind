@@ -1,5 +1,45 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 🧪 SESSION — The AI solver measured: 13 runs, ~3,000 calls, ~$11; routing decided; the reviewer and the generator designed (2026-09-10/11, `master`, local commits only)
+
+**Bottom line: the "student photographs a question" path now rests on measured numbers instead of beliefs. DeepSeek V4.1 Flash solves text questions at ~99% for ~$0.001; Gemini 3.7 Flash solves anything drawn (figures, circuits, organic structures) at 144/148 on the hardest set for ~$0.006 in 5 s; when the two agree they were right 129 of 129 times, and every disagreement contained the wrong model. Two things that sounded like fixes were measured as no-gain (a Python sandbox, retrieval of similar bank questions), one constraint turned out to be free (0 of 506 solutions used a beyond-Class-12 method), and three official EAPCET keys turned out to be wrong.** Everything is in `docs/MODEL_PROBES.md` §1–24 (the living log every future probe appends to) with the raw rows under `docs/reports/model_probes/data/`.
+
+### The measurements (all from a photo + a one-line student ask; regex grade + a hand pass on every miss)
+
+| run | what | result |
+|---|---|---|
+| 1–2 | DeepSeek V4.1 Flash, EAPCET text 90 + JEE Main 2024 90, thinking off/low/high/max | EAPCET 89/90 (`max`; the miss is a wrong key); JEE physics 30/30 `low`, maths 30/30 `max`, chemistry 23–25/29 at **every** effort |
+| 3–4 | figure questions, EAPCET 60 + JEE 60 (official crops redacted; the key leaked twice via tick icons + label colour) | EAPCET physics 25–26/30, chemistry 23–28/30; JEE physics 30/30, chemistry 25/29; thinking 3× text; 6 of 480 calls burnt the 32k cap and returned nothing |
+| 5 | the six chemistry misses re-asked as typed text | 4 of 6 become right → the bottleneck is reading drawn structures, not chemistry |
+| 6–9 | Gemini as reader/solver (2.5 → 404 on new projects; 3.x Flash; free tier caps per model per day; paid tier once the key's own project was linked) | Flash-Lite as reader: worse (100 vs 104). **3.7 Flash direct on all 148 hard figure/organic questions: 144**, DeepSeek `high` 131, the transcribe-then-solve split 140 — the split is dropped |
+| 10 | the six toughest questions, all five conditions, solutions kept verbatim (`docs/reports/model_probes/toughest_six_2026_09_10.md`) | best single condition 3/6; an exam convention (EAPCET summed error) and a drawing-slope read beat every model; 4 of 24 DeepSeek high/max calls blank at the cap |
+| 11 | Gemini `code_execution` ON | hard-148 144 → 145, maths 59 → 59, +55% cost; the model uses the sandbox to ZOOM the figure (42 crops vs 10 computations) — off by default |
+| 12 | three similar bank questions (keys, no workings) in the prompt | 144 → 144; EAPCET 2025 reused earlier questions verbatim (4/60 exact hits) — a bank's value is hits, not solver accuracy |
+| 13 | syllabus sweep of 506 stored solutions ($0.04 judge) | **0 beyond Class 12**; positive control 4/4 planted flagged, 2/2 within passed |
+
+Product numbers computed from the runs (§22): routed single solver ≈ $2.5–3 per 1,000 non-bank questions, pair on everything ≈ $7; the review loop worst case ≈ $36 per 1,000 questions with three uploads each; usage personas (obsessed aspirant ≈ ₹520/month, AIR-1 type ≈ ₹200, blended base ≈ ₹120–130 against ₹199).
+
+### The three documents this produced
+
+- `docs/SOLUTION_GENERATOR_ARCHITECTURE.md` — the Solutions tab photo path: Flash-Lite intake (transcribe, classify figure/text, fingerprint) → bank and cache first → text to DeepSeek `high` (maths `max`) with second-opinion triggers → figures to Gemini 3.7 Flash ∥ DeepSeek `high` → code-owned labels (*checked two ways / once / unsure*) → convention pass → syllabus post-check → response contract, caps cloned from `ep-photo-read`, cost and latency budgets, the measurement gate before ship. Founder confirmed the routing 2026-09-11.
+- `docs/SOLUTION_REVIEWER_ARCHITECTURE.md` — the founder's bar: twice as strong as the generator. Intake gate → strong transcription → deterministic step checks (SymPy + an exam-convention library) → two judges (photo, transcript) → code arbiter → three verdicts; the false-error rate on correct work is the metric; ~$0.014 per review; a 100-page planted-error set is the gate before ship.
+- `docs/PRODUCT_GAPS_AND_BANK_STRATEGY.md` — syllabus-level control (prompt + post-check + examples); what the product is missing (remediation after diagnosis, revision scheduling, mock-test analysis, speed, language, human escalation, privacy-vs-flywheel, copyright); the one-lakh-bank analysis and its order (organic first, public sources second, licensed/authored last, never a competitor's modules).
+
+### Files
+
+`docs/MODEL_PROBES.md` (new, §1–24) · `docs/reports/model_probes/data/{eapcet_text_2026_09_10, jee_main_2026_09_10, eapcet_figures, jee_figures, chem_text_vs_image, chem_reader, chem_reader_lite, chem_reader_37, toughest_six, code_exec, retrieval, syllabus_sweep}/` (`sample.json`, `results.jsonl`, `hand.json`) · `docs/reports/model_probes/toughest_six_2026_09_10.md` · `scripts/model_probes/{ds_probe, jee_extract, jee_final, eapcet_figure_crop, jee_figure_select, figures_final, chem_text_vs_image, gemini_probe, reader_compare, toughest_six, code_exec_probe, retrieval_probe, syllabus_sweep}.py` + `README.md` · the three architecture/strategy docs. Photos stay under gitignored `pdfs/probes/`; `.env.local` now carries the paid-tier Google key as `GOOGLE_GENERATIVE_AI_API_KEY` (+ `_CREDIT300`, `_PREV`) — never tracked. Commits (all local, hooks bypassed, nothing pushed): c21e3657 · 9d077a7b · 55e1d52a · 304a4177 · fc991ea2 · 3a685c13 · 9c980f6f · e53cc0f8 · 16079ae6 · c633ffde · fc52d7a1 · 26e721f7 · 3271a6dd. Memory: `project_deepseek_v41_flash_probe_results.md` carries Runs 1–13. Vault synced 2026-09-11 (`[[physicsmind]]`, `[[decisions]]`, `log.md`).
+
+### Blockers and cautions
+
+- Both new Google API keys were pasted into the chat — rotate them if this log is ever shared.
+- Every score is on typeset crops with a photo effect; real phone photos and handwriting are unmeasured. Numbers will move, probably down.
+- The reviewer cannot be measured until the founder supplies ~30 handwritten solution photos (correct, wrong part-way, unusual method, messy).
+- The 20/day photo cap does not bound cost under the ₹199 plan for a heavy user; the monthly-allowance recommendation is a pricing decision still open.
+
+### ▶ Next session's first task
+
+Measure the intake classifier: `has_figure` + subject accuracy of a Flash-Lite structured call on the 238 labelled probe photos already on disk (148 figure, 90 text) — needs nothing from the founder and is gate (a) of the generator doc §8. Then, on the app desk `physics-mind-eapcet-app`, the `ep_solve_cache` migration and the `ep-solve` function from the `ep-photo-read` skeleton, in the order of generator doc §9. The reviewer measurement (Run 14) starts the day the handwriting photos arrive.
+
 ## 📗 SESSION — Wave B complete: five chapters, 149 new cards, five audits, 151 findings (2026-09-02/03, `feat/ipe-firstyear-2027`)
 
 **Bottom line: physics 9 through 13 are authored, audited, repaired and green. Every arithmetic answer was right in every chapter; every one of the 151 audit findings was in the prose. Not one was machine-checkable.** Wave C, chemistry 7–10, is next.
@@ -549,7 +589,7 @@ The structural step-id fix **holds on papers it was never tuned on** — 0 leaks
 
 ---
 
-## ▶ NEXT SESSION'S FIRST TASK — backfill the maths memory tips
+## ✅ (done 2026-09) former NEXT SESSION'S FIRST TASK — backfill the maths memory tips
 
 **The gap.** Measured across the whole bank:
 
