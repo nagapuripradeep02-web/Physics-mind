@@ -385,3 +385,20 @@
 .ep-tick-btn { align-self: flex-start; font: inherit; font-size: 13px; min-height: 32px; padding: 4px 0; background: none; border: 0; color: var(--chrome-dim); text-decoration: underline; cursor: pointer; }
 .ep-photo-final, .ep-photo-diverges { font-size: 14.5px; margin: 4px 0; line-height: 1.5; }
 .ep-photo-diverges { font-weight: 600; }
+
+/* Solutions tab — the solver's answer card (ep-solve). Three labels, three
+   colours: checked two ways (strong), checked once (chrome), unsure (gold). */
+.ep-solve { border: 1px solid var(--chrome-line); border-radius: var(--r-card); background: var(--paper); padding: 14px 16px; max-width: 92%; align-self: flex-start; }
+.ep-solve .ep-eyebrow { margin: 0 0 6px; }
+.ep-solve-two_ways { border-color: var(--m-strong-ink); }
+.ep-solve-two_ways .ep-eyebrow { color: var(--m-strong-ink); }
+.ep-solve-unsure { border-color: var(--gold); background: var(--gold-wash); }
+.ep-solve-unsure .ep-eyebrow { color: var(--gold-ink); }
+.ep-solve-answer { font-family: var(--serif); font-size: 18px; font-weight: 600; line-height: 1.35; margin: 0 0 8px; white-space: pre-wrap; }
+.ep-solve-unsure-body { font-size: 14.5px; line-height: 1.5; margin: 0 0 8px; }
+.ep-solve-who { font-size: 12.5px; font-weight: 600; letter-spacing: .04em; color: var(--chrome-dim); margin: 10px 0 4px; }
+.ep-solve-steps { margin: 0; padding: 0 0 0 20px; }
+.ep-solve-step { font-size: 15px; line-height: 1.5; margin: 0 0 6px; white-space: pre-wrap; word-break: break-word; }
+.ep-solve-models, .ep-solve-note { color: var(--chrome-dim); font-size: 13px; line-height: 1.45; margin: 8px 0 0; }
+.ep-solve .ep-photo-row { margin-top: 10px; }
+.ep-solve-past { font-size: 14px; color: var(--chrome-dim); margin: 6px 0 0; }

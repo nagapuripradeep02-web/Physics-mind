@@ -1,5 +1,43 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 🧩 SESSION — The Solutions tab solves a photographed question: `ep-solve` live on the preview worker, proved by curl (2026-09-11, `feat/eapcet-app`, local commit only)
+
+**Bottom line: on the preview a student can photograph ANY question, tap "Just show me the solution" or "I am stuck at a step", and get an answer whose label is decided by code, never by a model — *Checked two ways* (two solvers agree), *Checked once*, or *Not sure* (both workings, no verdict).** Built to `docs/SOLUTION_GENERATOR_ARCHITECTURE.md` (master) from the measured routing (`docs/MODEL_PROBES.md`, 13 runs): Flash-Lite intake → cache → a text question to DeepSeek V4.1 Flash `high` (`max` for maths) → a drawn question to Gemini 3.7 Flash and DeepSeek in parallel → arbiter → syllabus judge. The image is never stored. Preview: **https://viditra-eapcet-preview.nagapuripradeep02.workers.dev/#/physics/solutions** (wrangler version c9dd98fc).
+
+### What is deployed
+- **Migration** `supabase_migrations/supabase_2026_09_12_eapcet_solve.sql`, applied on `dxwpkjfypzxrzgbevfnx` as `eapcet_solve_cache_and_reports` + `eapcet_solve_lookup_trgm`: `ep_solve_cache` (fingerprint pk, transcript, options, option, answer, working, working_alt, label, winner, models, syllabus, hit_count, disputed), `ep_solve_reports` (the "this answer looks wrong" queue a human clears), `pg_trgm` + `ep_solve_lookup(subject, text)`. RLS on, no policies: only the function reads or writes.
+- **Function** `supabase/functions/ep-solve/index.ts` — ep-photo-read's guard ladder unchanged (origin allowlist, 1.5 MB body cap, the lock before any model call, 20/day per device, $2/day project cap, 4/min per IP, hashed IP, one `ai_usage_log` row per request with every model call itemised under `task_type = eapcet_solve`, one `ep_events` row `solve` / `solve_report`). Deployed `--no-verify-jwt`. Secrets: `EP_SOLVE_GOOGLE_KEY` = the paid-tier Google key (the project's `GOOGLE_GENERATIVE_AI_API_KEY` is the OLD free project and stays on ep-photo-read); `DEEPSEEK_API_KEY` verified by digest to be the key the probes ran on. Env knobs: `EP_SOLVE_INTAKE_MODEL` (gemini-3.5-flash-lite), `EP_SOLVE_TEXT_MODEL`/`EP_SOLVE_TEXT_EFFORT` (deepseek-flash / high), `EP_SOLVE_FIGURE_MODEL` (gemini-3.7-flash), `EP_SOLVE_THINK_CAP` 12000, `EP_SOLVE_MODEL_TIMEOUT_MS` 45000, `EP_SOLVE_PAIR_WAIT_MS` 25000, `EP_SOLVE_PER_DAY` 20, `EP_SOLVE_DAILY_USD_CAP` 2, `EP_SOLVE_SYLLABUS_CHECK` (0 = off).
+- **Page** `eapcet-app/js/84_solutions.js` — photo → the three chips → one POST → the answer card (label, answer, numbered steps, both workings named when unsure, which models answered in how many seconds, "This answer looks wrong", photos left) → the transcript matched against the public pool so a past-paper question also gets its verified fix page. Strings in `05_strings.js` (`sol_*`, Rule 41), styles `.ep-solve*` in `eapcet.css`, `EP_SOLVE_BASE` baked by `build_eapcet_app.ts` from `.env.local`. Without the base the flow is byte-identical to before: `smoke:eapcet:learn` 9/9 offline. "I tried, here is my work" still ends in the honest not-available card — the reviewer is its own document and is not built.
+
+### Proved by curl on a TEMP grant device (never the founder's), then removed
+| proof | result |
+|---|---|
+| unknown device | `{locked:true}`, no model call |
+| foreign origin | 403 |
+| EAPCET 2022 physics text (key 2) | DeepSeek `high` option 2, *once*, syllabus within, 5.7 s, $0.0017 |
+| EAPCET 2021 Carnot-engine figure (key 4) | Gemini 4 + DeepSeek 4 → *two_ways*, 11.6 s, $0.0073 |
+| EAPCET 2023 chemistry text (key 3) | DeepSeek option 3, *once*, 8.9 s, $0.0027 |
+| the same photo again | `source: cache` in 1.8 s, $0.0009 (the intake call only) |
+| "this answer looks wrong" | row in `ep_solve_reports`, cache row `disputed`, event `solve_report` |
+| a device with 20 reads today | `{reason:"cap", reads_left:0}` in 0.7 s |
+
+Three answers, three official keys matched. Ledger and events rows checked in SQL. The two throwaway devices, their grants, the 20 filler ledger rows and the test report were deleted afterwards; the real model-spend rows stay (`session_id = curlproof`, ~$0.014 in all).
+
+### Two things the proofs taught, both fixed before the deploy
+- **Flash-Lite's transcript of the SAME photo differs by a character or two between reads** ("20 Ω" garbled into combining marks; "153. A wire" vs "153.A wire"), so an exact fingerprint cache missed three times running. The cache now asks Postgres for the nearest transcript of the same subject (trigram similarity ≥ 0.85, `ep_solve_lookup`) and serves it only if every number in the question and options matches — so two reads of one page hit, and a twin question with changed numbers can never hit. The question number is stripped only when it carries a delimiter (`153.` / `153)` / `Q.153:`), so "2 moles of…" keeps its 2.
+- **Flash-Lite rejects `thinkingConfig.thinkingBudget: 0`** (HTTP 400, "invalid argument"); with no thinking config it returns the structured intake JSON in 1.6 s for ~$0.0008. ep-photo-read's `thinkingBudget: 0` is a 2.5-model setting; do not copy it to 3.x models.
+
+### v1 gaps, deliberate (the design says what is missing, the code says so in its header)
+No exam-convention pass yet (S6 — the `conventions` field is present and empty); the syllabus judge flags (`syllabus: beyond` → a note on the card) but does not regenerate; the bank is matched on the phone against the public pool, not on the server; the wait rule is implemented (Gemini answered, DeepSeek still thinking after 25 s → reply *once*, DeepSeek finishes in the background via `EdgeRuntime.waitUntil` and upgrades the cache row) but was not exercised — every DeepSeek call finished in under 9 s; JEE routing, multi-question photos, Telugu/Hindi explain-again untouched. Every measured score is on typeset crops; the founder's phone photos are the first real measurement.
+
+### Files
+`supabase_migrations/supabase_2026_09_12_eapcet_solve.sql` · `supabase/functions/ep-solve/index.ts` (new) · `eapcet-app/js/84_solutions.js` · `eapcet-app/js/05_strings.js` · `eapcet-app/eapcet.css` · `src/scripts/build_eapcet_app.ts` · this file. `.env.local` (hard-linked, never tracked) now carries `EP_SOLVE_BASE`. Preview build command when the app desk has no release file: `npx tsx --env-file=.env.local src/scripts/build_eapcet_app.ts --preview --pool=C:/Tutor/physics-mind-eapcet-corpus/eapcet/pool/physics_pool_v1.release.json` then `npx wrangler deploy -c wrangler.eapcet-preview.toml`.
+
+### ▶ Next
+The founder walks the preview on a real phone (their Chrome on the preview origin is device `d6e474ca…`, granted). Then the measurement gate of the generator doc §8: intake `has_figure`/subject accuracy on the 238 labelled probe photos, end-to-end through the deployed function on the 358 probe photos (targets text ≥ 98%, figures ≥ 96%, unsure ≤ 8%), 30 real phone photos of printed material. Open for the founder: rotate the two Google keys pasted into chat; the 20/day cap vs a monthly allowance; the reviewer's handwriting photos.
+
+---
+
 ## 📱 SESSION — EAPCET Weakness tab measures what the student WROTE: number first, chips before the verdict, a ledger across runs, and a photo of the working (2026-09-10, p1-02 only)
 
 **Desk: worktree `C:\Tutor\physics-mind-eapcet-app`, branch `feat/eapcet-app`, tip `5389870c`.**
