@@ -37,6 +37,10 @@ const LABELS: Record<string, { title: string; subjects: string }> = {
     // one book and the door routes the student to their year. The card describes
     // the whole artifact, so it names the group and says both years are inside.
     'mpc,mpc_2': { title: 'Telangana IPE · MPC', subjects: 'First year and second year' },
+    bipc_2: { title: 'Senior Inter · BiPC', subjects: 'Botany-II · Zoology-II · Physics · Chemistry' },
+    // MPC both years and BiPC second year in one artifact (2026-09-11). BiPC first
+    // year is not in it, so the card must not say "both years" of BiPC.
+    'mpc,mpc_2,bipc_2': { title: 'Telangana IPE · MPC and BiPC', subjects: 'MPC both years · BiPC second year' },
 };
 
 function fail(msg: string): never {

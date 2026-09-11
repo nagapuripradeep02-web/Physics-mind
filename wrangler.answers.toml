@@ -35,9 +35,9 @@ routes = [
 # (₹99 founding / ₹199 after).
 #
 # Rebuild+deploy:  npm run deploy:answers
-#   which runs build:answers:gated:mpc first — pointing this file at a directory
+#   which runs build:answers:gated:live first — pointing this file at a directory
 #   some other script builds is how a deploy silently ships a stale artifact.
-# After changing which chapters ship: npm run content:push:mpc (a locked chapter
+# After changing which chapters ship: npm run content:push:live (a locked chapter
 # missing from ab_content can never be unlocked, even by a student who paid).
 #
 # To go back to the free book: point directory at "./answer-book/dist-mpc" and
@@ -47,4 +47,8 @@ routes = [
 # door sends a student to first or second year. Was dist-gated-mpc, the junior
 # book alone — which is why Physics-II, Chemistry-II and Maths-2A were complete
 # and unreachable.
-directory = "./answer-book/dist-gated-mpc+mpc_2"
+# BiPC second year joined 2026-09-11 (founder): Botany-II and Zoology-II beside
+# MPC in the same artifact, reading the same Physics-II and Chemistry-II cards.
+# The door's BiPC → second year cell opens it. (The interim workers.dev preview,
+# wrangler.answers-bipc.toml, was retired the same day.)
+directory = "./answer-book/dist-gated-mpc+mpc_2+bipc_2"

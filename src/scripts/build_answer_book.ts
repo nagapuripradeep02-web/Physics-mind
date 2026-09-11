@@ -87,10 +87,8 @@ const STREAMS: Record<string, { subjects: string[]; label: string; blurb: string
     // Senior Inter BiPC (2026-09-04). Botany-II and Zoology-II were audited card by
     // card and through the chatbot the day this landed. The physics and chemistry
     // papers are the SAME cards the MPC stream serves — a BiPC student sits those
-    // papers too — and that sharing is exactly what the two-streams guard below
-    // refuses inside ONE multi-stream artifact. So `--stream=bipc_2` builds
-    // standalone today, and the combined door build (mpc,mpc_2,bipc_2) waits on a
-    // founder decision about a subject living in two streams of one artifact.
+    // papers too — so those two subjects are declared in SHARED_SUBJECTS below and
+    // one artifact carries both second-year streams (founder, 2026-09-11).
     bipc_2: {
         subjects: ['botany_2', 'zoology_2', 'physics_2', 'chemistry_2'],
         label: 'Senior Inter BiPC',
@@ -108,18 +106,20 @@ const STREAMS: Record<string, { subjects: string[]; label: string; blurb: string
 // This table is PRESENTATION ONLY and is deliberately NOT the STREAMS registry
 // above. STREAMS says what a build may contain; TRACKS says what a student may
 // be told exists. Adding `bipc` to STREAMS would make `--stream=bipc` a legal
-// build of a three-subject book (Zoology is authored but unmerged), and `mec`
-// has no economics/commerce subject anywhere in the bank — so those tiles must
-// never be able to produce an artifact.
+// build of a first-year BiPC book nobody has audited yet, and `mec` has no
+// economics/commerce subject anywhere in the bank — so those tiles must never
+// be able to produce an artifact.
 //
 // A year cell is LIVE only when its `stream` equals the stream being built, so
 // the door of any artifact can advertise exactly one live path — its own — and
 // a future --stream=bipc build lights BiPC's first year with no edit here.
 //
 // The notes are checked against what is on disk, not against the marketing
-// site: Botany is on master (13 chapters) and Zoology is real but on an
-// unmerged branch (8 chapters), so "written, being checked" is true of both.
-// MPC second year went live 2026-08-28 with Physics-II (16 chapters), gained
+// site: first-year Botany (13 chapters) and Zoology (8 chapters) are both on
+// master but neither has had the examiner audit the second-year papers had, so
+// "written, being checked" is true of both. BiPC second year went live 2026-09-11
+// beside MPC in the one artifact, reading the same Physics-II and Chemistry-II
+// cards (SHARED_SUBJECTS). MPC second year went live 2026-08-28 with Physics-II (16 chapters), gained
 // Chemistry-II (18 units) on 2026-08-29, and Maths-2A (10 units) and Maths-2B (8
 // units) the same day; every MPC Paper-II now exists, which is why `mpc_2.blurb`
 // and Chemistry" and not "Maths, Physics and Chemistry" — the blurb is what the
@@ -148,10 +148,7 @@ const TRACKS: {
                 id: 'first_year', label: 'First year', stream: null,
                 note: 'Botany and Zoology are written. We are checking them before we hand them to you.',
             },
-            {
-                id: 'second_year', label: 'Second year', stream: 'bipc_2',
-                note: 'Botany-II and Zoology-II are written. We are checking them before we hand them to you.',
-            },
+            { id: 'second_year', label: 'Second year', stream: 'bipc_2', note: '' },
         ],
     },
     {
@@ -188,13 +185,21 @@ const STREAM_SET = new Set(STREAM_KEYS);
 const STREAM_SUBJECTS = STREAM_KEYS.length
     ? new Set(STREAM_KEYS.flatMap((k) => STREAMS[k].subjects))
     : null;
-// A subject in two streams would be served twice and counted twice on the door.
+// A subject two streams may BOTH carry inside one artifact. Physics-II and
+// Chemistry-II are one paper each that every second-year student sits, MPC or
+// BiPC, so the two streams read the same cards — one bundle, one row, one
+// count per door cell (a cell counts its own year's papers, and a student is in
+// exactly one cell). Any OTHER subject appearing in two streams is still an
+// error: it would be a paper served under two names by accident.
+const SHARED_SUBJECTS = new Set(['physics_2', 'chemistry_2']);
 {
     const seen = new Map<string, string>();
     for (const k of STREAM_KEYS) {
         for (const subj of STREAMS[k].subjects) {
             const prev = seen.get(subj);
-            if (prev) fail(`  streams "${prev}" and "${k}" both claim subject "${subj}"`);
+            if (prev && !SHARED_SUBJECTS.has(subj)) {
+                fail(`  streams "${prev}" and "${k}" both claim subject "${subj}" — declare it in SHARED_SUBJECTS if that is deliberate`);
+            }
             seen.set(subj, k);
         }
     }
@@ -793,8 +798,9 @@ const dataJs =
     `window.PM_AUTH_ANON = ${JSON.stringify(authAnon)};\n` +
     `window.PM_STAFF_WORD = ${JSON.stringify(staffWord)};\n` +
     // null on the full build — the catalog eyebrow then stays subject-neutral.
-    // Every stream in one artifact shares a short label today (both MPC cells say
-    // "MPC"); if that ever stops being true this becomes per-stream like the year.
+    // On a MULTI-stream build it is the first stream's group and the player
+    // overrides it from PM_STREAM_SHORTS once the student has chosen at the
+    // door — an MPC and a BiPC cell in one artifact no longer share a label.
     `window.PM_STREAM = ${JSON.stringify(STREAM ? STREAMS[STREAM_KEYS[0]].short : null)};
 ` +
     // The YEAR the built artifact is for. Hardcoded in three places until
@@ -815,6 +821,12 @@ const dataJs =
     `window.PM_STREAM_YEARS = ${JSON.stringify(
         STREAM_KEYS.length > 1
             ? Object.fromEntries(STREAM_KEYS.map((k) => [k, STREAMS[k].year]))
+            : null
+    ).replace(/</g, '\u003c')};
+` +
+    `window.PM_STREAM_SHORTS = ${JSON.stringify(
+        STREAM_KEYS.length > 1
+            ? Object.fromEntries(STREAM_KEYS.map((k) => [k, STREAMS[k].short]))
             : null
     ).replace(/</g, '\u003c')};
 ` +
