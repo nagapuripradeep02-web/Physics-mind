@@ -283,8 +283,10 @@
   /** Multi-stream builds only: subjects and year label per stream, else null. */
   var STREAM_SUBJECTS = window.PM_STREAM_SUBJECTS || null;
   var STREAM_YEARS = window.PM_STREAM_YEARS || null;
-  /** The year the student is actually in, once the door knows. */
+  var STREAM_SHORTS = window.PM_STREAM_SHORTS || null;
+  /** The year and the group the student is actually in, once the door knows. */
   var EFFECTIVE_YEAR = window.PM_YEAR || null;
+  var EFFECTIVE_STREAM = window.PM_STREAM || null;
   /**
    * Lens the catalog to ONE stream's subjects.
    *
@@ -298,11 +300,19 @@
   function applyYearLens(streamId) {
     if (!STREAM_SUBJECTS) return;
     var subs = streamId && STREAM_SUBJECTS[streamId];
-    if (!subs) { UNITS = ALL_UNITS; EFFECTIVE_YEAR = window.PM_YEAR || null; return; }
+    if (!subs) {
+      UNITS = ALL_UNITS;
+      EFFECTIVE_YEAR = window.PM_YEAR || null;
+      EFFECTIVE_STREAM = window.PM_STREAM || null;
+      return;
+    }
     var want = {};
     for (var i = 0; i < subs.length; i++) want[subs[i]] = 1;
     UNITS = ALL_UNITS.filter(function (u) { return want[u.subject || 'physics'] === 1; });
     if (STREAM_YEARS && STREAM_YEARS[streamId]) EFFECTIVE_YEAR = STREAM_YEARS[streamId];
+    // The group too: once MPC and BiPC share one artifact, the first stream's
+    // label would tell a BiPC student they were reading the MPC book.
+    if (STREAM_SHORTS && STREAM_SHORTS[streamId]) EFFECTIVE_STREAM = STREAM_SHORTS[streamId];
   }
   var qIndexById = {};
   questions.forEach(function (q, i) { qIndexById[q.question_id] = i; });
@@ -694,9 +704,9 @@
     // before the reader scrolls — the subject chips alone make that an
     // inference. Absent (the full build) leaves the eyebrow subject-neutral.
     var eyebrow = $('catEyebrow');
-    if (eyebrow && window.PM_STREAM) {
+    if (eyebrow && EFFECTIVE_STREAM) {
       var base = 'Telangana IPE · ' + (EFFECTIVE_YEAR || 'First year');
-      var eyeText = base + ' · ' + window.PM_STREAM;
+      var eyeText = base + ' · ' + EFFECTIVE_STREAM;
       if (Door.enabled()) {
         // The eyebrow already names the board, the year and the group, so it is
         // the honest place to change them from — no new chrome in a topbar that
