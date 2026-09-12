@@ -413,3 +413,30 @@ Founder rule: every AI solution must stay at Class 10–12 level, nothing from a
 Most-used techniques across the 506 (the judge's own list): Ohm's law, electrophilic aromatic substitution, unit conversion, IUPAC rules, Boolean algebra, energy conservation, vector dot product, Markovnikov, carbocation stability, u-substitution, Vieta — the syllabus, as expected.
 
 **Reading.** On exam questions with the product's one-line ask, both models already answer at syllabus level; beyond-syllabus methods did not occur once in 506 solutions. The founder's constraint is therefore cheap to enforce: a short syllabus clause in the system prompt plus this same $0.0001 judge as a post-check that regenerates the rare flagged solution. Caveat: the sweep is over *exam* questions solved from photos; a student's free-text ask ("solve using Lagrangian") or a textbook-style problem may pull a model off-syllabus more often, so the post-check stays on in the product, and the two-plant control should be re-run whenever the judge prompt changes.
+
+## 25. Run 14 — the six toughest FIGURE-FREE JEE Main questions, DeepSeek V4.1 Flash in every mode and Gemini 3.7 Flash (2026-09-12)
+
+Founder ask: "test DeepSeek V4.1 Flash in all modes and Gemini 3.7 Flash; two problems from physics, two from chemistry, two from mathematics, all without figures, the real toughest questions from JEE Main." Unlike Run 10 (where "toughest" meant the items models had missed), **toughest here is a teacher's judgment**: every keyed, figure-free question of the twenty JEE Main 2024 papers on disk (887 of 1,017 keyed; figure flag from `jee_figure_select`) was read by a Claude Opus sub-agent per subject on the subscription ($0 API), which ranked the six hardest, opened each crop, **solved each independently before looking at the key**, and recommended two of different topics with the key agreed. All 18 shortlisted solves agreed with the printed keys; the agents also listed 30-odd candidates that are cut off, carry a figure the flag missed, or have a convention-dependent key (e.g. Ag deposited: 108 g at 22.4 L, 107 g at NCERT's 22.7 L) — none of those was picked. The models saw the paper crop with the one-line ask. Script `scripts/model_probes/toughest_text_six.py`; data `data/toughest_text_six/`; every solution verbatim in **`docs/reports/model_probes/toughest_text_six_2026_09_12.md`**. 36 calls, **$0.10** in total (DeepSeek off-peak $0.05, Gemini $0.04).
+
+**DeepSeek's modes, verified against its API reference the same day:** `reasoning_effort` accepts `none | low | high | max` (default `high`); `medium` and `xhigh` are accepted as aliases of `high`, `minimal` of `low`. So "all modes" = thinking off, low, high, max — the `ds_medium` column below is a second, independent draw of `high`.
+
+| Subject | Question (JEE Main 2024) | key | DS off | DS low | DS high | DS high (2nd draw, "medium") | DS max | Gemini 3.7 |
+|---|---|---|---|---|---|---|---|---|
+| physics | travelling microscope, LC 0.001 cm, three vernier readings → μ (`06-apr-s2 q33`) | 1 (1.42) | ✓ 3 s | ✓ 19 s | ✓ 15 s | ✓ 13 s | ✓ 23 s | ✓ 6 s |
+| physics | potentiometer, no open-circuit length, r from two balance points (`04-apr-s1 q45`) | 4 (0.3 Ω) | ✓ 13 s (value stated, option not named — hand-graded) | ✓ 6 s | ✓ 5 s | ✓ 6 s | ✓ 16 s | ✓ 5 s |
+| chemistry | CaCO₃ + MgCO₃ 2.21 g ignited to 1.152 g, composition (`31-jan-s2 q62`) | 1 | ✓ 34 s | ✓ 45 s | ✓ 9 s | ✓ 22 s | ✓ 17 s | ✓ 6 s |
+| chemistry | wavenumber order of [CoCl(NH₃)₅]²⁺, [Co(CN)₆]³⁻, [Co(NH₃)₅H₂O]³⁺, [Cu(H₂O)₄]²⁺ (`06-apr-s1 q72`) | 2 | ✓ 4 s | ✓ 10 s | ✓ 11 s | ✓ 17 s | ✓ 13 s | ✓ 5 s |
+| maths | dy/dx = 2x(x+y)³ − x(x+y) − 1, y(0)=1; (1/√2 + y(1/√2))² (`01-feb-s1 q14`) | 4 | ✓ 15 s | ✓ 21 s | ✓ 9 s | ✓ 18 s | ✓ 18 s | ✓ 5 s |
+| maths | ∫(cosec x + sin x)/(cosec x sec x + tan x sin²x) dx, lim y = 0 at π/2⁻, y(π/4) (`29-jan-s1 q10`) | 4 | **✗ 3** 4 s | ✓ 44 s | ✓ 39 s | ✓ 44 s | ✓ 23 s | ✓ 6 s |
+| **right of 6** | | | **5** | **6** | **6** | **6** | **6** | **6** |
+
+| | $ for the six | avg latency | thinking tokens, six items |
+|---|---|---|---|
+| DeepSeek off | $0.003 | 12 s | 0 |
+| DeepSeek low | $0.011 | 24 s | 14,746 |
+| DeepSeek high | $0.011 | 14 s | 15,951 |
+| DeepSeek high, 2nd draw | $0.014 | 19 s | 21,108 |
+| DeepSeek max | $0.013 | 18 s | 18,260 |
+| Gemini 3.7 Flash | $0.044 | 5 s | 5,592 |
+
+**Reading.** On the hardest figure-free questions a teacher could find in twenty papers, **every thinking mode of DeepSeek and Gemini 3.7 Flash is 6 of 6**; no call hit the 32,000-token cap (the longest thought was 8,555 tokens, on the integral), and nothing took longer than 45 s. The only miss is **thinking OFF on the integral**: it mis-simplified the denominator to 1 + t³ instead of 1 + t⁴ and landed on option (3), exactly the sign-flip distractor the teacher-agent had predicted; thinking off also stated "0.3 Ω" on the potentiometer without naming option (4) (right, but the product's extractor would have needed the option-text fallback). Low, high and max are indistinguishable on this set — the thinking-token totals differ less between modes than between two draws of the same mode — so the product's `high` (`max` for maths) buys nothing measurable here over `low`, and thinking off is the only mode that loses. Gemini 3.7 Flash is right on all six at a third of DeepSeek's latency and four times its cost. This is consistent with Runs 1–2 (text questions ≈ 99% on both models); the failures in Run 10 were figures and a convention, not text difficulty. Six items is a check, not a benchmark.

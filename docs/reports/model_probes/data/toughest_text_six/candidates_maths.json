@@ -1,0 +1,2557 @@
+[
+ {
+  "id": "jm2024-01-feb-shift-1_mat_q01",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "1. \nA bag contains 8 balls, whose colours are either \nwhite or black. 4 balls are drawn at random \nwithout replacement and it was found that 2 balls \nare white and other 2 balls are black. The \nprobability that the bag contains equal number of \nwhite and black balls is: \n \n(1) 2\n5\n \n(2) 2\n7\n \n \n(3) 1\n7\n \n \n(4) 1\n5",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-01-feb-shift-1_mat_q01.jpg"
+ },
+ {
+  "id": "jm2024-01-feb-shift-1_mat_q02",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "2. \nThe value of the integral \n \n \n4\n4\n4\n0\n:\nsin (2 )\ncos (2 )\nxdx\nequals\nx\nx\n\n\n\n \n \n(1) \n2\n2\n8\n\n \n(2) \n2\n2\n16\n\n \n \n(3) \n2\n2\n32\n\n  \n(4) \n2\n2\n64\n",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-01-feb-shift-1_mat_q02.jpg"
+ },
+ {
+  "id": "jm2024-01-feb-shift-1_mat_q03",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "3. \nIf A =\n2\n1\n1\n2\n\n\n\n\n\n\n\n\n\n, B = 1\n0\n1 1\n\n\n\n\n\n\n, C = ABAT and X \n= ATC2A, then det X is equal to : \n \n(1) 243 \n \n(2) 729 \n \n(3) 27 \n \n(4) 891",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-01-feb-shift-1_mat_q03.jpg"
+ },
+ {
+  "id": "jm2024-01-feb-shift-1_mat_q04",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "4. \nIf tanA =\n2\n2\n1\n,tan\n(\n1)\n1\n\n\n\n\n\nx\nB\nx x\nx\nx\nx\n  \n \nand \n \n\n\n1\n3\n2\n1\n2\ntan\n,0\n, ,\n,\n2\n\n\n\n\n\n\n\n\nC\nx\nx\nx\nA B C\nthen\n\n \n         A + B is equal to : \n \n(1) C \n \n(2) \nC\n\n \n \n(3) 2\nC\n\n \n \n(4) \n2\nC\n",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-01-feb-shift-1_mat_q04.jpg"
+ },
+ {
+  "id": "jm2024-01-feb-shift-1_mat_q05",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "5. \nIf n is the number of ways five different employees \ncan sit into four indistinguishable offices where \nany office may have any number of persons \nincluding zero, then n is equal to: \n \n(1) 47 \n \n(2) 53 \n \n(3) 51 \n \n(4) 43",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-01-feb-shift-1_mat_q05.jpg"
+ },
+ {
+  "id": "jm2024-01-feb-shift-1_mat_q06",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "6. \nLetS={\n:\n1\n1\nz\nC\nz\n\n\nand\n\n\n\n\n\n2\n1\n2 2\nz\nz\ni z\nz\n\n\n\n\n\n}. Let z1, z2 \nS\n\n be such that \n1\n2\nmax\nmin\nz s\nz s\nz\nz and z\nz\n\n\n\n\n. \nThen \n2\n1\n2\n2z\nz\n\nequals : \n \n(1) 1 \n(2) 4 \n \n(3) 3 \n \n(4) 2",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-01-feb-shift-1_mat_q06.jpg"
+ },
+ {
+  "id": "jm2024-01-feb-shift-1_mat_q07",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "7. \nLet the median and the mean deviation about the \nmedian of 7 observation 170, 125, 230, 190, 210, a, b \nbe 170 and 205\n7\nrespectively. Then the mean \ndeviation about the mean of these 7 observations is : \n \n(1) 31 \n \n(2) 28 \n \n(3) 30 \n \n(4) 32",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-01-feb-shift-1_mat_q07.jpg"
+ },
+ {
+  "id": "jm2024-01-feb-shift-1_mat_q09",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "9. \nLet S = {\n:( 3\n2)\n( 3\n2)\n10}.\nx\nx\nx\nR\n\n\n\n\n\n \nThen the number of elements in S is : \n \n(1) 4 \n(2) 0 \n \n(3) 2 \n \n(4) 1",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-01-feb-shift-1_mat_q09.jpg"
+ },
+ {
+  "id": "jm2024-01-feb-shift-1_mat_q11",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "11. \nLet f : R  R  and g : R  R be defined as  \nf(x) = \ne\nx\nlog x\n,\nx\n0\ne\n,\nx\n0\n\n\n\n\n\n and \n \ng(x) = \nx\nx\n,\nx\n0\ne\n,\nx\n0\n\n\n\n\n. Then, gof : R  R is : \n \n(1) one-one but not onto \n \n(2) neither one-one nor onto \n \n(3) onto but not one-one \n \n(4) both one-one and onto",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-01-feb-shift-1_mat_q11.jpg"
+ },
+ {
+  "id": "jm2024-01-feb-shift-1_mat_q12",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "12. \nIf the system of equations \n \n2x + 3y – z = 5  \n \nx + y + 3z = –4 \n \n3x – y + z = 7 \n \nhas infinitely many solutions, then 13  is equal \nto \n \n(1) 1110 \n(2) 1120 \n \n(3) 1210 \n \n(4) 1220",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-01-feb-shift-1_mat_q12.jpg"
+ },
+ {
+  "id": "jm2024-01-feb-shift-1_mat_q13",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "13. \nFor 0 <  < /2, if the eccentricity of the hyperbola \nx2 – y2cosec2 = 5 is \n7 times eccentricity of the \nellipse x2 cosec2 + y2 = 5, then the value of  is : \n \n(1) 6\n \n(2) 5\n12\n \n \n(3) 3\n \n \n(4) 4\n",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-01-feb-shift-1_mat_q13.jpg"
+ },
+ {
+  "id": "jm2024-01-feb-shift-1_mat_q14",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "14. \nLet y = y(x) be the solution of the differential \nequation dy\ndx = 2x (x + y)3 – x (x + y) – 1, y(0) = 1. \nThen, \n2\n1\n1\ny\n2\n2\n\n\n\n\n\n\n\n\n\n\n\n\n equals : \n \n(1) \n4\n4\ne\n\n \n(2) \n3\n3\ne\n\n \n \n(3) \n2\n1\ne\n\n  \n(4) \n1\n2\ne\n",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-01-feb-shift-1_mat_q14.jpg"
+ },
+ {
+  "id": "jm2024-01-feb-shift-1_mat_q15",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "15. \nLet f : R  R be defined as  \n \nf(x) = \n2\n2\na\nbcos2x\n;\nx\n0\nx\nx\ncx\n2\n;\n0\nx\n1\n2x\n1\n;\nx\n1\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n \n \nIf f is continuous everywhere in R and m is the \nnumber of points where f is NOT differential then \nm + a + b + c equals : \n \n(1) 1 \n(2) 4 \n \n(3) 3 \n \n(4) 2",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-01-feb-shift-1_mat_q15.jpg"
+ },
+ {
+  "id": "jm2024-01-feb-shift-1_mat_q16",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "16. \nLet \n2\n2\n2\n2\nx\ny\na\nb\n\n= 1, a > b be an ellipse, whose \neccentricity is \n1\n2\n and the length of the latus \nrectum is \n14 . Then the square of the eccentricity \nof \n2\n2\n2\n2\nx\ny\na\nb\n\n = 1 is : \n \n(1) 3 \n(2) 7/2 \n \n(3) 3/2 \n(4) 5/2",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-01-feb-shift-1_mat_q16.jpg"
+ },
+ {
+  "id": "jm2024-01-feb-shift-1_mat_q17",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "17. \nLet 3, a, b, c be in A.P. and 3, a – 1, b + l, c + 9 be \nin G.P. Then, the arithmetic mean of a, b and c is : \n \n(1) –4 \n(2) –1 \n \n(3) 13 \n \n(4) 11",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-01-feb-shift-1_mat_q17.jpg"
+ },
+ {
+  "id": "jm2024-01-feb-shift-1_mat_q18",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "18. \nLet C : x2 + y2 = 4 and C’ : x2 + y2 - 4x + 9 = 0 be \ntwo circles. If the set of all values of  so that the \ncircles C and C’ intersect at two distinct points, is \nR– [a, b], then the point (8a + 12, 16b – 20) lies on \nthe curve : \n \n(1) x2 + 2y2 – 5x + 6y = 3 \n \n(2) 5x2 – y = – 11 \n \n(3) x2 – 4y2 = 7 \n \n(4) 6x2 + y2 = 42",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-01-feb-shift-1_mat_q18.jpg"
+ },
+ {
+  "id": "jm2024-01-feb-shift-1_mat_q19",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "19. \nIf 5f(x) + 4f 1\nx\n\n\n\n\n\n = x2 – 2,  x 0 and y = 9x2f(x), \nthen y is strictly increasing in : \n \n(1) \n1\n1\n0,\n,\n5\n5\n\n\n\n\n\n\n\n\n\n\n\n\n\n \n \n(2) \n1\n1\n,0\n,\n5\n5\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n \n \n(3) \n1\n1\n,0\n0,\n5\n5\n\n\n\n\n\n\n\n\n\n\n\n\n\n \n \n(4) \n1\n1\n,\n0,\n5\n5\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-01-feb-shift-1_mat_q19.jpg"
+ },
+ {
+  "id": "jm2024-01-feb-shift-1_mat_q20",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "20. \nIf the shortest distance between the lines \nx\ny\n2\nz\n1\n2\n1\n1\n\n\n\n\n\n\n and \n3\n1\n2\n1\n2\n1\nx\ny\nz\n\n\n\n\n\n\n \nis 1, then the sum of all possible values of  is : \n \n(1) 0 \n(2) 2 3 \n \n(3) 3 3 \n \n(4) 2 3\n",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-01-feb-shift-1_mat_q20.jpg"
+ },
+ {
+  "id": "jm2024-01-feb-shift-2_mat_q02",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "2. \nLet  and  be the roots of the equation px2 + qx – \nr = 0, where p  0. If p, q and r be the consecutive \nterms of a non-constant G.P and \n, then \nthe value of (– is : \n \n(1) \n \n(2) 9 \n \n(3) \n \n \n(4) 8 \n1\n1\n3\n4\n\n\n\n\n80\n9\n20\n3",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-01-feb-shift-2_mat_q02.jpg"
+ },
+ {
+  "id": "jm2024-01-feb-shift-2_mat_q04",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "4. \nThe value of \ndx is equal to: \n \n(1) 0 \n \n(2) 1 \n \n(3) 2 \n \n(4) –1 \n1\n3\n2\n3\n0 (2x\n3x\nx\n1)\n\n\n\n",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-01-feb-shift-2_mat_q04.jpg"
+ },
+ {
+  "id": "jm2024-01-feb-shift-2_mat_q05",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "5. \nLet P be a point on the ellipse \n. Let the \nline passing through P and parallel to y-axis meet \nthe circle x2 + y2 = 9 at point Q such that P and Q \nare on the same side of the x-axis. Then, the \neccentricity of the locus of the point R on PQ such \nthat PR : RQ = 4 : 3 as P moves on the ellipse, is : \n \n(1) \n \n(2) \n \n \n(3) \n \n \n(4) \n \n2\n2\nx\ny\n1\n9\n4\n\n\n11\n19\n13\n21\n139\n23\n13\n7",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-01-feb-shift-2_mat_q05.jpg"
+ },
+ {
+  "id": "jm2024-01-feb-shift-2_mat_q06",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "6. \nLet m and n be the coefficients of seventh and \nthirteenth terms respectively in the expansion of \n. Then \nis : \n \n(1) \n \n(2) \n \n \n(3) \n \n \n(4) \n \n18\n1\n3\n2\n3\n1\n1\nx\n3\n2x\n\n\n\n\n\n\n\n\n\n1\n3\nn\nm\n\n\n\n\n\n\n4\n9\n1\n9\n1\n4\n9\n4",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-01-feb-shift-2_mat_q06.jpg"
+ },
+ {
+  "id": "jm2024-01-feb-shift-2_mat_q08",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "8. \nLet P and Q be the points on the line \n which are at a distance of 6 \nunits from the point R (1,2,3). If the centroid of the \ntriangle PQR is (,,), then 2+2 +2 is: \n \n(1) 26 \n \n(2) 36 \n \n(3) 18 \n \n(4) 24 \nx\n3\ny\n4\nz\n1\n8\n2\n2\n\n\n\n\n",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-01-feb-shift-2_mat_q08.jpg"
+ },
+ {
+  "id": "jm2024-01-feb-shift-2_mat_q09",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "9. \nConsider a ABC where A(1,2,3,), B(–2,8,0) and \nC(3,6,7). If the angle bisector of BAC meets the \nline BC at D, then the length of the projection of \nthe vector \non the vector \nis: \n \n(1) \n \n \n(2) \n \n \n(3) \n \n \n(4) \n \nAD\n\nAC\n\n37\n2 38\n38\n2\n39\n2 38\n19",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-01-feb-shift-2_mat_q09.jpg"
+ },
+ {
+  "id": "jm2024-01-feb-shift-2_mat_q10",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "10. \nLet Sn denote the sum of the first n terms of an \narithmetic progression. If S10 = 390 and the ratio of \nthe tenth and the fifth terms is 15 : 7, then S15 –S5 \nis equal to: \n \n(1) 800 \n \n(2) 890 \n \n(3) 790 \n \n(4) 690",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-01-feb-shift-2_mat_q10.jpg"
+ },
+ {
+  "id": "jm2024-01-feb-shift-2_mat_q11",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "11. \nIf \n, where a and b are \nrational numbers, then 9a + 8b is equal to : \n \n(1) 2 \n(2) 1 \n \n(3) 3 \n \n(4) \n \n3\n4\n0\ncos x dx\na\nb 3\n\n\n3\n2",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-01-feb-shift-2_mat_q11.jpg"
+ },
+ {
+  "id": "jm2024-01-feb-shift-2_mat_q13",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "13. \nIf the domain of the function f(x) = \n+log10 (x2 + 2x – 15) is (– , ) U [,), then  \n2 + 3 is equal to :  \n \n(1) 140 \n(2) 175 \n \n(3) 150 \n \n(4) 125 \n2\n2\nx\n25\n(4\nx )\n\n",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-01-feb-shift-2_mat_q13.jpg"
+ },
+ {
+  "id": "jm2024-01-feb-shift-2_mat_q14",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "14. \nConsider the relations R1 and R2 defined as aR1b \n a2 + b2 = 1 for all a , b,  R and (a, b) R2(c, d) \n a + d = b + c for all (a,b), (c,d)  N × N. Then \n \n(1) Only R1 is an equivalence relation \n \n(2) Only R2 is an equivalence relation \n \n(3) R1 and R2 both are equivalence relations \n \n(4) Neither R1 nor R2 is an equivalence relation",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-01-feb-shift-2_mat_q14.jpg"
+ },
+ {
+  "id": "jm2024-01-feb-shift-2_mat_q15",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "15. \nIf the mirror image of the point P(3,4,9) in the line \nis (,,), then 14 (+ + ) \nis : \n \n(1) 102 \n(2) 138 \n \n(3) 108 \n \n(4) 132 \nx\n1\ny\n1\nz\n2\n3\n2\n1\n\n\n\n\n",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-01-feb-shift-2_mat_q15.jpg"
+ },
+ {
+  "id": "jm2024-01-feb-shift-2_mat_q16",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "16. \nLet f(x) = \n x  N. If for some  \n \na N, f(f(f(a))) = 21, then \n \nwhere [t] denotes the greatest integer less than or \nequal to t, is equal to : \n \n(1) 121 \n \n(2) 144 \n \n(3) 169 \n \n(4) 225 \nx\n1,xis even,\n2x, xis odd,\n\n\n\n\nx\na\nlim\n\n\n3\n| x |\nx\n,\na\na\n\n\n\n\n\n\n\n\n\n\n\n\n",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-01-feb-shift-2_mat_q16.jpg"
+ },
+ {
+  "id": "jm2024-01-feb-shift-2_mat_q19",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "19. \nLet Ajay will not appear in JEE exam with \nprobability p = \n, while both Ajay and Vijay will \nappear in the exam with probability q = \n. Then \nthe probability, that Ajay will appear in the exam \nand Vijay will not appear is : \n \n(1) \n \n \n(2) \n \n \n(3) \n \n \n(4) \n \n2\n7\n1\n5\n9\n35\n18\n35\n24\n35\n3\n35",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-01-feb-shift-2_mat_q19.jpg"
+ },
+ {
+  "id": "jm2024-01-feb-shift-2_mat_q20",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "20. \nLet the locus of the mid points  of the chords of \ncircle x2+(y–1)2 =1 drawn from the origin intersect \nthe line x+y = 1 at P and Q. Then, the length of PQ \nis : \n \n(1) \n \n \n(2) \n \n \n(3) \n \n \n(4) 1 \n1\n2\n2\n1\n2",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-01-feb-shift-2_mat_q20.jpg"
+ },
+ {
+  "id": "jm2024-01-feb-shift-2_mat_q21",
+  "qtype": "integer",
+  "key": "1",
+  "text": "21. \nIf three successive terms of a G.P. with common \nratio r(r > 1) are the lengths of the sides of a \ntriangle and [r] denotes the greatest integer less \nthan or equal to r, then 3[r] + [–r] is equal to :",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-01-feb-shift-2_mat_q21.jpg"
+ },
+ {
+  "id": "jm2024-01-feb-shift-2_mat_q22",
+  "qtype": "integer",
+  "key": "2",
+  "text": "22. \nLet A = I2 – MMT, where M is real matrix of order \n2 × 1 such that the relation MT M = I1 holds. If  is \na real number such that the relation AX = X holds \nfor some non-zero real matrix X of order 2 × 1, \nthen the sum of squares of all possible values of  \nis equal to :",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-01-feb-shift-2_mat_q22.jpg"
+ },
+ {
+  "id": "jm2024-04-apr-shift-1_mat_q01",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "1.\nLet ƒ : R  R be a function given by\n\n2\n1\ncos2x\n,\nx\n0\nx\nƒ x\n,\nx\n0\n1\ncosx\n,\nx\n0\nx\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n, where ,   R. If \nƒ is continuous at x = 0, then 2 + 2 is equal to : \n(1) 48\n(2) 12\n(3) 3\n(4) 6",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-04-apr-shift-1_mat_q01.jpg"
+ },
+ {
+  "id": "jm2024-04-apr-shift-1_mat_q02",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "2.\nThree urns A, B and C contain 7 red, 5 black;\n5 red, 7 black and 6 red, 6 black balls, respectively.\nOne of the urn is selected at random and a ball is\ndrawn from it. If the ball drawn is black, then the\nprobability that it is drawn from urn A is :\n(1) 4\n17\n(2) 5\n18\n(3) 7\n18\n(4) 5\n16",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-04-apr-shift-1_mat_q02.jpg"
+ },
+ {
+  "id": "jm2024-04-apr-shift-1_mat_q03",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "3.\nThe vertices of a triangle are A(–1, 3), B(–2, 2) and\nC(3, –1). A new triangle is formed by shifting the sides\nof the triangle by one unit inwards. Then the equation\nof the side of the new triangle nearest to origin is :\n(1) x – y – \n\n2\n2\n\n = 0\n(2) –x + y – \n\n2\n2\n\n = 0\n(3) x + y – \n\n2\n2\n\n = 0\n(4) x + y + \n\n2\n2\n\n = 0",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-04-apr-shift-1_mat_q03.jpg"
+ },
+ {
+  "id": "jm2024-04-apr-shift-1_mat_q04",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "4.\nIf the solution y = y(x) of the differential equation\n(x4 + 2x3 + 3x2 + 2x + 2)dy – (2x2 + 2x + 3)dx = 0\nsatisfies y(–1) = \n4\n\n\n, then y(0) is equal to :\n(1) \n12\n\n\n(2) 0 \n(3) 4\n\n(4) 2\n",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-04-apr-shift-1_mat_q04.jpg"
+ },
+ {
+  "id": "jm2024-04-apr-shift-1_mat_q05",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "5. \nLet the sum of the maximum and the minimum \nvalues of the function f(x) = \n2\n2\n2x\n3x\n8\n2x\n3x\n8\n\n\n\n\n be m\nn , \nwhere gcd(m, n) = 1. Then m + n is equal to : \n \n(1) 182 \n(2) 217 \n \n(3) 195 \n \n(4) 201",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-04-apr-shift-1_mat_q05.jpg"
+ },
+ {
+  "id": "jm2024-04-apr-shift-1_mat_q07",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "7. \nIf the system of equations \n \n\n\n\n\nx\n2sin\ny\n2 cos\nz\n0\n\n\n\n\n\n \n \nx + (cos )y + (sin )z = 0 \n \nx + (sin )y – (cos )z = 0 \n \nhas a non-trivial solution, then \n0, 2\n\n\n\n\n\n\n\n is equal to : \n \n(1) 3\n4\n \n(2) 7\n24\n \n \n(3) 5\n24\n \n \n(4) 11\n24\n",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-04-apr-shift-1_mat_q07.jpg"
+ },
+ {
+  "id": "jm2024-04-apr-shift-1_mat_q08",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "8. \nThere are 5 points P1, P2, P3, P4, P5 on the side AB, \nexcluding A and B, of a triangle ABC. Similarly \nthere are 6 points P6, P7, …, P11 on the side BC and 7 \npoints P12, P13, …, P18 on the side CA of the triangle. \nThe number of triangles, that can be formed using the \npoints P1, P2, …, P18 as vertices, is : \n \n(1) 776 \n(2) 751 \n \n(3) 796 \n \n(4) 771",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-04-apr-shift-1_mat_q08.jpg"
+ },
+ {
+  "id": "jm2024-04-apr-shift-1_mat_q09",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "9. \nLet ƒ(x) = \n2,\n2\nx\n0\nx\n2,\n0\nx\n2\n\n\n\n\n\n\n\n\n and h(x) = f(|x|) + |f(x)|. \nThen \n\n2\n2\nh x dx\n\n is equal to : \n \n(1) 2 \n(2) 4 \n \n(3) 1 \n \n(4) 6",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-04-apr-shift-1_mat_q09.jpg"
+ },
+ {
+  "id": "jm2024-04-apr-shift-1_mat_q10",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "10. \nThe sum of all rational terms in the expansion of \n\n\n15\n1\n1\n5\n3\n2\n5\n\n is equal to : \n \n(1) 3133 \n(2) 633 \n \n(3) 931 \n \n(4) 6131",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-04-apr-shift-1_mat_q10.jpg"
+ },
+ {
+  "id": "jm2024-04-apr-shift-1_mat_q11",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "11. \nLet a unit vector which makes an angle of 60° with \nˆ\nˆ\nˆ\n2i\n2j\nk\n\n\n and an angle of 45° with ˆ\nˆ\ni\nk\n\n be C . \nThen \n1\n1\n2\nˆ\nˆ\nˆ\nC\ni\nj\nk\n2\n3\n3 2\n\n\n\n\n\n\n\n\n\n is : \n \n(1) \n2\n2\n1\n2 2\nˆ\nˆ\nˆ\ni\nj\nk\n3\n3\n2\n3\n\n\n\n\n\n\n\n\n\n\n \n \n(2) \n2\n1\n1\nˆ\nˆ\nˆ\ni\nj\nk\n3\n2\n3 2\n\n\n \n \n(3) \n1\n1\n1\n1\n1\n2\nˆ\nˆ\nˆ\ni\nj\nk\n2\n3\n3\n3\n3 2\n3\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n \n \n(4) \n2\n1\nˆ\nˆ\ni\nk\n3\n2\n",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-04-apr-shift-1_mat_q11.jpg"
+ },
+ {
+  "id": "jm2024-04-apr-shift-1_mat_q12",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "12. \nLet the first three terms 2, p and q, with q  2, of a \nG.P. be respectively the 7th, 8th and 13th terms of an \nA.P. If the 5th term of the G.P. is the nth term of the \nA.P., then n is equal to \n \n(1) 151 \n(2) 169 \n \n(3) 177 \n \n(4) 163",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-04-apr-shift-1_mat_q12.jpg"
+ },
+ {
+  "id": "jm2024-04-apr-shift-1_mat_q13",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "13. \nLet a, b  R. Let the mean and the variance of 6 \nobservations –3, 4, 7, –6, a, b be 2 and 23, \nrespectively. The mean deviation about the mean \nof these 6 observations is : \n \n(1) 13\n3 \n(2) 16\n3 \n \n(3) 11\n3 \n \n(4) 14\n3",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-04-apr-shift-1_mat_q13.jpg"
+ },
+ {
+  "id": "jm2024-04-apr-shift-1_mat_q14",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "14. \nIf 2 and 6 are the roots of the equation ax2 + bx + 1 = 0, \nthen the quadratic equation, whose roots are \n1\n2a\nb\n\n and \n1\n6a\nb\n\n, is : \n \n(1) 2x2 + 11x + 12 = 0 \n(2) 4x2 + 14x + 12 = 0 \n \n(3) x2 + 10x + 16 = 0 \n(4) x2 + 8x + 12 = 0",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-04-apr-shift-1_mat_q14.jpg"
+ },
+ {
+  "id": "jm2024-04-apr-shift-1_mat_q15",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "15. \nLet  and  be the sum and the product of all the \nnon-zero solutions of the equation 2\nz\nz\n0\n\n\n, z  C. \nThen 4(2 + 2) is equal to : \n \n(1) 6 \n(2) 4 \n \n(3) 8 \n \n(4) 2",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-04-apr-shift-1_mat_q15.jpg"
+ },
+ {
+  "id": "jm2024-04-apr-shift-1_mat_q16",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "16. \nLet the point, on the line passing through the points \nP(1, –2, 3) and Q(5, –4, 7), farther from the origin \nand at a distance of 9 units from the point P, be  \n(, , ). Then 2 + 2 + 2 is equal to : \n \n(1) 155 \n(2) 150 \n \n(3) 160 \n \n(4) 165",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-04-apr-shift-1_mat_q16.jpg"
+ },
+ {
+  "id": "jm2024-04-apr-shift-1_mat_q17",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "17. \nA \nsquare \nis \ninscribed \nin \nthe \ncircle  \nx2 + y2 – 10x – 6y + 30 = 0. One side of this square \nis parallel to y = x + 3. If (xi, yi) are the vertices of \nthe square, then \n\n\n2\n2\ni\ni\nx\ny\n\n\n is equal to : \n \n(1) 148 \n(2) 156 \n \n(3) 160 \n \n(4) 152",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-04-apr-shift-1_mat_q17.jpg"
+ },
+ {
+  "id": "jm2024-04-apr-shift-1_mat_q18",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "18. \nIf \nthe \ndomain \nof \nthe \nfunction \n2\n1\ne\n2\n3x\n22\n3x\n8x\n5\nsin\nlog\n2x\n19\nx\n3x\n10\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n is (, ], \nthen 3 + 10 is equal to : \n \n(1) 97 \n(2) 100 \n \n(3) 95 \n \n(4) 98",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-04-apr-shift-1_mat_q18.jpg"
+ },
+ {
+  "id": "jm2024-04-apr-shift-1_mat_q19",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "19. \nLet ƒ(x) = x5 + 2ex/4 for all x  R. Consider a \nfunction g(x) such that (gof) (x) = x for all x  R. \nThen the value of 8g(2) is : \n \n(1) 16 \n(2) 4 \n \n(3) 8 \n \n(4) 2",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-04-apr-shift-1_mat_q19.jpg"
+ },
+ {
+  "id": "jm2024-04-apr-shift-1_mat_q20",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "20. \nLet   (0, ) and A = 1\n0\n1\n0\n1\n2\n\n\n\n\n\n\n\n\n. \n \nIf det(adj(2A – AT).adj(A – 2AT)) = 28, then \n(det(A))2 is equal to : \n \n(1) 1 \n(2) 49 \n \n(3) 16 \n \n(4) 36",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-04-apr-shift-1_mat_q20.jpg"
+ },
+ {
+  "id": "jm2024-04-apr-shift-2_mat_q01",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "1.\nIf the function \n\n\n\n\n\n\n\n\n\n\n\ne\ne\n72\n9\n8\n1\n,\nx\n0\nf x\n2\n1\ncosx\nalog 2log 3\n,\nx\n0\nis continuous at x = 0, then the value of a2 is equal \nto  \n(1) 968\n(2) 1152\n(3) 746\n(4) 1250",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-04-apr-shift-2_mat_q01.jpg"
+ },
+ {
+  "id": "jm2024-04-apr-shift-2_mat_q02",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "2.\nIf  > 0, let  be the angle between the vectors\n\nˆ\nˆ\nˆ\na\ni\nj\n3k and \n\n\nˆ\nˆ\nˆ\nb\n3i\nj\n2k . If the vectors\n\na\nb and \n\na\nb are mutually perpendicular, then\nthe value of (14 cos )2 is equal to\n(1) 25\n(2) 20\n(3) 50\n(4) 40",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-04-apr-shift-2_mat_q02.jpg"
+ },
+ {
+  "id": "jm2024-04-apr-shift-2_mat_q03",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "3.\nLet C be a circle with radius \n10 units and centre\nat the origin. Let the line x + y = 2 intersects the\ncircle C at the points P and Q. Let MN be a chord\nof C of length 2 unit and slope –1. Then, a distance\n(in units) between the chord PQ and the chord MN\nis\n(1)\n\n2\n3\n(2)\n\n3\n2\n(3) \n\n2\n1\n(4) \n\n2\n1",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-04-apr-shift-2_mat_q03.jpg"
+ },
+ {
+  "id": "jm2024-04-apr-shift-2_mat_q04",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "4. \nLet a relation R on \n\n be defined as :  \n \n(x1,y1) R(x2,y2) if and only if x1 < x2 or y1 < y2  \n \nConsider the two statements :  \n \n(I) R is reflexive but not symmetric. \n \n(II) R is transitive  \nThen which one of the following is true ?  \n \n(1) Only (II) is correct. \n \n \n(2) Only (I) is correct. \n \n(3) Both (I) and (II) are correct. \n \n(4) Neither (I) nor (II) is correct.",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-04-apr-shift-2_mat_q04.jpg"
+ },
+ {
+  "id": "jm2024-04-apr-shift-2_mat_q05",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "5. \nLet three real numbers a,b,c be in arithmetic \nprogression and a + 1, b, c + 3 be in geometric \nprogression. If a > 10 and the arithmetic mean of \na,b and c is 8, then the cube of the geometric mean \nof a,b and c is  \n \n(1) 120 \n(2) 312 \n \n(3) 316 \n \n(4) 128",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-04-apr-shift-2_mat_q05.jpg"
+ },
+ {
+  "id": "jm2024-04-apr-shift-2_mat_q06",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "6. \nLet \n\n\n\n\n\n\n1\n2\nA\n0\n1 and B = I + adj(A) + (adj A)2+…+ \n(adj A)10. Then, the sum of all the elements of the \nmatrix B is :  \n \n(1) –110 \n(2) 22 \n \n(3) –88 \n \n(4) –124",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-04-apr-shift-2_mat_q06.jpg"
+ },
+ {
+  "id": "jm2024-04-apr-shift-2_mat_q07",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "7. \nThe value of \n\n\n\n\n\n\n\n\n\n\n\n\n2\n2\n2\n2\n2\n2\n1 2\n2 3\n... 100\n101\n1\n2\n2\n3\n... 100\n101\n is  \n \n(1) 306\n305 \n(2) 305\n301 \n \n(3) 32\n31 \n \n(4) 31\n30",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-04-apr-shift-2_mat_q07.jpg"
+ },
+ {
+  "id": "jm2024-04-apr-shift-2_mat_q08",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "8. \nLet \n\n\n\n\n\n\n\n\n\nx\nt\n0\nf x\nt\nsin 1\ne\ndt,x\n.  \n \nThen \n\n\n3\nx\n0\nf x\nlim\nx\nis equal to  \n \n(1) 1\n6 \n(2) 1\n6 \n \n(3) 2\n3 \n \n(4) 2\n3",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-04-apr-shift-2_mat_q08.jpg"
+ },
+ {
+  "id": "jm2024-04-apr-shift-2_mat_q09",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "9. \nThe area (in sq. units) of the region described by \n{(x,y) : y2 < 2x, and y > 4x –1} is  \n \n(1) 11\n32 \n(2) 8\n9 \n \n(3) 11\n12 \n \n(4) 9\n32",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-04-apr-shift-2_mat_q09.jpg"
+ },
+ {
+  "id": "jm2024-04-apr-shift-2_mat_q10",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "10. \nThe \narea \n(in \nsq. \nunits) \nof \nthe \nregion \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nS\nz\n; z\n1\n2; z\nz\ni z\nz\n2,lm z\n0\n is  \n \n(1) \n7\n3 \n(2) \n3\n2 \n \n(3) \n\n17\n8 \n \n(4) \n7\n4",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-04-apr-shift-2_mat_q10.jpg"
+ },
+ {
+  "id": "jm2024-04-apr-shift-2_mat_q11",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "11. \nIf the value of the integral \n\n\n\n\nx\n1\ncos x dx\n1\n3\n is \n2 . \nThen, a value of  is  \n \n(1) \n6 \n(2) \n2 \n \n(3) \n3 \n \n(4) \n4",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-04-apr-shift-2_mat_q11.jpg"
+ },
+ {
+  "id": "jm2024-04-apr-shift-2_mat_q12",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "12. \nLet \n\n\n\n\nf x\n3 x\n2\n4\nx be a real valued \nfunction. If  and  are respectively the minimum \nand the maximum values of f, then 2 + 22 is \nequal to  \n \n(1) 44 \n(2) 42 \n \n(3) 24 \n \n(4) 38",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-04-apr-shift-2_mat_q12.jpg"
+ },
+ {
+  "id": "jm2024-04-apr-shift-2_mat_q13",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "13. \nIf the coefficients of x4, x5 and x6 in the expansion \nof (1 + x)n are in the arithmetic progression, then \nthe maximum value of n is :  \n \n(1) 14 \n(2) 21 \n \n(3) 28 \n \n(4) 7",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-04-apr-shift-2_mat_q13.jpg"
+ },
+ {
+  "id": "jm2024-04-apr-shift-2_mat_q14",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "14. \nConsider a hyperbola H having centre at the origin \nand foci and the x-axis. Let C1 be the circle \ntouching the hyperbola H and having the centre at \nthe origin. Let C2 be the circle touching the \nhyperbola H at its vertex and having the centre at \none of its foci. If areas (in sq. units) of C1 and C2 \nare 36 and 4, respectively, then the length (in \nunits) of latus rectum of H is   \n \n(1) 28\n3 \n(2) 14\n3 \n \n(3) 10\n3 \n \n(4) 11\n3",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-04-apr-shift-2_mat_q14.jpg"
+ },
+ {
+  "id": "jm2024-04-apr-shift-2_mat_q15",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "15. \nIf the mean of the following probability \ndistribution of a random variable X; \n \n\n\nX\n0\n2\n4\n6\n8\nP X\na\n2a\na\nb\n2b\n3b \n \nis 46\n9 , then the variance of the distribution is  \n \n(1) 581\n81 \n(2) 566\n81 \n \n(3) 173\n27 \n \n(4) 151\n27",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-04-apr-shift-2_mat_q15.jpg"
+ },
+ {
+  "id": "jm2024-04-apr-shift-2_mat_q16",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "81\n16. \nLet PQ be a chord of the parabola y2 = 12x and the \nmidpoint of PQ be at (4,1). Then, which of the \nfollowing point lies on the line passing through the \npoints P and Q ?  \n \n(1) (3,–3) \n(2) \n\n\n\n\n\n\n3 , 16\n2\n \n \n(3) \n\n(2, 9)  \n(4) \n\n\n\n\n\n\n1 , 20\n2",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-04-apr-shift-2_mat_q16.jpg"
+ },
+ {
+  "id": "jm2024-04-apr-shift-2_mat_q17",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "17. \nGiven the inverse trigonometric function assumes \nprincipal values only. Let x, y be any two real \nnumbers in [–1,1] such that  \n \ncos–1x – sin–1 y = , \n2\n.  \n \nThen, the minimum value of x2 + y2 + 2xy sin is \n \n(1) –1 \n(2) 0 \n \n(3) 1\n2 \n \n(4) 1\n2",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-04-apr-shift-2_mat_q17.jpg"
+ },
+ {
+  "id": "jm2024-04-apr-shift-2_mat_q21",
+  "qtype": "integer",
+  "key": "4",
+  "text": "21. \nLet S = {sin22 : (sin4 + cos4)x2 + (sin2)x + \n(sin6 + cos6) = 0 has real roots}. If  and  be \nthe smallest and largest elements of the set S, \nrespectively, then 3(( – 2)2 + ( – 1)2) equals…..",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-04-apr-shift-2_mat_q21.jpg"
+ },
+ {
+  "id": "jm2024-04-apr-shift-2_mat_q22",
+  "qtype": "integer",
+  "key": "1",
+  "text": "22. \nIf \n\n\n\n\n\n\n\n\n\n\n\n5\n2\ne\n3\nx\ncosec xdx\ncot xcosecx cosec x\nlog tan\nC\n2\n2\n \nwhere    and C is constant of integration , \nthen the value of 8( + ) equals …..",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-04-apr-shift-2_mat_q22.jpg"
+ },
+ {
+  "id": "jm2024-05-apr-shift-1_mat_q02",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "2.\nLet a rectangle ABCD of sides 2 and 4 be inscribed\nin another rectangle PQRS such that the vertices of\nthe rectangle ABCD lie on the sides of the\nrectangle PQRS. Let a and b be the sides of the\nrectangle PQRS when its area is maximum. Then\n(a + b)2 is equal to :\n(1) 72\n(2) 60\n(3) 80\n(4) 64",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-05-apr-shift-1_mat_q02.jpg"
+ },
+ {
+  "id": "jm2024-05-apr-shift-1_mat_q03",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "3. \nLet two straight lines drawn from the origin \nO intersect the line 3x + 4y = 12 at the points P and \nQ such that OPQ is an isosceles triangle and \nPOQ = 90°. If l = OP2 + PQ2 + QO2, then the \ngreatest integer less than or equal to l is :  \n \n(1) 44  \n(2) 48  \n \n(3) 46  \n \n(4) 42",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-05-apr-shift-1_mat_q03.jpg"
+ },
+ {
+  "id": "jm2024-05-apr-shift-1_mat_q04",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "4. \nIf y = y(x) is the solution of the differential \nequation dy\ndx + 2y = sin (2x), y(0) = 3\n4 , then \ny 8\n\n\n\n\n\n\n\n is equal to :  \n \n(1) e–/8  \n(2) e–/4 \n \n(3) e/4 \n \n(4) e/8",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-05-apr-shift-1_mat_q04.jpg"
+ },
+ {
+  "id": "jm2024-05-apr-shift-1_mat_q06",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "6. \nIf the system of equations  \n \n11x + y + z = –5 \n \n2x + 3y + 5z = 3  \n \n8x – 19y – 39z = µ \n \nhas infinitely many solutions, then 4 – µ is equal \nto :  \n \n(1) 49  \n(2) 45  \n \n(3) 47  \n \n(4) 51",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-05-apr-shift-1_mat_q06.jpg"
+ },
+ {
+  "id": "jm2024-05-apr-shift-1_mat_q07",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "7. \nLet A = {1, 3, 7, 9, 11} and B = {2, 4, 5, 7, 8, 10, 12}. \nThen \nthe \ntotal \nnumber \nof one-one maps  \nf : A  B, such that f (1) + f(3) = 14, is :  \n \n(1) 180  \n(2) 120  \n \n(3) 480  \n \n(4) 240",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-05-apr-shift-1_mat_q07.jpg"
+ },
+ {
+  "id": "jm2024-05-apr-shift-1_mat_q08",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "8. \nIf the function \n3\nsin3x\nsinx\ncos3x\nf(x)\nx\n\n\n\n,  \nx  R, is continuous at x = 0, then f(0) is equal to :  \n \n(1) 2  \n(2) –2  \n \n(3) 4  \n \n(4) –4",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-05-apr-shift-1_mat_q08.jpg"
+ },
+ {
+  "id": "jm2024-05-apr-shift-1_mat_q09",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "9. \nThe integral \n4\n0\n136sin x\ndx\n3sin x\n5cosx\n\n\n is equal to :  \n \n(1) 3 – 50 loge 2 + 20 loge 5  \n \n(2) 3 – 25 loge 2 + 10 loge 5 \n \n(3) 3 – 10 loge\n\n2 2 + 10 loge 5 \n \n(4) 3 – 30 loge 2 + 20 loge 5",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-05-apr-shift-1_mat_q09.jpg"
+ },
+ {
+  "id": "jm2024-05-apr-shift-1_mat_q10",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "10. \nThe coefficients a, b, c in the quadratic equation  \nax2 + bx + c = 0 are chosen from the set  \n \n{1, 2, 3, 4, 5, 6, 7, 8}. The probability of this \nequation having repeated roots is :  \n \n(1) 3\n256  \n(2) 1\n128 \n \n(3) 1\n64 \n \n(4) 3\n128",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-05-apr-shift-1_mat_q10.jpg"
+ },
+ {
+  "id": "jm2024-05-apr-shift-1_mat_q11",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "11. \nLet A and B be two square matrices of order 3 \nsuch that |A| = 3 and |B| = 2.  \n \nThen |AT A(adj(2A))–1 (adj(4B))(adj(AB))–1AAT|  \n \nis equal to :  \n \n(1) 64 \n(2) 81 \n \n(3) 32 \n \n(4) 108",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-05-apr-shift-1_mat_q11.jpg"
+ },
+ {
+  "id": "jm2024-05-apr-shift-1_mat_q12",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "12. \nLet a circle C of radius 1 and closer to the origin be \nsuch that the lines passing through the point (3, 2) \nand parallel to the coordinate axes touch it. Then \nthe shortest distance of the circle C from the point \n(5, 5) is :  \n \n(1) 2 2 \n(2) 5 \n \n(3) 4 2 \n \n(4) 4",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-05-apr-shift-1_mat_q12.jpg"
+ },
+ {
+  "id": "jm2024-05-apr-shift-1_mat_q13",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "13. \nLet the line 2x + 3y – k = 0, k > 0, intersect the  \nx-axis and y-axis at the points A and B, \nrespectively. If the equation of the circle having the \nline segment AB as a diameter is x2 + y2 – 3x – 2y = 0 \nand the length of the latus rectum of the ellipse  \nx2 + 9y2 = k2 is m\nn , where m and n are coprime, \nthen 2m + n is equal to  \n \n(1) 10 \n(2) 11 \n \n(3) 13 \n \n(4) 12",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-05-apr-shift-1_mat_q13.jpg"
+ },
+ {
+  "id": "jm2024-05-apr-shift-1_mat_q14",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "14. \nConsider the following two statements : \n \nStatement I : For any two non-zero complex \nnumbers z1, z2  \n \n\n\n\n\n1\n2\n1\n2\n1\n2\n1\n2\nz\nz\nz\nz\n2 z\nz\nz\nz\n\n\n\n\n and \n \nStatement II : If x, y, z are three distinct complex \nnumbers and a, b, c are three positive real numbers \nsuch that \na\nb\nc\ny\nz\nz\nx\nx\ny\n\n\n\n\n\n, then  \n \n2\n2\n2\na\nb\nc\n1\ny\nz\nz\nx\nx\ny\n\n\n\n\n\n\n.  \n \nBetween the above two statements,  \n \n(1) both Statement I and Statement II are incorrect. \n \n(2) Statement I is incorrect but Statement II is correct. \n \n(3) Statement I is correct but Statement II is incorrect.  \n \n(4) both Statement I and Statement II are correct.",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-05-apr-shift-1_mat_q14.jpg"
+ },
+ {
+  "id": "jm2024-05-apr-shift-1_mat_q15",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "15. \nSuppose \n0, 4\n\n\n\n\n\n\n\n is a solution of 4 cos – 3 sin = 1. \nThen cos is equal to :  \n \n(1) \n\n\n4\n3 6\n2\n\n \n(2) \n\n\n6\n6\n3 6\n2\n\n\n \n \n(3) \n\n\n6\n6\n3 6\n2\n\n\n \n(4) \n\n\n4\n3 6\n2\n",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-05-apr-shift-1_mat_q15.jpg"
+ },
+ {
+  "id": "jm2024-05-apr-shift-1_mat_q16",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "16. \nIf \n1\n1\n1\n...\nm\n1\n2\n2\n3\n99\n100\n\n\n\n\n\n\n\n and \n1\n1\n1\n...\nn\n1 2\n2 3\n99 100\n\n\n\n\n\n\n\n, then the point (m, n) \nlies on the line \n \n(1) 11(x – 1) – 100(y – 2) = 0  \n \n(2) 11(x – 2) – 100(y – 1) = 0  \n \n(3) 11(x – 1) – 100y = 0  \n \n(4) 11x – 100y = 0",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-05-apr-shift-1_mat_q16.jpg"
+ },
+ {
+  "id": "jm2024-05-apr-shift-1_mat_q17",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "17. \nLet f(x)= x5 + 2x3 + 3x + 1, x  R, and g(x) be a \nfunction such that g(f(x))=x for all x  R. Then \ng(7)\ng'(7) is equal to :  \n \n(1) 7 \n(2) 42 \n \n(3) 1 \n \n(4) 14",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-05-apr-shift-1_mat_q17.jpg"
+ },
+ {
+  "id": "jm2024-05-apr-shift-1_mat_q18",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "18. \nIf A(l, –1, 2), B(5, 7, –6), C(3, 4, –10) and \nD(–l, –4, –2) are the vertices of a quadrilateral \nABCD, then its area is :  \n \n(1) 12 29 \n(2) 24 29  \n \n(3) 24 7 \n \n(4) 48 7",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-05-apr-shift-1_mat_q18.jpg"
+ },
+ {
+  "id": "jm2024-05-apr-shift-1_mat_q19",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "19. \nThe value of \n2\n2y(1\nsin y) dy\n1\ncos y\n\n\n\n\n\n is :  \n \n(1) 2  \n(2) \n2\n2\n \n \n(3) \n2\n \n \n(4) 22",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-05-apr-shift-1_mat_q19.jpg"
+ },
+ {
+  "id": "jm2024-05-apr-shift-1_mat_q20",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "20. \nIf the line 2\nx\n3y\n2\n4\nz\n3\n4\n1\n\n\n\n\n\n\n makes a right \nangle with the line x\n3\n1\n2y\n5\nz\n3µ\n6\n7\n\n\n\n\n\n, then  \n4 + 9µ is equal to : \n \n(1) 13 \n(2) 4 \n \n(3) 5 \n \n(4) 6",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-05-apr-shift-1_mat_q20.jpg"
+ },
+ {
+  "id": "jm2024-05-apr-shift-1_mat_q29",
+  "qtype": "integer",
+  "key": "3",
+  "text": "29. \nThe number of distinct real roots of the equation  \n|x| |x + 2| – 5|x + l| – 1 = 0 is __________.",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-05-apr-shift-1_mat_q29.jpg"
+ },
+ {
+  "id": "jm2024-05-apr-shift-2_mat_q01",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "1.\nLet ƒ: [–1, 2]  R be given by\nƒ(x) = 2x2 + x + [x2] – [x], where [t] denotes the\ngreatest integer less than or equal to t. The number\nof points, where ƒ is not continuous, is :\n(1) 6\n(2) 3\n(3) 4\n(4) 5",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-05-apr-shift-2_mat_q01.jpg"
+ },
+ {
+  "id": "jm2024-05-apr-shift-2_mat_q02",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "2.\nThe differential equation of the family of circles\npassing the origin and having center at the line\ny = x is :\n(1) (x2 – y2 + 2xy)dx = (x2 – y2 + 2xy)dy\n(2) (x2 + y2 + 2xy)dx = (x2 + y2 – 2xy)dy\n(3) (x2 – y2 + 2xy)dx = (x2 – y2 – 2xy)dy\n(4) (x2 + y2 – 2xy)dx = (x2 + y2 + 2xy)dy",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-05-apr-shift-2_mat_q02.jpg"
+ },
+ {
+  "id": "jm2024-05-apr-shift-2_mat_q03",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "3.\nLet S1 = {z  C : |z|  5},\n \n2\nz\n1\n3 i\nS\nz\nC : Im\n0\n1\n3 i\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nand  \nS3 = {z  C : Re (z) }. Then \n(1) 125\n6\n\n(2) 125\n24\n\n(3) 125\n4\n\n(4) 125\n12\n",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-05-apr-shift-2_mat_q03.jpg"
+ },
+ {
+  "id": "jm2024-05-apr-shift-2_mat_q04",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "4. \nThe area enclosed between the curves y = x|x| and \ny = x – |x| is : \n \n(1) 8\n3 \n(2) 2\n3 \n \n(3) 1 \n \n(4) 4\n3",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-05-apr-shift-2_mat_q04.jpg"
+ },
+ {
+  "id": "jm2024-05-apr-shift-2_mat_q05",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "5. \n60 words can be made using all the letters of the \nword BHBJO, with or without meaning. If these \nwords are written as in a dictionary, then the 50th \nword is : \n \n(1) OBBHJ \n(2) HBBJO \n \n(3) OBBJH  \n(4) JBBOH",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-05-apr-shift-2_mat_q05.jpg"
+ },
+ {
+  "id": "jm2024-05-apr-shift-2_mat_q07",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "7. \nConsider three vectors a,b,c . Let a\n2, b\n3\n\n\n \nand a\nb c\n\n. If \n0, 3\n\n\n\n\n\n\n\n is the angle between \nthe vectors b and c , then the minimum value of \n2\n27 c\na\n\n is equal to : \n \n(1) 110 \n(2) 105 \n \n(3) 124 \n \n(4) 121",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-05-apr-shift-2_mat_q07.jpg"
+ },
+ {
+  "id": "jm2024-05-apr-shift-2_mat_q08",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "8. \nLet A(–1, 1) and B(2, 3) be two points and P be a \nvariable point above the line AB such that the area \nof PAB is 10. If the locus of P is ax + by = 15, \nthen 5a + 2b is : \n \n(1) \n12\n5\n\n \n(2) \n6\n5\n\n \n \n(3) 4 \n \n(4) 6",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-05-apr-shift-2_mat_q08.jpg"
+ },
+ {
+  "id": "jm2024-05-apr-shift-2_mat_q09",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "9. \nLet (, , ) be the point (8, 5, 7) in the line \nx\n1\ny\n1\nz\n2\n2\n3\n5\n\n\n\n\n\n. Then  +  +  is equal to \n \n(1) 16 \n(2) 18 \n \n(3) 14 \n \n(4) 20",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-05-apr-shift-2_mat_q09.jpg"
+ },
+ {
+  "id": "jm2024-05-apr-shift-2_mat_q11",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "11. \nLet ƒ, g : R  R be defined as : ƒ(x) = |x – 1| and \nx\ne ,\nx\n0\ng(x)\nx\n1,\nx\n0\n\n\n\n\n\n\n. Then the function ƒ(g(x)) is  \n \n(1) neither one-one nor onto. \n \n(2) one-one but not onto. \n \n(3) both one-one and onto. \n \n(4) onto but not one-one.",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-05-apr-shift-2_mat_q11.jpg"
+ },
+ {
+  "id": "jm2024-05-apr-shift-2_mat_q12",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "12. \nLet the circle C1 : x2 + y2 – 2(x + y) + 1 = 0 and C2 \nbe a circle having centre at (–1, 0) and radius 2. If \nthe line of the common chord of C1 and C2 \nintersects the y-axis at the point P, then the square \nof the distance of P from the centre of C1 is : \n \n(1) 2 \n(2) 1 \n \n(3) 6 \n \n(4) 4",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-05-apr-shift-2_mat_q12.jpg"
+ },
+ {
+  "id": "jm2024-05-apr-shift-2_mat_q13",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "13. \nLet the set S = {2, 4, 8, 16, ....., 512} be partitioned \ninto 3 sets A, B, C with equal number of elements such \nthat A  B  C = S and A  B = B  C = A  C = . \nThe maximum number of such possible partitions of S \nis equal to : \n \n(1) 1680 \n(2) 1520 \n \n(3) 1710 \n \n(4) 1640",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-05-apr-shift-2_mat_q13.jpg"
+ },
+ {
+  "id": "jm2024-05-apr-shift-2_mat_q14",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "14. \nThe values of m, n, for which the system of \nequations \n \nx + y + z = 4, \n \n2x + 5y + 5z = 17, \n \nx + 2y + mz = n \n \nhas infinitely many solutions, satisfy the equation : \n \n(1) m2 + n2 – m – n = 46 \n \n(2) m2 + n2 + m + n = 64 \n \n(3) m2 + n2 + mn = 68 \n \n(4) m2 + n2 – mn = 39",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-05-apr-shift-2_mat_q14.jpg"
+ },
+ {
+  "id": "jm2024-05-apr-shift-2_mat_q15",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "15. \nThe coefficients a, b, c in the quadratic equation \nax2 + bx + c = 0 are from the set {1, 2, 3, 4, 5, 6}. \nIf the probability of this equation having one real \nroot bigger than the other is p, then 216p equals :  \n \n(1) 57 \n(2) 38 \n \n(3) 19 \n \n(4) 76",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-05-apr-shift-2_mat_q15.jpg"
+ },
+ {
+  "id": "jm2024-05-apr-shift-2_mat_q16",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "16. \nLet ABCD and AEFG be squares of side 4 and \n2 units, respectively. The point E is on the line \nsegment AB and the point F is on the diagonal AC. \nThen the radius r of the circle passing through the \npoint F and touching the line segments BC and CD \nsatisfies : \n \n(1) r = 1 \n(2) r2 – 8r + 8 = 0 \n \n(3) 2r2 – 4r + 1 = 0 \n(4) 2r2 – 8r + 7 = 0",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-05-apr-shift-2_mat_q16.jpg"
+ },
+ {
+  "id": "jm2024-05-apr-shift-2_mat_q17",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "17. \nLet (m, n) = \n1\nm 1\nn 1\n0\nx\n(1\nx)\ndx\n\n\n\n\n, m, n > 0. If \n1\n10 20\n0\n(1\nx )\ndx\na\n(b,c)\n\n\n\n\n, then 100(a + b + x) \nequals ______. \n \n(1) 1021 \n(2) 1120 \n \n(3) 2012 \n \n(4) 2120",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-05-apr-shift-2_mat_q17.jpg"
+ },
+ {
+  "id": "jm2024-05-apr-shift-2_mat_q18",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "18. \nLet   0 and A\n2\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n.  \n \nIf \n3\n9\n3\nB\n7\n2\n2\n5\n2\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n is the matrix of cofactors \nof the elements of A, then det(AB) is equal to : \n \n(1) 343 \n(2) 125 \n \n(3) 64 \n \n(4) 216",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-05-apr-shift-2_mat_q18.jpg"
+ },
+ {
+  "id": "jm2024-05-apr-shift-2_mat_q19",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "19. \nIf \n2cos\ncos2\ny( )\ncos3\n4cos2\n5cos\n2\n\n\n\n\n\n\n,  \n \nthen at \n2\n\n\n, y\" + y' + y is equal to: \n \n(1) \n2\n \n(2) 1 \n \n(3) 1\n2 \n \n(4) 2",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-05-apr-shift-2_mat_q19.jpg"
+ },
+ {
+  "id": "jm2024-05-apr-shift-2_mat_q20",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "20. \nFor x 0, the least value of K, for which 41+x + 41–x, \nK\n2 , 16x + 16–x are three consecutive terms of an \nA.P. is equal to :  \n \n(1) 10 \n(2) 4 \n \n(3) 8 \n \n(4) 16",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-05-apr-shift-2_mat_q20.jpg"
+ },
+ {
+  "id": "jm2024-05-apr-shift-2_mat_q23",
+  "qtype": "integer",
+  "key": "2",
+  "text": "23. \nThe number of solutions of  \n \nsin2x + (2 + 2x – x2)sinx – 3(x – 1)2 = 0, where \n–  x  , is",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-05-apr-shift-2_mat_q23.jpg"
+ },
+ {
+  "id": "jm2024-05-apr-shift-2_mat_q27",
+  "qtype": "integer",
+  "key": "1",
+  "text": "27. \nIf \n2\n2\n0\n2xdx\nƒ(t)\n1\ncos tsin x\n\n\n\n, 0 < t < , then the value \nof \n2\n2\n0\ndt\nƒ(t)\n\n\n equals _____.",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-05-apr-shift-2_mat_q27.jpg"
+ },
+ {
+  "id": "jm2024-05-apr-shift-2_mat_q30",
+  "qtype": "integer",
+  "key": "3",
+  "text": "30. \nThe number of real solutions of the equation  \nx |x + 5| + 2|x + 7| – 2 = 0 is _____.",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-05-apr-shift-2_mat_q30.jpg"
+ },
+ {
+  "id": "jm2024-06-apr-shift-1_mat_q01",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "1.\nIf \n3\nx sin\n,\nx\n0\nf(x) =\n,then\nx\n0\n,\nx\n0\n\n\n\n\n\n\n\n\n\n\n\n\n(1) f''(0)\n1\n\n(2) \n2\n2\n24 –\nf ''\n2\n\n\n\n\n\n\n\n\n\n(3) \n2\n2\n12 –\nf ''\n2\n\n\n\n\n\n\n\n\n\n(4) f ''(0)\n0\n",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-06-apr-shift-1_mat_q01.jpg"
+ },
+ {
+  "id": "jm2024-06-apr-shift-1_mat_q02",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "2.\nIf A(3,1,–1), \n5 7 1\nB\n,\n,\n3 3 3\n\n\n\n\n\n, C(2,2,1) and \n10 2 –1\nD\n,\n,\n3 3 3\n\n\n\n\n\n are the vertices of a quadrilateral \nABCD, then its area is \n(1) 4 2\n3\n(2) 5 2\n3\n(3) 2 2\n(4) 2 2\n3",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-06-apr-shift-1_mat_q02.jpg"
+ },
+ {
+  "id": "jm2024-06-apr-shift-1_mat_q03",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "3. \n\n\n/4\n2\n2\n2\n3\n3\n0\ncos xsin x\ndx\ncos x\nsin x\n\n\n\n is equal to \n(1) 1/12\n(2) 1/9\n(3) 1/6\n(4) 1/3",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-06-apr-shift-1_mat_q03.jpg"
+ },
+ {
+  "id": "jm2024-06-apr-shift-1_mat_q04",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "4.\nThe mean and standard deviation of 20 observations\nare found to be 10 and 2, respectively. On\nrespectively, it was found that an observation by\nmistake was taken 8 instead of 12. The correct\nstandard deviation is\n(1)\n3.86 \n(2) 1.8\n(3)\n3.96\n(4) 1.94",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-06-apr-shift-1_mat_q04.jpg"
+ },
+ {
+  "id": "jm2024-06-apr-shift-1_mat_q06",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "6. \nLet A = {n [100, 700] N : n is neither a \nmultiple of 3 nor a multiple of 4}. Then the \nnumber of elements in A is  \n \n(1) 300 \n(2) 280 \n \n(3) 310 \n \n(4) 290",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-06-apr-shift-1_mat_q06.jpg"
+ },
+ {
+  "id": "jm2024-06-apr-shift-1_mat_q08",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "8. \nFor ,   R and a natural number n, let \n2\n2\nr\nn\nr\n1\n2\nA\n2r\n2\nn –\nn(3n –1)\n3r – 2\n3\n2\n\n\n\n. Then 2A10 – A8 is  \n \n(1) 4 + 2 \n(2) 2 + 4 \n \n(3) 2n \n \n(4) 0",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-06-apr-shift-1_mat_q08.jpg"
+ },
+ {
+  "id": "jm2024-06-apr-shift-1_mat_q09",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "9. \nThe shortest distance between the lines  \n \nx – 3\ny\n15\nz – 9\n2\n–7\n5\n\n\n\nand x\n1\ny –1\nz – 9\n2\n1\n–3\n\n\n\n is  \n \n(1) 6 3 \n(2) 4 3 \n \n(3)5 3 \n \n(4) 8 3",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-06-apr-shift-1_mat_q09.jpg"
+ },
+ {
+  "id": "jm2024-06-apr-shift-1_mat_q10",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "10. \nA company has two plants A and B to manufacture \nmotorcycles.  60% motorcycles are manufactured \nat plant A and the remaining are manufactured at \nplant B. 80% of the motorcycles manufactured at \nplant A are rated of the standard quality, while \n90% of the motorcycles manufactured at plant B \nare rated of the standard quality. A motorcycle \npicked up randomly from the total production is \nfound to be of the standard quality. If p is the \nprobability that it was manufactured at plant B, \nthen 126p is     \n \n(1) 54 \n(2) 64 \n \n(3) 66 \n \n(4) 56",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-06-apr-shift-1_mat_q10.jpg"
+ },
+ {
+  "id": "jm2024-06-apr-shift-1_mat_q11",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "11. \nLet, ,  be the distinct roots of the equation  \n \n\n\n2\n2\nx – t – 5t\n6 x 1\n0,\n\n\nt  R and an = n\n + n\n. \nThen the minimum value of \n2023\n2025\n2024\na\na\na\n\n is    \n \n(1) 1/4 \n(2) –1/2 \n \n(3) –1/4 \n \n(4) 1/2",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-06-apr-shift-1_mat_q11.jpg"
+ },
+ {
+  "id": "jm2024-06-apr-shift-1_mat_q12",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "12. \nLet the relations R1 and R2 on the set  \n \nX = {1, 2, 3, ..., 20} be given by  \n \nR1 = {(x, y) : 2x – 3y = 2} and  \n \nR2 = {(x, y) : –5x + 4y = 0}. If M and N be the \nminimum number of elements required to be added \nin R1 and R2, respectively, in order to make the \nrelations symmetric, then M + N equals \n \n(1) 8 \n(2) 16 \n \n(3) 12 \n \n(4) 10",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-06-apr-shift-1_mat_q12.jpg"
+ },
+ {
+  "id": "jm2024-06-apr-shift-1_mat_q13",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "13. \nLet a variable line of slope m > 0 passing through \nthe point (4, –9) intersect the coordinate axes at the \npoints A and B. the minimum value of the sum of \nthe distances of A and B from the origin is  \n \n(1) 25 \n(2) 30 \n \n(3) 15 \n \n(4) 10",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-06-apr-shift-1_mat_q13.jpg"
+ },
+ {
+  "id": "jm2024-06-apr-shift-1_mat_q14",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "14. \nThe interval in which the function f(x) = xx, x > 0, \nis strictly increasing is \n \n(1) \n1\n0, e\n\n\n\n\n\n\n \n(2) \n2\n1 ,1\ne\n\n\n\n\n\n \n \n(3) (0, ) \n \n(4) 1 ,\ne\n\n\n\n\n",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-06-apr-shift-1_mat_q14.jpg"
+ },
+ {
+  "id": "jm2024-06-apr-shift-1_mat_q15",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "15. \nA circle in inscribed in an equilateral triangle of \nside of length 12. If the area and perimeter of any \nsquare inscribed in this circle are m and n, \nrespectively, then m + n2 is equal to  \n \n(1) 396 \n(2) 408 \n \n(3) 312 \n \n(4) 414",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-06-apr-shift-1_mat_q15.jpg"
+ },
+ {
+  "id": "jm2024-06-apr-shift-1_mat_q16",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "16. \nThe number of triangles whose vertices are at the \nvertices of a regular octagon but none of whose \nsides is a side of the octagon is  \n \n(1) 24 \n(2) 56 \n \n(3) 16 \n \n(4) 48",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-06-apr-shift-1_mat_q16.jpg"
+ },
+ {
+  "id": "jm2024-06-apr-shift-1_mat_q17",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "17. \nLet y = y(x) be the solution of the differential \nequation \n\n–1\n2\ntan\nx\ndy\n1\nx\ny\ne\n,\ndx\n\n\n\n y(1) = 0. Then \ny(0) is   \n \n(1) \n\n\n/2\n1 e\n–1\n4\n\n \n(2) \n\n\n/2\n1 1– e\n2\n\n \n \n(3) \n\n\n/2\n1 1– e\n4\n\n \n(4) \n\n\n/2\n1 e\n–1\n2\n",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-06-apr-shift-1_mat_q17.jpg"
+ },
+ {
+  "id": "jm2024-06-apr-shift-1_mat_q18",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "18. \nLet y = y(x) be the solution of the differential \nequation \n\ne\ne\ndy\n3\n2xlog x\n2y\nlog x,\ndx\nx\n\n\nx > 0 and \ny(e–1) = 0. Then, y(e) is equal to  \n \n(1) \n3\n– 2e \n(2) \n2\n– 3e \n \n(3) \n3\n– e \n \n(4) \n2\n– e",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-06-apr-shift-1_mat_q18.jpg"
+ },
+ {
+  "id": "jm2024-06-apr-shift-1_mat_q19",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "19. \nLet the area of the region enclosed by the curves \ny = 3x, 2y = 27 – 3x and y\n3x – x x\n\n be A. Then \n10 A is equal to  \n \n(1) 184 \n(2) 154 \n \n(3) 172 \n \n(4) 162",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-06-apr-shift-1_mat_q19.jpg"
+ },
+ {
+  "id": "jm2024-06-apr-shift-1_mat_q20",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "20. \nLet \nf :(– ,\n) –{0}\nR\n\n\n be \na \ndifferentiable \nfunction such that \n2\na\n1\nf '(1)\nlim a f a\n\n\n\n\n\n\n\n.  \n \nThen \n–1\n2\ne\na\na(a\n1)\n1\nlim\ntan\na – 2log a\n2\na\n\n\n\n\n\n\n\n\n is equal \nto  \n \n(1) 3\n2\n4\n\n\n \n(2) 3\n8\n4\n\n\n \n \n(3) 5\n2\n8\n\n\n \n \n(4) 3\n4\n8\n\n",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-06-apr-shift-1_mat_q20.jpg"
+ },
+ {
+  "id": "jm2024-06-apr-shift-2_mat_q01",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "1.\nLet ABC be an equilateral triangle. A new triangle\nis formed by joining the middle points of all sides\nof the triangle ABC and the same process is\nrepeated infinitely many times. If P is the sum of\nperimeters and Q is be the sum of areas of all the\ntriangles formed in this process, then:\n(1)\n2\nP\n36 3Q\n\n(2) \n2\nP\n6 3Q\n\n(3) \n2\nP\n36 3Q\n\n(4) \n2\nP\n72 3Q\n",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-06-apr-shift-2_mat_q01.jpg"
+ },
+ {
+  "id": "jm2024-06-apr-shift-2_mat_q02",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "2.\nLet A = {1, 2, 3, 4, 5}. Let R be a relation on A\ndefined by xRy if and only if 4x 5y. Let m be the\nnumber of elements in R and n be the minimum\nnumber of elements from A × A that are required\nto be added to R to make it a symmetric relation.\nThen m + n is equal to:\n(1) 24\n(2) 23\n(3) 25\n(4) 26",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-06-apr-shift-2_mat_q02.jpg"
+ },
+ {
+  "id": "jm2024-06-apr-shift-2_mat_q03",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "3.\nIf three letters can be posted to any one of the 5\ndifferent addresses, then the probability that the\nthree letters are posted to exactly two addresses is:\n(1) 12\n25\n(2) 18\n25\n(3) 4\n25\n(4) 6\n25",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-06-apr-shift-2_mat_q03.jpg"
+ },
+ {
+  "id": "jm2024-06-apr-shift-2_mat_q04",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "4. \nSuppose the solution of the differential equation \ndy\n(2\n)x\ny\n2\ndx\nx\n2 y\n(\n4 )\n\n\n represents a circle \npassing through origin. Then the radius of this \ncircle is : \n \n(1) 17 \n(2) 1\n2 \n \n(3) \n17\n2\n \n \n(4) 2",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-06-apr-shift-2_mat_q04.jpg"
+ },
+ {
+  "id": "jm2024-06-apr-shift-2_mat_q05",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "5. \nIf the locus of the point, whose distances from the \npoint (2, 1) and (1, 3) are in the ratio 5 : 4, is \nax2 + by2 + cxy + dx + ey + 170 = 0, then the value \nof a2 + 2b + 3c + 4d + e is equal to:  \n \n(1) 5 \n(2) –27 \n \n(3) 37 \n \n(4) 437",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-06-apr-shift-2_mat_q05.jpg"
+ },
+ {
+  "id": "jm2024-06-apr-shift-2_mat_q06",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "6.  \n\n\n2\n2\n2\n3\n3\n3\n2\n2\n2\nn\n(1\n1)(n\n1)\n(2\n2)(n\n2)\n.....\n·1\n(n\n1)\n(n\n1)\nlim\n(1\n2\n.....\nn )\n(1\n2\n.....\nn )\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nis equal to: \n \n(1) 2\n3 \n(2) 1\n3 \n \n(3) 3\n4 \n \n(4) 1\n2",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-06-apr-shift-2_mat_q06.jpg"
+ },
+ {
+  "id": "jm2024-06-apr-shift-2_mat_q07",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "7. \nLet 0  r  n. If n+1Cr+1 : nCr : n–1Cr–1 = 55 : 35 : 21, \nthen 2n + 5r is equal to: \n \n(1) 60 \n(2) 62 \n \n(3) 50 \n \n(4) 55",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-06-apr-shift-2_mat_q07.jpg"
+ },
+ {
+  "id": "jm2024-06-apr-shift-2_mat_q08",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "8. \nA software company sets up m number of \ncomputer systems to finish an assignment in \n17 days. If 4 computer systems crashed on the start \nof the second day, 4 more computer systems \ncrashed on the start of the third day and so on, then \nit took 8 more days to finish the assignment. The \nvalue of m is equal to : \n \n(1) 125 \n(2) 150 \n \n(3) 180 \n \n(4) 160",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-06-apr-shift-2_mat_q08.jpg"
+ },
+ {
+  "id": "jm2024-06-apr-shift-2_mat_q09",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "9. \nIf z1, z2 are two distinct complex number such that \n1\n2\n1 2\nz\n2z\n2\n1\nz z\n2\n\n\n\n, then  \n(1) either z1 lies on a circle of radius 1 or z2 lies on a \ncircle of radius 1\n2 \n(2) either z1 lies on a circle of radius 1\n2 or z2 lies on \na circle of radius 1. \n(3) z1 lies on a circle of radius 1\n2 and z2 lies on a \ncircle of radius 1. \n(4) both z1 and z2 lie on the same circle.",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-06-apr-shift-2_mat_q09.jpg"
+ },
+ {
+  "id": "jm2024-06-apr-shift-2_mat_q10",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "10. \nIf the function \n1\nf(x)\nx\n\n\n\n\n\n\n ; x > 0 attains the \nmaximum value at \n1\nx\ne\n\n then : \n \n(1) \ne\ne \n(2) \n2\ne\ne\n(2 )\n\n \n \n(3) \ne\ne  \n(4) \n(2e)\n(2e)",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-06-apr-shift-2_mat_q10.jpg"
+ },
+ {
+  "id": "jm2024-06-apr-shift-2_mat_q12",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "12. \nIf all the words with or without meaning made \nusing all the letters of the word \"NAGPUR\" are \narranged as in a dictionary, then the word at 315th \nposition in this arrangement is : \n \n(1) NRAGUP \n(2) NRAGPU \n \n(3) NRAPGU \n(4) NRAPUG",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-06-apr-shift-2_mat_q12.jpg"
+ },
+ {
+  "id": "jm2024-06-apr-shift-2_mat_q13",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "13. \nSuppose for a differentiable function h, h(0) = 0, \nh(1) = 1 and h'(0) = h'(1) = 2. If g(x) = h(ex) eh(x), \nthen g'(0) is equal to: \n \n(1) 5 \n(2) 3 \n \n(3) 8 \n \n(4) 4",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-06-apr-shift-2_mat_q13.jpg"
+ },
+ {
+  "id": "jm2024-06-apr-shift-2_mat_q15",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "15. \nIf P(6, 1) be the orthocentre of the triangle whose \nvertices are A(5, –2), B(8, 3) and C(h, k), then the \npoint C lies on the circle. \n \n(1) x2 + y2 – 65 = 0 \n(2) x2 + y2 – 74 = 0 \n \n(3) x2 + y2 – 61 = 0 \n(4) x2 + y2 – 52 = 0",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-06-apr-shift-2_mat_q15.jpg"
+ },
+ {
+  "id": "jm2024-06-apr-shift-2_mat_q16",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "16. \nLet \n1\nf(x)\n7\nsin5x\n\n\n be a function defined on R. \nThen the range of the function f(x) is equal to: \n \n(1) 1 1\n,\n8 5\n\n\n\n\n\n\n \n(2) 1 1\n,\n7 6\n\n\n\n\n\n\n \n \n(3) 1 1\n,\n7 5\n\n\n\n\n\n\n  \n(4) 1 1\n,\n8 6\n\n\n\n\n\n",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-06-apr-shift-2_mat_q16.jpg"
+ },
+ {
+  "id": "jm2024-06-apr-shift-2_mat_q17",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "17. \nLet \nˆ\nˆ\nˆ\na\n2i\nj\nk\n\n\n, \n\n\n\n\n\nˆ\nˆ\nˆ\nˆ\nb\na\ni\ni\ni\nj\n\n\n\n\n\n.  \n \nThen the square of the projection of a on b is : \n \n(1) 1\n5 \n(2) 2 \n \n(3) 1\n3 \n \n(4) 2\n3",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-06-apr-shift-2_mat_q17.jpg"
+ },
+ {
+  "id": "jm2024-06-apr-shift-2_mat_q18",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "18. \nIf the area of the region  \n \n2\na\n1\n(x,y) :\ny\n,1\nx\n2, 0\na\n1\nx\nx\n\n\n\n\n\n\n\n\n\n\n\n\nis  \n(loge2) – 1\n7 then the value of 7a – 3 is equal to:  \n \n(1) 2 \n(2) 0 \n \n(3) –1 \n \n(4) 1",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-06-apr-shift-2_mat_q18.jpg"
+ },
+ {
+  "id": "jm2024-06-apr-shift-2_mat_q19",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "19. \nIf \n1\n2\n2\n2\n2\n1\n1\ndx\ntan (3tanx)\n12\na sin x\nb cos x\n\n\n\n\n+ \n \n constant, then the maximum value of  \n \nasinx + bcosx, is : \n \n(1) \n40 \n(2) \n39 \n \n(3) \n42 \n \n(4) \n41",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-06-apr-shift-2_mat_q19.jpg"
+ },
+ {
+  "id": "jm2024-06-apr-shift-2_mat_q20",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "20. \nIf A is a square matrix of order 3 such that  \n \ndet(A) = 3 and  \n \ndet(adj(–4 adj(–3 adj(3 adj((2A)–1))))) = 2m3n,  \n \nthen m +| 2n is equal to: \n \n(1) 3 \n(2) 2 \n \n(3) 4 \n \n(4) 6",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-06-apr-shift-2_mat_q20.jpg"
+ },
+ {
+  "id": "jm2024-06-apr-shift-2_mat_q28",
+  "qtype": "integer",
+  "key": "4",
+  "text": "28. \nLet ,  be roots of \n2\nx\n2x –8\n0\n\n\n.  \n \nIf \nn\nn\nn\nU\n,\n\nthen \n10\n9\n8\nU\n12U\n2U\n\n \n \nis equal to _______.",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-06-apr-shift-2_mat_q28.jpg"
+ },
+ {
+  "id": "jm2024-06-apr-shift-2_mat_q30",
+  "qtype": "integer",
+  "key": "3",
+  "text": "30. \nIf the solution y(x) of the given differential \nequation (ey + 1) cosx dx + ey sin x dy = 0 passes \nthrough the point \n,0\n2\n\n\n\n\n\n\n, then the value of \ny 6\ne\n\n\n\n\n\n\n \nis equal to ______.",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-06-apr-shift-2_mat_q30.jpg"
+ },
+ {
+  "id": "jm2024-08-apr-shift-1_mat_q01",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "1.\nThe value of k  for which the integral\nIn = \n1\nk\nn\n0\n(1– x ) dx,\n\nn , satisfies 147 I20 = 148 I21\nis :  \n(1) 10\n(2) 8\n(3) 14\n(4) 7",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-08-apr-shift-1_mat_q01.jpg"
+ },
+ {
+  "id": "jm2024-08-apr-shift-1_mat_q02",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "2.\nThe sum of all the solutions of the equation\n(8)2x – 16(8)x + 48 = 0 is :\n(1) 1 + log6(8)\n(2) log8(6)\n(3) 1 + log8(6)\n(4) log8(4)",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-08-apr-shift-1_mat_q02.jpg"
+ },
+ {
+  "id": "jm2024-08-apr-shift-1_mat_q03",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "3.\nLet the circles C1 : (x – )2 + (y – )2 =\n2\n1r\nand \nC2 : (x – 8)2 +\n2\n15\ny\n2\n\n\n\n\n\n\n\n = \n2\n2r\ntouch each other\nexternally at the point (6, 6). If the point (6, 6) \ndivides the line segment joining the centres of the \ncircles C1 and C2 internally in the ratio 2 : 1, then \n(+ ) + 4 \n\n2\n2\n1\n2\nr\nr\n\nequals  \n(1) 110\n(2) 130\n(3) 125\n(4) 145",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-08-apr-shift-1_mat_q03.jpg"
+ },
+ {
+  "id": "jm2024-08-apr-shift-1_mat_q04",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "4. \n Let P(x, y, z) be a point in the first octant, whose \nprojection in the xy-plane is the point Q. Let \nOP =  ; the angle between OQ and the positive \nx-axis be ; and the angle between OP and the \npositive z-axis be , where O is the origin. Then \nthe distance of P from the x-axis is :      \n \n(1) \n2\n2\n1\nsin\ncos\n\n\n\n \n(2) \n2\n2\n1\ncos\nsin\n\n\n\n \n \n(3) \n2\n2\n1\nsin\ncos\n\n\n\n \n(4) \n2\n2\n1\ncos\nsin\n\n\n\n",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-08-apr-shift-1_mat_q04.jpg"
+ },
+ {
+  "id": "jm2024-08-apr-shift-1_mat_q06",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "6. \n Let f(x) be a positive function such that the area \nbounded by y = f(x), y = 0 from x = 0 to x = a > 0 \nis e–a + 4a2 + a – 1. Then the differential equation, \nwhose general solution is y = c1f(x) + c2 , where c1 \nand c2 are arbitrary constants, is : \n \n(1) \n2\nx\n2\nd y\ndy\n(8e\n1)\n0\ndx\ndx\n\n\n\n \n \n(2) \n2\nx\n2\nd y\ndy\n(8e\n1)\n0\ndx\ndx\n\n\n\n \n \n(3) \n2\nx\n2\nd y\ndy\n(8e\n1)\n0\ndx\ndx\n\n\n\n \n \n(4) \n2\nx\n2\nd y\ndy\n(8e\n1)\n0\ndx\ndx\n\n\n",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-08-apr-shift-1_mat_q06.jpg"
+ },
+ {
+  "id": "jm2024-08-apr-shift-1_mat_q07",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "7. \nLet f(x) = 4cos3x + 3 3 cos2 x – 10. The number \nof points of local maxima of f in interval (0, 2) is: \n \n(1) 1 \n(2) 2 \n \n(3) 3 \n \n(4) 4",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-08-apr-shift-1_mat_q07.jpg"
+ },
+ {
+  "id": "jm2024-08-apr-shift-1_mat_q08",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "8. \n Let A = 1\n3\n1\n0\n5\nb\n\n\n\n\n\n\n\n\n. If A3 = 4A2 – A – 21I, where \nI is the identity matrix of order 3 × 3, then 2a + 3b \nis equal to :  \n \n(1) –10 \n(2) –13 \n \n(3) –9 \n \n(4) –12",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-08-apr-shift-1_mat_q08.jpg"
+ },
+ {
+  "id": "jm2024-08-apr-shift-1_mat_q11",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "11. \nIf sinx = – 3\n5 , where  < x < 3\n2\n,  \n \nthen 80(tan2x – cosx) is equal to : \n \n(1) 109 \n(2) 108 \n \n(3) 18 \n \n(4) 19",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-08-apr-shift-1_mat_q11.jpg"
+ },
+ {
+  "id": "jm2024-08-apr-shift-1_mat_q12",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "12. \n Let I(x) = \n2\n2\n6\ndx\nsin x(1\ncot x)\n\n\n. If I(0) = 3, then \nI 12\n\n\n\n\n\n\n\n is equal to : \n \n(1) \n3 \n(2) 3 3 \n \n(3) 6 3 \n \n(4) 2 3",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-08-apr-shift-1_mat_q12.jpg"
+ },
+ {
+  "id": "jm2024-08-apr-shift-1_mat_q13",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "13. \nThe equations of two sides AB and AC of a \ntriangle ABC are 4x + y = 14 and 3x – 2y = 5, \nrespectively. The point \n4\n2,\n3\n\n\n\n\n\n\n\n divides the third \nside BC internally in the ratio 2 : 1. The equation \nof the side BC is : \n \n(1) x – 6y – 10 = 0 \n(2) x – 3y – 6 = 0 \n \n(3) x + 3y + 2 = 0 \n(4) x + 6y + 6 = 0",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-08-apr-shift-1_mat_q13.jpg"
+ },
+ {
+  "id": "jm2024-08-apr-shift-1_mat_q14",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "14. \n Let [t] be the greatest integer less than or equal to \nt. Let A be the set of al prime factors of 2310 and \nf : A  be the function f(x) = \n3\n2\n2\nx\nlog\nx\n5\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n. \nThe number of one-to-one functions from A to the \nrange of f is : \n \n(1) 20 \n(2) 120 \n \n(3) 25 \n \n(4) 24",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-08-apr-shift-1_mat_q14.jpg"
+ },
+ {
+  "id": "jm2024-08-apr-shift-1_mat_q15",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "15. \nLet z be a complex number such that |z + 2| = 1 \nand lm z\n1\n1\nz\n2\n5\n\n\n\n\n\n\n\n\n. Then the value of \n\n\nRe z\n2\n\n \nis : \n \n(1) \n6\n5 \n(2) 1\n6\n5\n\n \n \n(3) 24\n5 \n \n(4) 2 6\n5",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-08-apr-shift-1_mat_q15.jpg"
+ },
+ {
+  "id": "jm2024-08-apr-shift-1_mat_q16",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "16. \n If the set R = {(a, b) ; a + 5b = 42, a, b  \n} \nhas m elements and \n\n\nm\nn!\nn 1\n1\ni\n\n\n\n = x + iy, where  \nI = \n1\n, then the value of m + x + y is :  \n \n(1) 8 \n(2) 12 \n \n(3) 4 \n \n(4) 5",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-08-apr-shift-1_mat_q16.jpg"
+ },
+ {
+  "id": "jm2024-08-apr-shift-1_mat_q17",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "17.\nFor the function f(x) = (cosx) – x + 1, x \n,\nbetween the following two statements\n(S1) f(x) = 0 for only one value of x is [0, ].\n(S2) f(x) is decreasing in 0,\n2\n\n\n\n\n\n\n\n and increasing in \n,\n2\n\n\n\n\n\n\n\n\n. \n(1) Both (S1) and (S2) are correct\n(2) Only (S1) is correct\n(3) Both (S1) and (S2) are incorrect\n(4) Only (S2) is correct",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-08-apr-shift-1_mat_q17.jpg"
+ },
+ {
+  "id": "jm2024-08-apr-shift-1_mat_q19",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "19.\nLet y = y(x) be the solution of the differential \nequation (1 + y2)etanxdx + cos2x(1 + e2tanx)dy = 0,  \ny(0) = 1. Then y 4\n\n\n\n\n\n\n\n is equal to : \n(1) 2\ne\n(2) \n2\n1\ne\n(3) 1\ne\n(4) \n2\n2\ne",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-08-apr-shift-1_mat_q19.jpg"
+ },
+ {
+  "id": "jm2024-08-apr-shift-1_mat_q20",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "20.\nLet H :\n2\n2\n2\n2\nx\ny\n1\na\nb\n\n\n\nbe the hyperbola, whose \neccentricity is \n3\nand the length of the latus\nrectum is 4 3 . Suppose the point (, 6),  > 0\nlies on H. If  is the product of the focal distances \nof the point (, 6), then 2 +  is equal to :  \n(1) 170\n(2) 171\n(3) 169\n(4) 172",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-08-apr-shift-1_mat_q20.jpg"
+ },
+ {
+  "id": "jm2024-08-apr-shift-2_mat_q01",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "1.\nIf the image of the point (-4, 5) in the line\nx + 2y = 2 lies on the circle (x + 4)2 + (y-3)2 = r2,\nthen r is equal lo :\n(1) 1\n(2) 2\n(3) 75\n(4) 3",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-08-apr-shift-2_mat_q01.jpg"
+ },
+ {
+  "id": "jm2024-08-apr-shift-2_mat_q03",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "3.\nIf a, b, c and\nb\nc\na\nc\n0\na\nb\n\n\n\n\n, then \na\nb\na\nb\nc\n\n\n\n\n\n\n  is equal to : \n(1) 2\n(2) 3\n(3) 0\n(4) 1",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-08-apr-shift-2_mat_q03.jpg"
+ },
+ {
+  "id": "jm2024-08-apr-shift-2_mat_q49",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "49. Then the sum of the 4th, 6th and 8th terms is :- \n \n(1) 96 \n(2) 78 \n \n(3) 91 \n \n(4) 84",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-08-apr-shift-2_mat_q49.jpg"
+ },
+ {
+  "id": "jm2024-08-apr-shift-2_mat_q05",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "5. \nThe number of ways five alphabets can be chosen \nfrom the alphabets of the word MATHEMATICS, \nwhere the chosen alphabets are not necessarily \ndistinct, is equal to : \n \n(1) 175 \n(2) 181 \n \n(3) 177 \n \n(4) 179",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-08-apr-shift-2_mat_q05.jpg"
+ },
+ {
+  "id": "jm2024-08-apr-shift-2_mat_q07",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "7. \nIf the system of equations x + 4y – z = ,  \n7x + 9y + z = –3, 5x + y + 2z = –1 has infinitely \nmany solutions, then (2. + 3) is equal to : \n \n(1) 2 \n(2) –3 \n \n(3) 3 \n \n(4) –2",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-08-apr-shift-2_mat_q07.jpg"
+ },
+ {
+  "id": "jm2024-08-apr-shift-2_mat_q08",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "8. \nIf the shortest distance between the lines \nx\ny\n4\nz\n3\n2\n3\n4\n\n\n\n\n\nand \nx\n2\ny\n4\nz\n7\n4\n6\n8\n\n\n\n\n\n is 13\n29\n, then a value \nof  is : \n \n(1) – 13\n25\n \n(2) 13\n25\n \n \n(3) 1 \n \n(4) –1",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-08-apr-shift-2_mat_q08.jpg"
+ },
+ {
+  "id": "jm2024-08-apr-shift-2_mat_q09",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "9. \nIf the value of 3cos36\n5sin18\n5cos36\n3sin18\n\n\n\n\n is a 5\nb\nc\n\n, \nwhere a, b, c are natural numbers and gcd(a, c) = 1, \nthen a + b + c is equal to : \n \n(1) 50 \n(2) 40 \n \n(3) 52 \n \n(4) 54",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-08-apr-shift-2_mat_q09.jpg"
+ },
+ {
+  "id": "jm2024-08-apr-shift-2_mat_q11",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "11. \nThe area of the region in the first quadrant inside \nthe circle x2 + y2 = 8 and outside the pnrabola   \ny2 = 2x is equal to : \n \n(1) \n1\n2\n3\n\n \n(2) \n2\n3\n\n \n \n(3) \n2\n2\n3\n\n  \n(4) \n1\n3\n",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-08-apr-shift-2_mat_q11.jpg"
+ },
+ {
+  "id": "jm2024-08-apr-shift-2_mat_q12",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "12. \nIf the line segment joining the points (5, 2) and \n(2, a) subtends an angle 4\n at the origin, then the \nabsolute value of the product of all possible values \nof a is : \n \n(1) 6 \n(2) 8 \n \n(3) 2 \n \n(4) 4",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-08-apr-shift-2_mat_q12.jpg"
+ },
+ {
+  "id": "jm2024-08-apr-shift-2_mat_q14",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "14. \nIf the function f(x) = 2x3 – 9ax2 + 12a2x + 1, a > 0 \nhas a local maximum at x =  and a local \nminimum x = 2, then  and  2 are the roots of the \nequation : \n \n(1) x2 – 6x + 8 = 0 \n(2) 8x2 + 6x – 8 = 0 \n \n(3) 8x2 – 6x + 1 = 0 \n(4) x2 + 6x + 8 = 0",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-08-apr-shift-2_mat_q14.jpg"
+ },
+ {
+  "id": "jm2024-08-apr-shift-2_mat_q15",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "15. \nThere are three bags X, Y and Z. Bag X contains 5 \none-rupee coins and 4 five-rupee coins; Bag Y \ncontains 4 one-rupee coins and 5 five-rupee coins \nand Bag Z contains 3 one-rupee coins and \n6 five-rupee coins. A bag is selected at random and \na coin drawn from it at random is found to be a \none-rupee coin. Then the probability, that it came \nfrom bag Y, is : \n \n(1) 1\n3\n \n(2) 1\n2\n \n \n(3) 1\n4\n \n \n(4) 5\n12",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-08-apr-shift-2_mat_q15.jpg"
+ },
+ {
+  "id": "jm2024-08-apr-shift-2_mat_q16",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "16. \nLet \nx\ndx\n6\ne\n1\n\n\n\n\n\n. Then e and e– are the \nroots of the equation : \n \n(1) 2x2 – 5x + 2 = 0 \n(2) x2 – 2x - 8 = 0 \n \n(3) 2x2 – 5x – 2 = 0 \n(4) x2 + 2x – 8 = 0",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-08-apr-shift-2_mat_q16.jpg"
+ },
+ {
+  "id": "jm2024-08-apr-shift-2_mat_q17",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "2x  5x + 2  0 \n \n17. \nLet \n\na\nif\na\nx\n0\n(x)\nx\na if 0\nx\na\n\n\n\n\n\n\n\nf\n  \n \nwhere a > 0 and g(x) = (f |x| ) – | f (x)| )/2.  \n \nThen the function g : [ –a, a]  [ –a, a] is \n \n(1) neither one-one nor onto. \n \n(2) both one-one and onto. \n \n(3) one-one. \n \n(4) onto",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-08-apr-shift-2_mat_q17.jpg"
+ },
+ {
+  "id": "jm2024-08-apr-shift-2_mat_q18",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "18. \nLet A= {2, 3, 6, 8, 9, 11} and B = {1, 4, 5, 10, 15} \nLet R be a relation on A × B define by (a, b)R(c, d) \nif and only if 3ad – 7bc is an even integer. Then \nthe relation R is \n \n(1) reflexive but not symmetric. \n \n(2) transitive but not symmetric. \n \n(3) reflexive and symmetric but not transitive. \n \n(4) an equivalence relation.",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-08-apr-shift-2_mat_q18.jpg"
+ },
+ {
+  "id": "jm2024-08-apr-shift-2_mat_q19",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "19. \nFor a, b > 0, let  \n \n2\n2\ntan((a 1)x)\nbtan x , x\n0\nx3\n, x\n0\n(x)\nax\nb x\nax , x\n0\nb a x x\n\n\n\n\n\n\n\n\n\n\n\n\n\nf\n \nbe a continous function at x = 0. Then b\na\n is equal \nto \n \n(1) 5 \n(2) 4 \n \n(3) 8 \n \n(4) 6",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-08-apr-shift-2_mat_q19.jpg"
+ },
+ {
+  "id": "jm2024-08-apr-shift-2_mat_q20",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "20. \nIf the term independent of x in the expansion of \n10\n2\n3\n1\nax\n2x\n\n\n\n\n\n\n\nis 105, then a2 is equal to : \n \n(1) 4 \n(2) 9 \n \n(3) 6 \n \n(4) 2",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-08-apr-shift-2_mat_q20.jpg"
+ },
+ {
+  "id": "jm2024-08-apr-shift-2_mat_q26",
+  "qtype": "integer",
+  "key": "2",
+  "text": "26. \nThe number of distinct real roots of the equation   \n|x + 1| |x + 3| – 4 |x + 2| + 5 = 0, is ________ .",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-08-apr-shift-2_mat_q26.jpg"
+ },
+ {
+  "id": "jm2024-08-apr-shift-2_mat_q29",
+  "qtype": "integer",
+  "key": "4",
+  "text": "29. \nLei |x| = |y|exy–, ,  N be the solution of the \ndifferential equation xdy – ydx + xy(xdy+ydx) = 0, \ny(l) = 2. Then  +   is equal to _",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-08-apr-shift-2_mat_q29.jpg"
+ },
+ {
+  "id": "jm2024-09-apr-shift-1_mat_q01",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "1.\nLet the line L intersect the lines\nx – 2 = –y = z – 1, 2 (x + 1) = 2(y – 1) = z + 1\nand be parallel to the line x\n2\ny 1\nz\n2\n3\n1\n2\n\n\n\n\n\n.\nThen which of the following points lies on L ? \n(1) \n1\n–\n,1,1\n3\n\n\n\n\n\n\n(2) \n1\n–\n,1, 1\n3\n\n\n\n\n\n\n\n(3) \n1\n–\n, 1, 1\n3\n\n\n\n\n\n\n\n(4) \n1\n–\n, 1,1\n3\n\n\n\n\n\n\n",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-09-apr-shift-1_mat_q01.jpg"
+ },
+ {
+  "id": "jm2024-09-apr-shift-1_mat_q02",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "2.\nThe parabola y2 = 4x divides the area of the circle\nx2 + y2 = 5 in two parts. The area of the smaller\npart is equal to :\n(1) \n1\n2\n2\n5sin\n3\n5\n\n\n\n\n\n\n\n(2) \n1\n1\n2\n5sin\n3\n5\n\n\n\n\n\n\n\n(3) \n1\n1\n2\n5 sin\n3\n5\n\n\n\n\n\n\n\n(4) \n1\n2\n2\n5sin\n3\n5\n\n\n\n\n\n\n",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-09-apr-shift-1_mat_q02.jpg"
+ },
+ {
+  "id": "jm2024-09-apr-shift-1_mat_q03",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "3. \nThe solution curve, of the differential equation  \n \ndy\ndy\n2y\n3\n5\ndx\ndx\n\n\n, passing through the point  \n \n(0, 1) is a conic, whose vertex lies on the line : \n \n(1) 2x + 3y = 9 \n(2) 2x + 3y = –9 \n \n(3) 2x + 3y = –6 \n(4) 2x + 3y = 6",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-09-apr-shift-1_mat_q03.jpg"
+ },
+ {
+  "id": "jm2024-09-apr-shift-1_mat_q05",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "5. \nLet ,   R. If the system of equations \n \n3x + 5y + z = 3 \n \n7x + 11y –9z = 2 \n \n97x + 155y – 189z = \n \nhas infinitely many solutions, then  +2 is equal \nto : \n \n(1) 25 \n(2) 24 \n \n \n(3) 27 \n \n(4) 22",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-09-apr-shift-1_mat_q05.jpg"
+ },
+ {
+  "id": "jm2024-09-apr-shift-1_mat_q06",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "6. \nThe coefficient of x70 in x2(1 + x)98 + x3(1 + x)97 + \nx4 (1 + x)96 + ........ +x54(1 + x)46 is 99Cp – 46Cq.  \n \nThen a possible value to p + q is : \n \n(1) 55 \n(2) 61 \n \n \n(3) 68 \n \n(4) 83",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-09-apr-shift-1_mat_q06.jpg"
+ },
+ {
+  "id": "jm2024-09-apr-shift-1_mat_q07",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "7. \nLet \n\n\ne\n2\ntan x\n1\ndx\nx\nlog\nsin x\ncosx\nC\n3\ntan x\n2\n\n\n\n\n\n\n\n\n, where C is the constant of integration.   \n \nThen \n\n\n is equal to : \n \n(1) 3 \n(2) 1 \n \n(3) 4 \n \n(4) 7",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-09-apr-shift-1_mat_q07.jpg"
+ },
+ {
+  "id": "jm2024-09-apr-shift-1_mat_q08",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "8. \nA variable line L passes through the point (3, 5) \nand intersects the positive coordinate axes at the \npoints A and B. The minimum area of the triangle \nOAB, where O is the origin, is : \n \n(1) 30 \n(2) 25 \n \n(3) 40 \n \n(4) 35",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-09-apr-shift-1_mat_q08.jpg"
+ },
+ {
+  "id": "jm2024-09-apr-shift-1_mat_q09",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "9. \nLet \n\n\n\n\n\n\n1\ncos cos 60\ncos 60\n,\n0,2\n8\n\n\n\n\n \n \nThen, the sum of all \n\n\n0,2\n\n, where cos 3 \nattains its maximum value, is : \n \n(1) 9 \n(2) 18 \n \n(3) 6 \n \n(4) 15",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-09-apr-shift-1_mat_q09.jpg"
+ },
+ {
+  "id": "jm2024-09-apr-shift-1_mat_q10",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "10. \nLet \nOA\n2a,OB\n6a\n5b\n\n\n\n \nand \nOC\n3b\n\n, \nwhere O is the origin. If the area of the \nparallelogram with adjacent sides OA and OC is \n15 sq. units, then the area (in sq. units) of the \nquadrilateral OABC is equal to : \n \n(1) 38 \n(2) 40 \n \n(3) 32 \n \n(4) 35",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-09-apr-shift-1_mat_q10.jpg"
+ },
+ {
+  "id": "jm2024-09-apr-shift-1_mat_q12",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "12. \nIf the sum of series  \n \n\n\n\n\n\n\n\n\n1\n1\n1\n.......\n1 1 d\n1 d 1 2d\n1 9d 1 10d\n\n\n\n\n\n\n\n\n\n \n \nis equal to 5, then 50d is equal to : \n \n(1) 20 \n(2) 5 \n \n(3) 15 \n \n(4) 10",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-09-apr-shift-1_mat_q12.jpg"
+ },
+ {
+  "id": "jm2024-09-apr-shift-1_mat_q13",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "13. \nLet \n3\n2\nf x\nax\nbx\nex\n41\n\n\n\n\n be such that  \n \nf(1) = 40, f'(1) = 2 and f''(1) = 4.  \n \nThen a2 + b2 + c2 is equal to : \n \n(1) 62 \n(2) 73 \n \n(3) 54 \n \n(4) 51",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-09-apr-shift-1_mat_q13.jpg"
+ },
+ {
+  "id": "jm2024-09-apr-shift-1_mat_q14",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "14. \nLet a circle passing through (2, 0) have its centre at \nthe point (h, k). Let (xc, yc) be the point of \nintersection of the lines 3x + 5y = 1 and (2 + c) x + \n5c2y = 1. If \nc\nc\n1\nh\nlim x\n\n\n and \nc\nc\n1\nk\nlim y\n\n\n, then the \nequation of the circle is : \n \n(1) 25x2 + 25y2 – 20x + 2y – 60 = 0 \n \n \n(2) 5x2 + 5y2 – 4x – 2y – 12 = 0 \n \n(3) 25x2 + 25y2 – 2x + 2y – 60 = 0 \n \n \n \n(4) 5x2 + 5y2 – 4x + 2y – 12 = 0",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-09-apr-shift-1_mat_q14.jpg"
+ },
+ {
+  "id": "jm2024-09-apr-shift-1_mat_q16",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "16. \nThe frequency distribution of the age of students in \na class of 40 students is given below. \n \nAge \n15 \n16 \n17 \n18 \n19 \n20 \nNo. of \nStudents \n5 \n8 \n5 \n12 \nx \ny \n \nIf the mean deviation about the median is 1.25, \nthen 4x + 5y is equal to : \n \n(1) 43 \n(2) 44 \n \n(3) 47 \n \n(4) 46",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-09-apr-shift-1_mat_q16.jpg"
+ },
+ {
+  "id": "jm2024-09-apr-shift-1_mat_q17",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "17. \nThe solution of the differential equation  \n \n(x2 + y2)dx – 5xy dy = 0, y(1) = 0, is : \n \n(1) \n5\n2\n2\n2\nx\n4y\nx\n\n\n \n(2) \n6\n2\n2\nx\n2y\nx\n\n\n \n \n(3) \n6\n2\n2\nx\n4y\nx\n\n\n \n(4) \n5\n2\n2\n2\nx\n2y\nx\n\n",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-09-apr-shift-1_mat_q17.jpg"
+ },
+ {
+  "id": "jm2024-09-apr-shift-1_mat_q19",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "19. \nLet ,  be the roots of the equation  \n \n2\nx\n2 2 x –1\n0\n\n\n. \nThe \nquadratic \nequation, \nwhose roots are 4 + 4 and \n\n\n6\n1\n10\n\n\n, is : \n \n(1) x2 – 190x + 9466 = 0  \n \n(2) x2 – 195x + 9466 = 0  \n \n(3) x2 – 195x + 9506 = 0  \n \n \n \n(4) x2 – 180x + 9506 = 0",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-09-apr-shift-1_mat_q19.jpg"
+ },
+ {
+  "id": "jm2024-09-apr-shift-1_mat_q20",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "20. \nLet \n2\nf x\nx\n9\n\n\n, \nx\ng x\nx\n9\n\n\n and \n \na = fog(10), b = gof(3). If e and l denote the \neccentricity and the length of the latus rectum of \nthe ellipse \n2\n2\nx\ny\n1\na\nb\n\n, then 8e2 + l2 is equal to. \n \n(1) 16 \n(2) 8 \n \n(3) 6 \n \n(4) 12",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-09-apr-shift-1_mat_q20.jpg"
+ },
+ {
+  "id": "jm2024-09-apr-shift-1_mat_q25",
+  "qtype": "integer",
+  "key": "1",
+  "text": "25. \nThe remainder when 4282024 is divided by 21 is \n________.",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-09-apr-shift-1_mat_q25.jpg"
+ },
+ {
+  "id": "jm2024-09-apr-shift-2_mat_q01",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "1. \n\n\n1\n2x\nx\n0\ne\n1 2x\nLim\nx\n\n\n\nis equal to : \n(1) e\n(2) 2\ne\n\n(3) 0\n(4) e–e2",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-09-apr-shift-2_mat_q01.jpg"
+ },
+ {
+  "id": "jm2024-09-apr-shift-2_mat_q02",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "2.\nConsider the line L passing through the points\n(1, 2, 3) and (2, 3, 5). The distance of the point\n11 11 19\n,\n,\n3\n3\n3\n\n\n\n\n\n\nfrom the line L along the line \n3x 11\n3y 11\n3z 19\n2\n1\n2\n\n\n\n\n\n is equal to : \n(1) 3\n(2) 5\n(3) 4\n(4) 6",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-09-apr-shift-2_mat_q02.jpg"
+ },
+ {
+  "id": "jm2024-09-apr-shift-2_mat_q03",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "3.\nLet\n\n\n\nx\nx\n2\n0\n0\n1\ndt\ny(t)dt\ny' t\n\n\n\n\n, 0  x  3, y  0, \ny (0) = 0. Then at x = 2, y\" + y + 1 is equal to : \n(1) 1\n(2) 2\n(3) \n2\n(4) 1/2",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-09-apr-shift-2_mat_q03.jpg"
+ },
+ {
+  "id": "jm2024-09-apr-shift-2_mat_q04",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "4. \nLet z be a complex number such that the real part \nof z\n2i\nz\n2i\n\n\n is zero. Then, the maximum value of \n|z –(6+8i)| is equal to : \n \n(1) 12 \n(2)  \n \n(3) 10 \n \n(4) 8",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-09-apr-shift-2_mat_q04.jpg"
+ },
+ {
+  "id": "jm2024-09-apr-shift-2_mat_q05",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "5. \nThe area (in square units) of the region enclosed by \nthe ellipse x2 + 3y2 = 18 in the first quadrant below \nthe line y = x  is :  \n \n(1) \n3\n3\n4\n\n \n(2) 3 \n \n(3) \n3\n3\n4\n\n \n(4) 3\n1\n",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-09-apr-shift-2_mat_q05.jpg"
+ },
+ {
+  "id": "jm2024-09-apr-shift-2_mat_q06",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "6. \nLet the foci of a hyperbola H coincide with the foci \nof the ellipse E : \n\n\n\n2\n2\ny 1\nx 1\n1\n100\n75\n\n\n\n and the \neccentricity of the hyperbola H be the reciprocal of \nthe eccentricity of the ellipse E. If the length of the \ntransverse axis of H is  and the length of its \nconjugate axis is , then 32 + 22 is equal to :  \n \n(1) 242 \n \n(2) 225 \n \n(3) 237 \n \n \n(4) 205",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-09-apr-shift-2_mat_q06.jpg"
+ },
+ {
+  "id": "jm2024-09-apr-shift-2_mat_q08",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "8. \nIf the variance of the frequency distribution is 160, \nthen the value of c  N is  \n \nx \nc \n2c \n3c \n4c \n5c \n6c \nf \n2 \n1 \n1 \n1 \n1 \n1 \n \n \n(1) 5 \n(2) 8 \n \n(3) 7 \n \n(4) 6",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-09-apr-shift-2_mat_q08.jpg"
+ },
+ {
+  "id": "jm2024-09-apr-shift-2_mat_q09",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "9. \nLet the range of the function \n \nf (x) = \n1\n2\nsin3x\ncos3x\n\n\n, x  IR be [a, b].  \n \nIf  and  are respectively the A.M. and the G.M. \nof a and b, then \n\n is equal to : \n \n(1) \n2 \n(2) 2 \n \n(3)  \n \n(4) ",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-09-apr-shift-2_mat_q09.jpg"
+ },
+ {
+  "id": "jm2024-09-apr-shift-2_mat_q11",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "11. \n\n\n\n\n\n\n\n3\n3\n/2\n1/3\n1/3\nx\n2\nx\nx\n2\nsin\ncos\ndt\n2t\nt\nlim\nx\n2\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n is equal \nto : \n \n(1) \n2\n9\n8\n \n(2) \n2\n11\n10\n \n \n(3) \n2\n3\n2\n \n \n(4) \n2\n5\n9\n",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-09-apr-shift-2_mat_q11.jpg"
+ },
+ {
+  "id": "jm2024-09-apr-shift-2_mat_q12",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "12. \nThe sum of the coefficient of x2/3 and x–2/5 in the \nbinomial expansion of \n9\n2/3\n2/5\n1\nx\nx\n2\n\n\n\n\n\n\n\n\n is : \n \n(1) 21/4 \n(2) 69/16 \n \n(3) 63/16 \n \n(4) 19/4",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-09-apr-shift-2_mat_q12.jpg"
+ },
+ {
+  "id": "jm2024-09-apr-shift-2_mat_q13",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "13. \nLet B = 1\n3\n1\n5\n\n\n\n\n\n\n and A be a 2 × 2 matrix such that \nAB–1 = A–1. If BCB–1 = A and C4 + C2 + I = O, \nthen 2 –  is equal to :  \n \n(1) 16 \n(2) 2 \n \n(3) 8 \n \n(4) 10",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-09-apr-shift-2_mat_q13.jpg"
+ },
+ {
+  "id": "jm2024-09-apr-shift-2_mat_q14",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "14. \nIf loge y = 3 sin–1x, then (1 – x)2 y\" –xy' at x = 1\n2\n \nis equal to : \n \n(1) 9e/6 \n(2) 3e/6 \n \n(3) 3e/2 \n \n(4) 9e/2",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-09-apr-shift-2_mat_q14.jpg"
+ },
+ {
+  "id": "jm2024-09-apr-shift-2_mat_q15",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "15. \nThe integral \n–1\n1/4\n1 x\ncos 2cot\n1 x\n\n\n\n\n\n\n\n\n\ndx is equal \nto: \n \n(1) –1/2 \n(2) 1/4 \n \n(3) 1/2 \n \n(4) –1/4",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-09-apr-shift-2_mat_q15.jpg"
+ },
+ {
+  "id": "jm2024-09-apr-shift-2_mat_q16",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "16. \nLet a, ar, ar2, ........be an infinite G.P. If \nn\nn 0\nar\n57\n\n\n\n\n and \n3 3n\nn 0\na r\n\n\n= 9747, then a + 18r is \nequal to : \n \n(1) 27 \n(2) 46 \n \n(3) 38 \n \n(4) 31",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-09-apr-shift-2_mat_q16.jpg"
+ },
+ {
+  "id": "jm2024-09-apr-shift-2_mat_q17",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "17. \nIf an unbiased dice is rolled thrice, then the \nprobability of getting a greater number in the ith \nroll than the number obtained in the (i–1)th roll, \ni = 2, 3, is equal to : \n \n(1) 3/54 \n(2) 2/54 \n \n(3) 5/54 \n \n(4) 1/54",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-09-apr-shift-2_mat_q17.jpg"
+ },
+ {
+  "id": "jm2024-09-apr-shift-2_mat_q18",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "18. \nThe value of the integral \n\n\n2\n2\ne\n1\nlog\ndx\nx\nx\n1\n\n\n\n\nis : \n \n(1) \ne\n9\n4 5\n5\n2\nlog\n1\n2\n\n\n\n\n\n\n\n\n\n\n \n \n(2) \ne\n9\n4 5\n2\n5\nlog\n1\n2\n\n\n\n\n\n\n\n\n\n\n \n \n(3) \ne\n7\n4 5\n5\n2\nlog\n1\n2\n\n\n\n\n\n\n\n\n\n\n \n \n(4) \ne\n7\n4 5\n2\n5\nlog\n1\n2\n\n\n\n\n\n\n\n\n\n",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-09-apr-shift-2_mat_q18.jpg"
+ },
+ {
+  "id": "jm2024-09-apr-shift-2_mat_q19",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "19. \nLet , ;  > , be the roots of the equation \nx2– 2x\n3\n0\n\n\n. Let Pn = n–n, n  N. Then \n\n\n11 3\n10 2\n\n P10 + \n\n11 2\n10\n\n P11 – 11P12 is \nequal to :  \n \n(1) \n9\n10 2P \n \n(2) \n9\n10 3P \n \n(3) \n9\n11 2P  \n \n(4) \n9\n11 3P",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-09-apr-shift-2_mat_q19.jpg"
+ },
+ {
+  "id": "jm2024-09-apr-shift-2_mat_q20",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "20. \nLet \nˆ\nˆ\nˆ\na\n2i\nj\nk\n\n\n, \nˆ\nˆ\nb\ni\nk\n\n, \nˆ\nˆ\nc\nj\nk\n\n, \nwhere  and  are integers and  = –6. Let the \nvalues of the ordered pair (, ) for which the area \nof the parallelogram of diagonals a\nb\n\n and b\nc\n\nis \n21\n2\n, be (1, 1) and (2, 2).  \n \nThen \n2\n2\n1\n1\n – 22 is equal to  \n \n(1) 17 \n(2) 24 \n \n(3) 21 \n \n(4) 19",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-09-apr-shift-2_mat_q20.jpg"
+ },
+ {
+  "id": "jm2024-27-jan-shift-1_mat_q01",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "1. \n\n\nn 1\n2\nn\nr\nr 1\nC\nk\n8\nC\n\n\n\n\n if and only if : \n \n(1) 2 2\nk\n3\n\n\n \n(2) 2 3\nk\n3 2\n\n\n \n \n(3) 2 3\nk\n3 3\n\n\n \n(4) 2 2\nk\n2 3\n\n",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-27-jan-shift-1_mat_q01.jpg"
+ },
+ {
+  "id": "jm2024-27-jan-shift-1_mat_q02",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "2. \nThe distance, of the point (7, –2, 11) from the line \nx\n6\ny\n4\nz\n8\n1\n0\n3\n\n\n\n\n\n \nalong \nthe \nline \nx\n5\ny 1\nz\n5\n2\n3\n6\n\n\n\n\n\n\n, is : \n \n(1) 12 \n(2) 14 \n \n(3) 18 \n \n(4) 21",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-27-jan-shift-1_mat_q02.jpg"
+ },
+ {
+  "id": "jm2024-27-jan-shift-1_mat_q03",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "3. \nLet x = x(t) and y = y(t) be solutions of the \ndifferential \nequations \ndx\nax\n0\ndt \n\n \nand \ndy\nby\n0\ndt \n\n respectively, a, b  R. Given that \nx(0) = 2; y(0) = 1 and 3y(1) = 2x(1), the value of t, \nfor which x(t) = y(t), is : \n \n(1) \n2\n3\nlog 2 \n(2) \n4\nlog 3 \n \n(3) \n3\nlog 4  \n(4) \n4\n3\nlog 2",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-27-jan-shift-1_mat_q03.jpg"
+ },
+ {
+  "id": "jm2024-27-jan-shift-1_mat_q04",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "4. \nIf (a, b) be the orthocentre of the triangle whose \nvertices are (1, 2), (2, 3) and (3, 1), and \n\n\nb\n2\n1\na\nI\nxsin 4x\nx\ndx\n\n\n\n, \n\n\nb\n2\n2\na\nI\nsin 4x\nx\ndx\n\n\n\n, then \n1\n2\nI\n36 I\n is equal to : \n \n(1) 72 \n(2) 88 \n \n(3) 80 \n \n(4) 66",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-27-jan-shift-1_mat_q04.jpg"
+ },
+ {
+  "id": "jm2024-27-jan-shift-1_mat_q05",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "5. \nIf A denotes the sum of all the coefficients in the \nexpansion of (1 – 3x + 10x2)n and B denotes the \nsum of all  the  coefficients  in  the  expansion  of \n(1 + x2)n, then : \n \n(1) A = B3 \n(2) 3A = B \n \n(3) B = A3 \n \n(4) A = 3B",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-27-jan-shift-1_mat_q05.jpg"
+ },
+ {
+  "id": "jm2024-27-jan-shift-1_mat_q06",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "6. \nThe number of common terms in the progressions \n4, 9, 14, 19, ...... , up to 25th term and 3, 6, 9, 12, \n......., up to 37th term is : \n \n(1) 9 \n(2) 5 \n \n(3) 7 \n \n(4) 8",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-27-jan-shift-1_mat_q06.jpg"
+ },
+ {
+  "id": "jm2024-27-jan-shift-1_mat_q07",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "7. \nIf the shortest distance of the parabola y2 = 4x from \nthe centre of the circle x2 + y2 – 4x – 16y + 64 = 0 \nis d, then d2 is equal to : \n \n(1) 16 \n(2) 24 \n \n(3) 20 \n \n(4) 36",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-27-jan-shift-1_mat_q07.jpg"
+ },
+ {
+  "id": "jm2024-27-jan-shift-1_mat_q08",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "8. \nIf the shortest distance between the lines \nx\n4\ny 1\nz\n1\n2\n3\n\n\n\n\n and x\ny 1\nz\n2\n2\n4\n5\n\n\n\n\n\nis \n6\n5\n, then the sum of all possible values of  is : \n \n(1) 5 \n(2) 8 \n \n(3) 7 \n \n(4) 10",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-27-jan-shift-1_mat_q08.jpg"
+ },
+ {
+  "id": "jm2024-27-jan-shift-1_mat_q09",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "9. \nIf \n0\n1\ndx\na\nb 2\nc 3\n3\nx\n1\nx\n\n\n\n\n\n\n\n, where \na, b, c are rational numbers, then 2a + 3b – 4c is \nequal to : \n \n(1) 4 \n(2) 10 \n \n(3) 7 \n \n(4) 8",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-27-jan-shift-1_mat_q09.jpg"
+ },
+ {
+  "id": "jm2024-27-jan-shift-1_mat_q10",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "10. \nLet S = {l, 2, 3, ... , 10}. Suppose M is the set of all \nthe subsets of S, then the relation \n \nR = {(A, B): A  B  ; A, B  M} is :  \n \n(1) symmetric and reflexive only \n \n(2) reflexive only \n \n(3) symmetric and transitive only \n \n(4) symmetric only",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-27-jan-shift-1_mat_q10.jpg"
+ },
+ {
+  "id": "jm2024-27-jan-shift-1_mat_q11",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "11. \nIf S = {z  C : |z – i| = |z + i| = |z–1|}, then, n(S) is: \n \n(1) 1 \n(2) 0 \n \n(3) 3 \n \n(4) 2",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-27-jan-shift-1_mat_q11.jpg"
+ },
+ {
+  "id": "jm2024-27-jan-shift-1_mat_q12",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "12. \nFour  distinct  points  (2k, 3k),  (1, 0),  (0, 1) and \n(0, 0) lie on a circle for k equal to : \n \n(1) 2\n13\n \n(2) 3\n13\n \n \n(3) 5\n13 \n \n(4) 1\n13",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-27-jan-shift-1_mat_q12.jpg"
+ },
+ {
+  "id": "jm2024-27-jan-shift-1_mat_q13",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "13. \nConsider the function. \n \n\n\n\n\n2\n2\nsin x 3\nx [x]\na 7x 12\nx\n,\nx\n3\nb x\n7x\n12\nf(x)\n2\n,\nx\n3\nb\n,\nx\n3\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  \n \nWhere [x] denotes the greatest integer less than or \nequal to x. If S denotes the set of all ordered pairs \n(a, b) such that f(x) is continuous at x = 3, then the \nnumber of elements in S is : \n \n(1) 2 \n(2) Infinitely many \n \n(3) 4 \n \n(4) 1",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-27-jan-shift-1_mat_q13.jpg"
+ },
+ {
+  "id": "jm2024-27-jan-shift-1_mat_q14",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "14. \nLet a1, a2, ….. a10 be 10 observations such that \n10\nk\nk 1\na\n50\n\n\n\n and \nk\nj\nk j\na\na\n1100\n\n\n\n\n. Then the \nstandard deviation of a1, a2, .., a10 is equal to : \n \n(1) 5 \n(2) 5 \n \n(3) 10 \n \n(4) 115",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-27-jan-shift-1_mat_q14.jpg"
+ },
+ {
+  "id": "jm2024-27-jan-shift-1_mat_q15",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "15. \nThe length of the chord of the ellipse x\ny\n1\n25\n16\n\n, \nwhose mid point is \n2\n1, 5\n\n\n\n\n\n\n, is equal to : \n \n(1) 1691\n5\n \n(2) \n2009\n5\n \n \n(3) 1741\n5\n \n \n(4) 1541\n5",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-27-jan-shift-1_mat_q15.jpg"
+ },
+ {
+  "id": "jm2024-27-jan-shift-1_mat_q16",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "16. \nThe portion of the line 4x + 5y = 20 in the first \nquadrant is trisected by the lines L1 and L2 passing \nthrough the origin. The tangent of an angle \nbetween the lines L1 and L2 is : \n \n(1) 8\n5\n \n(2) 25\n41\n \n \n(3) 2\n5 \n \n(4) 30\n41",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-27-jan-shift-1_mat_q16.jpg"
+ },
+ {
+  "id": "jm2024-27-jan-shift-1_mat_q18",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "18. \nIf \n4\n4\nx\n0\n1\n1\nx\n2\na\nlim\nx\n\n\n\n\n\n and  \n \n2\nx\n0\nsin x\nb\nlim\n2\n1 cos x\n\n\n\n\n, then the value of ab3 is : \n \n(1) 36 \n(2) 32 \n(3) 25 \n(4) 30",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-27-jan-shift-1_mat_q18.jpg"
+ },
+ {
+  "id": "jm2024-27-jan-shift-1_mat_q19",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "19. \nConsider the matrix f(x)\nsin x\ncos x\n0\n0\n0\n1\n\n\n\n\n\n\n\n\n. \n \nGiven below are two statements : \n \nStatement I: f(–x) is the inverse of the matrix f(x). \n \nStatement II: f(x) f(y) = f(x + y). \n \nIn the light of the above statements, choose the \ncorrect answer from the options given below  \n \n(1) Statement I is false but Statement II is true \n \n(2) Both Statement I and Statement II are false \n \n(3) Statement I is true but Statement II is false \n \n(4) Both Statement I and Statement II are true",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-27-jan-shift-1_mat_q19.jpg"
+ },
+ {
+  "id": "jm2024-27-jan-shift-1_mat_q20",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "20. \nThe function f : N – {1}  N; defined by f(n) = \nthe highest prime factor of n, is : \n \n(1) both one-one and onto \n \n(2) one-one only \n \n(3) onto only \n \n(4) neither one-one nor onto",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-27-jan-shift-1_mat_q20.jpg"
+ },
+ {
+  "id": "jm2024-27-jan-shift-2_mat_q01",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "1. \nConsidering only the principal values of inverse \ntrigonometric functions, the number of positive \nreal values of x satisfying \n1\n1\ntan (x)\ntan (2x)\n4\n\n\n\n\n\n \nis : \n \n(1) More than 2 \n \n(2) 1 \n \n(3) 2 \n \n(4) 0",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-27-jan-shift-2_mat_q01.jpg"
+ },
+ {
+  "id": "jm2024-27-jan-shift-2_mat_q02",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "2. \nConsider the function f :(0,2)\nR\n\ndefined by \nx\n2\nf(x)\n2\nx\n\n\n and the function g(x) defined by \nmin{f(t)},\n0\nt\nx and 0\nx\n1\ng(x)\n3\nx,\n1\nx\n2\n2\n\n\n\n\n\n\n\n\n\n. Then \n \n(1) g is continuous but not differentiable at x = 1 \n \n(2) g is not continuous for all x\n(0,2)\n\n \n \n(3) g is neither continuous nor differentiable at x = 1 \n \n(4) g is continuous and differentiable for all x\n(0,2)\n",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-27-jan-shift-2_mat_q02.jpg"
+ },
+ {
+  "id": "jm2024-27-jan-shift-2_mat_q03",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "1\n2\nO\n \n \n3. \nLet the image of the point (1, 0, 7) in the line \nx\ny 1\nz\n2\n1\n2\n3\n\n\n\n\n be the point (, , ). Then \nwhich one of the following points lies on the line \npassing through (, , ) and making angles 2\n3\n \nand 3\n4\n with y-axis and z-axis respectively and an \nacute angle with x-axis ? \n \n(1) \n\n1, 2,1\n2\n\n\n \n \n(2) \n\n1,2,1\n2\n\n \n \n(3) \n\n3,4,3\n2 2\n\n \n \n(4) \n\n3, 4,3\n2 2\n\n",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-27-jan-shift-2_mat_q03.jpg"
+ },
+ {
+  "id": "jm2024-27-jan-shift-2_mat_q04",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "4. \nLet R be the interior region between the lines \n3x\ny 1 0\n\n and x\n2y 5\n0\n\n containing the \norigin. The set of all values of a, for which the \npoints (a2, a + 1) lie in R, is : \n \n(1) \n1\n( 3, 1)\n,1\n3\n\n\n\n\n\n\n\n\n \n \n(2) \n1\n( 3,0)\n,1\n3\n\n\n\n\n\n\n\n \n \n(3) \n2\n( 3,0)\n,1\n3\n\n\n\n\n\n\n\n \n \n(4) \n1\n( 3, 1)\n,1\n3\n\n\n\n\n\n\n",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-27-jan-shift-2_mat_q04.jpg"
+ },
+ {
+  "id": "jm2024-27-jan-shift-2_mat_q05",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "5. \nThe 20th term from the end of the progression \n1\n1\n3\n1\n20,19\n,18\n,17\n,...., 129\n4\n2\n4\n4\n\n is :- \n \n(1) –118 \n \n(2) –110 \n \n(3) –115 \n \n(4) –100",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-27-jan-shift-2_mat_q05.jpg"
+ },
+ {
+  "id": "jm2024-27-jan-shift-2_mat_q06",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "6. \nLet \n1\nf :R\nR\n2\n\n\n\n\n\n\n\n\n\n and \n5\ng:R\nR\n2\n\n\n\n\n\n\n\n\n\n be \ndefined as \n2x\n3\nf (x)\n2x\n1\n\n\n and \n| x | 1\ng(x)\n2x\n5\n\n\n\n. Then \nthe domain of the function fog is : \n \n(1) \n5\nR\n2\n\n\n\n\n\n\n\n \n \n(2) R \n \n(3) \n7\nR\n4\n\n\n\n\n\n\n\n \n \n(4) \n5\n7\nR\n,\n2\n4\n\n\n\n\n\n\n\n",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-27-jan-shift-2_mat_q06.jpg"
+ },
+ {
+  "id": "jm2024-27-jan-shift-2_mat_q07",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "7. \nFor 0 < a < 1, the value of the integral \n2\n0\ndx\n1\n2acosx\na\n\n\n\n\n is : \n \n(1) \n2\n2\na\n\n\n \n \n(2) \n2\n2\na\n\n\n \n \n(3) \n2\n1 a\n\n\n \n \n(4) \n2\n1\na\n\n",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-27-jan-shift-2_mat_q07.jpg"
+ },
+ {
+  "id": "jm2024-27-jan-shift-2_mat_q08",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "8. \nLet \nx\ng(x)\n3f\nf(3\nx)\n3\n\n\n\n\n\n\n\n\n\n and f (x)\n0\n\n\n for all \nx\n(0,3)\n\n. If g is decreasing in (0, ) and \nincreasing in (, 3), then 8 is \n \n(1) 24 \n \n(2) 0 \n \n(3) 18 \n \n(4) 20",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-27-jan-shift-2_mat_q08.jpg"
+ },
+ {
+  "id": "jm2024-27-jan-shift-2_mat_q09",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "9. \nIf \ne\n2\nx\n0\n3\nsin x\ncosx\nlog (1\nx)\n1\nlim\n3tan x\n3\n\n\n\n\n\n\n, then \n2– is equal to : \n \n(1) 2 \n \n(2) 7 \n \n(3) 5 \n \n(4) 1",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-27-jan-shift-2_mat_q09.jpg"
+ },
+ {
+  "id": "jm2024-27-jan-shift-2_mat_q10",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "10. \nIf ,  are the roots of the equation, \n2\nx\nx 1 0\n\n \nand \nn\nn\nn\nS\n2023\n2024\n\n\n, then \n \n(1) \n12\n11\n10\n2S\nS\nS\n\n\n \n \n(2) \n12\n11\n10\nS\nS\nS\n\n\n \n \n(3) \n11\n12\n10\n2S\nS\nS\n\n\n \n \n(4) \n11\n10\n12\nS\nS\nS\n\n",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-27-jan-shift-2_mat_q10.jpg"
+ },
+ {
+  "id": "jm2024-27-jan-shift-2_mat_q11",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "11. \nLet A and B be two finite sets with m and n \nelements respectively. The total number of subsets \nof the set A is 56 more than the total number of \nsubsets of B. Then the distance of the point P(m, n) \nfrom the point Q(–2, –3) is \n \n(1) 10 \n \n(2) 6 \n \n(3) 4 \n \n(4) 8",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-27-jan-shift-2_mat_q11.jpg"
+ },
+ {
+  "id": "jm2024-27-jan-shift-2_mat_q12",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "12. \nThe values of , for which  \n \n3\n3\n1\n2\n2\n1\n1\n1\n0\n3\n3\n2\n3\n3\n1\n0\n\n\n\n\n\n, lie in the interval \n \n(1) (–2, 1) \n \n(2) (–3, 0) \n \n(3) \n3 3\n,\n2 2\n\n\n\n\n\n\n\n \n \n(4) (0, 3)",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-27-jan-shift-2_mat_q12.jpg"
+ },
+ {
+  "id": "jm2024-27-jan-shift-2_mat_q14",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "14. \nThe integral \n8\n2\n12\n6\n1\n3\n3\n(x\nx )dx\n1\n(x\n3x\n1)tan\nx\nx\n\n\n\n\n\n\n\n\n\n\n\n\n is \nequal to :  \n \n(1) \n1/3\n1\n3\n3\ne\n1\nlog\ntan\nx\nC\nx\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n \n \n(2) \n1/2\n1\n3\n3\ne\n1\nlog\ntan\nx\nC\nx\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n \n \n(3) \n1\n3\n3\ne\n1\nlog\ntan\nx\nC\nx\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n \n \n(4) \n3\n1\n3\n3\ne\n1\nlog\ntan\nx\nC\nx\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-27-jan-shift-2_mat_q14.jpg"
+ },
+ {
+  "id": "jm2024-27-jan-shift-2_mat_q15",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "15. \nIf \n2\n2tan\n5sec\n1\n\n has exactly 7 solutions in \nthe interval \nn\n0, 2\n\n\n\n\n\n\n\n, for the least value of n\nN\n\n \nthen \nn\nk\nk 1\nk\n2\n\n is equal to :  \n \n(1) \n14\n15\n1 (2\n14)\n2\n\n \n \n(2) \n15\n14\n1 (2\n15)\n2\n\n \n \n(3) \n13\n15\n1\n2\n\n \n \n(4) \n14\n3\n1 (2\n15)\n2\n",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-27-jan-shift-2_mat_q15.jpg"
+ },
+ {
+  "id": "jm2024-27-jan-shift-2_mat_q16",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "16. \nThe position vectors of the vertices A, B and C of a \ntriangle \nare \nˆ\nˆ\nˆ\n2i\n3j\n3k\n\n\n, \nˆ\nˆ\nˆ\n2i\n2j\n3k\n\n\n \nand \nˆ\nˆ\nˆ\ni\nj\n3k\n\n respectively. Let l denotes the length of \nthe angle bisector AD of \nBAC\n\n where D is on the \nline segment BC, then 2l2 equals :  \n \n(1) 49 \n \n(2) 42 \n \n(3) 50 \n \n(4) 45",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-27-jan-shift-2_mat_q16.jpg"
+ },
+ {
+  "id": "jm2024-27-jan-shift-2_mat_q17",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "17. \nIf y = y(x) is the solution curve of the differential \nequation \n2\n2\n(x\n4)dy\n(y\n3y)dx\n0\n\n\n\n\n,  \n \n3\nx\n2,y(4)\n2\n\n\n and the slope  of the curve is never \nzero, then the value of y(10) equals :  \n \n(1) \n1/4\n3\n1\n(8)\n\n \n \n(2) \n3\n1\n2 2\n\n \n \n(3) \n3\n1\n2 2\n\n \n \n(4) \n1/4\n3\n1\n(8)\n",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-27-jan-shift-2_mat_q17.jpg"
+ },
+ {
+  "id": "jm2024-27-jan-shift-2_mat_q18",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "18. \nLet e1 be the eccentricity of the hyperbola \n2\n2\nx\ny\n1\n16\n9\n\n and e2 be the eccentricity of the ellipse \n2\n2\n2\n2\nx\ny\n1\na\nb\n\n, a > b, which passes through the foci \nof the hyperbola. If e1e2 = 1, then the length of the \nchord of the ellipse parallel to the x-axis and \npassing through (0, 2) is :  \n \n(1) 4 5 \n \n(2) 8 5\n3\n \n \n(3) 10 5\n3\n \n \n(4) 3 5",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-27-jan-shift-2_mat_q18.jpg"
+ },
+ {
+  "id": "jm2024-27-jan-shift-2_mat_q19",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "19. \nLet \n\n\n3!\n4! !\n4!\n\n and \n\n\n4!\n5! !\n5!\n\n. Then : \n \n(1) \nN and\n\nN \n \n(2) N and\nN\n\n \n \n(3) \nN and\nN\n\n\n \n \n(4) N and N",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-27-jan-shift-2_mat_q19.jpg"
+ },
+ {
+  "id": "jm2024-27-jan-shift-2_mat_q20",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "20. \nLet the position vectors of the vertices A, B and C \nof a triangle be \nˆ\nˆ\nˆ\n2i\n2j\nk\n\n\n, ˆ\nˆ\nˆ\ni\n2j\n2k\n\n\n and \nˆ\nˆ\nˆ\n2i\nj\n2k\n\n respectively. Let l1, l2 and l3 be the \nlengths of perpendiculars drawn from the ortho \ncenter of the triangle on the sides AB, BC and CA \nrespectively, then \n2\n2\n2\n1\n2\n3\n\n\nl\nl\nl equals : \n \n(1) 1\n5 \n(2) 1\n2 \n \n(3) 1\n4 \n \n(4) 1\n3",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-27-jan-shift-2_mat_q20.jpg"
+ },
+ {
+  "id": "jm2024-27-jan-shift-2_mat_q27",
+  "qtype": "integer",
+  "key": "2",
+  "text": "27. \nLet \nx\ne\n0\n1\nt\nf (x)\ng(t)log\ndt\n1\nt\n\n\n\n\n\n\n\n\n\n\n, where g is a \ncontinuous odd function.  \n \nIf \n2\n/2\n2\nx\n/2\nx cosx\nf (x)\ndx\n1\ne\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n, then  is \nequal to………….",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-27-jan-shift-2_mat_q27.jpg"
+ },
+ {
+  "id": "jm2024-29-jan-shift-1_mat_q01",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "1. \nIf in a G.P. of 64 terms, the sum of all the terms is \n7 times the sum of the odd terms of the G.P, then \nthe common ratio of the G.P. is equal to \n \n(1) 7 \n(2) 4 \n \n(3) 5 \n \n(4) 6",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-29-jan-shift-1_mat_q01.jpg"
+ },
+ {
+  "id": "jm2024-29-jan-shift-1_mat_q02",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "2. \nIn an A.P., the sixth terms a6 = 2. If the \n1\n4\n5\na a a is \nthe greatest, then the common difference of the \nA.P., is equal to  \n \n(1) 3\n2 \n(2) 8\n5 \n(3) 2\n3 \n(4) 5\n8",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-29-jan-shift-1_mat_q02.jpg"
+ },
+ {
+  "id": "jm2024-29-jan-shift-1_mat_q03",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "3. \nIf \n2\n2x , 1\nx\n0\nf x\n;\nx\n1\n, 0\nx\n3\n3\n\n\n\n\n\n\n\n\n\nx , 3\nx\n0\ng x\nx, 0\nx\n1\n\n\n\n\n\n\n\n\n, \nthen range of (fog(x)) is  \n \n(1) (0, 1] \n(2) [0, 3) \n \n(3) [0, 1] \n \n(4) [0, 1)",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-29-jan-shift-1_mat_q03.jpg"
+ },
+ {
+  "id": "jm2024-29-jan-shift-1_mat_q04",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "4. \nA fair die is thrown until 2 appears. Then the \nprobability, that 2 appears in even number of \nthrows , is   \n \n(1) 5\n6 \n(2) 1\n6 \n(3) 5\n11 \n(4) 6\n11",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-29-jan-shift-1_mat_q04.jpg"
+ },
+ {
+  "id": "jm2024-29-jan-shift-1_mat_q05",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "5. \nIf \n1\nz\n2i\n2\n\n\n, is such that \n \n\n\n|z 1|\nz\n1 i ,i\n1\n\n\n\n\nand \n,\nR\n\n , then \n is equal to  \n \n(1) –4 \n(2) 3 \n \n(3)  2 \n \n(4) –1",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-29-jan-shift-1_mat_q05.jpg"
+ },
+ {
+  "id": "jm2024-29-jan-shift-1_mat_q07",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "7. \nIn a \nABC,\n\n suppose y = x  is the equation of the \nbisector of the angle B and the equation of the side \nAC is 2x –y =2. If 2AB = BC and the point A and \nB are respectively (4, 6) and \n\n,\n, then \n2\n is \nequal to  \n \n(1) 42 \n(2) 39 \n \n(3) 48 \n \n(4) 45",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-29-jan-shift-1_mat_q07.jpg"
+ },
+ {
+  "id": "jm2024-29-jan-shift-1_mat_q09",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "9. \nLet \na\n5, 4\n\n\n\n\n\n\n, be the circumcenter of a triangle with \nvertices \n\n\n\n\nA a, 2 , B a, 6\n\n and \na\nC\n,–2\n4\n\n\n\n\n\n\n. Let  \ndenote the circumradius, denote the area and  \ndenote the perimeter of the triangle. Then  is \n \n(1) 60 \n(2) 53 \n \n(3) 62 \n \n(4) 30",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-29-jan-shift-1_mat_q09.jpg"
+ },
+ {
+  "id": "jm2024-29-jan-shift-1_mat_q10",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "10. \nFor x\n,\n2 2\n\n\n\n\n\n\n\n, if  \n \n\n2\ncosecx\nsinx\ny x\ndx\ncosecxsecx\ntanxsin x\n\n\n\n\nand \n \n\nx\n2\nlim y x\n0\n\n\n\n\n\n\n\n\n\nthen y\n4\n\n\n\n\n\n\n is equal to  \n \n(1)\n1\n1\ntan\n2\n\n\n\n\n\n \n(2)\n1\n1\n1\ntan\n2\n2\n\n\n\n\n\n\n \n \n(3)\n1\n1\n1\ntan\n2\n2\n\n\n\n\n\n\n\n \n(4)\n1\n1\n1\ntan\n2\n2\n\n\n\n\n\n\n",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-29-jan-shift-1_mat_q10.jpg"
+ },
+ {
+  "id": "jm2024-29-jan-shift-1_mat_q11",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "11. \nIf \n,\n2\n2\n\n\n\n\n is the solution of 4cos\n5sin\n1\n\n, \nthen the value of tan is  \n \n(1) 10\n10\n6\n\n \n(2) 10\n10\n12\n\n \n \n(3)\n10\n10\n12\n\n \n \n(4)\n10\n10\n6\n",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-29-jan-shift-1_mat_q11.jpg"
+ },
+ {
+  "id": "jm2024-29-jan-shift-1_mat_q12",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "12. \nA function y = f(x) satisfies  \n \n\n\n\n\n2\nf x sin2x\nsinx\n1 cos x f ' x\n0\n\n\n\nwith condition \nf(0) = 0 . Then f\n2\n\n\n\n\n\n\n is equal to  \n \n(1) 1 \n(2) 0 \n(3) –1 \n(4) 2",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-29-jan-shift-1_mat_q12.jpg"
+ },
+ {
+  "id": "jm2024-29-jan-shift-1_mat_q14",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "14. \nConsider the function \n1\nf :\n,1\nR\n2\n\n\n\n\n\n\n defined by \n\n3\nf x\n4 2x\n3 2x 1\n\n\n. Consider the statements  \n \n(I) The curve y = f(x) intersects the x-axis exactly \nat one point  \n \n(II) The curve y = f(x) intersects the x-axis at \nx\ncos12\n\n\n \n \nThen  \n \n(1) Only (II) is correct  \n \n(2) Both (I) and (II) are incorrect \n \n(3) Only (I) is correct \n \n(4) Both (I) and (II) are correct",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-29-jan-shift-1_mat_q14.jpg"
+ },
+ {
+  "id": "jm2024-29-jan-shift-1_mat_q15",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "15. \nLet A\n0\n0\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n and \n3\n21\n| 2A |\n2\n\nwhere \n,\nZ\n\n, \nThen a value of  is  \n \n(1) 3 \n(2) 5 \n \n(3) 17 \n \n(4) 9",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-29-jan-shift-1_mat_q15.jpg"
+ },
+ {
+  "id": "jm2024-29-jan-shift-1_mat_q16",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "16. \nLet PQR be a triangle with \n\n\nR\n1,4, 2\n\n. Suppose \nM(2, 1, 2) is the mid point of PQ. The distance of \nthe centroid of \nPQR\n\n from the point of \nintersection \nof \nthe \nline \nx\n2\ny\nz\n3\nx\n1\ny\n3\nz\n1\nand\n0\n2\n1\n1\n3\n1\n\n\n\n\n\n\n\n\n\n\n\n is  \n \n(1) 69 \n(2) 9 \n \n(3)\n69 \n \n(4)\n99",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-29-jan-shift-1_mat_q16.jpg"
+ },
+ {
+  "id": "jm2024-29-jan-shift-1_mat_q17",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "17. \nLet R be a relation on Z × Z defined by \n \n(a, b)R(c, d) if and only if ad – bc is divisible by 5. \nThen R is  \n \n(1) Reflexive and symmetric but not transitive \n \n(2) Reflexive but neither symmetric not transitive \n \n(3) Reflexive, symmetric and transitive \n \n(4) Reflexive and transitive but not symmetric",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-29-jan-shift-1_mat_q17.jpg"
+ },
+ {
+  "id": "jm2024-29-jan-shift-1_mat_q18",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "18. \nIf the value of the integral  \n \n\n\n2023\n2\n2\n2\nx\nsinx\n2\nx cosx\n1 sin x\ndx\na\n2\n1\n4\n1\ne\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n,  \n \nthen the value of a is  \n \n(1)  3  \n(2)\n3\n2\n\n \n(3) 2 \n(4) 3\n2",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-29-jan-shift-1_mat_q18.jpg"
+ },
+ {
+  "id": "jm2024-29-jan-shift-1_mat_q19",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "19. \nSuppose  \n \n\n\n\n\n\n\nx\nx\n1\n2\n3\n2\n2\n2\ntanx\ntan\nx\nx\n1\nf x\n7x\n3x\n1\n\n\n\n\n\n\n\n\n,  \n \nThen the value of f '(0) is equal to  \n \n(1)  \n(2) 0  \n \n(3)\n \n \n(4)\n2\n",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-29-jan-shift-1_mat_q19.jpg"
+ },
+ {
+  "id": "jm2024-29-jan-shift-1_mat_q20",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "20. \nLet A be a square matrix such that \nT\nAA\nI\n. Then \n\n\n\n\n2\n2\nT\nT\n1 A\nA\nA\nA\nA\n2\n\n\n\n\n\n\n\n\n is equal to \n \n(1)\n2\nA\nI\n \n(2)\n3\nA\nI\n \n \n(3)\n2\nT\nA\nA\n\n  \n(4)\n3\nT\nA\nA\n",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-29-jan-shift-1_mat_q20.jpg"
+ },
+ {
+  "id": "jm2024-29-jan-shift-1_mat_q21",
+  "qtype": "integer",
+  "key": "2",
+  "text": "21. \nEquation of two diameters of a circle are \n2x\n3y\n5\n\n\nand 3x\n4y\n7\n\n\n. The line joining the \npoints \n22,\n4\n7\n\n\n\n\n\n\n\n and \n1 ,3\n7\n\n\n\n\n\n\n intersects the circle \nat only one point \n\nP\n,\n. Then 17 is equal to",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-29-jan-shift-1_mat_q21.jpg"
+ },
+ {
+  "id": "jm2024-29-jan-shift-1_mat_q26",
+  "qtype": "integer",
+  "key": "3",
+  "text": "26. \nIf the solution curve y\ny x\n\n of the differential \nequation \n\n\n2\ne\n1\ny\n1 log x dx\nx\n\n\n\ndy = 0, x > 0 \npasses \nthrough \nthe \npoint \n(1, \n1) \nand \n\n3\ntan 2\ny e\n,\n3\ntan 2\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n then \n2\n is",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-29-jan-shift-1_mat_q26.jpg"
+ },
+ {
+  "id": "jm2024-29-jan-shift-2_mat_q01",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "1. \nLet A = 6\n2\n11\n3\n3\n2\n\n\n\n\n\n\n\n\n and P = 5\n0\n2\n7\n1\n5\n\n\n\n\n\n\n\n\n. The sum \nof the prime factors of \n1\nP AP\n2I\n\n\n is equal to  \n \n(1) 26 \n(2) 27 \n(3) 66 \n(4) 23",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-29-jan-shift-2_mat_q01.jpg"
+ },
+ {
+  "id": "jm2024-29-jan-shift-2_mat_q03",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "3. \nLet P(3, 2, 3), Q (4, 6, 2) and R (7, 3, 2) be the \nvertices of PQR. Then, the angle QPR is  \n \n(1) \n6\n \n(2) \n1\n7\ncos\n18\n\n\n\n\n\n\n \n \n(3) \n1\n1\ncos\n18\n\n\n\n\n\n\n \n(4) \n3\n",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-29-jan-shift-2_mat_q03.jpg"
+ },
+ {
+  "id": "jm2024-29-jan-shift-2_mat_q04",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "4. \nIf the mean and variance of five observations are \n24\n5 and 194\n25 respectively and the mean of first \nfour observations is 7 ,\n2 then the variance of the \nfirst four observations in equal to  \n \n(1) 4\n5 \n(2) 77\n12 \n(3) 5\n4 \n(4) 105\n4",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-29-jan-shift-2_mat_q04.jpg"
+ },
+ {
+  "id": "jm2024-29-jan-shift-2_mat_q05",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "5. \nThe function f(x) = \n2\n3\n2x\n3(x) ,x\n,\n\n\n has  \n \n(1)  exactly one point of local minima and no  \n \n \n \npoint of local maxima \n \n(2)  exactly one point of local maxima and no  \n \n \n      point of local minima  \n \n(3)  exactly one point of local maxima and \n \nexactly one point of local minima  \n \n(4)  exactly two points of local maxima and \n \nexactly one point of local minima",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-29-jan-shift-2_mat_q05.jpg"
+ },
+ {
+  "id": "jm2024-29-jan-shift-2_mat_q06",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "6. \nLet r and  respectively be the modulus and \namplitude \nof \nthe \ncomplex \nnumber \n5\nz\n2\ni 2tan 8\n\n\n\n\n\n\n\n\n, then (r, )\n is equal to  \n \n(1) \n3\n3\n2sec\n,\n8\n8\n\n\n\n\n\n\n\n\n \n \n(2) \n3\n5\n2sec\n,\n8\n8\n\n\n\n\n\n\n\n\n \n \n(3) \n5\n3\n2sec\n,\n8\n8\n\n\n\n\n\n\n\n\n \n \n(4) \n11\n11\n2sec\n,\n8\n8\n\n\n\n\n\n\n\n",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-29-jan-shift-2_mat_q06.jpg"
+ },
+ {
+  "id": "jm2024-29-jan-shift-2_mat_q08",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "8. \nLet OA\na,OB 12a\n4b\n\n\n\n and OC\nb,\n\n where O \nis the origin. If S is the parallelogram with adjacent \nsides OA and OC, then  \n \narea of the quadrilateral OABC\narea of S\n is equal to ___ \n \n(1) 6 \n(2) 10 \n \n(3) 7 \n \n(4) 8",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-29-jan-shift-2_mat_q08.jpg"
+ },
+ {
+  "id": "jm2024-29-jan-shift-2_mat_q11",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "11. \nThe distance of the point (2, 3) from the line 2x – \n3y + 28 = 0, measured parallel to the line \n3x\ny\n1\n0,\n\n\n is equal to  \n \n(1) 4 2 \n(2) 6 3 \n \n(3) 3\n4 2\n\n  \n(4) 4\n6 3\n",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-29-jan-shift-2_mat_q11.jpg"
+ },
+ {
+  "id": "jm2024-29-jan-shift-2_mat_q13",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "13. \nIf each term of a geometric progression a1, a2, a3,… \nwith \n1\n1\na\n8\n\n and \n2\n1\na\na ,\n\n is the arithmetic mean of \nthe next two terms and Sn = a1 + a2 + …+an, then \nS20 – S18 is equal to  \n \n(1) 215 \n(2) –218 \n \n(3) 218 \n \n(4) –215",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-29-jan-shift-2_mat_q13.jpg"
+ },
+ {
+  "id": "jm2024-29-jan-shift-2_mat_q14",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "14. \nLet A be the point of intersection of the lines 3x + \n2y = 14, 5x – y = 6 and B be the point of \nintersection of the lines 4x + 3y = 8, 6x + y = 5. \nThe distance of the point P(5,  –2) from the line \nAB is  \n \n(1) 13\n2 \n(2) 8 \n(3) 5\n2 \n(4) 6",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-29-jan-shift-2_mat_q14.jpg"
+ },
+ {
+  "id": "jm2024-29-jan-shift-2_mat_q15",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "15. \nLet x = m\nn (m, n are co-prime natural numbers) be \na solution of the equation \n\n\n1\n1\ncos 2sin\nx\n9\n\n\n and let \n, (\n)\n be the roots of the equation mx2 – nx – \nm + n = 0. Then the point ( , )\n lies on the line  \n \n(1) 3x + 2y = 2 \n(2) 5x – 8y = –9 \n \n(3) 3x – 2y = –2 \n(4) 5x + 8y = 9",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-29-jan-shift-2_mat_q15.jpg"
+ },
+ {
+  "id": "jm2024-29-jan-shift-2_mat_q16",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "16. \nThe function f(x) = \n2\nx\n,x\nx\n6x\n16\n\n\n\n –{–2, 8}  \n \n(1) decreases in (–2, 8) and increases in       \n \n \n     (\n, 2)\n(8, )\n\n\n  \n \n(2) decreases in (\n, 2)\n( 2,8)\n(8, )\n\n\n\n \n \n(3) decreases in (\n, 2)\n\n and increases in (8,\n)\n \n \n(4) increases in (\n, 2)\n( 2,8)\n(8, )\n\n\n\n",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-29-jan-shift-2_mat_q16.jpg"
+ },
+ {
+  "id": "jm2024-29-jan-shift-2_mat_q17",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "17. \nLet y = \n2\ne\n2\n1\nx\nlog\n,\n1\nx\n\n\n\n\n\n\n\n\n –1 < x < 1. Then at x = 1 ,\n2\nthe value of 225(y' y\")\n\nis equal to  \n \n(1) 732 \n(2) 746 \n \n(3) 742 \n \n(4) 736",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-29-jan-shift-2_mat_q17.jpg"
+ },
+ {
+  "id": "jm2024-29-jan-shift-2_mat_q18",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "18. \nIf R is the smallest equivalence relation on the set \n{1, 2, 3, 4} such that {(1,2), (1,3)} R, then the \nnumber of elements in R is ______ \n \n(1) 10 \n(2) 12 \n \n(3) 8 \n \n(4) 15",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-29-jan-shift-2_mat_q18.jpg"
+ },
+ {
+  "id": "jm2024-29-jan-shift-2_mat_q19",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "19. \nAn integer is chosen at random from the integers 1, \n2, 3, …, 50. The probability that the chosen integer \nis a multiple of atleast one of 4, 6 and 7 is \n \n(1) 8\n25 \n(2) 21\n50 \n \n(3) 9\n50 \n \n(4) 14\n25",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-29-jan-shift-2_mat_q19.jpg"
+ },
+ {
+  "id": "jm2024-29-jan-shift-2_mat_q20",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "20. \nLet a unit vector \nˆ\nˆ\nˆ\nˆu\nxi\nyj\nzk\n\n\n\nmake angles \n,\n2 3\n \nand 2\n3\nwith the vectors \n1\n1\n1\n1\nˆ\nˆ\nˆ\nˆ\ni\nk ,\nj\nk\n2\n2\n2\n2\n\n\n \nand \n1\n1\nˆ\nˆ\ni\nj\n2\n2\n\n \nrespectively. \nIf \n1\n1\n1\nˆ\nˆ\nˆ\nv\ni\nj\nk ,\n2\n2\n2\n\n\n\nthen\n2\nˆu\nv\n\n is equal to \n \n(1) 11\n2 \n(2) 5\n2 \n \n(3) 9 \n \n(4) 7",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-29-jan-shift-2_mat_q20.jpg"
+ },
+ {
+  "id": "jm2024-29-jan-shift-2_mat_q21",
+  "qtype": "integer",
+  "key": "49",
+  "text": "21. \nLet ,  be the roots of the equation \n2\nx\n6x\n3\n0\n\n\nsuch that Im () > Im (). Let a, b \nbe integers not divisible by 3 and n be a natural \nnumber such that \n99\n98\nn3 (a\nib),i\n1\n\n\n\n\n\n\n. Then \nn + a + b is equal to _______.",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-29-jan-shift-2_mat_q21.jpg"
+ },
+ {
+  "id": "jm2024-29-jan-shift-2_mat_q23",
+  "qtype": "integer",
+  "key": "192",
+  "text": "23. \nLet P(,) be a point on the parabola y2 = 4x. If P \nalso lies on the chord of the parabola x2 = 8y \nwhose mid point is \n5\n1, 4\n\n\n\n\n\n\n. Then (-28) (-8) is \nequal to ___________.",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-29-jan-shift-2_mat_q23.jpg"
+ },
+ {
+  "id": "jm2024-29-jan-shift-2_mat_q24",
+  "qtype": "integer",
+  "key": "6",
+  "text": "24. \nIf \n3\n6\n1 sin2xdx\n2\n3\n\n\n\n\n\n, where ,  \nand  are rational numbers, then 3+4- is equal \nto _______.",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-29-jan-shift-2_mat_q24.jpg"
+ },
+ {
+  "id": "jm2024-29-jan-shift-2_mat_q26",
+  "qtype": "integer",
+  "key": "9",
+  "text": "26. \nLet O be the origin, and M and N be the points on \nthe lines x\n5\ny\n4\nz\n5\n4\n1\n3\n\n\n\n\n\n and  \n \nx\n8\ny\n2\nz\n11\n12\n5\n9\n\n\n\n\n\n respectively such that MN is \nthe shortest distance between the given lines. Then \n.\nOM ON is equal to _____.",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-29-jan-shift-2_mat_q26.jpg"
+ },
+ {
+  "id": "jm2024-29-jan-shift-2_mat_q28",
+  "qtype": "integer",
+  "key": "1",
+  "text": "28. \nRemainder when \n32\n32\n64\nis divided by 9 is equal to \n____.",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-29-jan-shift-2_mat_q28.jpg"
+ },
+ {
+  "id": "jm2024-29-jan-shift-2_mat_q29",
+  "qtype": "integer",
+  "key": "46",
+  "text": "29. \nLet the set \n\n\n\n\n2\ny\nC\nx,y | x\n2\n2023,x,y\n\n\n\n\n. \nThen \n(x,y) C\n(x\ny)\n\n\n\n is equal to _______.",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-29-jan-shift-2_mat_q29.jpg"
+ },
+ {
+  "id": "jm2024-30-jan-shift-1_mat_q02",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "2. \nLet Sa denote the sum of first n terms an arithmetic \nprogression. If S20 = 790 and S10 = 145, then S15 – \nS5 is : \n \n(1) 395 \n \n(2) 390 \n \n(3) 405 \n \n(4) 410",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-30-jan-shift-1_mat_q02.jpg"
+ },
+ {
+  "id": "jm2024-30-jan-shift-1_mat_q05",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "5. \nThe maximum area of a triangle whose one vertex \nis at (0, 0) and the other two vertices lie on the \ncurve y = -2x2 + 54 at points (x, y) and (-x, y) \nwhere y > 0 is : \n \n(1) 88 \n \n(2) 122 \n \n(3) 92 \n \n(4) 108",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-30-jan-shift-1_mat_q05.jpg"
+ },
+ {
+  "id": "jm2024-30-jan-shift-1_mat_q06",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "6. \nThe value of \n\n\n\n3\nn\n2\n2\n2\nn\nk 1\nn\nlim\nn\nk\nn\n3k\n\n\n\n\n\n is : \n \n(1) \n\n2 3\n3\n24\n\n\n \n \n(2) \n\n\n13\n8 4 3\n3\n\n\n \n \n(3) \n\n\n13 2 3\n3\n8\n\n\n \n \n(4) \n\n\n8 2 3\n3\n\n",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-30-jan-shift-1_mat_q06.jpg"
+ },
+ {
+  "id": "jm2024-30-jan-shift-1_mat_q07",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "7. \nLet g : R\nR\n\n be a non constant twice \ndifferentiable such that \n1\n3\ng'\ng'\n2\n2\n\n\n\n\n\n\n\n\n\n\n\n\n\n. If a real \nvalued \nfunction \nf \nis \ndefined \nas \n\n\n\n\n1\nf x\ng x\ng 2\nx\n2\n\n\n\n\n\n\n, then \n \n(1) f”(x) = 0 for atleast two x in (0, 2) \n \n(2) f”(x) = 0 for exactly one x in (0, 1) \n \n(3) f”(x) = 0 for no x in (0, 1) \n \n(4) \n3\n1\nf '\nf '\n1\n2\n2\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-30-jan-shift-1_mat_q07.jpg"
+ },
+ {
+  "id": "jm2024-30-jan-shift-1_mat_q08",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "8. \nThe area (in square units) of the region bounded by \nthe parabola y2 = 4(x – 2) and the line y = 2x - 8 \n \n(1) 8 \n \n(2) 9 \n \n(3) 6 \n \n(4) 7",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-30-jan-shift-1_mat_q08.jpg"
+ },
+ {
+  "id": "jm2024-30-jan-shift-1_mat_q09",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "9. \nLet y = y (x) be the solution of the differential \nequation sec x dy + {2(1 – x) tan x + x(2 – x)}  \ndx = 0 such that y(0) = 2.Then y(2) is equal to : \n \n(1) 2 \n \n(2) 2{1 – sin (2)} \n \n(3) 2{sin (2) + 1} \n \n(4) 1",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-30-jan-shift-1_mat_q09.jpg"
+ },
+ {
+  "id": "jm2024-30-jan-shift-1_mat_q11",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "11. \nTwo integers x and y are chosen with replacement \nfrom the set {0, 1, 2, 3, ….., 10}. Then the \nprobability that | x\ny| 5\n\n\n is :   \n \n(1) 30\n121 \n \n(2) 62\n121 \n \n(3) 60\n121 \n \n(4) 31\n121",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-30-jan-shift-1_mat_q11.jpg"
+ },
+ {
+  "id": "jm2024-30-jan-shift-1_mat_q12",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "12. \nIf \nthe \ndomain \nof \nthe \nfunction \n\n\n\n\n\n1\n1\ne\n2\nx\nf x\ncos\nlog\n3\nx\n4\n\n\n\n\n\n\n\n\n\n\n\n \nis \n\n[\n, )\ny\n\n, then  is equal to : \n \n(1) 12 \n \n(2) 9 \n \n(3) 11 \n \n(4) 8",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-30-jan-shift-1_mat_q12.jpg"
+ },
+ {
+  "id": "jm2024-30-jan-shift-1_mat_q14",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "14. \nIf \nthe \ncircles \n\n\n\n\n2\n2\n2\nx\n1\ny\n2\nr\n\n\n\n\n \nand \n2\n2\nx\ny\n4x\n4y\n4\n0\n\n\n\n\n\n intersect at exactly two \ndistinct points, then \n \n(1) 5 < r < 9 \n \n(2) 0 < r < 7 \n \n(3) 3 < r < 7 \n \n(4) 1\nr\n7\n2 ",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-30-jan-shift-1_mat_q14.jpg"
+ },
+ {
+  "id": "jm2024-30-jan-shift-1_mat_q16",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "16. \nLet M denote the median of the following \nfrequency distribution. \nClass \n0-4 \n4-8 \n8-12 \n12-16 \n16-20 \nFrequency 3 \n9 \n10 \n8 \n6 \n \nThen 20 M is equal to : \n \n(1) 416 \n \n(2) 104 \n \n(3) 52 \n \n(4) 208",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-30-jan-shift-1_mat_q16.jpg"
+ },
+ {
+  "id": "jm2024-30-jan-shift-1_mat_q17",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "17. \nIf \n\n4\n4\n2\n4\n4\n2\n2cos x\n2sin\n3\nsin 2\n3\n2cos\n2sin\nsin 2\n2cos\n3\n2sin\nsin 2\n\n\n\n\nx\nx\nf x\nx\nx\nx\nx\nx\nx\n \nthen \n\n1\n' 0\n5 f\n is equal to ______ \n \n(1) 0 \n \n(2) 1 \n \n(3) 2 \n \n(4) 6",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-30-jan-shift-1_mat_q17.jpg"
+ },
+ {
+  "id": "jm2024-30-jan-shift-1_mat_q18",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "18. \nLet A (2, 3, 5) and C(-3, 4, -2) be opposite vertices \nof a parallelogram ABCD if the diagonal \nˆ\nˆ\nˆ\n2\n3\n\n\nBD\ni\nj\nk then the area of the parallelogram \nis equal to \n \n(1) 1\n410\n2\n \n \n(2) 1\n474\n2\n \n \n(3) 1\n586\n2\n \n \n(4) 1\n306\n2",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-30-jan-shift-1_mat_q18.jpg"
+ },
+ {
+  "id": "jm2024-30-jan-shift-1_mat_q19",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "19. \nIf 2sin3x + sin 2x cos x + 4sinx – 4 = 0 has exactly \n3 solutions in the interval \nn\n0, 2\n\n\n\n\n\n\n\n, n\nN\n\n, then the \nroots of the equation \n\n\n2\nx\nnx\nn\n3\n0\n\n\n\n\n belong \nto : \n \n(1) \n\n0, \n \n(2) \n\n,0\n\n \n \n(3) \n17\n17\n,\n2\n2\n\n\n\n\n\n\n\n\n\n \n \n(4) Z",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-30-jan-shift-1_mat_q19.jpg"
+ },
+ {
+  "id": "jm2024-30-jan-shift-1_mat_q20",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "20. \nLet f :\n,\nR\n2 2\n\n\n\n\n\n\n\n\n\n be a differentiable function \nsuch that \n\n1\nf 0\n,\n2\n\n If the \n\n2\nx\n0\nx\nx\n0\nx\nf t dt\nlim\ne\n1\n\n\n\n\n, \nthen \n2\n8 is equal to : \n \n(1) 16 \n \n(2) 2 \n \n(3) 1 \n \n(4) 4",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-30-jan-shift-1_mat_q20.jpg"
+ },
+ {
+  "id": "jm2024-30-jan-shift-2_mat_q02",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "2. \nFor \n\n\n\n\n\n\n\n,\n0, 2 , let \n\n\n3sin(\n) 2sin(\n) and a \nreal number k be such that \n\n\ntan\nktan . Then the \nvalue of k is equal to : \n \n(1)  2\n3 \n(2) –5   \n \n(3) 2\n3  \n(4) 5",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-30-jan-shift-2_mat_q02.jpg"
+ },
+ {
+  "id": "jm2024-30-jan-shift-2_mat_q03",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "3. \nLet A(, 0) and B(0, ) be the points on the line  \n5x + 7y = 50. Let the point P divide the line \nsegment AB internally in the ratio 7 : 3. Let 3x – \n25 = 0 be a directrix of the ellipse \n\n\n2\n2\n2\n2\nx\ny\nE :\n1\na\nb\n \nand the corresponding focus be S. If from S, the \nperpendicular on the x-axis passes through P, then \nthe length of the latus rectum of E is equal to    \n \n(1) 25\n3 \n(2) 32\n9 \n \n(3) 25\n9 \n \n(4) 32\n5",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-30-jan-shift-2_mat_q03.jpg"
+ },
+ {
+  "id": "jm2024-30-jan-shift-2_mat_q04",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "4. \nLet \n\n\nˆ\nˆ\nˆ\na\ni\nj\nk,\n,\nR . Let a vector b be such \nthat the angle between a and b is \n4 and \n2\nb\n6\n, \nIf \n\na.b 3 2 , then the value of \n\n\n\n2\n2\n2 a b is \nequal to  \n \n(1) 90 \n(2) 75 \n \n(3) 95 \n \n(4) 85",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-30-jan-shift-2_mat_q04.jpg"
+ },
+ {
+  "id": "jm2024-30-jan-shift-2_mat_q05",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "5. \nLet \n\n\n\n\n2\n3\nf(x) (x\n3) (x\n2) ,x\n[ 4, 4]. If M  and m are \nthe maximum and minimum values of f, \nrespectively in [–4, 4], then the value of M – m is : \n \n(1) 600 \n(2) 392  \n \n(3) 608 \n \n(4) 108",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-30-jan-shift-2_mat_q05.jpg"
+ },
+ {
+  "id": "jm2024-30-jan-shift-2_mat_q06",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "6. \nLet a and b be be two distinct positive real \nnumbers. Let 11th term of a GP, whose first term is \na and third term is b, is equal to pth term of another \nGP, whose first term is a and fifth term is b. Then p \nis equal to  \n \n(1) 20 \n(2) 25 \n \n(3) 21 \n \n(4) 24",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-30-jan-shift-2_mat_q06.jpg"
+ },
+ {
+  "id": "jm2024-30-jan-shift-2_mat_q07",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "7. \nIf x2 – y2 + 2hxy + 2gx + 2fy + c = 0 is the locus of \na point, which moves such that it is always \nequidistant from the lines x + 2y + 7 = 0 and 2x – y \n+ 8 = 0, then the value of g + c + h – f equals   \n \n(1) 14 \n(2) 6 \n \n(3) 8 \n \n(4) 29",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-30-jan-shift-2_mat_q07.jpg"
+ },
+ {
+  "id": "jm2024-30-jan-shift-2_mat_q10",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "10. \nLet P be a point on the hyperbola \n\n\n2\n2\nx\ny\nH :\n1\n9\n4\n, \nin the first quadrant such that the area of triangle \nformed by P and the two foci of H is 2 13 . Then, \nthe square of the distance of P from the origin is  \n \n(1) 18 \n \n \n(2) 26 \n \n(3) 22 \n \n \n \n(4) 20",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-30-jan-shift-2_mat_q10.jpg"
+ },
+ {
+  "id": "jm2024-30-jan-shift-2_mat_q11",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "11. \nBag A contains 3 white, 7 red balls and bag B \ncontains 3 white, 2 red balls. One bag is selected at \nrandom and a ball is drawn from it. The probability \nof drawing the ball from the bag A, if the ball \ndrawn in white, is : \n \n(1) 1\n4 \n(2) 1\n9  \n \n(3) 1\n3 \n \n(4) 3\n10",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-30-jan-shift-2_mat_q11.jpg"
+ },
+ {
+  "id": "jm2024-30-jan-shift-2_mat_q12",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "12. \nLet f : R R be defined \n\n\n\n2x\nx\nf(x) ae\nbe\ncx . If \n\nf(0)\n1, \n\ne\nf (log 2) 21 and \n  \n\n\ne\nlog 4\n0\n39\nf(x)\ncx dx\n2\n\n\n\n, then the value of |a+b+c| \nequals : \n \n(1) 16 \n(2) 10  \n \n(3) 12 \n \n(4) 8",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-30-jan-shift-2_mat_q12.jpg"
+ },
+ {
+  "id": "jm2024-30-jan-shift-2_mat_q13",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "13. \nLet \n\n\n\n\n1\nˆ ˆ\nˆ ˆ\nˆ\nˆ\nL : r\n(i\nj\n2k)\n(i\nj\n2k),\nR \n \n\n\n\n\n\n2\nˆ\nˆ ˆ\nˆ\nˆ\nL : r\n( j\nk)\n(3i\nj\npk),\nR and \n\n\n\n\n3\nˆ\nˆ\nˆ\nL : r\n( i\nmj nk)\nR \n \nBe three lines such that L1 is perpendicular to L2 \nand L3 is perpendicular to both L1 and L2. Then the \npoint which lies on L3 is  \n \n(1) (–1, 7, 4)   \n(2) (–1, –7, 4)  \n \n(3) (1, 7, –4)  \n(4) (1, –7, 4)",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-30-jan-shift-2_mat_q13.jpg"
+ },
+ {
+  "id": "jm2024-30-jan-shift-2_mat_q15",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "15. \nLet \n\n\nf :\n{0}\nbe \na \nfunction \nsatisfying \n\n\n\n\n\n\nx\nf(x)\nf y\nf(y) for all x, y, f(y)  0. If f (1) = 2024, \nthen  \n \n(1) xf (x) – 2024 f(x) = 0  \n \n(2) xf(x) + 2024f(x) = 0  \n \n(3) xf(x) +f(x) = 2024  \n \n(4) xf(x) –2023f(x) = 0",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-30-jan-shift-2_mat_q15.jpg"
+ },
+ {
+  "id": "jm2024-30-jan-shift-2_mat_q16",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "16. \nIf z is a  complex number, then the number of \ncommon roots of the equation \n\n\n1985\n100\nz\nz\n1 0 and \n\n\n\n3\n2\nz\n2z\n2z 1 0,  is equal to : \n \n(1) 1 \n(2) 2  \n \n(3) 0 \n \n(4) 3",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-30-jan-shift-2_mat_q16.jpg"
+ },
+ {
+  "id": "jm2024-30-jan-shift-2_mat_q19",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "19. \nLet f : R  R be a function defined \n\n\n4 1/4\nx\nf(x)\n(1\nx )\n and  \n\ng(x) f(f(f(f(x)))) then \n2 5\n2\n0\n18\nx g(x)dx\n\n  \n \n(1) 33 \n(2) 36  \n \n(3) 42  \n \n(4) 39",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-30-jan-shift-2_mat_q19.jpg"
+ },
+ {
+  "id": "jm2024-30-jan-shift-2_mat_q20",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "20. \nLet R = \n\n\n\n\n\n\n\n0\ny\n0\n0\n0\nz\n be a non-zero 3 × 3 matrix, \nwhere x sin  = y sin \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n2\n4\nzsin\n3\n3\n\n\n\n0,\n(0,2 ) . For a square matrix M, let trace \n(M) denote the sum of all the diagonal entries of \nM. Then, among the statements:   \n \n(I) Trace (R) = 0 \n \n(II) If trace (adj(adj(R)) = 0, then R has exactly one \nnon-zero entry.  \n \n(1) Both (I) and (II) are true  \n \n(2) Neither (I) nor (II) is true  \n \n(3) Only (II) is true  \n \n(4) Only (I) is true",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-30-jan-shift-2_mat_q20.jpg"
+ },
+ {
+  "id": "jm2024-30-jan-shift-2_mat_q28",
+  "qtype": "integer",
+  "key": "1",
+  "text": "28. \nThe number of real solutions of the equation \n\n\n\n\n\n\n\n\n2\nx x\n3 x\n5 x\n1\n6 x\n2\n0 is ______ .",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-30-jan-shift-2_mat_q28.jpg"
+ },
+ {
+  "id": "jm2024-31-jan-shift-1_mat_q01",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "1. \nFor 0 < c < b < a, let (a + b – 2c)x2 + (b + c – 2a)x \n+ (c + a – 2b) = 0 and \n1\n\nbe one of its root. \nThen, among the two statements \n \n(I) If \n\n\n1,0\n\n, then b cannot be the geometric \nmean of a and c \n \n(II) If \n\n\n0,1\n\n, then b may be the geometric \nmean of a and c \n \n(1) Both (I) and (II) are true \n \n(2) Neither (I) nor (II) is true \n \n(3) Only (II) is true \n \n(4) Only (I) is true",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-31-jan-shift-1_mat_q01.jpg"
+ },
+ {
+  "id": "jm2024-31-jan-shift-1_mat_q02",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "2. \nLet a be the sum of all coefficients in the \nexpansion of (1 – 2x + 2x2)2023 (3 – 4x2+2x3)2024 \nand \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nx\n2024\n0\n2\nx\n0\nlog 1\nt dt\nt\n1\nb\nlim\n.\nx\n If the equations  \ncx2 + dx + e = 0 and 2bx2 + ax + 4 = 0 have a \ncommon root, where c, d, e  R, then d : c : e \nequals \n \n(1) 2 : 1 : 4 \n(2) 4 : 1 : 4 \n \n(3) 1 : 2 : 4  \n(4) 1 : 1 : 4",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-31-jan-shift-1_mat_q02.jpg"
+ },
+ {
+  "id": "jm2024-31-jan-shift-1_mat_q03",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "3. \nIf the foci of a hyperbola are same as that of the \nellipse \n\n\n2\n2\nx\ny\n1\n9\n25\n and the eccentricity of the \nhyperbola is 15\n8 times the eccentricity of the \nellipse, then the smaller focal distance of the point \n\n\n\n\n\n\n\n\n14\n2\n2, 3\n5\n on the hyperbola, is equal to  \n \n(1) \n\n2\n8\n7 5\n3\n \n(2) \n\n2\n4\n14 5\n3\n \n \n(3) \n\n2\n16\n14 5\n3\n \n(4) \n\n2\n8\n7 5\n3",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-31-jan-shift-1_mat_q03.jpg"
+ },
+ {
+  "id": "jm2024-31-jan-shift-1_mat_q04",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "4. \nIf one of the diameters of the circle x2 + y2 – 10x + \n4y + 13 = 0 is a chord of another circle C, whose \ncenter is the point of intersection of the lines 2x + \n3y = 12 and 3x – 2y = 5, then the radius of the \ncircle C is  \n \n(1) \n20 \n(2) 4 \n \n(3) 6 \n \n(4) 3 2",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-31-jan-shift-1_mat_q04.jpg"
+ },
+ {
+  "id": "jm2024-31-jan-shift-1_mat_q05",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "5. \nThe area of the region  \n \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n2\nxy x\n1 x\n2\nx,y : y\n4x,x\n4,\n0,x\n3\nx\n3\nx\n4\n \nis \n \n(1) 16\n3 \n(2) 64\n3 \n \n(3) 8\n3 \n \n(4) 32\n3",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-31-jan-shift-1_mat_q05.jpg"
+ },
+ {
+  "id": "jm2024-31-jan-shift-1_mat_q06",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "6. \nIf \n\n\n\n\n4x\n3\n2\nf x\n,x\n6x\n4\n3 and (fof) (x) = g(x), where \n\n\n\n\n\n\n\n\n\n2\n2\ng:\n,\n3\n3\n then (gogog) (4) is equal \nto \n \n(1) 19\n20 \n(2) 19\n20 \n \n(3) – 4 \n \n(4) 4",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-31-jan-shift-1_mat_q06.jpg"
+ },
+ {
+  "id": "jm2024-31-jan-shift-1_mat_q07",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "7. \n\n\n\n2\nx\n0\ne\n2 sinx\n1\nlim\nx\n \n \n(1) is equal to – 1  \n(2) does not exist \n \n(3) is equal to 1 \n(4) is equal to 2",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-31-jan-shift-1_mat_q07.jpg"
+ },
+ {
+  "id": "jm2024-31-jan-shift-1_mat_q08",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "8. \nIf the system of linear equations \n \n\n\nx\n2y\nz\n4 \n \n\n\n2x\ny\n3z\n5 \n \n\n\n3x\ny\nz\n3 \n \nhas infinitely many solutions, then 12 + 13 is \nequal to  \n \n(1) 60 \n(2) 64 \n \n(3) 54 \n \n(4) 58",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-31-jan-shift-1_mat_q08.jpg"
+ },
+ {
+  "id": "jm2024-31-jan-shift-1_mat_q09",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "9. \nThe solution curve of the differential equation  \n \n\n\n\n\n\ne\ne\ndx\ny\nx log x\nlog y\n1 ,\ndy\n x > 0, y > 0 passing \nthrough the point (e, 1) is \n \n(1) \n\ne\ny\nlog\nx\nx\n \n(2) \n\n2\ne\ny\nlog\ny\nx\n  \n \n(3) \n\ne\nx\nlog\ny\ny\n \n(4) \ne\nx\n2 log\ny\n1\ny \n",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-31-jan-shift-1_mat_q09.jpg"
+ },
+ {
+  "id": "jm2024-31-jan-shift-1_mat_q10",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "10. \nLet  Z and let A (), B (1, 0), C () \nand D (1, 2) be the vertices of a parallelogram \nABCD. If AB = 10 and the points A and C lie on \nthe line 3y = 2x + 1, then 2 () is equal \nto  \n \n(1) 10 \n(2) 5 \n \n(3) 12 \n \n(4) 8",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-31-jan-shift-1_mat_q10.jpg"
+ },
+ {
+  "id": "jm2024-31-jan-shift-1_mat_q11",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "11. \nLet y = y(x) be the solution of the differential \nequation \n\n\n\n\n\n\n\ntan x\ny\ndy\n,\ndx\nsin x secx\nsin x tan x\n \n\n\n\n\n\n\n\nx\n0, 2\n satisfying the condition \n\n\n\n\n\n\n\ny\n2.\n4\n \nThen, \n\n\n\n\n\n\n\ny 3\n is \n \n(1) \n\n\n\ne\n3 2\nlog\n3 \n \n(2) \n\n\n\ne\n3 2\nlog 3\n2\n \n \n(3) \n\n\n\ne\n3 1\n2log 3 \n \n(4) \n\n\n\ne\n3 2\nlog 3",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-31-jan-shift-1_mat_q11.jpg"
+ },
+ {
+  "id": "jm2024-31-jan-shift-1_mat_q13",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "13. \nThe sum of the series \n\n\n\n2\n4\n1\n1 3 1\n1\n   \n\n\n\n2\n4\n2\n1 3 2\n2\n \n\n\n\n2\n4\n3\n1\n3 3\n3\n ….. up to 10 terms \nis  \n \n(1) 45\n109 \n(2) 45\n109 \n \n(3) 55\n109 \n \n(4) 55\n109",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-31-jan-shift-1_mat_q13.jpg"
+ },
+ {
+  "id": "jm2024-31-jan-shift-1_mat_q14",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "14. \nThe distance of the point Q(0, 2, –2) form the line \npassing through the point P(5, –4, 3) and \nperpendicular to the lines \n\n\n\n\nˆ\nˆ\nr\n3i\n2k + \n\n\n\n\n\nˆ\nˆ\nˆ\n2i\n3j\n5k , \n and \n\n\n\n\n\nˆ\nˆ\nˆ\nr\ni\n2j\nk + \n\n\n\n\nˆ\nˆ\nˆ\nµ\ni\n3j\n2k , \nµ\n is  \n \n(1) 86 \n \n \n(2) \n20 \n \n(3) \n54 \n \n \n(4) \n74",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-31-jan-shift-1_mat_q14.jpg"
+ },
+ {
+  "id": "jm2024-31-jan-shift-1_mat_q15",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "15. \nFor \n, ,\n0. If sin–1 + sin–1 + sin–1 =  and \n( +  + ) ( –  + ) = 3, then  equal to  \n \n(1) \n3\n2 \n \n(2) 1\n2\n \n \n(3) \n\n3\n1\n2 2\n \n \n(4) \n3",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-31-jan-shift-1_mat_q15.jpg"
+ },
+ {
+  "id": "jm2024-31-jan-shift-1_mat_q16",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "16. \nTwo marbles are drawn in succession from a box \ncontaining 10 red, 30 white, 20 blue and 15 orange \nmarbles, with replacement being made after each \ndrawing. Then the probability, that first drawn \nmarble is red and second drawn marble is white, is  \n \n(1) 2\n25 \n \n \n(2) 4\n25 \n \n(3) 2\n3 \n \n \n \n(4) 4\n75",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-31-jan-shift-1_mat_q16.jpg"
+ },
+ {
+  "id": "jm2024-31-jan-shift-1_mat_q17",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "17. \nLet g(x) be a linear function and \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n1\nx\ng x\n,x\n0\nf x\n,\n1\nx\n,x\n0\n2\nx\n is continuous at x = 0. \nIf \n\n\n\n\n\n\nf 1\nf\n1 , then the value of g(3) is  \n \n(1) \n\n\n\n\n\n\ne\n1/3\n1\n4\nlog\n3\n9e\n \n \n(2) \n\n\n\n\n\n\ne\n1\n4\nlog\n1\n3\n9\n \n \n(3) \n\n\n\n\n\n\ne\n4\nlog\n1\n9\n \n \n(4) \n\n\n\n\n\n\ne\n1/3\n4\nlog\n9e",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-31-jan-shift-1_mat_q17.jpg"
+ },
+ {
+  "id": "jm2024-31-jan-shift-1_mat_q18",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "18. \nIf \n\n\n\n\n\n2\n3\n3\n2\nf (x)\n3x\n2\n2x\nx\n6\nx\nx\n4\nx\n2\n  \n \nfor all \n\nx\n, then 2f(0) + \n\nf\n0 is equal to \n \n(1) 48 \n(2) 24 \n \n(3) 42 \n \n(4) 18",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-31-jan-shift-1_mat_q18.jpg"
+ },
+ {
+  "id": "jm2024-31-jan-shift-1_mat_q19",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "19. \nThree rotten apples are accidently mixed with \nfifteen good apples. Assuming the random variable \nx to be the number of rotten apples in a draw of \ntwo apples, the variance of x is  \n \n(1) 37\n153\n \n \n(2) 57\n153\n \n \n(3) 47\n153\n \n \n(4) 40\n153",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-31-jan-shift-1_mat_q19.jpg"
+ },
+ {
+  "id": "jm2024-31-jan-shift-1_mat_q20",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "20. \nLet S be the set of positive integral values of a for \nwhich \n\n\n\n\n\n\n\n\n\n\n2\n2\nax\n2 a\n1 x\n9a\n4\n0, x\nx\n8x\n32\n. \nThen, the number of elements in S is : \n \n(1) 1 \n \n(2) 0 \n \n(3)  \n \n(4) 3",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-31-jan-shift-1_mat_q20.jpg"
+ },
+ {
+  "id": "jm2024-31-jan-shift-1_mat_q26",
+  "qtype": "integer",
+  "key": "3",
+  "text": "26. \nIf  denotes the number of solutions of |1 - i|x = 2x \nand \n\n\n\n\n\n\n| z |\narg(z)\n, where \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n4 1\ni\ni\nz\n1 i\n4\ni\n1\ni\n, \n\ni\n1 , then \nthe distance of the point () from the line \n4x – 3y = 7 is _____",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-31-jan-shift-1_mat_q26.jpg"
+ },
+ {
+  "id": "jm2024-31-jan-shift-2_mat_q02",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "2. \nLet A (a, b), B(3, 4) and (–6, –8) respectively \ndenote the centroid, circumcentre and orthocentre \nof a triangle. Then, the distance of the point \nP(2a + 3, 7b + 5) from the line 2x + 3y – 4 = 0 \nmeasured parallel to the line x – 2y – 1 = 0 is \n \n(1) 15 5\n7\n \n \n(2) 17 5\n6\n \n \n(3) 17 5\n7\n \n \n(4) \n5\n17",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-31-jan-shift-2_mat_q02.jpg"
+ },
+ {
+  "id": "jm2024-31-jan-shift-2_mat_q03",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "3. \nLet z1 and z2 be two complex number such that z1 \n+ z2 = 5 and \n3\n3\n1\n2\nz\nz\n20 15i\n\n\n\n. Then \n4\n4\n1\n2\nz\nz\n\nequals- \n \n(1) 30 3 \n \n(2) 75 \n \n(3) 15 15 \n \n(4) 25 3",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-31-jan-shift-2_mat_q03.jpg"
+ },
+ {
+  "id": "jm2024-31-jan-shift-2_mat_q04",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "4. \nLet a variable line passing through the centre of the \ncircle x2 + y2 – 16x – 4y = 0, meet the positive \nco-ordinate axes at the point A and B. Then the \nminimum value of OA + OB, where O is the \norigin, is equal to  \n \n(1) 12 \n \n(2) 18 \n \n(3) 20 \n \n(4) 24",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-31-jan-shift-2_mat_q04.jpg"
+ },
+ {
+  "id": "jm2024-31-jan-shift-2_mat_q05",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "5. \nLet f,g:(0, )\nR\n\nbe two functions defined by \n\n\n2\nx\n2\nt\nx\nf(x)\nt\nt\ne\ndt\n\n\n\n\n\nand \n2\nx\n1\nt\n2\n0\ng(x)\nt e dt\n\n\n. \nThen the value of \n\n\n\n\n\n\ne\ne\nf\nlog 9\ng\nlog 9\n\nis \nequal to \n \n(1) 6 \n \n(2) 9 \n \n(3) 8 \n \n(4) 10",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-31-jan-shift-2_mat_q05.jpg"
+ },
+ {
+  "id": "jm2024-31-jan-shift-2_mat_q06",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "\n\n6. \nLet \n\n, ,\n be mirror image of the point (2, 3, 5) \nin the line x\n1\ny\n2\nz\n3\n2\n3\n4\n\n\n\n\n\n.  \n \nThen 2\n3\n4\n is equal to \n \n(1) 32 \n \n(2) 33 \n \n(3) 31 \n \n(4) 34",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-31-jan-shift-2_mat_q06.jpg"
+ },
+ {
+  "id": "jm2024-31-jan-shift-2_mat_q07",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "7. \nLet P be a parabola with vertex (2, 3) and directrix \n2x + y = 6. Let an ellipse \n2\n2\n2\n2\nx\ny\nE :\n1,a\nb\na\nb\n\n\n\n of \neccentricity \n1\n2\n pass through the focus of the \nparabola P. Then the square of the length of the \nlatus rectum of E, is \n \n(1) 385\n8\n \n \n(2) 347\n8\n \n \n(3) 512\n25\n \n \n(4) 656\n25",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-31-jan-shift-2_mat_q07.jpg"
+ },
+ {
+  "id": "jm2024-31-jan-shift-2_mat_q08",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "8. \nThe temperature T(t) of a body at time t = 0 is 160o \nF and it decreases continuously as per the \ndifferential equation dT\nK(T\n80)\ndt \n\n, where K \nis positive constant. If T(15) = 120oF, then T(45) is \nequal to \n \n(1) 85o F \n \n(2) 95o F \n \n(3) 90o F \n \n(4) 80o F",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-31-jan-shift-2_mat_q08.jpg"
+ },
+ {
+  "id": "jm2024-31-jan-shift-2_mat_q09",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "9. \nLet 2nd, 8th and 44th, terms of a non-constant A.P. \nbe respectively the 1st, 2nd and 3rd terms of G.P. If \nthe first term of A.P. is 1 then the sum of first \n20 terms is equal to-  \n \n(1) 980 \n(2) 960 \n \n(3) 990 \n \n(4) 970",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-31-jan-shift-2_mat_q09.jpg"
+ },
+ {
+  "id": "jm2024-31-jan-shift-2_mat_q10",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "10. \nLet f :\nR\n(0, )\n\n\n be strictly increasing \nfunction such that \nx\nf(7x)\nlim\n1\nf(x)\n\n. Then, the value \nof \nx\nf (5x)\nlim\n1\nf (x)\n\n\n\n\n\n\n\n\n is equal to  \n \n(1) 4 \n \n(2) 0 \n \n(3) 7/5 \n \n(4) 1",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-31-jan-shift-2_mat_q10.jpg"
+ },
+ {
+  "id": "jm2024-31-jan-shift-2_mat_q11",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "11. \nThe area of the region enclosed by the parabola  \ny = 4x – x2 and 3y = (x – 4)2 is equal to \n \n(1) 32\n9\n \n \n(2) 4 \n \n(3) 6 \n \n(4) 14\n3",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-31-jan-shift-2_mat_q11.jpg"
+ },
+ {
+  "id": "jm2024-31-jan-shift-2_mat_q12",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "12. \nLet the mean and the variance of 6 observation a, \nb, 68, 44, 48, 60 be 55 and 194, respectively if  \na > b, then a + 3b is \n \n(1) 200 \n \n(2) 190 \n \n(3) 180 \n \n(4) 210",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-31-jan-shift-2_mat_q12.jpg"
+ },
+ {
+  "id": "jm2024-31-jan-shift-2_mat_q13",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "\n\n13. \nIf the function f :(\n, 1]\n(a,b]\n\n\n defined by \n3\nx\n3x 1\nf(x)\ne\n\n\n\n is one-one and onto, then the \ndistance of the point P(2b + 4, a + 2) from the line \nx + e–3y = 4 is :  \n \n(1) \n6\n2 1 e\n\n \n(2) \n6\n4 1 e\n\n \n \n(3) \n6\n3 1 e\n\n \n(4) \n6\n1 e\n",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-31-jan-shift-2_mat_q13.jpg"
+ },
+ {
+  "id": "jm2024-31-jan-shift-2_mat_q14",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "14. \nConsider the function f :(0, )\nR\n\n defined by \ne\nlog x\nf(x)\ne\n\n\n. If m and n be respectively the \nnumber of points at which f is not continuous and f \nis not differentiable, then m + n is \n \n(1) 0 \n \n(2) 3 \n \n(3) 1 \n \n(4) 2",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-31-jan-shift-2_mat_q14.jpg"
+ },
+ {
+  "id": "jm2024-31-jan-shift-2_mat_q16",
+  "qtype": "mcq",
+  "key": 2,
+  "text": "So no solution. \n16. \nIf \n\n\n\n1\na\nsin\nsin 5\n\n\n and \n\n\n\n1\nb\ncos\ncos 5\n\n\n, \nthen \n2\n2\na\nb\n\n is equal to \n \n(1) \n2\n4\n25\n\n \n \n(2) \n2\n8\n40\n50\n\n\n \n \n(3) \n2\n4\n20\n50\n\n\n \n \n(4) 25",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-31-jan-shift-2_mat_q16.jpg"
+ },
+ {
+  "id": "jm2024-31-jan-shift-2_mat_q17",
+  "qtype": "mcq",
+  "key": 4,
+  "text": "17. \nIf for some m, n; \n\n\n6\n6\n6\n8\nm\nm 1\nm 2\n3\nC\n2\nC\nC\nC\n\n\n\n\n\nand n 1\nn\n3\n4\nP : P\n1:8,\n\n\n then n\nn 1\nm 1\nm\nP\nC\n\n\n is equal \nto \n \n(1) 380 \n \n(2) 376 \n \n(3) 384 \n \n(4) 372",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-31-jan-shift-2_mat_q17.jpg"
+ },
+ {
+  "id": "jm2024-31-jan-shift-2_mat_q18",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "18. \nA coin is based so that a head is twice as likely to \noccur as a tail. If the coin is tossed 3 times, then \nthe probability of getting two tails and one head is- \n \n(1) 2\n9\n \n \n(2) 1\n9\n \n \n(3) 2\n27\n \n \n(4) 1\n27",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-31-jan-shift-2_mat_q18.jpg"
+ },
+ {
+  "id": "jm2024-31-jan-shift-2_mat_q19",
+  "qtype": "mcq",
+  "key": 1,
+  "text": "19. \nLet A be a 3 3 real matrix such that \n \n1\n1\n1\n1\n0\n0\nA 0\n2 0 ,A 0\n4 0\n,A 1\n2 1 .\n1\n1\n1\n1\n0\n0\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n \n \nThen, the system \n\nx\n1\nA\n3I\ny\n2\nz\n3\n\n\n\n\n\n\n\n\n\n\n\n\nhas \n \n(1) unique solution \n \n(2) exactly two solutions \n \n(3) no solution \n \n(4) infinitely many solutions",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-31-jan-shift-2_mat_q19.jpg"
+ },
+ {
+  "id": "jm2024-31-jan-shift-2_mat_q20",
+  "qtype": "mcq",
+  "key": 3,
+  "text": "20. \nThe shortest distance between lines L1 and L2, \nwhere \n1\nx\n1\ny 1\nz\n4\nL :\n2\n3\n2\n\n\n\n\n\n\nand L2 is the line \npassing through the points \n\n\n\n\nA\n4,4,3 .B\n1,6,3\n\n\nand perpendicular to the line x\n3\ny\nz 1,\n2\n3\n1\n\n\n\n\n\n is \n \n(1) 121\n221\n \n(2) \n24\n117\n \n \n(3) 141\n221\n  \n(4) \n42\n117",
+  "crop": "C:\\Tutor\\physics-mind\\pdfs\\probes\\toughest_text_six\\all\\jm2024-31-jan-shift-2_mat_q20.jpg"
+ }
+]
