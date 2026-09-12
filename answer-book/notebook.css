@@ -258,6 +258,11 @@ body {
 .cat-chip:hover { border-color: var(--accent); color: var(--accent); }
 .cat-chip.on { background: var(--ink); border-color: var(--ink); color: #fff; }
 .cat-chip.on .ct { opacity: 0.85; }
+/* "✓ Revise N" wears the same yellow as the card's own "revise today" chip, so
+   the filter and the thing it filters read as one idea. */
+.cat-chip.revise { border-color: rgba(217, 154, 6, 0.5); color: #8A5F00; background: #FBF3DC; }
+.cat-chip.revise:hover { border-color: #8A5F00; color: #8A5F00; }
+.cat-chip.revise.on { background: #8A5F00; border-color: #8A5F00; color: #fff; }
 
 /* Subject + chapter pickers. Side by side where there is room, stacked full
    width on a phone (the 200px flex-basis is the wrap point). */

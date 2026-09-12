@@ -383,7 +383,7 @@
   }
 
   var currentView = null;               // 'catalog' | 'notebook'
-  var catFilter = { subject: 'ALL', qtype: 'ALL', unit: 'ALL', search: '' };
+  var catFilter = { subject: 'ALL', qtype: 'ALL', unit: 'ALL', search: '', due: false };
 
   function showView(v) {
     currentView = v;
@@ -669,10 +669,21 @@
   }
   // --- end of the Vidi context key helpers ---
 
+  /** Revision-due: understood on an EARLIER day and not yet revised — the same
+      test the leave-question ask and Plan.dueWithoutPlan apply, asked of one
+      catalog entry. The date, never a 24-hour clock: a tick is stored as a
+      calendar day, so "tomorrow" means the next date, not the next rotation. */
+  function isDueForRevision(e) {
+    if (!e || e.question_id === undefined) return false;
+    var s = Vidi.stageFor(e.question_id);
+    return !!(s.u && !s.r && s.u < Vidi.todayStr());
+  }
+
   function entryMatches(e, u) {
     if (catFilter.subject !== 'ALL' && subjectOf(u) !== catFilter.subject) return false;
     if (catFilter.qtype !== 'ALL' && e.section !== catFilter.qtype) return false;
     if (catFilter.unit !== 'ALL' && unitKey(u) !== catFilter.unit) return false;
+    if (catFilter.due && !isDueForRevision(e)) return false;
     if (catFilter.search) {
       var blob = (e.section + ' ' + e.section + e.number + ' ' + e.section + ' ' + e.number +
                   ' ' + e.text + ' ' + u.name + ' ' + subjectOf(u)).toLowerCase();
@@ -770,6 +781,11 @@
       if (catFilter.unit !== 'ALL' && unitKey(u) !== catFilter.unit) return;
       u.questions.forEach(function (e) { scopedEntries.push(e); });
     });
+    // The revision chip counts the scope BEFORE the revision filter — counted
+    // after, it would count itself and read the same as All. The qtype counts
+    // DO follow it, so "All N" still equals what is on screen (2026-08-26).
+    var dueN = scopedEntries.filter(isDueForRevision).length;
+    if (catFilter.due) scopedEntries = scopedEntries.filter(isDueForRevision);
     var chipRow = $('qtypeChips');
     chipRow.innerHTML = '';
     // Paper sections first in marks order, then the practice problems, which sit
@@ -800,6 +816,36 @@
       });
       chipRow.appendChild(b);
     });
+
+    // "✓ Revise N" — the only place a student learns something is waiting
+    // without opening the chat (founder, 2026-09-12; the chat has said
+    // "N questions ... are due for revision" since 2026-08-23, but a student
+    // who never taps the bubble never hears it). A STATE filter, not a section:
+    // it composes with the subject, the chapter and the search box. Hidden at
+    // zero unless it is the active filter — hiding the active one empties the
+    // page and removes the control that emptied it.
+    if (dueN > 0 || catFilter.due) {
+      var rb = document.createElement('button');
+      rb.type = 'button';
+      rb.id = 'reviseChip';
+      rb.className = 'cat-chip revise' + (catFilter.due ? ' on' : '');
+      rb.setAttribute('data-due', '1');
+      rb.setAttribute('aria-pressed', catFilter.due ? 'true' : 'false');
+      rb.appendChild(document.createTextNode('\u2713 Revise'));
+      var rct = document.createElement('span');
+      rct.className = 'ct';
+      rct.textContent = String(dueN);
+      rb.appendChild(rct);
+      rb.addEventListener('click', function () {
+        catFilter.due = !catFilter.due;
+        Vidi.log('cat_due', { on: catFilter.due, n: dueN });
+        // The number the student tapped has to equal what they then see, so a
+        // section filter set before the tap is cleared on the way in.
+        if (catFilter.due) catFilter.qtype = 'ALL';
+        renderCatalog();
+      });
+      chipRow.appendChild(rb);
+    }
 
     // The chapter picker, labelled by chapter NAME because that is what a student
     // looks for. Appears only from the second unit on: with one chapter a chapter
