@@ -172,7 +172,7 @@
             "added": true
           },
           {
-            "text": "= 2a^{6}\\int _{0}^{\\pi /2} \\sin ^{2}\\theta cos^{4}\\theta d\\theta",
+            "text": "= 2a^{6}\\int _{0}^{\\pi /2} \\sin ^{2}\\theta \\cos ^{4}\\theta d\\theta",
             "render": "katex",
             "style": "normal"
           }
@@ -196,7 +196,7 @@
             "style": "normal"
           },
           {
-            "text": "= 2a^{6}\\int _{0}^{\\pi /2} \\sin ^{2}\\theta cos^{4}\\theta d\\theta",
+            "text": "= 2a^{6}\\int _{0}^{\\pi /2} \\sin ^{2}\\theta \\cos ^{4}\\theta d\\theta",
             "render": "katex",
             "style": "normal"
           }
@@ -216,7 +216,7 @@
             "added": true
           },
           {
-            "text": "\\int _{0}^{\\pi /2} \\sin ^{2}\\theta cos^{4}\\theta d\\theta",
+            "text": "\\int _{0}^{\\pi /2} \\sin ^{2}\\theta \\cos ^{4}\\theta d\\theta",
             "render": "katex",
             "style": "normal"
           },
@@ -244,7 +244,7 @@
         ],
         "lines_compact": [
           {
-            "text": "\\int _{0}^{\\pi /2} \\sin ^{2}\\theta cos^{4}\\theta d\\theta",
+            "text": "\\int _{0}^{\\pi /2} \\sin ^{2}\\theta \\cos ^{4}\\theta d\\theta",
             "render": "katex",
             "style": "normal"
           },

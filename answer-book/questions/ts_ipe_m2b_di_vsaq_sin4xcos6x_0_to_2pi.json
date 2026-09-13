@@ -86,7 +86,7 @@
             "style": "normal"
           }
         ],
-        "why": "Since sin⁴x and cos⁶x are both even powers, the integrand is unchanged under x→π−x and under x→2π−x, so the property ∫₀ᵃ f = ∫₀ᵃ f(a−x) reduces the range from 0-to-2π down to four times the 0-to-π/2 range.",
+        "why": "Since sin⁴x and cos⁶x are both even powers, the integrand is unchanged under x→π−x and under x→2π−x, so the property ∫₀²ᵃ f(x)dx = 2∫₀ᵃ f(x)dx (true when f(2a − x) = f(x)), used with a = π and then a = π/2, reduces the range from 0-to-2π down to four times the 0-to-π/2 range.",
         "common_mistakes": [
           "Applying the reduction only once instead of twice (0-to-2π to 0-to-π, then 0-to-π to 0-to-π/2).",
           "Using this shortcut for a function that is NOT unchanged under both reflections."

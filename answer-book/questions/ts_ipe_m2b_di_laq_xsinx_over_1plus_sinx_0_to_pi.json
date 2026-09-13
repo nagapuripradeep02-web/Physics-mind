@@ -178,7 +178,7 @@
         "marks": 2,
         "mark_note": "Method",
         "margin_note": "Two marks for this standalone sub-integral.",
-        "memory_tip": "Multiply top and bottom by (1 − sinx) whenever 1 + sinx sits alone in a denominator — it turns cos²x up top.",
+        "memory_tip": "Multiply top and bottom by (1 − sinx) whenever 1 + sinx sits alone in a denominator — the denominator becomes 1 − sin²x = cos²x.",
         "lines": [
           {
             "text": "\\int _{0}^{\\pi } dx/(1 + \\sin x)",

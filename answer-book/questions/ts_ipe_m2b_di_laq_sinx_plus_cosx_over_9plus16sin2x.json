@@ -175,7 +175,7 @@
         "label": "Evaluate the limits",
         "marks": 1,
         "mark_note": "Solution",
-        "margin_note": "The last mark. log9 = log3², so the 2 in the numerator cancels one of the two 2's hiding in 40.",
+        "margin_note": "The last mark. log9 = log3² = 2 log3, and (2 log3)/40 = (log3)/20.",
         "memory_tip": "log1 = 0, so only the t = −1 term survives with a minus sign in front.",
         "lines": [
           {

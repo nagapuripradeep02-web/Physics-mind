@@ -85,7 +85,7 @@
         "marks": 1,
         "mark_note": "Solution",
         "margin_note": "Second mark. Both m=2 and n=4 are even, so Wallis's formula needs the π/2 factor before doubling.",
-        "memory_tip": "The integral over [−a,a] equals twice the integral over [0,a] only when f is even — always prove this first.",
+        "memory_tip": "The integral over [−a,a] equals twice the integral over [0,a] when f is even — always prove this first.",
         "lines": [
           {
             "text": "For an even function, the integral from −π/2",

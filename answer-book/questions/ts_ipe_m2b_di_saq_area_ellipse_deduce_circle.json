@@ -55,7 +55,7 @@
         "marks": 1,
         "mark_note": "Setup",
         "margin_note": "First mark. y = (b/a)√(a²−x²) — the ellipse's y-value is a circle of radius a's y-value, multiplied by the factor b/a.",
-        "memory_tip": "Setting y=0 in the ellipse equation always gives x=±a, the ends of the horizontal (major) axis.",
+        "memory_tip": "Setting y=0 in the ellipse equation always gives x=±a, the ends of the horizontal axis.",
         "lines": [
           {
             "text": "Sol:",
@@ -66,9 +66,9 @@
           "⇒ y² = b²[(a² − x²)/a²]",
           "Take the positive root for the upper half:",
           "⇒ y = (b/a)√(a² − x²)",
-          "Put y = 0 ⇒ √(a² − x²) = 0 ⇒ x² = a² ⇒ x = a"
+          "Put y = 0 ⇒ √(a² − x²) = 0 ⇒ x² = a² ⇒ x = ±a"
         ],
-        "why": "Solving the ellipse equation for y gives the upper half of the curve as a function of x, and setting y=0 finds where the curve meets the x-axis — at x=a, the semi-major-axis length.",
+        "why": "Solving the ellipse equation for y gives the upper half of the curve as a function of x, and setting y=0 finds where the curve meets the x-axis — at x = ±a, and x = a is the length of the semi-axis along the x-axis.",
         "common_mistakes": [
           "Losing the factor b/a when solving for y, and writing y=√(a²−x²), which is the equation of a circle of radius a, not the ellipse.",
           "Taking the x-intercept as x=b instead of x=a."
