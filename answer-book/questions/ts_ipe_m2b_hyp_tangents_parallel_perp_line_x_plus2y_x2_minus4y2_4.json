@@ -97,8 +97,9 @@
             "text": "x + 2y = 0",
             "style": "boxed"
           },
+          "(x + 2y = 0 is the asymptote, not a true tangent)",
           {
-            "text": "But x + 2y = 0 is an asymptote of this",
+            "text": "Why: x + 2y = 0 is an asymptote of this",
             "added": true
           },
           {
@@ -137,7 +138,8 @@
           {
             "text": "x + 2y = 0",
             "style": "boxed"
-          }
+          },
+          "(x + 2y = 0 is the asymptote, not a true tangent)"
         ]
       },
       {
@@ -162,11 +164,11 @@
           },
           "y = 2x ± √(4(2)² − 1) = 2x ± √15",
           {
-            "text": "(2 is not an asymptote slope ±1/2, so these",
+            "text": "(|2| > b/a = 1/2, so a²m² − b² = 15 > 0 and",
             "added": true
           },
           {
-            "text": "  are real tangents)",
+            "text": "  these are real tangents)",
             "style": "indent",
             "added": true
           },
@@ -175,7 +177,7 @@
             "style": "boxed"
           }
         ],
-        "why": "Slope 2 is not an asymptote slope (the asymptotes have slope ±1/2), so the tangent formula gives two genuine tangent lines here.",
+        "why": "Real tangents of slope m exist exactly when a²m² − b² > 0, that is |m| > b/a. Here |2| > 1/2 and a²m² − b² = 15, so the tangent formula gives two genuine tangent lines.",
         "common_mistakes": [
           "Taking the negative reciprocal of −1/2 incorrectly (it is 2, not −2).",
           "Dropping the ± sign and reporting only one of the two tangent lines."

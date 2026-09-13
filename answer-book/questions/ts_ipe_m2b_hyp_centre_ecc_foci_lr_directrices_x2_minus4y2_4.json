@@ -88,7 +88,7 @@
         ],
         "why": "The eccentricity, foci, directrices and latus rectum are all read off a² and b² once the equation is written in the standard form x²/a² − y²/b² = 1.",
         "common_mistakes": [
-          "Using 4 and 1 directly from the given equation without dividing through by 4 first.",
+          "Taking the coefficients 1 and 4 of x² − 4y² = 4 as a² and b² (a² = 1, b² = 4) without dividing through by 4 first.",
           "Writing the standard form with a plus sign, as for an ellipse, instead of the minus sign a hyperbola needs."
         ]
       },
@@ -120,7 +120,7 @@
         "why": "For a hyperbola with the transverse axis along the x-axis, the eccentricity is the square root of a² + b², divided by a.",
         "common_mistakes": [
           "Using a² − b² as for an ellipse instead of a² + b² — a hyperbola's eccentricity ADDS the two squares.",
-          "Leaving a² in the denominator instead of taking the square root of a first."
+          "Leaving a² in the denominator (e = √(a² + b²)/a²) instead of a = √(a²)."
         ],
         "lines_compact": [
           "e = √(a² + b²) / a",
@@ -228,7 +228,7 @@
         "marks": 1,
         "mark_note": "Latus rectum",
         "margin_note": "Fourth mark. A short formula — do not overthink it.",
-        "memory_tip": "Latus rectum equals 2 times the smaller square, over the axis length a — same formula shape as an ellipse.",
+        "memory_tip": "Latus rectum = 2b²/a (b² is the y² denominator, a is the semi-transverse axis) — the same shape as an ellipse's 2b²/a.",
         "lines": [
           {
             "text": "The latus rectum is the chord through a focus,",

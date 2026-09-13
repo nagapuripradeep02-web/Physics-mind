@@ -99,7 +99,7 @@
         "marks": 1,
         "mark_note": "Result",
         "margin_note": "Second mark. Squaring a line's constant term always allows both signs.",
-        "memory_tip": "A tangency condition solved for k always gives ± — never report only the positive root.",
+        "memory_tip": "Here n = k enters squared, so k² = 25 gives k = ±5 — keep both signs.",
         "lines": [
           {
             "text": "Put a² = 5, b² = 5/4, l = 3, m = −4, n = k:",

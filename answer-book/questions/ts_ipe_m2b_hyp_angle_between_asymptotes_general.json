@@ -109,7 +109,7 @@
         "why": "The full angle between the two asymptotes is twice θ, since one asymptote sits at +θ above the x-axis and the other at −θ below it.",
         "common_mistakes": [
           "Reporting θ itself as the answer instead of doubling it — the question asks for the angle BETWEEN the two lines, not between one line and the axis.",
-          "Mixing up Sec⁻¹e with Tan⁻¹e — both forms are correct but use different arguments (e versus b/a)."
+          "Writing Tan⁻¹e by mistake. The correct forms are Sec⁻¹e and Tan⁻¹(b/a): sec takes e, and tan takes b/a."
         ],
         "lines_compact": [
           "secθ = e ⇒ θ = Sec⁻¹e = Tan⁻¹(b/a)",

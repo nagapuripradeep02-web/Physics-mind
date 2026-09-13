@@ -123,7 +123,7 @@
         ],
         "why": "When the transverse axis is the y-axis, the eccentricity formula uses b (the term on the transverse axis) in the denominator, not a.",
         "common_mistakes": [
-          "Dividing by a instead of b — here the transverse axis is y, so b is the axis length that belongs in the denominator.",
+          "Dividing by a instead of b — here the transverse axis is y, so b, the semi-transverse axis, belongs in the denominator.",
           "Writing √25 as 25 instead of simplifying the root to 5."
         ],
         "lines_compact": [
@@ -207,7 +207,7 @@
             "style": "boxed"
           }
         ],
-        "why": "Each directrix is the horizontal line y = b/e or y = −b/e — the reciprocal relation of the focus formula y = ±be.",
+        "why": "Each directrix is the horizontal line y = b/e or y = −b/e — b divided by e, where the foci are at b multiplied by e.",
         "common_mistakes": [
           "Writing the directrix as a vertical line instead of horizontal — the transverse axis here is y, so the directrices are horizontal lines.",
           "Confusing y = b/e with the focus formula y = be."
@@ -246,7 +246,7 @@
             "style": "boxed"
           }
         ],
-        "why": "The latus rectum formula swaps roles here too — it uses 2a²/b, not 2b²/a, because b is now the transverse-axis length.",
+        "why": "The latus rectum formula swaps roles here too — it uses 2a²/b, not 2b²/a, because b is now the semi-transverse axis (the transverse axis has length 2b).",
         "common_mistakes": [
           "Reusing 2b²/a from the horizontal case without swapping a and b.",
           "Forgetting to double a² before dividing by b."
