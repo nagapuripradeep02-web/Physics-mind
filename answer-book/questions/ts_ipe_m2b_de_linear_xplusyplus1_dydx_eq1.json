@@ -83,14 +83,18 @@
         "label": "Find the integrating factor",
         "marks": 1,
         "mark_note": "I.F.",
-        "margin_note": "One mark. I.F. = e^(∫P dy) always; here ∫P dy = −y.",
+        "margin_note": "One mark. I.F. = e to the power ∫P dy always; here ∫P dy = −y.",
         "memory_tip": "A constant P integrates to a straight line — ∫(−1)dy = −y, nothing more to it.",
         "lines": [
-          "∴ I.F. = e^(∫P dy) = e^(−y)"
+          {
+            "text": "\\therefore \\text{ I.F. }\\ = e^{\\int P dy} = e^{-y}",
+            "render": "katex",
+            "style": "normal"
+          }
         ],
-        "why": "The integrating-factor formula e^(∫P dy) applies exactly the same way whether the equation is linear in x or in y; here P = −1 gives ∫P dy = −y directly.",
+        "why": "The integrating-factor formula e to the power ∫P dy applies exactly the same way whether the equation is linear in x or in y; here P = −1 gives ∫P dy = −y directly.",
         "common_mistakes": [
-          "Writing the I.F. as e^y by dropping the minus sign on P.",
+          "Writing the I.F. as eʸ by dropping the minus sign on P.",
           "Confusing this P = −1 with a P(x) case and integrating with respect to x instead of y."
         ]
       },
@@ -104,9 +108,9 @@
         "memory_tip": "A polynomial times an exponential always calls for integration by parts, never a plain substitution.",
         "lines": [
           "Hence the solution is x·(I.F.) = ∫(I.F.)Q dy",
-          "⇒ x·e^(−y) = ∫e^(−y)·(y + 1) dy"
+          "⇒ x·e⁻ʸ = ∫e⁻ʸ·(y + 1) dy"
         ],
-        "why": "Multiplying Q = y + 1 by the integrating factor e^(−y) gives the integral that must be evaluated; since it is a product of a polynomial and an exponential, integration by parts is the natural next step.",
+        "why": "Multiplying Q = y + 1 by the integrating factor e⁻ʸ gives the integral that must be evaluated; since it is a product of a polynomial and an exponential, integration by parts is the natural next step.",
         "common_mistakes": [
           "Forgetting to multiply Q by the integrating factor before integrating.",
           "Attempting a substitution here instead of recognising that this integral needs integration by parts."
@@ -118,24 +122,24 @@
         "label": "Integrate by parts and finish",
         "marks": 1,
         "mark_note": "Result",
-        "margin_note": "The last mark. ∫e^(−y)(y+1)dy = −(y+2)e^(−y) + c by parts; divide through by e^(−y) to isolate x + y + 2.",
-        "memory_tip": "∫(linear)·e^(−y) dy by parts always leaves one extra e^(−y) term beyond the direct product — check for it before finishing.",
+        "margin_note": "The last mark. ∫e⁻ʸ(y+1)dy = −(y+2)e⁻ʸ + c by parts; divide through by e⁻ʸ to isolate x + y + 2.",
+        "memory_tip": "∫(linear)·e⁻ʸ dy by parts always leaves one extra e⁻ʸ term beyond the direct product — check for it before finishing.",
         "lines": [
-          "∫e^(−y)(y + 1) dy = −(y + 1)e^(−y) − ∫(−e^(−y))dy",
-          "= −(y + 1)e^(−y) + ∫e^(−y)dy",
-          "= −(y + 1)e^(−y) − e^(−y) + c = −(y + 2)e^(−y) + c",
-          "So x·e^(−y) = −(y + 2)e^(−y) + c",
-          "⇒ x·e^(−y) + (y + 2)e^(−y) = c",
-          "⇒ (x + y + 2)e^(−y) = c",
+          "∫e⁻ʸ(y + 1) dy = −(y + 1)e⁻ʸ − ∫(−e⁻ʸ)dy",
+          "= −(y + 1)e⁻ʸ + ∫e⁻ʸdy",
+          "= −(y + 1)e⁻ʸ − e⁻ʸ + c = −(y + 2)e⁻ʸ + c",
+          "So x·e⁻ʸ = −(y + 2)e⁻ʸ + c",
+          "⇒ x·e⁻ʸ + (y + 2)e⁻ʸ = c",
+          "⇒ (x + y + 2)e⁻ʸ = c",
           {
-            "text": "The solution is x + y + 2 = ce^y",
+            "text": "The solution is x + y + 2 = ceʸ",
             "style": "boxed"
           }
         ],
-        "why": "Integrating by parts with u = y+1 and dv = e^(−y)dy gives −(y+2)e^(−y) after combining terms; moving the exponential across to the right side turns it into the standard multiplying factor ce^y.",
+        "why": "Integrating by parts with u = y+1 and dv = e⁻ʸdy gives −(y+2)e⁻ʸ after combining terms; moving the exponential across to the right side turns it into the standard multiplying factor ceʸ.",
         "common_mistakes": [
-          "Choosing dv = (y + 1)dy instead of dv = e^(−y)dy, which does not simplify the integral.",
-          "Forgetting the extra −e^(−y) term that comes from ∫e^(−y)dy inside the by-parts formula, and stopping at −(y + 1)e^(−y) + c."
+          "Choosing dv = (y + 1)dy instead of dv = e⁻ʸdy, which does not simplify the integral.",
+          "Forgetting the extra −e⁻ʸ term that comes from ∫e⁻ʸdy inside the by-parts formula, and stopping at −(y + 1)e⁻ʸ + c."
         ]
       }
     ]

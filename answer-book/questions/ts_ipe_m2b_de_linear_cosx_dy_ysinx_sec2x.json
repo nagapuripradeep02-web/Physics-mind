@@ -80,10 +80,14 @@
         "label": "Find the integrating factor",
         "marks": 1,
         "mark_note": "I.F.",
-        "margin_note": "One mark. I.F. = e^(∫P dx) always.",
-        "memory_tip": "e^(log sec x) = sec x — the same simplification as every other linear equation with P = tan x.",
+        "margin_note": "One mark. I.F. = e to the power ∫P dx always.",
+        "memory_tip": "e to the power log sec x = sec x — the same simplification as every other linear equation with P = tan x.",
         "lines": [
-          "∴ I.F. = e^(∫P dx) = e^(log sec x) = sec x"
+          {
+            "text": "\\therefore \\text{ I.F. }\\ = e^{\\int P dx} = e^{\\log \\sec x} = \\sec x",
+            "render": "katex",
+            "style": "normal"
+          }
         ],
         "why": "Since P = tan x here just as in the two previous linear equations in this chapter, the integrating factor formula gives the same result: sec x.",
         "common_mistakes": [

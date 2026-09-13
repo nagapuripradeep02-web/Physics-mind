@@ -73,16 +73,20 @@
         "label": "Find the integrating factor",
         "marks": 1,
         "mark_note": "I.F.",
-        "margin_note": "One mark. I.F. = e^(∫P dx) always.",
-        "memory_tip": "e^(log|sec x + tan x|) = sec x + tan x — the log and exponential cancel directly.",
+        "margin_note": "One mark. I.F. = e to the power ∫P dx always.",
+        "memory_tip": "e to the power log|sec x + tan x| = sec x + tan x — the log and exponential cancel directly.",
         "lines": [
-          "∴ I.F. = e^(∫P dx) = e^(log|sec x + tan x|)",
+          {
+            "text": "\\therefore \\text{ I.F. }\\ = e^{\\int P dx} = e^{\\log |\\sec x + \\tan x|}",
+            "render": "katex",
+            "style": "normal"
+          },
           "= sec x + tan x"
         ],
         "why": "Applying the integrating-factor formula to the ∫P dx found in step 1 gives sec x + tan x, since the exponential undoes the log exactly as in every other linear equation.",
         "common_mistakes": [
           "Writing the I.F. as just sec x, which is the integrating factor for P = tan x, not for P = sec x.",
-          "Losing the tan x term when simplifying e^(log|sec x + tan x|)."
+          "Losing the tan x term when simplifying e to the power log|sec x + tan x|."
         ]
       },
       {

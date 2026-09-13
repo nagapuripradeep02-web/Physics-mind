@@ -15,7 +15,7 @@
   "marks_total": 2,
   "paper_section": "Section A",
   "expected_time_min": 4,
-  "question_text": "Solve dy/dx + 1 = e^(x+y).",
+  "question_text": "Solve dy/dx + 1 = eˣ⁺ʸ.",
   "appearances": [
     {
       "year": 2018,
@@ -51,15 +51,15 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "One mark. Put t = x + y, so dt/dx = 1 + dy/dx — exactly the left side of the given equation.",
-        "memory_tip": "Whenever dy/dx + 1 sits next to e^(x+y), recognise dt/dx = 1 + dy/dx for t = x + y and the equation collapses to a single variable.",
+        "memory_tip": "Whenever dy/dx + 1 sits next to eˣ⁺ʸ, recognise dt/dx = 1 + dy/dx for t = x + y and the equation collapses to a single variable.",
         "lines": [
           {
             "text": "Sol:",
             "style": "heading"
           },
-          "Given D.E is dy/dx + 1 = e^(x+y) … (1)",
+          "Given D.E is dy/dx + 1 = eˣ⁺ʸ … (1)",
           "Put x + y = t. Then 1 + dy/dx = dt/dx",
-          "(1) ⇒ dt/dx = e^t"
+          "(1) ⇒ dt/dx = eᵗ"
         ],
         "why": "Setting t = x + y makes dt/dx equal to 1 + dy/dx by the chain rule, which is exactly the left-hand side of the given equation, so the whole equation collapses to a single separable equation in t and x alone.",
         "common_mistakes": [
@@ -73,20 +73,21 @@
         "label": "Integrate and finish",
         "marks": 1,
         "mark_note": "Result",
-        "margin_note": "The last mark. Separate as e^(−t)dt = dx, integrate to −e^(−t) = x + c, then put t = x + y back in.",
-        "memory_tip": "∫e^(−t)dt = −e^(−t) — the same negative-exponential integral that appears whenever the equation separates into e^(−t)dt = dx.",
+        "margin_note": "The last mark. Separate as e⁻ᵗdt = dx, integrate to −e⁻ᵗ = x + c, then put t = x + y back in.",
+        "memory_tip": "∫e⁻ᵗdt = −e⁻ᵗ — the same negative-exponential integral that appears whenever the equation separates into e⁻ᵗdt = dx.",
         "lines": [
-          "⇒ dt/e^t = dx ⇒ e^(−t) dt = dx",
-          "⇒ ∫e^(−t) dt = ∫dx ⇒ −e^(−t) = x + c",
+          "⇒ dt/eᵗ = dx ⇒ e⁻ᵗ dt = dx",
+          "⇒ ∫e⁻ᵗ dt = ∫dx ⇒ −e⁻ᵗ = x + c",
           {
-            "text": "∴ e^(−(x+y)) + x + c = 0",
+            "text": "\\therefore e^{-(x+y)} + x + c = 0",
+            "render": "katex",
             "style": "boxed"
           }
         ],
-        "why": "Separating the variables in t and x and integrating gives −e^(−t) = x + c; moving every term to one side and substituting t = x + y back in gives the final relation entirely in the original variables.",
+        "why": "Separating the variables in t and x and integrating gives −e⁻ᵗ = x + c; moving every term to one side and substituting t = x + y back in gives the final relation entirely in the original variables.",
         "common_mistakes": [
           "Forgetting to substitute t = x + y back into the final answer and leaving it in terms of t.",
-          "Dropping the minus sign on e^(−t) when moving it across, writing e^(−(x+y)) = x + c instead of e^(−(x+y)) + x + c = 0."
+          "Dropping the minus sign on e⁻ᵗ when moving it across, writing e⁻⁽ˣ⁺ʸ⁾ = x + c instead of e⁻⁽ˣ⁺ʸ⁾ + x + c = 0."
         ]
       }
     ]

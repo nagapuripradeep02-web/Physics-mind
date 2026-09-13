@@ -91,15 +91,19 @@
         "label": "Find the integrating factor",
         "marks": 1,
         "mark_note": "I.F.",
-        "margin_note": "One mark. I.F. = e^(∫P dx) always — the formula never changes.",
-        "memory_tip": "e^(log(sec x)) = sec x — exponentiating a log of something returns that something.",
+        "margin_note": "One mark. I.F. = e to the power ∫P dx always — the formula never changes.",
+        "memory_tip": "e to the power log(sec x) = sec x — exponentiating a log of something returns that something.",
         "lines": [
-          "∴ I.F. = e^(∫P dx) = e^(log(sec x)) = sec x"
+          {
+            "text": "\\therefore \\text{ I.F. }\\ = e^{\\int P dx} = e^{\\log (\\sec x)} = \\sec x",
+            "render": "katex",
+            "style": "normal"
+          }
         ],
-        "why": "The integrating factor for a linear equation is always e raised to the integral of P found in the previous step, and since e^(log A) = A, this simplifies directly to sec x.",
+        "why": "The integrating factor for a linear equation is always e raised to the integral of P found in the previous step, and since e to the power log A = A, this simplifies directly to sec x.",
         "common_mistakes": [
-          "Writing the integrating factor as e^P instead of e^(∫P dx).",
-          "Leaving the answer as e^(log(sec x)) without simplifying it to sec x."
+          "Writing the integrating factor as e to the power P instead of e to the power ∫P dx.",
+          "Leaving the answer as e to the power log(sec x) without simplifying it to sec x."
         ]
       },
       {

@@ -147,18 +147,23 @@
         "marks": 1,
         "mark_note": "Result",
         "margin_note": "The last mark. Remove the log by exponentiating both sides, then isolate c.",
-        "memory_tip": "log(A) = B means A = e^B — apply that once to remove the log entirely.",
+        "memory_tip": "log A = B means A = e to the power B — apply that once to remove the log entirely.",
         "lines": [
-          "⇒ cy³/x² = e^(−x/y)",
           {
-            "text": "c = (x²/y³)·e^(−x/y)",
+            "text": "\\Rightarrow cy^{3}/x^{2} = e^{-x/y}",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "c = (x^{2}/y^{3})\\cdot e^{-x/y}",
+            "render": "katex",
             "style": "boxed"
           }
         ],
         "why": "Exponentiating both sides of log(cy³/x²) = −x/y removes the log, and rearranging for c gives the family of solutions in the exact form the book marks — the relation between x, y and the arbitrary constant.",
         "common_mistakes": [
           "Forgetting to exponentiate BOTH sides, leaving a log on one side only.",
-          "Inverting the fraction and writing c = (y³/x²)·e^(−x/y) instead of (x²/y³)·e^(−x/y)."
+          "Inverting the fraction and writing c = (y³/x²)·e to the power (−x/y) instead of (x²/y³)·e to the power (−x/y)."
         ]
       }
     ]

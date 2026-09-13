@@ -77,15 +77,19 @@
         "label": "Find the integrating factor",
         "marks": 1,
         "mark_note": "I.F.",
-        "margin_note": "One mark. I.F. = e^(∫P dx) always.",
-        "memory_tip": "e^(log sec x) = sec x — the exponential undoes the log immediately.",
+        "margin_note": "One mark. I.F. = e to the power ∫P dx always.",
+        "memory_tip": "e to the power log sec x = sec x — the exponential undoes the log immediately.",
         "lines": [
-          "∴ I.F. = e^(∫P dx) = e^(log sec x) = sec x"
+          {
+            "text": "\\therefore \\text{ I.F. }\\ = e^{\\int P dx} = e^{\\log \\sec x} = \\sec x",
+            "render": "katex",
+            "style": "normal"
+          }
         ],
-        "why": "The integrating factor formula e^(∫P dx) applies to every linear equation, and here it simplifies at once because e and log are inverse operations.",
+        "why": "The integrating factor formula e to the power ∫P dx applies to every linear equation, and here it simplifies at once because e and log are inverse operations.",
         "common_mistakes": [
           "Writing I.F. = sec x + tan x by confusing this with the integrating factor for P = sec x seen elsewhere in the chapter.",
-          "Forgetting the e^(...) step and writing I.F. = log sec x directly."
+          "Forgetting to raise e to the power ∫P dx, and writing I.F. = log sec x directly."
         ]
       },
       {

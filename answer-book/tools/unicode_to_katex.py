@@ -42,7 +42,7 @@ TEXFN = {'sin':r'\sin','cos':r'\cos','tan':r'\tan','sec':r'\sec','cot':r'\cot','
 SYM = {'π':r'\pi ','θ':r'\theta ','α':r'\alpha ','β':r'\beta ','λ':r'\lambda ','·':r'\cdot ','×':r'\times ','−':'-','⇒':r'\Rightarrow ',
        '∴':r'\therefore ','∵':r'\because ','…':r'\dots ','≤':r'\le ','≥':r'\ge ','→':r'\to ','±':r'\pm ','≠':r'\neq ','∞':r'\infty ',
        '∫':r'\int ','{':r'\{','}':r'\}','%':r'\%','≡':r'\equiv ','′':"'"}
-EN = {'when','is','odd','even','let','by','or','and','we','know','required','area','put','adding','also','so','here','standard','formula','since','then','with','at','the','of','from','to','for','gives','now','take','both','subtract','divide','multiply','in','on','as','it','this','that','lies','between','where','are','be','an'}
+EN = {'given','solution','hence','general','required','particular','therefore','when','is','odd','even','let','by','or','and','we','know','required','area','put','adding','also','so','here','standard','formula','since','then','with','at','the','of','from','to','for','gives','now','take','both','subtract','divide','multiply','in','on','as','it','this','that','lies','between','where','are','be','an'}
 MATHWORDS = {'dx','dt','dy','dθ','du','dv','sin','cos','tan','sec','cot','log','cosec','Tan','Sin','Cos','sinh','cosh','Tanh','e'}
 
 def try_unicode(t):
@@ -101,6 +101,11 @@ def tex(t):
             if t.startswith(f,i) and not (i>0 and t[i-1].isascii() and t[i-1].isalpha()): hit=f; break
         if hit:
             out.append(TEXFN[hit]+' '); i+=len(hit); continue
+        # abbreviations the answers use as words
+        ab=re.match(r'(D\.E\.?|I\.F\.?)', t[i:])
+        if ab and not (i>0 and t[i-1].isalpha()):
+            lead = ' ' if ''.join(out).strip() else ''
+            out.append(r'\text{'+lead+ab.group(0)+' }'); i+=len(ab.group(0)); continue
         # English word runs -> \text
         m=re.match(r'[A-Za-z]{2,}', t[i:])
         if m and m.group(0).lower() in EN and not (i>0 and t[i-1].isalpha()) \
@@ -117,7 +122,13 @@ def tex(t):
         if ch in SYM: out.append(SYM[ch]); i+=1; continue
         if ch==' ': out.append(r'\ ' if (out and out[-1].startswith(r'\text')) else ' '); i+=1; continue
         out.append(ch); i+=1
-    return ''.join(out).replace('  ',' ')
+    res = ''.join(out).replace('  ',' ')
+    # adjacent prose runs are one run: "\text{Given }\ \text{ D.E }" -> "\text{Given D.E }"
+    while True:
+        m = re.sub(r'\\text\{([^}]*?) ?\}\\ \\text\{ ?([^}]*)\}', lambda g: '\\text{'+g.group(1)+' '+g.group(2)+'}', res, count=1)
+        if m == res: break
+        res = m
+    return res
 
 def convert(t):
     u = try_unicode(t)

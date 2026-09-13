@@ -15,7 +15,7 @@
   "marks_total": 2,
   "paper_section": "Section A",
   "expected_time_min": 4,
-  "question_text": "Find the order and degree of the differential equation [d²y/dx² + (dy/dx)³]^(6/5) = 6y.",
+  "question_text": "Find the order and degree of the differential equation [d²y/dx² + (dy/dx)³] raised to the power 6/5 = 6y.",
   "appearances": [
     {
       "year": 2015,
@@ -69,9 +69,17 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given D.E is [d²y/dx² + (dy/dx)³]^(6/5) = 6y",
+          {
+            "text": "\\text{Given D.E is }\\ [d^{2}y/dx^{2} + (dy/dx)^{3}]^{6/5} = 6y",
+            "render": "katex",
+            "style": "normal"
+          },
           "Raising both sides to the power 5/6:",
-          "d²y/dx² + (dy/dx)³ = (6y)^(5/6)"
+          {
+            "text": "d^{2}y/dx^{2} + (dy/dx)^{3} = (6y)^{5/6}",
+            "render": "katex",
+            "style": "normal"
+          }
         ],
         "why": "Raising both sides to the reciprocal power 5/6 clears the fractional exponent outside the bracket, leaving an equation written as a polynomial in the derivatives, which is what the order and degree are read from.",
         "common_mistakes": [

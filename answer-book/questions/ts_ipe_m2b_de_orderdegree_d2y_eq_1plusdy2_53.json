@@ -15,7 +15,7 @@
   "marks_total": 2,
   "paper_section": "Section A",
   "expected_time_min": 4,
-  "question_text": "Find the order and degree of the differential equation d²y/dx² = [1 + (dy/dx)²]^(5/3).",
+  "question_text": "Find the order and degree of the differential equation d²y/dx² = (∛[1 + (dy/dx)²])⁵.",
   "appearances": [
     {
       "year": 2022,
@@ -57,9 +57,13 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given D.E is d²y/dx² = [1 + (dy/dx)²]^(5/3)",
+          {
+            "text": "\\text{Given D.E is }\\ d^{2}y/dx^{2} = [1 + (dy/dx)^{2}]^{5/3}",
+            "render": "katex",
+            "style": "normal"
+          },
           "Cubing both sides:",
-          "(d²y/dx²)³ = [1 + (dy/dx)²]^5",
+          "(d²y/dx²)³ = [1 + (dy/dx)²]⁵",
           "This is now free from fractional powers."
         ],
         "why": "Cubing both sides multiplies the exponent 5/3 by 3, giving the whole number 5, so the equation becomes a genuine polynomial in the derivatives with no fractional power left anywhere.",

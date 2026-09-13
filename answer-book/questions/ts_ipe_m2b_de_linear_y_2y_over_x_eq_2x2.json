@@ -79,10 +79,14 @@
         "label": "Find the integrating factor",
         "marks": 1,
         "mark_note": "I.F.",
-        "margin_note": "One mark. e^(log x²) = x² — the exponential and log cancel directly.",
+        "margin_note": "One mark. e to the power log x² = x² — the exponential and log cancel directly.",
         "memory_tip": "Whenever ∫P dx is a log, the I.F. simplifies to the plain expression inside that log.",
         "lines": [
-          "Now, I.F. = e^(∫P(x)dx) = e^(log x²) = x²"
+          {
+            "text": "\\text{Now, I.F. }\\ = e^{\\int P(x)dx} = e^{\\log x^{2}} = x^{2}",
+            "render": "katex",
+            "style": "normal"
+          }
         ],
         "why": "Writing ∫P dx as log x² in the previous step means the integrating factor simplifies immediately, since e raised to a log of something returns that something.",
         "common_mistakes": [

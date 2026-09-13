@@ -70,19 +70,20 @@
         "label": "Find the integrating factor",
         "marks": 1,
         "mark_note": "Result",
-        "margin_note": "The last mark. I.F. = e^(∫P dx); ∫tanx dx = log(secx) is a standard integral.",
+        "margin_note": "The last mark. I.F. = e to the power ∫P dx; ∫tanx dx = log(secx) is a standard integral.",
         "memory_tip": "∫tanx dx = log|secx| — always simplifies the I.F. down to a plain trig function once exponentiated.",
         "lines": [
           "Here P = tanx ⇒ ∫P dx = ∫tanx dx = log(secx)",
           {
-            "text": "∴ I.F. = e^(∫P dx) = e^(log(secx)) = secx",
+            "text": "\\therefore \\text{ I.F. }\\ = e^{\\int P dx} = e^{\\log (\\sec x)} = \\sec x",
+            "render": "katex",
             "style": "boxed"
           }
         ],
         "why": "The standard integral of tanx is log(secx), and e raised to a log cancels back to the plain expression inside it, so the integrating factor simplifies all the way down to secx.",
         "common_mistakes": [
-          "Integrating tanx as −log(cosx) and then not simplifying e^(−log(cosx)) correctly to secx.",
-          "Stopping at I.F. = e^(log secx) without simplifying it down to the plain secx."
+          "Integrating tanx as −log(cosx) and then not simplifying e to the power −log(cosx) correctly to secx.",
+          "Stopping at I.F. = e to the power log secx without simplifying it down to the plain secx."
         ]
       }
     ]

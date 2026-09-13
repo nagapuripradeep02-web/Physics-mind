@@ -93,15 +93,19 @@
         "label": "Find the integrating factor",
         "marks": 1,
         "mark_note": "I.F.",
-        "margin_note": "One mark. I.F. = e^(∫P dy), the same formula as before but integrated with respect to y.",
+        "margin_note": "One mark. I.F. = e to the power ∫P dy, the same formula as before but integrated with respect to y.",
         "memory_tip": "The formula for the integrating factor never changes — only the variable of integration switches to y here.",
         "lines": [
-          "∴ I.F. = e^(∫P dy) = e^(Tan⁻¹y)"
+          {
+            "text": "\\therefore \\text{ I.F. }\\ = e^{\\int P dy} = e^{\\operatorname{Tan}^{-1} y}",
+            "render": "katex",
+            "style": "normal"
+          }
         ],
         "why": "The integrating-factor formula applies identically whether the equation is linear in x or in y — only the variable being integrated changes, from x to y.",
         "common_mistakes": [
-          "Writing e^(Tan⁻¹x) instead of e^(Tan⁻¹y) — the integration here is with respect to y.",
-          "Forgetting the e^(...) wrapper and leaving the I.F. as Tan⁻¹y."
+          "Writing e to the power Tan⁻¹x instead of e to the power Tan⁻¹y — the integration here is with respect to y.",
+          "Forgetting to raise e to that power, and leaving the I.F. as Tan⁻¹y."
         ]
       },
       {
@@ -114,8 +118,16 @@
         "memory_tip": "t = Tan⁻¹y makes dt = dy/(1+y²) exactly, matching the leftover factor in the integral.",
         "lines": [
           "Hence the solution is x·(I.F.) = ∫(I.F.)Q dy",
-          "⇒ x·e^(Tan⁻¹y)",
-          "= ∫e^(Tan⁻¹y)·[Tan⁻¹y/(1 + y²)] dy",
+          {
+            "text": "\\Rightarrow x\\cdot e^{\\operatorname{Tan}^{-1} y}",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "= \\int e^{\\operatorname{Tan}^{-1} y}\\cdot [\\operatorname{Tan}^{-1} y/(1 + y^{2})] dy",
+            "render": "katex",
+            "style": "normal"
+          },
           "Put Tan⁻¹y = t ⇒ 1/(1 + y²) dy = dt,",
           "so the integral becomes ∫t·eᵗ dt"
         ],
@@ -138,14 +150,15 @@
           "So x·eᵗ = eᵗ(t − 1) + c,",
           "and putting t = Tan⁻¹y back in:",
           {
-            "text": "x = Tan⁻¹y − 1 + c·e^(−Tan⁻¹y)",
+            "text": "x = \\operatorname{Tan}^{-1} y - 1 + c\\cdot e^{-\\operatorname{Tan}^{-1} y}",
+            "render": "katex",
             "style": "boxed"
           }
         ],
         "why": "Integration by parts on t·eᵗ gives the standard result eᵗ(t − 1); dividing the whole equation by eᵗ afterwards isolates x and, substituting t = Tan⁻¹y back in, gives the final answer with a negative exponential term for the arbitrary constant.",
         "common_mistakes": [
           "Choosing the wrong parts for integration by parts, taking eᵗ as the part to differentiate instead of t.",
-          "Forgetting to divide the constant term c by eᵗ as well, and leaving it as +c·eᵗ instead of +c·e^(−Tan⁻¹y)."
+          "Forgetting to divide the constant term c by eᵗ as well, and leaving it as +c·eᵗ instead of +c·e to the power (−Tan⁻¹y)."
         ]
       }
     ]
