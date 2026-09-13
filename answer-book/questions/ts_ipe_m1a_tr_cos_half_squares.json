@@ -161,7 +161,7 @@
         "memory_tip": "The condition turns an expression in A and B into one in C, so every term shares a factor.",
         "lines": [
           "= 1 + cos((A+B)/2) cos((A−B)/2) + cos²(C/2)",
-          "  [∵ cos²A − sin²B = cos(A+B) cos(A−B)]",
+          "  [∵ cos²x − sin²y = cos(x+y) cos(x−y)]",
           "= 1 + sin(C/2) cos((A−B)/2) + (1 − sin²(C/2))",
           "= 2 + sin(C/2) cos((A−B)/2) − sin²(C/2)"
         ],
@@ -243,7 +243,7 @@
         "memory_tip": "One more sum-or-difference formula completes it. Write '= R.H.S' so the examiner sees the proof finished.",
         "lines": [
           "= 2 + sin(C/2) (2 sin(A/2) sin(B/2))",
-          "  [∵ cosC − cosD = 2 sin((C+D)/2) sin((D−C)/2)]",
+          "  [∵ cos x − cos y = 2 sin((x+y)/2) sin((y−x)/2)]",
           "= 2 + 2 sin(A/2) sin(B/2) sin(C/2)",
           {
             "text": "= 2(1 + sin(A/2) sin(B/2) sin(C/2)) = R.H.S",
