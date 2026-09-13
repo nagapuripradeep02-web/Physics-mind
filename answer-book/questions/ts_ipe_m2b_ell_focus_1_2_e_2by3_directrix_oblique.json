@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.61 — SAQ chapter 8 Ellipse, answer 68. NOT on an SSP page (book p.49 lists SSP pages 57,58,59,60 for this chapter; page 61 has no SSP banner). No appearance tag is printed beside this question at all — no TS or AP year, which is recorded here as an empty appearances list rather than guessed. Book p.61 prints no margin mark tags, so the 1+1+1+1 split here is OURS, matching the same four-stage focus-directrix shape used for Q67 immediately above it. The book's own working ends with the printed remark 'Note: The above equation represents the equation of an oblique ellipse' — this card keeps that observation, in plain language, as part of the final step's reasoning: the xy term means the ellipse's axes are not parallel to the coordinate axes. Ellipse is an SAQ-ONLY unit on the book's IPE Blue Print (book p.5). No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE BLM on hand; the book's five Guess Papers pp.118-127 are the orchestrator's back-test stand-in). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.61 — SAQ chapter 8 Ellipse, answer 68. NOT on an SSP page (book p.49 lists SSP pages 57,58,59,60 for this chapter; page 61 has no SSP banner). No appearance tag is printed beside this question at all — no TS or AP year, which is recorded here as an empty appearances list rather than guessed. Book p.61 prints no margin mark tags, so the 1+1+1+1 split here is OURS, matching the same four-stage focus-directrix shape used for Q67 immediately above it. The book's own working ends with the printed remark 'Note: The above equation represents the equation of an oblique ellipse' — this card keeps that observation, in plain language, as part of the final step's reasoning: the xy term means the ellipse's axes are not parallel to the coordinate axes. Ellipse is an SAQ-ONLY unit on the book's IPE Blue Print (book p.5). No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE BLM on hand; the book's five Guess Papers pp.118-127 are the orchestrator's back-test stand-in). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "insider_note": "The book itself flags this ellipse as 'oblique' — naming that in the final line, and saying why (the xy term), shows the examiner the shape of the answer is understood, not just copied.",
   "answer": {
@@ -62,8 +62,20 @@
           },
           "Given: focus S(1, 2), e = 2/3,",
           "directrix 2x + 3y + 6 = 0",
+          "Let P(x, y) be any point on the ellipse and M",
+          {
+            "text": "  the foot of the perpendicular from P",
+            "style": "indent"
+          },
+          {
+            "text": "  to the directrix.",
+            "style": "indent"
+          },
           "By the focus-directrix property, SP/PM = e",
           "⇒ SP = e·PM",
+          "SP = √((x−1)² + (y−2)²)  (distance formula)",
+          "PM = |2x+3y+6| / √(2² + 3²) = |2x+3y+6| / √13",
+          "(distance from a point to a line)",
           "√((x−1)² + (y−2)²) = (2/3) · |2x+3y+6| / √13"
         ],
         "why": "The locus of a point whose distance from a fixed point (the focus), divided by its distance from a fixed line (the directrix), is a constant e < 1, is by definition an ellipse.",
@@ -82,12 +94,32 @@
         "memory_tip": "e² = 4/9, and 13 in the denominator comes from squaring √13.",
         "lines": [
           "Squaring and cross-multiplying:",
+          {
+            "text": "Squaring removes the root and the modulus:",
+            "added": true
+          },
+          {
+            "text": "(x−1)² + (y−2)² = (4/9) · (2x+3y+6)² / 13",
+            "added": true
+          },
+          {
+            "text": "((2/3)² = 4/9 and (√13)² = 13)",
+            "added": true
+          },
+          {
+            "text": "Multiply both sides by 9 × 13 = 117:",
+            "added": true
+          },
           "117[(x−1)² + (y−2)²] = 4(2x+3y+6)²"
         ],
         "why": "Squaring both sides of the equation clears the square root on the left and the modulus on the right; the 117 comes from multiplying (2/3)² = 4/9 by 13, then clearing that fraction.",
         "common_mistakes": [
           "Losing track of the 13 when clearing denominators, and multiplying by 9 alone instead of 117.",
           "Squaring 2/3 as 2/9 instead of 4/9."
+        ],
+        "lines_compact": [
+          "Squaring and cross-multiplying:",
+          "117[(x−1)² + (y−2)²] = 4(2x+3y+6)²"
         ]
       },
       {
@@ -99,8 +131,45 @@
         "margin_note": "Third mark. Expand (2x+3y+6)² fully — it has three cross terms, not one.",
         "memory_tip": "A trinomial squared has THREE cross terms: 2·(first·second), 2·(first·third), 2·(second·third).",
         "lines": [
+          {
+            "text": "Open the squares:",
+            "added": true
+          },
+          {
+            "text": "  (x−1)² = x² − 2x + 1",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  (y−2)² = y² − 4y + 4",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  (2x+3y+6)² = 4x²+9y²+36+12xy+24x+36y",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "(three terms squared give three cross terms:",
+            "added": true
+          },
+          {
+            "text": "  2·2x·3y = 12xy, 2·2x·6 = 24x, 2·3y·6 = 36y)",
+            "style": "indent",
+            "added": true
+          },
           "117(x²−2x+1+y²−4y+4)",
           "= 4(4x²+9y²+36+12xy+24x+36y)",
+          {
+            "text": "Multiply out: 117 × each term on the left",
+            "added": true
+          },
+          {
+            "text": "  (117 × 5 = 585), 4 × each term on the right:",
+            "style": "indent",
+            "added": true
+          },
           "117x²+117y²−234x−468y+585",
           "= 16x²+36y²+48xy+96x+144y+144"
         ],
@@ -108,6 +177,12 @@
         "common_mistakes": [
           "Expanding (2x+3y+6)² as if it only had two terms, dropping one of the three cross terms.",
           "Forgetting to multiply the whole right-hand side by the outer factor of 4."
+        ],
+        "lines_compact": [
+          "117(x²−2x+1+y²−4y+4)",
+          "= 4(4x²+9y²+36+12xy+24x+36y)",
+          "117x²+117y²−234x−468y+585",
+          "= 16x²+36y²+48xy+96x+144y+144"
         ]
       },
       {
@@ -119,6 +194,42 @@
         "margin_note": "Fourth mark. This is an oblique ellipse — its axes are not parallel to the coordinate axes.",
         "memory_tip": "A nonzero xy term in the final equation always signals an oblique (tilted) conic.",
         "lines": [
+          {
+            "text": "Bring every term to the left side:",
+            "added": true
+          },
+          "117x²−16x² + 117y²−36y² − 48xy − 234x−96x",
+          "− 468y−144y + 585−144",
+          "= 0",
+          {
+            "text": "x²: 117 − 16 = 101;  y²: 117 − 36 = 81",
+            "added": true
+          },
+          {
+            "text": "x: −234 − 96 = −330;  y: −468 − 144 = −612",
+            "added": true
+          },
+          {
+            "text": "constant: 585 − 144 = 441",
+            "added": true
+          },
+          {
+            "text": "101x² − 48xy + 81y² − 330x − 612y + 441 = 0",
+            "style": "boxed"
+          },
+          "This equation represents an oblique ellipse —",
+          "its axes are not parallel to the x- and y-axes.",
+          {
+            "text": "(the xy term shows that the axes are turned)",
+            "added": true
+          }
+        ],
+        "why": "Collecting all terms on one side gives the final second-degree equation; the surviving xy term (−48xy) is the algebraic signature that this ellipse's axes are tilted, not aligned with the coordinate axes.",
+        "common_mistakes": [
+          "Trying to force the answer into x²/a² + y²/b² = 1 form, which is only possible for an axis-aligned ellipse.",
+          "Making an arithmetic slip while collecting the x² or y² coefficients across the two sides."
+        ],
+        "lines_compact": [
           "117x²−16x² + 117y²−36y² − 48xy − 234x−96x",
           "− 468y−144y + 585−144",
           "= 0",
@@ -128,11 +239,6 @@
           },
           "This equation represents an oblique ellipse —",
           "its axes are not parallel to the x- and y-axes."
-        ],
-        "why": "Collecting all terms on one side gives the final second-degree equation; the surviving xy term (−48xy) is the algebraic signature that this ellipse's axes are tilted, not aligned with the coordinate axes.",
-        "common_mistakes": [
-          "Trying to force the answer into x²/a² + y²/b² = 1 form, which is only possible for an axis-aligned ellipse.",
-          "Making an arithmetic slip while collecting the x² or y² coefficients across the two sides."
         ]
       }
     ]

@@ -43,7 +43,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.65 — SAQ chapter 8 Ellipse, answer 77, the last question of the chapter. NOT on an SSP page. Printed appearance: AP 20 only. Book p.65 prints no margin mark tags for this question, so the 1+1+1+1 split here is OURS, following the four natural stages of the proof. The book itself draws a small figure beside this answer — the ellipse with B at the top of the minor axis and foci T, S at the bottom forming a triangle — so this card reproduces that figure, per the rule that a figure is authored where the book draws one. Verified boundary: p.66 opens SAQ chapter 9 Hyperbola with answer 78.1, confirming answer 77 is the last Ellipse question and this chapter's inventory (answers 58-77, 20 questions) is complete. Ellipse is an SAQ-ONLY unit on the book's IPE Blue Print (book p.5). No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE BLM on hand; the book's five Guess Papers pp.118-127 are the orchestrator's back-test stand-in). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.65 — SAQ chapter 8 Ellipse, answer 77, the last question of the chapter. NOT on an SSP page. Printed appearance: AP 20 only. Book p.65 prints no margin mark tags for this question, so the 1+1+1+1 split here is OURS, following the four natural stages of the proof. The book itself draws a small figure beside this answer — the ellipse with B at the top of the minor axis and foci T, S at the bottom forming a triangle — so this card reproduces that figure, per the rule that a figure is authored where the book draws one. Verified boundary: p.66 opens SAQ chapter 9 Hyperbola with answer 78.1, confirming answer 77 is the last Ellipse question and this chapter's inventory (answers 58-77, 20 questions) is complete. Ellipse is an SAQ-ONLY unit on the book's IPE Blue Print (book p.5). No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE BLM on hand; the book's five Guess Papers pp.118-127 are the orchestrator's back-test stand-in). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "insider_note": "Distance formulas for SB and TB both come out to √(a²e² + b²) automatically, since S and T are mirror images of each other about the minor axis — so only ST = SB needs to be set up, not ST = SB = TB separately.",
   "answer": {
@@ -68,6 +68,17 @@
           "Let the ellipse be x²/a² + y²/b² = 1, (a > b)",
           "Foci S(ae, 0) and T(−ae, 0);",
           "B(0, b) is one end of the minor axis",
+          "ST = ae − (−ae) = 2ae (both are on the x-axis)",
+          "SB by the distance formula:",
+          {
+            "text": "  √((ae − 0)² + (0 − b)²) = √((ae)² + b²)",
+            "style": "indent"
+          },
+          "TB is the same: T is the mirror image of S",
+          {
+            "text": "  in the y-axis.",
+            "style": "indent"
+          },
           "ST = 2ae,  SB = TB = √((ae)² + b²)"
         ],
         "why": "The distance between the foci is 2ae, and SB (or TB) is found by the distance formula between a focus and the top of the minor axis — these are the three sides of triangle STB.",
@@ -86,6 +97,19 @@
         "memory_tip": "For an equilateral triangle, squaring one side-equality avoids dealing with square roots.",
         "lines": [
           "△STB is equilateral ⇒ SB = ST",
+          {
+            "text": "(all three sides are equal)",
+            "added": true
+          },
+          {
+            "text": "Both lengths are positive, so their squares",
+            "added": true
+          },
+          {
+            "text": "  are equal too:",
+            "style": "indent",
+            "added": true
+          },
           "⇒ (SB)² = (ST)²",
           "⇒ (ae)² + b² = (2ae)² = 4a²e²"
         ],
@@ -93,6 +117,11 @@
         "common_mistakes": [
           "Writing three separate equality conditions instead of the one needed (SB = TB is automatic from symmetry).",
           "Forgetting to square (2ae) correctly as 4a²e², not 2a²e²."
+        ],
+        "lines_compact": [
+          "△STB is equilateral ⇒ SB = ST",
+          "⇒ (SB)² = (ST)²",
+          "⇒ (ae)² + b² = (2ae)² = 4a²e²"
         ]
       },
       {
@@ -104,14 +133,27 @@
         "margin_note": "Third mark. This substitution turns everything into one variable, e.",
         "memory_tip": "Whenever both a²e² and b² appear together, substituting b² = a²(1 − e²) reduces the equation to e alone.",
         "lines": [
+          {
+            "text": "Put b² = a²(1 − e²):",
+            "added": true
+          },
           "a²e² + b² = 4a²e² ⇒ a²e² + a²(1 − e²)",
           "= 4a²e²  [since b² = a²(1 − e²)]",
+          {
+            "text": "Every term has a², and a ≠ 0.",
+            "added": true
+          },
           "Divide by a²: e² + (1 − e²) = 4e²"
         ],
         "why": "Replacing b² with a²(1 − e²) removes b entirely, and dividing by a² removes a — leaving a pure equation in e, which is all the question asks for.",
         "common_mistakes": [
           "Forgetting to divide through by a² after substituting, leaving a mix of a² and e terms.",
           "Sign-slipping when expanding a²(1 − e²)."
+        ],
+        "lines_compact": [
+          "a²e² + b² = 4a²e² ⇒ a²e² + a²(1 − e²)",
+          "= 4a²e²  [since b² = a²(1 − e²)]",
+          "Divide by a²: e² + (1 − e²) = 4e²"
         ]
       },
       {
@@ -123,7 +165,19 @@
         "margin_note": "Fourth mark. The e² terms cancel almost completely, leaving a one-line equation for e².",
         "memory_tip": "e must be a positive fraction less than 1 for a real ellipse — always take the positive square root.",
         "lines": [
+          {
+            "text": "Open the bracket:",
+            "added": true
+          },
           "e² + 1 − e² = 4e² ⇒ 1 = 4e² ⇒ e² = 1/4",
+          {
+            "text": "(e² − e² = 0 on the left)",
+            "added": true
+          },
+          {
+            "text": "e is positive, so take the positive root:",
+            "added": true
+          },
           {
             "text": "e = 1/2",
             "style": "boxed"
@@ -133,6 +187,13 @@
         "common_mistakes": [
           "Writing the final answer as e² = 1/4 without taking the square root to get e.",
           "Taking the negative square root — eccentricity is always taken as the positive value."
+        ],
+        "lines_compact": [
+          "e² + 1 − e² = 4e² ⇒ 1 = 4e² ⇒ e² = 1/4",
+          {
+            "text": "e = 1/2",
+            "style": "boxed"
+          }
         ]
       },
       {

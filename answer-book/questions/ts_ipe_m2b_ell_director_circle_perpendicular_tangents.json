@@ -43,7 +43,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.63 — SAQ chapter 8 Ellipse, answer 72. NOT on an SSP page. Printed appearance: AP 16 only. Book p.63 prints no margin mark tags for this proof-style question, so the 1+1+1+1 split here is OURS, following the four natural stages of the standard 'product of roots' proof. This same result (director circle x²+y²=a²+b²) is repeated verbatim in the Bullet Model Paper's SAQ Section B (book p.107, under 'Q11: CIRCLES' as a worked model, not under Ellipse) — that repeat is a different chapter's worked example reusing this proof and is not treated as an extra card. A FIGURE is authored for this card — the ellipse, its director circle, and one external point with two perpendicular tangent lines touching the ellipse — because the picture IS the argument here: seeing that the locus point sits on a circle concentric with the ellipse is the entire content of the result being proved. Ellipse is an SAQ-ONLY unit on the book's IPE Blue Print (book p.5). No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE BLM on hand; the book's five Guess Papers pp.118-127 are the orchestrator's back-test stand-in). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.63 — SAQ chapter 8 Ellipse, answer 72. NOT on an SSP page. Printed appearance: AP 16 only. Book p.63 prints no margin mark tags for this proof-style question, so the 1+1+1+1 split here is OURS, following the four natural stages of the standard 'product of roots' proof. This same result (director circle x²+y²=a²+b²) is repeated verbatim in the Bullet Model Paper's SAQ Section B (book p.107, under 'Q11: CIRCLES' as a worked model, not under Ellipse) — that repeat is a different chapter's worked example reusing this proof and is not treated as an extra card. A FIGURE is authored for this card — the ellipse, its director circle, and one external point with two perpendicular tangent lines touching the ellipse — because the picture IS the argument here: seeing that the locus point sits on a circle concentric with the ellipse is the entire content of the result being proved. Ellipse is an SAQ-ONLY unit on the book's IPE Blue Print (book p.5). No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE BLM on hand; the book's five Guess Papers pp.118-127 are the orchestrator's back-test stand-in). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "insider_note": "The name 'director circle' for x² + y² = a² + b² is worth writing on the final boxed line — examiners often award the last mark for naming the result, not just deriving it.",
   "answer": {
@@ -67,8 +67,14 @@
           },
           "Let the ellipse be S ≡ x²/a² + y²/b² − 1 = 0",
           "Let P(x₁, y₁) be a point on the locus.",
+          "(P is the point where two perpendicular",
+          {
+            "text": "  tangents meet.)",
+            "style": "indent"
+          },
           "Tangent with slope m: y = mx ± √(a²m² + b²)",
           "If it passes through P(x₁, y₁):",
+          "Put x = x₁, y = y₁ and take mx₁ to the left:",
           "y₁ − mx₁ = ±√(a²m² + b²)"
         ],
         "why": "Forcing the general tangent line to pass through the locus point P turns the geometric condition ('a tangent through P') into an algebraic equation relating m to the coordinates of P.",
@@ -87,12 +93,50 @@
         "memory_tip": "Two tangents from one point means: look for a QUADRATIC whose two roots are their two slopes.",
         "lines": [
           "Squaring: (y₁ − mx₁)² = a²m² + b²",
-          "⇒ m²(x₁² − a²) − 2mx₁y₁ + (y₁² − b²) = 0 …(1)"
+          {
+            "text": "Open the square on the left:",
+            "added": true
+          },
+          {
+            "text": "y₁² − 2mx₁y₁ + m²x₁² = a²m² + b²",
+            "added": true
+          },
+          {
+            "text": "Bring every term to the left and group by",
+            "added": true
+          },
+          {
+            "text": "  powers of m:",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "m² terms: m²x₁² − a²m² = m²(x₁² − a²)",
+            "added": true
+          },
+          {
+            "text": "m term: −2mx₁y₁; constant: y₁² − b²",
+            "added": true
+          },
+          "⇒ m²(x₁² − a²) − 2mx₁y₁ + (y₁² − b²) = 0 …(1)",
+          {
+            "text": "(1) is a quadratic in m. Its two roots m₁, m₂",
+            "added": true
+          },
+          {
+            "text": "  are the slopes of the two tangents from P.",
+            "style": "indent",
+            "added": true
+          }
         ],
         "why": "Equation (1) is a quadratic in m; its two roots m₁, m₂ are exactly the slopes of the two tangents that pass through P, since each root satisfies the tangency condition.",
         "common_mistakes": [
           "Expanding (y₁ − mx₁)² incorrectly and losing the cross term −2mx₁y₁.",
           "Forgetting that this is now an equation in m (unknown), with x₁, y₁ as fixed constants."
+        ],
+        "lines_compact": [
+          "Squaring: (y₁ − mx₁)² = a²m² + b²",
+          "⇒ m²(x₁² − a²) − 2mx₁y₁ + (y₁² − b²) = 0 …(1)"
         ]
       },
       {
@@ -105,6 +149,15 @@
         "memory_tip": "Product of roots of am² + bm + c = 0 is c/a — apply it here with a = (x₁²−a²), c = (y₁²−b²).",
         "lines": [
           "If the tangents are perpendicular, m₁m₂ = −1",
+          {
+            "text": "For Am² + Bm + C = 0, the product of the roots",
+            "added": true
+          },
+          {
+            "text": "  is C/A. Here A = x₁² − a², C = y₁² − b².",
+            "style": "indent",
+            "added": true
+          },
           "Product of roots of (1):",
           "m₁m₂ = (y₁² − b²) / (x₁² − a²) = −1"
         ],
@@ -112,6 +165,11 @@
         "common_mistakes": [
           "Using sum of roots instead of product of roots — perpendicularity is a PRODUCT condition, not a sum.",
           "Missing the minus sign when writing the ratio of the constant term to the leading coefficient."
+        ],
+        "lines_compact": [
+          "If the tangents are perpendicular, m₁m₂ = −1",
+          "Product of roots of (1):",
+          "m₁m₂ = (y₁² − b²) / (x₁² − a²) = −1"
         ]
       },
       {
@@ -123,16 +181,49 @@
         "margin_note": "Fourth mark. Clear the fraction and simplify — the x₁² and a² terms combine into a circle equation.",
         "memory_tip": "The director circle is centred at the same centre as the ellipse, with radius √(a² + b²).",
         "lines": [
+          {
+            "text": "Multiply both sides by (x₁² − a²):",
+            "added": true
+          },
           "y₁² − b² = −(x₁² − a²) ⇒ x₁² + y₁² = a² + b²",
+          {
+            "text": "(−(x₁² − a²) = −x₁² + a²; move −x₁² to the left",
+            "added": true
+          },
+          {
+            "text": "  and −b² to the right)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "Replace (x₁, y₁) by (x, y):",
+            "added": true
+          },
           {
             "text": "x² + y² = a² + b² — director circle",
             "style": "boxed"
+          },
+          {
+            "text": "So P lies on the circle with centre (0, 0)",
+            "added": true
+          },
+          {
+            "text": "  and radius √(a² + b²).",
+            "style": "indent",
+            "added": true
           }
         ],
         "why": "Rearranging the perpendicularity equation shows that every point from which the two tangents are perpendicular satisfies x² + y² = a² + b², which is the equation of a circle concentric with the ellipse.",
         "common_mistakes": [
           "Stopping at y₁² − b² = a² − x₁² without moving all terms to one side to reveal the circle equation.",
           "Forgetting to name the result — the locus is called the director circle."
+        ],
+        "lines_compact": [
+          "y₁² − b² = −(x₁² − a²) ⇒ x₁² + y₁² = a² + b²",
+          {
+            "text": "x² + y² = a² + b² — director circle",
+            "style": "boxed"
+          }
         ]
       },
       {
