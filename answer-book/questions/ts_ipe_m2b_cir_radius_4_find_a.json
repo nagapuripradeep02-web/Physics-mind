@@ -35,7 +35,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.77 — VSAQ chapter 12 Circle, answer 103.1. It sits on a ★★★ SSP (Super Scoring Page): book p.77 carries the SSP banner. Printed appearance tag: AP 16. Every number was re-derived and the book is correct: a = −3. It is the first answer of the chapter and the whole chapter is the highest-frequency 2-mark ground on the paper. The mark split 1 + 1 is OURS, not the book’s: the whole VSAQ chapter is set in two columns and prints no margin tags anywhere. There is no printed 2-mark split in this book to pattern it on, so it splits the answer at its one natural break. Star rank: the book’s VSAQ chapter table (book p.76) and its VSAQ hit list header (book p.11) both give the CIRCLE VSAQ chapter ★★★, but the chapter header printed on book p.77 shows only ★★. The two disagree; the TABLE’s rank is used, so every Circle VSAQ entry takes stars 3. That rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section A runs Q1-Q10 at 2 marks each, all compulsory; Circle holds Q1 and Q2. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book’s five Guess Papers (book pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.77 — VSAQ chapter 12 Circle, answer 103.1. It sits on a ★★★ SSP (Super Scoring Page): book p.77 carries the SSP banner. Printed appearance tag: AP 16. Every number was re-derived and the book is correct: a = −3. It is the first answer of the chapter and the whole chapter is the highest-frequency 2-mark ground on the paper. The mark split 1 + 1 is OURS, not the book’s: the whole VSAQ chapter is set in two columns and prints no margin tags anywhere. There is no printed 2-mark split in this book to pattern it on, so it splits the answer at its one natural break. Star rank: the book’s VSAQ chapter table (book p.76) and its VSAQ hit list header (book p.11) both give the CIRCLE VSAQ chapter ★★★, but the chapter header printed on book p.77 shows only ★★. The two disagree; the TABLE’s rank is used, so every Circle VSAQ entry takes stars 3. That rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section A runs Q1-Q10 at 2 marks each, all compulsory; Circle holds Q1 and Q2. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book’s five Guess Papers (book pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "insider_note": "A negative answer is correct here and is not a mistake: a = −3 simply means the constant term of the circle is negative, which is what makes the radius as large as 4.",
   "answer": {
@@ -58,8 +58,11 @@
             "style": "heading"
           },
           "Given circle: x² + y² − 4x + 6y + a = 0",
+          "Compare with x² + y² + 2gx + 2fy + c = 0:",
+          "2g = −4 ⇒ g = −2, 2f = 6 ⇒ f = 3",
           "Here g = −2, f = 3, c = a",
           "Radius = √(g² + f² − c) = √((−2)² + 3² − a)",
+          "4 + 9 = 13",
           "= √(13 − a)"
         ],
         "why": "Comparing with x² + y² + 2gx + 2fy + c = 0 gives 2g = −4 and 2f = 6. The unknown sits in the constant, so it goes straight into the radius formula.",
@@ -81,6 +84,10 @@
           "⇒ √(13 − a) = 4",
           "Squaring both sides: 13 − a = 16",
           {
+            "text": "⇒ −a = 16 − 13 = 3",
+            "added": true
+          },
+          {
             "text": "∴ a = 13 − 16 = −3",
             "style": "boxed"
           }
@@ -89,6 +96,15 @@
         "common_mistakes": [
           "Solving 13 − a = 16 as a = 3.",
           "Rejecting the answer because it is negative."
+        ],
+        "lines_compact": [
+          "Given radius = 4",
+          "⇒ √(13 − a) = 4",
+          "Squaring both sides: 13 − a = 16",
+          {
+            "text": "∴ a = 13 − 16 = −3",
+            "style": "boxed"
+          }
         ]
       }
     ]

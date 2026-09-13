@@ -39,7 +39,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.50 — SAQ chapter 6 Circle, answer 45.1. It is the first answer of the chapter and sits on a ★★★ SSP (Super Scoring Page): book p.50 carries the SSP banner. Printed appearance tag: TS 16. The mark split is OURS, not the book’s: this answer sits on a two-column or shared page with no printed margin tags. It is patterned on the one printed split in this chapter — book p.51, answer 48, which prints 1 + 1 + 1 + 1 across a four-move 4-mark answer. Star rank: the book gives the CIRCLE SAQ chapter ★★ in its SAQ chapter table (book p.49), in the chapter header (book p.50) and in the SAQ hit list header (book p.9), so every Circle SAQ entry takes stars 2. That rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Circle holds Q11. Every number was re-derived and the book is correct: r = 5, p = 3√2 and the chord is 2√7. The same question is re-answered in the Bullet Model Paper (book p.107, Q11 CIRCLES) with identical working, so it is authored once, here. FIGURE SCOPE: the question does not say \"draw\", so the diagram step carries NO marks; the figure is included because the right-angled triangle made by r, p and half the chord IS the argument. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book’s five Guess Papers (book pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.50 — SAQ chapter 6 Circle, answer 45.1. It is the first answer of the chapter and sits on a ★★★ SSP (Super Scoring Page): book p.50 carries the SSP banner. Printed appearance tag: TS 16. The mark split is OURS, not the book’s: this answer sits on a two-column or shared page with no printed margin tags. It is patterned on the one printed split in this chapter — book p.51, answer 48, which prints 1 + 1 + 1 + 1 across a four-move 4-mark answer. Star rank: the book gives the CIRCLE SAQ chapter ★★ in its SAQ chapter table (book p.49), in the chapter header (book p.50) and in the SAQ hit list header (book p.9), so every Circle SAQ entry takes stars 2. That rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Circle holds Q11. Every number was re-derived and the book is correct: r = 5, p = 3√2 and the chord is 2√7. The same question is re-answered in the Bullet Model Paper (book p.107, Q11 CIRCLES) with identical working, so it is authored once, here. FIGURE SCOPE: the question does not say \"draw\", so the diagram step carries NO marks; the figure is included because the right-angled triangle made by r, p and half the chord IS the argument. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book’s five Guess Papers (book pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "insider_note": "The whole answer rests on one right-angled triangle: radius as hypotenuse, perpendicular distance as one side, half the chord as the other — write 2√(r² − p²) as a formula line before substituting anything.",
   "answer": {
@@ -62,8 +62,13 @@
             "style": "heading"
           },
           "Given circle: x² + y² − 8x − 2y − 8 = 0",
+          "Compare with x² + y² + 2gx + 2fy + c = 0:",
+          "2g = −8 ⇒ g = −4",
+          "2f = −2 ⇒ f = −1",
           "Here g = −4, f = −1, c = −8",
+          "Centre = (−g, −f)",
           "Centre C = (4, 1)",
+          "Radius r = √(g² + f² − c)",
           "Radius r = √(16 + 1 + 8) = √25 = 5"
         ],
         "why": "The chord formula needs the radius and the distance of the line from the centre, so both centre and radius come first. Here c = −8, so −c is +8.",
@@ -83,13 +88,40 @@
         "lines": [
           "Perpendicular distance from C(4, 1)",
           "to the line x + y + 1 = 0:",
+          {
+            "text": "Distance from (x₁, y₁) to ax + by + c = 0 is",
+            "added": true
+          },
+          {
+            "text": "  |ax₁ + by₁ + c| / √(a² + b²)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "Here a = 1, b = 1, c = 1",
+            "added": true
+          },
           "p = |4 + 1 + 1| / √(1² + 1²)",
+          {
+            "text": "= 6/√2",
+            "added": true
+          },
+          {
+            "text": "Multiply above and below by √2:",
+            "added": true
+          },
           "= 6/√2 = 6√2/2 = 3√2"
         ],
         "why": "The perpendicular from the centre to a chord bisects it, so its length is one side of the right-angled triangle whose hypotenuse is the radius.",
         "common_mistakes": [
           "Using the coefficients of the circle instead of the line in √(a² + b²).",
           "Leaving p as 6/√2 and then squaring it wrongly."
+        ],
+        "lines_compact": [
+          "Perpendicular distance from C(4, 1)",
+          "to the line x + y + 1 = 0:",
+          "p = |4 + 1 + 1| / √(1² + 1²)",
+          "= 6/√2 = 6√2/2 = 3√2"
         ]
       },
       {
@@ -101,8 +133,26 @@
         "margin_note": "The last two marks. p² = (3√2)² = 18, not 6 — squaring a surd squares the number outside as well.",
         "memory_tip": "Length of chord = 2√(r² − p²). Half the chord, the distance p and the radius r form a right triangle.",
         "lines": [
+          {
+            "text": "The radius, p and half the chord form a",
+            "added": true
+          },
+          {
+            "text": "  right triangle, so half the chord",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  is √(r² − p²).",
+            "style": "indent",
+            "added": true
+          },
           "Length of the chord = 2√(r² − p²)",
           "= 2√(5² − (3√2)²)",
+          {
+            "text": "(3√2)² = 9 × 2 = 18",
+            "added": true
+          },
           "= 2√(25 − 18)",
           {
             "text": "∴ Length of the chord = 2√7",
@@ -113,6 +163,15 @@
         "common_mistakes": [
           "Writing (3√2)² as 6.",
           "Forgetting the factor 2 and answering √7."
+        ],
+        "lines_compact": [
+          "Length of the chord = 2√(r² − p²)",
+          "= 2√(5² − (3√2)²)",
+          "= 2√(25 − 18)",
+          {
+            "text": "∴ Length of the chord = 2√7",
+            "style": "boxed"
+          }
         ]
       },
       {

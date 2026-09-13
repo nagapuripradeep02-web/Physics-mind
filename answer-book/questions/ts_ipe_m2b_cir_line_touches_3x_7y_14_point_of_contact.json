@@ -47,7 +47,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.51 — SAQ chapter 6 Circle, answer 48. The mark split 1 + 1 + 1 + 1 IS THE BOOK’S: this answer sits on a single-column page and carries printed margin tags — \"1 Mark\" beside the radius, \"1 Mark\" beside the line p = r, \"1 Mark\" beside the sentence naming the point of contact as the foot of the perpendicular, and \"1 Mark\" beside the values of h and k. It is the only printed split in the whole Circle SAQ chapter, and it is what the other SAQ splits in this unit are patterned on. Printed appearance tags: AP 17 and AP 22. Star rank: the book gives the CIRCLE SAQ chapter ★★ in its SAQ chapter table (book p.49), in the chapter header (book p.50) and in the SAQ hit list header (book p.9), so every Circle SAQ entry takes stars 2. That rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Circle holds Q11. Every number was re-derived and the book is correct: r = 1/√2 = p, and the point of contact is (2, −3). FIGURE SCOPE: the question does not say \"draw\", so the diagram step carries NO marks; the book prints a small sketch beside this answer. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book’s five Guess Papers (book pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.51 — SAQ chapter 6 Circle, answer 48. The mark split 1 + 1 + 1 + 1 IS THE BOOK’S: this answer sits on a single-column page and carries printed margin tags — \"1 Mark\" beside the radius, \"1 Mark\" beside the line p = r, \"1 Mark\" beside the sentence naming the point of contact as the foot of the perpendicular, and \"1 Mark\" beside the values of h and k. It is the only printed split in the whole Circle SAQ chapter, and it is what the other SAQ splits in this unit are patterned on. Printed appearance tags: AP 17 and AP 22. Star rank: the book gives the CIRCLE SAQ chapter ★★ in its SAQ chapter table (book p.49), in the chapter header (book p.50) and in the SAQ hit list header (book p.9), so every Circle SAQ entry takes stars 2. That rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Circle holds Q11. Every number was re-derived and the book is correct: r = 1/√2 = p, and the point of contact is (2, −3). FIGURE SCOPE: the question does not say \"draw\", so the diagram step carries NO marks; the book prints a small sketch beside this answer. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book’s five Guess Papers (book pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "insider_note": "Two separate things are asked and each carries two of the four marks — showing p = r, and then finding the point. Stopping after p = r loses half the marks.",
   "answer": {
@@ -70,8 +70,12 @@
             "style": "heading"
           },
           "Given circle: x² + y² − 3x + 7y + 14 = 0",
+          "Compare with x² + y² + 2gx + 2fy + c = 0:",
+          "2g = −3 ⇒ g = −3/2",
+          "2f = 7 ⇒ f = 7/2",
           "Here g = −3/2, f = 7/2, c = 14",
-          "Centre C = (3/2, −7/2)",
+          "Centre C = (−g, −f) = (3/2, −7/2)",
+          "Radius r = √(g² + f² − c)",
           "r = √(9/4 + 49/4 − 14) = √((9 + 49 − 56)/4)",
           "= √(2/4) = 1/√2"
         ],
@@ -92,6 +96,15 @@
         "lines": [
           "Perpendicular distance from C(3/2, −7/2)",
           "to the line x + y + 1 = 0:",
+          {
+            "text": "A line touches a circle when this distance",
+            "added": true
+          },
+          {
+            "text": "  equals the radius.",
+            "style": "indent",
+            "added": true
+          },
           "p = |3/2 − 7/2 + 1| / √(1² + 1²)",
           "= |(3 − 7 + 2)/2| / √2 = |−1| / √2 = 1/√2",
           "⇒ p = r",
@@ -101,6 +114,14 @@
         "common_mistakes": [
           "Writing 3/2 − 7/2 as −2 instead of −2/2.",
           "Reaching p = r but not writing the sentence that the line touches the circle."
+        ],
+        "lines_compact": [
+          "Perpendicular distance from C(3/2, −7/2)",
+          "to the line x + y + 1 = 0:",
+          "p = |3/2 − 7/2 + 1| / √(1² + 1²)",
+          "= |(3 − 7 + 2)/2| / √2 = |−1| / √2 = 1/√2",
+          "⇒ p = r",
+          "∴ The line touches the circle."
         ]
       },
       {
@@ -115,16 +136,43 @@
           "The point of contact (h, k) is the foot of",
           "the perpendicular from C(3/2, −7/2)",
           "to the line x + y + 1 = 0",
+          {
+            "text": "Foot of the perpendicular from (x₁, y₁) to",
+            "added": true
+          },
+          {
+            "text": "  the line ax + by + c = 0:",
+            "style": "indent",
+            "added": true
+          },
           "(h − x₁)/a = (k − y₁)/b",
           "= −(ax₁ + by₁ + c)/(a² + b²)",
+          {
+            "text": "Here a = 1, b = 1, c = 1",
+            "added": true
+          },
           "⇒ (h − 3/2)/1 = (k + 7/2)/1",
           "= −(3/2 − 7/2 + 1)/(1 + 1)",
+          {
+            "text": "3/2 − 7/2 + 1 = −1, so this is −(−1)/2",
+            "added": true
+          },
           "⇒ (h − 3/2)/1 = (k + 7/2)/1 = 1/2"
         ],
         "why": "The radius drawn to the point of contact is perpendicular to the tangent, so the point of contact is exactly where the perpendicular from the centre meets the line. That turns the geometry into the standard foot-of-perpendicular formula.",
         "common_mistakes": [
           "Solving the line and the circle together, which works but is far longer.",
           "Forgetting the minus sign in front of (ax₁ + by₁ + c)."
+        ],
+        "lines_compact": [
+          "The point of contact (h, k) is the foot of",
+          "the perpendicular from C(3/2, −7/2)",
+          "to the line x + y + 1 = 0",
+          "(h − x₁)/a = (k − y₁)/b",
+          "= −(ax₁ + by₁ + c)/(a² + b²)",
+          "⇒ (h − 3/2)/1 = (k + 7/2)/1",
+          "= −(3/2 − 7/2 + 1)/(1 + 1)",
+          "⇒ (h − 3/2)/1 = (k + 7/2)/1 = 1/2"
         ]
       },
       {
@@ -141,12 +189,28 @@
           {
             "text": "∴ Point of contact is (2, −3)",
             "style": "boxed"
+          },
+          {
+            "text": "Check (2, −3) on the circle:",
+            "added": true
+          },
+          {
+            "text": "4 + 9 − 6 − 21 + 14 = 0",
+            "added": true
           }
         ],
         "why": "A quick check: 2 + (−3) + 1 = 0, so (2, −3) is on the line, and 4 + 9 − 6 − 21 + 14 = 0, so it is on the circle as well. A point on both is the point of contact.",
         "common_mistakes": [
           "Writing k = 7/2 + 1/2 = 4 by using the wrong sign for the centre.",
           "Reporting the centre as the point of contact."
+        ],
+        "lines_compact": [
+          "h − 3/2 = 1/2 ⇒ h = 3/2 + 1/2 = 2",
+          "k + 7/2 = 1/2 ⇒ k = 1/2 − 7/2 = −3",
+          {
+            "text": "∴ Point of contact is (2, −3)",
+            "style": "boxed"
+          }
         ]
       },
       {

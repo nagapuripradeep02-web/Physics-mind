@@ -55,7 +55,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.16 — LAQ chapter 1 Circle, answer 3. The mark split 1 + 1 + 2 + 2 + 1 IS THE BOOK’S: this answer sits alone on a single-column page and carries printed margin tags — \"1 Mark\" beside equation (1), \"1 Mark\" beside equation (2), \"2 Marks\" beside the centre, \"2 Marks\" beside the equation of the circle, and \"1 Mark\" beside the substitution of D. Printed appearance tags: AP 17, AP 19 and TS 15. Star rank: the book gives the CIRCLE LAQ chapter ★★★ in its LAQ chapter table (book p.13), in the chapter header (book p.14) and in the LAQ hit list header (book p.7), so every Circle LAQ entry takes stars 3. That rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Circle holds Q18 and Q19. An LAQ on this paper is 7 marks, never 8 — the 2026-27 move to 8-mark long answers is first year only. Every number was re-derived and the book is correct. The same question is re-answered in the Bullet Model Paper (book p.111) with identical working, so it is authored once, here. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book’s five Guess Papers (book pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.16 — LAQ chapter 1 Circle, answer 3. The mark split 1 + 1 + 2 + 2 + 1 IS THE BOOK’S: this answer sits alone on a single-column page and carries printed margin tags — \"1 Mark\" beside equation (1), \"1 Mark\" beside equation (2), \"2 Marks\" beside the centre, \"2 Marks\" beside the equation of the circle, and \"1 Mark\" beside the substitution of D. Printed appearance tags: AP 17, AP 19 and TS 15. Star rank: the book gives the CIRCLE LAQ chapter ★★★ in its LAQ chapter table (book p.13), in the chapter header (book p.14) and in the LAQ hit list header (book p.7), so every Circle LAQ entry takes stars 3. That rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Circle holds Q18 and Q19. An LAQ on this paper is 7 marks, never 8 — the 2026-27 move to 8-mark long answers is first year only. Every number was re-derived and the book is correct. The same question is re-answered in the Bullet Model Paper (book p.111) with identical working, so it is authored once, here. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book’s five Guess Papers (book pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "insider_note": "Concyclic means one circle through all four, so build the circle from any three and then test the fourth — that last substitution is a printed mark of its own and is the line students most often leave out.",
   "answer": {
@@ -80,10 +80,30 @@
           "A = (1, 1), B = (−6, 0), C = (−2, 2), D = (−2, −8)",
           "Let S(x₁, y₁) be the centre of the circle",
           "through A, B and C ⇒ SA = SB = SC",
+          "Three points that are not in a straight line",
+          {
+            "text": "  lie on exactly one circle. Find that",
+            "style": "indent"
+          },
+          {
+            "text": "  circle from A, B, C, then test D on it.",
+            "style": "indent"
+          },
+          "Distance formula: SA² = (x₁−1)² + (y₁−1)²",
           "Now SA = SB ⇒ SA² = SB²",
           "⇒ (x₁−1)² + (y₁−1)² = (x₁+6)² + y₁²",
+          "Expand every square:",
+          "x₁² − 2x₁ + 1 + y₁² − 2y₁ + 1",
+          {
+            "text": "  = x₁² + 12x₁ + 36 + y₁²",
+            "style": "indent"
+          },
+          "x₁² and y₁² cancel from both sides:",
           "⇒ −2x₁ + 1 − 2y₁ + 1 = 12x₁ + 36",
+          "Take every term to the left side:",
+          "−2x₁ − 12x₁ − 2y₁ + 2 − 36 = 0",
           "⇒ −14x₁ − 2y₁ − 34 = 0",
+          "Divide every term by −2:",
           "⇒ 7x₁ + y₁ + 17 = 0 … (1)"
         ],
         "why": "Four points are concyclic when one circle passes through all of them. Three points fix a circle, so the circle is built from A, B and C and the fourth point is checked afterwards.",
@@ -103,14 +123,50 @@
         "lines": [
           "Also SB = SC ⇒ SB² = SC²",
           "⇒ (x₁+6)² + y₁² = (x₁+2)² + (y₁−2)²",
+          {
+            "text": "Expand every square:",
+            "added": true
+          },
+          {
+            "text": "x₁² + 12x₁ + 36 + y₁²",
+            "added": true
+          },
+          {
+            "text": "  = x₁² + 4x₁ + 4 + y₁² − 4y₁ + 4",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "x₁² and y₁² cancel from both sides:",
+            "added": true
+          },
           "⇒ 12x₁ + 36 = 4x₁ + 4 − 4y₁ + 4",
+          {
+            "text": "Take every term to the left side:",
+            "added": true
+          },
+          {
+            "text": "12x₁ − 4x₁ + 4y₁ + 36 − 8 = 0",
+            "added": true
+          },
           "⇒ 8x₁ + 4y₁ + 28 = 0",
+          {
+            "text": "Divide every term by 4:",
+            "added": true
+          },
           "⇒ 2x₁ + y₁ + 7 = 0 … (2)"
         ],
         "why": "Any two of the three equal-distance conditions are enough; the third follows. Pairing B with C keeps the numbers small because B has y = 0.",
         "common_mistakes": [
           "Expanding (y₁ − 2)² as y₁² + 4y₁ + 4.",
           "Dividing 8x₁ + 4y₁ + 28 = 0 by 4 and writing the constant as 4."
+        ],
+        "lines_compact": [
+          "Also SB = SC ⇒ SB² = SC²",
+          "⇒ (x₁+6)² + y₁² = (x₁+2)² + (y₁−2)²",
+          "⇒ 12x₁ + 36 = 4x₁ + 4 − 4y₁ + 4",
+          "⇒ 8x₁ + 4y₁ + 28 = 0",
+          "⇒ 2x₁ + y₁ + 7 = 0 … (2)"
         ]
       },
       {
@@ -122,7 +178,23 @@
         "margin_note": "Two printed marks, tagged \"2 Marks\" beside the centre. Both equations have coefficient 1 on y₁, so subtract.",
         "memory_tip": "Both equations end in y₁, so subtracting removes y₁ in one line.",
         "lines": [
+          {
+            "text": "(1): 7x₁ + y₁ + 17 = 0",
+            "added": true
+          },
+          {
+            "text": "(2): 2x₁ + y₁ + 7 = 0",
+            "added": true
+          },
+          {
+            "text": "Both have y₁, so subtracting removes y₁:",
+            "added": true
+          },
           "(1) − (2) ⇒ 5x₁ + 10 = 0 ⇒ x₁ = −2",
+          {
+            "text": "Put x₁ = −2 in (1):",
+            "added": true
+          },
           "From (1): 7(−2) + y₁ + 17 = 0",
           "⇒ y₁ + 3 = 0 ⇒ y₁ = −3",
           "∴ Centre S(x₁, y₁) = (−2, −3)"
@@ -131,6 +203,12 @@
         "common_mistakes": [
           "Writing (1) − (2) as 5x₁ − 10 = 0 and getting x₁ = 2.",
           "Substituting x₁ = −2 as 7(2) and getting y₁ = −31."
+        ],
+        "lines_compact": [
+          "(1) − (2) ⇒ 5x₁ + 10 = 0 ⇒ x₁ = −2",
+          "From (1): 7(−2) + y₁ + 17 = 0",
+          "⇒ y₁ + 3 = 0 ⇒ y₁ = −3",
+          "∴ Centre S(x₁, y₁) = (−2, −3)"
         ]
       },
       {
@@ -143,16 +221,60 @@
         "memory_tip": "r² = 25 is a perfect square, which is a quick sign that the arithmetic so far is right.",
         "lines": [
           "A = (1, 1) lies on the circle, so r = SA.",
-          "r² = SA² = (1+2)² + (1+3)² = 9 + 16 = 25",
+          {
+            "text": "Put the centre (−2, −3) and A(1, 1) in the",
+            "added": true
+          },
+          {
+            "text": "  distance formula:",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "r² = SA² = (1+2)² + (1+3)²",
+            "added": true
+          },
+          {
+            "text": "= 3² + 4² = 9 + 16 = 25",
+            "added": true
+          },
+          {
+            "text": "A circle with centre (h, k) and radius r is",
+            "added": true
+          },
+          {
+            "text": "(x − h)² + (y − k)² = r²",
+            "added": true
+          },
           "Circle with centre (−2, −3) and r² = 25 is",
           "(x + 2)² + (y + 3)² = 25",
+          {
+            "text": "Expand both squares:",
+            "added": true
+          },
           "⇒ (x² + 4x + 4) + (y² + 6y + 9) = 25",
+          {
+            "text": "Take 25 to the left side:",
+            "added": true
+          },
+          {
+            "text": "Constant: 4 + 9 − 25 = −12",
+            "added": true
+          },
           "⇒ x² + y² + 4x + 6y − 12 = 0"
         ],
         "why": "This is the circle through A, B and C. Its equation has to be written out in general form because the fourth point is about to be substituted into it.",
         "common_mistakes": [
           "Stopping at (x + 2)² + (y + 3)² = 25, which makes the next substitution slower.",
           "Getting the constant as +12 instead of −12."
+        ],
+        "lines_compact": [
+          "A = (1, 1) lies on the circle, so r = SA.",
+          "r² = SA² = (1+2)² + (1+3)² = 9 + 16 = 25",
+          "Circle with centre (−2, −3) and r² = 25 is",
+          "(x + 2)² + (y + 3)² = 25",
+          "⇒ (x² + 4x + 4) + (y² + 6y + 9) = 25",
+          "⇒ x² + y² + 4x + 6y − 12 = 0"
         ]
       },
       {
@@ -167,6 +289,15 @@
           "Put D(−2, −8) in x² + y² + 4x + 6y − 12:",
           "= (−2)² + (−8)² + 4(−2) + 6(−8) − 12",
           "= 4 + 64 − 8 − 48 − 12 = 68 − 68 = 0",
+          {
+            "text": "The value is 0, so D satisfies the equation",
+            "added": true
+          },
+          {
+            "text": "  of the circle through A, B and C.",
+            "style": "indent",
+            "added": true
+          },
           "∴ D(−2, −8) lies on the circle.",
           {
             "text": "∴ The four given points are concyclic.",
@@ -177,6 +308,16 @@
         "common_mistakes": [
           "Getting a non-zero value from a sign slip and then claiming the points are concyclic anyway.",
           "Leaving out the final sentence, which carries the conclusion mark."
+        ],
+        "lines_compact": [
+          "Put D(−2, −8) in x² + y² + 4x + 6y − 12:",
+          "= (−2)² + (−8)² + 4(−2) + 6(−8) − 12",
+          "= 4 + 64 − 8 − 48 − 12 = 68 − 68 = 0",
+          "∴ D(−2, −8) lies on the circle.",
+          {
+            "text": "∴ The four given points are concyclic.",
+            "style": "boxed"
+          }
         ]
       }
     ]

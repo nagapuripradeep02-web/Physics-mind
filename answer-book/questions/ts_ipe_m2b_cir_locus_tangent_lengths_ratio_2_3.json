@@ -43,7 +43,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.51 — SAQ chapter 6 Circle, answer 47. Printed appearance tags: AP 19 and TS 17. The mark split is OURS, not the book’s: this answer sits on a two-column or shared page with no printed margin tags. It is patterned on the one printed split in this chapter — book p.51, answer 48, which prints 1 + 1 + 1 + 1 across a four-move 4-mark answer. Star rank: the book gives the CIRCLE SAQ chapter ★★ in its SAQ chapter table (book p.49), in the chapter header (book p.50) and in the SAQ hit list header (book p.9), so every Circle SAQ entry takes stars 2. That rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Circle holds Q11. Every number was re-derived and the book is correct: 9(PT₁)² = 4(PT₂)² gives 5x² + 5y² − 60x − 126y − 212 = 0, and that has no common factor, so it cannot be reduced further. The two circles here are the same pair that the Bullet Model Paper uses for its touching-circles question on book p.112. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book’s five Guess Papers (book pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.51 — SAQ chapter 6 Circle, answer 47. Printed appearance tags: AP 19 and TS 17. The mark split is OURS, not the book’s: this answer sits on a two-column or shared page with no printed margin tags. It is patterned on the one printed split in this chapter — book p.51, answer 48, which prints 1 + 1 + 1 + 1 across a four-move 4-mark answer. Star rank: the book gives the CIRCLE SAQ chapter ★★ in its SAQ chapter table (book p.49), in the chapter header (book p.50) and in the SAQ hit list header (book p.9), so every Circle SAQ entry takes stars 2. That rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Circle holds Q11. Every number was re-derived and the book is correct: 9(PT₁)² = 4(PT₂)² gives 5x² + 5y² − 60x − 126y − 212 = 0, and that has no common factor, so it cannot be reduced further. The two circles here are the same pair that the Bullet Model Paper uses for its touching-circles question on book p.112. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book’s five Guess Papers (book pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "insider_note": "Squaring the ratio is the whole method: PT₁ : PT₂ = 2 : 3 becomes 9(PT₁)² = 4(PT₂)², and the 9 goes with the FIRST circle — putting the 4 there is the single commonest slip on this question.",
   "answer": {
@@ -71,7 +71,9 @@
           "PT₂ = length of the tangent from P to",
           "S′ ≡ x² + y² + 6x + 18y + 26 = 0",
           "Given PT₁ : PT₂ = 2 : 3",
-          "⇒ 3 PT₁ = 2 PT₂ ⇒ 9(PT₁)² = 4(PT₂)²"
+          "⇒ 3 PT₁ = 2 PT₂",
+          "Square both sides to remove the roots:",
+          "⇒ 9(PT₁)² = 4(PT₂)²"
         ],
         "why": "Tangent lengths are square roots, so the condition is squared to remove them. Cross-multiplying before squaring keeps the 9 attached to the first circle and the 4 to the second.",
         "common_mistakes": [
@@ -88,15 +90,37 @@
         "margin_note": "Second mark. S₁₁ is just the left side of the circle equation with the point substituted — no halving, no sign change.",
         "memory_tip": "S₁₁ = x₁² + y₁² + 2gx₁ + 2fy₁ + c. Put the point into the circle as it stands.",
         "lines": [
+          {
+            "text": "The length of the tangent from (x₁, y₁) to",
+            "added": true
+          },
+          {
+            "text": "  S = 0 is √S₁₁, so (PT)² = S₁₁.",
+            "style": "indent",
+            "added": true
+          },
           "(PT₁)² = x₁² + y₁² − 4x₁ − 6y₁ − 12",
           "(PT₂)² = x₁² + y₁² + 6x₁ + 18y₁ + 26",
+          {
+            "text": "Put these in 9(PT₁)² = 4(PT₂)²:",
+            "added": true
+          },
           "⇒ 9[x₁² + y₁² − 4x₁ − 6y₁ − 12]",
-          "  = 4[x₁² + y₁² + 6x₁ + 18y₁ + 26]"
+          {
+            "text": "  = 4[x₁² + y₁² + 6x₁ + 18y₁ + 26]",
+            "style": "indent"
+          }
         ],
         "why": "The square of the tangent length from an external point is S₁₁, which is the whole left side of the circle equation evaluated at that point. No rearranging is needed.",
         "common_mistakes": [
           "Using √(g² + f² − c) instead of S₁₁.",
           "Halving the coefficients before substituting."
+        ],
+        "lines_compact": [
+          "(PT₁)² = x₁² + y₁² − 4x₁ − 6y₁ − 12",
+          "(PT₂)² = x₁² + y₁² + 6x₁ + 18y₁ + 26",
+          "⇒ 9[x₁² + y₁² − 4x₁ − 6y₁ − 12]",
+          "  = 4[x₁² + y₁² + 6x₁ + 18y₁ + 26]"
         ]
       },
       {
@@ -108,9 +132,43 @@
         "margin_note": "The last two marks. 9 − 4 = 5 stays in front of x² and y², so this locus is a circle, not a line.",
         "memory_tip": "9 − 4 = 5, so the second-degree terms survive and the locus is a circle.",
         "lines": [
+          {
+            "text": "Multiply out both sides:",
+            "added": true
+          },
           "⇒ 9x₁² + 9y₁² − 36x₁ − 54y₁ − 108",
-          "  = 4x₁² + 4y₁² + 24x₁ + 72y₁ + 104",
+          {
+            "text": "  = 4x₁² + 4y₁² + 24x₁ + 72y₁ + 104",
+            "style": "indent"
+          },
+          {
+            "text": "Take every term to the left side:",
+            "added": true
+          },
+          {
+            "text": "9x₁² − 4x₁² = 5x₁², 9y₁² − 4y₁² = 5y₁²,",
+            "added": true
+          },
+          {
+            "text": "  −36x₁ − 24x₁ = −60x₁,",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  −54y₁ − 72y₁ = −126y₁,",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  −108 − 104 = −212",
+            "style": "indent",
+            "added": true
+          },
           "⇒ 5x₁² + 5y₁² − 60x₁ − 126y₁ − 212 = 0",
+          {
+            "text": "Write (x, y) in place of (x₁, y₁):",
+            "added": true
+          },
           {
             "text": "∴ Locus: 5x² + 5y² − 60x − 126y − 212 = 0",
             "style": "boxed"
@@ -120,6 +178,15 @@
         "common_mistakes": [
           "Dividing the final answer by 5 and producing fractions.",
           "Expecting a straight line. That happens only when the two multipliers are equal, so the x² and y² terms cancel."
+        ],
+        "lines_compact": [
+          "⇒ 9x₁² + 9y₁² − 36x₁ − 54y₁ − 108",
+          "  = 4x₁² + 4y₁² + 24x₁ + 72y₁ + 104",
+          "⇒ 5x₁² + 5y₁² − 60x₁ − 126y₁ − 212 = 0",
+          {
+            "text": "∴ Locus: 5x² + 5y² − 60x − 126y − 212 = 0",
+            "style": "boxed"
+          }
         ]
       }
     ]
