@@ -112,7 +112,7 @@
         ],
         "why": "A tangent meets a circle at exactly one point, and that happens exactly when the perpendicular distance from the centre equals the radius. Both come out as 1/√2 here.",
         "common_mistakes": [
-          "Writing 3/2 − 7/2 as −2 instead of −2/2.",
+          "Dropping the +1 and getting |−2| instead of |−1|.",
           "Reaching p = r but not writing the sentence that the line touches the circle."
         ],
         "lines_compact": [

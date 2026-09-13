@@ -186,7 +186,7 @@
         ],
         "why": "Equations (1) and (2) both have coefficient 1 on x₁, so one subtraction removes x₁ and gives y₁ at once. Back-substitution then gives x₁.",
         "common_mistakes": [
-          "Subtracting in the wrong order and getting y₁ = −2.",
+          "Reading −y₁ + 2 = 0 as y₁ = −2 instead of y₁ = 2.",
           "Putting y₁ = 2 into equation (2) and then mixing the two results."
         ],
         "lines_compact": [

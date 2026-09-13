@@ -75,12 +75,17 @@
           },
           "Two points are conjugate with respect to",
           "a circle when S₁₂ = 0",
-          "S₁₂ is S with x² replaced by x₁x₂ and",
+          "S₁₂ is S with x² replaced by x₁x₂, y² by",
           {
-            "text": "  y² replaced by y₁y₂.",
+            "text": "  y₁y₂, 2gx by g(x₁ + x₂) and",
+            "style": "indent"
+          },
+          {
+            "text": "  2fy by f(y₁ + y₂).",
             "style": "indent"
           },
           "For S ≡ x² + y² − 35 = 0:",
+          "This circle has no x or y terms, so",
           "S₁₂ = x₁x₂ + y₁y₂ − 35"
         ],
         "why": "Two points are conjugate when each lies on the polar of the other, and writing that out gives S₁₂ = 0. With the centre at the origin there are no linear terms, so only the product terms and the constant survive.",

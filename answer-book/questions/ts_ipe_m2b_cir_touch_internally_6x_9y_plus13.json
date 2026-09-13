@@ -229,7 +229,7 @@
         ],
         "why": "For internal touching the smaller circle is inside the larger, so the contact point lies on the line of centres but outside the segment joining them. That is external division in the ratio r₁ : r₂.",
         "common_mistakes": [
-          "Using internal division and getting (5/3, 17/3).",
+          "Using internal division and getting (7/3, 17/3).",
           "Dividing by (1 + 2) instead of (1 − 2)."
         ],
         "lines_compact": [

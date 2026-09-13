@@ -158,7 +158,7 @@
         "why": "The distance between the centres equals the sum of the radii, so the circles meet at exactly one point and neither lies inside the other.",
         "common_mistakes": [
           "Using r₂ = 2 from the book’s misprint and getting 7 instead of 13.",
-          "Writing (3 + 9)² as (3 − 9)², which still gives 144 but by accident."
+          "Writing (3 + 9)² as (3 − 9)², which gives 36 instead of 144."
         ],
         "lines_compact": [
           "C₁C₂ = √((2+3)² + (3+9)²) = √(25 + 144)",

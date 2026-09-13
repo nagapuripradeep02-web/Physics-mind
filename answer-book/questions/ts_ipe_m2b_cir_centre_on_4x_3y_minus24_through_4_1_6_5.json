@@ -164,7 +164,7 @@
         ],
         "why": "The centre is where the perpendicular bisector of AB meets the given line. Both equations already carry 4x₁, so one subtraction is enough.",
         "common_mistakes": [
-          "Subtracting the other way round and getting y₁ = −4.",
+          "Reading −5y₁ + 20 = 0 as y₁ = −4 instead of y₁ = 4.",
           "Solving 4x₁ = 12 as x₁ = 4."
         ],
         "lines_compact": [

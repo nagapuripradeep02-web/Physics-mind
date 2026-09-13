@@ -109,7 +109,7 @@
         "why": "Substituting the point directly into x² + y² + 2ky gives 41 + 8k. Setting that equal to 1 leaves one linear equation, and the answer is negative because 41 is already far above 1.",
         "common_mistakes": [
           "Writing 2k(4) as 4k.",
-          "Solving 8k = −40 as k = −40/8 = −4."
+          "Writing −40/8 as −4 instead of −5."
         ],
         "lines_compact": [
           "S₁₁ = 5² + 4² + 2k(4) = 25 + 16 + 8k",
