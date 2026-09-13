@@ -47,7 +47,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Sr. Maths-2B (Sri Publishers, Machilipatnam), book p.54 — SAQ chapter 7 System of Circles, answer 54.1, on a ★★★ Super Scoring Page (SSP 54). Chapter star rank ★★★, per the SAQ section table (book p.49). Printed appearance tags: AP 15, AP 17. ⚠ THE MARK SPLIT IS OURS — no [N Marks] margin tags are printed in this chapter. Patterned on the same four-step 1-mark-per-step shape as the radical-centre twins in this unit (justified in full in ts_ipe_m2b_sc_radical_centre_three_circles_one's note, against Circle SAQ answer 48, book p.51): common chord, centre+radius, perpendicular distance, length. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Neither the two-book union check nor a board back-test was possible for this subject: there is no TSBIE second-year Maths-2B BLM on hand, and answer-book/papers/ holds first-year physics only — the book's own five Guess Papers (pp.118-127) stand in as the back-test instead. Boundary walked both ways: book p.53 ends the Circle SAQ chapter at answer 52, and book p.57 opens SAQ chapter 8 Ellipse. Paper position: Maths-2B Section B runs Q1-Q7 at 4 marks each (Q3 = System of Circles, per the QF sheet pp.3-4), answer any 5 of 7 (ABC_75). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, Sr. Maths-2B (Sri Publishers, Machilipatnam), book p.54 — SAQ chapter 7 System of Circles, answer 54.1, on a ★★★ Super Scoring Page (SSP 54). Chapter star rank ★★★, per the SAQ section table (book p.49). Printed appearance tags: AP 15, AP 17. ⚠ THE MARK SPLIT IS OURS — no [N Marks] margin tags are printed in this chapter. Patterned on the same four-step 1-mark-per-step shape as the radical-centre twins in this unit (justified in full in ts_ipe_m2b_sc_radical_centre_three_circles_one's note, against Circle SAQ answer 48, book p.51): common chord, centre+radius, perpendicular distance, length. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Neither the two-book union check nor a board back-test was possible for this subject: there is no TSBIE second-year Maths-2B BLM on hand, and answer-book/papers/ holds first-year physics only — the book's own five Guess Papers (pp.118-127) stand in as the back-test instead. Boundary walked both ways: book p.53 ends the Circle SAQ chapter at answer 52, and book p.57 opens SAQ chapter 8 Ellipse. Paper position: Maths-2B Section B runs Q1-Q7 at 4 marks each (Q3 = System of Circles, per the QF sheet pp.3-4), answer any 5 of 7 (ABC_75). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "insider_note": "The common chord IS the radical axis of the two circles — the same S − S′ = 0 line, only now used as an actual chord with a length to compute.",
   "answer": {
@@ -71,7 +71,10 @@
           "S ≡ x² + y² + 2x + 2y + 1 = 0",
           "S′ ≡ x² + y² + 4x + 3y + 2 = 0",
           "Equation of the common chord is S − S′ = 0",
+          "(both have x² + y² with coefficient 1)",
+          "x: 2x − 4x = −2x, y: 2y − 3y = −y, 1 − 2 = −1",
           "⇒ −2x − y − 1 = 0",
+          "Multiply every term by −1:",
           "⇒ 2x + y + 1 = 0"
         ],
         "why": "Where two circles genuinely intersect, S − S′ = 0 is the line through both points of intersection — the common chord itself, not merely a radical axis with no real chord.",
@@ -89,8 +92,34 @@
         "mark_note": "Method",
         "margin_note": "Second mark. Either circle works — the perpendicular distance is measured from ONE of them.",
         "lines": [
+          {
+            "text": "The half-chord, the radius and the distance",
+            "added": true
+          },
+          {
+            "text": "  from the centre make a right triangle,",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  so the centre and radius of S are needed.",
+            "style": "indent",
+            "added": true
+          },
           "For the circle S ≡ x² + y² + 2x + 2y + 1 = 0",
+          {
+            "text": "2g = 2 ⇒ g = 1; 2f = 2 ⇒ f = 1; c = 1",
+            "added": true
+          },
+          {
+            "text": "The centre is (−g, −f):",
+            "added": true
+          },
           "centre C(−1, −1)",
+          {
+            "text": "The radius is √(g² + f² − c):",
+            "added": true
+          },
           "radius r = √(1² + 1² − 1) = √1 = 1"
         ],
         "why": "The length of a chord is found from ONE circle's own centre and radius together with the perpendicular distance from that same centre to the chord.",
@@ -98,7 +127,12 @@
           "Reading the centre as (1, 1) instead of (−1, −1) — the centre is (−g, −f), the negative of half the coefficients.",
           "Using S′'s centre in this step but S's radius later, mixing the two circles."
         ],
-        "memory_tip": "Centre is the negative of half the x and y coefficients: g = 1, f = 1, so centre is (−1, −1)."
+        "memory_tip": "Centre is the negative of half the x and y coefficients: g = 1, f = 1, so centre is (−1, −1).",
+        "lines_compact": [
+          "For the circle S ≡ x² + y² + 2x + 2y + 1 = 0",
+          "centre C(−1, −1)",
+          "radius r = √(1² + 1² − 1) = √1 = 1"
+        ]
       },
       {
         "id": "s3_perpendicular_distance",
@@ -108,9 +142,22 @@
         "mark_note": "Method",
         "margin_note": "Third mark, for the distance from the centre chosen in step 2 to the chord found in step 1.",
         "lines": [
+          {
+            "text": "Distance from (x₁, y₁) to ax + by + c = 0 is",
+            "added": true
+          },
+          {
+            "text": "  |ax₁ + by₁ + c| / √(a² + b²)",
+            "style": "indent",
+            "added": true
+          },
           "Length of the perpendicular from C(−1, −1)",
           "to the line 2x + y + 1 = 0 is",
           "p = |2(−1) + (−1) + 1| / √(4 + 1) = |−2| / √5",
+          {
+            "text": "(−2 − 1 + 1 = −2, and |−2| = 2)",
+            "added": true
+          },
           "= 2/√5"
         ],
         "why": "The perpendicular from the centre bisects the chord — its length p, together with the radius r, gives a right triangle whose other leg is half the chord.",
@@ -118,7 +165,13 @@
           "Using the wrong circle's centre in the distance formula after finding both centres in earlier working.",
           "Dropping the absolute value and carrying a negative distance forward."
         ],
-        "memory_tip": "p = |Ax₁ + By₁ + C| / √(A² + B²), with (x₁, y₁) the centre found in the previous step."
+        "memory_tip": "p = |Ax₁ + By₁ + C| / √(A² + B²), with (x₁, y₁) the centre found in the previous step.",
+        "lines_compact": [
+          "Length of the perpendicular from C(−1, −1)",
+          "to the line 2x + y + 1 = 0 is",
+          "p = |2(−1) + (−1) + 1| / √(4 + 1) = |−2| / √5",
+          "= 2/√5"
+        ]
       },
       {
         "id": "s4_length_of_chord",
@@ -128,6 +181,23 @@
         "mark_note": "Solution",
         "margin_note": "Fourth mark, for the final chord length.",
         "lines": [
+          {
+            "text": "Half the chord is √(r² − p²), by Pythagoras,",
+            "added": true
+          },
+          {
+            "text": "  so the whole chord is 2√(r² − p²).",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "r² = 1 and p² = (2/√5)² = 4/5",
+            "added": true
+          },
+          {
+            "text": "1 − 4/5 = 1/5, and 2√(1/5) = 2/√5",
+            "added": true
+          },
           "Length of the common chord",
           {
             "text": "= 2√(r² − p²) = 2√(1 − 4/5) = 2/√5 units",
@@ -139,7 +209,14 @@
           "Writing r² − p² the wrong way round as p² − r², which gives a negative number under the root.",
           "Forgetting the factor of 2 and stopping at half the chord length."
         ],
-        "memory_tip": "Chord length is always 2 × √(radius² − distance²) — the same formula used for any chord, not special to a common chord."
+        "memory_tip": "Chord length is always 2 × √(radius² − distance²) — the same formula used for any chord, not special to a common chord.",
+        "lines_compact": [
+          "Length of the common chord",
+          {
+            "text": "= 2√(r² − p²) = 2√(1 − 4/5) = 2/√5 units",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   }

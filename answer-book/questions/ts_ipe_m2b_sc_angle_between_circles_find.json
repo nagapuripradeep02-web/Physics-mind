@@ -41,7 +41,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Sr. Maths-2B (Sri Publishers, Machilipatnam), book p.81 — VSAQ chapter 13 System of Circles, answer 119.2. Book p.81 is NOT a Super Scoring Page (the SSP list on book p.76 omits page 81; its header carries no 'SSP' banner). Chapter star rank ★★, per the VSAQ section table (book p.76). Printed appearance tags: TS 15, TS 17, AP 19 (printed as 'TS 15,17' and 'AP 19'). ⚠ THE MARK SPLIT IS OURS, same 1+1 reasoning as the twin answer 119.1 (justified in that card's note). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. This same pair of circles reappears in the next answer, 120, where one coefficient is replaced by an unknown k and the angle 45° is given as data instead of asked for — the two questions test the same formula from opposite directions. Neither the two-book union check nor a board back-test was possible for this subject: there is no TSBIE second-year Maths-2B BLM on hand, and answer-book/papers/ holds first-year physics only — the book's own five Guess Papers (pp.118-127) stand in as the back-test instead. Boundary walked both ways: book p.79 ends the Circle VSAQ chapter at answer 115, and book p.82 opens VSAQ chapter 14 Parabola. Paper position: Maths-2B Section A runs Q1-Q10 at 2 marks each (Q3 = System of Circles, per the QF sheet pp.3-4), answer all 10 (ABC_75). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, Sr. Maths-2B (Sri Publishers, Machilipatnam), book p.81 — VSAQ chapter 13 System of Circles, answer 119.2. Book p.81 is NOT a Super Scoring Page (the SSP list on book p.76 omits page 81; its header carries no 'SSP' banner). Chapter star rank ★★, per the VSAQ section table (book p.76). Printed appearance tags: TS 15, TS 17, AP 19 (printed as 'TS 15,17' and 'AP 19'). ⚠ THE MARK SPLIT IS OURS, same 1+1 reasoning as the twin answer 119.1 (justified in that card's note). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. This same pair of circles reappears in the next answer, 120, where one coefficient is replaced by an unknown k and the angle 45° is given as data instead of asked for — the two questions test the same formula from opposite directions. Neither the two-book union check nor a board back-test was possible for this subject: there is no TSBIE second-year Maths-2B BLM on hand, and answer-book/papers/ holds first-year physics only — the book's own five Guess Papers (pp.118-127) stand in as the back-test instead. Boundary walked both ways: book p.79 ends the Circle VSAQ chapter at answer 115, and book p.82 opens VSAQ chapter 14 Parabola. Paper position: Maths-2B Section A runs Q1-Q10 at 2 marks each (Q3 = System of Circles, per the QF sheet pp.3-4), answer all 10 (ABC_75). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "insider_note": "These same two circles return in a later question with a letter in place of one coefficient — recognising the pair saves re-deriving the centres and one of the radii from scratch.",
   "answer": {
@@ -65,8 +65,13 @@
           "Given circles are",
           "x² + y² − 12x − 6y + 41 = 0 ...(1)",
           "x² + y² + 4x + 6y − 59 = 0 ...(2)",
+          "For (1): 2g = −12, 2f = −6, so g = −6, f = −3",
+          "For (2): 2g = 4, 2f = 6, so g = 2, f = 3",
+          "The centre is (−g, −f):",
           "Centre C₁ = (6, 3), C₂ = (−2, −3)",
           "d = C₁C₂ = √(8² + 6²) = √100 = 10",
+          "(6 − (−2) = 8 and 3 − (−3) = 6)",
+          "The radius is √(g² + f² − c):",
           "From (1), r₁ = √(36 + 9 − 41) = √4 = 2",
           "From (2), r₂ = √(4 + 9 + 59) = √72"
         ],
@@ -85,9 +90,29 @@
         "mark_note": "Solution",
         "margin_note": "Second mark, for substituting into the angle formula and naming the angle.",
         "lines": [
+          {
+            "text": "The angle θ between two circles is given by",
+            "added": true
+          },
           "cos θ = (d² − r₁² − r₂²) / (2r₁r₂)",
+          {
+            "text": "Here d² = 100, r₁² = 4 and r₂² = 72:",
+            "added": true
+          },
           "= (100 − 4 − 72) / (2 · 2 · √72)",
+          {
+            "text": "Top: 100 − 4 − 72 = 24",
+            "added": true
+          },
+          {
+            "text": "Bottom: √72 = √(36 × 2) = 6√2, so 4√72 = 24√2",
+            "added": true
+          },
           "= 24 / (4√72) = 24 / (24√2) = 1/√2",
+          {
+            "text": "and cos 45° = 1/√2:",
+            "added": true
+          },
           {
             "text": "∴ Angle between the circles is θ = 45° = π/4",
             "style": "boxed"
@@ -98,7 +123,16 @@
           "Leaving √72 unsimplified and failing to spot that 4√72 = 24√2, so the fraction does not reduce.",
           "Computing 100 − 4 − 72 incorrectly as 100 − 76 = 24 miscopied as some other number."
         ],
-        "memory_tip": "Simplify √72 = √(36 · 2) = 6√2 before doing the division — a surd left unsimplified is the usual reason this fraction looks stuck."
+        "memory_tip": "Simplify √72 = √(36 · 2) = 6√2 before doing the division — a surd left unsimplified is the usual reason this fraction looks stuck.",
+        "lines_compact": [
+          "cos θ = (d² − r₁² − r₂²) / (2r₁r₂)",
+          "= (100 − 4 − 72) / (2 · 2 · √72)",
+          "= 24 / (4√72) = 24 / (24√2) = 1/√2",
+          {
+            "text": "∴ Angle between the circles is θ = 45° = π/4",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   }
