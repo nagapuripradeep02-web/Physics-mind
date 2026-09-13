@@ -112,7 +112,7 @@
           },
           "117[(x−1)² + (y−2)²] = 4(2x+3y+6)²"
         ],
-        "why": "Squaring both sides of the equation clears the square root on the left and the modulus on the right; the 117 comes from multiplying (2/3)² = 4/9 by 13, then clearing that fraction.",
+        "why": "Squaring both sides of the equation clears the square root on the left and the modulus on the right; the 117 = 9 × 13 comes from the denominators of (2/3)² = 4/9 and (√13)² = 13.",
         "common_mistakes": [
           "Losing track of the 13 when clearing denominators, and multiplying by 9 alone instead of 117.",
           "Squaring 2/3 as 2/9 instead of 4/9."

@@ -66,7 +66,7 @@
         "marks": 1,
         "mark_note": "Setup",
         "margin_note": "First mark. S is the given focus, and PM is the perpendicular distance from P to the given directrix.",
-        "memory_tip": "SP over PM equals e — that ratio IS the definition of an ellipse.",
+        "memory_tip": "SP over PM equals e, with e < 1 — that ratio IS the definition of an ellipse.",
         "lines": [
           {
             "text": "Sol:",
@@ -117,7 +117,7 @@
         "why": "Squaring both sides of SP = e·PM clears the square root on the left and the absolute value on the right, turning the equation into pure algebra.",
         "common_mistakes": [
           "Squaring e = 2/3 incorrectly, getting 4/3 instead of 4/9.",
-          "Forgetting to also square the 3 in the denominator on the left, which is what produces the factor of 9."
+          "Forgetting to square the 3 in the denominator of e = 2/3 on the right, which is what produces the factor of 9."
         ],
         "lines_compact": [
           "9[(x₁−1)² + (y₁+1)²] = 2(x₁+y₁+2)²"

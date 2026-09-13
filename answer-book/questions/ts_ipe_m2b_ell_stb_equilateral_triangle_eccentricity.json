@@ -59,7 +59,7 @@
         "marks": 1,
         "mark_note": "Setup",
         "margin_note": "First mark. S, T are the two foci; B is one end of the minor axis.",
-        "memory_tip": "Foci are always (±ae, 0); the end of the minor axis is (0, b).",
+        "memory_tip": "For x²/a² + y²/b² = 1 with a > b, the foci are (±ae, 0) and the ends of the minor axis are (0, ±b).",
         "lines": [
           {
             "text": "Sol:",

@@ -107,7 +107,7 @@
         "why": "With two unknowns (a and b) and two given conditions, each condition is turned into one equation, to be combined afterwards using b² = a²(1 − e²).",
         "common_mistakes": [
           "Solving for b² as a plain number instead of leaving it in terms of a, which is needed for the next step.",
-          "Multiplying instead of dividing by a when rearranging 2b²/a = 15/2."
+          "Dividing by a instead of multiplying by a when rearranging 2b²/a = 15/2, which gives b² = 15/(4a) instead of 15a/4."
         ],
         "lines_compact": [
           "Length of latus rectum is 15/2",

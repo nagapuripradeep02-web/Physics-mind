@@ -92,7 +92,7 @@
         "marks": 1,
         "mark_note": "Tangent",
         "margin_note": "Second mark. Use the S₁ = 0 rule with x₁ = √7, y₁ = 9/4.",
-        "memory_tip": "S₁ = 0: replace x² by x·x₁/a² and y² by y·y₁/b².",
+        "memory_tip": "S₁ = 0: replace x² by x·x₁ and y² by y·y₁, so x²/a² becomes xx₁/a² and y²/b² becomes yy₁/b².",
         "lines": [
           "Equation of the tangent at L is S₁ = 0:",
           "xx₁/a² + yy₁/b² = 1",
@@ -135,7 +135,7 @@
         "label": "Equation of the normal at L",
         "marks": 2,
         "mark_note": "Normal",
-        "margin_note": "Last two marks. The normal formula a²x/x₁ − b²y/y₁ = a² − b² needs its own derivation, not the tangent's slope.",
+        "margin_note": "Last two marks. The normal formula a²x/x₁ − b²y/y₁ = a² − b² gives the normal directly; the negative reciprocal of the tangent's slope gives the same line.",
         "memory_tip": "The normal's formula is a²x/x₁ − b²y/y₁ = a² − b² — different from the tangent's S₁ = 0.",
         "lines": [
           "Equation of the normal at L:",
@@ -161,7 +161,7 @@
             "added": true
           }
         ],
-        "why": "The normal is not simply perpendicular-slope-through-the-point here because the tangent's slope is irrational; using the standard normal formula directly avoids extra rationalising steps until the very end.",
+        "why": "The normal is the line through L perpendicular to the tangent. Using the normal formula directly gives the same line with less rationalising along the way.",
         "common_mistakes": [
           "Trying to find the normal from the tangent's slope by inspection, which is much harder here than using the normal formula directly.",
           "Leaving √7 in the denominator instead of rationalising by multiplying through by √7 at the end."
