@@ -93,7 +93,7 @@
             "style": "boxed"
           }
         ],
-        "why": "Because g = 0 and f′ = 0, both product terms on the left vanish for every value of a and b, leaving a fixed value of k that makes the circles orthogonal no matter what a and b are.",
+        "why": "Because g = 0 and f′ = 0, both product terms on the left vanish for every value of a and b, leaving a value of k that does not depend on a or b. (The second equation is a real circle only when a² > 8.)",
         "common_mistakes": [
           "Trying to solve the equation for a or b as if they were also unknown, when the question only asks for k.",
           "Sign slip turning 0 = −k + 8 into k = −8 instead of k = 8."

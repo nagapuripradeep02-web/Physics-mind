@@ -147,10 +147,10 @@
         ],
         "why": "Solving equations (1) and (2) together gives the one point common to both radical axes — the radical centre.",
         "common_mistakes": [
-          "Subtracting (1) − (2) instead of (2) − (1), which flips the sign of x.",
+          "Subtracting in the order (1) − (2) and then losing a sign: it gives −3x + 6 = 0, which still means x = 2.",
           "Using S′ instead of S − S′'s own equation (1) when finding y."
         ],
-        "memory_tip": "Line up the x-coefficients (here already 4 and 1, close to matching after subtraction) before eliminating — no extra scaling was needed this time.",
+        "memory_tip": "Look for a variable whose coefficients already match — here y, with −1 in both — and subtract to remove it; no scaling was needed this time.",
         "lines_compact": [
           "(2) − (1) ⇒ 3x − 6 = 0",
           "⇒ x = 2",

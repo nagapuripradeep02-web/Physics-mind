@@ -86,7 +86,7 @@
         ],
         "why": "S + λL = 0 is a one-parameter family of circles that all pass through the SAME two points where the line L cuts the circle S — choosing the right λ picks out one member of this family.",
         "common_mistakes": [
-          "Writing S − λL = 0 instead of S + λL = 0, which is a different family.",
+          "Switching between S + λL = 0 and S − λL = 0 part way through. Both give the same circles, but λ changes sign (S − λL = 0 gives λ = 4), so keep one form from start to finish.",
           "Losing the constant −8 while collecting terms with λ."
         ],
         "memory_tip": "S + λL = 0 is the standard family formula whenever a circle must pass through the same two points as another circle and a line."

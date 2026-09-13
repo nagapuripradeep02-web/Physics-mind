@@ -121,7 +121,7 @@
         "why": "Substituting d, r₁, r₂ into cos θ = (d² − r₁² − r₂²) / (2r₁r₂) and simplifying √72 = 6√2 collapses the fraction to the standard value 1/√2, which is cos 45°.",
         "common_mistakes": [
           "Leaving √72 unsimplified and failing to spot that 4√72 = 24√2, so the fraction does not reduce.",
-          "Computing 100 − 4 − 72 incorrectly as 100 − 76 = 24 miscopied as some other number."
+          "Slipping on 100 − 4 − 72, which is 100 − 76 = 24, and writing 28 or 32 instead."
         ],
         "memory_tip": "Simplify √72 = √(36 · 2) = 6√2 before doing the division — a surd left unsimplified is the usual reason this fraction looks stuck.",
         "lines_compact": [

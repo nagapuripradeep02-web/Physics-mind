@@ -68,7 +68,7 @@
         ],
         "why": "The radical axis formula S − S′ = 0 only cancels x² and y² correctly when both circles already carry coefficient 1 on those terms — dividing each circle by its own leading coefficient does this.",
         "common_mistakes": [
-          "Subtracting the two circles as originally printed, with leading coefficients 2 and 3, which gives a wrong line.",
+          "Subtracting the two circles as printed, with leading coefficients 2 and 3. The x² and y² terms do not cancel, so the result is not a straight line at all.",
           "Dividing the x² term by the leading coefficient but forgetting to divide every other term the same way."
         ],
         "memory_tip": "Two different leading coefficients (2 and 3 here) is the signal to standardise BOTH circles before subtracting — never subtract un-standardised circles."
