@@ -62,7 +62,11 @@
           "So the curve stays above the x-axis over",
           "the whole interval,",
           "and the required area is",
-          "A = ∫_{−1}^{2} y dx = ∫_{−1}^{2} (x³+3) dx"
+          {
+            "text": "A = \\int_{-1}^{2} y\\,dx = \\int_{-1}^{2} (x^{3}+3)\\,dx",
+            "render": "katex",
+            "style": "eq"
+          }
         ],
         "why": "Since y=x³+3 is positive at both ends of the interval and is a strictly increasing function, it never crosses the x-axis on [−1,2], so the area under the curve is simply the plain definite integral with no sign-splitting needed.",
         "common_mistakes": [
@@ -79,7 +83,11 @@
         "memory_tip": "∫xⁿ dx = xⁿ⁺¹/(n+1) — increase the power by one and divide by the new power.",
         "lines": [
           "∫(x³+3) dx = x⁴/4 + 3x + c",
-          "∴ A = [x⁴/4 + 3x]_{−1}^{2}"
+          {
+            "text": "\\therefore A = \\left[\\tfrac{x^{4}}{4} + 3x\\right]_{-1}^{2}",
+            "render": "katex",
+            "style": "eq"
+          }
         ],
         "why": "Integrating x³ term by term gives x⁴/4, and integrating the constant 3 gives 3x, so the antiderivative is x⁴/4+3x.",
         "common_mistakes": [

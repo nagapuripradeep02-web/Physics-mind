@@ -92,10 +92,22 @@
           "= (−3/2)∫(−4x+1)√(6−2x²+x) dx +",
           "(13/2)∫√(6−2x²+x) dx",
           "∫(−4x+1)√(6−2x²+x) dx",
-          "= (2/3)(6−2x²+x)^{3/2}",
+          {
+            "text": "= \\tfrac{2}{3}\\left(6-2x^{2}+x\\right)^{3/2}",
+            "render": "katex",
+            "style": "eq"
+          },
           "So the first part is",
-          "(−3/2)·(2/3)(6−2x²+x)^{3/2}",
-          "= −(6−2x²+x)^{3/2}"
+          {
+            "text": "\\left(-\\tfrac{3}{2}\\right)\\cdot\\tfrac{2}{3}\\left(6-2x^{2}+x\\right)^{3/2}",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "= -\\left(6-2x^{2}+x\\right)^{3/2}",
+            "render": "katex",
+            "style": "eq"
+          }
         ],
         "why": "The same f′(x)√f(x) power-rule shortcut handles the A-part; the minus sign on A carries through cleanly to give a NEGATIVE leading term this time.",
         "common_mistakes": [
@@ -135,7 +147,11 @@
         "mark_note": "Method",
         "margin_note": "Solution",
         "lines": [
-          "∴ I = −(6−2x²+x)^{3/2}",
+          {
+            "text": "\\therefore I = -\\left(6-2x^{2}+x\\right)^{3/2}",
+            "render": "katex",
+            "style": "eq"
+          },
           "+ (13√2/16)(4x−1)√[(7/4)²−(x−1/4)²]",
           {
             "text": "+ (637√2/64) Sin⁻¹[(4x−1)/7] + c",

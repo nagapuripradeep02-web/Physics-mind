@@ -86,11 +86,27 @@
           "Putting A=3/4, B=−5/4: I",
           "= (3/4)∫(4x−1)√(2x²−x+1) dx −",
           "(5/4)∫√(2x²−x+1) dx",
-          "∫(4x−1)√(2x²−x+1) dx = (2/3)(2x²−x+1)^{3/2}",
-          "[∵ ∫f′(x)√f(x) dx = (2/3)f(x)^{3/2}]",
+          {
+            "text": "\\int (4x-1)\\sqrt{2x^{2}-x+1}\\,dx = \\tfrac{2}{3}\\left(2x^{2}-x+1\\right)^{3/2}",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "\\left[\\because \\int f'(x)\\sqrt{f(x)}\\,dx = \\tfrac{2}{3}f(x)^{3/2}\\right]",
+            "render": "katex",
+            "style": "eq"
+          },
           "So the first part is",
-          "(3/4)·(2/3)(2x²−x+1)^{3/2}",
-          "= (1/2)(2x²−x+1)^{3/2}"
+          {
+            "text": "\\tfrac{3}{4}\\cdot\\tfrac{2}{3}\\left(2x^{2}-x+1\\right)^{3/2}",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "= \\tfrac{1}{2}\\left(2x^{2}-x+1\\right)^{3/2}",
+            "render": "katex",
+            "style": "eq"
+          }
         ],
         "why": "∫f′(x)√f(x) dx is a plain power-rule integral in disguise (u=f(x), du=f′(x)dx gives ∫√u du = (2/3)u^{3/2}) — no completing the square is needed for THIS half of the answer.",
         "common_mistakes": [
@@ -130,7 +146,11 @@
         "mark_note": "Method",
         "margin_note": "Solution",
         "lines": [
-          "∴ I = (1/2)(2x²−x+1)^{3/2}",
+          {
+            "text": "\\therefore I = \\tfrac{1}{2}\\left(2x^{2}-x+1\\right)^{3/2}",
+            "render": "katex",
+            "style": "eq"
+          },
           "− (5/32)(4x−1)√(2x²−x+1)",
           {
             "text": "− (35√2/128) sinh⁻¹[(4x−1)/√7] + c",

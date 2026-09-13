@@ -56,7 +56,11 @@
           "Since x² ≥ 0 for every real x,",
           "the curve never lies below the x-axis",
           "So the required area is A",
-          "= ∫_{−1}^{2} y dx = ∫_{−1}^{2} x² dx"
+          {
+            "text": "= \\int_{-1}^{2} y\\,dx = \\int_{-1}^{2} x^{2}\\,dx",
+            "render": "katex",
+            "style": "eq"
+          }
         ],
         "why": "A square is never negative, so y=x² is always at or above the x-axis, and the area under it over any interval is simply the plain definite integral with no sign-splitting.",
         "common_mistakes": [
@@ -73,7 +77,11 @@
         "memory_tip": "∫x² dx = x³/3 — one of the most basic power-rule integrals, worth knowing directly.",
         "lines": [
           "∫x² dx = x³/3 + c",
-          "∴ A = [x³/3]_{−1}^{2}"
+          {
+            "text": "\\therefore A = \\left[\\tfrac{x^{3}}{3}\\right]_{-1}^{2}",
+            "render": "katex",
+            "style": "eq"
+          }
         ],
         "why": "Integrating x² by the power rule raises the power to 3 and divides by the new power, giving x³/3 as the antiderivative.",
         "common_mistakes": [
