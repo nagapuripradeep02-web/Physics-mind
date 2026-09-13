@@ -53,7 +53,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book printed p.42 (PDF page 41) — LAQ chapter 4 'Definite Integrals', answer 36.1, on a printed Super Scoring Page (SSP 42), the left-hand twin of answer 36.2. The book's own note calls the pair 'SUPER TWIN BABIES' because, after simplification, answer 36.2 reduces to this exact integral. Printed appearance: TS 16, 22 and AP 16, 18, 19. Chapter star rank ★★★ applies. No margin mark tags are printed on this two-column page, so the 3+2+2 split is OURS: the tan(A−B) algebra is the heaviest single block of this derivation and is weighted 3, patterned on the 1+1+1+4 shape already printed in this book (Circle LAQ answer 4, book p.17) where the algebraically heaviest block also carries the largest share. Boundary reading: printed p.37 (PDF 36) and printed p.44 (PDF 44) confirm the chapter span. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). This integral is re-answered as the third Q23 item on the Bullet Model Paper, book p.116, in the identical 'or' form alongside answer 36.2 — no separate card is authored for that appearance. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book printed p.42 (PDF page 41) — LAQ chapter 4 'Definite Integrals', answer 36.1, on a printed Super Scoring Page (SSP 42), the left-hand twin of answer 36.2. The book's own note calls the pair 'SUPER TWIN BABIES' because, after simplification, answer 36.2 reduces to this exact integral. Printed appearance: TS 16, 22 and AP 16, 18, 19. Chapter star rank ★★★ applies. No margin mark tags are printed on this two-column page, so the 3+2+2 split is OURS: the tan(A−B) algebra is the heaviest single block of this derivation and is weighted 3, patterned on the 1+1+1+4 shape already printed in this book (Circle LAQ answer 4, book p.17) where the algebraically heaviest block also carries the largest share. Boundary reading: printed p.37 (PDF 36) and printed p.44 (PDF 44) confirm the chapter span. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). This integral is re-answered as the third Q23 item on the Bullet Model Paper, book p.116, in the identical 'or' form alongside answer 36.2 — no separate card is authored for that appearance. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "insider_note": "The integral ∫₀¹ log(1+x)/(1+x²)dx reduces to this exact integral after the substitution x = tanθ, so the two have the same value.",
   "answer": {
@@ -80,15 +80,22 @@
             "render": "katex",
             "style": "normal"
           },
+          "We know ∫₀ᵃ f(x)dx = ∫₀ᵃ f(a − x)dx, so",
+          {
+            "text": "  replace x by π/4 − x:",
+            "style": "indent"
+          },
           "By x → π/4 − x:",
           {
             "text": "I = \\int _{0}^{\\pi /4} \\log [1 + \\tan (\\pi /4 - x)] dx",
             "render": "katex",
             "style": "normal"
           },
+          "tan(A−B) = (tanA − tanB)/(1 + tanA tanB)",
+          "With A = π/4 and tan(π/4) = 1:",
           "tan(π/4 − x) = (1 − tanx)/(1 + tanx)",
-          "[tan(A−B) formula]",
           "1 + tan(π/4 − x)",
+          "= 1 + (1 − tanx)/(1 + tanx)",
           "= [(1 + tanx) + (1 − tanx)]/(1 + tanx)",
           "= 2/(1 + tanx)"
         ],
@@ -107,6 +114,51 @@
         "margin_note": "Two more marks. log(2/(1+tanx)) splits into log2 minus log(1+tanx) — the second piece is exactly I again.",
         "memory_tip": "log(a/b) = log a − log b — always split a log of a fraction this way before integrating term by term.",
         "lines": [
+          {
+            "text": "Put this into the integral:",
+            "added": true
+          },
+          {
+            "text": "\\Rightarrow I = \\int _{0}^{\\pi /4} \\log [2/(1 + \\tan x)] dx",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "Since log(p/q) = log p − log q:",
+            "added": true
+          },
+          {
+            "text": "= \\int _{0}^{\\pi /4} [\\log 2 - \\log (1 + \\tan x)] dx",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "= \\log 2 \\int _{0}^{\\pi /4} dx - \\int _{0}^{\\pi /4} \\log (1 + \\tan x) dx",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "The second integral is I itself, by (1), and",
+            "added": true
+          },
+          {
+            "text": "\\int _{0}^{\\pi /4} dx = [x]_{0}^{\\pi /4} = \\pi /4 - 0 = \\pi /4",
+            "render": "katex",
+            "style": "normal",
+            "added": true
+          },
+          {
+            "text": "= \\log 2\\cdot [x]_{0}^{\\pi /4} - I = (\\pi /4)\\log 2 - I",
+            "render": "katex",
+            "style": "normal"
+          }
+        ],
+        "why": "Splitting the log of a fraction into a difference of two logs isolates a term identical to the original I, so the equation becomes I = (a constant) − I — solvable for I by simple algebra.",
+        "common_mistakes": [
+          "Not recognising that the second integral is exactly I again.",
+          "Evaluating log2 ∫dx incorrectly as log2 instead of (π/4)log2."
+        ],
+        "lines_compact": [
           {
             "text": "\\Rightarrow I = \\int _{0}^{\\pi /4} \\log [2/(1 + \\tan x)] dx",
             "render": "katex",
@@ -127,11 +179,6 @@
             "render": "katex",
             "style": "normal"
           }
-        ],
-        "why": "Splitting the log of a fraction into a difference of two logs isolates a term identical to the original I, so the equation becomes I = (a constant) − I — solvable for I by simple algebra.",
-        "common_mistakes": [
-          "Not recognising that the second integral is exactly I again.",
-          "Evaluating log2 ∫dx incorrectly as log2 instead of (π/4)log2."
         ]
       },
       {
@@ -143,8 +190,16 @@
         "margin_note": "The last two marks. Add I to both sides and halve.",
         "memory_tip": "Whenever I = (constant) − I appears, add I to both sides to get 2I = (constant).",
         "lines": [
+          {
+            "text": "I appears on both sides; take it to the left:",
+            "added": true
+          },
           "⇒ I + I = (π/4)log2",
           "⇒ 2I = (π/4)log2",
+          {
+            "text": "Divide both sides by 2, and (π/4)/2 = π/8:",
+            "added": true
+          },
           {
             "text": "∴ I = (π/8) log2",
             "style": "boxed"
@@ -154,6 +209,14 @@
         "common_mistakes": [
           "Subtracting I instead of adding it, giving 0 = (π/4)log2.",
           "Forgetting to divide by 2 at the very last step."
+        ],
+        "lines_compact": [
+          "⇒ I + I = (π/4)log2",
+          "⇒ 2I = (π/4)log2",
+          {
+            "text": "∴ I = (π/8) log2",
+            "style": "boxed"
+          }
         ]
       }
     ]

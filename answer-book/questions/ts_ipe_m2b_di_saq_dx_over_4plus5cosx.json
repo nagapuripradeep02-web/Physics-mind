@@ -46,7 +46,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.70 — SAQ chapter 10 'Definite Integrals', answer 86, the first item on the page (a new sub-topic — this is no longer a King's-property question). Printed appearance: AP 15, 16 and TS 18. Chapter star rank ★★★ applies. No margin mark tags are printed here, so the 2+1+1 split is OURS: the tan(x/2) substitution and limit-change is the heaviest single block and is weighted 2, patterned on the same weighting logic used for the heaviest algebra block in ts_ipe_m2b_di_laq_log_1plus_tanx_0_to_pi4. Boundary reading: printed p.67 and printed p.72 confirm the chapter span. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). This integral is re-answered as the second Q16 item on the Bullet Model Paper, book p.110 — same value, so no separate card is authored for that appearance. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.70 — SAQ chapter 10 'Definite Integrals', answer 86, the first item on the page (a new sub-topic — this is no longer a King's-property question). Printed appearance: AP 15, 16 and TS 18. Chapter star rank ★★★ applies. No margin mark tags are printed here, so the 2+1+1 split is OURS: the tan(x/2) substitution and limit-change is the heaviest single block and is weighted 2, patterned on the same weighting logic used for the heaviest algebra block in ts_ipe_m2b_di_laq_log_1plus_tanx_0_to_pi4. Boundary reading: printed p.67 and printed p.72 confirm the chapter span. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). This integral is re-answered as the second Q16 item on the Bullet Model Paper, book p.110 — same value, so no separate card is authored for that appearance. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "insider_note": "tan(x/2) = t is the universal substitution for any rational function of sinx and cosx — when no King's-property shortcut is visible, this is always the fallback.",
   "answer": {
@@ -68,8 +68,14 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "The denominator has cosx, so the tan(x/2)",
+          {
+            "text": "  substitution turns it into a rational one.",
+            "style": "indent"
+          },
           "Put tan(x/2) = t. Then cosx",
           "= (1 − t²)/(1 + t²) and dx = 2dt/(1 + t²)",
+          "Change the limits:",
           "Also x = 0 ⇒ t = 0; x = π/2 ⇒ t = tan(π/4) = 1"
         ],
         "why": "The half-angle substitution tan(x/2) = t turns any rational combination of sinx and cosx into a rational function of t, which can then be integrated by partial fractions or a standard formula.",
@@ -88,14 +94,28 @@
         "memory_tip": "4(1+t²) + 5(1−t²) always simplifies to 9 − t² for this exact denominator — check the arithmetic collapses this way.",
         "lines": [
           "I",
-          "= ∫₀¹ [2dt/(1+t²)]/[4 + 5(1−t²)/(1+t²)] dt",
+          "= ∫₀¹ [2dt/(1+t²)]/[4 + 5(1−t²)/(1+t²)]",
+          {
+            "text": "Multiply above and below by (1 + t²):",
+            "added": true
+          },
           "= ∫₀¹ 2dt/[4(1+t²) + 5(1−t²)]",
+          {
+            "text": "4 + 4t² + 5 − 5t² = 9 − t²:",
+            "added": true
+          },
           "= ∫₀¹ 2dt/(9 − t²) = 2∫₀¹ dt/(3² − t²)"
         ],
         "why": "Multiplying every term by (1+t²) clears the compound fraction, and 4(1+t²) + 5(1−t²) collapses to 9 − t², a standard a² − x² form with a = 3.",
         "common_mistakes": [
           "Losing the factor of 2 from dx = 2dt/(1+t²) when clearing the fraction.",
           "Simplifying 4(1+t²)+5(1−t²) incorrectly, e.g. getting 9+t² instead of 9−t²."
+        ],
+        "lines_compact": [
+          "I",
+          "= ∫₀¹ [2dt/(1+t²)]/[4 + 5(1−t²)/(1+t²)]",
+          "= ∫₀¹ 2dt/[4(1+t²) + 5(1−t²)]",
+          "= ∫₀¹ 2dt/(9 − t²) = 2∫₀¹ dt/(3² − t²)"
         ]
       },
       {
@@ -107,9 +127,26 @@
         "margin_note": "The last mark. log(4/2) simplifies to log2 directly.",
         "memory_tip": "∫dx/(a²−x²) = 1/(2a) log|(a+x)/(a−x)| + c — with a = 3 here.",
         "lines": [
+          {
+            "text": "Use ∫dt/(a² − t²) = (1/(2a))log|(a+t)/(a−t)|",
+            "added": true
+          },
+          {
+            "text": "  with a = 3:",
+            "style": "indent",
+            "added": true
+          },
           "= 2·(1/(2·3))[log|(3+t)/(3−t)|]₀¹",
+          {
+            "text": "At t = 1: (3+1)/(3−1) = 4/2; at t = 0: 3/3:",
+            "added": true
+          },
           "= (1/3)[log(4/2) − log(3/3)]",
           "= (1/3)[log2 − log1]",
+          {
+            "text": "and log1 = 0:",
+            "added": true
+          },
           {
             "text": "∴ I = (1/3) log2",
             "style": "boxed"
@@ -119,6 +156,15 @@
         "common_mistakes": [
           "Forgetting the outer factor of 1/(2·3) = 1/6, which combines with the leading 2 to give 1/3.",
           "Leaving log1 in the answer instead of recognising it equals 0."
+        ],
+        "lines_compact": [
+          "= 2·(1/(2·3))[log|(3+t)/(3−t)|]₀¹",
+          "= (1/3)[log(4/2) − log(3/3)]",
+          "= (1/3)[log2 − log1]",
+          {
+            "text": "∴ I = (1/3) log2",
+            "style": "boxed"
+          }
         ]
       }
     ]

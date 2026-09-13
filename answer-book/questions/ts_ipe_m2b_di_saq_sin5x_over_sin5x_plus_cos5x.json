@@ -43,7 +43,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.69 — SAQ chapter 10 'Definite Integrals', answer 84, on a printed Super Scoring Page (SSP 69). Printed appearance: AP 19, 17. No margin mark tags are printed for this item, so the 1+1+2 split is OURS, patterned on the identical shape carried by the two printed splits immediately before it in this chapter (answers 82 and 83, both 1+1+2). BOOK ERROR, corrected here: the printed working's second line (the x → π/2−x form) repeats the FIRST line's numerator sin⁵x unchanged instead of turning it into cos⁵x — the correct second form's numerator is cos⁵x, as re-derived below and as required for the addition step to reach 1. The book's stated final answer, π/4, is nonetheless correct (it is exactly what the corrected working also gives). Chapter star rank ★★★ applies. Boundary reading: printed p.67 (Hyperbola SAQ) and printed p.72 (Differential Equations SAQ opening) confirm the chapter span. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). This integral is re-answered as the first Q16 item on the Bullet Model Paper, book p.110, with the corrected working already present there — same final value π/4. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.69 — SAQ chapter 10 'Definite Integrals', answer 84, on a printed Super Scoring Page (SSP 69). Printed appearance: AP 19, 17. No margin mark tags are printed for this item, so the 1+1+2 split is OURS, patterned on the identical shape carried by the two printed splits immediately before it in this chapter (answers 82 and 83, both 1+1+2). BOOK ERROR, corrected here: the printed working's second line (the x → π/2−x form) repeats the FIRST line's numerator sin⁵x unchanged instead of turning it into cos⁵x — the correct second form's numerator is cos⁵x, as re-derived below and as required for the addition step to reach 1. The book's stated final answer, π/4, is nonetheless correct (it is exactly what the corrected working also gives). Chapter star rank ★★★ applies. Boundary reading: printed p.67 (Hyperbola SAQ) and printed p.72 (Differential Equations SAQ opening) confirm the chapter span. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). This integral is re-answered as the first Q16 item on the Bullet Model Paper, book p.110, with the corrected working already present there — same final value π/4. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "insider_note": "The book prints this question's second line with an error: it repeats sin⁵x instead of turning it into cos⁵x after the substitution. Write the corrected line — cos⁵x — the wrong line would not let the addition step reach 1.",
   "answer": {
@@ -66,6 +66,7 @@
             "style": "heading"
           },
           "We know ∫₀ᵃ f(x)dx = ∫₀ᵃ f(a − x)dx",
+          "Here a = π/2.",
           {
             "text": "\\therefore I = \\int _{0}^{\\pi /2} \\sin ^{5}x/(\\sin ^{5}x + \\cos ^{5}x) dx \\dots (1)",
             "render": "katex",
@@ -100,6 +101,10 @@
             "style": "normal"
           },
           {
+            "text": "cos(π/2 − x) = sinx and sin(π/2 − x) = cosx:",
+            "added": true
+          },
+          {
             "text": "\\Rightarrow I = \\int _{0}^{\\pi /2} \\cos ^{5}x/(\\cos ^{5}x + \\sin ^{5}x) dx \\dots (2)",
             "render": "katex",
             "style": "normal"
@@ -109,6 +114,25 @@
         "common_mistakes": [
           "Leaving the numerator as sin⁵x instead of turning it into cos⁵x — a printed error in some editions of this exact question.",
           "Forgetting that the denominator, being a sum of both terms, is unaffected by the swap."
+        ],
+        "lines_compact": [
+          "By x → π/2 − x:",
+          "I",
+          {
+            "text": "= \\int _{0}^{\\pi /2} \\sin ^{5}(\\pi /2-x)/[\\sin ^{5}(\\pi /2-x) +",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "\\cos ^{5}(\\pi /2-x)] dx",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "\\Rightarrow I = \\int _{0}^{\\pi /2} \\cos ^{5}x/(\\cos ^{5}x + \\sin ^{5}x) dx \\dots (2)",
+            "render": "katex",
+            "style": "normal"
+          }
         ]
       },
       {
@@ -120,6 +144,40 @@
         "margin_note": "The last two marks. The numerator sum equals the denominator, so the fraction is 1.",
         "memory_tip": "sin⁵x + cos⁵x over sin⁵x + cos⁵x is always 1 — the whole point of the swap was to make the two numerators add up to the denominator.",
         "lines": [
+          {
+            "text": "The denominators are the same, so add:",
+            "added": true
+          },
+          "Adding (1) and (2): I + I",
+          {
+            "text": "= \\int _{0}^{\\pi /2} [\\sin ^{5}x + \\cos ^{5}x]/[\\sin ^{5}x + \\cos ^{5}x] dx",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "The top and the bottom are the same sum:",
+            "added": true
+          },
+          {
+            "text": "\\Rightarrow 2I = \\int _{0}^{\\pi /2} 1 dx = [x]_{0}^{\\pi /2} = \\pi /2",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "Divide both sides by 2:",
+            "added": true
+          },
+          {
+            "text": "∴ I = π/4",
+            "style": "boxed"
+          }
+        ],
+        "why": "The added numerator matches the denominator exactly, so the integrand is 1 for every x, reducing the integral to the length of the interval.",
+        "common_mistakes": [
+          "Adding a wrongly-copied second form and getting a numerator that does NOT match the denominator.",
+          "Forgetting to divide by 2 at the end."
+        ],
+        "lines_compact": [
           "Adding (1) and (2): I + I",
           {
             "text": "= \\int _{0}^{\\pi /2} [\\sin ^{5}x + \\cos ^{5}x]/[\\sin ^{5}x + \\cos ^{5}x] dx",
@@ -135,11 +193,6 @@
             "text": "∴ I = π/4",
             "style": "boxed"
           }
-        ],
-        "why": "The added numerator matches the denominator exactly, so the integrand is 1 for every x, reducing the integral to the length of the interval.",
-        "common_mistakes": [
-          "Adding a wrongly-copied second form and getting a numerator that does NOT match the denominator.",
-          "Forgetting to divide by 2 at the end."
         ]
       }
     ]

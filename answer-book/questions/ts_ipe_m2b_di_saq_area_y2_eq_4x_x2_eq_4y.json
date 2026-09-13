@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book printed p.71 — SAQ chapter 10 'Definite Integrals', sub-heading 'AREAS', answer 90, the second of the three area questions on this page. Printed appearance: TS 17. Chapter star rank ★★★ applies. The book draws a small sketch of the two parabolas with the enclosed lens-shaped region hatched and labelled A, next to the equations — reproduced here as a figure because the region is the intersection of two curves and the picture is what makes 'upper curve' and 'lower curve' legible. No margin mark tags are printed, so the 1+1+2 split is OURS, patterned on the shape of the neighbouring area answer 89 (same three-stage pattern) on this same page. Boundary reading: printed p.67 and printed p.72 confirm the chapter span. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book printed p.71 — SAQ chapter 10 'Definite Integrals', sub-heading 'AREAS', answer 90, the second of the three area questions on this page. Printed appearance: TS 17. Chapter star rank ★★★ applies. The book draws a small sketch of the two parabolas with the enclosed lens-shaped region hatched and labelled A, next to the equations — reproduced here as a figure because the region is the intersection of two curves and the picture is what makes 'upper curve' and 'lower curve' legible. No margin mark tags are printed, so the 1+1+2 split is OURS, patterned on the shape of the neighbouring area answer 89 (same three-stage pattern) on this same page. Boundary reading: printed p.67 and printed p.72 confirm the chapter span. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "insider_note": "Both parabolas pass through the origin, so x = 0 is always one intersection — the real work is finding the second one, x = 4, by eliminating y between the two equations.",
   "answer": {
@@ -62,8 +62,11 @@
           },
           "The given curves are y² = 4x …(1),",
           "x² = 4y …(2)",
+          "Find where they meet by solving together.",
           "From (2): y = x²/4. Substituting in (1):",
-          "(x²/4)² = 4x ⇒ x⁴ = 64x ⇒ x(x³ − 64) = 0",
+          "(x²/4)² = 4x ⇒ x⁴/16 = 4x",
+          "Multiply by 16: x⁴ = 64x ⇒ x(x³ − 64) = 0",
+          "⇒ x = 0 or x³ = 64 = 4³",
           "⇒ x = 0 or x = 4"
         ],
         "why": "Substituting y from the second equation into the first eliminates y, leaving a single equation in x whose two roots (0 and 4) are the x-coordinates of the two points where the parabolas cross.",
@@ -188,6 +191,47 @@
         "lines": [
           "Upper curve: y² = 4x ⇒ y = 2√x.",
           "Lower curve: x² = 4y ⇒ y = x²/4",
+          {
+            "text": "Area is ∫(upper − lower) dx from 0 to 4:",
+            "added": true
+          },
+          "Required area A = ∫₀⁴ (2√x − x²/4) dx",
+          {
+            "text": "∫2√x dx = 2·(2/3)x√x and ∫x²/4 dx = x³/12:",
+            "added": true
+          },
+          {
+            "text": "= [2\\cdot (2/3)x^{3/2} - x^{3}/12]_{0}^{4}",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "At x = 4: 4√4 = 8; at x = 0 both terms are 0:",
+            "added": true
+          },
+          {
+            "text": "= (4/3)(4)^{3/2} - 4^{3}/12 = (4/3)(8) - 64/12",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "64/12 = 16/3:",
+            "added": true
+          },
+          "= 32/3 − 16/3",
+          {
+            "text": "∴ Area = 16/3 sq. units",
+            "style": "boxed"
+          }
+        ],
+        "why": "Integrating the upper curve minus the lower curve from x = 0 to x = 4 (the two intersection points) and substituting the limits (the lower limit contributes 0) gives 32/3 − 16/3, a clean fraction.",
+        "common_mistakes": [
+          "Computing the power 3/2 of 4 incorrectly, e.g. as 4³ = 64 by reading the power as 3 instead of 3/2, when the correct value is (√4)³ = 2³ = 8.",
+          "Losing the coefficient 2 in front of (2/3)x√x while combining terms."
+        ],
+        "lines_compact": [
+          "Upper curve: y² = 4x ⇒ y = 2√x.",
+          "Lower curve: x² = 4y ⇒ y = x²/4",
           "Required area A = ∫₀⁴ (2√x − x²/4) dx",
           {
             "text": "= [2\\cdot (2/3)x^{3/2} - x^{3}/12]_{0}^{4}",
@@ -204,11 +248,6 @@
             "text": "∴ Area = 16/3 sq. units",
             "style": "boxed"
           }
-        ],
-        "why": "Integrating the upper curve minus the lower curve from x = 0 to x = 4 (the two intersection points) and substituting the limits (the lower limit contributes 0) gives 32/3 − 16/3, a clean fraction.",
-        "common_mistakes": [
-          "Computing the power 3/2 of 4 incorrectly, e.g. as 4³ = 64 by reading the power as 3 instead of 3/2, when the correct value is (√4)³ = 2³ = 8.",
-          "Losing the coefficient 2 in front of (2/3)x√x while combining terms."
         ]
       }
     ]

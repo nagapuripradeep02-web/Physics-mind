@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book printed p.38 (PDF page 37) — LAQ chapter 4 'Definite Integrals', answer 32.2, the right-hand twin of answer 32.1 on the same printed Super Scoring Page (SSP 38). A printed appearance tag is present at the right edge of this column but the scan crops it before the digits — only the board letters 'TS' survive legibly, so the year(s) are NOT recorded. Chapter star rank ★★★ applies (book p.13, book p.38 header). No margin mark tags are printed on this two-column page, so the 2+2+2+1 split is OURS, patterned the same way as the twin answer 32.1 (ts_ipe_m2b_di_laq_xsinx_over_1plus_cos2x_0_to_pi) and on book p.22 answer 9's printed 2+2+2+1 shape. Boundary reading: printed p.37 (PDF 36, last Integration LAQ answer) and printed p.44 (PDF 44, Differential Equations LAQ opening) both read directly. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). This integral is re-answered as the second Q23 item on the Bullet Model Paper, book p.115, reaching the same final value π(π−2)/2 by an equivalent route (the book there splits (t²−1)/(1+t²) instead of (1−t²)/(1+t²), a sign-flipped version of the same identity) — no separate card is authored for that appearance. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book printed p.38 (PDF page 37) — LAQ chapter 4 'Definite Integrals', answer 32.2, the right-hand twin of answer 32.1 on the same printed Super Scoring Page (SSP 38). A printed appearance tag is present at the right edge of this column but the scan crops it before the digits — only the board letters 'TS' survive legibly, so the year(s) are NOT recorded. Chapter star rank ★★★ applies (book p.13, book p.38 header). No margin mark tags are printed on this two-column page, so the 2+2+2+1 split is OURS, patterned the same way as the twin answer 32.1 (ts_ipe_m2b_di_laq_xsinx_over_1plus_cos2x_0_to_pi) and on book p.22 answer 9's printed 2+2+2+1 shape. Boundary reading: printed p.37 (PDF 36, last Integration LAQ answer) and printed p.44 (PDF 44, Differential Equations LAQ opening) both read directly. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). This integral is re-answered as the second Q23 item on the Bullet Model Paper, book p.115, reaching the same final value π(π−2)/2 by an equivalent route (the book there splits (t²−1)/(1+t²) instead of (1−t²)/(1+t²), a sign-flipped version of the same identity) — no separate card is authored for that appearance. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "insider_note": "The book's own printed working reaches the same value through (t²−1)/(1+t²), a sign-flipped version of the split used here — either route lands on π(π−2)/2, so use whichever split is faster to remember.",
   "answer": {
@@ -65,11 +65,17 @@
             "render": "katex",
             "style": "normal"
           },
+          "Use ∫₀ᵃ f(x)dx = ∫₀ᵃ f(a − x)dx, a = π.",
           "By x → π − x: I",
           {
             "text": "= \\int _{0}^{\\pi } (\\pi - x)\\sin ^{3}(\\pi - x)/(1 + \\cos ^{2}(\\pi - x)) dx",
             "render": "katex",
             "style": "normal"
+          },
+          "sin(π − x) = sinx and cos(π − x) = −cosx,",
+          {
+            "text": "  so cos²(π − x) = cos²x:",
+            "style": "indent"
           },
           {
             "text": "\\Rightarrow I = \\int _{0}^{\\pi } (\\pi - x)\\sin ^{3}x/(1 + \\cos ^{2}x) dx \\dots (2)",
@@ -94,6 +100,37 @@
         "lines": [
           "Adding (1) and (2):",
           {
+            "text": "x + (π − x) = π on top, and π comes out:",
+            "added": true
+          },
+          {
+            "text": "2I = \\pi \\int _{0}^{\\pi } \\sin ^{3}x/(1 + \\cos ^{2}x) dx",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "\\Rightarrow I = (\\pi /2)\\int _{0}^{\\pi } \\sin ^{3}x/(1 + \\cos ^{2}x) dx",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "sin³x = sin²x·sinx = (1 − cos²x)sinx:",
+            "added": true
+          },
+          {
+            "text": "= (\\pi /2)\\int _{0}^{\\pi } (1 - \\cos ^{2}x)\\sin x/(1 + \\cos ^{2}x) dx",
+            "render": "katex",
+            "style": "normal"
+          }
+        ],
+        "why": "sin³x = sin²x·sinx = (1 − cos²x)sinx, which turns the integral into a function of cosx multiplied by sinx dx — exactly the form the substitution cosx = t needs.",
+        "common_mistakes": [
+          "Leaving sin³x unexpanded, which blocks the cosx = t substitution.",
+          "Writing sin²x as 1 + cos²x instead of 1 − cos²x."
+        ],
+        "lines_compact": [
+          "Adding (1) and (2):",
+          {
             "text": "2I = \\pi \\int _{0}^{\\pi } \\sin ^{3}x/(1 + \\cos ^{2}x) dx",
             "render": "katex",
             "style": "normal"
@@ -108,11 +145,6 @@
             "render": "katex",
             "style": "normal"
           }
-        ],
-        "why": "sin³x = sin²x·sinx = (1 − cos²x)sinx, which turns the integral into a function of cosx multiplied by sinx dx — exactly the form the substitution cosx = t needs.",
-        "common_mistakes": [
-          "Leaving sin³x unexpanded, which blocks the cosx = t substitution.",
-          "Writing sin²x as 1 + cos²x instead of 1 − cos²x."
         ]
       },
       {
@@ -127,7 +159,15 @@
           "Put cosx = t ⇒ sinx dx = −dt. x = 0",
           "⇒ t = 1; x = π ⇒ t = −1",
           "I = (π/2)∫₁⁻¹ −(1 − t²)/(1 + t²) dt",
+          {
+            "text": "Swapping the limits removes the minus sign:",
+            "added": true
+          },
           "= (π/2)∫₋₁¹ (1 − t²)/(1 + t²) dt",
+          {
+            "text": "(1 − t²)/(1 + t²) = [2 − (1 + t²)]/(1 + t²)",
+            "added": true
+          },
           "= (π/2)∫₋₁¹ [2/(1 + t²) − 1] dt",
           "= (π/2)[2Tan⁻¹t − t]₋₁¹"
         ],
@@ -135,6 +175,14 @@
         "common_mistakes": [
           "Writing (1 − t²)/(1 + t²) as 1 − t²/(1 + t²) and then failing to combine terms correctly.",
           "A sign slip when flipping the limits."
+        ],
+        "lines_compact": [
+          "Put cosx = t ⇒ sinx dx = −dt. x = 0",
+          "⇒ t = 1; x = π ⇒ t = −1",
+          "I = (π/2)∫₁⁻¹ −(1 − t²)/(1 + t²) dt",
+          "= (π/2)∫₋₁¹ (1 − t²)/(1 + t²) dt",
+          "= (π/2)∫₋₁¹ [2/(1 + t²) − 1] dt",
+          "= (π/2)[2Tan⁻¹t − t]₋₁¹"
         ]
       },
       {
@@ -146,8 +194,16 @@
         "margin_note": "The last mark. π(π − 2)/2 is the box the examiner looks for.",
         "memory_tip": "2Tan⁻¹(1) = π/2 and 2Tan⁻¹(−1) = −π/2 — the same angle pair as every King's-property question in this chapter.",
         "lines": [
+          {
+            "text": "Tan⁻¹(1) = π/4 and Tan⁻¹(−1) = −π/4:",
+            "added": true
+          },
           "= (π/2){[2Tan⁻¹(1) − 1] − [2Tan⁻¹(−1) − (−1)]}",
           "= (π/2)[(π/2 − 1) − (−π/2 + 1)] = (π/2)(π − 2)",
+          {
+            "text": "since π/2 − 1 + π/2 − 1 = π − 2",
+            "added": true
+          },
           {
             "text": "∴ I = π(π − 2)/2",
             "style": "boxed"
@@ -157,6 +213,14 @@
         "common_mistakes": [
           "Dropping the −t / +t terms at the two limits.",
           "Writing the final answer as π²/2 − π instead of the equivalent π(π − 2)/2."
+        ],
+        "lines_compact": [
+          "= (π/2){[2Tan⁻¹(1) − 1] − [2Tan⁻¹(−1) − (−1)]}",
+          "= (π/2)[(π/2 − 1) − (−π/2 + 1)] = (π/2)(π − 2)",
+          {
+            "text": "∴ I = π(π − 2)/2",
+            "style": "boxed"
+          }
         ]
       }
     ]
