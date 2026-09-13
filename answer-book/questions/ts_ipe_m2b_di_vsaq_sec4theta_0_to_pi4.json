@@ -15,7 +15,7 @@
   "marks_total": 2,
   "paper_section": "Section A",
   "expected_time_min": 4,
-  "question_text": "Evaluate ∫₀^(π/4) sec⁴θ dθ.",
+  "question_text": "Evaluate ∫ sec⁴θ dθ from 0 to π/4.",
   "appearances": [],
   "mark_split": [
     {
@@ -46,15 +46,27 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. sec⁴θ = sec²θ·sec²θ = sec²θ(1+tan²θ) — always split off one sec²θ as the dy piece.",
-        "memory_tip": "Any even power of secθ splits as sec²θ(1+tan²θ)^k — the substitution tanθ=y always works.",
+        "memory_tip": "Any even power of secθ splits as sec²θ(1+tan²θ)ᵏ — the substitution tanθ=y always works.",
         "lines": [
           {
             "text": "Sol:",
             "style": "heading"
           },
-          "I = ∫₀^(π/4) sec⁴θ dθ",
-          "= ∫₀^(π/4) sec²θ(1 + tan²θ) dθ   [sec²θ",
-          "= 1+tan²θ]",
+          {
+            "text": "I = \\int _{0}^{\\pi /4} \\sec ^{4}\\theta d\\theta",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "= \\int _{0}^{\\pi /4} \\sec ^{2}\\theta (1 + \\tan ^{2}\\theta ) d\\theta  [\\sec ^{2}\\theta",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "= 1+\\tan ^{2}\\theta ]",
+            "render": "katex",
+            "style": "normal"
+          },
           "Put tanθ = y ⇒ sec²θ dθ = dy",
           "θ = 0 ⇒ y = 0; θ = π/4 ⇒ y = tan(π/4) = 1"
         ],

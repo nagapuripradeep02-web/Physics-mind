@@ -66,11 +66,15 @@
           "From (2): y = x²/(4b).",
           "Substituting in (1): (x²/(4b))² = 4ax",
           "⇒ x⁴ = 64ab²x ⇒ x(x³ − 64ab²) = 0",
-          "⇒ x = 0 or x = 4(ab²)^(1/3)"
+          {
+            "text": "\\Rightarrow x = 0 \\text{ or }\\ x = 4(ab^{2})^{1/3}",
+            "render": "katex",
+            "style": "normal"
+          }
         ],
         "why": "Eliminating y between the two equations, the same way as the numeric a=b=1 version, leaves a single equation in x whose nonzero root involves a cube root because the elimination raises x to the fourth power against a linear term.",
         "common_mistakes": [
-          "Not recognising 64 = 4³, which is what lets x³ = 64ab² simplify to x = 4(ab²)^(1/3).",
+          "Not recognising 64 = 4³, which is what lets x³ = 64ab² simplify to x = 4∛(ab²).",
           "Dividing by x and losing the root x = 0."
         ]
       },
@@ -190,10 +194,26 @@
         "lines": [
           "Upper curve: y² = 4ax ⇒ y = 2√a·√x.",
           "Lower curve: x² = 4by ⇒ y = x²/(4b)",
-          "A = ∫₀^(4(ab²)^(1/3)) (2√a√x − x²/(4b)) dx",
-          "= [ (4√a/3)x^(3/2) − x³/(12b) ]₀^(4(ab²)^(1/3))",
-          "= (4√a/3)[4(ab²)^(1/3)]^(3/2) −",
-          "(1/(12b))[4(ab²)^(1/3)]³",
+          {
+            "text": "A = \\int _{0}^{4(ab^{2})^{1/3}} (2\\sqrt{a}\\sqrt{x} - x^{2}/(4b)) dx",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "= [ (4\\sqrt{a}/3)x^{3/2} - x^{3}/(12b) ]_{0}^{4(ab^{2})^{1/3}}",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "= (4\\sqrt{a}/3)[4(ab^{2})^{1/3}]^{3/2} -",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "(1/(12b))[4(ab^{2})^{1/3}]^{3}",
+            "render": "katex",
+            "style": "normal"
+          },
           "= (4√a/3)(8b√a) − (1/(12b))(64ab²)",
           "= 32ab/3 − 16ab/3",
           {
@@ -204,7 +224,7 @@
         "why": "The same integration as the numeric case, carried through with a and b as constants, gives two fractional multiples of ab whose difference is 16ab/3 — setting a = b = 1 recovers the area 16/3 between y² = 4x and x² = 4y, confirming the general result.",
         "common_mistakes": [
           "Losing track of a or b while raising the upper limit to the 3/2 power.",
-          "An arithmetic slip in [4(ab²)^(1/3)]³ = 64ab², since (ab²)^(1/3) cubed returns exactly ab²."
+          "An arithmetic slip in [4∛(ab²)]³ = 64ab², since ∛(ab²) cubed returns exactly ab²."
         ]
       }
     ]

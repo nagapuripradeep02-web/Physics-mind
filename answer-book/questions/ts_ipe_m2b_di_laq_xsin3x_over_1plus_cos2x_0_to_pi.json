@@ -15,7 +15,7 @@
   "marks_total": 7,
   "paper_section": "Section C",
   "expected_time_min": 15,
-  "question_text": "Evaluate ∫₀^π (x sin³x)/(1 + cos²x) dx.",
+  "question_text": "Evaluate ∫ (x sin³x)/(1 + cos²x) dx from 0 to π.",
   "appearances": [],
   "mark_split": [
     {
@@ -60,10 +60,22 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "I = ∫₀^π (x sin³x)/(1 + cos²x) dx …(1)",
+          {
+            "text": "I = \\int _{0}^{\\pi } (x \\sin ^{3}x)/(1 + \\cos ^{2}x) dx \\dots (1)",
+            "render": "katex",
+            "style": "normal"
+          },
           "By x → π − x: I",
-          "= ∫₀^π (π − x)sin³(π − x)/(1 + cos²(π − x)) dx",
-          "⇒ I = ∫₀^π (π − x)sin³x/(1 + cos²x) dx …(2)"
+          {
+            "text": "= \\int _{0}^{\\pi } (\\pi - x)\\sin ^{3}(\\pi - x)/(1 + \\cos ^{2}(\\pi - x)) dx",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "\\Rightarrow I = \\int _{0}^{\\pi } (\\pi - x)\\sin ^{3}x/(1 + \\cos ^{2}x) dx \\dots (2)",
+            "render": "katex",
+            "style": "normal"
+          }
         ],
         "why": "sin(π − x) = sinx, so sin³(π − x) = sin³x, and cos²(π − x) = cos²x as before — only the x in the numerator changes to π − x, exactly the setup the addition step needs.",
         "common_mistakes": [
@@ -81,9 +93,21 @@
         "memory_tip": "sin³x = sin²x·sinx = (1 − cos²x)sinx — always split an odd power of sine this way before substituting cosx = t.",
         "lines": [
           "Adding (1) and (2):",
-          "2I = π∫₀^π sin³x/(1 + cos²x) dx",
-          "⇒ I = (π/2)∫₀^π sin³x/(1 + cos²x) dx",
-          "= (π/2)∫₀^π (1 − cos²x)sinx/(1 + cos²x) dx"
+          {
+            "text": "2I = \\pi \\int _{0}^{\\pi } \\sin ^{3}x/(1 + \\cos ^{2}x) dx",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "\\Rightarrow I = (\\pi /2)\\int _{0}^{\\pi } \\sin ^{3}x/(1 + \\cos ^{2}x) dx",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "= (\\pi /2)\\int _{0}^{\\pi } (1 - \\cos ^{2}x)\\sin x/(1 + \\cos ^{2}x) dx",
+            "render": "katex",
+            "style": "normal"
+          }
         ],
         "why": "sin³x = sin²x·sinx = (1 − cos²x)sinx, which turns the integral into a function of cosx multiplied by sinx dx — exactly the form the substitution cosx = t needs.",
         "common_mistakes": [
@@ -102,10 +126,10 @@
         "lines": [
           "Put cosx = t ⇒ sinx dx = −dt. x = 0",
           "⇒ t = 1; x = π ⇒ t = −1",
-          "I = (π/2)∫₁^(−1) −(1 − t²)/(1 + t²) dt",
-          "= (π/2)∫₋₁^1 (1 − t²)/(1 + t²) dt",
-          "= (π/2)∫₋₁^1 [2/(1 + t²) − 1] dt",
-          "= (π/2)[2Tan⁻¹t − t]₋₁^1"
+          "I = (π/2)∫₁⁻¹ −(1 − t²)/(1 + t²) dt",
+          "= (π/2)∫₋₁¹ (1 − t²)/(1 + t²) dt",
+          "= (π/2)∫₋₁¹ [2/(1 + t²) − 1] dt",
+          "= (π/2)[2Tan⁻¹t − t]₋₁¹"
         ],
         "why": "Splitting (1 − t²)/(1 + t²) as 2/(1 + t²) − 1 turns the integrand into two pieces with easy antiderivatives — Tan⁻¹t and t itself.",
         "common_mistakes": [

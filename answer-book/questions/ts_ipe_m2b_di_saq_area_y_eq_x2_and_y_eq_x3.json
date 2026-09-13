@@ -99,8 +99,8 @@
         "margin_note": "The last two marks. Upper minus lower, always in that order.",
         "memory_tip": "Area = ∫(upper − lower) dx — write the upper curve first every time.",
         "lines": [
-          "Required area A = ∫₀^1 (x² − x³) dx",
-          "= [x³/3 − x⁴/4]₀^1 = 1/3 − 1/4 = (4 − 3)/12",
+          "Required area A = ∫₀¹ (x² − x³) dx",
+          "= [x³/3 − x⁴/4]₀¹ = 1/3 − 1/4 = (4 − 3)/12",
           {
             "text": "∴ Area = 1/12 sq. units",
             "style": "boxed"

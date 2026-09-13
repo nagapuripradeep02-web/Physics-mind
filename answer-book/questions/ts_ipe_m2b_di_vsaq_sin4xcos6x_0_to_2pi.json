@@ -15,7 +15,7 @@
   "marks_total": 2,
   "paper_section": "Section A",
   "expected_time_min": 4,
-  "question_text": "Evaluate ∫₀^(2π) sin⁴x cos⁶x dx.",
+  "question_text": "Evaluate ∫ sin⁴x cos⁶x dx from 0 to 2π.",
   "appearances": [
     {
       "year": 2018,
@@ -31,7 +31,7 @@
       "marks": 1
     },
     {
-      "label": "Apply Walli's formula and evaluate",
+      "label": "Apply Wallis's formula and evaluate",
       "marks": 1
     }
   ],
@@ -65,12 +65,28 @@
           "[an even power of sinx and an even power",
           "of cosx are both unaffected by either",
           "reflection]",
-          "∴ ∫₀^(2π) sin⁴x cos⁶x dx",
-          "= 2∫₀^π sin⁴x cos⁶x dx",
-          "= 2(2)∫₀^(π/2) sin⁴x cos⁶x dx",
-          "= 4∫₀^(π/2) sin⁴x cos⁶x dx"
+          {
+            "text": "\\therefore \\int _{0}^{2\\pi } \\sin ^{4}x \\cos ^{6}x dx",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "= 2\\int _{0}^{\\pi } \\sin ^{4}x \\cos ^{6}x dx",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "= 2(2)\\int _{0}^{\\pi /2} \\sin ^{4}x \\cos ^{6}x dx",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "= 4\\int _{0}^{\\pi /2} \\sin ^{4}x \\cos ^{6}x dx",
+            "render": "katex",
+            "style": "normal"
+          }
         ],
-        "why": "Since sin⁴x and cos⁶x are both even powers, the integrand is unchanged under x→π−x and under x→2π−x, so the property ∫₀^a f = ∫₀^a f(a−x) reduces the range from 0-to-2π down to four times the 0-to-π/2 range.",
+        "why": "Since sin⁴x and cos⁶x are both even powers, the integrand is unchanged under x→π−x and under x→2π−x, so the property ∫₀ᵃ f = ∫₀ᵃ f(a−x) reduces the range from 0-to-2π down to four times the 0-to-π/2 range.",
         "common_mistakes": [
           "Applying the reduction only once instead of twice (0-to-2π to 0-to-π, then 0-to-π to 0-to-π/2).",
           "Using this shortcut for a function that is NOT unchanged under both reflections."
@@ -79,10 +95,10 @@
       {
         "id": "s2_final",
         "kind": "boxed_final",
-        "label": "Apply Walli's formula and evaluate",
+        "label": "Apply Wallis's formula and evaluate",
         "marks": 1,
         "mark_note": "Solution",
-        "margin_note": "Second mark. Multiply the Walli's-formula result by 4 for the range reduction, not by 2.",
+        "margin_note": "Second mark. Multiply the Wallis's-formula result by 4 for the range reduction, not by 2.",
         "memory_tip": "45/3840 simplifies to 3/256 before the final multiplication by π/2 and by 4.",
         "lines": [
           "= 4 · [(3)(1)][(5)(3)(1)]/[(10)(8)(6)(4)(2)] · π/2",
@@ -92,9 +108,9 @@
             "style": "boxed"
           }
         ],
-        "why": "Walli's mixed-power formula for m=4, n=6 (both even, so K=π/2) gives 45/3840·π/2, and multiplying by the outer factor 4 from the range reduction gives the final value 3π/128.",
+        "why": "Wallis's mixed-power formula for m=4, n=6 (both even, so K=π/2) gives 45/3840·π/2, and multiplying by the outer factor 4 from the range reduction gives the final value 3π/128.",
         "common_mistakes": [
-          "Forgetting to multiply the Walli's-formula result by the outer factor 4 from the range reduction.",
+          "Forgetting to multiply the Wallis's-formula result by the outer factor 4 from the range reduction.",
           "Mixing up which power (4 or 6) belongs to sin and which to cos."
         ]
       }

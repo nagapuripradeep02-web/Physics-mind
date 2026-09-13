@@ -78,18 +78,22 @@
         "label": "Double the half-range integral and evaluate",
         "marks": 1,
         "mark_note": "Solution",
-        "margin_note": "Second mark. Both m=2 and n=4 are even, so Walli's formula needs the π/2 factor before doubling.",
+        "margin_note": "Second mark. Both m=2 and n=4 are even, so Wallis's formula needs the π/2 factor before doubling.",
         "memory_tip": "The integral over [−a,a] equals twice the integral over [0,a] only when f is even — always prove this first.",
         "lines": [
           "Integral from −π/2 to π/2 of sin²x cos⁴x dx",
-          "= 2∫₀^(π/2) sin²x cos⁴x dx",
+          {
+            "text": "= 2\\int _{0}^{\\pi /2} \\sin ^{2}x \\cos ^{4}x dx",
+            "render": "katex",
+            "style": "normal"
+          },
           "= 2 · [(1)][(3)(1)]/[(6)(4)(2)] · π/2",
           {
             "text": "∴ I = π/16",
             "style": "boxed"
           }
         ],
-        "why": "For an even function, the integral over a symmetric interval [−a,a] equals twice the integral over [0,a]; applying Walli's mixed-power formula to sin²xcos⁴x (both powers even, so K=π/2) and doubling gives π/16.",
+        "why": "For an even function, the integral over a symmetric interval [−a,a] equals twice the integral over [0,a]; applying Wallis's mixed-power formula to sin²xcos⁴x (both powers even, so K=π/2) and doubling gives π/16.",
         "common_mistakes": [
           "Forgetting to double the integral after establishing the function is even.",
           "Missing the π/2 factor since both powers (2 and 4) are even."

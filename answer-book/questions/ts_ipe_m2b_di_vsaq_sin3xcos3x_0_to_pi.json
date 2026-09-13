@@ -15,7 +15,7 @@
   "marks_total": 2,
   "paper_section": "Section A",
   "expected_time_min": 4,
-  "question_text": "Evaluate ∫₀^π sin³x cos³x dx.",
+  "question_text": "Evaluate ∫ sin³x cos³x dx from 0 to π.",
   "appearances": [
     {
       "year": 2015
@@ -56,11 +56,27 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "I = ∫₀^π sin³x cos³x dx",
-          "By x → π−x: I = ∫₀^π sin³(π−x) cos³(π−x) dx",
+          {
+            "text": "I = \\int _{0}^{\\pi } \\sin ^{3}x \\cos ^{3}x dx",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "\\text{By }\\ x \\to \\pi -x: I = \\int _{0}^{\\pi } \\sin ^{3}(\\pi -x) \\cos ^{3}(\\pi -x) dx",
+            "render": "katex",
+            "style": "normal"
+          },
           "sin(π−x) = sinx and cos(π−x) = −cosx",
-          "∴ I = ∫₀^π sin³x (−cosx)³ dx",
-          "= −∫₀^π sin³x cos³x dx = −I"
+          {
+            "text": "\\therefore I = \\int _{0}^{\\pi } \\sin ^{3}x (-\\cos x)^{3} dx",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "= -\\int _{0}^{\\pi } \\sin ^{3}x \\cos ^{3}x dx = -I",
+            "render": "katex",
+            "style": "normal"
+          }
         ],
         "why": "Under x→π−x, sinx stays unchanged but cosx flips sign, so cos³x also flips sign (an odd power keeps the sign flip), giving the negative of the original integral.",
         "common_mistakes": [

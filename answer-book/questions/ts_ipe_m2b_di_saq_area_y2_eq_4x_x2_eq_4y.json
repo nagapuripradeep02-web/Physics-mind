@@ -188,9 +188,17 @@
         "lines": [
           "Upper curve: y² = 4x ⇒ y = 2√x.",
           "Lower curve: x² = 4y ⇒ y = x²/4",
-          "Required area A = ∫₀^4 (2√x − x²/4) dx",
-          "= [2·(2/3)x^(3/2) − x³/12]₀^4",
-          "= (4/3)(4)^(3/2) − 4³/12 = (4/3)(8) − 64/12",
+          "Required area A = ∫₀⁴ (2√x − x²/4) dx",
+          {
+            "text": "= [2\\cdot (2/3)x^{3/2} - x^{3}/12]_{0}^{4}",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "= (4/3)(4)^{3/2} - 4^{3}/12 = (4/3)(8) - 64/12",
+            "render": "katex",
+            "style": "normal"
+          },
           "= 32/3 − 16/3",
           {
             "text": "∴ Area = 16/3 sq. units",
@@ -199,8 +207,8 @@
         ],
         "why": "Integrating the upper curve minus the lower curve from x = 0 to x = 4 (the two intersection points) and substituting the limits (the lower limit contributes 0) gives 32/3 − 16/3, a clean fraction.",
         "common_mistakes": [
-          "Computing 4^(3/2) incorrectly, e.g. as 4³ = 64 by reading the power as 3 instead of 3/2, when the correct value is (√4)³ = 2³ = 8.",
-          "Losing the coefficient 2 in front of (2/3)x^(3/2) while combining terms."
+          "Computing the power 3/2 of 4 incorrectly, e.g. as 4³ = 64 by reading the power as 3 instead of 3/2, when the correct value is (√4)³ = 2³ = 8.",
+          "Losing the coefficient 2 in front of (2/3)x√x while combining terms."
         ]
       }
     ]

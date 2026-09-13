@@ -15,7 +15,7 @@
   "marks_total": 2,
   "paper_section": "Section A",
   "expected_time_min": 4,
-  "question_text": "Evaluate ∫₀^(π/2) sin⁶x cos⁴x dx.",
+  "question_text": "Evaluate ∫ sin⁶x cos⁴x dx from 0 to π/2.",
   "appearances": [
     {
       "year": 2019,
@@ -28,7 +28,7 @@
   ],
   "mark_split": [
     {
-      "label": "State Walli's formula, noting both powers are even",
+      "label": "State Wallis's formula, noting both powers are even",
       "marks": 1
     },
     {
@@ -51,7 +51,7 @@
       {
         "id": "s1_formula",
         "kind": "equation",
-        "label": "State Walli's formula, noting both powers are even",
+        "label": "State Wallis's formula, noting both powers are even",
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. m=6 and n=4 are both even — this is the case that needs the π/2 factor.",
@@ -61,7 +61,11 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "∫₀^(π/2) sinᵐx cosⁿx dx",
+          {
+            "text": "\\int _{0}^{\\pi /2} \\sin ^{m}x \\cos ^{n}x dx",
+            "render": "katex",
+            "style": "normal"
+          },
           "=",
           "[(m−1)(m−3)···][(n−1)(n−3)···]/[(m+n)(m+n−2)···]",
           "· K",

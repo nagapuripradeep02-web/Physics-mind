@@ -15,7 +15,7 @@
   "marks_total": 7,
   "paper_section": "Section C",
   "expected_time_min": 15,
-  "question_text": "Evaluate ∫₀^(π/2) sin²x/(cosx + sinx) dx.",
+  "question_text": "Evaluate ∫ sin²x/(cosx + sinx) dx from 0 to π/2.",
   "appearances": [],
   "mark_split": [
     {
@@ -60,11 +60,27 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "I = ∫₀^(π/2) sin²x/(sinx + cosx) dx …(1)",
+          {
+            "text": "I = \\int _{0}^{\\pi /2} \\sin ^{2}x/(\\sin x + \\cos x) dx \\dots (1)",
+            "render": "katex",
+            "style": "normal"
+          },
           "By x → π/2 − x: I",
-          "= ∫₀^(π/2) sin²(π/2 − x)/(sin(π/2 − x) +",
-          "cos(π/2 − x)) dx",
-          "⇒ I = ∫₀^(π/2) cos²x/(sinx + cosx) dx …(2)"
+          {
+            "text": "= \\int _{0}^{\\pi /2} \\sin ^{2}(\\pi /2 - x)/(\\sin (\\pi /2 - x) +",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "\\cos (\\pi /2 - x)) dx",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "\\Rightarrow I = \\int _{0}^{\\pi /2} \\cos ^{2}x/(\\sin x + \\cos x) dx \\dots (2)",
+            "render": "katex",
+            "style": "normal"
+          }
         ],
         "why": "Under x → π/2 − x, sinx and cosx exchange roles, so sin²x turns into cos²x while the denominator sinx + cosx is unchanged (it is symmetric in the two).",
         "common_mistakes": [
@@ -82,10 +98,22 @@
         "memory_tip": "sin²x + cos²x = 1 always — the moment you see both squares added, replace them with 1.",
         "lines": [
           "Adding (1) and (2): 2I",
-          "= ∫₀^(π/2) (sin²x + cos²x)/(sinx + cosx) dx",
-          "= ∫₀^(π/2) dx/(sinx + cosx)",
+          {
+            "text": "= \\int _{0}^{\\pi /2} (\\sin ^{2}x + \\cos ^{2}x)/(\\sin x + \\cos x) dx",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "= \\int _{0}^{\\pi /2} dx/(\\sin x + \\cos x)",
+            "render": "katex",
+            "style": "normal"
+          },
           "[∵ sin²x + cos²x = 1]",
-          "⇒ I = (1/2)∫₀^(π/2) dx/(sinx + cosx)"
+          {
+            "text": "\\Rightarrow I = (1/2)\\int _{0}^{\\pi /2} dx/(\\sin x + \\cos x)",
+            "render": "katex",
+            "style": "normal"
+          }
         ],
         "why": "Adding the two forms turns the numerator into sin²x + cos²x, which is identically 1, leaving a single integral with no x in the numerator at all.",
         "common_mistakes": [
@@ -104,9 +132,17 @@
         "lines": [
           "sinx + cosx = √2 (sinx·1/√2 + cosx·1/√2)",
           "= √2 sin(x + π/4)",
-          "I = (1/(2√2))∫₀^(π/2) cosec(x + π/4) dx",
+          {
+            "text": "I = (1/(2\\sqrt{2}))\\int _{0}^{\\pi /2} \\operatorname{cosec} (x + \\pi /4) dx",
+            "render": "katex",
+            "style": "normal"
+          },
           "[∵ ∫cosecθ dθ = log tan(θ/2)]",
-          "= (1/(2√2))[log tan((x + π/4)/2)]₀^(π/2)"
+          {
+            "text": "= (1/(2\\sqrt{2}))[\\log \\tan ((x + \\pi /4)/2)]_{0}^{\\pi /2}",
+            "render": "katex",
+            "style": "normal"
+          }
         ],
         "why": "Combining sinx and cosx into a single sine wave R sin(x+α) reduces the integral to a standard cosecant form, whose antiderivative is a known log tan formula.",
         "common_mistakes": [

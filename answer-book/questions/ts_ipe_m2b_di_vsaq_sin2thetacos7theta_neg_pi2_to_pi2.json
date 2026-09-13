@@ -73,14 +73,18 @@
         "memory_tip": "One odd power among the two is enough to keep K=1 — only two even powers together bring in π/2.",
         "lines": [
           "Integral from −π/2 to π/2 of sin²θ cos⁷θ dθ",
-          "= 2∫₀^(π/2) sin²θ cos⁷θ dθ",
+          {
+            "text": "= 2\\int _{0}^{\\pi /2} \\sin ^{2}\\theta \\cos ^{7}\\theta d\\theta",
+            "render": "katex",
+            "style": "normal"
+          },
           "= 2 · [(1)][(6)(4)(2)]/[(9)(7)(5)(3)] · (1)",
           {
             "text": "∴ I = 32/315",
             "style": "boxed"
           }
         ],
-        "why": "Doubling the half-range integral and applying Walli's mixed-power formula (m=2 even, n=7 odd, so K=1) gives 2×16/315=32/315.",
+        "why": "Doubling the half-range integral and applying Wallis's mixed-power formula (m=2 even, n=7 odd, so K=1) gives 2×16/315=32/315.",
         "common_mistakes": [
           "Forgetting to double after establishing the function is even.",
           "Including a π/2 factor even though n=7 is odd, which forces K=1."

@@ -15,7 +15,7 @@
   "marks_total": 2,
   "paper_section": "Section A",
   "expected_time_min": 4,
-  "question_text": "Evaluate ∫₀^π √(2 + 2cosθ) dθ.",
+  "question_text": "Evaluate ∫ √(2 + 2cosθ) dθ from 0 to π.",
   "appearances": [
     {
       "year": 2022
@@ -68,11 +68,27 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "I = ∫₀^π √(2 + 2cosθ) dθ",
-          "= ∫₀^π √(2(1 + cosθ)) dθ",
+          {
+            "text": "I = \\int _{0}^{\\pi } \\sqrt{2 + 2\\cos \\theta } d\\theta",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "= \\int _{0}^{\\pi } \\sqrt{2(1 + \\cos \\theta )} d\\theta",
+            "render": "katex",
+            "style": "normal"
+          },
           "1 + cosθ = 2cos²(θ/2)   [half-angle identity]",
-          "∴ I = ∫₀^π √(4cos²(θ/2)) dθ",
-          "= ∫₀^π 2cos(θ/2) dθ",
+          {
+            "text": "\\therefore I = \\int _{0}^{\\pi } \\sqrt{4\\cos ^{2}(\\theta /2)} d\\theta",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "= \\int _{0}^{\\pi } 2\\cos (\\theta /2) d\\theta",
+            "render": "katex",
+            "style": "normal"
+          },
           "[cos(θ/2) ≥ 0 on 0 ≤ θ ≤ π]"
         ],
         "why": "Factoring out 2 and using 1+cosθ = 2cos²(θ/2) turns the square root into a plain cosine, because cos(θ/2) stays non-negative for θ between 0 and π so the square root of its square is itself.",
@@ -90,7 +106,11 @@
         "margin_note": "Second mark. ∫cos(θ/2)dθ = 2sin(θ/2) + c — the 1/2 inside cos always doubles the outer factor.",
         "memory_tip": "sin(π/2) = 1 is the standard value to remember here.",
         "lines": [
-          "I = 2∫₀^π cos(θ/2) dθ = 2·2[sin(θ/2)]₀^π",
+          {
+            "text": "I = 2\\int _{0}^{\\pi } \\cos (\\theta /2) d\\theta = 2\\cdot 2[\\sin (\\theta /2)]_{0}^{\\pi }",
+            "render": "katex",
+            "style": "normal"
+          },
           "= 4(sin(π/2) − sin0)",
           {
             "text": "∴ I = 4(1 − 0) = 4",

@@ -15,7 +15,7 @@
   "marks_total": 4,
   "paper_section": "Section B",
   "expected_time_min": 9,
-  "question_text": "Evaluate ∫₀^(π/2) (a sinx + b cosx)/(sinx + cosx) dx.",
+  "question_text": "Evaluate ∫ (a sinx + b cosx)/(sinx + cosx) dx from 0 to π/2.",
   "appearances": [
     {
       "year": 2017,
@@ -61,9 +61,13 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "We know ∫₀^a f(x)dx = ∫₀^a f(a − x)dx",
+          "We know ∫₀ᵃ f(x)dx = ∫₀ᵃ f(a − x)dx",
           "∴ I",
-          "= ∫₀^(π/2) (a sinx + b cosx)/(sinx + cosx)",
+          {
+            "text": "= \\int _{0}^{\\pi /2} (a \\sin x + b \\cos x)/(\\sin x + \\cos x)",
+            "render": "katex",
+            "style": "normal"
+          },
           "dx …(1)"
         ],
         "why": "Stating the property first, with the given integral labelled (1), sets up the second form that will be added to it.",
@@ -83,10 +87,22 @@
         "lines": [
           "By x → π/2 − x:",
           "I",
-          "= ∫₀^(π/2) [a sin(π/2−x) + b",
-          "cos(π/2−x)]/[sin(π/2−x) + cos(π/2−x)] dx",
+          {
+            "text": "= \\int _{0}^{\\pi /2} [a \\sin (\\pi /2-x) + b",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "\\cos (\\pi /2-x)]/[\\sin (\\pi /2-x) + \\cos (\\pi /2-x)] dx",
+            "render": "katex",
+            "style": "normal"
+          },
           "⇒ I",
-          "= ∫₀^(π/2) (a cosx + b sinx)/(cosx + sinx)",
+          {
+            "text": "= \\int _{0}^{\\pi /2} (a \\cos x + b \\sin x)/(\\cos x + \\sin x)",
+            "render": "katex",
+            "style": "normal"
+          },
           "dx …(2)"
         ],
         "why": "Every sinx becomes cosx and every cosx becomes sinx under the substitution, so the numerator's a and b swap partners while the denominator (being symmetric in sinx and cosx) is unchanged.",
@@ -105,12 +121,32 @@
         "memory_tip": "a(sinx+cosx) + b(cosx+sinx) = (a+b)(sinx+cosx) — the denominator cancels completely.",
         "lines": [
           "Adding (1) and (2): I + I",
-          "= ∫₀^(π/2) [a(sinx+cosx) +",
-          "b(cosx+sinx)]/(cosx+sinx) dx",
+          {
+            "text": "= \\int _{0}^{\\pi /2} [a(\\sin x+\\cos x) +",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "b(\\cos x+\\sin x)]/(\\cos x+\\sin x) dx",
+            "render": "katex",
+            "style": "normal"
+          },
           "⇒ 2I",
-          "= ∫₀^(π/2) (a+b)(cosx+sinx)/(cosx+sinx) dx",
-          "= ∫₀^(π/2) (a+b) dx",
-          "⇒ 2I = (a+b)[x]₀^(π/2) = (a+b)(π/2)",
+          {
+            "text": "= \\int _{0}^{\\pi /2} (a+b)(\\cos x+\\sin x)/(\\cos x+\\sin x) dx",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "= \\int _{0}^{\\pi /2} (a+b) dx",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "\\Rightarrow 2I = (a+b)[x]_{0}^{\\pi /2} = (a+b)(\\pi /2)",
+            "render": "katex",
+            "style": "normal"
+          },
           {
             "text": "∴ I = (a + b)π/4",
             "style": "boxed"

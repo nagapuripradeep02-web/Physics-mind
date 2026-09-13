@@ -15,7 +15,7 @@
   "marks_total": 7,
   "paper_section": "Section C",
   "expected_time_min": 15,
-  "question_text": "Evaluate ∫ₐ^b √((x − a)(b − x)) dx.",
+  "question_text": "Evaluate ∫ₐᵇ √((x − a)(b − x)) dx.",
   "appearances": [
     {
       "year": 2018
@@ -66,7 +66,7 @@
           },
           "(x − a)(b − x) = bx − x² − ab + ax",
           "= −x² + (a + b)x − ab",
-          "∴ I = ∫ₐ^b √(−x² + (a + b)x − ab) dx"
+          "∴ I = ∫ₐᵇ √(−x² + (a + b)x − ab) dx"
         ],
         "why": "Multiplying out (x−a)(b−x) turns the product of two linear factors into a plain quadratic in x, which can then be handled by completing the square — the standard route to a √(k²−u²) form.",
         "common_mistakes": [
@@ -106,7 +106,7 @@
         "lines": [
           "With k = (b − a)/2 and u = x − (a+b)/2:",
           "I",
-          "= [ (u/2)√(k² − u²) + (k²/2) Sin⁻¹(u/k) ]ₐ^b",
+          "= [ (u/2)√(k² − u²) + (k²/2) Sin⁻¹(u/k) ]ₐᵇ",
           "[∵ ∫√(k² − u²) du",
           "= (u/2)√(k² − u²) + (k²/2) Sin⁻¹(u/k) + c]"
         ],

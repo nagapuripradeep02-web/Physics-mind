@@ -15,7 +15,7 @@
   "marks_total": 7,
   "paper_section": "Section C",
   "expected_time_min": 15,
-  "question_text": "Evaluate ∫₀^(π/4) (sinx + cosx)/(9 + 16 sin2x) dx.",
+  "question_text": "Evaluate ∫ (sinx + cosx)/(9 + 16 sin2x) dx from 0 to π/4.",
   "appearances": [
     {
       "year": 2015,
@@ -113,11 +113,11 @@
         "margin_note": "Two marks for matching the integral to the standard a² − x² log formula, with a = 5 and the variable 4t.",
         "memory_tip": "∫dx/(a² − x²) = 1/(2a) log|(a+x)/(a−x)| + c — here a = 5 and the variable is 4t, so an extra factor of 1/4 appears from d(4t) = 4dt.",
         "lines": [
-          "∴ I = ∫₋₁^0 dt/(25 − 16t²)",
-          "= ∫₋₁^0 dt/(5² − (4t)²)",
-          "= (1/4)·(1/(2·5)) [log|(5 + 4t)/(5 − 4t)|]₋₁^0",
+          "∴ I = ∫₋₁⁰ dt/(25 − 16t²)",
+          "= ∫₋₁⁰ dt/(5² − (4t)²)",
+          "= (1/4)·(1/(2·5)) [log|(5 + 4t)/(5 − 4t)|]₋₁⁰",
           "[∵ ∫dx/(a² − x²) = 1/(2a) log|(a+x)/(a−x)| + c]",
-          "= (1/40) [log|(5 + 4t)/(5 − 4t)|]₋₁^0"
+          "= (1/40) [log|(5 + 4t)/(5 − 4t)|]₋₁⁰"
         ],
         "why": "25 − 16t² matches the standard a² − x² form with a = 5 and x replaced by 4t; the extra 1/4 factor accounts for the fact that d(4t) = 4 dt, not dt.",
         "common_mistakes": [

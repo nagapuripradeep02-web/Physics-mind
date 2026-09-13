@@ -177,9 +177,9 @@
         "memory_tip": "The final simplification always collapses to πab regardless of a and b individually — a clean, symmetric result.",
         "lines": [
           "Required area = 4 (area of OAB)",
-          "= 4∫₀^a y dx = 4∫₀^a (b/a)√(a² − x²) dx",
+          "= 4∫₀ᵃ y dx = 4∫₀ᵃ (b/a)√(a² − x²) dx",
           "= (4b/a)[(x/2)√(a²−x²) +",
-          "(a²/2)Sin⁻¹(x/a)]₀^a   [standard formula]",
+          "(a²/2)Sin⁻¹(x/a)]₀ᵃ   [standard formula]",
           "= (4b/a)[0 + (a²/2)Sin⁻¹(1)]",
           "= (4b/a)(a²/2)(π/2)",
           {

@@ -15,7 +15,7 @@
   "marks_total": 2,
   "paper_section": "Section A",
   "expected_time_min": 4,
-  "question_text": "Find ∫₀^(2π) sin²x cos⁴x dx.",
+  "question_text": "Find ∫ sin²x cos⁴x dx from 0 to 2π.",
   "appearances": [
     {
       "year": 2017,
@@ -31,7 +31,7 @@
       "marks": 1
     },
     {
-      "label": "Apply Walli's formula and evaluate",
+      "label": "Apply Wallis's formula and evaluate",
       "marks": 1
     }
   ],
@@ -62,10 +62,26 @@
           },
           "Let f(x) = sin²x cos⁴x.",
           "Here f(2π−x) = f(π−x) = f(x)",
-          "∴ ∫₀^(2π) sin²x cos⁴x dx",
-          "= 2∫₀^π sin²x cos⁴x dx",
-          "= 2×2∫₀^(π/2) sin²x cos⁴x dx",
-          "= 4∫₀^(π/2) sin²x cos⁴x dx"
+          {
+            "text": "\\therefore \\int _{0}^{2\\pi } \\sin ^{2}x \\cos ^{4}x dx",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "= 2\\int _{0}^{\\pi } \\sin ^{2}x \\cos ^{4}x dx",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "= 2\\times 2\\int _{0}^{\\pi /2} \\sin ^{2}x \\cos ^{4}x dx",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "= 4\\int _{0}^{\\pi /2} \\sin ^{2}x \\cos ^{4}x dx",
+            "render": "katex",
+            "style": "normal"
+          }
         ],
         "why": "The same even-power reasoning applies: sin²x and cos⁴x are both even powers, so the integrand survives both reflections and the range collapses to 4 times the 0-to-π/2 integral.",
         "common_mistakes": [
@@ -76,7 +92,7 @@
       {
         "id": "s2_final",
         "kind": "boxed_final",
-        "label": "Apply Walli's formula and evaluate",
+        "label": "Apply Wallis's formula and evaluate",
         "marks": 1,
         "mark_note": "Solution",
         "margin_note": "Second mark. 3/48 simplifies to 1/16 before the final multiplication.",
@@ -88,7 +104,7 @@
             "style": "boxed"
           }
         ],
-        "why": "Walli's mixed-power formula for m=2, n=4 (both even) gives 3/48·π/2, and multiplying by the outer factor 4 gives π/8.",
+        "why": "Wallis's mixed-power formula for m=2, n=4 (both even) gives 3/48·π/2, and multiplying by the outer factor 4 gives π/8.",
         "common_mistakes": [
           "Forgetting the outer factor 4 from the range reduction.",
           "Miscomputing 3/48 as 1/8 instead of 1/16."

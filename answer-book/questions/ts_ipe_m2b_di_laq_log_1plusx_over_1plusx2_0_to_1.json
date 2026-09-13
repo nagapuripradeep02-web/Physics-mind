@@ -15,7 +15,7 @@
   "marks_total": 7,
   "paper_section": "Section C",
   "expected_time_min": 15,
-  "question_text": "Evaluate ∫₀^1 log(1 + x)/(1 + x²) dx.",
+  "question_text": "Evaluate ∫₀¹ log(1 + x)/(1 + x²) dx.",
   "appearances": [
     {
       "year": 2018,
@@ -51,7 +51,7 @@
     "needs_teacher_verification": true,
     "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book printed p.42 (PDF page 41) — LAQ chapter 4 'Definite Integrals', answer 36.2, the right-hand twin of answer 36.1 on the same printed Super Scoring Page (SSP 42). The book's own printed note calls the pair 'SUPER TWIN BABIES' and states 'AFTER SIMPLIFICATION BABY 2 BECOMES SAME AS BABY 1' — verified independently here by the x = tanθ substitution, which turns this integral into exactly answer 36.1's ∫₀^(π/4) log(1+tanθ)dθ. Printed appearance: AP 18, 22 and TS 17, 19, plus a third year at the scan's right edge that is cropped and not legibly recorded. Chapter star rank ★★★ applies. No margin mark tags are printed on this page, so the 2+3+2 split is OURS, weighting the tan(A−B) algebra block at 3 marks the same way as its twin (ts_ipe_m2b_di_laq_log_1plus_tanx_0_to_pi4), patterned on the same book p.17 1+1+1+4 precedent. Boundary reading: printed p.37 (PDF 36) and printed p.44 (PDF 44) confirm the chapter span. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). This integral is re-answered on the Bullet Model Paper (book p.116) in the identical 'or' form alongside answer 36.1 — no separate card is authored for that appearance. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
   },
-  "insider_note": "The x = tanθ substitution is the key step: once it is made, this integral becomes ∫₀^(π/4) log(1 + tanθ) dθ. Recognising that form saves re-deriving the tan(A−B) algebra from scratch.",
+  "insider_note": "The x = tanθ substitution is the key step: once it is made, this integral becomes ∫ log(1 + tanθ) dθ from 0 to π/4. Recognising that form saves re-deriving the tan(A−B) algebra from scratch.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",
@@ -74,9 +74,17 @@
           "Put x = tanθ ⇒ dx = sec²θ dθ. x = 0",
           "⇒ θ = 0; x = 1 ⇒ θ = π/4",
           "Also 1 + x² = 1 + tan²θ = sec²θ",
-          "∴ I = ∫₀^1 log(1 + x)/(1 + x²) dx",
-          "= ∫₀^(π/4) log(1 + tanθ)/sec²θ · sec²θ dθ",
-          "⇒ I = ∫₀^(π/4) log(1 + tanθ) dθ …(1)"
+          "∴ I = ∫₀¹ log(1 + x)/(1 + x²) dx",
+          {
+            "text": "= \\int _{0}^{\\pi /4} \\log (1 + \\tan \\theta )/\\sec ^{2}\\theta \\cdot \\sec ^{2}\\theta d\\theta",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "\\Rightarrow I = \\int _{0}^{\\pi /4} \\log (1 + \\tan \\theta ) d\\theta \\dots (1)",
+            "render": "katex",
+            "style": "normal"
+          }
         ],
         "why": "x = tanθ turns 1 + x² into sec²θ, which exactly cancels the sec²θ that comes from dx — the whole denominator vanishes, leaving a plain log(1+tanθ) integral in the new variable θ.",
         "common_mistakes": [
@@ -94,14 +102,22 @@
         "memory_tip": "tan(π/4 − θ) = (1 − tanθ)/(1 + tanθ). Adding 1 to it gives 2/(1 + tanθ).",
         "lines": [
           "By θ → π/4 − θ:",
-          "I = ∫₀^(π/4) log[1 + tan(π/4 − θ)] dθ",
+          {
+            "text": "I = \\int _{0}^{\\pi /4} \\log [1 + \\tan (\\pi /4 - \\theta )] d\\theta",
+            "render": "katex",
+            "style": "normal"
+          },
           "tan(π/4 − θ) = (1 − tanθ)/(1 + tanθ)",
           "[tan(A−B) formula]",
           "1 + tan(π/4 − θ) = 2/(1 + tanθ)",
-          "⇒ I = ∫₀^(π/4) log[2/(1 + tanθ)] dθ",
+          {
+            "text": "\\Rightarrow I = \\int _{0}^{\\pi /4} \\log [2/(1 + \\tan \\theta )] d\\theta",
+            "render": "katex",
+            "style": "normal"
+          },
           "= (π/4)log2 − I"
         ],
-        "why": "Once the integral is written in θ it is ∫₀^(π/4) log(1 + tanθ) dθ, and the θ → π/4 − θ property with the tan(A−B) identity reduces it to (π/4)log2 − I.",
+        "why": "Once the integral is written in θ it is ∫ log(1 + tanθ) dθ from 0 to π/4, and the θ → π/4 − θ property with the tan(A−B) identity reduces it to (π/4)log2 − I.",
         "common_mistakes": [
           "Re-deriving the algebra with the wrong variable name and losing track of which step is which.",
           "Skipping the log-splitting step log[2/(1+tanθ)] = log2 − log(1+tanθ)."
@@ -122,7 +138,7 @@
             "style": "boxed"
           }
         ],
-        "why": "Adding I to both sides gives 2I directly, and dividing by 2 gives (π/8)log2 — the same value as ∫₀^(π/4) log(1 + tanθ) dθ, which is what step 1 showed this integral equals.",
+        "why": "Adding I to both sides gives 2I directly, and dividing by 2 gives (π/8)log2 — the same value as ∫ log(1 + tanθ) dθ from 0 to π/4, which is what step 1 showed this integral equals.",
         "common_mistakes": [
           "Forgetting the final division by 2.",
           "Reporting a value other than (π/8)log2 without checking the arithmetic of 2I = (π/4)log2."

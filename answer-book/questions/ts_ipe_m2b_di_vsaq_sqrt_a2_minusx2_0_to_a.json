@@ -15,7 +15,7 @@
   "marks_total": 2,
   "paper_section": "Section A",
   "expected_time_min": 4,
-  "question_text": "Evaluate ∫₀^a √(a² − x²) dx.",
+  "question_text": "Evaluate ∫₀ᵃ √(a² − x²) dx.",
   "appearances": [
     {
       "year": 2016
@@ -56,10 +56,10 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "I = ∫₀^a √(a² − x²) dx",
+          "I = ∫₀ᵃ √(a² − x²) dx",
           "Formula: ∫√(a²−x²) dx",
           "= (x/2)√(a²−x²) + (a²/2)Sin⁻¹(x/a) + c",
-          "∴ I = [(x/2)√(a²−x²) + (a²/2)Sin⁻¹(x/a)]₀^a"
+          "∴ I = [(x/2)√(a²−x²) + (a²/2)Sin⁻¹(x/a)]₀ᵃ"
         ],
         "why": "√(a²−x²) has a standard antiderivative built from two pieces — an algebraic term and an inverse-sine term — that is worth memorising rather than deriving by a trigonometric substitution each time.",
         "common_mistakes": [

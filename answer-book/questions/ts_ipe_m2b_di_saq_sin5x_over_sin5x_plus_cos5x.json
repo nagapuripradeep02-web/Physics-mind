@@ -15,7 +15,7 @@
   "marks_total": 4,
   "paper_section": "Section B",
   "expected_time_min": 9,
-  "question_text": "Evaluate ∫₀^(π/2) sin⁵x/(sin⁵x + cos⁵x) dx.",
+  "question_text": "Evaluate ∫ sin⁵x/(sin⁵x + cos⁵x) dx from 0 to π/2.",
   "appearances": [
     {
       "year": 2019,
@@ -65,8 +65,12 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "We know ∫₀^a f(x)dx = ∫₀^a f(a − x)dx",
-          "∴ I = ∫₀^(π/2) sin⁵x/(sin⁵x + cos⁵x) dx …(1)"
+          "We know ∫₀ᵃ f(x)dx = ∫₀ᵃ f(a − x)dx",
+          {
+            "text": "\\therefore I = \\int _{0}^{\\pi /2} \\sin ^{5}x/(\\sin ^{5}x + \\cos ^{5}x) dx \\dots (1)",
+            "render": "katex",
+            "style": "normal"
+          }
         ],
         "why": "Labelling the given integral (1) sets it up for comparison with the transformed second form.",
         "common_mistakes": [
@@ -85,9 +89,21 @@
         "lines": [
           "By x → π/2 − x:",
           "I",
-          "= ∫₀^(π/2) sin⁵(π/2−x)/[sin⁵(π/2−x) +",
-          "cos⁵(π/2−x)] dx",
-          "⇒ I = ∫₀^(π/2) cos⁵x/(cos⁵x + sin⁵x) dx …(2)"
+          {
+            "text": "= \\int _{0}^{\\pi /2} \\sin ^{5}(\\pi /2-x)/[\\sin ^{5}(\\pi /2-x) +",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "\\cos ^{5}(\\pi /2-x)] dx",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "\\Rightarrow I = \\int _{0}^{\\pi /2} \\cos ^{5}x/(\\cos ^{5}x + \\sin ^{5}x) dx \\dots (2)",
+            "render": "katex",
+            "style": "normal"
+          }
         ],
         "why": "Under x → π/2 − x, sinx becomes cosx, so sin⁵x becomes cos⁵x in the numerator, while the denominator (a sum of both powers) reappears unchanged.",
         "common_mistakes": [
@@ -105,8 +121,16 @@
         "memory_tip": "sin⁵x + cos⁵x over sin⁵x + cos⁵x is always 1 — the whole point of the swap was to make the two numerators add up to the denominator.",
         "lines": [
           "Adding (1) and (2): I + I",
-          "= ∫₀^(π/2) [sin⁵x + cos⁵x]/[sin⁵x + cos⁵x] dx",
-          "⇒ 2I = ∫₀^(π/2) 1 dx = [x]₀^(π/2) = π/2",
+          {
+            "text": "= \\int _{0}^{\\pi /2} [\\sin ^{5}x + \\cos ^{5}x]/[\\sin ^{5}x + \\cos ^{5}x] dx",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "\\Rightarrow 2I = \\int _{0}^{\\pi /2} 1 dx = [x]_{0}^{\\pi /2} = \\pi /2",
+            "render": "katex",
+            "style": "normal"
+          },
           {
             "text": "∴ I = π/4",
             "style": "boxed"
