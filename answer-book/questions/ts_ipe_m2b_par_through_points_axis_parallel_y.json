@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Maths-2B, book p.24 — LAQ chapter 2 Parabola, answer 12 (this scan's page numbering jumps 22 → 24, so the printed page shows both answers 12 and 13; see the ts_ipe_m2b_par_through_points_axis_parallel_x_v1 card for that gap). No appearance year tag is printed next to this question. THE MARK SPLIT IS OURS — no margin mark tags are printed anywhere on this page for either answer 12 or 13; the 2/2/2/1 split below follows the same natural break points as the sibling axis-parallel-to-x-axis question (answer 10 / Bullet MP Q20), since both are the identical method with x and y exchanged. No two-book union check was possible for Maths-2B (no second-year TSBIE Basic Learning Material is on hand), and no board back-test beyond diffing against this book's own five Guess Papers. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, Senior Maths-2B, book p.24 — LAQ chapter 2 Parabola, answer 12 (this scan's page numbering jumps 22 → 24, so the printed page shows both answers 12 and 13; see the ts_ipe_m2b_par_through_points_axis_parallel_x_v1 card for that gap). No appearance year tag is printed next to this question. THE MARK SPLIT IS OURS — no margin mark tags are printed anywhere on this page for either answer 12 or 13; the 2/2/2/1 split below follows the same natural break points as the sibling axis-parallel-to-x-axis question (answer 10 / Bullet MP Q20), since both are the identical method with x and y exchanged. No two-book union check was possible for Maths-2B (no second-year TSBIE Basic Learning Material is on hand), and no board back-test beyond diffing against this book's own five Guess Papers. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "answer": {
     "page_header": [
@@ -60,9 +60,16 @@
           },
           "The equation of a parabola with axis",
           "parallel to the y-axis is y = lx² + mx + n.",
+          "(x is the squared variable; l, m, n are the",
+          {
+            "text": "  three numbers to find)",
+            "style": "indent"
+          },
+          "Put each point's x and y into y = lx² + mx + n:",
           "Through (4, 5): 5 = 16l + 4m + n   ……(1)",
           "Through (−2, 11): 11 = 4l − 2m + n   ……(2)",
-          "Through (−4, 21): 21 = 16l − 4m + n   ……(3)"
+          "Through (−4, 21): 21 = 16l − 4m + n   ……(3)",
+          "(4² = 16, (−2)² = 4 and (−4)² = 16)"
         ],
         "why": "An axis parallel to the y-axis means y is written in terms of x², the familiar shape of an upward or downward parabola — three unknowns need three points, exactly as given.",
         "common_mistakes": [
@@ -79,17 +86,40 @@
         "mark_note": "Method",
         "margin_note": "Two marks. The m-coefficients look small but the sign changes are where marks are usually lost.",
         "lines": [
+          {
+            "text": "n has coefficient 1 in every equation, so",
+            "added": true
+          },
+          {
+            "text": "  subtracting two equations removes it:",
+            "style": "indent",
+            "added": true
+          },
           "(1) − (2): 5 − 11 = 16l + 4m + n − (4l − 2m + n)",
           "⇒ −6 = 12l + 6m   ……(4)",
+          {
+            "text": "(16l − 4l = 12l, 4m − (−2m) = 6m)",
+            "added": true
+          },
           "(3) − (2): 21 − 11 = 16l − 4m + n − (4l − 2m + n)",
-          "⇒ 10 = 12l − 2m   ……(5)"
+          "⇒ 10 = 12l − 2m   ……(5)",
+          {
+            "text": "(16l − 4l = 12l, −4m − (−2m) = −2m)",
+            "added": true
+          }
         ],
         "why": "Subtracting equation (2) from each of the other two removes n immediately, and leaves a pair of equations in only l and m.",
         "common_mistakes": [
           "Subtracting (2) from (1) but computing the m-terms as 4m − (−2m) = 2m instead of the correct 6m.",
           "Dropping the factor of 12 shared by both new equations before combining them."
         ],
-        "memory_tip": "Subtract the middle equation from the other two — n cancels both times, leaving a clean 2×2 system in l and m."
+        "memory_tip": "Subtract the middle equation from the other two — n cancels both times, leaving a clean 2×2 system in l and m.",
+        "lines_compact": [
+          "(1) − (2): 5 − 11 = 16l + 4m + n − (4l − 2m + n)",
+          "⇒ −6 = 12l + 6m   ……(4)",
+          "(3) − (2): 21 − 11 = 16l − 4m + n − (4l − 2m + n)",
+          "⇒ 10 = 12l − 2m   ……(5)"
+        ]
       },
       {
         "id": "s3_solve_l",
@@ -99,16 +129,38 @@
         "mark_note": "Method",
         "margin_note": "Two marks. Both unknowns fall out cleanly here because the coefficients of l happen to match.",
         "lines": [
+          {
+            "text": "(4) and (5) both have 12l, so subtracting",
+            "added": true
+          },
+          {
+            "text": "  removes l:",
+            "style": "indent",
+            "added": true
+          },
           "(4) − (5): (12l + 6m) − (12l − 2m) = −6 − 10",
           "⇒ 8m = −16 ⇒ m = −2",
-          "From (4): 12l + 6(−2) = −6 ⇒ 12l = 6 ⇒ l = 1/2"
+          {
+            "text": "(6m − (−2m) = 8m)",
+            "added": true
+          },
+          "From (4): 12l + 6(−2) = −6 ⇒ 12l = 6 ⇒ l = 1/2",
+          {
+            "text": "(12l − 12 = −6, so 12l = 6)",
+            "added": true
+          }
         ],
         "why": "Subtracting (5) from (4) cancels the l-terms this time, since both carry the same 12l, and that hands over m directly; l then follows from a one-line substitution.",
         "common_mistakes": [
           "Adding (4) and (5) instead of subtracting, which leaves l in the equation rather than cancelling it.",
           "Forgetting to substitute the value of m back into (4) and instead guessing l."
         ],
-        "memory_tip": "This time it is l, not n, that shares the same coefficient in both new equations — subtract to cancel it and read off m."
+        "memory_tip": "This time it is l, not n, that shares the same coefficient in both new equations — subtract to cancel it and read off m.",
+        "lines_compact": [
+          "(4) − (5): (12l + 6m) − (12l − 2m) = −6 − 10",
+          "⇒ 8m = −16 ⇒ m = −2",
+          "From (4): 12l + 6(−2) = −6 ⇒ 12l = 6 ⇒ l = 1/2"
+        ]
       },
       {
         "id": "s4_final",
@@ -124,8 +176,16 @@
           "y = (1/2)x² − 2x + 5",
           "Multiply by 2: 2y = x² − 4x + 10",
           {
+            "text": "Bring every term to the left:",
+            "added": true
+          },
+          {
             "text": "∴ x² − 4x − 2y + 10 = 0",
             "style": "boxed"
+          },
+          {
+            "text": "Check (−2, 11): (−2)² − 4(−2) − 2(11) + 10 = 0",
+            "added": true
           }
         ],
         "why": "Multiplying by 2 clears the only fraction in the equation and leaves the standard whole-number form for a locus.",
@@ -133,7 +193,18 @@
           "Leaving the final equation with the 1/2 fraction still in it instead of clearing it.",
           "Writing the boxed line as x² − 2y − 4x + 10 = 0 without checking it is the same equation, just reordered — both forms are correct, but a term must not be dropped while rearranging."
         ],
-        "memory_tip": "Multiply through by 2 the moment a fraction appears — one clean whole-number equation is the target."
+        "memory_tip": "Multiply through by 2 the moment a fraction appears — one clean whole-number equation is the target.",
+        "lines_compact": [
+          "From (1):",
+          "16(1/2) + 4(−2) + n = 5 ⇒ 8 − 8 + n = 5 ⇒ n = 5",
+          "Substitute l = 1/2, m = −2, n = 5 in y = lx² + mx + n:",
+          "y = (1/2)x² − 2x + 5",
+          "Multiply by 2: 2y = x² − 4x + 10",
+          {
+            "text": "∴ x² − 4x − 2y + 10 = 0",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

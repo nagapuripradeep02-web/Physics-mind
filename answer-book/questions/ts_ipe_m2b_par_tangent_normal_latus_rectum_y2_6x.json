@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Maths-2B, book p.83 — VSAQ chapter 14 Parabola, answer 128. No appearance tag is printed. THE MARK SPLIT IS OURS, same page-format reasoning as the rest of this chapter. No two-book union check was possible for Maths-2B (no second-year TSBIE Basic Learning Material is on hand), and no board back-test beyond diffing against this book's own five Guess Papers. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, Senior Maths-2B, book p.83 — VSAQ chapter 14 Parabola, answer 128. No appearance tag is printed. THE MARK SPLIT IS OURS, same page-format reasoning as the rest of this chapter. No two-book union check was possible for Maths-2B (no second-year TSBIE Basic Learning Material is on hand), and no board back-test beyond diffing against this book's own five Guess Papers. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "answer": {
     "page_header": [
@@ -52,6 +52,15 @@
           },
           "Given parabola y² = 6x ⇒ 4a = 6 ⇒ 2a = 3",
           "⇒ a = 3/2",
+          "The latus rectum is the chord through the focus",
+          {
+            "text": "  (a, 0), perpendicular to the axis. At x = a,",
+            "style": "indent"
+          },
+          {
+            "text": "  y² = 4a · a = 4a², so y = ±2a.",
+            "style": "indent"
+          },
           "The positive end of the latus rectum is (a, 2a)",
           "= (3/2, 3)"
         ],
@@ -71,12 +80,32 @@
         "margin_note": "Second mark, for both the tangent and the normal — this question asks for two equations, not one.",
         "lines": [
           "Tangent at (x₁, y₁) on y² = 4ax is yy₁ = 2a(x + x₁)",
+          {
+            "text": "Put x₁ = 3/2, y₁ = 3 and 2a = 3:",
+            "added": true
+          },
           "⇒ y(3) = 3(x + 3/2) ⇒ y = x + 3/2",
+          {
+            "text": "(divide both sides by 3)",
+            "added": true
+          },
+          {
+            "text": "Multiply by 2 and bring every term to the left:",
+            "added": true
+          },
           "⇒ 2x − 2y + 3 = 0",
           "Slope of this tangent is 1,",
           "so the slope of the normal is −1",
+          {
+            "text": "(perpendicular slopes multiply to −1)",
+            "added": true
+          },
           "Normal at (3/2, 3) with slope −1:",
           "y − 3 = −1(x − 3/2) ⇒ 2x + 2y − 9 = 0",
+          {
+            "text": "(y − 3 = −x + 3/2 ⇒ x + y = 9/2; multiply by 2)",
+            "added": true
+          },
           {
             "text": "∴ tangent: 2x − 2y + 3 = 0",
             "style": "boxed"
@@ -91,7 +120,24 @@
           "Using the normal's slope formula directly instead of first finding the tangent's slope and flipping its sign.",
           "Making an arithmetic slip converting y − 3 = −1(x − 3/2) into the final whole-number form."
         ],
-        "memory_tip": "Find the tangent first — its slope, flipped in sign, is the normal's slope, since a normal is always perpendicular to its tangent."
+        "memory_tip": "Find the tangent first — its slope, flipped in sign, is the normal's slope, since a normal is always perpendicular to its tangent.",
+        "lines_compact": [
+          "Tangent at (x₁, y₁) on y² = 4ax is yy₁ = 2a(x + x₁)",
+          "⇒ y(3) = 3(x + 3/2) ⇒ y = x + 3/2",
+          "⇒ 2x − 2y + 3 = 0",
+          "Slope of this tangent is 1,",
+          "so the slope of the normal is −1",
+          "Normal at (3/2, 3) with slope −1:",
+          "y − 3 = −1(x − 3/2) ⇒ 2x + 2y − 9 = 0",
+          {
+            "text": "∴ tangent: 2x − 2y + 3 = 0",
+            "style": "boxed"
+          },
+          {
+            "text": "normal: 2x + 2y − 9 = 0",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

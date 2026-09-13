@@ -35,7 +35,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Maths-2B, book p.82 — VSAQ chapter 14 Parabola, answer 121.2, the second of the printed twin pair with answer 121.1 (see that card for the chapter's shared framing). Printed appearance: AP 2015. THE MARK SPLIT IS OURS, same reasoning as 121.1. No two-book union check was possible for Maths-2B (no second-year TSBIE Basic Learning Material is on hand), and no board back-test beyond diffing against this book's own five Guess Papers. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, Senior Maths-2B, book p.82 — VSAQ chapter 14 Parabola, answer 121.2, the second of the printed twin pair with answer 121.1 (see that card for the chapter's shared framing). Printed appearance: AP 2015. THE MARK SPLIT IS OURS, same reasoning as 121.1. No two-book union check was possible for Maths-2B (no second-year TSBIE Basic Learning Material is on hand), and no board back-test beyond diffing against this book's own five Guess Papers. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "answer": {
     "page_header": [
@@ -56,8 +56,15 @@
             "style": "heading"
           },
           "Given parabola y² = 2x ⇒ 4a = 2 ⇒ a = 1/2",
+          "(compare with y² = 4ax)",
           "Focal distance SP = x₁ + a.",
-          "Given SP = 5/2 ⇒ x₁ + 1/2 = 5/2 ⇒ x₁ = 2"
+          "(SP equals the distance from P(x₁, y₁) to the",
+          {
+            "text": "  directrix x = −a, which is x₁ + a)",
+            "style": "indent"
+          },
+          "Given SP = 5/2 ⇒ x₁ + 1/2 = 5/2 ⇒ x₁ = 2",
+          "(5/2 − 1/2 = 4/2 = 2)"
         ],
         "why": "The focal distance of any point on y² = 4ax is always x₁ + a, the same rule as 121.1 applied with a smaller a.",
         "common_mistakes": [
@@ -74,10 +81,27 @@
         "mark_note": "Solution",
         "margin_note": "Second mark, for both coordinates of the point.",
         "lines": [
+          {
+            "text": "P is on the parabola, so y₁² = 2x₁:",
+            "added": true
+          },
           "y₁² = 2x₁ = 2(2) = 4 ⇒ y₁ = ±2",
+          {
+            "text": "(2² and (−2)² are both 4)",
+            "added": true
+          },
           {
             "text": "∴ P(x₁, y₁) = (2, ±2)",
             "style": "boxed"
+          },
+          {
+            "text": "Check: from the focus (1/2, 0) to (2, 2) is",
+            "added": true
+          },
+          {
+            "text": "  √((3/2)² + 2²) = √(25/4) = 5/2.",
+            "style": "indent",
+            "added": true
           }
         ],
         "why": "Once x₁ is known, y₁ follows straight from the parabola's own equation, giving two symmetric points about the axis.",
@@ -85,7 +109,14 @@
           "Giving only one value of y₁ and forgetting the ± sign.",
           "Writing y₁ = 2x₁ instead of y₁² = 2x₁ before taking the square root."
         ],
-        "memory_tip": "Every x on the curve gives two points, one above the axis and one below — always write the ± sign."
+        "memory_tip": "Every x on the curve gives two points, one above the axis and one below — always write the ± sign.",
+        "lines_compact": [
+          "y₁² = 2x₁ = 2(2) = 4 ⇒ y₁ = ±2",
+          {
+            "text": "∴ P(x₁, y₁) = (2, ±2)",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },
