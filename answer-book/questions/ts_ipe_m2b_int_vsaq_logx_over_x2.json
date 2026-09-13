@@ -65,7 +65,7 @@
           "∫v dx = ∫x⁻²dx = −1/x",
           "and u′ = 1/x"
         ],
-        "why": "logx must be the first function u in ILATE order, since it has no simple antiderivative of its own — x⁻² is integrated instead, giving v=−1/x.",
+        "why": "logx must be the first function u in ILATE order, since it has no simple antiderivative of its own — x⁻² is integrated instead, giving ∫v dx = −1/x.",
         "common_mistakes": [
           "Taking u=1/x² and v=logx the wrong way round, which needs ∫logx dx — itself a by-parts integral, doubling the work.",
           "Integrating 1/x² incorrectly as 1/x instead of −1/x."
@@ -99,7 +99,7 @@
             "style": "boxed"
           }
         ],
-        "why": "The by-parts rule u·v − ∫v·(du) leaves a plain ∫dx/x² = −1/x to finish, giving both terms in the final answer their own negative sign.",
+        "why": "The by-parts rule u∫v dx − ∫[u′·∫v dx]dx leaves a plain ∫dx/x² = −1/x to finish, giving both terms in the final answer their own negative sign.",
         "common_mistakes": [
           "Sign slip on the second integral: ∫(−1/x)(1/x)dx = −∫dx/x², and ∫dx/x²=−1/x, so the two minus signs combine to give +∫dx/x², then integrate to −1/x — lose that sign and the final answer comes out as −logx/x + 1/x + c instead of the correct −logx/x − 1/x + c.",
           "Forgetting the +c."

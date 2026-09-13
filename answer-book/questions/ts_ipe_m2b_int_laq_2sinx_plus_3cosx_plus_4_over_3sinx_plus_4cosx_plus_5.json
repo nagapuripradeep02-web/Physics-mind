@@ -83,7 +83,7 @@
           "and C=4−5(18/25)=4−18/5=2/5",
           "Solving: A=18/25, B=1/25, C=2/5"
         ],
-        "why": "A constant term in the denominator needs a THIRD free constant C on the right, since Dr and Dr′ alone (both built from sinx and cosx) can never reproduce a bare number on their own.",
+        "why": "A constant term in the denominator needs a THIRD free constant C. A·Dr does produce a constant, 5A, but A is already fixed by the sinx and cosx equations (A = 18/25, so 5A = 18/5), and 18/5 is not the 4 the numerator needs — C makes up the difference.",
         "common_mistakes": [
           "Using only two unknowns A, B and forgetting C, which cannot balance the constant term 4 on the left.",
           "Matching the constant equation as 5A=4 instead of 5A+C=4."

@@ -66,7 +66,7 @@
         ],
         "why": "Setting √x=t (equivalently x=t²) removes the square root from inside the cosine entirely, turning the integral into 2∫t cost dt — a standard by-parts shape in t.",
         "common_mistakes": [
-          "Trying to integrate cos√x directly with no substitution, which has no elementary antiderivative in x.",
+          "Trying to integrate cos√x directly with no substitution — it is not a standard form, so the root must be cleared first.",
           "Substituting t=x instead of t=√x, which does not remove the square root."
         ],
         "memory_tip": "√x alone (no matching 1/√x) inside a function ⇒ always substitute x=t² first to clear the root."

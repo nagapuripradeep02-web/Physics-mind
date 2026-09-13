@@ -61,7 +61,7 @@
         ],
         "why": "The factor 1/x dx is EXACTLY dt once t=logx, since d/dx(logx)=1/x — the substitution removes x from the integral completely, leaving a plain function of t.",
         "common_mistakes": [
-          "Substituting t=logx but forgetting that dx alone (not dx/x) equals dt — it is the WHOLE 1/x dx that becomes dt.",
+          "Substituting t=logx but forgetting that dx/x (not dx alone) equals dt — it is the WHOLE 1/x dx that becomes dt.",
           "Trying integration by parts instead of spotting the direct substitution."
         ],
         "memory_tip": "1/x next to a function of logx ⇒ t=logx makes dx/x vanish into dt directly — no extra factor needed."

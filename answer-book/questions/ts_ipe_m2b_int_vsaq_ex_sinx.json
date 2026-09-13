@@ -70,7 +70,7 @@
           "= cosx·eˣ + ∫sinx·eˣ dx",
           "So I = sinx·eˣ − [cosx·eˣ + I] = eˣ(sinx−cosx) − I"
         ],
-        "why": "Applying by-parts a SECOND time to the leftover ∫cosx eˣdx brings the ORIGINAL integral I back, since differentiating twice returns eˣ sinx again — this is what makes the algebra close.",
+        "why": "Applying by-parts a SECOND time to the leftover ∫cosx eˣdx brings the ORIGINAL integral I back, since differentiating sinx twice returns −sinx while eˣ integrates to itself, so ∫sinx·eˣ dx appears again — this is what makes the algebra close.",
         "common_mistakes": [
           "Stopping after the first by-parts step, leaving ∫cosx eˣ dx un-integrated.",
           "Losing track of the sign when the second by-parts application produces +∫sinx eˣ dx = +I."
@@ -101,10 +101,10 @@
         ],
         "why": "With I appearing on both sides, collecting the two I terms on the left gives 2I, and dividing by 2 gives the final closed form.",
         "common_mistakes": [
-          "Forgetting to add the +I from the right side to the I on the left, and instead treating the equation as already solved.",
+          "Forgetting to move the −I on the right side across to the left (giving 2I), and instead treating the equation as already solved.",
           "Dropping the +c, which only appears once the equation is fully solved for I."
         ],
-        "memory_tip": "I = … − I rearranges to 2I = … — exactly the same move used to solve a reduction formula for I_n.",
+        "memory_tip": "I = … − I rearranges to 2I = … — exactly the same move used to solve a reduction formula for Iₙ.",
         "lines_compact": [
           "2I = eˣ(sinx−cosx)",
           {

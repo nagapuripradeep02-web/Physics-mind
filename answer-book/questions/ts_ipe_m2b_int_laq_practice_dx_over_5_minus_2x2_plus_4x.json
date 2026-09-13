@@ -105,7 +105,7 @@
           "Keeping the form as −[(x−1)²−7/2] without flipping it to the a²−x² order the standard formula expects.",
           "Using a = 7/2 instead of its square root."
         ],
-        "memory_tip": "A negative leading coefficient flips completing-the-square into the a²−x² pattern, not x²−a².",
+        "memory_tip": "A negative leading coefficient gives k − (x−h)² after completing the square, which is the a²−x² pattern only when k > 0 (here k = 7/2).",
         "lines_compact": [
           "−2[(x−1)² − 7/2] = 7 − 2(x−1)²",
           "= 2[7/2 − (x−1)²]",

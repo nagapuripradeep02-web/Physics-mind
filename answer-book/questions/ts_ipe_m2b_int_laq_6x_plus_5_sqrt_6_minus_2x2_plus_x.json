@@ -205,7 +205,7 @@
           "Completing the square into the wrong sign pattern, writing u²−a² (undefined for most x) instead of a²−u².",
           "Confusing Sin⁻¹ with sinh⁻¹ — they are DIFFERENT standard results for opposite sign patterns under the root."
         ],
-        "memory_tip": "Negative x² coefficient under a root ⇒ bounded a²−u² ⇒ Sin⁻¹ (capital S, circular). Positive ⇒ sinh⁻¹ (small s, hyperbolic).",
+        "memory_tip": "Negative x² coefficient under a root ⇒ a²−u² ⇒ Sin⁻¹ (capital S, circular). Positive x² coefficient ⇒ u²+a² gives sinh⁻¹ and u²−a² gives cosh⁻¹ (small letters, hyperbolic) — check the sign of the constant.",
         "lines_compact": [
           "6−2x²+x = 2[(7/4)²−(x−1/4)²],",
           "so √(6−2x²+x) = √2·√[(7/4)²−(x−1/4)²]",

@@ -138,12 +138,12 @@
             "style": "eq"
           }
         ],
-        "why": "∫f′(x)√f(x) dx is a plain power-rule integral in disguise (u=f(x), du=f′(x)dx gives ∫√u du = (2/3)u^{3/2}) — no completing the square is needed for THIS half of the answer.",
+        "why": "∫f′(x)√f(x) dx is a plain power-rule integral in disguise (u=f(x), du=f′(x)dx gives ∫√u du = (2/3)u√u) — no completing the square is needed for THIS half of the answer.",
         "common_mistakes": [
           "Trying to complete the square before splitting off the A-part, which is unnecessary extra work.",
           "Missing the exponent 3/2, writing a plain square instead."
         ],
-        "memory_tip": "∫f′√f dx = (2/3)f^{3/2} — the SAME shape as ∫f′/√f dx = 2√f, one power higher.",
+        "memory_tip": "∫f′√f dx = (2/3)f√f — the SAME shape as ∫f′/√f dx = 2√f, one power higher.",
         "lines_compact": [
           "Putting A=3/4, B=−5/4: I",
           "= (3/4)∫(4x−1)√(2x²−x+1) dx −",

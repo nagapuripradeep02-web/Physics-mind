@@ -183,7 +183,7 @@
         "why": "Multiplying C=5 by the log|1+t| just found and writing t back as tan(x/2) gives the third and final term, completing the answer in x.",
         "common_mistakes": [
           "Forgetting to multiply C=5 into the log|1+t| result.",
-          "Believing the two logs cannot be combined because their arguments differ. They can be: a·logP + b·logQ = log(Qᵇ/Pᵃ) whatever P and Q are. They are left separate here only because combining them makes the answer no simpler."
+          "Believing the two logs cannot be combined because their arguments differ. They can be: a·logP + b·logQ = log(Pᵃ·Qᵇ) whatever P and Q are. They are left separate here only because combining them makes the answer no simpler."
         ],
         "memory_tip": "Two logs appear in this answer, one in x and one in tan(x/2) — they are left separate because combining them would not simplify anything, not because they cannot be combined.",
         "lines_compact": [

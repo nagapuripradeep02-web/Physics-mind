@@ -92,7 +92,7 @@
             "style": "boxed"
           }
         ],
-        "why": "−∫t³dt = −t⁴/4 + c by the power rule, and substituting t=cosx back in gives the final answer as a negative quarter power of cos⁴x.",
+        "why": "−∫t³dt = −t⁴/4 + c by the power rule, and substituting t=cosx back in gives the final answer as minus one quarter of cos⁴x, i.e. −cos⁴x/4.",
         "common_mistakes": [
           "Losing the leading minus sign, writing +cos⁴x/4 instead.",
           "Forgetting to substitute cosx back in for t."

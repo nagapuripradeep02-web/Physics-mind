@@ -15,7 +15,7 @@
   "marks_total": 7,
   "paper_section": "Section C",
   "expected_time_min": 15,
-  "question_text": "Obtain the reduction formula for I_n = ∫ cosⁿx dx and hence find ∫ cos⁴x dx.",
+  "question_text": "Obtain the reduction formula for Iₙ = ∫ cosⁿx dx and hence find ∫ cos⁴x dx.",
   "appearances": [
     {
       "year": 2016,
@@ -48,7 +48,7 @@
       "marks": 2
     },
     {
-      "label": "Substitute n = 4, 2, 0 for the final answer",
+      "label": "Substitute n = 4 and n = 2 for the final answer",
       "marks": 2
     }
   ],
@@ -57,7 +57,7 @@
     "needs_teacher_verification": true,
     "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B, book printed p.26 (PDF page 25) — LAQ chapter 3 ‘Integration’, INTEGRATION-I, answer 16.2, the twin of 16.1 on the same page (same ★★★ SSP page per the survey's list). Printed appearances: TS 16,17,19 · AP 18. Chapter star rank ★★★. no printed margin mark tags or tick-box splits appear anywhere in the Integration LAQ chapter (book pp.26-37) — this card's mark split is OURS, patterned on the 7-mark shapes printed elsewhere in the book (e.g. 2+2+2+1, 1+1+2+2+1). This card's final answer was re-derived and matches the book's printed line exactly (unlike its twin 16.1, this reduction never introduces a minus sign, so there is no sign to drop — the book is correct here). No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
-  "insider_note": "Compare this to 16.1 side by side: the sinⁿ working carries a minus sign from v = −cosx that the cosⁿ working never picks up, because here v = sinx is already positive — that is the whole reason the two final answers differ only in sign pattern, not in structure.",
+  "insider_note": "Compare this to 16.1 side by side: the sinⁿ working takes its minus sign from ∫sinx dx = −cosx, while the cosⁿ working takes it from u′ = (n−1)cosⁿ⁻²x(−sinx). The two reduction formulas therefore differ only in the sign of the leading term, and the two final answers have the same shape with sin and cos swapped.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",
@@ -86,10 +86,10 @@
         ],
         "why": "Exactly the same split as sinⁿx: peel off one cosx to integrate, leave cosⁿ⁻¹x to differentiate.",
         "common_mistakes": [
-          "Taking v = −sinx by carrying over the minus sign from the sinⁿ working — there is no minus here, since ∫cosx dx = sinx.",
+          "Writing ∫v dx = −sinx by carrying over the minus sign from the sinⁿ working — there is no minus here, since ∫cosx dx = sinx.",
           "Swapping u and v, which stalls the reduction instead of lowering the power."
         ],
-        "memory_tip": "∫cosx dx = +sinx (no minus) — that is the one sign difference from the sinⁿ case."
+        "memory_tip": "∫cosx dx = +sinx, but u′ now carries −sinx: the minus sign moves from ∫v dx into u′."
       },
       {
         "id": "s2_apply",
@@ -126,7 +126,7 @@
             "style": "eq"
           }
         ],
-        "why": "Replacing sin²x by 1 − cos²x keeps everything in powers of cosx, closing the loop back to I_n and I_{n−2}.",
+        "why": "Replacing sin²x by 1 − cos²x keeps everything in powers of cosx, closing the loop back to Iₙ and Iₙ₋₂.",
         "common_mistakes": [
           "Not distributing the (n−1) across both terms once the bracket is expanded.",
           "Writing sin²x = 1 + cos²x by sign slip instead of 1 − cos²x."
@@ -177,12 +177,12 @@
             "style": "eq"
           }
         ],
-        "why": "Same algebra as sinⁿx — collect the I_n terms and divide by n — but every term here stays positive.",
+        "why": "Same algebra as sinⁿx — collect the Iₙ terms and divide by n. Only the leading term cosⁿ⁻¹x sinx/n is positive, where the sinⁿ one is negative.",
         "common_mistakes": [
           "Carrying a stray minus sign from the sinⁿ derivation out of habit.",
           "Dividing by n on one side only, leaving an inconsistent equation."
         ],
-        "memory_tip": "This boxed line is the sinⁿ formula with every minus sign erased.",
+        "memory_tip": "This boxed line is the sinⁿ formula with sin and cos swapped and the leading minus sign removed.",
         "lines_compact": [
           "Iₙ = cosⁿ⁻¹x sinx + (n−1)Iₙ₋₂ − (n−1)Iₙ",
           "nIₙ = cosⁿ⁻¹x sinx + (n−1)Iₙ₋₂",
@@ -196,12 +196,12 @@
       {
         "id": "s4_evaluate",
         "kind": "boxed_final",
-        "label": "Substitute n = 4, 2, 0 for the final answer",
+        "label": "Substitute n = 4 and n = 2 for the final answer",
         "marks": 2,
         "mark_note": "Method",
         "margin_note": "Solution",
         "lines": [
-          "Put n = 4, 2, 0 successively in (1):",
+          "Put n = 4, 2 successively in (1):",
           "I₄ = cos³x sinx/4 + (3/4)I₂",
           "I₂ = cosx sinx/2 + (1/2)I₀, and I₀ = ∫dx = x",
           "So I₂ = cosx sinx/2 + x/2",
@@ -223,7 +223,7 @@
         ],
         "memory_tip": "sin⁴x and cos⁴x are structural twins — same coefficients (1/4, 3/8, 3/8) — but the SIGNS differ: sin⁴x's answer keeps its first two terms negative, while cos⁴x's answer is all positive.",
         "lines_compact": [
-          "Put n = 4, 2, 0 successively in (1):",
+          "Put n = 4, 2 successively in (1):",
           "I₄ = cos³x sinx/4 + (3/4)I₂",
           "I₂ = cosx sinx/2 + (1/2)I₀, and I₀ = ∫dx = x",
           "So I₂ = cosx sinx/2 + x/2",

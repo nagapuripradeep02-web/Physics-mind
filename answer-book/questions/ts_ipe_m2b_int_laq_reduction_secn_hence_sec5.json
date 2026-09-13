@@ -15,7 +15,7 @@
   "marks_total": 7,
   "paper_section": "Section C",
   "expected_time_min": 15,
-  "question_text": "Obtain the reduction formula for I_n = ∫ secⁿx dx. Hence find ∫ sec⁵x dx.",
+  "question_text": "Obtain the reduction formula for Iₙ = ∫ secⁿx dx. Hence find ∫ sec⁵x dx.",
   "appearances": [
     {
       "year": 2017,
@@ -36,7 +36,7 @@
       "marks": 2
     },
     {
-      "label": "Substitute n = 5, 3, 1 for the final answer",
+      "label": "Substitute n = 5 and n = 3 for the final answer",
       "marks": 2
     }
   ],
@@ -45,7 +45,7 @@
     "needs_teacher_verification": true,
     "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B, book printed p.28 (PDF page 27) — LAQ chapter 3 ‘Integration’, answer 18.1, on a ★★★ SSP 28 page (banner printed on this page). Printed appearance: AP 17 (a single black tag, partly obscured by a sticker in the scan; only AP 17 is legible). Chapter star rank ★★★. no printed margin mark tags or tick-box splits appear anywhere in the Integration LAQ chapter (book pp.26-37) — this card's mark split is OURS, patterned on the 7-mark shapes printed elsewhere in the book (e.g. 2+2+2+1, 1+1+2+2+1). This card's final answer was re-derived independently and matches the book's printed line exactly — no error found here (unlike its twin 18.2 on the facing column, which drops a sign — see that card's note). No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
-  "insider_note": "Every term in this reduction and its final answer is positive — if a minus sign appears anywhere while working secⁿx, it has leaked in from the cscⁿx version worked alongside it, and is a sign something was copied from the wrong column.",
+  "insider_note": "Every term of formula (1) and of the final answer is positive. The working itself has minus signs (tan²x = sec²x − 1, −(n−2)Iₙ), but if a minus sign survives into the formula or the answer for secⁿx, it has been copied from the cscⁿx version worked alongside it.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",
@@ -81,7 +81,7 @@
           "Peeling off only one secx instead of sec²x, which leaves an antiderivative that is not directly known.",
           "Taking u = sec²x and v = secⁿ⁻²x the wrong way round."
         ],
-        "memory_tip": "Always integrate the sec²x piece (v = tanx is a known standard result); differentiate the rest."
+        "memory_tip": "Always integrate the sec²x piece (∫v dx = tanx is a known standard result); differentiate the rest."
       },
       {
         "id": "s2_apply",
@@ -114,9 +114,9 @@
             "style": "eq"
           }
         ],
-        "why": "tan²x = sec²x − 1 turns the new integral back into powers of secx alone, closing the loop back to I_n and I_{n−2} — the secant partner of the sin²x = 1 − cos²x step used for sinⁿx.",
+        "why": "tan²x = sec²x − 1 turns the new integral back into powers of secx alone, closing the loop back to Iₙ and Iₙ₋₂ — the secant partner of the sin²x = 1 − cos²x step used for sinⁿx.",
         "common_mistakes": [
-          "Leaving tan²x un-replaced, which never returns to I_n or I_{n−2}.",
+          "Leaving tan²x un-replaced, which never returns to Iₙ or Iₙ₋₂.",
           "Writing tan²x = 1 − sec²x with the sign reversed."
         ],
         "memory_tip": "tan²x = sec²x − 1, always positive on the sec²x side — the reverse of the cos²x identity's sign.",
@@ -166,7 +166,7 @@
             "style": "eq"
           }
         ],
-        "why": "Collecting the I_n terms on one side gives (n−1)I_n, not nI_n, because this by-parts split produced a −(n−2)I_n term rather than a −(n−1)I_n term — dividing by (n−1) is what makes this reduction's denominator different from the sinⁿx and cosⁿx ones.",
+        "why": "Collecting the Iₙ terms on one side gives (n−1)Iₙ, not nIₙ, because this by-parts split produced a −(n−2)Iₙ term rather than a −(n−1)Iₙ term — dividing by (n−1) is what makes this reduction's denominator different from the sinⁿx and cosⁿx ones.",
         "common_mistakes": [
           "Dividing by n out of habit, copying the sinⁿx/cosⁿx pattern instead of the (n−1) that this derivation actually gives.",
           "Losing the (n−2) coefficient on the second term."
@@ -185,12 +185,12 @@
       {
         "id": "s4_evaluate",
         "kind": "boxed_final",
-        "label": "Substitute n = 5, 3, 1 for the final answer",
+        "label": "Substitute n = 5 and n = 3 for the final answer",
         "marks": 2,
         "mark_note": "Method",
         "margin_note": "Solution",
         "lines": [
-          "Put n = 5, 3, 1 successively in (1):",
+          "Put n = 5, 3 successively in (1):",
           "I₅ = sec³x tanx/4 + (3/4)I₃",
           "I₃ = secx tanx/2 + (1/2)I₁,",
           "and I₁ = ∫secx dx = log|secx + tanx| + c",
@@ -212,7 +212,7 @@
         ],
         "memory_tip": "secⁿx (odd n) stops at I₁ = log|secx+tanx|; cscⁿx (odd n) stops at I₁ = log|tan(x/2)| — different constants, same shape.",
         "lines_compact": [
-          "Put n = 5, 3, 1 successively in (1):",
+          "Put n = 5, 3 successively in (1):",
           "I₅ = sec³x tanx/4 + (3/4)I₃",
           "I₃ = secx tanx/2 + (1/2)I₁,",
           "and I₁ = ∫secx dx = log|secx + tanx| + c",
