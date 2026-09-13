@@ -47,7 +47,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B, book printed p.34 (PDF page 33) — LAQ chapter 3 ‘Integration’, answer 28, on the same ★★★ SSP 34 page as answer 27. Printed appearances: AP 16,17. Chapter star rank ★★★. no printed margin mark tags or tick-box splits appear anywhere in the Integration LAQ chapter — this card's mark split is OURS, patterned on the 7-mark shapes printed elsewhere in the book (e.g. 2+2+2+1, 1+1+2+2+1). This card's final answer was re-derived independently and matches the book's printed line exactly — no error found here. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B, book printed p.34 (PDF page 33) — LAQ chapter 3 ‘Integration’, answer 28, on the same ★★★ SSP 34 page as answer 27. Printed appearances: AP 16,17. Chapter star rank ★★★. no printed margin mark tags or tick-box splits appear anywhere in the Integration LAQ chapter — this card's mark split is OURS, patterned on the 7-mark shapes printed elsewhere in the book (e.g. 2+2+2+1, 1+1+2+2+1). This card's final answer was re-derived independently and matches the book's printed line exactly — no error found here. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "insider_note": "This is the same A·Dr′+B split used when the denominator sits under a square root, with the root removed — but a rational denominator with no root always finishes in a log plus a Tan⁻¹ (or log) term, never a sinh⁻¹.",
   "answer": {
@@ -68,9 +68,21 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "A linear numerator sits over a quadratic, so",
+          {
+            "text": "  write the numerator as A times the",
+            "style": "indent"
+          },
+          {
+            "text": "  derivative of that quadratic, plus B.",
+            "style": "indent"
+          },
+          "Here d/dx(x²+3x+12) = 2x+3",
           "Let x+1 = A·d/dx(x²+3x+12) + B = A(2x+3) + B",
+          "Compare the coefficients on both sides:",
           "Coeff of x: 2A=1 ⇒ A=1/2; constant:",
-          "3A+B=1 ⇒ B=−1/2"
+          "3A+B=1 ⇒ B=−1/2",
+          "since 3(1/2) = 3/2 and 1 − 3/2 = −1/2"
         ],
         "why": "The same A·Dr′+B pattern, now over a plain quadratic denominator with no root — the split is identical, only the final integration of each piece differs.",
         "common_mistakes": [
@@ -89,9 +101,17 @@
         "lines": [
           "Putting A=1/2, B=−1/2:",
           "x+1 = (1/2)d/dx(x²+3x+12) − 1/2",
+          {
+            "text": "Divide every term by x²+3x+12 and integrate:",
+            "added": true
+          },
           "I",
           "= (1/2)∫[d/dx(x²+3x+12)]/(x²+3x+12) dx",
           "− (1/2)∫dx/(x²+3x+12)",
+          {
+            "text": "The first has the form ∫f′/f dx = log|f|:",
+            "added": true
+          },
           "= (1/2)log|x²+3x+12| − (1/2)∫dx/(x²+3x+12)"
         ],
         "why": "The A-part is now an f′(x)/f(x) form WITHOUT a square root, so it integrates to a plain log|f(x)| — no factor of 2, unlike the √f(x) case.",
@@ -99,7 +119,15 @@
           "Copying the ∫f′/√f = 2√f rule here by mistake — with no root, the correct rule is ∫f′/f = log|f|.",
           "Losing the negative sign on the B=−1/2 term."
         ],
-        "memory_tip": "No root under the fraction ⇒ ∫f′/f dx = log|f|, no factor of 2. A root present ⇒ the factor of 2 rule applies instead."
+        "memory_tip": "No root under the fraction ⇒ ∫f′/f dx = log|f|, no factor of 2. A root present ⇒ the factor of 2 rule applies instead.",
+        "lines_compact": [
+          "Putting A=1/2, B=−1/2:",
+          "x+1 = (1/2)d/dx(x²+3x+12) − 1/2",
+          "I",
+          "= (1/2)∫[d/dx(x²+3x+12)]/(x²+3x+12) dx",
+          "− (1/2)∫dx/(x²+3x+12)",
+          "= (1/2)log|x²+3x+12| − (1/2)∫dx/(x²+3x+12)"
+        ]
       },
       {
         "id": "s3_square",
@@ -109,8 +137,25 @@
         "mark_note": "Method",
         "margin_note": "Method",
         "lines": [
+          {
+            "text": "Half the coefficient of x is 3/2, so add and",
+            "added": true
+          },
+          {
+            "text": "  subtract (3/2)²:",
+            "style": "indent",
+            "added": true
+          },
           "x²+3x+12 = x²+3x+(3/2)²−(3/2)²+12",
+          {
+            "text": "−9/4 + 12 = 39/4:",
+            "added": true
+          },
           "= (x+3/2)²+39/4",
+          {
+            "text": "39/4 = (√39/2)², so a = √39/2",
+            "added": true
+          },
           "So −(1/2)∫dx/(x²+3x+12)",
           "= −(1/2)∫dx/[(x+3/2)²+(√39/2)²]"
         ],
@@ -119,7 +164,13 @@
           "Matching a = 39/4 instead of a = √39/2 — a is the square ROOT of the leftover constant 39/4, not the constant itself.",
           "Sign slip in −(3/2)²+12, which is −9/4+48/4=39/4, not −39/4 or 9/4."
         ],
-        "memory_tip": "−9/4+12 = −9/4+48/4 = 39/4 — write 12 as 48/4 before combining the fractions."
+        "memory_tip": "−9/4+12 = −9/4+48/4 = 39/4 — write 12 as 48/4 before combining the fractions.",
+        "lines_compact": [
+          "x²+3x+12 = x²+3x+(3/2)²−(3/2)²+12",
+          "= (x+3/2)²+39/4",
+          "So −(1/2)∫dx/(x²+3x+12)",
+          "= −(1/2)∫dx/[(x+3/2)²+(√39/2)²]"
+        ]
       },
       {
         "id": "s4_final",
@@ -129,6 +180,23 @@
         "mark_note": "Method",
         "margin_note": "Solution",
         "lines": [
+          {
+            "text": "Using ∫dx/(x²+a²) = (1/a)Tan⁻¹(x/a):",
+            "added": true
+          },
+          {
+            "text": "= −(1/2)·(2/√39)Tan⁻¹[(x+3/2)/(√39/2)]",
+            "added": true
+          },
+          {
+            "text": "(1/2)·(2/√39) = 1/√39, and dividing",
+            "added": true
+          },
+          {
+            "text": "  (x+3/2) by (√39/2) doubles both:",
+            "style": "indent",
+            "added": true
+          },
           "∴ I = (1/2)log|x²+3x+12|",
           {
             "text": "− (1/√39)Tan⁻¹[(2x+3)/√39] + c",
@@ -140,7 +208,14 @@
           "Losing the outside factor of −(1/2) when combining it with the formula's own 1/a coefficient.",
           "Leaving the Tan⁻¹ argument un-simplified as (x+3/2)/(√39/2) instead of (2x+3)/√39."
         ],
-        "memory_tip": "−(1/2)×(2/√39) = −1/√39 — the outside half and the formula's own half cancel to a plain 1."
+        "memory_tip": "−(1/2)×(2/√39) = −1/√39 — the outside half and the formula's own half cancel to a plain 1.",
+        "lines_compact": [
+          "∴ I = (1/2)log|x²+3x+12|",
+          {
+            "text": "− (1/√39)Tan⁻¹[(2x+3)/√39] + c",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   }

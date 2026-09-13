@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B, book printed p.33 (PDF page 32) — LAQ chapter 3 ‘Integration’, answer 26, no SSP banner and no printed appearance tags on this page. Chapter star rank ★★★ still applies. no printed margin mark tags or tick-box splits appear anywhere in the Integration LAQ chapter — this card's mark split is OURS, patterned on the 7-mark shapes printed elsewhere in the book (e.g. 2+2+2+1, 1+1+2+2+1). This card's final answer was re-derived independently and matches the book's printed line exactly — no error found here. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B, book printed p.33 (PDF page 32) — LAQ chapter 3 ‘Integration’, answer 26, no SSP banner and no printed appearance tags on this page. Chapter star rank ★★★ still applies. no printed margin mark tags or tick-box splits appear anywhere in the Integration LAQ chapter — this card's mark split is OURS, patterned on the 7-mark shapes printed elsewhere in the book (e.g. 2+2+2+1, 1+1+2+2+1). This card's final answer was re-derived independently and matches the book's printed line exactly — no error found here. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "insider_note": "Here A multiplies the DERIVATIVE of the denominator, the opposite of the split in which A multiplies the denominator itself — either labelling is legitimate, so always re-read which coefficient is being solved for rather than assuming a fixed layout.",
   "answer": {
@@ -59,10 +59,26 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "The numerator carries a constant as well, so",
+          {
+            "text": "  it needs three parts: A times the",
+            "style": "indent"
+          },
+          {
+            "text": "  derivative of the denominator, B times the",
+            "style": "indent"
+          },
+          {
+            "text": "  denominator, and a constant C.",
+            "style": "indent"
+          },
           "Let cosx+3sinx+7",
           "= A(−sinx+cosx) + B(cosx+sinx+1) + C",
+          "Compare the coefficients on both sides:",
           "Coeff of cosx: A+B=1, coeff of sinx:",
           "−A+B=3, constant: B+C=7",
+          "Adding the first two: 2B=4 ⇒ B=2",
+          "Then A=1−2=−1 and C=7−2=5",
           "Solving: A=−1, B=2, C=5"
         ],
         "why": "The layout here swaps A and B's roles compared with the split in which A multiplies the denominator itself — A multiplies the denominator's derivative this time — but the method is identical: match sinx, cosx, and the constant term.",
@@ -81,6 +97,10 @@
         "margin_note": "Method",
         "lines": [
           "I = A∫[Dr′/Dr]dx + B∫1 dx + C∫dx/Dr",
+          {
+            "text": "The first gives log|Dr|, the second x:",
+            "added": true
+          },
           "= −log|cosx+sinx+1| + 2x + 5∫dx/(cosx+sinx+1)"
         ],
         "why": "With A=−1 multiplying the log term, B=2 multiplying the plain x term, and C=5 left over on the genuine ∫dx/Dr piece, the split works exactly as in the earlier three-part example, roles relabelled.",
@@ -88,7 +108,11 @@
           "Putting the wrong sign on the log term — A=−1 makes this term NEGATIVE, unlike the earlier example where the log coefficient was positive.",
           "Forgetting to carry C=5 as a multiplier on the remaining integral."
         ],
-        "memory_tip": "A is negative here, so the log term in the final answer is subtracted, not added — check the sign before boxing the result."
+        "memory_tip": "A is negative here, so the log term in the final answer is subtracted, not added — check the sign before boxing the result.",
+        "lines_compact": [
+          "I = A∫[Dr′/Dr]dx + B∫1 dx + C∫dx/Dr",
+          "= −log|cosx+sinx+1| + 2x + 5∫dx/(cosx+sinx+1)"
+        ]
       },
       {
         "id": "s3_weierstrass",
@@ -99,10 +123,23 @@
         "margin_note": "Method",
         "lines": [
           "Put tan(x/2)=t: cosx+sinx+1",
+          {
+            "text": "Then sinx = 2t/(1+t²), cosx = (1−t²)/(1+t²)",
+            "added": true
+          },
+          {
+            "text": "  and dx = 2dt/(1+t²)",
+            "style": "indent",
+            "added": true
+          },
           "= [(1−t²)+2t+(1+t²)]/(1+t²) = (2+2t)/(1+t²)",
           "= 2(1+t)/(1+t²)",
           "∫dx/(cosx+sinx+1)",
           "= ∫[2dt/(1+t²)]÷[2(1+t)/(1+t²)]",
+          {
+            "text": "The (1+t²) and the 2 both cancel:",
+            "added": true
+          },
           "= ∫dt/(1+t) = log|1+t|+c"
         ],
         "why": "This denominator collapses to the same simple (1+t) form as 1+sinx+cosx, since cosx+sinx+1 is algebraically the same shape — only the order of the terms differs.",
@@ -110,7 +147,15 @@
           "Not recognising this as the same simplification the 1+sinx+cosx denominator already needs, and re-deriving it with unnecessary extra steps.",
           "Losing the modulus bars on log|1+t|."
         ],
-        "memory_tip": "cosx+sinx+1 IS 1+sinx+cosx, just written in a different order — the same (1+t) simplification applies."
+        "memory_tip": "cosx+sinx+1 IS 1+sinx+cosx, just written in a different order — the same (1+t) simplification applies.",
+        "lines_compact": [
+          "Put tan(x/2)=t: cosx+sinx+1",
+          "= [(1−t²)+2t+(1+t²)]/(1+t²) = (2+2t)/(1+t²)",
+          "= 2(1+t)/(1+t²)",
+          "∫dx/(cosx+sinx+1)",
+          "= ∫[2dt/(1+t²)]÷[2(1+t)/(1+t²)]",
+          "= ∫dt/(1+t) = log|1+t|+c"
+        ]
       },
       {
         "id": "s4_final",
@@ -120,6 +165,15 @@
         "mark_note": "Method",
         "margin_note": "Solution",
         "lines": [
+          {
+            "text": "The third part is 5 times that integral,",
+            "added": true
+          },
+          {
+            "text": "  and t = tan(x/2):",
+            "style": "indent",
+            "added": true
+          },
           "∴ I = −log|cosx+sinx+1| + 2x",
           {
             "text": "+ 5log|1+tan(x/2)| + c",
@@ -131,7 +185,14 @@
           "Forgetting to multiply C=5 into the log|1+t| result.",
           "Believing the two logs cannot be combined because their arguments differ. They can be: a·logP + b·logQ = log(Qᵇ/Pᵃ) whatever P and Q are. They are left separate here only because combining them makes the answer no simpler."
         ],
-        "memory_tip": "Two logs appear in this answer, one in x and one in tan(x/2) — they are left separate because combining them would not simplify anything, not because they cannot be combined."
+        "memory_tip": "Two logs appear in this answer, one in x and one in tan(x/2) — they are left separate because combining them would not simplify anything, not because they cannot be combined.",
+        "lines_compact": [
+          "∴ I = −log|cosx+sinx+1| + 2x",
+          {
+            "text": "+ 5log|1+tan(x/2)| + c",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   }

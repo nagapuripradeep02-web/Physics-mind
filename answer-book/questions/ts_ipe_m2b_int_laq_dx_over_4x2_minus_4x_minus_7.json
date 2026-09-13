@@ -42,7 +42,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B, book printed p.29 (PDF page 28) — LAQ chapter 3 ‘Integration’, answer 20, no printed appearance tags on this question. The book's own sub-heading for this and the next question is printed ‘INTEGRATION-II [to be deleted]’ (book p.29) — the book's own syllabus-deletion marker, not this card's judgement. It is authored here as an ordinary card, and a teacher must confirm whether this sub-section is still examinable before assigning it.no printed margin mark tags or tick-box splits appear anywhere in the Integration LAQ chapter — this card's mark split is OURS, patterned on the 7-mark shapes printed elsewhere in the book (e.g. 2+2+2+1, 1+1+2+2+1). This card's final answer was re-derived independently and matches the book's printed line exactly — no error found here. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B, book printed p.29 (PDF page 28) — LAQ chapter 3 ‘Integration’, answer 20, no printed appearance tags on this question. The book's own sub-heading for this and the next question is printed ‘INTEGRATION-II [to be deleted]’ (book p.29) — the book's own syllabus-deletion marker, not this card's judgement. It is authored here as an ordinary card, and a teacher must confirm whether this sub-section is still examinable before assigning it.no printed margin mark tags or tick-box splits appear anywhere in the Integration LAQ chapter — this card's mark split is OURS, patterned on the 7-mark shapes printed elsewhere in the book (e.g. 2+2+2+1, 1+1+2+2+1). This card's final answer was re-derived independently and matches the book's printed line exactly — no error found here. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "insider_note": "The denominator here completes to a DIFFERENCE of squares (x−a)²−b², not a sum — that is the signal to reach for the log formula instead of the Tan⁻¹ formula that a SUM of squares would need.",
   "answer": {
@@ -63,8 +63,20 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "The denominator is a quadratic with no",
+          {
+            "text": "  simple factors, so complete the square.",
+            "style": "indent"
+          },
+          "First take out the coefficient of x²:",
           "4x² − 4x − 7 = 4[x² − x − 7/4]",
+          "Half the coefficient of x is −1/2, so add",
+          {
+            "text": "  and subtract (1/2)²:",
+            "style": "indent"
+          },
           "= 4[x² − x + (1/2)² − (1/2)² − 7/4]",
+          "−1/4 − 7/4 = −2:",
           "= 4[(x − 1/2)² − 2]"
         ],
         "why": "With leading coefficient 4, factor it out first; −(1/2)² − 7/4 = −1/4−7/4 = −2 is the constant left inside the bracket, and it comes out NEGATIVE this time.",
@@ -102,6 +114,15 @@
         "margin_note": "Standard result",
         "lines": [
           {
+            "text": "A difference of two squares takes the log",
+            "added": true
+          },
+          {
+            "text": "  form, not the Tan⁻¹ one:",
+            "style": "indent",
+            "added": true
+          },
+          {
             "text": "\\int \\frac{dx}{x^2-a^2} = \\frac{1}{2a}\\log\\left|\\frac{x-a}{x+a}\\right| + c",
             "render": "katex",
             "style": "eq"
@@ -112,7 +133,14 @@
           "Confusing this with the ∫dx/(a²−x²) formula, which is a different standard result for the OPPOSITE sign pattern.",
           "Writing the coefficient as 1/a instead of 1/(2a)."
         ],
-        "memory_tip": "The log formula's coefficient is 1/(2a) — note the 2, which the Tan⁻¹ formula does not have."
+        "memory_tip": "The log formula's coefficient is 1/(2a) — note the 2, which the Tan⁻¹ formula does not have.",
+        "lines_compact": [
+          {
+            "text": "\\int \\frac{dx}{x^2-a^2} = \\frac{1}{2a}\\log\\left|\\frac{x-a}{x+a}\\right| + c",
+            "render": "katex",
+            "style": "eq"
+          }
+        ]
       },
       {
         "id": "s4_substitute",
@@ -122,10 +150,27 @@
         "mark_note": "Method",
         "margin_note": "Method",
         "lines": [
+          {
+            "text": "The 4 outside comes out as 1/4:",
+            "added": true
+          },
           "∫dx/(4x²−4x−7) = (1/4)∫dx/[(x−1/2)²−(√2)²]",
+          {
+            "text": "Use the formula with a = √2:",
+            "added": true
+          },
           "=",
           "(1/4)·(1/(2√2))log|[(x−1/2)−√2]/[(x−1/2)+√2]|",
           "+ c",
+          {
+            "text": "Double above and below inside the log",
+            "added": true
+          },
+          {
+            "text": "  to clear the halves:",
+            "style": "indent",
+            "added": true
+          },
           "= (1/(8√2))log|(2x−1−2√2)/(2x−1+2√2)| + c"
         ],
         "why": "The outside 1/4 multiplies the formula's own 1/(2a) coefficient, giving 1/(8√2); clearing the internal halves inside the log turns (x−1/2)−√2 into (2x−1−2√2) after multiplying by 2.",
@@ -133,7 +178,14 @@
           "Forgetting to multiply the outside 1/4 into the formula's own 1/(2a) coefficient.",
           "Losing the modulus bars around the log's fraction — the argument can be negative depending on x."
         ],
-        "memory_tip": "(1/4) × (1/(2√2)) = 1/(8√2) — multiply the outside factor straight into the standard coefficient."
+        "memory_tip": "(1/4) × (1/(2√2)) = 1/(8√2) — multiply the outside factor straight into the standard coefficient.",
+        "lines_compact": [
+          "∫dx/(4x²−4x−7) = (1/4)∫dx/[(x−1/2)²−(√2)²]",
+          "=",
+          "(1/4)·(1/(2√2))log|[(x−1/2)−√2]/[(x−1/2)+√2]|",
+          "+ c",
+          "= (1/(8√2))log|(2x−1−2√2)/(2x−1+2√2)| + c"
+        ]
       },
       {
         "id": "s5_final",

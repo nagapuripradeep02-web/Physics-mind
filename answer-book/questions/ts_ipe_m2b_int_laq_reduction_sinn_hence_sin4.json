@@ -59,7 +59,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book printed p.26 (PDF page 25) — LAQ chapter 3 ‘Integration’, sub-head INTEGRATION-I, answer 16.1, on a ★★★ SSP page (book p.26, per the survey's SSP list). Printed appearances: TS 18,20 · AP 15,17,19. Chapter star rank ★★★ (book p.13). no printed margin mark tags or tick-box splits appear anywhere in the Integration LAQ chapter (book pp.26-37) — this card's mark split is OURS, patterned on the 7-mark shapes printed elsewhere in the book (e.g. 2+2+2+1, 1+1+2+2+1). Where this book is wrong: the book's own final printed line drops the leading minus sign it carries on the line immediately above it — it prints ‘= sin³x cosx/4 − 3/8 sinx cosx + 3/8 x + c’ for the last line, while the line right before it correctly carries ‘−sin³x cosx/4’. Differentiating the printed (unsigned) form does NOT return sin⁴x, while differentiating −sin³x cosx/4 − 3/8 sinx cosx + 3/8 x + c does — this card keeps the correct minus sign, carried through consistently from the line above it, and records the book's likely typo here. This finding is this unit's own (the task-flagged suspect is answer 18.2, a different, confirmed instance of the same slip). No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book printed p.26 (PDF page 25) — LAQ chapter 3 ‘Integration’, sub-head INTEGRATION-I, answer 16.1, on a ★★★ SSP page (book p.26, per the survey's SSP list). Printed appearances: TS 18,20 · AP 15,17,19. Chapter star rank ★★★ (book p.13). no printed margin mark tags or tick-box splits appear anywhere in the Integration LAQ chapter (book pp.26-37) — this card's mark split is OURS, patterned on the 7-mark shapes printed elsewhere in the book (e.g. 2+2+2+1, 1+1+2+2+1). Where this book is wrong: the book's own final printed line drops the leading minus sign it carries on the line immediately above it — it prints ‘= sin³x cosx/4 − 3/8 sinx cosx + 3/8 x + c’ for the last line, while the line right before it correctly carries ‘−sin³x cosx/4’. Differentiating the printed (unsigned) form does NOT return sin⁴x, while differentiating −sin³x cosx/4 − 3/8 sinx cosx + 3/8 x + c does — this card keeps the correct minus sign, carried through consistently from the line above it, and records the book's likely typo here. This finding is this unit's own (the task-flagged suspect is answer 18.2, a different, confirmed instance of the same slip). No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "insider_note": "Put n = 4, 2, 0 one after another and stop as soon as you reach I₀ = x — substituting n = 4 directly into the n, n−2 formula without first working out I₂ is the most common way this method mark is lost.",
   "answer": {
@@ -81,8 +81,11 @@
             "style": "heading"
           },
           "Given Iₙ = ∫ sinⁿx dx = ∫ sinⁿ⁻¹x · sinx dx",
+          "Split off one sinx so that by parts applies.",
           "Take first function u = sinⁿ⁻¹x, second v = sinx",
-          "Then ∫v dx = ∫sinx dx = −cosx"
+          "By parts: ∫uv dx = u∫v dx − ∫[u′·∫v dx]dx",
+          "Then ∫v dx = ∫sinx dx = −cosx",
+          "and u′ = (n−1)sinⁿ⁻²x cosx"
         ],
         "why": "A reduction formula always comes from integration by parts applied to the earlier power, peeling off one factor of sinx so what remains inside the new integral is one power lower.",
         "common_mistakes": [
@@ -101,8 +104,20 @@
         "lines": [
           "By the by-parts rule, Iₙ",
           "= sinⁿ⁻¹x(−cosx) − ∫(n−1)sinⁿ⁻²x cosx(−cosx)dx",
+          {
+            "text": "The two minus signs make a plus:",
+            "added": true
+          },
           "= −sinⁿ⁻¹x cosx + (n−1)∫sinⁿ⁻²x cos²x dx",
+          {
+            "text": "Now use cos²x = 1 − sin²x:",
+            "added": true
+          },
           "= −sinⁿ⁻¹x cosx + (n−1)∫sinⁿ⁻²x(1−sin²x)dx",
+          {
+            "text": "∫sinⁿ⁻²x dx = Iₙ₋₂ and ∫sinⁿx dx = Iₙ:",
+            "added": true
+          },
           {
             "text": "I_n = -\\sin^{n-1}x\\cos x + (n-1)\\left(I_{n-2} - I_n\\right)",
             "render": "katex",
@@ -114,7 +129,18 @@
           "Leaving cos²x un-replaced, which never leads back to I_n or I_{n−2}.",
           "Sign slip when distributing the double negative in −∫sinⁿ⁻²x cosx(−cosx)dx."
         ],
-        "memory_tip": "cos²x = 1 − sin²x is the ONLY substitution that closes the loop back to I_n."
+        "memory_tip": "cos²x = 1 − sin²x is the ONLY substitution that closes the loop back to I_n.",
+        "lines_compact": [
+          "By the by-parts rule, Iₙ",
+          "= sinⁿ⁻¹x(−cosx) − ∫(n−1)sinⁿ⁻²x cosx(−cosx)dx",
+          "= −sinⁿ⁻¹x cosx + (n−1)∫sinⁿ⁻²x cos²x dx",
+          "= −sinⁿ⁻¹x cosx + (n−1)∫sinⁿ⁻²x(1−sin²x)dx",
+          {
+            "text": "I_n = -\\sin^{n-1}x\\cos x + (n-1)\\left(I_{n-2} - I_n\\right)",
+            "render": "katex",
+            "style": "eq"
+          }
+        ]
       },
       {
         "id": "s3_reduction",
@@ -124,12 +150,29 @@
         "mark_note": "Method",
         "margin_note": "Result",
         "lines": [
+          {
+            "text": "Open the bracket:",
+            "added": true
+          },
           "Iₙ = −sinⁿ⁻¹x cosx + (n−1)Iₙ₋₂ − (n−1)Iₙ",
+          {
+            "text": "Take the Iₙ terms to the left side,",
+            "added": true
+          },
+          {
+            "text": "  where Iₙ + (n−1)Iₙ = nIₙ:",
+            "style": "indent",
+            "added": true
+          },
           "nIₙ = −sinⁿ⁻¹x cosx + (n−1)Iₙ₋₂",
+          {
+            "text": "Divide every term by n:",
+            "added": true
+          },
           {
             "text": "\\therefore\\ I_n = \\frac{-\\sin^{n-1}x\\cos x}{n} + \\frac{n-1}{n}I_{n-2}\\ \\dots(1)",
             "render": "katex",
-            "style": "boxed"
+            "style": "eq"
           }
         ],
         "why": "Collecting every I_n term on the left and dividing by n turns the identity into a genuine recursion — the n-th integral written using only the (n−2)-th one, which is what ‘reduction’ means.",
@@ -137,7 +180,16 @@
           "Dividing by (n−1) instead of n when isolating I_n.",
           "Stopping at nI_n = … without dividing through, so the boxed formula is left with a stray n."
         ],
-        "memory_tip": "n on the LEFT of I_n = …, always. Say it as ‘n copies of I_n equal…, so divide by n’."
+        "memory_tip": "n on the LEFT of I_n = …, always. Say it as ‘n copies of I_n equal…, so divide by n’.",
+        "lines_compact": [
+          "Iₙ = −sinⁿ⁻¹x cosx + (n−1)Iₙ₋₂ − (n−1)Iₙ",
+          "nIₙ = −sinⁿ⁻¹x cosx + (n−1)Iₙ₋₂",
+          {
+            "text": "\\therefore\\ I_n = \\frac{-\\sin^{n-1}x\\cos x}{n} + \\frac{n-1}{n}I_{n-2}\\ \\dots(1)",
+            "render": "katex",
+            "style": "boxed"
+          }
+        ]
       },
       {
         "id": "s4_evaluate",
@@ -152,6 +204,10 @@
           "I₂ = −sinx cosx/2 + (1/2)I₀, and I₀ = ∫dx = x",
           "So I₂ = −sinx cosx/2 + x/2",
           "I₄ = −sin³x cosx/4 + (3/4)[−sinx cosx/2 + x/2]",
+          {
+            "text": "(3/4)·(1/2) = 3/8 in both terms:",
+            "added": true
+          },
           "∴ I = −sin³x cosx/4 − (3/8)sinx cosx",
           {
             "text": "+ 3x/8 + c",
@@ -163,7 +219,19 @@
           "Stopping at I₄ = −sin³x cosx/4 + (3/4)I₂ without substituting the value of I₂.",
           "Losing the leading minus sign on −sin³x cosx/4 when copying the boxed formula's result into the final line."
         ],
-        "memory_tip": "Even n chains down to I₀ = x; odd n would chain down to I₁ = −cosx instead."
+        "memory_tip": "Even n chains down to I₀ = x; odd n would chain down to I₁ = −cosx instead.",
+        "lines_compact": [
+          "Put n = 4, 2, 0 successively in (1):",
+          "I₄ = −sin³x cosx/4 + (3/4)I₂",
+          "I₂ = −sinx cosx/2 + (1/2)I₀, and I₀ = ∫dx = x",
+          "So I₂ = −sinx cosx/2 + x/2",
+          "I₄ = −sin³x cosx/4 + (3/4)[−sinx cosx/2 + x/2]",
+          "∴ I = −sin³x cosx/4 − (3/8)sinx cosx",
+          {
+            "text": "+ 3x/8 + c",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   }

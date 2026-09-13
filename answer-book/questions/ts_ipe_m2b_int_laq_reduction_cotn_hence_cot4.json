@@ -47,7 +47,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B, book printed p.27 (PDF page 26) — LAQ chapter 3 ‘Integration’, answer 17.2, the twin of 17.1 on the same ★★★ SSP 27 page. Printed appearances: TS 19 · AP 16. Chapter star rank ★★★. no printed margin mark tags or tick-box splits appear anywhere in the Integration LAQ chapter (book pp.26-37) — this card's mark split is OURS, patterned on the 7-mark shapes printed elsewhere in the book (e.g. 2+2+2+1, 1+1+2+2+1). This card's final answer was re-derived independently and matches the book's printed line exactly — no error found here. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B, book printed p.27 (PDF page 26) — LAQ chapter 3 ‘Integration’, answer 17.2, the twin of 17.1 on the same ★★★ SSP 27 page. Printed appearances: TS 19 · AP 16. Chapter star rank ★★★. no printed margin mark tags or tick-box splits appear anywhere in the Integration LAQ chapter (book pp.26-37) — this card's mark split is OURS, patterned on the 7-mark shapes printed elsewhere in the book (e.g. 2+2+2+1, 1+1+2+2+1). This card's final answer was re-derived independently and matches the book's printed line exactly — no error found here. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "insider_note": "cotⁿx follows the SAME method as tanⁿx — the identity cot²x = csc²x − 1, the substitution t = cotx, and the same denominator (n−1) with the same −I_{n−2} tail — but it is not a straight relabelling: cotx's derivative carries an extra minus sign, so tanⁿx reduces to +tanⁿ⁻¹x/(n−1) − I_{n−2} while cotⁿx reduces to −cotⁿ⁻¹x/(n−1) − I_{n−2}.",
   "answer": {
@@ -69,7 +69,14 @@
             "style": "heading"
           },
           "Let Iₙ = ∫ cotⁿx dx = ∫ cotⁿ⁻²x · cot²x dx",
+          "Two powers of cot can be traded for cosec²x,",
+          {
+            "text": "  whose integral is known:",
+            "style": "indent"
+          },
           "= ∫ cotⁿ⁻²x(csc²x − 1)dx",
+          "[∵ cot²x = csc²x − 1]",
+          "Split it into two integrals:",
           "= ∫ cotⁿ⁻²x csc²x dx − ∫ cotⁿ⁻²x dx"
         ],
         "why": "cot²x = csc²x − 1 is the cotangent partner of tan²x = sec²x − 1, and splits the integral the same way — one substitutable piece, one lower power of cotx.",
@@ -88,12 +95,24 @@
         "margin_note": "Result",
         "lines": [
           "In the first integral put t = cotx ⇒ dt = −csc²x dx",
+          {
+            "text": "So csc²x dx = −dt and cotⁿ⁻²x = tⁿ⁻²:",
+            "added": true
+          },
           "∫ cotⁿ⁻²x csc²x dx = −∫ tⁿ⁻²dt = −tⁿ⁻¹/(n−1)",
+          {
+            "text": "Put t = cotx back:",
+            "added": true
+          },
           "= −cotⁿ⁻¹x/(n−1)",
+          {
+            "text": "The second integral is Iₙ₋₂ by definition:",
+            "added": true
+          },
           {
             "text": "\\therefore\\ I_n = -\\frac{\\cot^{n-1}x}{n-1} - I_{n-2}\\ \\dots(1)",
             "render": "katex",
-            "style": "boxed"
+            "style": "eq"
           }
         ],
         "why": "cotx differentiates to −csc²x, one sign different from tanx, so the substitution here picks up an extra minus sign that the tanⁿx reduction does not have.",
@@ -101,7 +120,17 @@
           "Missing the minus sign that comes from dt = −csc²x dx, which copies the tanⁿx formula unchanged.",
           "Writing the second term as +I_{n−2} instead of −I_{n−2}."
         ],
-        "memory_tip": "cotx's derivative carries a minus that tanx's does not — that minus is the only difference from the tanⁿ formula."
+        "memory_tip": "cotx's derivative carries a minus that tanx's does not — that minus is the only difference from the tanⁿ formula.",
+        "lines_compact": [
+          "In the first integral put t = cotx ⇒ dt = −csc²x dx",
+          "∫ cotⁿ⁻²x csc²x dx = −∫ tⁿ⁻²dt = −tⁿ⁻¹/(n−1)",
+          "= −cotⁿ⁻¹x/(n−1)",
+          {
+            "text": "\\therefore\\ I_n = -\\frac{\\cot^{n-1}x}{n-1} - I_{n-2}\\ \\dots(1)",
+            "render": "katex",
+            "style": "boxed"
+          }
+        ]
       },
       {
         "id": "s3_substitute",
@@ -113,14 +142,28 @@
         "lines": [
           "Put n = 4, 2 successively in (1):",
           "I₄ = −cot³x/3 − I₂",
-          "I₂ = −cotx − I₀, and I₀ = ∫dx = x"
+          "I₂ = −cotx − I₀, and I₀ = ∫dx = x",
+          {
+            "text": "(for n = 2 the power cotⁿ⁻¹x is cotx",
+            "added": true
+          },
+          {
+            "text": "  and n−1 = 1)",
+            "style": "indent",
+            "added": true
+          }
         ],
         "why": "n = 4 needs I₂, and I₂ needs I₀ = x — the same even-n chain used for every other power reduction in this chapter, just carrying cotx's extra minus sign at each step.",
         "common_mistakes": [
           "Chaining down to I₁ instead of I₀, which is the odd-n stopping point.",
           "Losing a minus sign at each substitution, since every term in this reduction is negative."
         ],
-        "memory_tip": "Every term in this reduction is negative — if a plus sign appears anywhere, re-check it."
+        "memory_tip": "Every term in this reduction is negative — if a plus sign appears anywhere, re-check it.",
+        "lines_compact": [
+          "Put n = 4, 2 successively in (1):",
+          "I₄ = −cot³x/3 − I₂",
+          "I₂ = −cotx − I₀, and I₀ = ∫dx = x"
+        ]
       },
       {
         "id": "s4_final",
@@ -133,6 +176,10 @@
           "So I₂ = −cotx − x",
           "I₄ = −cot³x/3 − (−cotx − x)",
           {
+            "text": "The two minus signs make a plus:",
+            "added": true
+          },
+          {
             "text": "∴ ∫ cot⁴x dx = −cot³x/3 + cotx + x + c",
             "style": "boxed"
           }
@@ -142,7 +189,15 @@
           "Not distributing the minus sign across both terms of (−cotx − x) when substituting.",
           "Dropping the final +c."
         ],
-        "memory_tip": "−(−cotx − x) = +cotx + x — two minus signs on a bracket flip both terms inside it."
+        "memory_tip": "−(−cotx − x) = +cotx + x — two minus signs on a bracket flip both terms inside it.",
+        "lines_compact": [
+          "So I₂ = −cotx − x",
+          "I₄ = −cot³x/3 − (−cotx − x)",
+          {
+            "text": "∴ ∫ cot⁴x dx = −cot³x/3 + cotx + x + c",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   }
