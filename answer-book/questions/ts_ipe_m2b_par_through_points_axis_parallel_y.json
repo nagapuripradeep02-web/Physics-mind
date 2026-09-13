@@ -191,7 +191,7 @@
         "why": "Multiplying by 2 clears the only fraction in the equation and leaves the standard whole-number form for a locus.",
         "common_mistakes": [
           "Leaving the final equation with the 1/2 fraction still in it instead of clearing it.",
-          "Writing the boxed line as x² − 2y − 4x + 10 = 0 without checking it is the same equation, just reordered — both forms are correct, but a term must not be dropped while rearranging."
+          "Dropping the constant while rearranging, and writing x² − 4x − 2y = 0."
         ],
         "memory_tip": "Multiply through by 2 the moment a fraction appears — one clean whole-number equation is the target.",
         "lines_compact": [

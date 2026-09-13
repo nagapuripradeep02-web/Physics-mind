@@ -65,9 +65,9 @@
           "Take the vertices as P(x₁,y₁) = (at₁², 2at₁),",
           "Q(x₂,y₂) = (at₂², 2at₂),",
           "R(x₃,y₃) = (at₃², 2at₃).",
-          "(every point of y² = 4ax is (at², 2at) for some t,",
+          "(any point (x, y) of y² = 4ax is (at², 2at)",
           {
-            "text": "  because (2at)² = 4a · at²)",
+            "text": "  with t = y/(2a), since then at² = y²/(4a) = x)",
             "style": "indent"
           },
           "So x₁ = at₁², y₁ = 2at₁, and the same for Q and R."

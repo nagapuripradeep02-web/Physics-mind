@@ -86,7 +86,7 @@
         "label": "Eliminate n",
         "marks": 2,
         "mark_note": "Method",
-        "margin_note": "Two marks. Watch the signs carefully — every right-hand side has a −(−2) to simplify first.",
+        "margin_note": "Two marks. Watch the signs carefully — both left-hand sides have a −(−2) to simplify first.",
         "lines": [
           {
             "text": "n has coefficient 1 in every equation, so",

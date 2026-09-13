@@ -297,9 +297,13 @@
             "text": "(M, N and P all lie on the line y = y₁)",
             "added": true
           },
-          "Then PM = PN + NM = x₁ + a,",
-          "since PN is the x-coordinate of P",
-          "and NM = AZ = AS = a.",
+          "Then, as in the figure, PM = PN + NM = x₁ + a,",
+          "since PN = x₁ and NM = AZ = AS = a.",
+          "(For any position of P, PM = |x₁ + a|, the",
+          {
+            "text": "  distance from P to x + a = 0; PM² = (x₁ + a)².)",
+            "style": "indent"
+          },
           "By the focus–directrix property,",
           "SP/PM = 1, so SP = PM, so SP² = PM².",
           {
@@ -307,7 +311,7 @@
             "added": true
           }
         ],
-        "why": "PM is measured in two pieces — from P across to the y-axis (which is just x₁), then from the y-axis across to the directrix (which is the fixed length a) — and adding those two pieces is what turns the geometric distance PM into a plain algebraic expression in x₁.",
+        "why": "PM is measured in two pieces — from P across to the y-axis (which is just x₁), then from the y-axis across to the directrix (which is the fixed length a) — and adding those two pieces is what turns the geometric distance PM into a plain algebraic expression in x₁. (In general PM = |x₁ + a|, the distance from P to the line x + a = 0; PM² = (x₁ + a)² either way, and only PM² is used.)",
         "common_mistakes": [
           "Writing PM = x₁ − a instead of x₁ + a.",
           "Squaring SP = PM before both sides are written out, then losing track of which side is which."
@@ -319,9 +323,13 @@
           "from P to the Y-axis.",
           "Let M be the foot of the perpendicular",
           "from P to the directrix.",
-          "Then PM = PN + NM = x₁ + a,",
-          "since PN is the x-coordinate of P",
-          "and NM = AZ = AS = a.",
+          "Then, as in the figure, PM = PN + NM = x₁ + a,",
+          "since PN = x₁ and NM = AZ = AS = a.",
+          "(For any position of P, PM = |x₁ + a|, the",
+          {
+            "text": "  distance from P to x + a = 0; PM² = (x₁ + a)².)",
+            "style": "indent"
+          },
           "By the focus–directrix property,",
           "SP/PM = 1, so SP = PM, so SP² = PM²."
         ]
@@ -345,7 +353,7 @@
             "added": true
           },
           "⇒ y₁² = (x₁ + a)² − (x₁ − a)² = 4ax₁",
-          "[∵ (a+b)² − (a−b)² = 4ab]",
+          "[∵ (p+q)² − (p−q)² = 4pq, with p = x₁, q = a]",
           {
             "text": "((x₁² + 2ax₁ + a²) − (x₁² − 2ax₁ + a²) = 4ax₁)",
             "added": true
@@ -368,12 +376,12 @@
           "Expanding (x₁+a)² − (x₁−a)² by brute force and dropping a sign instead of using the identity directly.",
           "Writing the final answer as x² = 4ay by swapping the axes."
         ],
-        "memory_tip": "(a+b)² minus (a−b)² is always 4ab — here a = x₁, b = a, so the answer is 4·x₁·a.",
+        "memory_tip": "(p+q)² − (p−q)² = 4pq — here p = x₁ and q = a, so the answer is 4ax₁.",
         "lines_compact": [
           "SP² = (x₁ − a)² + (y₁ − 0)² and PM² = (x₁ + a)²",
           "⇒ (x₁ − a)² + y₁² = (x₁ + a)²",
           "⇒ y₁² = (x₁ + a)² − (x₁ − a)² = 4ax₁",
-          "[∵ (a+b)² − (a−b)² = 4ab]",
+          "[∵ (p+q)² − (p−q)² = 4pq, with p = x₁, q = a]",
           {
             "text": "∴ the locus of P(x₁, y₁) is y² = 4ax",
             "style": "boxed"

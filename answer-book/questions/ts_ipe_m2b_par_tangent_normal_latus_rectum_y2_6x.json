@@ -117,10 +117,10 @@
         ],
         "why": "The tangent comes straight from the standard point-form of the tangent formula, and the normal follows immediately once the tangent's slope is known, since a normal is always perpendicular to its tangent.",
         "common_mistakes": [
-          "Using the normal's slope formula directly instead of first finding the tangent's slope and flipping its sign.",
+          "Taking the normal's slope as −m (only changing the sign) instead of −1/m; here m = 1 hides the error.",
           "Making an arithmetic slip converting y − 3 = −1(x − 3/2) into the final whole-number form."
         ],
-        "memory_tip": "Find the tangent first — its slope, flipped in sign, is the normal's slope, since a normal is always perpendicular to its tangent.",
+        "memory_tip": "Find the tangent first — the normal's slope is −1 ÷ (the tangent's slope), since perpendicular slopes multiply to −1.",
         "lines_compact": [
           "Tangent at (x₁, y₁) on y² = 4ax is yy₁ = 2a(x + x₁)",
           "⇒ y(3) = 3(x + 3/2) ⇒ y = x + 3/2",
