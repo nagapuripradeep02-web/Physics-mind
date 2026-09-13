@@ -123,19 +123,23 @@
         "lines": [
           {
             "text": "(i) The year has 53 Sundays only when the",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "extra day is itself a Sunday.",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "E = {Sun}, so n(E) = 1",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           },
           {
             "text": "P(E) = n(E)/n(S) = 1/7",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           }
         ],
         "recall": {
@@ -160,6 +164,20 @@
         "why": "The 53rd Sunday can only be the leftover day, so the favourable case is exactly one of the seven.",
         "common_mistakes": [
           "Answering 53/365."
+        ],
+        "lines_compact": [
+          {
+            "text": "(i) Let E = the year has 53 Sundays; this",
+            "style": "normal"
+          },
+          {
+            "text": "happens only when the extra day is a Sunday.",
+            "style": "normal"
+          },
+          {
+            "text": "E = {Sun}, n(E) = 1 ⇒ P(E) = n(E)/n(S) = 1/7",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -181,11 +199,13 @@
           },
           {
             "text": "P(Eᶜ) = 1 − P(E)",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           },
           {
             "text": "= 1 − 1/7 = 6/7",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           },
           {
             "text": "∴ (i) 1/7   (ii) 6/7",
@@ -216,6 +236,24 @@
         "common_mistakes": [
           "Answering 52/365 or 52/53.",
           "Counting the six non-Sunday cases but dividing by 6."
+        ],
+        "lines_compact": [
+          {
+            "text": "(ii) 52 Sundays only means the extra day is not",
+            "style": "normal"
+          },
+          {
+            "text": "a Sunday, which is the complement of E:",
+            "style": "normal"
+          },
+          {
+            "text": "P(Eᶜ) = 1 − P(E) = 1 − 1/7",
+            "style": "eq"
+          },
+          {
+            "text": "∴ (i) 1/7   (ii) 6/7",
+            "style": "boxed"
+          }
         ]
       }
     ]

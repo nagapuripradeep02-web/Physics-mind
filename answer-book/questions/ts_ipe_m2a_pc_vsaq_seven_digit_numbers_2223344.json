@@ -98,16 +98,38 @@
         "margin_note": "Second mark. 7!/(3!·2!·2!) = 5040/24 = 210.",
         "memory_tip": "7!/(3!·2!·2!) = 5040/24 = 210. One factorial per repeated digit.",
         "lines": [
-          "When n things have p, q, r alike,",
-          "the arrangements are n!/(p!·q!·r!)",
-          "Here n = 7, p = 3, q = 2, r = 2:",
-          "Numbers = 7!/(3!·2!·2!)",
-          "3! = 6, 2! = 2, so the bottom is 6 · 2 · 2 = 24",
-          "7! = 5040",
-          "= 5040/24",
+          {
+            "text": "When n things have p, q, r alike,",
+            "added": true
+          },
+          {
+            "text": "the arrangements are n!/(p!·q!·r!)",
+            "added": true
+          },
+          {
+            "text": "Here n = 7, p = 3, q = 2, r = 2:",
+            "added": true
+          },
+          {
+            "text": "Numbers = 7!/(3!·2!·2!)",
+            "added": true
+          },
+          {
+            "text": "3! = 6, 2! = 2, so the bottom is 6 · 2 · 2 = 24",
+            "added": true
+          },
+          {
+            "text": "7! = 5040",
+            "added": true
+          },
+          {
+            "text": "= 5040/24",
+            "added": true
+          },
           {
             "text": "∴ number of 7-digit numbers = 210",
-            "style": "boxed"
+            "style": "boxed",
+            "added": true
           }
         ],
         "recall": {
@@ -135,6 +157,13 @@
         "common_mistakes": [
           "Dividing by 3! only (840).",
           "Dividing by 7 (the sum 3 + 2 + 2) instead of 24."
+        ],
+        "lines_compact": [
+          "Numbers = n!/(p!·q!·r!) = 7!/(3!·2!·2!)",
+          {
+            "text": "= 5040/24 = 210",
+            "style": "boxed"
+          }
         ]
       }
     ]

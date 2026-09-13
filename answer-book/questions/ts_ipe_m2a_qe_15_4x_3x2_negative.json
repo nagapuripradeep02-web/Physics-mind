@@ -105,8 +105,14 @@
         "margin_note": "Second mark. Negative for x < −5/3 or x > 3. In interval form (−∞, −5/3) ∪ (3, ∞), round brackets because at the roots the expression is zero, not negative.",
         "memory_tip": "Negative for x < −5/3 or x > 3. Round brackets — at a root the value is zero, not negative.",
         "lines": [
-          "So the expression is negative when",
-          "x < −5/3 or x > 3",
+          {
+            "text": "So the expression is negative when",
+            "added": true
+          },
+          {
+            "text": "x < −5/3 or x > 3",
+            "added": true
+          },
           {
             "text": "∴ x ∈ (−∞, −5/3) ∪ (3, ∞)",
             "style": "boxed"
@@ -140,6 +146,13 @@
           "Writing (−5/3, 3), the interval where it is positive.",
           "Using square brackets at the roots.",
           "Writing the root as 5/3 instead of −5/3."
+        ],
+        "lines_compact": [
+          "⇒ 15 + 4x − 3x² < 0 for x < −5/3 or x > 3",
+          {
+            "text": "∴ x ∈ (−∞, −5/3) ∪ (3, ∞)",
+            "style": "boxed"
+          }
         ]
       }
     ]

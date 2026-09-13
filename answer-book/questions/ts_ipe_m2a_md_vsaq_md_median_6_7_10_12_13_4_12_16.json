@@ -122,14 +122,24 @@
         "margin_note": "Second mark. Absolute deviations from 11, in the sorted order: 7, 5, 4, 1, 1, 1, 2, 5. Sum 26, divide by n = 8. 26/8 = 3.25.",
         "memory_tip": "The mean of this same data is 10 — subtract the median 11 instead. 26/8 = 3.25.",
         "lines": [
-          "Take each value's distance from 11,",
-          "always as a positive number:",
+          {
+            "text": "Take each value's distance from 11,",
+            "added": true
+          },
+          {
+            "text": "always as a positive number:",
+            "added": true
+          },
           "|xᵢ − M| : 7, 5, 4, 1, 1, 1, 2, 5",
           {
             "text": "M.D. = Σ|xᵢ − M|/n",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           },
-          "= (7 + 5 + 4 + 1 + 1 + 1 + 2 + 5)/8",
+          {
+            "text": "= (7 + 5 + 4 + 1 + 1 + 1 + 2 + 5)/8",
+            "added": true
+          },
           "= 26/8 = 3.25",
           {
             "text": "∴ M.D. about the median = 3.25",
@@ -164,6 +174,15 @@
           "Subtracting from the mean 10 instead of from the median 11.",
           "Dropping one of the three 1's when adding.",
           "Dividing by 7 instead of 8."
+        ],
+        "lines_compact": [
+          "|xᵢ − M| : 7, 5, 4, 1, 1, 1, 2, 5",
+          "M.D. = Σ|xᵢ − M|/n = (7 + 5 + 4 + 1 + 1 + 1 + 2 + 5)/8",
+          "= 26/8 = 3.25",
+          {
+            "text": "∴ M.D. about the median = 3.25",
+            "style": "boxed"
+          }
         ]
       }
     ]

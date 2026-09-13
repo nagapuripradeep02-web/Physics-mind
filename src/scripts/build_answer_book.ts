@@ -570,7 +570,16 @@ const browserQuestions = questions.map((q) => ({
         ...q.answer,
         steps: q.answer.steps.map(({ recall, ...step }) => {
             void recall;
-            return { ...step, lines: typesetLines(step.lines, `${q.question_id} ${step.id}`) };
+            // The short answer is typeset on the same terms as the full working —
+            // a katex line in the compact copy would otherwise reach the page as
+            // raw TeX the moment a student pressed Simplify.
+            return {
+                ...step,
+                lines: typesetLines(step.lines, `${q.question_id} ${step.id}`),
+                ...(step.lines_compact
+                    ? { lines_compact: typesetLines(step.lines_compact, `${q.question_id} ${step.id} compact`) }
+                    : {}),
+            };
         }),
     },
     // A cut may substitute shorter `lines` for a step, so those need typesetting too —

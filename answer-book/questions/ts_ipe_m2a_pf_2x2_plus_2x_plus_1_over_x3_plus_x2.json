@@ -118,9 +118,15 @@
         "margin_note": "Second mark. Multiply by x²(x + 1). A keeps x(x + 1), B keeps (x + 1), C keeps x². Every term on the right is a polynomial.",
         "memory_tip": "A keeps x(x + 1), B keeps (x + 1), C keeps x². Each term on the right is a polynomial.",
         "lines": [
-          "Multiply both sides by x²(x + 1):",
+          {
+            "text": "Multiply both sides by x²(x + 1):",
+            "added": true
+          },
           "2x² + 2x + 1 = Ax(x + 1) + B(x + 1) + Cx²",
-          "This holds for every value of x."
+          {
+            "text": "This holds for every value of x.",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -150,6 +156,10 @@
           "Giving the A term x² instead of x(x + 1).",
           "Giving the C term (x + 1) instead of x².",
           "Dropping the left side 2x² + 2x + 1."
+        ],
+        "lines_compact": [
+          "Multiply by x²(x + 1):",
+          "2x² + 2x + 1 = Ax(x + 1) + B(x + 1) + Cx²"
         ]
       },
       {
@@ -161,16 +171,43 @@
         "margin_note": "Third mark. x = 0 gives B, x = −1 gives C, and A comes from the x² coefficient: A + C = 2. The repeated factor has one root, so one constant must come from a coefficient.",
         "memory_tip": "x = 0 gives B and x = −1 gives C. A must come from the x² coefficient: A + C = 2.",
         "lines": [
-          "Substituting a root of one factor",
-          "  makes the other terms 0:",
-          "Put x = 0: 1 = A(0) + B(1) + C(0)",
-          "B = 1",
+          {
+            "text": "Substituting a root of one factor",
+            "added": true
+          },
+          {
+            "text": "  makes the other terms 0:",
+            "added": true
+          },
+          {
+            "text": "Put x = 0: 1 = A(0) + B(1) + C(0)",
+            "added": true
+          },
+          {
+            "text": "B = 1",
+            "added": true
+          },
           "Put x = −1: 2 − 2 + 1 = C(1)",
-          "C = 1",
-          "The two roots do not give A, so compare",
-          "the x² terms on both sides:",
-          "left 2, right A + C, so A + C = 2",
-          "A = 2 − 1 = 1"
+          {
+            "text": "C = 1",
+            "added": true
+          },
+          {
+            "text": "The two roots do not give A, so compare",
+            "added": true
+          },
+          {
+            "text": "the x² terms on both sides:",
+            "added": true
+          },
+          {
+            "text": "left 2, right A + C, so A + C = 2",
+            "added": true
+          },
+          {
+            "text": "A = 2 − 1 = 1",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -202,6 +239,11 @@
           "Reading the x² coefficient on the right as C only and forgetting Ax(x + 1) also gives Ax².",
           "Putting x = −1 and getting 2(−1)² + 2(−1) + 1 as 5 instead of 1.",
           "Trying a third substitution for A; no third root exists."
+        ],
+        "lines_compact": [
+          "Put x = 0: 1 = B ⇒ B = 1",
+          "Put x = −1: 2 − 2 + 1 = C(1) ⇒ C = 1",
+          "Compare x²: A + C = 2 ⇒ A = 1"
         ]
       },
       {

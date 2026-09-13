@@ -103,11 +103,18 @@
         "memory_tip": "4⁵ = 1024, the same as 2¹⁰. The 625 answer is 5⁴.",
         "lines": [
           "4⁵ = 4 · 4 · 4 · 4 · 4",
-          "= 16 · 16 · 4",
-          "= 256 · 4",
+          {
+            "text": "= 16 · 16 · 4",
+            "added": true
+          },
+          {
+            "text": "= 256 · 4",
+            "added": true
+          },
           {
             "text": "∴ number of functions = 1024",
-            "style": "boxed"
+            "style": "boxed",
+            "added": true
           }
         ],
         "recall": {
@@ -134,6 +141,13 @@
         "common_mistakes": [
           "Answering 625 (that is 5⁴).",
           "Answering 20 (4 × 5)."
+        ],
+        "lines_compact": [
+          "4⁵ = 4 · 4 · 4 · 4 · 4",
+          {
+            "text": "= 1024",
+            "style": "boxed"
+          }
         ]
       }
     ]

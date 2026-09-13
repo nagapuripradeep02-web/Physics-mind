@@ -130,9 +130,15 @@
         "margin_note": "Second mark. Multiply the remainder fraction equation by (x − 1)(x − 2). The quotient stays aside.",
         "memory_tip": "The identity is on the remainder 15x − 14, not on x⁴. The quotient stays aside.",
         "lines": [
-          "Multiply both sides by (x − 1)(x − 2):",
+          {
+            "text": "Multiply both sides by (x − 1)(x − 2):",
+            "added": true
+          },
           "15x − 14 = A(x − 2) + B(x − 1)",
-          "This holds for every value of x."
+          {
+            "text": "This holds for every value of x.",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -162,6 +168,10 @@
           "Writing x⁴ = A(x − 2) + B(x − 1).",
           "Pairing A with (x − 1) instead of (x − 2).",
           "Carrying the quotient into the identity."
+        ],
+        "lines_compact": [
+          "Multiply by (x − 1)(x − 2):",
+          "15x − 14 = A(x − 2) + B(x − 1)"
         ]
       },
       {
@@ -173,12 +183,30 @@
         "margin_note": "Third mark. x = 1 gives 1 = −A so A = −1. x = 2 gives 16 = B. Two roots, two constants.",
         "memory_tip": "Substitute into 15x − 14: x = 1 gives 1 = −A, and x = 2 gives 16 = B.",
         "lines": [
-          "Substituting a root of one factor",
-          "  makes the other terms 0:",
-          "Put x = 1: 15 − 14 = A(−1)",
-          "1 = −A, so A = −1",
-          "Put x = 2: 30 − 14 = B(1)",
-          "B = 16"
+          {
+            "text": "Substituting a root of one factor",
+            "added": true
+          },
+          {
+            "text": "  makes the other terms 0:",
+            "added": true
+          },
+          {
+            "text": "Put x = 1: 15 − 14 = A(−1)",
+            "added": true
+          },
+          {
+            "text": "1 = −A, so A = −1",
+            "added": true
+          },
+          {
+            "text": "Put x = 2: 30 − 14 = B(1)",
+            "added": true
+          },
+          {
+            "text": "B = 16",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -208,6 +236,10 @@
           "Putting x = 1 and writing A(1 − 2) = A instead of −A, giving A = 1.",
           "Computing 15(2) − 14 as 14 instead of 16.",
           "Putting x = 1 into x⁴ instead of into 15x − 14."
+        ],
+        "lines_compact": [
+          "Put x = 1: 1 = A(−1) ⇒ A = −1",
+          "Put x = 2: 16 = B(1) ⇒ B = 16"
         ]
       },
       {

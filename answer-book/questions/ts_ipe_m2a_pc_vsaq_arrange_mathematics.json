@@ -110,16 +110,38 @@
         "margin_note": "Second mark. 11!/(2!·2!·2!) = 39916800/8 = 49,89,600.",
         "memory_tip": "11!/(2!·2!·2!) = 49,89,600. Divide by 2! three times — each missed pair doubles the answer.",
         "lines": [
-          "When n things have p, q, r alike,",
-          "the arrangements are n!/(p!·q!·r!)",
-          "Here n = 11, p = q = r = 2:",
-          "Arrangements = 11!/(2!·2!·2!)",
-          "2! = 2, so the bottom is 2 · 2 · 2 = 8",
-          "11! = 39916800",
-          "= 39916800/8",
+          {
+            "text": "When n things have p, q, r alike,",
+            "added": true
+          },
+          {
+            "text": "the arrangements are n!/(p!·q!·r!)",
+            "added": true
+          },
+          {
+            "text": "Here n = 11, p = q = r = 2:",
+            "added": true
+          },
+          {
+            "text": "Arrangements = 11!/(2!·2!·2!)",
+            "added": true
+          },
+          {
+            "text": "2! = 2, so the bottom is 2 · 2 · 2 = 8",
+            "added": true
+          },
+          {
+            "text": "11! = 39916800",
+            "added": true
+          },
+          {
+            "text": "= 39916800/8",
+            "added": true
+          },
           {
             "text": "∴ number of arrangements = 49,89,600",
-            "style": "boxed"
+            "style": "boxed",
+            "added": true
           }
         ],
         "recall": {
@@ -147,6 +169,13 @@
         "common_mistakes": [
           "Dividing by 2! once instead of three times.",
           "Using 12! for an 11-letter word."
+        ],
+        "lines_compact": [
+          "Arrangements = n!/(p!·q!·r!)",
+          {
+            "text": "= 11!/(2!·2!·2!) = 49,89,600",
+            "style": "boxed"
+          }
         ]
       }
     ]

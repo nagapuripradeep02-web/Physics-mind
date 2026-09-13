@@ -103,8 +103,14 @@
         "lines": [
           "tan θ = y/x = (−√3)/(−1) = √3",
           "The point (−1, −√3) lies in the third quadrant,",
-          "where the amplitude is taken as",
-          "θ = −π + (the acute angle with tan = √3)",
+          {
+            "text": "where the amplitude is taken as",
+            "added": true
+          },
+          {
+            "text": "θ = −π + (the acute angle with tan = √3)",
+            "added": true
+          },
           "= −π + π/3 = −2π/3",
           {
             "text": "∴ −1 − i√3 = 2(cos(−2π/3) + i sin(−2π/3))",
@@ -140,6 +146,16 @@
           "Taking θ = π/3 straight from tan θ = √3 — that is the point (1, √3).",
           "Writing 2(cos 2π/3 + i sin 2π/3), which is −1 + i√3.",
           "Forgetting the r = 2."
+        ],
+        "lines_compact": [
+          "tan θ = y/x = (−√3)/(−1) = √3",
+          "(−1, −√3) lies in the third quadrant",
+          "⇒ θ = −π + π/3 = −2π/3",
+          "∴ −1 − i√3 = 2(cos(−2π/3) + i sin(−2π/3))",
+          {
+            "text": "= 2(cos(2π/3) − i sin(2π/3))",
+            "style": "boxed"
+          }
         ]
       }
     ]

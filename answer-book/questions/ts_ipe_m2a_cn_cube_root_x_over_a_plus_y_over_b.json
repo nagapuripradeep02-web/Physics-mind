@@ -116,15 +116,33 @@
         "margin_note": "Second mark. Use (p − q)³ = p³ − 3p²q + 3pq² − q³ with p = a, q = ib. Then i² = −1 and i³ = −i. Collect the real terms and the i terms separately.",
         "memory_tip": "(p − q)³ with q = ib. Then i² = −1 and i³ = −i move terms between the real group and the i group.",
         "lines": [
-          "Use (p − q)³ = p³ − 3p²q + 3pq² − q³",
-          "with p = a and q = ib:",
+          {
+            "text": "Use (p − q)³ = p³ − 3p²q + 3pq² − q³",
+            "added": true
+          },
+          {
+            "text": "with p = a and q = ib:",
+            "added": true
+          },
           "(a − ib)³ = a³ − 3a²(ib) + 3a(ib)² − (ib)³",
           "= a³ − 3a²bi + 3ab²i² − b³i³",
-          "Now i² = −1 and i³ = i²·i = −i",
-          "= a³ − 3a²bi + 3ab²(−1) − b³(−i)",
+          {
+            "text": "Now i² = −1 and i³ = i²·i = −i",
+            "added": true
+          },
+          {
+            "text": "= a³ − 3a²bi + 3ab²(−1) − b³(−i)",
+            "added": true
+          },
           "= a³ − 3a²bi − 3ab² + b³i",
-          "Collect the real and the imaginary parts:",
-          "= (a³ − 3ab²) + i(b³ − 3a²b)",
+          {
+            "text": "Collect the real and the imaginary parts:",
+            "added": true
+          },
+          {
+            "text": "= (a³ − 3ab²) + i(b³ − 3a²b)",
+            "added": true
+          },
           "∴ x − iy = (a³ − 3ab²) − i(3a²b − b³)"
         ],
         "recall": {
@@ -156,6 +174,16 @@
           "Writing (ib)² as ib² instead of i²b² = −b².",
           "Forgetting i³ = −i, so the b³ term gets the wrong sign.",
           "Mixing the sign of the middle terms in (p − q)³."
+        ],
+        "lines_compact": [
+          "(a − ib)³ = a³ − 3a²(ib) + 3a(ib)² − (ib)³",
+          "= a³ − 3a²bi + 3ab²i² − b³i³",
+          "= a³ − 3a²bi − 3ab² + b³i",
+          "(since i² = −1 and i³ = −i)",
+          {
+            "text": "∴ x − iy = (a³ − 3ab²) − i(3a²b − b³)",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -167,15 +195,42 @@
         "margin_note": "Third mark. Two complex numbers are equal only when both parts match. The real parts give x, the imaginary parts give y — watch the minus in front of iy on the left.",
         "memory_tip": "The left side is x − iy, so −y matches the i coefficient. Divide x by a and y by b, never crossed.",
         "lines": [
-          "Two complex numbers are equal only when",
-          "their real parts are equal and their",
-          "imaginary parts are equal.",
-          "Real parts: x = a³ − 3ab²",
-          "= a(a² − 3b²)",
-          "Divide both sides by a: x/a = a² − 3b²",
-          "Imaginary parts: −y = −(3a²b − b³)",
-          "y = 3a²b − b³ = b(3a² − b²)",
-          "Divide both sides by b: y/b = 3a² − b²"
+          {
+            "text": "Two complex numbers are equal only when",
+            "added": true
+          },
+          {
+            "text": "their real parts are equal and their",
+            "added": true
+          },
+          {
+            "text": "imaginary parts are equal.",
+            "added": true
+          },
+          {
+            "text": "Real parts: x = a³ − 3ab²",
+            "added": true
+          },
+          {
+            "text": "= a(a² − 3b²)",
+            "added": true
+          },
+          {
+            "text": "Divide both sides by a: x/a = a² − 3b²",
+            "added": true
+          },
+          {
+            "text": "Imaginary parts: −y = −(3a²b − b³)",
+            "added": true
+          },
+          {
+            "text": "y = 3a²b − b³ = b(3a² − b²)",
+            "added": true
+          },
+          {
+            "text": "Divide both sides by b: y/b = 3a² − b²",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -205,6 +260,18 @@
           "Getting y with the wrong sign — the left side is −iy, so −y equals the imaginary coefficient.",
           "Dividing x by b or y by a.",
           "Stopping at x and y without forming the two fractions."
+        ],
+        "lines_compact": [
+          "Comparing real parts:",
+          {
+            "text": "x = a³ − 3ab² = a(a² − 3b²) ⇒ x/a = a² − 3b²",
+            "style": "eq"
+          },
+          "Comparing imaginary parts:",
+          {
+            "text": "y = 3a²b − b³ = b(3a² − b²) ⇒ y/b = 3a² − b²",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -216,9 +283,15 @@
         "margin_note": "Last mark. Add the two fractions, collect a² with a² and b² with b², and take out the 4.",
         "memory_tip": "(a² − 3b²) + (3a² − b²) = 4a² − 4b². Take the 4 out to match the form asked.",
         "lines": [
-          "Adding the two results:",
+          {
+            "text": "Adding the two results:",
+            "added": true
+          },
           "x/a + y/b = (a² − 3b²) + (3a² − b²)",
-          "= a² + 3a² − 3b² − b²",
+          {
+            "text": "= a² + 3a² − 3b² − b²",
+            "added": true
+          },
           "= 4a² − 4b²",
           {
             "text": "∴ x/a + y/b = 4(a² − b²)",
@@ -250,6 +323,14 @@
         "common_mistakes": [
           "Adding −3b² and −b² as −2b².",
           "Ending at 4a² − 4b² without taking out the 4 to match the form asked."
+        ],
+        "lines_compact": [
+          "x/a + y/b = (a² − 3b²) + (3a² − b²)",
+          "= 4a² − 4b²",
+          {
+            "text": "∴ x/a + y/b = 4(a² − b²)",
+            "style": "boxed"
+          }
         ]
       }
     ]

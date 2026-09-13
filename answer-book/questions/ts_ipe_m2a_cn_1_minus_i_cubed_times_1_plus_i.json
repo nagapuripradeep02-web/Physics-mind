@@ -97,9 +97,18 @@
         "margin_note": "Second mark. i² = −1 makes the first bracket −2i and the second bracket 2. Then the real part is 0.",
         "memory_tip": "i² = −1 makes the brackets −2i and 2. The form a + ib needs the zero written: 0 + i(−4).",
         "lines": [
-          "Now i² = −1:",
-          "1 − 2i + i² = 1 − 2i − 1 = −2i",
-          "1 − i² = 1 − (−1) = 1 + 1 = 2",
+          {
+            "text": "Now i² = −1:",
+            "added": true
+          },
+          {
+            "text": "1 − 2i + i² = 1 − 2i − 1 = −2i",
+            "added": true
+          },
+          {
+            "text": "1 − i² = 1 − (−1) = 1 + 1 = 2",
+            "added": true
+          },
           "= (−2i)(2) = −4i",
           {
             "text": "∴ (1 − i)³(1 + i) = 0 + i(−4)",
@@ -131,6 +140,14 @@
         "common_mistakes": [
           "Writing (1 − i²) as 0 by using i² = +1.",
           "Ending at −4i without writing a = 0."
+        ],
+        "lines_compact": [
+          "= (1 − 2i − 1)(1 + 1)        (since i² = −1)",
+          "= (−2i)(2) = −4i",
+          {
+            "text": "∴ (1 − i)³(1 + i) = 0 + i(−4)",
+            "style": "boxed"
+          }
         ]
       }
     ]

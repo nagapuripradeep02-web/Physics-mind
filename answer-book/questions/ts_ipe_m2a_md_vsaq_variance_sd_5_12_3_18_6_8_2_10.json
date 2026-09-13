@@ -106,21 +106,38 @@
         "margin_note": "Second mark. Deviations from 8, squared: 9, 16, 25, 100, 4, 0, 36, 4. Sum 194, divide by n = 8: σ² = 24.25. Then σ = √24.25 = 4.92. The book prints 4.95 here, which is a misprint: 4.95² = 24.50, while 4.92² = 24.21.",
         "memory_tip": "194/8 = 24.25, then √24.25 = 4.92. Square the root back to check: 4.92² = 24.21, but 4.95² = 24.50.",
         "lines": [
-          "Subtract the mean from each value:",
+          {
+            "text": "Subtract the mean from each value:",
+            "added": true
+          },
           "xᵢ − x̄ : −3, 4, −5, 10, −2, 0, −6, 2",
-          "Square each of them:",
+          {
+            "text": "Square each of them:",
+            "added": true
+          },
           "(xᵢ − x̄)² : 9, 16, 25, 100, 4, 0, 36, 4",
-          "Σ(xᵢ − x̄)² = 194",
+          {
+            "text": "Σ(xᵢ − x̄)² = 194",
+            "added": true
+          },
           {
             "text": "Variance σ² = Σ(xᵢ − x̄)²/n",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           },
-          "= 194/8 = 24.25",
+          {
+            "text": "= 194/8 = 24.25",
+            "added": true
+          },
           {
             "text": "Standard deviation σ = √σ²",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           },
-          "= √24.25 = 4.92",
+          {
+            "text": "= √24.25 = 4.92",
+            "added": true
+          },
           {
             "text": "∴ σ² = 24.25, σ = 4.92",
             "style": "boxed"
@@ -156,6 +173,16 @@
           "Adding the absolute deviations (32) instead of their squares (194).",
           "Copying the book's 4.95: 4.95² = 24.50, not 24.25.",
           "Stopping at the variance when the question asks for both."
+        ],
+        "lines_compact": [
+          "xᵢ − x̄ : −3, 4, −5, 10, −2, 0, −6, 2",
+          "(xᵢ − x̄)² : 9, 16, 25, 100, 4, 0, 36, 4",
+          "Variance σ² = Σ(xᵢ − x̄)²/n = 194/8 = 24.25",
+          "Standard deviation σ = √24.25 = 4.92",
+          {
+            "text": "∴ σ² = 24.25, σ = 4.92",
+            "style": "boxed"
+          }
         ]
       }
     ]

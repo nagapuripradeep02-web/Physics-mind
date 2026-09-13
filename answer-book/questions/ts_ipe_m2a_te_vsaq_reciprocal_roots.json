@@ -102,10 +102,19 @@
         "margin_note": "Second mark. Multiply through by x⁴ to clear the fractions, then write the equation with a positive leading coefficient (multiply by −1) and powers in descending order.",
         "memory_tip": "Multiply by x⁴ — the coefficients come out reversed. Then make the leading term positive.",
         "lines": [
-          "Multiply every term by x⁴ to clear the fractions:",
+          {
+            "text": "Multiply every term by x⁴ to clear the fractions:",
+            "added": true
+          },
           "1 − 3x + 7x² + 5x³ − 2x⁴ = 0",
-          "Multiply by −1 to make the leading term positive:",
-          "2x⁴ − 5x³ − 7x² + 3x − 1 = 0",
+          {
+            "text": "Multiply by −1 to make the leading term positive:",
+            "added": true
+          },
+          {
+            "text": "2x⁴ − 5x³ − 7x² + 3x − 1 = 0",
+            "added": true
+          },
           {
             "text": "∴ 2x⁴ − 5x³ − 7x² + 3x − 1 = 0",
             "style": "boxed"
@@ -137,6 +146,14 @@
         "common_mistakes": [
           "Leaving the answer as −2x⁴ + 5x³ + … (acceptable, but the book's form has a positive leading term).",
           "Getting the reversed order wrong: the constant −2 becomes the x⁴ coefficient."
+        ],
+        "lines_compact": [
+          "Multiply by x⁴:",
+          "1 − 3x + 7x² + 5x³ − 2x⁴ = 0",
+          {
+            "text": "∴ 2x⁴ − 5x³ − 7x² + 3x − 1 = 0",
+            "style": "boxed"
+          }
         ]
       }
     ]

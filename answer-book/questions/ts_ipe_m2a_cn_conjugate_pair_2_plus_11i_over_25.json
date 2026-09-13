@@ -108,14 +108,35 @@
         "margin_note": "Half the marks. Divide by multiplying top and bottom by the conjugate of the denominator, 3 − 4i. The bottom becomes 3² + 4² = 25 — the same 25 as in z₁, which is the first sign the answer is coming out right.",
         "memory_tip": "Multiply top and bottom by 3 − 4i. The bottom becomes 3² + 4² = 25 — the same 25 as in z₁.",
         "lines": [
-          "Multiply above and below by the conjugate",
-          "of the denominator, 3 − 4i:",
+          {
+            "text": "Multiply above and below by the conjugate",
+            "added": true
+          },
+          {
+            "text": "of the denominator, 3 − 4i:",
+            "added": true
+          },
           "z₂ = (2 − i)(3 − 4i) / [(3 + 4i)(3 − 4i)]",
-          "Numerator = 6 − 8i − 3i + 4i²",
-          "= 6 − 11i + 4(−1) = 2 − 11i",
-          "Denominator = 3² + 4²   [(a + ib)(a − ib) = a² + b²]",
-          "= 9 + 16 = 25",
-          "z₂ = (2 − 11i)/25"
+          {
+            "text": "Numerator = 6 − 8i − 3i + 4i²",
+            "added": true
+          },
+          {
+            "text": "= 6 − 11i + 4(−1) = 2 − 11i",
+            "added": true
+          },
+          {
+            "text": "Denominator = 3² + 4²   [(a + ib)(a − ib) = a² + b²]",
+            "added": true
+          },
+          {
+            "text": "= 9 + 16 = 25",
+            "added": true
+          },
+          {
+            "text": "z₂ = (2 − 11i)/25",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -145,6 +166,21 @@
           "Multiplying by 3 + 4i instead of 3 − 4i, which leaves an i in the denominator.",
           "Writing 4i² as +4 instead of −4 in the numerator.",
           "Adding −8i and −3i as −5i."
+        ],
+        "lines_compact": [
+          "Multiply above and below by 3 − 4i:",
+          {
+            "text": "z₂ = (2 − i)(3 − 4i) / ((3 + 4i)(3 − 4i))",
+            "style": "eq"
+          },
+          {
+            "text": "= (6 − 8i − 3i + 4i²) / (3² + 4²)",
+            "style": "indent"
+          },
+          {
+            "text": "= (6 − 11i − 4) / 25 = (2 − 11i)/25",
+            "style": "indent"
+          }
         ]
       },
       {
@@ -156,10 +192,22 @@
         "margin_note": "Last mark. The conjugate changes only the sign of the i term. Write the conjugate of z₂ and point at z₁.",
         "memory_tip": "Conjugation flips only the i sign. Write the conjugate of z₂ and point at z₁ by name.",
         "lines": [
-          "The conjugate of a + ib is a − ib.",
-          "z₂ = 2/25 − (11/25)i,",
-          "so its conjugate is 2/25 + (11/25)i",
-          "= (2 + 11i)/25 = z₁",
+          {
+            "text": "The conjugate of a + ib is a − ib.",
+            "added": true
+          },
+          {
+            "text": "z₂ = 2/25 − (11/25)i,",
+            "added": true
+          },
+          {
+            "text": "so its conjugate is 2/25 + (11/25)i",
+            "added": true
+          },
+          {
+            "text": "= (2 + 11i)/25 = z₁",
+            "added": true
+          },
           {
             "text": "∴ z₁ and z₂ are conjugates of each other.",
             "style": "boxed"
@@ -191,6 +239,13 @@
         "common_mistakes": [
           "Changing the sign of the real part as well.",
           "Ending on (2 − 11i)/25 without writing its conjugate and naming z₁."
+        ],
+        "lines_compact": [
+          "Conjugate of z₂ = (2 − 11i)/25 is (2 + 11i)/25 = z₁.",
+          {
+            "text": "∴ z₁ and z₂ are conjugates of each other.",
+            "style": "boxed"
+          }
         ]
       }
     ]

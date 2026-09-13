@@ -139,8 +139,14 @@
             "render": "katex",
             "style": "eq"
           },
-          "All the terms are added, so it is the (1 − y) form",
-          "The numerators are p, p(p + q), p(p + q)(p + 2q), …"
+          {
+            "text": "All the terms are added, so it is the (1 − y) form",
+            "added": true
+          },
+          {
+            "text": "The numerators are p, p(p + q), p(p + q)(p + 2q), …",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -167,6 +173,14 @@
         "common_mistakes": [
           "Using the (1 − x) form for an alternating series or the (1 + x) form for an all-plus series.",
           "Writing p(p + 1) instead of p(p + q) — the step between factors is q, not 1."
+        ],
+        "lines_compact": [
+          "Compare with the standard expansion",
+          {
+            "text": "(1 - y)^{-p/q} = 1 + \\dfrac{p}{1!}\\left(\\dfrac{y}{q}\\right) + \\dfrac{p(p+q)}{2!}\\left(\\dfrac{y}{q}\\right)^2 + \\cdots",
+            "render": "katex",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -178,12 +192,30 @@
         "margin_note": "Fourth and fifth marks. p is the first factor (1), p + q is the second (3) so q = 2, and y/q equals the common ratio 1/5 so y = q/5 = 2/5.",
         "memory_tip": "p = 1, p + q = 3 so q = 2, and y/q = 1/5 gives y = 2/5.",
         "lines": [
-          "Match the first numerator: p = 1",
-          "Match the second: p(p + q) = 1·3 ⇒ p + q = 3",
-          "q = 3 − 1 = 2",
-          "Check the third: p + 2q = 1 + 4 = 5, which matches",
-          "Match the bracket: y/q = 1/5",
-          "y = q · 1/5 = 2 · (1/5) = 2/5"
+          {
+            "text": "Match the first numerator: p = 1",
+            "added": true
+          },
+          {
+            "text": "Match the second: p(p + q) = 1·3 ⇒ p + q = 3",
+            "added": true
+          },
+          {
+            "text": "q = 3 − 1 = 2",
+            "added": true
+          },
+          {
+            "text": "Check the third: p + 2q = 1 + 4 = 5, which matches",
+            "added": true
+          },
+          {
+            "text": "Match the bracket: y/q = 1/5",
+            "added": true
+          },
+          {
+            "text": "y = q · 1/5 = 2 · (1/5) = 2/5",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -210,6 +242,10 @@
         "common_mistakes": [
           "Taking y = 1/5 directly — the bracket holds y/q, so y = q × 1/5.",
           "Reading q from the second factor as a whole instead of as p + q."
+        ],
+        "lines_compact": [
+          "p = 1, p + q = 3 ⇒ q = 2",
+          "y/q = 1/5 ⇒ y = q/5 = 2/5"
         ]
       },
       {
@@ -224,19 +260,28 @@
           {
             "text": "1 + x = (1 - y)^{-p/q} = \\left(1 - \\tfrac{2}{5}\\right)^{-1/2}",
             "render": "katex",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           },
-          "1 − 2/5 = (5 − 2)/5 = 3/5",
-          "A negative power inverts the fraction:",
+          {
+            "text": "1 − 2/5 = (5 − 2)/5 = 3/5",
+            "added": true
+          },
+          {
+            "text": "A negative power inverts the fraction:",
+            "added": true
+          },
           {
             "text": "= \\left(\\tfrac{3}{5}\\right)^{-1/2} = \\left(\\tfrac{5}{3}\\right)^{1/2}",
             "render": "katex",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           },
           {
             "text": "= \\sqrt{\\tfrac{5}{3}}",
             "render": "katex",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           }
         ],
         "recall": {
@@ -263,6 +308,13 @@
         "common_mistakes": [
           "Inverting the exponent instead of the fraction when the index is negative.",
           "Leaving a root in the denominator without a clear final value."
+        ],
+        "lines_compact": [
+          {
+            "text": "1 + x = (1 - y)^{-p/q} = \\left(1 - \\tfrac{2}{5}\\right)^{-1/2} = \\left(\\tfrac{3}{5}\\right)^{-1/2} = \\sqrt{\\tfrac{5}{3}}",
+            "render": "katex",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -274,10 +326,22 @@
         "margin_note": "Seventh mark. Square 1 + x = √(5/3), multiply by 3, and the left side is 3 + 6x + 3x². The 3x² + 6x asked for is sitting there.",
         "memory_tip": "3x² + 6x is 3(1 + x)² − 3, so squaring 1 + x is enough. x itself is never needed.",
         "lines": [
-          "Squaring both sides: (1 + x)² = 5/3",
-          "1 + 2x + x² = 5/3",
-          "Multiplying both sides by 3: 3 + 6x + 3x² = 5",
-          "3x² + 6x = 5 − 3",
+          {
+            "text": "Squaring both sides: (1 + x)² = 5/3",
+            "added": true
+          },
+          {
+            "text": "1 + 2x + x² = 5/3",
+            "added": true
+          },
+          {
+            "text": "Multiplying both sides by 3: 3 + 6x + 3x² = 5",
+            "added": true
+          },
+          {
+            "text": "3x² + 6x = 5 − 3",
+            "added": true
+          },
           {
             "text": "∴ 3x² + 6x = 2",
             "style": "boxed"
@@ -308,6 +372,14 @@
         "common_mistakes": [
           "Solving for x = √(5/3) − 1 and substituting — correct but slow and easy to get wrong.",
           "Forgetting the 3 when expanding 3(1 + x)²."
+        ],
+        "lines_compact": [
+          "(1 + x)² = 5/3",
+          "3(1 + 2x + x²) = 5 ⇒ 3 + 6x + 3x² = 5",
+          {
+            "text": "∴ 3x² + 6x = 2",
+            "style": "boxed"
+          }
         ]
       }
     ]

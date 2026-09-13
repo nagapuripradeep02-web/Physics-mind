@@ -148,18 +148,42 @@
         "margin_note": "Next three marks. The bracket is (mean of dᵢ²) − (mean of dᵢ)²: 105/50 = 2.1 and (−15/50)² = 0.09. Squaring removes the minus sign. The C² = 100 outside the bracket converts the variance of dᵢ back to the variance of marks.",
         "memory_tip": "σ² = C²·[Σfᵢdᵢ²/N − (Σfᵢdᵢ/N)²]. The bracket gives 2.01; the C² = 100 outside is what makes it 201.",
         "lines": [
-          "Because each dᵢ is a deviation divided by C,",
-          "the variance in the original units carries",
-          "back a factor C²:",
+          {
+            "text": "Because each dᵢ is a deviation divided by C,",
+            "added": true
+          },
+          {
+            "text": "the variance in the original units carries",
+            "added": true
+          },
+          {
+            "text": "back a factor C²:",
+            "added": true
+          },
           {
             "text": "σ² = C²·[Σfᵢdᵢ²/N − (Σfᵢdᵢ/N)²]",
             "style": "eq"
           },
-          "Σfᵢdᵢ²/N = 105/50 = 2.1",
-          "Σfᵢdᵢ/N = −15/50 = −0.3, and (−0.3)² = 0.09",
-          "= 100 · [2.1 − 0.09]",
-          "= 100 · 2.01",
-          "= 201"
+          {
+            "text": "Σfᵢdᵢ²/N = 105/50 = 2.1",
+            "added": true
+          },
+          {
+            "text": "Σfᵢdᵢ/N = −15/50 = −0.3, and (−0.3)² = 0.09",
+            "added": true
+          },
+          {
+            "text": "= 100 · [2.1 − 0.09]",
+            "added": true
+          },
+          {
+            "text": "= 100 · 2.01",
+            "added": true
+          },
+          {
+            "text": "= 201",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -190,6 +214,11 @@
           "Forgetting the C² = 100 and answering 2.01.",
           "Subtracting Σfᵢdᵢ/N without squaring it: 2.1 − (−0.3) = 2.4 is wrong.",
           "Using N = 7 (the number of classes) in the divisions."
+        ],
+        "lines_compact": [
+          "Variance σ² = C²·[Σfᵢdᵢ²/N − (Σfᵢdᵢ/N)²]",
+          "= 100·[105/50 − (−15/50)²]",
+          "= 100·[2.1 − 0.09] = 100·(2.01) = 201"
         ]
       },
       {
@@ -203,9 +232,13 @@
         "lines": [
           {
             "text": "Standard deviation σ = √σ²",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           },
-          "= √201 = 14.18",
+          {
+            "text": "= √201 = 14.18",
+            "added": true
+          },
           {
             "text": "∴ Variance σ² = 201, S.D. σ = 14.18",
             "style": "boxed"
@@ -238,6 +271,13 @@
           "Reporting only the variance when the question asks for both.",
           "√201 taken as 14.2 or 14.17 — the book's two-decimal convention gives 14.18.",
           "Writing σ = 201 and σ² = 14.18 the wrong way round."
+        ],
+        "lines_compact": [
+          "Standard deviation σ = √201 = 14.18",
+          {
+            "text": "∴ Variance σ² = 201, S.D. σ = 14.18",
+            "style": "boxed"
+          }
         ]
       }
     ]

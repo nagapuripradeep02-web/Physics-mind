@@ -122,8 +122,14 @@
         "margin_note": "Second mark. a = y, b = −(3y + 1), c = 2y + p. 4ac = 8y² + 4py. Collect the y terms: 6y − 4py = (6 − 4p)y. Label it (2) — the next step reasons about it.",
         "memory_tip": "a = y, b = −(3y + 1), c = 2y + p. Collect 6y − 4py as (6 − 4p)y, and label the result (2).",
         "lines": [
-          "x is real, so (1) has real roots and Δ ≥ 0:",
-          "Here a = y, b = −(3y + 1), c = 2y + p",
+          {
+            "text": "x is real, so (1) has real roots and Δ ≥ 0:",
+            "added": true
+          },
+          {
+            "text": "Here a = y, b = −(3y + 1), c = 2y + p",
+            "added": true
+          },
           "Δ = (3y + 1)² − 4y(2y + p) ≥ 0",
           "9y² + 6y + 1 − 8y² − 4py ≥ 0",
           "y² + (6 − 4p)y + 1 ≥ 0 … (2)"
@@ -156,6 +162,12 @@
           "Writing 4y(2y + p) as 8y² + 4p.",
           "Collecting the middle term as (6 + 4p)y.",
           "Using Δ > 0, which changes the later condition on p."
+        ],
+        "lines_compact": [
+          "∴ Δ = b² − 4ac ≥ 0",
+          "⇒ (3y + 1)² − 4y(2y + p) ≥ 0",
+          "⇒ 9y² + 6y + 1 − 8y² − 4py ≥ 0",
+          "⇒ y² + (6 − 4p)y + 1 ≥ 0 … (2)"
         ]
       },
       {
@@ -167,19 +179,37 @@
         "margin_note": "Third mark, and the idea of the question. 'Takes all real values' means (2) is true for EVERY y. A quadratic in y with positive leading coefficient stays ≥ 0 everywhere only if it never goes below the axis — its own discriminant must be ≤ 0. Note the direction: ≤, not ≥.",
         "memory_tip": "'All real values' means (2) holds for EVERY y, so this second discriminant is ≤ 0, not ≥ 0.",
         "lines": [
-          "y takes ALL real values, so (2) must hold",
+          {
+            "text": "y takes ALL real values, so (2) must hold",
+            "added": true
+          },
           "for every real y.",
           "The coefficient of y² is 1 > 0, so this",
-          "quadratic in y stays ≥ 0 everywhere only",
-          "when it has no two distinct real roots,",
-          "that is when its own Δ ≤ 0:",
+          {
+            "text": "quadratic in y stays ≥ 0 everywhere only",
+            "added": true
+          },
+          {
+            "text": "when it has no two distinct real roots,",
+            "added": true
+          },
+          {
+            "text": "that is when its own Δ ≤ 0:",
+            "added": true
+          },
           "(6 − 4p)² − 4(1)(1) ≤ 0",
           "36 − 48p + 16p² − 4 ≤ 0",
           "16p² − 48p + 32 ≤ 0",
-          "Divide throughout by 16:",
+          {
+            "text": "Divide throughout by 16:",
+            "added": true
+          },
           "p² − 3p + 2 ≤ 0",
           "(p − 1)(p − 2) ≤ 0",
-          "A product is ≤ 0 BETWEEN its roots:",
+          {
+            "text": "A product is ≤ 0 BETWEEN its roots:",
+            "added": true
+          },
           "1 ≤ p ≤ 2"
         ],
         "recall": {
@@ -211,6 +241,18 @@
           "Using Δ ≥ 0 again by habit — for 'true for all y' the condition is Δ ≤ 0.",
           "Forgetting the −4 from 4(1)(1) and solving (6 − 4p)² ≤ 0.",
           "Not dividing by 16 and mis-factorising 16p² − 48p + 32."
+        ],
+        "lines_compact": [
+          "y takes all real values, so (2) holds",
+          "for every real y.",
+          "The coefficient of y² is 1 > 0, so (2)",
+          "holds for all y only if its Δ ≤ 0:",
+          "⇒ (6 − 4p)² − 4(1)(1) ≤ 0",
+          "⇒ 36 − 48p + 16p² − 4 ≤ 0",
+          "⇒ 16p² − 48p + 32 ≤ 0",
+          "⇒ p² − 3p + 2 ≤ 0",
+          "⇒ (p − 1)(p − 2) ≤ 0",
+          "⇒ 1 ≤ p ≤ 2"
         ]
       },
       {
@@ -222,11 +264,26 @@
         "margin_note": "Last mark, and where most answers stop early. At p = 1 the numerator (x − 1) cancels a factor of the denominator and the expression becomes 1/(x − 2), which never takes the value 0; at p = 2 it becomes 1/(x − 1), likewise. So the end values are excluded and the bounds are strict.",
         "memory_tip": "At p = 1 and p = 2 the numerator cancels a denominator factor, so the ends are excluded: 1 < p < 2.",
         "lines": [
-          "Check the two end values.",
-          "x² − 3x + 2 = (x − 1)(x − 2), so at p = 1",
-          "the fraction is (x − 1)/[(x − 1)(x − 2)],",
-          "and at p = 2 it is (x − 2)/[(x − 1)(x − 2)].",
-          "A factor cancels in each case and the",
+          {
+            "text": "Check the two end values.",
+            "added": true
+          },
+          {
+            "text": "x² − 3x + 2 = (x − 1)(x − 2), so at p = 1",
+            "added": true
+          },
+          {
+            "text": "the fraction is (x − 1)/[(x − 1)(x − 2)],",
+            "added": true
+          },
+          {
+            "text": "and at p = 2 it is (x − 2)/[(x − 1)(x − 2)].",
+            "added": true
+          },
+          {
+            "text": "A factor cancels in each case and the",
+            "added": true
+          },
           "expression no longer takes all real values.",
           "So p = 1 and p = 2 are not allowed.",
           {
@@ -262,6 +319,16 @@
           "Answering 1 ≤ p ≤ 2 with the ends included.",
           "Giving no reason for excluding p = 1 and p = 2.",
           "Excluding only one of the two end values."
+        ],
+        "lines_compact": [
+          "If p = 1 or p = 2, the numerator cancels",
+          "a factor of (x − 1)(x − 2), and the",
+          "expression no longer takes all real values.",
+          "So p = 1 and p = 2 are not allowed.",
+          {
+            "text": "∴ 1 < p < 2",
+            "style": "boxed"
+          }
         ]
       }
     ]

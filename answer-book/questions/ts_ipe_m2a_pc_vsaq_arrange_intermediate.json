@@ -110,17 +110,42 @@
         "margin_note": "Second mark. 12!/(3!·2!·2!) = 479001600/24 = 1,99,58,400.",
         "memory_tip": "12!/(3!·2!·2!) = 1,99,58,400. The divisor is a product of factorials, not (3+2+2)!.",
         "lines": [
-          "When n things have p, q, r alike,",
-          "the arrangements are n!/(p!·q!·r!)",
-          "Here n = 12, p = 3, q = 2, r = 2:",
-          "Arrangements = 12!/(3!·2!·2!)",
-          "3! = 6, 2! = 2",
-          "Bottom = 6 · 2 · 2 = 24",
-          "12! = 479001600",
-          "= 479001600/24",
+          {
+            "text": "When n things have p, q, r alike,",
+            "added": true
+          },
+          {
+            "text": "the arrangements are n!/(p!·q!·r!)",
+            "added": true
+          },
+          {
+            "text": "Here n = 12, p = 3, q = 2, r = 2:",
+            "added": true
+          },
+          {
+            "text": "Arrangements = 12!/(3!·2!·2!)",
+            "added": true
+          },
+          {
+            "text": "3! = 6, 2! = 2",
+            "added": true
+          },
+          {
+            "text": "Bottom = 6 · 2 · 2 = 24",
+            "added": true
+          },
+          {
+            "text": "12! = 479001600",
+            "added": true
+          },
+          {
+            "text": "= 479001600/24",
+            "added": true
+          },
           {
             "text": "∴ number of arrangements = 1,99,58,400",
-            "style": "boxed"
+            "style": "boxed",
+            "added": true
           }
         ],
         "recall": {
@@ -148,6 +173,13 @@
         "common_mistakes": [
           "Dividing by 3!·2! only and forgetting the second repeated pair.",
           "Dividing by (3 + 2 + 2)! = 7! instead of 3!·2!·2!."
+        ],
+        "lines_compact": [
+          "Arrangements = n!/(p!·q!·r!)",
+          {
+            "text": "= 12!/(3!·2!·2!) = 1,99,58,400",
+            "style": "boxed"
+          }
         ]
       }
     ]

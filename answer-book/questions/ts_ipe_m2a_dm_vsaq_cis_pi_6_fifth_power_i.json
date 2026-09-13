@@ -99,15 +99,34 @@
         "margin_note": "Second mark. Subtracting a number from its conjugate leaves 2i times the imaginary part: 2i sin(5π/6). sin(5π/6) = sin(π/6) = 1/2, so the value is i.",
         "memory_tip": "A number minus its conjugate is 2i times the imaginary part. sin(5π/6) = +1/2, so the answer is i.",
         "lines": [
-          "Subtracting, the cos terms cancel and the",
-          "sin terms double:",
-          "Difference = 2i sin(5π/6)",
-          "5π/6 = π − π/6, and sin(π − A) = sin A, so",
-          "sin(5π/6) = sin(π/6) = 1/2",
-          "= 2i × 1/2",
+          {
+            "text": "Subtracting, the cos terms cancel and the",
+            "added": true
+          },
+          {
+            "text": "sin terms double:",
+            "added": true
+          },
+          {
+            "text": "Difference = 2i sin(5π/6)",
+            "added": true
+          },
+          {
+            "text": "5π/6 = π − π/6, and sin(π − A) = sin A, so",
+            "added": true
+          },
+          {
+            "text": "sin(5π/6) = sin(π/6) = 1/2",
+            "added": true
+          },
+          {
+            "text": "= 2i × 1/2",
+            "added": true
+          },
           {
             "text": "∴ the value is i",
-            "style": "boxed"
+            "style": "boxed",
+            "added": true
           }
         ],
         "recall": {
@@ -136,6 +155,13 @@
           "Writing the difference as 2cos(5π/6).",
           "Taking sin(5π/6) = −1/2; the sine is positive in the second quadrant.",
           "Dropping the i."
+        ],
+        "lines_compact": [
+          "Difference = 2i sin(5π/6) = 2i sin(π − π/6)",
+          {
+            "text": "= 2i sin(π/6) = 2i · 1/2 = i",
+            "style": "boxed"
+          }
         ]
       }
     ]

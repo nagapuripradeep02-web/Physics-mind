@@ -112,16 +112,43 @@
         "margin_note": "Two marks. ⁶C₅ = 6, ⁶C₄ = 15, ⁶C₃ = 20; ⁵C₀ = 1, ⁵C₁ = 5, ⁵C₂ = 10. Multiply within each case.",
         "memory_tip": "Multiply within a case: ⁶C₅·⁵C₀, ⁶C₄·⁵C₁, ⁶C₃·⁵C₂. Note ⁵C₀ = 1, not 0.",
         "lines": [
-          "Case 1: choose 5 of the 6 Indians and",
-          "0 of the 5 Americans:",
-          "⁶C₅ · ⁵C₀ = 6 · 1 = 6",
-          "Case 2: choose 4 Indians and 1 American:",
-          "⁶C₄ = ⁶C₂ = (6 · 5)/(1 · 2) = 15",
-          "⁵C₁ = 5",
+          {
+            "text": "Case 1: choose 5 of the 6 Indians and",
+            "added": true
+          },
+          {
+            "text": "0 of the 5 Americans:",
+            "added": true
+          },
+          {
+            "text": "⁶C₅ · ⁵C₀ = 6 · 1 = 6",
+            "added": true
+          },
+          {
+            "text": "Case 2: choose 4 Indians and 1 American:",
+            "added": true
+          },
+          {
+            "text": "⁶C₄ = ⁶C₂ = (6 · 5)/(1 · 2) = 15",
+            "added": true
+          },
+          {
+            "text": "⁵C₁ = 5",
+            "added": true
+          },
           "⁶C₄ · ⁵C₁ = 15 · 5 = 75",
-          "Case 3: choose 3 Indians and 2 Americans:",
-          "⁶C₃ = (6 · 5 · 4)/(1 · 2 · 3) = 120/6 = 20",
-          "⁵C₂ = (5 · 4)/(1 · 2) = 10",
+          {
+            "text": "Case 3: choose 3 Indians and 2 Americans:",
+            "added": true
+          },
+          {
+            "text": "⁶C₃ = (6 · 5 · 4)/(1 · 2 · 3) = 120/6 = 20",
+            "added": true
+          },
+          {
+            "text": "⁵C₂ = (5 · 4)/(1 · 2) = 10",
+            "added": true
+          },
           "⁶C₃ · ⁵C₂ = 20 · 10 = 200"
         ],
         "recall": {
@@ -151,6 +178,11 @@
           "Writing ⁵C₀ = 0 and losing the all-Indian case.",
           "Adding the two selections inside a case instead of multiplying.",
           "Computing ⁶C₃ as 6·5·4 = 120 without dividing by 3! = 6."
+        ],
+        "lines_compact": [
+          "Case 1: ⁶C₅ · ⁵C₀ = 6 · 1 = 6",
+          "Case 2: ⁶C₄ · ⁵C₁ = 15 · 5 = 75",
+          "Case 3: ⁶C₃ · ⁵C₂ = 20 · 10 = 200"
         ]
       },
       {
@@ -162,12 +194,22 @@
         "margin_note": "Last mark. 6 + 75 + 200 = 281.",
         "memory_tip": "The cases are different committees, so ADD: 6 + 75 + 200 = 281.",
         "lines": [
-          "The three cases cannot happen together,",
-          "so add them:",
-          "Number of ways = 6 + 75 + 200",
+          {
+            "text": "The three cases cannot happen together,",
+            "added": true
+          },
+          {
+            "text": "so add them:",
+            "added": true
+          },
+          {
+            "text": "Number of ways = 6 + 75 + 200",
+            "added": true
+          },
           {
             "text": "∴ number of ways = 281",
-            "style": "boxed"
+            "style": "boxed",
+            "added": true
           }
         ],
         "recall": {
@@ -195,6 +237,12 @@
         "common_mistakes": [
           "Multiplying the cases instead of adding.",
           "Dropping the 6 from the all-Indian case and answering 275."
+        ],
+        "lines_compact": [
+          {
+            "text": "∴ number of ways = 6 + 75 + 200 = 281",
+            "style": "boxed"
+          }
         ]
       }
     ]

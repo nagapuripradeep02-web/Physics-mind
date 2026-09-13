@@ -102,10 +102,22 @@
         "memory_tip": "The sum branch gives 4r = 16, r = 4. Both branches hold, so both values are answers.",
         "lines": [
           "Second case: (r + 1) + (3r − 5) = 12",
-          "4r − 4 = 12",
-          "4r = 16 ⇒ r = 4",
-          "Both keep the lower index between 0 and 12,",
-          "so both are allowed.",
+          {
+            "text": "4r − 4 = 12",
+            "added": true
+          },
+          {
+            "text": "4r = 16 ⇒ r = 4",
+            "added": true
+          },
+          {
+            "text": "Both keep the lower index between 0 and 12,",
+            "added": true
+          },
+          {
+            "text": "so both are allowed.",
+            "added": true
+          },
           {
             "text": "∴ r = 3 or r = 4",
             "style": "boxed"
@@ -137,6 +149,14 @@
         "common_mistakes": [
           "Answering r = 4 only.",
           "Collecting 1 − 5 as +4 and reaching 4r + 4 = 12, r = 2 (then ¹²C₃ ≠ ¹²C₁, which a check would catch)."
+        ],
+        "lines_compact": [
+          "Sum case: (r + 1) + (3r − 5) = 12",
+          "4r − 4 = 12 ⇒ 4r = 16 ⇒ r = 4",
+          {
+            "text": "∴ r = 3 or r = 4",
+            "style": "boxed"
+          }
         ]
       }
     ]

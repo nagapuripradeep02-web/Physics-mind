@@ -97,9 +97,18 @@
         "margin_note": "Second mark. Multiply through by 3⁴ = 81: 81/27 = 3, 81/9 = 9, 81/3 = 27.",
         "memory_tip": "Multiply by 3⁴ = 81. Each coefficient gains 3 to the power (4 − its degree): 1, 3, 9, 27, 81.",
         "lines": [
-          "Multiply every term by 3⁴ = 81:",
-          "6x⁴ − 7 · 3x³ + 8 · 9x² − 7 · 27x + 2 · 81 = 0",
-          "6x⁴ − 21x³ + 72x² − 189x + 162 = 0",
+          {
+            "text": "Multiply every term by 3⁴ = 81:",
+            "added": true
+          },
+          {
+            "text": "6x⁴ − 7 · 3x³ + 8 · 9x² − 7 · 27x + 2 · 81 = 0",
+            "added": true
+          },
+          {
+            "text": "6x⁴ − 21x³ + 72x² − 189x + 162 = 0",
+            "added": true
+          },
           {
             "text": "∴ 6x⁴ − 21x³ + 72x² − 189x + 162 = 0",
             "style": "boxed"
@@ -131,6 +140,13 @@
         "common_mistakes": [
           "Multiplying the constant 2 by 1 instead of 81.",
           "A slip such as 7 × 27 = 189 written as 179."
+        ],
+        "lines_compact": [
+          "Multiply by 3⁴ = 81:",
+          {
+            "text": "∴ 6x⁴ − 21x³ + 72x² − 189x + 162 = 0",
+            "style": "boxed"
+          }
         ]
       }
     ]

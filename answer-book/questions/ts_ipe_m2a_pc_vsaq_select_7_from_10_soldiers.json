@@ -96,10 +96,14 @@
         "memory_tip": "¹⁰C₃ = (10·9·8)/(1·2·3) = 120.",
         "lines": [
           "¹⁰C₃ = (10 · 9 · 8)/(1 · 2 · 3)",
-          "= 720/6",
+          {
+            "text": "= 720/6",
+            "added": true
+          },
           {
             "text": "∴ number of ways = 120",
-            "style": "boxed"
+            "style": "boxed",
+            "added": true
           }
         ],
         "recall": {
@@ -126,6 +130,13 @@
         "common_mistakes": [
           "Computing 10·9·8 = 720 and forgetting to divide by 6.",
           "Leaving the answer as ¹⁰C₇."
+        ],
+        "lines_compact": [
+          "¹⁰C₃ = (10 · 9 · 8)/(1 · 2 · 3)",
+          {
+            "text": "= 120",
+            "style": "boxed"
+          }
         ]
       }
     ]

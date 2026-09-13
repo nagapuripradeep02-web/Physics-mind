@@ -115,9 +115,18 @@
         "margin_note": "Second mark. ¹³C₁₁ = ¹³C₂ because 11 + 2 = 13; ¹³C₂ = (13·12)/(1·2) = 78.",
         "memory_tip": "¹³C₁₁ = ¹³C₂ because 11 + 2 = 13, so it is just (13 × 12)/2 = 78.",
         "lines": [
-          "¹³Cᵣ = ¹³C₁₁",
-          "= ¹³C₁₃₋₁₁ = ¹³C₂   [ⁿCᵣ = ⁿCₙ₋ᵣ]",
-          "= (13 · 12)/(1 · 2) = 156/2",
+          {
+            "text": "¹³Cᵣ = ¹³C₁₁",
+            "added": true
+          },
+          {
+            "text": "= ¹³C₁₃₋₁₁ = ¹³C₂   [ⁿCᵣ = ⁿCₙ₋ᵣ]",
+            "added": true
+          },
+          {
+            "text": "= (13 · 12)/(1 · 2) = 156/2",
+            "added": true
+          },
           {
             "text": "∴ ¹³Cᵣ = 78",
             "style": "boxed"
@@ -147,6 +156,13 @@
         "common_mistakes": [
           "Computing ¹³C₁₁ as 13·12·…·3 over 11! by hand.",
           "Writing ¹³C₂ = 13·12 = 156."
+        ],
+        "lines_compact": [
+          "¹³Cᵣ = ¹³C₁₁ = ¹³C₂ = (13·12)/(1·2)",
+          {
+            "text": "∴ ¹³Cᵣ = 78",
+            "style": "boxed"
+          }
         ]
       }
     ]

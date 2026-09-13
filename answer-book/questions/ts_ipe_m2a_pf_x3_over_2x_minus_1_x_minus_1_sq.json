@@ -113,10 +113,16 @@
         "margin_note": "Second mark. Multiply by (2x − 1)(x − 1)². The 1/2 keeps the whole denominator, A keeps (x − 1)², B keeps (2x − 1)(x − 1), C keeps (2x − 1).",
         "memory_tip": "The 1/2 keeps the whole denominator; A keeps (x − 1)², B keeps (2x − 1)(x − 1), C keeps (2x − 1).",
         "lines": [
-          "Multiply both sides by (2x − 1)(x − 1)²:",
+          {
+            "text": "Multiply both sides by (2x − 1)(x − 1)²:",
+            "added": true
+          },
           "x³ = (1/2)(2x − 1)(x − 1)² + A(x − 1)²",
           "  + B(2x − 1)(x − 1) + C(2x − 1)",
-          "This holds for every value of x."
+          {
+            "text": "This holds for every value of x.",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -147,6 +153,11 @@
           "Dropping the (1/2)(2x − 1)(x − 1)² term.",
           "Giving C the factor (x − 1) instead of (2x − 1).",
           "Giving B the factor (x − 1)² instead of (2x − 1)(x − 1)."
+        ],
+        "lines_compact": [
+          "Multiply by (2x − 1)(x − 1)²:",
+          "x³ = (1/2)(2x − 1)(x − 1)² + A(x − 1)²",
+          "+ B(2x − 1)(x − 1) + C(2x − 1)"
         ]
       },
       {
@@ -158,16 +169,46 @@
         "margin_note": "Third mark. x = 1/2 makes every term except A zero: 1/8 = A/4. x = 1 leaves only C: 1 = C. Then x = 0 gives one equation in A, B, C, which is B once A and C are known.",
         "memory_tip": "The root of 2x − 1 is x = 1/2, not 1. There (1/2 − 1)² = 1/4, so 1/8 = A/4.",
         "lines": [
-          "Substituting a root of one factor",
-          "  makes the other terms 0:",
-          "Put x = 1/2: (1/2)³ = A(1/2 − 1)²",
-          "1/8 = A(1/4), so A = 1/2",
-          "Put x = 1: 1 = C(2 − 1)",
-          "C = 1",
-          "Neither root gives B, so put x = 0:",
-          "0 = (1/2)(−1)(1) + A(1) + B(−1)(−1) + C(−1)",
-          "0 = −1/2 + A + B − C",
-          "B = 1/2 − A + C = 1/2 − 1/2 + 1 = 1"
+          {
+            "text": "Substituting a root of one factor",
+            "added": true
+          },
+          {
+            "text": "  makes the other terms 0:",
+            "added": true
+          },
+          {
+            "text": "Put x = 1/2: (1/2)³ = A(1/2 − 1)²",
+            "added": true
+          },
+          {
+            "text": "1/8 = A(1/4), so A = 1/2",
+            "added": true
+          },
+          {
+            "text": "Put x = 1: 1 = C(2 − 1)",
+            "added": true
+          },
+          {
+            "text": "C = 1",
+            "added": true
+          },
+          {
+            "text": "Neither root gives B, so put x = 0:",
+            "added": true
+          },
+          {
+            "text": "0 = (1/2)(−1)(1) + A(1) + B(−1)(−1) + C(−1)",
+            "added": true
+          },
+          {
+            "text": "0 = −1/2 + A + B − C",
+            "added": true
+          },
+          {
+            "text": "B = 1/2 − A + C = 1/2 − 1/2 + 1 = 1",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -199,6 +240,12 @@
           "Using x = 1 for the factor (2x − 1); its root is x = 1/2.",
           "Computing (1/2 − 1)² as 1/2 instead of 1/4, which makes A come out as 1/4.",
           "At x = 0 writing (1/2)(−1)(1) as +1/2 instead of −1/2, giving B = 0."
+        ],
+        "lines_compact": [
+          "Put x = 1/2: 1/8 = A(1/4) ⇒ A = 1/2",
+          "Put x = 1: 1 = C(1) ⇒ C = 1",
+          "Put x = 0: 0 = −1/2 + A + B − C",
+          "⇒ B = 1/2 − A + C = 1"
         ]
       },
       {
@@ -211,11 +258,18 @@
         "memory_tip": "Four terms: 1/2 first, then A = 1/2 over (2x − 1) written as 1/(2(2x − 1)).",
         "lines": [
           "∴ x³/((2x − 1)(x − 1)²)",
-          "= 1/2 + 1/(2(2x − 1)) + 1/(x − 1)",
-          "  + 1/(x − 1)²",
+          {
+            "text": "= 1/2 + 1/(2(2x − 1)) + 1/(x − 1)",
+            "added": true
+          },
+          {
+            "text": "  + 1/(x − 1)²",
+            "added": true
+          },
           {
             "text": "∴ A = 1/2, B = 1, C = 1",
-            "style": "boxed"
+            "style": "boxed",
+            "added": true
           }
         ],
         "recall": {
@@ -246,6 +300,14 @@
           "Leaving out the 1/2 in the final line.",
           "Writing 1/2(2x − 1) so it reads as half times the bracket; put the 2 inside the denominator bracket.",
           "Not checking: put x = 2 in the identity, 8 = 3/2 + 1/2 + 3 + 3. If the two sides differ, a constant is wrong."
+        ],
+        "lines_compact": [
+          "∴ x³/((2x − 1)(x − 1)²)",
+          "= 1/2 + 1/(2(2x − 1)) + 1/(x − 1) + 1/(x − 1)²",
+          {
+            "text": "∴ A = 1/2, B = 1, C = 1 in the form above",
+            "style": "boxed"
+          }
         ]
       }
     ]

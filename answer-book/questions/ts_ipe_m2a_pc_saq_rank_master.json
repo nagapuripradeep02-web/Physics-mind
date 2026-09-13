@@ -137,22 +137,55 @@
         "margin_note": "Two marks. Words starting with A or E come first (5! each). Then M A E and M A R (3! each), then M A S E and M A S R (2! each). The next word is MASTER itself.",
         "memory_tip": "Fix one more letter each line: A and E give 5!, then MAE and MAR give 3!, then MASE and MASR give 2!.",
         "lines": [
-          "Words starting with A: the other 5 letters",
-          "are arranged in 5! = 120 ways",
+          {
+            "text": "Words starting with A: the other 5 letters",
+            "added": true
+          },
+          {
+            "text": "are arranged in 5! = 120 ways",
+            "added": true
+          },
           "Words starting with E: 5! = 120",
-          "M comes next, and MASTER starts with M,",
-          "so now fix M and look at the second letter.",
-          "MA_ is the given word's start, so no",
-          "second letter before A is possible.",
-          "Fix MA and look at the third letter:",
-          "the letters left are E, R, S, T",
+          {
+            "text": "M comes next, and MASTER starts with M,",
+            "added": true
+          },
+          {
+            "text": "so now fix M and look at the second letter.",
+            "added": true
+          },
+          {
+            "text": "MA_ is the given word's start, so no",
+            "added": true
+          },
+          {
+            "text": "second letter before A is possible.",
+            "added": true
+          },
+          {
+            "text": "Fix MA and look at the third letter:",
+            "added": true
+          },
+          {
+            "text": "the letters left are E, R, S, T",
+            "added": true
+          },
           "Words starting with MAE: 3! = 6",
           "Words starting with MAR: 3! = 6",
-          "Next is MAS. The letters left are E, R, T",
+          {
+            "text": "Next is MAS. The letters left are E, R, T",
+            "added": true
+          },
           "Words starting with MASE: 2! = 2",
           "Words starting with MASR: 2! = 2",
-          "Next is MAST, then E, then R —",
-          "which is MASTER itself."
+          {
+            "text": "Next is MAST, then E, then R —",
+            "added": true
+          },
+          {
+            "text": "which is MASTER itself.",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -182,6 +215,15 @@
           "Counting words starting with M as a whole block (5!) — M is the first letter of MASTER, so only the M-words before MASTER are counted.",
           "Skipping M A E and going straight to M A S.",
           "Counting M A S T as a block before MASTER — after M A S T only E R remain and MASTER is the first of those two."
+        ],
+        "lines_compact": [
+          "Words starting with A: 5! = 120",
+          "Words starting with E: 5! = 120",
+          "Words starting with MAE: 3! = 6",
+          "Words starting with MAR: 3! = 6",
+          "Words starting with MASE: 2! = 2",
+          "Words starting with MASR: 2! = 2",
+          "The next word is MASTER itself."
         ]
       },
       {
@@ -193,7 +235,10 @@
         "margin_note": "Last mark. 120 + 120 + 6 + 6 + 2 + 2 = 256 words come before MASTER, so its rank is 257.",
         "memory_tip": "256 words come before MASTER, so the rank is 257. Add 1 for the word itself, not 2!.",
         "lines": [
-          "Rank = words before it + 1",
+          {
+            "text": "Rank = words before it + 1",
+            "added": true
+          },
           "= 2(120) + 2(6) + 2(2) + 1",
           "= 240 + 12 + 4 + 1",
           {
@@ -226,6 +271,14 @@
         "common_mistakes": [
           "Answering 256 — the count of words before MASTER, not its rank.",
           "Adding 2! for MASTER itself instead of 1."
+        ],
+        "lines_compact": [
+          "Rank = 2(120) + 2(6) + 2(2) + 1",
+          "= 240 + 12 + 4 + 1",
+          {
+            "text": "∴ rank of MASTER = 257",
+            "style": "boxed"
+          }
         ]
       }
     ]

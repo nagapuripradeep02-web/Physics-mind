@@ -120,9 +120,15 @@
         "margin_note": "Second mark. Multiply by (x − 1)(x² + 2). A keeps (x² + 2), (Bx + C) keeps (x − 1). Keep Bx + C in a bracket.",
         "memory_tip": "A keeps (x² + 2), (Bx + C) keeps (x − 1). Keep the bracket around Bx + C.",
         "lines": [
-          "Multiply both sides by (x − 1)(x² + 2):",
+          {
+            "text": "Multiply both sides by (x − 1)(x² + 2):",
+            "added": true
+          },
           "2x² + 3x + 4 = A(x² + 2) + (Bx + C)(x − 1)",
-          "This holds for every value of x."
+          {
+            "text": "This holds for every value of x.",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -151,6 +157,10 @@
           "Writing Bx + C(x − 1) without the bracket.",
           "Giving A the factor (x − 1) instead of (x² + 2).",
           "Dropping the left side 2x² + 3x + 4."
+        ],
+        "lines_compact": [
+          "Multiply by (x − 1)(x² + 2):",
+          "2x² + 3x + 4 = A(x² + 2) + (Bx + C)(x − 1)"
         ]
       },
       {
@@ -162,15 +172,42 @@
         "margin_note": "Third mark. x = 1 gives A directly. x = 0 is not a root but it is an easy value: it gives 2A − C, hence C. Then compare x² for B. The book uses exactly these three lines.",
         "memory_tip": "x = 1 gives A. Then x = 0 is not a root but is easy: it gives 2A − C, so watch that minus.",
         "lines": [
-          "Substituting a root of one factor",
-          "  makes the other terms 0:",
-          "Put x = 1: 2 + 3 + 4 = A(1 + 2)",
-          "9 = 3A, so A = 3",
-          "Put x = 0: 4 = A(2) + C(−1)",
-          "4 = 6 − C, so C = 2",
-          "Compare the x² terms on both sides:",
-          "left 2, right A + B, so A + B = 2",
-          "B = 2 − 3 = −1"
+          {
+            "text": "Substituting a root of one factor",
+            "added": true
+          },
+          {
+            "text": "  makes the other terms 0:",
+            "added": true
+          },
+          {
+            "text": "Put x = 1: 2 + 3 + 4 = A(1 + 2)",
+            "added": true
+          },
+          {
+            "text": "9 = 3A, so A = 3",
+            "added": true
+          },
+          {
+            "text": "Put x = 0: 4 = A(2) + C(−1)",
+            "added": true
+          },
+          {
+            "text": "4 = 6 − C, so C = 2",
+            "added": true
+          },
+          {
+            "text": "Compare the x² terms on both sides:",
+            "added": true
+          },
+          {
+            "text": "left 2, right A + B, so A + B = 2",
+            "added": true
+          },
+          {
+            "text": "B = 2 − 3 = −1",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -201,6 +238,11 @@
           "Putting x = 0 and writing (0 + C)(0 − 1) as +C instead of −C, so C comes out as −2.",
           "Writing B = 2 by forgetting A in the x² coefficient.",
           "Adding 2(1)² + 3(1) + 4 as 8 instead of 9."
+        ],
+        "lines_compact": [
+          "Put x = 1: 9 = A(3) ⇒ A = 3",
+          "Put x = 0: 4 = 2A − C ⇒ C = 2",
+          "Compare x²: A + B = 2 ⇒ B = −1"
         ]
       },
       {

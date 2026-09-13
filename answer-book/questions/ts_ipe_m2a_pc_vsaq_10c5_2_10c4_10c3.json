@@ -108,13 +108,26 @@
         "margin_note": "Second mark. ¹¹C₅ + ¹¹C₄ = ¹²C₅ = (12·11·10·9·8)/(1·2·3·4·5) = 792.",
         "memory_tip": "¹¹C₅ + ¹¹C₄ = ¹²C₅ = (12·11·10·9·8)/(1·2·3·4·5) = 792. Divide by 120, not 24.",
         "lines": [
-          "Apply the same identity once more:",
-          "¹¹C₅ + ¹¹C₄ = ¹²C₅",
-          "¹²C₅ = (12 · 11 · 10 · 9 · 8)/(1 · 2 · 3 · 4 · 5)",
-          "= 95040/120",
+          {
+            "text": "Apply the same identity once more:",
+            "added": true
+          },
+          {
+            "text": "¹¹C₅ + ¹¹C₄ = ¹²C₅",
+            "added": true
+          },
+          {
+            "text": "¹²C₅ = (12 · 11 · 10 · 9 · 8)/(1 · 2 · 3 · 4 · 5)",
+            "added": true
+          },
+          {
+            "text": "= 95040/120",
+            "added": true
+          },
           {
             "text": "∴ the value is 792",
-            "style": "boxed"
+            "style": "boxed",
+            "added": true
           }
         ],
         "recall": {
@@ -142,6 +155,13 @@
         "common_mistakes": [
           "Stopping at ¹²C₅ without a number.",
           "Computing 12·11·10·9·8 = 95040 and dividing by 24 instead of 120."
+        ],
+        "lines_compact": [
+          "= ¹²C₅ = (12·11·10·9·8)/(1·2·3·4·5)",
+          {
+            "text": "= 792",
+            "style": "boxed"
+          }
         ]
       }
     ]

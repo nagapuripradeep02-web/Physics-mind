@@ -104,10 +104,16 @@
         "lines": [
           "α is also a root of x² + cx + d = 0:",
           "α² + cα + d = 0",
-          "Put α² = b and α = −a/2:",
+          {
+            "text": "Put α² = b and α = −a/2:",
+            "added": true
+          },
           "b + c(−a/2) + d = 0",
           "b + d = ac/2",
-          "Multiply both sides by 2:",
+          {
+            "text": "Multiply both sides by 2:",
+            "added": true
+          },
           {
             "text": "∴ 2(b + d) = ac",
             "style": "boxed"
@@ -142,6 +148,16 @@
           "Substituting α = −a/2 for α² as well, instead of α² = b.",
           "Writing c(−a/2) as −ac and getting b + d = ac.",
           "Stopping at b + d = ac/2 without the final form 2(b + d) = ac."
+        ],
+        "lines_compact": [
+          "α is a root of x² + cx + d = 0:",
+          "α² + cα + d = 0",
+          "⇒ b + c(−a/2) + d = 0",
+          "⇒ b + d = ac/2",
+          {
+            "text": "∴ 2(b + d) = ac",
+            "style": "boxed"
+          }
         ]
       }
     ]

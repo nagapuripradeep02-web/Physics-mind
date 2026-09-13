@@ -153,10 +153,19 @@
             "text": "     6   −25   37  −25     6    0",
             "style": "indent"
           },
-          "Both remainders are 0, as expected.",
+          {
+            "text": "Both remainders are 0, as expected.",
+            "added": true
+          },
           "Quotient: 6x⁴ − 25x³ + 37x² − 25x + 6,",
-          "which reads the same end to end,",
-          "so it is reciprocal too."
+          {
+            "text": "which reads the same end to end,",
+            "added": true
+          },
+          {
+            "text": "so it is reciprocal too.",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -185,6 +194,35 @@
           "A sign slip in the synthetic division row, so the remainder is not 0 and the quotient is wrong.",
           "Writing the quotient with one coefficient too many or too few (degree must drop by exactly 1 per division).",
           "Dividing by (x − 1) when the root is −1, or the reverse."
+        ],
+        "lines_compact": [
+          "Divide by (x − 1), then by (x + 1):",
+          {
+            "text": "1 |  6   −25   31    0   −31   25   −6",
+            "style": "indent"
+          },
+          {
+            "text": "  |       6  −19   12    12  −19    6",
+            "style": "indent"
+          },
+          {
+            "text": "     6   −19   12   12   −19    6    0",
+            "style": "indent"
+          },
+          {
+            "text": "−1 | 6   −19   12   12   −19    6",
+            "style": "indent"
+          },
+          {
+            "text": "   |     −6   25  −37    25   −6",
+            "style": "indent"
+          },
+          {
+            "text": "     6   −25   37  −25     6    0",
+            "style": "indent"
+          },
+          "Quotient: 6x⁴ − 25x³ + 37x² − 25x + 6,",
+          "which is again reciprocal."
         ]
       },
       {
@@ -196,15 +234,36 @@
         "margin_note": "Third mark. Divide the quotient by x², group, substitute. 6(t² − 2) = 6t² − 12, and 37 − 12 = 25.",
         "memory_tip": "Work on the quotient: 6(t² − 2) = 6t² − 12, and 37 − 12 = 25.",
         "lines": [
-          "x = 0 is not a root, so divide the quotient by x²:",
-          "6x² − 25x + 37 − 25/x + 6/x² = 0",
-          "Group the pairs that match:",
+          {
+            "text": "x = 0 is not a root, so divide the quotient by x²:",
+            "added": true
+          },
+          {
+            "text": "6x² − 25x + 37 − 25/x + 6/x² = 0",
+            "added": true
+          },
+          {
+            "text": "Group the pairs that match:",
+            "added": true
+          },
           "6(x² + 1/x²) − 25(x + 1/x) + 37 = 0 … (1)",
-          "Put x + 1/x = t.",
-          "Squaring both sides: x² + 2 + 1/x² = t²",
-          "So x² + 1/x² = t² − 2",
+          {
+            "text": "Put x + 1/x = t.",
+            "added": true
+          },
+          {
+            "text": "Squaring both sides: x² + 2 + 1/x² = t²",
+            "added": true
+          },
+          {
+            "text": "So x² + 1/x² = t² − 2",
+            "added": true
+          },
           "(1) becomes 6(t² − 2) − 25t + 37 = 0",
-          "6t² − 12 − 25t + 37 = 0",
+          {
+            "text": "6t² − 12 − 25t + 37 = 0",
+            "added": true
+          },
           "6t² − 25t + 25 = 0"
         ],
         "recall": {
@@ -234,6 +293,13 @@
           "Writing x² + 1/x² = t² and losing the −2.",
           "Forgetting to multiply the leading coefficient into the −2.",
           "Substituting in the ORIGINAL equation instead of the quotient."
+        ],
+        "lines_compact": [
+          "Divide 6x⁴ − 25x³ + 37x² − 25x + 6 = 0 by x²:",
+          "6(x² + 1/x²) − 25(x + 1/x) + 37 = 0 … (1)",
+          "Put x + 1/x = t, so x² + 1/x² = t² − 2",
+          "(1) becomes 6(t² − 2) − 25t + 37 = 0",
+          "6t² − 25t + 25 = 0"
         ]
       },
       {
@@ -245,7 +311,10 @@
         "margin_note": "Fourth mark. Split −25 = −15 − 10 with (−15)(−10) = 150 = 6 × 25.",
         "memory_tip": "Split −25 = −15 − 10, since (−15)(−10) = 150 = 6 × 25.",
         "lines": [
-          "Split −25t as −15t − 10t:",
+          {
+            "text": "Split −25t as −15t − 10t:",
+            "added": true
+          },
           "6t² − 15t − 10t + 25 = 0",
           "3t(2t − 5) − 5(2t − 5) = 0",
           "(2t − 5)(3t − 5) = 0",
@@ -278,6 +347,12 @@
           "A sign slip when splitting the middle term.",
           "Stopping at the two t values as if they were the roots.",
           "Solving the t-quadratic with the formula and making an arithmetic slip a factorisation would have avoided."
+        ],
+        "lines_compact": [
+          "6t² − 15t − 10t + 25 = 0",
+          "3t(2t − 5) − 5(2t − 5) = 0",
+          "(2t − 5)(3t − 5) = 0",
+          "t = 5/2 or t = 5/3"
         ]
       },
       {
@@ -290,11 +365,26 @@
         "memory_tip": "2x² − 5x + 2 = (2x − 1)(x − 2), giving 2 and 1/2.",
         "lines": [
           "If t = 5/2: x + 1/x = 5/2",
-          "Multiply by 2x: 2x² + 2 = 5x",
-          "2x² − 5x + 2 = 0",
-          "Split −5x as −4x − x:",
-          "2x² − 4x − x + 2 = 0",
-          "2x(x − 2) − 1(x − 2) = 0",
+          {
+            "text": "Multiply by 2x: 2x² + 2 = 5x",
+            "added": true
+          },
+          {
+            "text": "2x² − 5x + 2 = 0",
+            "added": true
+          },
+          {
+            "text": "Split −5x as −4x − x:",
+            "added": true
+          },
+          {
+            "text": "2x² − 4x − x + 2 = 0",
+            "added": true
+          },
+          {
+            "text": "2x(x − 2) − 1(x − 2) = 0",
+            "added": true
+          },
           "(2x − 1)(x − 2) = 0",
           "x = 2 or x = 1/2"
         ],
@@ -326,6 +416,12 @@
           "Forgetting to multiply through by x, so the equation in x is never formed.",
           "Using the quadratic formula on 2x² − 5x + 2 and making an arithmetic slip that the factorisation (2x − 1)(x − 2) would have avoided.",
           "Writing down only one root of the pair: (2x − 1)(x − 2) = 0 gives both x = 2 and x = 1/2."
+        ],
+        "lines_compact": [
+          "If t = 5/2: x + 1/x = 5/2",
+          "2x² + 2 = 5x, so 2x² − 5x + 2 = 0",
+          "(2x − 1)(x − 2) = 0",
+          "x = 2 or x = 1/2"
         ]
       },
       {
@@ -338,12 +434,27 @@
         "memory_tip": "25 − 36 = −11 is negative, so write √(−11) as i√11 — this pair is complex.",
         "lines": [
           "If t = 5/3: x + 1/x = 5/3",
-          "Multiply by 3x: 3x² + 3 = 5x",
-          "3x² − 5x + 3 = 0",
-          "x = (5 ± √(25 − 36))/6   [quadratic formula]",
+          {
+            "text": "Multiply by 3x: 3x² + 3 = 5x",
+            "added": true
+          },
+          {
+            "text": "3x² − 5x + 3 = 0",
+            "added": true
+          },
+          {
+            "text": "x = (5 ± √(25 − 36))/6   [quadratic formula]",
+            "added": true
+          },
           "= (5 ± √(−11))/6",
-          "√(−11) = i√11, so",
-          "x = (5 ± i√11)/6"
+          {
+            "text": "√(−11) = i√11, so",
+            "added": true
+          },
+          {
+            "text": "x = (5 ± i√11)/6",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -373,6 +484,12 @@
           "Forgetting to multiply through by x, so the equation in x is never formed.",
           "A slip inside the square root: 25 − 36 = −11, so the root is i√11, not √11.",
           "Dropping this pair because the discriminant is negative — the equation has six roots, and the complex pair (5 ± i√11)/6 belongs in the final answer."
+        ],
+        "lines_compact": [
+          "If t = 5/3: x + 1/x = 5/3",
+          "3x² + 3 = 5x, so 3x² − 5x + 3 = 0",
+          "x = (5 ± √(25 − 36))/6 = (5 ± √(−11))/6",
+          "= (5 ± i√11)/6"
         ]
       },
       {
@@ -383,8 +500,14 @@
         "margin_note": "No separate mark on the page for this line, but it is the answer. Six roots for degree 6: 1 and −1 from the two divisions, 2 and 1/2, and the complex pair. Their sum is 25/6 = −a₁/a₀.",
         "memory_tip": "Six roots for degree 6, and the 1 and −1 from the two divisions belong in the list.",
         "lines": [
-          "Collecting the two roots from step 2",
-          "and the four above:",
+          {
+            "text": "Collecting the two roots from step 2",
+            "added": true
+          },
+          {
+            "text": "and the four above:",
+            "added": true
+          },
           {
             "text": "∴ roots: 1, −1, 2, 1/2, (5 ± i√11)/6",
             "style": "boxed"
@@ -418,6 +541,13 @@
           "Leaving out the root removed by synthetic division.",
           "Listing the t values among the roots.",
           "Writing a ± pair as one root and so reporting too few roots."
+        ],
+        "lines_compact": [
+          "The six roots are:",
+          {
+            "text": "1, −1, 2, 1/2, (5 ± i√11)/6",
+            "style": "boxed"
+          }
         ]
       }
     ]

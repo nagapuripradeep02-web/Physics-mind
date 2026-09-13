@@ -135,15 +135,18 @@
         "lines": [
           {
             "text": "Only one horse can win, so no two of the",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "events happen together: they are disjoint.",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "Some horse wins, so together they fill S.",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "P(A) + P(B) + P(C) = P(A ∪ B ∪ C) = P(S) = 1",
@@ -175,6 +178,20 @@
         "common_mistakes": [
           "Writing the sum = 1 with no reason.",
           "Saying only \"mutually exclusive\" — that gives ≤ 1, not = 1."
+        ],
+        "lines_compact": [
+          {
+            "text": "Only one horse can win, so A, B, C are disjoint;",
+            "style": "normal"
+          },
+          {
+            "text": "one of them wins, so A ∪ B ∪ C = S.",
+            "style": "normal"
+          },
+          {
+            "text": "∴ P(A) + P(B) + P(C) = P(A ∪ B ∪ C) = P(S) = 1",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -188,19 +205,23 @@
         "lines": [
           {
             "text": "4P(C) + 2P(C) + P(C) = 1",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           },
           {
             "text": "7P(C) = 1 ⇒ P(C) = 1/7",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           },
           {
             "text": "P(B) = 2(1/7) = 2/7",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           },
           {
             "text": "P(A) = 4(1/7) = 4/7",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           },
           {
             "text": "∴ P(A) = 4/7, P(B) = 2/7, P(C) = 1/7",
@@ -231,6 +252,20 @@
         "common_mistakes": [
           "Stopping at P(C) = 1/7 without P(A) and P(B).",
           "Adding 4 + 2 + 1 as 6 and getting sixths."
+        ],
+        "lines_compact": [
+          {
+            "text": "⇒ 4P(C) + 2P(C) + P(C) = 1 ⇒ 7P(C) = 1",
+            "style": "eq"
+          },
+          {
+            "text": "⇒ P(C) = 1/7, P(B) = 2/7, P(A) = 4/7",
+            "style": "eq"
+          },
+          {
+            "text": "∴ P(A) = 4/7, P(B) = 2/7, P(C) = 1/7",
+            "style": "boxed"
+          }
         ]
       }
     ]

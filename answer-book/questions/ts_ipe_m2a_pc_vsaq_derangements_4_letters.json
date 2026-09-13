@@ -98,13 +98,26 @@
         "margin_note": "Second mark. 24(1/2 − 1/6 + 1/24) = 12 − 4 + 1 = 9.",
         "memory_tip": "24(1/2 − 1/6 + 1/24) = 12 − 4 + 1 = 9. The signs alternate — do not add all three.",
         "lines": [
-          "4! = 24, 2! = 2, 3! = 6, 4! = 24",
-          "D₄ = 24(1/2 − 1/6 + 1/24)",
-          "= 24/2 − 24/6 + 24/24",
-          "= 12 − 4 + 1",
+          {
+            "text": "4! = 24, 2! = 2, 3! = 6, 4! = 24",
+            "added": true
+          },
+          {
+            "text": "D₄ = 24(1/2 − 1/6 + 1/24)",
+            "added": true
+          },
+          {
+            "text": "= 24/2 − 24/6 + 24/24",
+            "added": true
+          },
+          {
+            "text": "= 12 − 4 + 1",
+            "added": true
+          },
           {
             "text": "∴ number of ways = 9",
-            "style": "boxed"
+            "style": "boxed",
+            "added": true
           }
         ],
         "recall": {
@@ -131,6 +144,13 @@
         "common_mistakes": [
           "Adding all three terms (12 + 4 + 1 = 17).",
           "Computing 24/6 as 6 instead of 4."
+        ],
+        "lines_compact": [
+          "D₄ = 24(1/2 − 1/6 + 1/24) = 12 − 4 + 1",
+          {
+            "text": "= 9",
+            "style": "boxed"
+          }
         ]
       }
     ]

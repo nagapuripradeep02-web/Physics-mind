@@ -101,8 +101,14 @@
         "margin_note": "Second mark. Three factors, so ¹²Pᵣ = ¹²P₃ and r = 3.",
         "memory_tip": "r is the NUMBER of factors, three, not the last factor 10.",
         "lines": [
-          "12 · 11 · 10 has three factors,",
-          "so ¹²Pᵣ = ¹²P₃",
+          {
+            "text": "12 · 11 · 10 has three factors,",
+            "added": true
+          },
+          {
+            "text": "so ¹²Pᵣ = ¹²P₃",
+            "added": true
+          },
           {
             "text": "∴ r = 3",
             "style": "boxed"
@@ -132,6 +138,13 @@
         "common_mistakes": [
           "Answering r = 10, the last factor, instead of the number of factors.",
           "Answering r = 12."
+        ],
+        "lines_compact": [
+          "Three factors, so ¹²Pᵣ = ¹²P₃",
+          {
+            "text": "∴ r = 3",
+            "style": "boxed"
+          }
         ]
       }
     ]

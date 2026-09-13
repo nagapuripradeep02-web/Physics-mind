@@ -149,11 +149,13 @@
         "lines": [
           {
             "text": "Proof. Start from the definition of",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "conditional probability, which needs P(A) ≠ 0:",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "P(Eₖ|A) = P(Eₖ ∩ A)/P(A)",
@@ -161,11 +163,13 @@
           },
           {
             "text": "The top can be rewritten by the",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "multiplication theorem:",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "P(Eₖ ∩ A) = P(Eₖ)·P(A|Eₖ)",
@@ -177,7 +181,8 @@
           },
           {
             "text": "It remains to find P(A).",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           }
         ],
         "recall": {
@@ -207,6 +212,28 @@
         "common_mistakes": [
           "Writing P(Eₖ|A) = P(A|Eₖ) as if the two were equal.",
           "Not naming the multiplication theorem when rewriting P(Eₖ ∩ A)."
+        ],
+        "lines_compact": [
+          {
+            "text": "Proof: By the definition of conditional probability,",
+            "style": "normal"
+          },
+          {
+            "text": "P(Eₖ|A) = P(Eₖ ∩ A)/P(A)",
+            "style": "eq"
+          },
+          {
+            "text": "By the multiplication theorem,",
+            "style": "normal"
+          },
+          {
+            "text": "P(Eₖ ∩ A) = P(Eₖ)·P(A|Eₖ)",
+            "style": "eq"
+          },
+          {
+            "text": "∴ P(Eₖ|A) = P(Eₖ)·P(A|Eₖ)/P(A)  …(1)",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -220,11 +247,13 @@
         "lines": [
           {
             "text": "The events are exhaustive, so together",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "they fill the whole sample space:",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "E₁ ∪ E₂ ∪ … ∪ Eₙ = S",
@@ -232,15 +261,18 @@
           },
           {
             "text": "They are mutually exclusive, so the events",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "A ∩ E₁, A ∩ E₂, …, A ∩ Eₙ are disjoint too.",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "Intersecting A with S changes nothing:",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "A = A ∩ S = A ∩ (E₁ ∪ E₂ ∪ … ∪ Eₙ)",
@@ -252,7 +284,8 @@
           },
           {
             "text": "Disjoint events add, so",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "P(A) = P(A ∩ E₁) + … + P(A ∩ Eₙ)",
@@ -260,7 +293,8 @@
           },
           {
             "text": "and by the multiplication theorem again,",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "= Σ P(Eᵢ)·P(A|Eᵢ), i = 1 to n  …(2)",
@@ -295,6 +329,40 @@
           "Writing P(A) = Σ P(A ∩ Eᵢ) without saying why the pieces are disjoint.",
           "Skipping A = A ∩ S — the line that brings the Eᵢ in.",
           "Writing P(A ∩ Eᵢ) = P(A)·P(Eᵢ), which needs independence and is not given."
+        ],
+        "lines_compact": [
+          {
+            "text": "E₁, …, Eₙ are mutually exclusive and exhaustive,",
+            "style": "normal"
+          },
+          {
+            "text": "so E₁ ∪ E₂ ∪ … ∪ Eₙ = S",
+            "style": "eq"
+          },
+          {
+            "text": "and A ∩ E₁, A ∩ E₂, …, A ∩ Eₙ are",
+            "style": "normal"
+          },
+          {
+            "text": "mutually disjoint (their Eᵢ parts do not meet).",
+            "style": "normal"
+          },
+          {
+            "text": "Now A = A ∩ S = A ∩ (E₁ ∪ E₂ ∪ … ∪ Eₙ)",
+            "style": "eq"
+          },
+          {
+            "text": "= (A ∩ E₁) ∪ (A ∩ E₂) ∪ … ∪ (A ∩ Eₙ)",
+            "style": "eq"
+          },
+          {
+            "text": "∴ P(A) = P(A ∩ E₁) + … + P(A ∩ Eₙ)",
+            "style": "eq"
+          },
+          {
+            "text": "= Σ P(Eᵢ)·P(A|Eᵢ), i = 1 to n  …(2)",
+            "style": "eq"
+          }
         ]
       },
       {

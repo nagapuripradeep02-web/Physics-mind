@@ -124,15 +124,27 @@
         "margin_note": "Second mark. Absolute deviations from 6, in the sorted order: 4, 3, 2, 0, 3, 4, 7. Sum 23, divide by n = 7. 23/7 = 3.2857…, written 3.29.",
         "memory_tip": "Deviations are taken from the median 6, never from the mean. 23/7 = 3.2857…, written 3.29.",
         "lines": [
-          "Take each value's distance from 6,",
-          "always as a positive number:",
+          {
+            "text": "Take each value's distance from 6,",
+            "added": true
+          },
+          {
+            "text": "always as a positive number:",
+            "added": true
+          },
           "|xᵢ − M| : 4, 3, 2, 0, 3, 4, 7",
           {
             "text": "M.D. = Σ|xᵢ − M|/n",
             "style": "eq"
           },
-          "= (4 + 3 + 2 + 0 + 3 + 4 + 7)/7",
-          "= 23/7 = 3.29",
+          {
+            "text": "= (4 + 3 + 2 + 0 + 3 + 4 + 7)/7",
+            "added": true
+          },
+          {
+            "text": "= 23/7 = 3.29",
+            "added": true
+          },
           {
             "text": "∴ M.D. about the median = 3.29",
             "style": "boxed"
@@ -166,6 +178,15 @@
           "Subtracting from the mean instead of from the median.",
           "Dividing 23 by 6 (leaving out the zero term) instead of by n = 7.",
           "Writing 3.28 — the book rounds 3.2857… to 3.29."
+        ],
+        "lines_compact": [
+          "|xᵢ − M| : 4, 3, 2, 0, 3, 4, 7",
+          "M.D. = Σ|xᵢ − M|/n",
+          "= (4 + 3 + 2 + 0 + 3 + 4 + 7)/7 = 23/7 = 3.29",
+          {
+            "text": "∴ M.D. about the median = 3.29",
+            "style": "boxed"
+          }
         ]
       }
     ]

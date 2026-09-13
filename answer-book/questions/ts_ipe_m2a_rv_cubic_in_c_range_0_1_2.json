@@ -139,17 +139,44 @@
         "margin_note": "Second mark (book's [1 Mark]). The coefficients 3 − 10 + 9 − 2 add to 0, so c = 1 is a root. Synthetic division by 1 gives the quotient 3c² − 7c + 2, which factors as (c − 2)(3c − 1). Three roots: 1, 2, 1/3.",
         "memory_tip": "The coefficients 3 − 10 + 9 − 2 add to 0, so c = 1 is a root. Divide it out, then factor the quadratic.",
         "lines": [
-          "Try c = 1: the sum of the coefficients is",
-          "3 − 10 + 9 − 2 = 0, so c = 1 is a root",
-          "and (c − 1) is a factor.",
-          "Dividing by (c − 1) gives the quotient",
-          "3c² − 7c + 2:",
+          {
+            "text": "Try c = 1: the sum of the coefficients is",
+            "added": true
+          },
+          {
+            "text": "3 − 10 + 9 − 2 = 0, so c = 1 is a root",
+            "added": true
+          },
+          {
+            "text": "and (c − 1) is a factor.",
+            "added": true
+          },
+          {
+            "text": "Dividing by (c − 1) gives the quotient",
+            "added": true
+          },
+          {
+            "text": "3c² − 7c + 2:",
+            "added": true
+          },
           "3c³ − 10c² + 9c − 2 = (c − 1)(3c² − 7c + 2)",
-          "Split −7c as −6c − c:",
-          "3c² − 6c − c + 2 = 3c(c − 2) − 1(c − 2)",
-          "= (c − 2)(3c − 1)",
+          {
+            "text": "Split −7c as −6c − c:",
+            "added": true
+          },
+          {
+            "text": "3c² − 6c − c + 2 = 3c(c − 2) − 1(c − 2)",
+            "added": true
+          },
+          {
+            "text": "= (c − 2)(3c − 1)",
+            "added": true
+          },
           "So (c − 1)(c − 2)(3c − 1) = 0",
-          "c = 1, c = 2 or c = 1/3"
+          {
+            "text": "c = 1, c = 2 or c = 1/3",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -178,6 +205,15 @@
           "Trying c = 1/3 first by guesswork and never showing why.",
           "Making an arithmetic slip in the synthetic division (3, −7, 2 is the quotient).",
           "Factoring 3c² − 7c + 2 as (3c − 2)(c − 1)."
+        ],
+        "lines_compact": [
+          "Sum of the coefficients: 3 − 10 + 9 − 2 = 0,",
+          "so c = 1 is a root.",
+          "Divide by (c − 1) by synthetic division",
+          "(quotient 3, −7, 2; remainder 0):",
+          "3c³ − 10c² + 9c − 2 = (c − 1)(3c² − 7c + 2)",
+          "= (c − 1)(c − 2)(3c − 1)",
+          "⇒ c = 1, 2 or 1/3"
         ]
       },
       {
@@ -192,11 +228,26 @@
           "Every probability must lie between 0 and 1.",
           "c = 1: P(X = 2) = 5(1) − 1 = 4 > 1 — rejected.",
           "c = 2: P(X = 2) = 5(2) − 1 = 9 > 1 — rejected.",
-          "c = 1/3: P(X = 0) = 3(1/27) = 1/9,",
-          "P(X = 1) = 4/3 − 10/9 = 2/9,",
-          "P(X = 2) = 5/3 − 1 = 2/3",
-          "All three lie between 0 and 1 and add to",
-          "1/9 + 2/9 + 6/9 = 1.",
+          {
+            "text": "c = 1/3: P(X = 0) = 3(1/27) = 1/9,",
+            "added": true
+          },
+          {
+            "text": "P(X = 1) = 4/3 − 10/9 = 2/9,",
+            "added": true
+          },
+          {
+            "text": "P(X = 2) = 5/3 − 1 = 2/3",
+            "added": true
+          },
+          {
+            "text": "All three lie between 0 and 1 and add to",
+            "added": true
+          },
+          {
+            "text": "1/9 + 2/9 + 6/9 = 1.",
+            "added": true
+          },
           "(i) ∴ c = 1/3"
         ],
         "recall": {
@@ -226,6 +277,15 @@
           "Writing 'c = 1/3' with no reason for dropping 1 and 2.",
           "Rejecting c = 1 because 'it is too big' without testing a probability.",
           "Testing only P(X = 0) = 3c³, which is 3 and 24 — also fine as a reason, but say it."
+        ],
+        "lines_compact": [
+          "Every probability must lie between 0 and 1.",
+          "c = 1 gives P(X = 2) = 5 − 1 = 4 > 1 — rejected.",
+          "c = 2 gives P(X = 2) = 10 − 1 = 9 > 1 — rejected.",
+          "c = 1/3 gives P(X = 0) = 1/9, P(X = 1) = 2/9,",
+          "P(X = 2) = 2/3 — all between 0 and 1,",
+          "and they add to 1.",
+          "(i) ∴ c = 1/3"
         ]
       },
       {
@@ -237,13 +297,31 @@
         "margin_note": "Two marks (book's [2 Marks]). 0 < X < 3 with range {0, 1, 2} means X = 1 or 2. Add the two expressions first — (4c − 10c²) + (5c − 1) = 9c − 10c² − 1 — then put c = 1/3: 3 − 10/9 − 1 = 8/9.",
         "memory_tip": "0 < X < 3 on {0, 1, 2} keeps X = 1 and 2. Add the expressions first, then put c = 1/3.",
         "lines": [
-          "(ii) 0 < X < 3 means X = 1 or X = 2:",
+          {
+            "text": "(ii) 0 < X < 3 means X = 1 or X = 2:",
+            "added": true
+          },
           "P(0 < X < 3) = P(X = 1) + P(X = 2)",
-          "= (4c − 10c²) + (5c − 1)",
-          "= 9c − 10c² − 1",
-          "Put c = 1/3:",
-          "= 9(1/3) − 10(1/9) − 1",
-          "= 3 − 10/9 − 1 = 2 − 10/9",
+          {
+            "text": "= (4c − 10c²) + (5c − 1)",
+            "added": true
+          },
+          {
+            "text": "= 9c − 10c² − 1",
+            "added": true
+          },
+          {
+            "text": "Put c = 1/3:",
+            "added": true
+          },
+          {
+            "text": "= 9(1/3) − 10(1/9) − 1",
+            "added": true
+          },
+          {
+            "text": "= 3 − 10/9 − 1 = 2 − 10/9",
+            "added": true
+          },
           "= 18/9 − 10/9 = 8/9"
         ],
         "recall": {
@@ -273,6 +351,12 @@
           "Including X = 0 or X = 3 (there is no X = 3).",
           "Computing 10(1/3)² as 10/3.",
           "Writing 3 − 10/9 − 1 = 2/9 by subtracting wrongly."
+        ],
+        "lines_compact": [
+          "(ii) P(0 < X < 3) = P(X = 1) + P(X = 2)",
+          "= (4c − 10c²) + (5c − 1) = 9c − 10c² − 1",
+          "= 9(1/3) − 10(1/3)² − 1 = 3 − 10/9 − 1",
+          "= 2 − 10/9 = 8/9"
         ]
       },
       {
@@ -284,7 +368,10 @@
         "margin_note": "One mark (book's [1 Mark]). 1 < X ≤ 2 keeps only X = 2 — the left end is excluded, the right end included. P(X = 2) = 5c − 1 = 5/3 − 1 = 2/3.",
         "memory_tip": "1 < X ≤ 2 keeps only X = 2 — left end excluded, right end included.",
         "lines": [
-          "(iii) 1 < X ≤ 2 means X = 2 only:",
+          {
+            "text": "(iii) 1 < X ≤ 2 means X = 2 only:",
+            "added": true
+          },
           "P(1 < X ≤ 2) = P(X = 2) = 5c − 1",
           "= 5(1/3) − 1 = 5/3 − 3/3 = 2/3"
         ],
@@ -315,6 +402,10 @@
           "Including X = 1 because 1 appears in the inequality.",
           "Using P(X = 1) instead of P(X = 2).",
           "Leaving the answer as 5c − 1."
+        ],
+        "lines_compact": [
+          "(iii) P(1 < X ≤ 2) = P(X = 2) = 5c − 1",
+          "= 5(1/3) − 1 = 5/3 − 1 = 2/3"
         ]
       },
       {
@@ -326,7 +417,10 @@
         "margin_note": "Last mark (book's [1 Mark]). X < 1 keeps only X = 0. P(X = 0) = 3c³ = 3(1/27) = 1/9. As a check, the three probabilities 1/9, 2/9, 2/3 add to 1.",
         "memory_tip": "X < 1 keeps only X = 0. 3(1/3)³ = 3/27 = 1/9; the three probabilities should add to 1.",
         "lines": [
-          "(iv) X < 1 means X = 0 only:",
+          {
+            "text": "(iv) X < 1 means X = 0 only:",
+            "added": true
+          },
           "P(X < 1) = P(X = 0) = 3c³",
           "= 3(1/3)³ = 3(1/27) = 1/9",
           {
@@ -361,6 +455,14 @@
           "Including X = 1 in X < 1.",
           "Computing (1/3)³ as 1/9.",
           "Forgetting the factor 3 and answering 1/27."
+        ],
+        "lines_compact": [
+          "(iv) P(X < 1) = P(X = 0) = 3c³",
+          "= 3(1/3)³ = 3 · 1/27 = 1/9",
+          {
+            "text": "∴ c = 1/3; (ii) 8/9 (iii) 2/3 (iv) 1/9",
+            "style": "boxed"
+          }
         ]
       }
     ]

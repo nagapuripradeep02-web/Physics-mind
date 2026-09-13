@@ -167,9 +167,18 @@
             "text": "Mean x̄ = A + C·(Σfᵢdᵢ/N)",
             "style": "eq"
           },
-          "= 25 + 10 · (10/50)",
-          "= 25 + 10(0.2)",
-          "= 25 + 2 = 27"
+          {
+            "text": "= 25 + 10 · (10/50)",
+            "added": true
+          },
+          {
+            "text": "= 25 + 10(0.2)",
+            "added": true
+          },
+          {
+            "text": "= 25 + 2 = 27",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -198,6 +207,10 @@
           "Forgetting to multiply by C, which gives 25 + 0.2 = 25.2.",
           "Dividing Σfᵢdᵢ by the number of classes (5) instead of by N = 50.",
           "Taking A as the mean and skipping this step."
+        ],
+        "lines_compact": [
+          "Mean x̄ = A + C·(Σfᵢdᵢ/N)",
+          "= 25 + 10·(10/50) = 25 + 2 = 27"
         ]
       },
       {
@@ -209,9 +222,18 @@
         "margin_note": "Next two marks. Columns: midpoint xᵢ, frequency fᵢ, the absolute deviation |xᵢ − 27|, and its product with fᵢ. Absolute values are all positive: 5 − 27 = −22 is written as 22. The sum 472 is the number the last step divides.",
         "memory_tip": "Deviate from x̄ = 27, not from the assumed mean 25. Absolute value makes every entry positive.",
         "lines": [
-          "Now take each class mark's distance from 27,",
-          "always as a positive number, and multiply",
-          "by its frequency:",
+          {
+            "text": "Now take each class mark's distance from 27,",
+            "added": true
+          },
+          {
+            "text": "always as a positive number, and multiply",
+            "added": true
+          },
+          {
+            "text": "by its frequency:",
+            "added": true
+          },
           {
             "text": "xᵢ     fᵢ     |xᵢ − x̄|     fᵢ|xᵢ − x̄|",
             "style": "indent"
@@ -269,6 +291,37 @@
           "Keeping the signs, so the column adds to 0.",
           "Using dᵢ instead of xᵢ − x̄ in this column.",
           "Multiplying by dᵢ instead of by fᵢ."
+        ],
+        "lines_compact": [
+          "With x̄ = 27, fill the last two columns:",
+          {
+            "text": "xᵢ     fᵢ     |xᵢ − x̄|     fᵢ|xᵢ − x̄|",
+            "style": "indent"
+          },
+          {
+            "text": "5      5      22           110",
+            "style": "indent"
+          },
+          {
+            "text": "15     8      12           96",
+            "style": "indent"
+          },
+          {
+            "text": "25     15     2            30",
+            "style": "indent"
+          },
+          {
+            "text": "35     16     8            128",
+            "style": "indent"
+          },
+          {
+            "text": "45     6      18           108",
+            "style": "indent"
+          },
+          {
+            "text": "Σfᵢ|xᵢ − x̄| = 472",
+            "style": "indent"
+          }
         ]
       },
       {
@@ -284,8 +337,14 @@
             "text": "M.D. about the mean = (1/N)·Σfᵢ|xᵢ − x̄|",
             "style": "eq"
           },
-          "= 472/50",
-          "= 9.44",
+          {
+            "text": "= 472/50",
+            "added": true
+          },
+          {
+            "text": "= 9.44",
+            "added": true
+          },
           {
             "text": "∴ M.D. about the mean = 9.44",
             "style": "boxed"
@@ -318,6 +377,14 @@
           "Dividing by 5 (the number of classes) instead of 50.",
           "Stopping at 472 without dividing.",
           "Writing the answer without the words 'about the mean'."
+        ],
+        "lines_compact": [
+          "M.D. about the mean = (1/N)·Σfᵢ|xᵢ − x̄|",
+          "= (1/50)·472 = 9.44",
+          {
+            "text": "∴ M.D. about the mean = 9.44",
+            "style": "boxed"
+          }
         ]
       }
     ]

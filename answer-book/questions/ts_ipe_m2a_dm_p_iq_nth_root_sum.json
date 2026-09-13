@@ -123,14 +123,23 @@
             "render": "katex",
             "style": "eq"
           },
-          "The modulus is raised to the power 1/n and,",
-          "by De Moivre's theorem, the angle is divided by n:",
+          {
+            "text": "The modulus is raised to the power 1/n and,",
+            "added": true
+          },
+          {
+            "text": "by De Moivre's theorem, the angle is divided by n:",
+            "added": true
+          },
           {
             "text": "= (p^2+q^2)^{1/2n}\\left(\\cos\\tfrac{\\theta}{n} + i\\sin\\tfrac{\\theta}{n}\\right)\\ \\dots(1)",
             "render": "katex",
             "style": "eq"
           },
-          "(this is one of the n values)"
+          {
+            "text": "(this is one of the n values)",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -160,6 +169,19 @@
           "Writing the modulus power as 1/n instead of 1/2n; the square root contributes the extra 1/2.",
           "Multiplying the angle by n instead of dividing it by n.",
           "Claiming this is the only nth root; it is one value, which is all the question asks for."
+        ],
+        "lines_compact": [
+          {
+            "text": "(p+iq)^{1/n} = \\left[(p^2+q^2)^{1/2}(\\cos\\theta + i\\sin\\theta)\\right]^{1/n}",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "= (p^2+q^2)^{1/2n}\\left(\\cos\\tfrac{\\theta}{n} + i\\sin\\tfrac{\\theta}{n}\\right)\\ \\dots(1)",
+            "render": "katex",
+            "style": "eq"
+          },
+          "(one value, by De Moivre's theorem)"
         ]
       },
       {
@@ -171,8 +193,14 @@
         "margin_note": "Fifth mark. p − iq is the conjugate of p + iq, so this root carries the same modulus factor with the sine sign reversed. Label it (2); nothing is recomputed.",
         "memory_tip": "p − iq is the conjugate, so the same modulus factor with the sine sign reversed.",
         "lines": [
-          "p − iq is the conjugate of p + iq, so its",
-          "root is the same with the sin term negative:",
+          {
+            "text": "p − iq is the conjugate of p + iq, so its",
+            "added": true
+          },
+          {
+            "text": "root is the same with the sin term negative:",
+            "added": true
+          },
           {
             "text": "(p-iq)^{1/n} = (p^2+q^2)^{1/2n}\\left(\\cos\\tfrac{\\theta}{n} - i\\sin\\tfrac{\\theta}{n}\\right)\\ \\dots(2)",
             "render": "katex",
@@ -206,6 +234,14 @@
           "Changing the sign of the cosine as well as the sine.",
           "Recomputing r and θ from scratch and losing time.",
           "Writing equation (2) without the minus sign, so nothing cancels in the next step."
+        ],
+        "lines_compact": [
+          "Similarly,",
+          {
+            "text": "(p-iq)^{1/n} = (p^2+q^2)^{1/2n}\\left(\\cos\\tfrac{\\theta}{n} - i\\sin\\tfrac{\\theta}{n}\\right)\\ \\dots(2)",
+            "render": "katex",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -217,13 +253,19 @@
         "margin_note": "Sixth and seventh marks. Adding (1) and (2) cancels the i sin terms and doubles the cosine: 2(p² + q²) to the power 1/2n, times cos(θ/n). Replace θ by Tan⁻¹(q/p), which is the form the question asks for.",
         "memory_tip": "Adding doubles the cosine. Replace θ by Tan⁻¹(q/p) — that is the form the question asks for.",
         "lines": [
-          "Adding (1) and (2), the i sin terms cancel:",
+          {
+            "text": "Adding (1) and (2), the i sin terms cancel:",
+            "added": true
+          },
           {
             "text": "(p+iq)^{1/n} + (p-iq)^{1/n} = (p^2+q^2)^{1/2n}\\cdot 2\\cos\\tfrac{\\theta}{n}",
             "render": "katex",
             "style": "eq"
           },
-          "Putting θ = Tan⁻¹(q/p) back in:",
+          {
+            "text": "Putting θ = Tan⁻¹(q/p) back in:",
+            "added": true
+          },
           {
             "text": "= 2\\,(p^2+q^2)^{1/2n}\\cos\\!\\left(\\tfrac{1}{n}\\,\\mathrm{Tan}^{-1}\\tfrac{q}{p}\\right)",
             "render": "katex",
@@ -258,6 +300,19 @@
           "Leaving θ in the answer instead of replacing it by Tan⁻¹(q/p), which the question asks for.",
           "Subtracting instead of adding, which leaves 2i sin instead of 2 cos.",
           "Dropping the factor (p² + q²) to the 1/2n."
+        ],
+        "lines_compact": [
+          "Adding (1) and (2):",
+          {
+            "text": "(p+iq)^{1/n} + (p-iq)^{1/n} = (p^2+q^2)^{1/2n}\\cdot 2\\cos\\tfrac{\\theta}{n}",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "= 2\\,(p^2+q^2)^{1/2n}\\cos\\!\\left(\\tfrac{1}{n}\\,\\mathrm{Tan}^{-1}\\tfrac{q}{p}\\right)",
+            "render": "katex",
+            "style": "boxed"
+          }
         ]
       }
     ]

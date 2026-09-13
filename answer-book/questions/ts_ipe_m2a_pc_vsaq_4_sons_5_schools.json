@@ -97,10 +97,14 @@
         "memory_tip": "⁵P₄ = 5·4·3·2 = 120. Four factors counting down from 5.",
         "lines": [
           "⁵P₄ = 5 · 4 · 3 · 2",
-          "= 20 · 6",
+          {
+            "text": "= 20 · 6",
+            "added": true
+          },
           {
             "text": "∴ number of ways = 120",
-            "style": "boxed"
+            "style": "boxed",
+            "added": true
           }
         ],
         "recall": {
@@ -127,6 +131,13 @@
         "common_mistakes": [
           "Multiplying three factors only (5·4·3 = 60).",
           "Answering 24 (4!)."
+        ],
+        "lines_compact": [
+          "⁵P₄ = 5 · 4 · 3 · 2",
+          {
+            "text": "= 120",
+            "style": "boxed"
+          }
         ]
       }
     ]

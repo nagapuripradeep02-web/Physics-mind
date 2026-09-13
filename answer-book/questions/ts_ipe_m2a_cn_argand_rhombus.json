@@ -308,24 +308,57 @@
         "margin_note": "Half the marks. Each side is √170/2 — the pairs 1/4 + 169/4 and 121/4 + 49/4 both add to 170/4. The diagonals are √136 and √34, which are not equal.",
         "memory_tip": "Six distances, not four. Every side is √170/2; the diagonals √136 and √34 are different.",
         "lines": [
-          "The four sides:",
+          {
+            "text": "The four sides:",
+            "added": true
+          },
           "AB = √((−2 + 3/2)² + (7 − 1/2)²)",
-          "= √((−1/2)² + (13/2)²) = √(1/4 + 169/4)",
-          "= √(170/4) = √170/2",
+          {
+            "text": "= √((−1/2)² + (13/2)²) = √(1/4 + 169/4)",
+            "added": true
+          },
+          {
+            "text": "= √(170/4) = √170/2",
+            "added": true
+          },
           "BC = √((−3/2 − 4)² + (1/2 + 3)²)",
-          "= √((−11/2)² + (7/2)²) = √(121/4 + 49/4)",
-          "= √(170/4) = √170/2",
+          {
+            "text": "= √((−11/2)² + (7/2)²) = √(121/4 + 49/4)",
+            "added": true
+          },
+          {
+            "text": "= √(170/4) = √170/2",
+            "added": true
+          },
           "CD = √((4 − 7/2)² + (−3 − 7/2)²)",
-          "= √((1/2)² + (−13/2)²) = √(1/4 + 169/4)",
-          "= √170/2",
+          {
+            "text": "= √((1/2)² + (−13/2)²) = √(1/4 + 169/4)",
+            "added": true
+          },
+          {
+            "text": "= √170/2",
+            "added": true
+          },
           "DA = √((7/2 + 2)² + (7/2 − 7)²)",
-          "= √((11/2)² + (−7/2)²) = √(121/4 + 49/4)",
-          "= √170/2",
-          "The two diagonals:",
+          {
+            "text": "= √((11/2)² + (−7/2)²) = √(121/4 + 49/4)",
+            "added": true
+          },
+          {
+            "text": "= √170/2",
+            "added": true
+          },
+          {
+            "text": "The two diagonals:",
+            "added": true
+          },
           "AC = √((−2 − 4)² + (7 + 3)²)",
           "= √(36 + 100) = √136",
           "BD = √((−3/2 − 7/2)² + (1/2 − 7/2)²)",
-          "= √((−5)² + (−3)²) = √(25 + 9) = √34"
+          {
+            "text": "= √((−5)² + (−3)²) = √(25 + 9) = √34",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -355,6 +388,56 @@
           "A sign slip in (−2 + 3/2) or (−3 − 7/2), which both need the fraction subtracted from a negative.",
           "Stopping after the sides — the diagonals are what separate rhombus from square.",
           "Leaving BD as √136/2 and not noticing it equals √34, then comparing it wrongly with √136."
+        ],
+        "lines_compact": [
+          {
+            "text": "AB = √((−2 + 3/2)² + (7 − 1/2)²)",
+            "style": "eq"
+          },
+          {
+            "text": "= √(1/4 + 169/4) = √(170/4) = √170/2",
+            "style": "indent"
+          },
+          {
+            "text": "BC = √((−3/2 − 4)² + (1/2 + 3)²)",
+            "style": "eq"
+          },
+          {
+            "text": "= √(121/4 + 49/4) = √(170/4) = √170/2",
+            "style": "indent"
+          },
+          {
+            "text": "CD = √((4 − 7/2)² + (−3 − 7/2)²)",
+            "style": "eq"
+          },
+          {
+            "text": "= √(1/4 + 169/4) = √170/2",
+            "style": "indent"
+          },
+          {
+            "text": "DA = √((7/2 + 2)² + (7/2 − 7)²)",
+            "style": "eq"
+          },
+          {
+            "text": "= √(121/4 + 49/4) = √170/2",
+            "style": "indent"
+          },
+          {
+            "text": "AC = √((−2 − 4)² + (7 + 3)²)",
+            "style": "eq"
+          },
+          {
+            "text": "= √(36 + 100) = √136",
+            "style": "indent"
+          },
+          {
+            "text": "BD = √((−3/2 − 7/2)² + (1/2 − 7/2)²)",
+            "style": "eq"
+          },
+          {
+            "text": "= √(25 + 9) = √34",
+            "style": "indent"
+          }
         ]
       },
       {
@@ -366,11 +449,26 @@
         "margin_note": "Last mark. Say the sides are equal, say the diagonals are not, and name the shape.",
         "memory_tip": "Two facts, then the name: sides equal, diagonals unequal, therefore rhombus.",
         "lines": [
-          "AB = BC = CD = DA = √170/2, so the four",
-          "sides are equal.",
-          "AC = √136 and BD = √34, which are unequal.",
-          "Equal diagonals would make it a square;",
-          "unequal diagonals leave a rhombus.",
+          {
+            "text": "AB = BC = CD = DA = √170/2, so the four",
+            "added": true
+          },
+          {
+            "text": "sides are equal.",
+            "added": true
+          },
+          {
+            "text": "AC = √136 and BD = √34, which are unequal.",
+            "added": true
+          },
+          {
+            "text": "Equal diagonals would make it a square;",
+            "added": true
+          },
+          {
+            "text": "unequal diagonals leave a rhombus.",
+            "added": true
+          },
           {
             "text": "∴ A, B, C, D form a rhombus.",
             "style": "boxed"
@@ -401,6 +499,14 @@
         "common_mistakes": [
           "Concluding 'square' from the four equal sides without checking the diagonals.",
           "Ending on the last distance with no sentence."
+        ],
+        "lines_compact": [
+          "AB = BC = CD = DA = √170/2 — four equal sides.",
+          "AC = √136 ≠ BD = √34 — the diagonals are unequal.",
+          {
+            "text": "∴ A, B, C, D form a rhombus.",
+            "style": "boxed"
+          }
         ]
       }
     ]

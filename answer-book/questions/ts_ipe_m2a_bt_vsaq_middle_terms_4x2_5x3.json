@@ -96,12 +96,30 @@
         "margin_note": "Second mark. T₉ has r = 8, T₁₀ has r = 9. Powers of x: 2·9 + 3·8 = 42 and 2·8 + 3·9 = 43.",
         "memory_tip": "T₉ has r = 8 and T₁₀ has r = 9, each with its own ¹⁷Cᵣ. Powers of x: 42 and 43.",
         "lines": [
-          "T₉ = ¹⁷C₈ (4x²)¹⁷⁻⁸ (5x³)⁸ = ¹⁷C₈ (4x²)⁹ (5x³)⁸",
-          "= ¹⁷C₈ · 4⁹ x¹⁸ · 5⁸ x²⁴",
-          "= ¹⁷C₈ · 4⁹ · 5⁸ · x¹⁸⁺²⁴ = ¹⁷C₈ · 4⁹ · 5⁸ · x⁴²",
-          "T₁₀ = ¹⁷C₉ (4x²)¹⁷⁻⁹ (5x³)⁹ = ¹⁷C₉ (4x²)⁸ (5x³)⁹",
-          "= ¹⁷C₉ · 4⁸ x¹⁶ · 5⁹ x²⁷",
-          "= ¹⁷C₉ · 4⁸ · 5⁹ · x¹⁶⁺²⁷ = ¹⁷C₉ · 4⁸ · 5⁹ · x⁴³",
+          {
+            "text": "T₉ = ¹⁷C₈ (4x²)¹⁷⁻⁸ (5x³)⁸ = ¹⁷C₈ (4x²)⁹ (5x³)⁸",
+            "added": true
+          },
+          {
+            "text": "= ¹⁷C₈ · 4⁹ x¹⁸ · 5⁸ x²⁴",
+            "added": true
+          },
+          {
+            "text": "= ¹⁷C₈ · 4⁹ · 5⁸ · x¹⁸⁺²⁴ = ¹⁷C₈ · 4⁹ · 5⁸ · x⁴²",
+            "added": true
+          },
+          {
+            "text": "T₁₀ = ¹⁷C₉ (4x²)¹⁷⁻⁹ (5x³)⁹ = ¹⁷C₉ (4x²)⁸ (5x³)⁹",
+            "added": true
+          },
+          {
+            "text": "= ¹⁷C₉ · 4⁸ x¹⁶ · 5⁹ x²⁷",
+            "added": true
+          },
+          {
+            "text": "= ¹⁷C₉ · 4⁸ · 5⁹ · x¹⁶⁺²⁷ = ¹⁷C₉ · 4⁸ · 5⁹ · x⁴³",
+            "added": true
+          },
           {
             "text": "∴ T₉ = ¹⁷C₈·4⁹·5⁸·x⁴², T₁₀ = ¹⁷C₉·4⁸·5⁹·x⁴³",
             "style": "boxed"
@@ -132,6 +150,14 @@
         "common_mistakes": [
           "Adding only the bracket powers as 9 + 8 = 17, forgetting the 2 and the 3 from x² and x³ — the power is 2·9 + 3·8 = 42.",
           "Writing ¹⁷C₈ on both terms."
+        ],
+        "lines_compact": [
+          "T₉ = ¹⁷C₈ (4x²)⁹ (5x³)⁸ = ¹⁷C₈ · 4⁹ · 5⁸ · x⁴²",
+          "T₁₀ = ¹⁷C₉ (4x²)⁸ (5x³)⁹ = ¹⁷C₉ · 4⁸ · 5⁹ · x⁴³",
+          {
+            "text": "∴ T₉ = ¹⁷C₈·4⁹·5⁸·x⁴², T₁₀ = ¹⁷C₉·4⁸·5⁹·x⁴³",
+            "style": "boxed"
+          }
         ]
       }
     ]

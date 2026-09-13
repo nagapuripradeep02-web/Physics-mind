@@ -102,8 +102,14 @@
         "margin_note": "Second mark. 4r + 3 = 15 gives r = 3. Check: ¹⁵C₅ = ¹⁵C₁₀, and 5 + 10 = 15.",
         "memory_tip": "The lower numbers add to the UPPER number 15: 4r + 3 = 15, r = 3. Check ¹⁵C₅ = ¹⁵C₁₀.",
         "lines": [
-          "4r + 3 = 15",
-          "4r = 15 − 3 = 12",
+          {
+            "text": "4r + 3 = 15",
+            "added": true
+          },
+          {
+            "text": "4r = 15 − 3 = 12",
+            "added": true
+          },
           {
             "text": "∴ r = 3",
             "style": "boxed"
@@ -134,6 +140,13 @@
         "common_mistakes": [
           "Collecting −1 + 4 as −3 and getting 4r − 3 = 15.",
           "Answering r = 12 by forgetting to divide by 4."
+        ],
+        "lines_compact": [
+          "4r + 3 = 15 ⇒ 4r = 12",
+          {
+            "text": "∴ r = 3",
+            "style": "boxed"
+          }
         ]
       }
     ]

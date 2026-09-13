@@ -119,11 +119,23 @@
         "margin_note": "Second mark. Divide by 4: m² − 8m + 15 = 0, which factorises as (m − 3)(m − 5) = 0. Both values are answers — the question says 'values'.",
         "memory_tip": "Divide by 4: m² − 8m + 15 = (m − 3)(m − 5). The question says 'values' — give both.",
         "lines": [
-          "Divide throughout by 4:",
+          {
+            "text": "Divide throughout by 4:",
+            "added": true
+          },
           "m² − 8m + 15 = 0",
-          "Split −8m as −3m − 5m:",
-          "m² − 3m − 5m + 15 = 0",
-          "m(m − 3) − 5(m − 3) = 0",
+          {
+            "text": "Split −8m as −3m − 5m:",
+            "added": true
+          },
+          {
+            "text": "m² − 3m − 5m + 15 = 0",
+            "added": true
+          },
+          {
+            "text": "m(m − 3) − 5(m − 3) = 0",
+            "added": true
+          },
           "(m − 3)(m − 5) = 0",
           {
             "text": "∴ m = 3 or m = 5",
@@ -157,6 +169,14 @@
           "Giving only m = 3 or only m = 5.",
           "Factorising as (m + 3)(m + 5).",
           "Forgetting to divide by 4 and mis-factorising 4m² − 32m + 60."
+        ],
+        "lines_compact": [
+          "⇒ m² − 8m + 15 = 0",
+          "⇒ (m − 3)(m − 5) = 0",
+          {
+            "text": "∴ m = 3 or m = 5",
+            "style": "boxed"
+          }
         ]
       }
     ]

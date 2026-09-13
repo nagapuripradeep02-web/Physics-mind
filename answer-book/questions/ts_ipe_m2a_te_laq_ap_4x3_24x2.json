@@ -120,11 +120,23 @@
         "margin_note": "Second mark. S₁ = −a₁/a₀ = 24/4 = 6. The two d's cancel, so the left side is just 3a.",
         "memory_tip": "S₁ = −a₁/a₀ = 24/4 = 6. The two d's cancel, so the left side is just 3a.",
         "lines": [
-          "For a₀x³ + a₁x² + a₂x + a₃ = 0 the root relations are",
-          "S₁ = −a₁/a₀, S₂ = a₂/a₀, S₃ = −a₃/a₀",
-          "Sum of the roots S₁ = −a₁/a₀ = −(−24)/4 = 6",
+          {
+            "text": "For a₀x³ + a₁x² + a₂x + a₃ = 0 the root relations are",
+            "added": true
+          },
+          {
+            "text": "S₁ = −a₁/a₀, S₂ = a₂/a₀, S₃ = −a₃/a₀",
+            "added": true
+          },
+          {
+            "text": "Sum of the roots S₁ = −a₁/a₀ = −(−24)/4 = 6",
+            "added": true
+          },
           "(a − d) + a + (a + d) = 6",
-          "The −d and +d cancel:"
+          {
+            "text": "The −d and +d cancel:",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -153,6 +165,10 @@
           "Dropping the minus sign in S₁ = −a₁/a₀.",
           "Dividing by the constant term instead of the leading coefficient.",
           "Not cancelling the fraction before writing 3a = …"
+        ],
+        "lines_compact": [
+          "Sum of roots S₁ = −a₁/a₀:",
+          "(a − d) + a + (a + d) = 24/4 = 6"
         ]
       },
       {
@@ -164,8 +180,14 @@
         "margin_note": "Third mark. 3a = 6 gives a = 2, the middle root.",
         "memory_tip": "3a = 6 gives a = 2, the middle root. Divide by 3 — do not take the sum itself.",
         "lines": [
-          "3a = 6",
-          "a = 2"
+          {
+            "text": "3a = 6",
+            "added": true
+          },
+          {
+            "text": "a = 2",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -190,6 +212,9 @@
         "why": "Because the sum is 3a exactly, a is found before d is even touched. a is the middle root, so the other two sit at equal distances d on either side of it.",
         "common_mistakes": [
           "Writing a = the sum instead of a = the sum divided by 3."
+        ],
+        "lines_compact": [
+          "3a = 6, so a = 2"
         ]
       },
       {
@@ -201,9 +226,18 @@
         "margin_note": "Fourth mark. S₃ = −a₃/a₀ = −18/4 = −9/2. (a − d)(a + d) is a difference of squares, so the product is a(a² − d²).",
         "memory_tip": "S₃ = −a₃/a₀ = −9/2. (a − d)(a + d) is a difference of squares, so the product is a(a² − d²).",
         "lines": [
-          "Product of the roots S₃ = −a₃/a₀ = −18/4 = −9/2",
-          "(a − d) · a · (a + d) = −9/2",
-          "(a − d)(a + d) = a² − d², so",
+          {
+            "text": "Product of the roots S₃ = −a₃/a₀ = −18/4 = −9/2",
+            "added": true
+          },
+          {
+            "text": "(a − d) · a · (a + d) = −9/2",
+            "added": true
+          },
+          {
+            "text": "(a − d)(a + d) = a² − d², so",
+            "added": true
+          },
           "a(a² − d²) = −9/2"
         ],
         "recall": {
@@ -233,6 +267,11 @@
           "Writing S₃ = a₃/a₀ and losing the minus.",
           "Expanding (a − d)·a·(a + d) as a³ − d² instead of a(a² − d²).",
           "Using the x coefficient a₂ instead of the constant a₃."
+        ],
+        "lines_compact": [
+          "Product of roots S₃ = −a₃/a₀:",
+          "(a − d)·a·(a + d) = −18/4 = −9/2",
+          "a(a² − d²) = −9/2"
         ]
       },
       {
@@ -244,11 +283,20 @@
         "margin_note": "Fifth mark. Put a = 2 in, divide out the a, and solve for d². d = ±5/2; either sign gives the same three roots.",
         "memory_tip": "Put a = 2 in and solve for d²: d = ±5/2. Either sign gives the same three roots.",
         "lines": [
-          "Put a = 2:",
-          "2(2² − d²) = −9/2",
+          {
+            "text": "Put a = 2:",
+            "added": true
+          },
+          {
+            "text": "2(2² − d²) = −9/2",
+            "added": true
+          },
           "2(4 − d²) = −9/2",
           "4 − d² = −9/4",
-          "d² = 4 + 9/4 = 16/4 + 9/4 = 25/4",
+          {
+            "text": "d² = 4 + 9/4 = 16/4 + 9/4 = 25/4",
+            "added": true
+          },
           "d = ±5/2"
         ],
         "recall": {
@@ -277,6 +325,12 @@
           "A slip when dividing both sides by the fraction a.",
           "Forgetting the ± when taking the square root, and never noticing it does not matter.",
           "Leaving d² = 25/4 as if d were 25/4."
+        ],
+        "lines_compact": [
+          "2(4 − d²) = −9/2",
+          "4 − d² = −9/4",
+          "d² = 4 + 9/4 = 25/4",
+          "d = ±5/2"
         ]
       },
       {
@@ -288,11 +342,26 @@
         "margin_note": "Last two marks. Substitute a and d back; the three numbers must have equal gaps and must add to the sum found in step 2.",
         "memory_tip": "a and d are not the roots. Substitute back for −1/2, 2, 9/2, which have equal gaps.",
         "lines": [
-          "Take d = 5/2. (d = −5/2 only swaps the",
-          "first and last root, so the set is the same.)",
-          "a − d = 2 − 5/2 = 4/2 − 5/2 = −1/2",
-          "a = 2",
-          "a + d = 2 + 5/2 = 4/2 + 5/2 = 9/2",
+          {
+            "text": "Take d = 5/2. (d = −5/2 only swaps the",
+            "added": true
+          },
+          {
+            "text": "first and last root, so the set is the same.)",
+            "added": true
+          },
+          {
+            "text": "a − d = 2 − 5/2 = 4/2 − 5/2 = −1/2",
+            "added": true
+          },
+          {
+            "text": "a = 2",
+            "added": true
+          },
+          {
+            "text": "a + d = 2 + 5/2 = 4/2 + 5/2 = 9/2",
+            "added": true
+          },
           {
             "text": "∴ roots: −1/2, 2, 9/2",
             "style": "boxed"
@@ -325,6 +394,14 @@
           "Listing a and d as the roots.",
           "Not substituting one root back into the equation (each must give 0).",
           "Leaving the fractions unsimplified so the A.P. is not visible."
+        ],
+        "lines_compact": [
+          "Take d = 5/2 (−5/2 gives the same three roots):",
+          "a − d = 2 − 5/2 = −1/2, a = 2, a + d = 9/2",
+          {
+            "text": "∴ roots: −1/2, 2, 9/2",
+            "style": "boxed"
+          }
         ]
       }
     ]

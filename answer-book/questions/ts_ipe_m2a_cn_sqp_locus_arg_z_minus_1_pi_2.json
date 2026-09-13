@@ -97,8 +97,14 @@
         "margin_note": "Second mark. x − 1 = 0 and y > 0: the vertical half-line above the point (1, 0).",
         "memory_tip": "x = 1 with y > 0 — a half-line. The whole line would include points with argument −π/2.",
         "lines": [
-          "Real part = 0: x − 1 = 0, so x = 1",
-          "Imaginary part > 0: y > 0",
+          {
+            "text": "Real part = 0: x − 1 = 0, so x = 1",
+            "added": true
+          },
+          {
+            "text": "Imaginary part > 0: y > 0",
+            "added": true
+          },
           {
             "text": "∴ Locus of z: x = 1, with y > 0",
             "style": "boxed"
@@ -131,6 +137,14 @@
         "common_mistakes": [
           "Giving the whole line x = 1, which includes points with argument −π/2.",
           "Giving y = 0 instead of x = 1 — that would be argument 0 or π."
+        ],
+        "lines_compact": [
+          "⇒ x − 1 = 0 and y > 0",
+          {
+            "text": "∴ Locus of z: x = 1, with y > 0",
+            "style": "boxed"
+          },
+          "(the half-line above the point (1, 0))"
         ]
       }
     ]

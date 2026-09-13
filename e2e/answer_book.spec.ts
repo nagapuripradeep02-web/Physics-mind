@@ -1970,10 +1970,17 @@ test('a typeset line renders as math, sits on whole rules, and never shows raw T
     await page.goto(URL);
     await page.waitForSelector('#catalogView:not([hidden])');
 
+    // Both authored lengths: a typeset line may live in the short answer
+    // (lines_compact), in the full working, or only in working the expansion
+    // ADDED — and a card opens SHORT, so scanning `lines` alone once left the
+    // sweep blind to the third case (ts_ipe_m2a_bt_vsaq_7th_term_4_by_x3, the
+    // only one in the book, 2026-09-10). A truncated typeset line has no other
+    // symptom, so neither length may go unmeasured.
     const withKatex = await page.evaluate(() =>
         ((window as any).PM_QUESTIONS as any[])
             .filter((q) => q.answer.steps.some((s: any) =>
-                (s.lines || []).some((l: any) => l && l.render === 'katex')))
+                [...(s.lines || []), ...(s.lines_compact || [])]
+                    .some((l: any) => l && l.render === 'katex')))
             .map((q) => q.question_id));
     if (!withKatex.length) return;              // a book with no typeset line is legal
 
@@ -1981,7 +1988,7 @@ test('a typeset line renders as math, sits on whole rules, and never shows raw T
         await openQ(page, id);
         await page.evaluate(() => (window as any).PM_ANSWER.revealAll());
         await page.waitForTimeout(700);
-        const r = await page.evaluate(() => {
+        const probe = () => page.evaluate(() => {
             const clips = [...document.querySelectorAll('.kx-clip')] as HTMLElement[];
             return {
                 clips: clips.length,
@@ -2009,10 +2016,34 @@ test('a typeset line renders as math, sits on whole rules, and never shows raw T
                     document.getElementById('notebookView')!.textContent || ''),
             };
         });
-        expect(r.clips, `${id} has typeset lines`).toBeGreaterThan(0);
-        expect(r.typeset, `${id}: every clip holds real KaTeX output`).toBe(r.clips);
-        expect(r.clipped, `${id}: typeset line(s) truncated by the wipe container`).toEqual([]);
-        expect(r.rawTex, `${id}: raw TeX leaked onto the page`).toBe(false);
+
+        const check = (r: any, where: string) => {
+            expect(r.typeset, `${id} ${where}: every clip holds real KaTeX output`).toBe(r.clips);
+            expect(r.clipped, `${id} ${where}: typeset line(s) truncated by the wipe container`).toEqual([]);
+            expect(r.rawTex, `${id} ${where}: raw TeX leaked onto the page`).toBe(false);
+        };
+
+        const short = await probe();
+        check(short, 'at exam length');
+
+        // Then written out in full, where a card that has one carries typeset
+        // lines the short answer never shows.
+        const expandable = (await page.evaluate(() =>
+            (window as any).PM_ANSWER.getState().expandableSteps)) as string[];
+        let full = short;
+        if (expandable.length) {
+            await page.evaluate((ids: string[]) => {
+                ids.forEach((sid) => (window as any).PM_ANSWER.setStepDetail(sid, 'full'));
+            }, expandable);
+            await page.evaluate(() => (window as any).PM_ANSWER.revealAll());
+            await page.waitForTimeout(700);
+            full = await probe();
+            check(full, 'written out in full');
+        }
+
+        // The line exists at ONE of the two lengths — that is what makes it a card
+        // with a typeset line at all.
+        expect(short.clips + full.clips, `${id} has typeset lines at some length`).toBeGreaterThan(0);
     }
 });
 
@@ -3022,4 +3053,184 @@ test('the offline build bakes no staff word and no ask endpoint', async () => {
     const src = readFileSync(DIST, 'utf8');
     expect(/PM_STAFF_WORD\s*=\s*""/.test(src)).toBe(true);
     expect(/PM_VIDI_BASE\s*=\s*""/.test(src)).toBe(true);
+});
+
+/* ── Simplify: one MARK at a time ───────────────────────────────────────────
+   A step written out in full carries both lengths (step.lines_compact) and flags
+   the working the expansion added. Each such step gets its own button in the
+   red-pen gutter, so a student unfolds the one mark they are stuck on. These
+   gates pin what can silently break: the SETUP step is never expandable, a press
+   moves ONLY its own step, the added lines are visibly a different pen, and the
+   pagination invariant survives the longer working. */
+
+const EXPANDED_CARD = 'ts_ipe_m2a_bt_terms_240_720_1080';
+
+/** Lines per step id, plus which steps are showing added working. */
+async function stepShape(page: any) {
+    return page.evaluate(() => {
+        const out: Record<string, { lines: number; added: number }> = {};
+        document.querySelectorAll('.step-block[data-step-id]').forEach((bl) => {
+            out[bl.getAttribute('data-step-id')!] = {
+                lines: bl.querySelectorAll('.line').length,
+                added: bl.querySelectorAll('.line.added').length,
+            };
+        });
+        return out;
+    });
+}
+
+test('Simplify writes ONE mark out in full and leaves the rest at exam length', async ({ page }) => {
+    await openFirst(page);
+    await openQ(page, EXPANDED_CARD);
+    await page.evaluate(() => (window as any).PM_ANSWER.revealAll());
+
+    const st = await page.evaluate(() => (window as any).PM_ANSWER.getState());
+    const firstStep = await page.evaluate(() => (window as any).PM_ANSWER.question.answer.steps[0].id);
+
+    // The SETUP step is never expandable: a solution opens by writing what is
+    // given and the formula, and there is nothing there to unfold on demand.
+    expect(st.expandableSteps).not.toContain(firstStep);
+    expect(st.expandableSteps.length).toBeGreaterThan(0);
+    expect(st.expandedSteps).toEqual([]);
+    expect(await page.locator(`.step-block[data-step-id="${firstStep}"] .step-simplify`).count()).toBe(0);
+    // ...and it is in ink, at full length, from the start.
+    expect(await page.locator(`.step-block[data-step-id="${firstStep}"] .line.added`).count()).toBe(0);
+
+    // One button per expandable step, and nothing is unfolded yet.
+    expect(await page.locator('.step-simplify').count()).toBe(st.expandableSteps.length);
+    expect(await page.locator('.line.added').count()).toBe(0);
+    const before = await stepShape(page);
+
+    // Press ONE mark's button — not the API.
+    const target = st.expandableSteps[0];
+    await page.click(`.step-simplify[data-step-id="${target}"]`);
+    await page.evaluate(() => (window as any).PM_ANSWER.revealAll());
+
+    const after = await stepShape(page);
+    const st2 = await page.evaluate(() => (window as any).PM_ANSWER.getState());
+    expect(st2.expandedSteps).toEqual([target]);
+    expect(st2.marksEarned).toBe(st.marksEarned);          // marks are the answer's, not the length's
+
+    // ONLY that step changed. This is the whole point of a per-mark button.
+    for (const id of Object.keys(before)) {
+        if (id === target) {
+            expect(after[id].lines).toBeGreaterThan(before[id].lines);
+            expect(after[id].added).toBeGreaterThan(0);
+        } else {
+            expect({ id, ...after[id] }).toEqual({ id, ...before[id] });
+        }
+    }
+
+    const check = await page.evaluate(() => {
+        const added = Array.from(document.querySelectorAll('.line.added')) as HTMLElement[];
+        const ink = Array.from(document.querySelectorAll('.step-block .line:not(.added)')) as HTMLElement[];
+        const straddle: string[] = [];
+        document.querySelectorAll('.page-body').forEach((body) => {
+            body.querySelectorAll('.step-block').forEach((bl) => {
+                const b = bl as HTMLElement;
+                if (b.offsetTop + b.offsetHeight > (body as HTMLElement).clientHeight) {
+                    straddle.push(b.getAttribute('data-step-id') || '?');
+                }
+            });
+        });
+        return {
+            addedColours: Array.from(new Set(added.map((el) => getComputedStyle(el).color))),
+            inkColours: Array.from(new Set(ink.map((el) => getComputedStyle(el).color))),
+            // The second pen must not MOVE a line: every metric on this page is
+            // shared, so `added` may change colour and nothing else. Measured
+            // against a probe wearing the same classes minus `added`, because the
+            // ink lines legitimately differ from each other (a heading and a boxed
+            // final are not indented like an equation).
+            drift: added.filter((el) => {
+                const probe = document.createElement('div');
+                probe.className = el.className.replace(/\badded\b/, '').trim();
+                el.parentNode!.appendChild(probe);
+                const a = getComputedStyle(el), b = getComputedStyle(probe);
+                const same = a.paddingLeft === b.paddingLeft && a.fontSize === b.fontSize
+                    && a.lineHeight === b.lineHeight && a.fontWeight === b.fontWeight;
+                probe.remove();
+                return !same;
+            }).map((el) => (el.textContent || '').slice(0, 30)),
+            straddle,
+        };
+    });
+    expect(check.addedColours).toHaveLength(1);
+    expect(check.inkColours).not.toContain(check.addedColours[0]);
+    expect(check.drift).toEqual([]);                        // colour only, never metric
+    expect(check.straddle).toEqual([]);                     // still no block split across a page
+
+    // A second mark unfolds independently of the first.
+    const other = st.expandableSteps[st.expandableSteps.length - 1];
+    await page.click(`.step-simplify[data-step-id="${other}"]`);
+    await page.evaluate(() => (window as any).PM_ANSWER.revealAll());
+    expect((await page.evaluate(() => (window as any).PM_ANSWER.getState())).expandedSteps)
+        .toEqual([target, other]);
+
+    // And each folds back on its own.
+    await page.click(`.step-simplify[data-step-id="${target}"]`);
+    await page.evaluate(() => (window as any).PM_ANSWER.revealAll());
+    expect((await page.evaluate(() => (window as any).PM_ANSWER.getState())).expandedSteps)
+        .toEqual([other]);
+});
+
+test('pressing Simplify does not also write the next step', async ({ page }) => {
+    // The notebook advances on click, so the button must stop its event. This is
+    // the gate on that one stopPropagation.
+    await openFirst(page);
+    await openQ(page, EXPANDED_CARD);
+    const st = await page.evaluate(() => (window as any).PM_ANSWER.getState());
+    const target = st.expandableSteps[0];
+    // Reveal exactly as far as the target step, no further. Then WAIT for the
+    // gutter to appear: it is hidden while the step is being written, and a click
+    // sent during the animation would complete that step rather than test the
+    // button — which is what this gate measured on its first run.
+    await page.evaluate((id) => (window as any).PM_ANSWER.goToStep(id), target);
+    await page.locator(`.step-simplify[data-step-id="${target}"]`).waitFor({ state: 'visible' });
+    const at = (await page.evaluate(() => (window as any).PM_ANSWER.getState())).stepIndex;
+    await page.click(`.step-simplify[data-step-id="${target}"]`);
+    await page.waitForTimeout(300);
+    expect((await page.evaluate(() => (window as any).PM_ANSWER.getState())).stepIndex).toBe(at);
+});
+
+test('Restart folds every mark back to exam length', async ({ page }) => {
+    // Restart used to leave the unfolded marks unfolded, so the answer came back
+    // written out in full while every button still read "Simplify" (founder,
+    // 2026-09-10). Restart must hand back the page the card OPENS with.
+    await openFirst(page);
+    await openQ(page, EXPANDED_CARD);
+    await page.evaluate(() => (window as any).PM_ANSWER.revealAll());
+
+    const ids = (await page.evaluate(() => (window as any).PM_ANSWER.getState())).expandableSteps;
+    for (const id of ids) await page.click(`.step-simplify[data-step-id="${id}"]`);
+    await page.evaluate(() => (window as any).PM_ANSWER.revealAll());
+    expect((await page.evaluate(() => (window as any).PM_ANSWER.getState())).expandedSteps).toEqual(ids);
+    const openWide = await page.locator('.line.added').count();
+    expect(openWide).toBeGreaterThan(0);
+
+    await page.click('#btnRestart');
+    // Restart reveals nothing, so re-read the whole answer before judging it.
+    await page.evaluate(() => (window as any).PM_ANSWER.revealAll());
+
+    const after = await page.evaluate(() => (window as any).PM_ANSWER.getState());
+    expect(after.expandedSteps).toEqual([]);
+    expect(after.expandableSteps).toEqual(ids);            // the offer is still there
+    expect(await page.locator('.line.added').count()).toBe(0);
+    // and every button offers to expand again, none to shorten
+    const labels = await page.locator('.step-simplify').allTextContents();
+    expect(labels.length).toBe(ids.length);
+    expect(Array.from(new Set(labels.map((t) => t.trim())))).toEqual(['Simplify']);
+});
+
+test('a card with no fuller version offers no Simplify button', async ({ page }) => {
+    await openFirst(page);
+    // PM_QUESTIONS[0] is alphabetical and carries no lines_compact — the state
+    // every card in the book is in until it is written out in full.
+    await page.evaluate(() => (window as any).PM_ANSWER.revealAll());
+    const st = await page.evaluate(() => (window as any).PM_ANSWER.getState());
+    expect(st.expandableSteps).toEqual([]);
+    expect(await page.locator('.step-simplify').count()).toBe(0);
+    expect(await page.evaluate(() => {
+        const q = (window as any).PM_ANSWER.question;
+        return (window as any).PM_ANSWER.setStepDetail(q.answer.steps[0].id, 'full');
+    })).toBe(false);
 });

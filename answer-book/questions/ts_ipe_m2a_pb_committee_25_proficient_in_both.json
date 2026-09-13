@@ -124,19 +124,23 @@
         "lines": [
           {
             "text": "Adding 19 and 16 counts the members who are",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "proficient in both TWICE, so",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "n(M ∪ St) = n(M) + n(St) − n(M ∩ St)",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           },
           {
             "text": "Rearranging for the overlap:",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "n(M ∩ St) = n(M) + n(St) − n(M ∪ St)",
@@ -165,6 +169,12 @@
         "why": "Adding 19 and 16 counts the \"both\" members twice; subtracting the union, which counts them once, leaves exactly the overlap.",
         "common_mistakes": [
           "Writing n(M ∩ St) = n(M ∪ St) − n(M) − n(St), the signs reversed."
+        ],
+        "lines_compact": [
+          {
+            "text": "n(M ∩ St) = n(M) + n(St) − n(M ∪ St)",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -178,19 +188,23 @@
         "lines": [
           {
             "text": "= 19 + 16 − 25",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           },
           {
             "text": "= 35 − 25 = 10",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           },
           {
             "text": "Divide by the total number of members:",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "P(M ∩ St) = 10/25",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           },
           {
             "text": "∴ P(proficient in both) = 2/5",
@@ -220,6 +234,20 @@
         "common_mistakes": [
           "Stopping at 10 and not dividing.",
           "Leaving 10/25 unreduced."
+        ],
+        "lines_compact": [
+          {
+            "text": "= 19 + 16 − 25 = 10",
+            "style": "eq"
+          },
+          {
+            "text": "∴ P(M ∩ St) = n(M ∩ St)/n(S) = 10/25",
+            "style": "eq"
+          },
+          {
+            "text": "∴ P(proficient in both) = 2/5",
+            "style": "boxed"
+          }
         ]
       }
     ]

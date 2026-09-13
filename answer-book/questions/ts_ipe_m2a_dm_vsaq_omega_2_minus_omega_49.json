@@ -105,11 +105,26 @@
         "margin_note": "Second mark. (2 − ω)(2 − ω²) = 4 − 2(ω + ω²) + ω³ = 4 + 2 + 1 = 7, using ω + ω² = −1 and ω³ = 1. Square it for 49.",
         "memory_tip": "(2 − ω)(2 − ω²) = 4 − 2(ω + ω²) + ω³ = 4 + 2 + 1 = 7. Then square it.",
         "lines": [
-          "(2 − ω)(2 − ω²) = 4 − 2ω² − 2ω + ω³",
-          "= 4 − 2(ω + ω²) + ω³",
-          "Now ω + ω² = −1 and ω³ = 1:",
-          "= 4 − 2(−1) + 1 = 4 + 2 + 1 = 7",
-          "So the product = 7²",
+          {
+            "text": "(2 − ω)(2 − ω²) = 4 − 2ω² − 2ω + ω³",
+            "added": true
+          },
+          {
+            "text": "= 4 − 2(ω + ω²) + ω³",
+            "added": true
+          },
+          {
+            "text": "Now ω + ω² = −1 and ω³ = 1:",
+            "added": true
+          },
+          {
+            "text": "= 4 − 2(−1) + 1 = 4 + 2 + 1 = 7",
+            "added": true
+          },
+          {
+            "text": "So the product = 7²",
+            "added": true
+          },
           {
             "text": "∴ the product = 49",
             "style": "boxed"
@@ -142,6 +157,14 @@
           "Writing ω + ω² = 1 instead of −1.",
           "Forgetting the ω³ = 1 term, which gives 6² = 36.",
           "Stopping at 7 and not squaring."
+        ],
+        "lines_compact": [
+          "(2 − ω)(2 − ω²) = 4 − 2(ω + ω²) + ω³",
+          "= 4 − 2(−1) + 1 = 7",
+          {
+            "text": "∴ the product = 7² = 49",
+            "style": "boxed"
+          }
         ]
       }
     ]

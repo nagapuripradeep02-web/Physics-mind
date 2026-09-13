@@ -103,8 +103,14 @@
         "lines": [
           "tan θ = y/x = √21/(−√7) = −√3",
           "The point (−√7, √21) lies in the second quadrant,",
-          "where the amplitude is taken as",
-          "θ = π − (the acute angle with tan = √3)",
+          {
+            "text": "where the amplitude is taken as",
+            "added": true
+          },
+          {
+            "text": "θ = π − (the acute angle with tan = √3)",
+            "added": true
+          },
           "= π − π/3 = 2π/3",
           {
             "text": "∴ z = 2√7(cos(2π/3) + i sin(2π/3))",
@@ -138,6 +144,15 @@
           "Writing θ = −π/3 from the calculator without checking the quadrant — that point would be in the fourth quadrant.",
           "Forgetting the r in front of the bracket.",
           "Writing cos 2π/3 − i sin 2π/3, which flips the sign of y."
+        ],
+        "lines_compact": [
+          "tan θ = y/x = √21/(−√7) = −√3",
+          "(−√7, √21) lies in the second quadrant",
+          "⇒ θ = π − π/3 = 2π/3",
+          {
+            "text": "∴ z = 2√7(cos(2π/3) + i sin(2π/3))",
+            "style": "boxed"
+          }
         ]
       }
     ]

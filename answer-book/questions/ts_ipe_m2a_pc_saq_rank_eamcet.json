@@ -123,26 +123,86 @@
         "margin_note": "Two marks. Words starting with A or C still contain both E letters, so each block is 5!/2! = 60. With E fixed, E A C and E A E give 3! each. After E A M the remaining letters C, E, T are already in order, so EAMCET is the next word.",
         "memory_tip": "Blocks that still hold both E letters are 5!/2! = 60, not 120. With E fixed, EAC and EAE give 3! each.",
         "lines": [
-          "Words starting with A: the other 5 letters",
-          "C, E, E, M, T are arranged in 5!/2! ways",
-          "  (divide by 2! because E repeats)",
-          "= 120/2 = 60",
-          "Words starting with C: the other 5 letters",
-          "A, E, E, M, T give 5!/2! = 60",
-          "Now the words starting with E.",
-          "E is the first letter of EAMCET, so fix E",
-          "and look at the second letter. The letters",
-          "left are A, C, E, M, T, and A is the smallest,",
-          "so no word starting with E beats EA.",
-          "Fix EA and look at the third letter:",
-          "the letters left are C, E, M, T",
-          "Words starting with EAC: the last 3 letters",
-          "E, M, T are all different: 3! = 6",
-          "Words starting with EAE: the last 3 letters",
-          "C, M, T give 3! = 6",
-          "Next comes EAM. After EAM the letters left",
-          "are C, E, T, and CET is their",
-          "alphabetical order, so EAMCET is next."
+          {
+            "text": "Words starting with A: the other 5 letters",
+            "added": true
+          },
+          {
+            "text": "C, E, E, M, T are arranged in 5!/2! ways",
+            "added": true
+          },
+          {
+            "text": "  (divide by 2! because E repeats)",
+            "added": true
+          },
+          {
+            "text": "= 120/2 = 60",
+            "added": true
+          },
+          {
+            "text": "Words starting with C: the other 5 letters",
+            "added": true
+          },
+          {
+            "text": "A, E, E, M, T give 5!/2! = 60",
+            "added": true
+          },
+          {
+            "text": "Now the words starting with E.",
+            "added": true
+          },
+          {
+            "text": "E is the first letter of EAMCET, so fix E",
+            "added": true
+          },
+          {
+            "text": "and look at the second letter. The letters",
+            "added": true
+          },
+          {
+            "text": "left are A, C, E, M, T, and A is the smallest,",
+            "added": true
+          },
+          {
+            "text": "so no word starting with E beats EA.",
+            "added": true
+          },
+          {
+            "text": "Fix EA and look at the third letter:",
+            "added": true
+          },
+          {
+            "text": "the letters left are C, E, M, T",
+            "added": true
+          },
+          {
+            "text": "Words starting with EAC: the last 3 letters",
+            "added": true
+          },
+          {
+            "text": "E, M, T are all different: 3! = 6",
+            "added": true
+          },
+          {
+            "text": "Words starting with EAE: the last 3 letters",
+            "added": true
+          },
+          {
+            "text": "C, M, T give 3! = 6",
+            "added": true
+          },
+          {
+            "text": "Next comes EAM. After EAM the letters left",
+            "added": true
+          },
+          {
+            "text": "are C, E, T, and CET is their",
+            "added": true
+          },
+          {
+            "text": "alphabetical order, so EAMCET is next.",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -172,6 +232,14 @@
           "Counting the A block as 5! = 120 — the two E letters are alike, so it is 5!/2! = 60.",
           "Adding a block for E A E after E A C without noticing both E letters are then used up — the E A E block is 3! because C, M, T remain.",
           "Adding a block for E A M C — after E A M C the letters E, T are in order and EAMCET is the first."
+        ],
+        "lines_compact": [
+          "Words starting with A: 5!/2! = 60",
+          "Words starting with C: 5!/2! = 60",
+          "Words starting with EAC: 3! = 6",
+          "Words starting with EAE: 3! = 6",
+          "After EAM, the letters C, E, T are in order,",
+          "so the next word is EAMCET itself."
         ]
       },
       {
@@ -183,9 +251,15 @@
         "margin_note": "Last mark. 60 + 60 + 6 + 6 = 132 words come before EAMCET, so its rank is 133.",
         "memory_tip": "132 words come before it, so the rank is 133. Rank is words-before plus one.",
         "lines": [
-          "Rank = words before it + 1",
+          {
+            "text": "Rank = words before it + 1",
+            "added": true
+          },
           "= 60 + 60 + 6 + 6 + 1",
-          "= 132 + 1",
+          {
+            "text": "= 132 + 1",
+            "added": true
+          },
           {
             "text": "∴ rank of EAMCET = 133",
             "style": "boxed"
@@ -216,6 +290,13 @@
         "common_mistakes": [
           "Answering 132 — the count of words before EAMCET, not its rank.",
           "Using 120 instead of 60 for the first two blocks and reaching 253."
+        ],
+        "lines_compact": [
+          "Rank = 60 + 60 + 6 + 6 + 1",
+          {
+            "text": "∴ rank of EAMCET = 133",
+            "style": "boxed"
+          }
         ]
       }
     ]

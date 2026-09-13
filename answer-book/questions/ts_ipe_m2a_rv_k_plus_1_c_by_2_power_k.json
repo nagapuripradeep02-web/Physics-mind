@@ -112,15 +112,39 @@
         "margin_note": "Three marks — the main idea. 1 + 2x + 3x² + 4x³ + … = (1 − x)⁻² for |x| < 1. With x = 1/2 the bracket is (1/2)⁻² = 2² = 4, so 4c = 1 and c = 1/4.",
         "memory_tip": "The coefficients 1, 2, 3, 4 mean 1 + 2x + 3x² + … = (1 − x)⁻², not the geometric series. (1/2)⁻² = 4.",
         "lines": [
-          "The binomial series for a negative index gives",
+          {
+            "text": "The binomial series for a negative index gives",
+            "added": true
+          },
           "1 + 2x + 3x² + 4x³ + … = (1 − x)⁻², |x| < 1",
-          "Here x = 1/2, and |1/2| < 1, so the",
-          "bracket is (1 − 1/2)⁻²:",
-          "c(1 − 1/2)⁻² = 1",
-          "c(1/2)⁻² = 1",
-          "A negative index inverts the fraction:",
-          "(1/2)⁻² = 2² = 4",
-          "4c = 1",
+          {
+            "text": "Here x = 1/2, and |1/2| < 1, so the",
+            "added": true
+          },
+          {
+            "text": "bracket is (1 − 1/2)⁻²:",
+            "added": true
+          },
+          {
+            "text": "c(1 − 1/2)⁻² = 1",
+            "added": true
+          },
+          {
+            "text": "c(1/2)⁻² = 1",
+            "added": true
+          },
+          {
+            "text": "A negative index inverts the fraction:",
+            "added": true
+          },
+          {
+            "text": "(1/2)⁻² = 2² = 4",
+            "added": true
+          },
+          {
+            "text": "4c = 1",
+            "added": true
+          },
           "c = 1/4"
         ],
         "recall": {
@@ -150,6 +174,14 @@
           "Using the geometric series 1 + x + x² + … = (1 − x)⁻¹ and getting 2c = 1.",
           "Evaluating (1/2)⁻² as 1/4 instead of 4.",
           "Answering c = 4."
+        ],
+        "lines_compact": [
+          "We know, for |x| < 1:",
+          "1 + 2x + 3x² + 4x³ + … = (1 − x)⁻²",
+          "Here x = 1/2:",
+          "⇒ c(1 − 1/2)⁻² = 1 ⇒ c(1/2)⁻² = 1",
+          "⇒ c(2²) = 1 ⇒ 4c = 1",
+          "⇒ c = 1/4"
         ]
       },
       {
@@ -161,10 +193,16 @@
         "margin_note": "Last two marks. 1 < X < 3 on the range 0, 1, 2, … keeps only X = 2. P(X = 2) = (2 + 1)c/2² = 3c/4, and with c = 1/4 that is 3/16.",
         "memory_tip": "1 < X < 3 keeps only X = 2, so P = (2 + 1)c/2² = 3c/4 = 3/16.",
         "lines": [
-          "1 < X < 3 means X = 2 only:",
+          {
+            "text": "1 < X < 3 means X = 2 only:",
+            "added": true
+          },
           "P(1 < X < 3) = P(X = 2)",
           "= (2 + 1)c/2² = 3c/4",
-          "Put c = 1/4:",
+          {
+            "text": "Put c = 1/4:",
+            "added": true
+          },
           "= 3(1/4)/4 = 3/16",
           {
             "text": "∴ c = 1/4, P(1 < X < 3) = 3/16",
@@ -198,6 +236,15 @@
           "Including X = 1 or X = 3.",
           "Computing 3c/4 as 3/4 by forgetting c.",
           "Writing (2 + 1)c/2² as 3c/2."
+        ],
+        "lines_compact": [
+          "P(1 < X < 3) = P(X = 2)",
+          "= (2 + 1)c/2² = 3c/4",
+          "= 3(1/4)/4 = 3/16",
+          {
+            "text": "∴ c = 1/4, P(1 < X < 3) = 3/16",
+            "style": "boxed"
+          }
         ]
       }
     ]

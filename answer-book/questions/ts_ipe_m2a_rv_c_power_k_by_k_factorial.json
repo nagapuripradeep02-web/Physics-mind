@@ -110,14 +110,32 @@
         "margin_note": "Three marks — the main idea. The series is the exponential series with its first term 1 missing: 1 + x/1! + x²/2! + x³/3! + … = eˣ. Add 1 to both sides, so the left side becomes eᶜ and the right side 2. Then c = logₑ 2.",
         "memory_tip": "This is the exponential series missing its first term, so add 1 to BOTH sides: eᶜ = 2, and c = logₑ 2.",
         "lines": [
-          "The exponential series is",
-          "eˣ = 1 + x/1! + x²/2! + x³/3! + …",
-          "Our series is the same without its first",
-          "term 1, so add 1 to both sides:",
+          {
+            "text": "The exponential series is",
+            "added": true
+          },
+          {
+            "text": "eˣ = 1 + x/1! + x²/2! + x³/3! + …",
+            "added": true
+          },
+          {
+            "text": "Our series is the same without its first",
+            "added": true
+          },
+          {
+            "text": "term 1, so add 1 to both sides:",
+            "added": true
+          },
           "1 + c/1! + c²/2! + c³/3! + … = 1 + 1 = 2",
-          "The left side is eᶜ, so",
+          {
+            "text": "The left side is eᶜ, so",
+            "added": true
+          },
           "eᶜ = 2",
-          "Taking logarithms to the base e:",
+          {
+            "text": "Taking logarithms to the base e:",
+            "added": true
+          },
           "c = logₑ 2"
         ],
         "recall": {
@@ -147,6 +165,13 @@
           "Writing eᶜ = 1 by forgetting to add 1 to the right side as well.",
           "Answering c = 2 or c = log₁₀ 2.",
           "Trying to sum the series as a geometric series."
+        ],
+        "lines_compact": [
+          "Add 1 to both sides:",
+          "1 + c/1! + c²/2! + c³/3! + … = 1 + 1 = 2",
+          "We know 1 + x/1! + x²/2! + x³/3! + … = eˣ",
+          "⇒ eᶜ = 2",
+          "⇒ c = logₑ 2"
         ]
       },
       {
@@ -158,11 +183,23 @@
         "margin_note": "Last two marks. 0 < X < 3 on the range {1, 2, 3, …} means X = 1 or 2. Add the two terms c/1! + c²/2! = c + c²/2 and put c = logₑ 2. The answer stays in logarithms; there is no simpler form.",
         "memory_tip": "0 < X < 3 on {1, 2, 3, …} keeps X = 1 and 2. Leave the answer in logarithms, not decimals.",
         "lines": [
-          "0 < X < 3 means X = 1 or X = 2:",
+          {
+            "text": "0 < X < 3 means X = 1 or X = 2:",
+            "added": true
+          },
           "P(0 < X < 3) = P(X = 1) + P(X = 2)",
-          "= c/1! + c²/2!",
-          "= c + c²/2",
-          "Put c = logₑ 2:",
+          {
+            "text": "= c/1! + c²/2!",
+            "added": true
+          },
+          {
+            "text": "= c + c²/2",
+            "added": true
+          },
+          {
+            "text": "Put c = logₑ 2:",
+            "added": true
+          },
           {
             "text": "∴ c = logₑ 2, P = logₑ 2 + (logₑ 2)²/2",
             "style": "boxed"
@@ -195,6 +232,15 @@
           "Including X = 0, which is not in the range.",
           "Writing c²/2! as c², forgetting the 2 in the denominator.",
           "Replacing logₑ 2 by 0.693 without being asked — keep the exact form."
+        ],
+        "lines_compact": [
+          "P(0 < X < 3) = P(X = 1) + P(X = 2)",
+          "= c/1! + c²/2! = c + c²/2",
+          "= logₑ 2 + (logₑ 2)²/2",
+          {
+            "text": "∴ c = logₑ 2, P(0 < X < 3) = logₑ 2 + (logₑ 2)²/2",
+            "style": "boxed"
+          }
         ]
       }
     ]

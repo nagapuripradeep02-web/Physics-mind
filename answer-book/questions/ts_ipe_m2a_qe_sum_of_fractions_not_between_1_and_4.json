@@ -145,11 +145,23 @@
         "margin_note": "Second mark. a = 3y, b = 4y − 4, c = y − 1. (4y − 4)² = 16y² − 32y + 16 and 4(3y)(y − 1) = 12y² − 12y, subtracted. Here the leading coefficient comes out POSITIVE, so no sign flip is needed later.",
         "memory_tip": "a = 3y, b = 4y − 4, c = y − 1. Here the leading coefficient comes out POSITIVE, so no sign flip later.",
         "lines": [
-          "Here x is real, so this quadratic in x has",
-          "real roots, which needs Δ = b² − 4ac ≥ 0:",
-          "Here a = 3y, b = 4y − 4, c = y − 1",
+          {
+            "text": "Here x is real, so this quadratic in x has",
+            "added": true
+          },
+          {
+            "text": "real roots, which needs Δ = b² − 4ac ≥ 0:",
+            "added": true
+          },
+          {
+            "text": "Here a = 3y, b = 4y − 4, c = y − 1",
+            "added": true
+          },
           "Δ = (4y − 4)² − 4(3y)(y − 1) ≥ 0",
-          "16y² − 32y + 16 − 12y(y − 1) ≥ 0",
+          {
+            "text": "16y² − 32y + 16 − 12y(y − 1) ≥ 0",
+            "added": true
+          },
           "16y² − 32y + 16 − 12y² + 12y ≥ 0",
           "4y² − 20y + 16 ≥ 0"
         ],
@@ -182,6 +194,12 @@
           "Expanding (4y − 4)² as 16y² − 16.",
           "Writing 4(3y)(y − 1) as 12y² − 12 (the 12y term needs the y).",
           "Using Δ > 0, which mis-handles the boundary values 1 and 4."
+        ],
+        "lines_compact": [
+          "∴ Δ = b² − 4ac ≥ 0",
+          "⇒ (4y − 4)² − 4(3y)(y − 1) ≥ 0",
+          "⇒ 16y² − 32y + 16 − 12y² + 12y ≥ 0",
+          "⇒ 4y² − 20y + 16 ≥ 0"
         ]
       },
       {
@@ -193,13 +211,28 @@
         "margin_note": "Third mark. Dividing by the positive number 4 keeps the inequality as it is. A product ≥ 0 means y is OUTSIDE the roots — y ≤ 1 or y ≥ 4 — the opposite of a 'lies between' answer, and exactly what 'does not lie between' needs.",
         "memory_tip": "Dividing by the positive 4 keeps the inequality. A product ≥ 0 puts y OUTSIDE the roots.",
         "lines": [
-          "Divide throughout by 4:",
+          {
+            "text": "Divide throughout by 4:",
+            "added": true
+          },
           "y² − 5y + 4 ≥ 0",
-          "Split −5y as −y − 4y:",
-          "y² − y − 4y + 4 ≥ 0",
-          "y(y − 1) − 4(y − 1) ≥ 0",
+          {
+            "text": "Split −5y as −y − 4y:",
+            "added": true
+          },
+          {
+            "text": "y² − y − 4y + 4 ≥ 0",
+            "added": true
+          },
+          {
+            "text": "y(y − 1) − 4(y − 1) ≥ 0",
+            "added": true
+          },
           "(y − 1)(y − 4) ≥ 0",
-          "A product is ≥ 0 OUTSIDE its roots:",
+          {
+            "text": "A product is ≥ 0 OUTSIDE its roots:",
+            "added": true
+          },
           "y ≤ 1 or y ≥ 4"
         ],
         "recall": {
@@ -235,6 +268,11 @@
           "Writing 1 ≤ y ≤ 4 out of habit; that is the answer when the product is ≤ 0, not ≥ 0.",
           "Factorising as (y + 1)(y + 4).",
           "Dividing by 4 and reversing the inequality — only a NEGATIVE divisor reverses it."
+        ],
+        "lines_compact": [
+          "⇒ y² − 5y + 4 ≥ 0",
+          "⇒ (y − 1)(y − 4) ≥ 0",
+          "⇒ y ≤ 1 or y ≥ 4"
         ]
       },
       {
@@ -246,9 +284,18 @@
         "margin_note": "Last mark. The values 1 and 4 themselves ARE reached (Δ = 0 there: y = 1 at x = 0, y = 4 at x = −1/2); the claim is about the open gap between them, and that gap is empty. End with the question's own sentence.",
         "memory_tip": "Both 1 and 4 are reached; the claim is only that the gap between them is empty. Write the sentence.",
         "lines": [
-          "Every possible value of y is at most 1",
-          "or at least 4, so none lies strictly",
-          "between 1 and 4.",
+          {
+            "text": "Every possible value of y is at most 1",
+            "added": true
+          },
+          {
+            "text": "or at least 4, so none lies strictly",
+            "added": true
+          },
+          {
+            "text": "between 1 and 4.",
+            "added": true
+          },
           {
             "text": "∴ y does not lie between 1 and 4",
             "style": "boxed"
@@ -281,6 +328,13 @@
           "Ending at y ≤ 1 or y ≥ 4 without the sentence.",
           "Claiming y is never equal to 1 or 4 — both values are reached.",
           "Concluding 'lies between 1 and 4' by mis-reading the direction of the inequality."
+        ],
+        "lines_compact": [
+          "So no value of y lies strictly between 1 and 4.",
+          {
+            "text": "∴ y does not lie between 1 and 4",
+            "style": "boxed"
+          }
         ]
       }
     ]

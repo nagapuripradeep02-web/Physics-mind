@@ -118,13 +118,34 @@
         "margin_note": "Two marks. Each case is a choice of bowlers times a choice of batsmen — multiply within a case. ⁷C₅ = ⁷C₂ = 21 saves arithmetic.",
         "memory_tip": "Multiply inside a case, add between cases. ⁷C₅ = ⁷C₂ = 21, not the 35 of ⁷C₃.",
         "lines": [
-          "Case 1: choose 5 of the 6 bowlers and",
-          "6 of the 7 batsmen:",
-          "⁶C₅ = ⁶C₁ = 6",
-          "⁷C₆ = ⁷C₁ = 7",
-          "⁶C₅ · ⁷C₆ = 6 · 7 = 42",
-          "Case 2: choose 6 bowlers and 5 batsmen:",
-          "⁶C₆ = 1",
+          {
+            "text": "Case 1: choose 5 of the 6 bowlers and",
+            "added": true
+          },
+          {
+            "text": "6 of the 7 batsmen:",
+            "added": true
+          },
+          {
+            "text": "⁶C₅ = ⁶C₁ = 6",
+            "added": true
+          },
+          {
+            "text": "⁷C₆ = ⁷C₁ = 7",
+            "added": true
+          },
+          {
+            "text": "⁶C₅ · ⁷C₆ = 6 · 7 = 42",
+            "added": true
+          },
+          {
+            "text": "Case 2: choose 6 bowlers and 5 batsmen:",
+            "added": true
+          },
+          {
+            "text": "⁶C₆ = 1",
+            "added": true
+          },
           "⁷C₅ = ⁷C₂ = (7 · 6)/(1 · 2) = 21",
           "⁶C₆ · ⁷C₅ = 1 · 21 = 21"
         ],
@@ -155,6 +176,11 @@
           "Adding ⁶C₅ and ⁷C₆ inside a case instead of multiplying.",
           "Using ⁷P₆ or ⁷P₅ — a team is a selection, order does not matter.",
           "Computing ⁷C₅ as 7·6·5/6 = 35 (that is ⁷C₃); ⁷C₅ = ⁷C₂ = 21."
+        ],
+        "lines_compact": [
+          "Case 1: ⁶C₅ · ⁷C₆ = 6 · 7 = 42",
+          "Case 2: ⁶C₆ · ⁷C₅ = 1 · 21 = 21",
+          "(⁷C₅ = ⁷C₂ = (7 · 6)/(1 · 2) = 21)"
         ]
       },
       {
@@ -166,12 +192,22 @@
         "margin_note": "Last mark. The two cases are alternatives, so add them: 42 + 21 = 63.",
         "memory_tip": "The two cases are alternatives, so add them: 42 + 21 = 63.",
         "lines": [
-          "The two cases cannot happen together,",
-          "so add them:",
-          "Number of ways = 42 + 21",
+          {
+            "text": "The two cases cannot happen together,",
+            "added": true
+          },
+          {
+            "text": "so add them:",
+            "added": true
+          },
+          {
+            "text": "Number of ways = 42 + 21",
+            "added": true
+          },
           {
             "text": "∴ number of ways = 63",
-            "style": "boxed"
+            "style": "boxed",
+            "added": true
           }
         ],
         "recall": {
@@ -198,6 +234,12 @@
         "common_mistakes": [
           "Multiplying the cases (42 · 21) instead of adding.",
           "Forgetting to add the second case and answering 42."
+        ],
+        "lines_compact": [
+          {
+            "text": "∴ number of ways = 42 + 21 = 63",
+            "style": "boxed"
+          }
         ]
       }
     ]

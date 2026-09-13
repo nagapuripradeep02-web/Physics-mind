@@ -110,8 +110,14 @@
         "margin_note": "Second mark. (8 × 9)/2 = 36. The coefficients 2 and 3 do not change the count.",
         "memory_tip": "(8 × 9)/2 = 36. The coefficients 2 and 3 do not change the count.",
         "lines": [
-          "Number of terms = (7 + 1)(7 + 2)/2",
-          "= (8 × 9)/2 = 72/2",
+          {
+            "text": "Number of terms = (7 + 1)(7 + 2)/2",
+            "added": true
+          },
+          {
+            "text": "= (8 × 9)/2 = 72/2",
+            "added": true
+          },
           {
             "text": "∴ number of terms = 36",
             "style": "boxed"
@@ -140,6 +146,13 @@
         "common_mistakes": [
           "Answering 8.",
           "Multiplying by the coefficients 2 and 3."
+        ],
+        "lines_compact": [
+          "For n = 7: (7 + 1)(7 + 2)/2 = (8 × 9)/2",
+          {
+            "text": "∴ number of terms = 36",
+            "style": "boxed"
+          }
         ]
       }
     ]

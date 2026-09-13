@@ -128,15 +128,18 @@
         "lines": [
           {
             "text": "Aᶜ and Bᶜ are the events that they lie:",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "P(Aᶜ) = 1 − 3/4 = 1/4",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           },
           {
             "text": "P(Bᶜ) = 1 − 4/5 = 1/5",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           }
         ],
         "recall": {
@@ -161,6 +164,12 @@
         "why": "Each \"does not match\" case has one person not speaking the truth, so each case needs one complement.",
         "common_mistakes": [
           "Writing P(Bᶜ) = 1/4 by copying P(Aᶜ)."
+        ],
+        "lines_compact": [
+          {
+            "text": "P(Aᶜ) = 1 − 3/4 = 1/4,  P(Bᶜ) = 1 − 4/5 = 1/5",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -174,19 +183,23 @@
         "lines": [
           {
             "text": "The statements do not match when exactly one",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "of them speaks the truth. That happens in two",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "ways which cannot both occur:",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "A tells the truth and B lies, or the reverse.",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "P(E) = P[(A ∩ Bᶜ) ∪ (Aᶜ ∩ B)]",
@@ -194,15 +207,18 @@
           },
           {
             "text": "= P(A)·P(Bᶜ) + P(Aᶜ)·P(B)",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           },
           {
             "text": "= (3/4)(1/5) + (1/4)(4/5)",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           },
           {
             "text": "= 3/20 + 4/20",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           },
           {
             "text": "∴ P(statements do not match) = 7/20",
@@ -233,6 +249,32 @@
         "common_mistakes": [
           "Taking only one case, (3/4)(1/5) = 3/20.",
           "Answering P(both true) + P(both false) = 13/20, the probability that they DO match."
+        ],
+        "lines_compact": [
+          {
+            "text": "Let E = their statements do not match, i.e.",
+            "style": "normal"
+          },
+          {
+            "text": "exactly one of them speaks the truth:",
+            "style": "normal"
+          },
+          {
+            "text": "P(E) = P[(A ∩ Bᶜ) ∪ (Aᶜ ∩ B)]",
+            "style": "eq"
+          },
+          {
+            "text": "= P(A)·P(Bᶜ) + P(Aᶜ)·P(B)   [independent]",
+            "style": "eq"
+          },
+          {
+            "text": "= (3/4)(1/5) + (1/4)(4/5) = 3/20 + 4/20",
+            "style": "eq"
+          },
+          {
+            "text": "∴ P(statements do not match) = 7/20",
+            "style": "boxed"
+          }
         ]
       }
     ]

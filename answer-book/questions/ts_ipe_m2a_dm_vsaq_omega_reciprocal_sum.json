@@ -117,9 +117,18 @@
         "margin_note": "Second mark. On the right, 1 + ω = −ω², so 1/(1 + ω) = −1/ω² = −ω/ω³ = −ω. Both sides are −ω; write that line, because the comparison is the mark.",
         "memory_tip": "1 + ω = −ω², so the right side is −1/ω² = −ω as well. The comparison line is the mark.",
         "lines": [
-          "R.H.S. = 1/(1 + ω) = 1/(−ω²)",
-          "Multiply the top and bottom by ω:",
-          "= −ω/ω³ = −ω/1 = −ω",
+          {
+            "text": "R.H.S. = 1/(1 + ω) = 1/(−ω²)",
+            "added": true
+          },
+          {
+            "text": "Multiply the top and bottom by ω:",
+            "added": true
+          },
+          {
+            "text": "= −ω/ω³ = −ω/1 = −ω",
+            "added": true
+          },
           {
             "text": "∴ L.H.S. = R.H.S.",
             "style": "boxed"
@@ -152,6 +161,13 @@
           "Leaving 1/(−ω²) unsimplified and not seeing it equals −ω.",
           "Writing 1/(1 + ω) = 1/(−ω), the wrong replacement.",
           "Proving only the left side and never touching the right."
+        ],
+        "lines_compact": [
+          "R.H.S. = 1/(1 + ω) = 1/(−ω²) = −ω/ω³ = −ω",
+          {
+            "text": "∴ L.H.S. = R.H.S.",
+            "style": "boxed"
+          }
         ]
       }
     ]
