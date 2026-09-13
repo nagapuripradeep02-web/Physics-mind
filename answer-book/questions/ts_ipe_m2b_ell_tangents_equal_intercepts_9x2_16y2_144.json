@@ -63,8 +63,7 @@
           "9x² + 16y² = 144 ⇒ x²/16 + y²/9 = 1",
           "⇒ a² = 16, b² = 9",
           "A line making equal intercepts on the axes",
-          "is x ± y + k",
-          "= 0, so its slope is m = ±1",
+          "is x ± y + k = 0, so its slope is m = ±1",
           "Equation of the tangent with slope m:",
           "y = mx ± √(a²m² + b²)"
         ],

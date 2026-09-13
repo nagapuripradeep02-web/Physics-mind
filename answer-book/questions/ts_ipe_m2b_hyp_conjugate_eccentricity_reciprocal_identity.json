@@ -65,10 +65,10 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Let S ≡ x²/a² − y²/b²",
-          "= 1 be the hyperbola and e its eccentricity.",
-          "Its conjugate hyperbola is x²/a² − y²/b²",
-          "= −1, with eccentricity e₁.",
+          "Let x²/a² − y²/b² = 1 be the hyperbola",
+          "and e its eccentricity.",
+          "Its conjugate hyperbola is x²/a² − y²/b² = −1,",
+          "with eccentricity e₁.",
           "e = √(a² + b²)/a and e₁ = √(a² + b²)/b"
         ],
         "why": "The conjugate hyperbola swaps which term is positive, so its transverse axis is the OTHER axis — its eccentricity formula uses b in the denominator where the original used a.",

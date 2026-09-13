@@ -69,8 +69,8 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Let the hyperbola be S ≡ x²/a² − y²/b² − 1",
-          "= 0",
+          "Let the hyperbola be",
+          "S ≡ x²/a² − y²/b² − 1 = 0",
           "Let P(x₁, y₁) be a point on the locus.",
           "Tangent with slope m: y = mx ± √(a²m² − b²)",
           "If it passes through P(x₁, y₁):",

@@ -91,8 +91,8 @@
         "lines": [
           "The tangent meets the major axis (X-axis)",
           "at M and the minor axis (Y-axis) at N",
-          "⇒ X-intercept = CM",
-          "= a/cos θ  and  Y-intercept = CN = b/sin θ"
+          "⇒ X-intercept CM = a/cos θ",
+          "and Y-intercept CN = b/sin θ"
         ],
         "why": "Since C is the origin (the centre of the ellipse), the distances CM and CN are exactly the x- and y-intercepts of the tangent line found in step 1.",
         "common_mistakes": [

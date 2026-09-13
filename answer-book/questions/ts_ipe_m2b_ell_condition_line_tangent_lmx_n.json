@@ -61,10 +61,9 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Let lx + my + n",
-          "= 0 be the tangent at the point P(θ)",
-          "= (a cos θ,",
-          "b sin θ) on the ellipse x²/a² + y²/b² = 1",
+          "Let lx + my + n = 0 be the tangent",
+          "at the point P(θ) = (a cos θ, b sin θ)",
+          "on the ellipse x²/a² + y²/b² = 1",
           "Equation of the tangent at P(θ):",
           "(x cos θ)/a + (y sin θ)/b = 1"
         ],

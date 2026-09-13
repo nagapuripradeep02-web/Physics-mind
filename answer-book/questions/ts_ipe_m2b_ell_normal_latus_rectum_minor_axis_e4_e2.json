@@ -66,8 +66,8 @@
           },
           "Equation of the normal at (x₁, y₁):",
           "a²x/x₁ − b²y/y₁ = a² − b²",
-          "Let L = (ae,",
-          "b²/a) be the end of the latus rectum",
+          "Let L = (ae, b²/a) be the end of the",
+          "latus rectum",
           "Normal at L:",
           "a²x/(ae) − b²y/(b²/a) = a² − b²",
           "⇒ ax/e − ay = a² − b² …(1)"

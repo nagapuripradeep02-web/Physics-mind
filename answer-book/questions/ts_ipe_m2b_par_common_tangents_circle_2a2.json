@@ -87,8 +87,8 @@
         "margin_note": "Two marks for setting up the shared condition — this is where the two curves meet in the algebra.",
         "lines": [
           "Given circle x² + y² = 2a²   ……(3)",
-          "A line y = mx + c touches a circle x² + y²",
-          "= r² when c² = r²(1 + m²).",
+          "A line y = mx + c touches the circle",
+          "x² + y² = r² when c² = r²(1 + m²).",
           "Here r² = 2a²,",
           "so applying this to (2) and (3):",
           "(2a/m)² = 2a²(1 + m²)"

@@ -76,8 +76,8 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Let S be the focus and the line L",
-          "= 0 be the directrix.",
+          "Let S be the focus and the line L = 0",
+          "be the directrix.",
           "Let Z be the foot of the perpendicular",
           "from S to the directrix.",
           "Let A be the midpoint of SZ.",
@@ -259,8 +259,8 @@
           "Let M be the foot of the perpendicular",
           "from P to the directrix.",
           "Then PM = PN + NM = x₁ + a,",
-          "since PN is the x-coordinate of P and NM",
-          "= AZ = AS = a.",
+          "since PN is the x-coordinate of P",
+          "and NM = AZ = AS = a.",
           "By the focus–directrix property,",
           "SP/PM = 1, so SP = PM, so SP² = PM²."
         ],

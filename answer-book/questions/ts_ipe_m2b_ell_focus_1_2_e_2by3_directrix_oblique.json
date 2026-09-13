@@ -119,7 +119,7 @@
         "margin_note": "Fourth mark. This is an oblique ellipse — its axes are not parallel to the coordinate axes.",
         "memory_tip": "A nonzero xy term in the final equation always signals an oblique (tilted) conic.",
         "lines": [
-          "117x²−16x² + 117y²−36y² − 144xy − 234x−96x",
+          "117x²−16x² + 117y²−36y² − 48xy − 234x−96x",
           "− 468y−144y + 585−144",
           "= 0",
           {

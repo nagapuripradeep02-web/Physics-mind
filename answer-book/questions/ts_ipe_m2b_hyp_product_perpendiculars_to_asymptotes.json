@@ -63,9 +63,9 @@
           },
           "Given hyperbola x²/16 − y²/9 = 1",
           "⇒ a² = 16, b² = 9",
-          "The asymptotes are x/a − y/b",
-          "= 0 and x/a + y/b = 0, i.e. bx − ay",
-          "= 0 and bx + ay = 0",
+          "The asymptotes are x/a − y/b = 0 and",
+          "x/a + y/b = 0, that is,",
+          "bx − ay = 0 and bx + ay = 0",
           "For a point (x₁,y₁) on the hyperbola,",
           "the product of its distances to the two",
           "asymptotes is a²b²/(a²+b²)"

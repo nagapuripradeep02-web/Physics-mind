@@ -81,9 +81,8 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Let e",
-          "= 5/4 and let e₁ be the eccentricity of the",
-          "conjugate hyperbola.",
+          "Let e = 5/4 and let e₁ be the eccentricity",
+          "of the conjugate hyperbola.",
           "By the reciprocal identity, 1/e² + 1/e₁² = 1",
           "⇒ 1/e₁² = 1 − 1/e² = 1 − 1/(5/4)²",
           "= 1 − 16/25 = 9/25"

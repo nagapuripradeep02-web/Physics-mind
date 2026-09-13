@@ -50,8 +50,8 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "The focal distance of any point P(x₁,y₁) on y²",
-          "= 4ax is SP = x₁ + a",
+          "The focal distance of any point P(x₁, y₁)",
+          "on y² = 4ax is SP = x₁ + a",
           "Every point on this parabola has x₁ ≥ 0,",
           "and a is a fixed positive number,",
           "so SP = x₁ + a is smallest when x₁ = 0"

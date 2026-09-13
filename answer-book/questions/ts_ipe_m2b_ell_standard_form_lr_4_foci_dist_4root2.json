@@ -65,9 +65,8 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Let the equation of the ellipse be x²/a² +",
-          "y²/b²",
-          "= 1, (a > b)",
+          "Let the equation of the ellipse be",
+          "x²/a² + y²/b² = 1, (a > b)",
           "Length of latus rectum is 4 ⇒ 2b²/a = 4",
           "⇒ b² = 2a …(1)"
         ],

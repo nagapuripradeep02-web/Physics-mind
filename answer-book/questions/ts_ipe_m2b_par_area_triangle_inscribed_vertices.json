@@ -85,10 +85,21 @@
             "text": "\\text{Area of }\\triangle PQR = \\frac{1}{2}\\begin{vmatrix} x_1-x_2 & x_1-x_3 \\\\ y_1-y_2 & y_1-y_3 \\end{vmatrix}",
             "render": "katex"
           },
-          "= (1/2)|at₁²−at₂²,",
-          "at₁²−at₃²; 2at₁−2at₂, 2at₁−2at₃|",
-          "= (a·2a/2)|t₁²−t₂², t₁²−t₃²; t₁−t₂, t₁−t₃|",
-          "= a²|(t₁−t₂)(t₁+t₂), (t₁−t₃)(t₁+t₃); t₁−t₂, t₁−t₃|",
+          {
+            "text": "= \\frac{1}{2}\\begin{vmatrix} at_1^2-at_2^2 & at_1^2-at_3^2 \\\\ 2at_1-2at_2 & 2at_1-2at_3 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "= \\frac{a \\cdot 2a}{2}\\begin{vmatrix} t_1^2-t_2^2 & t_1^2-t_3^2 \\\\ t_1-t_2 & t_1-t_3 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "= a^2\\begin{vmatrix} (t_1-t_2)(t_1+t_2) & (t_1-t_3)(t_1+t_3) \\\\ t_1-t_2 & t_1-t_3 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
           "= a²(t₁−t₂)(t₁−t₃)[(t₁+t₂) − (t₁+t₃)]",
           "= a²(t₁−t₂)(t₁−t₃)(t₂−t₃)"
         ],
@@ -128,9 +139,8 @@
         "mark_note": "Solution",
         "margin_note": "Last mark for the boxed area — check the denominator is 8a, not 4a or 16a.",
         "lines": [
-          "Area",
-          "= a² × |(y₁−y₂)/(2a)| × |(y₁−y₃)/(2a)| ×",
-          "|(y₂−y₃)/(2a)|",
+          "Area = a² |t₁−t₂| |t₁−t₃| |t₂−t₃|",
+          "= a² |(y₁−y₂)(y₁−y₃)(y₂−y₃)| / (2a)³",
           "= |(y₁−y₂)(y₂−y₃)(y₃−y₁)| / (8a)",
           {
             "text": "∴ (1/8a)|(y₁−y₂)(y₂−y₃)(y₃−y₁)| sq. units",

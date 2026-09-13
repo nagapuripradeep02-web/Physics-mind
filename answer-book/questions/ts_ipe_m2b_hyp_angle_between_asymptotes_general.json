@@ -57,11 +57,10 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "The asymptotes of x²/a² − y²/b² = 1 are y",
-          "= ±(b/a)x",
-          "They are equally inclined to the x-axis at",
-          "angle θ,",
-          "where tanθ = b/a",
+          "The asymptotes of x²/a² − y²/b² = 1 are",
+          "y = ±(b/a)x",
+          "They are equally inclined to the x-axis",
+          "at an angle θ, where tanθ = b/a",
           "secθ = √(1 + tan²θ) = √(1 + b²/a²)",
           "= √(a²+b²)/a = e"
         ],
