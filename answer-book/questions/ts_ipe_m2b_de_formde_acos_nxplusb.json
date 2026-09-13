@@ -39,7 +39,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.94 — VSAQ chapter 18 Differential Equations, answer 187, the fourth answer on the page. Not on an SSP page (this chapter's only SSP page is p.93). Printed appearance tags: TS 18; AP 17. The mark split is OURS: this answer prints no margin marks. It is patterned on answer 184's printed 1+1 shape (differentiate once, then differentiate again and state the D.E.), since this question also has two parameters (a, b) eliminated by two rounds of differentiation, with n treated as a given constant, not a parameter. Star rank: the book's VSAQ chapter table (book p.76) gives the Differential Equations VSAQ chapter ★★, but the chapter header printed on book p.93 shows ★★★ (matching that page's own SSP banner). The two disagree; the TABLE's rank is used, so every Differential Equations VSAQ entry takes stars 2. That rank belongs to the CHAPTER, not to this individual question. Paper position: Maths-2B Section A runs Q1-Q10 at 2 marks each, all compulsory; Differential Equations holds Q10. This question is not in the Bullet Model Paper's Q10 set (book p.106), which only reuses answers 181, 182, 184 and 185. The book's working was re-derived line by line and is correct throughout. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book's five Guess Papers (pp.118-127) are the only stand-in. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.94 — VSAQ chapter 18 Differential Equations, answer 187, the fourth answer on the page. Not on an SSP page (this chapter's only SSP page is p.93). Printed appearance tags: TS 18; AP 17. The mark split is OURS: this answer prints no margin marks. It is patterned on answer 184's printed 1+1 shape (differentiate once, then differentiate again and state the D.E.), since this question also has two parameters (a, b) eliminated by two rounds of differentiation, with n treated as a given constant, not a parameter. Star rank: the book's VSAQ chapter table (book p.76) gives the Differential Equations VSAQ chapter ★★, but the chapter header printed on book p.93 shows ★★★ (matching that page's own SSP banner). The two disagree; the TABLE's rank is used, so every Differential Equations VSAQ entry takes stars 2. That rank belongs to the CHAPTER, not to this individual question. Paper position: Maths-2B Section A runs Q1-Q10 at 2 marks each, all compulsory; Differential Equations holds Q10. This question is not in the Bullet Model Paper's Q10 set (book p.106), which only reuses answers 181, 182, 184 and 185. The book's working was re-derived line by line and is correct throughout. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book's five Guess Papers (pp.118-127) are the only stand-in. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "insider_note": "Only a and b are named parameters — n is treated as a fixed given constant, so it stays in the final D.E. rather than being eliminated along with a and b.",
   "answer": {
@@ -61,9 +61,15 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "There are two parameters, a and b, so",
+          {
+            "text": "  differentiate twice.",
+            "style": "indent"
+          },
           "Given y = acos(nx + b) … (1)",
           "Differentiating (1) w.r.t x:",
           "y₁ = −a·sin(nx + b)·n … (2)",
+          "(the chain rule gives the factor n)",
           "Differentiating (2) w.r.t x:",
           "y₂ = −a·n²·cos(nx + b)"
         ],
@@ -82,7 +88,15 @@
         "margin_note": "The last mark. y₂ reproduces acos(nx+b), which is exactly y from (1), multiplied by −n².",
         "memory_tip": "y₂ = −n²·[acos(nx+b)] = −n²y is the key recognition — the bracket is exactly the original y.",
         "lines": [
+          {
+            "text": "a·cos(nx + b) is y, by (1):",
+            "added": true
+          },
           "⇒ y₂ = −n²·[a·cos(nx + b)] ⇒ y₂ = −n²y [from (1)]",
+          {
+            "text": "Take −n²y to the left side:",
+            "added": true
+          },
           {
             "text": "∴ y₂ + n²y = 0, i.e. d²y/dx² + n²y = 0",
             "style": "boxed"
@@ -92,6 +106,13 @@
         "common_mistakes": [
           "Leaving the answer as y₂ = −an²cos(nx+b) without substituting acos(nx+b) = y from (1).",
           "Treating n as a third parameter to eliminate, when only a and b are named as parameters in the question."
+        ],
+        "lines_compact": [
+          "⇒ y₂ = −n²·[a·cos(nx + b)] ⇒ y₂ = −n²y [from (1)]",
+          {
+            "text": "∴ y₂ + n²y = 0, i.e. d²y/dx² + n²y = 0",
+            "style": "boxed"
+          }
         ]
       }
     ]

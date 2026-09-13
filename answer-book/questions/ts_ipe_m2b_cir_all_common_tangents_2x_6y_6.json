@@ -42,7 +42,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.21 — LAQ chapter 1 Circle, answer 8. No appearance tag is printed beside this answer. The mark split is OURS, not the book’s: this answer sits on a two-column page with no printed margin tags. It is patterned on the nearest printed split of the same shape in this chapter — book p.16, answer 3, which prints 1 + 1 + 2 + 2 + 1 for the same two-equations-then-centre-then-circle shape, and book p.17, answer 4, which prints 1 + 1 + 1 + 4. Star rank: the book gives the CIRCLE LAQ chapter ★★★ in its LAQ chapter table (book p.13), in the chapter header (book p.14) and in the LAQ hit list header (book p.7), so every Circle LAQ entry takes stars 3. That rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Circle holds Q18 and Q19. An LAQ on this paper is 7 marks, never 8 — the 2026-27 move to 8-mark long answers is first year only. Every number was re-derived and the book is correct: I = (1/3, 1), E = (−1, −3), the transverse pair is 4y² + 3xy − 3x − 9y + 5 = 0 and the direct pair is 4x² − 3xy − x − 3y − 5 = 0. FIGURE SCOPE: the question does not say \"draw\", so the diagram step carries NO marks; the figure is included because the answer needs BOTH centres of similitude and their positions are the argument. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book’s five Guess Papers (book pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.21 — LAQ chapter 1 Circle, answer 8. No appearance tag is printed beside this answer. The mark split is OURS, not the book’s: this answer sits on a two-column page with no printed margin tags. It is patterned on the nearest printed split of the same shape in this chapter — book p.16, answer 3, which prints 1 + 1 + 2 + 2 + 1 for the same two-equations-then-centre-then-circle shape, and book p.17, answer 4, which prints 1 + 1 + 1 + 4. Star rank: the book gives the CIRCLE LAQ chapter ★★★ in its LAQ chapter table (book p.13), in the chapter header (book p.14) and in the LAQ hit list header (book p.7), so every Circle LAQ entry takes stars 3. That rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Circle holds Q18 and Q19. An LAQ on this paper is 7 marks, never 8 — the 2026-27 move to 8-mark long answers is first year only. Every number was re-derived and the book is correct: I = (1/3, 1), E = (−1, −3), the transverse pair is 4y² + 3xy − 3x − 9y + 5 = 0 and the direct pair is 4x² − 3xy − x − 3y − 5 = 0. FIGURE SCOPE: the question does not say \"draw\", so the diagram step carries NO marks; the figure is included because the answer needs BOTH centres of similitude and their positions are the argument. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book’s five Guess Papers (book pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "insider_note": "\"All common tangents\" means four lines, given here as two pair equations — one pair through I and one through E. Answering with only one pair loses half the marks even if that pair is perfect.",
   "answer": {
@@ -65,8 +65,17 @@
             "style": "heading"
           },
           "For x² + y² − 2x − 6y + 6 = 0:",
+          "Compare with x² + y² + 2gx + 2fy + c = 0:",
+          "2g = −2 ⇒ g = −1, 2f = −6 ⇒ f = −3, c = 6",
+          "Centre is (−g, −f), radius is √(g² + f² − c)",
           "C₁ = (1, 3), r₁ = √(1 + 9 − 6) = √4 = 2",
           "For x² + y² = 1:",
+          "Write it as x² + y² − 1 = 0, so g = 0,",
+          {
+            "text": "  f = 0 and c = −1.",
+            "style": "indent"
+          },
+          "r₂ = √(0 + 0 + 1) = 1",
           "C₂ = (0, 0), r₂ = 1"
         ],
         "why": "One circle is given in general form and the other in the simplest possible form. Reading both to the same centre-and-radius pair is what makes them comparable.",
@@ -84,16 +93,35 @@
         "margin_note": "One mark. Four common tangents exist only when C₁C₂ > r₁ + r₂; say so before finding any of them.",
         "memory_tip": "Circles fully apart give four common tangents: two direct and two transverse.",
         "lines": [
+          {
+            "text": "The distance between the centres is",
+            "added": true
+          },
           "C₁C₂ = √(1² + 3²) = √10",
           "r₁ + r₂ = 2 + 1 = 3 = √9",
+          {
+            "text": "√10 is larger than √9, so",
+            "added": true
+          },
           "⇒ C₁C₂ > r₁ + r₂",
           "∴ Each circle lies entirely outside the other,",
-          "so there are four common tangents."
+          "so there are four common tangents.",
+          {
+            "text": "Two of them are direct and two are transverse.",
+            "added": true
+          }
         ],
         "why": "Comparing √10 with 3 is the same as comparing 10 with 9, so no decimals are needed. Only when the circles are fully apart do both a direct pair and a transverse pair exist.",
         "common_mistakes": [
           "Comparing √10 with 3 by rounding and getting them equal.",
           "Claiming two tangents instead of four."
+        ],
+        "lines_compact": [
+          "C₁C₂ = √(1² + 3²) = √10",
+          "r₁ + r₂ = 2 + 1 = 3 = √9",
+          "⇒ C₁C₂ > r₁ + r₂",
+          "∴ Each circle lies entirely outside the other,",
+          "so there are four common tangents."
         ]
       },
       {
@@ -106,6 +134,20 @@
         "memory_tip": "Internal division gives I and transverse tangents; external division gives E and direct tangents.",
         "lines": [
           "r₁ : r₂ = 2 : 1",
+          {
+            "text": "The two centres of similitude divide C₁C₂",
+            "added": true
+          },
+          {
+            "text": "  in the ratio r₁ : r₂ — internally for the",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  transverse pair, externally for the direct.",
+            "style": "indent",
+            "added": true
+          },
           "I divides C₁C₂ internally in 2 : 1",
           "I = ((2(0) + 1(1))/3, (2(0) + 1(3))/3) = (1/3, 1)",
           "E divides C₁C₂ externally in 2 : 1",
@@ -115,6 +157,13 @@
         "common_mistakes": [
           "Finding only one of the two points.",
           "Dividing E by (2 + 1) instead of (2 − 1)."
+        ],
+        "lines_compact": [
+          "r₁ : r₂ = 2 : 1",
+          "I divides C₁C₂ internally in 2 : 1",
+          "I = ((2(0) + 1(1))/3, (2(0) + 1(3))/3) = (1/3, 1)",
+          "E divides C₁C₂ externally in 2 : 1",
+          "E = ((2(0) − 1(1))/1, (2(0) − 1(3))/1) = (−1, −3)"
         ]
       },
       {
@@ -127,6 +176,56 @@
         "memory_tip": "S₁₁ · S = S₁², with S the simple circle x² + y² − 1 = 0.",
         "lines": [
           "From I(1/3, 1) to S ≡ x² + y² − 1 = 0:",
+          {
+            "text": "The pair of tangents from (x₁, y₁) to S = 0",
+            "added": true
+          },
+          {
+            "text": "  is S₁² = S₁₁ · S, where",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  S₁ = xx₁ + yy₁ − 1 and S₁₁ = x₁² + y₁² − 1.",
+            "style": "indent",
+            "added": true
+          },
+          "S₁ = x/3 + y − 1, S₁₁ = 1/9 + 1 − 1 = 1/9",
+          "S₁₁ · S = S₁²",
+          "⇒ (1/9)(x² + y² − 1) = ((x + 3y − 3)/3)²",
+          {
+            "text": "The right side is (x + 3y − 3)²/9, so",
+            "added": true
+          },
+          {
+            "text": "  multiply both sides by 9:",
+            "style": "indent",
+            "added": true
+          },
+          "⇒ x² + y² − 1 = (x + 3y − 3)²",
+          {
+            "text": "Expand the square:",
+            "added": true
+          },
+          "⇒ x² + y² − 1 = x² + 9y² + 9 + 6xy − 6x − 18y",
+          {
+            "text": "x² cancels. Take every term to the right:",
+            "added": true
+          },
+          "⇒ 8y² + 6xy − 6x − 18y + 10 = 0",
+          {
+            "text": "Divide every term by 2:",
+            "added": true
+          },
+          "∴ 4y² + 3xy − 3x − 9y + 5 = 0"
+        ],
+        "why": "The tangents are common to both circles, so the pair may be built from whichever circle gives lighter algebra — here the unit circle. Both sides carry a ninth, which cancels, and the x² terms cancel as well.",
+        "common_mistakes": [
+          "Using the first circle for S and the unit circle for S₁₁.",
+          "Expanding (x + 3y − 3)² without the 6xy term."
+        ],
+        "lines_compact": [
+          "From I(1/3, 1) to S ≡ x² + y² − 1 = 0:",
           "S₁ = x/3 + y − 1, S₁₁ = 1/9 + 1 − 1 = 1/9",
           "S₁₁ · S = S₁²",
           "⇒ (1/9)(x² + y² − 1) = ((x + 3y − 3)/3)²",
@@ -134,11 +233,6 @@
           "⇒ x² + y² − 1 = x² + 9y² + 9 + 6xy − 6x − 18y",
           "⇒ 8y² + 6xy − 6x − 18y + 10 = 0",
           "∴ 4y² + 3xy − 3x − 9y + 5 = 0"
-        ],
-        "why": "The tangents are common to both circles, so the pair may be built from whichever circle gives lighter algebra — here the unit circle. Both sides carry a ninth, which cancels, and the x² terms cancel as well.",
-        "common_mistakes": [
-          "Using the first circle for S and the unit circle for S₁₁.",
-          "Expanding (x + 3y − 3)² without the 6xy term."
         ]
       },
       {
@@ -151,11 +245,36 @@
         "memory_tip": "Repeat the previous step with E(−1, −3). Only the point changes.",
         "lines": [
           "From E(−1, −3) to S ≡ x² + y² − 1 = 0:",
+          {
+            "text": "The same formula S₁² = S₁₁ · S, now at E:",
+            "added": true
+          },
           "S₁ = −x − 3y − 1, S₁₁ = 1 + 9 − 1 = 9",
           "S₁₁ · S = S₁²",
           "⇒ 9(x² + y² − 1) = (x + 3y + 1)²",
+          {
+            "text": "(−x − 3y − 1)² = (x + 3y + 1)², so the",
+            "added": true
+          },
+          {
+            "text": "  minus signs make no difference here.",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "Expand both sides:",
+            "added": true
+          },
           "⇒ 9x² + 9y² − 9 = x² + 9y² + 1 + 6xy + 2x + 6y",
+          {
+            "text": "9y² cancels. Take every term to the left:",
+            "added": true
+          },
           "⇒ 8x² − 6xy − 2x − 6y − 10 = 0",
+          {
+            "text": "Divide every term by 2:",
+            "added": true
+          },
           {
             "text": "∴ 4x² − 3xy − x − 3y − 5 = 0",
             "style": "boxed"
@@ -165,6 +284,18 @@
         "common_mistakes": [
           "Keeping the minus signs inside the square and dropping a cross term.",
           "Forgetting to divide the final equation by 2."
+        ],
+        "lines_compact": [
+          "From E(−1, −3) to S ≡ x² + y² − 1 = 0:",
+          "S₁ = −x − 3y − 1, S₁₁ = 1 + 9 − 1 = 9",
+          "S₁₁ · S = S₁²",
+          "⇒ 9(x² + y² − 1) = (x + 3y + 1)²",
+          "⇒ 9x² + 9y² − 9 = x² + 9y² + 1 + 6xy + 2x + 6y",
+          "⇒ 8x² − 6xy − 2x − 6y − 10 = 0",
+          {
+            "text": "∴ 4x² − 3xy − x − 3y − 5 = 0",
+            "style": "boxed"
+          }
         ]
       },
       {

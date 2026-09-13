@@ -1,5 +1,45 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 📗 SESSION — MATHS-2B IS COMPLETE: all eight chapters written out in full, 271 cards, Simplify on every mark (2026-09-13/14, `feat/answerbook-maths-2b-worked-in-full`)
+
+**Review link:** https://claude.ai/code/artifact/b9d7229b-5463-4c5f-b6d8-03209cef63df
+
+**Bottom line: the founder approved samples for Circle and Integration, then said "do the rest of the chapters… don't be miser when you are expanding a solution". The whole of Maths-2B now reads at the Maths-2A level, and every mark carries the Simplify button: 271 cards, 3,451 written lines → 6,053, 527 Simplify buttons. Steps, marks, mark splits and labels never changed during expansion (one step label was corrected by an examiner finding, below). One PR for the paper, stacked on #203.**
+
+| chapter | cards | lines | buttons | pages short → full | examiner defects fixed |
+|---|---|---|---|---|---|
+| Circle | 57 | 833 → 1,495 | 109 | 79 → 95 | 6 |
+| Integration | 51 | 514 → 934 | 94 | 63 → 72 | 53 |
+| Definite Integrals | 47 | 575 → 877 | 76 | 55 → 64 | 17 |
+| Differential Equations | 36 | 466 → 728 | 84 | 44 → 50 | 29 |
+| System of Circles | 23 | 294 → 552 | 43 | 25 → 35 | 15 |
+| Ellipse | 21 | 309 → 631 | 57 | 29 → 38 | 18 + 1 figure |
+| Parabola | 20 | 270 → 482 | 33 | 26 → 30 | 14 + 1 figure |
+| Hyperbola | 16 | 190 → 354 | 31 | 19 → 22 | 14 + 1 figure |
+
+### How it was done
+Per chapter: a base commit fixing anything the short (Simplify) view would show wrongly (carets → Unicode or KaTeX; lines an old wrap pass had broken at their first "="; one −144xy that should be −48xy) → the expansion written in `lines[]` → `mark_expansion.py --base <that commit>` → `check_cards` → `measure_wrap` → build `--stream=mpc_2` → `sweep_simplify` (and `sweep_typeset_width` where KaTeX lines exist) → commit → one or two Opus examiners with sympy → every finding verified, then fixed in its own commit. Chapter bases: Circle b3a05f93 · Integration 4373382d · Definite Integrals 93e1f07f · Differential Equations 62b170ee · System of Circles ae47f4c5 · Ellipse, Parabola, Hyperbola eb955fd4.
+
+### Verified (paper level)
+tsc 0 · `check_cards --prefix ts_ipe_m2b` 271/271 (225 KaTeX lines) · `measure_wrap` 7,681 lines, 0 wrapping · vitest 459/459 · `find_label_clashes`: no collisions in the book · paper-wide `sweep_simplify` and `sweep_typeset_width`: sweep_simplify 271 cards, 527 buttons, 527 pressed, 340 → 407 pages, no structural defect; sweep_typeset_width 70 cards, 447 typeset lines (both lengths), 0 problems.
+
+### What the examiners found, in one line each
+Every boxed answer survived re-derivation except one: Differential Equations' y² − x² = c²(x² + y²)² lost solutions and is now c(x² + y²)². The defects were almost all in the explanation fields written before this session (common_mistakes describing a slip that does not give the stated result; memory tips and insider notes that turn a special case into a false rule: "equal intercepts always means slope ±1", "not an asymptote slope, so real tangents", "the ± gives the two tangents through P", "an extra 1/2 makes 16a") and in three figures (tangents that did not touch; an axis arrow pointing the wrong way).
+
+### Flags for a teacher
+- `de_orderdegree_d2y_dy3_pow65` gives Degree = 1; some IPE keys give 6.
+- `ell_tangents_equal_intercepts_9x2_16y2_144` keeps the book's y = ±x ± 5; strictly equal intercepts (same sign) give only x + y ± 5 = 0. The card now says which lines have intercepts equal only in length.
+- `hyp_tangents_parallel_perp_line_x_plus2y_x2_minus4y2_4` keeps the book's boxed x + 2y = 0, which is the asymptote, not a tangent; both lengths now say so.
+- `hyp_eccentricity_given_asymptote_angle_30deg` takes 30° as the angle containing the transverse axis (e = √6 − √2); the 150° reading gives √6 + √2.
+- `sc_orthogonal_find_k_two`: the book's x² + y² + 4x + 8 = 0 is not a real circle; the card keeps k = −8 and says so.
+
+### What the next session would otherwise rediscover
+- `npx tsx` hangs — use `~/.npm/_npx/*/node_modules/.bin/tsx`. There is no `timeout` command on this Mac.
+- `mark_expansion.py` is idempotent, but a hand-edit to `lines_compact` (a base defect fixed after marking) is lost if the card is re-marked against the old base. Re-mark only against a base that already carries the fix.
+- The first step of every card is inked (not flagged), so an anchor check must skip s1: every unflagged line in a later step must equal `lines_compact`.
+- A new line added only to `lines_compact` breaks that invariant — add it to `lines[]` unflagged as well.
+- Examiners find the old explanation fields, not the new working. Brief them to read `why`, `common_mistakes`, `memory_tip`, `margin_note`, `insider_note` and figures, and to flag rules that overgeneralise.
+
 ## 📗 SESSION — MATHS-2A IS COMPLETE: all ten chapters written out in full, 257 cards (2026-09-08, `feat/answerbook-binomial-worked-in-full`)
 
 **Bottom line: the founder said "no need to show the samples… go ahead, most cards to least cards", and the remaining seven chapters were authored in one run. The whole paper now reads at the level he set: 257 cards, 3,400 written lines → 5,158. Steps, marks and mark splits never changed.**

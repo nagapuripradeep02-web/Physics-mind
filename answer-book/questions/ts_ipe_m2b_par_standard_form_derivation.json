@@ -56,7 +56,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Maths-2B (Sri Publishers, Machilipatnam), book p.22 — LAQ chapter 2 Parabola (chapter banner ★★★, 7 Marks), answer 9, on a printed Super Scoring Page (SSP 22) marked 'SUPER STANDARD STAR Q'. The chapter's own BABY CHAT box names this as one of 'these Five STAR Q's in Parabola' (answers 9, 12, 13, 14, 15). Printed appearances (partially readable): AP 2015, 2017 and TS 2016, 2017, 2018 — the black tag boxes are cropped at the scan's right edge, so one or two further years may be cut off and are not recorded. THE MARK SPLIT: the book prints right-margin numeric tags next to this single-column derivation ('1 Mark', '2 Mark[s]', more), but they too sit at the cropped edge and only fragments survive legibly — a '2 Mark[s]' fragment near the axis-choice line and isolated '1 Mark' fragments further down. The fragments could not be transcribed with confidence, so the 2/2/2/1 split below is authored to match the visible fragments and the natural break points of the proof, not presented as a certain transcription. No two-book union check was possible for Maths-2B (no second-year TSBIE Basic Learning Material is on hand), and no board back-test beyond diffing against this book's own five Guess Papers. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, Senior Maths-2B (Sri Publishers, Machilipatnam), book p.22 — LAQ chapter 2 Parabola (chapter banner ★★★, 7 Marks), answer 9, on a printed Super Scoring Page (SSP 22) marked 'SUPER STANDARD STAR Q'. The chapter's own BABY CHAT box names this as one of 'these Five STAR Q's in Parabola' (answers 9, 12, 13, 14, 15). Printed appearances (partially readable): AP 2015, 2017 and TS 2016, 2017, 2018 — the black tag boxes are cropped at the scan's right edge, so one or two further years may be cut off and are not recorded. THE MARK SPLIT: the book prints right-margin numeric tags next to this single-column derivation ('1 Mark', '2 Mark[s]', more), but they too sit at the cropped edge and only fragments survive legibly — a '2 Mark[s]' fragment near the axis-choice line and isolated '1 Mark' fragments further down. The fragments could not be transcribed with confidence, so the 2/2/2/1 split below is authored to match the visible fragments and the natural break points of the proof, not presented as a certain transcription. No two-book union check was possible for Maths-2B (no second-year TSBIE Basic Learning Material is on hand), and no board back-test beyond diffing against this book's own five Guess Papers. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "answer": {
     "page_header": [
@@ -76,13 +76,24 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Let S be the focus and the line L",
-          "= 0 be the directrix.",
+          "Let S be the focus and the line L = 0",
+          "be the directrix.",
+          "(A parabola is the set of points P with SP = PM,",
+          {
+            "text": "  where PM is the distance from P to L = 0.)",
+            "style": "indent"
+          },
           "Let Z be the foot of the perpendicular",
           "from S to the directrix.",
           "Let A be the midpoint of SZ.",
           "Then SA = AZ, so SA/AZ = 1,",
-          "so A is a point on the parabola."
+          "(AZ is the distance from A to the directrix,",
+          {
+            "text": "  since SZ is perpendicular to it)",
+            "style": "indent"
+          },
+          "so A is a point on the parabola.",
+          "(A is called the vertex.)"
         ],
         "why": "The vertex is defined as the point exactly midway between the focus and the directrix. The focus-directrix ratio SP/PM = 1 is the condition satisfied by every point of the parabola, and the midpoint of SZ satisfies it because SA = AZ — so that midpoint has to lie on the curve, and it becomes the natural place to put the origin.",
         "common_mistakes": [
@@ -235,6 +246,19 @@
           "AS as the Y-axis,",
           "so A = (0, 0).",
           "Let AS = a. Then S = (a, 0) and Z = (−a, 0).",
+          {
+            "text": "(Z is on the other side of A, and AZ = AS = a)",
+            "added": true
+          },
+          {
+            "text": "The directrix passes through Z and is",
+            "added": true
+          },
+          {
+            "text": "  perpendicular to the X-axis.",
+            "style": "indent",
+            "added": true
+          },
           "So the equation of the directrix is x = −a,",
           "that is, x + a = 0."
         ],
@@ -243,7 +267,18 @@
           "Writing S = (−a, 0) and Z = (a, 0) with the two swapped.",
           "Writing the directrix as x = a instead of x = −a."
         ],
-        "memory_tip": "Focus and directrix sit on opposite sides of the vertex: S at +a, Z (and the directrix) at −a."
+        "memory_tip": "Focus and directrix sit on opposite sides of the vertex: S at +a, Z (and the directrix) at −a.",
+        "lines_compact": [
+          "Take AS,",
+          "the principal axis of the parabola,",
+          "as the X-axis.",
+          "Take the line through A perpendicular to",
+          "AS as the Y-axis,",
+          "so A = (0, 0).",
+          "Let AS = a. Then S = (a, 0) and Z = (−a, 0).",
+          "So the equation of the directrix is x = −a,",
+          "that is, x + a = 0."
+        ]
       },
       {
         "id": "s3_general_point",
@@ -258,18 +293,46 @@
           "from P to the Y-axis.",
           "Let M be the foot of the perpendicular",
           "from P to the directrix.",
-          "Then PM = PN + NM = x₁ + a,",
-          "since PN is the x-coordinate of P and NM",
-          "= AZ = AS = a.",
+          {
+            "text": "(M, N and P all lie on the line y = y₁)",
+            "added": true
+          },
+          "Then, as in the figure, PM = PN + NM = x₁ + a,",
+          "since PN = x₁ and NM = AZ = AS = a.",
+          "(For any position of P, PM = |x₁ + a|, the",
+          {
+            "text": "  distance from P to x + a = 0; PM² = (x₁ + a)².)",
+            "style": "indent"
+          },
           "By the focus–directrix property,",
-          "SP/PM = 1, so SP = PM, so SP² = PM²."
+          "SP/PM = 1, so SP = PM, so SP² = PM².",
+          {
+            "text": "(both are lengths, so squaring keeps them equal)",
+            "added": true
+          }
         ],
-        "why": "PM is measured in two pieces — from P across to the y-axis (which is just x₁), then from the y-axis across to the directrix (which is the fixed length a) — and adding those two pieces is what turns the geometric distance PM into a plain algebraic expression in x₁.",
+        "why": "PM is measured in two pieces — from P across to the y-axis (which is just x₁), then from the y-axis across to the directrix (which is the fixed length a) — and adding those two pieces is what turns the geometric distance PM into a plain algebraic expression in x₁. (In general PM = |x₁ + a|, the distance from P to the line x + a = 0; PM² = (x₁ + a)² either way, and only PM² is used.)",
         "common_mistakes": [
           "Writing PM = x₁ − a instead of x₁ + a.",
           "Squaring SP = PM before both sides are written out, then losing track of which side is which."
         ],
-        "memory_tip": "PM is the trip from P to the y-axis, then from the y-axis to the directrix — x₁, then a, added together."
+        "memory_tip": "PM is the trip from P to the y-axis, then from the y-axis to the directrix — x₁, then a, added together.",
+        "lines_compact": [
+          "Let P(x₁, y₁) be any point on the parabola.",
+          "Let N be the foot of the perpendicular",
+          "from P to the Y-axis.",
+          "Let M be the foot of the perpendicular",
+          "from P to the directrix.",
+          "Then, as in the figure, PM = PN + NM = x₁ + a,",
+          "since PN = x₁ and NM = AZ = AS = a.",
+          "(For any position of P, PM = |x₁ + a|, the",
+          {
+            "text": "  distance from P to x + a = 0; PM² = (x₁ + a)².)",
+            "style": "indent"
+          },
+          "By the focus–directrix property,",
+          "SP/PM = 1, so SP = PM, so SP² = PM²."
+        ]
       },
       {
         "id": "s4_simplify",
@@ -280,12 +343,32 @@
         "margin_note": "Last mark. y² = 4ax is the box the examiner is looking for — underline it.",
         "lines": [
           "SP² = (x₁ − a)² + (y₁ − 0)² and PM² = (x₁ + a)²",
+          {
+            "text": "(distance formula from S(a, 0) to P(x₁, y₁))",
+            "added": true
+          },
           "⇒ (x₁ − a)² + y₁² = (x₁ + a)²",
+          {
+            "text": "Move (x₁ − a)² to the right:",
+            "added": true
+          },
           "⇒ y₁² = (x₁ + a)² − (x₁ − a)² = 4ax₁",
-          "[∵ (a+b)² − (a−b)² = 4ab]",
+          "[∵ (p+q)² − (p−q)² = 4pq, with p = x₁, q = a]",
+          {
+            "text": "((x₁² + 2ax₁ + a²) − (x₁² − 2ax₁ + a²) = 4ax₁)",
+            "added": true
+          },
+          {
+            "text": "P was any point, so replace (x₁, y₁) by (x, y):",
+            "added": true
+          },
           {
             "text": "∴ the locus of P(x₁, y₁) is y² = 4ax",
             "style": "boxed"
+          },
+          {
+            "text": "This is the standard form of the parabola.",
+            "added": true
           }
         ],
         "why": "The two squared terms (x₁+a)² and (x₁−a)² share every term except the sign in front of the 2·x₁·a part, so subtracting them cancels the x₁² and a² parts and leaves exactly 4ax₁ — that one identity is what turns the distance equation into the parabola's equation.",
@@ -293,7 +376,17 @@
           "Expanding (x₁+a)² − (x₁−a)² by brute force and dropping a sign instead of using the identity directly.",
           "Writing the final answer as x² = 4ay by swapping the axes."
         ],
-        "memory_tip": "(a+b)² minus (a−b)² is always 4ab — here a = x₁, b = a, so the answer is 4·x₁·a."
+        "memory_tip": "(p+q)² − (p−q)² = 4pq — here p = x₁ and q = a, so the answer is 4ax₁.",
+        "lines_compact": [
+          "SP² = (x₁ − a)² + (y₁ − 0)² and PM² = (x₁ + a)²",
+          "⇒ (x₁ − a)² + y₁² = (x₁ + a)²",
+          "⇒ y₁² = (x₁ + a)² − (x₁ − a)² = 4ax₁",
+          "[∵ (p+q)² − (p−q)² = 4pq, with p = x₁, q = a]",
+          {
+            "text": "∴ the locus of P(x₁, y₁) is y² = 4ax",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

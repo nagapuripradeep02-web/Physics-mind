@@ -42,7 +42,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.65 — SAQ chapter 8 Ellipse, answer 76. NOT on an SSP page. Printed appearance: TS 17 only — no AP tag. Book p.65 prints tick boxes with no numeric mark tags, so the 1+1+1+1 split here is OURS, following the four natural stages of the proof. Ellipse is an SAQ-ONLY unit on the book's IPE Blue Print (book p.5). No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE BLM on hand; the book's five Guess Papers pp.118-127 are the orchestrator's back-test stand-in). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.65 — SAQ chapter 8 Ellipse, answer 76. NOT on an SSP page. Printed appearance: TS 17 only — no AP tag. Book p.65 prints tick boxes with no numeric mark tags, so the 1+1+1+1 split here is OURS, following the four natural stages of the proof. Ellipse is an SAQ-ONLY unit on the book's IPE Blue Print (book p.5). No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE BLM on hand; the book's five Guess Papers pp.118-127 are the orchestrator's back-test stand-in). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "insider_note": "The identity b² = a²(1 − e²) is what turns ab = a² − b² into ab = a²e² — writing that substitution as its own line, rather than doing it mentally, is where most students lose a mark in a rushed answer.",
   "answer": {
@@ -66,10 +66,17 @@
           },
           "Equation of the normal at (x₁, y₁):",
           "a²x/x₁ − b²y/y₁ = a² − b²",
-          "Let L = (ae,",
-          "b²/a) be the end of the latus rectum",
+          "Let L = (ae, b²/a) be the end of the",
+          "latus rectum",
+          "(At x = ae: y² = b²(1 − e²) = b⁴/a², so y = b²/a,",
+          {
+            "text": "  using b² = a²(1 − e²).)",
+            "style": "indent"
+          },
           "Normal at L:",
+          "Put x₁ = ae and y₁ = b²/a:",
           "a²x/(ae) − b²y/(b²/a) = a² − b²",
+          "(a²x/(ae) = ax/e and b²y ÷ (b²/a) = ay)",
           "⇒ ax/e − ay = a² − b² …(1)"
         ],
         "why": "The general normal formula applies at any point on the ellipse, so substituting the specific point L directly gives the normal at the end of the latus rectum.",
@@ -89,12 +96,30 @@
         "lines": [
           "This normal passes through B′(0, −b),",
           "one end of the minor axis:",
+          {
+            "text": "(It cannot be B(0, b): (1) would give −ab = a² − b²,",
+            "added": true
+          },
+          {
+            "text": "  but −ab < 0 and a² − b² > 0.)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "Put x = 0 and y = −b in (1):",
+            "added": true
+          },
           "a(0)/e − a(−b) = a² − b² ⇒ ab = a² − b²"
         ],
         "why": "The condition 'the normal passes through one end of the minor axis' becomes an algebraic equation once the coordinates of that end are substituted into the normal's equation (1).",
         "common_mistakes": [
           "Using B(0, b) instead of B′(0, −b), which changes the sign of the resulting equation.",
           "Losing the negative sign when substituting y = −b into −ay."
+        ],
+        "lines_compact": [
+          "This normal passes through B′(0, −b),",
+          "one end of the minor axis:",
+          "a(0)/e − a(−b) = a² − b² ⇒ ab = a² − b²"
         ]
       },
       {
@@ -106,8 +131,16 @@
         "margin_note": "Third mark. Replace b² using b² = a²(1 − e²).",
         "memory_tip": "b² = a²(1 − e²) is the single most useful substitution in this whole chapter — it connects a, b and e.",
         "lines": [
+          {
+            "text": "Now write b² in terms of e:",
+            "added": true
+          },
           "ab = a² − b² = a² − a²(1 − e²)",
           "[since b² = a²(1 − e²)]",
+          {
+            "text": "a² − a²(1 − e²) = a² − a² + a²e² = a²e²",
+            "added": true
+          },
           {
             "text": "ab = a²e²",
             "style": "boxed"
@@ -117,6 +150,14 @@
         "common_mistakes": [
           "Expanding a² − a²(1 − e²) incorrectly and losing the a²e² term.",
           "Writing the substitution as b² = a²(1 + e²) instead of b² = a²(1 − e²), flipping the sign inside the bracket before it is even expanded."
+        ],
+        "lines_compact": [
+          "ab = a² − b² = a² − a²(1 − e²)",
+          "[since b² = a²(1 − e²)]",
+          {
+            "text": "ab = a²e²",
+            "style": "boxed"
+          }
         ]
       },
       {
@@ -128,8 +169,24 @@
         "margin_note": "Fourth mark. Divide by a, square, and use b² = a²(1 − e²) once more.",
         "memory_tip": "Once e² = b/a is known, squaring gives e⁴ = b²/a² — substitute b² = a²(1 − e²) one more time to finish.",
         "lines": [
+          {
+            "text": "Divide both sides by a² (a ≠ 0):",
+            "added": true
+          },
           "From ab = a²e²: e² = b/a",
+          {
+            "text": "Square e² = b/a, and use b² = a²(1 − e²):",
+            "added": true
+          },
           "e⁴ = b²/a² = a²(1 − e²)/a² = 1 − e²",
+          {
+            "text": "(the a² on top and bottom cancel)",
+            "added": true
+          },
+          {
+            "text": "Move −e² to the left:",
+            "added": true
+          },
           {
             "text": "e⁴ + e² = 1",
             "style": "boxed"
@@ -139,6 +196,14 @@
         "common_mistakes": [
           "Dividing ab = a²e² by a instead of by a², which gives b = ae². Dividing by a² is the move that isolates e² = b/a.",
           "Stopping at e⁴ = 1 − e² without writing the final rearranged form e⁴ + e² = 1."
+        ],
+        "lines_compact": [
+          "From ab = a²e²: e² = b/a",
+          "e⁴ = b²/a² = a²(1 − e²)/a² = 1 − e²",
+          {
+            "text": "e⁴ + e² = 1",
+            "style": "boxed"
+          }
         ]
       }
     ]

@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Maths-2B Star 'Q' Plus, book p.99 — under the printed banner 'PARABOLA-VSAQ', answer 208, the first of two Parabola entries in the Star Q+ bank (p.98 tail is System of Circles, answers 206-207; p.99 continues to Ellipse at answer 210, confirming the boundary on both sides). No appearance tag is printed. The book's own banner already classes this as VSAQ, so no classification judgement was needed; it is authored here as a Star Q+ extra at the VSAQ section's rank (3 stars, matching the VSAQ chapter banner). THE MARK SPLIT IS OURS, same reasoning as the rest of the VSAQ section. FIGURE: the book prints a small sketch of a downward parabola with A(0,0) and S below it; reproduced here in miniature since this is the chapter's only downward-along-the-y-axis example and the picture makes the direction of opening immediate. No two-book union check was possible for Maths-2B (no second-year TSBIE Basic Learning Material is on hand), and no board back-test beyond diffing against this book's own five Guess Papers. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, Senior Maths-2B Star 'Q' Plus, book p.99 — under the printed banner 'PARABOLA-VSAQ', answer 208, the first of two Parabola entries in the Star Q+ bank (p.98 tail is System of Circles, answers 206-207; p.99 continues to Ellipse at answer 210, confirming the boundary on both sides). No appearance tag is printed. The book's own banner already classes this as VSAQ, so no classification judgement was needed; it is authored here as a Star Q+ extra at the VSAQ section's rank (3 stars, matching the VSAQ chapter banner). THE MARK SPLIT IS OURS, same reasoning as the rest of the VSAQ section. FIGURE: the book prints a small sketch of a downward parabola with A(0,0) and S below it; reproduced here in miniature since this is the chapter's only downward-along-the-y-axis example and the picture makes the direction of opening immediate. No two-book union check was possible for Maths-2B (no second-year TSBIE Basic Learning Material is on hand), and no board back-test beyond diffing against this book's own five Guess Papers. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged. FIGURE FIX 2026-09-14: the y-axis arrowhead pointed down, which reads as +y downward and contradicted the directrix y = 1 drawn above A(0,0); it now points up, and the directrix label moves right to clear it."
   },
   "answer": {
     "page_header": [
@@ -53,9 +53,9 @@
           "Given parabola x² = −4y.",
           "Comparing with x² = −4ay gives 4a = 4",
           "⇒ a = 1",
-          "This is a downward parabola (the y-axis is",
-          "the axis,",
-          "opening in the −y direction)."
+          "This is a downward parabola: its axis is",
+          "the y-axis and it opens in the −y direction.",
+          "(x² is never negative, so −4y ≥ 0 and y ≤ 0)"
         ],
         "why": "Comparing the given equation to the standard downward form x² = −4ay is what fixes a, the one number every other answer in this question depends on.",
         "common_mistakes": [
@@ -96,7 +96,7 @@
             {
               "type": "stroke",
               "id": "sq_axis_arrow",
-              "d": "M 105 170 L 110 177 L 115 170",
+              "d": "M 105 32 L 110 25 L 115 32",
               "ms": 300
             },
             {
@@ -120,7 +120,7 @@
             {
               "type": "label",
               "id": "sq_lbl_directrix",
-              "x": 108,
+              "x": 124,
               "y": 20,
               "text": "directrix y = 1",
               "ms": 300,
@@ -162,19 +162,46 @@
         "margin_note": "Second mark, for all four answers together, matching the downward direction found in step 1.",
         "lines": [
           "(i) Vertex A = (0, 0)",
+          {
+            "text": "For x² = −4ay the focus is a units below the",
+            "added": true
+          },
+          {
+            "text": "  vertex and the directrix is a units above it.",
+            "style": "indent",
+            "added": true
+          },
+          "(ii) Focus S = (0, −a) = (0, −1)",
+          "(iii) Equation of the directrix: y = a ⇒ y − 1 = 0",
+          {
+            "text": "The axis is the line through the vertex (0, 0)",
+            "added": true
+          },
+          {
+            "text": "  and the focus (0, −1):",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "(iv) Axis of the parabola: x = 0 (the y-axis)",
+            "style": "boxed"
+          }
+        ],
+        "why": "For the standard downward form x² = −4ay the vertex is again the origin, but now the focus sits below the vertex on the y-axis, at (0, −a), and the directrix is the horizontal line y = a above it, rather than left-right on the x-axis, since the whole picture is rotated 90° from the familiar y² = 4ax case.",
+        "common_mistakes": [
+          "Writing the focus as (0, a) instead of (0, −a) — the sign matters because the parabola opens downward.",
+          "Giving the axis as y = 0 instead of x = 0."
+        ],
+        "memory_tip": "For x² = −4ay: vertex at the origin, focus at (0,−a) below it, directrix at y = a above it, axis is the y-axis itself (x = 0).",
+        "lines_compact": [
+          "(i) Vertex A = (0, 0)",
           "(ii) Focus S = (0, −a) = (0, −1)",
           "(iii) Equation of the directrix: y = a ⇒ y − 1 = 0",
           {
             "text": "(iv) Axis of the parabola: x = 0 (the y-axis)",
             "style": "boxed"
           }
-        ],
-        "why": "For the standard downward form x² = −4ay the vertex is again the origin, but now the focus and directrix sit above and below on the y-axis rather than left-right on the x-axis, since the whole picture is rotated 90° from the familiar y² = 4ax case.",
-        "common_mistakes": [
-          "Writing the focus as (0, a) instead of (0, −a) — the sign matters because the parabola opens downward.",
-          "Giving the axis as y = 0 instead of x = 0."
-        ],
-        "memory_tip": "For x² = −4ay: vertex at the origin, focus at (0,−a) below it, directrix at y = a above it, axis is the y-axis itself (x = 0)."
+        ]
       }
     ]
   },

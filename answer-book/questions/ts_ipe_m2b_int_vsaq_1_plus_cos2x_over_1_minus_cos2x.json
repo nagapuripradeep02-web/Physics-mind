@@ -35,7 +35,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B, book printed p.87 (PDF page 87) — VSAQ chapter 16 ‘Integration’, answer 148, no SSP banner on this page. Printed appearance: TS 19. Chapter star rank ★★★. no printed margin mark tags appear anywhere in the Integration VSAQ chapter (book pp.86-89) — this card's 1+1 split is OURS, the standard 2-mark shape used throughout this book. This card's final answer was re-derived independently and matches the book's printed line exactly — no error found here. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B, book printed p.87 (PDF page 87) — VSAQ chapter 16 ‘Integration’, answer 148, no SSP banner on this page. Printed appearance: TS 19. Chapter star rank ★★★. no printed margin mark tags appear anywhere in the Integration VSAQ chapter (book pp.86-89) — this card's 1+1 split is OURS, the standard 2-mark shape used throughout this book. This card's final answer was re-derived independently and matches the book's printed line exactly — no error found here. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "insider_note": "1−cos2x is ALWAYS 2sin²x, never 2cos²x — a double-angle identity worth having instantly available, since misremembering it here flips the whole question's method.",
   "answer": {
@@ -56,7 +56,9 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "Here 1 − cos2x = 2sin²x",
           "(1+cos²x)/(1−cos2x) = (1+cos²x)/(2sin²x)",
+          "Split the numerator over the denominator:",
           "= (1/2)[1/sin²x + cos²x/sin²x]",
           "= (1/2)[cosec²x + cot²x]"
         ],
@@ -76,8 +78,16 @@
         "margin_note": "Solution",
         "lines": [
           "(1/2)[cosec²x+cot²x]",
+          {
+            "text": "Use cot²x = cosec²x − 1:",
+            "added": true
+          },
           "= (1/2)[cosec²x+cosec²x−1]",
           "= (1/2)[2cosec²x−1] = cosec²x − 1/2",
+          {
+            "text": "∫cosec²x dx = −cotx and ∫(1/2)dx = x/2:",
+            "added": true
+          },
           "∴ ∫ [(1+cos²x)/(1−cos2x)] dx =",
           {
             "text": "−cotx − x/2 + c",
@@ -89,7 +99,17 @@
           "Trying to integrate cot²x directly by a standard rule — there isn't one; it must first be rewritten as cosec²x−1.",
           "Losing the −x/2 term, which comes from integrating the leftover −(1/2) constant."
         ],
-        "memory_tip": "cot²x has NO direct standard integral — always rewrite it as cosec²x−1 first, exactly as tan²x becomes sec²x−1."
+        "memory_tip": "cot²x has NO direct standard integral — always rewrite it as cosec²x−1 first, exactly as tan²x becomes sec²x−1.",
+        "lines_compact": [
+          "(1/2)[cosec²x+cot²x]",
+          "= (1/2)[cosec²x+cosec²x−1]",
+          "= (1/2)[2cosec²x−1] = cosec²x − 1/2",
+          "∴ ∫ [(1+cos²x)/(1−cos2x)] dx =",
+          {
+            "text": "−cotx − x/2 + c",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   }

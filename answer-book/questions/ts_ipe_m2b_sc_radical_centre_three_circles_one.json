@@ -50,7 +50,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Sr. Maths-2B (Sri Publishers, Machilipatnam), book p.54 — SAQ chapter 7 System of Circles (chapter runs pp.54-56), answer 53.1, on a ★★★ Super Scoring Page (SSP 54). Chapter star rank ★★★, per the SAQ section table (book p.49). Printed appearance tags: AP 18, AP 19, TS 18. ⚠ THE MARK SPLIT IS OURS — no [N Marks] margin tags are printed anywhere in this chapter's three pages (54-56), unlike the neighbouring Circle and Ellipse SAQ chapters. It is patterned on the nearest same-shape split the book DOES print for a comparable four-step algebraic derivation: Circle SAQ answer 48 (book p.51, 'show a line touches a circle and find the point of contact'), which prints four separate 1-mark tags across four natural steps. This answer is cut the same way: 1 mark per natural step (first radical axis, second radical axis, solve, state the point). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Neither the two-book union check nor a board back-test was possible for this subject: there is no TSBIE second-year Maths-2B BLM on hand, and answer-book/papers/ holds first-year physics only — the book's own five Guess Papers (pp.118-127) stand in as the back-test instead. Boundary walked both ways: book p.53 ends the Circle SAQ chapter at answer 52 (pole and conjugate-line questions, a different unit), and book p.57 opens SAQ chapter 8 Ellipse. Paper position: Maths-2B Section B runs Q1-Q7 at 4 marks each (Q3 = System of Circles, per the QF sheet pp.3-4), answer any 5 of 7 (ABC_75). FIGURE: the question does not say draw, so the diagram step carries no marks; the three circles in it are a schematic (not drawn to the true scale of these equations) that shows why two radical axes of three circles must meet at one point. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, Sr. Maths-2B (Sri Publishers, Machilipatnam), book p.54 — SAQ chapter 7 System of Circles (chapter runs pp.54-56), answer 53.1, on a ★★★ Super Scoring Page (SSP 54). Chapter star rank ★★★, per the SAQ section table (book p.49). Printed appearance tags: AP 18, AP 19, TS 18. ⚠ THE MARK SPLIT IS OURS — no [N Marks] margin tags are printed anywhere in this chapter's three pages (54-56), unlike the neighbouring Circle and Ellipse SAQ chapters. It is patterned on the nearest same-shape split the book DOES print for a comparable four-step algebraic derivation: Circle SAQ answer 48 (book p.51, 'show a line touches a circle and find the point of contact'), which prints four separate 1-mark tags across four natural steps. This answer is cut the same way: 1 mark per natural step (first radical axis, second radical axis, solve, state the point). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Neither the two-book union check nor a board back-test was possible for this subject: there is no TSBIE second-year Maths-2B BLM on hand, and answer-book/papers/ holds first-year physics only — the book's own five Guess Papers (pp.118-127) stand in as the back-test instead. Boundary walked both ways: book p.53 ends the Circle SAQ chapter at answer 52 (pole and conjugate-line questions, a different unit), and book p.57 opens SAQ chapter 8 Ellipse. Paper position: Maths-2B Section B runs Q1-Q7 at 4 marks each (Q3 = System of Circles, per the QF sheet pp.3-4), answer any 5 of 7 (ABC_75). FIGURE: the question does not say draw, so the diagram step carries no marks; the three circles in it are a schematic (not drawn to the true scale of these equations) that shows why two radical axes of three circles must meet at one point. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "insider_note": "Examiners give one mark per usable line, so write both radical axes as separate numbered equations before solving them together — a single jumbled block loses marks even when the final coordinate is correct.",
   "answer": {
@@ -74,8 +74,19 @@
           "S ≡ x² + y² − 4x − 6y + 5 = 0",
           "S′ ≡ x² + y² − 2x − 4y − 1 = 0",
           "S″ ≡ x² + y² − 6x − 2y = 0",
+          "The radical centre is where the radical axes",
+          {
+            "text": "  meet, so find two of them and solve.",
+            "style": "indent"
+          },
           "Radical axis of S, S′ is S − S′ = 0",
+          "x: −4x + 2x = −2x; y: −6y + 4y = −2y;",
+          {
+            "text": "  constants: 5 − (−1) = 6",
+            "style": "indent"
+          },
           "⇒ −2x − 2y + 6 = 0",
+          "Divide every term by −2:",
           "⇒ x + y − 3 = 0   ...(1)"
         ],
         "why": "The radical axis of two circles is the line S − S′ = 0 — subtracting cancels the x² and y² terms because both circles are written with coefficient 1 on x² and y², leaving a straight line.",
@@ -94,6 +105,18 @@
         "margin_note": "Second mark. This uses the SAME S from step 1, paired now with the third circle.",
         "lines": [
           "Radical axis of S, S″ is S − S″ = 0",
+          {
+            "text": "x: −4x − (−6x) = 2x",
+            "added": true
+          },
+          {
+            "text": "y: −6y − (−2y) = −4y",
+            "added": true
+          },
+          {
+            "text": "constants: 5 − 0 = 5",
+            "added": true
+          },
           "⇒ 2x − 4y + 5 = 0   ...(2)"
         ],
         "why": "A third circle gives a second, independent radical axis; two lines are enough to fix the one point where all three axes meet.",
@@ -101,7 +124,11 @@
           "Taking S′ − S″ instead of S − S″ — still valid, but then it must be solved consistently with equation (1), not mixed with it.",
           "Losing the constant term while simplifying."
         ],
-        "memory_tip": "Keep S as the fixed reference circle in both subtractions — one fixed point of comparison, two moving partners."
+        "memory_tip": "Keep S as the fixed reference circle in both subtractions — one fixed point of comparison, two moving partners.",
+        "lines_compact": [
+          "Radical axis of S, S″ is S − S″ = 0",
+          "⇒ 2x − 4y + 5 = 0   ...(2)"
+        ]
       },
       {
         "id": "s3_solve_the_two_axes",
@@ -111,17 +138,44 @@
         "mark_note": "Method",
         "margin_note": "Third mark. Any correct elimination method earns this mark, not only the scaling shown here.",
         "lines": [
+          {
+            "text": "Solve (1) and (2) together. First make the",
+            "added": true
+          },
+          {
+            "text": "  x coefficients equal:",
+            "style": "indent",
+            "added": true
+          },
           "(1) × 2 ⇒ 2x + 2y − 6 = 0   ...(3)",
+          {
+            "text": "Subtract (2) from (3); 2x cancels:",
+            "added": true
+          },
           "(3) − (2) ⇒ 6y − 11 = 0",
+          {
+            "text": "(2y − (−4y) = 6y and −6 − 5 = −11)",
+            "added": true
+          },
           "⇒ y = 11/6",
-          "From (1), x = 3 − y = 3 − 11/6 = 7/6"
+          "From (1), x = 3 − y = 3 − 11/6 = 7/6",
+          {
+            "text": "(3 = 18/6, and 18/6 − 11/6 = 7/6)",
+            "added": true
+          }
         ],
         "why": "Two linear equations in x and y have exactly one common solution, and that common point is the radical centre — the point with equal power with respect to all three circles.",
         "common_mistakes": [
           "Substituting the y value into the wrong equation.",
           "Arithmetic slip turning 18/6 − 11/6 into something other than 7/6."
         ],
-        "memory_tip": "Scale one equation so the x-coefficients match, then subtract to remove x first — the same elimination used for any pair of straight lines."
+        "memory_tip": "Scale one equation so the x-coefficients match, then subtract to remove x first — the same elimination used for any pair of straight lines.",
+        "lines_compact": [
+          "(1) × 2 ⇒ 2x + 2y − 6 = 0   ...(3)",
+          "(3) − (2) ⇒ 6y − 11 = 0",
+          "⇒ y = 11/6",
+          "From (1), x = 3 − y = 3 − 11/6 = 7/6"
+        ]
       },
       {
         "id": "s4_state_the_radical_centre",
@@ -132,6 +186,15 @@
         "margin_note": "Fourth mark, for the final coordinate pair.",
         "lines": [
           {
+            "text": "Check in (2): 2(7/6) − 4(11/6) + 5",
+            "added": true
+          },
+          {
+            "text": "  = 14/6 − 44/6 + 30/6 = 0",
+            "style": "indent",
+            "added": true
+          },
+          {
             "text": "∴ Radical centre = (7/6, 11/6)",
             "style": "boxed"
           }
@@ -141,7 +204,13 @@
           "Writing the coordinates as (11/6, 7/6) — swapping x and y.",
           "Leaving the answer as a rounded decimal instead of the exact fraction."
         ],
-        "memory_tip": "The radical centre is a POINT, not a line — box a coordinate pair here, not an equation."
+        "memory_tip": "The radical centre is a POINT, not a line — box a coordinate pair here, not an equation.",
+        "lines_compact": [
+          {
+            "text": "∴ Radical centre = (7/6, 11/6)",
+            "style": "boxed"
+          }
+        ]
       },
       {
         "id": "s5_diagram",

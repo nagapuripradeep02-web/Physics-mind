@@ -42,7 +42,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Maths-2B, book p.25 — LAQ chapter 2 Parabola, answer 15, on the same Super Scoring Page (SSP 25) as answer 14, with the printed aside 'VERY EASY METHOD'. Printed appearances: AP 2018, TS 2015. One of the chapter's Five STAR Q's. THE MARK SPLIT IS OURS — no margin mark tags are printed; the split follows the proof's stages. NOTATION: like answer 14, the book's own working passes through a 2×2 determinant of coordinate differences; one line is typeset here with render:katex for the same reason. No two-book union check was possible for Maths-2B (no second-year TSBIE Basic Learning Material is on hand), and no board back-test beyond diffing against this book's own five Guess Papers. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, Senior Maths-2B, book p.25 — LAQ chapter 2 Parabola, answer 15, on the same Super Scoring Page (SSP 25) as answer 14, with the printed aside 'VERY EASY METHOD'. Printed appearances: AP 2018, TS 2015. One of the chapter's Five STAR Q's. THE MARK SPLIT IS OURS — no margin mark tags are printed; the split follows the proof's stages. NOTATION: like answer 14, the book's own working passes through a 2×2 determinant of coordinate differences; one line is typeset here with render:katex for the same reason. No two-book union check was possible for Maths-2B (no second-year TSBIE Basic Learning Material is on hand), and no board back-test beyond diffing against this book's own five Guess Papers. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged. EXAMINER FIX 2026-09-14: the vertices P, Q, R are now named (X₁, Y₁), (X₂, Y₂), (X₃, Y₃) in the determinant step, because the question's (x₁, y₁), (x₂, y₂), (x₃, y₃) are the points of contact and s3 uses y₁ = 2at₁ for them; the explanation of 16a against 8a now gives the real reason (a against 2a in the y-differences), not an 'extra 1/2'."
   },
   "answer": {
     "page_header": [
@@ -62,18 +62,36 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Let D(at₁²,2at₁), E(at₂²,2at₂),",
-          "F(at₃²,2at₃) be the three points on y²",
-          "= 4ax.",
-          "The tangent at parameter t is ty",
-          "= x + at²; so at D, E, F: t₁y=x+at₁² …(1),",
-          "t₂y=x+at₂² …(2), t₃y=x+at₃² …(3)",
+          "Let D(at₁², 2at₁), E(at₂², 2at₂),",
+          "F(at₃², 2at₃) be the three points on y² = 4ax.",
+          "(These are the points of contact, so",
+          {
+            "text": "  y₁ = 2at₁, y₂ = 2at₂ and y₃ = 2at₃.)",
+            "style": "indent"
+          },
+          "The tangent at parameter t is ty = x + at²,",
+          "(yy₁ = 2a(x + x₁) at (at², 2at) is",
+          {
+            "text": "  2aty = 2a(x + at²); divide by 2a)",
+            "style": "indent"
+          },
+          "so at D, E, F: t₁y = x + at₁² …(1),",
+          "t₂y = x + at₂² …(2), t₃y = x + at₃² …(3)",
+          "To find where the tangents at D and E meet,",
+          {
+            "text": "  subtract (2) from (1); x cancels:",
+            "style": "indent"
+          },
           "(1) − (2): (t₁−t₂)y = a(t₁²−t₂²)",
+          "t₁² − t₂² = (t₁−t₂)(t₁+t₂); divide by t₁ − t₂:",
           "⇒ y = a(t₁+t₂); from (1),",
           "x = t₁y − at₁² = at₁t₂",
-          "So the tangents at D, E meet at P = (at₁t₂,",
-          "a(t₁+t₂)); similarly Q = (at₂t₃, a(t₂+t₃)),",
-          "R = (at₃t₁, a(t₃+t₁))"
+          "(t₁ · a(t₁+t₂) − at₁² = at₁² + at₁t₂ − at₁²)",
+          "So the tangents at D, E meet at",
+          "P = (at₁t₂, a(t₁+t₂)); similarly",
+          "Q = (at₂t₃, a(t₂+t₃)),",
+          "R = (at₃t₁, a(t₃+t₁))",
+          "(the same working with (2), (3) and with (3), (1))"
         ],
         "why": "Every tangent to y² = 4ax at parameter t has the same shape ty = x + at², so subtracting two such equations cancels x immediately and gives y directly, which is the fastest way to the two tangents' meeting point.",
         "common_mistakes": [
@@ -91,22 +109,70 @@
         "margin_note": "Two marks. Half of this determinant's work was already done when P, Q, R were written down in step 1.",
         "lines": [
           {
-            "text": "\\text{Area of }\\triangle PQR = \\frac{1}{2}\\begin{vmatrix} x_1-x_2 & x_1-x_3 \\\\ y_1-y_2 & y_1-y_3 \\end{vmatrix}",
+            "text": "\\text{Area of }\\triangle PQR = \\frac{1}{2}\\begin{vmatrix} X_1-X_2 & X_1-X_3 \\\\ Y_1-Y_2 & Y_1-Y_3 \\end{vmatrix}",
             "render": "katex"
           },
-          "x₁−x₂ = at₁t₂−at₂t₃ = at₂(t₁−t₃); x₁−x₃",
-          "= at₁t₂−at₃t₁ = at₁(t₂−t₃)",
-          "y₁−y₂ = a(t₁−t₃); y₁−y₃ = a(t₂−t₃)",
+          {
+            "text": "Here P(X₁, Y₁), Q(X₂, Y₂), R(X₃, Y₃) are the",
+            "added": true
+          },
+          {
+            "text": "  vertices; x₁, y₁, … stay for the points of contact.",
+            "style": "indent",
+            "added": true
+          },
+          "X₁−X₂ = at₁t₂−at₂t₃ = at₂(t₁−t₃)",
+          "X₁−X₃ = at₁t₂−at₃t₁ = at₁(t₂−t₃)",
+          "Y₁−Y₂ = a(t₁−t₃); Y₁−Y₃ = a(t₂−t₃)",
+          {
+            "text": "(a(t₁+t₂) − a(t₂+t₃) = a(t₁−t₃), and",
+            "added": true
+          },
+          {
+            "text": "  a(t₁+t₂) − a(t₃+t₁) = a(t₂−t₃))",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "A 2 × 2 determinant is (top left)(bottom right)",
+            "added": true
+          },
+          {
+            "text": "  − (top right)(bottom left):",
+            "style": "indent",
+            "added": true
+          },
           "Determinant",
           "= at₂(t₁−t₃)·a(t₂−t₃) − at₁(t₂−t₃)·a(t₁−t₃)",
+          {
+            "text": "Both terms have a²(t₁−t₃)(t₂−t₃); take it out,",
+            "added": true
+          },
+          {
+            "text": "  leaving t₂ − t₁:",
+            "style": "indent",
+            "added": true
+          },
           "= a²(t₁−t₃)(t₂−t₃)(t₂−t₁)"
         ],
         "why": "Each coordinate difference of P, Q, R factors neatly because P, Q, R were themselves built from t₁, t₂, t₃ — substituting those factored forms into the determinant leaves one common factor (t₁−t₃)(t₂−t₃) that can be pulled straight out.",
         "common_mistakes": [
-          "Re-deriving x₁−x₂ etc. from scratch by expanding the coordinates instead of factoring them directly.",
+          "Re-deriving X₁−X₂ etc. from scratch by expanding the coordinates instead of factoring them directly.",
           "Losing the sign in the final factoring, which flips (t₂−t₁) to (t₁−t₂)."
         ],
-        "memory_tip": "P, Q, R were built from products and sums of t₁, t₂, t₃ — their differences factor the same way column by column."
+        "memory_tip": "P, Q, R were built from products and sums of t₁, t₂, t₃ — their differences factor the same way column by column.",
+        "lines_compact": [
+          {
+            "text": "\\text{Area of }\\triangle PQR = \\frac{1}{2}\\begin{vmatrix} X_1-X_2 & X_1-X_3 \\\\ Y_1-Y_2 & Y_1-Y_3 \\end{vmatrix}",
+            "render": "katex"
+          },
+          "X₁−X₂ = at₁t₂−at₂t₃ = at₂(t₁−t₃)",
+          "X₁−X₃ = at₁t₂−at₃t₁ = at₁(t₂−t₃)",
+          "Y₁−Y₂ = a(t₁−t₃); Y₁−Y₃ = a(t₂−t₃)",
+          "Determinant",
+          "= at₂(t₁−t₃)·a(t₂−t₃) − at₁(t₂−t₃)·a(t₁−t₃)",
+          "= a²(t₁−t₃)(t₂−t₃)(t₂−t₁)"
+        ]
       },
       {
         "id": "s3_final",
@@ -114,8 +180,47 @@
         "label": "Convert to y-differences and write the boxed area",
         "marks": 2,
         "mark_note": "Solution",
-        "margin_note": "Last two marks. Compare the denominator with the points-of-contact triangle — 16a here, not 8a, because of the extra 1/2.",
+        "margin_note": "Last two marks. Compare the denominator with the points-of-contact triangle — 16a here, not 8a, because the y-differences of P, Q, R carry a, not 2a.",
         "lines": [
+          "Area = (1/2)|a²(t₁−t₂)(t₁−t₃)(t₂−t₃)|",
+          {
+            "text": "(t₂ − t₁ = −(t₁ − t₂), and | | removes the sign)",
+            "added": true
+          },
+          "= (a²/2)|(t₁−t₂)(t₁−t₃)(t₂−t₃)|",
+          "Using t = y/(2a) as before:",
+          {
+            "text": "(y₁ = 2at₁ at D, so t₁ − t₂ = (y₁ − y₂)/(2a), and so on)",
+            "added": true
+          },
+          "|(t₁−t₂)(t₁−t₃)(t₂−t₃)|",
+          "= |(y₁−y₂)(y₁−y₃)(y₂−y₃)| / (8a³)",
+          {
+            "text": "((2a)³ = 8a³)",
+            "added": true
+          },
+          "Area = (a²/2) × |(y₁−y₂)(y₁−y₃)(y₂−y₃)| / (8a³)",
+          {
+            "text": "(a²/2 × 1/(8a³) = 1/(16a))",
+            "added": true
+          },
+          "= |(y₁−y₂)(y₂−y₃)(y₃−y₁)| / (16a)",
+          {
+            "text": "(y₁−y₃ = −(y₃−y₁), and | | removes the sign)",
+            "added": true
+          },
+          {
+            "text": "∴ (1/16a)|(y₁−y₂)(y₂−y₃)(y₃−y₁)| sq. units",
+            "style": "boxed"
+          }
+        ],
+        "why": "This area comes out to exactly half the area of the triangle formed by the three points of contact, for the same three parameters. Both proofs start from ½|determinant|, but here the y-differences of P, Q, R carry a (not 2a), so the determinant is a²(…) instead of 2a²(…) — that is why the denominator here is 16a instead of 8a.",
+        "common_mistakes": [
+          "Reusing the points-of-contact triangle's final denominator of 8a instead of 16a — the determinant here is a²(…), not 2a²(…).",
+          "Dropping the absolute value bars again — the same slip as in the area formula step."
+        ],
+        "memory_tip": "This triangle (from tangents) is always half the area of the triangle formed by the points of contact themselves, for the same three parameters — 16a instead of 8a.",
+        "lines_compact": [
           "Area = (1/2)|a²(t₁−t₂)(t₁−t₃)(t₂−t₃)|",
           "= (a²/2)|(t₁−t₂)(t₁−t₃)(t₂−t₃)|",
           "Using t = y/(2a) as before:",
@@ -127,15 +232,9 @@
             "text": "∴ (1/16a)|(y₁−y₂)(y₂−y₃)(y₃−y₁)| sq. units",
             "style": "boxed"
           }
-        ],
-        "why": "This area comes out to exactly half the area of the triangle formed by the three points of contact themselves, for the same three parameters, because the extra factor of 1/2 sitting in front of the determinant here has no counterpart in that proof — that is also why the denominator here is 16a instead of 8a.",
-        "common_mistakes": [
-          "Reusing the points-of-contact triangle's final denominator of 8a instead of the 16a that the extra 1/2 here produces.",
-          "Dropping the absolute value bars again — the same slip as in the area formula step."
-        ],
-        "memory_tip": "This triangle (from tangents) is always half the area of the triangle formed by the points of contact themselves, for the same three parameters — 16a instead of 8a."
+        ]
       }
     ]
   },
-  "insider_note": "This proof shares almost every line with the companion result for the triangle formed by the three points of contact themselves — the tangent triangle carries an extra 1/2 in front of the determinant, which is exactly why the denominator here is 16a and not 8a."
+  "insider_note": "This proof shares almost every line with the companion result for the triangle formed by the three points of contact themselves — here the determinant is a²(…) instead of 2a²(…), because the vertices' y-differences carry a, not 2a, which is exactly why the denominator here is 16a and not 8a."
 }

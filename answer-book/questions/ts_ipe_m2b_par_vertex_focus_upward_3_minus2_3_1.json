@@ -44,7 +44,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Maths-2B, book p.83 — VSAQ chapter 14 Parabola, answer 126.1, the first of a printed twin pair on a two-column page. Printed appearances: TS 2018, 2019, 2022; AP 2017. THE MARK SPLIT IS OURS, same page-format reasoning as the rest of this chapter. No two-book union check was possible for Maths-2B (no second-year TSBIE Basic Learning Material is on hand), and no board back-test beyond diffing against this book's own five Guess Papers. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, Senior Maths-2B, book p.83 — VSAQ chapter 14 Parabola, answer 126.1, the first of a printed twin pair on a two-column page. Printed appearances: TS 2018, 2019, 2022; AP 2017. THE MARK SPLIT IS OURS, same page-format reasoning as the rest of this chapter. No two-book union check was possible for Maths-2B (no second-year TSBIE Basic Learning Material is on hand), and no board back-test beyond diffing against this book's own five Guess Papers. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "answer": {
     "page_header": [
@@ -67,9 +67,13 @@
           "Given vertex A = (3, −2), focus S = (3, 1).",
           "The x-coordinates of A and S are equal,",
           "so the axis is parallel to the y-axis.",
+          "(the axis is the line x = 3, through A and S)",
           "Since S lies above A,",
           "the parabola opens vertically upward.",
-          "a = AS = √((3−3)² + (1−(−2))²) = √9 = 3"
+          "(a parabola opens towards its focus)",
+          "a is the distance from the vertex to the focus:",
+          "a = AS = √((3−3)² + (1−(−2))²) = √9 = 3",
+          "(1 − (−2) = 3, and 3² = 9)"
         ],
         "why": "Two points with the same x-coordinate lie on a vertical line, so the axis must be parallel to the y-axis; which way the parabola opens follows from which of the two points, vertex or focus, is higher up.",
         "common_mistakes": [
@@ -88,10 +92,27 @@
         "lines": [
           "An upward parabola",
           "with vertex (h,k) is (x−h)² = 4a(y−k).",
+          {
+            "text": "Put h = 3, k = −2 and a = 3:",
+            "added": true
+          },
           "(x−3)² = 4(3)(y−(−2))",
+          {
+            "text": "(4 × 3 = 12 and y − (−2) = y + 2)",
+            "added": true
+          },
           {
             "text": "∴ (x−3)² = 12(y+2)",
             "style": "boxed"
+          },
+          {
+            "text": "Check: focus = (h, k + a)",
+            "added": true
+          },
+          {
+            "text": "  = (3, −2 + 3) = (3, 1), as given.",
+            "style": "indent",
+            "added": true
           }
         ],
         "why": "Once the direction and a are known, the vertex form (x−h)² = 4a(y−k) is a direct substitution — no further derivation needed.",
@@ -99,7 +120,16 @@
           "Using (x−h)² = −4a(y−k), the downward form, by mixing up the two cases.",
           "Writing y−(−2) as y−2 instead of y+2."
         ],
-        "memory_tip": "Upward parabola: (x−h)² = 4a(y−k). Downward: the same with a minus sign in front of 4a."
+        "memory_tip": "Upward parabola: (x−h)² = 4a(y−k). Downward: the same with a minus sign in front of 4a.",
+        "lines_compact": [
+          "An upward parabola",
+          "with vertex (h,k) is (x−h)² = 4a(y−k).",
+          "(x−3)² = 4(3)(y−(−2))",
+          {
+            "text": "∴ (x−3)² = 12(y+2)",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

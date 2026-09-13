@@ -35,7 +35,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.84 — VSAQ chapter 15 Hyperbola, answer 132, and repeated verbatim as the third sub-item of the Bullet Model Paper's Q5 (book p.104). Same ★★★ SSP page as 130/131. Printed appearance: TS 18 only. No mark tags printed on this page — the 1+1 split here is OURS. No error found in the book's printed working. No figure authored: the argument is a direct trig identity (secθ read off tanθ), and a schematic picture of two crossing lines would not add to that algebra. Hyperbola is a SAQ+VSAQ-only unit on the book's IPE Blue Print (book p.5) — 4 marks in Section B (paper slot Q15) and 2 marks in Section A (paper slot Q5); it has NO LAQ chapter and no Section-C slot, so no 7-mark form is authored for this unit. The Bullet Model Paper's Q5 (Hyperbola VSAQ, book p.104) and Q15 (Hyperbola SAQ, book p.109) were diffed against this unit's numbered chapters: all 5 Q5 sub-items reprint answers 130, 131, 132, 137 and 136 verbatim, and all 3 Q15 sub-items reprint answers 78.1, 79.2 and 80 verbatim, so no Bullet Model Paper extra was authored for this unit. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE BLM on hand; the book's five Guess Papers pp.118-127 are the orchestrator's back-test stand-in). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.84 — VSAQ chapter 15 Hyperbola, answer 132, and repeated verbatim as the third sub-item of the Bullet Model Paper's Q5 (book p.104). Same ★★★ SSP page as 130/131. Printed appearance: TS 18 only. No mark tags printed on this page — the 1+1 split here is OURS. No error found in the book's printed working. No figure authored: the argument is a direct trig identity (secθ read off tanθ), and a schematic picture of two crossing lines would not add to that algebra. Hyperbola is a SAQ+VSAQ-only unit on the book's IPE Blue Print (book p.5) — 4 marks in Section B (paper slot Q15) and 2 marks in Section A (paper slot Q5); it has NO LAQ chapter and no Section-C slot, so no 7-mark form is authored for this unit. The Bullet Model Paper's Q5 (Hyperbola VSAQ, book p.104) and Q15 (Hyperbola SAQ, book p.109) were diffed against this unit's numbered chapters: all 5 Q5 sub-items reprint answers 130, 131, 132, 137 and 136 verbatim, and all 3 Q15 sub-items reprint answers 78.1, 79.2 and 80 verbatim, so no Bullet Model Paper extra was authored for this unit. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE BLM on hand; the book's five Guess Papers pp.118-127 are the orchestrator's back-test stand-in). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "insider_note": "Both boxed forms — 2Sec⁻¹e and 2Tan⁻¹(b/a) — are equally acceptable; write whichever matches what the question gives you, eccentricity or a, b directly.",
   "answer": {
@@ -57,13 +57,24 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "The asymptotes of x²/a² − y²/b² = 1 are y",
-          "= ±(b/a)x",
-          "They are equally inclined to the x-axis at",
-          "angle θ,",
-          "where tanθ = b/a",
+          "The asymptotes of x²/a² − y²/b² = 1 are",
+          "y = ±(b/a)x",
+          "(x²/a² − y²/b² = 0 factors as",
+          {
+            "text": "  (x/a − y/b)(x/a + y/b) = 0)",
+            "style": "indent"
+          },
+          "They are equally inclined to the x-axis",
+          "at an angle θ, where tanθ = b/a",
+          "(slopes b/a and −b/a: one line makes θ above",
+          {
+            "text": "  the x-axis, the other θ below it)",
+            "style": "indent"
+          },
+          "Use sec²θ = 1 + tan²θ:",
           "secθ = √(1 + tan²θ) = √(1 + b²/a²)",
-          "= √(a²+b²)/a = e"
+          "= √(a²+b²)/a = e",
+          "(1 + b²/a² = (a² + b²)/a², and e = √(a² + b²)/a)"
         ],
         "why": "Each asymptote makes the same angle θ with the x-axis, one above and one below it — writing secθ in terms of tanθ turns the angle straight into the hyperbola's own eccentricity.",
         "common_mistakes": [
@@ -82,6 +93,15 @@
         "lines": [
           "secθ = e ⇒ θ = Sec⁻¹e = Tan⁻¹(b/a)",
           {
+            "text": "The angle between the two asymptotes is",
+            "added": true
+          },
+          {
+            "text": "  θ + θ = 2θ:",
+            "style": "indent",
+            "added": true
+          },
+          {
             "text": "Angle between the asymptotes = 2Sec⁻¹(e)",
             "style": "boxed"
           }
@@ -89,7 +109,14 @@
         "why": "The full angle between the two asymptotes is twice θ, since one asymptote sits at +θ above the x-axis and the other at −θ below it.",
         "common_mistakes": [
           "Reporting θ itself as the answer instead of doubling it — the question asks for the angle BETWEEN the two lines, not between one line and the axis.",
-          "Mixing up Sec⁻¹e with Tan⁻¹e — both forms are correct but use different arguments (e versus b/a)."
+          "Writing Tan⁻¹e by mistake. The correct forms are Sec⁻¹e and Tan⁻¹(b/a): sec takes e, and tan takes b/a."
+        ],
+        "lines_compact": [
+          "secθ = e ⇒ θ = Sec⁻¹e = Tan⁻¹(b/a)",
+          {
+            "text": "Angle between the asymptotes = 2Sec⁻¹(e)",
+            "style": "boxed"
+          }
         ]
       }
     ]

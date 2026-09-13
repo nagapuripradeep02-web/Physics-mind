@@ -43,7 +43,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B, book printed p.35 (PDF page 34) — LAQ chapter 3 ‘Integration’, answer 29, no SSP banner on this page. Printed appearance: TS 15. Chapter star rank ★★★. no printed margin mark tags or tick-box splits appear anywhere in the Integration LAQ chapter — this card's mark split is OURS, patterned on the 7-mark shapes printed elsewhere in the book (e.g. 2+2+2+1, 1+1+2+2+1). CORRECTED 2026-08-29. The authoring pass recorded here that the answer had been \"re-derived independently\" with \"no error found\"; that claim was FALSE. An independent examiner found the middle term's coefficient wrong — printed −(5√2/16)(4x−1)√f, correct −(5/32)(4x−1)√f, out by a factor of 2√2. Derivation: 3x−2 = (3/4)(4x−1) − 5/4, and with 2x²−x+1 = 2[(x−¼)²+7/16] the cross term of B∫√f dx collapses to −(5/8)u√f = −(5/32)(4x−1)√f. Verified by differentiating the corrected result back to the integrand at four points (error ~1e-10); the printed coefficient does not differentiate back. The first and third terms were always right. The lesson this card records: a re-derivation by the same pass that wrote the answer is a check by the party least able to see its own mistake. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B, book printed p.35 (PDF page 34) — LAQ chapter 3 ‘Integration’, answer 29, no SSP banner on this page. Printed appearance: TS 15. Chapter star rank ★★★. no printed margin mark tags or tick-box splits appear anywhere in the Integration LAQ chapter — this card's mark split is OURS, patterned on the 7-mark shapes printed elsewhere in the book (e.g. 2+2+2+1, 1+1+2+2+1). CORRECTED 2026-08-29. The authoring pass recorded here that the answer had been \"re-derived independently\" with \"no error found\"; that claim was FALSE. An independent examiner found the middle term's coefficient wrong — printed −(5√2/16)(4x−1)√f, correct −(5/32)(4x−1)√f, out by a factor of 2√2. Derivation: 3x−2 = (3/4)(4x−1) − 5/4, and with 2x²−x+1 = 2[(x−¼)²+7/16] the cross term of B∫√f dx collapses to −(5/8)u√f = −(5/32)(4x−1)√f. Verified by differentiating the corrected result back to the integrand at four points (error ~1e-10); the printed coefficient does not differentiate back. The first and third terms were always right. The lesson this card records: a re-derivation by the same pass that wrote the answer is a check by the party least able to see its own mistake. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "insider_note": "A linear factor MULTIPLYING a square root, rather than divided by one, is the signal for this A·f′(x)·√f(x)+B·√f(x) split — the A-part becomes a clean power of f(x) with no log or inverse function at all.",
   "answer": {
@@ -64,9 +64,22 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Let 3x−2 = A·d/dx(2x²−x+1) + B = A(4x−1) + B",
-          "Coeff of x: 4A=3 ⇒ A=3/4; constant:",
-          "−A+B=−2 ⇒ B=−2+3/4=−5/4"
+          "A linear factor multiplies a square root, so",
+          {
+            "text": "  write that linear factor as A times the",
+            "style": "indent"
+          },
+          {
+            "text": "  derivative of the quadratic, plus B.",
+            "style": "indent"
+          },
+          "Here d/dx(2x²−x+1) = 4x−1",
+          "Let 3x−2 = A·d/dx(2x²−x+1) + B",
+          "⇒ 3x−2 = A(4x−1) + B",
+          "Compare the coefficients of x: 4A = 3 ⇒ A = 3/4",
+          "Compare the constant terms:",
+          "−A + B = −2 ⇒ B = −2 + A",
+          "B = −2 + 3/4 = −8/4 + 3/4 = −5/4"
         ],
         "why": "Writing the outside multiplier as A times the derivative of the expression under the root (plus a leftover B) is the same idea used earlier in this chapter, now for a MULTIPLIED root instead of a divided one.",
         "common_mistakes": [
@@ -84,20 +97,79 @@
         "margin_note": "Method",
         "lines": [
           "Putting A=3/4, B=−5/4: I",
+          {
+            "text": "= ∫[(3/4)(4x−1) − 5/4]√(2x²−x+1) dx",
+            "added": true
+          },
           "= (3/4)∫(4x−1)√(2x²−x+1) dx −",
           "(5/4)∫√(2x²−x+1) dx",
-          "∫(4x−1)√(2x²−x+1) dx = (2/3)(2x²−x+1)^{3/2}",
-          "[∵ ∫f′(x)√f(x) dx = (2/3)f(x)^{3/2}]",
+          {
+            "text": "The first integral has the derivative of the",
+            "added": true
+          },
+          {
+            "text": "  quadratic in front of its own root:",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "\\int (4x-1)\\sqrt{2x^{2}-x+1}\\,dx = \\tfrac{2}{3}\\left(2x^{2}-x+1\\right)^{3/2}",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "\\left[\\because \\int f'(x)\\sqrt{f(x)}\\,dx = \\tfrac{2}{3}f(x)^{3/2}\\right]",
+            "render": "katex",
+            "style": "eq"
+          },
           "So the first part is",
-          "(3/4)·(2/3)(2x²−x+1)^{3/2}",
-          "= (1/2)(2x²−x+1)^{3/2}"
+          {
+            "text": "\\tfrac{3}{4}\\cdot\\tfrac{2}{3}\\left(2x^{2}-x+1\\right)^{3/2}",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "and (3/4)·(2/3) = 6/12 = 1/2",
+            "added": true
+          },
+          {
+            "text": "= \\tfrac{1}{2}\\left(2x^{2}-x+1\\right)^{3/2}",
+            "render": "katex",
+            "style": "eq"
+          }
         ],
-        "why": "∫f′(x)√f(x) dx is a plain power-rule integral in disguise (u=f(x), du=f′(x)dx gives ∫√u du = (2/3)u^{3/2}) — no completing the square is needed for THIS half of the answer.",
+        "why": "∫f′(x)√f(x) dx is a plain power-rule integral in disguise (u=f(x), du=f′(x)dx gives ∫√u du = (2/3)u√u) — no completing the square is needed for THIS half of the answer.",
         "common_mistakes": [
           "Trying to complete the square before splitting off the A-part, which is unnecessary extra work.",
           "Missing the exponent 3/2, writing a plain square instead."
         ],
-        "memory_tip": "∫f′√f dx = (2/3)f^{3/2} — the SAME shape as ∫f′/√f dx = 2√f, one power higher."
+        "memory_tip": "∫f′√f dx = (2/3)f√f — the SAME shape as ∫f′/√f dx = 2√f, one power higher.",
+        "lines_compact": [
+          "Putting A=3/4, B=−5/4: I",
+          "= (3/4)∫(4x−1)√(2x²−x+1) dx −",
+          "(5/4)∫√(2x²−x+1) dx",
+          {
+            "text": "\\int (4x-1)\\sqrt{2x^{2}-x+1}\\,dx = \\tfrac{2}{3}\\left(2x^{2}-x+1\\right)^{3/2}",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "\\left[\\because \\int f'(x)\\sqrt{f(x)}\\,dx = \\tfrac{2}{3}f(x)^{3/2}\\right]",
+            "render": "katex",
+            "style": "eq"
+          },
+          "So the first part is",
+          {
+            "text": "\\tfrac{3}{4}\\cdot\\tfrac{2}{3}\\left(2x^{2}-x+1\\right)^{3/2}",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "= \\tfrac{1}{2}\\left(2x^{2}-x+1\\right)^{3/2}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ]
       },
       {
         "id": "s3_square",
@@ -107,12 +179,55 @@
         "mark_note": "Method",
         "margin_note": "Method",
         "lines": [
+          {
+            "text": "The second integral has no such derivative",
+            "added": true
+          },
+          {
+            "text": "  in front of it, so complete the square:",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "2x²−x+1 = 2[x² − x/2] + 1",
+            "added": true
+          },
+          {
+            "text": "= 2[(x−1/4)² − 1/16] + 1",
+            "added": true
+          },
+          {
+            "text": "= 2(x−1/4)² − 1/8 + 1",
+            "added": true
+          },
           "2x²−x+1 = 2[(x−1/4)²+7/16],",
           "so √(2x²−x+1) = √2·√[(x−1/4)²+(√7/4)²]",
           {
-            "text": "\\int\\sqrt{u^2+a^2}\\,du = \\frac{u}{2}\\sqrt{u^2+a^2} + \\frac{a^2}{2}\\sinh^{-1}\\!\\left(\\frac{u}{a}\\right)+c",
+            "text": "Put u = x − 1/4 and a = √7/4, so du = dx",
+            "added": true
+          },
+          {
+            "text": "\\int\\sqrt{u^2+a^2}\\,du = \\frac{u}{2}\\sqrt{u^2+a^2} + \\frac{a^2}{2}\\operatorname{sinh}^{-1}\\!\\left(\\frac{u}{a}\\right)+c",
             "render": "katex",
             "style": "eq"
+          },
+          {
+            "text": "Here √(u²+a²) = √(2x²−x+1)/√2,",
+            "added": true
+          },
+          {
+            "text": "  u/2 = (4x−1)/8 and a²/2 = 7/32, so",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "∫√(2x²−x+1) dx = ((4x−1)/8)√(2x²−x+1)",
+            "added": true
+          },
+          {
+            "text": "  + (7√2/32) sinh⁻¹[(4x−1)/√7]",
+            "style": "indent",
+            "added": true
           }
         ],
         "why": "The leftover B∫√f(x) dx piece genuinely needs completing the square, since here the root cannot be reduced by a simple substitution — it needs the standard √(u²+a²) result.",
@@ -120,7 +235,16 @@
           "Applying the standard formula to the WHOLE √(2x²−x+1) directly, forgetting the √2 factored out in front.",
           "Sign or fraction slip completing (x−1/4)²+7/16 from 2x²−x+1."
         ],
-        "memory_tip": "Factor out the leading 2 from under the root FIRST — the standard formula only accepts a bare u²+a² inside."
+        "memory_tip": "Factor out the leading 2 from under the root FIRST — the standard formula only accepts a bare u²+a² inside.",
+        "lines_compact": [
+          "2x²−x+1 = 2[(x−1/4)²+7/16],",
+          "so √(2x²−x+1) = √2·√[(x−1/4)²+(√7/4)²]",
+          {
+            "text": "\\int\\sqrt{u^2+a^2}\\,du = \\frac{u}{2}\\sqrt{u^2+a^2} + \\frac{a^2}{2}\\sinh^{-1}\\!\\left(\\frac{u}{a}\\right)+c",
+            "render": "katex",
+            "style": "eq"
+          }
+        ]
       },
       {
         "id": "s4_final",
@@ -130,7 +254,27 @@
         "mark_note": "Method",
         "margin_note": "Solution",
         "lines": [
-          "∴ I = (1/2)(2x²−x+1)^{3/2}",
+          {
+            "text": "That second integral is multiplied by 5/4:",
+            "added": true
+          },
+          {
+            "text": "(5/4)·((4x−1)/8) = 5(4x−1)/32",
+            "added": true
+          },
+          {
+            "text": "(5/4)·(7√2/32) = 35√2/128",
+            "added": true
+          },
+          {
+            "text": "Subtract both from the first part:",
+            "added": true
+          },
+          {
+            "text": "\\therefore I = \\tfrac{1}{2}\\left(2x^{2}-x+1\\right)^{3/2}",
+            "render": "katex",
+            "style": "eq"
+          },
           "− (5/32)(4x−1)√(2x²−x+1)",
           {
             "text": "− (35√2/128) sinh⁻¹[(4x−1)/√7] + c",
@@ -142,7 +286,19 @@
           "Forgetting to multiply B=−5/4 through BOTH terms of the standard √(u²+a²) result, not just one of them.",
           "Losing the √2 that was factored outside the root back in step 3."
         ],
-        "memory_tip": "B multiplies BOTH halves of the two-term standard result — the u√(u²+a²) piece and the sinh⁻¹ piece — never just one."
+        "memory_tip": "B multiplies BOTH halves of the two-term standard result — the u√(u²+a²) piece and the sinh⁻¹ piece — never just one.",
+        "lines_compact": [
+          {
+            "text": "\\therefore I = \\tfrac{1}{2}\\left(2x^{2}-x+1\\right)^{3/2}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "− (5/32)(4x−1)√(2x²−x+1)",
+          {
+            "text": "− (35√2/128) sinh⁻¹[(4x−1)/√7] + c",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   }

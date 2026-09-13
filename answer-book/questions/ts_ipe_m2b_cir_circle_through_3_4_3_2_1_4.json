@@ -59,7 +59,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.14 — LAQ chapter 1 Circle, answer 1.2. It is the right-hand twin of answer 1.1 on the same ★★★ SSP page (book p.14 carries the SSP banner). Printed appearance tags: AP 16,18 and TS 16,22. The mark split is OURS, not the book’s: this answer sits on a two-column page with no printed margin tags. It is patterned on the nearest printed split of the same shape in this chapter — book p.16, answer 3, which prints 1 + 1 + 2 + 2 + 1 for the same two-equations-then-centre-then-circle shape, and book p.17, answer 4, which prints 1 + 1 + 1 + 4. Star rank: the book gives the CIRCLE LAQ chapter ★★★ in its LAQ chapter table (book p.13), in the chapter header (book p.14) and in the LAQ hit list header (book p.7), so every Circle LAQ entry takes stars 3. That rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Circle holds Q18 and Q19. An LAQ on this paper is 7 marks, never 8 — the 2026-27 move to 8-mark long answers is first year only. The book’s working is correct; every number here was re-derived. This one is easier than 1.1 because two of the points share an x-coordinate and two share a y-coordinate, so each equation collapses to a single variable. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book’s five Guess Papers (book pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.14 — LAQ chapter 1 Circle, answer 1.2. It is the right-hand twin of answer 1.1 on the same ★★★ SSP page (book p.14 carries the SSP banner). Printed appearance tags: AP 16,18 and TS 16,22. The mark split is OURS, not the book’s: this answer sits on a two-column page with no printed margin tags. It is patterned on the nearest printed split of the same shape in this chapter — book p.16, answer 3, which prints 1 + 1 + 2 + 2 + 1 for the same two-equations-then-centre-then-circle shape, and book p.17, answer 4, which prints 1 + 1 + 1 + 4. Star rank: the book gives the CIRCLE LAQ chapter ★★★ in its LAQ chapter table (book p.13), in the chapter header (book p.14) and in the LAQ hit list header (book p.7), so every Circle LAQ entry takes stars 3. That rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Circle holds Q18 and Q19. An LAQ on this paper is 7 marks, never 8 — the 2026-27 move to 8-mark long answers is first year only. The book’s working is correct; every number here was re-derived. This one is easier than 1.1 because two of the points share an x-coordinate and two share a y-coordinate, so each equation collapses to a single variable. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book’s five Guess Papers (book pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "insider_note": "Two of the three points share x = 3 and two share y = 4, so each distance equation gives one coordinate of the centre straight away — spotting that saves about half the working.",
   "answer": {
@@ -83,11 +83,23 @@
           },
           "Let S(x₁, y₁) be the centre of the circle.",
           "A = (3, 4), B = (3, 2), C = (1, 4)",
+          "S is the same distance from all three points.",
           "⇒ SA = SB = SC",
+          "Distance formula: SA² = (x₁−3)² + (y₁−4)²",
           "Now SA = SB ⇒ SA² = SB²",
           "⇒ (x₁−3)² + (y₁−4)² = (x₁−3)² + (y₁−2)²",
+          "A and B have the same x, so (x₁−3)²",
+          {
+            "text": "  cancels from both sides:",
+            "style": "indent"
+          },
           "⇒ (y₁−4)² = (y₁−2)²",
+          "Expand both squares:",
+          "y₁² − 8y₁ + 16 = y₁² − 4y₁ + 4",
+          "y₁² cancels:",
           "⇒ −8y₁ + 16 = −4y₁ + 4",
+          "Take the y₁ terms to one side:",
+          "16 − 4 = −4y₁ + 8y₁",
           "⇒ 4y₁ = 12 ⇒ y₁ = 3 … (1)"
         ],
         "why": "A and B differ only in y, so the centre must sit on the horizontal line halfway between them. Cancelling the identical (x₁ − 3)² brackets is what shows that.",
@@ -107,14 +119,50 @@
         "lines": [
           "Also SA = SC ⇒ SA² = SC²",
           "⇒ (x₁−3)² + (y₁−4)² = (x₁−1)² + (y₁−4)²",
+          {
+            "text": "A and C have the same y, so (y₁−4)²",
+            "added": true
+          },
+          {
+            "text": "  cancels from both sides:",
+            "style": "indent",
+            "added": true
+          },
           "⇒ (x₁−3)² = (x₁−1)²",
+          {
+            "text": "Expand both squares:",
+            "added": true
+          },
+          {
+            "text": "x₁² − 6x₁ + 9 = x₁² − 2x₁ + 1",
+            "added": true
+          },
+          {
+            "text": "x₁² cancels:",
+            "added": true
+          },
           "⇒ −6x₁ + 9 = −2x₁ + 1",
+          {
+            "text": "Take the x₁ terms to one side:",
+            "added": true
+          },
+          {
+            "text": "9 − 1 = −2x₁ + 6x₁",
+            "added": true
+          },
           "⇒ 4x₁ = 8 ⇒ x₁ = 2 … (2)"
         ],
         "why": "A and C differ only in x, so the centre sits on the vertical line halfway between them. The y brackets are identical and cancel.",
         "common_mistakes": [
           "Squaring out (x₁ − 3)² and (x₁ − 1)² with a sign error on the middle term.",
           "Solving 4x₁ = 8 as x₁ = 4."
+        ],
+        "lines_compact": [
+          "Also SA = SC ⇒ SA² = SC²",
+          "⇒ (x₁−3)² + (y₁−4)² = (x₁−1)² + (y₁−4)²",
+          "⇒ (x₁−3)² = (x₁−1)²",
+          "⇒ −6x₁ + 9 = −2x₁ + 1",
+          "⇒ 4x₁ = 8 ⇒ x₁ = 2 … (2)"
         ]
       },
       {
@@ -127,12 +175,36 @@
         "memory_tip": "x from (2), y from (1). Read them in the right order: (x₁, y₁) = (2, 3).",
         "lines": [
           "From (1) and (2), y₁ = 3 and x₁ = 2",
-          "∴ Centre S(x₁, y₁) = (2, 3)"
+          "∴ Centre S(x₁, y₁) = (2, 3)",
+          {
+            "text": "Check the three distances from (2, 3):",
+            "added": true
+          },
+          {
+            "text": "SA² = (2−3)² + (3−4)² = 1 + 1 = 2",
+            "added": true
+          },
+          {
+            "text": "SB² = (2−3)² + (3−2)² = 1 + 1 = 2",
+            "added": true
+          },
+          {
+            "text": "SC² = (2−1)² + (3−4)² = 1 + 1 = 2",
+            "added": true
+          },
+          {
+            "text": "All three are equal, so S is the centre.",
+            "added": true
+          }
         ],
         "why": "Each equation isolated a single coordinate, so no simultaneous solving is needed. Only the order of the pair has to be right.",
         "common_mistakes": [
           "Writing the centre as (3, 2) by swapping the two results.",
           "Assuming the centre must be one of the given points."
+        ],
+        "lines_compact": [
+          "From (1) and (2), y₁ = 3 and x₁ = 2",
+          "∴ Centre S(x₁, y₁) = (2, 3)"
         ]
       },
       {
@@ -145,12 +217,32 @@
         "memory_tip": "Keep r squared. The equation of the circle uses r², not r.",
         "lines": [
           "A = (3, 4) lies on the circle, so r = SA.",
-          "r² = SA² = (2−3)² + (3−4)² = 1 + 1 = 2"
+          {
+            "text": "Put the centre (2, 3) and A(3, 4) in the",
+            "added": true
+          },
+          {
+            "text": "  distance formula:",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "r² = SA² = (2−3)² + (3−4)²",
+            "added": true
+          },
+          {
+            "text": "= (−1)² + (−1)² = 1 + 1 = 2",
+            "added": true
+          }
         ],
         "why": "The distance from the centre to any of the three given points is the radius. Squaring keeps the number exact instead of leaving a surd.",
         "common_mistakes": [
           "Writing r = 2 instead of r² = 2.",
           "Measuring from the wrong point and getting r² = 5."
+        ],
+        "lines_compact": [
+          "A = (3, 4) lies on the circle, so r = SA.",
+          "r² = SA² = (2−3)² + (3−4)² = 1 + 1 = 2"
         ]
       },
       {
@@ -162,6 +254,48 @@
         "margin_note": "The last two marks. Check the constant: 4 + 9 − 2 = 11.",
         "memory_tip": "Expand (x − 2)² + (y − 3)² = 2 and move the 2 across.",
         "lines": [
+          {
+            "text": "A circle with centre (h, k) and radius r is",
+            "added": true
+          },
+          {
+            "text": "(x − h)² + (y − k)² = r²",
+            "added": true
+          },
+          "Circle with centre (2, 3) and r² = 2 is",
+          "(x − 2)² + (y − 3)² = 2",
+          {
+            "text": "Expand both squares:",
+            "added": true
+          },
+          "⇒ (x² − 4x + 4) + (y² − 6y + 9) = 2",
+          {
+            "text": "Take 2 to the left side:",
+            "added": true
+          },
+          {
+            "text": "x² + y² − 4x − 6y + 4 + 9 − 2 = 0",
+            "added": true
+          },
+          {
+            "text": "Constant: 4 + 9 − 2 = 11",
+            "added": true
+          },
+          {
+            "text": "∴ x² + y² − 4x − 6y + 11 = 0",
+            "style": "boxed"
+          },
+          {
+            "text": "Check A(3, 4): 9 + 16 − 12 − 24 + 11 = 0",
+            "added": true
+          }
+        ],
+        "why": "Expanding the centre-radius form gives the general form. The constant term is 4 + 9 − 2 = 11, which is where most of the arithmetic marks are lost.",
+        "common_mistakes": [
+          "Leaving the answer as (x − 2)² + (y − 3)² = 2 without expanding.",
+          "Getting the constant as 13 by forgetting to subtract r² = 2."
+        ],
+        "lines_compact": [
           "Circle with centre (2, 3) and r² = 2 is",
           "(x − 2)² + (y − 3)² = 2",
           "⇒ (x² − 4x + 4) + (y² − 6y + 9) = 2",
@@ -169,11 +303,6 @@
             "text": "∴ x² + y² − 4x − 6y + 11 = 0",
             "style": "boxed"
           }
-        ],
-        "why": "Expanding the centre-radius form gives the general form. The constant term is 4 + 9 − 2 = 11, which is where most of the arithmetic marks are lost.",
-        "common_mistakes": [
-          "Leaving the answer as (x − 2)² + (y − 3)² = 2 without expanding.",
-          "Getting the constant as 13 by forgetting to subtract r² = 2."
         ]
       }
     ]

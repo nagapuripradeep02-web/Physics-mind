@@ -15,7 +15,7 @@
   "marks_total": 2,
   "paper_section": "Section A",
   "expected_time_min": 4,
-  "question_text": "Evaluate ∫₀^π sin³x cos³x dx.",
+  "question_text": "Evaluate ∫ sin³x cos³x dx from 0 to π.",
   "appearances": [
     {
       "year": 2015
@@ -34,7 +34,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book printed p.92 — VSAQ chapter 17 'Definite Integrals', answer 178, on a printed Super Scoring Page (SSP 92). Printed appearance: TS 15. Chapter star rank ★★★ applies. No margin mark tags are printed, so the 1+1 split is OURS, patterned on the split used throughout this chapter. Boundary reading: printed p.89 confirms the Integration VSAQ chapter ends at answer 164 (∫cos√x dx); printed p.93 confirms the Differential Equations VSAQ chapter begins at answer 181 — so this chapter's answers 165–180.2 are the complete VSAQ Definite Integrals set. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book printed p.92 — VSAQ chapter 17 'Definite Integrals', answer 178, on a printed Super Scoring Page (SSP 92). Printed appearance: TS 15. Chapter star rank ★★★ applies. No margin mark tags are printed, so the 1+1 split is OURS, patterned on the split used throughout this chapter. Boundary reading: printed p.89 confirms the Integration VSAQ chapter ends at answer 164 (∫cos√x dx); printed p.93 confirms the Differential Equations VSAQ chapter begins at answer 181 — so this chapter's answers 165–180.2 are the complete VSAQ Definite Integrals set. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "insider_note": "This result also follows from symmetry: sin³x is unchanged and cos³x is odd about x=π/2 on this interval, so the positive and negative halves of the integral cancel exactly.",
   "answer": {
@@ -56,11 +56,29 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "I = ∫₀^π sin³x cos³x dx",
-          "By x → π−x: I = ∫₀^π sin³(π−x) cos³(π−x) dx",
+          {
+            "text": "I = \\int _{0}^{\\pi } \\sin ^{3}x \\cos ^{3}x dx",
+            "render": "katex",
+            "style": "normal"
+          },
+          "Use ∫₀ᵃ f(x)dx = ∫₀ᵃ f(a − x)dx, a = π.",
+          {
+            "text": "\\text{By }\\ x \\to \\pi -x: I = \\int _{0}^{\\pi } \\sin ^{3}(\\pi -x) \\cos ^{3}(\\pi -x) dx",
+            "render": "katex",
+            "style": "normal"
+          },
           "sin(π−x) = sinx and cos(π−x) = −cosx",
-          "∴ I = ∫₀^π sin³x (−cosx)³ dx",
-          "= −∫₀^π sin³x cos³x dx = −I"
+          {
+            "text": "\\therefore I = \\int _{0}^{\\pi } \\sin ^{3}x (-\\cos x)^{3} dx",
+            "render": "katex",
+            "style": "normal"
+          },
+          "(−cosx)³ = −cos³x, since the power is odd:",
+          {
+            "text": "= -\\int _{0}^{\\pi } \\sin ^{3}x \\cos ^{3}x dx = -I",
+            "render": "katex",
+            "style": "normal"
+          }
         ],
         "why": "Under x→π−x, sinx stays unchanged but cosx flips sign, so cos³x also flips sign (an odd power keeps the sign flip), giving the negative of the original integral.",
         "common_mistakes": [
@@ -77,7 +95,15 @@
         "margin_note": "Second mark. I = −I is only possible if I = 0 — a short, direct conclusion.",
         "memory_tip": "Whenever a property gives I = −I, the answer is always 0, with no further computation needed.",
         "lines": [
+          {
+            "text": "The last integral is I itself:",
+            "added": true
+          },
           "∴ I = −I ⇒ 2I = 0",
+          {
+            "text": "Divide both sides by 2:",
+            "added": true
+          },
           {
             "text": "∴ I = 0",
             "style": "boxed"
@@ -87,6 +113,13 @@
         "common_mistakes": [
           "Concluding I is undefined instead of recognising I=0 is a valid, clean result.",
           "Dividing both sides of I = −I by I, which is division by zero here, instead of adding I to both sides to get 2I = 0."
+        ],
+        "lines_compact": [
+          "∴ I = −I ⇒ 2I = 0",
+          {
+            "text": "∴ I = 0",
+            "style": "boxed"
+          }
         ]
       }
     ]

@@ -47,7 +47,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.67 — SAQ chapter 9 Hyperbola, answer 80, and repeated verbatim as the third sub-item of the Bullet Model Paper's Q15 (book p.109). NOT on an SSP page (book p.49's 13-page SSP list includes p.66 but not p.67). Printed appearance: TS 16,17. Book p.67 prints no margin mark tags for this proof-style question, so the 1+1+1+1 split here is OURS, following the four natural stages of the standard 'product of roots' proof — the same split pattern used on the analogous Ellipse director-circle card (book p.63, answer 72), with a²+b² replaced by a²−b² throughout since a hyperbola's tangent formula subtracts b² instead of adding it. No error found in the book's printed working. A FIGURE is authored for this card — one branch of the hyperbola, its (smaller, concentric) director circle, and two perpendicular tangent lines from an external point — because the picture IS the argument: seeing the locus point on a circle INSIDE the hyperbola's own vertices (radius √(a²−b²) < a) is the entire content of the result, and it is the opposite size relationship from an ellipse's director circle, which sits OUTSIDE the ellipse. Hyperbola is a SAQ+VSAQ-only unit on the book's IPE Blue Print (book p.5) — 4 marks in Section B (paper slot Q15) and 2 marks in Section A (paper slot Q5); it has NO LAQ chapter and no Section-C slot, so no 7-mark form is authored for this unit. The Bullet Model Paper's Q5 (Hyperbola VSAQ, book p.104) and Q15 (Hyperbola SAQ, book p.109) were diffed against this unit's numbered chapters: all 5 Q5 sub-items reprint answers 130, 131, 132, 137 and 136 verbatim, and all 3 Q15 sub-items reprint answers 78.1, 79.2 and 80 verbatim, so no Bullet Model Paper extra was authored for this unit. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE BLM on hand; the book's five Guess Papers pp.118-127 are the orchestrator's back-test stand-in). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.67 — SAQ chapter 9 Hyperbola, answer 80, and repeated verbatim as the third sub-item of the Bullet Model Paper's Q15 (book p.109). NOT on an SSP page (book p.49's 13-page SSP list includes p.66 but not p.67). Printed appearance: TS 16,17. Book p.67 prints no margin mark tags for this proof-style question, so the 1+1+1+1 split here is OURS, following the four natural stages of the standard 'product of roots' proof — the same split pattern used on the analogous Ellipse director-circle card (book p.63, answer 72), with a²+b² replaced by a²−b² throughout since a hyperbola's tangent formula subtracts b² instead of adding it. No error found in the book's printed working. A FIGURE is authored for this card — one branch of the hyperbola, its (smaller, concentric) director circle, and two perpendicular tangent lines from an external point — because the picture IS the argument: seeing the locus point on a circle INSIDE the hyperbola's own vertices (radius √(a²−b²) < a) is the entire content of the result, and it is the opposite size relationship from an ellipse's director circle, which sits OUTSIDE the ellipse. Hyperbola is a SAQ+VSAQ-only unit on the book's IPE Blue Print (book p.5) — 4 marks in Section B (paper slot Q15) and 2 marks in Section A (paper slot Q5); it has NO LAQ chapter and no Section-C slot, so no 7-mark form is authored for this unit. The Bullet Model Paper's Q5 (Hyperbola VSAQ, book p.104) and Q15 (Hyperbola SAQ, book p.109) were diffed against this unit's numbered chapters: all 5 Q5 sub-items reprint answers 130, 131, 132, 137 and 136 verbatim, and all 3 Q15 sub-items reprint answers 78.1, 79.2 and 80 verbatim, so no Bullet Model Paper extra was authored for this unit. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE BLM on hand; the book's five Guess Papers pp.118-127 are the orchestrator's back-test stand-in). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged. FIGURE FIX 2026-09-14: from the old P(194, 120) one drawn line touched the true hyperbola only outside the figure and stopped short of the drawn branch; P moves to (196, 130) on the director circle, and the two lines now pass through the points of contact (255.9, 86.4) and (217.4, 159.1), within 1.4 px of the drawn arc and meeting at 89.7°. The left branch is redrawn as the mirror image of the right branch about the centre line x = 140."
   },
   "insider_note": "Name the result 'director circle' on the final boxed line — examiners often award the last mark for naming it, not just deriving it. Also worth a one-line remark that this circle is real only when a > b.",
   "answer": {
@@ -69,11 +69,18 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Let the hyperbola be S ≡ x²/a² − y²/b² − 1",
-          "= 0",
+          "Let the hyperbola be",
+          "S ≡ x²/a² − y²/b² − 1 = 0",
           "Let P(x₁, y₁) be a point on the locus.",
+          "(P is the point where two perpendicular",
+          {
+            "text": "  tangents meet.)",
+            "style": "indent"
+          },
           "Tangent with slope m: y = mx ± √(a²m² − b²)",
+          "(the tangent of slope m to the hyperbola)",
           "If it passes through P(x₁, y₁):",
+          "Put x = x₁, y = y₁ and take mx₁ to the left:",
           "y₁ − mx₁ = ±√(a²m² − b²)"
         ],
         "why": "Forcing the general hyperbola tangent to pass through the locus point P turns 'a tangent through P' into an algebraic equation relating m to the coordinates of P.",
@@ -92,12 +99,50 @@
         "memory_tip": "Two tangents from one point means: look for a QUADRATIC whose two roots are their two slopes.",
         "lines": [
           "Squaring: (y₁ − mx₁)² = a²m² − b²",
-          "⇒ m²(x₁² − a²) − 2mx₁y₁ + (y₁² + b²) = 0 …(1)"
+          {
+            "text": "Open the square on the left:",
+            "added": true
+          },
+          {
+            "text": "y₁² − 2mx₁y₁ + m²x₁² = a²m² − b²",
+            "added": true
+          },
+          {
+            "text": "Bring every term to the left and group by",
+            "added": true
+          },
+          {
+            "text": "  powers of m:",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "m² terms: m²x₁² − a²m² = m²(x₁² − a²)",
+            "added": true
+          },
+          {
+            "text": "m term: −2mx₁y₁; constant: y₁² + b²",
+            "added": true
+          },
+          "⇒ m²(x₁² − a²) − 2mx₁y₁ + (y₁² + b²) = 0 …(1)",
+          {
+            "text": "(1) is a quadratic in m. Its two roots m₁, m₂",
+            "added": true
+          },
+          {
+            "text": "  are the slopes of the two tangents from P.",
+            "style": "indent",
+            "added": true
+          }
         ],
         "why": "Equation (1) is a quadratic in m; its two roots m₁, m₂ are exactly the slopes of the two tangents that pass through P, since each root satisfies the tangency condition.",
         "common_mistakes": [
           "Expanding (y₁ − mx₁)² incorrectly and losing the cross term −2mx₁y₁.",
           "Writing the constant term as (y₁² − b²) instead of (y₁² + b²) — the minus sign in the hyperbola's tangent formula flips again when −b² moves across the equals sign."
+        ],
+        "lines_compact": [
+          "Squaring: (y₁ − mx₁)² = a²m² − b²",
+          "⇒ m²(x₁² − a²) − 2mx₁y₁ + (y₁² + b²) = 0 …(1)"
         ]
       },
       {
@@ -107,9 +152,18 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Third mark. Perpendicular tangents mean the product of the two roots m₁m₂ = −1.",
-        "memory_tip": "Product of roots of am² + bm + c = 0 is c/a — apply it here with a = (x₁²−a²), c = (y₁²+b²).",
+        "memory_tip": "Product of roots of Am² + Bm + C = 0 is C/A — apply it here with A = x₁² − a², C = y₁² + b².",
         "lines": [
           "If the tangents are perpendicular, m₁m₂ = −1",
+          {
+            "text": "For Am² + Bm + C = 0, the product of the roots",
+            "added": true
+          },
+          {
+            "text": "  is C/A. Here A = x₁² − a², C = y₁² + b².",
+            "style": "indent",
+            "added": true
+          },
           "Product of roots of (1):",
           "m₁m₂ = (y₁² + b²) / (x₁² − a²) = −1"
         ],
@@ -117,6 +171,11 @@
         "common_mistakes": [
           "Using sum of roots instead of product of roots — perpendicularity is a PRODUCT condition, not a sum.",
           "Dropping the minus sign when equating the ratio to −1."
+        ],
+        "lines_compact": [
+          "If the tangents are perpendicular, m₁m₂ = −1",
+          "Product of roots of (1):",
+          "m₁m₂ = (y₁² + b²) / (x₁² − a²) = −1"
         ]
       },
       {
@@ -128,16 +187,44 @@
         "margin_note": "Fourth mark. Clear the fraction and simplify — the x₁² and a² terms combine into a circle equation.",
         "memory_tip": "The director circle of a hyperbola sits INSIDE the vertices — radius √(a²−b²) is always less than a — the opposite of an ellipse's director circle, which is bigger than the ellipse.",
         "lines": [
+          {
+            "text": "Multiply both sides by (x₁² − a²):",
+            "added": true
+          },
           "y₁² + b² = −(x₁² − a²) ⇒ x₁² + y₁² = a² − b²",
+          {
+            "text": "(−(x₁² − a²) = −x₁² + a²; move −x₁² to the left",
+            "added": true
+          },
+          {
+            "text": "  and b² to the right)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "Replace (x₁, y₁) by (x, y):",
+            "added": true
+          },
           {
             "text": "x² + y² = a² − b² — director circle",
             "style": "boxed"
+          },
+          {
+            "text": "(This is a real circle only when a > b.)",
+            "added": true
           }
         ],
         "why": "Rearranging the perpendicularity equation shows that every point from which the two tangents are perpendicular satisfies x² + y² = a² − b², which is the equation of a circle concentric with the hyperbola.",
         "common_mistakes": [
           "Stopping at y₁² + b² = a² − x₁² without moving all terms to one side to reveal the circle equation.",
           "Not noticing this circle is real only when a > b — if b > a, a² − b² is negative and the locus has no real points, meaning no pair of perpendicular tangents exists at all."
+        ],
+        "lines_compact": [
+          "y₁² + b² = −(x₁² − a²) ⇒ x₁² + y₁² = a² − b²",
+          {
+            "text": "x² + y² = a² − b² — director circle",
+            "style": "boxed"
+          }
         ]
       },
       {
@@ -161,7 +248,7 @@
             {
               "type": "stroke",
               "id": "hdc_branch_left_stub",
-              "d": "M 45 115 Q 70 125 70 140 Q 70 155 45 165",
+              "d": "M 13 80 Q 70 110 70 140 Q 70 170 13 200",
               "ms": 1070
             },
             {
@@ -173,26 +260,26 @@
             {
               "type": "stroke",
               "id": "hdc_tangent_1",
-              "d": "M 194 120 L 245 89",
+              "d": "M 196 130 L 268.8 77",
               "ms": 850
             },
             {
               "type": "stroke",
               "id": "hdc_tangent_2",
-              "d": "M 194 120 L 220 163",
+              "d": "M 196 130 L 226.9 172",
               "ms": 720
             },
             {
               "type": "stroke",
               "id": "hdc_right_angle_p",
-              "d": "M 204 114 L 211 124 L 200 130",
+              "d": "M 203.3 124.7 L 208.6 132 L 201.3 137.3",
               "ms": 350
             },
             {
               "type": "label",
               "id": "hdc_lbl_p",
-              "x": 177,
-              "y": 100,
+              "x": 182,
+              "y": 125,
               "text": "P",
               "ms": 400,
               "em": true

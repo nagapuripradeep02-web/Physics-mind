@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Maths-2B, book p.82 — VSAQ chapter 14 Parabola, answer 123, paired on the page with answer 124 (two questions side by side). No appearance tag is printed. THE MARK SPLIT IS OURS, same page-format reasoning as the rest of this chapter. No two-book union check was possible for Maths-2B (no second-year TSBIE Basic Learning Material is on hand), and no board back-test beyond diffing against this book's own five Guess Papers. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, Senior Maths-2B, book p.82 — VSAQ chapter 14 Parabola, answer 123, paired on the page with answer 124 (two questions side by side). No appearance tag is printed. THE MARK SPLIT IS OURS, same page-format reasoning as the rest of this chapter. No two-book union check was possible for Maths-2B (no second-year TSBIE Basic Learning Material is on hand), and no board back-test beyond diffing against this book's own five Guess Papers. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "answer": {
     "page_header": [
@@ -53,7 +53,9 @@
           "Given parabola y² = 16x ⇒ 4a = 16 ⇒ a = 4",
           "Given line 2x − y + 2 = 0",
           "⇒ y = 2x + 2, so m = 2, c = 2",
+          "(move y to the right side)",
           "Tangential condition:",
+          "(y = mx + c touches y² = 4ax exactly when c = a/m)",
           "a/m = 4/2 = 2 = c, so the line is a tangent."
         ],
         "why": "Rewriting the line as y = 2x + 2 exposes m and c, and checking a/m equals c is the whole test for whether a given line touches this parabola.",
@@ -74,8 +76,21 @@
           "The point of contact is (a/m², 2a/m)",
           "= (4/4, 8/2) = (1, 4)",
           {
+            "text": "(a/m² = 4/2² = 4/4 and 2a/m = 2(4)/2 = 8/2)",
+            "added": true
+          },
+          {
             "text": "∴ the point of contact is (1, 4)",
             "style": "boxed"
+          },
+          {
+            "text": "Check: (1, 4) is on both: 4² = 16(1), and",
+            "added": true
+          },
+          {
+            "text": "  2(1) − 4 + 2 = 0.",
+            "style": "indent",
+            "added": true
           }
         ],
         "why": "The point of contact formula (a/m², 2a/m) comes directly from the tangent's own equation, and plugging in the already-known a and m is a one-line calculation.",
@@ -83,7 +98,15 @@
           "Writing the point of contact as (a/m, 2a/m²) with the powers of m swapped.",
           "Substituting m = 2 as m² = 2 instead of squaring it to 4."
         ],
-        "memory_tip": "The point of contact is (a/m², 2a/m) — the m² sits under the first coordinate, not the second."
+        "memory_tip": "The point of contact is (a/m², 2a/m) — the m² sits under the first coordinate, not the second.",
+        "lines_compact": [
+          "The point of contact is (a/m², 2a/m)",
+          "= (4/4, 8/2) = (1, 4)",
+          {
+            "text": "∴ the point of contact is (1, 4)",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

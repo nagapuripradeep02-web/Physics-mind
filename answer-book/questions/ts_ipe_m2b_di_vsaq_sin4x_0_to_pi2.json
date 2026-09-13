@@ -15,11 +15,11 @@
   "marks_total": 2,
   "paper_section": "Section A",
   "expected_time_min": 4,
-  "question_text": "Evaluate ∫₀^(π/2) sin⁴x dx.",
+  "question_text": "Evaluate ∫ sin⁴x dx from 0 to π/2.",
   "appearances": [],
   "mark_split": [
     {
-      "label": "State Walli's formula for even n",
+      "label": "State Wallis's formula for even n",
       "marks": 1
     },
     {
@@ -30,9 +30,9 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book printed p.91 — VSAQ chapter 17 'Definite Integrals', answer 174, on the same page as answers 171–173.2 (not marked as a Super Scoring Page). No year tag is printed. Chapter star rank ★★★ applies. No margin mark tags are printed, so the 1+1 split is OURS, patterned on the split used throughout this chapter. Boundary reading: printed p.89 confirms the Integration VSAQ chapter ends at answer 164 (∫cos√x dx); printed p.93 confirms the Differential Equations VSAQ chapter begins at answer 181 — so this chapter's answers 165–180.2 are the complete VSAQ Definite Integrals set. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book printed p.91 — VSAQ chapter 17 'Definite Integrals', answer 174, on the same page as answers 171–173.2 (not marked as a Super Scoring Page). No year tag is printed. Chapter star rank ★★★ applies. No margin mark tags are printed, so the 1+1 split is OURS, patterned on the split used throughout this chapter. Boundary reading: printed p.89 confirms the Integration VSAQ chapter ends at answer 164 (∫cos√x dx); printed p.93 confirms the Differential Equations VSAQ chapter begins at answer 181 — so this chapter's answers 165–180.2 are the complete VSAQ Definite Integrals set. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
-  "insider_note": "Walli's formula turns what would otherwise be a repeated reduction-formula derivation into a single substitution — always quote it directly for ∫₀^(π/2) sinⁿx or cosⁿx dx.",
+  "insider_note": "Wallis's formula turns what would otherwise be a repeated reduction-formula derivation into a single substitution — always quote it directly for ∫ sinⁿx dx or ∫ cosⁿx dx from 0 to π/2.",
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",
@@ -42,7 +42,7 @@
       {
         "id": "s1_formula",
         "kind": "equation",
-        "label": "State Walli's formula for even n",
+        "label": "State Wallis's formula for even n",
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. n=4 is even, so the π/2 factor is included.",
@@ -52,11 +52,20 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "When n is even, ∫₀^(π/2) sinⁿx dx",
+          "∫sinⁿx dx from 0 to π/2 has a direct formula,",
+          {
+            "text": "  so no repeated by-parts is needed.",
+            "style": "indent"
+          },
+          {
+            "text": "\\text{When }\\ n \\text{ is even, }\\ \\int _{0}^{\\pi /2} \\sin ^{n}x dx",
+            "render": "katex",
+            "style": "normal"
+          },
           "= [(n−1)(n−3)···3·1]/[n(n−2)···4·2] · π/2",
-          "[Walli's formula]"
+          "[Wallis's formula]"
         ],
-        "why": "Walli's reduction formula gives a closed form for ∫₀^(π/2) sinⁿx dx directly, avoiding a repeated integration-by-parts derivation; an extra factor π/2 appears whenever n is even.",
+        "why": "Wallis's reduction formula gives a closed form for ∫ sinⁿx dx from 0 to π/2 directly, avoiding a repeated integration-by-parts derivation; an extra factor π/2 appears whenever n is even.",
         "common_mistakes": [
           "Using the odd-n version of the formula (which has no trailing π/2) for this even n=4 case.",
           "Missing a factor in the descending product."
@@ -71,8 +80,20 @@
         "margin_note": "Second mark. 3/8 × π/2 = 3π/16 — a direct multiplication once the ratio is found.",
         "memory_tip": "(n−1)(n−3)··· down to 1 or 2 sits on top; n(n−2)··· down to 1 or 2 sits on the bottom.",
         "lines": [
-          "∴ ∫₀^(π/2) sin⁴x dx = [(3)(1)]/[(4)(2)] · π/2",
+          {
+            "text": "Here n = 4, which is even, so π/2 is kept:",
+            "added": true
+          },
+          {
+            "text": "\\therefore \\int _{0}^{\\pi /2} \\sin ^{4}x dx = [(3)(1)]/[(4)(2)] \\cdot \\pi /2",
+            "render": "katex",
+            "style": "normal"
+          },
           "= 3/8 · π/2",
+          {
+            "text": "and 3π/(8·2) = 3π/16:",
+            "added": true
+          },
           {
             "text": "∴ I = 3π/16",
             "style": "boxed"
@@ -82,6 +103,18 @@
         "common_mistakes": [
           "Multiplying 3/8 by π instead of π/2.",
           "Reversing numerator and denominator of the product ratio."
+        ],
+        "lines_compact": [
+          {
+            "text": "\\therefore \\int _{0}^{\\pi /2} \\sin ^{4}x dx = [(3)(1)]/[(4)(2)] \\cdot \\pi /2",
+            "render": "katex",
+            "style": "normal"
+          },
+          "= 3/8 · π/2",
+          {
+            "text": "∴ I = 3π/16",
+            "style": "boxed"
+          }
         ]
       }
     ]

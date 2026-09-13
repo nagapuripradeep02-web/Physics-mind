@@ -43,7 +43,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.50 — SAQ chapter 6 Circle, answer 45.2. It is the right-hand twin of answer 45.1 on the same ★★★ SSP page (book p.50 carries the SSP banner). Printed appearance tags: TS 20 and an AP tag reading \"AP 16,1…\" whose second year is cut off at the trimmed right edge of the scan, so only AP 2016 is recorded; a reviewer with the physical book should read the rest. The mark split is OURS, not the book’s: this answer sits on a two-column or shared page with no printed margin tags. It is patterned on the one printed split in this chapter — book p.51, answer 48, which prints 1 + 1 + 1 + 1 across a four-move 4-mark answer. Star rank: the book gives the CIRCLE SAQ chapter ★★ in its SAQ chapter table (book p.49), in the chapter header (book p.50) and in the SAQ hit list header (book p.9), so every Circle SAQ entry takes stars 2. That rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Circle holds Q11. WHERE THE BOOK STOPS SHORT: its last printed step is 2√(48/2) = 2√24, and the line runs off the trimmed edge of the scan. 2√24 = 4√6, and that simplified form is written here; the book’s 2√24 is the same number, not an error. Everything else was re-derived and is correct: r = 7/√2 and p = 1/√2. FIGURE SCOPE: the question does not say \"draw\", so the diagram step carries NO marks. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book’s five Guess Papers (book pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.50 — SAQ chapter 6 Circle, answer 45.2. It is the right-hand twin of answer 45.1 on the same ★★★ SSP page (book p.50 carries the SSP banner). Printed appearance tags: TS 20 and an AP tag reading \"AP 16,1…\" whose second year is cut off at the trimmed right edge of the scan, so only AP 2016 is recorded; a reviewer with the physical book should read the rest. The mark split is OURS, not the book’s: this answer sits on a two-column or shared page with no printed margin tags. It is patterned on the one printed split in this chapter — book p.51, answer 48, which prints 1 + 1 + 1 + 1 across a four-move 4-mark answer. Star rank: the book gives the CIRCLE SAQ chapter ★★ in its SAQ chapter table (book p.49), in the chapter header (book p.50) and in the SAQ hit list header (book p.9), so every Circle SAQ entry takes stars 2. That rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Circle holds Q11. WHERE THE BOOK STOPS SHORT: its last printed step is 2√(48/2) = 2√24, and the line runs off the trimmed edge of the scan. 2√24 = 4√6, and that simplified form is written here; the book’s 2√24 is the same number, not an error. Everything else was re-derived and is correct: r = 7/√2 and p = 1/√2. FIGURE SCOPE: the question does not say \"draw\", so the diagram step carries NO marks. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book’s five Guess Papers (book pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "insider_note": "The line is given as y = x − 3, not in the ax + by + c = 0 form, so the first move is to rewrite it as x − y − 3 = 0 — using it as given is the commonest way to lose the distance mark here.",
   "answer": {
@@ -66,8 +66,12 @@
             "style": "heading"
           },
           "Given circle: x² + y² − x + 3y − 22 = 0",
+          "Compare with x² + y² + 2gx + 2fy + c = 0:",
+          "2g = −1 ⇒ g = −1/2",
+          "2f = 3 ⇒ f = 3/2",
           "Here g = −1/2, f = 3/2, c = −22",
-          "Centre C = (1/2, −3/2)",
+          "Centre C = (−g, −f) = (1/2, −3/2)",
+          "Radius r = √(g² + f² − c)",
           "r = √(1/4 + 9/4 + 22) = √((1 + 9 + 88)/4)",
           "= √(98/4) = √(49/2) = 7/√2"
         ],
@@ -87,14 +91,33 @@
         "memory_tip": "Move everything to one side before using the distance formula.",
         "lines": [
           "Write the line as x − y − 3 = 0",
+          {
+            "text": "Distance from (x₁, y₁) to ax + by + c = 0 is",
+            "added": true
+          },
+          {
+            "text": "  |ax₁ + by₁ + c| / √(a² + b²)",
+            "style": "indent",
+            "added": true
+          },
           "p = |1/2 − (−3/2) − 3| / √(1² + (−1)²)",
           "= |(1 + 3 − 6)/2| / √2",
+          {
+            "text": "(1 + 3 − 6)/2 = −2/2 = −1",
+            "added": true
+          },
           "= |−1| / √2 = 1/√2"
         ],
         "why": "The distance formula needs the line in the form ax + by + c = 0. Subtracting a negative y-coordinate is where the sign is usually lost: −(−3/2) is +3/2.",
         "common_mistakes": [
           "Using y = x − 3 directly and taking a = 1, b = 1.",
           "Writing −(−3/2) as −3/2."
+        ],
+        "lines_compact": [
+          "Write the line as x − y − 3 = 0",
+          "p = |1/2 − (−3/2) − 3| / √(1² + (−1)²)",
+          "= |(1 + 3 − 6)/2| / √2",
+          "= |−1| / √2 = 1/√2"
         ]
       },
       {
@@ -106,9 +129,31 @@
         "margin_note": "The last two marks. Both r² and p² are halves, so they subtract cleanly before the root is taken.",
         "memory_tip": "r² = 49/2 and p² = 1/2, so r² − p² = 48/2 = 24.",
         "lines": [
+          {
+            "text": "The radius, p and half the chord form a",
+            "added": true
+          },
+          {
+            "text": "  right triangle, so half the chord",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  is √(r² − p²).",
+            "style": "indent",
+            "added": true
+          },
           "Length of the chord = 2√(r² − p²)",
+          {
+            "text": "r² = 49/2 and p² = 1/2",
+            "added": true
+          },
           "= 2√(49/2 − 1/2) = 2√(48/2)",
           "= 2√24 = 2 × 2√6",
+          {
+            "text": "since √24 = √(4 × 6) = 2√6",
+            "added": true
+          },
           {
             "text": "∴ Length of the chord = 4√6",
             "style": "boxed"
@@ -118,6 +163,15 @@
         "common_mistakes": [
           "Writing (7/√2)² as 7/2.",
           "Leaving the answer as 2√24 without taking out the perfect square 4."
+        ],
+        "lines_compact": [
+          "Length of the chord = 2√(r² − p²)",
+          "= 2√(49/2 − 1/2) = 2√(48/2)",
+          "= 2√24 = 2 × 2√6",
+          {
+            "text": "∴ Length of the chord = 4√6",
+            "style": "boxed"
+          }
         ]
       },
       {

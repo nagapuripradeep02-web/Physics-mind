@@ -43,7 +43,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.60 — SAQ chapter 8 Ellipse, answer 66, on a ★★★ SSP page (book p.49 chapter table). Printed appearance: AP 19 only — no TS tag printed. Book p.60 prints NO margin mark tags or tick boxes for answers 64-66, so the 1+1+1+1 split here is OURS, patterned on the same four-stage shape as Q64 and Q65 in this same chapter. Ellipse is an SAQ-ONLY unit on the book's IPE Blue Print (book p.5). No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE BLM on hand; the book's five Guess Papers pp.118-127 are the orchestrator's back-test stand-in). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.60 — SAQ chapter 8 Ellipse, answer 66, on a ★★★ SSP page (book p.49 chapter table). Printed appearance: AP 19 only — no TS tag printed. Book p.60 prints NO margin mark tags or tick boxes for answers 64-66, so the 1+1+1+1 split here is OURS, patterned on the same four-stage shape as Q64 and Q65 in this same chapter. Ellipse is an SAQ-ONLY unit on the book's IPE Blue Print (book p.5). No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE BLM on hand; the book's five Guess Papers pp.118-127 are the orchestrator's back-test stand-in). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "insider_note": "The quadratic a² − 2a − 8 = 0 factors cleanly as (a − 4)(a + 2) — reject a = −2 in one line rather than working through the quadratic formula.",
   "answer": {
@@ -65,10 +65,11 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Let the equation of the ellipse be x²/a² +",
-          "y²/b²",
-          "= 1, (a > b)",
+          "Let the equation of the ellipse be",
+          "x²/a² + y²/b² = 1, (a > b)",
+          "The latus rectum has length 2b²/a.",
           "Length of latus rectum is 4 ⇒ 2b²/a = 4",
+          "(multiply both sides by a/2)",
           "⇒ b² = 2a …(1)"
         ],
         "why": "The major axis is given as the X-axis, so a > b, and the latus rectum condition is turned into an equation for b² in terms of a, to be combined with the foci condition next.",
@@ -88,12 +89,25 @@
         "lines": [
           "Distance between foci S(ae, 0),",
           "S′(−ae, 0) is 4√2",
-          "⇒ 2ae = 4√2 ⇒ ae = 2√2 ⇒ (ae)² = (2√2)² = 8"
+          {
+            "text": "(SS′ = ae − (−ae) = 2ae)",
+            "added": true
+          },
+          "⇒ 2ae = 4√2 ⇒ ae = 2√2 ⇒ (ae)² = (2√2)² = 8",
+          {
+            "text": "((2√2)² = 2² × (√2)² = 4 × 2 = 8)",
+            "added": true
+          }
         ],
         "why": "Squaring ae = 2√2 gives (ae)² = 8 directly, which is exactly the form needed in b² = a² − (ae)² in the next step.",
         "common_mistakes": [
           "Forgetting to square 2√2, and instead using 2√2 directly where (ae)² is needed.",
           "Computing (2√2)² as 4 instead of 8 — remember (2√2)² = 4 × 2 = 8."
+        ],
+        "lines_compact": [
+          "Distance between foci S(ae, 0),",
+          "S′(−ae, 0) is 4√2",
+          "⇒ 2ae = 4√2 ⇒ ae = 2√2 ⇒ (ae)² = (2√2)² = 8"
         ]
       },
       {
@@ -105,16 +119,40 @@
         "margin_note": "Third mark. b² = a² − (ae)² connects the two conditions.",
         "memory_tip": "Reject a negative root for a — a length is never negative.",
         "lines": [
+          {
+            "text": "Link a and b through b² = a²(1 − e²):",
+            "added": true
+          },
           "b² = a²(1 − e²) = a² − (ae)² = a² − 8 …(2)",
           "From (1) and (2): 2a = a² − 8 ⇒ a² − 2a − 8 = 0",
+          {
+            "text": "Two numbers with product −8 and sum −2",
+            "added": true
+          },
+          {
+            "text": "  are −4 and 2:",
+            "style": "indent",
+            "added": true
+          },
           "⇒ (a − 4)(a + 2) = 0",
           "⇒ a = 4 (a cannot be negative)",
+          {
+            "text": "(a = −2 is rejected: a is a length)",
+            "added": true
+          },
           "b² = 2a = 2(4) = 8"
         ],
         "why": "b² = a² − (ae)² links the foci condition to the latus-rectum equation from step 1, giving a single quadratic in a whose valid (positive) root is a = 4.",
         "common_mistakes": [
           "Keeping the root a = −2, which gives no valid ellipse.",
           "Substituting b² = 2a into the wrong equation and mixing up which condition gives which relation."
+        ],
+        "lines_compact": [
+          "b² = a²(1 − e²) = a² − (ae)² = a² − 8 …(2)",
+          "From (1) and (2): 2a = a² − 8 ⇒ a² − 2a − 8 = 0",
+          "⇒ (a − 4)(a + 2) = 0",
+          "⇒ a = 4 (a cannot be negative)",
+          "b² = 2a = 2(4) = 8"
         ]
       },
       {
@@ -129,14 +167,35 @@
           "a² = 16, b² = 8",
           "x²/16 + y²/8 = 1",
           {
+            "text": "Multiply every term by 16:",
+            "added": true
+          },
+          {
             "text": "x² + 2y² = 16",
             "style": "boxed"
+          },
+          {
+            "text": "Check: 2b²/a = 16/4 = 4, and",
+            "added": true
+          },
+          {
+            "text": "  2ae = 2√(a² − b²) = 2√8 = 4√2.",
+            "style": "indent",
+            "added": true
           }
         ],
         "why": "Multiplying x²/16 + y²/8 = 1 through by 16 gives the equivalent whole-number form x² + 2y² = 16, which the book gives as the final answer.",
         "common_mistakes": [
           "Stopping at the fraction form and not simplifying, or clearing fractions incorrectly.",
           "Swapping a² and b² in the final equation."
+        ],
+        "lines_compact": [
+          "a² = 16, b² = 8",
+          "x²/16 + y²/8 = 1",
+          {
+            "text": "x² + 2y² = 16",
+            "style": "boxed"
+          }
         ]
       }
     ]
