@@ -51,7 +51,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.73-74 — SAQ chapter 11 Differential Equations, answer 98. This is the ONLY answer in the whole book that spans a page break: it starts as the fourth answer at the bottom of p.73 (on the ★★★ SSP 73 page) and its working continues onto the top of p.74 (which carries no SSP banner). Printed appearance tags: AP 16,18; TS 15. The mark split is OURS: neither half-page prints margin marks for this answer. It is patterned on answer 94's printed 1+1+1+1 shape, since this answer also has four distinct checkpoints — rewrite to standard form, find the I.F., set up the integral with a substitution, then integrate to the final answer. Star rank: the Differential Equations SAQ chapter is ★★ on the SAQ chapter table (book p.49); every entry takes stars 2, a chapter-level rank. This exact question is also the Bullet Model Paper's Q17 (book p.110), so it is authored once, here, and covers that paper slot. The book's working was re-derived line by line and is correct throughout. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book's five Guess Papers (pp.118-127) are the only stand-in. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.73-74 — SAQ chapter 11 Differential Equations, answer 98. This is the ONLY answer in the whole book that spans a page break: it starts as the fourth answer at the bottom of p.73 (on the ★★★ SSP 73 page) and its working continues onto the top of p.74 (which carries no SSP banner). Printed appearance tags: AP 16,18; TS 15. The mark split is OURS: neither half-page prints margin marks for this answer. It is patterned on answer 94's printed 1+1+1+1 shape, since this answer also has four distinct checkpoints — rewrite to standard form, find the I.F., set up the integral with a substitution, then integrate to the final answer. Star rank: the Differential Equations SAQ chapter is ★★ on the SAQ chapter table (book p.49); every entry takes stars 2, a chapter-level rank. This exact question is also the Bullet Model Paper's Q17 (book p.110), so it is authored once, here, and covers that paper slot. The book's working was re-derived line by line and is correct throughout. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book's five Guess Papers (pp.118-127) are the only stand-in. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "insider_note": "The integrating factor e to the power Tan⁻¹x multiplies the right side to give e to the power 2Tan⁻¹x, so the substitution t = Tan⁻¹x is what turns the final integral into a plain ∫e²ᵗdt rather than something left in x.",
   "answer": {
@@ -78,6 +78,7 @@
             "render": "katex",
             "style": "normal"
           },
+          "Divide every term by (1 + x²):",
           {
             "text": "\\Rightarrow dy/dx + y\\cdot (1/(1 + x^{2})) = e^{\\operatorname{Tan}^{-1} x}/(1 + x^{2})",
             "render": "katex",
@@ -103,15 +104,35 @@
         "memory_tip": "Unlike the trig examples earlier in this chapter, this I.F. does not simplify further — e to the power Tan⁻¹x is already in its simplest form.",
         "lines": [
           {
+            "text": "For dy/dx + yP = Q the integrating factor is",
+            "added": true
+          },
+          {
+            "text": "  e to the power ∫P dx:",
+            "style": "indent",
+            "added": true
+          },
+          {
             "text": "\\therefore \\text{ I.F. }\\ = e^{\\int P dx} = e^{\\operatorname{Tan}^{-1} x}",
             "render": "katex",
             "style": "normal"
+          },
+          {
+            "text": "Tan⁻¹x is not a log, so this does not simplify.",
+            "added": true
           }
         ],
         "why": "Since ∫P dx = Tan⁻¹x here rather than a log expression, the integrating factor e to the power Tan⁻¹x does not simplify any further — it stays exactly as it is.",
         "common_mistakes": [
           "Trying to simplify e to the power Tan⁻¹x further, as if it were e raised to a log.",
           "Writing the I.F. as Tan⁻¹x, forgetting that it must be e to the power Tan⁻¹x."
+        ],
+        "lines_compact": [
+          {
+            "text": "\\therefore \\text{ I.F. }\\ = e^{\\int P dx} = e^{\\operatorname{Tan}^{-1} x}",
+            "render": "katex",
+            "style": "normal"
+          }
         ]
       },
       {
@@ -135,9 +156,17 @@
             "style": "normal"
           },
           {
+            "text": "Multiplying two powers of e adds the powers:",
+            "added": true
+          },
+          {
             "text": "= \\int e^{2\\operatorname{Tan}^{-1} x}/(1 + x^{2}) dx",
             "render": "katex",
             "style": "normal"
+          },
+          {
+            "text": "d/dx(Tan⁻¹x) = 1/(1 + x²), so:",
+            "added": true
           },
           "Put Tan⁻¹x = t ⇒ 1/(1 + x²) dx = dt,",
           "so the integral becomes ∫e²ᵗ dt"
@@ -146,6 +175,26 @@
         "common_mistakes": [
           "Adding the exponents incorrectly: e to the power (Tan⁻¹x + Tan⁻¹x) must become e to the power 2Tan⁻¹x.",
           "Forgetting that dt = 1/(1+x²) dx already matches the leftover factor exactly, and trying to substitute a different piece."
+        ],
+        "lines_compact": [
+          "Hence the solution is y·(I.F.) = ∫(I.F.)Q dx",
+          {
+            "text": "\\Rightarrow y\\cdot e^{\\operatorname{Tan}^{-1} x}",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "= \\int e^{\\operatorname{Tan}^{-1} x}\\cdot [e^{\\operatorname{Tan}^{-1} x}/(1 + x^{2})] dx",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "= \\int e^{2\\operatorname{Tan}^{-1} x}/(1 + x^{2}) dx",
+            "render": "katex",
+            "style": "normal"
+          },
+          "Put Tan⁻¹x = t ⇒ 1/(1 + x²) dx = dt,",
+          "so the integral becomes ∫e²ᵗ dt"
         ]
       },
       {
@@ -157,7 +206,15 @@
         "margin_note": "The last mark. ∫e²ᵗdt = (1/2)e²ᵗ, then substitute t = Tan⁻¹x back in.",
         "memory_tip": "∫eᵏᵗdt = eᵏᵗ/k for any constant k — here k = 2.",
         "lines": [
+          {
+            "text": "∫eᵏᵗ dt = (1/k)eᵏᵗ; here k = 2:",
+            "added": true
+          },
           "∫e²ᵗ dt = (1/2)e²ᵗ + c",
+          {
+            "text": "Since t = Tan⁻¹x, the left side is y·eᵗ:",
+            "added": true
+          },
           "So y·eᵗ = (1/2)e²ᵗ + c,",
           "and putting t = Tan⁻¹x back in:",
           {
@@ -170,6 +227,16 @@
         "common_mistakes": [
           "Forgetting the 1/2 factor that comes from integrating e²ᵗ rather than eᵗ.",
           "Leaving the final answer in terms of t instead of substituting Tan⁻¹x back in."
+        ],
+        "lines_compact": [
+          "∫e²ᵗ dt = (1/2)e²ᵗ + c",
+          "So y·eᵗ = (1/2)e²ᵗ + c,",
+          "and putting t = Tan⁻¹x back in:",
+          {
+            "text": "y\\cdot e^{\\operatorname{Tan}^{-1} x} = (1/2)e^{2\\operatorname{Tan}^{-1} x} + c",
+            "render": "katex",
+            "style": "boxed"
+          }
         ]
       }
     ]

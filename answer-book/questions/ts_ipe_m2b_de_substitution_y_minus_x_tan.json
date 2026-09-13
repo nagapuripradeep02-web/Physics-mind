@@ -43,7 +43,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.72 — SAQ chapter 11 Differential Equations, answer 93, the second answer on the page. On a ★★★ SSP (Super Scoring Page): book p.72 carries the SSP 72 banner. Printed appearance tag: TS 15 — no AP tag. The mark split is OURS: this answer carries no printed margin marks (only answer 94 on the same page does). It is patterned on a four-checkpoint shape for a non-homogeneous, non-linear equation solved by a direct substitution — substitute t for the awkward combination y − x, separate the resulting equation in t and x, integrate, state the final relation. Star rank: the Differential Equations SAQ chapter is ★★ on the SAQ chapter table (book p.49); every entry takes stars 2, a chapter-level rank. This exact question is also the Bullet Model Paper's Q17 (book p.110), so it is authored once, here, and covers that paper slot. The book's working was re-derived line by line and is correct throughout. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book's five Guess Papers (pp.118-127) are the only stand-in. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.72 — SAQ chapter 11 Differential Equations, answer 93, the second answer on the page. On a ★★★ SSP (Super Scoring Page): book p.72 carries the SSP 72 banner. Printed appearance tag: TS 15 — no AP tag. The mark split is OURS: this answer carries no printed margin marks (only answer 94 on the same page does). It is patterned on a four-checkpoint shape for a non-homogeneous, non-linear equation solved by a direct substitution — substitute t for the awkward combination y − x, separate the resulting equation in t and x, integrate, state the final relation. Star rank: the Differential Equations SAQ chapter is ★★ on the SAQ chapter table (book p.49); every entry takes stars 2, a chapter-level rank. This exact question is also the Bullet Model Paper's Q17 (book p.110), so it is authored once, here, and covers that paper slot. The book's working was re-derived line by line and is correct throughout. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book's five Guess Papers (pp.118-127) are the only stand-in. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "insider_note": "This equation is neither homogeneous nor linear in y, so neither of the two standard methods applies directly — the whole answer depends on spotting that y − x, not y/x, is the combination worth naming t.",
   "answer": {
@@ -66,7 +66,9 @@
             "style": "heading"
           },
           "Given D.E is dy/dx − x tan(y − x) = 1",
+          "y − x sits inside tan, so substitute for it.",
           "Put y − x = t ⇒ dy/dx − 1 = dt/dx",
+          "(differentiating both sides with respect to x)",
           "⇒ dy/dx = dt/dx + 1"
         ],
         "why": "The awkward term tan(y − x) only makes sense as a function of the single combination y − x, so naming that combination t and rewriting dy/dx in terms of dt/dx removes the mixed x and y dependence.",
@@ -87,13 +89,28 @@
           "Hence,",
           "the given D.E becomes (dt/dx + 1) − x tan t",
           "= 1",
+          {
+            "text": "The 1s on the two sides cancel:",
+            "added": true
+          },
           "⇒ dt/dx = x tan t ⇒ (1/tan t) dt = x dx",
+          {
+            "text": "1/tan t = cot t:",
+            "added": true
+          },
           "⇒ cot t dt = x dx"
         ],
         "why": "Substituting the relation from step 1 into the original equation cancels the constant terms and leaves dt/dx = x tan t, which separates cleanly into a t-only side and an x-only side.",
         "common_mistakes": [
           "Missing that the two 1's on either side of the equation cancel exactly.",
           "Inverting tan t to cot t incorrectly, writing tan t dt = x dx instead of cot t dt = x dx."
+        ],
+        "lines_compact": [
+          "Hence,",
+          "the given D.E becomes (dt/dx + 1) − x tan t",
+          "= 1",
+          "⇒ dt/dx = x tan t ⇒ (1/tan t) dt = x dx",
+          "⇒ cot t dt = x dx"
         ]
       },
       {
@@ -105,13 +122,25 @@
         "margin_note": "One mark. ∫cot t dt = log(sin t) is a standard integral.",
         "memory_tip": "cot t = cos t/sin t, and the numerator is exactly the derivative of the denominator — a direct log form.",
         "lines": [
+          {
+            "text": "Integrate both sides:",
+            "added": true
+          },
           "∫ cot t dt = ∫ x dx",
+          {
+            "text": "∫cot t dt = log(sin t) and ∫x dx = x²/2:",
+            "added": true
+          },
           "⇒ log(sin t) = x²/2 + c"
         ],
         "why": "cot t is cos t over sin t, and cos t is the derivative of sin t, so the left integral is the standard log(sin t); the right side is the plain power-rule integral of x.",
         "common_mistakes": [
           "Integrating cot t as log(cos t) instead of log(sin t).",
           "Forgetting the /2 that comes from integrating x on the right side."
+        ],
+        "lines_compact": [
+          "∫ cot t dt = ∫ x dx",
+          "⇒ log(sin t) = x²/2 + c"
         ]
       },
       {
@@ -123,7 +152,15 @@
         "margin_note": "The last mark. Multiply by 2 and substitute t = y − x back in.",
         "memory_tip": "Multiplying by 2 clears the /2 on the right and doubles the log on the left, matching the book's marked form.",
         "lines": [
+          {
+            "text": "Multiply by 2; 2c is again a constant, c:",
+            "added": true
+          },
           "⇒ 2 log(sin t) = x² + c",
+          {
+            "text": "Put t = y − x back:",
+            "added": true
+          },
           {
             "text": "2 log sin(y − x) = x² + c",
             "style": "boxed"
@@ -133,6 +170,13 @@
         "common_mistakes": [
           "Assuming the boxed line must show 2c since the equation was multiplied by 2 — the doubled constant of integration is silently relabelled as c, a standard convenience since the constant is arbitrary either way, not a missed step.",
           "Substituting t = x − y instead of y − x at this final stage."
+        ],
+        "lines_compact": [
+          "⇒ 2 log(sin t) = x² + c",
+          {
+            "text": "2 log sin(y − x) = x² + c",
+            "style": "boxed"
+          }
         ]
       }
     ]
