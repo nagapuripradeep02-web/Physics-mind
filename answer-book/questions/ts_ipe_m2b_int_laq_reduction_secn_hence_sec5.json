@@ -64,7 +64,7 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given I_n = ∫ secⁿx dx = ∫ secⁿ⁻²x · sec²x dx",
+          "Given Iₙ = ∫ secⁿx dx = ∫ secⁿ⁻²x · sec²x dx",
           "Take first function u = secⁿ⁻²x,",
           "second v = sec²x",
           "Then ∫v dx = ∫sec²x dx = tanx"
@@ -84,7 +84,7 @@
         "mark_note": "Method",
         "margin_note": "Method",
         "lines": [
-          "By the by-parts rule, I_n",
+          "By the by-parts rule, Iₙ",
           "= secⁿ⁻²x tanx − ∫(n−2)secⁿ⁻³x secx tanx",
           "· tanx dx",
           "= secⁿ⁻²x tanx − (n−2)∫secⁿ⁻²x tan²x dx",
@@ -110,8 +110,8 @@
         "mark_note": "Method",
         "margin_note": "Result",
         "lines": [
-          "I_n = secⁿ⁻²x tanx − (n−2)I_n + (n−2)I_{n−2}",
-          "(n−1)I_n = secⁿ⁻²x tanx + (n−2)I_{n−2}",
+          "Iₙ = secⁿ⁻²x tanx − (n−2)Iₙ + (n−2)Iₙ₋₂",
+          "(n−1)Iₙ = secⁿ⁻²x tanx + (n−2)Iₙ₋₂",
           {
             "text": "\\therefore\\ I_n = \\frac{\\sec^{n-2}x\\tan x}{n-1} + \\frac{n-2}{n-1}I_{n-2}\\ \\dots(1)",
             "render": "katex",

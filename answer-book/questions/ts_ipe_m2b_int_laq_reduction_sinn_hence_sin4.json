@@ -80,7 +80,7 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given I_n = ∫ sinⁿx dx = ∫ sinⁿ⁻¹x · sinx dx",
+          "Given Iₙ = ∫ sinⁿx dx = ∫ sinⁿ⁻¹x · sinx dx",
           "Take first function u = sinⁿ⁻¹x, second v = sinx",
           "Then ∫v dx = ∫sinx dx = −cosx"
         ],
@@ -99,7 +99,7 @@
         "mark_note": "Method",
         "margin_note": "Method",
         "lines": [
-          "By the by-parts rule, I_n",
+          "By the by-parts rule, Iₙ",
           "= sinⁿ⁻¹x(−cosx) − ∫(n−1)sinⁿ⁻²x cosx(−cosx)dx",
           "= −sinⁿ⁻¹x cosx + (n−1)∫sinⁿ⁻²x cos²x dx",
           "= −sinⁿ⁻¹x cosx + (n−1)∫sinⁿ⁻²x(1−sin²x)dx",
@@ -124,8 +124,8 @@
         "mark_note": "Method",
         "margin_note": "Result",
         "lines": [
-          "I_n = −sinⁿ⁻¹x cosx + (n−1)I_{n−2} − (n−1)I_n",
-          "nI_n = −sinⁿ⁻¹x cosx + (n−1)I_{n−2}",
+          "Iₙ = −sinⁿ⁻¹x cosx + (n−1)Iₙ₋₂ − (n−1)Iₙ",
+          "nIₙ = −sinⁿ⁻¹x cosx + (n−1)Iₙ₋₂",
           {
             "text": "\\therefore\\ I_n = \\frac{-\\sin^{n-1}x\\cos x}{n} + \\frac{n-1}{n}I_{n-2}\\ \\dots(1)",
             "render": "katex",

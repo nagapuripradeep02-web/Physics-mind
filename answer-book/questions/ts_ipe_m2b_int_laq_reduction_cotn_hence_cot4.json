@@ -68,7 +68,7 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Let I_n = ∫ cotⁿx dx = ∫ cotⁿ⁻²x · cot²x dx",
+          "Let Iₙ = ∫ cotⁿx dx = ∫ cotⁿ⁻²x · cot²x dx",
           "= ∫ cotⁿ⁻²x(csc²x − 1)dx",
           "= ∫ cotⁿ⁻²x csc²x dx − ∫ cotⁿ⁻²x dx"
         ],

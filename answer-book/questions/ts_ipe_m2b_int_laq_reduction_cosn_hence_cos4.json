@@ -76,7 +76,7 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given I_n = ∫ cosⁿx dx = ∫ cosⁿ⁻¹x · cosx dx",
+          "Given Iₙ = ∫ cosⁿx dx = ∫ cosⁿ⁻¹x · cosx dx",
           "Take first function u = cosⁿ⁻¹x,",
           "second v = cosx",
           "Then ∫v dx = ∫cosx dx = sinx"
@@ -96,7 +96,7 @@
         "mark_note": "Method",
         "margin_note": "Method",
         "lines": [
-          "By the by-parts rule, I_n",
+          "By the by-parts rule, Iₙ",
           "= cosⁿ⁻¹x(sinx) − ∫(n−1)cosⁿ⁻²x(−sinx)(sinx)dx",
           "= cosⁿ⁻¹x sinx + (n−1)∫cosⁿ⁻²x sin²x dx",
           "= cosⁿ⁻¹x sinx + (n−1)∫cosⁿ⁻²x(1−cos²x)dx",
@@ -121,8 +121,8 @@
         "mark_note": "Method",
         "margin_note": "Result",
         "lines": [
-          "I_n = cosⁿ⁻¹x sinx + (n−1)I_{n−2} − (n−1)I_n",
-          "nI_n = cosⁿ⁻¹x sinx + (n−1)I_{n−2}",
+          "Iₙ = cosⁿ⁻¹x sinx + (n−1)Iₙ₋₂ − (n−1)Iₙ",
+          "nIₙ = cosⁿ⁻¹x sinx + (n−1)Iₙ₋₂",
           {
             "text": "\\therefore\\ I_n = \\frac{\\cos^{n-1}x\\sin x}{n} + \\frac{n-1}{n}I_{n-2}\\ \\dots(1)",
             "render": "katex",

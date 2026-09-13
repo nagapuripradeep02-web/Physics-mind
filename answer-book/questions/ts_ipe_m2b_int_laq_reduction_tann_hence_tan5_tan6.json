@@ -76,7 +76,7 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Let I_n = ∫ tanⁿx dx = ∫ tanⁿ⁻²x · tan²x dx",
+          "Let Iₙ = ∫ tanⁿx dx = ∫ tanⁿ⁻²x · tan²x dx",
           "= ∫ tanⁿ⁻²x(sec²x − 1)dx",
           "= ∫ tanⁿ⁻²x sec²x dx − ∫ tanⁿ⁻²x dx"
         ],

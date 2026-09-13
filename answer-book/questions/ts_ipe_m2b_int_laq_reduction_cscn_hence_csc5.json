@@ -68,7 +68,7 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given I_n = ∫ cosecⁿx dx",
+          "Given Iₙ = ∫ cosecⁿx dx",
           "= ∫ cosecⁿ⁻²x · cosec²x dx",
           "Take first function u = cosecⁿ⁻²x,",
           "second v = cosec²x",
@@ -89,7 +89,7 @@
         "mark_note": "Method",
         "margin_note": "Method",
         "lines": [
-          "By the by-parts rule, I_n",
+          "By the by-parts rule, Iₙ",
           "= −cosecⁿ⁻²x cotx −",
           "∫(n−2)cosecⁿ⁻³x(−cscx cotx)(−cotx)dx",
           "= −cosecⁿ⁻²x cotx − (n−2)∫cosecⁿ⁻²x cot²x dx",
@@ -116,8 +116,8 @@
         "mark_note": "Method",
         "margin_note": "Result",
         "lines": [
-          "I_n = −cosecⁿ⁻²x cotx − (n−2)I_n + (n−2)I_{n−2}",
-          "(n−1)I_n = −cosecⁿ⁻²x cotx + (n−2)I_{n−2}",
+          "Iₙ = −cosecⁿ⁻²x cotx − (n−2)Iₙ + (n−2)Iₙ₋₂",
+          "(n−1)Iₙ = −cosecⁿ⁻²x cotx + (n−2)Iₙ₋₂",
           {
             "text": "\\therefore\\ I_n = -\\frac{\\csc^{n-2}x\\cot x}{n-1} + \\frac{n-2}{n-1}I_{n-2}\\ \\dots(1)",
             "render": "katex",
