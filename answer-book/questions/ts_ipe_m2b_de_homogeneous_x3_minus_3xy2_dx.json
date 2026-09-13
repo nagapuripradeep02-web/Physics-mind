@@ -188,8 +188,8 @@
         "label": "Integrate both sides",
         "marks": 2,
         "mark_note": "Method",
-        "margin_note": "Two marks. Each of the three partial-fraction pieces integrates by a different standard rule.",
-        "memory_tip": "1/(v+1) and 1/(v−1) both give logs; −2/(v²+1) gives an inverse tangent — three different antiderivative shapes.",
+        "margin_note": "Two marks. Each of the three partial-fraction pieces integrates to a log.",
+        "memory_tip": "1/(v+1) and 1/(v−1) both give logs; −2v/(v²+1) gives −log(v²+1), since 2v is the derivative of v² + 1.",
         "lines": [
           "∫ [1/(2(v+1)) + 1/(2(v−1)) − 2v/(v²+1)] dv",
           "= ∫ dx/x",
@@ -243,17 +243,21 @@
           },
           "⇒ (v² − 1)/(v² + 1)² = c²x²",
           "⇒ v² − 1 = c²x²(v² + 1)²",
-          "Put v = y/x, multiply through by x⁴:",
+          "Put v = y/x, multiply through by x²:",
           {
             "text": "v² − 1 = (y² − x²)/x², (v² + 1)² = (y² + x²)²/x⁴",
             "added": true
           },
           {
-            "text": "y² − x² = c²(y² + x²)²",
+            "text": "c² is an arbitrary constant; call it c:",
+            "added": true
+          },
+          {
+            "text": "y² − x² = c(y² + x²)²",
             "style": "boxed"
           }
         ],
-        "why": "Squaring both sides of the earlier log-derived relation clears the square roots, and substituting v = y/x with the matching power of x⁴ on both sides turns the whole relation into a symmetric equation purely in x, y and the constant c.",
+        "why": "Squaring both sides of the earlier log-derived relation clears the square roots, and substituting v = y/x and multiplying both sides by x² turns the whole relation into a symmetric equation purely in x, y and the constant c.",
         "common_mistakes": [
           "Squaring only one side of the equation instead of both.",
           "Losing track of which power of x clears every v in the expression when substituting v = y/x."
@@ -261,9 +265,9 @@
         "lines_compact": [
           "⇒ (v² − 1)/(v² + 1)² = c²x²",
           "⇒ v² − 1 = c²x²(v² + 1)²",
-          "Put v = y/x, multiply through by x⁴:",
+          "Put v = y/x, multiply through by x²:",
           {
-            "text": "y² − x² = c²(y² + x²)²",
+            "text": "y² − x² = c(y² + x²)²",
             "style": "boxed"
           }
         ]

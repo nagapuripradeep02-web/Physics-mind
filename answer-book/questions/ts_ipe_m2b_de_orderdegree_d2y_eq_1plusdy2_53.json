@@ -93,7 +93,12 @@
           "equation is 3,",
           "so the degree is 3.",
           {
-            "text": "(the power 5 is on dy/dx, a lower derivative)",
+            "text": "(the power 5 is on the bracket 1 + (dy/dx)²,",
+            "added": true
+          },
+          {
+            "text": "  which holds only the lower derivative dy/dx)",
+            "style": "indent",
             "added": true
           },
           {

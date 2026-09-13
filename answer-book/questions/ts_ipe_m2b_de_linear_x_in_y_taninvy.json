@@ -203,7 +203,7 @@
         "why": "Integration by parts on t·eᵗ gives the standard result eᵗ(t − 1); dividing the whole equation by eᵗ afterwards isolates x and, substituting t = Tan⁻¹y back in, gives the final answer with a negative exponential term for the arbitrary constant.",
         "common_mistakes": [
           "Choosing the wrong parts for integration by parts, taking eᵗ as the part to differentiate instead of t.",
-          "Forgetting to divide the constant term c by eᵗ as well, and leaving it as +c·eᵗ instead of +c·e to the power (−Tan⁻¹y)."
+          "Forgetting to divide the constant term c by eᵗ as well, and leaving it as +c instead of +c·e to the power (−Tan⁻¹y)."
         ],
         "lines_compact": [
           "∫t·eᵗ dt = teᵗ − ∫eᵗ dt = teᵗ − eᵗ + c = eᵗ(t − 1) + c",

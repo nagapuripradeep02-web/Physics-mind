@@ -76,7 +76,7 @@
         "why": "Taking the reciprocal dx/dy = 1/(dy/dx) turns the equation the right way up; x sits alone (without a derivative) next to a dy term, which is the signal for linear-in-x rather than linear-in-y.",
         "common_mistakes": [
           "Trying to separate the variables directly, missing that this equation is linear once inverted.",
-          "Losing the −x term when moving it across, writing the standard form as dx/dy = x + y + 1 instead of dx/dy − x = y + 1."
+          "Losing the minus sign when moving x across, writing dx/dy + x = y + 1 (P = +1) instead of dx/dy − x = y + 1."
         ]
       },
       {

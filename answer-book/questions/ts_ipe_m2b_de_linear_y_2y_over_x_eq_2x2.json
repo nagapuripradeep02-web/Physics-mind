@@ -134,7 +134,7 @@
         "why": "Multiplying Q by the integrating factor gives a plain power of x, so the right side integrates by the ordinary power rule; multiplying the whole equation by 5 at the end clears the fraction and matches the book's marked form, with the constant relabelled.",
         "common_mistakes": [
           "Losing the factor of 2 in front of x⁴ when setting up the integral.",
-          "Forgetting to also multiply the constant term by 5 when clearing the /5, and writing 5yx² = 2x⁵ + 5c as if 5c and c were different constants — they are not, since c is arbitrary."
+          "Multiplying only the right side by 5 and writing yx² = 2x⁵ + c, when the left side must also become 5yx²."
         ],
         "lines_compact": [
           "∴ The solution is y·(I.F.) = ∫(I.F.)Q(x)dx + c",

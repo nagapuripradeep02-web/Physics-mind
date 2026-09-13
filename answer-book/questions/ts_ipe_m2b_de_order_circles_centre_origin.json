@@ -76,7 +76,7 @@
         "label": "Simplify and state the order",
         "marks": 1,
         "mark_note": "Result",
-        "margin_note": "The last mark. Dividing by 2 removes r entirely, so the order is fixed by how many derivatives were needed to do that — just one.",
+        "margin_note": "The last mark. The single differentiation already removed r (the derivative of r² is 0); dividing by 2 only simplifies, so the order is 1.",
         "memory_tip": "Order counts differentiations needed to eliminate every arbitrary constant, not the highest power appearing — here one differentiation already did the job.",
         "lines": [
           {
@@ -93,9 +93,9 @@
             "style": "boxed"
           }
         ],
-        "why": "Dividing the differentiated equation by 2 eliminates r completely (it was never explicitly present after differentiating), leaving an equation with only x, y and the first derivative — so the order is 1.",
+        "why": "Differentiating eliminated r (the constant r² differentiates to 0); dividing by 2 only simplifies, leaving just x, y and dy/dx — so the order is 1.",
         "common_mistakes": [
-          "Assuming a circle's D.E. must have order 2, by confusing this family (one constant) with the general 3-constant circle family.",
+          "Assuming a circle's D.E. must have order 3, by confusing this family (one constant) with the general 3-constant circle family x² + y² + 2gx + 2fy + c = 0.",
           "Leaving the equation as 2x + 2y·dy/dx = 0 and not simplifying, though the order would still read as 1 either way."
         ],
         "lines_compact": [

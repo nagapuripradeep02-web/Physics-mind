@@ -107,7 +107,7 @@
         "why": "Differentiating a second time brings down another factor of 3 on each term, and the result −9Acos3x − 9Bsin3x is exactly −9 times the original y, so both constants disappear at once, leaving a D.E. with no A or B in it.",
         "common_mistakes": [
           "Missing that −9Acos3x − 9Bsin3x can be regrouped as −9(Acos3x + Bsin3x) = −9y, and leaving A, B in the final answer.",
-          "Writing the final D.E. with a plus sign as d²y/dx² − 9y = 0 instead of d²y/dx² + 9y = 0."
+          "Writing the final D.E. with a minus sign as d²y/dx² − 9y = 0 instead of d²y/dx² + 9y = 0."
         ],
         "lines_compact": [
           "⇒ d²y/dx² = −9A·cos3x − 9B·sin3x",

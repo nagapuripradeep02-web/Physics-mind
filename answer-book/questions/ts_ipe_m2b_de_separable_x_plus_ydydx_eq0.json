@@ -93,7 +93,7 @@
         "why": "Integrating each side by the power rule gives y²/2 and −x²/2 respectively; multiplying the whole equation by 2 and relabelling the arbitrary constant gives the tidy family y² + x² = 2c.",
         "common_mistakes": [
           "Forgetting to multiply through by 2, leaving fractions in the final answer as y²/2 + x²/2 = c.",
-          "Dropping the factor of 2 that appears when 2c is relabelled, and writing y² + x² = c instead."
+          "Writing y² − x² = c by losing the minus sign on −x²/2."
         ],
         "lines_compact": [
           "∫y dy = −∫x dx ⇒ y²/2 = −x²/2 + c",

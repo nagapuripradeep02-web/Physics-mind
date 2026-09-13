@@ -120,7 +120,7 @@
           },
           "⇒ sec²v dv = −dx/x"
         ],
-        "why": "The two v terms cancel exactly, leaving x·dv/dx = −cos²v; dividing by −cos²v and taking the reciprocal gives sec²v dv on the left, separated from dx/x on the right.",
+        "why": "The two v terms cancel exactly, leaving x·dv/dx = −cos²v; dividing by cos²v and by x gives sec²v dv = −dx/x, with v on the left and x on the right.",
         "common_mistakes": [
           "Missing the cancellation of the two v terms and carrying an extra v through the rest of the working.",
           "Writing 1/cos²v as cos²v instead of sec²v."

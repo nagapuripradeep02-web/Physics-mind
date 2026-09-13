@@ -57,7 +57,7 @@
         "label": "Rearrange and substitute",
         "marks": 2,
         "mark_note": "Method",
-        "margin_note": "Two marks. Collect both dy terms on one side and both dx terms on the other, then divide, before checking homogeneity.",
+        "margin_note": "Two marks. Collect the dy term on one side and both dx terms on the other, then divide, before checking homogeneity.",
         "memory_tip": "Move xdy to the left with x sin²(y/x)dx, and ydx to the right on its own, so dy/dx isolates cleanly.",
         "lines": [
           {
@@ -80,7 +80,7 @@
         "why": "The equation is given with dx and dy mixed, so it must first be rearranged into the standard dy/dx = … form; once written that way, the right side depends only on y/x, confirming it is homogeneous and ready for y = vx.",
         "common_mistakes": [
           "Losing the minus sign when moving x sin²(y/x)dx across the equals sign.",
-          "Dividing by dx incorrectly and leaving dy/dx = y − x sin²(y/x) without the /x on the first term."
+          "Dividing by dx but not by x, and writing dy/dx = y − x sin²(y/x) instead of y/x − sin²(y/x)."
         ]
       },
       {

@@ -67,7 +67,7 @@
         ],
         "why": "Dividing both sides by y and multiplying through by dx separates the variables immediately, since 2y/x·dx already carries the x and y factors on opposite sides once y is cleared.",
         "common_mistakes": [
-          "Cross-multiplying incorrectly and writing x dy = 2y dx instead of dy/y = 2dx/x.",
+          "Cross-multiplying incorrectly and writing y dy = 2x dx instead of dy/y = 2dx/x.",
           "Forgetting the factor of 2 when moving it across from the right side."
         ]
       },

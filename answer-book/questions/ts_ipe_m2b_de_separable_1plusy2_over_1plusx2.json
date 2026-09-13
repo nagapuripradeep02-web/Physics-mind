@@ -63,7 +63,7 @@
         ],
         "why": "Cross-multiplying moves the (1+y²) factor to the left with dy and leaves (1+x²) on the right with dx, separating the two variables completely with no further rearrangement needed.",
         "common_mistakes": [
-          "Cross-multiplying the wrong way, writing (1 + x²)dy = (1 + y²)dx and losing track of which factor belongs with which differential.",
+          "Cross-multiplying the wrong way, writing (1 + y²)dy = (1 + x²)dx and losing track of which factor belongs with which differential.",
           "Trying to expand or simplify (1+y²) and (1+x²) instead of recognising them as the standard Tan⁻¹ integral forms."
         ]
       },

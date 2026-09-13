@@ -62,7 +62,7 @@
         "label": "Test the coefficients and substitute",
         "marks": 2,
         "mark_note": "Method",
-        "margin_note": "Two marks. Comparing coefficients shows a1/a2 = b1/b2 = 1/2, so x − y is the combination common to both.",
+        "margin_note": "Two marks. Comparing coefficients shows a₁/a₂ = b₁/b₂ = 1/2, so x − y is the combination common to both.",
         "memory_tip": "x − y + 3 and 2x − 2y + 5 are both built from x − y — that repeated block is the substitution.",
         "lines": [
           {
@@ -80,7 +80,7 @@
         ],
         "why": "Both the numerator and denominator reduce to the same combination x − y with different constants added, which is exactly the coincident-ratio case, so treating x − y as a single new variable v collapses the equation to one unknown.",
         "common_mistakes": [
-          "Taking b1/b2 as −1/2 instead of correctly cancelling the two minus signs to get 1/2.",
+          "Taking b₁/b₂ as −1/2 instead of correctly cancelling the two minus signs to get 1/2.",
           "Choosing the substitution 2x − 2y = v instead of the simpler x − y = v."
         ]
       },
@@ -212,7 +212,7 @@
         "why": "Substituting v = x − y returns the equation to the original variables, and collecting the x terms on one side gives the compact final relation the examiner expects.",
         "common_mistakes": [
           "Combining x − 2x incorrectly and getting the sign of x wrong in the final line.",
-          "Leaving the constant on the wrong side, writing −x + 2y + log(x−y+2) = c instead of x − 2y + log(x−y+2) = c."
+          "Collecting the x and y terms with the wrong signs while leaving the log term alone, writing −x + 2y + log(x−y+2) = c."
         ],
         "lines_compact": [
           "Putting v = x − y: x = 2(x − y) + log(x − y + 2) + c",
