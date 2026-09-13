@@ -51,7 +51,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.66 — SAQ chapter 9 Hyperbola, answer 78.2, the second of the printed twin pair 78.1/78.2. On the same ★★ SSP page as 78.1 (book p.49 lists p.66 among the 13 SSP pages; chapter banner and table both agree ★★). Printed appearances: AP 17,18,22 (no TS tag printed for this twin). Two-column page, no printed mark tags — the 1+1+1+1 split is OURS, following the same shape as 78.1's split and the book's own 5-item (i)-(v) list. This twin is the VERTICAL-transverse-axis case: 16y²−9x²=144 reduces to y²/9−x²/16=1, so the y² term is positive even though its own denominator (9) is smaller than the x² denominator (16) — this tests the a↔b role-swap that the horizontal case (78.1) does not, and is worth pairing the two cards for a student. No error found in the book's printed working — every value (a²=16, b²=9, e=5/3, foci (0,±5), directrices y=±9/5, latus rectum 32/3) was re-derived independently and matches. Hyperbola is a SAQ+VSAQ-only unit on the book's IPE Blue Print (book p.5) — 4 marks in Section B (paper slot Q15) and 2 marks in Section A (paper slot Q5); it has NO LAQ chapter and no Section-C slot, so no 7-mark form is authored for this unit. The Bullet Model Paper's Q5 (Hyperbola VSAQ, book p.104) and Q15 (Hyperbola SAQ, book p.109) were diffed against this unit's numbered chapters: all 5 Q5 sub-items reprint answers 130, 131, 132, 137 and 136 verbatim, and all 3 Q15 sub-items reprint answers 78.1, 79.2 and 80 verbatim, so no Bullet Model Paper extra was authored for this unit. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE BLM on hand; the book's five Guess Papers pp.118-127 are the orchestrator's back-test stand-in). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.66 — SAQ chapter 9 Hyperbola, answer 78.2, the second of the printed twin pair 78.1/78.2. On the same ★★ SSP page as 78.1 (book p.49 lists p.66 among the 13 SSP pages; chapter banner and table both agree ★★). Printed appearances: AP 17,18,22 (no TS tag printed for this twin). Two-column page, no printed mark tags — the 1+1+1+1 split is OURS, following the same shape as 78.1's split and the book's own 5-item (i)-(v) list. This twin is the VERTICAL-transverse-axis case: 16y²−9x²=144 reduces to y²/9−x²/16=1, so the y² term is positive even though its own denominator (9) is smaller than the x² denominator (16) — this tests the a↔b role-swap that the horizontal case (78.1) does not, and is worth pairing the two cards for a student. No error found in the book's printed working — every value (a²=16, b²=9, e=5/3, foci (0,±5), directrices y=±9/5, latus rectum 32/3) was re-derived independently and matches. Hyperbola is a SAQ+VSAQ-only unit on the book's IPE Blue Print (book p.5) — 4 marks in Section B (paper slot Q15) and 2 marks in Section A (paper slot Q5); it has NO LAQ chapter and no Section-C slot, so no 7-mark form is authored for this unit. The Bullet Model Paper's Q5 (Hyperbola VSAQ, book p.104) and Q15 (Hyperbola SAQ, book p.109) were diffed against this unit's numbered chapters: all 5 Q5 sub-items reprint answers 130, 131, 132, 137 and 136 verbatim, and all 3 Q15 sub-items reprint answers 78.1, 79.2 and 80 verbatim, so no Bullet Model Paper extra was authored for this unit. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE BLM on hand; the book's five Guess Papers pp.118-127 are the orchestrator's back-test stand-in). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "insider_note": "Whenever the y² term is positive, swap every a ↔ b role from the familiar x²/a² − y²/b² formulas — eccentricity, foci, directrices and latus rectum all use b in place of a.",
   "answer": {
@@ -74,11 +74,17 @@
           },
           "Given hyperbola is 16y² − 9x² = 144",
           "Divide by 144: y²/9 − x²/16 = 1",
+          "(16y²/144 = y²/9 and 9x²/144 = x²/16)",
           "Here a² = 16 (the x² denominator),",
           "b² = 9 (the y² denominator).",
           "The y² term is positive,",
           "so the transverse axis is the y-axis.",
-          "Centre C = (0, 0)."
+          "Centre C = (0, 0).",
+          "So a = 4, b = 3, and the equation is the",
+          {
+            "text": "  conjugate form x²/a² − y²/b² = −1.",
+            "style": "indent"
+          }
         ],
         "why": "The transverse axis is decided by which squared term is POSITIVE, not by which of a² and b² is larger — here y² is positive even though b² = 9 is smaller than a² = 16, so the foci and vertices lie on the y-axis.",
         "common_mistakes": [
@@ -95,8 +101,21 @@
         "margin_note": "First mark. The transverse axis is y, so the eccentricity formula divides by b, not a.",
         "memory_tip": "y² positive ⇒ read every formula with a and b swapped from the usual x²/a² − y²/b² = 1 case.",
         "lines": [
+          {
+            "text": "For this form a² = b²(e² − 1), so",
+            "added": true
+          },
+          {
+            "text": "  e² = (a² + b²)/b²:",
+            "style": "indent",
+            "added": true
+          },
           "e = √(a² + b²) / b",
           "= √(16 + 9) / 3",
+          {
+            "text": "(√25 = 5)",
+            "added": true
+          },
           {
             "text": "e = 5/3",
             "style": "boxed"
@@ -106,6 +125,14 @@
         "common_mistakes": [
           "Dividing by a instead of b — here the transverse axis is y, so b is the axis length that belongs in the denominator.",
           "Writing √25 as 25 instead of simplifying the root to 5."
+        ],
+        "lines_compact": [
+          "e = √(a² + b²) / b",
+          "= √(16 + 9) / 3",
+          {
+            "text": "e = 5/3",
+            "style": "boxed"
+          }
         ]
       },
       {
@@ -117,8 +144,21 @@
         "margin_note": "Second mark. The foci lie above and below the centre, not to its sides.",
         "memory_tip": "y² positive ⇒ foci are (0, ±be), not (±ae, 0).",
         "lines": [
+          {
+            "text": "The foci are on the y-axis, a distance be",
+            "added": true
+          },
+          {
+            "text": "  from the centre:",
+            "style": "indent",
+            "added": true
+          },
           "Foci = (0, ±be)",
           "= (0, ±3 · 5/3)",
+          {
+            "text": "(3 · 5/3 = 5)",
+            "added": true
+          },
           {
             "text": "Foci = (0, ±5)",
             "style": "boxed"
@@ -128,6 +168,14 @@
         "common_mistakes": [
           "Placing the foci on the x-axis out of habit.",
           "Using ae instead of be for the distance, since here it is b, not a, that carries the transverse-axis role."
+        ],
+        "lines_compact": [
+          "Foci = (0, ±be)",
+          "= (0, ±3 · 5/3)",
+          {
+            "text": "Foci = (0, ±5)",
+            "style": "boxed"
+          }
         ]
       },
       {
@@ -139,8 +187,21 @@
         "margin_note": "Third mark. Two horizontal lines, one above and one below the centre.",
         "memory_tip": "y² positive ⇒ directrices are y = ±b/e, horizontal lines, not vertical.",
         "lines": [
+          {
+            "text": "The directrices are horizontal lines, at a",
+            "added": true
+          },
+          {
+            "text": "  distance b/e from the centre:",
+            "style": "indent",
+            "added": true
+          },
           "Equations of the directrices: y = ±b/e",
           "= ±3 / (5/3) = ±9/5",
+          {
+            "text": "(3 ÷ 5/3 = 3 × 3/5 = 9/5)",
+            "added": true
+          },
           {
             "text": "y = 9/5 and y = −9/5",
             "style": "boxed"
@@ -150,6 +211,14 @@
         "common_mistakes": [
           "Writing the directrix as a vertical line instead of horizontal — the transverse axis here is y, so the directrices are horizontal lines.",
           "Confusing y = b/e with the focus formula y = be."
+        ],
+        "lines_compact": [
+          "Equations of the directrices: y = ±b/e",
+          "= ±3 / (5/3) = ±9/5",
+          {
+            "text": "y = 9/5 and y = −9/5",
+            "style": "boxed"
+          }
         ]
       },
       {
@@ -161,6 +230,15 @@
         "margin_note": "Fourth mark. The formula also swaps roles here.",
         "memory_tip": "y² positive ⇒ latus rectum is 2a²/b, not 2b²/a.",
         "lines": [
+          {
+            "text": "The latus rectum is the chord through a focus,",
+            "added": true
+          },
+          {
+            "text": "  parallel to the x-axis; its length is 2a²/b:",
+            "style": "indent",
+            "added": true
+          },
           "Length of the latus rectum = 2a² / b",
           "= 2(16) / 3",
           {
@@ -172,6 +250,14 @@
         "common_mistakes": [
           "Reusing 2b²/a from the horizontal case without swapping a and b.",
           "Forgetting to double a² before dividing by b."
+        ],
+        "lines_compact": [
+          "Length of the latus rectum = 2a² / b",
+          "= 2(16) / 3",
+          {
+            "text": "= 32/3",
+            "style": "boxed"
+          }
         ]
       }
     ]

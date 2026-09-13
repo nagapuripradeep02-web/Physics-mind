@@ -55,7 +55,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.66 — SAQ chapter 9 Hyperbola, answer 78.1, the first of a printed twin pair (78.1/78.2) that opens the chapter under its '4 Marks' banner. On a ★★ SSP (Super Scoring) page — book p.49 lists page 66 among 13 SSP pages, and the chapter-section table on the same page ranks chapter 9 Hyperbola ★★, matching the ★★ printed directly on the chapter banner on p.66 itself (no disagreement to record here). Printed appearances: TS 19 · AP 16,18,20. Book p.66 is a two-column page with no printed 'n Mark' margin tags for either twin, so the 1+1+1+1 split across eccentricity/foci/directrices/latus-rectum here is OURS, patterned on the identical five-item (centre + four marked results) shape used across this book's Ellipse and Parabola standard-form answers. No error found in the book's printed working for this answer — every value (a²=4, b²=1, e=√5/2, foci (±√5,0), directrices x=±4/√5, latus rectum 1) was re-derived independently and matches. Hyperbola is a SAQ+VSAQ-only unit on the book's IPE Blue Print (book p.5) — 4 marks in Section B (paper slot Q15) and 2 marks in Section A (paper slot Q5); it has NO LAQ chapter and no Section-C slot, so no 7-mark form is authored for this unit. The Bullet Model Paper's Q5 (Hyperbola VSAQ, book p.104) and Q15 (Hyperbola SAQ, book p.109) were diffed against this unit's numbered chapters: all 5 Q5 sub-items reprint answers 130, 131, 132, 137 and 136 verbatim, and all 3 Q15 sub-items reprint answers 78.1, 79.2 and 80 verbatim, so no Bullet Model Paper extra was authored for this unit. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE BLM on hand; the book's five Guess Papers pp.118-127 are the orchestrator's back-test stand-in). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.66 — SAQ chapter 9 Hyperbola, answer 78.1, the first of a printed twin pair (78.1/78.2) that opens the chapter under its '4 Marks' banner. On a ★★ SSP (Super Scoring) page — book p.49 lists page 66 among 13 SSP pages, and the chapter-section table on the same page ranks chapter 9 Hyperbola ★★, matching the ★★ printed directly on the chapter banner on p.66 itself (no disagreement to record here). Printed appearances: TS 19 · AP 16,18,20. Book p.66 is a two-column page with no printed 'n Mark' margin tags for either twin, so the 1+1+1+1 split across eccentricity/foci/directrices/latus-rectum here is OURS, patterned on the identical five-item (centre + four marked results) shape used across this book's Ellipse and Parabola standard-form answers. No error found in the book's printed working for this answer — every value (a²=4, b²=1, e=√5/2, foci (±√5,0), directrices x=±4/√5, latus rectum 1) was re-derived independently and matches. Hyperbola is a SAQ+VSAQ-only unit on the book's IPE Blue Print (book p.5) — 4 marks in Section B (paper slot Q15) and 2 marks in Section A (paper slot Q5); it has NO LAQ chapter and no Section-C slot, so no 7-mark form is authored for this unit. The Bullet Model Paper's Q5 (Hyperbola VSAQ, book p.104) and Q15 (Hyperbola SAQ, book p.109) were diffed against this unit's numbered chapters: all 5 Q5 sub-items reprint answers 130, 131, 132, 137 and 136 verbatim, and all 3 Q15 sub-items reprint answers 78.1, 79.2 and 80 verbatim, so no Bullet Model Paper extra was authored for this unit. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE BLM on hand; the book's five Guess Papers pp.118-127 are the orchestrator's back-test stand-in). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "insider_note": "All four results use only a, b and e, so get a² = 4 and b² = 1 right first — a mistake there breaks every one of the four marks, not just one.",
   "answer": {
@@ -78,7 +78,13 @@
           },
           "Given hyperbola is x² − 4y² = 4",
           "Divide by 4: x²/4 − y²/1 = 1",
-          "Here a² = 4, b² = 1. Centre C = (0, 0)."
+          "(x²/4 stays, and 4y²/4 = y²)",
+          "Here a² = 4, b² = 1. Centre C = (0, 0).",
+          "The x² term is positive, so the transverse",
+          {
+            "text": "  axis is the x-axis; a = 2, b = 1.",
+            "style": "indent"
+          }
         ],
         "why": "The eccentricity, foci, directrices and latus rectum are all read off a² and b² once the equation is written in the standard form x²/a² − y²/b² = 1.",
         "common_mistakes": [
@@ -95,6 +101,15 @@
         "margin_note": "First mark. a = 2, b = 1 from the standard form above.",
         "memory_tip": "Hyperbola eccentricity ADDS a² and b² under the root — unlike an ellipse, which subtracts.",
         "lines": [
+          {
+            "text": "For x²/a² − y²/b² = 1, b² = a²(e² − 1),",
+            "added": true
+          },
+          {
+            "text": "  so e² = (a² + b²)/a²:",
+            "style": "indent",
+            "added": true
+          },
           "e = √(a² + b²) / a",
           "= √(4 + 1) / 2",
           {
@@ -106,6 +121,14 @@
         "common_mistakes": [
           "Using a² − b² as for an ellipse instead of a² + b² — a hyperbola's eccentricity ADDS the two squares.",
           "Leaving a² in the denominator instead of taking the square root of a first."
+        ],
+        "lines_compact": [
+          "e = √(a² + b²) / a",
+          "= √(4 + 1) / 2",
+          {
+            "text": "e = √5 / 2",
+            "style": "boxed"
+          }
         ]
       },
       {
@@ -117,8 +140,21 @@
         "margin_note": "Second mark. The two 2's in a·e cancel, leaving just √5.",
         "memory_tip": "Foci sit on the transverse axis (here the x-axis, since x² is positive), at distance ae from the centre.",
         "lines": [
+          {
+            "text": "The foci are on the x-axis, a distance ae",
+            "added": true
+          },
+          {
+            "text": "  from the centre:",
+            "style": "indent",
+            "added": true
+          },
           "Foci = (±ae, 0)",
           "= (±2 · √5/2, 0)",
+          {
+            "text": "(2 · √5/2 = √5)",
+            "added": true
+          },
           {
             "text": "Foci = (±√5, 0)",
             "style": "boxed"
@@ -128,6 +164,14 @@
         "common_mistakes": [
           "Placing the foci on the y-axis instead of the x-axis.",
           "Forgetting that the two 2's in a·e cancel, leaving just √5."
+        ],
+        "lines_compact": [
+          "Foci = (±ae, 0)",
+          "= (±2 · √5/2, 0)",
+          {
+            "text": "Foci = (±√5, 0)",
+            "style": "boxed"
+          }
         ]
       },
       {
@@ -139,8 +183,25 @@
         "margin_note": "Third mark. Two separate vertical lines, one on each side of the centre.",
         "memory_tip": "Foci use a·e (multiply); directrices use a/e (divide) — same pairing as an ellipse.",
         "lines": [
+          {
+            "text": "The directrices are vertical lines, at a",
+            "added": true
+          },
+          {
+            "text": "  distance a/e from the centre:",
+            "style": "indent",
+            "added": true
+          },
           "Equations of the directrices: x = ±a/e",
           "= ±2 / (√5/2) = ±4/√5",
+          {
+            "text": "(2 ÷ √5/2 = 2 × 2/√5 = 4/√5)",
+            "added": true
+          },
+          {
+            "text": "Multiply x = ±4/√5 by √5 and move 4:",
+            "added": true
+          },
           {
             "text": "√5x − 4 = 0 and √5x + 4 = 0",
             "style": "boxed"
@@ -150,6 +211,14 @@
         "common_mistakes": [
           "Confusing the directrix formula x = a/e with the focus formula x = ae.",
           "Leaving an irrational number in the denominator instead of clearing it."
+        ],
+        "lines_compact": [
+          "Equations of the directrices: x = ±a/e",
+          "= ±2 / (√5/2) = ±4/√5",
+          {
+            "text": "√5x − 4 = 0 and √5x + 4 = 0",
+            "style": "boxed"
+          }
         ]
       },
       {
@@ -161,6 +230,15 @@
         "margin_note": "Fourth mark. A short formula — do not overthink it.",
         "memory_tip": "Latus rectum equals 2 times the smaller square, over the axis length a — same formula shape as an ellipse.",
         "lines": [
+          {
+            "text": "The latus rectum is the chord through a focus,",
+            "added": true
+          },
+          {
+            "text": "  perpendicular to the transverse axis:",
+            "style": "indent",
+            "added": true
+          },
           "Length of the latus rectum = 2b² / a",
           "= 2(1) / 2",
           {
@@ -172,6 +250,14 @@
         "common_mistakes": [
           "Writing 2a²/b instead of 2b²/a.",
           "Forgetting to double b² before dividing by a."
+        ],
+        "lines_compact": [
+          "Length of the latus rectum = 2b² / a",
+          "= 2(1) / 2",
+          {
+            "text": "= 1",
+            "style": "boxed"
+          }
         ]
       }
     ]

@@ -43,7 +43,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.84 — VSAQ chapter 15 Hyperbola, answer 130, the first answer of the chapter, directly under the '★★★15. HYPERBOLA★★★' banner and '2 Marks' tag, and repeated verbatim as the first sub-item of the Bullet Model Paper's Q5 (book p.104). On a ★★★ SSP page (book p.76's VSAQ SSP list includes page 84; the chapter-section table on p.76 ranks chapter 15 Hyperbola ★★★, matching the ★★★ printed on the chapter banner itself — no disagreement). Printed appearances: AP 22 · TS 17,18. This page prints no per-line mark tags for any of its nine answers, so the 1+1 split here is OURS, following the natural two-stage shape of the proof (state the two eccentricity formulas, then combine them). No error found in the book's printed working. Hyperbola is a SAQ+VSAQ-only unit on the book's IPE Blue Print (book p.5) — 4 marks in Section B (paper slot Q15) and 2 marks in Section A (paper slot Q5); it has NO LAQ chapter and no Section-C slot, so no 7-mark form is authored for this unit. The Bullet Model Paper's Q5 (Hyperbola VSAQ, book p.104) and Q15 (Hyperbola SAQ, book p.109) were diffed against this unit's numbered chapters: all 5 Q5 sub-items reprint answers 130, 131, 132, 137 and 136 verbatim, and all 3 Q15 sub-items reprint answers 78.1, 79.2 and 80 verbatim, so no Bullet Model Paper extra was authored for this unit. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE BLM on hand; the book's five Guess Papers pp.118-127 are the orchestrator's back-test stand-in). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.84 — VSAQ chapter 15 Hyperbola, answer 130, the first answer of the chapter, directly under the '★★★15. HYPERBOLA★★★' banner and '2 Marks' tag, and repeated verbatim as the first sub-item of the Bullet Model Paper's Q5 (book p.104). On a ★★★ SSP page (book p.76's VSAQ SSP list includes page 84; the chapter-section table on p.76 ranks chapter 15 Hyperbola ★★★, matching the ★★★ printed on the chapter banner itself — no disagreement). Printed appearances: AP 22 · TS 17,18. This page prints no per-line mark tags for any of its nine answers, so the 1+1 split here is OURS, following the natural two-stage shape of the proof (state the two eccentricity formulas, then combine them). No error found in the book's printed working. Hyperbola is a SAQ+VSAQ-only unit on the book's IPE Blue Print (book p.5) — 4 marks in Section B (paper slot Q15) and 2 marks in Section A (paper slot Q5); it has NO LAQ chapter and no Section-C slot, so no 7-mark form is authored for this unit. The Bullet Model Paper's Q5 (Hyperbola VSAQ, book p.104) and Q15 (Hyperbola SAQ, book p.109) were diffed against this unit's numbered chapters: all 5 Q5 sub-items reprint answers 130, 131, 132, 137 and 136 verbatim, and all 3 Q15 sub-items reprint answers 78.1, 79.2 and 80 verbatim, so no Bullet Model Paper extra was authored for this unit. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE BLM on hand; the book's five Guess Papers pp.118-127 are the orchestrator's back-test stand-in). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "insider_note": "This identity is worth memorising outright — 1/e² + 1/e₁² = 1 is quoted directly, without re-deriving it, whenever one eccentricity is given and the other is asked for.",
   "answer": {
@@ -69,6 +69,20 @@
           "and e its eccentricity.",
           "Its conjugate hyperbola is x²/a² − y²/b² = −1,",
           "with eccentricity e₁.",
+          "(For the hyperbola b² = a²(e² − 1), so",
+          {
+            "text": "  e² = (a² + b²)/a².)",
+            "style": "indent"
+          },
+          "(The conjugate has its transverse axis on the",
+          {
+            "text": "  y-axis, so a² = b²(e₁² − 1) and",
+            "style": "indent"
+          },
+          {
+            "text": "  e₁² = (a² + b²)/b².)",
+            "style": "indent"
+          },
           "e = √(a² + b²)/a and e₁ = √(a² + b²)/b"
         ],
         "why": "The conjugate hyperbola swaps which term is positive, so its transverse axis is the OTHER axis — its eccentricity formula uses b in the denominator where the original used a.",
@@ -86,7 +100,24 @@
         "margin_note": "Second mark. Both fractions share the same denominator a²+b².",
         "memory_tip": "1/e² and 1/e₁² are simply a²/(a²+b²) and b²/(a²+b²) — they must add to 1 since the numerators add to the denominator.",
         "lines": [
+          {
+            "text": "Square and turn over each one:",
+            "added": true
+          },
+          {
+            "text": "  1/e² = a²/(a²+b²) and 1/e₁² = b²/(a²+b²)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "Add them:",
+            "added": true
+          },
           "1/e² + 1/e₁² = a²/(a²+b²) + b²/(a²+b²)",
+          {
+            "text": "(same denominator, so add the tops)",
+            "added": true
+          },
           {
             "text": "= (a²+b²)/(a²+b²) = 1",
             "style": "boxed"
@@ -96,6 +127,13 @@
         "common_mistakes": [
           "Squaring e and e₁ but forgetting to invert (1/e² means a²/(a²+b²), not (a²+b²)/a²).",
           "Adding the two ORIGINAL formulas instead of their reciprocals' squares."
+        ],
+        "lines_compact": [
+          "1/e² + 1/e₁² = a²/(a²+b²) + b²/(a²+b²)",
+          {
+            "text": "= (a²+b²)/(a²+b²) = 1",
+            "style": "boxed"
+          }
         ]
       }
     ]
