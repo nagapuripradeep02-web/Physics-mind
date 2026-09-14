@@ -89,7 +89,7 @@
             "a plus four b"
           ]
         },
-        "why": "The question runs the theorem backwards: it gives the conclusion and asks for the function. So both parts of the statement become usable equations, and the equal-end-value part is the cheaper of the two to write.",
+        "why": "The question gives the theorem's conclusion and asks for the function: it gives the conclusion and asks for the function. So both parts of the statement become usable equations, and the equal-end-value part is the shorter of the two to write.",
         "common_mistakes": [
           "Trying to prove f(1) = f(3) instead of using it as given.",
           "Expanding f(3) as 27 + 3b + 3a and losing the 9 in 9b."
@@ -102,7 +102,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Substitute a from (1) BEFORE simplifying — the 4b terms then cancel and only the √3 part is left, which gives b in one line.",
-        "memory_tip": "A surd left standing on its own must have coefficient zero. That is what determines b here.",
+        "memory_tip": "After substituting a from (1), only 4√3 + 2b/√3 = 0 remains; solve this linear equation for b. That is what determines b here.",
         "lines": [
           {
             "text": "(d/dx of x³ is 3x², of bx² is 2bx, and of ax is a)",

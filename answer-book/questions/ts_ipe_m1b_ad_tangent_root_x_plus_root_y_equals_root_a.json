@@ -164,7 +164,7 @@
         "label": "Form the tangent and clear the surds",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Third mark. Multiply through by √x₁ at once. Working with a fraction of surds through the next two lines is where the algebra usually breaks.",
+        "margin_note": "Third mark. Multiply through by √x₁ at once. Working with a fraction of surds through the next two lines is where algebra slips are likely.",
         "lines": [
           "Tangent at (x₁, y₁):  y − y₁ = m(x − x₁)",
           {

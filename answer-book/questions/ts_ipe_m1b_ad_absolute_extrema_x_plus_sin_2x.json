@@ -109,7 +109,7 @@
           "Writing f′(x) = 1 + cos 2x and dropping the chain rule factor 2.",
           "Differentiating sin 2x as cos x."
         ],
-        "memory_tip": "The derivative of sin 2x carries the inside derivative out in front: 2cos 2x. The 2 is the chain rule showing itself."
+        "memory_tip": "The derivative of sin 2x is cos 2x times the derivative of 2x: 2cos 2x. The 2 comes from the chain rule."
       },
       {
         "id": "s2_critical_points",
@@ -117,7 +117,7 @@
         "label": "Find every critical point inside the interval",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Second mark. Convert the range for x into a range for 2x first. Missing the second solution 4π/3 is the usual slip here.",
+        "margin_note": "Second mark. Convert the range for x into a range for 2x first. Missing the second solution 2x = 4π/3 is the usual slip here.",
         "lines": [
           {
             "text": "(put f′(x) = 0; move 1 across and divide by 2)",

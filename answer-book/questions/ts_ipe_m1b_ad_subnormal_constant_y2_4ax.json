@@ -104,15 +104,10 @@
           "y is not given in terms of x,",
           "so differentiate both sides with respect to x.",
           {
-            "text": "(d/dx of y² is 2y · dy/dx, because y depends on x;",
+            "text": "(y depends on x; d/dx of 4ax is 4a)",
             "added": true
           },
-          {
-            "text": "  d/dx of 4ax is 4a)",
-            "style": "indent",
-            "added": true
-          },
-          "The chain rule attaches dy/dx to y²:",
+          "By the chain rule, d/dx of y² is 2y · dy/dx:",
           "2y (dy/dx) = 4a",
           "Divide both sides by 2:",
           {
@@ -155,7 +150,7 @@
         "lines_compact": [
           "y is not given in terms of x,",
           "so differentiate both sides with respect to x.",
-          "The chain rule attaches dy/dx to y²:",
+          "By the chain rule, d/dx of y² is 2y · dy/dx:",
           "2y (dy/dx) = 4a",
           "Divide both sides by 2:",
           "y (dy/dx) = 2a",

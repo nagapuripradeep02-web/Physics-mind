@@ -106,7 +106,7 @@
         "label": "Differentiate S = 6a² and substitute",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Second mark. dS/dt = 12a(da/dt). The 12 from the formula and the a = 12 from the question are two different 12s — write them out rather than cancelling in your head.",
+        "margin_note": "Second mark. dS/dt = 12a(da/dt). The 12 from the formula and the a = 12 from the question are two different 12s — write them out rather than cancelling without writing.",
         "lines": [
           "Differentiate S = 6a² with respect to time t:",
           {
@@ -173,5 +173,5 @@
       }
     ]
   },
-  "insider_note": "Two steps: find da/dt from dV/dt = 3a²(da/dt), then feed it into dS/dt = 12a(da/dt). Trying to link V and S directly skips the edge and fails."
+  "insider_note": "Two steps: find da/dt from dV/dt = 3a²(da/dt), then feed it into dS/dt = 12a(da/dt). Finding da/dt first is the simplest method."
 }

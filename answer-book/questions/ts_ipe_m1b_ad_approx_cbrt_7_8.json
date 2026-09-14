@@ -92,7 +92,7 @@
           "Writing Δx = 0.2 instead of −0.2, since 7.8 is below 8.",
           "Computing f′(8) as 1/(3 × 8) = 1/24, cubing instead of squaring the cube root."
         ],
-        "memory_tip": "For a cube root, find the nearest whole number whose cube you know; for a square root, the nearest perfect square. Δx carries whatever is left over."
+        "memory_tip": "For a cube root, find the nearest whole number whose cube you know; for a square root, the nearest perfect square. Δx is the difference between the given number and that number."
       },
       {
         "id": "s2_apply",

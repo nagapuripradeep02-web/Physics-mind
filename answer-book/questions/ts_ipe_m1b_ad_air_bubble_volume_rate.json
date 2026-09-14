@@ -93,7 +93,7 @@
           "Differentiating r³ as r² without the factor 3, which loses the cancellation.",
           "Treating 1/2 cm/sec as a volume rate."
         ],
-        "memory_tip": "Differentiating the sphere's volume gives its surface area, 4πr² — write that one line and any sphere rate question is already half done."
+        "memory_tip": "Differentiating the sphere's volume gives its surface area, 4πr² — write that one line and this line is needed in every sphere rate question."
       },
       {
         "id": "s2_substitute",

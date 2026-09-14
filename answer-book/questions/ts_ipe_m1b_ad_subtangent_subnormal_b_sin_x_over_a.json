@@ -93,7 +93,7 @@
         "common_mistakes": [
           "Writing dy/dx = b cos(x/a) and omitting the 1/a.",
           "Writing dy/dx = ab cos(x/a), multiplying by a instead of dividing.",
-          "Differentiating sin(x/a) to −cos(x/a), using the cosine rule by mistake."
+          "Differentiating sin(x/a) to −cos(x/a), using the minus sign from the derivative of cos x by mistake."
         ],
         "memory_tip": "Differentiate the sine first, then multiply by the derivative of the angle. Here the angle x/a gives 1/a."
       },
@@ -125,7 +125,7 @@
             "text": "(sin/cos = tan)",
             "added": true
           },
-          "∴ length of the subtangent = a tan(x/a)"
+          "∴ length of the subtangent = |a tan(x/a)|"
         ],
         "recall": {
           "credit": "say_it",
@@ -162,7 +162,7 @@
           "= b sin(x/a) ÷ [(b/a) cos(x/a)]",
           "= b sin(x/a) · a / [b cos(x/a)]",
           "= a · sin(x/a) / cos(x/a)",
-          "∴ length of the subtangent = a tan(x/a)"
+          "∴ length of the subtangent = |a tan(x/a)|"
         ]
       },
       {
@@ -171,7 +171,7 @@
         "label": "Length of the subnormal",
         "marks": 2,
         "mark_note": "Answer",
-        "margin_note": "The last two marks: one for the product (b²/a)sin(x/a)cos(x/a), one for writing it as a single sine with the double-angle identity. Both forms are correct, but the simplified one is what the question asks for.",
+        "margin_note": "The last two marks: one for the product (b²/a)sin(x/a)cos(x/a), one for writing it as a single sine with the double-angle identity. Both forms are correct, and the single-sine form is shorter.",
         "lines": [
           {
             "text": "(y and m as in step 2)",
@@ -188,11 +188,11 @@
           "so sin(x/a)cos(x/a) = (1/2)sin(2x/a):",
           "= (b²/a) · (1/2) sin(2x/a)",
           {
-            "text": "∴ Subtangent = a tan(x/a)",
+            "text": "∴ Subtangent = |a tan(x/a)|",
             "style": "boxed"
           },
           {
-            "text": "Subnormal = (b²/2a) sin(2x/a)",
+            "text": "Subnormal = |(b²/2a) sin(2x/a)|",
             "style": "boxed"
           }
         ],
@@ -234,11 +234,11 @@
           "so sin(x/a)cos(x/a) = (1/2)sin(2x/a):",
           "= (b²/a) · (1/2) sin(2x/a)",
           {
-            "text": "∴ Subtangent = a tan(x/a)",
+            "text": "∴ Subtangent = |a tan(x/a)|",
             "style": "boxed"
           },
           {
-            "text": "Subnormal = (b²/2a) sin(2x/a)",
+            "text": "Subnormal = |(b²/2a) sin(2x/a)|",
             "style": "boxed"
           }
         ]

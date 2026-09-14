@@ -111,7 +111,7 @@
         "label": "Show that 1 + m² = y²/a²",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Second mark. Both lengths carry a √(1 + m²), so simplifying it once here does the work for both. The +1 is what turns the −2 inside the square into +2 and completes the perfect square.",
+        "margin_note": "Second mark. Both lengths carry a √(1 + m²), so simplifying it once here does the work for both. The +1, written as (1/4) × 4, adds 4 inside the bracket and turns the −2 into +2 and completes the perfect square.",
         "lines": [
           {
             "text": "(put m from step 1; (1/2)² = 1/4)",
@@ -139,11 +139,12 @@
           },
           "= (1/4)(eˣ⁄ᵃ + e⁻ˣ⁄ᵃ)²",
           {
-            "text": "(multiply y = (a/2)(eˣ⁄ᵃ + e⁻ˣ⁄ᵃ) by 2/a)",
+            "text": "(multiplying y = (a/2)(eˣ⁄ᵃ + e⁻ˣ⁄ᵃ) by 2/a gives the sum;",
             "added": true
           },
           {
-            "text": "((2y/a)² = 4y²/a², and (1/4)(4y²/a²) = y²/a²)",
+            "text": "  then (1/4)(2y/a)² = (1/4)(4y²/a²) = y²/a²)",
+            "style": "indent",
             "added": true
           },
           "From the curve,  eˣ⁄ᵃ + e⁻ˣ⁄ᵃ = 2y/a, so",
@@ -178,7 +179,7 @@
           "Forgetting to write 1 as 4/4 before adding, and losing the +2.",
           "Writing eˣ⁄ᵃ + e⁻ˣ⁄ᵃ = y/a instead of 2y/a."
         ],
-        "memory_tip": "The square of a difference has −2 in the middle; adding 1 changes it to +2, which is the square of the sum. That is the simplification used here.",
+        "memory_tip": "The square of a difference has −2 in the middle; adding 1 = (1/4) × 4 adds 4 inside the bracket, changing −2 to +2, which gives the square of the sum. That is the simplification used here.",
         "lines_compact": [
           "1 + m² = 1 + (1/4)(eˣ⁄ᵃ − e⁻ˣ⁄ᵃ)²",
           "= 1 + (1/4)(e²ˣ⁄ᵃ − 2 + e⁻²ˣ⁄ᵃ)",
@@ -290,11 +291,11 @@
           },
           "= (a/4)(e²ˣ⁄ᵃ − e⁻²ˣ⁄ᵃ)",
           {
-            "text": "(this value is negative when x < 0; the length",
+            "text": "((a/4)(e²ˣ⁄ᵃ − e⁻²ˣ⁄ᵃ) is negative when x < 0, so the",
             "added": true
           },
           {
-            "text": "  is then its modulus)",
+            "text": "  length of the subnormal is its modulus)",
             "style": "indent",
             "added": true
           },
@@ -303,7 +304,7 @@
             "style": "boxed"
           },
           {
-            "text": "Length of the subnormal = (a/4)(e²ˣ⁄ᵃ − e⁻²ˣ⁄ᵃ)",
+            "text": "Length of the subnormal = (a/4)|e²ˣ⁄ᵃ − e⁻²ˣ⁄ᵃ|",
             "style": "boxed"
           }
         ],
@@ -347,7 +348,7 @@
             "style": "boxed"
           },
           {
-            "text": "Length of the subnormal = (a/4)(e²ˣ⁄ᵃ − e⁻²ˣ⁄ᵃ)",
+            "text": "Length of the subnormal = (a/4)|e²ˣ⁄ᵃ − e⁻²ˣ⁄ᵃ|",
             "style": "boxed"
           }
         ]

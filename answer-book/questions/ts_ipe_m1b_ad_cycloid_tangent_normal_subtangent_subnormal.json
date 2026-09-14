@@ -53,7 +53,7 @@
         "label": "Find the slope and write y in half-angle form",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. Two half-angle identities do all the simplifying here: 1 + cos t = 2cos²(t/2), 1 − cos t = 2sin²(t/2) and sin t = 2 sin(t/2)cos(t/2). Convert both y and m before going any further.",
+        "margin_note": "First mark. Three half-angle identities do all the simplifying here: 1 + cos t = 2cos²(t/2), 1 − cos t = 2sin²(t/2) and sin t = 2 sin(t/2)cos(t/2). Convert both y and m before going any further.",
         "lines": [
           {
             "text": "Sol:",
@@ -85,7 +85,7 @@
           "∴ m = tan(t/2)",
           "(1 − cos t = 2sin²(t/2))",
           "Also  y = a(1 − cos t) = 2a sin²(t/2)",
-          "Take 0 < t < π, so sin(t/2) > 0 and cos(t/2) > 0",
+          "Take a > 0 and 0 < t < π, so sin(t/2) > 0, cos(t/2) > 0",
           "and every length below is positive."
         ],
         "recall": {
@@ -188,7 +188,7 @@
           "Writing √(1 + m²) as 1 + m.",
           "Answering only two of the four quantities the question asks for."
         ],
-        "memory_tip": "Sub-TANGENT goes with the tangent, so m goes underneath as it does in the tangent line; sub-NORMAL goes with the normal, so m multiplies.",
+        "memory_tip": "Sub-TANGENT goes with the tangent, so m is underneath, as in the length of the tangent, while the subnormal ym has m multiplying, as in the length of the normal; sub-NORMAL goes with the normal, so m multiplies.",
         "lines_compact": [
           "At a point where the slope is m,",
           "subtangent = y/m,   subnormal = ym,",
@@ -205,7 +205,7 @@
         "label": "Find the subtangent and the subnormal",
         "marks": 1,
         "mark_note": "Solution",
-        "margin_note": "Third mark. The subtangent simplifies all the way back to a sin t, which is a useful check: it is exactly dy/dt.",
+        "margin_note": "Third mark. The subtangent simplifies all the way to a sin t.",
         "lines": [
           {
             "text": "(put y = 2a sin²(t/2) and m = tan(t/2) from step 1)",
@@ -296,7 +296,7 @@
             "added": true
           },
           {
-            "text": "  and m = tan(t/2); all three are positive)",
+            "text": "  and m = tan(t/2); all three are positive for a > 0)",
             "style": "indent",
             "added": true
           },

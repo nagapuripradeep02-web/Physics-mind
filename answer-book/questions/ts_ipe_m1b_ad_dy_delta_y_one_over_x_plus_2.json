@@ -149,7 +149,7 @@
             "minus zero point zero zero zero one nine nine six"
           ]
         },
-        "why": "Δy is the real change in y, so the function is worked out at both points. Both numbers are negative because y falls as x rises here, and they agree to six decimal places, which is why dy is a usable stand-in for Δy.",
+        "why": "Δy is the real change in y, so the function is worked out at both points. Both numbers are negative because y falls as x rises here, and they agree to six decimal places, which is why dy is a good approximation to Δy.",
         "common_mistakes": [
           "Rounding 1/10.02 to 0.0998 and getting Δy = −0.0002 exactly, which hides the difference the question asks about.",
           "Reporting Δy as positive after subtracting in the wrong order."

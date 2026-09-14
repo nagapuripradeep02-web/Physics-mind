@@ -96,7 +96,7 @@
           "Carrying the constant +2 into dy/dx.",
           "Checking the point with y = 4 and x = 2, reading the coordinates the wrong way round."
         ],
-        "memory_tip": "The normal always comes through the tangent. Differentiate first, whichever of the two lines is asked for."
+        "memory_tip": "The normal's slope is found from the tangent's slope. Differentiate first, whichever of the two lines is asked for."
       },
       {
         "id": "s2_tangent_slope",
@@ -158,7 +158,7 @@
         "label": "Slope of the normal",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Third mark. −1/m, so 4 becomes −1/4. This single line is where most marks are lost on normal questions.",
+        "margin_note": "Third mark. −1/m, so 4 becomes −1/4. Marks are often lost on this line.",
         "lines": [
           "The normal is perpendicular to the tangent",
           "at the same point,",

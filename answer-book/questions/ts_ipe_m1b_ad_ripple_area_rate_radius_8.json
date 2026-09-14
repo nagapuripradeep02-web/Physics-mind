@@ -83,13 +83,13 @@
             "five centimetres per second"
           ]
         },
-        "why": "Reading the word \"speed\" as dr/dt is the decision the rest of the answer rests on. Once A = πr² is differentiated with respect to t, the given rate has a place to enter.",
+        "why": "Reading the word \"speed\" as dr/dt is what the rest of the answer depends on. Once A = πr² is differentiated with respect to t, dr/dt appears and 5 can be put in.",
         "common_mistakes": [
           "Reading 5 cm/sec as a rate of change of area rather than of radius.",
           "Differentiating πr² as πr or as 2r, losing the π or the factor 2.",
           "Using the circumference 2πr as the area formula."
         ],
-        "memory_tip": "Differentiating A = πr² gives 2πr, which is the circumference — the area grows along its own boundary, so a wider ripple gains area faster."
+        "memory_tip": "Differentiating A = πr² gives 2πr, which is the circumference — dA/dt = 2πr · (dr/dt), so for the same dr/dt a larger radius gives a larger dA/dt."
       },
       {
         "id": "s2_substitute",
@@ -155,5 +155,5 @@
       }
     ]
   },
-  "insider_note": "The ripple is a circle, so A = πr² and dA/dt = 2πr(dr/dt). The speed 5 cm/sec is dr/dt, not dA/dt — reading it as an area rate makes the question unanswerable."
+  "insider_note": "The ripple is a circle, so A = πr² and dA/dt = 2πr(dr/dt). The speed 5 cm/sec is dr/dt, not dA/dt — an area rate would be in cm²/sec, so 5 cm/sec must be dr/dt."
 }

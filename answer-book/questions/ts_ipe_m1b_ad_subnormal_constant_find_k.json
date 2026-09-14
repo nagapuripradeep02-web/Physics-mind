@@ -94,7 +94,7 @@
           "Writing the derivative of xᵏ as xᵏ⁻¹ without the factor k.",
           "Reading a¹⁻ᵏxᵏ as (ax)ᵏ."
         ],
-        "memory_tip": "Any letter that is not x is a number: bring the power of x down, reduce it by one, and leave the rest alone."
+        "memory_tip": "Here a and k are constants, so treat them as numbers: bring the power of x down, reduce it by one, and leave the rest alone."
       },
       {
         "id": "s2_subnormal",
@@ -218,7 +218,7 @@
             "power of x"
           ]
         },
-        "why": "At any point means for every x, so a quantity that changes with x cannot be constant. With k ≠ 0, setting the index of x to zero is the only condition available, because k and a cannot depend on x. (k = 0 makes y constant and the subnormal zero, which the question excludes.)",
+        "why": "At any point means for every x, so a quantity that changes with x cannot be constant. With k ≠ 0, setting the index of x to zero is the only condition available, because k and a cannot depend on x. (k = 0 gives the line y = a, whose subnormal is 0 at every point — a trivial case, set aside here.)",
         "common_mistakes": [
           "Setting the subnormal itself equal to zero instead of the power of x.",
           "Setting 2k − 1 = 1 and getting k = 1.",
@@ -261,7 +261,12 @@
             "added": true
           },
           {
-            "text": "(for y² = ax: 2y · dy/dx = a, so y · dy/dx = a/2)",
+            "text": "(on the parabola y² = ax: 2y · dy/dx = a, so the",
+            "added": true
+          },
+          {
+            "text": "  subnormal y · dy/dx = a/2, as stated below)",
+            "style": "indent",
             "added": true
           },
           "Check on the curve itself: k = 1/2 gives y = a¹⁄²x¹⁄²,",
@@ -299,13 +304,13 @@
             "parabola"
           ]
         },
-        "why": "Substituting the answer back is the check that k = 1/2 really does make the subnormal constant, and it also names the constant value, which the question implies. Recognising y² = ax confirms the standard result that a parabola has a constant subnormal.",
+        "why": "Substituting the answer back is the check that k = 1/2 really does make the subnormal constant, and it also names the constant value, which the question implies. Recognising y² = ax confirms the standard result that a parabola y² = 4ax has a constant subnormal.",
         "common_mistakes": [
           "Giving k = 1/2 without stating the value a/2 the subnormal takes.",
           "Simplifying 2 − 2k with k = 1/2 to 2 instead of 1, so the constant comes out as a²/2.",
           "Writing the curve as y = ax rather than y² = ax."
         ],
-        "memory_tip": "Only the parabola y² = 4ax family has a constant subnormal, so k = 1/2 is the power that turns this curve into a parabola.",
+        "memory_tip": "Among the curves y = a¹⁻ᵏxᵏ, only k = 1/2, the parabola y² = ax, has a constant non-zero subnormal, so k = 1/2 is the power that turns this curve into a parabola.",
         "lines_compact": [
           "Put k = 1/2 in the subnormal:",
           "2 − 2k = 2 − 1 = 1   and   2k − 1 = 1 − 1 = 0",

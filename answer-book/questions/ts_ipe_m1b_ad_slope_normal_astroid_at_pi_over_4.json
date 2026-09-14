@@ -49,7 +49,7 @@
         "label": "Differentiate x and y with respect to θ",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. Both are cubes of a trigonometric function, so the chain rule applies twice over: cube first, then the inner function. The −sin θ inside dx/dθ is what makes the final slope negative.",
+        "margin_note": "First mark. Both are cubes of a trigonometric function, so the chain rule is used once for each of x and y: cube first, then the inner function. The −sin θ in dx/dθ makes the tangent slope −tan θ, which is negative at θ = π/4.",
         "lines": [
           {
             "text": "Sol:",
@@ -99,7 +99,7 @@
         "label": "Slope of the tangent",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Second mark. 3a cancels, one sin θ and one cos θ cancel, and the minus sign stays. The result −tan θ holds at every point of the curve, so it is worth writing before substituting.",
+        "margin_note": "Second mark. 3a cancels, one sin θ and one cos θ cancel, and the minus sign stays. The result −tan θ holds wherever sin θ cos θ ≠ 0, so it is worth writing before substituting.",
         "lines": [
           "For a curve given through θ:   dy/dx = (dy/dθ) / (dx/dθ)",
           {
@@ -144,7 +144,7 @@
           "Cancelling both powers and writing dy/dx = −1.",
           "Writing dy/dx = −cot θ, cancelling the wrong function from each."
         ],
-        "memory_tip": "sin²/cos² divided the right way leaves sin/cos, which is tan. The minus comes from dx/dθ and stays.",
+        "memory_tip": "sin²θ cos θ divided by cos²θ sin θ leaves sin θ/cos θ, which is tan θ. The minus comes from dx/dθ and stays.",
         "lines_compact": [
           "For a curve given through θ:   dy/dx = (dy/dθ) / (dx/dθ)",
           "dy/dx = 3a sin²θ cos θ / (−3a cos²θ sin θ)",

@@ -122,7 +122,7 @@
         "label": "Differentiate and solve V′(x) = 0",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Second mark. Expand before differentiating — the product rule on three factors is where most slips happen. Take the factor 4 out of V′ before using the quadratic formula.",
+        "margin_note": "Second mark. Expand before differentiating — the product rule on three factors is easy to get wrong. Take the factor 4 out of V′ before using the quadratic formula.",
         "lines": [
           {
             "text": "(d/dx of 4x³ is 12x², of 220x² is 440x,",
@@ -360,7 +360,7 @@
           "Stopping at x = 20/3 with no second derivative test.",
           "Writing x = 6.67 as the exact answer instead of the fraction 20/3."
         ],
-        "memory_tip": "Second derivative negative means the graph bends downward there, so the point is the highest point of the curve.",
+        "memory_tip": "Second derivative negative means the graph bends downward there, so the stationary point is a local maximum; on 0 < x < 15 it gives the greatest volume.",
         "lines_compact": [
           "V″(x) = 24x − 440",
           "At x = 20/3:  V″ = 24(20/3) − 440 = 160 − 440",

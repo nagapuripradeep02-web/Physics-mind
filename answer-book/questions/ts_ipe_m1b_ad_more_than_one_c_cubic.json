@@ -197,5 +197,5 @@
       }
     ]
   },
-  "insider_note": "Apply Rolle TWICE, on [1, 2] and on [2, 3] separately — one application only ever yields one c. The three roots make f equal at all three endpoints."
+  "insider_note": "Apply Rolle TWICE, on [1, 2] and on [2, 3] separately — one application guarantees only one c. The three roots make f equal at all three endpoints."
 }

@@ -164,7 +164,7 @@
           "Writing dy/dx = (12x − 5)/2 with the sign reversed.",
           "Differentiating 6x² as 6x."
         ],
-        "memory_tip": "Every y-term picks up dy/dx behind it; every pure x-term does not.",
+        "memory_tip": "The derivative of every y-term has a factor dy/dx; every pure x-term does not.",
         "lines_compact": [
           "Differentiate (i) with respect to x:",
           "12x − 5 + 2 (dy/dx) = 0",

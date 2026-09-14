@@ -107,7 +107,7 @@
           "Writing the point as (a cos²θ, a sin²θ), which does not satisfy the curve.",
           "Skipping the check that P lies on the curve."
         ],
-        "memory_tip": "The power on the curve is 2/3, so the power inside the point is 3 — the cube inside cancels the two-thirds outside."
+        "memory_tip": "The power on the curve is 2/3, so the power inside the point is 3 — the cube inside times the two-thirds outside gives the power 2."
       },
       {
         "id": "s2_slope",
@@ -184,7 +184,7 @@
             "slope"
           ]
         },
-        "why": "For a curve given by a parameter, dy/dx is the ratio of the two θ-derivatives. Writing dy/dθ alone and calling it the slope is the most common error at this line.",
+        "why": "For a curve given by a parameter, dy/dx is the ratio of the two θ-derivatives. Writing dy/dθ alone and calling it the slope is a common error at this line.",
         "common_mistakes": [
           "Dividing dx/dθ by dy/dθ, which gives the reciprocal of the slope.",
           "Losing the minus sign that comes from differentiating cos³θ.",
@@ -213,7 +213,7 @@
         "label": "Write the tangent and read off A and B",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Third mark. Reduce the tangent to intercept form x/A + y/B = 1. Once it is in that form the two intercepts are read straight off with no further working.",
+        "margin_note": "Third mark. Reduce the tangent to intercept form x/p + y/q = 1, where p and q are the intercepts. Once it is in that form the two intercepts are read straight off with no further working.",
         "lines": [
           {
             "text": "(the point-slope form y − y₁ = m(x − x₁))",
@@ -297,13 +297,13 @@
             "equals one"
           ]
         },
-        "why": "The identity cos²θ + sin²θ = 1 reduces the right side to a sinθ cosθ in one line, and dividing by it gives the intercept form directly. Putting y = 0 and x = 0 into the unsimplified tangent gives the same two intercepts but takes twice the algebra.",
+        "why": "The identity cos²θ + sin²θ = 1 reduces the right side to a sinθ cosθ in one line, and dividing by it gives the intercept form directly. Putting y = 0 and x = 0 into the unsimplified tangent gives the same two intercepts in a different way.",
         "common_mistakes": [
           "Not multiplying both sides by cosθ, so tanθ stays in the equation and it does not reach the intercept form.",
           "Reading the intercepts as a sinθ and a cosθ, with the two swapped.",
           "Dividing by a sinθ cosθ but leaving the right side as something other than 1."
         ],
-        "memory_tip": "Intercept form is x/A + y/B = 1, so the number under x is the x-intercept and the number under y is the y-intercept.",
+        "memory_tip": "Intercept form is x/p + y/q = 1, so the number under x is the x-intercept and the number under y is the y-intercept.",
         "lines_compact": [
           "Tangent at P:  y − a sin³θ = −tanθ (x − a cos³θ)",
           "Multiply both sides by cosθ:",

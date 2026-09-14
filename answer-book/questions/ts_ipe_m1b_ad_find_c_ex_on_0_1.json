@@ -46,7 +46,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. e⁰ = 1, not 0. This value is the main arithmetic in this step, so do not write e⁰ = 0.",
-        "memory_tip": "Anything to the power 0 is 1, so f(0) = 1 and the chord slope is e − 1.",
+        "memory_tip": "Any non-zero number to the power 0 is 1, so f(0) = 1 and the chord slope is e − 1.",
         "lines": [
           {
             "text": "Sol:",

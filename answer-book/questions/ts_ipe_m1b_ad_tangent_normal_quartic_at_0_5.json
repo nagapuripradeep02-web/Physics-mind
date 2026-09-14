@@ -225,7 +225,7 @@
         "label": "Equation of the normal",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Fourth mark. The most common loss on this question is the normal's slope: it is −1/m, so −10 becomes +1/10, not −1/10. Check the answer by putting (0, 5) back in: 0 − 50 + 50 = 0.",
+        "margin_note": "Fourth mark. Marks are often lost on the normal's slope: it is −1/m, so −10 becomes +1/10, not −1/10. Check the answer by putting (0, 5) back in: 0 − 50 + 50 = 0.",
         "lines": [
           {
             "text": "(−1/(−10) = 1/10)",
@@ -245,7 +245,12 @@
           },
           "10y − 50 = x",
           {
-            "text": "(move 10y − 50 to the right: 0 = x − 10y + 50)",
+            "text": "(for the normal, move 10y − 50 to the right:",
+            "added": true
+          },
+          {
+            "text": "  0 = x − 10y + 50)",
+            "style": "indent",
             "added": true
           },
           {

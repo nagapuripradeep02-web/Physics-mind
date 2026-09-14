@@ -45,7 +45,7 @@
         "label": "Halve the diameter and its error",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. The DIAMETER is measured, not the radius. Both the 40 and the 0.02 are halved before either formula is used. Marks are lost here more often than in the substitution.",
+        "margin_note": "First mark. The DIAMETER is measured, not the radius. Both the 40 and the 0.02 are halved before either formula is used. Marks are often lost here.",
         "memory_tip": "Diameter given, radius needed: halve the value AND halve the error. 40 to 20, and 0.02 to 0.01.",
         "lines": [
           {
@@ -152,7 +152,7 @@
             "square centimetres"
           ]
         },
-        "why": "dV/dr = 4πr² is the surface area itself, which is the reason a thin shell of thickness dr has volume 4πr²·dr. Both answers here are absolute errors and carry units. A percentage question would instead want the relative errors: since V is r³ and S is r², dV/V = 3(dr/r) and dS/S = 2(dr/r) — the exponent multiplies the relative error.",
+        "why": "dV/dr = 4πr² is the surface area itself, so a thin shell of thickness dr has volume approximately 4πr²·dr. Both answers here are absolute errors and carry units. A percentage question would instead want the relative errors: since V is a constant times r³ and S is a constant times r², dV/V = 3(dr/r) and dS/S = 2(dr/r) — the exponent multiplies the relative error.",
         "common_mistakes": [
           "Answering only for the volume and leaving the surface area out.",
           "Writing the volume error in cm² and the surface-area error in cm³."

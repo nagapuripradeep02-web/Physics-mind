@@ -163,7 +163,7 @@
             "b minus a"
           ]
         },
-        "why": "Lagrange's theorem drops only the third condition of Rolle's theorem and replaces the conclusion f′(c) = 0 by the chord slope. Naming that link shows the two results are one theorem, and it is the line an examiner looks for when both are asked together.",
+        "why": "Lagrange's theorem drops only the third condition of Rolle's theorem and replaces the conclusion f′(c) = 0 by the chord slope. Naming that link shows that Rolle's theorem is the special case f(a) = f(b) of Lagrange's theorem.",
         "common_mistakes": [
           "Writing the reciprocal (b − a)/(f(b) − f(a)) instead of the quotient.",
           "Keeping f(a) = f(b) as a condition of Lagrange's theorem, which turns it back into Rolle's theorem.",
@@ -195,5 +195,5 @@
       }
     ]
   },
-  "insider_note": "Two statements, and the three conditions are the marked content in each. The difference is Rolle's extra condition f(a) = f(b), which makes the chord slope (f(b) − f(a))/(b − a) equal to 0."
+  "insider_note": "Two statements, and the conditions (three for Rolle, two for Lagrange) are the marked content. The difference is Rolle's extra condition f(a) = f(b), which makes the chord slope (f(b) − f(a))/(b − a) equal to 0."
 }

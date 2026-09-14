@@ -156,7 +156,7 @@
             "maximum"
           ]
         },
-        "why": "A′ = 0 only says the area has stopped changing at that point. The sign of A″ is what separates a largest area from a smallest one, so it must be written even when the answer looks obvious.",
+        "why": "A′ = 0 only says the rate of change of the area is zero at that point. The sign of A″ is what separates a largest area from a smallest one, so it must be written even when the answer looks obvious.",
         "common_mistakes": [
           "Writing x = 5 and calling it a maximum with no test.",
           "Differentiating 10x − x² as 10 − x."

@@ -96,7 +96,7 @@
           "Choosing x = 82 itself, which leaves the square root still unknown.",
           "Writing f′(x) = 1/√x and losing the 2 in the denominator."
         ],
-        "memory_tip": "For a square root, find the nearest perfect square; for a cube root, the nearest perfect cube. Δx carries whatever is left over."
+        "memory_tip": "For a square root, find the nearest perfect square; for a cube root, the nearest perfect cube. Δx is the difference between the given number and that number."
       },
       {
         "id": "s2_apply",
@@ -104,7 +104,7 @@
         "label": "Apply the approximation formula",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Second mark. 1/18 = 0.0555… recurs, so keep four decimal places before rounding. 82 is above 81, so the correction is added.",
+        "margin_note": "Second mark. 1/18 = 0.0555… recurs, so keep six decimal places, then round to four. 82 is above 81, so the correction is added.",
         "lines": [
           {
             "text": "(put x = 81 and Δx = 1 in the approximation)",
@@ -160,7 +160,7 @@
         "why": "f′(x)·Δx is the correction the tangent line at x = 81 predicts. The true value is 9.055385, so this estimate is high by about 0.00017 — the straight line sits slightly above the curve, which is why every square-root estimate of this kind comes out a little large.",
         "common_mistakes": [
           "Reading 1/18 as 0.18 or as 0.005.",
-          "Rounding 9 + 0.0556 to 9.06 and losing the decimal places the question is asking for."
+          "Rounding 9 + 0.0556 to 9.06 and losing the decimal places the working already has."
         ],
         "memory_tip": "New value ≈ old value + slope × step. The step keeps its sign, so an upward move adds.",
         "lines_compact": [

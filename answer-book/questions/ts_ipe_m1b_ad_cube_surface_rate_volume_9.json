@@ -45,7 +45,7 @@
         "label": "Find da/dt from the volume",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. The volume rate and the surface area rate are not linked directly — the edge rate da/dt is the link between them, so it has to be found first.",
+        "margin_note": "First mark. The simplest link between the volume rate and the surface area rate is the edge rate da/dt — the edge rate da/dt is the link between them, so it has to be found first.",
         "lines": [
           {
             "text": "Sol:",
@@ -153,7 +153,7 @@
             "d s by d t"
           ]
         },
-        "why": "S = 6a² is a function of a alone, so one chain rule step turns it into a time rate. The number 3.6 is only correct with cm²/sec attached, since the same figure would mean something different as a length rate.",
+        "why": "S = 6a² is a function of a alone, so one chain rule step turns it into a time rate. The number 3.6 is only correct with the unit cm²/sec written after it, since the same figure would mean something different as a length rate.",
         "common_mistakes": [
           "Differentiating 6a² as 6a instead of 12a.",
           "Reusing 9 cm³/sec in place of da/dt in the second formula.",

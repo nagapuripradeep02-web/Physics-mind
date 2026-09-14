@@ -101,7 +101,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark: do not answer only 'when'. Put each time back into S. A negative S is a real position — it is 2 units on the negative side of the origin, not a mistake. The particle starts at S(0) = −18 and crosses S = 0 at t = 3 on the way back. The stem prints no units; seconds and metres are the standard reading.",
-        "memory_tip": "Where means position, and position lives in S. Substitute back into the original formula, never into v.",
+        "memory_tip": "Where means position, and position is given by S. Substitute back into the original formula, never into v.",
         "lines": [
           {
             "text": "(put 2 in place of t in S)",

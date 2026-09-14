@@ -158,7 +158,7 @@
             "t equals zero"
           ]
         },
-        "why": "Initial velocity is the velocity at the instant the motion is timed from, which is t = 0. Putting t = 0 into 8 + 3t² leaves the constant 8, so the constant term of v is always the initial velocity.",
+        "why": "Initial velocity is the velocity at the instant the motion is timed from, which is t = 0. Putting t = 0 into 8 + 3t² leaves the constant 8, so when v is a polynomial in t, its constant term is the initial velocity.",
         "common_mistakes": [
           "Reading initial velocity as the velocity at t = 1, which gives 11.",
           "Answering only part (i) and leaving (ii) and (iii) out.",

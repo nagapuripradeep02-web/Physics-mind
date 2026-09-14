@@ -267,7 +267,7 @@
         },
         "why": "√6 · √6 = 6, so the product of the two slopes is a plain rational number while their difference keeps one factor of √6. That is why the surd is left only in the numerator of the final answer.",
         "common_mistakes": [
-          "Writing (√6)² as √36 or as 36 instead of 6.",
+          "Writing (√6)² as 36 or as √6 instead of 6.",
           "Cancelling 22 against 69, which share no factor.",
           "Forgetting the 1 in 1 + m₁m₂ and using only 48/21."
         ],
@@ -290,5 +290,5 @@
       }
     ]
   },
-  "insider_note": "Eliminate x² rather than y — the first curve gives x² = 3 − 3y directly. y = −7 is rejected because it makes x² negative."
+  "insider_note": "Eliminate x² rather than y — the first curve gives x² = 3 − 3y directly. y = 4 is rejected because it makes x² negative."
 }

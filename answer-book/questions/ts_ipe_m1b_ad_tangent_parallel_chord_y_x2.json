@@ -90,7 +90,7 @@
         },
         "why": "This is Lagrange's mean value theorem in geometric form: the theorem says that somewhere between the two ends there is a point where the tangent slope equals the chord slope, and \"tangent parallel to the chord\" is exactly that statement in words. So the theorem is the statement that such a point exists, before you go looking for it.",
         "common_mistakes": [
-          "Using the y values only and giving the slope as 1/0 or 0.",
+          "Subtracting in opposite orders, (1 − 0)/(0 − 1) = −1.",
           "Reading \"parallel\" as perpendicular and setting the slope to −1."
         ]
       },

@@ -92,7 +92,7 @@
             "chord slope"
           ]
         },
-        "why": "A logarithm is the one common function in this chapter whose domain can rule the theorem out, so naming the domain is what earns the first mark. An answer that starts at 1/c = logₑ 2 has skipped it.",
+        "why": "A logarithm is defined only for x > 0, so its domain can make the conditions fail, so naming the domain is what earns the first mark. An answer that starts at 1/c = logₑ 2 has skipped it.",
         "common_mistakes": [
           "Writing logₑ 1 = 1 instead of 0.",
           "Ignoring the domain and claiming the theorem holds on an interval that includes 0 or negative x."

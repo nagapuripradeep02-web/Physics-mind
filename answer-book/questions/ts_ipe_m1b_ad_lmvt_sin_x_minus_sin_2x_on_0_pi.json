@@ -89,7 +89,7 @@
             "chord slope"
           ]
         },
-        "why": "Because both end values are 0, the chord slope is 0 and the mean value equation becomes f′(c) = 0 — the same equation Rolle's theorem gives for this function. Saying so shows the examiner you know why the two theorems meet here.",
+        "why": "Because both end values are 0, the chord slope is 0 and the mean value equation becomes f′(c) = 0 — the same equation Rolle's theorem gives for this function. Saying so shows the examiner you know why the two theorems give the same equation here.",
         "common_mistakes": [
           "Taking sin 2π as 1 instead of 0, which makes the chord slope −1/π.",
           "Writing only the value of c and leaving the two conditions unstated."

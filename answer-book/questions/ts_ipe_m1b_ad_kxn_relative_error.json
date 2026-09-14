@@ -87,7 +87,7 @@
         },
         "why": "The relative error is dy/y, so dy has to be written first. Only the power rule is needed, and k stays as it is, because a constant multiplier is kept outside when differentiating.",
         "common_mistakes": [
-          "Differentiating k as well, and losing it from the answer.",
+          "Differentiating the constant k to 0, which makes dy = 0.",
           "Writing xⁿ⁻¹ as xⁿ, so the x does not cancel at the next step."
         ]
       },
@@ -97,7 +97,7 @@
         "label": "Divide dy by y",
         "marks": 1,
         "mark_note": "Proof",
-        "margin_note": "Second mark. The proof is finished by the division, not by the differentiation. Say out loud that k cancels — that is the sentence the examiner is looking for.",
+        "margin_note": "Second mark. The proof is finished by the division, not by the differentiation. Write that k cancels — that is the sentence the examiner is looking for.",
         "memory_tip": "For any power law, the relative error is multiplied by the power. k never appears in the answer.",
         "lines": [
           "The relative error in y is dy/y.",

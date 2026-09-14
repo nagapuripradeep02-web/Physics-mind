@@ -45,7 +45,7 @@
         "label": "Check the conditions on [−3, 0]",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. Anything multiplied by 0 is 0, whatever the exponential is worth. Write the zero bracket instead of working out a decimal for e³⁄².",
+        "margin_note": "First mark. Anything multiplied by 0 is 0, whatever the value of the exponential. Write the zero bracket instead of working out a decimal for e³⁄².",
         "memory_tip": "e raised to any real power is positive, never zero, so a product with an exponential is zero only where the other factor is zero.",
         "lines": [
           {

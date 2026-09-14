@@ -97,7 +97,7 @@
           "Using Δx = 5, or Δx = 1/12, and never converting to radians.",
           "Taking 5′ as 5 seconds or as 0.05°, instead of 5/60 of a degree."
         ],
-        "memory_tip": "Minutes to degrees, then degrees to radians: divide by 60, then multiply by π/180. Two conversions, never one."
+        "memory_tip": "Minutes to degrees, then degrees to radians: divide by 60, then multiply by π/180. Do the two conversions one at a time."
       },
       {
         "id": "s2_apply",
@@ -177,5 +177,5 @@
       }
     ]
   },
-  "insider_note": "Δx must be converted to RADIANS before use — 5′ is (1/12)° and then π/2160. Leaving it in minutes or degrees makes the correction hundreds of times too large."
+  "insider_note": "Δx must be converted to RADIANS before use — 5′ is (1/12)° and then π/2160. Leaving it in minutes or degrees makes the correction about 3400 times too large if it is left in minutes, and about 57 times too large if it is left in degrees."
 }

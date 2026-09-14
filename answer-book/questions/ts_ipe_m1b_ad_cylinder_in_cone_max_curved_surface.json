@@ -116,7 +116,7 @@
           "Writing h/H = x/R, which makes the cylinder tallest when it is widest.",
           "Assuming the cylinder's height equals the cone's height."
         ],
-        "memory_tip": "Check the ratio at the two ends: x = 0 must give h = H and x = R must give h = 0. Only h = H(R − x)/R does both."
+        "memory_tip": "Check the ratio at the two ends: x = 0 must give h = H and x = R must give h = 0. h = H(R − x)/R does both, and it is the relation the similar triangles give."
       },
       {
         "id": "s2_surface_in_x",
@@ -240,7 +240,7 @@
         "why": "The constant 2πH/R is positive and can never be zero, so the derivative is zero exactly where the bracket is zero. That reduces the work to one linear equation.",
         "common_mistakes": [
           "Setting the constant 2πH/R to zero as well.",
-          "Differentiating Rx as R rather than as Rx with R constant, and losing the R."
+          "Differentiating Rx as 1 instead of R, and losing the R."
         ],
         "memory_tip": "A positive constant multiplying a function never moves its stationary point, so set only the bracket to zero.",
         "lines_compact": [

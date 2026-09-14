@@ -110,8 +110,8 @@
         "why": "The two curves meet at two points and the tangents at the origin are not the same pair as at (2, −3), so the answers differ. The question names the quadrant precisely because the point has to be chosen, and choosing it is where the marks are.",
         "common_mistakes": [
           "Using the origin, which is a common point but lies in no quadrant.",
-          "Solving y³ = −27 as y = 3 and landing in the first quadrant.",
-          "Substituting y = −3 into 2y²/9 as −2, since y² is positive whatever the sign of y."
+          "Solving y³ = −27 as y = 3, which gives a point in the first quadrant.",
+          "Substituting y = −3 into 2y²/9 and getting −2; y² = 9 is positive whatever the sign of y, so x = 2."
         ],
         "memory_tip": "Fourth quadrant means x positive and y negative — check the signs of the point against that before going on."
       },

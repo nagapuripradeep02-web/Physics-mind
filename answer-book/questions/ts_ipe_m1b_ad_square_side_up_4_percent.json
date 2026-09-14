@@ -82,7 +82,7 @@
             "x squared"
           ]
         },
-        "why": "The relative error is dy/y, so the working must produce a ratio, not a length. Dividing dA = 2x·dx by A = x² cancels one x and leaves the pure ratio 2(dx/x), and a percentage is read from that ratio.",
+        "why": "The relative error is dy/y, so the working must produce a ratio with no unit, not an area. Dividing dA = 2x·dx by A = x² cancels one x and leaves the pure ratio 2(dx/x), and a percentage is read from that ratio.",
         "common_mistakes": [
           "Stopping at dA = 2x · dx, which is a change in area and not a percentage.",
           "Dividing by x instead of by A = x², which leaves an x in the answer."

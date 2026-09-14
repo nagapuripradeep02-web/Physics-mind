@@ -279,7 +279,7 @@
         "label": "Confirm the maximum and conclude",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Fourth mark, and the one most students lose. Write f″, put h² = 2r² into it, and state the sign. A stationary point is not a maximum until the test says so.",
+        "margin_note": "Fourth mark. Write f″, put h² = 2r² into it, and state the sign. A stationary point is not a maximum until the test says so.",
         "lines": [
           {
             "text": "(differentiate f′(h) = 8r²h − 4h³ again)",
@@ -336,7 +336,7 @@
             "root two r"
           ]
         },
-        "why": "Setting the derivative to zero only finds where the rate of change stops. It could be a maximum, a minimum or neither, so the second derivative test is a separate step and carries its own mark.",
+        "why": "Setting the derivative to zero only finds where the derivative is zero. It could be a maximum, a minimum or neither, so the second derivative test is a separate step and carries its own mark.",
         "common_mistakes": [
           "Stopping at f′(h) = 0 and calling the value a maximum with no test.",
           "Substituting h = √2 r into f′ instead of f″."

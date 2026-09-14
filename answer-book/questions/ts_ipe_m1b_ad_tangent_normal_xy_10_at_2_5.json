@@ -151,7 +151,7 @@
             "two y minus ten"
           ]
         },
-        "why": "Clearing the denominator before expanding removes the fraction from every later line, which is where sign slips usually happen in this question.",
+        "why": "Clearing the denominator before expanding removes the fraction from every later line, which is where sign slips are likely.",
         "common_mistakes": [
           "Multiplying only the left side by 2 when clearing the fraction.",
           "Expanding −5(x − 2) as −5x − 10 and getting the sign of the second term wrong.",
@@ -194,7 +194,12 @@
           "5(y − 5) = 2(x − 2)",
           "5y − 25 = 2x − 4",
           {
-            "text": "(move 5y − 25 to the right: 0 = 2x − 5y − 4 + 25)",
+            "text": "(for the normal, move 5y − 25 to the right:",
+            "added": true
+          },
+          {
+            "text": "  0 = 2x − 5y − 4 + 25)",
+            "style": "indent",
             "added": true
           },
           {

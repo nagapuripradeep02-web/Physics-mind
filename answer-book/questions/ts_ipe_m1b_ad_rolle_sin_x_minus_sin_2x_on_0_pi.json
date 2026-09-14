@@ -84,9 +84,9 @@
             "continuous everywhere"
           ]
         },
-        "why": "For a trigonometric function the third condition is the one that can fail, so it is worth the full substitution. Both terms are 0 at x = 0 and again at x = π, which is what makes this interval the right one.",
+        "why": "Here sin x and sin 2x are continuous and differentiable everywhere, so the third condition is the one to check, so it is worth the full substitution. Both terms are 0 at x = 0 and again at x = π, which is what makes this interval the right one.",
         "common_mistakes": [
-          "Reading sin 2π as 2 sin π; sin 2π is the sine of the angle 2π, which is 0.",
+          "Taking sin π = 1, which gives f(π) = 1 and makes f(0) ≠ f(π).",
           "Excluding points from the domain, when sin x and sin 2x are defined and differentiable for every real x."
         ]
       },

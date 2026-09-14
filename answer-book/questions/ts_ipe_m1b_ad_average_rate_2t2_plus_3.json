@@ -151,7 +151,7 @@
         "common_mistakes": [
           "Writing 12t, as if the answer were still a function of t.",
           "Giving 24, the change in s, as the rate.",
-          "Quoting f′(3) = 12 as the method — the number agrees here only because f is a quadratic, and it would not for other functions."
+          "Quoting f′(3) = 12 as the method — the number agrees here because for a quadratic the value of f′ at the midpoint equals the average rate, which is not true for most other functions."
         ],
         "lines_compact": [
           "Average rate of change = (35 − 11) / (4 − 2)",

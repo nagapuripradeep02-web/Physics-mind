@@ -114,13 +114,18 @@
             "added": true
           },
           {
-            "text": "  (−4)² − 4(3)(−1) = 16 + 12 = 28)",
+            "text": "  (−4)² − 4(3)(−1) = 16 + 12 = 28, and",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  √28 = √(4 × 7) = 2√7)",
             "style": "indent",
             "added": true
           },
           "⇒ x = (4 ± √(16 + 12))/6 = (4 ± √28)/6 = (4 ± 2√7)/6",
           {
-            "text": "(√28 = √(4 × 7) = 2√7; divide top and bottom by 2)",
+            "text": "(divide the top and the bottom by 2)",
             "added": true
           },
           {

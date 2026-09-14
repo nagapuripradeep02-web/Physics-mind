@@ -93,7 +93,7 @@
         "label": "Substitute x = 3 and dx = 0.01",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Second mark. The unit is cm², because an area is asked for. The exact value 0.0601 is worth writing beside it — it shows what the word 'approximate' in the question is doing.",
+        "margin_note": "Second mark. The unit is cm², because an area is asked for. The exact value 0.0601 is worth writing beside it — it shows why the question says 'approximate'.",
         "memory_tip": "2 × 3 × 0.01 = 0.06. The exact answer 0.0601 is one ten-thousandth away from it.",
         "lines": [
           {

@@ -154,7 +154,7 @@
           "Writing the answer as π instead of 1/π.",
           "Giving the unit as cm³/sec, which belongs to the given rate and not the answer."
         ],
-        "memory_tip": "4π × 225 is 900π, and the 900 pumped in per second cancels it — so the answer is exactly 1/π.",
+        "memory_tip": "4π × 225 is 900π, and the 900 pumped in per second cancels the 900 in 900π — so the answer is exactly 1/π.",
         "lines_compact": [
           "Put r = 15 and dV/dt = 900:",
           "900 = 4π(15²)(dr/dt) = 4π(225)(dr/dt) = 900π(dr/dt)",

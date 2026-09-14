@@ -90,7 +90,7 @@
             "one variable"
           ]
         },
-        "why": "The sum is the constraint and the product is the quantity to be maximised. Eliminating x keeps the power on y untouched, so the function stays an ordinary polynomial.",
+        "why": "The sum is the constraint and the product is the quantity to be maximised. Eliminating x keeps the power on y untouched, so the polynomial 60y³ − y⁴ needs no binomial expansion.",
         "common_mistakes": [
           "Eliminating y instead, which gives (60 − x)³x and a harder differentiation.",
           "Writing x = 60 + y by moving the term with the wrong sign."
@@ -167,7 +167,7 @@
         "label": "Apply the second derivative test",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Third mark. This is the step students skip. Write f″, put y = 45 into it, and state the sign — a stationary point is not automatically a maximum.",
+        "margin_note": "Third mark. This step is often skipped. Write f″, put y = 45 into it, and state the sign — a stationary point is not automatically a maximum.",
         "lines": [
           {
             "text": "(differentiate f′(y) = 180y² − 4y³ again)",

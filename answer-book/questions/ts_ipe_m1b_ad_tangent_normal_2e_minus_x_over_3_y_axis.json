@@ -261,7 +261,12 @@
           "2(y − 2) = 3x",
           "2y − 4 = 3x",
           {
-            "text": "(move 2y − 4 to the right: 0 = 3x − 2y + 4)",
+            "text": "(for the normal, move 2y − 4 to the right:",
+            "added": true
+          },
+          {
+            "text": "  0 = 3x − 2y + 4)",
+            "style": "indent",
             "added": true
           },
           {

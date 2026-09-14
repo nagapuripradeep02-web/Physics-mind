@@ -157,7 +157,7 @@
         "label": "Confirm the maximum",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Third mark. Write P″ and state its sign. A stationary point is not a maximum until the test says so, even when the shape of the graph makes it obvious.",
+        "margin_note": "Third mark. Write P″ and state its sign. A stationary point is not shown to be a maximum until the test is written, even when the shape of the graph makes it obvious.",
         "lines": [
           {
             "text": "(differentiate P′(x) = 150 − 2x again)",

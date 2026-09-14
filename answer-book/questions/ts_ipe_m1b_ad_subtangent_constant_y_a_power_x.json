@@ -94,7 +94,7 @@
           "Using the length of the tangent y√(1 + m²)/m, which carries an extra root.",
           "Starting to differentiate before naming the length asked for."
         ],
-        "memory_tip": "Subtangent divides, subnormal multiplies. The one that divides is the one that can lose y altogether."
+        "memory_tip": "Subtangent divides, subnormal multiplies. Subtangent divides and subnormal multiplies; either can come out free of y, depending on the curve."
       },
       {
         "id": "s2_differentiate",
@@ -229,7 +229,12 @@
           },
           "= 1/logₑa",
           {
-            "text": "(a ≠ 1, so logₑa ≠ 0 and 1/logₑa is defined)",
+            "text": "(a ≠ 1, so logₑa ≠ 0 and 1/logₑa is defined; when",
+            "added": true
+          },
+          {
+            "text": "  0 < a < 1 it is negative, so the length is 1/|logₑa|)",
+            "style": "indent",
             "added": true
           },
           "logₑa is a fixed number once the base a is fixed,",
@@ -237,7 +242,7 @@
           "So the subtangent has the same value",
           "at every point of the curve.",
           {
-            "text": "∴ the length of the subtangent = 1/logₑa,",
+            "text": "∴ the length of the subtangent = 1/|logₑa|,",
             "style": "boxed"
           },
           {
@@ -274,7 +279,7 @@
           "Writing y/logₑa, cancelling only one of the two y's.",
           "Giving the value without saying that it does not depend on the point."
         ],
-        "memory_tip": "y over y log a leaves one over log a. The y disappears, and only the base decides the answer.",
+        "memory_tip": "y over y log a leaves one over log a. The y disappears, and the answer depends only on the base a.",
         "lines_compact": [
           "Length of the subtangent = y/m",
           "= y ÷ (y logₑa)",
@@ -284,7 +289,7 @@
           "So the subtangent has the same value",
           "at every point of the curve.",
           {
-            "text": "∴ the length of the subtangent = 1/logₑa,",
+            "text": "∴ the length of the subtangent = 1/|logₑa|,",
             "style": "boxed"
           },
           {
@@ -295,5 +300,5 @@
       }
     ]
   },
-  "insider_note": "d/dx(aˣ) = aˣ log a, so the aˣ cancels in y/m and leaves 1/log a. The log a is what makes the answer constant rather than 1."
+  "insider_note": "d/dx(aˣ) = aˣ log a, so the aˣ cancels in y/m and leaves 1/log a. y cancels, so the answer is constant, and log a makes that constant 1/log a."
 }

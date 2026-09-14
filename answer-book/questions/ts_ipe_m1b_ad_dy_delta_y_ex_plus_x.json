@@ -160,7 +160,7 @@
             "three point zero one eight"
           ]
         },
-        "why": "Δy is the real change in y, so the function is worked out at both points. The gap between dy and Δy is about 0.0299 here, far wider than in the polynomial parts, because a straight line is a poorer stand-in for a curve that is rising as steeply as eˣ does at x = 5.",
+        "why": "Δy is the real change in y, so the function is worked out at both points. The gap between dy and Δy is about 0.0299 here, larger than in the polynomial examples, because the slope of eˣ changes quickly near x = 5, so the tangent line moves away from the curve quickly.",
         "common_mistakes": [
           "Writing e raised to 5.02 as e⁵ plus e raised to 0.02 — those two powers multiply, they do not add.",
           "Stopping at dy when the question asks for both numbers."

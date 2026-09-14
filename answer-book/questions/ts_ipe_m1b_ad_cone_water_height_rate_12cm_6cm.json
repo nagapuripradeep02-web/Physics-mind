@@ -165,13 +165,13 @@
             "chain rule"
           ]
         },
-        "why": "Differentiation is with respect to t, so the chain rule attaches dh/dt to the h³ term. Reducing 12/16π to 3/4π costs one line and is expected in the final form.",
+        "why": "Differentiation is with respect to t, so the chain rule gives a factor dh/dt with the h³ term. Reducing 12/(16π) to 3/(4π) costs one line and is expected in the final form.",
         "common_mistakes": [
           "Putting h = 8 into V before differentiating, which gives dV/dt = 0.",
           "Dropping the dh/dt factor that the chain rule produces.",
           "Leaving 12/(16π) unreduced, or writing the answer with no unit."
         ],
-        "memory_tip": "Differentiate first, substitute second — a number put in early has no derivative left to give.",
+        "memory_tip": "Differentiate first, substitute second — the derivative of a constant is 0.",
         "lines_compact": [
           "Differentiate both sides with respect to time t:",
           "dV/dt = (π/12)·3h²·(dh/dt) = (πh²/4)(dh/dt)",
@@ -186,5 +186,5 @@
       }
     ]
   },
-  "insider_note": "Use SIMILAR triangles to write r = h/2 and eliminate r before differentiating — a cone volume with two variables cannot be differentiated in one step. V then becomes πh³/12."
+  "insider_note": "Use SIMILAR triangles to write r = h/2 and eliminate r before differentiating — differentiating a cone volume with two variables brings in dr/dt, which the question does not give. V then becomes πh³/12."
 }

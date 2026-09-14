@@ -93,7 +93,7 @@
           "Choosing x = 65 itself, which leaves the square root still unknown.",
           "Using 64 as a perfect cube and taking f(x) = ∛x, which answers a different question."
         ],
-        "memory_tip": "For a square root, find the nearest perfect square; for a cube root, the nearest perfect cube. Δx carries whatever is left over."
+        "memory_tip": "For a square root, find the nearest perfect square; for a cube root, the nearest perfect cube. Δx is the difference between the given number and that number."
       },
       {
         "id": "s2_apply",

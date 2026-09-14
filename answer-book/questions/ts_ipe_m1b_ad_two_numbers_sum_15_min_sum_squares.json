@@ -100,7 +100,7 @@
         "label": "Differentiate, solve and apply the second derivative test",
         "marks": 2,
         "mark_note": "Method",
-        "margin_note": "Two marks: one for S′(x) = 0 solved, one for the second derivative test. For a MINIMUM the second derivative must be POSITIVE — that is the sign the examiner checks.",
+        "margin_note": "Two marks: one for S′(x) = 0 solved, one for the second derivative test. To prove a MINIMUM by this test, the second derivative must be POSITIVE — that is the sign the examiner checks.",
         "lines": [
           {
             "text": "(d/dx of 2x² is 4x, of 30x is 30, and of 225 is 0)",
@@ -148,12 +148,12 @@
             "positive"
           ]
         },
-        "why": "S′ = 0 only locates where the sum of squares stops changing. The sign of S″ separates a least value from a greatest one, and for a minimum that sign must be positive.",
+        "why": "S′ = 0 only locates where the sum of squares stops changing. The sign of S″ separates a least value from a greatest one, and for the test to prove a minimum, S″ must be positive.",
         "common_mistakes": [
           "Writing S″ < 0 out of habit, which would claim a maximum.",
           "Solving 4x − 30 = 0 as x = 30/2."
         ],
-        "memory_tip": "Positive second derivative bends the curve upward, so the stationary point is the bottom of a valley — a minimum. Negative bends it downward and gives a peak.",
+        "memory_tip": "If S″ > 0 at a stationary point, it is a local minimum; if S″ < 0, it is a local maximum — a minimum. Negative bends it downward and gives a peak.",
         "lines_compact": [
           "S′(x) = 4x − 30",
           "S′(x) = 0   ⇒   4x = 30   ⇒   x = 15/2",

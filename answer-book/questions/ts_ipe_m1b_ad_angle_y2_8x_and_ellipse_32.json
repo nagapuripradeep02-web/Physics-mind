@@ -102,7 +102,7 @@
           "Forgetting to divide by 4 and mis-factorising 4x² + 8x − 32 = 0.",
           "Taking y = ±4 but then using x = −4 as the y-value."
         ],
-        "memory_tip": "A parabola y² = 4ax has no point with x negative, so any negative x from the algebra is not on the curve."
+        "memory_tip": "A parabola y² = 4ax with a > 0 has no point with x negative, so any negative x from the algebra is not on the curve."
       },
       {
         "id": "s2_slopes",
@@ -249,7 +249,7 @@
         },
         "why": "A negative value inside the modulus only means the difference of the two direction angles is obtuse. Taking the modulus reports the acute angle, which is the standard answer.",
         "common_mistakes": [
-          "Reporting θ = Tan⁻¹(−3) and giving an obtuse angle.",
+          "Reporting θ = Tan⁻¹(−3), a negative angle, or its obtuse partner 108°26′, instead of the acute angle.",
           "Writing 1 − m₁m₂ in the denominator instead of 1 + m₁m₂.",
           "Writing the numerator as 1 + (−2) = −1 instead of 1 − (−2) = 3."
         ],

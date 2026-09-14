@@ -136,7 +136,7 @@
             "between minus one and one"
           ]
         },
-        "why": "Between two roots of a differentiable function the derivative must be zero at least once, and that is exactly what Rolle's theorem states. Here the single point where it happens is c = 0.",
+        "why": "Between two roots of a differentiable function the derivative must be zero at least once, and this is a special case of Rolle's theorem, with f(a) = f(b) = 0. Here the single point where it happens is c = 0.",
         "common_mistakes": [
           "Giving c = ±1, which are the endpoints; c must lie strictly inside the interval.",
           "Writing c = 0 without the inequality −1 < 0 < 1 that places it inside."

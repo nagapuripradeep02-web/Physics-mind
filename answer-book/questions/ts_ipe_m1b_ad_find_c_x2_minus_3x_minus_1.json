@@ -123,7 +123,7 @@
         "common_mistakes": [
           "Taking b − a as 2/7 by subtracting 11/7 instead of adding it.",
           "Writing 39/7 as 39/49 when putting the terms over a common denominator.",
-          "Dividing by 49 twice and getting −19/49."
+          "Dividing by 24 instead of by 24/7, and getting −19/49."
         ]
       },
       {
@@ -184,7 +184,7 @@
             "inside the interval"
           ]
         },
-        "why": "Solving f′(c) = chord slope is how the mean value theorem is applied. Saying c lies inside (a, b) at the end is the check that the arithmetic is right, since a value outside would contradict the theorem.",
+        "why": "Solving f′(c) = chord slope is how the mean value theorem is applied. Saying c lies inside (a, b) at the end is a check: a value outside would contradict the theorem and would show an arithmetic slip.",
         "common_mistakes": [
           "Solving 2c = −19/7 and forgetting to move the −3 across.",
           "Giving c = 2/7 by not dividing by 2 at the last step."

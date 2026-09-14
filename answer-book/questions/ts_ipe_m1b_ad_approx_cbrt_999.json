@@ -93,7 +93,7 @@
           "Choosing x = 999 itself, which leaves the cube root still unknown.",
           "Writing Δx = 1 instead of −1, since 999 is below 1000."
         ],
-        "memory_tip": "For a cube root, find the nearest whole number whose cube you know; for a square root, the nearest perfect square. Δx carries whatever is left over."
+        "memory_tip": "For a cube root, find the nearest whole number whose cube you know; for a square root, the nearest perfect square. Δx is the difference between the given number and that number."
       },
       {
         "id": "s2_apply",

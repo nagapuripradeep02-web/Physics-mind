@@ -103,7 +103,7 @@
           "Differentiating x² as x.",
           "Reporting x = ±2 as critical points, when they are endpoints rather than points where f′ = 0."
         ],
-        "memory_tip": "A critical point is where the derivative is zero. An endpoint is not a critical point, but it still has to be tested."
+        "memory_tip": "A critical point is where the derivative is zero or does not exist. An endpoint is not a critical point, but it still has to be tested."
       },
       {
         "id": "s2_evaluate",

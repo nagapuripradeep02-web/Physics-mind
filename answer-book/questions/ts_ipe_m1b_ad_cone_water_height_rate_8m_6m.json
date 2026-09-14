@@ -169,13 +169,13 @@
             "chain rule"
           ]
         },
-        "why": "Every term is differentiated with respect to t, not x, so the chain rule attaches dh/dt to the h³ term. Substituting h = 4 first would make V a fixed number, and dV/dt would come out as 0.",
+        "why": "Every term is differentiated with respect to t, not x, so the chain rule gives a factor dh/dt with the h³ term. Substituting h = 4 first would make V a fixed number, and dV/dt would come out as 0.",
         "common_mistakes": [
           "Putting h = 4 into V before differentiating, which gives dV/dt = 0.",
           "Dropping the dh/dt factor that the chain rule produces.",
           "Writing the answer as 2/(9π) with no unit."
         ],
-        "memory_tip": "Differentiate first, substitute second — a number put in early has no derivative left to give.",
+        "memory_tip": "Differentiate first, substitute second — the derivative of a constant is 0.",
         "lines_compact": [
           "Differentiate both sides with respect to time t:",
           "dV/dt = (3π/16)·3h²·(dh/dt) = (9π/16)h²(dh/dt)",
