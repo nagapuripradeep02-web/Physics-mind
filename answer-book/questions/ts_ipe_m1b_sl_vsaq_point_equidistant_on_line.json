@@ -45,7 +45,7 @@
         "label": "Write the perpendicular bisector",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. The bisector needs BOTH conditions — through the midpoint and perpendicular to AB. Either one alone describes a different line.",
+        "margin_note": "First mark. The bisector needs BOTH conditions — through the midpoint and perpendicular to AB. Either one alone is true for many lines, not just one.",
         "memory_tip": "Equidistant from two points means on their perpendicular bisector: midpoint AND perpendicular, both.",
         "lines": [
           {
@@ -156,7 +156,7 @@
             "y equals two"
           ]
         },
-        "why": "The point has to satisfy two things at once — on the given line and equidistant from A and B — and each is one linear equation, so the pair fixes exactly one point.",
+        "why": "The point has to satisfy two things at once — on the given line and equidistant from A and B — and each is one linear equation; the two lines have slopes 2 and −3, so they are not parallel and meet in exactly one point.",
         "common_mistakes": [
           "Reporting the midpoint (−1, 4), which is not on the given line.",
           "Finding x and forgetting to substitute back for y."

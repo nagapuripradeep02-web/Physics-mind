@@ -186,7 +186,12 @@
           },
           "⇒ 3 + 3r/2 − 8 − 2r + 8 = 0",
           {
-            "text": "(−8 + 8 = 0; take 3 to the right and the r terms to the left)",
+            "text": "(−8 + 8 = 0; move the r terms to the right",
+            "added": true
+          },
+          {
+            "text": "  side: 3 = 2r − 3r/2)",
+            "style": "indent",
             "added": true
           },
           "⇒ 3 + 3r/2 − 2r = 0   ⇒   2r − 3r/2 = 3",
@@ -280,7 +285,7 @@
         },
         "why": "r was DEFINED as the distance along the line, so no distance formula is ever needed — that is why the parametric form is the right tool here.",
         "common_mistakes": [
-          "Finding P's coordinates and then applying the distance formula, which wastes time.",
+          "Writing −4 · r/2 as −4r, which gives r = 6/5.",
           "Leaving r negative when the question asks for a distance."
         ],
         "mark_note": "Solution",
@@ -294,5 +299,5 @@
       }
     ]
   },
-  "insider_note": "Write P as (x₁ + r cosθ, y₁ + r sinθ) and put it on the line — solving the two lines for P and then measuring is far longer. The 8 and the −8 cancel, leaving r = 6."
+  "insider_note": "Write P as (x₁ + r cosθ, y₁ + r sinθ) and put it on the line — this gives PQ directly, with no distance formula. The 8 and the −8 cancel, leaving r = 6."
 }

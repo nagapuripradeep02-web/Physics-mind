@@ -284,7 +284,12 @@
           },
           "⇒ √((x+2)² + (y−3)²) = √((x−2)² + (y+1)²)",
           {
-            "text": "(both sides are positive, so squaring keeps them equal)",
+            "text": "(distances are never negative, so squaring keeps",
+            "added": true
+          },
+          {
+            "text": "  the same solutions)",
+            "style": "indent",
             "added": true
           },
           "Squaring on both sides, we get",
@@ -382,7 +387,12 @@
           },
           "⇒ √((x−2)² + (y+1)²) = √((x−4)² + (y−0)²)",
           {
-            "text": "(both sides are positive, so squaring keeps them equal)",
+            "text": "(distances are never negative, so squaring keeps",
+            "added": true
+          },
+          {
+            "text": "  the same solutions)",
+            "style": "indent",
             "added": true
           },
           "Squaring on both sides, we get",
@@ -432,7 +442,7 @@
         },
         "why": "Two perpendicular bisectors meet at exactly one point, so two equations are enough — the third equality carries no new information.",
         "common_mistakes": [
-          "Using SA = SC and redoing the A expansion for no benefit.",
+          "Expanding (x − 4)² as x² − 4x + 16, with the middle term not doubled.",
           "Sign slip when expanding a bracket with a negative coordinate."
         ],
         "mark_note": "Method",

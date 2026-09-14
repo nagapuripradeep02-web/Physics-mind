@@ -362,7 +362,7 @@
             "sin theta"
           ]
         },
-        "why": "(a² − b²)² + 4a²b² = (a² + b²)², so the hypotenuse is a² + b² exactly, with no square root left. The same answer follows in one line from sin θ = |a₁b₂ − a₂b₁| / (√(a₁² + b₁²)√(a₂² + b₂²)).",
+        "why": "(a² − b²)² + 4a²b² = (a² + b²)², so the hypotenuse is a² + b² exactly, with no square root left. The same answer follows in one line from sin θ = |p₁q₂ − p₂q₁| / (√(p₁² + q₁²)√(p₂² + q₂²)) for the lines p₁x + q₁y + r₁ = 0 and p₂x + q₂y + r₂ = 0.",
         "common_mistakes": [
           "Writing the hypotenuse as a² − b² + 2ab.",
           "Reading sin θ as adjacent over hypotenuse."

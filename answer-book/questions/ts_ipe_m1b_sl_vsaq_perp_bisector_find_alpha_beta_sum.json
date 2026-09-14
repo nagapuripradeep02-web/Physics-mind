@@ -159,7 +159,7 @@
             "alpha plus beta is one"
           ]
         },
-        "why": "The question asks only for α + β, but both coordinates have to be found first, because the two are not tied together by any shorter relation.",
+        "why": "The question asks only for α + β. Both coordinates are found here so that each can be checked, although α + β = x₁ + y₁ + (a + b)r = −1 + (−1)(−2) = 1 also gives it directly.",
         "common_mistakes": [
           "Dropping the minus sign in r and getting (7, −10).",
           "Sign slip in β, writing −4 − 6 = −10 instead of −4 + 6 = 2."

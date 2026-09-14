@@ -85,7 +85,7 @@
             "opposite side"
           ]
         },
-        "why": "Circumcentre and orthocentre are the two points this chapter asks for, and they use DIFFERENT lines: perpendicular bisectors for the circumcentre, altitudes for the orthocentre. Naming which one is wanted keeps the method straight.",
+        "why": "Circumcentre and orthocentre are the two points this chapter asks for, and they use DIFFERENT lines: perpendicular bisectors for the circumcentre, altitudes for the orthocentre. Naming which one is wanted tells you which lines to draw.",
         "common_mistakes": [
           "Using perpendicular bisectors, which give the circumcentre instead.",
           "Drawing the altitude through the wrong vertex for the side chosen."
@@ -443,5 +443,5 @@
       }
     ]
   },
-  "insider_note": "A and C share x = −5, so AC is vertical and its altitude is simply horizontal: y = 2, with no slope formula at all. Reaching for −1/m on a vertical side is where this question is lost."
+  "insider_note": "A and C share x = −5, so AC is vertical and its altitude is simply horizontal: y = 2, with no slope formula at all. Using −1/m on a vertical side is the common error here, because a vertical side has no slope."
 }

@@ -162,7 +162,7 @@
         },
         "why": "The shorter method works because a parallel line keeps the same coefficients in the same places, so only the constant has to be recomputed.",
         "common_mistakes": [
-          "Sign slip when the point has a negative coordinate.",
+          "Multiplying only the right side by 3 and writing y − 4 = −2(x − 5).",
           "Leaving the answer with a fraction in it."
         ],
         "mark_note": "Solution",

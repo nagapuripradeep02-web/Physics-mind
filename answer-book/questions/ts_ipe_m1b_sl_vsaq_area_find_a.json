@@ -92,7 +92,7 @@
         "why": "This formula already accounts for the two intercepts and the right angle at the origin, so no intercepts need finding separately.",
         "common_mistakes": [
           "Getting the sign of r wrong when the equation is rearranged.",
-          "Dropping the modulus and producing a negative area."
+          "Leaving out the ½ in the area and getting a² = 72."
         ],
         "mark_note": "Method"
       },
@@ -101,8 +101,8 @@
         "kind": "boxed_final",
         "label": "Solve for a",
         "marks": 1,
-        "margin_note": "Second mark. Set the formula equal to the given area and solve — the modulus means the answer comes in a ± pair.",
-        "memory_tip": "Set the formula equal to the given area. The modulus means the answer comes as a ± pair.",
+        "margin_note": "Second mark. Set the formula equal to the given area and solve — a is squared, so the answer comes in a ± pair.",
+        "memory_tip": "Set the formula equal to the given area. Since a is squared, the answer comes as a ± pair.",
         "lines": [
           {
             "text": "(put p = 3, q = 4 and r = −a: (−a)² = a² and 2 × 12 = 24)",

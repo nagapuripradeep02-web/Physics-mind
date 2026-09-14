@@ -96,7 +96,7 @@
             "opposite side"
           ]
         },
-        "why": "Circumcentre and orthocentre are the two points this chapter asks for, and they use DIFFERENT lines: perpendicular bisectors for the circumcentre, altitudes for the orthocentre. Naming which one is wanted keeps the method straight.",
+        "why": "Circumcentre and orthocentre are the two points this chapter asks for, and they use DIFFERENT lines: perpendicular bisectors for the circumcentre, altitudes for the orthocentre. Naming which one is wanted tells you which lines to draw.",
         "common_mistakes": [
           "Using perpendicular bisectors, which give the circumcentre instead.",
           "Drawing the altitude through the wrong vertex for the side chosen."

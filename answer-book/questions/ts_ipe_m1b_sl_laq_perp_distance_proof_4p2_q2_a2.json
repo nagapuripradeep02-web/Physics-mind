@@ -57,7 +57,7 @@
         "label": "Set up p from the origin",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. Write the line with 0 on the right, then put x = 0 and y = 0 into |ax + by + c|/√(a² + b²). Keep the modulus bars: p is a length.",
+        "margin_note": "First mark. Write the line with 0 on the right, then put x = 0 and y = 0 into |Ax + By + C|/√(A² + B²). Keep the modulus bars: p is a length.",
         "lines": [
           {
             "text": "Sol:",
@@ -312,7 +312,7 @@
           "Writing √(cos²α + sin²α) as cos α + sin α.",
           "Dropping the cos 2α and writing q = |a|."
         ],
-        "memory_tip": "The second line is ALREADY in normal shape: cos²α + sin²α = 1, so the bottom is 1 and q is just the constant term.",
+        "memory_tip": "The coefficients are cos α and −sin α, so the bottom is √(cos²α + sin²α) = 1 and q is the modulus of the constant term, |a cos 2α|.",
         "lines_compact": [
           "Second line:  x cos α − y sin α − a cos 2α = 0",
           "q = |0 − 0 − a cos 2α| / √(cos²α + sin²α)",

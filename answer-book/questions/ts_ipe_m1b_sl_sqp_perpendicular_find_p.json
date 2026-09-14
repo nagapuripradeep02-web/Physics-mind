@@ -139,7 +139,7 @@
             "p equals three"
           ]
         },
-        "why": "The 7 in the numerator of m₂ cancels the 7 in the denominator of m₁, which is why this question's numbers were chosen.",
+        "why": "The 7 in the numerator of m₂ cancels the 7 in the denominator of m₁, so the product is simply −3/p.",
         "common_mistakes": [
           "Setting the product to +1.",
           "Forgetting that both sides carry a minus sign, and reporting p = −3."

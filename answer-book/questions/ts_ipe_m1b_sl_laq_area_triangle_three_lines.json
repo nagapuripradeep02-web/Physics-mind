@@ -151,12 +151,12 @@
             "y is two"
           ]
         },
-        "why": "These two lines have the same coefficient of x, so subtracting removes x at once and there is no need to substitute anything.",
+        "why": "These two lines have the same coefficient of x, so subtracting removes x at once and gives y directly; y is then put into (3) to find x.",
         "common_mistakes": [
           "Adding the two lines instead of subtracting, so x is not removed.",
           "A sign slip in (x + y − 1) − (x − 5y + 11)."
         ],
-        "memory_tip": "When one column already matches, SUBTRACT — no substitution is needed.",
+        "memory_tip": "When one column already matches, SUBTRACT — that variable is removed in one move, with no rearranging first.",
         "lines_compact": [
           "B is the meeting point of (2) and (3).",
           "(3) − (2):  6y − 12 = 0  ⇒  y = 2",

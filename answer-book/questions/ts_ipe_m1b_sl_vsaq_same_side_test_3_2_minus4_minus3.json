@@ -143,7 +143,7 @@
         },
         "why": "A point can only move from the positive side to the negative side by crossing the line, where the value is 0. Two values of the same sign therefore cannot be separated by the line.",
         "common_mistakes": [
-          "Comparing 4 and 5 as sizes and concluding the points are at different distances, which the question does not ask.",
+          "Comparing the sizes 4 and 5 instead of the signs, and concluding opposite sides because the two values are different.",
           "Answering only same side with no values shown, which leaves the working mark unearned."
         ],
         "lines_compact": [

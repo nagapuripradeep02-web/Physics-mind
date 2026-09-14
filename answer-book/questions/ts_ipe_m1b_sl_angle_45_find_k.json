@@ -222,7 +222,7 @@
             "two cases"
           ]
         },
-        "why": "An angle of 45° can be measured to either line, so both equations give correct answers — dropping one loses half of what the question asks for.",
+        "why": "The modulus stands for two equations. They give two different second lines, one turned 45° each way from 4x − y + 7 = 0, so both values of k are answers — dropping one loses half of what the question asks for.",
         "common_mistakes": [
           "Dropping the ± and finding only one value of k.",
           "Multiplying out the fractions incorrectly and losing the 5."

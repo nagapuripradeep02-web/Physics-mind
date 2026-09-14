@@ -207,7 +207,7 @@
             "signs together"
           ]
         },
-        "why": "The ± must be taken consistently in both coordinates, because they describe one step of length 5 in one direction — mixing the signs steps sideways off the line.",
+        "why": "The ± must be taken consistently in both coordinates, because they describe one step of length 5 in one direction — mixing the signs gives a point that is not on the line.",
         "common_mistakes": [
           "Mixing the signs and reporting (7, −1) or (−1, 5).",
           "Reporting only one of the two points."
@@ -225,5 +225,5 @@
       }
     ]
   },
-  "insider_note": "Turn the slope 3/4 into cosθ = 4/5 and sinθ = 3/5 with the 3-4-5 triangle; that is what keeps the arithmetic whole. Both signs are answers, (7, 5) and (−1, −1), and one point alone is half the marks."
+  "insider_note": "Turn the slope 3/4 into cosθ = 4/5 and sinθ = 3/5 with the 3-4-5 triangle; that makes 5cosθ = 4 and 5sinθ = 3 whole numbers. Both signs are answers, (7, 5) and (−1, −1), and one point alone is half the marks."
 }

@@ -151,7 +151,7 @@
         "why": "The sign of the ratio says how the line meets the segment: a POSITIVE ratio means it cuts between the two points (internal division), a negative one means it meets the segment produced (external). Here the ratio works out positive, so this line divides internally.",
         "common_mistakes": [
           "Dropping the minus sign in front of L₁₁.",
-          "Reporting a negative ratio as if it were an error and changing its sign.",
+          "Reducing 7 : 14 to 2 : 1 instead of 1 : 2.",
           "Calling this division external — the ratio here is positive, so it is internal."
         ],
         "mark_note": "Solution",

@@ -91,7 +91,7 @@
             "cancel"
           ]
         },
-        "why": "Without the factorisation the slope stays a heavy fraction and the final equation will not simplify. Every later line depends on this cancellation.",
+        "why": "Without the factorisation the slope stays a long fraction, and the common factor a(t₂ − t₁) would still have to be cancelled later.",
         "common_mistakes": [
           "Writing t₂² − t₁² as (t₂ − t₁)² and cancelling wrongly.",
           "Cancelling t₂ − t₁ without first taking a out as a common factor."

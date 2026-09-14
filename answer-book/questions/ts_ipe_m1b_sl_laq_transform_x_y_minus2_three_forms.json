@@ -167,11 +167,11 @@
         "margin_note": "One mark. Normal form carries the condition p > 0. Move the constant across and, if it is negative, change every sign.",
         "lines": [
           {
-            "text": "(p is the length of the perpendicular from the",
+            "text": "(p is the length of the perpendicular from",
             "added": true
           },
           {
-            "text": "  origin, so p > 0)",
+            "text": "  the origin, so p > 0)",
             "style": "indent",
             "added": true
           },
@@ -225,7 +225,7 @@
         "label": "Divide and read cos α, sin α",
         "marks": 2,
         "mark_note": "Method",
-        "margin_note": "Two marks. Divide every term by √(a² + b²), then read cos α, sin α and p off the result in that order.",
+        "margin_note": "Two marks. Divide every term by √(1² + 1²) = √2, then read cos α, sin α and p off the result in that order.",
         "lines": [
           {
             "text": "(1² + 1² = 2)",
@@ -266,12 +266,12 @@
             "p equals root two"
           ]
         },
-        "why": "Dividing by √(a² + b²) makes the two coefficients into a cosine and a sine, because their squares then add to 1.",
+        "why": "Dividing by the square root of the sum of the squares of the x and y coefficients makes them a cosine and a sine, because their squares then add to 1.",
         "common_mistakes": [
           "Writing p as 2 instead of 2/√2.",
           "Dividing the left side by √2 but not the right."
         ],
-        "memory_tip": "Divide by √(a² + b²) — the square root of the sum of the squares of the two coefficients.",
+        "memory_tip": "Divide by √(1² + 1²) = √2 — the square root of the sum of the squares of the two coefficients.",
         "lines_compact": [
           "Here √(1² + 1²) = √2.",
           "On dividing by √2, we get",

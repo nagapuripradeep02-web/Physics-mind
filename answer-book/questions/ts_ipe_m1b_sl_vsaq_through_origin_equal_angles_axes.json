@@ -58,9 +58,9 @@
           "Equal angles ⇒ θ = 90° − θ",
           "(add θ to both sides, then divide by 2)",
           "⇒ 2θ = 90°  ⇒  θ = 45°",
-          "(the acute angle between the line at 135° and",
+          "(the acute angle between the line at 135°",
           {
-            "text": "  each axis is 45°)",
+            "text": "  and each axis is 45°)",
             "style": "indent"
           },
           "A line at 135° also makes 45° with each axis."

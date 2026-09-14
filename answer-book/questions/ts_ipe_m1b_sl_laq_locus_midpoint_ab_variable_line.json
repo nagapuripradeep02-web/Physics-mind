@@ -56,7 +56,7 @@
         "kind": "equation",
         "label": "Find the point of intersection",
         "marks": 2,
-        "margin_note": "The first two marks. The two given lines are the same equation with a and b swapped, so subtracting them forces x = y and the fixed point falls out in one more line.",
+        "margin_note": "The first two marks. The two given lines are the same equation with a and b swapped, so subtracting them gives x = y, and the fixed point is found in one more line.",
         "lines": [
           {
             "text": "Sol:",
@@ -99,7 +99,7 @@
         },
         "why": "Everything in the question varies except this one point, so finding it first is what turns a moving line into a fixed condition.",
         "common_mistakes": [
-          "Solving the pair by cross-multiplication and losing the symmetry.",
+          "Writing x/a + x/b = 1 as x(a + b) = 1, forgetting the denominator ab.",
           "Forgetting that a = b would make the two lines identical."
         ],
         "mark_note": "Method",
@@ -230,9 +230,9 @@
             "text": "(take out ab/(a + b), and write 2h for α and 2k for β)",
             "added": true
           },
-          "⇒ (ab/(a+b))(1/2h + 1/2k) = 1",
+          "⇒ (ab/(a+b))(1/(2h) + 1/(2k)) = 1",
           {
-            "text": "(1/2h + 1/2k = k/(2hk) + h/(2hk) = (h + k)/(2hk))",
+            "text": "(1/(2h) + 1/(2k) = k/(2hk) + h/(2hk) = (h + k)/(2hk))",
             "added": true
           },
           "⇒ (ab/(a+b)) · (h + k)/(2hk) = 1"
@@ -269,7 +269,7 @@
         "lines_compact": [
           "(3) passes through P, so",
           "(ab/(a+b))/α + (ab/(a+b))/β = 1",
-          "⇒ (ab/(a+b))(1/2h + 1/2k) = 1",
+          "⇒ (ab/(a+b))(1/(2h) + 1/(2k)) = 1",
           "⇒ (ab/(a+b)) · (h + k)/(2hk) = 1"
         ]
       },

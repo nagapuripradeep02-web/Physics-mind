@@ -45,7 +45,7 @@
         "label": "Set up the intercepts",
         "marks": 1,
         "margin_note": "First mark. The condition is about the INTERCEPTS, so use the intercept form x/a + y/b = 1, where the condition becomes a direct relation between a and b: the sum of the intercepts is zero.",
-        "memory_tip": "Use x/a + y/b = 1 and let the condition choose b: sum zero means b = −a.",
+        "memory_tip": "Use x/a + y/b = 1 and write b in terms of a from the condition: sum zero means b = −a.",
         "lines": [
           {
             "text": "Sol:",
@@ -93,7 +93,7 @@
         },
         "why": "A condition stated about intercepts is easiest to use in the intercept form — the condition reduces two unknowns to one before any point is substituted.",
         "common_mistakes": [
-          "Using the slope-intercept form, which hides the intercepts.",
+          "Taking the intercepts as a and a instead of a and −a.",
           "Introducing two separate unknowns when the condition ties them together."
         ],
         "mark_note": "Method"

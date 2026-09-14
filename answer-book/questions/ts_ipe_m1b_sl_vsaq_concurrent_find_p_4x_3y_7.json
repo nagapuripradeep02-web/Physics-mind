@@ -45,7 +45,7 @@
         "label": "Find the point of intersection",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. Only two of the three lines are free of p, so those two are the pair that can actually be solved.",
+        "margin_note": "First mark. Only two of the three lines are free of p, so solving those two gives a point with numbers only.",
         "memory_tip": "Solve the two lines that carry no unknown first. Concurrency is then used on the third.",
         "lines": [
           {
@@ -91,10 +91,10 @@
             "point of intersection"
           ]
         },
-        "why": "A pair containing p would leave two unknowns and no way forward, so the pair free of p is the pair to solve; their meeting point is the point the third line must pass through.",
+        "why": "Solving the pair free of p gives the meeting point with numbers only, and that is the point the third line must pass through; a pair containing p can also be solved, but its point has p in it and the working is longer.",
         "common_mistakes": [
           "Writing 4x − 3y = 7 as 4x − 3y + 7 = 0 and carrying a sign error.",
-          "Trying to solve a pair that still contains p."
+          "Substituting (1, −1) as x = −1, y = 1 in 2x + py + 2 = 0 and getting p = 0."
         ]
       },
       {

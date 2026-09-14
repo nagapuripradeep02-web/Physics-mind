@@ -108,7 +108,7 @@
         "kind": "diagram",
         "label": "Draw the three lines",
         "marks": 0,
-        "margin_note": "Worth no mark but worth drawing. When the SIDES are given, the sketch is what shows which pair of lines meets at which vertex — and therefore which line is opposite each one.",
+        "margin_note": "Worth no mark but worth drawing. When the SIDES are given, the sketch is what shows which pair of lines meets at which vertex — and therefore which line is opposite each one. The sketch shows the general construction, not this question's triangle: here lines (1) and (2) are perpendicular, so the orthocentre is the vertex A itself.",
         "memory_tip": "Drawing it is what shows which line is opposite each vertex.",
         "recall": {
           "credit": "name_it",
@@ -132,7 +132,7 @@
             "triangle"
           ]
         },
-        "why": "The hardest part of a sides-given question is keeping track of which side is OPPOSITE which vertex. The sketch settles it at a glance.",
+        "why": "The hardest part of a sides-given question is keeping track of which side is OPPOSITE which vertex. The sketch shows which side is opposite each vertex.",
         "common_mistakes": [
           "Pairing a vertex with a line that passes through it.",
           "Assuming the lines are given in the order the vertices are needed."
@@ -375,7 +375,7 @@
             "second altitude"
           ]
         },
-        "why": "Each vertex pairs with the one side it is NOT on, so the opposite side is different for each altitude — keeping that straight is most of the care this question needs.",
+        "why": "Each vertex pairs with the one side it is NOT on, so the opposite side is different for each altitude — using the correct opposite side for each altitude is the main care this question needs.",
         "common_mistakes": [
           "Reusing the same opposite side for both altitudes.",
           "Solving for a vertex that is the same point as A."

@@ -103,11 +103,11 @@
         "memory_tip": "An x-intercept of −4 is the POINT (−4, 0). Substitute the point, not the number.",
         "lines": [
           {
-            "text": "(an x-intercept of −4 means the line meets the",
+            "text": "(an x-intercept of −4 means the line meets",
             "added": true
           },
           {
-            "text": "  x-axis at (−4, 0))",
+            "text": "  the x-axis at (−4, 0))",
             "style": "indent",
             "added": true
           },

@@ -118,11 +118,11 @@
           "The angle between the two lines is 60°, so",
           "tan 60° = |(m − m₁)/(1 + m m₁)|",
           {
-            "text": "(tan 60° = √3; m − (−√3) = m + √3 and",
+            "text": "(tan 60° = √3; m − (−√3) = m + √3",
             "added": true
           },
           {
-            "text": "  m(−√3) = −√3 m)",
+            "text": "  and m(−√3) = −√3 m)",
             "style": "indent",
             "added": true
           },

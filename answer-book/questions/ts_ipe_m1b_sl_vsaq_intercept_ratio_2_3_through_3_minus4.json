@@ -99,7 +99,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. The point gives one equation in k. Multiplying through by 6k clears both denominators in one move.",
-        "memory_tip": "Multiply by the LCM of the denominators, here 6k, so no fractions are left to slip on.",
+        "memory_tip": "Multiply by the LCM of the denominators, here 6k, so that no fractions are left.",
         "lines": [
           {
             "text": "(put x = 3 and y = −4 in the equation of step 1)",

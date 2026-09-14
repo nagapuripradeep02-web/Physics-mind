@@ -231,7 +231,7 @@
         "kind": "equation",
         "label": "Solve for r",
         "marks": 2,
-        "margin_note": "Two more marks. 2/√2 is √2, so the equation is already linear in r. Rationalise once and the distance is out.",
+        "margin_note": "Two more marks. The equation is linear in r. Write 2/√2 as √2, so r√2 = 2 and r = 2/√2 = √2.",
         "lines": [
           {
             "text": "(2/√2 = √2, because 2 = √2 · √2)",
@@ -319,13 +319,13 @@
             "units"
           ]
         },
-        "why": "r was DEFINED as the distance along the line, so no distance formula is needed — and putting P back into the line is a free check of every step above.",
+        "why": "r was DEFINED as the distance along the line, so no distance formula is needed. Putting P back into x + y − 7 = 0 checks steps 3 and 4; it does not check the inclination found in step 1.",
         "common_mistakes": [
-          "Applying the distance formula again after finding P.",
+          "Reporting PQ = −√2 after a sign slip, when a distance is never negative.",
           "Writing the answer without units."
         ],
         "mark_note": "Method",
-        "memory_tip": "The distance PQ IS r — and putting P back into the line checks every step above.",
+        "memory_tip": "The distance PQ IS r — putting P back into the line checks the solving for r.",
         "lines_compact": [
           "P = (2 + √2/√2, 3 + √2/√2) = (3, 4)",
           "Check: 3 + 4 − 7 = 0, so P is on the line.",

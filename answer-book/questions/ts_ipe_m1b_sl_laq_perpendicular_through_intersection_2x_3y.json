@@ -202,7 +202,7 @@
         "why": "A point and a slope determine a line uniquely, which is why the two independent halves are enough between them.",
         "common_mistakes": [
           "Writing x + 2 as x − 2 by forgetting the sign of x₁.",
-          "Using the slope-intercept form and having to find c separately."
+          "Writing (3/2)(x + 2) as (3/2)x + 2, without multiplying the 2 by 3/2."
         ],
         "mark_note": "Method",
         "memory_tip": "y − y₁ = m(x − x₁) with the point and slope already found.",
@@ -319,7 +319,7 @@
             "required line"
           ]
         },
-        "why": "Both conditions the question set can be tested in one line each, so a sign slip anywhere above shows up here rather than in the marked answer.",
+        "why": "The point and the perpendicular condition can each be tested in one line, so a slip in steps 3 and 4 shows up here. A slip in finding P does not — put P back into (1) and (2) to test that.",
         "common_mistakes": [
           "Skipping the check and leaving a sign slip in the final answer.",
           "Checking only the point and not the perpendicular condition."

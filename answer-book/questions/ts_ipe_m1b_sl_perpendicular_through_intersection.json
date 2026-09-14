@@ -250,7 +250,7 @@
         },
         "why": "A point and a slope determine a line uniquely, which is why the two independent halves are enough between them.",
         "common_mistakes": [
-          "Using the slope-intercept form and having to find c separately.",
+          "Writing y − (−9) as y − 9.",
           "Swapping x₁ and y₁ in the formula."
         ],
         "mark_note": "Method",
@@ -317,5 +317,5 @@
       }
     ]
   },
-  "insider_note": "Take the slope from the third line first: 5/2 inverts to −2/5. The cross-multiplication denominator is −1, so both coordinates change sign, and that is where P(14, −9) is usually lost."
+  "insider_note": "Take the slope from the third line first: the negative reciprocal of 5/2 is −2/5. The cross-multiplication denominator is −1, so both coordinates change sign, and a sign error there is common: the point is P(14, −9)."
 }

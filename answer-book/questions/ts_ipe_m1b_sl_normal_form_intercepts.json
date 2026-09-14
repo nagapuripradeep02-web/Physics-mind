@@ -56,7 +56,7 @@
         "kind": "equation",
         "label": "Clear the fractions",
         "marks": 1,
-        "margin_note": "First mark. Normal form has no fractions, so the intercept form is cleared to ax + by = c shape before anything else.",
+        "margin_note": "First mark. Normal form has no fractions, so the intercept form is cleared to bx + ay = ab before anything else.",
         "lines": [
           {
             "text": "Sol:",
@@ -98,7 +98,7 @@
           "Writing ax + by = ab with a and b swapped."
         ],
         "mark_note": "Method",
-        "memory_tip": "Normal form has NO fractions, so clear the intercept form to ax + by = c shape first."
+        "memory_tip": "Normal form has NO fractions, so clear the intercept form to bx + ay = ab first."
       },
       {
         "id": "s2_divide",
@@ -213,7 +213,7 @@
         "kind": "boxed_final",
         "label": "Deduce the result",
         "marks": 3,
-        "margin_note": "The last three marks. Square p, invert it, and split the single fraction into two — the a² and b² separate because the numerator is a product.",
+        "margin_note": "The last three marks. Square p, invert it, and split the single fraction into two — each of a² and b² cancels against the product a²b² in the denominator.",
         "lines": [
           {
             "text": "(square p: (ab)² = a²b² and (√(a² + b²))² = a² + b²)",
@@ -262,7 +262,7 @@
           "Cancelling a² against a²b² incorrectly."
         ],
         "mark_note": "Solution",
-        "memory_tip": "Square p, invert, and split the fraction — a² and b² separate because the numerator is a product.",
+        "memory_tip": "Square p, invert, and split the fraction — each of a² and b² cancels against the product a²b² in the denominator.",
         "lines_compact": [
           "So, p = ab/√(a²+b²)  ⇒  p² = a²b²/(a²+b²)",
           "⇒ 1/p² = (a² + b²)/(a²b²) = a²/(a²b²) + b²/(a²b²)",

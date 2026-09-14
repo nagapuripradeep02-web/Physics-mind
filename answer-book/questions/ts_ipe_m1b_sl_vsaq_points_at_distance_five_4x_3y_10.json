@@ -206,7 +206,7 @@
             "signs together"
           ]
         },
-        "why": "The ± must be taken consistently in both coordinates, because they describe one step of length 5 in one direction along the line — mixing the signs steps sideways off the line. There are two answers because the given point is on the line and you can walk 5 units either way from it.",
+        "why": "The ± must be taken the same way in both coordinates, because together they give one move of length 5 in one direction along the line — mixing the signs gives a point that is not on the line. There are two answers because the given point is on the line, and there is one point 5 units from it in each direction along the line.",
         "common_mistakes": [
           "Mixing the signs and reporting (4, −6) or (−2, 2).",
           "Reporting only one of the two points."

@@ -87,7 +87,7 @@
             "match"
           ]
         },
-        "why": "Using the formula on mismatched coefficients gives a number that is wrong by exactly the scale factor — this is a common error in this type of question.",
+        "why": "Using the formula on mismatched coefficients mixes constants from two different scales, so the number it gives is not the distance — this is a common error in this type of question.",
         "common_mistakes": [
           "Applying the formula without rescaling.",
           "Rescaling the x and y terms but forgetting the constant."

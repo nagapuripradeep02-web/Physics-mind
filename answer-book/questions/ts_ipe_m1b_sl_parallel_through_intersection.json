@@ -270,7 +270,7 @@
         },
         "why": "A point and a slope determine a line uniquely, which is why the two independent halves are enough between them.",
         "common_mistakes": [
-          "Using the slope-intercept form and having to find c separately.",
+          "Writing x − 21/5 as x + 21/5 by losing the sign of x₁.",
           "Swapping x₁ and y₁ in the formula."
         ],
         "memory_tip": "With a point and a slope, y − y₁ = m(x − x₁) writes the line in one line.",

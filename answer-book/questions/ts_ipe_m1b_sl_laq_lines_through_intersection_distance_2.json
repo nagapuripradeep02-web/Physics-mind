@@ -252,14 +252,14 @@
         "label": "Solve for the slope",
         "marks": 2,
         "mark_note": "Method",
-        "margin_note": "Two marks. Square, cancel the 1 on both sides, and take m out as a common factor. Never divide by m — that throws away the answer m = 0.",
+        "margin_note": "Two marks. Square, cancel the 1 on both sides, and take m out as a common factor. Never divide by m — that removes the answer m = 0.",
         "lines": [
           {
-            "text": "(neither side is negative, so squaring keeps them equal;",
+            "text": "(neither side is negative, so squaring keeps the same",
             "added": true
           },
           {
-            "text": "  (2m + 1)² = 4m² + 4m + 1)",
+            "text": "  solutions; (2m + 1)² = 4m² + 4m + 1)",
             "style": "indent",
             "added": true
           },

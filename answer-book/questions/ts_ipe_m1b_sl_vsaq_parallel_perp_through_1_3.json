@@ -90,7 +90,7 @@
             "parallel"
           ]
         },
-        "why": "Both riders depend on the same number, the slope of AB, so it is worth computing carefully once; parallel lines are exactly the lines with that same slope.",
+        "why": "Both parts depend on the same number, the slope of AB, so it is worth computing carefully once; parallel lines are exactly the lines with that same slope.",
         "common_mistakes": [
           "Computing the slope as (x₂ − x₁)/(y₂ − y₁), the reciprocal of the slope.",
           "Sign slip in 1 − (−5), giving −4 instead of 6."

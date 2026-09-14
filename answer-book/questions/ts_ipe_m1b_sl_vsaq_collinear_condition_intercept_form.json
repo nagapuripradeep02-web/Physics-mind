@@ -83,7 +83,7 @@
         },
         "why": "Two of the three points already name the intercepts, so the line through them needs no two-point formula at all; ab ≠ 0 is exactly what stops either intercept being zero.",
         "common_mistakes": [
-          "Using the two-point formula on (a, 0) and (0, b) and doing extra work.",
+          "Clearing the fractions in x/a + y/b = 1 as bx + ay = 1 instead of bx + ay = ab.",
           "Writing x/b + y/a = 1, with a and b swapped."
         ]
       },

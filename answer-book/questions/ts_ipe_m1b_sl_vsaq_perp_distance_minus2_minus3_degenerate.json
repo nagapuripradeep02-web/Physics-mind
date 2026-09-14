@@ -46,7 +46,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Two things carry marks in this formula and both are easy to drop: the modulus on top and the square root below.",
-        "memory_tip": "Distance = |line at the point| divided by √(a² + b²). Modulus on top, square root below.",
+        "memory_tip": "Distance = |ax₁ + by₁ + c| divided by √(a² + b²). Modulus on top, square root below.",
         "lines": [
           {
             "text": "Sol:",
@@ -56,9 +56,9 @@
           "Given line is 5x − 2y + 4 = 0",
           "(compare with ax + by + c = 0)",
           "∴ a = 5, b = −2, c = 4",
-          "(the formula for the perpendicular distance from a",
+          "(the formula for the perpendicular distance from",
           {
-            "text": "  point to a line)",
+            "text": "  a point to a line)",
             "style": "indent"
           },
           "Distance d = |ax₁ + by₁ + c| / √(a² + b²)"

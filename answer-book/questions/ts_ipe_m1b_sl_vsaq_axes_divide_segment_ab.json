@@ -54,9 +54,13 @@
           },
           "A(x₁, y₁) = (2, −3),  B(x₂, y₂) = (3, −6)",
           "(i) The X-axis is y = 0",
-          "(a line L = 0 divides the join of (x₁, y₁) and (x₂, y₂) in the",
+          "(a line L = 0 divides the join of (x₁, y₁) and (x₂, y₂) in",
           {
-            "text": "  ratio −L₁₁ : L₂₂; for y = 0, L₁₁ = y₁ and L₂₂ = y₂)",
+            "text": "  the ratio −L₁₁ : L₂₂; for y = 0,",
+            "style": "indent"
+          },
+          {
+            "text": "  L₁₁ = y₁ and L₂₂ = y₂)",
             "style": "indent"
           },
           "Required ratio = −y₁ : y₂",

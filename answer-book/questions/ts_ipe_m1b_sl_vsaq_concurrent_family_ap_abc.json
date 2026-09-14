@@ -154,7 +154,7 @@
         "why": "Concurrent means all the lines pass through one common point. Since (1, −2) satisfies the line for every choice of a, b, c allowed by the condition, that single point is common to the whole family.",
         "common_mistakes": [
           "Giving the point as (1, 2) and losing the minus sign that came from −2b.",
-          "Solving two particular lines instead of matching the condition, which takes far longer than two marks allow."
+          "Finding the point from two particular lines only, without showing that it lies on every line of the family."
         ],
         "lines_compact": [
           "Given line is ax + by + c = 0   ……(2)",

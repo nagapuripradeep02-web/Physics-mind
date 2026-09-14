@@ -110,7 +110,7 @@
         },
         "why": "A condition stated about intercepts is easiest to use in the intercept form — the condition reduces two unknowns to one before any point is substituted.",
         "common_mistakes": [
-          "Using the slope-intercept form, which hides the intercepts.",
+          "Taking the intercepts as a and −a, which is the case of intercepts equal in size but opposite in sign.",
           "Introducing two separate unknowns when the condition ties them together."
         ],
         "mark_note": "Method"

@@ -387,11 +387,11 @@
         "margin_note": "Two marks. The same move on the second pair, giving the second perpendicular bisector.",
         "memory_tip": "The same move on the second pair gives the second bisector.",
         "lines": [
-          "Step-5: SB = SC ⇒ √((x−1)² + (y+2)²)",
           {
             "text": "(the distance formula, with C(−2, 3); square both sides)",
             "added": true
           },
+          "Step-5: SB = SC ⇒ √((x−1)² + (y+2)²)",
           {
             "text": "  = √((x+2)² + (y−3)²)",
             "style": "indent"
@@ -449,7 +449,7 @@
         },
         "why": "Two perpendicular bisectors are enough; the third meets them at the same point.",
         "common_mistakes": [
-          "Using SA = SC and repeating work already done.",
+          "Expanding (x + 2)² as x² + 4, without the middle term 4x.",
           "Sign slip on a negative coordinate."
         ],
         "mark_note": "Method",
@@ -548,5 +548,5 @@
       }
     ]
   },
-  "insider_note": "Sides are given here, not vertices, so two of the eight marks go on solving the lines in pairs FIRST. Only then does SA = SB apply; trying to use the line equations directly gets nowhere."
+  "insider_note": "Sides are given here, not vertices, so two of the eight marks go on solving the lines in pairs FIRST. Only then does SA = SB apply, because the distance formula needs the coordinates of the vertices."
 }

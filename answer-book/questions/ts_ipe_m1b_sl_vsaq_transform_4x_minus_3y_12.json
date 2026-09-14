@@ -89,7 +89,7 @@
             "make y the subject"
           ]
         },
-        "why": "Slope-intercept form shows the slope and the y-intercept directly, which is what makes it the form asked for first.",
+        "why": "Slope-intercept form shows the slope and the y-intercept directly, so both can be read off once y is the subject.",
         "common_mistakes": [
           "Leaving the equation with y on the wrong side.",
           "Dividing only some terms by the coefficient of y."
