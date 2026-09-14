@@ -23,7 +23,7 @@
       "marks": 1
     },
     {
-      "label": "Collapse to one cosine",
+      "label": "Combine into one cosine",
       "marks": 1
     },
     {
@@ -99,7 +99,7 @@
       {
         "id": "s2_collapse_to_one_cosine",
         "kind": "equation",
-        "label": "Collapse to one cosine",
+        "label": "Combine into one cosine",
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Second mark. Divide by √(a² + b²) = 2 so the coefficients become cos(π/6) and sin(π/6), and the left side becomes one cosine of a compound angle.",
@@ -133,7 +133,7 @@
             "cos A plus B"
           ]
         },
-        "why": "a cosθ + b sinθ cannot be solved directly, but after dividing by √(a² + b²) the coefficients are always a cosine and a sine of one angle, and a single compound-angle formula finishes it.",
+        "why": "a cosθ + b sinθ cannot be solved in this form, but after dividing by √(a² + b²) the coefficients are always a cosine and a sine of one angle, and a single compound-angle formula finishes it.",
         "common_mistakes": [
           "Dividing by a + b instead of √(a² + b²).",
           "Using cos(A − B) and getting θ − π/6."
@@ -145,7 +145,7 @@
         "label": "List the candidates in the interval",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Third mark. Write the cosine general solution, split the ± into two families, then substitute n = 0, 1 and keep whatever lands in 0 ≤ θ ≤ 2π. These are candidates, not answers yet.",
+        "margin_note": "Third mark. Write the cosine general solution, split the ± into two families, then substitute n = 0, 1 and keep the values that lie in 0 ≤ θ ≤ 2π. These are candidates, not answers yet.",
         "memory_tip": "Split the ± into two separate families before substituting n. Call what you get candidates, not answers.",
         "lines": [
           "For cosθ = cosα, θ = 2nπ ± α, so",
@@ -226,7 +226,7 @@
             "undefined"
           ]
         },
-        "why": "Multiplying by cosθ let in the values where cosθ = 0, and at those values the original equation has no meaning at all. Testing every candidate in the ORIGINAL equation is the only way to catch them.",
+        "why": "Multiplying by cosθ let in the values where cosθ = 0, and at those values the original equation has no meaning at all. Testing every candidate in the ORIGINAL equation is how to catch them.",
         "common_mistakes": [
           "Writing both θ = π/6 and θ = 3π/2 as answers.",
           "Testing in the cleared equation √3 cosθ − sinθ = 1, which θ = 3π/2 does satisfy.",

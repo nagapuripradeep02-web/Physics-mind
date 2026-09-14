@@ -197,7 +197,11 @@
           "Also tanθ = 1/2 ⇒ θ = Tan⁻¹(1/2)",
           "Here the principal value is α = Tan⁻¹(1/2)",
           {
-            "text": "∴ θ = nπ + π/4  or  θ = nπ + Tan⁻¹(1/2),  n ∈ Z",
+            "text": "∴ θ = nπ + π/4  or",
+            "style": "boxed"
+          },
+          {
+            "text": "θ = nπ + Tan⁻¹(1/2),  n ∈ Z",
             "style": "boxed"
           }
         ],

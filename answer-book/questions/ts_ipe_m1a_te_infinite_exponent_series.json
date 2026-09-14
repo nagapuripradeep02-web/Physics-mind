@@ -90,7 +90,7 @@
             "mod cos x less than one"
           ]
         },
-        "why": "An infinite geometric series has a sum only when its common ratio is smaller than 1 in size. Stating that condition is what makes the rest of the working legal.",
+        "why": "An infinite geometric series has a sum only when its common ratio is smaller than 1 in size. Stating that condition is what makes the rest of the working valid.",
         "common_mistakes": [
           "Writing the sum as 1/(1 + cos x).",
           "Summing the series without stating |cos x| < 1.",
@@ -133,7 +133,7 @@
             "equate the powers"
           ]
         },
-        "why": "Two powers of the same base are equal only when the exponents are equal. Writing 4³ as 8² is the one move that turns an index equation into an ordinary one.",
+        "why": "Two powers of 8 are equal only when the exponents are equal. Writing 4³ as 8² turns the index equation into an ordinary one.",
         "common_mistakes": [
           "Reading 4³ as 12.",
           "Equating the powers while the bases are still 8 and 4."
@@ -188,7 +188,7 @@
         "label": "List the values in the interval",
         "marks": 1,
         "mark_note": "Solution",
-        "margin_note": "Last mark. The interval is given, so the general solution is working and the finite list is the answer. Only n = 0 lands inside (−π, π), and both values keep |cos x| < 1.",
+        "margin_note": "Last mark. The interval is given, so the general solution is working and the finite list is the answer. Only n = 0 gives values inside (−π, π), and both values keep |cos x| < 1.",
         "memory_tip": "An interval is given, so the answer is the LIST, not the general solution. Only n = 0 fits inside (−π, π).",
         "lines": [
           "Now cos x = 1/2 = cos(π/3), so α = π/3",

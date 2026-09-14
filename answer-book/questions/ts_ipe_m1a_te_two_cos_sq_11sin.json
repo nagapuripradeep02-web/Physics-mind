@@ -87,7 +87,7 @@
             "quadratic in sine"
           ]
         },
-        "why": "An equation holding two different ratios cannot be factorised. Reducing it to sine alone turns it into a quadratic that any student can handle.",
+        "why": "An equation holding two different ratios cannot be factorised. Reducing it to sine alone turns it into a quadratic that can be factorised.",
         "common_mistakes": [
           "Replacing sin²θ instead and leaving a cosine behind.",
           "Sign slip when multiplying out the −2."
@@ -215,7 +215,7 @@
             "minus one to the n"
           ]
         },
-        "why": "Only one branch survived, so there is one family of solutions — but it is still an infinite family, which is why n ∈ Z has to appear.",
+        "why": "Only one branch is left, so there is one family of solutions — but it is still an infinite family, which is why n ∈ Z has to appear.",
         "common_mistakes": [
           "Giving only θ = π/6 and no general solution.",
           "Using the cosine general solution 2nπ ± α."

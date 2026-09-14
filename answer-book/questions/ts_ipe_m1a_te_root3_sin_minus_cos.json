@@ -36,7 +36,7 @@
       "marks": 1
     },
     {
-      "label": "Collapse to one function",
+      "label": "Combine into one function",
       "marks": 1
     },
     {
@@ -62,7 +62,7 @@
         "label": "Divide by √(a²+b²)",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark, and the move that makes the whole family work. Dividing by √(a²+b²) forces the two coefficients to become a cosine and a sine of the same angle, so the left side collapses to ONE trig function.",
+        "margin_note": "First mark, and the step the whole method depends on. Dividing by √(a²+b²) makes the two coefficients a cosine and a sine of the same angle, so the left side becomes ONE trig function.",
         "memory_tip": "Divide by √(a² + b²) = 2. That forces both coefficients to become a sine and a cosine of one angle.",
         "lines": [
           {
@@ -94,7 +94,7 @@
             "root three over two"
           ]
         },
-        "why": "a sinθ + b cosθ can never be solved directly, but divided by √(a²+b²) its coefficients always become the cosine and sine of some angle — and then one compound-angle formula finishes it.",
+        "why": "a sinθ + b cosθ cannot be solved in this form, but divided by √(a²+b²) its coefficients always become the cosine and sine of some angle — and then one compound-angle formula finishes it.",
         "common_mistakes": [
           "Dividing by a + b instead of √(a²+b²).",
           "Dividing only the left side."
@@ -143,7 +143,7 @@
       {
         "id": "s3_collapse_to_one_function",
         "kind": "equation",
-        "label": "Collapse to one function",
+        "label": "Combine into one function",
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Third mark. sinA cosB − cosA sinB is sin(A−B), so the equation becomes a single sine equal to a single sine. The principal value is then read off directly.",
@@ -221,7 +221,7 @@
             "pi by six"
           ]
         },
-        "why": "Sine, cosine and tangent each have their own general solution formula, and using the wrong one is the commonest error in the chapter. Sine gets nπ + (−1)ⁿα.",
+        "why": "Sine, cosine and tangent each have their own general solution formula, and using the wrong one is a common error. Sine gets nπ + (−1)ⁿα.",
         "common_mistakes": [
           "Using the cosine form 2nπ ± α for a sine equation.",
           "Forgetting to add π/6 back.",
@@ -230,5 +230,5 @@
       }
     ]
   },
-  "insider_note": "The minus sign makes this a sin(A − B), so it collapses to sin(θ − π/6) = sin(π/4). The sine general solution is nπ + (−1)ⁿα, which is NOT the same form as the cosine one."
+  "insider_note": "The minus sign makes this a sin(A − B), so it becomes sin(θ − π/6) = sin(π/4). The sine general solution is nπ + (−1)ⁿα, which is NOT the same form as the cosine one."
 }

@@ -85,7 +85,7 @@
             "two root three plus one"
           ]
         },
-        "why": "The equation already holds one ratio, so the Pythagorean identity is not needed. Recognising it as a quadratic is the only insight this step asks for.",
+        "why": "The equation already holds one ratio, so the Pythagorean identity is not needed. Recognising it as a quadratic is the main idea of this step.",
         "common_mistakes": [
           "Replacing cos²θ by 1 − sin²θ and creating a second ratio.",
           "Losing the sign when moving 2(√3 + 1) cosθ across."

@@ -88,7 +88,7 @@
             "sin of x plus ten"
           ]
         },
-        "why": "Two trigonometric expressions can only be equated angle-to-angle when they are the SAME function. Converting the cosine to a sine is what makes the comparison legal.",
+        "why": "Two trigonometric expressions can only be equated angle-to-angle when they are the SAME function. Converting the cosine to a sine is what makes the comparison valid.",
         "common_mistakes": [
           "Writing 90° − 3x − 68° and getting 22° − 3x.",
           "Equating x + 10° with 3x − 68° directly, mixing sine with cosine."

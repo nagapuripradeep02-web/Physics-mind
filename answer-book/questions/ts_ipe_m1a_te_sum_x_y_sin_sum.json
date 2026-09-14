@@ -89,7 +89,7 @@
             "sum to product"
           ]
         },
-        "why": "The question gives the SUM of the angles, and the sum-to-product form is the only shape that puts (x+y)/2 into the working as a single factor.",
+        "why": "The question gives the SUM of the angles, and the sum-to-product form puts (x+y)/2 into the working as a single factor.",
         "common_mistakes": [
           "Using the sinC − sinD formula, which gives a cosine and sine the wrong way round.",
           "Writing sin x + sin y = sin(x + y)."

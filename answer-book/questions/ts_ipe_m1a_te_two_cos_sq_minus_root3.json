@@ -216,7 +216,7 @@
             "minus one to the n"
           ]
         },
-        "why": "Only one branch survived, so there is only one family of solutions — but it is still an infinite family, which is why n ∈ Z must appear.",
+        "why": "Only one branch is left, so there is only one family of solutions — but it is still an infinite family, which is why n ∈ Z must appear.",
         "common_mistakes": [
           "Giving only θ = π/3 and no general solution.",
           "Using the cosine general solution."

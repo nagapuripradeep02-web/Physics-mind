@@ -59,7 +59,7 @@
         "marks": 2,
         "mark_note": "Method",
         "margin_note": "Half the marks. Move the sine term across so only the cosine is on one side, then square — which turns cos²θ into 1 − sin²θ and leaves everything in sine.",
-        "memory_tip": "Move the sine term across so ONLY the cosine is squared — otherwise a sinθcosθ cross term survives.",
+        "memory_tip": "Move the sine term across so ONLY the cosine is squared — otherwise a sinθcosθ cross term is left.",
         "lines": [
           {
             "text": "Sol:",

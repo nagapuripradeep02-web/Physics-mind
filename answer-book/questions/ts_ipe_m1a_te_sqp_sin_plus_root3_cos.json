@@ -28,7 +28,7 @@
       "marks": 1
     },
     {
-      "label": "Collapse into one cosine",
+      "label": "Combine into one cosine",
       "marks": 1
     },
     {
@@ -98,7 +98,7 @@
       {
         "id": "s2_collapse_into_one_cosine",
         "kind": "equation",
-        "label": "Collapse into one cosine",
+        "label": "Combine into one cosine",
         "marks": 1,
         "mark_note": "Single ratio",
         "margin_note": "Second mark. ½ = sin 30° and √3/2 = cos 30°, so the left side is cos x cos(π/6) + sin x sin(π/6) = cos(x − π/6).",

@@ -187,7 +187,7 @@
         "label": "Check and write the general solution",
         "marks": 1,
         "mark_note": "Solution",
-        "margin_note": "Last mark. Clearing the fractions could have let in values where sinθ or cosθ is zero, so test the surviving root against θ ≠ nπ/2 before writing the answer. It passes, so the whole family is kept.",
+        "margin_note": "Last mark. Clearing the fractions could have let in values where sinθ or cosθ is zero, so test the remaining root against θ ≠ nπ/2 before writing the answer. It passes, so the whole family is kept.",
         "memory_tip": "Before writing the answer, put the root back: sinθ = 1/2 gives cosθ = ±√3/2, so no denominator is zero.",
         "lines": [
           "Check: sinθ = 1/2 makes cosθ = ±√3/2.",
@@ -223,7 +223,7 @@
             "check"
           ]
         },
-        "why": "Multiplying by sinθ cosθ can let in values where sinθ or cosθ is zero, and at those values tanθ, cotθ and secθ do not exist. Testing the surviving root against that condition is what makes the answer safe to write.",
+        "why": "Multiplying by sinθ cosθ can let in values where sinθ or cosθ is zero, and at those values tanθ, cotθ and secθ do not exist. Testing the remaining root against that condition makes sure the answer is valid.",
         "common_mistakes": [
           "Using the cosine form 2nπ ± α for a sine equation.",
           "Never checking that cosθ is not zero after clearing the fractions.",
