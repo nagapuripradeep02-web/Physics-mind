@@ -87,7 +87,7 @@
             "nth term"
           ]
         },
-        "why": "This question carries two extra letters, a and d. Saying that a and d are fixed and that only n changes is what makes S(n) a statement about one variable, which is the only kind induction can prove.",
+        "why": "This question carries two extra letters, a and d. Saying that a and d are fixed and that only n changes is what makes S(n) a statement about one variable, which is the kind of statement induction proves.",
         "common_mistakes": [
           "Writing the nth term as a + nd instead of a + (n−1)d.",
           "Trying to induct on d or on a as well as on n."
@@ -220,7 +220,7 @@
             "k plus one by two"
           ]
         },
-        "why": "The d terms are k(k−1)d + 2kd, which is d(k² + k) = dk(k+1). That is where the shared factor (k+1) comes from, and it is the only step in the proof that needs care.",
+        "why": "The d terms are k(k−1)d + 2kd, which is d(k² + k) = dk(k+1). That is where the shared factor (k+1) comes from, and it is the step in the proof that needs the most care.",
         "common_mistakes": [
           "Adding a + (k+1)d as the next term instead of a + kd.",
           "Losing the 2 in the denominator when the next term is brought over.",

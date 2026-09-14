@@ -132,7 +132,7 @@
             "cancels"
           ]
         },
-        "why": "r ≠ 1 is what makes the cancellation legal — with r = 1 the right side would be 0/0 and the formula would not exist at all.",
+        "why": "r ≠ 1 is what makes the cancellation valid — with r = 1 the right side would be 0/0 and the formula would not exist at all.",
         "common_mistakes": [
           "Skipping the base case.",
           "Not noticing the (r−1) cancels."
@@ -148,7 +148,7 @@
         "margin_note": "Second mark. Assume the statement holds for some k and write it down — this is the induction hypothesis, and the next step leans on it entirely.",
         "lines": [
           "Assume S(k) is true for some k ∈ N:",
-          "a + ar + … + ar^(k−1) = a(r^k − 1)/(r − 1)   …(1)"
+          "a + ar + … + arᵏ⁻¹ = a(rᵏ − 1)/(r − 1)   …(1)"
         ],
         "recall": {
           "credit": "say_it",
@@ -172,7 +172,7 @@
             "equation one"
           ]
         },
-        "why": "The hypothesis is the only thing the next step is allowed to use. Writing it as a numbered equation is what makes the substitution visible.",
+        "why": "The next step uses this hypothesis. Writing it as a numbered equation is what makes the substitution visible.",
         "common_mistakes": [
           "Assuming S(n) rather than S(k).",
           "Assuming what has to be proved."
@@ -185,13 +185,13 @@
         "label": "Prove S(k+1)",
         "marks": 1,
         "mark_note": "Inductive step",
-        "margin_note": "Third mark, and the longest step on the page. Add the (k+1)th term, which is ar^k, to both sides of the hypothesis, then combine over the common denominator.",
+        "margin_note": "Third mark, and the longest step on the page. Add the (k+1)th term, which is arᵏ, to both sides of the hypothesis, then combine over the common denominator.",
         "lines": [
-          "Adding the (k+1)th term ar^k to both sides of (1):",
-          "L.H.S = a(r^k − 1)/(r − 1) + ar^k",
-          "= [a(r^k − 1) + ar^k(r − 1)]/(r − 1)",
-          "= [ar^k − a + ar^(k+1) − ar^k]/(r − 1)",
-          "= [ar^(k+1) − a]/(r − 1) = a(r^(k+1) − 1)/(r − 1)",
+          "Adding the (k+1)th term arᵏ to both sides of (1):",
+          "L.H.S = a(rᵏ − 1)/(r − 1) + arᵏ",
+          "= [a(rᵏ − 1) + arᵏ(r − 1)]/(r − 1)",
+          "= [arᵏ − a + arᵏ⁺¹ − arᵏ]/(r − 1)",
+          "= [arᵏ⁺¹ − a]/(r − 1) = a(rᵏ⁺¹ − 1)/(r − 1)",
           "∴ S(k+1) is true."
         ],
         "recall": {
@@ -216,9 +216,9 @@
             "k plus one"
           ]
         },
-        "why": "+ar^k and −ar^k cancel exactly, which is the whole reason the formula closes. If they did not, the induction would fail.",
+        "why": "+arᵏ and −arᵏ cancel exactly, which is why the result has the form of the formula.",
         "common_mistakes": [
-          "Adding ar^(k+1) instead of ar^k.",
+          "Adding arᵏ⁺¹ instead of arᵏ.",
           "Not putting the two terms over a common denominator."
         ],
         "memory_tip": "Add the (k+1)th term arᵏ to BOTH sides, then combine over (r − 1) — the arᵏ terms cancel."

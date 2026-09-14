@@ -94,7 +94,7 @@
         "why": "You cannot do algebra with the word 'divisible'. Turning it into = 64q is what lets Step 3 substitute the assumption.",
         "common_mistakes": [
           "Leaving the statement in words, so Step 3 has nothing to use.",
-          "Forgetting to say q is an integer, which is the whole content of divisibility."
+          "Forgetting to say q is an integer, which is what divisibility means."
         ],
         "memory_tip": "Divisibility becomes = 64q with q an integer. Without that line there is nothing to substitute later."
       },
@@ -220,7 +220,7 @@
             "integer"
           ]
         },
-        "why": "16k × 48 is 64 × 12k — that is the hidden 64 that makes the whole thing work. Spotting it is the point of the question.",
+        "why": "16k × 48 is 64 × 12k — that is the factor 64 the proof needs. Seeing it is the key step of the question.",
         "common_mistakes": [
           "Writing 49ᵏ⁺¹ as 49ᵏ + 49 instead of 49 × 49ᵏ.",
           "Stopping at 64(…) without saying the bracket is an integer, which is what divisibility requires.",

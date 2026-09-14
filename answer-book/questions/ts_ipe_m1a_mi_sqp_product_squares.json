@@ -89,7 +89,7 @@
             "S of n"
           ]
         },
-        "why": "n² + 2n + 1 is (n+1)², so every factor is a ratio of consecutive squares. Spotting that makes the whole product telescope.",
+        "why": "n² + 2n + 1 is (n+1)², so every factor is a ratio of consecutive squares. Seeing that lets the factors cancel one after another.",
         "common_mistakes": [
           "Not simplifying the factor and working with the fraction as given.",
           "Writing the denominators as n rather than n²."
@@ -168,7 +168,7 @@
             "k plus one squared"
           ]
         },
-        "why": "The hypothesis is a product equal to a square — which is what makes the next multiplication collapse so cleanly.",
+        "why": "The hypothesis is a product equal to a square — which makes the next multiplication simple.",
         "common_mistakes": [
           "Assuming S(k+1).",
           "Writing the hypothesis with n instead of k."
@@ -211,7 +211,7 @@
             "next factor"
           ]
         },
-        "why": "Every other answer in this unit ADDS the next term. This one multiplies, because the statement is a product — and the cancellation is what a sum could never give.",
+        "why": "Most answers in this unit ADD the next term. This one multiplies, because the statement is a product.",
         "common_mistakes": [
           "Adding the next factor instead of multiplying.",
           "Writing the (k+1)th factor with k in place of k+1."
@@ -262,5 +262,5 @@
       }
     ]
   },
-  "insider_note": "Simplify the general factor to (n+1)²/n² BEFORE the induction starts; left as 1 + (2n+1)/n² it will not multiply cleanly. The (k+1)² then cancels, and that cancellation is the whole step."
+  "insider_note": "Simplify the general factor to (n+1)²/n² BEFORE the induction starts; left as 1 + (2n+1)/n² it will not multiply cleanly. The (k+1)² then cancels, and that cancellation is the main step."
 }

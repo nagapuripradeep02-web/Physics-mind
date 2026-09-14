@@ -168,7 +168,7 @@
             "induction hypothesis"
           ]
         },
-        "why": "This is the assumption the method rests on. It is granted for one value only, and Step 3 has to earn the right to pass it on to the next value.",
+        "why": "This is the assumption the method uses. It is taken as true for one value only, and Step 3 has to show that it then holds for the next value.",
         "common_mistakes": [
           "Assuming the statement for ALL k, which assumes what is being proved.",
           "Writing the last term as (k+1)·2ᵏ instead of (k+1)·2ᵏ⁻¹."
@@ -214,7 +214,7 @@
             "two to the k plus one"
           ]
         },
-        "why": "Both terms already carry 2ᵏ, so the whole step is one factorisation. The spare 2 inside 2(k+1) is what pushes the power from 2ᵏ up to 2ᵏ⁺¹.",
+        "why": "Both terms already carry 2ᵏ, so the whole step is one factorisation. The spare 2 inside 2(k+1) is what raises the power from 2ᵏ to 2ᵏ⁺¹.",
         "common_mistakes": [
           "Writing the next term as (k+1)·2ᵏ — put n = k+1 into (n+1)·2ⁿ⁻¹ and the coefficient is k + 2.",
           "Leaving the answer as 2ᵏ(2k+2) and not turning the spare 2 into the higher power.",

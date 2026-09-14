@@ -131,7 +131,7 @@
             "s of one"
           ]
         },
-        "why": "The base case is cheap here but it is a full mark, and without it the chain has no first link.",
+        "why": "The base case is short here but it carries a full mark, and without it the proof has no starting point.",
         "common_mistakes": [
           "Skipping the arithmetic and writing 'clearly true'.",
           "Substituting into the nth-term formula instead of the statement."
@@ -173,7 +173,7 @@
             "induction hypothesis"
           ]
         },
-        "why": "This is the assumption the whole method rests on. It is not proved here — it is granted for ONE value, and Step 3 earns the right to pass it on.",
+        "why": "This is the assumption the method uses. It is not proved here — it is taken as true for ONE value, and Step 3 shows that it then holds for the next value.",
         "common_mistakes": [
           "Assuming the statement for ALL k, which assumes what is being proved.",
           "Not numbering the line, so Step 3 cannot cite it."

@@ -255,5 +255,5 @@
       }
     ]
   },
-  "insider_note": "Rearrange the assumption to isolate the first term, 2·4^(2k+1) = 11q − 3^(3k+1), before substituting. The powers step up by 16 and 27, and 27 − 16 = 11 is precisely what makes the remainder vanish."
+  "insider_note": "Rearrange the assumption to isolate the first term, 2·4²ᵏ⁺¹ = 11q − 3³ᵏ⁺¹, before substituting. The powers step up by 16 and 27, and 27 − 16 = 11 is precisely what makes the remainder vanish."
 }

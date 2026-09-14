@@ -131,7 +131,7 @@
             "base case"
           ]
         },
-        "why": "Induction needs somewhere to start. Without a true first case the chain proves nothing, however good the inductive step is.",
+        "why": "Induction needs somewhere to start. Without a true first case the proof has no starting point, however good the inductive step is.",
         "common_mistakes": [
           "Asserting S(1) is true without computing both sides.",
           "Substituting n = 1 into only one side."
@@ -173,7 +173,7 @@
             "induction hypothesis"
           ]
         },
-        "why": "This is the assumption the whole method rests on. It is not proved here — it is granted for ONE value, and Step 3 earns the right to pass it on.",
+        "why": "This is the assumption the method uses. It is not proved here — it is taken as true for ONE value, and Step 3 shows that it then holds for the next value.",
         "common_mistakes": [
           "Assuming the statement for ALL k, which assumes what is being proved.",
           "Not numbering the line, so Step 3 cannot cite it."
@@ -222,7 +222,7 @@
         "common_mistakes": [
           "Adding the wrong next term — it is (k+1)(k+2)(k+3), not (k+1)(k+2).",
           "Expanding everything instead of factorising, which leaves a cubic that will not simplify.",
-          "Never writing = R.H.S, so the step stops short of what was to be shown."
+          "Never writing = R.H.S, so the step does not reach what was to be shown."
         ],
         "memory_tip": "Add (k+1)(k+2)(k+3) to both sides, then take it out as a common factor: k + 4 is what is left."
       },

@@ -88,7 +88,7 @@
         "why": "Two conditions do real work here. x ≠ y keeps x − y from being zero, and writing the claim as = (x − y)q is what lets Step 3 substitute the assumption.",
         "common_mistakes": [
           "Leaving the statement in words, so Step 3 has nothing to use.",
-          "Forgetting to say q is an integer, which is the whole content of divisibility.",
+          "Forgetting to say q is an integer, which is what divisibility means.",
           "Not saying why x ≠ y matters, so x − y could be zero."
         ],
         "memory_tip": "Two lines before any proof: x ≠ y makes x − y non-zero, and divisibility becomes = (x − y)q."

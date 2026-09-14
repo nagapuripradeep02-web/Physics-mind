@@ -82,7 +82,7 @@
             "over four"
           ]
         },
-        "why": "Two standard results meet here and the n² cancels — which is why a term that looks complicated collapses to something simple enough to add.",
+        "why": "Two standard results meet here and the n² cancels — which is why a term that looks complicated becomes simple enough to add.",
         "common_mistakes": [
           "Using n(n+1)/2 for the sum of cubes; that is the sum of the first n numbers.",
           "Taking the denominator as the sum of the first n numbers rather than the first n ODD numbers.",
@@ -165,7 +165,7 @@
             "induction hypothesis"
           ]
         },
-        "why": "This is the assumption the whole method rests on. It is not proved here — it is granted for ONE value, and Step 3 earns the right to pass it on.",
+        "why": "This is the assumption the method uses. It is not proved here — it is taken as true for ONE value, and Step 3 shows that it then holds for the next value.",
         "common_mistakes": [
           "Assuming the statement for ALL k, which assumes what is being proved.",
           "Not numbering the line, so Step 3 cannot cite it."
@@ -178,7 +178,7 @@
         "label": "Show S(k+1) follows",
         "marks": 1,
         "mark_note": "Step 3",
-        "margin_note": "One mark, and the longest step on the page. The left side does factorise, as (k+1)(2k² + 13k + 24), but that factor is hard to spot — expanding BOTH sides to the same cubic always works.",
+        "margin_note": "One mark, and the longest step on the page. The left side does factorise, as (k+1)(2k² + 13k + 24), but that factor is hard to spot — expanding BOTH sides to the same cubic also works.",
         "lines": [
           "Step 3 — show S(k+1) is true",
           "(k+1)th term = (k+2)²/4",

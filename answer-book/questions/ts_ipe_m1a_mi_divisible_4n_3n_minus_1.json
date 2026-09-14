@@ -85,7 +85,7 @@
         "why": "You cannot do algebra with the word 'divisible'. Turning it into = 9q is what lets Step 3 replace 4ᵏ by something written in terms of q.",
         "common_mistakes": [
           "Leaving the statement in words, so Step 3 has nothing to use.",
-          "Forgetting to say q is an integer, which is the whole content of divisibility."
+          "Forgetting to say q is an integer, which is what divisibility means."
         ],
         "memory_tip": "Divisibility becomes = 9q with q an integer. That one line is what Step 3 substitutes."
       },
@@ -123,7 +123,7 @@
             "s of one"
           ]
         },
-        "why": "Zero is a multiple of every number, so S(1) is genuinely true and the proof may start at n = 1. The first non-zero case, n = 2, gives 16 − 6 − 1 = 9, which is a useful check that the expression was copied correctly.",
+        "why": "Zero is a multiple of every number, so S(1) is true and the proof may start at n = 1. The first non-zero case, n = 2, gives 16 − 6 − 1 = 9, which is a useful check that the expression was copied correctly.",
         "common_mistakes": [
           "Saying 0 is not divisible by 9 and starting the proof at n = 2 without being asked to.",
           "Mishandling the −1 and getting 1 instead of 0."
@@ -210,7 +210,7 @@
             "integer"
           ]
         },
-        "why": "The two constants +4 and −4 cancel, and 12k − 3k leaves 9k. Both surviving terms, 36q and 9k, carry a factor 9 — that is why the expression works.",
+        "why": "The two constants +4 and −4 cancel, and 12k − 3k leaves 9k. Both remaining terms, 36q and 9k, carry a factor 9 — that is why the expression works.",
         "common_mistakes": [
           "Writing 4ᵏ⁺¹ as 4ᵏ + 4 instead of 4 × 4ᵏ.",
           "Slipping on −3(k+1) − 1 = −3k − 4.",

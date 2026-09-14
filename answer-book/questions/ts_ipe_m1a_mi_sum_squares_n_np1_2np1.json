@@ -167,7 +167,7 @@
             "induction hypothesis"
           ]
         },
-        "why": "This is the assumption the method rests on. It is granted for one value only, and Step 3 has to earn the right to pass it on to the next value.",
+        "why": "This is the assumption the method uses. It is taken as true for one value only, and Step 3 has to show that it then holds for the next value.",
         "common_mistakes": [
           "Assuming the statement for ALL k, which assumes what is being proved.",
           "Not numbering the line, so Step 3 cannot cite it."
