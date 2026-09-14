@@ -47,7 +47,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.61 — SAQ chapter 8 Addition of Vectors, answer 55. Printed appearances: AP 22 · TS 22. Unlike answer 54 this one NAMES the meeting point, so the work has to land on −4c rather than discover it — which is why the useful parameter turns out to be t = 0. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter. It follows the split the same book prints for the one 4-mark answer that does carry tags, Matrices answer 40 on book p.51. The book's chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q12 is the Addition of Vectors slot. NOTE: Addition of Vectors has NO Section-C slot on the paper and no LAQ chapter in this book — the unit is SAQ and VSAQ only."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.61 — SAQ chapter 8 Addition of Vectors, answer 55. Printed appearances: AP 22 · TS 22. Unlike answer 54 this one NAMES the meeting point, so the work has to land on −4c rather than discover it — which is why the useful parameter turns out to be t = 0. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter. It follows the split the same book prints for the one 4-mark answer that does carry tags, Matrices answer 40 on book p.51. The book's chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q12 is the Addition of Vectors slot. NOTE: Addition of Vectors has NO Section-C slot on the paper and no LAQ chapter in this book — the unit is SAQ and VSAQ only. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would show two lines meet at a given point.",
   "answer": {
@@ -72,6 +72,7 @@
           "Let P = −4c,  Q = 6a − 4b + 4c",
           "The line through P and Q is",
           "r = (1−t)(−4c) + t(6a − 4b + 4c),  t ∈ R",
+          "(c: −4(1 − t) + 4t = −4 + 8t; a and b come from t only)",
           "⇒ r = (6t)a − (4t)b + (8t − 4)c   …(1)"
         ],
         "recall": {
@@ -114,6 +115,15 @@
           "Let T = −a − 2b − 3c,  S = a + 2b − 5c",
           "The line through T and S is",
           "r = (1−s)(−a − 2b − 3c) + s(a + 2b − 5c),  s ∈ R",
+          {
+            "text": "(a: −(1 − s) + s = 2s − 1; b: −2(1 − s) + 2s = 4s − 2;",
+            "added": true
+          },
+          {
+            "text": "  c: −3(1 − s) − 5s = −2s − 3)",
+            "style": "indent",
+            "added": true
+          },
           "⇒ r = (2s−1)a + (4s−2)b + (−2s−3)c   …(2)"
         ],
         "recall": {
@@ -142,6 +152,12 @@
         "common_mistakes": [
           "Sign slips expanding (1−s) against a negative point.",
           "Reusing t for the second line."
+        ],
+        "lines_compact": [
+          "Let T = −a − 2b − 3c,  S = a + 2b − 5c",
+          "The line through T and S is",
+          "r = (1−s)(−a − 2b − 3c) + s(a + 2b − 5c),  s ∈ R",
+          "⇒ r = (2s−1)a + (4s−2)b + (−2s−3)c   …(2)"
         ]
       },
       {
@@ -158,7 +174,15 @@
           "6t = 2s − 1  ⇒  6t − 2s = −1   …(3)",
           "−4t = 4s − 2   …(4)",
           "8t − 4 = −2s − 3  ⇒  8t + 2s = 1   …(5)",
+          {
+            "text": "(the −2s and the +2s cancel when (3) and (5) are added)",
+            "added": true
+          },
           "Adding (3) and (5):  14t = 0  ⇒  t = 0",
+          {
+            "text": "(put t = 0 in (3))",
+            "added": true
+          },
           "Then (3) gives −2s = −1  ⇒  s = ½",
           "Check (4):  −4(0) = 0  and  4(½) − 2 = 0  ✓"
         ],
@@ -190,6 +214,16 @@
           "Stopping after two equations without checking the third; with a, b, c non-coplanar all three coefficients must match.",
           "Substituting one equation into another and grinding through fractions.",
           "Sign errors when rearranging to the form 6t − 2s = −1."
+        ],
+        "lines_compact": [
+          "At the intersection (1) = (2). a, b, c are non-coplanar,",
+          "so ALL THREE coefficients must match:",
+          "6t = 2s − 1  ⇒  6t − 2s = −1   …(3)",
+          "−4t = 4s − 2   …(4)",
+          "8t − 4 = −2s − 3  ⇒  8t + 2s = 1   …(5)",
+          "Adding (3) and (5):  14t = 0  ⇒  t = 0",
+          "Then (3) gives −2s = −1  ⇒  s = ½",
+          "Check (4):  −4(0) = 0  and  4(½) − 2 = 0  ✓"
         ]
       },
       {
@@ -203,6 +237,10 @@
         "lines": [
           "Substituting t = 0 in (1):",
           "r = 0·a − 0·b + (0 − 4)c",
+          {
+            "text": "(0·a and 0·b are zero vectors)",
+            "added": true
+          },
           {
             "text": "∴ The lines intersect at −4c",
             "style": "boxed"
@@ -234,6 +272,14 @@
         "common_mistakes": [
           "Stopping at t = 0 without substituting.",
           "Putting t = 0 into equation (2), which is written in s, not t."
+        ],
+        "lines_compact": [
+          "Substituting t = 0 in (1):",
+          "r = 0·a − 0·b + (0 − 4)c",
+          {
+            "text": "∴ The lines intersect at −4c",
+            "style": "boxed"
+          }
         ]
       }
     ]

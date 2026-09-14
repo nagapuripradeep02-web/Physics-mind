@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.62, chapter 6 ADDITION OF VECTORS, Very Short Answer question 16. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question: the first mark is for the centroid position vector, the second for adding the three vectors and cancelling. This book prints almost no exam-appearance years, so appearances[] is empty — Addition of Vectors has long been examined, we simply have no sourced years for this question. Paper position: Maths-1A Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The proof was checked a second way on a worked triangle: with A(0, 0), B(6, 0) and C(0, 3) the centroid is (2, 1), and GA + GB + GC = (−2, −1) + (4, −1) + (−2, 2) = (0, 0)."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.62, chapter 6 ADDITION OF VECTORS, Very Short Answer question 16. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question: the first mark is for the centroid position vector, the second for adding the three vectors and cancelling. This book prints almost no exam-appearance years, so appearances[] is empty — Addition of Vectors has long been examined, we simply have no sourced years for this question. Paper position: Maths-1A Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The proof was checked a second way on a worked triangle: with A(0, 0), B(6, 0) and C(0, 3) the centroid is (2, 1), and GA + GB + GC = (−2, −1) + (4, −1) + (−2, 2) = (0, 0). LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — say what you write for G and what each of GA, GB and GC becomes.",
   "answer": {
@@ -54,6 +54,7 @@
           },
           "Let O be the origin. Let a, b, c and g be",
           "the position vectors of A, B, C and G.",
+          "(the centroid's position vector is the average of a, b, c)",
           "G is the centroid of triangle ABC, so",
           "g = (a + b + c)/3"
         ],
@@ -95,9 +96,25 @@
         "margin_note": "Second mark. Each of GA, GB and GC is head minus tail from G, so three copies of g are subtracted. Those three copies are exactly a + b + c, so everything cancels.",
         "memory_tip": "Three vectors, so three copies of g: 3 × (a + b + c)/3 is exactly a + b + c, and it cancels the front bracket.",
         "lines": [
+          {
+            "text": "(each vector from G is end point minus g)",
+            "added": true
+          },
           "GA = a − g,  GB = b − g,  GC = c − g",
+          {
+            "text": "(add the three: −g − g − g = −3g)",
+            "added": true
+          },
           "⇒ GA + GB + GC = (a + b + c) − 3g",
+          {
+            "text": "(put g = (a + b + c)/3)",
+            "added": true
+          },
           "= (a + b + c) − 3 · (a + b + c)/3",
+          {
+            "text": "(3 × (a + b + c)/3 = a + b + c)",
+            "added": true
+          },
           "= (a + b + c) − (a + b + c)",
           {
             "text": "∴ GA + GB + GC = 0",
@@ -131,6 +148,16 @@
           "Writing GA as g − a, which reverses every term.",
           "Subtracting one g instead of three.",
           "Answering the number 0 rather than the zero vector."
+        ],
+        "lines_compact": [
+          "GA = a − g,  GB = b − g,  GC = c − g",
+          "⇒ GA + GB + GC = (a + b + c) − 3g",
+          "= (a + b + c) − 3 · (a + b + c)/3",
+          "= (a + b + c) − (a + b + c)",
+          {
+            "text": "∴ GA + GB + GC = 0",
+            "style": "boxed"
+          }
         ]
       }
     ]

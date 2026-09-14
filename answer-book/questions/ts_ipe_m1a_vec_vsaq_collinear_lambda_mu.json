@@ -43,7 +43,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.88 — VSAQ chapter 16 Addition of Vectors, answer 115.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 20,22 · AP 18. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four questions to a page in two columns. It is not a bare guess: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark VSAQ, applied here to the two steps of this question. The book's chapter header carries ★★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because Addition of Vectors holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q5 and Q6 are the two Addition of Vectors slots."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.88 — VSAQ chapter 16 Addition of Vectors, answer 115.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 20,22 · AP 18. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four questions to a page in two columns. It is not a bare guess: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark VSAQ, applied here to the two steps of this question. The book's chapter header carries ★★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because Addition of Vectors holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q5 and Q6 are the two Addition of Vectors slots. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find the unknowns when two vectors are collinear.",
   "answer": {
@@ -67,7 +67,13 @@
           },
           "Given −3i + 4j + λk and μi + 8j + 6k",
           "are collinear.",
+          "(collinear vectors are multiples of each other, so",
+          {
+            "text": "  matching components are in one ratio)",
+            "style": "indent"
+          },
           "∴ −3/μ = 4/8 = λ/6",
+          "(4/8 = 1/2)",
           "⇒ −3/μ = 1/2 = λ/6"
         ],
         "recall": {
@@ -107,8 +113,20 @@
         "margin_note": "Second mark. μ comes out negative — the common ratio is positive, so a negative numerator forces a negative denominator.",
         "memory_tip": "μ comes out negative: the common ratio is positive, so a negative numerator forces a negative denominator.",
         "lines": [
+          {
+            "text": "(cross-multiply: −3 × 2 = μ × 1)",
+            "added": true
+          },
           "−3/μ = 1/2 ⇒ μ = 2 × (−3) = −6",
+          {
+            "text": "(multiply both sides by 6)",
+            "added": true
+          },
           "λ/6 = 1/2 ⇒ λ = 6/2 = 3",
+          {
+            "text": "(check: −6i + 8j + 6k = 2(−3i + 4j + 3k))",
+            "added": true
+          },
           {
             "text": "∴ λ = 3, μ = −6",
             "style": "boxed"
@@ -139,6 +157,14 @@
         "common_mistakes": [
           "Writing μ = 6 and losing the sign.",
           "Solving λ/6 = 1/2 as λ = 12."
+        ],
+        "lines_compact": [
+          "−3/μ = 1/2 ⇒ μ = 2 × (−3) = −6",
+          "λ/6 = 1/2 ⇒ λ = 6/2 = 3",
+          {
+            "text": "∴ λ = 3, μ = −6",
+            "style": "boxed"
+          }
         ]
       }
     ]

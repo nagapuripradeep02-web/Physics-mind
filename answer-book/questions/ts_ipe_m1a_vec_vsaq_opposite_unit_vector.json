@@ -43,7 +43,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.87 — VSAQ chapter 16 Addition of Vectors, answer 114.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 15 · AP 19 · TS 19. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four questions to a page in two columns. It is not a bare guess: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark VSAQ, applied here to the two steps of this question. The book's chapter header carries ★★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because Addition of Vectors holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q5 and Q6 are the two Addition of Vectors slots."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.87 — VSAQ chapter 16 Addition of Vectors, answer 114.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 15 · AP 19 · TS 19. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four questions to a page in two columns. It is not a bare guess: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark VSAQ, applied here to the two steps of this question. The book's chapter header carries ★★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because Addition of Vectors holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q5 and Q6 are the two Addition of Vectors slots. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find a unit vector in the OPPOSITE direction to a sum.",
   "answer": {
@@ -67,7 +67,9 @@
           },
           "c = 0i + j + 2k, so",
           "a + b + c = (2i + 4j − 5k) + (i + j + k) + (0i + j + 2k)",
+          "(i: 2 + 1 + 0 = 3; j: 4 + 1 + 1 = 6; k: −5 + 1 + 2 = −2)",
           "  = 3i + 6j − 2k",
+          "(3² = 9, 6² = 36, (−2)² = 4)",
           "⇒ |a + b + c| = √(9 + 36 + 4) = √49 = 7"
         ],
         "recall": {
@@ -107,6 +109,15 @@
         "margin_note": "Second mark, and the point of the question. Opposite direction means a minus sign in front of the whole thing — the length stays 1, only the direction flips.",
         "memory_tip": "OPPOSITE direction means a minus in front of the whole thing. The length stays 1; only the direction flips.",
         "lines": [
+          {
+            "text": "(the minus sign reverses the direction; dividing by the",
+            "added": true
+          },
+          {
+            "text": "  length makes the length 1)",
+            "style": "indent",
+            "added": true
+          },
           "Opposite unit vector = −(a + b + c)/|a + b + c|",
           {
             "text": "= −(3i + 6j − 2k)/7",
@@ -139,6 +150,13 @@
         "common_mistakes": [
           "Giving the unit vector without the minus sign.",
           "Negating only one component instead of the whole vector."
+        ],
+        "lines_compact": [
+          "Opposite unit vector = −(a + b + c)/|a + b + c|",
+          {
+            "text": "= −(3i + 6j − 2k)/7",
+            "style": "boxed"
+          }
         ]
       }
     ]

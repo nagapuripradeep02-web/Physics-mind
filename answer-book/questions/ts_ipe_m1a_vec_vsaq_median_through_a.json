@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.61, chapter 6 ADDITION OF VECTORS, Very Short Answer question 14. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question: the first mark is for identifying the second point of the median as the midpoint of BC, the second for writing the two-point form of the line. This book prints almost no exam-appearance years, so appearances[] is empty — Addition of Vectors has long been examined, we simply have no sourced years for this question. Paper position: Maths-1A Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer was checked at both ends: t = 0 returns a, the vertex A, and t = 1 returns (b + c)/2, the midpoint of BC, so the equation does describe the median. Taking t = 2/3 returns (a + b + c)/3, the centroid, which is the further check that the line is the correct one."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.61, chapter 6 ADDITION OF VECTORS, Very Short Answer question 14. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question: the first mark is for identifying the second point of the median as the midpoint of BC, the second for writing the two-point form of the line. This book prints almost no exam-appearance years, so appearances[] is empty — Addition of Vectors has long been examined, we simply have no sourced years for this question. Paper position: Maths-1A Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer was checked at both ends: t = 0 returns a, the vertex A, and t = 1 returns (b + c)/2, the midpoint of BC, so the equation does describe the median. Taking t = 2/3 returns (a + b + c)/3, the centroid, which is the further check that the line is the correct one. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would write the vector equation of a median — say which two points it joins.",
   "answer": {
@@ -54,6 +54,7 @@
           },
           "The median through A joins A to the",
           "midpoint D of the opposite side BC.",
+          "(the midpoint is halfway between b and c)",
           "Position vector of D = (b + c)/2"
         ],
         "recall": {
@@ -97,6 +98,10 @@
           "so by the two-point form of a line,",
           "r = (1 − t)a + t·OD,  t ∈ R",
           {
+            "text": "(t = 0 gives A and t = 1 gives D; put OD = (b + c)/2)",
+            "added": true
+          },
+          {
             "text": "∴ r = (1 − t)a + t(b + c)/2, t ∈ R",
             "style": "boxed"
           }
@@ -128,6 +133,15 @@
           "Using r = a + tb as though b were a direction vector.",
           "Dropping t ∈ R, which describes only the segment AD.",
           "Writing r = (1 − t)a + (b + c)/2 with the t left off the second term."
+        ],
+        "lines_compact": [
+          "A has position vector a, and D has (b + c)/2,",
+          "so by the two-point form of a line,",
+          "r = (1 − t)a + t·OD,  t ∈ R",
+          {
+            "text": "∴ r = (1 − t)a + t(b + c)/2, t ∈ R",
+            "style": "boxed"
+          }
         ]
       }
     ]

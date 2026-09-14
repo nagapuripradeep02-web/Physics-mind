@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.60 — SAQ chapter 8 Addition of Vectors, answer 52. Printed appearances: none — this answer carries no year tag. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter. It follows the split the same book prints for the one 4-mark answer that does carry tags, Matrices answer 40 on book p.51. The book's chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q12 is the Addition of Vectors slot. NOTE: Addition of Vectors has NO Section-C slot on the paper and no LAQ chapter in this book — the unit is SAQ and VSAQ only."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.60 — SAQ chapter 8 Addition of Vectors, answer 52. Printed appearances: none — this answer carries no year tag. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter. It follows the split the same book prints for the one 4-mark answer that does carry tags, Matrices answer 40 on book p.51. The book's chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q12 is the Addition of Vectors slot. NOTE: Addition of Vectors has NO Section-C slot on the paper and no LAQ chapter in this book — the unit is SAQ and VSAQ only. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would show these three points make a right-angled triangle.",
   "answer": {
@@ -60,11 +60,15 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "(a vector between two points is end minus start)",
           "AB = OB − OA = (i − 3j − 5k) − (2i − j + k)",
+          "((1 − 2)i + (−3 + 1)j + (−5 − 1)k)",
           "  = −i − 2j − 6k",
           "BC = OC − OB = (3i − 4j − 4k) − (i − 3j − 5k)",
+          "((3 − 1)i + (−4 + 3)j + (−4 + 5)k)",
           "  = 2i − j + k",
           "CA = OA − OC = (2i − j + k) − (3i − 4j − 4k)",
+          "((2 − 3)i + (−1 + 4)j + (1 + 4)k)",
           "  = −i + 3j + 5k"
         ],
         "recall": {
@@ -207,6 +211,10 @@
         "margin_note": "Second mark. Square each component, add, take the root. Leave the answers as surds — squaring them again in the next step is easier from √41 than from 6.4.",
         "memory_tip": "Leave the answers as surds — squaring back is easier from √41 than from 6.4.",
         "lines": [
+          {
+            "text": "(the length of xi + yj + zk is √(x² + y² + z²))",
+            "added": true
+          },
           "|AB| = √((−1)² + (−2)² + (−6)²) = √(1+4+36) = √41",
           "|BC| = √(2² + (−1)² + 1²) = √(4+1+1) = √6",
           "|CA| = √((−1)² + 3² + 5²) = √(1+9+25) = √35"
@@ -238,6 +246,11 @@
         "common_mistakes": [
           "Losing a sign before squaring — every square is positive.",
           "Turning the surds into decimals and then failing to match exactly."
+        ],
+        "lines_compact": [
+          "|AB| = √((−1)² + (−2)² + (−6)²) = √(1+4+36) = √41",
+          "|BC| = √(2² + (−1)² + 1²) = √(4+1+1) = √6",
+          "|CA| = √((−1)² + 3² + 5²) = √(1+9+25) = √35"
         ]
       },
       {
@@ -249,6 +262,20 @@
         "margin_note": "Third mark. Square the three lengths and look for the one that equals the sum of the other two. Here 41 = 6 + 35, so AB is the hypotenuse.",
         "memory_tip": "Square all three and look for the one equal to the sum of the other two: 41 = 6 + 35.",
         "lines": [
+          {
+            "text": "(the square on the longest side equals the sum of the",
+            "added": true
+          },
+          {
+            "text": "  squares on the other two exactly when the angle",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  opposite the longest side is 90°)",
+            "style": "indent",
+            "added": true
+          },
           "|AB|² = 41",
           "|BC|² + |CA|² = 6 + 35 = 41",
           "∴ |AB|² = |BC|² + |CA|²"
@@ -280,6 +307,11 @@
         "common_mistakes": [
           "Testing the wrong side as the hypotenuse; it must be the longest.",
           "Comparing the lengths rather than their squares."
+        ],
+        "lines_compact": [
+          "|AB|² = 41",
+          "|BC|² + |CA|² = 6 + 35 = 41",
+          "∴ |AB|² = |BC|² + |CA|²"
         ]
       },
       {
@@ -292,6 +324,10 @@
         "memory_tip": "Name WHERE the right angle is — opposite the longest side, so at C.",
         "lines": [
           "The relation holds, so the angle opposite AB is 90°.",
+          {
+            "text": "(check: BC·CA = −2 − 3 + 5 = 0, so the angle C is 90°)",
+            "added": true
+          },
           {
             "text": "∴ A, B, C are the vertices of a",
             "style": "boxed"
@@ -326,6 +362,17 @@
         "common_mistakes": [
           "Writing \"hence proved\" without naming the triangle.",
           "Claiming the right angle is at A or B."
+        ],
+        "lines_compact": [
+          "The relation holds, so the angle opposite AB is 90°.",
+          {
+            "text": "∴ A, B, C are the vertices of a",
+            "style": "boxed"
+          },
+          {
+            "text": "right-angled triangle.",
+            "style": "boxed"
+          }
         ]
       }
     ]

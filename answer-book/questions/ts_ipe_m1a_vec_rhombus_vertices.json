@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.60 — SAQ chapter 8 Addition of Vectors, answer 53. Printed appearances: the single tag 'IPE 13' — a PRE-BIFURCATION paper, before the 2014 TS/AP split. appearances[].board has no value for that era, so the year is recorded here in prose and appearances[] is left empty rather than guessing a board. A rhombus needs BOTH halves: four equal sides AND unequal diagonals. Four equal sides alone would also fit a square, which is why the diagonals are checked. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter. It follows the split the same book prints for the one 4-mark answer that does carry tags, Matrices answer 40 on book p.51. The book's chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q12 is the Addition of Vectors slot. NOTE: Addition of Vectors has NO Section-C slot on the paper and no LAQ chapter in this book — the unit is SAQ and VSAQ only."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.60 — SAQ chapter 8 Addition of Vectors, answer 53. Printed appearances: the single tag 'IPE 13' — a PRE-BIFURCATION paper, before the 2014 TS/AP split. appearances[].board has no value for that era, so the year is recorded here in prose and appearances[] is left empty rather than guessing a board. A rhombus needs BOTH halves: four equal sides AND unequal diagonals. Four equal sides alone would also fit a square, which is why the diagonals are checked. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter. It follows the split the same book prints for the one 4-mark answer that does carry tags, Matrices answer 40 on book p.51. The book's chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q12 is the Addition of Vectors slot. NOTE: Addition of Vectors has NO Section-C slot on the paper and no LAQ chapter in this book — the unit is SAQ and VSAQ only. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would show four points make a rhombus — say everything you have to check.",
   "answer": {
@@ -61,10 +61,24 @@
             "style": "heading"
           },
           "A(5,−1,1), B(7,−4,7), C(1,−6,10), D(−1,−3,4)",
+          "(a vector between two points is end minus start)",
+          "(7 − 5 = 2, −4 − (−1) = −3, 7 − 1 = 6)",
           "AB = OB − OA = 2i − 3j + 6k",
+          "(1 − 7 = −6, −6 − (−4) = −2, 10 − 7 = 3)",
           "BC = OC − OB = −6i − 2j + 3k",
+          "(−1 − 1 = −2, −3 − (−6) = 3, 4 − 10 = −6)",
           "CD = OD − OC = −2i + 3j − 6k",
-          "DA = OA − OD = 6i + 2j − 3k"
+          "(5 − (−1) = 6, −1 − (−3) = 2, 1 − 4 = −3)",
+          "DA = OA − OD = 6i + 2j − 3k",
+          "(CD = −AB, so AB and CD are parallel and equal:",
+          {
+            "text": "  ABCD is a parallelogram, and its four points",
+            "style": "indent"
+          },
+          {
+            "text": "  lie in one plane)",
+            "style": "indent"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -248,6 +262,10 @@
         "margin_note": "Second mark. All four magnitudes come to 7 — and 4 + 9 + 36 = 49 every time, just with the numbers in a different order. Write all four out; three plus an assumption is not a proof.",
         "memory_tip": "All four come to 7, because 4 + 9 + 36 = 49 every time. Write all four — three plus an assumption is not a proof.",
         "lines": [
+          {
+            "text": "(the length of xi + yj + zk is √(x² + y² + z²))",
+            "added": true
+          },
           "|AB| = √(4+9+36) = √49 = 7",
           "|BC| = √(36+4+9) = √49 = 7",
           "|CD| = √(4+9+36) = √49 = 7",
@@ -280,6 +298,13 @@
         "common_mistakes": [
           "Checking two sides and asserting the other two by symmetry.",
           "Stopping here and calling it a rhombus."
+        ],
+        "lines_compact": [
+          "|AB| = √(4+9+36) = √49 = 7",
+          "|BC| = √(36+4+9) = √49 = 7",
+          "|CD| = √(4+9+36) = √49 = 7",
+          "|DA| = √(36+4+9) = √49 = 7",
+          "∴ |AB| = |BC| = |CD| = |DA|, so all four sides are equal."
         ]
       },
       {
@@ -292,8 +317,16 @@
         "memory_tip": "The diagonals are AC and BD, corner to OPPOSITE corner. They must come out unequal, or it is a square.",
         "lines": [
           "AC = OC − OA = −4i − 5j + 9k",
+          {
+            "text": "(16 + 25 + 81 = 122)",
+            "added": true
+          },
           "  |AC| = √(16+25+81) = √122",
           "BD = OD − OB = −8i + j − 3k",
+          {
+            "text": "(64 + 1 + 9 = 74)",
+            "added": true
+          },
           "  |BD| = √(64+1+9) = √74",
           "∴ |AC| ≠ |BD|, so the diagonals are unequal."
         ],
@@ -325,6 +358,13 @@
         "common_mistakes": [
           "Taking AB and CD as the diagonals; those are sides.",
           "Finding the diagonals but never comparing them."
+        ],
+        "lines_compact": [
+          "AC = OC − OA = −4i − 5j + 9k",
+          "  |AC| = √(16+25+81) = √122",
+          "BD = OD − OB = −8i + j − 3k",
+          "  |BD| = √(64+1+9) = √74",
+          "∴ |AC| ≠ |BD|, so the diagonals are unequal."
         ]
       },
       {
@@ -336,6 +376,15 @@
         "margin_note": "Last mark. State both findings together — equal sides and unequal diagonals — because it is the pair of them that names the shape.",
         "memory_tip": "State both findings together — equal sides AND unequal diagonals is what names the shape.",
         "lines": [
+          {
+            "text": "(a parallelogram with four equal sides is a rhombus;",
+            "added": true
+          },
+          {
+            "text": "  unequal diagonals show it is not a square)",
+            "style": "indent",
+            "added": true
+          },
           "All four sides are equal and the diagonals are unequal.",
           {
             "text": "∴ A, B, C, D form a rhombus.",
@@ -368,6 +417,13 @@
         "common_mistakes": [
           "Concluding rhombus from the equal sides alone.",
           "Writing \"hence proved\" with neither condition named."
+        ],
+        "lines_compact": [
+          "All four sides are equal and the diagonals are unequal.",
+          {
+            "text": "∴ A, B, C, D form a rhombus.",
+            "style": "boxed"
+          }
         ]
       }
     ]

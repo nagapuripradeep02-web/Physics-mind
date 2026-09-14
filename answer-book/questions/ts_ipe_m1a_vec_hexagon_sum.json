@@ -47,7 +47,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.59 — SAQ chapter 8 Addition of Vectors, answer 51, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 17 · AP 16,18. The book labels it a \"Super Sixer Q\". It is the only question in the chapter that is proved from a PICTURE rather than from components, so the figure is authored as its own step: the two substitutions the proof turns on (AE = BD and AF = CD) cannot be seen without it. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter. It follows the split the same book prints for the one 4-mark answer that does carry tags, Matrices answer 40 on book p.51. The book's chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q12 is the Addition of Vectors slot. NOTE: Addition of Vectors has NO Section-C slot on the paper and no LAQ chapter in this book — the unit is SAQ and VSAQ only."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.59 — SAQ chapter 8 Addition of Vectors, answer 51, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 17 · AP 16,18. The book labels it a \"Super Sixer Q\". It is the only question in the chapter that is proved from a PICTURE rather than from components, so the figure is authored as its own step: the two substitutions the proof turns on (AE = BD and AF = CD) cannot be seen without it. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter. It follows the split the same book prints for the one 4-mark answer that does carry tags, Matrices answer 40 on book p.51. The book's chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q12 is the Addition of Vectors slot. NOTE: Addition of Vectors has NO Section-C slot on the paper and no LAQ chapter in this book — the unit is SAQ and VSAQ only. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — say which pairs of vectors you swap and why the picture lets you.",
   "answer": {
@@ -64,7 +64,12 @@
         "margin_note": "No mark of its own. In a regular hexagon opposite sides are equal and parallel, and the three long diagonals all pass through the centre. Both facts are used below.",
         "memory_tip": "Two facts do the work: opposite sides are equal and parallel, and the long diagonals pass through O.",
         "lines": [
-          "Given ABCDEF is a regular hexagon with centre O."
+          "Given ABCDEF is a regular hexagon with centre O.",
+          "(its six sides are equal, and O is the midpoint of each",
+          {
+            "text": "  diagonal through O, such as AD)",
+            "style": "indent"
+          }
         ],
         "recall": {
           "credit": "name_it",
@@ -220,7 +225,20 @@
         "margin_note": "First mark. ABDE is a rectangle, so AE and BD are the same vector; ACDF is a rectangle, so AF and CD are the same. Replacing them is what lets the sum collapse.",
         "memory_tip": "ABDE is a rectangle so AE = BD; ACDF is a rectangle so AF = CD. Those swaps make the sum collapse.",
         "lines": [
+          {
+            "text": "(group the five vectors as two, one and two)",
+            "added": true
+          },
           "∴ (AB + AC) + AD + (AE + AF)",
+          {
+            "text": "(ABDE is a rectangle, so AE = BD; AFDC is a",
+            "added": true
+          },
+          {
+            "text": "  parallelogram, so AF = CD)",
+            "style": "indent",
+            "added": true
+          },
           "= (AB + AC) + AD + (BD + CD)",
           "  [∵ AE = BD,  AF = CD]"
         ],
@@ -251,6 +269,11 @@
         "common_mistakes": [
           "Swapping to DB and DC, which are the reverses and flip the signs.",
           "Assuming any two sides of a hexagon are equal vectors; only opposite ones are."
+        ],
+        "lines_compact": [
+          "∴ (AB + AC) + AD + (AE + AF)",
+          "= (AB + AC) + AD + (BD + CD)",
+          "  [∵ AE = BD,  AF = CD]"
         ]
       },
       {
@@ -262,7 +285,15 @@
         "margin_note": "Half the marks. Regroup so each bracket is a head-to-tail pair: AB + BD lands on AD, and AC + CD lands on AD. With the AD already there, that is three of them.",
         "memory_tip": "Regroup into head-to-tail pairs: AB + BD = AD and AC + CD = AD. With the AD already there, three of them.",
         "lines": [
+          {
+            "text": "(vectors can be added in any order)",
+            "added": true
+          },
           "= (AB + BD) + AD + (AC + CD)",
+          {
+            "text": "(triangle law: AB + BD = AD and AC + CD = AD)",
+            "added": true
+          },
           "= AD + AD + AD",
           "= 3AD"
         ],
@@ -294,6 +325,11 @@
           "Regrouping as (AB + AC) and getting nothing that collapses.",
           "Losing the standalone AD and finishing with 2AD.",
           "Adding the magnitudes instead of the vectors."
+        ],
+        "lines_compact": [
+          "= (AB + BD) + AD + (AC + CD)",
+          "= AD + AD + AD",
+          "= 3AD"
         ]
       },
       {
@@ -307,6 +343,10 @@
         "lines": [
           "O is the centre, so it is the midpoint of AD:",
           "3AD = 3(2AO)   [∵ AD = 2AO]",
+          {
+            "text": "(AO is half of AD and points the same way)",
+            "added": true
+          },
           {
             "text": "∴ AB + AC + AD + AE + AF = 3AD = 6AO",
             "style": "boxed"
@@ -339,6 +379,14 @@
         "common_mistakes": [
           "Writing AD = AO and finishing with 3AO.",
           "Stopping at 3AD when the question asked for 6AO as well."
+        ],
+        "lines_compact": [
+          "O is the centre, so it is the midpoint of AD:",
+          "3AD = 3(2AO)   [∵ AD = 2AO]",
+          {
+            "text": "∴ AB + AC + AD + AE + AF = 3AD = 6AO",
+            "style": "boxed"
+          }
         ]
       }
     ]
