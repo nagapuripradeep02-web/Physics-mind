@@ -201,7 +201,7 @@
             "style": "boxed"
           },
           "cos β is negative, so β is obtuse. That is",
-          "correct, since v points along −j."
+          "right, since the j component of v, −6, is negative."
         ],
         "recall": {
           "credit": "say_it",
