@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.6, chapter 1 SETS & RELATIONS, Very Short Answer question 11. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sets and Relations is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE ON THE CONVENTION: N is taken as {1, 2, 3, …}, which is the Telangana Intermediate convention, giving x = 1 to 20 and 20 pairs. If a syllabus counted 0 as a natural number the list would gain (0, 41) and hold 21 pairs, but all three verdicts below would be unchanged. The three counterexamples were each checked by substitution: 2(1) + 1 = 3, 2(39) + 1 = 79, and 2(12) + 7 = 31, none of which is 41."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.6, chapter 1 SETS & RELATIONS, Very Short Answer question 11. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sets and Relations is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE ON THE CONVENTION: N is taken as {1, 2, 3, …}, which is the Telangana Intermediate convention, giving x = 1 to 20 and 20 pairs. If a syllabus counted 0 as a natural number the list would gain (0, 41) and hold 21 pairs, but all three verdicts below would be unchanged. The three counterexamples were each checked by substitution: 2(1) + 1 = 3, 2(39) + 1 = 79, and 2(12) + 7 = 31, none of which is 41. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would answer this — say how you bound x, and what you would produce to settle each of the three properties.",
   "answer": {
@@ -52,8 +52,14 @@
             "style": "heading"
           },
           "Take N = {1, 2, 3, …}. From 2x + y = 41, y = 41 − 2x.",
+          "(y must be a natural number, so y ≥ 1)",
           "y ∈ N needs 41 − 2x ≥ 1, that is 2x ≤ 40, so x ≤ 20.",
           "Also x ≥ 1.",
+          "(x = 1 gives y = 39, x = 2 gives y = 37, …,",
+          {
+            "text": "  x = 20 gives y = 1)",
+            "style": "indent"
+          },
           "So x = 1, 2, 3, …, 20 and R has 20 ordered pairs.",
           "R = {(1, 39), (2, 37), (3, 35), …, (19, 3), (20, 1)}"
         ],
@@ -95,13 +101,25 @@
         "mark_note": "Answer",
         "margin_note": "Second mark. Each verdict needs its own counterexample written out; a bare \"not reflexive\" earns nothing.",
         "lines": [
+          {
+            "text": "(reflexive would need (x, x) ∈ R for every x ∈ N)",
+            "added": true
+          },
           "(i) Reflexive: (x, x) ∈ R would need 2x + x = 41,",
           "so x = 41/3, which is not in N.",
           "For example 2(1) + 1 = 3 ≠ 41, so (1, 1) ∉ R.",
           "Hence R is not reflexive.",
+          {
+            "text": "(symmetric fails if the reverse of one pair is not in R)",
+            "added": true
+          },
           "(ii) Symmetric: (1, 39) ∈ R, but",
           "2(39) + 1 = 79 ≠ 41, so (39, 1) ∉ R.",
           "Hence R is not symmetric.",
+          {
+            "text": "(check: 2(12) + 17 = 41 and 2(17) + 7 = 41)",
+            "added": true
+          },
           "(iii) Transitive: (12, 17) ∈ R and (17, 7) ∈ R,",
           "but 2(12) + 7 = 31 ≠ 41,",
           "so (12, 7) ∉ R. Hence R is not transitive.",
@@ -143,7 +161,27 @@
           "Testing reflexivity with a pair such as (1, 39) instead of a pair of the form (x, x).",
           "Calling R transitive without first finding a chain (x, y) and (y, z) that both lie in R."
         ],
-        "memory_tip": "To reject a property you need one pair; to accept it you must argue for every pair."
+        "memory_tip": "To reject a property you need one pair; to accept it you must argue for every pair.",
+        "lines_compact": [
+          "(i) Reflexive: (x, x) ∈ R would need 2x + x = 41,",
+          "so x = 41/3, which is not in N.",
+          "For example 2(1) + 1 = 3 ≠ 41, so (1, 1) ∉ R.",
+          "Hence R is not reflexive.",
+          "(ii) Symmetric: (1, 39) ∈ R, but",
+          "2(39) + 1 = 79 ≠ 41, so (39, 1) ∉ R.",
+          "Hence R is not symmetric.",
+          "(iii) Transitive: (12, 17) ∈ R and (17, 7) ∈ R,",
+          "but 2(12) + 7 = 31 ≠ 41,",
+          "so (12, 7) ∉ R. Hence R is not transitive.",
+          {
+            "text": "∴ R is neither reflexive, nor symmetric,",
+            "style": "boxed"
+          },
+          {
+            "text": "nor transitive.",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   }

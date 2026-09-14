@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.8, chapter 1 SETS & RELATIONS, Very Short Answer question 25. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sets and Relations is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The book prints reflexive, symmetric, transitive and equivalence as four separate questions in a row; this card is authored to build on the three before it rather than repeat them."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.8, chapter 1 SETS & RELATIONS, Very Short Answer question 25. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sets and Relations is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The book prints reflexive, symmetric, transitive and equivalence as four separate questions in a row; this card is authored to build on the three before it rather than repeat them. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would answer this — name every property it needs, and say how you would check them all on one relation.",
   "answer": {
@@ -55,8 +55,11 @@
           "R is called an equivalence relation if it has all",
           "three of these properties:",
           "(i) reflexive:  (a, a) ∈ R for every a ∈ A",
+          "(every element is related to itself)",
           "(ii) symmetric:  (a, b) ∈ R ⇒ (b, a) ∈ R",
-          "(iii) transitive:  (a, b) ∈ R and (b, c) ∈ R ⇒ (a, c) ∈ R"
+          "(every pair can be reversed)",
+          "(iii) transitive:  (a, b) ∈ R and (b, c) ∈ R ⇒ (a, c) ∈ R",
+          "(two linked pairs give the pair that joins their ends)"
         ],
         "recall": {
           "credit": "say_it",
@@ -99,12 +102,20 @@
         "lines": [
           "Take A = {1, 2, 3, 4} and let a R b mean a and b",
           "leave the same remainder on division by 2.",
+          {
+            "text": "(1 and 3 are odd; 2 and 4 are even)",
+            "added": true
+          },
           "R = {(1,1), (2,2), (3,3), (4,4), (1,3), (3,1), (2,4), (4,2)}",
           "Reflexive: (1,1), (2,2), (3,3), (4,4) are all in R.",
           "Symmetric: (1,3) has (3,1) in R, and (2,4) has (4,2) in R.",
           "Transitive: (1,3) with (3,1) gives (1,1) ∈ R, and",
           "(3,1) with (1,3) gives (3,3) ∈ R; the same holds",
           "for 2 and 4.",
+          {
+            "text": "(all three properties hold)",
+            "added": true
+          },
           {
             "text": "∴ R is an equivalence relation on A.",
             "style": "boxed"
@@ -139,6 +150,20 @@
           "Checking reflexive only, because the (a, a) pairs are the easiest to see.",
           "Adding (1, 2) to R, which puts an odd number with an even one and breaks the grouping.",
           "Writing three different relations, one for each property, instead of one relation checked three times."
+        ],
+        "lines_compact": [
+          "Take A = {1, 2, 3, 4} and let a R b mean a and b",
+          "leave the same remainder on division by 2.",
+          "R = {(1,1), (2,2), (3,3), (4,4), (1,3), (3,1), (2,4), (4,2)}",
+          "Reflexive: (1,1), (2,2), (3,3), (4,4) are all in R.",
+          "Symmetric: (1,3) has (3,1) in R, and (2,4) has (4,2) in R.",
+          "Transitive: (1,3) with (3,1) gives (1,1) ∈ R, and",
+          "(3,1) with (1,3) gives (3,3) ∈ R; the same holds",
+          "for 2 and 4.",
+          {
+            "text": "∴ R is an equivalence relation on A.",
+            "style": "boxed"
+          }
         ]
       }
     ]

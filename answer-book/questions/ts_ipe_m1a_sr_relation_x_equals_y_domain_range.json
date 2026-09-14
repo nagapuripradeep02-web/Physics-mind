@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.5, chapter 1 SETS & RELATIONS, Very Short Answer question 8. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sets and Relations is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.5, chapter 1 SETS & RELATIONS, Very Short Answer question 8. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sets and Relations is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say which pairs the condition x = y allows, and where the domain and the range are read from.",
   "answer": {
@@ -55,7 +55,8 @@
           "A pair belongs to R only when its two members are",
           "the same number.",
           "So pair each member of A with itself:",
-          "R = {(1, 1), (2, 2), (5, 5), (7, 7), (9, 9)}"
+          "R = {(1, 1), (2, 2), (5, 5), (7, 7), (9, 9)}",
+          "(A has 5 members, so R has 5 pairs)"
         ],
         "recall": {
           "credit": "say_it",
@@ -98,6 +99,10 @@
           "The domain of R is the set of first members of its pairs.",
           "The range of R is the set of second members of its pairs.",
           {
+            "text": "(first members: 1, 2, 5, 7, 9; second members: the same)",
+            "added": true
+          },
+          {
             "text": "∴ (i) domain of R = {1, 2, 5, 7, 9} = A   and",
             "style": "boxed"
           },
@@ -134,7 +139,19 @@
           "Leaving a member such as 9 out of one of the two sets.",
           "Writing the range as a single number instead of a set."
         ],
-        "memory_tip": "Domain is read down the left of the pairs and range down the right — first coordinates, then second coordinates."
+        "memory_tip": "Domain is read down the left of the pairs and range down the right — first coordinates, then second coordinates.",
+        "lines_compact": [
+          "The domain of R is the set of first members of its pairs.",
+          "The range of R is the set of second members of its pairs.",
+          {
+            "text": "∴ (i) domain of R = {1, 2, 5, 7, 9} = A   and",
+            "style": "boxed"
+          },
+          {
+            "text": "(ii) range of R = {1, 2, 5, 7, 9} = A",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   }

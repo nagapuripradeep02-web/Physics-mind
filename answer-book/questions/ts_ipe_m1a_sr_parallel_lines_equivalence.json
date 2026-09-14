@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.6, chapter 1 SETS & RELATIONS, Very Short Answer question 10. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sets and Relations is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. ⚠ ONE CONVENTION IS CHOSEN AND STATED IN THE ANSWER: a line is taken to be parallel to itself, which is the convention Class-11 books use here. Under the other convention, where parallel lines must be distinct, the relation is NOT reflexive and NOT transitive, so the answer would be different. The answer names the convention on the page rather than assuming it silently."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.6, chapter 1 SETS & RELATIONS, Very Short Answer question 10. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sets and Relations is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. ⚠ ONE CONVENTION IS CHOSEN AND STATED IN THE ANSWER: a line is taken to be parallel to itself, which is the convention Class-11 books use here. Under the other convention, where parallel lines must be distinct, the relation is NOT reflexive and NOT transitive, so the answer would be different. The answer names the convention on the page rather than assuming it silently. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would answer this — name the three properties you check, and say what convention you use for the word parallel.",
   "answer": {
@@ -53,6 +53,7 @@
           },
           "Let L be the set of all straight lines in a plane and",
           "let R = {(l, m) : l ∈ L, m ∈ L, l ∥ m}.",
+          "(l ∥ m means l is parallel to m)",
           "Use the usual convention that a line is parallel to",
           "itself, so two lines are parallel exactly when they",
           "have the same direction.",
@@ -100,6 +101,15 @@
         "lines": [
           "Transitive: let l ∥ m and m ∥ n, where l, m, n ∈ L.",
           "Then l has the direction of m, and m has the direction of n.",
+          {
+            "text": "(l and m share one direction, and m and n share one",
+            "added": true
+          },
+          {
+            "text": "  direction, so all three have the same direction)",
+            "style": "indent",
+            "added": true
+          },
           "So l and n have the same direction, that is l ∥ n",
           "and (l, n) ∈ R.",
           {
@@ -139,7 +149,21 @@
           "Arguing transitivity only from \"the lines never meet\", which does not by itself rule out l and n being the same line.",
           "Checking only two of the three properties."
         ],
-        "memory_tip": "Check reflexive, symmetric, transitive in that order every time, then write the conclusion as a full sentence."
+        "memory_tip": "Check reflexive, symmetric, transitive in that order every time, then write the conclusion as a full sentence.",
+        "lines_compact": [
+          "Transitive: let l ∥ m and m ∥ n, where l, m, n ∈ L.",
+          "Then l has the direction of m, and m has the direction of n.",
+          "So l and n have the same direction, that is l ∥ n",
+          "and (l, n) ∈ R.",
+          {
+            "text": "∴ R is reflexive, symmetric and transitive,",
+            "style": "boxed"
+          },
+          {
+            "text": "so \"parallel\" is an equivalence relation on L.",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   }

@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.5, chapter 1 SETS & RELATIONS, Very Short Answer question 5. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sets and Relations is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.5, chapter 1 SETS & RELATIONS, Very Short Answer question 5. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sets and Relations is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say which side you would work out first and what the final line has to state.",
   "answer": {
@@ -52,7 +52,9 @@
             "style": "heading"
           },
           "A = {0, 1, 3, 5},  B = {1, 2, 4, 7},  C = {1, 2, 3, 5, 8}",
+          "(1, 3 and 5 are in both A and C)",
           "A ∩ C = {0, 1, 3, 5} ∩ {1, 2, 3, 5, 8} = {1, 3, 5}",
+          "(add 2, 4 and 7 from B; 1 is already there)",
           "(A ∩ C) ∪ B = {1, 3, 5} ∪ {1, 2, 4, 7}",
           {
             "text": "= {1, 2, 3, 4, 5, 7}   … (1)",
@@ -97,8 +99,25 @@
         "mark_note": "Answer",
         "margin_note": "Second mark. The word 'show' means the last line must state that the two sides are equal, not just leave two matching sets on the page.",
         "lines": [
+          {
+            "text": "(A ∪ B: every number in A or B, once)",
+            "added": true
+          },
           "A ∪ B = {0, 1, 3, 5} ∪ {1, 2, 4, 7} = {0, 1, 2, 3, 4, 5, 7}",
+          {
+            "text": "(C ∪ B: every number in C or B, once)",
+            "added": true
+          },
           "C ∪ B = {1, 2, 3, 5, 8} ∪ {1, 2, 4, 7} = {1, 2, 3, 4, 5, 7, 8}",
+          {
+            "text": "(the numbers in both lists: 0 is not in C ∪ B,",
+            "added": true
+          },
+          {
+            "text": "  and 8 is not in A ∪ B)",
+            "style": "indent",
+            "added": true
+          },
           "(A ∪ B) ∩ (C ∪ B) = {1, 2, 3, 4, 5, 7}   … (2)",
           "From (1) and (2),",
           {
@@ -134,7 +153,17 @@
           "Keeping 8 in the answer: 8 is in C ∪ B but not in A ∪ B.",
           "Stopping after the two unions and never taking their intersection."
         ],
-        "memory_tip": "B is united with both brackets on the right side, so every member of B is in the final set."
+        "memory_tip": "B is united with both brackets on the right side, so every member of B is in the final set.",
+        "lines_compact": [
+          "A ∪ B = {0, 1, 3, 5} ∪ {1, 2, 4, 7} = {0, 1, 2, 3, 4, 5, 7}",
+          "C ∪ B = {1, 2, 3, 5, 8} ∪ {1, 2, 4, 7} = {1, 2, 3, 4, 5, 7, 8}",
+          "(A ∪ B) ∩ (C ∪ B) = {1, 2, 3, 4, 5, 7}   … (2)",
+          "From (1) and (2),",
+          {
+            "text": "∴ (A ∩ C) ∪ B = (A ∪ B) ∩ (C ∪ B)",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   }

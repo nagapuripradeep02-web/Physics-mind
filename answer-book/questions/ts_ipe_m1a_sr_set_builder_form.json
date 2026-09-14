@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.5, chapter 1 SETS & RELATIONS, Very Short Answer question 1. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sets and Relations is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.5, chapter 1 SETS & RELATIONS, Very Short Answer question 1. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sets and Relations is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say what the members have in common and how you would write it.",
   "answer": {
@@ -52,6 +52,7 @@
             "style": "heading"
           },
           "A = {−3, −2, −1, 0, 1, 2, 3}",
+          "(Z is the set of all integers)",
           "Every member of A is an integer, and the members run",
           "from −3 up to 3 with none missing.",
           "So the property shared by the members is:",
@@ -96,7 +97,20 @@
         "lines": [
           "Set-builder form writes a set as",
           "{x : the property x satisfies}.",
+          {
+            "text": "(the colon is read as \"such that\")",
+            "added": true
+          },
           "Here the property has two parts, x ∈ Z and −3 ≤ x ≤ 3.",
+          {
+            "text": "(check: the integers from −3 to 3 are exactly the",
+            "added": true
+          },
+          {
+            "text": "  7 members of A)",
+            "style": "indent",
+            "added": true
+          },
           {
             "text": "∴ A = {x : x ∈ Z, −3 ≤ x ≤ 3}",
             "style": "boxed"
@@ -130,7 +144,16 @@
           "Using strict inequalities, A = {x : x ∈ Z, −3 < x < 3}, which drops −3 and 3.",
           "Writing A = {x : x ∈ N, −3 ≤ x ≤ 3}, which has no negative members."
         ],
-        "memory_tip": "Read the braces aloud: 'the set of all x such that ...'. If the sentence does not name a kind of number, a condition is missing."
+        "memory_tip": "Read the braces aloud: 'the set of all x such that ...'. If the sentence does not name a kind of number, a condition is missing.",
+        "lines_compact": [
+          "Set-builder form writes a set as",
+          "{x : the property x satisfies}.",
+          "Here the property has two parts, x ∈ Z and −3 ≤ x ≤ 3.",
+          {
+            "text": "∴ A = {x : x ∈ Z, −3 ≤ x ≤ 3}",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   }
