@@ -35,7 +35,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.92 — VSAQ chapter 18 T-Ratios upto Transformations, answer 124.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 17. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four or six questions to a page in two columns. It is not a bare guess on two counts: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, and THIS chapter's own header note reads \"Writing Formula itself gets you 1 Mark in these Questions\" — which is why the first step of every answer here IS the formula or the set-up. The book's chapter header carries ★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because T-Ratios holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q8 and Q9 are the two T-Ratios slots."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.92 — VSAQ chapter 18 T-Ratios upto Transformations, answer 124.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 17. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four or six questions to a page in two columns. It is not a bare guess on two counts: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, and THIS chapter's own header note reads \"Writing Formula itself gets you 1 Mark in these Questions\" — which is why the first step of every answer here IS the formula or the set-up. The book's chapter header carries ★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because T-Ratios holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q8 and Q9 are the two T-Ratios slots. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — name the formula you use and how you finish.",
   "answer": {
@@ -58,7 +58,17 @@
             "style": "heading"
           },
           "Given f(x) = cos(3x + 5) + 7",
-          "Period of cos(kx + l) = 2π/|k|"
+          "(the +7 moves the graph up; it does not change",
+          {
+            "text": "  the period)",
+            "style": "indent"
+          },
+          "Period of cos(kx + l) = 2π/|k|",
+          "(cos repeats every 2π, and x has to grow by",
+          {
+            "text": "  2π/|k| for kx + l to grow by 2π)",
+            "style": "indent"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -97,10 +107,27 @@
         "margin_note": "Second mark. Here k = 3, and the modulus keeps the answer positive whatever the sign of k.",
         "memory_tip": "k = 3, and the modulus keeps the answer positive whatever the sign of k.",
         "lines": [
+          {
+            "text": "Compare cos(3x + 5) with cos(kx + l):",
+            "added": true
+          },
           "Here k = 3",
+          {
+            "text": "(l = 5 does not change the period)",
+            "added": true
+          },
           {
             "text": "∴ Period = 2π/|3| = 2π/3",
             "style": "boxed"
+          },
+          {
+            "text": "Check: cos(3(x + 2π/3) + 5) = cos(3x + 5 + 2π)",
+            "added": true
+          },
+          {
+            "text": "  = cos(3x + 5)",
+            "style": "indent",
+            "added": true
           }
         ],
         "recall": {
@@ -128,6 +155,13 @@
         "common_mistakes": [
           "Writing 3/2π upside down.",
           "Dropping the modulus."
+        ],
+        "lines_compact": [
+          "Here k = 3",
+          {
+            "text": "∴ Period = 2π/|3| = 2π/3",
+            "style": "boxed"
+          }
         ]
       }
     ]

@@ -42,7 +42,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), the TRANSFORMATIONS banner (the book prints TRANSFORMATIONS as a separate un-numbered chapter-style banner immediately after chapter 8's VSAQ run, and restarts its numbering at 1 — we ship both under one unit, ordered by the syllabus, and never mirror the book's arrangement), Long Answer question 5(ii), book p.101. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives two marks each to the three moves that carry the proof — the pairing, the substitution from the π/2 condition, and the factoring that uses the condition a second time — with one mark for the set-up and one for the finish. THE CONDITION IS π/2, NOT π: A + B = π/2 − C gives sin(A+B) = cos C, whereas the triangle version would give sin(A+B) = +sin C and produce a product of sines instead of cosines. The right-hand side of this question is a product of COSINES, which is the visible sign that the π/2 condition is the one in use. NUMERIC CHECK (before authoring and again after): at A = 30°, B = 25°, C = 35°, which sums to 90°, L.H.S = 2.5717624677 and R.H.S = 2.5717624677. The printed identity is correct as stated. Paper position: Maths-1A Section C prints 3 long answers and the student answers any 2, at 8 marks each (2026-27 pattern). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), the TRANSFORMATIONS banner (the book prints TRANSFORMATIONS as a separate un-numbered chapter-style banner immediately after chapter 8's VSAQ run, and restarts its numbering at 1 — we ship both under one unit, ordered by the syllabus, and never mirror the book's arrangement), Long Answer question 5(ii), book p.101. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives two marks each to the three moves that carry the proof — the pairing, the substitution from the π/2 condition, and the factoring that uses the condition a second time — with one mark for the set-up and one for the finish. THE CONDITION IS π/2, NOT π: A + B = π/2 − C gives sin(A+B) = cos C, whereas the triangle version would give sin(A+B) = +sin C and produce a product of sines instead of cosines. The right-hand side of this question is a product of COSINES, which is the visible sign that the π/2 condition is the one in use. NUMERIC CHECK (before authoring and again after): at A = 30°, B = 25°, C = 35°, which sums to 90°, L.H.S = 2.5717624677 and R.H.S = 2.5717624677. The printed identity is correct as stated. Paper position: Maths-1A Section C prints 3 long answers and the student answers any 2, at 8 marks each (2026-27 pattern). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this identity — say the four moves in order, and where the angle condition gets used.",
   "answer": {
@@ -66,7 +66,12 @@
           },
           "Given A + B + C = π/2",
           "⇒ A + B = π/2 − C",
-          "The sum is π/2 here, not π."
+          "The sum is π/2 here, not π.",
+          "(Only this given sum is used; there is no",
+          {
+            "text": "  triangle.)",
+            "style": "indent"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -105,8 +110,21 @@
         "memory_tip": "Pair sin 2A with sin 2B, and open sin 2C as 2 sin C cos C so both parts carry cos C.",
         "lines": [
           "L.H.S = (sin2A + sin2B) + sin2C",
+          {
+            "text": "Pair the first two with p = 2A, q = 2B:",
+            "added": true
+          },
+          {
+            "text": "  (p+q)/2 = A + B and (p−q)/2 = A − B",
+            "style": "indent",
+            "added": true
+          },
           "= 2 sin(A+B) cos(A−B) + sin2C",
           "  [∵ sin p + sin q = 2 sin((p+q)/2) cos((p−q)/2)]",
+          {
+            "text": "Write sin2C with the double-angle formula:",
+            "added": true
+          },
           "= 2 sin(A+B) cos(A−B) + 2 sinC cosC",
           "  [∵ sin2θ = 2 sinθ cosθ]"
         ],
@@ -137,6 +155,13 @@
         "common_mistakes": [
           "Trying to expand all three terms at once.",
           "Pairing sin 2B with sin 2C, which leaves nothing in common."
+        ],
+        "lines_compact": [
+          "L.H.S = (sin2A + sin2B) + sin2C",
+          "= 2 sin(A+B) cos(A−B) + sin2C",
+          "  [∵ sin p + sin q = 2 sin((p+q)/2) cos((p−q)/2)]",
+          "= 2 sin(A+B) cos(A−B) + 2 sinC cosC",
+          "  [∵ sin2θ = 2 sinθ cosθ]"
         ]
       },
       {
@@ -148,8 +173,16 @@
         "margin_note": "Two more marks. Under the π/2 condition a SINE of (A+B) becomes a COSINE of C. That is what makes both terms carry cos C.",
         "memory_tip": "sin(π/2 − C) = cos C. A sine becomes a cosine under a π/2 shift.",
         "lines": [
+          {
+            "text": "Change sin(A+B) using the given sum:",
+            "added": true
+          },
           "A + B = π/2 − C",
           "⇒ sin(A+B) = sin(π/2 − C) = cosC",
+          {
+            "text": "(sin(π/2 − θ) = cos θ)",
+            "added": true
+          },
           "L.H.S = 2 cosC cos(A−B) + 2 sinC cosC"
         ],
         "recall": {
@@ -178,6 +211,11 @@
         "common_mistakes": [
           "Writing sin(π/2 − C) = sin C.",
           "Using sin(π − C) = sin C, which belongs to the triangle version of this question."
+        ],
+        "lines_compact": [
+          "A + B = π/2 − C",
+          "⇒ sin(A+B) = sin(π/2 − C) = cosC",
+          "L.H.S = 2 cosC cos(A−B) + 2 sinC cosC"
         ]
       },
       {
@@ -189,9 +227,21 @@
         "margin_note": "Two marks. 2 cos C comes out, and the condition is used a SECOND time inside the bracket so that both bracket terms are cosines. Only the inside sin C converts.",
         "memory_tip": "Take 2 cos C out, then write the sin C inside the bracket as cos(A+B).",
         "lines": [
+          {
+            "text": "Both terms have 2 cosC; take it out:",
+            "added": true
+          },
           "= 2 cosC [cos(A−B) + sinC]",
+          {
+            "text": "(check: 2 cosC × sinC = 2 sinC cosC)",
+            "added": true
+          },
           "Inside the bracket, sinC = cos(A+B)",
           "  [∵ C = π/2 − (A+B)]",
+          {
+            "text": "(sinC = sin(π/2 − (A+B)) = cos(A+B))",
+            "added": true
+          },
           "= 2 cosC [cos(A−B) + cos(A+B)]"
         ],
         "recall": {
@@ -220,6 +270,12 @@
         "common_mistakes": [
           "Converting the cos C outside as well, which only undoes the substitution made in step 3.",
           "Taking out cos C instead of 2 cos C."
+        ],
+        "lines_compact": [
+          "= 2 cosC [cos(A−B) + sinC]",
+          "Inside the bracket, sinC = cos(A+B)",
+          "  [∵ C = π/2 − (A+B)]",
+          "= 2 cosC [cos(A−B) + cos(A+B)]"
         ]
       },
       {
@@ -232,7 +288,15 @@
         "memory_tip": "cos(A−B) + cos(A+B) = 2 cos A cos B. The two 2s multiply to give the 4.",
         "lines": [
           "cos(A−B) + cos(A+B) = 2 cosA cosB",
+          {
+            "text": "(expand both; the sinA sinB terms cancel)",
+            "added": true
+          },
           "L.H.S = 2 cosC · 2 cosA cosB",
+          {
+            "text": "Multiply 2 × 2 = 4 and reorder:",
+            "added": true
+          },
           {
             "text": "= 4 cosA cosB cosC = R.H.S",
             "style": "boxed"
@@ -263,6 +327,14 @@
         "common_mistakes": [
           "Using the cosine DIFFERENCE formula, which gives 2 sin A sin B.",
           "Writing 2 cos A cos B cos C and losing one factor of 2."
+        ],
+        "lines_compact": [
+          "cos(A−B) + cos(A+B) = 2 cosA cosB",
+          "L.H.S = 2 cosC · 2 cosA cosB",
+          {
+            "text": "= 4 cosA cosB cosC = R.H.S",
+            "style": "boxed"
+          }
         ]
       }
     ]

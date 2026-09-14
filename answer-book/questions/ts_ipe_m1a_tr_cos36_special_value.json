@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.95, chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 44(ii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to setting up cos3θ = −cos2θ from 5θ = 180° and one to solving the resulting equation and rejecting the root the angle does not allow. Paper position: Maths-1A Section A prints ten very short answers of 2 marks each and the student writes all ten; Trigonometric Ratios and Transformations supplies two of those slots on almost every paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.95, chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 44(ii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to setting up cos3θ = −cos2θ from 5θ = 180° and one to solving the resulting equation and rejecting the root the angle does not allow. Paper position: Maths-1A Section A prints ten very short answers of 2 marks each and the student writes all ten; Trigonometric Ratios and Transformations supplies two of those slots on almost every paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — name each move in order.",
   "answer": {
@@ -53,8 +53,16 @@
             "style": "heading"
           },
           "Let θ = 36°. Then 5θ = 180°",
+          "(5 × 36° = 180°)",
           "⇒ 3θ = 180° − 2θ",
+          "Take cos of both sides:",
           "⇒ cos3θ = cos(180° − 2θ) = −cos2θ",
+          "(cos(180° − x) = −cos x)",
+          "Use cos 3θ = 4cos³θ − 3cosθ and",
+          {
+            "text": "  cos 2θ = 2cos²θ − 1:",
+            "style": "indent"
+          },
           "⇒ 4cos³θ − 3cosθ = −(2cos²θ − 1)"
         ],
         "recall": {
@@ -95,11 +103,41 @@
         "memory_tip": "Factor out (c + 1) and reject it, since 36° is not 180°. Then take the positive root.",
         "lines": [
           "Put c = cosθ:",
+          {
+            "text": "4c³ − 3c = −2c² + 1; bring every term to the left:",
+            "added": true
+          },
           "4c³ + 2c² − 3c − 1 = 0",
+          {
+            "text": "c = −1 gives −4 + 2 + 3 − 1 = 0, so c + 1",
+            "added": true
+          },
+          {
+            "text": "  is a factor. Dividing gives the other factor:",
+            "style": "indent",
+            "added": true
+          },
           "⇒ (c + 1)(4c² − 2c − 1) = 0",
           "c = cos36° ≠ −1, so 4c² − 2c − 1 = 0",
+          {
+            "text": "Use the quadratic formula (numbers 4, −2, −1):",
+            "added": true
+          },
+          {
+            "text": "  (−2)² − 4(4)(−1) = 4 + 16 = 20",
+            "style": "indent",
+            "added": true
+          },
           "⇒ c = (2 ± √20)/8 = (1 ± √5)/4",
+          {
+            "text": "(√20 = 2√5; dividing top and bottom by 2)",
+            "added": true
+          },
           "36° is acute, so c > 0",
+          {
+            "text": "((1 − √5)/4 is negative, so it is rejected)",
+            "added": true
+          },
           {
             "text": "∴ cos36° = (√5 + 1)/4",
             "style": "boxed"
@@ -131,6 +169,18 @@
         "common_mistakes": [
           "Keeping c = −1 as an answer.",
           "Taking the negative root (1 − √5)/4."
+        ],
+        "lines_compact": [
+          "Put c = cosθ:",
+          "4c³ + 2c² − 3c − 1 = 0",
+          "⇒ (c + 1)(4c² − 2c − 1) = 0",
+          "c = cos36° ≠ −1, so 4c² − 2c − 1 = 0",
+          "⇒ c = (2 ± √20)/8 = (1 ± √5)/4",
+          "36° is acute, so c > 0",
+          {
+            "text": "∴ cos36° = (√5 + 1)/4",
+            "style": "boxed"
+          }
         ]
       }
     ]

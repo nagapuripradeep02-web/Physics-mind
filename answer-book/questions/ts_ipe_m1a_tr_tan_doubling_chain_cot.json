@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 47(i), book p.96. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1 + 1 gives one mark to the lemma cot θ − tan θ = 2 cot 2θ, which is the engine of the whole chain, and one to applying it three times and adding. SOURCE CONDITION TOO WEAK — RECORDED, NOT SILENTLY REPAIRED: the book's stem says θ is not an integral multiple of π/2, but that does not keep every ratio in the identity defined. At θ = π/4, tan 2θ = tan(π/2) is undefined; at θ = π/8, cot 8θ = cot π is undefined; neither π/4 nor π/8 is an integral multiple of π/2. The true requirement is sin 8θ ≠ 0, that is θ ≠ nπ/8, because sin 8θ = 8 sinθ cosθ cos2θ cos4θ, so that one inequality is exactly what keeps tan θ, tan 2θ, tan 4θ, cot 8θ and cot θ all defined at once. The card prints the stem as the book has it and states the sharper condition in the answer's own lines, where the student reads it. Paper position: Maths-1A Section A prints ten very short answers of 2 marks each and the student writes all ten, under the 2026-27 pattern; Trigonometric Ratios and Transformations supplies two of those ten slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 47(i), book p.96. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1 + 1 gives one mark to the lemma cot θ − tan θ = 2 cot 2θ, which is the engine of the whole chain, and one to applying it three times and adding. SOURCE CONDITION TOO WEAK — RECORDED, NOT SILENTLY REPAIRED: the book's stem says θ is not an integral multiple of π/2, but that does not keep every ratio in the identity defined. At θ = π/4, tan 2θ = tan(π/2) is undefined; at θ = π/8, cot 8θ = cot π is undefined; neither π/4 nor π/8 is an integral multiple of π/2. The true requirement is sin 8θ ≠ 0, that is θ ≠ nπ/8, because sin 8θ = 8 sinθ cosθ cos2θ cos4θ, so that one inequality is exactly what keeps tan θ, tan 2θ, tan 4θ, cot 8θ and cot θ all defined at once. The card prints the stem as the book has it and states the sharper condition in the answer's own lines, where the student reads it. Paper position: Maths-1A Section A prints ten very short answers of 2 marks each and the student writes all ten, under the 2026-27 pattern; Trigonometric Ratios and Transformations supplies two of those ten slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — name the small identity you prove first and how you use it.",
   "answer": {
@@ -55,10 +55,18 @@
           "Every ratio below must exist, so sin 8θ ≠ 0,",
           "that is θ ≠ nπ/8. This is stronger than the",
           "θ ≠ nπ/2 the question states.",
+          "First prove a rule that is used three times:",
           "cot θ − tan θ = cosθ/sinθ − sinθ/cosθ",
+          "(common denominator sinθ cosθ)",
           "= (cos²θ − sin²θ)/(sinθ cosθ)",
+          "(cos²θ − sin²θ = cos 2θ, and",
+          {
+            "text": "  sinθ cosθ = (1/2) sin 2θ)",
+            "style": "indent"
+          },
           "= cos 2θ / ((1/2) sin 2θ)",
           "= 2 cos 2θ / sin 2θ = 2 cot 2θ",
+          "(add tan θ and subtract 2 cot 2θ on both sides)",
           "∴ tan θ = cot θ − 2 cot 2θ"
         ],
         "recall": {
@@ -99,8 +107,20 @@
         "margin_note": "Second mark. Write the lemma three times, at θ, 2θ and 4θ, each already multiplied by the coefficient the question uses. Then add.",
         "memory_tip": "Write the lemma three times, at θ, 2θ and 4θ, each times its coefficient. Only the first and the last cotangent are left.",
         "lines": [
+          {
+            "text": "Use the rule with θ, 2θ and 4θ:",
+            "added": true
+          },
           "tan θ = cot θ − 2 cot 2θ",
+          {
+            "text": "(put 2θ for θ, then multiply by 2)",
+            "added": true
+          },
           "2 tan 2θ = 2 cot 2θ − 4 cot 4θ",
+          {
+            "text": "(put 4θ for θ, then multiply by 4)",
+            "added": true
+          },
           "4 tan 4θ = 4 cot 4θ − 8 cot 8θ",
           "Adding, 2cot2θ and 4cot4θ cancel:",
           "tanθ + 2tan2θ + 4tan4θ = cotθ − 8cot8θ",
@@ -137,6 +157,18 @@
         "common_mistakes": [
           "Forgetting to multiply the lemma by 2 and by 4.",
           "Cancelling cot θ as well, although it appears only once."
+        ],
+        "lines_compact": [
+          "tan θ = cot θ − 2 cot 2θ",
+          "2 tan 2θ = 2 cot 2θ − 4 cot 4θ",
+          "4 tan 4θ = 4 cot 4θ − 8 cot 8θ",
+          "Adding, 2cot2θ and 4cot4θ cancel:",
+          "tanθ + 2tan2θ + 4tan4θ = cotθ − 8cot8θ",
+          "Now add 8 cot 8θ to both sides:",
+          {
+            "text": "L.H.S = cot θ = R.H.S",
+            "style": "boxed"
+          }
         ]
       }
     ]

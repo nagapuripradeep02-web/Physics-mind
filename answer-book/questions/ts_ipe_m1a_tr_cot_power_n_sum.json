@@ -46,7 +46,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), the TRANSFORMATIONS banner (the book prints TRANSFORMATIONS as a separate un-numbered chapter-style banner immediately after chapter 8's VSAQ run, and restarts its numbering at 1 — we ship both under one unit, ordered by the syllabus, and never mirror the book's arrangement), Long Answer question 12, book p.104, its working closing on book p.105. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives two marks to each of the two ratio simplifications, since between them they are the whole proof, and one mark each to the set-up, the addition and the two cases — BOTH CASES ARE MARKED SEPARATELY because the question asks for both and an answer that stops at the even case is incomplete. NOT A TRIANGLE QUESTION: there is no condition on A + B + C, so no substitution of the A + B + C family applies. The second ratio is −cot((A−B)/2), NOT +cot((A−B)/2): cos A − cos B = −2 sin((A+B)/2) sin((A−B)/2), and losing that minus makes both cases collapse to 2 cotⁿ((A−B)/2), which is wrong for every odd n. CONDITIONS ARE ON THE PAGE, NOT ONLY HERE: step 1's lines carry sin((A−B)/2) ≠ 0, sin((A+B)/2) ≠ 0 and cos((A+B)/2) ≠ 0, which is what \"none of the denominators is zero\" means once the sums are written as products, and the assumption that n is a positive integer (implied by the printed stem's even/odd split, but not printed). NUMERIC CHECK (before authoring and again after): at A = 70°, B = 20°, the first ratio is 2.1445069205 and the second is −2.1445069205, and cot((A−B)/2) = cot 25° = 2.1445069205; the sum of the n-th powers is L.H.S = 9.1978198642 against R.H.S = 9.1978198642 at n = 2, L.H.S = 42.2999451274 against R.H.S = 42.2999451274 at n = 4, and 0.0000000000 on both sides at n = 3 and n = 5; re-checked on a second witness A = 130°, B = −15°, where n = 2 gives 0.1988266525 on both sides and n = 3 gives 0 on both. The printed identity is correct as stated. Paper position: Maths-1A Section C prints 3 long answers and the student answers any 2, at 8 marks each (2026-27 pattern). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), the TRANSFORMATIONS banner (the book prints TRANSFORMATIONS as a separate un-numbered chapter-style banner immediately after chapter 8's VSAQ run, and restarts its numbering at 1 — we ship both under one unit, ordered by the syllabus, and never mirror the book's arrangement), Long Answer question 12, book p.104, its working closing on book p.105. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives two marks to each of the two ratio simplifications, since between them they are the whole proof, and one mark each to the set-up, the addition and the two cases — BOTH CASES ARE MARKED SEPARATELY because the question asks for both and an answer that stops at the even case is incomplete. NOT A TRIANGLE QUESTION: there is no condition on A + B + C, so no substitution of the A + B + C family applies. The second ratio is −cot((A−B)/2), NOT +cot((A−B)/2): cos A − cos B = −2 sin((A+B)/2) sin((A−B)/2), and losing that minus makes both cases collapse to 2 cotⁿ((A−B)/2), which is wrong for every odd n. CONDITIONS ARE ON THE PAGE, NOT ONLY HERE: step 1's lines carry sin((A−B)/2) ≠ 0, sin((A+B)/2) ≠ 0 and cos((A+B)/2) ≠ 0, which is what \"none of the denominators is zero\" means once the sums are written as products, and the assumption that n is a positive integer (implied by the printed stem's even/odd split, but not printed). NUMERIC CHECK (before authoring and again after): at A = 70°, B = 20°, the first ratio is 2.1445069205 and the second is −2.1445069205, and cot((A−B)/2) = cot 25° = 2.1445069205; the sum of the n-th powers is L.H.S = 9.1978198642 against R.H.S = 9.1978198642 at n = 2, L.H.S = 42.2999451274 against R.H.S = 42.2999451274 at n = 4, and 0.0000000000 on both sides at n = 3 and n = 5; re-checked on a second witness A = 130°, B = −15°, where n = 2 gives 0.1988266525 on both sides and n = 3 gives 0 on both. The printed identity is correct as stated. Paper position: Maths-1A Section C prints 3 long answers and the student answers any 2, at 8 marks each (2026-27 pattern). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — say what each of the two ratios simplifies to, and how the even and odd cases come apart.",
   "answer": {
@@ -71,7 +71,12 @@
           "Let x = (A−B)/2 and y = (A+B)/2.",
           "Here n is a positive integer.",
           "sinA − sinB ≠ 0 and cosA − cosB ≠ 0,",
-          "so sin x ≠ 0, sin y ≠ 0 and cos y ≠ 0."
+          "so sin x ≠ 0, sin y ≠ 0 and cos y ≠ 0.",
+          "(sinA − sinB = 2 cos y sin x and",
+          {
+            "text": "  cosA − cosB = −2 sin y sin x, as shown below.)",
+            "style": "indent"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -109,8 +114,35 @@
         "margin_note": "Two of the eight marks. Both the top and the bottom carry a factor 2 cos y, so it cancels and what is left is a cosine over a sine — a cotangent.",
         "memory_tip": "Top and bottom both carry 2 cos y. Cancel it and a cotangent of x is what remains.",
         "lines": [
+          {
+            "text": "Use the sum and difference formulas:",
+            "added": true
+          },
+          {
+            "text": "  cos p + cos q = 2 cos((p+q)/2) cos((p−q)/2)",
+            "style": "indent",
+            "added": true
+          },
           "cosA + cosB = 2 cos y cos x",
+          {
+            "text": "  sin p − sin q = 2 cos((p+q)/2) sin((p−q)/2)",
+            "style": "indent",
+            "added": true
+          },
           "sinA − sinB = 2 cos y sin x",
+          {
+            "text": "(here p = A and q = B, so (p+q)/2 = y",
+            "added": true
+          },
+          {
+            "text": "  and (p−q)/2 = x)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "Divide; 2 cos y cancels, since cos y ≠ 0:",
+            "added": true
+          },
           "⇒ (cosA + cosB)/(sinA − sinB)",
           "     = cos x / sin x = cot x"
         ],
@@ -140,6 +172,12 @@
         "common_mistakes": [
           "Writing sin A − sin B = 2 sin y cos x, which swaps the two half angles.",
           "Leaving the answer as cos x / sin x without naming it cot x."
+        ],
+        "lines_compact": [
+          "cosA + cosB = 2 cos y cos x",
+          "sinA − sinB = 2 cos y sin x",
+          "⇒ (cosA + cosB)/(sinA − sinB)",
+          "     = cos x / sin x = cot x"
         ]
       },
       {
@@ -151,10 +189,32 @@
         "margin_note": "Two marks, and the minus sign here is what the whole question turns on. cos A − cos B = −2 sin y sin x, so this ratio is the NEGATIVE of the first one.",
         "memory_tip": "cos A − cos B carries a MINUS: it is −2 sin y sin x. So the second ratio is −cot x, not +cot x.",
         "lines": [
+          {
+            "text": "Use the other two formulas:",
+            "added": true
+          },
+          {
+            "text": "  sin p + sin q = 2 sin((p+q)/2) cos((p−q)/2)",
+            "style": "indent",
+            "added": true
+          },
           "sinA + sinB = 2 sin y cos x",
+          {
+            "text": "  cos p − cos q = −2 sin((p+q)/2) sin((p−q)/2)",
+            "style": "indent",
+            "added": true
+          },
           "cosA − cosB = −2 sin y sin x",
+          {
+            "text": "Divide; 2 sin y cancels, since sin y ≠ 0:",
+            "added": true
+          },
           "⇒ (sinA + sinB)/(cosA − cosB)",
-          "     = −cos x / sin x = −cot x"
+          "     = −cos x / sin x = −cot x",
+          {
+            "text": "(the minus sign stays in front)",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -182,6 +242,12 @@
         "common_mistakes": [
           "Writing cos A − cos B = 2 sin y sin x and losing the minus.",
           "Writing sin A + sin B = 2 cos y sin x, which swaps the two half angles."
+        ],
+        "lines_compact": [
+          "sinA + sinB = 2 sin y cos x",
+          "cosA − cosB = −2 sin y sin x",
+          "⇒ (sinA + sinB)/(cosA − cosB)",
+          "     = −cos x / sin x = −cot x"
         ]
       },
       {
@@ -193,8 +259,20 @@
         "margin_note": "Sixth mark. Raise both ratios to the n-th power and add. The sign is the only difference between them, so it collects into the factor 1 + (−1)ⁿ.",
         "memory_tip": "(−cot x)ⁿ = (−1)ⁿ cotⁿ x. Everything then depends on the single factor 1 + (−1)ⁿ.",
         "lines": [
+          {
+            "text": "Put both ratios into the L.H.S:",
+            "added": true
+          },
           "L.H.S = cotⁿ x + (−cot x)ⁿ",
+          {
+            "text": "((−cot x)ⁿ = (−1)ⁿ cotⁿ x, since (ab)ⁿ = aⁿbⁿ)",
+            "added": true
+          },
           "= cotⁿ x + (−1)ⁿ cotⁿ x",
+          {
+            "text": "Take out the common factor cotⁿ x:",
+            "added": true
+          },
           "= [1 + (−1)ⁿ] cotⁿ x"
         ],
         "recall": {
@@ -223,6 +301,11 @@
         "common_mistakes": [
           "Writing (−cot x)ⁿ = −cotⁿ x, which is only true for odd n.",
           "Adding the two ratios before raising them to the n-th power."
+        ],
+        "lines_compact": [
+          "L.H.S = cotⁿ x + (−cot x)ⁿ",
+          "= cotⁿ x + (−1)ⁿ cotⁿ x",
+          "= [1 + (−1)ⁿ] cotⁿ x"
         ]
       },
       {
@@ -235,7 +318,15 @@
         "memory_tip": "n even: (−1)ⁿ = 1, the factor is 2, and the two powers add.",
         "lines": [
           "If n is even, (−1)ⁿ = 1.",
+          {
+            "text": "(an even number of minus signs multiply to +)",
+            "added": true
+          },
           "L.H.S = [1 + 1] cotⁿ x = 2 cotⁿ x",
+          {
+            "text": "Put back x = (A−B)/2:",
+            "added": true
+          },
           {
             "text": "= 2 cotⁿ((A−B)/2)",
             "style": "boxed"
@@ -267,6 +358,14 @@
         "common_mistakes": [
           "Leaving the answer in x without saying x = (A − B)/2.",
           "Writing cotⁿ((A−B)/2) and losing the factor 2."
+        ],
+        "lines_compact": [
+          "If n is even, (−1)ⁿ = 1.",
+          "L.H.S = [1 + 1] cotⁿ x = 2 cotⁿ x",
+          {
+            "text": "= 2 cotⁿ((A−B)/2)",
+            "style": "boxed"
+          }
         ]
       },
       {
@@ -279,7 +378,15 @@
         "memory_tip": "n odd: (−1)ⁿ = −1, the factor is 0, and the two powers cancel exactly.",
         "lines": [
           "If n is odd, (−1)ⁿ = −1.",
+          {
+            "text": "(an odd number of minus signs multiply to −)",
+            "added": true
+          },
           "L.H.S = [1 − 1] cotⁿ x",
+          {
+            "text": "(1 − 1 = 0, and 0 × cotⁿ x = 0)",
+            "added": true
+          },
           {
             "text": "= 0",
             "style": "boxed"
@@ -311,6 +418,14 @@
         "common_mistakes": [
           "Giving only the even case and stopping there.",
           "Writing the odd answer as 2 cotⁿ((A−B)/2) with a minus in front instead of 0."
+        ],
+        "lines_compact": [
+          "If n is odd, (−1)ⁿ = −1.",
+          "L.H.S = [1 − 1] cotⁿ x",
+          {
+            "text": "= 0",
+            "style": "boxed"
+          }
         ]
       }
     ]

@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.87, chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 27. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to turning the sum into a product of standard angles and one to the exact values that produce the two surds. Paper position: Maths-1A Section A prints ten very short answers of 2 marks each and the student writes all ten; Trigonometric Ratios and Transformations supplies two of those slots on almost every paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.87, chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 27. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to turning the sum into a product of standard angles and one to the exact values that produce the two surds. Paper position: Maths-1A Section A prints ten very short answers of 2 marks each and the student writes all ten; Trigonometric Ratios and Transformations supplies two of those slots on almost every paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — name each move in order.",
   "answer": {
@@ -52,10 +52,14 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "Make both terms sines, so the sum formula works:",
           "cos66° = sin(90° − 66°) = sin24°",
+          "(cos θ = sin(90° − θ))",
           "L.H.S = 4(sin84° + sin24°)",
           "  [∵ sin p + sin q = 2 sin((p+q)/2) cos((p−q)/2)]",
-          "= 8 sin54° cos30°"
+          "((84° + 24°)/2 = 54° and (84° − 24°)/2 = 30°)",
+          "= 8 sin54° cos30°",
+          "(4 × 2 = 8)"
         ],
         "recall": {
           "credit": "say_it",
@@ -95,9 +99,21 @@
         "memory_tip": "sin54° = cos36° = (√5 + 1)/4, and its 4 cancels the 4 standing in front.",
         "lines": [
           "cos30° = √3/2, so L.H.S = 4√3 sin54°",
+          {
+            "text": "(8 × √3/2 = 4√3)",
+            "added": true
+          },
           "sin54° = cos(90° − 54°) = cos36°",
           "cos36° = (√5 + 1)/4",
+          {
+            "text": "(the value proved in this chapter)",
+            "added": true
+          },
           "= 4√3 × (√5 + 1)/4 = √3(√5 + 1)",
+          {
+            "text": "(the 4s cancel, and √3 × √5 = √15)",
+            "added": true
+          },
           {
             "text": "∴ L.H.S = √15 + √3 = R.H.S",
             "style": "boxed"
@@ -129,6 +145,16 @@
         "common_mistakes": [
           "Using cos36° = (√5 − 1)/4, which is sin18°.",
           "Leaving √3 × √5 unmultiplied."
+        ],
+        "lines_compact": [
+          "cos30° = √3/2, so L.H.S = 4√3 sin54°",
+          "sin54° = cos(90° − 54°) = cos36°",
+          "cos36° = (√5 + 1)/4",
+          "= 4√3 × (√5 + 1)/4 = √3(√5 + 1)",
+          {
+            "text": "∴ L.H.S = √15 + √3 = R.H.S",
+            "style": "boxed"
+          }
         ]
       }
     ]

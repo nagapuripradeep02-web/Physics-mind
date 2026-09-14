@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.83, chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 7(ii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to naming and applying the identity and one to substituting the exact values and reaching the surd. Paper position: Maths-1A Section A prints ten very short answers of 2 marks each and the student writes all ten; Trigonometric Ratios and Transformations supplies two of those slots on almost every paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.83, chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 7(ii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to naming and applying the identity and one to substituting the exact values and reaching the surd. Paper position: Maths-1A Section A prints ten very short answers of 2 marks each and the student writes all ten; Trigonometric Ratios and Transformations supplies two of those slots on almost every paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — name the formula you use and how you finish.",
   "answer": {
@@ -53,8 +53,10 @@
             "style": "heading"
           },
           "L.H.S = cos²112½° − sin²52½°",
+          "This is cos²A − sin²B with A = 112½°, B = 52½°:",
           "= cos(112½° + 52½°) cos(112½° − 52½°)",
           "  [∵ cos²A − sin²B = cos(A+B) cos(A−B)]",
+          "(112½° + 52½° = 165° and 112½° − 52½° = 60°)",
           "= cos165° cos60°"
         ],
         "recall": {
@@ -95,8 +97,25 @@
         "memory_tip": "cos165° = −cos15°, and cos15° = (√3 + 1)/(2√2). The minus sign is what makes the value negative.",
         "lines": [
           "cos165° = cos(180° − 15°) = −cos15°",
+          {
+            "text": "(165° is in Q₂, where cos is negative)",
+            "added": true
+          },
           "cos15° = (√3 + 1)/(2√2),  cos60° = 1/2",
+          {
+            "text": "(cos15° = cos(45° − 30°)",
+            "added": true
+          },
+          {
+            "text": "  = (1/√2)(√3/2) + (1/√2)(1/2) = (√3 + 1)/(2√2))",
+            "style": "indent",
+            "added": true
+          },
           "= [−(√3 + 1)/(2√2)] × (1/2)",
+          {
+            "text": "(2√2 × 2 = 4√2)",
+            "added": true
+          },
           {
             "text": "∴ Value = −(√3 + 1)/(4√2)",
             "style": "boxed"
@@ -128,6 +147,15 @@
         "common_mistakes": [
           "Writing cos165° as +cos15°.",
           "Losing the 1/2 that comes from cos60°."
+        ],
+        "lines_compact": [
+          "cos165° = cos(180° − 15°) = −cos15°",
+          "cos15° = (√3 + 1)/(2√2),  cos60° = 1/2",
+          "= [−(√3 + 1)/(2√2)] × (1/2)",
+          {
+            "text": "∴ Value = −(√3 + 1)/(4√2)",
+            "style": "boxed"
+          }
         ]
       }
     ]

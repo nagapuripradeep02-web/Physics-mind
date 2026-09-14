@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 46, book p.96. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards the cross-multiplication with both sine expansions first and the division by cos α cos β second, since that division is what turns the relation into tangents. The direct expansion was chosen over componendo and dividendo on purpose: componendo and dividendo would additionally need b ≠ 0, and this route needs only the conditions the question already carries. Paper position: Maths-1A Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern; Trigonometric Ratios and Transformations holds two of those ten slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Checked numerically: with α = 50° and β = 20° the given ratio is 1.8793852416, so a = 1.4396926208 and b = 0.4396926208 for a − b = 1, and then a tan β and b tan α are both 0.5240052605. A second case, α = 115° and β = −35°, gives both sides as −1.0396735815."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 46, book p.96. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards the cross-multiplication with both sine expansions first and the division by cos α cos β second, since that division is what turns the relation into tangents. The direct expansion was chosen over componendo and dividendo on purpose: componendo and dividendo would additionally need b ≠ 0, and this route needs only the conditions the question already carries. Paper position: Maths-1A Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern; Trigonometric Ratios and Transformations holds two of those ten slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Checked numerically: with α = 50° and β = 20° the given ratio is 1.8793852416, so a = 1.4396926208 and b = 0.4396926208 for a − b = 1, and then a tan β and b tan α are both 0.5240052605. A second case, α = 115° and β = −35°, gives both sides as −1.0396735815. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say your first move on the given ratio, and say what you divide by at the end.",
   "answer": {
@@ -56,6 +56,7 @@
           "and a ≠ b.",
           "Cross-multiplying:",
           "(a − b) sin(α + β) = (a + b) sin(α − β)",
+          "Expand sin(α + β) and sin(α − β):",
           "(a − b)(sin α cos β + cos α sin β)",
           "= (a + b)(sin α cos β − cos α sin β)"
         ],
@@ -96,11 +97,52 @@
         "margin_note": "Second mark. The sin α cos β terms collect on one side and the cos α sin β terms on the other. Dividing by cos α cos β is what turns each side into a tangent.",
         "memory_tip": "Divide by cos α cos β. That is the step that turns each side into a tangent.",
         "lines": [
+          {
+            "text": "Open both brackets:",
+            "added": true
+          },
+          {
+            "text": "  Left:  a sinα cosβ + a cosα sinβ",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "         − b sinα cosβ − b cosα sinβ",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  Right: a sinα cosβ − a cosα sinβ",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "         + b sinα cosβ − b cosα sinβ",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "a sinα cosβ and −b cosα sinβ are on both sides",
+            "added": true
+          },
+          {
+            "text": "  and cancel:",
+            "style": "indent",
+            "added": true
+          },
           "Collecting the like terms:",
           "2a cos α sin β = 2b sin α cos β",
+          {
+            "text": "(divide both sides by 2)",
+            "added": true
+          },
           "⇒ a cos α sin β = b sin α cos β",
           "tan α and tan β exist, so cos α ≠ 0 and",
           "cos β ≠ 0. Divide both sides by cos α cos β:",
+          {
+            "text": "(sinβ/cosβ = tanβ and sinα/cosα = tanα)",
+            "added": true
+          },
           {
             "text": "∴ a tan β = b tan α",
             "style": "boxed"
@@ -132,6 +174,17 @@
         "common_mistakes": [
           "Dividing by sin α sin β, which produces cotangents.",
           "Cancelling the 2 on one side only."
+        ],
+        "lines_compact": [
+          "Collecting the like terms:",
+          "2a cos α sin β = 2b sin α cos β",
+          "⇒ a cos α sin β = b sin α cos β",
+          "tan α and tan β exist, so cos α ≠ 0 and",
+          "cos β ≠ 0. Divide both sides by cos α cos β:",
+          {
+            "text": "∴ a tan β = b tan α",
+            "style": "boxed"
+          }
         ]
       }
     ]

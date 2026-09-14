@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 31(i), book p.88. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1 + 1 gives one mark to turning the given difference into tan(A − B) = −1 and one to the expansion, where the group tan A − tan B has to be spotted before the substitution can be made. Paper position: Maths-1A Section A prints ten very short answers of 2 marks each and the student writes all ten, under the 2026-27 pattern; Trigonometric Ratios and Transformations supplies two of those ten slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 31(i), book p.88. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1 + 1 gives one mark to turning the given difference into tan(A − B) = −1 and one to the expansion, where the group tan A − tan B has to be spotted before the substitution can be made. Paper position: Maths-1A Section A prints ten very short answers of 2 marks each and the student writes all ten, under the 2026-27 pattern; Trigonometric Ratios and Transformations supplies two of those ten slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would show this — name the value you get from the given condition, and where you use it.",
   "answer": {
@@ -56,7 +56,10 @@
           "nor B is an odd multiple of π/2.",
           "Given A − B = 3π/4",
           "⇒ tan(A − B) = tan(3π/4) = −1",
+          "(3π/4 = 135°, and tan 135° = −tan 45° = −1)",
+          "Expand with the difference formula:",
           "∴ (tan A − tan B)/(1 + tan A tan B) = −1",
+          "Multiply both sides by (1 + tan A tan B):",
           "⇒ tan A − tan B = −1 − tan A tan B"
         ],
         "recall": {
@@ -97,11 +100,36 @@
         "margin_note": "Second mark. Expand the bracket first — the group tan A − tan B appears, and step 1 replaces it. The two tan A tan B terms then cancel.",
         "memory_tip": "Expand the bracket first. The group tan A − tan B shows up, and the condition replaces it.",
         "lines": [
+          {
+            "text": "Open the brackets of the L.H.S:",
+            "added": true
+          },
           "(1 − tan A)(1 + tan B)",
           "= 1 + tan B − tan A − tan A tan B",
+          {
+            "text": "Group tan A − tan B together:",
+            "added": true
+          },
           "= 1 − (tan A − tan B) − tan A tan B",
+          {
+            "text": "Put in tan A − tan B = −1 − tan A tan B:",
+            "added": true
+          },
           "= 1 − (−1 − tan A tan B) − tan A tan B",
+          {
+            "text": "Open the bracket; the minus sign changes both",
+            "added": true
+          },
+          {
+            "text": "  signs inside it:",
+            "style": "indent",
+            "added": true
+          },
           "= 1 + 1 + tan A tan B − tan A tan B",
+          {
+            "text": "(tan A tan B − tan A tan B = 0)",
+            "added": true
+          },
           {
             "text": "= 2",
             "style": "boxed"
@@ -134,6 +162,17 @@
         "common_mistakes": [
           "Expanding as 1 + tan A − tan B − tan A tan B.",
           "Replacing tan A − tan B by −1 alone and dropping the tan A tan B term."
+        ],
+        "lines_compact": [
+          "(1 − tan A)(1 + tan B)",
+          "= 1 + tan B − tan A − tan A tan B",
+          "= 1 − (tan A − tan B) − tan A tan B",
+          "= 1 − (−1 − tan A tan B) − tan A tan B",
+          "= 1 + 1 + tan A tan B − tan A tan B",
+          {
+            "text": "= 2",
+            "style": "boxed"
+          }
         ]
       }
     ]

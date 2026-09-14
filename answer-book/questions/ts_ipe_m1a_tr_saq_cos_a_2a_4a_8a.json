@@ -35,7 +35,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.67 — SAQ chapter 10 T-Ratios upto Transformations, answer 69. Printed appearances: AP 17. The angles DOUBLE each time — A, 2A, 4A, 8A — and the answer is in 16A. That doubling chain is the whole method: each application of sin2θ = 2 sinθ cosθ moves one step up it. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter (its pages are set two questions to a page in two columns). It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used here are the book's own. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q14 is the T-Ratios slot. RE-CUT 2026-08-31: this card was filed as SAQ at 4 marks and is now VSAQ at 2. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya FAST TRACK IPE Mathematics-IA 2026-27 edition files this chapter under a Very Short Answer Questions banner and prints no short answer block for it at all, asking this same question as Very Short Answer question 38. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. The mathematics and the steps are unchanged; only the mark scheme moved: the two marks now sit on the step that manufactures the sine and on the doubling chain, and the closing line is a restatement that carries none. Still unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.67 — SAQ chapter 10 T-Ratios upto Transformations, answer 69. Printed appearances: AP 17. The angles DOUBLE each time — A, 2A, 4A, 8A — and the answer is in 16A. That doubling chain is the whole method: each application of sin2θ = 2 sinθ cosθ moves one step up it. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter (its pages are set two questions to a page in two columns). It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used here are the book's own. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q14 is the T-Ratios slot. RE-CUT 2026-08-31: this card was filed as SAQ at 4 marks and is now VSAQ at 2. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya FAST TRACK IPE Mathematics-IA 2026-27 edition files this chapter under a Very Short Answer Questions banner and prints no short answer block for it at all, asking this same question as Very Short Answer question 38. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. The mathematics and the steps are unchanged; only the mark scheme moved: the two marks now sit on the step that manufactures the sine and on the doubling chain, and the closing line is a restatement that carries none. Still unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — name each move in order.",
   "answer": {
@@ -57,7 +57,13 @@
             "style": "heading"
           },
           "L.H.S = cosA cos2A cos4A cos8A",
+          "Multiply and divide by 2⁴ sinA (sinA ≠ 0),",
+          {
+            "text": "  so each cosine gets a 2 beside it:",
+            "style": "indent"
+          },
           "= (2⁴ sinA)/(2⁴ sinA) · cosA cos2A cos4A cos8A",
+          "(2⁴ = 16; one 2 and the sinA go with cosA)",
           "= (1/(16 sinA)) (2 sinA cosA)(2 cos2A)",
           "    · (2 cos4A)(2 cos8A)"
         ],
@@ -98,9 +104,29 @@
         "mark_note": "Method",
         "margin_note": "Last mark. Each 2 pairs with the sine just made and the next cosine, doubling the angle: A → 2A → 4A → 8A → 16A. Four applications, one per 2.",
         "lines": [
+          {
+            "text": "Use 2 sin x cos x = sin 2x again and again:",
+            "added": true
+          },
+          {
+            "text": "(x = A: 2 sinA cosA = sin2A)",
+            "added": true
+          },
           "= (1/(16 sinA)) (sin2A)(2 cos2A)(2 cos4A)(2 cos8A)",
+          {
+            "text": "(x = 2A: sin2A · 2 cos2A = sin4A)",
+            "added": true
+          },
           "= (1/(16 sinA)) (sin4A)(2 cos4A)(2 cos8A)",
+          {
+            "text": "(x = 4A: sin4A · 2 cos4A = sin8A)",
+            "added": true
+          },
           "= (1/(16 sinA)) (sin8A)(2 cos8A)",
+          {
+            "text": "(x = 8A: sin8A · 2 cos8A = sin16A)",
+            "added": true
+          },
           "= (1/(16 sinA)) (sin16A)"
         ],
         "recall": {
@@ -131,7 +157,13 @@
           "Running out of 2s partway through.",
           "Applying the formula to the wrong pair."
         ],
-        "memory_tip": "sin2θ = 2 sinθ cosθ applied four times: sinA becomes sin2A, then sin4A, sin8A, sin16A."
+        "memory_tip": "sin2θ = 2 sinθ cosθ applied four times: sinA becomes sin2A, then sin4A, sin8A, sin16A.",
+        "lines_compact": [
+          "= (1/(16 sinA)) (sin2A)(2 cos2A)(2 cos4A)(2 cos8A)",
+          "= (1/(16 sinA)) (sin4A)(2 cos4A)(2 cos8A)",
+          "= (1/(16 sinA)) (sin8A)(2 cos8A)",
+          "= (1/(16 sinA)) (sin16A)"
+        ]
       },
       {
         "id": "s3_state_the_result",

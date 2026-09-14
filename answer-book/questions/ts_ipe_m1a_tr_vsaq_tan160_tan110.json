@@ -39,7 +39,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.95 — VSAQ chapter 18 T-Ratios upto Transformations, answer 133. Printed appearances: AP 16,20. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four or six questions to a page in two columns. It is not a bare guess on two counts: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, and THIS chapter's own header note reads \"Writing Formula itself gets you 1 Mark in these Questions\" — which is why the first step of every answer here IS the formula or the set-up. The book's chapter header carries ★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because T-Ratios holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q8 and Q9 are the two T-Ratios slots."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.95 — VSAQ chapter 18 T-Ratios upto Transformations, answer 133. Printed appearances: AP 16,20. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four or six questions to a page in two columns. It is not a bare guess on two counts: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, and THIS chapter's own header note reads \"Writing Formula itself gets you 1 Mark in these Questions\" — which is why the first step of every answer here IS the formula or the set-up. The book's chapter header carries ★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because T-Ratios holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q8 and Q9 are the two T-Ratios slots. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — name the formula you use and how you finish.",
   "answer": {
@@ -61,8 +61,11 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "Write both angles through 20°:",
           "tan160° = tan(180° − 20°) = −tan20° = −λ",
-          "tan110° = tan(90° + 20°) = −cot20° = −1/λ"
+          "(tan(180° − θ) = −tan θ)",
+          "tan110° = tan(90° + 20°) = −cot20° = −1/λ",
+          "(tan(90° + θ) = −cot θ, and cot20° = 1/tan20°)"
         ],
         "recall": {
           "credit": "say_it",
@@ -101,9 +104,25 @@
         "margin_note": "Second mark. The denominator becomes 1 + 1 = 2, and the numerator combines over λ — giving the required form directly.",
         "memory_tip": "The denominator becomes 1 + 1 = 2, and the numerator combines over λ.",
         "lines": [
+          {
+            "text": "Put tan160° = −λ and tan110° = −1/λ in:",
+            "added": true
+          },
           "L.H.S = (−λ − (−1/λ)) / (1 + (−λ)(−1/λ))",
+          {
+            "text": "(−λ + 1/λ = 1/λ − λ, and (−λ)(−1/λ) = 1)",
+            "added": true
+          },
           "= (1/λ − λ)/(1 + 1)",
+          {
+            "text": "(1/λ − λ = (1 − λ²)/λ)",
+            "added": true
+          },
           "= ((1 − λ²)/λ)/2",
+          {
+            "text": "(dividing by 2 puts the 2 beside λ)",
+            "added": true
+          },
           {
             "text": "= (1 − λ²)/(2λ) = R.H.S",
             "style": "boxed"
@@ -135,6 +154,15 @@
         "common_mistakes": [
           "Getting the denominator as 1 − 1 = 0.",
           "Failing to combine the numerator over a common denominator."
+        ],
+        "lines_compact": [
+          "L.H.S = (−λ − (−1/λ)) / (1 + (−λ)(−1/λ))",
+          "= (1/λ − λ)/(1 + 1)",
+          "= ((1 − λ²)/λ)/2",
+          {
+            "text": "= (1 − λ²)/(2λ) = R.H.S",
+            "style": "boxed"
+          }
         ]
       }
     ]

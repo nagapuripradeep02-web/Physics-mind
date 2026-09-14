@@ -42,7 +42,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.100, chapter 8 TRANSFORMATIONS, Long Answer question 3(ii). The book prints TRANSFORMATIONS as a separate un-numbered chapter-style banner immediately after chapter 8's VSAQ run and restarts its numbering at 1; we ship both under one unit, ordered by the syllabus, and never mirror the book's arrangement. NUMBERING RECORDED, NOT RENUMBERED: the page prints \"3. If A + B + C = π then show that\" followed immediately by ii); no i) identity is printed anywhere under question 3, and the run is recorded as the book sets it. The printed right-hand side checks out exactly as printed — the equivalent form 4 sin((π−A)/4) sin((π−B)/4) cos((π−C)/4) is the same number, since sin θ = cos(π/2 − θ) sends (π−A)/4 to (π+A)/4; this card proves the printed cosine form directly. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+3+2+1+1 split rewards the two substantial transformations — the sum-to-product pairing and the use of the angle condition — over the set-up and the finish, and it is the same split and the same step ids already carried by the sibling cards of this family (sin2a_sum, cos2a_sum, sin_half_squares, cos_half_squares), deliberately: they are ONE method over different identities, so a student who learns the arc once can attempt any of them. IDENTITY CHECKED NUMERICALLY before and after writing, and every intermediate line of the derivation with it: at A = 50°, B = 60°, C = 70° both sides equal 0.9531811465, and the identity holds again at (40°, 75°, 65°) and (110°, 25°, 45°). Paper position: Maths-1A Section C carries the long answers at 8 marks each under the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27), any 2 of 3; the Transformations slot is always a question of this kind. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.100, chapter 8 TRANSFORMATIONS, Long Answer question 3(ii). The book prints TRANSFORMATIONS as a separate un-numbered chapter-style banner immediately after chapter 8's VSAQ run and restarts its numbering at 1; we ship both under one unit, ordered by the syllabus, and never mirror the book's arrangement. NUMBERING RECORDED, NOT RENUMBERED: the page prints \"3. If A + B + C = π then show that\" followed immediately by ii); no i) identity is printed anywhere under question 3, and the run is recorded as the book sets it. The printed right-hand side checks out exactly as printed — the equivalent form 4 sin((π−A)/4) sin((π−B)/4) cos((π−C)/4) is the same number, since sin θ = cos(π/2 − θ) sends (π−A)/4 to (π+A)/4; this card proves the printed cosine form directly. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+3+2+1+1 split rewards the two substantial transformations — the sum-to-product pairing and the use of the angle condition — over the set-up and the finish, and it is the same split and the same step ids already carried by the sibling cards of this family (sin2a_sum, cos2a_sum, sin_half_squares, cos_half_squares), deliberately: they are ONE method over different identities, so a student who learns the arc once can attempt any of them. IDENTITY CHECKED NUMERICALLY before and after writing, and every intermediate line of the derivation with it: at A = 50°, B = 60°, C = 70° both sides equal 0.9531811465, and the identity holds again at (40°, 75°, 65°) and (110°, 25°, 45°). Paper position: Maths-1A Section C carries the long answers at 8 marks each under the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27), any 2 of 3; the Transformations slot is always a question of this kind. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this identity — say the four moves in order, and where the angle condition gets used.",
   "answer": {
@@ -66,7 +66,8 @@
           },
           "Given",
           "A + B + C = π  ⇒  A + B = π − C",
-          "⇒  (A+B)/4 = (π−C)/4"
+          "⇒  (A+B)/4 = (π−C)/4",
+          "(divide both sides by 4)"
         ],
         "recall": {
           "credit": "say_it",
@@ -105,11 +106,32 @@
         "memory_tip": "Pairing two half angles halves them again — that is where the quarter angles come from.",
         "lines": [
           "L.H.S = cos(A/2) + cos(B/2) − cos(C/2)",
+          {
+            "text": "Pair the first two with p = A/2, q = B/2:",
+            "added": true
+          },
+          {
+            "text": "  (p+q)/2 = (A+B)/4 and (p−q)/2 = (A−B)/4",
+            "style": "indent",
+            "added": true
+          },
           "= 2 cos((A+B)/4) cos((A−B)/4) − cos(C/2)",
           "  [∵ cos p + cos q = 2 cos((p+q)/2) cos((p−q)/2)]",
+          {
+            "text": "Now write cos(C/2) through (π−C)/4:",
+            "added": true
+          },
           "Also C/2 = π/2 − (π−C)/2",
+          {
+            "text": "(π/2 − (π−C)/2 = (π − π + C)/2 = C/2)",
+            "added": true
+          },
           "⇒  cos(C/2) = sin((π−C)/2)",
           "  [∵ cos(π/2 − θ) = sinθ]",
+          {
+            "text": "Then use sin 2θ with θ = (π−C)/4:",
+            "added": true
+          },
           "⇒  cos(C/2) = 2 sin((π−C)/4) cos((π−C)/4)",
           "  [∵ sin2θ = 2 sinθ cosθ]"
         ],
@@ -139,6 +161,16 @@
         "common_mistakes": [
           "Applying the cosine SUM formula to a pair where one term carries a minus sign.",
           "Writing (A+B)/2 instead of (A+B)/4 as the averaged argument."
+        ],
+        "lines_compact": [
+          "L.H.S = cos(A/2) + cos(B/2) − cos(C/2)",
+          "= 2 cos((A+B)/4) cos((A−B)/4) − cos(C/2)",
+          "  [∵ cos p + cos q = 2 cos((p+q)/2) cos((p−q)/2)]",
+          "Also C/2 = π/2 − (π−C)/2",
+          "⇒  cos(C/2) = sin((π−C)/2)",
+          "  [∵ cos(π/2 − θ) = sinθ]",
+          "⇒  cos(C/2) = 2 sin((π−C)/4) cos((π−C)/4)",
+          "  [∵ sin2θ = 2 sinθ cosθ]"
         ]
       },
       {
@@ -150,8 +182,16 @@
         "margin_note": "Two more marks. The quartered condition replaces (A+B)/4 by (π−C)/4, and the expansion of cos(C/2) is substituted, so every term now carries cos((π−C)/4).",
         "memory_tip": "After the substitution every term carries cos((π−C)/4). That is the factor that will come out.",
         "lines": [
+          {
+            "text": "Put (A+B)/4 = (π−C)/4 from the given condition:",
+            "added": true
+          },
           "= 2 cos((π−C)/4) cos((A−B)/4) − cos(C/2)",
           "  [∵ (A+B)/4 = (π−C)/4]",
+          {
+            "text": "Now put in the value of cos(C/2) found above:",
+            "added": true
+          },
           "= 2 cos((π−C)/4) cos((A−B)/4)",
           "    − 2 sin((π−C)/4) cos((π−C)/4)"
         ],
@@ -181,6 +221,12 @@
         "common_mistakes": [
           "Substituting (π−C)/2 in place of (π−C)/4.",
           "Forgetting to substitute the expansion of cos(C/2) as well as the condition."
+        ],
+        "lines_compact": [
+          "= 2 cos((π−C)/4) cos((A−B)/4) − cos(C/2)",
+          "  [∵ (A+B)/4 = (π−C)/4]",
+          "= 2 cos((π−C)/4) cos((A−B)/4)",
+          "    − 2 sin((π−C)/4) cos((π−C)/4)"
         ]
       },
       {
@@ -192,11 +238,36 @@
         "margin_note": "Seventh mark. The common factor 2 cos((π−C)/4) comes out, and the sine inside the bracket is turned into a cosine so that the bracket becomes a SUM of two cosines.",
         "memory_tip": "cos(θ + π/2) = −sin θ turns the minus sine inside the bracket into a plus cosine.",
         "lines": [
+          {
+            "text": "Take out the common factor 2 cos((π−C)/4):",
+            "added": true
+          },
           "= 2 cos((π−C)/4) [cos((A−B)/4) − sin((π−C)/4)]",
+          {
+            "text": "The bracket has a cos and a −sin. Change −sin",
+            "added": true
+          },
+          {
+            "text": "  into a cos, so the sum formula can be used:",
+            "style": "indent",
+            "added": true
+          },
           "Now −sin((π−C)/4) = cos((π−C)/4 + π/2)",
           "  [∵ cos(θ + π/2) = −sinθ]",
+          {
+            "text": "((π−C)/4 + π/2 = (π − C + 2π)/4 = (3π − C)/4)",
+            "added": true
+          },
           "= cos((3π−C)/4) = cos((2π+A+B)/4)",
           "  [∵ C = π − A − B]",
+          {
+            "text": "(3π − C = 3π − π + A + B = 2π + A + B)",
+            "added": true
+          },
+          {
+            "text": "So the expression is",
+            "added": true
+          },
           "= 2 cos((π−C)/4)",
           "    × [cos((A−B)/4) + cos((2π+A+B)/4)]"
         ],
@@ -226,6 +297,15 @@
         "common_mistakes": [
           "Writing cos(θ + π/2) = +sin θ and leaving the bracket as a difference.",
           "Taking out cos((π−C)/4) without the 2."
+        ],
+        "lines_compact": [
+          "= 2 cos((π−C)/4) [cos((A−B)/4) − sin((π−C)/4)]",
+          "Now −sin((π−C)/4) = cos((π−C)/4 + π/2)",
+          "  [∵ cos(θ + π/2) = −sinθ]",
+          "= cos((3π−C)/4) = cos((2π+A+B)/4)",
+          "  [∵ C = π − A − B]",
+          "= 2 cos((π−C)/4)",
+          "    × [cos((A−B)/4) + cos((2π+A+B)/4)]"
         ]
       },
       {
@@ -237,9 +317,34 @@
         "margin_note": "Last mark. The cosine SUM formula turns the bracket into a product of two quarter-angle cosines. Half the sum gives (π+A)/4 and half the difference gives −(π+B)/4; cosine is an even function, so the minus sign disappears.",
         "memory_tip": "Half the sum is (π+A)/4 and half the difference is −(π+B)/4. Cosine is even, so the minus sign drops.",
         "lines": [
+          {
+            "text": "Use the sum formula with p = (A−B)/4 and",
+            "added": true
+          },
+          {
+            "text": "  q = (2π+A+B)/4:",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "p + q = (2π + 2A)/4, so (p+q)/2 = (π+A)/4",
+            "added": true
+          },
+          {
+            "text": "p − q = (−2π − 2B)/4, so (p−q)/2 = −(π+B)/4",
+            "added": true
+          },
           "= 2 cos((π−C)/4) · 2 cos((π+A)/4) cos((π+B)/4)",
           "  [∵ cos p + cos q = 2 cos((p+q)/2) cos((p−q)/2)]",
           "  [(p+q)/2 = (π+A)/4, (p−q)/2 = −(π+B)/4]",
+          {
+            "text": "(cos(−θ) = cos θ, so the minus sign goes)",
+            "added": true
+          },
+          {
+            "text": "Multiply 2 × 2 = 4 and reorder the factors:",
+            "added": true
+          },
           "= 4 cos((π+A)/4) cos((π+B)/4) cos((π−C)/4)",
           {
             "text": "∴ L.H.S = R.H.S",
@@ -272,6 +377,16 @@
         "common_mistakes": [
           "Using the cosine difference formula, which would give sines.",
           "Keeping the minus sign on −(π+B)/4 instead of using that cosine is even."
+        ],
+        "lines_compact": [
+          "= 2 cos((π−C)/4) · 2 cos((π+A)/4) cos((π+B)/4)",
+          "  [∵ cos p + cos q = 2 cos((p+q)/2) cos((p−q)/2)]",
+          "  [(p+q)/2 = (π+A)/4, (p−q)/2 = −(π+B)/4]",
+          "= 4 cos((π+A)/4) cos((π+B)/4) cos((π−C)/4)",
+          {
+            "text": "∴ L.H.S = R.H.S",
+            "style": "boxed"
+          }
         ]
       }
     ]

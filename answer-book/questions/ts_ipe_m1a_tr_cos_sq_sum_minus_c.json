@@ -42,7 +42,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.99, chapter 8 TRANSFORMATIONS, Long Answer question 2(i). The book prints TRANSFORMATIONS as a separate un-numbered chapter-style banner immediately after chapter 8's VSAQ run and restarts its numbering at 1; we ship both under one unit, ordered by the syllabus, and never mirror the book's arrangement. NUMBERING RECORDED, NOT RENUMBERED: the \"2.\" and \"i)\" labels sit in the binding gutter of the scan and are unreadable, so the printed stem reads as unnumbered; the number above is the position in the run, not a label we can read on the page. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+3+2+1+1 split rewards the two substantial transformations — the sum-to-product pairing and the use of the angle condition — over the set-up and the finish, and it is the same split and the same step ids already carried by the sibling cards of this family (sin2a_sum, cos2a_sum, sin_half_squares, cos_half_squares), deliberately: they are ONE method over different identities, so a student who learns the arc once can attempt any of them. IDENTITY CHECKED NUMERICALLY before and after writing, and every intermediate line of the derivation with it: at A = 50°, B = 60°, C = 70° both sides equal 0.5461981327, and the identity holds again at (40°, 75°, 65°) and (110°, 25°, 45°). Paper position: Maths-1A Section C carries the long answers at 8 marks each under the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27), any 2 of 3; the Transformations slot is always a question of this kind. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.99, chapter 8 TRANSFORMATIONS, Long Answer question 2(i). The book prints TRANSFORMATIONS as a separate un-numbered chapter-style banner immediately after chapter 8's VSAQ run and restarts its numbering at 1; we ship both under one unit, ordered by the syllabus, and never mirror the book's arrangement. NUMBERING RECORDED, NOT RENUMBERED: the \"2.\" and \"i)\" labels sit in the binding gutter of the scan and are unreadable, so the printed stem reads as unnumbered; the number above is the position in the run, not a label we can read on the page. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+3+2+1+1 split rewards the two substantial transformations — the sum-to-product pairing and the use of the angle condition — over the set-up and the finish, and it is the same split and the same step ids already carried by the sibling cards of this family (sin2a_sum, cos2a_sum, sin_half_squares, cos_half_squares), deliberately: they are ONE method over different identities, so a student who learns the arc once can attempt any of them. IDENTITY CHECKED NUMERICALLY before and after writing, and every intermediate line of the derivation with it: at A = 50°, B = 60°, C = 70° both sides equal 0.5461981327, and the identity holds again at (40°, 75°, 65°) and (110°, 25°, 45°). Paper position: Maths-1A Section C carries the long answers at 8 marks each under the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27), any 2 of 3; the Transformations slot is always a question of this kind. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this identity — say the four moves in order, and where the angle condition gets used.",
   "answer": {
@@ -65,7 +65,12 @@
             "style": "heading"
           },
           "Given",
-          "A + B + C = π  ⇒  A + B = π − C"
+          "A + B + C = π  ⇒  A + B = π − C",
+          "(A, B, C are the angles of a triangle. This",
+          {
+            "text": "  sum is used twice below.)",
+            "style": "indent"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -104,9 +109,30 @@
         "memory_tip": "Turn cos²B into 1 − sin²B. That gives the leading 1 and leaves cos²A − sin²B, which has its own formula.",
         "lines": [
           "L.H.S = cos²A + cos²B − cos²C",
+          {
+            "text": "Three squares cannot be paired as they stand.",
+            "added": true
+          },
+          {
+            "text": "Change cos²B into 1 − sin²B:",
+            "added": true
+          },
           "= cos²A + (1 − sin²B) − cos²C",
           "  [∵ sin²θ + cos²θ = 1]",
-          "= 1 + (cos²A − sin²B) − cos²C"
+          {
+            "text": "Bring the 1 to the front:",
+            "added": true
+          },
+          "= 1 + (cos²A − sin²B) − cos²C",
+          {
+            "text": "The bracket is cos²A − sin²B, which has its",
+            "added": true
+          },
+          {
+            "text": "  own product formula.",
+            "style": "indent",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -134,6 +160,12 @@
         "common_mistakes": [
           "Converting all three terms and losing track.",
           "Turning cos²A into 1 − sin²A as well, which destroys the difference of squares."
+        ],
+        "lines_compact": [
+          "L.H.S = cos²A + cos²B − cos²C",
+          "= cos²A + (1 − sin²B) − cos²C",
+          "  [∵ sin²θ + cos²θ = 1]",
+          "= 1 + (cos²A − sin²B) − cos²C"
         ]
       },
       {
@@ -147,6 +179,19 @@
         "lines": [
           "= 1 + cos(A+B) cos(A−B) − cos²C",
           "  [∵ cos²A − sin²B = cos(A+B) cos(A−B)]",
+          {
+            "text": "(cos(A+B) cos(A−B) = cos²A cos²B − sin²A sin²B,",
+            "added": true
+          },
+          {
+            "text": "  and this equals cos²A − sin²B)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "Use the condition: A + B = π − C.",
+            "added": true
+          },
           "= 1 + cos(π − C) cos(A−B) − cos²C",
           "  [∵ (A+B) + C = π]",
           "= 1 − cosC cos(A−B) − cos²C",
@@ -178,6 +223,14 @@
         "common_mistakes": [
           "Writing cos(π − C) = +cos C.",
           "Using the formula on cos²A − cos²B, where it does not apply."
+        ],
+        "lines_compact": [
+          "= 1 + cos(A+B) cos(A−B) − cos²C",
+          "  [∵ cos²A − sin²B = cos(A+B) cos(A−B)]",
+          "= 1 + cos(π − C) cos(A−B) − cos²C",
+          "  [∵ (A+B) + C = π]",
+          "= 1 − cosC cos(A−B) − cos²C",
+          "  [∵ cos(π − θ) = −cosθ]"
         ]
       },
       {
@@ -189,7 +242,19 @@
         "margin_note": "Seventh mark. The 1 is set aside and cos C comes out; the condition is used a SECOND time inside the bracket so that the bracket becomes a difference of two cosines.",
         "memory_tip": "There is no 2 to take out here — only cos C. Then cos C = −cos(A+B) makes the bracket a difference.",
         "lines": [
+          {
+            "text": "Take out −cosC from the last two terms:",
+            "added": true
+          },
           "= 1 − cosC [cos(A−B) + cosC]",
+          {
+            "text": "(check: −cosC × cosC = −cos²C)",
+            "added": true
+          },
+          {
+            "text": "Inside the bracket, use the condition again:",
+            "added": true
+          },
           "= 1 − cosC [cos(A−B) − cos(A+B)]",
           "  [∵ cosC = cos(π − (A+B)) = −cos(A+B)]"
         ],
@@ -219,6 +284,11 @@
         "common_mistakes": [
           "Taking out 2 cos C when there is no 2.",
           "Leaving the bracket as a sum, which would give cosines instead of sines."
+        ],
+        "lines_compact": [
+          "= 1 − cosC [cos(A−B) + cosC]",
+          "= 1 − cosC [cos(A−B) − cos(A+B)]",
+          "  [∵ cosC = cos(π − (A+B)) = −cos(A+B)]"
         ]
       },
       {
@@ -230,8 +300,20 @@
         "margin_note": "Last mark. One product formula finishes it. The coefficient on the answer is 2, not 4, because only cos C was taken out and not 2 cos C.",
         "memory_tip": "The answer carries 2, not 4 — the factor taken out was cos C alone.",
         "lines": [
+          {
+            "text": "The bracket is cos(A−B) − cos(A+B):",
+            "added": true
+          },
           "= 1 − cosC (2 sinA sinB)",
           "  [∵ cos(A−B) − cos(A+B) = 2 sinA sinB]",
+          {
+            "text": "(expand both; the cosA cosB terms cancel)",
+            "added": true
+          },
+          {
+            "text": "Multiply: cosC × 2 sinA sinB = 2 sinA sinB cosC",
+            "added": true
+          },
           {
             "text": "= 1 − 2 sinA sinB cosC = R.H.S",
             "style": "boxed"
@@ -263,6 +345,14 @@
         "common_mistakes": [
           "Writing 4 sin A sin B cos C by carrying a 2 that was never taken out.",
           "Losing the leading 1 at the very end."
+        ],
+        "lines_compact": [
+          "= 1 − cosC (2 sinA sinB)",
+          "  [∵ cos(A−B) − cos(A+B) = 2 sinA sinB]",
+          {
+            "text": "= 1 − 2 sinA sinB cosC = R.H.S",
+            "style": "boxed"
+          }
         ]
       }
     ]

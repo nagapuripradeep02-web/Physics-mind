@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 21, book p.86. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards recognising the expression as tan 2x first — with the point x = π/4 where it has no value named there — and the sign interval second, because the answer is a set and a bare inequality without the excluded point is incomplete. Paper position: Maths-1A Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern; Trigonometric Ratios and Transformations holds two of those ten slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Checked numerically: (2 tan x)/(1 − tan²x) equals tan 2x to ten decimal places at x = 1°, 30°, 44.9°, 45.1°, 60° and 89°; it is positive at 1° and 30°, negative at 60° and 89°, and at x = 45° the denominator is 0 so the expression has no value. Reading of the stem: 'in the first quadrant' is taken as the open interval 0 < x < π/2, which is why x = 0 is not in the answer — at x = 0 the value is 0, and 0 is not positive."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 21, book p.86. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards recognising the expression as tan 2x first — with the point x = π/4 where it has no value named there — and the sign interval second, because the answer is a set and a bare inequality without the excluded point is incomplete. Paper position: Maths-1A Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern; Trigonometric Ratios and Transformations holds two of those ten slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Checked numerically: (2 tan x)/(1 − tan²x) equals tan 2x to ten decimal places at x = 1°, 30°, 44.9°, 45.1°, 60° and 89°; it is positive at 1° and 30°, negative at 60° and 89°, and at x = 45° the denominator is 0 so the expression has no value. Reading of the stem: 'in the first quadrant' is taken as the open interval 0 < x < π/2, which is why x = 0 is not in the answer — at x = 0 the value is 0, and 0 is not positive. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say what this expression really is, and say which values of x in the first quadrant make it positive.",
   "answer": {
@@ -55,7 +55,9 @@
           "In the first quadrant 0 < x < π/2.",
           "There tan x is defined, and",
           "(2 tan x)/(1 − tan²x) = tan 2x",
+          "(this is the double-angle formula for tan)",
           "This needs 1 − tan²x ≠ 0, so tan x ≠ 1.",
+          "(tan x > 0 in the first quadrant, so tan x ≠ −1)",
           "At x = π/4, tan x = 1 and the expression",
           "has no value, so x = π/4 is left out."
         ],
@@ -96,7 +98,15 @@
         "margin_note": "Second mark. Doubling sends 0 < x < π/2 onto 0 < 2x < π. Tangent is positive on the first half of that and negative on the second, so the answer is the open interval (0, π/4).",
         "memory_tip": "Doubling turns 0 < x < π/2 into 0 < 2x < π. Tangent is positive on the first half only, so x < π/4.",
         "lines": [
+          {
+            "text": "Double the range of x:",
+            "added": true
+          },
           "0 < x < π/2 gives 0 < 2x < π.",
+          {
+            "text": "tan is positive in Q₁ and negative in Q₂:",
+            "added": true
+          },
           "tan 2x is positive only for 0 < 2x < π/2,",
           "that is for 0 < x < π/4.",
           "For π/4 < x < π/2, 2x lies in the second",
@@ -133,6 +143,17 @@
           "Giving the whole first quadrant as the answer.",
           "Including x = π/4, where the expression has no value.",
           "Writing 0 ≤ x, although the value at x = 0 is 0 and 0 is not positive."
+        ],
+        "lines_compact": [
+          "0 < x < π/2 gives 0 < 2x < π.",
+          "tan 2x is positive only for 0 < 2x < π/2,",
+          "that is for 0 < x < π/4.",
+          "For π/4 < x < π/2, 2x lies in the second",
+          "quadrant and tan 2x is negative.",
+          {
+            "text": "∴ x ∈ (0, π/4), that is 0° < x < 45°",
+            "style": "boxed"
+          }
         ]
       }
     ]

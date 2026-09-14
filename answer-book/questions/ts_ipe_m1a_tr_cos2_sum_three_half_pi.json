@@ -46,7 +46,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), the TRANSFORMATIONS banner (the book prints TRANSFORMATIONS as a separate un-numbered chapter-style banner immediately after chapter 8's VSAQ run, and restarts its numbering at 1 — we ship both under one unit, ordered by the syllabus, and never mirror the book's arrangement), Long Answer question 7(i), book p.102. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives its two two-mark blocks to the pairing and to the substitution cos(3π/2 − C) = −sin C, because that minus sign is where this question is actually lost; the remaining moves are one mark each. THE CONDITION IS 3π/2, NOT π AND NOT π/2, AND THAT DECIDES TWO SIGNS: A + B = 3π/2 − C gives cos(A+B) = −sin C, and C = 3π/2 − (A+B) gives sin C = −cos(A+B). Both minus signs are needed, and they are what turn the π/2 version's answer (1 + 4 sin A sin B sin C) into this one (1 − 4 sin A sin B sin C). A student who substitutes A + B = π − C here gets the wrong sign twice. NUMERIC CHECK (before authoring and again after): at A = 100°, B = 80°, C = 90°, which sums to 270°, L.H.S = −2.8793852416 and R.H.S = −2.8793852416; re-checked on a second, non-right-angled witness A = 110°, B = 95°, C = 65°, where both sides equal −2.3936398058. The printed identity is correct as stated. Paper position: Maths-1A Section C prints 3 long answers and the student answers any 2, at 8 marks each (2026-27 pattern). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), the TRANSFORMATIONS banner (the book prints TRANSFORMATIONS as a separate un-numbered chapter-style banner immediately after chapter 8's VSAQ run, and restarts its numbering at 1 — we ship both under one unit, ordered by the syllabus, and never mirror the book's arrangement), Long Answer question 7(i), book p.102. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives its two two-mark blocks to the pairing and to the substitution cos(3π/2 − C) = −sin C, because that minus sign is where this question is actually lost; the remaining moves are one mark each. THE CONDITION IS 3π/2, NOT π AND NOT π/2, AND THAT DECIDES TWO SIGNS: A + B = 3π/2 − C gives cos(A+B) = −sin C, and C = 3π/2 − (A+B) gives sin C = −cos(A+B). Both minus signs are needed, and they are what turn the π/2 version's answer (1 + 4 sin A sin B sin C) into this one (1 − 4 sin A sin B sin C). A student who substitutes A + B = π − C here gets the wrong sign twice. NUMERIC CHECK (before authoring and again after): at A = 100°, B = 80°, C = 90°, which sums to 270°, L.H.S = −2.8793852416 and R.H.S = −2.8793852416; re-checked on a second, non-right-angled witness A = 110°, B = 95°, C = 65°, where both sides equal −2.3936398058. The printed identity is correct as stated. Paper position: Maths-1A Section C prints 3 long answers and the student answers any 2, at 8 marks each (2026-27 pattern). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this identity — name each move in order, and say what the 3π/2 condition does to the signs.",
   "answer": {
@@ -70,7 +70,12 @@
           },
           "Given A + B + C = 3π/2",
           "⇒ A + B = 3π/2 − C",
-          "The sum is 3π/2 here, not π."
+          "The sum is 3π/2 here, not π.",
+          "(So A, B, C are not the angles of a triangle;",
+          {
+            "text": "  only this given sum is used.)",
+            "style": "indent"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -109,6 +114,15 @@
         "memory_tip": "Pair the first two only. The halves in the formula cancel the 2s in cos 2A and cos 2B.",
         "lines": [
           "L.H.S = (cos2A + cos2B) + cos2C",
+          {
+            "text": "Use the sum formula with p = 2A, q = 2B:",
+            "added": true
+          },
+          {
+            "text": "  (p+q)/2 = A + B and (p−q)/2 = A − B",
+            "style": "indent",
+            "added": true
+          },
           "= 2 cos(A+B) cos(A−B) + cos2C",
           "  [∵ cos p + cos q = 2 cos((p+q)/2) cos((p−q)/2)]"
         ],
@@ -137,6 +151,11 @@
         "common_mistakes": [
           "Pairing cos 2B with cos 2C and then forgetting that B + C = 3π/2 − A, so that cos(B + C) = −sin A.",
           "Forgetting to halve the sum and the difference."
+        ],
+        "lines_compact": [
+          "L.H.S = (cos2A + cos2B) + cos2C",
+          "= 2 cos(A+B) cos(A−B) + cos2C",
+          "  [∵ cos p + cos q = 2 cos((p+q)/2) cos((p−q)/2)]"
         ]
       },
       {
@@ -148,8 +167,21 @@
         "margin_note": "Two marks, and the sign here decides the whole answer. cos(3π/2 − θ) = −sin θ, so a minus sign enters the expression.",
         "memory_tip": "cos(3π/2 − θ) = −sin θ. The MINUS is what makes the answer 1 − 4 sin A sin B sin C instead of 1 + 4 sin A sin B sin C.",
         "lines": [
+          {
+            "text": "Change cos(A+B) using the given sum:",
+            "added": true
+          },
           "cos(A+B) = cos(3π/2 − C) = −sinC",
           "  [∵ cos(3π/2 − θ) = −sinθ]",
+          {
+            "text": "(3π/2 is an odd multiple of π/2, so cos becomes",
+            "added": true
+          },
+          {
+            "text": "  sin; 3π/2 − θ is in Q₃, where cos is negative)",
+            "style": "indent",
+            "added": true
+          },
           "L.H.S = −2 sinC cos(A−B) + cos2C"
         ],
         "recall": {
@@ -178,6 +210,11 @@
         "common_mistakes": [
           "Writing cos(3π/2 − C) = +sin C and losing the minus.",
           "Writing cos(3π/2 − C) = −cos C, which mixes up the shift."
+        ],
+        "lines_compact": [
+          "cos(A+B) = cos(3π/2 − C) = −sinC",
+          "  [∵ cos(3π/2 − θ) = −sinθ]",
+          "L.H.S = −2 sinC cos(A−B) + cos2C"
         ]
       },
       {
@@ -189,9 +226,21 @@
         "margin_note": "Sixth mark. cos 2θ has three forms; only 1 − 2 sin²θ leaves a standalone 1, which is the first term on the right-hand side.",
         "memory_tip": "Choose cos 2C = 1 − 2 sin²C out of the three forms — it is the one that produces the 1 on the right.",
         "lines": [
+          {
+            "text": "Write cos2C so that a 1 and a sin²C appear:",
+            "added": true
+          },
           "cos2C = 1 − 2 sin²C",
           "L.H.S = 1 − 2 sinC cos(A−B) − 2 sin²C",
-          "= 1 − 2 sinC [cos(A−B) + sinC]"
+          {
+            "text": "Take out −2 sinC from the last two terms:",
+            "added": true
+          },
+          "= 1 − 2 sinC [cos(A−B) + sinC]",
+          {
+            "text": "(check: −2 sinC × sinC = −2 sin²C)",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -219,6 +268,11 @@
         "common_mistakes": [
           "Using cos 2C = 2 cos²C − 1, which produces cosines where the right-hand side carries sines.",
           "Pulling the 1 inside the bracket."
+        ],
+        "lines_compact": [
+          "cos2C = 1 − 2 sin²C",
+          "L.H.S = 1 − 2 sinC cos(A−B) − 2 sin²C",
+          "= 1 − 2 sinC [cos(A−B) + sinC]"
         ]
       },
       {
@@ -230,9 +284,21 @@
         "margin_note": "Seventh mark. The condition is used a SECOND time, and it carries a minus sign again: sin(3π/2 − θ) = −cos θ. That turns the bracket into a DIFFERENCE of cosines.",
         "memory_tip": "sin(3π/2 − θ) = −cos θ. The second minus turns the plus inside the bracket into a minus.",
         "lines": [
+          {
+            "text": "Write sinC in terms of A + B:",
+            "added": true
+          },
           "C = 3π/2 − (A+B)",
           "⇒ sinC = sin(3π/2 − (A+B)) = −cos(A+B)",
-          "Bracket = cos(A−B) − cos(A+B)"
+          {
+            "text": "(sin(3π/2 − θ) = −cos θ, by the same rule)",
+            "added": true
+          },
+          "Bracket = cos(A−B) − cos(A+B)",
+          {
+            "text": "(cos(A−B) + sinC = cos(A−B) − cos(A+B))",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -260,6 +326,11 @@
         "common_mistakes": [
           "Converting both sin C terms instead of only the inside one.",
           "Writing sin(3π/2 − θ) = +cos θ, which leaves the bracket as a sum."
+        ],
+        "lines_compact": [
+          "C = 3π/2 − (A+B)",
+          "⇒ sinC = sin(3π/2 − (A+B)) = −cos(A+B)",
+          "Bracket = cos(A−B) − cos(A+B)"
         ]
       },
       {
@@ -272,7 +343,15 @@
         "memory_tip": "cos(A−B) − cos(A+B) = 2 sin A sin B. The two 2s multiply to give the 4.",
         "lines": [
           "cos(A−B) − cos(A+B) = 2 sinA sinB",
+          {
+            "text": "(expand both; the cosA cosB terms cancel)",
+            "added": true
+          },
           "L.H.S = 1 − 2 sinC · 2 sinA sinB",
+          {
+            "text": "(2 × 2 = 4)",
+            "added": true
+          },
           {
             "text": "= 1 − 4 sinA sinB sinC = R.H.S",
             "style": "boxed"
@@ -304,6 +383,14 @@
         "common_mistakes": [
           "Using cos(A+B) − cos(A−B), which reverses the sign.",
           "Dropping the leading 1 while writing the final line."
+        ],
+        "lines_compact": [
+          "cos(A−B) − cos(A+B) = 2 sinA sinB",
+          "L.H.S = 1 − 2 sinC · 2 sinA sinB",
+          {
+            "text": "= 1 − 4 sinA sinB sinC = R.H.S",
+            "style": "boxed"
+          }
         ]
       }
     ]

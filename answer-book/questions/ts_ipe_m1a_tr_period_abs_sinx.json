@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.82, chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 1(iii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to showing that f(x + π) = f(x) and one to ruling out any smaller positive number, which is what makes π the period rather than only a period. Paper position: Maths-1A Section A prints ten very short answers of 2 marks each and the student writes all ten; Trigonometric Ratios and Transformations supplies two of those slots on almost every paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.82, chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 1(iii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to showing that f(x + π) = f(x) and one to ruling out any smaller positive number, which is what makes π the period rather than only a period. Paper position: Maths-1A Section A prints ten very short answers of 2 marks each and the student writes all ten; Trigonometric Ratios and Transformations supplies two of those slots on almost every paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — name the formula you use and how you finish.",
   "answer": {
@@ -53,8 +53,11 @@
             "style": "heading"
           },
           "Given f(x) = |sin x|",
+          "First show that π is a period:",
           "sin(x + π) = −sin x",
+          "(sin(π + x) = −sin x)",
           "∴ f(x + π) = |sin(x + π)| = |−sin x|",
+          "(|−u| = |u| for every number u)",
           "= |sin x| = f(x)",
           "So π is a period of f."
         ],
@@ -95,8 +98,21 @@
         "margin_note": "Second mark. π is not only a period, it is the smallest one: |sin x| is 0 at x = 0 and stays above 0 for every x between 0 and π.",
         "memory_tip": "Check the least period from the zeros: |sin x| is 0 at x = 0 and next 0 at x = π, so nothing smaller works.",
         "lines": [
+          {
+            "text": "Now show that no smaller positive number works:",
+            "added": true
+          },
           "|sin x| = 0 at x = 0, and |sin x| > 0 for",
           "every x with 0 < x < π.",
+          {
+            "text": "If T were a period with 0 < T < π, then",
+            "added": true
+          },
+          {
+            "text": "  f(T) = f(0 + T) = f(0) = 0, but f(T) > 0.",
+            "style": "indent",
+            "added": true
+          },
           "So no positive number smaller than π can",
           "be a period of f.",
           {
@@ -130,6 +146,16 @@
         "common_mistakes": [
           "Stopping after f(x + π) = f(x) without saying π is the least period.",
           "Giving π/2, which is the period of |sin 2x|, not of |sin x|."
+        ],
+        "lines_compact": [
+          "|sin x| = 0 at x = 0, and |sin x| > 0 for",
+          "every x with 0 < x < π.",
+          "So no positive number smaller than π can",
+          "be a period of f.",
+          {
+            "text": "∴ Period of |sin x| = π",
+            "style": "boxed"
+          }
         ]
       }
     ]

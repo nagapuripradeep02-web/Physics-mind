@@ -42,7 +42,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.40 — LAQ chapter 5 T-Ratios upto Transformations, answer 27.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: none — this answer carries no year tag, but its twin 27.2 on the same page carries AP 16,18,22 and TS 15. The HALF-angle family begins here. Dividing the angle condition by 2 gives (A+B)/2 = 90° − C/2, and every step below leans on it. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter (its pages are set two questions to a page in two columns, which takes the margin those tags would occupy). The 1+2+2+1+1 above follows the shape of the split the same book DOES print for LAQ answer 23 on book p.37, weighting the two substantial transformations against the set-up and the finish. The SAME split and the SAME step ids are used on all eight answers in this chapter, deliberately: they are ONE method over different identities — pair two terms, use the angle condition, factor, finish with a product formula. A student who learns that arc once can attempt any of them. The book's chapter header carries ★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Q23 is the Transformations slot and is ALWAYS a question of this kind. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Pair two terms with a sum-to-product formula."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.40 — LAQ chapter 5 T-Ratios upto Transformations, answer 27.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: none — this answer carries no year tag, but its twin 27.2 on the same page carries AP 16,18,22 and TS 15. The HALF-angle family begins here. Dividing the angle condition by 2 gives (A+B)/2 = 90° − C/2, and every step below leans on it. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter (its pages are set two questions to a page in two columns, which takes the margin those tags would occupy). The 1+2+2+1+1 above follows the shape of the split the same book DOES print for LAQ answer 23 on book p.37, weighting the two substantial transformations against the set-up and the finish. The SAME split and the SAME step ids are used on all eight answers in this chapter, deliberately: they are ONE method over different identities — pair two terms, use the angle condition, factor, finish with a product formula. A student who learns that arc once can attempt any of them. The book's chapter header carries ★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Q23 is the Transformations slot and is ALWAYS a question of this kind. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Pair two terms with a sum-to-product formula. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this identity — say the four moves in order, and where the angle condition gets used.",
   "answer": {
@@ -65,7 +65,13 @@
             "style": "heading"
           },
           "Given",
-          "A + B + C = 180°  ⇒  (A+B)/2 = 90° − C/2"
+          "A + B + C = 180°  ⇒  (A+B)/2 = 90° − C/2",
+          "(A + B = 180° − C; halve both sides.)",
+          "Take cos of both sides:",
+          {
+            "text": "  cos((A+B)/2) = cos(90° − C/2) = sin(C/2)",
+            "style": "indent"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -104,8 +110,39 @@
         "memory_tip": "Convert only ONE of the three terms: sin²(A/2) becomes 1 − cos²(A/2). That is where the leading 1 comes from.",
         "lines": [
           "L.H.S = sin²(A/2) + sin²(B/2) + sin²(C/2)",
+          {
+            "text": "Three squares cannot be paired as they stand.",
+            "added": true
+          },
+          {
+            "text": "Change the first term, using sin²θ + cos²θ = 1:",
+            "added": true
+          },
+          {
+            "text": "  sin²(A/2) = 1 − cos²(A/2)",
+            "style": "indent",
+            "added": true
+          },
           "= (1 − cos²(A/2)) + sin²(B/2) + sin²(C/2)",
-          "= 1 − (cos²(A/2) − sin²(B/2)) + sin²(C/2)"
+          {
+            "text": "Bring the 1 to the front; the minus sign now",
+            "added": true
+          },
+          {
+            "text": "  covers both of the first two terms:",
+            "style": "indent",
+            "added": true
+          },
+          "= 1 − (cos²(A/2) − sin²(B/2)) + sin²(C/2)",
+          {
+            "text": "The bracket is cos²x − sin²y,",
+            "added": true
+          },
+          {
+            "text": "  with x = A/2 and y = B/2.",
+            "style": "indent",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -132,6 +169,11 @@
         "common_mistakes": [
           "Converting all three terms, so no cos² − sin² pair is left to use.",
           "Grouping the wrong two squares."
+        ],
+        "lines_compact": [
+          "L.H.S = sin²(A/2) + sin²(B/2) + sin²(C/2)",
+          "= (1 − cos²(A/2)) + sin²(B/2) + sin²(C/2)",
+          "= 1 − (cos²(A/2) − sin²(B/2)) + sin²(C/2)"
         ]
       },
       {
@@ -143,9 +185,25 @@
         "margin_note": "Two more marks. This is where the angle condition is used: it converts an expression in A and B into one in C, so that every term shares a factor.",
         "memory_tip": "cos(90° − C/2) is sin(C/2), not cos(C/2). Watch the sum and difference order in the identity.",
         "lines": [
+          {
+            "text": "Use cos²x − sin²y = cos(x+y) cos(x−y):",
+            "added": true
+          },
           "= 1 − (cos((A+B)/2) cos((A−B)/2)) + sin²(C/2)",
           "  [∵ cos²x − sin²y = cos(x+y) cos(x−y)]",
+          {
+            "text": "(x + y = (A+B)/2 and x − y = (A−B)/2)",
+            "added": true
+          },
+          {
+            "text": "Use the given condition in the first factor:",
+            "added": true
+          },
           "= 1 − cos(90° − C/2) cos((A−B)/2) + sin²(C/2)",
+          {
+            "text": "(cos(90° − θ) = sin θ)",
+            "added": true
+          },
           "= 1 − sin(C/2) cos((A−B)/2) + sin²(C/2)"
         ],
         "recall": {
@@ -174,6 +232,12 @@
         "common_mistakes": [
           "Writing cos(90° − C/2) = cos(C/2).",
           "Applying the identity with the sum and difference swapped."
+        ],
+        "lines_compact": [
+          "= 1 − (cos((A+B)/2) cos((A−B)/2)) + sin²(C/2)",
+          "  [∵ cos²x − sin²y = cos(x+y) cos(x−y)]",
+          "= 1 − cos(90° − C/2) cos((A−B)/2) + sin²(C/2)",
+          "= 1 − sin(C/2) cos((A−B)/2) + sin²(C/2)"
         ]
       },
       {
@@ -185,7 +249,19 @@
         "margin_note": "Seventh mark. The common factor comes out, and the condition is used a SECOND time inside the bracket so that both bracket terms are the same kind of function.",
         "memory_tip": "Both bracket terms must be the same kind of function, or no formula applies. There is no 2 to take out.",
         "lines": [
+          {
+            "text": "Take out −sin(C/2) from the last two terms:",
+            "added": true
+          },
           "= 1 − sin(C/2) [cos((A−B)/2) − sin(C/2)]",
+          {
+            "text": "(check: −sin(C/2) × (−sin(C/2)) = +sin²(C/2))",
+            "added": true
+          },
+          {
+            "text": "Use the condition again, inside the bracket:",
+            "added": true
+          },
           "= 1 − sin(C/2) [cos((A−B)/2) − cos((A+B)/2)]",
           "  [∵ sin(C/2) = cos((A+B)/2)]"
         ],
@@ -215,6 +291,11 @@
         "common_mistakes": [
           "Leaving one bracket term as a sine, so no formula applies.",
           "Taking out 2 sin(C/2) when there is no 2."
+        ],
+        "lines_compact": [
+          "= 1 − sin(C/2) [cos((A−B)/2) − sin(C/2)]",
+          "= 1 − sin(C/2) [cos((A−B)/2) − cos((A+B)/2)]",
+          "  [∵ sin(C/2) = cos((A+B)/2)]"
         ]
       },
       {
@@ -226,8 +307,25 @@
         "margin_note": "Last mark. One more sum-or-difference formula turns the bracket into a product, and the identity is complete. Write \"= R.H.S\" so the examiner can see the proof finished.",
         "memory_tip": "Get the ARGUMENT order right or a sign appears, and keep the leading 1.",
         "lines": [
+          {
+            "text": "The bracket is cos x − cos y with",
+            "added": true
+          },
+          {
+            "text": "  x = (A−B)/2 and y = (A+B)/2:",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "(x+y)/2 = A/2 and (y−x)/2 = B/2",
+            "added": true
+          },
           "= 1 − sin(C/2) (2 sin(A/2) sin(B/2))",
           "  [∵ cos x − cos y = 2 sin((x+y)/2) sin((y−x)/2)]",
+          {
+            "text": "Multiply and reorder the factors:",
+            "added": true
+          },
           {
             "text": "= 1 − 2 sin(A/2) sin(B/2) sin(C/2) = R.H.S",
             "style": "boxed"
@@ -259,6 +357,14 @@
         "common_mistakes": [
           "Getting the order of the arguments wrong and picking up a sign.",
           "Forgetting the leading 1."
+        ],
+        "lines_compact": [
+          "= 1 − sin(C/2) (2 sin(A/2) sin(B/2))",
+          "  [∵ cos x − cos y = 2 sin((x+y)/2) sin((y−x)/2)]",
+          {
+            "text": "= 1 − 2 sin(A/2) sin(B/2) sin(C/2) = R.H.S",
+            "style": "boxed"
+          }
         ]
       }
     ]

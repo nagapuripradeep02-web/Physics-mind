@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.93 — VSAQ chapter 18 T-Ratios upto Transformations, answer 127.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: the single tag 'IPE 14' — a PRE-BIFURCATION paper, before the 2014 TS/AP split. appearances[].board has no value for that era, so the year is recorded here in prose and appearances[] is left empty rather than guessing a board. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four or six questions to a page in two columns. It is not a bare guess on two counts: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, and THIS chapter's own header note reads \"Writing Formula itself gets you 1 Mark in these Questions\" — which is why the first step of every answer here IS the formula or the set-up. The book's chapter header carries ★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because T-Ratios holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q8 and Q9 are the two T-Ratios slots."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.93 — VSAQ chapter 18 T-Ratios upto Transformations, answer 127.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: the single tag 'IPE 14' — a PRE-BIFURCATION paper, before the 2014 TS/AP split. appearances[].board has no value for that era, so the year is recorded here in prose and appearances[] is left empty rather than guessing a board. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four or six questions to a page in two columns. It is not a bare guess on two counts: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, and THIS chapter's own header note reads \"Writing Formula itself gets you 1 Mark in these Questions\" — which is why the first step of every answer here IS the formula or the set-up. The book's chapter header carries ★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because T-Ratios holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q8 and Q9 are the two T-Ratios slots. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — name the formula you use and how you finish.",
   "answer": {
@@ -54,6 +54,7 @@
           },
           "Given f(x) = 3sinx − 4cosx",
           "Comparing with a sinx + b cosx + c:",
+          "(the minus sign goes with b, so b = −4)",
           "a = 3, b = −4, c = 0",
           "√(a² + b²) = √(9 + 16) = √25 = 5"
         ],
@@ -94,6 +95,28 @@
         "margin_note": "Second mark. Same as the 3cosx + 4sinx version — and the same answers, because the amplitude is the same.",
         "memory_tip": "Same answers as the plus version, because the amplitude √(a² + b²) is the same.",
         "lines": [
+          {
+            "text": "a sin θ + b cos θ always lies between",
+            "added": true
+          },
+          {
+            "text": "  −√(a² + b²) and +√(a² + b²), and reaches both",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "(it can be written √(a² + b²) sin(θ + α), and",
+            "added": true
+          },
+          {
+            "text": "  sin(θ + α) lies between −1 and 1)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "(here θ is x)",
+            "added": true
+          },
           "Maximum = c + √(a²+b²) = 0 + 5 = 5",
           "Minimum = c − √(a²+b²) = 0 − 5 = −5",
           {
@@ -126,6 +149,14 @@
         "common_mistakes": [
           "Expecting a different answer because of the minus.",
           "Giving only one value."
+        ],
+        "lines_compact": [
+          "Maximum = c + √(a²+b²) = 0 + 5 = 5",
+          "Minimum = c − √(a²+b²) = 0 − 5 = −5",
+          {
+            "text": "∴ Maximum = 5, Minimum = −5",
+            "style": "boxed"
+          }
         ]
       }
     ]

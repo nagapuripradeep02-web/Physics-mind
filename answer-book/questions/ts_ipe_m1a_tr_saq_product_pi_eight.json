@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.67 — SAQ chapter 10 T-Ratios upto Transformations, answer 67. Printed appearances: none — this answer carries no year tag. A PRODUCT, not a sum. The four brackets pair up into two differences of squares, which is what makes it collapse. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter (its pages are set two questions to a page in two columns). It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used here are the book's own. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q14 is the T-Ratios slot."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.67 — SAQ chapter 10 T-Ratios upto Transformations, answer 67. Printed appearances: none — this answer carries no year tag. A PRODUCT, not a sum. The four brackets pair up into two differences of squares, which is what makes it collapse. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter (its pages are set two questions to a page in two columns). It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used here are the book's own. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q14 is the T-Ratios slot. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — name each move in order.",
   "answer": {
@@ -60,8 +60,14 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "The last two angles are π minus the first two:",
+          {
+            "text": "  5π/8 = π − 3π/8 and 7π/8 = π − π/8",
+            "style": "indent"
+          },
           "cos(5π/8) = cos(π − 3π/8) = −cos(3π/8)",
-          "cos(7π/8) = cos(π − π/8) = −cos(π/8)"
+          "cos(7π/8) = cos(π − π/8) = −cos(π/8)",
+          "(cos(π − θ) = −cos θ)"
         ],
         "recall": {
           "credit": "say_it",
@@ -100,9 +106,21 @@
         "margin_note": "Second mark. Pair each (1 + x) with its matching (1 − x). Each pair gives 1 − x², and 1 − cos² is sin².",
         "memory_tip": "Pair each (1 + x) with its matching (1 − x): each pair gives 1 − x², and 1 − cos² is sin².",
         "lines": [
+          {
+            "text": "Put these into the product:",
+            "added": true
+          },
           "L.H.S = (1 + cos(π/8))(1 + cos(3π/8))",
           "    × (1 − cos(3π/8))(1 − cos(π/8))",
+          {
+            "text": "Pair (1 + c)(1 − c) = 1 − c² for each angle:",
+            "added": true
+          },
           "= (1 − cos²(π/8))(1 − cos²(3π/8))",
+          {
+            "text": "(1 − cos²θ = sin²θ)",
+            "added": true
+          },
           "= sin²(π/8) sin²(3π/8)"
         ],
         "recall": {
@@ -131,6 +149,12 @@
         "common_mistakes": [
           "Pairing the brackets in the order written.",
           "Writing 1 − cos² as cos²."
+        ],
+        "lines_compact": [
+          "L.H.S = (1 + cos(π/8))(1 + cos(3π/8))",
+          "    × (1 − cos(3π/8))(1 − cos(π/8))",
+          "= (1 − cos²(π/8))(1 − cos²(3π/8))",
+          "= sin²(π/8) sin²(3π/8)"
         ]
       },
       {
@@ -142,7 +166,19 @@
         "margin_note": "Third mark. sin(3π/8) is cos(π/8), so the product becomes sin² times cos² of the SAME angle — which the double-angle formula can handle.",
         "memory_tip": "sin(3π/8) = cos(π/8), so the product is sin² times cos² of the SAME angle.",
         "lines": [
+          {
+            "text": "Write sin(3π/8) through π/8:",
+            "added": true
+          },
+          {
+            "text": "(3π/8 = 4π/8 − π/8 = π/2 − π/8)",
+            "added": true
+          },
           "sin(3π/8) = sin(π/2 − π/8) = cos(π/8)",
+          {
+            "text": "(sin(π/2 − θ) = cos θ)",
+            "added": true
+          },
           "= sin²(π/8) cos²(π/8)"
         ],
         "recall": {
@@ -170,6 +206,10 @@
         "common_mistakes": [
           "Leaving the two different angles and being unable to finish.",
           "Writing sin(3π/8) = sin(π/8)."
+        ],
+        "lines_compact": [
+          "sin(3π/8) = sin(π/2 − π/8) = cos(π/8)",
+          "= sin²(π/8) cos²(π/8)"
         ]
       },
       {
@@ -181,8 +221,25 @@
         "margin_note": "Last mark. Introduce a 1/4 so that 2 sin cos can be formed, then sin(π/4) = 1/√2.",
         "memory_tip": "Introduce a 1/4 so 2 sin cos can be formed, then sin(π/4) = 1/√2.",
         "lines": [
+          {
+            "text": "Make 2 sin θ cos θ appear: multiply inside the",
+            "added": true
+          },
+          {
+            "text": "  square by 2 and outside by 1/4 (2² = 4):",
+            "style": "indent",
+            "added": true
+          },
           "= (1/4)[2 sin(π/8) cos(π/8)]²",
+          {
+            "text": "(2 sin θ cos θ = sin 2θ, with θ = π/8)",
+            "added": true
+          },
           "= (1/4)[sin(π/4)]² = (1/4)(1/√2)²",
+          {
+            "text": "(sin(π/4) = 1/√2, and (1/√2)² = 1/2)",
+            "added": true
+          },
           {
             "text": "= (1/4)(1/2) = 1/8 = R.H.S",
             "style": "boxed"
@@ -214,6 +271,14 @@
         "common_mistakes": [
           "Not introducing the 1/4 and being unable to form the double angle.",
           "Finishing at 1/2."
+        ],
+        "lines_compact": [
+          "= (1/4)[2 sin(π/8) cos(π/8)]²",
+          "= (1/4)[sin(π/4)]² = (1/4)(1/√2)²",
+          {
+            "text": "= (1/4)(1/2) = 1/8 = R.H.S",
+            "style": "boxed"
+          }
         ]
       }
     ]
