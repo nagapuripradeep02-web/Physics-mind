@@ -96,8 +96,8 @@
         },
         "why": "Differentiating the expression as it stands needs the chain rule three times, on the inverse tangent, the square root and the quotient. The substitution replaces all of that with two half-angle identities and one differentiation. Putting x = cos θ also works, because (1 − cos θ)/(1 + cos θ) = tan²(θ/2); cos 2θ is preferred only because it avoids half-angles.",
         "common_mistakes": [
-          "Substituting x = sin 2θ, which does not turn 1 − x and 1 + x into perfect squares.",
-          "Differentiating directly with three nested chain rules, which is correct but long and easily lost."
+          "Substituting x = cos θ but writing 1 − cos θ = 2sin²θ without the half angle, which gives y = Cos⁻¹x and loses the factor ½.",
+          "Taking θ = cos⁻¹x instead of θ = ½cos⁻¹x, which loses the factor ½ in the answer."
         ],
         "memory_tip": "When 1 − x and 1 + x both appear, put x = cos 2θ. The two half-angle identities then turn the pair into 2sin²θ and 2cos²θ."
       },

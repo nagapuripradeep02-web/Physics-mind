@@ -46,7 +46,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Write sec²x as (sec x)² so that the chain rule is visible on the second differentiation. Use d/dx(sec x) = sec x tan x.",
-        "memory_tip": "Differentiating tan x once gives sec²x. Differentiating that again brings out a second sec x tan x, so the answer is 2 sec²x tan x.",
+        "memory_tip": "Differentiating tan x once gives sec²x. Differentiating sec²x gives 2 sec x · sec x tan x, so the answer is 2 sec²x tan x.",
         "lines": [
           {
             "text": "Sol:",

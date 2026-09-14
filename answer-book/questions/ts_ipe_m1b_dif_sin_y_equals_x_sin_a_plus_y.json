@@ -97,10 +97,10 @@
         },
         "why": "Differentiating sin y = x sin(a + y) with respect to x needs the product rule on the right and leaves dy/dx in two places, which then has to be collected. Making x the subject avoids all of that, because x stands alone and only the right side needs differentiating.",
         "common_mistakes": [
-          "Differentiating the given relation with respect to x, which is correct but far longer and often abandoned halfway.",
+          "Writing x = sin(a + y)/sin y by dividing the wrong way, which gives dx/dy = −sin a/sin²y.",
           "Treating a as a variable and differentiating sin(a + y) as if a changed."
         ],
-        "memory_tip": "Differentiate with respect to whichever variable is already alone. Here that is x, so the first derivative found is dx/dy, not dy/dx."
+        "memory_tip": "Make the variable that separates easily the subject, then differentiate it with respect to the other variable. Here x = sin y/sin(a + y), so the first derivative found is dx/dy, not dy/dx."
       },
       {
         "id": "s2_quotient_rule",
@@ -108,7 +108,7 @@
         "label": "Differentiate x with respect to y",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Second mark. a is a constant, so d/dy of sin(a + y) is cos(a + y) with no extra factor. Write the quotient rule out in full — the four terms in the numerator are needed for the next step.",
+        "margin_note": "Second mark. a is a constant, so d/dy of sin(a + y) is cos(a + y) with no extra factor. Write the quotient rule out in full — the two products in the numerator are needed for the next step.",
         "lines": [
           "Differentiate with respect to y by the quotient rule,",
           "taking u = sin y and v = sin(a + y):",
@@ -161,7 +161,7 @@
           "Differentiating with respect to x by mistake and writing cos(a + y)(dy/dx) in a working that is meant to be in y alone.",
           "Reversing the numerator to sin y cos(a + y) − sin(a + y) cos y, which gives −sin a and the wrong sign."
         ],
-        "memory_tip": "Leave the numerator as it stands. Four trigonometric terms in the order sin·cos − cos·sin are always about to become a single sine.",
+        "memory_tip": "Leave the numerator as it stands. Two products in the order sin·cos − cos·sin can be written as a single sine.",
         "lines_compact": [
           "Differentiate with respect to y by the quotient rule,",
           "taking u = sin y and v = sin(a + y):",
@@ -216,7 +216,7 @@
         },
         "why": "Without the compound angle formula the numerator stays as four trigonometric terms and nothing simplifies. Recognising it as sin((a + y) − y) reduces the numerator to the constant sin a in one line.",
         "common_mistakes": [
-          "Expanding sin(a + y) and cos(a + y) term by term, which fills a page and rarely reaches sin a.",
+          "Writing dx/dy = sin a/sin(a + y), losing the square on the quotient-rule denominator.",
           "Writing the numerator as sin(a + 2y) by adding the angles instead of subtracting them."
         ],
         "memory_tip": "Match the pattern before expanding anything: sin·cos − cos·sin is a sine of a DIFFERENCE, and here the difference is (a + y) − y = a.",

@@ -106,6 +106,7 @@
             "text": "(multiply out (x + h) sin(x + h))",
             "added": true
           },
+          "(x + h) sin(x + h) = x sin(x + h) + h sin(x + h)",
           {
             "text": "(subtract x sin x: x sin(x + h) − x sin x",
             "added": true
@@ -115,7 +116,6 @@
             "style": "indent",
             "added": true
           },
-          "(x + h) sin(x + h) = x sin(x + h) + h sin(x + h)",
           "so the numerator is",
           "x[sin(x + h) − sin x] + h sin(x + h)",
           {

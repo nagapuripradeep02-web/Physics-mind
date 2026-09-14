@@ -271,7 +271,7 @@
         "label": "Write y in terms of x",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "One mark. Going back to x before differentiating is safer than differentiating in θ and chasing dθ/dx afterwards.",
+        "margin_note": "One mark. Going back to x before differentiating is shorter than differentiating in θ and then finding dθ/dx separately.",
         "lines": [
           {
             "text": "(from step 1, x² = cos 2θ with 2θ in (0, π/2), inside [0, π])",
@@ -372,7 +372,7 @@
           "Dropping the minus sign from the derivative of Cos⁻¹ and reporting x/√(1 − x⁴).",
           "Writing √(1 − x²) in the denominator instead of √(1 − x⁴), by forgetting that u is x² and not x."
         ],
-        "memory_tip": "Sin⁻¹ and Cos⁻¹ have the same denominator and opposite signs. Cos⁻¹ takes the minus, because the cosine decreases as the angle grows.",
+        "memory_tip": "Sin⁻¹ and Cos⁻¹ have the same denominator and opposite signs. Cos⁻¹ takes the minus, because the cosine decreases as the angle grows from 0 to π.",
         "lines_compact": [
           "π/4 is a constant, so it differentiates to 0.",
           "d/dx[Cos⁻¹u] = −(1/√(1 − u²))·(du/dx), here with u = x²",

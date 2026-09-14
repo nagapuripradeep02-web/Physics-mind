@@ -49,7 +49,7 @@
         "label": "Differentiate once",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. (b + 2x) sin x is a product of two functions of x, so the product rule is compulsory here — it is where most of the marks are lost.",
+        "margin_note": "First mark. (b + 2x) sin x is a product of two functions of x, so the product rule is compulsory here.",
         "lines": [
           {
             "text": "Sol:",
@@ -209,7 +209,7 @@
             "a cos x"
           ]
         },
-        "why": "The constants a and b must vanish, because the required answer 4 cos x contains neither. Their cancelling is the check that the two derivatives are right.",
+        "why": "The constants a and b must vanish, because the required answer 4 cos x contains neither. Their cancelling is one check on the two derivatives, but it does not check the 4: a and b also cancel when a 2 cos x is missed.",
         "common_mistakes": [
           "Subtracting y instead of adding it.",
           "Leaving a or b in the final line, which means an earlier sign is wrong."

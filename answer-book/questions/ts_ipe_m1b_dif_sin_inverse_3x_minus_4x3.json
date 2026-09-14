@@ -91,11 +91,11 @@
             "three sin inverse x"
           ]
         },
-        "why": "The direct chain rule leaves √(1 − (3x − 4x³)²), a degree-six expression under a root that does not factor by hand in the time a 2-mark question allows. The substitution removes it completely.",
+        "why": "The direct chain rule leaves √(1 − (3x − 4x³)²), a degree-six expression under a root that factors as (1 − x²)(1 − 4x²)² only after several lines of algebra. The substitution removes it completely.",
         "common_mistakes": [
           "Substituting x = cos θ, which fits 4x³ − 3x and not 3x − 4x³.",
           "Writing sin 3θ as 4sin³θ − 3 sin θ, which is the cosine pattern with the wrong function.",
-          "Omitting the range and writing y = 3 Sin⁻¹x for every x, when the sign is different for 1/2 < x < 1."
+          "Omitting the range and writing y = 3 Sin⁻¹x for every x, when y = π − 3 Sin⁻¹x for 1/2 < x ≤ 1 and y = −π − 3 Sin⁻¹x for −1 ≤ x < −1/2, so dy/dx changes sign for 1/2 < |x| < 1."
         ]
       },
       {

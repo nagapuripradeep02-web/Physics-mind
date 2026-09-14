@@ -101,7 +101,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Tan⁻¹(tan θ) = θ only when θ is inside (−π/2, π/2), and x/2 is, so y is simply x/2. The derivative of x/2 is the constant 1/2.",
-        "memory_tip": "The whole expression reduces to x/2, so the derivative is a constant and no chain rule is needed.",
+        "memory_tip": "For 0 < x < π the expression reduces to x/2, so the derivative is a constant and no chain rule is needed.",
         "lines": [
           {
             "text": "(put √(tan²(x/2)) = tan(x/2) into y)",
@@ -162,5 +162,5 @@
       }
     ]
   },
-  "insider_note": "The half-angle identities turn the fraction into tan²(x/2), so the root and the Tan⁻¹ cancel and y is just x/2. The answer is the constant 1/2."
+  "insider_note": "The half-angle identities turn the fraction into tan²(x/2), so for 0 < x < π the root and the Tan⁻¹ cancel and y is just x/2. The answer there is the constant 1/2."
 }

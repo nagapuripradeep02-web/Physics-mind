@@ -176,7 +176,7 @@
         },
         "why": "Three separate terms carry dy/dx, so the mark is for gathering all three and none of the others. Missing the lone +2(dy/dx) is the usual way this answer comes out wrong.",
         "common_mistakes": [
-          "Leaving the +2(dy/dx) term on the other side, giving 2y − 3x as the denominator.",
+          "Missing the +2(dy/dx) term when collecting, which gives 2y − 3x as the denominator.",
           "Sign slips when the terms 4x, −3y and +1 are moved across."
         ],
         "lines_compact": [

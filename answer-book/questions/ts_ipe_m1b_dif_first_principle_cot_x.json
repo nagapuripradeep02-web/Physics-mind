@@ -161,7 +161,7 @@
           "Writing sin(−h) as sin h.",
           "Trying cot A − cot B = cot(A − B), which is not an identity."
         ],
-        "memory_tip": "cot is cos over sin, so the top comes out as sin of (first angle minus second). Here that is x − (x + h) = −h.",
+        "memory_tip": "cot is cos over sin, so the top comes out as sin of (the second angle minus the first). Here that is x − (x + h) = −h.",
         "lines_compact": [
           "cot θ = cos θ/sin θ, so",
           "cot(x + h) − cot x",

@@ -104,7 +104,7 @@
         "label": "Collect the dy/dx terms and solve",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Second mark. Divide by 3 first, then move the two dy/dx terms to one side and everything else to the other. State y² ≠ ax, where the tangent is vertical.",
+        "margin_note": "Second mark. Divide by 3 first, then move the two dy/dx terms to one side and everything else to the other. State y² ≠ ax, because the formula has no value there.",
         "memory_tip": "The denominator is the numerator with x and y exchanged and then the sign reversed: ay − x² on top, y² − ax below. Check the sign, not only the letters.",
         "lines": [
           "Divide throughout by 3:",

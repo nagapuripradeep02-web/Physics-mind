@@ -82,7 +82,7 @@
             "root tan x"
           ]
         },
-        "why": "The chain rule works from the outside inwards, so the order of the factors is decided before any differentiating happens. Starting from tan x instead gives the same three pieces in the wrong arrangement and usually loses the 2√(tan x) denominator.",
+        "why": "The chain rule works from the outside inwards, so naming the layers first shows which factor comes from which layer. Starting from tan x gives the same three factors, but it is easier to lose the 2√(tan x) denominator.",
         "common_mistakes": [
           "Starting from tan x and losing track of which layer is next.",
           "Writing d/dx(sec u) = sec u tan u and stopping, with no du/dx."

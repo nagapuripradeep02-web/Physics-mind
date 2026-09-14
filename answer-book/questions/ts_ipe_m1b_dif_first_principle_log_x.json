@@ -257,7 +257,7 @@
         },
         "why": "Every factor is now accounted for: the 1/x is outside the limit and the limit is 1, so nothing is left to evaluate.",
         "common_mistakes": [
-          "Giving 1/(x + h) by taking the limit in only part of the expression.",
+          "Putting t = 0 in log(1 + t) alone and giving the limit as 0 instead of 1.",
           "Giving (log x)/x by cancelling the wrong thing."
         ],
         "memory_tip": "The 1/x is the factor pulled outside; the logarithm limit contributes only 1.",

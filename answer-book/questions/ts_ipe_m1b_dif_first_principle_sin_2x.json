@@ -165,7 +165,7 @@
             "sin h"
           ]
         },
-        "why": "The numerator is a difference of two sines. Sum-to-product turns it into a product, and only a product can be separated into a factor with an ordinary limit and a factor of the form sin h over h.",
+        "why": "The numerator is a difference of two sines. Sum-to-product turns it into a product, which separates into a factor with an ordinary limit and a factor of the form sin h over h.",
         "common_mistakes": [
           "Using sin C + sin D = 2 sin((C+D)/2) cos((C−D)/2), which is the wrong member of the pair.",
           "Halving only one of the two angles."

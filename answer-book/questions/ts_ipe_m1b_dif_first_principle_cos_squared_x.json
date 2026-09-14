@@ -210,7 +210,7 @@
         "why": "The product splits into a factor that is continuous at h = 0 and a factor that is the standard limit, so each can be evaluated on its own.",
         "common_mistakes": [
           "Cancelling sin h against h as though they were equal.",
-          "Letting h → 0 inside sin(2x + h) while still keeping h in sin h."
+          "Putting h = 0 in sin h on top while keeping h below, which gives 0 instead of using (sin h)/h → 1."
         ],
         "memory_tip": "Split the product first, then take limits one factor at a time.",
         "lines_compact": [
@@ -270,7 +270,7 @@
             "sin two x"
           ]
         },
-        "why": "The double angle appears because A + B was 2x + h. Checking that −sin 2x equals −2 sin x cos x confirms the identity was used the right way round.",
+        "why": "The double angle appears because A + B was 2x + h. Comparing −sin 2x with the chain-rule result 2 cos x · (−sin x) = −2 sin x cos x confirms the identity was used the right way round.",
         "common_mistakes": [
           "Giving +sin 2x by dropping the minus from the identity.",
           "Treating −2 sin x cos x as a different answer from −sin 2x."

@@ -154,7 +154,7 @@
             "product rule"
           ]
         },
-        "why": "Differentiating log y gives (1/y)(dy/dx), so y has to be put back before the answer is complete. Stopping at 1 + log x is the most common way this mark is lost.",
+        "why": "Differentiating log y gives (1/y)(dy/dx), so y has to be put back before the answer is complete. Stopping at 1 + log x is a common way this mark is lost.",
         "common_mistakes": [
           "Stopping at (1/y)(dy/dx) = 1 + log x without multiplying by y.",
           "Differentiating x log x as log x only, losing the 1 that comes from x · (1/x)."

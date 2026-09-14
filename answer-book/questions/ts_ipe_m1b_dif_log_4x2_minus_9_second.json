@@ -46,7 +46,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Either method is accepted; differentiating directly gives dy/dx = 8x/(4x² − 9), which is the same thing. Domain: 4x² − 9 > 0, so x > 3/2 or x < −3/2.",
-        "memory_tip": "A difference of two squares inside a logarithm becomes two logarithms added. Factorise before differentiating, not after.",
+        "memory_tip": "A difference of two squares inside a logarithm becomes two logarithms added when both factors are positive (here x > 3/2). Factorise before differentiating, not after.",
         "lines": [
           {
             "text": "Sol:",
@@ -177,7 +177,7 @@
         "why": "Both terms differentiate the same way, so the second derivative comes out in a single line. Putting the two over a common denominator gives the single-fraction form, which is the same answer written differently.",
         "common_mistakes": [
           "Writing +4/(2x − 3)² + 4/(2x + 3)², missing the minus that comes from the power −1.",
-          "Forgetting the inner 2 on each term and writing −1/(2x − 3)² − 1/(2x + 3)²."
+          "Forgetting the inner 2 the second time and writing −2/(2x − 3)² − 2/(2x + 3)²."
         ],
         "lines_compact": [
           "Write each term as a power:",

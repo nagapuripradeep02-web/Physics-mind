@@ -304,7 +304,7 @@
             "final form"
           ]
         },
-        "why": "The question states the answer, so the marks are for landing on that exact form. Clearing the small fractions x/y and y/x is what turns the rearranged equation into the printed expression, with y on top and x on the bottom.",
+        "why": "The question states the answer, so the marks are for reaching that exact form. Clearing the small fractions x/y and y/x is what turns the rearranged equation into the printed expression, with y on top and x on the bottom.",
         "common_mistakes": [
           "Leaving the answer as (log y − y/x)/(log x − x/y), which is correct but is not the form asked for.",
           "Exchanging x and y in the final line, which gives a different fraction."

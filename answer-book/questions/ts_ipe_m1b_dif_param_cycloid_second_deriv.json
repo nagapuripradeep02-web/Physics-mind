@@ -157,7 +157,7 @@
         "label": "Differentiate dy/dx with respect to t",
         "marks": 1,
         "mark_note": "Solution",
-        "margin_note": "Third mark. dy/dx is a function of t, not of x, so it can only be differentiated with respect to t. The ½ comes from the inner t/2.",
+        "margin_note": "Third mark. dy/dx is written in terms of t, so differentiate it with respect to t first; step 4 then divides by dx/dt. The ½ comes from the inner t/2.",
         "lines": [
           {
             "text": "(dy/dx is a function of t, so differentiate it",
@@ -211,7 +211,7 @@
         "why": "dy/dx has been written in t, so this differentiation is with respect to t. The chain rule on the inner t/2 supplies the factor ½.",
         "common_mistakes": [
           "Dropping the factor ½ from the inner t/2.",
-          "Giving −cosec²(t/2), keeping only one of the two minus signs."
+          "Giving −½ cosec²(t/2), keeping only one of the two minus signs."
         ],
         "memory_tip": "d/dt(cot u) = −cosec²u · du/dt; here u = t/2, so du/dt = ½.",
         "lines_compact": [

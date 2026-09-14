@@ -126,7 +126,7 @@
             "added": true
           },
           {
-            "text": "∴ f′(x) = eˣ·sec²(eˣ)/tan(eˣ) = 2eˣ·Cosec(2eˣ)",
+            "text": "∴ f′(x) = eˣ·sec²(eˣ)/tan(eˣ) = 2eˣ·cosec(2eˣ)",
             "style": "boxed"
           }
         ],
@@ -166,12 +166,12 @@
             "style": "indent"
           },
           {
-            "text": "∴ f′(x) = eˣ·sec²(eˣ)/tan(eˣ) = 2eˣ·Cosec(2eˣ)",
+            "text": "∴ f′(x) = eˣ·sec²(eˣ)/tan(eˣ) = 2eˣ·cosec(2eˣ)",
             "style": "boxed"
           }
         ]
       }
     ]
   },
-  "insider_note": "Three layers: log, then tan, then eˣ. sec²/tan tidies to 2·Cosec(2eˣ), and either form is acceptable as long as the chain is complete."
+  "insider_note": "Three layers: log, then tan, then eˣ. sec²/tan tidies to 2·cosec(2eˣ), and either form is acceptable as long as the chain is complete."
 }

@@ -88,12 +88,12 @@
             "constant"
           ]
         },
-        "why": "The definition is the marked move. a stays fixed throughout, so pushing it through the bracket once at the start keeps every later line short.",
+        "why": "The definition is the marked move. a stays fixed throughout, so multiplying it into the bracket once at the start keeps every later line short.",
         "common_mistakes": [
           "Treating a as a variable and differentiating it as well.",
           "Writing cos(ax + ah) as cos ax + cos ah."
         ],
-        "memory_tip": "a is a fixed number. Push it through the bracket at once: a(x + h) = ax + ah."
+        "memory_tip": "a is a fixed number. Multiply it into the bracket at once: a(x + h) = ax + ah."
       },
       {
         "id": "s2_cos_difference",
@@ -117,6 +117,8 @@
             "style": "indent",
             "added": true
           },
+          "Here C = ax + ah and D = ax, so",
+          "(C+D)/2 = ax + ah/2  and  (C−D)/2 = ah/2",
           {
             "text": "(put these into the formula; the h in",
             "added": true
@@ -126,8 +128,6 @@
             "style": "indent",
             "added": true
           },
-          "Here C = ax + ah and D = ax, so",
-          "(C+D)/2 = ax + ah/2  and  (C−D)/2 = ah/2",
           "so f′(x) = lim(h → 0)",
           "−2 sin(ax + ah/2) · (sin(ah/2))/h"
         ],
@@ -153,7 +153,7 @@
             "half difference"
           ]
         },
-        "why": "A difference of two cosines becomes a product only through this identity, and the product is what lets the standard limit be used on one factor at a time.",
+        "why": "A difference of two cosines becomes a product through this identity, and the product is what lets the standard limit be used on one factor at a time.",
         "common_mistakes": [
           "Dropping the minus sign in front of the identity and finishing with +a sin ax.",
           "Writing the half angle as ah instead of ah/2."

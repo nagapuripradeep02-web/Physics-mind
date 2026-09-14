@@ -106,7 +106,7 @@
         },
         "why": "This is logarithmic differentiation used for a different reason from a variable power such as xˣ, where the method is needed. It is not needed here, but it replaces one very long quotient-rule calculation with four one-line derivatives.",
         "common_mistakes": [
-          "Using the quotient rule on the complete expression, which makes the working very long and easy to get wrong.",
+          "Taking the logarithm of the fraction and then writing log y as the product of the four logarithms instead of their sum and difference.",
           "Saying the method is needed because the power rule fails, which is not true here — the powers are constants."
         ]
       },
@@ -315,7 +315,7 @@
             "cancel"
           ]
         },
-        "why": "This is where the answer's signs are settled. The third term has a minus in front and a minus inside, and two minus signs give a plus — the single most common place to lose a mark in this question.",
+        "why": "This is where the signs of the answer are decided. The third term has a minus in front and a minus inside, and two minus signs give a plus — a common place to lose a mark in this question.",
         "common_mistakes": [
           "Keeping the third term negative by using only one of its two minus signs.",
           "Writing −4/(3(1 − 2x)) as −4/3 − 2x, splitting a denominator that cannot be split."
@@ -338,7 +338,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Last mark. Multiply both sides of (3) by y and write y back out in full, since the question gave y as an expression and not as a name.",
-        "memory_tip": "Logarithmic differentiation always ends the same way: multiply by y, then replace y with the original expression.",
+        "memory_tip": "When the question asks for dy/dx, logarithmic differentiation ends this way: multiply by y, then replace y with the original expression.",
         "lines": [
           {
             "text": "(put y back from the question)",
@@ -412,5 +412,5 @@
       }
     ]
   },
-  "insider_note": "Four fractional powers multiplied and divided, so take logarithms first — the product and quotient rules directly would run for pages. Each power becomes a coefficient times a simple log."
+  "insider_note": "Four fractional powers multiplied and divided, so take logarithms first — the product and quotient rules directly would take many lines. Each power becomes a coefficient times a simple log."
 }

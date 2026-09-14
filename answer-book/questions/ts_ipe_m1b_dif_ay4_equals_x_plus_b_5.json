@@ -94,7 +94,7 @@
             "five log"
           ]
         },
-        "why": "Making y the subject means a fourth root and two awkward differentiations. Logarithms bring the indices down and keep every line linear in the logarithms.",
+        "why": "Logarithms turn the indices into multipliers, and differentiating once gives y′/y directly, whose derivative has yy″ − (y′)² on top.",
         "common_mistakes": [
           "Writing logₑ(ay⁴) as logₑa · 4 logₑy instead of logₑa + 4 logₑy.",
           "Taking logarithms of only one side."
@@ -347,5 +347,5 @@
       }
     ]
   },
-  "insider_note": "Take logarithms FIRST — differentiating (x + b)⁵ and y⁴ directly makes the second derivative unmanageable. Then differentiate y′/y as a quotient, which produces yy″ − (y′)² on top."
+  "insider_note": "Take logarithms first — it leads straight to y′/y. Then differentiate y′/y as a quotient, which produces yy″ − (y′)² on top."
 }

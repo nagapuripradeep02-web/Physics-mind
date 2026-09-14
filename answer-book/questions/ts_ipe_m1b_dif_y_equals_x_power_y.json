@@ -216,7 +216,7 @@
         "why": "Both dy/dx terms must sit on the same side before dy/dx can be taken out as a common factor. Writing 1/y − log x as the single fraction (1 − y log x)/y is what turns the y on the right into y² after dividing.",
         "common_mistakes": [
           "Leaving the answer as (y/x)/(1/y − log x) without clearing the inner fraction.",
-          "Getting y instead of y² in the numerator by dividing rather than multiplying by y."
+          "Getting y instead of y² in the numerator by dividing by (1 − y log x) only, and forgetting the y under it in (1 − y log x)/y."
         ],
         "memory_tip": "The y² is not an extra square — it is the y from y/x multiplied by the y released when 1/y − log x is written as one fraction.",
         "lines_compact": [

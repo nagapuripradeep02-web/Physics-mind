@@ -148,7 +148,7 @@
             "three terms"
           ]
         },
-        "why": "The three-term form eˣ sin x + xeˣ sin x + xeˣ cos x is already a complete and correct answer. Factoring eˣ out is not required for the mark, but it is the compact form worth writing, and it makes a sign slip visible because every term inside the bracket is positive.",
+        "why": "The three-term form eˣ sin x + xeˣ sin x + xeˣ cos x is already a complete and correct answer. Factoring eˣ out is not required for the mark, but it is the compact form worth writing, and it makes a sign slip visible because every term inside the bracket has a plus sign.",
         "common_mistakes": [
           "Writing d/dx(eˣ) as xeˣ⁻¹, treating eˣ as a power of x.",
           "Taking eˣ out but dropping the sin x from the first term, writing eˣ[x sin x + x cos x]."

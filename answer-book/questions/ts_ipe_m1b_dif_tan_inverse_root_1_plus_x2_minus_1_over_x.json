@@ -64,7 +64,19 @@
             "text": "  = ((1/cos θ) − 1)/(sin θ/cos θ) = (1 − cos θ)/sin θ",
             "style": "indent"
           },
-          "(cancel 2 sin(θ/2); sin(θ/2)/cos(θ/2) = tan(θ/2))",
+          "(the half angle formulas; then",
+          {
+            "text": "  2sin²(θ/2)/(2 sin(θ/2) cos(θ/2)),",
+            "style": "indent"
+          },
+          {
+            "text": "  and cancelling 2 sin(θ/2) leaves",
+            "style": "indent"
+          },
+          {
+            "text": "  sin(θ/2)/cos(θ/2) = tan(θ/2))",
+            "style": "indent"
+          },
           "Now 1 − cos θ = 2sin²(θ/2)",
           "and sin θ = 2 sin(θ/2) cos(θ/2), so",
           "(1 − cos θ)/sin θ = sin(θ/2)/cos(θ/2) = tan(θ/2)"

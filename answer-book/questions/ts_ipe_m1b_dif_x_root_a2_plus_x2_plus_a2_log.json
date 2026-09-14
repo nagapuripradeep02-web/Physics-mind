@@ -308,7 +308,7 @@
             "one plus x by root"
           ]
         },
-        "why": "This cancellation is the reason the logarithm term is in the question at all. Without it the answer would carry a logarithm; with it, the term reduces to a single fraction over the same root as the first term, ready to be added.",
+        "why": "This cancellation is what makes the logarithm term short. Without it the term stays a fraction with x + √(a² + x²) in the denominator; with it, the term reduces to a single fraction over the same root as the first term, ready to be added.",
         "common_mistakes": [
           "Differentiating log(x + √(a² + x²)) as 1/(x + √(a² + x²)) and leaving out the inner derivative.",
           "Cancelling the root instead of the bracket, which loses the denominator."

@@ -97,7 +97,7 @@
           "Writing log(xʸ) as (log x)ʸ instead of y log x.",
           "Leaving the right side as log(eˣ⁻ʸ) without simplifying it to x − y."
         ],
-        "memory_tip": "When the unknown sits in the index, the first line is always \"take logarithms\". The same opening move works for y = xʸ and for every xˣ question in this chapter."
+        "memory_tip": "When the unknown sits in the index, take logarithms early. The same opening move works for y = xʸ and for xˣ; for a sum of such powers, split the sum first."
       },
       {
         "id": "s2_make_y_subject",
@@ -227,7 +227,7 @@
         "label": "Simplify to the required form",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Last mark. The denominator stays squared. A common loss is cancelling one factor of (1 + log x) between top and bottom, which is not allowed because log x is not a factor of (1 + log x).",
+        "margin_note": "Last mark. The denominator stays squared. A common loss is cancelling one factor of (1 + log x) between top and bottom, which is not allowed because (1 + log x) is not a factor of the numerator log x.",
         "lines": [
           "x(1/x) = 1, so the numerator is (1 + log x) − 1 = log x",
           {

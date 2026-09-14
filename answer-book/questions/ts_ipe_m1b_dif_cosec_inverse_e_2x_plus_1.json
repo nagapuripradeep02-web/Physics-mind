@@ -65,7 +65,7 @@
             "style": "indent"
           },
           "du/dx = e²ˣ⁺¹ · d/dx(2x + 1) = 2e²ˣ⁺¹",
-          "(|u| > 1 needs e²ˣ⁺¹ > 1, that is 2x + 1 > 0, so x > −1/2)",
+          "(eᵛ > 0 for every real v, so |u| = u)",
           "An exponential is positive for every real x, so u = e²ˣ⁺¹ > 0",
           "and |u| = e²ˣ⁺¹",
           "(put |u| = e²ˣ⁺¹, u² = (e²ˣ⁺¹)² and du/dx = 2e²ˣ⁺¹)",
@@ -116,11 +116,16 @@
           "The e²ˣ⁺¹ in the numerator cancels the e²ˣ⁺¹",
           "in the denominator.",
           {
-            "text": "(put e⁴ˣ⁺² in place of (e²ˣ⁺¹)²)",
+            "text": "(put e⁴ˣ⁺² in place of (e²ˣ⁺¹)²; the formula needs |u| > 1,",
             "added": true
           },
           {
-            "text": "∴ dy/dx = −2/√(e⁴ˣ⁺² − 1)",
+            "text": "  that is e²ˣ⁺¹ > 1, so 2x + 1 > 0 and x > −1/2)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "∴ dy/dx = −2/√(e⁴ˣ⁺² − 1),  x > −1/2",
             "style": "boxed"
           }
         ],
@@ -156,7 +161,7 @@
           "The e²ˣ⁺¹ in the numerator cancels the e²ˣ⁺¹",
           "in the denominator.",
           {
-            "text": "∴ dy/dx = −2/√(e⁴ˣ⁺² − 1)",
+            "text": "∴ dy/dx = −2/√(e⁴ˣ⁺² − 1),  x > −1/2",
             "style": "boxed"
           }
         ]

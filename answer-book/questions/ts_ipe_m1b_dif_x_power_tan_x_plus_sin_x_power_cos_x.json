@@ -258,7 +258,7 @@
       {
         "id": "s4_simplify_second",
         "kind": "equation",
-        "label": "Simplify and write the second derivative",
+        "label": "Simplify and write the derivative of the second term",
         "marks": 2,
         "mark_note": "Solution",
         "margin_note": "Two marks. (cos²x)/(sin x) is one cos x times (cos x)/(sin x), so it becomes cos x cot x. Then multiply the whole bracket by v.",
@@ -388,5 +388,5 @@
       }
     ]
   },
-  "insider_note": "Two separate terms, so take logarithms of each on its own and add the derivatives — never log the sum. Both need x > 0 and sin x > 0 for the logarithms to exist."
+  "insider_note": "Two separate terms, so take logarithms of each on its own and add the derivatives — one logarithm of the sum does not help, because log(u + v) is not log u + log v. Both need x > 0 and sin x > 0 for the logarithms to exist."
 }

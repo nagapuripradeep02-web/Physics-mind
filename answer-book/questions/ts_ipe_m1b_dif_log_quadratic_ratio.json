@@ -157,7 +157,7 @@
         "label": "Combine over a common denominator",
         "marks": 1,
         "mark_note": "Solution",
-        "margin_note": "Third mark. Take the denominator as (x² + 2) + x times (x² + 2) − x. That is a difference of two squares and gives x⁴ + 3x² + 4 in one line, instead of four products.",
+        "margin_note": "Third mark. Take the denominator as (x² + 2) + x times (x² + 2) − x. That is a difference of two squares and gives x⁴ + 3x² + 4 in one line, instead of nine products.",
         "lines": [
           {
             "text": "(subtract the fractions over the product",
@@ -255,7 +255,7 @@
         },
         "why": "The 2x³ terms and the 3x terms are identical in both products, so they cancel and only the x² and constant terms are left. Seeing the denominator as (x² + 2)² − x² avoids multiplying two quadratics out term by term.",
         "common_mistakes": [
-          "Dropping the bracket and subtracting only the first term of the second product, which leaves stray x² and constant terms.",
+          "Dropping the bracket and subtracting only the first term 2x³ of the second product, which leaves 6x in place of 4 − 2x².",
           "Multiplying the denominator out term by term and losing a sign in the middle."
         ],
         "memory_tip": "The two quadratics differ only by the sign of x, so they are (something + x) and (something − x) — always a difference of two squares.",
@@ -331,7 +331,7 @@
         "why": "The numerator and denominator share no common factor once the 2 is taken out, so this is the simplest form. It also shows the derivative is zero only at x = ±√2, which is a quick check that the working is sensible.",
         "common_mistakes": [
           "Cancelling the 2 in the numerator against the 4 in the denominator, which are not factors of the whole expressions.",
-          "Differentiating the quotient before splitting the logarithm, which replaces a two-term subtraction with a long quotient rule."
+          "Writing the derivative of log[(x² + x + 2)/(x² − x + 2)] as (x² − x + 2)/(x² + x + 2), leaving out the derivative of the inside."
         ],
         "memory_tip": "Check at x = 0: the answer gives 2(2)/4 = 1, and the function itself is log(2/2) = 0 there. One substitution like this catches a lost sign.",
         "lines_compact": [

@@ -53,7 +53,7 @@
         "label": "Split y and take logarithms separately",
         "marks": 2,
         "mark_note": "Method",
-        "margin_note": "First two marks. One mark for the split y = u + v, one for saying that logarithms are taken on u and on v one at a time. The logarithm of a sum does not open out, so a single logarithm of y does not help.",
+        "margin_note": "First two marks. One mark for the split y = u + v, one for saying that logarithms are taken on u and on v one at a time. The logarithm of a sum is not the sum of the logarithms, so a single logarithm of y does not help.",
         "memory_tip": "Two terms, two logarithms, two derivatives, then add. Do not take one logarithm of y itself.",
         "lines": [
           {
@@ -304,7 +304,7 @@
         "why": "Differentiation runs term by term over a sum, so the two results are simply added. The two brackets have no common factor, which is the sign that the answer is already in its shortest form.",
         "common_mistakes": [
           "Multiplying the two brackets together instead of adding them.",
-          "Putting one factor in front of both brackets, which changes both terms."
+          "Putting one factor in front of both brackets, which changes the term that had the other factor."
         ],
         "lines_compact": [
           "dy/dx = du/dx + dv/dx",
@@ -320,5 +320,5 @@
       }
     ]
   },
-  "insider_note": "TWO terms, each with x in base and power, so take logarithms of each SEPARATELY — logging the sum is not allowed. Differentiate u and v apart and add at the end."
+  "insider_note": "TWO terms, each with x in base and power, so take logarithms of each SEPARATELY — one logarithm of the sum does not help, because log(u + v) is not log u + log v. Differentiate u and v apart and add at the end."
 }

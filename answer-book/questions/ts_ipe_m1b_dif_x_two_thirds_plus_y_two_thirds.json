@@ -158,7 +158,7 @@
         },
         "why": "The target is given, so the mark is for reaching it by a valid method. Showing the step where the negative powers become positive is what proves the y belongs on top, rather than being copied from the question.",
         "common_mistakes": [
-          "Leaving the answer as −x⁻¹⁄³/y⁻¹⁄³ without converting the negative powers, so it reads as −∛(x/y).",
+          "Dropping the minus signs from the powers and writing −x¹⁄³/y¹⁄³, which is −∛(x/y).",
           "Writing ∛(y/x) without the minus sign."
         ],
         "lines_compact": [
@@ -173,5 +173,5 @@
       }
     ]
   },
-  "insider_note": "Differentiate implicitly; the right side is a constant, so it goes to 0 and a never appears in the answer. The 2/3 cancels from both sides."
+  "insider_note": "Differentiate implicitly; the right side is a constant, so its derivative is 0 and a never appears in the answer. The 2/3 cancels from both sides."
 }

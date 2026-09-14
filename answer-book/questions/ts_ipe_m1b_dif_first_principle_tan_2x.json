@@ -87,7 +87,7 @@
             "over h"
           ]
         },
-        "why": "The definition earns the mark. tan has no subtraction identity of its own, so the working has to start here and then move to sines and cosines.",
+        "why": "The definition earns the mark. The working then writes tan as sine over cosine, so that the numerator becomes a sine of a difference.",
         "common_mistakes": [
           "Writing tan(2x + 2h) as tan 2x + tan 2h.",
           "Quoting 2 sec²2x from the chain rule with no limit work."
@@ -100,7 +100,7 @@
         "label": "Write it as one fraction",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Second mark. Two tangents can only be subtracted once they sit over one denominator. The examiner is looking for that single fraction.",
+        "margin_note": "Second mark. Write the two tangents as sine over cosine over one denominator. The examiner is looking for that single fraction.",
         "lines": [
           "tan θ = sin θ/cos θ, so the numerator is",
           "sin(2x + 2h)/cos(2x + 2h) − sin 2x/cos 2x",
@@ -139,7 +139,7 @@
             "cross multiply"
           ]
         },
-        "why": "There is no useful identity for tan A − tan B here. Written as sine over cosine and combined, the numerator turns into a sine of a difference, which is what removes x from the top.",
+        "why": "Written as sine over cosine and combined, the numerator turns into a sine of a difference, which is what removes x from the top.",
         "common_mistakes": [
           "Using tan A − tan B = tan(A − B), which is not an identity.",
           "Combining the numerators but leaving two separate denominators."
@@ -162,11 +162,14 @@
         "margin_note": "Third mark. The numerator becomes sin 2h. x is no longer in the numerator, so everything that still depends on x is in the denominator.",
         "lines": [
           {
-            "text": "(the sine subtraction formula)",
+            "text": "(the sine subtraction formula; (2x + 2h) − 2x = 2h)",
             "added": true
           },
+          "sin A cos B − cos A sin B = sin(A − B), so with",
+          "A = 2x + 2h and B = 2x,",
+          "Numerator = sin((2x + 2h) − 2x) = sin 2h",
           {
-            "text": "((2x + 2h) − 2x = 2h; dividing by h puts h in front",
+            "text": "(dividing by h puts h in front",
             "added": true
           },
           {
@@ -174,9 +177,6 @@
             "style": "indent",
             "added": true
           },
-          "sin A cos B − cos A sin B = sin(A − B), so with",
-          "A = 2x + 2h and B = 2x,",
-          "Numerator = sin((2x + 2h) − 2x) = sin 2h",
           "so f′(x) = lim(h → 0)",
           "(sin 2h)/[h cos(2x + 2h) cos 2x]"
         ],
@@ -205,7 +205,7 @@
         "why": "The numerator is exactly the expansion of sin(A − B). Recognising it removes x from the top in one line, which is what makes the limit possible at all.",
         "common_mistakes": [
           "Reading the numerator as sin(A + B) and getting sin(4x + 2h).",
-          "Expanding the four products separately instead of matching them to the identity."
+          "Writing sin((2x + 2h) − 2x) as sin h, halving the angle, instead of sin 2h."
         ],
         "memory_tip": "sin A cos B − cos A sin B is sin(A − B): the sign between the terms is the sign inside the bracket.",
         "lines_compact": [

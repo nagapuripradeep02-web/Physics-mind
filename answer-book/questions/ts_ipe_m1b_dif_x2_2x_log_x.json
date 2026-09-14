@@ -161,7 +161,7 @@
         },
         "why": "The third term is where marks are usually lost: x² × 1/x cancels to x, so the common factor is x2ˣ and the bracket ends in a plain 1, not in 1/x.",
         "common_mistakes": [
-          "Leaving the third term as x²2ˣ/x and then taking x²2ˣ common, which leaves a wrong 1/x inside the bracket.",
+          "Writing the third term x² · 2ˣ · (1/x) as x²2ˣ, losing the 1/x, so the bracket ends in x instead of 1.",
           "Writing (log 2)(log x) as log(2x), which is a different quantity."
         ],
         "lines_compact": [

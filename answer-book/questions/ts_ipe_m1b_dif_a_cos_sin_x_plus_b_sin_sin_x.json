@@ -109,7 +109,7 @@
         "label": "Differentiate a second time",
         "marks": 1,
         "mark_note": "Solution",
-        "margin_note": "Second mark. Differentiating P returns −y cos x, because P and y swap places under differentiation. That single fact is what makes this question short.",
+        "margin_note": "Second mark. Differentiating P gives −y cos x: P is built from the same two functions as y, with a and b exchanged and one sign changed. That fact is what makes this question short.",
         "lines": [
           {
             "text": "(differentiate P with u = sin x:",
@@ -233,10 +233,10 @@
         },
         "why": "y₂ contains −P sin x, and nothing else in the identity can remove it. Multiplying y₁ by tan x produces exactly +P sin x, so the tan x is there to cancel that term.",
         "common_mistakes": [
-          "Writing (tan x)y₁ as P sin x cos x, forgetting the cancellation.",
+          "Writing tan x as sin x, which gives (tan x)y₁ = P sin x cos x.",
           "Using cot x in place of tan x, which leaves a cos²x/sin x factor."
         ],
-        "memory_tip": "tan x = sin x / cos x, so multiplying anything that carries a cos x by tan x trades that cos x for a sin x.",
+        "memory_tip": "tan x = sin x / cos x, so multiplying anything that has a factor cos x by tan x replaces that cos x by sin x.",
         "lines_compact": [
           "(tan x)y₁ = (sin x / cos x)·P cos x",
           "= P sin x"

@@ -45,7 +45,7 @@
         "label": "Differentiate x and y with respect to t",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. Name the parametric rule before differentiating anything. The chain rule is used twice in each line — the cube first, then the trigonometric function inside it.",
+        "margin_note": "First mark. Name the parametric rule before differentiating anything. The chain rule is used once in each line — differentiate the cube first, then multiply by the derivative of the trigonometric function inside it.",
         "memory_tip": "Both derivatives read the same way: 3a, the square of the same function, then the derivative of that function. Only cos t brings a minus sign with it.",
         "lines": [
           {
@@ -153,7 +153,7 @@
             "sin over cos"
           ]
         },
-        "why": "Every a cancels, so the answer depends only on t and not on the size of the curve. That cancellation is the check that both derivatives were taken correctly.",
+        "why": "Every a cancels, so the answer depends only on t and not on the size of the curve.",
         "common_mistakes": [
           "Dividing dx/dt by dy/dt instead, which gives −cot t.",
           "Leaving a in the final answer, when every a has already cancelled."
@@ -175,5 +175,5 @@
       }
     ]
   },
-  "insider_note": "Both are given through t, so use dy/dx = (dy/dt)/(dx/dt) and never try to eliminate t. The 3a and one factor each of sin and cos cancel, leaving −tan t."
+  "insider_note": "Both are given through t, so use dy/dx = (dy/dt)/(dx/dt) ; there is no need to eliminate t. The 3a and one factor each of sin and cos cancel, leaving −tan t."
 }

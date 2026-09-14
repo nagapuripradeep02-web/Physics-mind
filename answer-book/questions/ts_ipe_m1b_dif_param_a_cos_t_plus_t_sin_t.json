@@ -292,7 +292,7 @@
             "divide"
           ]
         },
-        "why": "a cancels because it multiplies both curves equally, and t cancels because both derivatives carry one factor of t. A final answer still containing a would mean an error earlier, since scaling the whole curve cannot change its slope at a given t.",
+        "why": "a cancels because it multiplies both x and y equally, and t cancels because both derivatives carry one factor of t. A final answer still containing a would mean an error earlier, since scaling the whole curve cannot change its slope at a given t.",
         "common_mistakes": [
           "Leaving a or t in the final answer instead of cancelling them.",
           "Writing cot t by dividing the derivatives the wrong way round."

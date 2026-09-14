@@ -119,7 +119,7 @@
             "style": "boxed"
           },
           "This working needs sin(log x) > 0, that is log x in (0, π),",
-          "or in any interval (2kπ, (2k + 1)π)."
+          "or in any interval (2kπ, (2k + 1)π), k ∈ Z."
         ],
         "recall": {
           "credit": "say_it",
@@ -156,7 +156,7 @@
             "style": "boxed"
           },
           "This working needs sin(log x) > 0, that is log x in (0, π),",
-          "or in any interval (2kπ, (2k + 1)π)."
+          "or in any interval (2kπ, (2k + 1)π), k ∈ Z."
         ]
       }
     ]

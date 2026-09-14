@@ -94,7 +94,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. d/dx(log x) = 1/x, so an x joins the denominator. Both factors go under the line together.",
-        "memory_tip": "A log inside always produces a factor 1/x, so the final denominator carries an x as well as the bracket.",
+        "memory_tip": "log x inside produces a factor 1/x, so the final denominator carries an x as well as the bracket.",
         "lines": [
           {
             "text": "(the standard derivative of log x, for x > 0)",

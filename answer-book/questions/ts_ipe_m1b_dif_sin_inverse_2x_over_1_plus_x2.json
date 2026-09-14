@@ -95,7 +95,7 @@
         "common_mistakes": [
           "Substituting x = sin θ, which does not match the 1 + x² denominator.",
           "Reading 2x/(1 + x²) as tan 2θ, which is 2x/(1 − x²) and has a minus sign.",
-          "Omitting the range and writing y = 2 Tan⁻¹x for every x, when the sign is different for x > 1."
+          "Omitting the range and writing y = 2 Tan⁻¹x for every x, when y = π − 2 Tan⁻¹x for x > 1 and y = −π − 2 Tan⁻¹x for x < −1, so dy/dx changes sign for |x| > 1."
         ]
       },
       {

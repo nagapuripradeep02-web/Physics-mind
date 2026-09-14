@@ -261,7 +261,7 @@
         "marks": 2,
         "mark_note": "Method",
         "margin_note": "Two marks. Add (2) and (3) and set the sum to zero, then take dy/dx outside a bracket. Two terms carry dy/dx and two do not, so the sort is clean.",
-        "memory_tip": "Sort the four terms into two piles: the ones with dy/dx and the ones without. The first pile forms the bracket, the second pile crosses over.",
+        "memory_tip": "Sort the four terms into two groups: the terms with dy/dx and the terms without. The first group forms the bracket; the second group moves to the other side and changes sign.",
         "lines": [
           "Adding (2) and (3) and using (1),",
           "xʸ log x · (dy/dx) + yxʸ⁻¹ + yˣ log y + xyˣ⁻¹ · (dy/dx) = 0",
@@ -356,7 +356,7 @@
             "final answer"
           ]
         },
-        "why": "The question states the answer, so the mark is for landing on that exact arrangement: the minus outside, the two log-free and log-carrying terms in the right places, and the bracket from step (4) underneath.",
+        "why": "The question states the answer, so the mark is for reaching that exact arrangement: the minus outside, the two log-free and log-carrying terms in the right places, and the bracket from step (4) underneath.",
         "common_mistakes": [
           "Dropping the minus sign, which gives the wrong sign for the derivative.",
           "Exchanging the numerator and the denominator, so the answer is the reciprocal."

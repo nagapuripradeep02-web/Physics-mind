@@ -94,9 +94,9 @@
         "why": "The expression has the shape of a tangent triple-angle formula, but with a's mixed in to keep every term the same degree. Putting x = a tan θ is what strips those a's out and shows the shape.",
         "common_mistakes": [
           "Substituting x = tan θ without the factor a, so the a's do not cancel.",
-          "Trying the quotient rule and the chain rule directly, which gives a correct but very long derivative that is hard to simplify."
+          "Writing the denominator a(a² − 3x²) as a³ − 3x², losing the factor a on the x² term, so the fraction no longer reduces to tan 3θ."
         ],
-        "memory_tip": "Terms in x and a³ appear as 3a²x, x³, a³ and 3ax². Every term has total degree three, which is the sign that x = a tan θ will clear the a's."
+        "memory_tip": "Terms in x and a appear as 3a²x, x³, a³ and 3ax². Every term has total degree three, which is the sign that x = a tan θ will clear the a's."
       },
       {
         "id": "s2_triple_angle",
@@ -306,7 +306,7 @@
         },
         "why": "Clearing the inner fraction turns 1/(1 + x²/a²) into a²/(a² + x²), and that a² divided by the a from du/dx leaves one a. A quick check on the answer: doubling both a and x halves 3a/(a² + x²), which is what a derivative must do when a and x are both multiplied by the same number.",
         "common_mistakes": [
-          "Stopping at 3/(a(1 + x²/a²)) — correct, but clear the inner fraction so the answer reads 3a/(a² + x²).",
+          "Writing 1/(1 + x²/a²) as a²/(1 + x²), clearing the fraction on one part only.",
           "Cancelling both a's and writing 3/(a² + x²)."
         ],
         "memory_tip": "This is the standard result d/dx tan⁻¹(x/a) = a/(a² + x²), multiplied by the 3 carried down from the triple angle.",

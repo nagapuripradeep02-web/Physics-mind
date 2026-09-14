@@ -140,7 +140,7 @@
             "inner derivative"
           ]
         },
-        "why": "The chain rule is only finished when the inner derivative is written. A missing 2x is the single most common way this two-line question loses a mark.",
+        "why": "The chain rule is only finished when the inner derivative is written. A missing 2x is a common way this two-line question loses a mark.",
         "common_mistakes": [
           "Leaving out the factor 2x.",
           "Writing 2ax instead of 2a²x by dropping one power of a."

@@ -206,10 +206,10 @@
             "half difference"
           ]
         },
-        "why": "A difference of two cosines becomes a product only through this identity, and only a product can be separated into a standard limit and a factor that is continuous at h = 0.",
+        "why": "A difference of two cosines becomes a product through this identity, and the product can be separated into a standard limit and a factor that is continuous at h = 0.",
         "common_mistakes": [
           "Ignoring sin(−3h/2) = −sin(3h/2) and finishing with the wrong sign.",
-          "Halving 3h to get 3h instead of 3h/2."
+          "Forgetting to halve 3h and writing 3h instead of 3h/2."
         ],
         "memory_tip": "cos minus cos: minus two, sine of the half sum, sine of the half difference. Sine is an odd function, so a negative half difference changes the sign back.",
         "lines_compact": [
@@ -308,5 +308,5 @@
       }
     ]
   },
-  "insider_note": "Write both secants as reciprocals and combine over one denominator, which turns the top into cos 3x − cos(3x + 3h). The 3 from the inner function appears twice over."
+  "insider_note": "Write both secants as reciprocals and combine over one denominator, which turns the top into cos 3x − cos(3x + 3h). The 3 from the inner function appears in the angle 3h/2, and the answer keeps one factor 3."
 }

@@ -90,7 +90,7 @@
           "Differentiating Tan⁻¹(sec x + tan x) directly with the chain rule and stopping at an unsimplified expression.",
           "Writing sec x as cos x rather than 1/cos x."
         ],
-        "memory_tip": "Whenever an inverse trigonometric function has a bracket, simplify the bracket first and differentiate last."
+        "memory_tip": "When the bracket inside an inverse trigonometric function matches a trigonometric identity, simplify the bracket first and differentiate last."
       },
       {
         "id": "s2_half_angles",

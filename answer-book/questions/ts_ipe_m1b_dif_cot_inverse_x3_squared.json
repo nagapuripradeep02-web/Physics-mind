@@ -98,7 +98,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Two things are checked here: the minus sign that belongs to the Cot⁻¹ derivative, and the denominator, which is 1 + x⁶ because (x³)² = x⁶.",
-        "memory_tip": "Tan⁻¹ is positive and Cot⁻¹ is the same expression with a minus in front. The pair Sin⁻¹ and Cos⁻¹ works the same way.",
+        "memory_tip": "The derivative of Tan⁻¹v is +1/(1 + v²), and the derivative of Cot⁻¹v is the same expression with a minus in front. The derivatives of Sin⁻¹ and Cos⁻¹ are related in the same way.",
         "lines": [
           {
             "text": "(the standard derivative of Cot⁻¹v is −1/(1 + v²),",

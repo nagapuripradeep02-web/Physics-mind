@@ -243,7 +243,7 @@
         },
         "why": "Once α − x is written as (α − β)cos²θ, the common factor α − β cancels and only sin²θ/cos²θ is left. That is why a sine inverse and a tangent inverse of two different fractions turn out to be the same angle.",
         "common_mistakes": [
-          "Using α − β in place of α − x in the denominator of g, which is the other function and defeats the question.",
+          "Using α − β in place of α − x in the denominator of g. α − β is the denominator of f, so g is then not simplified correctly.",
           "Writing √(tan²θ) as tan θ with no word about the sign, the same slip as in the previous step."
         ],
         "memory_tip": "f carries the whole interval α − β underneath and g carries only the part above x. The substitution splits α − β into sin²θ and cos²θ parts, so f gives a sine and g gives a tangent.",

@@ -103,10 +103,10 @@
         },
         "why": "Differentiating the three brackets directly needs the quotient rule three times on cubics and quartics, and the answer then has to be simplified back to a single fraction. One substitution replaces all of that, because each bracket is a known tangent formula.",
         "common_mistakes": [
-          "Applying the quotient rule to each bracket, which is correct but very long and is often abandoned partway.",
+          "Substituting x = tan θ but writing the first bracket as sin 2θ, which is 2x/(1 + x²), not 2x/(1 − x²).",
           "Substituting x = sin θ, which does not match any of the three forms."
         ],
-        "memory_tip": "The denominator 1 − x² in the first bracket is the marker. Only the tangent multiple angle formulas have a 1 minus something in the denominator."
+        "memory_tip": "The denominator 1 − x² in the first bracket shows the substitution. Under x = tan θ, the tangent multiple angle formulas are the forms with 1 minus a power of x in the denominator."
       },
       {
         "id": "s2_double",
@@ -155,7 +155,7 @@
         },
         "why": "2 tan θ/(1 − tan²θ) is the tangent of twice the angle, so the inverse tangent of it returns twice the angle. This is the shortest of the three and it is also the one that builds the third.",
         "common_mistakes": [
-          "Writing 2x/(1 − x²) as 2 Tan⁻¹x without saying which formula was used, so the method mark is not earned.",
+          "Writing Tan⁻¹(2x/(1 − x²)) = 2 Tan⁻¹x without saying which formula was used, so the method mark is not earned.",
           "Reading the bracket as tan θ/2 rather than tan 2θ."
         ],
         "memory_tip": "Two of the angle on top, two of tan θ on top. The count in the numerator matches the multiple of the angle in every one of these three formulas.",
@@ -173,7 +173,7 @@
         "label": "Second term is the triple angle form",
         "marks": 2,
         "mark_note": "Method",
-        "margin_note": "Two marks. The 3 and the 1 sit on opposite sides of the fraction: three on the top with the cube, three on the bottom with the square. Getting them the wrong way round is the common loss here.",
+        "margin_note": "Two marks. On the top the 3 goes with x and the cube has coefficient 1: 3x − x³. Underneath, the 3 goes with the square: 1 − 3x². Getting them the wrong way round is a common loss here.",
         "lines": [
           "The triple angle formula for tangent",
           "is  tan 3θ = (3 tan θ − tan³θ)/(1 − 3 tan²θ).",
@@ -219,7 +219,7 @@
         "why": "The numerator 3x − x³ and the denominator 1 − 3x² are the two halves of the tangent triple angle formula, and no other standard formula has that pair. Recognising it replaces a quotient rule on a cubic over a quadratic.",
         "common_mistakes": [
           "Writing the formula as (3 tan θ + tan³θ)/(1 + 3 tan²θ). Both signs are wrong: tan 3θ has 3 tan θ − tan³θ on top and 1 − 3 tan²θ underneath.",
-          "Swapping the two threes, giving (3x − x³)/(1 − x²) or (x − 3x³)/(1 − 3x²)."
+          "Putting a 3 in the wrong place, giving (3x − x³)/(1 − x²) or (x − 3x³)/(1 − 3x²)."
         ],
         "memory_tip": "In tan 3θ the odd power sits on top and the even power sits underneath, and the 3 appears once in each. The minus sign appears in both places too.",
         "lines_compact": [
@@ -329,7 +329,7 @@
           "Expanding (1 − x²)² as 1 − x⁴, which turns the denominator into 1 − 4x² − x⁴ instead of 1 − 6x² + x⁴.",
           "Forgetting that this term is subtracted, and adding 4θ in the next step."
         ],
-        "memory_tip": "Doubling twice gives four times, so tan 4θ needs the double angle formula used on 2θ. Only the middle term of (1 − x²)² matters: it is −2x², and −2x² − 4x² is the −6x².",
+        "memory_tip": "Doubling twice gives four times, so tan 4θ needs the double angle formula used on 2θ. The middle term of (1 − x²)² is −2x², and −2x² − 4x² gives the −6x².",
         "lines_compact": [
           "There is no separate formula for tan 4θ,",
           "so build it from the double angle formula applied to 2θ:",

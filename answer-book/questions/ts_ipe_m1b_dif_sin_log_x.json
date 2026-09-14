@@ -95,7 +95,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. d/dx(log x) = 1/x, so the cosine is divided by x. Since x > 0, dividing by x is always allowed here.",
-        "memory_tip": "A log inside always produces a factor 1/x, so an x appears under the line in the final answer.",
+        "memory_tip": "log x inside produces a factor 1/x, so an x appears under the line in the final answer.",
         "lines": [
           {
             "text": "(the standard derivative of log x, for x > 0)",

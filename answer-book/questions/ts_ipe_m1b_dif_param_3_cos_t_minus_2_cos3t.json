@@ -53,7 +53,7 @@
         "label": "State the parametric rule",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. Write the rule before differentiating. Both curves are given through the parameter t, so t is the variable everything is differentiated with respect to.",
+        "margin_note": "First mark. Write the rule before differentiating. Both x and y are given through the parameter t, so t is the variable everything is differentiated with respect to.",
         "lines": [
           {
             "text": "Sol:",
@@ -278,7 +278,7 @@
             "divide"
           ]
         },
-        "why": "Both derivatives were deliberately written with cos 2t as a factor, so the division is one cancellation rather than a page of trigonometric simplification. Without that factoring the ratio does not reduce.",
+        "why": "Both derivatives were written with cos 2t as a factor, so the division is one cancellation.",
         "common_mistakes": [
           "Expanding everything into powers of sin t and cos t instead of factoring, so nothing cancels.",
           "Writing tan t by dividing dx/dt by dy/dt."

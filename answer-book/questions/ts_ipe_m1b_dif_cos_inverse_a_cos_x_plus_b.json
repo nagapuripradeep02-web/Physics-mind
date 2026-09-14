@@ -115,10 +115,10 @@
         },
         "why": "The argument of the inverse cosine is a ratio of two expressions that are linear in cos x. Writing cos x in the half angle form makes both of them ratios with the same denominator 1 + t², which then cancels, and that is what reveals the standard form underneath.",
         "common_mistakes": [
-          "Differentiating the quotient as it stands with the quotient rule inside a Cos⁻¹, which is much longer and where most sign errors happen.",
+          "Cancelling cos x between a cos x + b and a + b cos x, which are sums and have no common factor.",
           "Using cos x = 1 − 2sin²(x/2), which halves the angle but does not put both parts over the same denominator."
         ],
-        "memory_tip": "The half angle substitution t = tan(x/2) turns any expression built from sin x and cos x into a ratio of polynomials in t. It is the standard move when cos x appears both on top and underneath."
+        "memory_tip": "The half angle substitution t = tan(x/2) turns any ratio of polynomials in sin x and cos x into a ratio of polynomials in t. It is the standard move when cos x appears both on top and underneath."
       },
       {
         "id": "s2_simplify_argument",
@@ -254,7 +254,7 @@
         "label": "Turn the inverse cosine into an inverse tangent",
         "marks": 2,
         "mark_note": "Method",
-        "margin_note": "Two marks, and the heart of the answer. Derive Cos⁻¹((1 − s²)/(1 + s²)) = 2 Tan⁻¹s rather than quoting it, and say why 2φ lies in [0, π].",
+        "margin_note": "Two marks, and the main step of the answer. Derive Cos⁻¹((1 − s²)/(1 + s²)) = 2 Tan⁻¹s rather than quoting it, and say why 2φ lies in [0, π].",
         "lines": [
           {
             "text": "(k > 0 from step 2, and t = tan(x/2) > 0 from step 1)",
@@ -265,6 +265,8 @@
             "text": "(s > 0, so there is one angle φ in (0, π/2) with tan φ = s)",
             "added": true
           },
+          "Put s = tan φ with 0 < φ < π/2. Then",
+          "(1 − s²)/(1 + s²) = (1 − tan²φ)/(1 + tan²φ)",
           {
             "text": "(1 + tan²φ = sec²φ, and dividing by sec²φ is multiplying",
             "added": true
@@ -279,8 +281,6 @@
             "style": "indent",
             "added": true
           },
-          "Put s = tan φ with 0 < φ < π/2. Then",
-          "(1 − s²)/(1 + s²) = (1 − tan²φ)/(1 + tan²φ)",
           {
             "text": "  = (1 − tan²φ)/sec²φ = cos²φ − sin²φ = cos 2φ",
             "style": "indent"
@@ -337,7 +337,7 @@
           "Quoting Cos⁻¹((1 − s²)/(1 + s²)) = 2 Tan⁻¹s with no derivation and no range check, so the method marks are not earned.",
           "Writing (1 − tan²φ)/(1 + tan²φ) as tan 2φ, which needs a 2 tan φ on top and is a different formula."
         ],
-        "memory_tip": "The three companions are cos 2φ = (1 − t²)/(1 + t²), sin 2φ = 2t/(1 + t²) and tan 2φ = 2t/(1 − t²), where t = tan φ. Only the cosine one has 1 minus t² on top.",
+        "memory_tip": "The three related forms are cos 2φ = (1 − s²)/(1 + s²), sin 2φ = 2s/(1 + s²) and tan 2φ = 2s/(1 − s²), where s = tan φ. Only the cosine one has 1 minus s² on top.",
         "lines_compact": [
           "Write s = kt = k tan(x/2). k > 0 and t > 0, so s > 0.",
           "Put s = tan φ with 0 < φ < π/2. Then",
@@ -363,7 +363,7 @@
         "label": "Differentiate",
         "marks": 2,
         "mark_note": "Method",
-        "margin_note": "Two marks. Two chain rule factors are needed: k from the constant, and ½ sec²(x/2) from the half angle. Missing the one half is the most common loss on this question.",
+        "margin_note": "Two marks. Two chain rule factors are needed: k from the constant, and ½ sec²(x/2) from the half angle. Missing the one half is a common loss on this question.",
         "lines": [
           "Differentiate f(x) = (2/√(a² − b²)) · Tan⁻¹(k tan(x/2))",
           "with respect to x.",
@@ -578,5 +578,5 @@
       }
     ]
   },
-  "insider_note": "Put t = tan(x/2) so the whole bracket becomes a cosine of a single angle. The conditions a > b > 0 and 0 < x < π are what keep the denominator positive and the roots real."
+  "insider_note": "Put t = tan(x/2) so the whole bracket becomes a cosine of a single angle. The condition a > b > 0 keeps a + b cos x positive and the square roots real; 0 < x < π keeps tan(x/2) defined and positive, which the range check for Cos⁻¹ needs."
 }

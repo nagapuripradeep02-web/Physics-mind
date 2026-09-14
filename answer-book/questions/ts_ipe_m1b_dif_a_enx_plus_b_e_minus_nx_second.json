@@ -145,7 +145,7 @@
         },
         "why": "The mark is for recognising the bracket as the original y rather than expanding anything further. The result holds for every a and b, which is why no values are needed.",
         "common_mistakes": [
-          "Taking n out instead of n² and writing y″ = ny.",
+          "Taking n out instead of n², writing y″ = n(an eⁿˣ + bn e⁻ⁿˣ) and calling the bracket y.",
           "Stopping at n²(aeⁿˣ + be⁻ⁿˣ) without saying that the bracket is y."
         ],
         "lines_compact": [

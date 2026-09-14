@@ -46,7 +46,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. eᵘ differentiates to eᵘ times du/dx, and here eᵘ is y itself. That is the reason the answer is stated in terms of y rather than the exponential.",
-        "memory_tip": "An exponential differentiates to itself, so eᵃ ˢⁱⁿ⁻¹ˣ can be replaced by y at any point in the working.",
+        "memory_tip": "eᵘ differentiates to eᵘ · du/dx, so the factor eᵃ ˢⁱⁿ⁻¹ˣ comes back unchanged and can be replaced by y.",
         "lines": [
           {
             "text": "Sol:",
