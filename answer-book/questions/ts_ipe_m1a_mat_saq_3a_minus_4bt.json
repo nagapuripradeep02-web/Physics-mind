@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 5 MATRICES, Short Answer question 9(iii), book p.41. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 split gives a mark to each of the four separate matrices a student has to put on the page — Bᵀ, 3A, 4Bᵀ and the difference — because the transpose is a full mark's worth of work on its own and is where the answer is usually lost. CHECKED ENTRY BY ENTRY, TWICE: the nine entries were first read off the three intermediate matrices, then recomputed straight from the stem as 3aᵢⱼ − 4bⱼᵢ, and the two passes agree: (−5, 15, 5), (10, 20, −8), (9, −23, −15). The transposed-index trap is visible at two positions: Bᵀ in row 1 column 3 is B's entry in row 3 column 1, which is 1, while Bᵀ in row 3 column 1 is B's entry in row 1 column 3, which is 0. Swapping those two would still leave a well-formed 3×3 matrix, so the check has to be positional. Paper position: Maths-1A Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern; Matrices supplies questions to all three sections of this paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 5 MATRICES, Short Answer question 9(iii), book p.41. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 split gives a mark to each of the four separate matrices a student has to put on the page — Bᵀ, 3A, 4Bᵀ and the difference — because the transpose is a full mark's worth of work on its own and is where the answer is usually lost. CHECKED ENTRY BY ENTRY, TWICE: the nine entries were first read off the three intermediate matrices, then recomputed straight from the stem as 3aᵢⱼ − 4bⱼᵢ, and the two passes agree: (−5, 15, 5), (10, 20, −8), (9, −23, −15). The transposed-index trap is visible at two positions: Bᵀ in row 1 column 3 is B's entry in row 3 column 1, which is 1, while Bᵀ in row 3 column 1 is B's entry in row 1 column 3, which is 0. Swapping those two would still leave a well-formed 3×3 matrix, so the check has to be positional. Paper position: Maths-1A Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern; Matrices supplies questions to all three sections of this paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say the order you would work in to find 3A − 4Bᵀ.",
   "answer": {
@@ -61,6 +61,7 @@
             "style": "heading"
           },
           "Bᵀ turns the columns of B into rows.",
+          "(row 1 of Bᵀ is column 1 of B: 2, 0, 1)",
           {
             "text": "B^{T} = \\begin{bmatrix} 2 & 0 & 1 \\\\ -1 & -2 & 2 \\\\ 0 & 5 & 0 \\end{bmatrix}",
             "render": "katex",
@@ -108,6 +109,10 @@
         "lines": [
           "3A multiplies every entry of A by 3.",
           {
+            "text": "(row 1: 3×1, 3×5, 3×3 = 3, 15, 9)",
+            "added": true
+          },
+          {
             "text": "3A = \\begin{bmatrix} 3 & 15 & 9 \\\\ 6 & 12 & 0 \\\\ 9 & -3 & -15 \\end{bmatrix}",
             "render": "katex",
             "style": "eq"
@@ -138,6 +143,14 @@
         "common_mistakes": [
           "Multiplying only the first row or only the diagonal by 3.",
           "Writing 3(−1) as 3 instead of −3."
+        ],
+        "lines_compact": [
+          "3A multiplies every entry of A by 3.",
+          {
+            "text": "3A = \\begin{bmatrix} 3 & 15 & 9 \\\\ 6 & 12 & 0 \\\\ 9 & -3 & -15 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -150,6 +163,10 @@
         "memory_tip": "Multiply every entry of Bᵀ by 4. Scaling before or after transposing gives the same matrix, so work from the Bᵀ already on the page.",
         "lines": [
           "4Bᵀ multiplies every entry of Bᵀ by 4.",
+          {
+            "text": "(row 2: 4×(−1), 4×(−2), 4×2 = −4, −8, 8)",
+            "added": true
+          },
           {
             "text": "4B^{T} = \\begin{bmatrix} 8 & 0 & 4 \\\\ -4 & -8 & 8 \\\\ 0 & 20 & 0 \\end{bmatrix}",
             "render": "katex",
@@ -181,6 +198,14 @@
         "common_mistakes": [
           "Transposing from memory instead of reading Bᵀ off the page, so the entries land in the wrong positions.",
           "Writing 4(5) as 9 by adding instead of multiplying."
+        ],
+        "lines_compact": [
+          "4Bᵀ multiplies every entry of Bᵀ by 4.",
+          {
+            "text": "4B^{T} = \\begin{bmatrix} 8 & 0 & 4 \\\\ -4 & -8 & 8 \\\\ 0 & 20 & 0 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -193,6 +218,15 @@
         "memory_tip": "Subtracting a negative adds. 6 − (−4) = 10 and 12 − (−8) = 20.",
         "lines": [
           "Subtract in the order 3A − 4Bᵀ:",
+          {
+            "text": "(subtract entry by entry; subtracting a negative",
+            "added": true
+          },
+          {
+            "text": "  number adds it: 6 − (−4) = 10)",
+            "style": "indent",
+            "added": true
+          },
           {
             "text": "3A - 4B^{T} = \\begin{bmatrix} 3-8 & 15-0 & 9-4 \\\\ 6+4 & 12+8 & 0-8 \\\\ 9-0 & -3-20 & -15-0 \\end{bmatrix}",
             "render": "katex",
@@ -229,6 +263,19 @@
         "common_mistakes": [
           "Computing 4Bᵀ − 3A and getting every sign reversed.",
           "Writing 6 − (−4) as 2 instead of 10."
+        ],
+        "lines_compact": [
+          "Subtract in the order 3A − 4Bᵀ:",
+          {
+            "text": "3A - 4B^{T} = \\begin{bmatrix} 3-8 & 15-0 & 9-4 \\\\ 6+4 & 12+8 & 0-8 \\\\ 9-0 & -3-20 & -15-0 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "= \\begin{bmatrix} -5 & 15 & 5 \\\\ 10 & 20 & -8 \\\\ 9 & -23 & -15 \\end{bmatrix}",
+            "render": "katex",
+            "style": "boxed"
+          }
         ]
       }
     ]

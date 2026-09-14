@@ -35,7 +35,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.93 — VSAQ chapter 18 T-Ratios upto Transformations, answer 129.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 18. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four or six questions to a page in two columns. It is not a bare guess on two counts: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, and THIS chapter's own header note reads \"Writing Formula itself gets you 1 Mark in these Questions\" — which is why the first step of every answer here IS the formula or the set-up. The book's chapter header carries ★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because T-Ratios holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q8 and Q9 are the two T-Ratios slots."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.93 — VSAQ chapter 18 T-Ratios upto Transformations, answer 129.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 18. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four or six questions to a page in two columns. It is not a bare guess on two counts: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, and THIS chapter's own header note reads \"Writing Formula itself gets you 1 Mark in these Questions\" — which is why the first step of every answer here IS the formula or the set-up. The book's chapter header carries ★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because T-Ratios holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q8 and Q9 are the two T-Ratios slots. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — name the formula you use and how you finish.",
   "answer": {
@@ -57,10 +57,15 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "Bring each angle to an acute angle:",
           "sin330° = sin(360° − 30°) = −sin30° = −1/2",
+          "(330° is in Q₄, where sin is negative)",
           "cos120° = cos(180° − 60°) = −cos60° = −1/2",
+          "(120° is in Q₂, where cos is negative)",
           "cos210° = cos(180° + 30°) = −cos30° = −√3/2",
-          "sin300° = sin(360° − 60°) = −sin60° = −√3/2"
+          "(210° is in Q₃, where cos is negative)",
+          "sin300° = sin(360° − 60°) = −sin60° = −√3/2",
+          "(300° is in Q₄, where sin is negative)"
         ],
         "recall": {
           "credit": "say_it",
@@ -99,7 +104,15 @@
         "margin_note": "Second mark. Two negatives multiply to a positive in each product, so both terms are positive and they add.",
         "memory_tip": "Two negatives multiply to a positive in each product, so both terms are positive and add to 1.",
         "lines": [
+          {
+            "text": "Put the four values in:",
+            "added": true
+          },
           "Given expression = (−1/2)(−1/2) + (−√3/2)(−√3/2)",
+          {
+            "text": "(a minus times a minus is a plus, and √3 × √3 = 3)",
+            "added": true
+          },
           "= 1/4 + 3/4",
           {
             "text": "= 1",
@@ -131,6 +144,14 @@
         "common_mistakes": [
           "Getting a negative answer by mishandling the signs.",
           "Squaring √3/2 as 3/4 but writing √3/4."
+        ],
+        "lines_compact": [
+          "Given expression = (−1/2)(−1/2) + (−√3/2)(−√3/2)",
+          "= 1/4 + 3/4",
+          {
+            "text": "= 1",
+            "style": "boxed"
+          }
         ]
       }
     ]

@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.87, chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 28(iii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to the period 2π/2 = π with the table of values and one to the drawing itself, since the question asks for a graph. Paper position: Maths-1A Section A prints ten very short answers of 2 marks each and the student writes all ten; Trigonometric Ratios and Transformations supplies two of those slots on almost every paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.87, chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 28(iii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to the period 2π/2 = π with the table of values and one to the drawing itself, since the question asks for a graph. Paper position: Maths-1A Section A prints ten very short answers of 2 marks each and the student writes all ten; Trigonometric Ratios and Transformations supplies two of those slots on almost every paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would draw this one — name the period, the values you plot, and the shape you get.",
   "answer": {
@@ -53,9 +53,15 @@
             "style": "heading"
           },
           "Period of sin 2x = 2π/2 = π.",
+          "(sin kx has period 2π/k; here k = 2)",
           "The interval [−π/2, π/2] has length π,",
           "so it holds exactly one full period.",
           "x = −π/2, −π/4, 0, π/4, π/2",
+          "(2x = −π, −π/2, 0, π/2, π, and the sine of",
+          {
+            "text": "  each is 0, −1, 0, 1, 0)",
+            "style": "indent"
+          },
           "y = 0, −1, 0, 1, 0"
         ],
         "recall": {

@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 12, book p.84. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards the reciprocal pair sec θ − tan θ = 3/2 first and the value of sin θ together with the quadrant second, because the question asks for two things and the quadrant is not a free extra. Paper position: Maths-1A Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern; Trigonometric Ratios and Transformations holds two of those ten slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Checked numerically: sec θ = 13/12 and tan θ = −5/12 give sec θ + tan θ = 0.6666666667 = 2/3 and sec θ − tan θ = 1.5000000000 = 3/2; sin θ = −5/13 = −0.3846153846 and cos θ = 12/13 = 0.9230769231 satisfy sin²θ + cos²θ = 1. The angle is θ = −22.6198649480°, that is 337.3801350520°, which is in the fourth quadrant, so the quadrant on the page is derived from the two signs and not asserted."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 12, book p.84. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards the reciprocal pair sec θ − tan θ = 3/2 first and the value of sin θ together with the quadrant second, because the question asks for two things and the quadrant is not a free extra. Paper position: Maths-1A Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern; Trigonometric Ratios and Transformations holds two of those ten slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Checked numerically: sec θ = 13/12 and tan θ = −5/12 give sec θ + tan θ = 0.6666666667 = 2/3 and sec θ − tan θ = 1.5000000000 = 3/2; sin θ = −5/13 = −0.3846153846 and cos θ = 12/13 = 0.9230769231 satisfy sin²θ + cos²θ = 1. The angle is θ = −22.6198649480°, that is 337.3801350520°, which is in the fourth quadrant, so the quadrant on the page is derived from the two signs and not asserted. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — name the identity you use, and say how you decide the quadrant.",
   "answer": {
@@ -53,9 +53,11 @@
             "style": "heading"
           },
           "sec θ and tan θ appear, so cos θ ≠ 0.",
+          "Given sec θ + tan θ = 2/3      … (1)",
           "sec²θ − tan²θ = 1",
           "⇒ (sec θ + tan θ)(sec θ − tan θ) = 1",
           "The given value 2/3 is not 0, so",
+          "(1 ÷ 2/3 = 3/2)",
           "sec θ − tan θ = 3/2      … (2)"
         ],
         "recall": {
@@ -95,10 +97,30 @@
         "margin_note": "Second mark. Adding gives sec θ = 13/12, subtracting gives tan θ = −5/12, and sin θ = tan θ cos θ = −5/13. cos θ positive with sin θ negative happens only in the fourth quadrant.",
         "memory_tip": "Add the two equations to get sec θ, subtract them to get tan θ. Then sin θ = tan θ × cos θ, and the two signs name the quadrant.",
         "lines": [
+          {
+            "text": "Add (1) and (2); tan θ cancels:",
+            "added": true
+          },
           "Adding: 2 sec θ = 2/3 + 3/2 = 13/6",
+          {
+            "text": "(2/3 + 3/2 = 4/6 + 9/6 = 13/6)",
+            "added": true
+          },
           "⇒ sec θ = 13/12, so cos θ = 12/13",
+          {
+            "text": "Subtract (2) from (1); sec θ cancels:",
+            "added": true
+          },
           "Subtracting: 2 tan θ = 2/3 − 3/2 = −5/6",
+          {
+            "text": "(2/3 − 3/2 = 4/6 − 9/6 = −5/6)",
+            "added": true
+          },
           "⇒ tan θ = −5/12",
+          {
+            "text": "(tan θ = sin θ/cos θ, so sin θ = tan θ · cos θ)",
+            "added": true
+          },
           "sin θ = tan θ · cos θ = (−5/12)(12/13) = −5/13",
           "cos θ is positive and sin θ is negative,",
           "and that happens only in the fourth quadrant.",
@@ -134,6 +156,19 @@
           "Answering sin θ = 5/13 and losing the minus sign.",
           "Naming the second quadrant, where cos θ is negative.",
           "Stating a quadrant without checking the signs of both sin θ and cos θ."
+        ],
+        "lines_compact": [
+          "Adding: 2 sec θ = 2/3 + 3/2 = 13/6",
+          "⇒ sec θ = 13/12, so cos θ = 12/13",
+          "Subtracting: 2 tan θ = 2/3 − 3/2 = −5/6",
+          "⇒ tan θ = −5/12",
+          "sin θ = tan θ · cos θ = (−5/12)(12/13) = −5/13",
+          "cos θ is positive and sin θ is negative,",
+          "and that happens only in the fourth quadrant.",
+          {
+            "text": "∴ sin θ = −5/13, θ in the fourth quadrant",
+            "style": "boxed"
+          }
         ]
       }
     ]

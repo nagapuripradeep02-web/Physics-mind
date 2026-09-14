@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.82, chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 4(iii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to naming the shifted angle and computing √(a² + b²) = 3 and one to adding the constant −3 to both ends. Paper position: Maths-1A Section A prints ten very short answers of 2 marks each and the student writes all ten; Trigonometric Ratios and Transformations supplies two of those slots on almost every paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.82, chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 4(iii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to naming the shifted angle and computing √(a² + b²) = 3 and one to adding the constant −3 to both ends. Paper position: Maths-1A Section A prints ten very short answers of 2 marks each and the student writes all ten; Trigonometric Ratios and Transformations supplies two of those slots on almost every paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — name the formula you use and how you finish.",
   "answer": {
@@ -98,6 +98,28 @@
         "margin_note": "Second mark. The −3 moves BOTH answers down by 3, not just one. The maximum comes out as exactly 0, so f(x) is never positive.",
         "memory_tip": "The constant −3 moves both ends down: 3 − 3 = 0 at the top and −3 − 3 = −6 at the bottom.",
         "lines": [
+          {
+            "text": "a cos θ + b sin θ always lies between",
+            "added": true
+          },
+          {
+            "text": "  −√(a² + b²) and +√(a² + b²), and reaches both",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "(it can be written √(a² + b²) cos(θ − α), and",
+            "added": true
+          },
+          {
+            "text": "  cos(θ − α) lies between −1 and 1)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "Add c = −3 to both ends:",
+            "added": true
+          },
           "Maximum = c + √(a² + b²) = −3 + 3 = 0",
           "Minimum = c − √(a² + b²) = −3 − 3 = −6",
           {
@@ -132,6 +154,14 @@
         "common_mistakes": [
           "Subtracting the 3 from only one of the two answers.",
           "Giving 3 and −3 by dropping the constant."
+        ],
+        "lines_compact": [
+          "Maximum = c + √(a² + b²) = −3 + 3 = 0",
+          "Minimum = c − √(a² + b²) = −3 − 3 = −6",
+          {
+            "text": "∴ Maximum = 0, Minimum = −6",
+            "style": "boxed"
+          }
         ]
       }
     ]

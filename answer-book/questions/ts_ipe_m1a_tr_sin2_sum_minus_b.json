@@ -42,7 +42,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.97, chapter 8 TRANSFORMATIONS, Long Answer question 1(iii). The book prints TRANSFORMATIONS as a separate un-numbered chapter-style banner immediately after chapter 8's VSAQ run and restarts its numbering at 1; we ship both under one unit, ordered by the syllabus, and never mirror the book's arrangement. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+3+2+1+1 split rewards the two substantial transformations — the sum-to-product pairing and the use of the angle condition — over the set-up and the finish, and it is the same split and the same step ids already carried by the sibling cards of this family (sin2a_sum, cos2a_sum, sin_half_squares, cos_half_squares), deliberately: they are ONE method over different identities, so a student who learns the arc once can attempt any of them. IDENTITY CHECKED NUMERICALLY before and after writing, and every intermediate line of the derivation with it: at A = 50°, B = 60°, C = 70° both sides equal 0.7615699589, and the identity holds again at (40°, 75°, 65°) and (110°, 25°, 45°). Paper position: Maths-1A Section C carries the long answers at 8 marks each under the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27), any 2 of 3; the Transformations slot is always a question of this kind. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.97, chapter 8 TRANSFORMATIONS, Long Answer question 1(iii). The book prints TRANSFORMATIONS as a separate un-numbered chapter-style banner immediately after chapter 8's VSAQ run and restarts its numbering at 1; we ship both under one unit, ordered by the syllabus, and never mirror the book's arrangement. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+3+2+1+1 split rewards the two substantial transformations — the sum-to-product pairing and the use of the angle condition — over the set-up and the finish, and it is the same split and the same step ids already carried by the sibling cards of this family (sin2a_sum, cos2a_sum, sin_half_squares, cos_half_squares), deliberately: they are ONE method over different identities, so a student who learns the arc once can attempt any of them. IDENTITY CHECKED NUMERICALLY before and after writing, and every intermediate line of the derivation with it: at A = 50°, B = 60°, C = 70° both sides equal 0.7615699589, and the identity holds again at (40°, 75°, 65°) and (110°, 25°, 45°). Paper position: Maths-1A Section C carries the long answers at 8 marks each under the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27), any 2 of 3; the Transformations slot is always a question of this kind. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this identity — say the four moves in order, and where the angle condition gets used.",
   "answer": {
@@ -65,7 +65,12 @@
             "style": "heading"
           },
           "Given",
-          "A + B + C = 180°  ⇒  A + C = 180° − B"
+          "A + B + C = 180°  ⇒  A + C = 180° − B",
+          "(A and C are paired because the right side",
+          {
+            "text": "  has sin B on its own.)",
+            "style": "indent"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -104,9 +109,25 @@
         "memory_tip": "Write the two plus terms together first: sin 2A + sin 2C − sin 2B. Then pair sin 2A with sin 2C.",
         "lines": [
           "L.H.S = sin 2A − sin 2B + sin 2C",
+          {
+            "text": "Put the two plus terms together:",
+            "added": true
+          },
           "= sin 2A + sin 2C − sin 2B",
+          {
+            "text": "Use the sum formula with p = 2A, q = 2C:",
+            "added": true
+          },
           "= 2 sin((2A+2C)/2) cos((2A−2C)/2) − sin 2B",
           "  [∵ sin p + sin q = 2 sin((p+q)/2) cos((p−q)/2)]",
+          {
+            "text": "((2A+2C)/2 = A + C and (2A−2C)/2 = A − C)",
+            "added": true
+          },
+          {
+            "text": "Write sin 2B with the double-angle formula:",
+            "added": true
+          },
           "= 2 sin(A+C) cos(A−C) − 2 sinB cosB",
           "  [∵ sin2θ = 2 sinθ cosθ]"
         ],
@@ -137,6 +158,14 @@
         "common_mistakes": [
           "Losing the minus sign in front of sin 2B when the double angle formula is applied.",
           "Using the sine sum formula on two terms that carry opposite signs."
+        ],
+        "lines_compact": [
+          "L.H.S = sin 2A − sin 2B + sin 2C",
+          "= sin 2A + sin 2C − sin 2B",
+          "= 2 sin((2A+2C)/2) cos((2A−2C)/2) − sin 2B",
+          "  [∵ sin p + sin q = 2 sin((p+q)/2) cos((p−q)/2)]",
+          "= 2 sin(A+C) cos(A−C) − 2 sinB cosB",
+          "  [∵ sin2θ = 2 sinθ cosθ]"
         ]
       },
       {
@@ -148,6 +177,10 @@
         "margin_note": "Two more marks. The angle condition turns sin(A+C) into sin B, so both terms now carry the same factor 2 sin B.",
         "memory_tip": "sin(180° − B) = +sin B. Sine keeps its sign across 180°.",
         "lines": [
+          {
+            "text": "Use the condition: A + C = 180° − B.",
+            "added": true
+          },
           "= 2 sin(180° − B) cos(A−C) − 2 sinB cosB",
           "  [∵ (A+C) + B = 180°]",
           "= 2 sinB cos(A−C) − 2 sinB cosB",
@@ -179,6 +212,12 @@
         "common_mistakes": [
           "Writing sin(180° − B) = −sin B. The minus belongs to cosine: cos(180° − B) = −cos B, but sin(180° − B) = +sin B.",
           "Forgetting to use the condition at all."
+        ],
+        "lines_compact": [
+          "= 2 sin(180° − B) cos(A−C) − 2 sinB cosB",
+          "  [∵ (A+C) + B = 180°]",
+          "= 2 sinB cos(A−C) − 2 sinB cosB",
+          "  [∵ sin(180° − θ) = sinθ]"
         ]
       },
       {
@@ -190,9 +229,25 @@
         "margin_note": "Seventh mark. The common factor 2 sin B comes out, and the condition is used a SECOND time inside the bracket so that the bracket becomes a SUM of two cosines.",
         "memory_tip": "Take 2 sinB out. Then cos B = −cos(A+C) turns the minus inside the bracket into a plus.",
         "lines": [
+          {
+            "text": "Both terms have 2 sinB; take it out:",
+            "added": true
+          },
           "= 2 sinB [cos(A−C) − cosB]",
+          {
+            "text": "(check: 2 sinB × (−cosB) = −2 sinB cosB)",
+            "added": true
+          },
+          {
+            "text": "Use the condition again, inside the bracket:",
+            "added": true
+          },
           "= 2 sinB [cos(A−C) + cos(A+C)]",
-          "  [∵ cosB = cos(180° − (A+C)) = −cos(A+C)]"
+          "  [∵ cosB = cos(180° − (A+C)) = −cos(A+C)]",
+          {
+            "text": "(so −cosB = +cos(A+C))",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -220,6 +275,11 @@
         "common_mistakes": [
           "Writing cos(180° − θ) = +cos θ, which leaves the bracket as a difference.",
           "Taking out sin B instead of 2 sin B."
+        ],
+        "lines_compact": [
+          "= 2 sinB [cos(A−C) − cosB]",
+          "= 2 sinB [cos(A−C) + cos(A+C)]",
+          "  [∵ cosB = cos(180° − (A+C)) = −cos(A+C)]"
         ]
       },
       {
@@ -231,8 +291,20 @@
         "margin_note": "Last mark. The sum formula gives the two cosine factors. Write the answer in the order the question prints it — 4 cos A sin B cos C — and finish with \"= R.H.S\".",
         "memory_tip": "The answer keeps the letters in order: cos A, sin B, cos C. The sine is on the angle whose term carried the minus sign.",
         "lines": [
+          {
+            "text": "The bracket is cos(A+C) + cos(A−C):",
+            "added": true
+          },
           "= 2 sinB (2 cosA cosC)",
           "  [∵ cos(A+C) + cos(A−C) = 2 cosA cosC]",
+          {
+            "text": "(expand both; the sinA sinC terms cancel)",
+            "added": true
+          },
+          {
+            "text": "Multiply 2 × 2 = 4 and reorder:",
+            "added": true
+          },
           {
             "text": "= 4 cosA sinB cosC = R.H.S",
             "style": "boxed"
@@ -263,6 +335,14 @@
         "common_mistakes": [
           "Using the difference formula, which gives sines instead of cosines.",
           "Writing 4 cos A cos B sin C, which is the answer to the version where sin 2C carries the minus."
+        ],
+        "lines_compact": [
+          "= 2 sinB (2 cosA cosC)",
+          "  [∵ cos(A+C) + cos(A−C) = 2 cosA cosC]",
+          {
+            "text": "= 4 cosA sinB cosC = R.H.S",
+            "style": "boxed"
+          }
         ]
       }
     ]

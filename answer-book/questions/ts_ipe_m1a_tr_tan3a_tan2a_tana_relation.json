@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 47(ii), book p.96. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1 + 1 gives one mark to splitting 3A as 2A + A and writing the tan(A + B) formula, and one to clearing the denominator and separating the triple product from the three single tangents. The stem's condition was checked and is sufficient: if A itself were an odd multiple of π/2 then 3A would be one too, so ruling out 3A rules out A as well, and 1 − tan 2A tan A cannot be zero without tan 3A being undefined. Paper position: Maths-1A Section A prints ten very short answers of 2 marks each and the student writes all ten, under the 2026-27 pattern; Trigonometric Ratios and Transformations supplies two of those ten slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 47(ii), book p.96. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1 + 1 gives one mark to splitting 3A as 2A + A and writing the tan(A + B) formula, and one to clearing the denominator and separating the triple product from the three single tangents. The stem's condition was checked and is sufficient: if A itself were an odd multiple of π/2 then 3A would be one too, so ruling out 3A rules out A as well, and 1 − tan 2A tan A cannot be zero without tan 3A being undefined. Paper position: Maths-1A Section A prints ten very short answers of 2 marks each and the student writes all ten, under the 2026-27 pattern; Trigonometric Ratios and Transformations supplies two of those ten slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — name how you split the angle and what you do with the denominator.",
   "answer": {
@@ -56,6 +56,7 @@
           "so tan 2A and tan 3A exist. Nor is A one,",
           "because 3A would then be one as well.",
           "Write 3A = 2A + A.",
+          "Use the tan(A + B) formula with 2A and A:",
           "tan 3A = (tan2A + tanA)/(1 − tan2A tanA)"
         ],
         "recall": {
@@ -95,10 +96,31 @@
         "margin_note": "Second mark. Cross multiply, open the bracket, then put the triple product on one side and the three single tangents on the other.",
         "memory_tip": "Cross multiply, open the bracket, then separate: triple product on one side, the three single tangents on the other.",
         "lines": [
+          {
+            "text": "Multiply both sides by (1 − tan2A tanA):",
+            "added": true
+          },
           "⇒ tan3A(1 − tan2A tanA) = tan2A + tanA",
+          {
+            "text": "Open the bracket:",
+            "added": true
+          },
           "⇒ tan3A − tan3A tan2A tanA = tan2A + tanA",
           "Moving the terms across:",
+          {
+            "text": "(take tan2A + tanA to the left and",
+            "added": true
+          },
+          {
+            "text": "  −tan3A tan2A tanA to the right)",
+            "style": "indent",
+            "added": true
+          },
           "tan3A − tan2A − tanA = tan3A tan2A tanA",
+          {
+            "text": "(read the same equation from right to left)",
+            "added": true
+          },
           {
             "text": "∴ tan3A·tan2A·tanA = tan3A − tan2A − tanA",
             "style": "boxed"
@@ -131,6 +153,16 @@
         "common_mistakes": [
           "Opening tan3A(1 − tan2A tanA) as tan3A − tan2A tanA.",
           "Losing a sign when moving tan 2A and tan A across."
+        ],
+        "lines_compact": [
+          "⇒ tan3A(1 − tan2A tanA) = tan2A + tanA",
+          "⇒ tan3A − tan3A tan2A tanA = tan2A + tanA",
+          "Moving the terms across:",
+          "tan3A − tan2A − tanA = tan3A tan2A tanA",
+          {
+            "text": "∴ tan3A·tan2A·tanA = tan3A − tan2A − tanA",
+            "style": "boxed"
+          }
         ]
       }
     ]

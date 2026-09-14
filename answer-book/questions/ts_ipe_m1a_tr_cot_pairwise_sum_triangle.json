@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 32(ii), book p.89. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1 + 1 gives one mark to the set-up in cotangents and one to the cross-multiplication. Unlike the tangent identity printed as question 22 and again as 32(i), this one needs no excluded angle, and the answer says so where the student reads it rather than leaving the difference unexplained. Paper position: Maths-1A Section A prints ten very short answers of 2 marks each and the student writes all ten, under the 2026-27 pattern; Trigonometric Ratios and Transformations supplies two of those ten slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 32(ii), book p.89. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1 + 1 gives one mark to the set-up in cotangents and one to the cross-multiplication. Unlike the tangent identity printed as question 22 and again as 32(i), this one needs no excluded angle, and the answer says so where the student reads it rather than leaving the difference unexplained. Paper position: Maths-1A Section A prints ten very short answers of 2 marks each and the student writes all ten, under the 2026-27 pattern; Trigonometric Ratios and Transformations supplies two of those ten slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — name the formula you start from and how the three products appear.",
   "answer": {
@@ -55,7 +55,9 @@
           "Each angle lies strictly between 0 and π,",
           "so cot A, cot B and cot C all exist.",
           "A + B + C = π ⇒ A + B = π − C",
-          "∴ cot(A + B) = cot(π − C) = −cot C"
+          "Take cot of both sides:",
+          "∴ cot(A + B) = cot(π − C) = −cot C",
+          "(cot(π − θ) = −cot θ)"
         ],
         "recall": {
           "credit": "say_it",
@@ -95,10 +97,27 @@
         "margin_note": "Second mark. Cross multiply, then multiply −cot C into both terms of the bracket. Moving them left and the −1 right gives the three pairwise products and 1.",
         "memory_tip": "Cross multiply, then share −cot C over both terms in the bracket. The three pairwise products land on one side and 1 on the other.",
         "lines": [
+          {
+            "text": "Expand cot(A + B) with its formula:",
+            "added": true
+          },
           "⇒ (cot A cot B − 1)/(cot A + cot B) = −cot C",
           "Cross multiplying:",
           "cot A cot B − 1 = −cot C (cot A + cot B)",
+          {
+            "text": "Open the bracket:",
+            "added": true
+          },
           "= −cot C cot A − cot B cot C",
+          {
+            "text": "Move the two cot C terms to the left and −1",
+            "added": true
+          },
+          {
+            "text": "  to the right:",
+            "style": "indent",
+            "added": true
+          },
           "∴ cot A cot B + cot B cot C + cot C cot A",
           {
             "text": "= 1",
@@ -132,6 +151,17 @@
         "common_mistakes": [
           "Writing cot(A + B) = (cot A cot B + 1)/(cot A + cot B).",
           "Multiplying only cot A by −cot C and leaving cot B unmultiplied."
+        ],
+        "lines_compact": [
+          "⇒ (cot A cot B − 1)/(cot A + cot B) = −cot C",
+          "Cross multiplying:",
+          "cot A cot B − 1 = −cot C (cot A + cot B)",
+          "= −cot C cot A − cot B cot C",
+          "∴ cot A cot B + cot B cot C + cot C cot A",
+          {
+            "text": "= 1",
+            "style": "boxed"
+          }
         ]
       }
     ]

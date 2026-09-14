@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.94 — VSAQ chapter 18 T-Ratios upto Transformations, answer 130.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: none — this answer carries no year tag. The same opening as answer 130.1, but the QUADRANT condition at the end is what decides the answer — the acute value alone would be wrong.⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four or six questions to a page in two columns. It is not a bare guess on two counts: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, and THIS chapter's own header note reads \"Writing Formula itself gets you 1 Mark in these Questions\" — which is why the first step of every answer here IS the formula or the set-up. The book's chapter header carries ★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because T-Ratios holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q8 and Q9 are the two T-Ratios slots."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.94 — VSAQ chapter 18 T-Ratios upto Transformations, answer 130.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: none — this answer carries no year tag. The same opening as answer 130.1, but the QUADRANT condition at the end is what decides the answer — the acute value alone would be wrong.⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four or six questions to a page in two columns. It is not a bare guess on two counts: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, and THIS chapter's own header note reads \"Writing Formula itself gets you 1 Mark in these Questions\" — which is why the first step of every answer here IS the formula or the set-up. The book's chapter header carries ★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because T-Ratios holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q8 and Q9 are the two T-Ratios slots. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — name the formula you use and how you finish.",
   "answer": {
@@ -53,8 +53,11 @@
             "style": "heading"
           },
           "Divide numerator and denominator by cos11°:",
+          "(sin11°/cos11° = tan11°)",
           "tanθ = (1 + tan11°)/(1 − tan11°)",
+          "Write 1 as tan45°:",
           "= (tan45° + tan11°)/(1 − tan45° tan11°)",
+          "(tan(A + B) formula)",
           "= tan(45° + 11°) = tan56°"
         ],
         "recall": {
@@ -93,8 +96,20 @@
         "margin_note": "Second mark, and the point of the question. tan is positive in the third quadrant too, and the third-quadrant angle with the same tangent is 180° + 56°.",
         "memory_tip": "tan is positive in the THIRD quadrant too, so the answer is 180° + 56° = 236°.",
         "lines": [
+          {
+            "text": "tan θ = tan56°, but 56° is in the first quadrant.",
+            "added": true
+          },
           "θ is in the third quadrant, and",
+          {
+            "text": "(tan repeats every 180°)",
+            "added": true
+          },
           "tan56° = tan(180° + 56°) = tan236°",
+          {
+            "text": "(180° < 236° < 270°, so 236° is in Q₃)",
+            "added": true
+          },
           {
             "text": "∴ θ = 236°",
             "style": "boxed"
@@ -126,6 +141,14 @@
         "common_mistakes": [
           "Answering 56° and ignoring the quadrant.",
           "Adding 360° instead of 180°."
+        ],
+        "lines_compact": [
+          "θ is in the third quadrant, and",
+          "tan56° = tan(180° + 56°) = tan236°",
+          {
+            "text": "∴ θ = 236°",
+            "style": "boxed"
+          }
         ]
       }
     ]

@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.87, chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 28(ii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to the table of values together with the range 0 ≤ y ≤ 1 and one to the drawing itself, since the question asks for a graph. Paper position: Maths-1A Section A prints ten very short answers of 2 marks each and the student writes all ten; Trigonometric Ratios and Transformations supplies two of those slots on almost every paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.87, chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 28(ii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to the table of values together with the range 0 ≤ y ≤ 1 and one to the drawing itself, since the question asks for a graph. Paper position: Maths-1A Section A prints ten very short answers of 2 marks each and the student writes all ten; Trigonometric Ratios and Transformations supplies two of those slots on almost every paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would draw this one — name the values you plot, the range, and the shape you get.",
   "answer": {
@@ -53,10 +53,29 @@
             "style": "heading"
           },
           "cos²x = (1 + cos 2x)/2, so 0 ≤ y ≤ 1.",
+          "(cos²x is a square, so y ≥ 0; and cos²x ≤ 1)",
           "x = 0, π/4, π/2, 3π/4, π",
+          "Work out each y:",
+          {
+            "text": "  cos²0 = 1, cos²(π/4) = (1/√2)² = 1/2,",
+            "style": "indent"
+          },
+          {
+            "text": "  cos²(π/2) = 0, cos²(3π/4) = (−1/√2)² = 1/2,",
+            "style": "indent"
+          },
+          {
+            "text": "  cos²π = (−1)² = 1",
+            "style": "indent"
+          },
           "y = 1, 1/2, 0, 1/2, 1",
           "The curve falls from 1 to 0 at x = π/2,",
-          "then rises back to 1 at x = π."
+          "then rises back to 1 at x = π.",
+          "(The ends x = 0 and x = π are not inside (0, π);",
+          {
+            "text": "  the curve comes close to y = 1 there.)",
+            "style": "indent"
+          }
         ],
         "recall": {
           "credit": "say_it",

@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.34, chapter 5 MATRICES, Very Short Answer question 14. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards each of the two definitions the question names, so a student who writes only one of them earns exactly half. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Related cards in the same unit: ts_ipe_m1a_mat_vsaq_symmetric_find_x and ts_ipe_m1a_mat_vsaq_skew_symmetric_find_x each open with one of these definitions and then solve for an unknown; this question asks for both definitions and nothing else, so the three are not duplicates."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.34, chapter 5 MATRICES, Very Short Answer question 14. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards each of the two definitions the question names, so a student who writes only one of them earns exactly half. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Related cards in the same unit: ts_ipe_m1a_mat_vsaq_symmetric_find_x and ts_ipe_m1a_mat_vsaq_skew_symmetric_find_x each open with one of these definitions and then solve for an unknown; this question asks for both definitions and nothing else, so the three are not duplicates. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say both definitions, and say what skew symmetry forces the diagonal entries to be.",
   "answer": {
@@ -57,7 +57,8 @@
           },
           "A square matrix A = [aᵢⱼ] is called symmetric",
           "if Aᵀ = A, that is aⱼᵢ = aᵢⱼ for all i and j.",
-          "Example: the matrix with rows (1, 2) and (2, 5)."
+          "Example: the matrix with rows (1, 2) and (2, 5).",
+          "(its transpose has rows (1, 2) and (2, 5) again)"
         ],
         "recall": {
           "credit": "say_it",
@@ -103,8 +104,21 @@
           "A square matrix A = [aᵢⱼ] is called skew",
           "symmetric if Aᵀ = −A, that is aⱼᵢ = −aᵢⱼ.",
           "Putting j = i gives aᵢᵢ = −aᵢᵢ, so 2aᵢᵢ = 0.",
+          {
+            "text": "(add aᵢᵢ to both sides of aᵢᵢ = −aᵢᵢ)",
+            "added": true
+          },
           "So every principal diagonal entry is 0.",
           "Example: the matrix with rows (0, 3) and (−3, 0).",
+          {
+            "text": "(its transpose has rows (0, −3) and (3, 0), which",
+            "added": true
+          },
+          {
+            "text": "  is −1 times the matrix)",
+            "style": "indent",
+            "added": true
+          },
           {
             "text": "∴ Symmetric: Aᵀ = A;  skew: Aᵀ = −A",
             "style": "boxed"
@@ -137,7 +151,22 @@
           "Giving an example with a non-zero diagonal entry.",
           "Saying the diagonal is zero without showing why."
         ],
-        "memory_tip": "Skew symmetric: same mirror, opposite sign, so the diagonal has to be 0."
+        "memory_tip": "Skew symmetric: same mirror, opposite sign, so the diagonal has to be 0.",
+        "lines_compact": [
+          {
+            "text": "Skew Symmetric Matrix:",
+            "style": "heading"
+          },
+          "A square matrix A = [aᵢⱼ] is called skew",
+          "symmetric if Aᵀ = −A, that is aⱼᵢ = −aᵢⱼ.",
+          "Putting j = i gives aᵢᵢ = −aᵢᵢ, so 2aᵢᵢ = 0.",
+          "So every principal diagonal entry is 0.",
+          "Example: the matrix with rows (0, 3) and (−3, 0).",
+          {
+            "text": "∴ Symmetric: Aᵀ = A;  skew: Aᵀ = −A",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   }

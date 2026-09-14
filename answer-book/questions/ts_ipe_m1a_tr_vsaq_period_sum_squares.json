@@ -47,7 +47,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.92 — VSAQ chapter 18 T-Ratios upto Transformations, answer 125.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 15,16,17 · TS 17. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four or six questions to a page in two columns. It is not a bare guess on two counts: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, and THIS chapter's own header note reads \"Writing Formula itself gets you 1 Mark in these Questions\" — which is why the first step of every answer here IS the formula or the set-up. The book's chapter header carries ★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because T-Ratios holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q8 and Q9 are the two T-Ratios slots."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.92 — VSAQ chapter 18 T-Ratios upto Transformations, answer 125.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 15,16,17 · TS 17. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four or six questions to a page in two columns. It is not a bare guess on two counts: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, and THIS chapter's own header note reads \"Writing Formula itself gets you 1 Mark in these Questions\" — which is why the first step of every answer here IS the formula or the set-up. The book's chapter header carries ★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because T-Ratios holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q8 and Q9 are the two T-Ratios slots. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — name the formula you use and how you finish.",
   "answer": {
@@ -69,9 +69,15 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "The coefficients 1, 4, 9, … are the squares",
+          {
+            "text": "  1², 2², 3², …, so take out x:",
+            "style": "indent"
+          },
           "x + 4x + 9x + … + n²x = (1² + 2² + 3² + … + n²)x",
+          "Use the sum of the first n squares:",
           "= [n(n+1)(2n+1)/6] x",
-          "  [∵ Σn² = n(n+1)(2n+1)/6]"
+          "  [∵ 1² + 2² + … + n² = n(n+1)(2n+1)/6]"
         ],
         "recall": {
           "credit": "say_it",
@@ -110,7 +116,15 @@
         "margin_note": "Second mark. Dividing π by a fraction with 6 underneath brings the 6 up top, which is where the 6π comes from.",
         "memory_tip": "Period of tan kx is π/|k|, and dividing by a sixth brings the 6 up top.",
         "lines": [
+          {
+            "text": "(tan repeats every π, not every 2π)",
+            "added": true
+          },
           "Period of tan kx = π/|k|, with k = n(n+1)(2n+1)/6",
+          {
+            "text": "(k > 0, so |k| = k; and π ÷ (p/6) = 6π/p)",
+            "added": true
+          },
           {
             "text": "∴ Period = 6π / [n(n+1)(2n+1)]",
             "style": "boxed"
@@ -140,7 +154,14 @@
         "why": "Dividing by a sixth multiplies by six, which is why a 6 appears in a formula that started with none.",
         "common_mistakes": [
           "Leaving the 6 in the denominator.",
-          "Using 2π and getting 12π."
+          "Using 2π instead of π, and getting 12π/[n(n+1)(2n+1)]."
+        ],
+        "lines_compact": [
+          "Period of tan kx = π/|k|, with k = n(n+1)(2n+1)/6",
+          {
+            "text": "∴ Period = 6π / [n(n+1)(2n+1)]",
+            "style": "boxed"
+          }
         ]
       }
     ]

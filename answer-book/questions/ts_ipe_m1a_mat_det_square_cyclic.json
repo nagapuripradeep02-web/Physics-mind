@@ -43,7 +43,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.25 — LAQ chapter 3 Matrices, answer 16. The book labels it 'I'm different but not difficult' because it is the only determinant question in the chapter that is proved in two independent halves rather than one chain. The mark split is PRINTED in that book's margin as [3 Marks] against the first half and [4 Marks] against the second — a sourced 3+4. Appearances are printed board-split (AP 17,19 · TS 18; the book prints 'TS 18,18', read here as the single year 2018). Star rank is the CHAPTER's ★★★, not this question's. The book's own margin note calls the column interchange 'very crucial', and it is: the whole second half turns on it. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to the \"Multiply Δ by Δ to reach the second determinant\" step."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.25 — LAQ chapter 3 Matrices, answer 16. The book labels it 'I'm different but not difficult' because it is the only determinant question in the chapter that is proved in two independent halves rather than one chain. The mark split is PRINTED in that book's margin as [3 Marks] against the first half and [4 Marks] against the second — a sourced 3+4. Appearances are printed board-split (AP 17,19 · TS 18; the book prints 'TS 18,18', read here as the single year 2018). Star rank is the CHAPTER's ★★★, not this question's. The book's own margin note calls the column interchange 'very crucial', and it is: the whole second half turns on it. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to the \"Multiply Δ by Δ to reach the second determinant\" step. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this one — say what the two halves of the proof are, and what you do to one determinant before multiplying.",
   "answer": {
@@ -106,10 +106,31 @@
         "memory_tip": "The first half, complete on its own: expand along the top row and notice abc appears three times.",
         "lines": [
           "Expanding along R₁:",
+          {
+            "text": "(signs + − + ; each 2×2 minor comes from",
+            "added": true
+          },
+          {
+            "text": "  deleting that entry's row and column)",
+            "style": "indent",
+            "added": true
+          },
           "Δ = a(bc − a²) − b(b² − ac) + c(ab − c²)",
+          {
+            "text": "Open the brackets:",
+            "added": true
+          },
           "= abc − a³ − b³ + abc + abc − c³",
+          {
+            "text": "(abc appears three times; take out the minus)",
+            "added": true
+          },
           "= −(a³ + b³ + c³ − 3abc)",
           "Squaring both sides:",
+          {
+            "text": "((−X)² = X²)",
+            "added": true
+          },
           "Δ² = (a³ + b³ + c³ − 3abc)²   …(1)"
         ],
         "recall": {
@@ -140,6 +161,14 @@
           "Collecting only one abc instead of three.",
           "Dropping the minus sign before squaring, which happens to give the same answer here and so hides the error.",
           "Expanding along a row other than the first and losing track of the sign pattern."
+        ],
+        "lines_compact": [
+          "Expanding along R₁:",
+          "Δ = a(bc − a²) − b(b² − ac) + c(ab − c²)",
+          "= abc − a³ − b³ + abc + abc − c³",
+          "= −(a³ + b³ + c³ − 3abc)",
+          "Squaring both sides:",
+          "Δ² = (a³ + b³ + c³ − 3abc)²   …(1)"
         ]
       },
       {
@@ -200,7 +229,20 @@
             "render": "katex",
             "style": "eq"
           },
+          {
+            "text": "(C₂ and C₃ of the first determinant change places)",
+            "added": true
+          },
           "Taking the minus into C₁ of the first:",
+          {
+            "text": "(multiplying one column by −1 changes the sign",
+            "added": true
+          },
+          {
+            "text": "  of the determinant, and cancels the minus)",
+            "style": "indent",
+            "added": true
+          },
           {
             "text": "\\Delta^2 = \\begin{vmatrix} -a & c & b \\\\ -b & a & c \\\\ -c & b & a \\end{vmatrix} \\cdot \\begin{vmatrix} a & b & c \\\\ b & c & a \\\\ c & a & b \\end{vmatrix}",
             "render": "katex",
@@ -235,6 +277,21 @@
           "Swapping the columns and forgetting the sign change.",
           "Putting the minus outside and then forgetting it during the multiplication.",
           "Swapping rows instead of columns; either works, but only if the sign is handled."
+        ],
+        "lines_compact": [
+          "Interchanging C₂ and C₃ in the first determinant",
+          "changes its sign:",
+          {
+            "text": "\\Delta^2 = -\\begin{vmatrix} a & c & b \\\\ b & a & c \\\\ c & b & a \\end{vmatrix} \\cdot \\begin{vmatrix} a & b & c \\\\ b & c & a \\\\ c & a & b \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "Taking the minus into C₁ of the first:",
+          {
+            "text": "\\Delta^2 = \\begin{vmatrix} -a & c & b \\\\ -b & a & c \\\\ -c & b & a \\end{vmatrix} \\cdot \\begin{vmatrix} a & b & c \\\\ b & c & a \\\\ c & a & b \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -247,9 +304,56 @@
         "memory_tip": "Row 1 of the first against row 1 of the second gives the top-left entry: (−a)(a) + c(b) + b(c).",
         "lines": [
           "Multiplying row by row:",
+          {
+            "text": "(entry (i, j) = row i of the first × row j of",
+            "added": true
+          },
+          {
+            "text": "  the second; |P||Q| = |PQᵀ| allows this)",
+            "style": "indent",
+            "added": true
+          },
           "(−a)(a) + c(b) + b(c) = 2bc − a²",
           "(−a)(b) + c(c) + b(a) = c²",
           "(−a)(c) + c(a) + b(b) = b²",
+          {
+            "text": "Row 2 of the first is (−b, a, c):",
+            "added": true
+          },
+          {
+            "text": "  with row 1: −ab + ab + c² = c²",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  with row 2: −b² + ac + ac = 2ac − b²",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  with row 3: −bc + a² + bc = a²",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "Row 3 of the first is (−c, b, a):",
+            "added": true
+          },
+          {
+            "text": "  with row 1: −ac + b² + ac = b²",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  with row 2: −bc + bc + a² = a²",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  with row 3: −c² + ab + ab = 2ab − c²",
+            "style": "indent",
+            "added": true
+          },
           "The other rows give the same pattern:",
           {
             "text": "\\Delta^2 = \\begin{vmatrix} 2bc-a^2 & c^2 & b^2 \\\\ c^2 & 2ac-b^2 & a^2 \\\\ b^2 & a^2 & 2ab-c^2 \\end{vmatrix} \\quad \\text{…(2)}",
@@ -284,6 +388,18 @@
           "Multiplying entry by entry instead of row by row.",
           "Forgetting the minus signs put into column 1 in the previous step.",
           "Collecting bc once instead of twice in the first entry."
+        ],
+        "lines_compact": [
+          "Multiplying row by row:",
+          "(−a)(a) + c(b) + b(c) = 2bc − a²",
+          "(−a)(b) + c(c) + b(a) = c²",
+          "(−a)(c) + c(a) + b(b) = b²",
+          "The other rows give the same pattern:",
+          {
+            "text": "\\Delta^2 = \\begin{vmatrix} 2bc-a^2 & c^2 & b^2 \\\\ c^2 & 2ac-b^2 & a^2 \\\\ b^2 & a^2 & 2ab-c^2 \\end{vmatrix} \\quad \\text{…(2)}",
+            "render": "katex",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -295,6 +411,10 @@
         "memory_tip": "Two results were proved separately; the question asked for all three expressions, so join them.",
         "lines": [
           "From (1) and (2), both equal Δ²:",
+          {
+            "text": "(the same Δ² has been found in two ways)",
+            "added": true
+          },
           {
             "text": "Δ² = (a³ + b³ + c³ − 3abc)² = R.H.S",
             "style": "boxed"
@@ -326,6 +446,13 @@
         "common_mistakes": [
           "Ending after the multiplication and never referring back to result (1).",
           "Writing 'hence proved' with no line naming what was joined."
+        ],
+        "lines_compact": [
+          "From (1) and (2), both equal Δ²:",
+          {
+            "text": "Δ² = (a³ + b³ + c³ − 3abc)² = R.H.S",
+            "style": "boxed"
+          }
         ]
       }
     ]
