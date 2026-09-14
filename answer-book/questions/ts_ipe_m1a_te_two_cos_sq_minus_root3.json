@@ -90,7 +90,7 @@
             "Pythagorean identity"
           ]
         },
-        "why": "A trig equation with two different ratios cannot be factorised. Reducing to ONE ratio is what turns it into ordinary algebra.",
+        "why": "This equation holds cos²θ and sinθ together and does not factorise as written. Reducing to ONE ratio is what turns it into ordinary algebra.",
         "common_mistakes": [
           "Replacing sin²θ instead and leaving a cosine behind.",
           "Sign slip when multiplying out the −2."
@@ -146,7 +146,7 @@
         },
         "why": "Treating sinθ as a single unknown is what makes the factorisation ordinary. Nothing trigonometric happens in this line at all.",
         "common_mistakes": [
-          "Reaching for the quadratic formula and producing surds.",
+          "Splitting √3 sinθ as 3 sinθ − 2 sinθ, whose product is not −6.",
           "Splitting the middle term wrongly."
         ],
         "lines_compact": [
@@ -161,7 +161,7 @@
         "label": "Reject the impossible root",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Third mark, and the part most often skipped. sinθ = −√3 is about −1.73, and a sine can never leave [−1, 1] — so that branch is discarded, with the reason written down.",
+        "margin_note": "Third mark, and a part that must not be skipped. sinθ = −√3 is about −1.73, and a sine can never leave [−1, 1] — so that branch is discarded, with the reason written down.",
         "memory_tip": "sinθ = −√3 is about −1.73, and a sine never leaves [−1, 1]. Discard it IN WRITING.",
         "lines": [
           {
@@ -196,7 +196,7 @@
             "minus root three"
           ]
         },
-        "why": "A quadratic always gives two roots, but a trig equation only accepts values a sine or cosine can actually take. Checking the range is part of solving, not a formality.",
+        "why": "A quadratic can give two roots, but a trig equation only accepts values a sine or cosine can actually take. Checking the range is part of solving, not a formality.",
         "common_mistakes": [
           "Carrying sinθ = −√3 forward and inventing an angle for it.",
           "Discarding it silently with no reason given."

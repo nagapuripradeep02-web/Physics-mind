@@ -90,7 +90,7 @@
             "pair"
           ]
         },
-        "why": "Pairing the RIGHT two terms is the whole skill: 2θ and 8θ average to 5θ, so a cos5θ appears and the equation gains a common factor. Any other pairing gives nothing.",
+        "why": "Pairing the right two terms is the key step: 2θ and 8θ average to 5θ, so a cos5θ appears and the equation gains a common factor. The other pairings give products with no common factor.",
         "common_mistakes": [
           "Pairing cos8θ with cos5θ instead.",
           "Leaving the cos5θ on the right-hand side."
@@ -227,6 +227,10 @@
           },
           "(ii) If 2cos3θ − 1 = 0 then cos3θ = 1/2 = cos(π/3)",
           "  Here α = π/3, and for cosθ = cosα, θ = 2nπ ± α",
+          {
+            "text": "(use it with 3θ in place of θ)",
+            "added": true
+          },
           "  ⇒ 3θ = 2nπ ± π/3",
           {
             "text": "(divide both terms on the right by 3)",
@@ -276,5 +280,5 @@
       }
     ]
   },
-  "insider_note": "Pair the two terms on the SAME side, cos2θ + cos8θ, so 2cos5θcos3θ appears and cos5θ becomes a common factor. cos(−3θ) = cos3θ, so the minus sign inside does no harm."
+  "insider_note": "Pair the two terms on the SAME side, cos2θ + cos8θ, so 2cos5θcos3θ appears and cos5θ becomes a common factor. cos(−3θ) = cos3θ, so the minus sign inside the bracket does not change the value."
 }

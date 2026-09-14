@@ -222,8 +222,8 @@
         "label": "Solve the pair",
         "marks": 1,
         "mark_note": "Solution",
-        "margin_note": "Last mark. Add (1) and (3) for x, then take y from (1). The stem sets no interval, so the general family above is the full answer; n = 0 gives the pair in [0, 2π) that a board answer quotes, and the two signs give that same pair with x and y exchanged.",
-        "memory_tip": "Add the sum and the difference to get 2x. The ± only swaps x and y, so the answer is one pair.",
+        "margin_note": "Last mark. Add (1) and (3) for x, then take y from (1). The stem sets no interval, so the general family above is the full answer; n = 0 gives the two solutions in [0, 2π) that a board answer quotes: x = π/2, y = π/6 and x = π/6, y = π/2.",
+        "memory_tip": "Add the sum and the difference to get 2x. The ± exchanges the values of x and y, so write both: x = π/2, y = π/6 or x = π/6, y = π/2.",
         "lines": [
           "Adding (1) and (3):",
           "⇒ 2x = 2π/3 + 4nπ ± π/3",
@@ -240,9 +240,13 @@
           "Taking n = 0 with the upper signs:",
           "x = π/3 + π/6 = π/2, y = π/3 − π/6 = π/6",
           "Check: sin(π/2) + sin(π/6) = 1 + 1/2 = 3/2",
-          "The lower signs give the same pair swapped.",
+          "The lower signs give x = π/6, y = π/2.",
           {
-            "text": "∴ x = π/2, y = π/6",
+            "text": "∴ x = π/2, y = π/6  (or)",
+            "style": "boxed"
+          },
+          {
+            "text": "x = π/6, y = π/2",
             "style": "boxed"
           }
         ],
@@ -268,9 +272,9 @@
             "same pair swapped"
           ]
         },
-        "why": "The sum and the difference of x and y are now both known, and adding them removes y. The ± sign does not give a new answer — it only decides which of the two angles is called x.",
+        "why": "The sum and the difference of x and y are now both known, and adding them removes y. The ± sign gives the second solution, in which the values of x and y are exchanged.",
         "common_mistakes": [
-          "Presenting the two signs as two different answers.",
+          "Writing only one of the two solutions, x = π/2, y = π/6.",
           "Forgetting to check the pair against sin x + sin y = 3/2.",
           "Leaving the answer as x − y = π/3 without finding x and y."
         ],
@@ -282,9 +286,13 @@
           "Taking n = 0 with the upper signs:",
           "x = π/3 + π/6 = π/2, y = π/3 − π/6 = π/6",
           "Check: sin(π/2) + sin(π/6) = 1 + 1/2 = 3/2",
-          "The lower signs give the same pair swapped.",
+          "The lower signs give x = π/6, y = π/2.",
           {
-            "text": "∴ x = π/2, y = π/6",
+            "text": "∴ x = π/2, y = π/6  (or)",
+            "style": "boxed"
+          },
+          {
+            "text": "x = π/6, y = π/2",
             "style": "boxed"
           }
         ]

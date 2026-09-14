@@ -201,7 +201,7 @@
         },
         "why": "With n even the sign is +1, and the three x terms collect into one linear equation. The family it produces is spaced 90° apart, so at most one member can be acute.",
         "common_mistakes": [
-          "Collecting 3x on the wrong side and getting 2x instead of 4x.",
+          "Moving −3x across without changing its sign and getting 2x instead of 4x.",
           "Dropping the 360m term so the family looks like a single value."
         ],
         "lines_compact": [
@@ -231,12 +231,12 @@
           },
           "⇒ x + 10 = 360m + 22 + 3x",
           {
-            "text": "(move 3x and 10 to the other side)",
+            "text": "(move x to the right side and 360m + 22 to the left)",
             "added": true
           },
           "⇒ 2x = −360m − 12",
           {
-            "text": "(divide by −2)",
+            "text": "(divide by 2)",
             "added": true
           },
           "⇒ x = −180m − 6",

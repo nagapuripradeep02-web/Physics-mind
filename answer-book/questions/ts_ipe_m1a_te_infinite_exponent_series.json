@@ -105,21 +105,19 @@
         "label": "Match the powers",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Second mark. 4³ is 64 and 8² is also 64, so both sides can be written to the base 8. Equal bases mean equal powers.",
-        "memory_tip": "4³ = 64 = 8², so put both sides to base 8. Equal bases, equal powers.",
+        "margin_note": "Second mark. 4³ is 64 and 8² is also 64, so both sides can be written to the base 8. When two powers of 8 are equal, their exponents are equal.",
+        "memory_tip": "4³ = 64 = 8², so put both sides to base 8. When two powers of 8 are equal, their exponents are equal.",
         "lines": [
           {
             "text": "\\text{Given }\\ 8^{S} = 4^{3}",
             "render": "katex",
-            "style": "normal",
-            "added": true
+            "style": "normal"
           },
           "Now 4³ = 64 and 8² = 64",
           {
             "text": "\\Rightarrow 8^{S} = 8^{2}",
             "render": "katex",
-            "style": "normal",
-            "added": true
+            "style": "normal"
           },
           {
             "text": "(equal powers of 8 have equal exponents)",
@@ -155,9 +153,17 @@
           "Equating the powers while the bases are still 8 and 4."
         ],
         "lines_compact": [
-          "Given 8^S = 4³",
+          {
+            "text": "\\text{Given }\\ 8^{S} = 4^{3}",
+            "render": "katex",
+            "style": "normal"
+          },
           "Now 4³ = 64 and 8² = 64",
-          "⇒ 8^S = 8²",
+          {
+            "text": "\\Rightarrow 8^{S} = 8^{2}",
+            "render": "katex",
+            "style": "normal"
+          },
           "⇒ S = 2"
         ]
       },

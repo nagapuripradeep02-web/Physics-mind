@@ -149,7 +149,7 @@
             "quadratic"
           ]
         },
-        "why": "α and β are the two solutions, so sinα and sinβ are the two roots of this quadratic — exactly the same logic as the a cos2θ + b sin2θ = c question, reached by a different route.",
+        "why": "α and β are the two solutions, so sinα and sinβ are the two roots of this quadratic — exactly the same logic as the a cos2θ + b sin2θ = c question, reached in a different way.",
         "common_mistakes": [
           "Sign slip on the c² − a² term.",
           "Failing to gather both sin²θ terms."
@@ -213,7 +213,7 @@
             "c squared minus a squared"
           ]
         },
-        "why": "Neither α nor β is ever found. The whole method is to recognise them as roots and read the two symmetric functions off the coefficients — which is faster and exact.",
+        "why": "Neither α nor β is ever found. The last part of the method is to recognise them as roots and read the sum and product off the coefficients.",
         "common_mistakes": [
           "Trying to solve for α and β individually.",
           "Keeping the minus on the sum."
@@ -231,5 +231,5 @@
       }
     ]
   },
-  "insider_note": "Isolate the cosθ term BEFORE squaring, so only one squaring is needed and cos²θ becomes 1 − sin²θ. Nothing is actually solved here — the answers are just the sum and product of the roots."
+  "insider_note": "Isolate the cosθ term BEFORE squaring, so no sinθcosθ cross term appears and cos²θ becomes 1 − sin²θ. Nothing is actually solved here — the answers are just the sum and product of the roots."
 }

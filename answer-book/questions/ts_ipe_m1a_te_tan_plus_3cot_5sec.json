@@ -144,7 +144,7 @@
             "one minus sin squared"
           ]
         },
-        "why": "One ratio is needed before anything can be factorised. Replacing cos²θ by 1 − sin²θ leaves an ordinary quadratic that behaves like any other.",
+        "why": "This equation holds both sin²θ and cos²θ with sinθ, so it does not factorise as written. Replacing cos²θ by 1 − sin²θ leaves an ordinary quadratic that behaves like any other.",
         "common_mistakes": [
           "Sign slip when moving 5 sinθ across.",
           "Replacing sin²θ instead and leaving a cosine behind."
@@ -162,7 +162,7 @@
         "label": "Reject the impossible root",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Third mark, and the part most often skipped. sinθ = −3 lies outside [−1, 1], so that branch is discarded with the reason written down.",
+        "margin_note": "Third mark, and a part that must not be skipped. sinθ = −3 lies outside [−1, 1], so that branch is discarded with the reason written down.",
         "memory_tip": "Split the middle term as 6 − 1. Then sinθ = −3 is outside [−1, 1], so discard it IN WRITING.",
         "lines": [
           {

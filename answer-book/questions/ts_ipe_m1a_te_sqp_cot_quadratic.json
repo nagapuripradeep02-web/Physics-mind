@@ -92,7 +92,7 @@
         },
         "why": "The coefficient is already written as (√3 + 1), which names the two parts of the split, so no searching for factors is needed.",
         "common_mistakes": [
-          "Using the quadratic formula on a surd coefficient.",
+          "Splitting −(√3 + 1) cot x as −√3 cot x + cot x, so the pairs do not share a bracket.",
           "Splitting as −√3 and +1."
         ]
       },
@@ -149,8 +149,8 @@
         "label": "Convert to tan",
         "marks": 1,
         "mark_note": "Reciprocal",
-        "margin_note": "Third mark. cot x = 1 gives tan x = 1, and cot x = √3 gives tan x = 1/√3 — turn them over, because the standard angles are named in tan.",
-        "memory_tip": "Turn them over: cot x = √3 means tan x = 1/√3, because the standard angles are named in tan.",
+        "margin_note": "Third mark. cot x = 1 gives tan x = 1, and cot x = √3 gives tan x = 1/√3 — take the reciprocal of each, because the standard angles are named in tan.",
+        "memory_tip": "Take the reciprocal of each: cot x = √3 means tan x = 1/√3, because the standard angles are named in tan.",
         "lines": [
           {
             "text": "(a product is 0 only when one factor is 0)",
@@ -185,7 +185,7 @@
             "reciprocal"
           ]
         },
-        "why": "cot and tan are reciprocals, so cot x = √3 means tan x = 1/√3 — not tan x = √3. That inversion is where marks are most often lost.",
+        "why": "cot and tan are reciprocals, so cot x = √3 means tan x = 1/√3 — not tan x = √3. Writing tan x = √3 here loses the mark.",
         "common_mistakes": [
           "Writing tan x = √3 from cot x = √3.",
           "Leaving the answer in cot form."
@@ -207,7 +207,12 @@
         "lines": [
           "Since 0 < x < π/2:",
           {
-            "text": "(in 0 < x < π/2 each value of tan gives one angle)",
+            "text": "(in 0 < x < π/2 each positive value of tan x gives",
+            "added": true
+          },
+          {
+            "text": "  exactly one angle)",
+            "style": "indent",
             "added": true
           },
           "tan x = 1 = tan(π/4) ⇒ x = π/4",

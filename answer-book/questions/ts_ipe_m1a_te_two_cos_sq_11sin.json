@@ -90,7 +90,7 @@
             "quadratic in sine"
           ]
         },
-        "why": "An equation holding two different ratios cannot be factorised. Reducing it to sine alone turns it into a quadratic that can be factorised.",
+        "why": "This equation holds cos²θ and sinθ together and does not factorise as written. Reducing it to sine alone turns it into a quadratic that can be factorised.",
         "common_mistakes": [
           "Replacing sin²θ instead and leaving a cosine behind.",
           "Sign slip when multiplying out the −2."
@@ -190,7 +190,7 @@
             "mod sin theta less than one"
           ]
         },
-        "why": "A quadratic always gives two roots, but a trigonometric equation only accepts values a sine can actually take. Checking the range is part of solving, not a formality.",
+        "why": "A quadratic can give two roots, but a trigonometric equation only accepts values a sine can actually take. Checking the range is part of solving, not a formality.",
         "common_mistakes": [
           "Carrying sinθ = 5 forward and inventing an angle for it.",
           "Discarding it with no reason given."

@@ -97,10 +97,10 @@
             "expand the bracket"
           ]
         },
-        "why": "Leaving the √2 outside the bracket hides the coefficients. Expanding first is what lets √(a²+b²) be computed at all.",
+        "why": "Leaving the √2 outside the bracket hides the coefficients. Expanding first shows the coefficients √2 and √2, so √(a²+b²) = 2 is found in one step.",
         "common_mistakes": [
           "Dividing by √2 because it is outside the bracket.",
-          "Not expanding and taking a = 1, b = 1."
+          "Taking a = 1, b = 1 but keeping √3 instead of √3/√2 on the right side."
         ]
       },
       {
@@ -110,7 +110,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Second mark. 1/√2 is BOTH cos45° and sin45°, so the left side can be read as cosA cosB + sinA sinB, the cos(A−B) form. Reading it instead as sin(x + 45°) also works; the cosine reading is the one shown here.",
-        "memory_tip": "1/√2 is both cos 45° and sin 45°, so the left side reads either as cos(x − 45°) or as sin(x + 45°). Both close; the cosine reading is used here.",
+        "memory_tip": "1/√2 is both cos 45° and sin 45°, so the left side reads either as cos(x − 45°) or as sin(x + 45°). Both readings give the same answer; the cosine reading is used here.",
         "lines": [
           {
             "text": "(1/√2 = cos45° = sin45°, and √3/2 = cos30°)",
@@ -145,7 +145,7 @@
             "cos A minus B"
           ]
         },
-        "why": "Equal coefficients always give 45°, because that is the one angle whose sine and cosine are the same. That is why equal coefficients give a cosine equation, where unequal ones such as √3 sinθ − cosθ give a sine one.",
+        "why": "Equal positive coefficients give 45°, because 45° is the one acute angle whose sine and cosine are equal. Either the cosine form or the sine form can be used; this answer uses the cosine form.",
         "common_mistakes": [
           "Matching 1/√2 to cos30° or sin30° instead of 45°.",
           "Writing cosx cos45° − sinx sin45°, the cos(A+B) form, when the sign on the page is a plus."

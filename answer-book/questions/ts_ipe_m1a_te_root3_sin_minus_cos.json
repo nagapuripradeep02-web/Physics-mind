@@ -63,7 +63,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark, and the step the whole method depends on. Dividing by √(a²+b²) makes the two coefficients a cosine and a sine of the same angle, so the left side becomes ONE trig function.",
-        "memory_tip": "Divide by √(a² + b²) = 2. That forces both coefficients to become a sine and a cosine of one angle.",
+        "memory_tip": "Divide by √(a² + b²) = 2. That makes both coefficients a sine and a cosine of one angle.",
         "lines": [
           {
             "text": "Sol:",
@@ -96,7 +96,7 @@
             "root three over two"
           ]
         },
-        "why": "a sinθ + b cosθ cannot be solved in this form, but divided by √(a²+b²) its coefficients always become the cosine and sine of some angle — and then one compound-angle formula finishes it.",
+        "why": "Divided by √(a²+b²), the coefficients of a sinθ + b cosθ become the cosine and sine of one angle, so one compound-angle formula turns the left side into a single sine.",
         "common_mistakes": [
           "Dividing by a + b instead of √(a²+b²).",
           "Dividing only the left side."
@@ -109,7 +109,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Second mark. √3/2 is cos30° and 1/2 is sin30°, so the left side is exactly the sin(A−B) pattern. The right side, 1/√2, is sin45°.",
-        "memory_tip": "√3/2 is cos 30° and 1/2 is sin 30° — that way round. The right side 1/√2 is sin 45°.",
+        "memory_tip": "√3/2 is cos 30° and 1/2 is sin 30° , in that order. The right side 1/√2 is sin 45°.",
         "lines": [
           {
             "text": "(√3/2 = cos30°, 1/2 = sin30° and 1/√2 = sin45°)",
@@ -146,7 +146,7 @@
         },
         "why": "The two coefficients always square-and-add to 1 after the division, which is exactly the condition for them to be a cosine and a sine of one angle.",
         "common_mistakes": [
-          "Matching √3/2 to sin30° instead of cos30°.",
+          "Reading √3/2 as cos60° instead of cos30°.",
           "Writing 1/√2 as cos45° and then using the wrong formula."
         ],
         "lines_compact": [
@@ -198,7 +198,7 @@
             "sin A minus B"
           ]
         },
-        "why": "Once the equation reads sin(something) = sin(α), the general solution formula applies mechanically. Getting to that form is the whole difficulty.",
+        "why": "Once the equation reads sin(something) = sin(α), the general solution formula applies mechanically. Getting to that form is the main difficulty; the sine general solution is still needed in the next step.",
         "common_mistakes": [
           "Using sin(A+B) and getting θ + π/6.",
           "Taking the principal value as π/6."

@@ -92,9 +92,9 @@
             "common factor"
           ]
         },
-        "why": "The half-difference of 5θ and 3θ is θ, which is exactly the leftover term — that match is why a common factor appears at all.",
+        "why": "The half-difference of 5θ and 3θ is θ, which is exactly the leftover term — that match is why sinθ comes out as a common factor.",
         "common_mistakes": [
-          "Pairing sinθ with sin5θ instead.",
+          "Pairing sinθ with sin3θ, which leaves no common factor.",
           "Using the sum formula on a difference."
         ]
       },
@@ -167,6 +167,10 @@
           },
           "(ii) 1 + 2cos4θ = 0 ⇒ cos4θ = −1/2 = cos(2π/3)",
           "  Here α = 2π/3, and θ = 2nπ ± α gives",
+          {
+            "text": "(use the formula with 4θ in place of θ)",
+            "added": true
+          },
           "  4θ = 2nπ ± 2π/3",
           {
             "text": "(divide both terms by 4)",
@@ -214,7 +218,7 @@
         "label": "List the values in the interval",
         "marks": 1,
         "mark_note": "Solution",
-        "margin_note": "Last mark, and the point of this twin. Substitute n = 0, 1, 2 into the general solution and keep only what lies strictly between 0 and π.",
+        "margin_note": "Last mark, and the point of this question. Substitute n = 0, 1, 2 into the general solution and keep only what lies strictly between 0 and π.",
         "memory_tip": "Substitute n = 0, 1, 2 and keep only what lies strictly between 0 and π — four values.",
         "lines": [
           "But 0 < θ < π. Putting n = 0, 1, 2 in (1):",
@@ -272,5 +276,5 @@
       }
     ]
   },
-  "insider_note": "Pair sin5θ − sin3θ, not sinθ + sin5θ, so that sinθ is left as the common factor. The sinθ = 0 branch gives nothing because 0 < θ < π is OPEN, and the interval means values must be listed."
+  "insider_note": "Pair sin5θ − sin3θ, so that sinθ is left as the common factor (pairing sinθ + sin5θ also works and gives the common factor sin3θ). The sinθ = 0 branch gives nothing because 0 < θ < π is OPEN, and the interval means values must be listed."
 }

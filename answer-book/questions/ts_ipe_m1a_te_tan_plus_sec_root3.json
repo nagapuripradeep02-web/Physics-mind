@@ -167,6 +167,10 @@
         "memory_tip": "Split the ± into two separate families before substituting n. Call what you get candidates, not answers.",
         "lines": [
           "For cosθ = cosα, θ = 2nπ ± α, so",
+          {
+            "text": "(use the formula with θ + π/6 in place of θ)",
+            "added": true
+          },
           "θ + π/6 = 2nπ ± π/3,  n ∈ Z",
           {
             "text": "(the + sign: take π/6 from both sides)",

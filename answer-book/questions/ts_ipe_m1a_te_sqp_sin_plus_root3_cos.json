@@ -58,7 +58,7 @@
         "label": "Divide by √(a² + b²)",
         "marks": 1,
         "mark_note": "Normalise",
-        "margin_note": "First mark. Here a = 1 and b = √3, so √(1 + 3) = 2. Dividing by 2 makes both coefficients at most 1, so they can be a sine and a cosine.",
+        "margin_note": "First mark. Here a = 1 and b = √3, so √(1 + 3) = 2. Dividing by 2 makes the squares of the coefficients add to 1 (1/4 + 3/4 = 1), so they are the sine and cosine of one angle.",
         "memory_tip": "a = 1 and b = √3, so √(1 + 3) = 2. Divide BOTH sides by 2, not by 4.",
         "lines": [
           {
@@ -238,7 +238,7 @@
             "pi by six"
           ]
         },
-        "why": "The cosine form uses 2nπ ± α; the sine form uses nπ + (−1)ⁿα. Using the wrong one here gives a set of angles that does not solve the equation.",
+        "why": "The cosine form uses 2nπ ± α; the sine form uses nπ + (−1)ⁿα. Using the wrong one here gives a set that contains angles which do not solve the equation and misses some that do.",
         "common_mistakes": [
           "Using the sine general solution.",
           "Forgetting to add π/6 back."

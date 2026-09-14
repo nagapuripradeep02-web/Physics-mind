@@ -90,9 +90,9 @@
             "four sin squared"
           ]
         },
-        "why": "Two different ratios cannot be handled together. Replacing cos²θ by 1 − sin²θ leaves sine alone, and the rest of the question is ordinary algebra.",
+        "why": "Replacing cos²θ by 1 − sin²θ leaves sine alone, so the rest of the question is ordinary algebra.",
         "common_mistakes": [
-          "Replacing sin²θ instead and leaving a cosine behind.",
+          "Writing 3(1 − sin²θ) as 3 − sin²θ, which gives 6sin²θ = 1 instead of 4sin²θ = 1.",
           "Writing cos²θ = 1 + sin²θ."
         ]
       },

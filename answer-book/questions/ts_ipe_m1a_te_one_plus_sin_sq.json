@@ -62,8 +62,8 @@
         "label": "Divide by cos²θ",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. The sinθcosθ term blocks any single-ratio substitution, but dividing the whole equation by cos²θ turns every term into a tangent or a secant.",
-        "memory_tip": "The sinθcosθ term blocks any substitution. Divide the whole equation by cos²θ and everything becomes tan or sec.",
+        "margin_note": "First mark. The sinθcosθ term cannot be written using one ratio of θ alone, but dividing the whole equation by cos²θ turns every term into a tangent or a secant.",
+        "memory_tip": "The sinθcosθ term cannot be written using one ratio of θ alone. Divide the whole equation by cos²θ and everything becomes tan or sec.",
         "lines": [
           {
             "text": "Sol:",
@@ -156,7 +156,7 @@
             "tan minus one"
           ]
         },
-        "why": "sec²θ − tan²θ = 1 is the identity that pairs with the Pythagorean one. It is what lets a secant be removed without introducing a cosine.",
+        "why": "sec²θ − tan²θ = 1 comes from dividing sin²θ + cos²θ = 1 by cos²θ. It is what lets a secant be removed without introducing a cosine.",
         "common_mistakes": [
           "Writing sec²θ = 1 − tan²θ.",
           "Failing to collect the two tan² terms."
@@ -228,7 +228,7 @@
         "margin_note": "Last mark. tanθ = 1/2 is not a standard angle, so the principal value stays as an inverse tangent — that is the exact answer and is expected.",
         "memory_tip": "tan θ = 1/2 is not a standard angle, so the principal value stays as Tan⁻¹(1/2). That is the exact answer.",
         "lines": [
-          "Also tanθ = 1/2 ⇒ θ = Tan⁻¹(1/2)",
+          "Also tanθ = 1/2, whose principal value is Tan⁻¹(1/2)",
           {
             "text": "(Tan⁻¹(1/2) is not a standard angle, so it is left as it is)",
             "added": true
@@ -269,13 +269,13 @@
             "n pi plus"
           ]
         },
-        "why": "Both roots of the quadratic are valid tangents — a tangent can take any real value, unlike a sine — so nothing is rejected here, as it would be in an equation that reduces to a quadratic in sinθ.",
+        "why": "Both roots of the quadratic are valid tangents — a tangent can take any real value, unlike a sine — so nothing is rejected here. In a quadratic in sinθ, a root is rejected only if it lies outside [−1, 1].",
         "common_mistakes": [
           "Reporting only the π/4 family.",
           "Trying to force 1/2 into a standard angle."
         ],
         "lines_compact": [
-          "Also tanθ = 1/2 ⇒ θ = Tan⁻¹(1/2)",
+          "Also tanθ = 1/2, whose principal value is Tan⁻¹(1/2)",
           "Here the principal value is α = Tan⁻¹(1/2)",
           {
             "text": "∴ θ = nπ + π/4  or",
@@ -289,5 +289,5 @@
       }
     ]
   },
-  "insider_note": "Divide throughout by cos²θ — with no term free of θ, that is what turns this into a quadratic in tanθ. One root is a standard angle and one is not, so Tan⁻¹(1/2) stays in the answer."
+  "insider_note": "Divide throughout by cos²θ (cosθ = 0 is not a solution): 1 becomes sec²θ = 1 + tan²θ and sinθcosθ/cos²θ becomes tanθ, so the equation becomes a quadratic in tanθ. The root tanθ = 1 gives a standard angle and tanθ = 1/2 does not, so Tan⁻¹(1/2) stays in the answer."
 }

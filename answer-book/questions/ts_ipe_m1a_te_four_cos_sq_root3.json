@@ -199,7 +199,7 @@
         },
         "why": "Checking the range is a habit worth keeping even when nothing fails it — here both values are possible cosines, so discarding one would lose half the answer.",
         "common_mistakes": [
-          "Discarding cosθ = 1/2 as if it were out of range.",
+          "Discarding cosθ = √3/2 by misreading it as √3 ≈ 1.73, which is greater than 1.",
           "Using the sine general solution nπ + (−1)ⁿα for a cosine equation."
         ],
         "lines_compact": [
