@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.194, chapter 9 DIFFERENTIATION, Very Short Answer question 18(ii). **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer 1/2 was checked against a numerical difference quotient before it was written: on 0 < x < π it reads 0.5000000 at x = 0.6, at x = 1.5 and at x = 2.8. A control was also run outside that range: at x = −0.9 the difference quotient reads −0.5000000, because the square root returns |tan(x/2)|, not tan(x/2) — this is why the range 0 < x < π is written into the solution rather than left out."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.194, chapter 9 DIFFERENTIATION, Very Short Answer question 18(ii). **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer 1/2 was checked against a numerical difference quotient before it was written: on 0 < x < π it reads 0.5000000 at x = 0.6, at x = 1.5 and at x = 2.8. A control was also run outside that range: at x = −0.9 the difference quotient reads −0.5000000, because the square root returns |tan(x/2)|, not tan(x/2) — this is why the range 0 < x < π is written into the solution rather than left out. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — name the two half-angle identities you use and what is left inside the inverse tangent.",
   "answer": {
@@ -53,12 +53,16 @@
             "style": "heading"
           },
           "Use the half-angle identities",
+          "(cos x = 1 − 2sin²(x/2) = 2cos²(x/2) − 1)",
           "1 − cos x = 2sin²(x/2)   and   1 + cos x = 2cos²(x/2)",
+          "(put both identities into the fraction)",
           "∴ (1 − cos x)/(1 + cos x) = 2sin²(x/2) / 2cos²(x/2)",
+          "(the 2s cancel, and sin²(x/2)/cos²(x/2) = tan²(x/2))",
           {
             "text": "  = tan²(x/2)",
             "style": "indent"
           },
+          "(√(p²) = |p|)",
           "For 0 < x < π, x/2 lies in (0, π/2), where tan(x/2) > 0, so",
           "√(tan²(x/2)) = tan(x/2)"
         ],
@@ -99,10 +103,18 @@
         "margin_note": "Second mark. Tan⁻¹(tan θ) = θ only when θ is inside (−π/2, π/2), and x/2 is, so y is simply x/2. The derivative of x/2 is the constant 1/2.",
         "memory_tip": "The whole expression reduces to x/2, so the derivative is a constant and no chain rule is needed.",
         "lines": [
+          {
+            "text": "(put √(tan²(x/2)) = tan(x/2) into y)",
+            "added": true
+          },
           "∴ y = Tan⁻¹(tan(x/2))",
           "x/2 lies in (0, π/2),",
           "which is inside the principal range of Tan⁻¹, so",
           "y = x/2",
+          {
+            "text": "(y = x/2 = (1/2)x, and d/dx(x) = 1)",
+            "added": true
+          },
           "Differentiating,",
           {
             "text": "∴ dy/dx = 1/2",
@@ -135,6 +147,17 @@
         "common_mistakes": [
           "Writing the inner derivative of tan(x/2) as ½ instead of ½sec²(x/2), which gives 1/(2(1 + tan²(x/2))) instead of 1/2.",
           "Giving the answer as x/2, which is y and not dy/dx."
+        ],
+        "lines_compact": [
+          "∴ y = Tan⁻¹(tan(x/2))",
+          "x/2 lies in (0, π/2),",
+          "which is inside the principal range of Tan⁻¹, so",
+          "y = x/2",
+          "Differentiating,",
+          {
+            "text": "∴ dy/dx = 1/2",
+            "style": "boxed"
+          }
         ]
       }
     ]

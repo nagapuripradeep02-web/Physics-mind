@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.192, chapter 9 DIFFERENTIATION, Very Short Answer question 5. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer was checked numerically before it was written: the central difference quotient reads −3.2628233 at x = 0.7 against −6x²Cot⁻¹(x³)/(1 + x⁶) = −3.2628233, and −0.3138460 at x = 1.5 against −0.3138460. The book prints the stem with a lower-case cot⁻¹; this bank writes principal-value inverse functions with a capital, so the stem here reads Cot⁻¹, matching the 500-plus inverse-function lines already in the bank."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.192, chapter 9 DIFFERENTIATION, Very Short Answer question 5. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer was checked numerically before it was written: the central difference quotient reads −3.2628233 at x = 0.7 against −6x²Cot⁻¹(x³)/(1 + x⁶) = −3.2628233, and −0.3138460 at x = 1.5 against −0.3138460. The book prints the stem with a lower-case cot⁻¹; this bank writes principal-value inverse functions with a capital, so the stem here reads Cot⁻¹, matching the 500-plus inverse-function lines already in the bank. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say which layer you differentiate first and what sign the Cot⁻¹ derivative carries.",
   "answer": {
@@ -53,8 +53,14 @@
             "style": "heading"
           },
           "Let y = (Cot⁻¹(x³))²",
+          "(the outer operation is the square;",
+          {
+            "text": "  the inner function is Cot⁻¹(x³))",
+            "style": "indent"
+          },
           "Take u = Cot⁻¹(x³). Then y = u²",
           "and d/dx(u²) = 2u · du/dx",
+          "(put u = Cot⁻¹(x³) back)",
           "∴ dy/dx = 2·Cot⁻¹(x³) · d/dx(Cot⁻¹(x³))"
         ],
         "recall": {
@@ -94,10 +100,31 @@
         "margin_note": "Second mark. Two things are checked here: the minus sign that belongs to the Cot⁻¹ derivative, and the denominator, which is 1 + x⁶ because (x³)² = x⁶.",
         "memory_tip": "Tan⁻¹ is positive and Cot⁻¹ is the same expression with a minus in front. The pair Sin⁻¹ and Cos⁻¹ works the same way.",
         "lines": [
+          {
+            "text": "(the standard derivative of Cot⁻¹v is −1/(1 + v²),",
+            "added": true
+          },
+          {
+            "text": "  with the chain rule)",
+            "style": "indent",
+            "added": true
+          },
           "For v = x³,  d/dx(Cot⁻¹v) = −1/(1 + v²) · dv/dx",
           "and  dv/dx = 3x²",
+          {
+            "text": "(put v = x³ and dv/dx = 3x²: −1/(1 + x⁶) · 3x²)",
+            "added": true
+          },
           "(x³)² = x⁶, so d/dx(Cot⁻¹(x³)) = −3x²/(1 + x⁶)",
+          {
+            "text": "(put −3x²/(1 + x⁶) in place of d/dx(Cot⁻¹(x³)) in step 1)",
+            "added": true
+          },
           "∴ dy/dx = 2·Cot⁻¹(x³) · (−3x²/(1 + x⁶))",
+          {
+            "text": "(2 · (−3x²) = −6x²)",
+            "added": true
+          },
           {
             "text": "∴ d/dx[(Cot⁻¹(x³))²] = −6x²·Cot⁻¹(x³)/(1 + x⁶)",
             "style": "boxed"
@@ -129,6 +156,16 @@
         "common_mistakes": [
           "Using +1/(1 + v²), which is the Tan⁻¹ derivative, and losing the minus sign.",
           "Writing 1 + x³ or 1 + x⁹ in the denominator instead of 1 + x⁶."
+        ],
+        "lines_compact": [
+          "For v = x³,  d/dx(Cot⁻¹v) = −1/(1 + v²) · dv/dx",
+          "and  dv/dx = 3x²",
+          "(x³)² = x⁶, so d/dx(Cot⁻¹(x³)) = −3x²/(1 + x⁶)",
+          "∴ dy/dx = 2·Cot⁻¹(x³) · (−3x²/(1 + x⁶))",
+          {
+            "text": "∴ d/dx[(Cot⁻¹(x³))²] = −6x²·Cot⁻¹(x³)/(1 + x⁶)",
+            "style": "boxed"
+          }
         ]
       }
     ]

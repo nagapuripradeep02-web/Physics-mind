@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.192, chapter 9 DIFFERENTIATION, Very Short Answer question 6. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer was checked numerically before it was written: the central difference quotient reads 0.38461945 at x = 2 against cos(log x)/x = 0.38461945, and 0.07012445 at x = 3.7 against 0.07012445."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.192, chapter 9 DIFFERENTIATION, Very Short Answer question 6. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer was checked numerically before it was written: the central difference quotient reads 0.38461945 at x = 2 against cos(log x)/x = 0.38461945, and 0.07012445 at x = 3.7 against 0.07012445. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say which function is outside, which is inside, and why x > 0 is stated.",
   "answer": {
@@ -57,6 +57,7 @@
           "because log x is defined only for positive x.",
           "Take u = log x. Then f(x) = sin u",
           "and d/dx(sin u) = cos u · du/dx",
+          "(put u = log x)",
           "∴ f′(x) = cos(log x) · d/dx(log x)"
         ],
         "recall": {
@@ -96,8 +97,20 @@
         "margin_note": "Second mark. d/dx(log x) = 1/x, so the cosine is divided by x. Since x > 0, dividing by x is always allowed here.",
         "memory_tip": "A log inside always produces a factor 1/x, so an x appears under the line in the final answer.",
         "lines": [
+          {
+            "text": "(the standard derivative of log x, for x > 0)",
+            "added": true
+          },
           "d/dx(log x) = 1/x",
+          {
+            "text": "(put 1/x in place of d/dx(log x))",
+            "added": true
+          },
           "∴ f′(x) = cos(log x) · (1/x)",
+          {
+            "text": "(cos(log x) · (1/x) = cos(log x)/x)",
+            "added": true
+          },
           {
             "text": "∴ f′(x) = cos(log x)/x",
             "style": "boxed"
@@ -129,6 +142,14 @@
         "common_mistakes": [
           "Leaving out the 1/x factor.",
           "Writing the answer as cos(log x)·log x by differentiating log x wrongly."
+        ],
+        "lines_compact": [
+          "d/dx(log x) = 1/x",
+          "∴ f′(x) = cos(log x) · (1/x)",
+          {
+            "text": "∴ f′(x) = cos(log x)/x",
+            "style": "boxed"
+          }
         ]
       }
     ]

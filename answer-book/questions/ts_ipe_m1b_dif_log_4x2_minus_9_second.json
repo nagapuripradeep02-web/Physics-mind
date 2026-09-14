@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.196, chapter 9 DIFFERENTIATION, Very Short Answer question 30. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer was checked numerically before it was written, and the split form and the single-fraction form were checked against each other: at x = 2 the second difference quotient reads −4.081632676, the split form −4.081632653 and the combined form −4.081632653; at x = 3 all three read −0.49382716; at x = −2.5, on the other half of the domain, all three read −1.0625. Domain: 4x² − 9 > 0, so x > 3/2 or x < −3/2. On x > 3/2 both factors 2x − 3 and 2x + 3 are positive and the split is direct; for x < −3/2 both are negative, so the split is written with absolute values and the derivative is unchanged."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.196, chapter 9 DIFFERENTIATION, Very Short Answer question 30. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer was checked numerically before it was written, and the split form and the single-fraction form were checked against each other: at x = 2 the second difference quotient reads −4.081632676, the split form −4.081632653 and the combined form −4.081632653; at x = 3 all three read −0.49382716; at x = −2.5, on the other half of the domain, all three read −1.0625. Domain: 4x² − 9 > 0, so x > 3/2 or x < −3/2. On x > 3/2 both factors 2x − 3 and 2x + 3 are positive and the split is direct; for x < −3/2 both are negative, so the split is written with absolute values and the derivative is unchanged. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say what you do to 4x² − 9 before differentiating, and why that makes the second derivative shorter.",
   "answer": {
@@ -52,11 +52,22 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "(p² − q² = (p − q)(p + q), with p = 2x and q = 3)",
           "4x² − 9 = (2x − 3)(2x + 3),",
           "and the logarithm of a product",
           "is the sum of the logarithms.",
+          "(log(PQ) = log P + log Q needs P > 0",
+          {
+            "text": "  and Q > 0: 2x − 3 > 0 and 2x + 3 > 0 give x > 3/2)",
+            "style": "indent"
+          },
           "∴ y = log(2x − 3) + log(2x + 3),  x > 3/2",
           "Differentiate once, using the chain rule on each term:",
+          "(d/dx log(2x − 3) = (1/(2x − 3)) · 2",
+          {
+            "text": "  and d/dx log(2x + 3) = (1/(2x + 3)) · 2)",
+            "style": "indent"
+          },
           "dy/dx = 2/(2x − 3) + 2/(2x + 3)"
         ],
         "recall": {
@@ -99,10 +110,38 @@
           "Write each term as a power:",
           "dy/dx = 2(2x − 3)⁻¹ + 2(2x + 3)⁻¹",
           "Differentiate again by the chain rule on each:",
+          {
+            "text": "(d/dx(2x − 3)⁻¹ = (−1)(2x − 3)⁻² · 2,",
+            "added": true
+          },
+          {
+            "text": "  and the same for 2x + 3)",
+            "style": "indent",
+            "added": true
+          },
           "d²y/dx² = 2 · (−1)(2x − 3)⁻² · 2",
           {
             "text": "  + 2 · (−1)(2x + 3)⁻² · 2",
             "style": "indent"
+          },
+          {
+            "text": "(2 · (−1) · 2 = −4 in each term;",
+            "added": true
+          },
+          {
+            "text": "  over (2x − 3)²(2x + 3)² = (4x² − 9)² the top is",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  −4[(2x + 3)² + (2x − 3)²] = −4(8x² + 18)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  = −8(4x² + 9))",
+            "style": "indent",
+            "added": true
           },
           {
             "text": "∴ y″ = −4/(2x − 3)² − 4/(2x + 3)²",
@@ -139,6 +178,24 @@
         "common_mistakes": [
           "Writing +4/(2x − 3)² + 4/(2x + 3)², missing the minus that comes from the power −1.",
           "Forgetting the inner 2 on each term and writing −1/(2x − 3)² − 1/(2x + 3)²."
+        ],
+        "lines_compact": [
+          "Write each term as a power:",
+          "dy/dx = 2(2x − 3)⁻¹ + 2(2x + 3)⁻¹",
+          "Differentiate again by the chain rule on each:",
+          "d²y/dx² = 2 · (−1)(2x − 3)⁻² · 2",
+          {
+            "text": "  + 2 · (−1)(2x + 3)⁻² · 2",
+            "style": "indent"
+          },
+          {
+            "text": "∴ y″ = −4/(2x − 3)² − 4/(2x + 3)²",
+            "style": "boxed"
+          },
+          {
+            "text": "= −8(4x² + 9)/(4x² − 9)²",
+            "style": "boxed"
+          }
         ]
       }
     ]

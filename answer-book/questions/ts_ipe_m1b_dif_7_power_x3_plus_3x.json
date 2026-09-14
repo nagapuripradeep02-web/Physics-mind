@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.192, chapter 9 DIFFERENTIATION, Very Short Answer question 2. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer was checked numerically before it was written: the central difference quotient reads 38.643497 at x = 0.3 against 3(x²+1)·7ˣ³⁺³ˣ·logₑ7 = 38.643497, and 2767.0269 at x = 0.8 against 2767.0269."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.192, chapter 9 DIFFERENTIATION, Very Short Answer question 2. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer was checked numerically before it was written: the central difference quotient reads 38.643497 at x = 0.3 against 3(x²+1)·7ˣ³⁺³ˣ·logₑ7 = 38.643497, and 2767.0269 at x = 0.8 against 2767.0269. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say which rule applies when the base is a number and the power is a function of x.",
   "answer": {
@@ -56,7 +56,9 @@
           "The base 7 is a constant and the exponent",
           "is a function of x, so the rule is",
           "d/dx(aᵘ) = aᵘ · logₑa · du/dx",
+          "(compare 7ˣ³⁺³ˣ with aᵘ)",
           "Here a = 7 and u = x³ + 3x",
+          "(put a = 7 and u = x³ + 3x in the rule)",
           "∴ dy/dx = 7ˣ³⁺³ˣ · logₑ7 · d/dx(x³ + 3x)"
         ],
         "recall": {
@@ -96,8 +98,25 @@
         "margin_note": "Second mark. The exponent differentiates term by term to 3x² + 3. Taking 3 out as 3(x² + 1) is the tidy form an examiner expects.",
         "memory_tip": "The exponent x³ + 3x gives 3x² + 3, and both terms carry a 3, so 3(x² + 1) comes out in one move.",
         "lines": [
+          {
+            "text": "(d/dx(x³) = 3x² and d/dx(3x) = 3;",
+            "added": true
+          },
+          {
+            "text": "  then take out the common factor 3)",
+            "style": "indent",
+            "added": true
+          },
           "d/dx(x³ + 3x) = 3x² + 3 = 3(x² + 1)",
+          {
+            "text": "(put 3(x² + 1) in place of d/dx(x³ + 3x))",
+            "added": true
+          },
           "∴ dy/dx = 7ˣ³⁺³ˣ · logₑ7 · 3(x² + 1)",
+          {
+            "text": "(the same product, with the factor 3(x² + 1) written first)",
+            "added": true
+          },
           {
             "text": "∴ d/dx(7ˣ³⁺³ˣ) = 3(x² + 1)·7ˣ³⁺³ˣ·logₑ7",
             "style": "boxed"
@@ -129,6 +148,14 @@
         "common_mistakes": [
           "Differentiating 3x to 3x rather than 3.",
           "Writing the exponent's derivative as 3x² only, dropping the 3."
+        ],
+        "lines_compact": [
+          "d/dx(x³ + 3x) = 3x² + 3 = 3(x² + 1)",
+          "∴ dy/dx = 7ˣ³⁺³ˣ · logₑ7 · 3(x² + 1)",
+          {
+            "text": "∴ d/dx(7ˣ³⁺³ˣ) = 3(x² + 1)·7ˣ³⁺³ˣ·logₑ7",
+            "style": "boxed"
+          }
         ]
       }
     ]

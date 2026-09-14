@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.194, chapter 9 DIFFERENTIATION, Very Short Answer question 19. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer 1/(2(1 + x²)) was checked against a numerical difference quotient before it was written: both read 0.2500000 at x = 1, 0.4310345 at x = 0.4, 0.0500000 at x = 3, and 0.1000000 at x = −2. The negative check matters here: unlike the triple-angle questions this result needs no sign restriction, because sec θ stays positive on the whole principal range of Tan⁻¹ — the only excluded point is x = 0, where the printed expression is 0/0."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.194, chapter 9 DIFFERENTIATION, Very Short Answer question 19. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer 1/(2(1 + x²)) was checked against a numerical difference quotient before it was written: both read 0.2500000 at x = 1, 0.4310345 at x = 0.4, 0.0500000 at x = 3, and 0.1000000 at x = −2. The negative check matters here: unlike the triple-angle questions this result needs no sign restriction, because sec θ stays positive on the whole principal range of Tan⁻¹ — the only excluded point is x = 0, where the printed expression is 0/0. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — name the substitution and say what the fraction reduces to.",
   "answer": {
@@ -54,13 +54,17 @@
           },
           "Put x = tan θ, so θ = Tan⁻¹x,",
           "with θ in (−π/2, π/2) and x ≠ 0",
+          "(1 + tan²θ = sec²θ)",
           "√(1 + x²) = √(1 + tan²θ) = √(sec²θ) = sec θ",
           "[sec θ > 0 on this range]",
+          "(put √(1 + x²) = sec θ and x = tan θ)",
           "(√(1 + x²) − 1)/x = (sec θ − 1)/tan θ",
+          "(multiply the top and the bottom by cos θ)",
           {
             "text": "  = ((1/cos θ) − 1)/(sin θ/cos θ) = (1 − cos θ)/sin θ",
             "style": "indent"
           },
+          "(cancel 2 sin(θ/2); sin(θ/2)/cos(θ/2) = tan(θ/2))",
           "Now 1 − cos θ = 2sin²(θ/2)",
           "and sin θ = 2 sin(θ/2) cos(θ/2), so",
           "(1 − cos θ)/sin θ = sin(θ/2)/cos(θ/2) = tan(θ/2)"
@@ -102,10 +106,31 @@
         "margin_note": "Second mark. θ/2 lies in (−π/4, π/4), inside the principal range of Tan⁻¹, so the inverse tangent cancels and y = (1/2)Tan⁻¹x. Only the constant 1/2 separates this from the standard derivative.",
         "memory_tip": "y is half of Tan⁻¹x, so the answer is half the standard derivative 1/(1 + x²).",
         "lines": [
+          {
+            "text": "(put the bracket = tan(θ/2) into y)",
+            "added": true
+          },
+          {
+            "text": "(θ in (−π/2, π/2) gives θ/2 in (−π/4, π/4),",
+            "added": true
+          },
+          {
+            "text": "  which is inside (−π/2, π/2))",
+            "style": "indent",
+            "added": true
+          },
           "∴ y = Tan⁻¹(tan(θ/2)) = θ/2,",
           "since θ/2 lies in (−π/4, π/4)",
+          {
+            "text": "(put θ = Tan⁻¹x)",
+            "added": true
+          },
           "θ = Tan⁻¹x, so y = (1/2) Tan⁻¹x",
           "We know d/dx(Tan⁻¹x) = 1/(1 + x²)",
+          {
+            "text": "(½ · 1/(1 + x²) = 1/(2(1 + x²)), for x ≠ 0)",
+            "added": true
+          },
           {
             "text": "∴ dy/dx = 1/(2(1 + x²))",
             "style": "boxed"
@@ -137,6 +162,16 @@
         "common_mistakes": [
           "Writing 1/(1 + x²) and losing the factor 1/2 that came from θ/2.",
           "Writing 1/(2 + x²) by putting the 2 inside the bracket instead of multiplying the whole denominator."
+        ],
+        "lines_compact": [
+          "∴ y = Tan⁻¹(tan(θ/2)) = θ/2,",
+          "since θ/2 lies in (−π/4, π/4)",
+          "θ = Tan⁻¹x, so y = (1/2) Tan⁻¹x",
+          "We know d/dx(Tan⁻¹x) = 1/(1 + x²)",
+          {
+            "text": "∴ dy/dx = 1/(2(1 + x²))",
+            "style": "boxed"
+          }
         ]
       }
     ]

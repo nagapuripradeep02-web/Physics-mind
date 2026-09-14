@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.197, chapter 9 DIFFERENTIATION, Short Answer question 1(iii). **Only the question was taken. The solution, the step order and the mark split are this answer book’s own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK’S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. The book sets ONE shared instruction over nine sub-parts, so the stem here is that instruction written out for this sub-part alone; nothing in it was altered, and the question now reads on its own. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8 under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.197, chapter 9 DIFFERENTIATION, Short Answer question 1(iii). **Only the question was taken. The solution, the step order and the mark split are this answer book’s own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK’S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. The book sets ONE shared instruction over nine sub-parts, so the stem here is that instruction written out for this sub-part alone; nothing in it was altered, and the question now reads on its own. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8 under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say what you do with the two tangents before any limit is taken.",
   "answer": {
@@ -60,8 +60,10 @@
             "style": "heading"
           },
           "Let f(x) = tan 2x",
+          "(the definition of the derivative from the first principle)",
           "By the first principle,",
           "f′(x) = lim(h → 0) [f(x + h) − f(x)]/h",
+          "(f(x + h) = tan 2(x + h) = tan(2x + 2h))",
           "= lim(h → 0) [tan(2x + 2h) − tan 2x]/h"
         ],
         "recall": {
@@ -102,6 +104,15 @@
         "lines": [
           "tan θ = sin θ/cos θ, so the numerator is",
           "sin(2x + 2h)/cos(2x + 2h) − sin 2x/cos 2x",
+          {
+            "text": "(subtract the fractions over the common denominator",
+            "added": true
+          },
+          {
+            "text": "  cos(2x + 2h) cos 2x)",
+            "style": "indent",
+            "added": true
+          },
           "Numerator = sin(2x+2h) cos 2x",
           "− cos(2x+2h) sin 2x",
           "Denominator = cos(2x + 2h) cos 2x"
@@ -133,7 +144,14 @@
           "Using tan A − tan B = tan(A − B), which is not an identity.",
           "Combining the numerators but leaving two separate denominators."
         ],
-        "memory_tip": "For tan and cot the first move is always the same: sine over cosine, then one common denominator."
+        "memory_tip": "For tan and cot the first move is always the same: sine over cosine, then one common denominator.",
+        "lines_compact": [
+          "tan θ = sin θ/cos θ, so the numerator is",
+          "sin(2x + 2h)/cos(2x + 2h) − sin 2x/cos 2x",
+          "Numerator = sin(2x+2h) cos 2x",
+          "− cos(2x+2h) sin 2x",
+          "Denominator = cos(2x + 2h) cos 2x"
+        ]
       },
       {
         "id": "s3_numerator_sin",
@@ -143,6 +161,19 @@
         "mark_note": "Method",
         "margin_note": "Third mark. The numerator becomes sin 2h. x is no longer in the numerator, so everything that still depends on x is in the denominator.",
         "lines": [
+          {
+            "text": "(the sine subtraction formula)",
+            "added": true
+          },
+          {
+            "text": "((2x + 2h) − 2x = 2h; dividing by h puts h in front",
+            "added": true
+          },
+          {
+            "text": "  of the denominator from step 2)",
+            "style": "indent",
+            "added": true
+          },
           "sin A cos B − cos A sin B = sin(A − B), so with",
           "A = 2x + 2h and B = 2x,",
           "Numerator = sin((2x + 2h) − 2x) = sin 2h",
@@ -176,7 +207,14 @@
           "Reading the numerator as sin(A + B) and getting sin(4x + 2h).",
           "Expanding the four products separately instead of matching them to the identity."
         ],
-        "memory_tip": "sin A cos B − cos A sin B is sin(A − B): the sign between the terms is the sign inside the bracket."
+        "memory_tip": "sin A cos B − cos A sin B is sin(A − B): the sign between the terms is the sign inside the bracket.",
+        "lines_compact": [
+          "sin A cos B − cos A sin B = sin(A − B), so with",
+          "A = 2x + 2h and B = 2x,",
+          "Numerator = sin((2x + 2h) − 2x) = sin 2h",
+          "so f′(x) = lim(h → 0)",
+          "(sin 2h)/[h cos(2x + 2h) cos 2x]"
+        ]
       },
       {
         "id": "s4_answer",
@@ -186,10 +224,22 @@
         "mark_note": "Answer",
         "margin_note": "Last mark. The 2 appears because sin 2h is divided by h and not by 2h. Supplying that missing 2 is where this mark is usually lost.",
         "lines": [
+          {
+            "text": "(multiply and divide by 2)",
+            "added": true
+          },
           "Write (sin 2h)/h = 2 · (sin 2h)/(2h)",
+          {
+            "text": "(2h → 0 as h → 0, and cos is continuous)",
+            "added": true
+          },
           "As h → 0, (sin 2h)/(2h) → 1 and",
           "cos(2x + 2h) → cos 2x, so",
           "f′(x) = 2/(cos 2x · cos 2x) = 2/cos²2x",
+          {
+            "text": "(1/cos²2x = sec²2x)",
+            "added": true
+          },
           {
             "text": "∴ d/dx (tan 2x) = 2 sec²2x",
             "style": "boxed"
@@ -221,7 +271,17 @@
           "Writing (sin 2h)/h → 1 and losing the factor 2.",
           "Quoting the standard derivative of tan 2x instead of working from first principles, which is what the question asks for."
         ],
-        "memory_tip": "sin 2h over h is 2 times sin 2h over 2h. Put the 2 in the moment you split it."
+        "memory_tip": "sin 2h over h is 2 times sin 2h over 2h. Put the 2 in the moment you split it.",
+        "lines_compact": [
+          "Write (sin 2h)/h = 2 · (sin 2h)/(2h)",
+          "As h → 0, (sin 2h)/(2h) → 1 and",
+          "cos(2x + 2h) → cos 2x, so",
+          "f′(x) = 2/(cos 2x · cos 2x) = 2/cos²2x",
+          {
+            "text": "∴ d/dx (tan 2x) = 2 sec²2x",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

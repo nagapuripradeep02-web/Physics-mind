@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.192, chapter 9 DIFFERENTIATION, Very Short Answer question 3. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer was checked numerically before it was written: the central difference quotient reads 1.0832934 at x = 0.5 against the boxed expression's 1.0832934, and 5.5313756 at x = 0.9 against 5.5313756."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.192, chapter 9 DIFFERENTIATION, Very Short Answer question 3. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer was checked numerically before it was written: the central difference quotient reads 1.0832934 at x = 0.5 against the boxed expression's 1.0832934, and 5.5313756 at x = 0.9 against 5.5313756. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — name the three layers and say which one you differentiate first.",
   "answer": {
@@ -57,6 +57,7 @@
           "and tan x is inside.",
           "Take u = √(tan x). Then y = sec u",
           "and d/dx(sec u) = sec u · tan u · du/dx",
+          "(put u = √(tan x) back into sec u · tan u)",
           "∴ dy/dx = sec(√(tan x))·tan(√(tan x)) · d/dx(√(tan x))"
         ],
         "recall": {
@@ -96,9 +97,26 @@
         "margin_note": "Second mark. Two pieces sit here: the square root gives 1/(2√(tan x)), and tan x gives sec²x. Both must appear.",
         "memory_tip": "A square root always leaves its own inside under the line: √v gives 1/(2√v), so √(tan x) leaves 2√(tan x) in the denominator.",
         "lines": [
+          {
+            "text": "(the chain rule for the square root)",
+            "added": true
+          },
           "For v = tan x,  d/dx(√v) = 1/(2√v) · dv/dx",
           "and  d/dx(tan x) = sec²x",
+          {
+            "text": "(put v = tan x and dv/dx = sec²x: 1/(2√(tan x)) · sec²x;",
+            "added": true
+          },
+          {
+            "text": "  this needs tan x > 0)",
+            "style": "indent",
+            "added": true
+          },
           "∴ d/dx(√(tan x)) = sec²x / (2√(tan x))",
+          {
+            "text": "(put sec²x/(2√(tan x)) into dy/dx from step 1)",
+            "added": true
+          },
           {
             "text": "∴ dy/dx = [sec²x · sec(√(tan x)) · tan(√(tan x))]",
             "style": "boxed"
@@ -134,6 +152,19 @@
         "common_mistakes": [
           "Writing d/dx(√(tan x)) = 1/(2√(tan x)) and losing the sec²x.",
           "Writing the denominator as 2√x instead of 2√(tan x)."
+        ],
+        "lines_compact": [
+          "For v = tan x,  d/dx(√v) = 1/(2√v) · dv/dx",
+          "and  d/dx(tan x) = sec²x",
+          "∴ d/dx(√(tan x)) = sec²x / (2√(tan x))",
+          {
+            "text": "∴ dy/dx = [sec²x · sec(√(tan x)) · tan(√(tan x))]",
+            "style": "boxed"
+          },
+          {
+            "text": "/ (2√(tan x))",
+            "style": "boxed"
+          }
         ]
       }
     ]

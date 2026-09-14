@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.195, chapter 9 DIFFERENTIATION, Very Short Answer question 23(ii). **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer (3y − 4x − 1)/(2y − 3x + 2) was checked numerically before it was written: at x = 1 the curve has y = 2.791287847, where the numerical difference quotient reads 0.7362373837 against the formula's 0.7362373842; on the lower branch at x = 1, y = −1.791287847, both read 2.263762616; and at x = 0, y = 2, both read 0.8333333333."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.195, chapter 9 DIFFERENTIATION, Very Short Answer question 23(ii). **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer (3y − 4x − 1)/(2y − 3x + 2) was checked numerically before it was written: at x = 1 the curve has y = 2.791287847, where the numerical difference quotient reads 0.7362373837 against the formula's 0.7362373842; on the lower branch at x = 1, y = −1.791287847, both read 2.263762616; and at x = 0, y = 2, both read 0.8333333333. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say what you differentiate with respect to, and which single term needs the product rule.",
   "answer": {
@@ -56,11 +56,29 @@
           "so differentiate implicitly, term by term, with respect to x.",
           "The term 3xy is a product of x and y,",
           "so it needs the product rule.",
+          "(d/dx(2x²) = 4x; the product rule gives",
+          {
+            "text": "  d/dx(xy) = y · 1 + x · dy/dx;",
+            "style": "indent"
+          },
+          {
+            "text": "  d/dx(y²) = 2y · dy/dx by the chain rule;",
+            "style": "indent"
+          },
+          {
+            "text": "  d/dx(x) = 1, d/dx(2y) = 2 · dy/dx",
+            "style": "indent"
+          },
+          {
+            "text": "  and d/dx(8) = 0)",
+            "style": "indent"
+          },
           "4x − 3[ y · 1 + x · (dy/dx) ] + 2y(dy/dx) + 1",
           {
             "text": "  + 2(dy/dx) = 0",
             "style": "indent"
           },
+          "(multiply out: −3[y · 1 + x · (dy/dx)] = −3y − 3x(dy/dx))",
           "4x − 3y − 3x(dy/dx) + 2y(dy/dx) + 1 + 2(dy/dx) = 0"
         ],
         "recall": {
@@ -101,7 +119,30 @@
         "memory_tip": "The bracket that multiplies dy/dx is 2y − 3x + 2, and what is left over is 3y − 4x − 1. Group first, divide last.",
         "lines": [
           "Collect the dy/dx terms on one side:",
+          {
+            "text": "(keep the three dy/dx terms on the left and move",
+            "added": true
+          },
+          {
+            "text": "  4x − 3y + 1 to the right, where it becomes",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  −4x + 3y − 1 = 3y − 4x − 1)",
+            "style": "indent",
+            "added": true
+          },
           "(−3x + 2y + 2)(dy/dx) = 3y − 4x − 1",
+          {
+            "text": "(divide both sides by −3x + 2y + 2, which is 2y − 3x + 2;",
+            "added": true
+          },
+          {
+            "text": "  the division needs 2y − 3x + 2 ≠ 0)",
+            "style": "indent",
+            "added": true
+          },
           {
             "text": "∴ dy/dx = (3y − 4x − 1)/(2y − 3x + 2),",
             "style": "boxed"
@@ -137,6 +178,18 @@
         "common_mistakes": [
           "Leaving the +2(dy/dx) term on the other side, giving 2y − 3x as the denominator.",
           "Sign slips when the terms 4x, −3y and +1 are moved across."
+        ],
+        "lines_compact": [
+          "Collect the dy/dx terms on one side:",
+          "(−3x + 2y + 2)(dy/dx) = 3y − 4x − 1",
+          {
+            "text": "∴ dy/dx = (3y − 4x − 1)/(2y − 3x + 2),",
+            "style": "boxed"
+          },
+          {
+            "text": "2y − 3x + 2 ≠ 0",
+            "style": "boxed"
+          }
         ]
       }
     ]

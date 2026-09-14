@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.193, chapter 9 DIFFERENTIATION, Very Short Answer question 15(ii). **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The formula n(n+1)/2 was checked before it was written: a numerical difference quotient of the polynomial at x = 1 returned 28.000 for n = 7 and 78.000 for n = 12, matching 7 × 8/2 = 28 and 12 × 13/2 = 78. Part (i) of the same book question is the case n = 100, and this formula returns 5050 there."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.193, chapter 9 DIFFERENTIATION, Very Short Answer question 15(ii). **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The formula n(n+1)/2 was checked before it was written: a numerical difference quotient of the polynomial at x = 1 returned 28.000 for n = 7 and 78.000 for n = 12, matching 7 × 8/2 = 28 and 12 × 13/2 = 78. Part (i) of the same book question is the case n = 100, and this formula returns 5050 there. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say what f′(x) looks like in general and why x = 1 leaves only the coefficients.",
   "answer": {
@@ -53,8 +53,14 @@
             "style": "heading"
           },
           "f(x) = 1 + x + x² + x³ + ⋯ + xⁿ",
+          "(d/dx(1) = 0, d/dx(x) = 1, d/dx(x²) = 2x, …,",
+          {
+            "text": "  d/dx(xⁿ) = nxⁿ⁻¹)",
+            "style": "indent"
+          },
           "Using d/dx(xᵏ) = kxᵏ⁻¹ on each of the n + 1 terms,",
           "f′(x) = 0 + 1 + 2x + 3x² + ⋯ + nxⁿ⁻¹",
+          "(the constant term gives 0, so n of the n + 1 terms are left)",
           "So f′ has exactly n terms, with coefficients 1, 2, 3, …, n."
         ],
         "recall": {
@@ -96,8 +102,16 @@
         "lines": [
           "Put x = 1. Every power of 1 equals 1,",
           "so each term reduces to its coefficient.",
+          {
+            "text": "(k · 1ᵏ⁻¹ = k for each k = 1, 2, …, n)",
+            "added": true
+          },
           "f′(1) = 1 + 2 + 3 + ⋯ + n",
           "This is the sum of the first n natural numbers.",
+          {
+            "text": "(the sum 1 + 2 + ⋯ + n = n(n + 1)/2)",
+            "added": true
+          },
           {
             "text": "∴ f′(1) = n(n+1)/2",
             "style": "boxed"
@@ -130,6 +144,17 @@
         "common_mistakes": [
           "Giving a number such as 5050 when the question carries a general n.",
           "Using (n−1)n/2, by summing to n − 1 because the last power shown is n − 1."
+        ],
+        "lines_compact": [
+          "Put x = 1. Every power of 1 equals 1,",
+          "so each term reduces to its coefficient.",
+          "f′(1) = 1 + 2 + 3 + ⋯ + n",
+          "This is the sum of the first n natural numbers.",
+          {
+            "text": "∴ f′(1) = n(n+1)/2",
+            "style": "boxed"
+          },
+          "Check with n = 3: f′(1) = 1 + 2 + 3 = 6 and n(n+1)/2 = 6."
         ]
       }
     ]

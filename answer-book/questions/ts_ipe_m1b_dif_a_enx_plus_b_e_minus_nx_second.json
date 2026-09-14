@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.195, chapter 9 DIFFERENTIATION, Very Short Answer question 26. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. Notation only: the exponents are set as Unicode superscripts (aeⁿˣ, be⁻ⁿˣ) to match the rest of this bank; the stem's mathematics is unchanged. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The identity y″ = n²y was checked numerically before it was written, against a second difference quotient: with a = 2, b = 3, n = 4, x = 0.3 the numerical y″ reads 120.7010653 against n²y = 120.7010637; with a = 1, b = −1, n = 2, x = 1.2 it reads 43.72983398 against 43.72983371; with a = 5, b = 0.5, n = 1.5, x = −0.8 it reads 7.123566448 against 7.123566422. The small differences are the step size of the numerical formula, not a difference in the mathematics."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.195, chapter 9 DIFFERENTIATION, Very Short Answer question 26. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. Notation only: the exponents are set as Unicode superscripts (aeⁿˣ, be⁻ⁿˣ) to match the rest of this bank; the stem's mathematics is unchanged. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The identity y″ = n²y was checked numerically before it was written, against a second difference quotient: with a = 2, b = 3, n = 4, x = 0.3 the numerical y″ reads 120.7010653 against n²y = 120.7010637; with a = 1, b = −1, n = 2, x = 1.2 it reads 43.72983398 against 43.72983371; with a = 5, b = 0.5, n = 1.5, x = −0.8 it reads 7.123566448 against 7.123566422. The small differences are the step size of the numerical formula, not a difference in the mathematics. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say how many times you differentiate, and what you take out at the end.",
   "answer": {
@@ -54,8 +54,18 @@
           },
           "y = aeⁿˣ + be⁻ⁿˣ",
           "Differentiating once, by the chain rule on each term:",
+          "(by the chain rule d/dx(eⁿˣ) = n eⁿˣ",
+          {
+            "text": "  and d/dx(e⁻ⁿˣ) = −n e⁻ⁿˣ)",
+            "style": "indent"
+          },
           "y′ = an eⁿˣ + b(−n) e⁻ⁿˣ = an eⁿˣ − bn e⁻ⁿˣ",
           "Differentiating again:",
+          "(d/dx(an eⁿˣ) = an · n eⁿˣ = an² eⁿˣ;",
+          {
+            "text": "  d/dx(−bn e⁻ⁿˣ) = −bn · (−n) e⁻ⁿˣ = bn² e⁻ⁿˣ)",
+            "style": "indent"
+          },
           "y″ = an² eⁿˣ − bn(−n) e⁻ⁿˣ = an² eⁿˣ + bn² e⁻ⁿˣ"
         ],
         "recall": {
@@ -96,8 +106,16 @@
         "memory_tip": "Both terms of y″ carry the same factor n². Take it out and what is left is exactly the y you started with.",
         "lines": [
           "Both terms of y″ carry the factor n², so take it out:",
+          {
+            "text": "(an² eⁿˣ + bn² e⁻ⁿˣ = n²(a eⁿˣ + b e⁻ⁿˣ))",
+            "added": true
+          },
           "y″ = n²(a eⁿˣ + b e⁻ⁿˣ)",
           "The bracket is the original y.",
+          {
+            "text": "(put y in place of a eⁿˣ + b e⁻ⁿˣ)",
+            "added": true
+          },
           {
             "text": "∴ y″ = n²y",
             "style": "boxed"
@@ -129,6 +147,15 @@
         "common_mistakes": [
           "Taking n out instead of n² and writing y″ = ny.",
           "Stopping at n²(aeⁿˣ + be⁻ⁿˣ) without saying that the bracket is y."
+        ],
+        "lines_compact": [
+          "Both terms of y″ carry the factor n², so take it out:",
+          "y″ = n²(a eⁿˣ + b e⁻ⁿˣ)",
+          "The bracket is the original y.",
+          {
+            "text": "∴ y″ = n²y",
+            "style": "boxed"
+          }
         ]
       }
     ]

@@ -42,7 +42,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.206, chapter 9 DIFFERENTIATION, Long Answer question 8. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section C question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section C runs Q19 to Q21 at 8 marks each, answer any 2 of 3, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The mathematics was checked independently before writing: three parameter pairs were used, (α, β) = (5, 1), (3, −2) and (2, 0.5), and at three interior points of each interval both f′(x) and g′(x) were computed as central difference quotients and compared with 1/(2√((x − β)(α − x))). All eighteen comparisons agreed to eight decimal places — for example α = 5, β = 1, x = 2 gives 0.288675135 for f′, for g′ and for the closed form. The question asks only for f′ = g′; the common value is given as well because it is one extra line and it is what makes the equality checkable."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.206, chapter 9 DIFFERENTIATION, Long Answer question 8. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section C question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section C runs Q19 to Q21 at 8 marks each, answer any 2 of 3, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The mathematics was checked independently before writing: three parameter pairs were used, (α, β) = (5, 1), (3, −2) and (2, 0.5), and at three interior points of each interval both f′(x) and g′(x) were computed as central difference quotients and compared with 1/(2√((x − β)(α − x))). All eighteen comparisons agreed to eight decimal places — for example α = 5, β = 1, x = 2 gives 0.288675135 for f′, for g′ and for the closed form. The question asks only for f′ = g′; the common value is given as well because it is one extra line and it is what makes the equality checkable. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say what you substitute for x, and what both functions turn into.",
   "answer": {
@@ -69,12 +69,23 @@
           "so both radicands are positive",
           "and both functions are defined.",
           "That is what the given condition is for.",
+          "(0 < x − β < α − β, so dividing by α − β > 0 gives",
+          {
+            "text": "  0 < (x − β)/(α − β) < 1)",
+            "style": "indent"
+          },
           "Also 0 < (x − β)/(α − β) < 1.",
           "Put x − β = (α − β)sin²θ,  so  sin²θ = (x − β)/(α − β)",
           "and  θ = Sin⁻¹√((x − β)/(α − β)).",
           "Then 0 < sin²θ < 1, and taking the principal value",
           "gives 0 < θ < π/2.",
+          "(write α − x = (α − β) − (x − β) and put",
+          {
+            "text": "  x − β = (α − β)sin²θ)",
+            "style": "indent"
+          },
           "α − x = (α − β) − (x − β) = (α − β) − (α − β)sin²θ",
+          "(take out α − β: 1 − sin²θ = cos²θ)",
           {
             "text": "  = (α − β)cos²θ",
             "style": "indent"
@@ -119,6 +130,10 @@
         "mark_note": "Method",
         "margin_note": "Two marks. The examiner wants the reason sin θ is positive and the reason θ lies in the principal range, not only the final line f(x) = θ.",
         "lines": [
+          {
+            "text": "(√(p²) = |p|)",
+            "added": true
+          },
           "(x − β)/(α − β) = sin²θ, so",
           "f(x) = Sin⁻¹√(sin²θ) = Sin⁻¹|sin θ|",
           "0 < θ < π/2, so sin θ > 0 and |sin θ| = sin θ:",
@@ -155,7 +170,16 @@
           "Writing √(sin²θ) = sin θ without saying why sin θ is positive.",
           "Cancelling Sin⁻¹ with sin when θ has not been shown to lie in [−π/2, π/2]."
         ],
-        "memory_tip": "A square root of a square is a modulus. Deal with the modulus first, and only then cancel the inverse function."
+        "memory_tip": "A square root of a square is a modulus. Deal with the modulus first, and only then cancel the inverse function.",
+        "lines_compact": [
+          "(x − β)/(α − β) = sin²θ, so",
+          "f(x) = Sin⁻¹√(sin²θ) = Sin⁻¹|sin θ|",
+          "0 < θ < π/2, so sin θ > 0 and |sin θ| = sin θ:",
+          "f(x) = Sin⁻¹(sin θ)",
+          "θ lies in (0, π/2), which is inside [−π/2, π/2],",
+          "the principal range of Sin⁻¹.",
+          "∴ f(x) = θ"
+        ]
       },
       {
         "id": "s3_reduce_g",
@@ -165,10 +189,27 @@
         "mark_note": "Method",
         "margin_note": "Two marks. This is the step the question is really testing: the SAME θ comes out of a different-looking function. The factor (α − β) cancels between the top and the bottom.",
         "lines": [
+          {
+            "text": "(put x − β = (α − β)sin²θ",
+            "added": true
+          },
+          {
+            "text": "  and α − x = (α − β)cos²θ from step 1)",
+            "style": "indent",
+            "added": true
+          },
           "(x − β)/(α − x) = (α − β)sin²θ/((α − β)cos²θ)",
+          {
+            "text": "(cancel α − β, which is positive; sin θ/cos θ = tan θ)",
+            "added": true
+          },
           {
             "text": "  = sin²θ/cos²θ = tan²θ",
             "style": "indent"
+          },
+          {
+            "text": "(√(tan²θ) = |tan θ|)",
+            "added": true
           },
           "g(x) = Tan⁻¹√(tan²θ) = Tan⁻¹|tan θ|",
           "0 < θ < π/2, so tan θ > 0 and |tan θ| = tan θ:",
@@ -205,7 +246,20 @@
           "Using α − β in place of α − x in the denominator of g, which is the other function and defeats the question.",
           "Writing √(tan²θ) as tan θ with no word about the sign, the same slip as in the previous step."
         ],
-        "memory_tip": "f carries the whole interval α − β underneath and g carries only the part above x. The substitution splits α − β into sin²θ and cos²θ parts, so f gives a sine and g gives a tangent."
+        "memory_tip": "f carries the whole interval α − β underneath and g carries only the part above x. The substitution splits α − β into sin²θ and cos²θ parts, so f gives a sine and g gives a tangent.",
+        "lines_compact": [
+          "(x − β)/(α − x) = (α − β)sin²θ/((α − β)cos²θ)",
+          {
+            "text": "  = sin²θ/cos²θ = tan²θ",
+            "style": "indent"
+          },
+          "g(x) = Tan⁻¹√(tan²θ) = Tan⁻¹|tan θ|",
+          "0 < θ < π/2, so tan θ > 0 and |tan θ| = tan θ:",
+          "g(x) = Tan⁻¹(tan θ)",
+          "θ lies in (0, π/2), which is inside (−π/2, π/2),",
+          "the principal range of Tan⁻¹.",
+          "∴ g(x) = θ"
+        ]
       },
       {
         "id": "s4_equal",
@@ -220,6 +274,15 @@
           "∴ f(x) = g(x) for all x in (β, α)",
           "Two functions that are equal at every point of an interval",
           "have equal derivatives at every interior point of it.",
+          {
+            "text": "(f and g are equal on the open interval (β, α),",
+            "added": true
+          },
+          {
+            "text": "  so every x in it is an interior point)",
+            "style": "indent",
+            "added": true
+          },
           "∴ f′(x) = g′(x)"
         ],
         "recall": {
@@ -250,7 +313,15 @@
           "Checking f and g at one value of x and claiming the derivatives are equal from that alone.",
           "Differentiating f and g separately and stopping when the two answers do not look alike, without simplifying both."
         ],
-        "memory_tip": "Equal on an interval means equal derivatives. Equal at one point means nothing about derivatives, which is why the words for all x are part of the answer."
+        "memory_tip": "Equal on an interval means equal derivatives. Equal at one point means nothing about derivatives, which is why the words for all x are part of the answer.",
+        "lines_compact": [
+          "For every x with β < x < α, both f(x)",
+          "and g(x) equal the same θ.",
+          "∴ f(x) = g(x) for all x in (β, α)",
+          "Two functions that are equal at every point of an interval",
+          "have equal derivatives at every interior point of it.",
+          "∴ f′(x) = g′(x)"
+        ]
       },
       {
         "id": "s5_common_value",
@@ -262,18 +333,91 @@
         "lines": [
           "Differentiate sin²θ = (x − β)/(α − β) with respect to x,",
           "taking θ as a function of x:",
+          {
+            "text": "(d/dx(sin²θ) = 2 sin θ · cos θ · dθ/dx by the chain rule;",
+            "added": true
+          },
+          {
+            "text": "  d/dx[(x − β)/(α − β)] = 1/(α − β),",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  since α and β are constants)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "(multiply both sides by α − β, and 2 sin θ cos θ = sin 2θ)",
+            "added": true
+          },
           "2 sin θ cos θ · (dθ/dx) = 1/(α − β),",
           "that is  (α − β) sin 2θ · (dθ/dx) = 1",
+          {
+            "text": "(sin 2θ = 2 sin θ cos θ)",
+            "added": true
+          },
           "(α − β) sin 2θ = 2(α − β) sin θ cos θ",
+          {
+            "text": "(α − β = √(α − β) · √(α − β);",
+            "added": true
+          },
+          {
+            "text": "  since sin θ > 0 and cos θ > 0,",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  √(α − β) sin θ = √((α − β)sin²θ)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  and √(α − β) cos θ = √((α − β)cos²θ))",
+            "style": "indent",
+            "added": true
+          },
           {
             "text": "  = 2·√((α − β)sin²θ)·√((α − β)cos²θ)",
             "style": "indent"
           },
           {
+            "text": "(put (α − β)sin²θ = x − β and (α − β)cos²θ",
+            "added": true
+          },
+          {
+            "text": "  = α − x from step 1)",
+            "style": "indent",
+            "added": true
+          },
+          {
             "text": "  = 2√(x − β)·√(α − x)",
             "style": "indent"
           },
+          {
+            "text": "(from step 4, f and g both equal θ,",
+            "added": true
+          },
+          {
+            "text": "  so their derivatives both equal dθ/dx)",
+            "style": "indent",
+            "added": true
+          },
           "f(x) = g(x) = θ, so f′(x) = g′(x) = dθ/dx",
+          {
+            "text": "(from the line above, dθ/dx = 1/((α − β) sin 2θ)",
+            "added": true
+          },
+          {
+            "text": "  = 1/(2√(x − β)√(α − x)),",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  and √(x − β)·√(α − x) = √((x − β)(α − x)))",
+            "style": "indent",
+            "added": true
+          },
           {
             "text": "∴ f′(x) = g′(x) = 1/(2√((x − β)(α − x)))",
             "style": "boxed"
@@ -307,7 +451,27 @@
           "Leaving the answer as 1/((α − β) sin 2θ), which is correct but is still written in θ and not in x.",
           "Writing the denominator as 2√((x − β)(α − β)), by using the wrong one of the two differences."
         ],
-        "memory_tip": "The final denominator holds the two differences that meet at x: the part below it, x − β, and the part above it, α − x. Their product sits under one root."
+        "memory_tip": "The final denominator holds the two differences that meet at x: the part below it, x − β, and the part above it, α − x. Their product sits under one root.",
+        "lines_compact": [
+          "Differentiate sin²θ = (x − β)/(α − β) with respect to x,",
+          "taking θ as a function of x:",
+          "2 sin θ cos θ · (dθ/dx) = 1/(α − β),",
+          "that is  (α − β) sin 2θ · (dθ/dx) = 1",
+          "(α − β) sin 2θ = 2(α − β) sin θ cos θ",
+          {
+            "text": "  = 2·√((α − β)sin²θ)·√((α − β)cos²θ)",
+            "style": "indent"
+          },
+          {
+            "text": "  = 2√(x − β)·√(α − x)",
+            "style": "indent"
+          },
+          "f(x) = g(x) = θ, so f′(x) = g′(x) = dθ/dx",
+          {
+            "text": "∴ f′(x) = g′(x) = 1/(2√((x − β)(α − x)))",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

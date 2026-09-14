@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.197, chapter 9 DIFFERENTIATION, Short Answer question 1(v). **Only the question was taken. The solution, the step order and the mark split are this answer book’s own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK’S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. The book sets ONE shared instruction over nine sub-parts, so the stem here is that instruction written out for this sub-part alone; nothing in it was altered, and the question now reads on its own. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8 under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.197, chapter 9 DIFFERENTIATION, Short Answer question 1(v). **Only the question was taken. The solution, the step order and the mark split are this answer book’s own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK’S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. The book sets ONE shared instruction over nine sub-parts, so the stem here is that instruction written out for this sub-part alone; nothing in it was altered, and the question now reads on its own. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8 under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say what you turn sec into, and which identity handles the numerator.",
   "answer": {
@@ -60,8 +60,10 @@
             "style": "heading"
           },
           "Let f(x) = sec 3x, where cos 3x ≠ 0",
+          "(the definition of the derivative from the first principle)",
           "By the first principle,",
           "f′(x) = lim(h → 0) [f(x + h) − f(x)]/h",
+          "(f(x + h) = sec 3(x + h) = sec(3x + 3h))",
           "= lim(h → 0) [sec(3x + 3h) − sec 3x]/h"
         ],
         "recall": {
@@ -102,6 +104,15 @@
         "lines": [
           "sec θ = 1/cos θ, so",
           "sec(3x+3h) − sec 3x = 1/cos(3x+3h) − 1/cos 3x",
+          {
+            "text": "(subtract the fractions over the common denominator",
+            "added": true
+          },
+          {
+            "text": "  cos(3x + 3h) cos 3x)",
+            "style": "indent",
+            "added": true
+          },
           "= [cos 3x − cos(3x + 3h)]/[cos(3x+3h) cos 3x]",
           "Dividing by h, the denominator becomes",
           "h cos(3x + 3h) cos 3x"
@@ -133,7 +144,14 @@
           "Keeping the order cos(3x + 3h) − cos 3x on top after taking reciprocals, which changes the sign of the answer.",
           "Writing 1/cos A − 1/cos B as 1/(cos A − cos B)."
         ],
-        "memory_tip": "Taking reciprocals swaps the order on top: 1/p − 1/q = (q − p)/pq."
+        "memory_tip": "Taking reciprocals swaps the order on top: 1/p − 1/q = (q − p)/pq.",
+        "lines_compact": [
+          "sec θ = 1/cos θ, so",
+          "sec(3x+3h) − sec 3x = 1/cos(3x+3h) − 1/cos 3x",
+          "= [cos 3x − cos(3x + 3h)]/[cos(3x+3h) cos 3x]",
+          "Dividing by h, the denominator becomes",
+          "h cos(3x + 3h) cos 3x"
+        ]
       },
       {
         "id": "s3_sum_to_product",
@@ -144,9 +162,26 @@
         "margin_note": "Third mark. The half difference is −3h/2, and sin(−3h/2) = −sin(3h/2). That second minus cancels the minus in front of the identity, so the numerator ends up positive.",
         "lines": [
           "cos C − cos D = −2 sin((C+D)/2) sin((C−D)/2)",
+          {
+            "text": "(C + D = 6x + 3h, half of it is 3x + 3h/2;",
+            "added": true
+          },
+          {
+            "text": "  C − D = −3h, half of it is −3h/2)",
+            "style": "indent",
+            "added": true
+          },
           "Here C = 3x and D = 3x + 3h, so",
           "(C+D)/2 = 3x + 3h/2  and  (C−D)/2 = −3h/2",
+          {
+            "text": "(put these into the formula for cos C − cos D)",
+            "added": true
+          },
           "Numerator = −2 sin(3x + 3h/2) sin(−3h/2)",
+          {
+            "text": "(sin(−3h/2) = −sin(3h/2), and −2 · (−1) = 2)",
+            "added": true
+          },
           "= 2 sin(3x + 3h/2) sin(3h/2)"
         ],
         "recall": {
@@ -176,7 +211,14 @@
           "Ignoring sin(−3h/2) = −sin(3h/2) and finishing with the wrong sign.",
           "Halving 3h to get 3h instead of 3h/2."
         ],
-        "memory_tip": "cos minus cos: minus two, sine of the half sum, sine of the half difference. Sine is an odd function, so a negative half difference changes the sign back."
+        "memory_tip": "cos minus cos: minus two, sine of the half sum, sine of the half difference. Sine is an odd function, so a negative half difference changes the sign back.",
+        "lines_compact": [
+          "cos C − cos D = −2 sin((C+D)/2) sin((C−D)/2)",
+          "Here C = 3x and D = 3x + 3h, so",
+          "(C+D)/2 = 3x + 3h/2  and  (C−D)/2 = −3h/2",
+          "Numerator = −2 sin(3x + 3h/2) sin(−3h/2)",
+          "= 2 sin(3x + 3h/2) sin(3h/2)"
+        ]
       },
       {
         "id": "s4_answer",
@@ -186,10 +228,41 @@
         "mark_note": "Answer",
         "margin_note": "Last mark. sin 3x/cos²3x is split as (1/cos 3x)(sin 3x/cos 3x) to reach the sec-tan form the answer key uses.",
         "lines": [
+          {
+            "text": "(multiply and divide by 3/2)",
+            "added": true
+          },
           "Write (sin(3h/2))/h = (3/2) · (sin(3h/2))/(3h/2)",
+          {
+            "text": "(3h/2 → 0 as h → 0; also sin(3x + 3h/2) → sin 3x",
+            "added": true
+          },
+          {
+            "text": "  and cos(3x + 3h) → cos 3x)",
+            "style": "indent",
+            "added": true
+          },
           "As h → 0 that second factor → 1, so",
           "f′(x) = 2 · (3/2) · sin 3x/(cos 3x · cos 3x)",
+          {
+            "text": "(2 · 3/2 = 3;",
+            "added": true
+          },
+          {
+            "text": "  sin 3x/(cos 3x · cos 3x) = (1/cos 3x)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  · (sin 3x/cos 3x))",
+            "style": "indent",
+            "added": true
+          },
           "= 3 · (1/cos 3x) · (sin 3x/cos 3x)",
+          {
+            "text": "(1/cos 3x = sec 3x and sin 3x/cos 3x = tan 3x)",
+            "added": true
+          },
           {
             "text": "∴ d/dx (sec 3x) = 3 sec 3x tan 3x",
             "style": "boxed"
@@ -221,7 +294,17 @@
           "Losing the 3/2 needed to match the standard limit and giving 2 sec 3x tan 3x.",
           "Stopping at 3 sin 3x/cos²3x, which is right but not in the expected form."
         ],
-        "memory_tip": "sec differentiates to sec times tan, with the inside multiplier in front: 3 sec 3x tan 3x."
+        "memory_tip": "sec differentiates to sec times tan, with the inside multiplier in front: 3 sec 3x tan 3x.",
+        "lines_compact": [
+          "Write (sin(3h/2))/h = (3/2) · (sin(3h/2))/(3h/2)",
+          "As h → 0 that second factor → 1, so",
+          "f′(x) = 2 · (3/2) · sin 3x/(cos 3x · cos 3x)",
+          "= 3 · (1/cos 3x) · (sin 3x/cos 3x)",
+          {
+            "text": "∴ d/dx (sec 3x) = 3 sec 3x tan 3x",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

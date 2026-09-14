@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.192, chapter 9 DIFFERENTIATION, Very Short Answer question 8. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer was checked numerically before it was written: the central difference quotient reads −0.50891002 at x = 0.2 against −2/√(e⁴ˣ⁺² − 1) = −0.50891002, and −0.12184562 at x = 0.9 against −0.12184562. The book prints the stem with a lower-case cosec⁻¹; this bank writes principal-value inverse functions with a capital, so the stem here reads Cosec⁻¹."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.192, chapter 9 DIFFERENTIATION, Very Short Answer question 8. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer was checked numerically before it was written: the central difference quotient reads −0.50891002 at x = 0.2 against −2/√(e⁴ˣ⁺² − 1) = −0.50891002, and −0.12184562 at x = 0.9 against −0.12184562. The book prints the stem with a lower-case cosec⁻¹; this bank writes principal-value inverse functions with a capital, so the stem here reads Cosec⁻¹. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say what happens to the modulus in the Cosec⁻¹ formula and why.",
   "answer": {
@@ -53,10 +53,22 @@
             "style": "heading"
           },
           "y = Cosec⁻¹(u), where u = e²ˣ⁺¹",
+          "(the standard derivative of Cosec⁻¹u, for |u| > 1,",
+          {
+            "text": "  with the chain rule)",
+            "style": "indent"
+          },
           "d/dx(Cosec⁻¹u) = −1/(|u|√(u² − 1)) · du/dx",
+          "(d/dx(eᵛ) = eᵛ · dv/dx with v = 2x + 1,",
+          {
+            "text": "  and d/dx(2x + 1) = 2)",
+            "style": "indent"
+          },
           "du/dx = e²ˣ⁺¹ · d/dx(2x + 1) = 2e²ˣ⁺¹",
+          "(|u| > 1 needs e²ˣ⁺¹ > 1, that is 2x + 1 > 0, so x > −1/2)",
           "An exponential is positive for every real x, so u = e²ˣ⁺¹ > 0",
           "and |u| = e²ˣ⁺¹",
+          "(put |u| = e²ˣ⁺¹, u² = (e²ˣ⁺¹)² and du/dx = 2e²ˣ⁺¹)",
           "∴ dy/dx = −2e²ˣ⁺¹ / (e²ˣ⁺¹ · √((e²ˣ⁺¹)² − 1))"
         ],
         "recall": {
@@ -96,9 +108,17 @@
         "margin_note": "Second mark. The e²ˣ⁺¹ on top cancels the one below, and (e²ˣ⁺¹)² = e⁴ˣ⁺² because the powers multiply. Only the 2 remains on top.",
         "memory_tip": "Squaring an exponential doubles the whole exponent: (e²ˣ⁺¹)² = e⁴ˣ⁺², not e⁴ˣ⁺¹.",
         "lines": [
+          {
+            "text": "((eᵐ)² = e²ᵐ, with m = 2x + 1)",
+            "added": true
+          },
           "(e²ˣ⁺¹)² = e²⁽²ˣ⁺¹⁾ = e⁴ˣ⁺²",
           "The e²ˣ⁺¹ in the numerator cancels the e²ˣ⁺¹",
           "in the denominator.",
+          {
+            "text": "(put e⁴ˣ⁺² in place of (e²ˣ⁺¹)²)",
+            "added": true
+          },
           {
             "text": "∴ dy/dx = −2/√(e⁴ˣ⁺² − 1)",
             "style": "boxed"
@@ -130,6 +150,15 @@
         "common_mistakes": [
           "Writing (e²ˣ⁺¹)² as e⁴ˣ⁺¹, doubling only part of the exponent.",
           "Cancelling the exponential but keeping the minus sign off the answer."
+        ],
+        "lines_compact": [
+          "(e²ˣ⁺¹)² = e²⁽²ˣ⁺¹⁾ = e⁴ˣ⁺²",
+          "The e²ˣ⁺¹ in the numerator cancels the e²ˣ⁺¹",
+          "in the denominator.",
+          {
+            "text": "∴ dy/dx = −2/√(e⁴ˣ⁺² − 1)",
+            "style": "boxed"
+          }
         ]
       }
     ]

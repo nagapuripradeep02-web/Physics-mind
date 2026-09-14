@@ -42,7 +42,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.206, chapter 9 DIFFERENTIATION, Long Answer question 7. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section C question, cut on the moves this working takes: one mark for the setup, two for each of the two logarithmic derivatives, two for adding and collecting, one for the final rearrangement. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section C runs Q19 to Q21 at 8 marks each, answer any 2 of 3, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The mathematics was checked independently before writing, and the working lands on the printed target exactly, including the leading minus sign. It was also checked numerically at the point (x, y) = (2, 3), where xʸ + yˣ = 8 + 9 = 17: the printed formula gives −1.895814136, and solving xʸ + yˣ = 17 for y near x = 2 and taking a central difference quotient gives the same value to nine decimal places."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.206, chapter 9 DIFFERENTIATION, Long Answer question 7. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section C question, cut on the moves this working takes: one mark for the setup, two for each of the two logarithmic derivatives, two for adding and collecting, one for the final rearrangement. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section C runs Q19 to Q21 at 8 marks each, answer any 2 of 3, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The mathematics was checked independently before writing, and the working lands on the printed target exactly, including the leading minus sign. It was also checked numerically at the point (x, y) = (2, 3), where xʸ + yˣ = 8 + 9 = 17: the printed formula gives −1.895814136, and solving xʸ + yˣ = 17 for y near x = 2 and taking a central difference quotient gives the same value to nine decimal places. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — say what the right side of the equation tells you, and what you do with the two terms on the left.",
   "answer": {
@@ -68,6 +68,7 @@
           "Let u = xʸ and v = yˣ, so that u + v = aᵇ.",
           "a and b are constants, so aᵇ is a constant",
           "and its derivative is zero.",
+          "(differentiate u + v = aᵇ with respect to x)",
           "∴ du/dx + dv/dx = 0      …(1)",
           "Each of u and v has x in the base and in the power,",
           "so take logarithms of u and of v separately.",
@@ -113,10 +114,31 @@
         "memory_tip": "xʸ divided by x is xʸ⁻¹. Reducing the power by one here is what makes the answer match the printed form.",
         "lines": [
           "u = xʸ",
+          {
+            "text": "(log(pᵐ) = m log p, with p = x and m = y)",
+            "added": true
+          },
           "Taking logarithms,   log u = y log x",
+          {
+            "text": "(the product rule on y · log x: d/dx(y) = dy/dx",
+            "added": true
+          },
+          {
+            "text": "  and d/dx(log x) = 1/x)",
+            "style": "indent",
+            "added": true
+          },
           "Differentiating both sides with respect to x,",
           "(1/u)(du/dx) = log x · (dy/dx) + y · (1/x)",
+          {
+            "text": "(multiply both sides by u = xʸ)",
+            "added": true
+          },
           "du/dx = xʸ [ log x · (dy/dx) + y/x ]",
+          {
+            "text": "(xʸ · y/x = y · xʸ/x = yxʸ⁻¹)",
+            "added": true
+          },
           "∴ du/dx = xʸ log x · (dy/dx) + yxʸ⁻¹      …(2)"
         ],
         "recall": {
@@ -147,6 +169,14 @@
         "common_mistakes": [
           "Differentiating y log x as if y were a constant, so the dy/dx term is missing.",
           "Leaving y·xʸ/x unsimplified, so the answer never reaches the printed xʸ⁻¹."
+        ],
+        "lines_compact": [
+          "u = xʸ",
+          "Taking logarithms,   log u = y log x",
+          "Differentiating both sides with respect to x,",
+          "(1/u)(du/dx) = log x · (dy/dx) + y · (1/x)",
+          "du/dx = xʸ [ log x · (dy/dx) + y/x ]",
+          "∴ du/dx = xʸ log x · (dy/dx) + yxʸ⁻¹      …(2)"
         ]
       },
       {
@@ -159,10 +189,31 @@
         "memory_tip": "In u the dy/dx was multiplied by log x; in v it is multiplied by x/y. Swapping which factor carries dy/dx is the difference between the two steps.",
         "lines": [
           "v = yˣ",
+          {
+            "text": "(log(pᵐ) = m log p, with p = y and m = x)",
+            "added": true
+          },
           "Taking logarithms,   log v = x log y",
+          {
+            "text": "(the product rule on x · log y: d/dx(x) = 1",
+            "added": true
+          },
+          {
+            "text": "  and d/dx(log y) = (1/y)(dy/dx))",
+            "style": "indent",
+            "added": true
+          },
           "Differentiating both sides with respect to x,",
           "(1/v)(dv/dx) = 1 · log y + x · (1/y)(dy/dx)",
+          {
+            "text": "(multiply both sides by v = yˣ)",
+            "added": true
+          },
           "dv/dx = yˣ [ log y + (x/y)(dy/dx) ]",
+          {
+            "text": "(yˣ · x/y = x · yˣ/y = xyˣ⁻¹)",
+            "added": true
+          },
           "∴ dv/dx = yˣ log y + xyˣ⁻¹ · (dy/dx)      …(3)"
         ],
         "recall": {
@@ -193,6 +244,14 @@
         "common_mistakes": [
           "Writing log v = y log x, which repeats the first term's logarithm.",
           "Leaving yˣ·(x/y) unsimplified, so the answer never reaches the printed yˣ⁻¹."
+        ],
+        "lines_compact": [
+          "v = yˣ",
+          "Taking logarithms,   log v = x log y",
+          "Differentiating both sides with respect to x,",
+          "(1/v)(dv/dx) = 1 · log y + x · (1/y)(dy/dx)",
+          "dv/dx = yˣ [ log y + (x/y)(dy/dx) ]",
+          "∴ dv/dx = yˣ log y + xyˣ⁻¹ · (dy/dx)      …(3)"
         ]
       },
       {
@@ -206,6 +265,20 @@
         "lines": [
           "Adding (2) and (3) and using (1),",
           "xʸ log x · (dy/dx) + yxʸ⁻¹ + yˣ log y + xyˣ⁻¹ · (dy/dx) = 0",
+          {
+            "text": "(take out dy/dx from the first and last terms,",
+            "added": true
+          },
+          {
+            "text": "  and move the other two terms to the right side,",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  where they change sign)",
+            "style": "indent",
+            "added": true
+          },
           "Collecting the dy/dx terms,",
           "∴ (dy/dx)[xʸ log x + xyˣ⁻¹] = −[yxʸ⁻¹ + yˣ log y]      …(4)"
         ],
@@ -237,6 +310,12 @@
         "common_mistakes": [
           "Setting the sum equal to aᵇ instead of to zero.",
           "Losing the minus sign when the two plain terms are moved across the equals sign."
+        ],
+        "lines_compact": [
+          "Adding (2) and (3) and using (1),",
+          "xʸ log x · (dy/dx) + yxʸ⁻¹ + yˣ log y + xyˣ⁻¹ · (dy/dx) = 0",
+          "Collecting the dy/dx terms,",
+          "∴ (dy/dx)[xʸ log x + xyˣ⁻¹] = −[yxʸ⁻¹ + yˣ log y]      …(4)"
         ]
       },
       {

@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.203, chapter 9 DIFFERENTIATION, Short Answer question 17. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. The printed stem gives no domain; the answer states a > 0, y > 0 and x + b > 0, which the logarithms it takes require. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8 under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.203, chapter 9 DIFFERENTIATION, Short Answer question 17. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. The printed stem gives no domain; the answer states a > 0, y > 0 and x + b > 0, which the logarithms it takes require. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8 under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say which method you use on ay⁴ = (x + b)⁵ and how you finish.",
   "answer": {
@@ -61,6 +61,15 @@
           },
           "Take a > 0, y > 0 and x + b > 0, so both sides are positive.",
           "ay⁴ = (x + b)⁵",
+          "(take logₑ of both sides:",
+          {
+            "text": "  log(ay⁴) = log a + log y⁴ = log a + 4 log y,",
+            "style": "indent"
+          },
+          {
+            "text": "  and log(x + b)⁵ = 5 log(x + b))",
+            "style": "indent"
+          },
           "logₑa + 4 logₑy = 5 logₑ(x + b)"
         ],
         "recall": {
@@ -101,7 +110,25 @@
         "margin_note": "Second mark. Keep the result in the form y′/y rather than solving for y′ — the next step differentiates this quotient as it stands.",
         "lines": [
           "Differentiate both sides with respect to x:",
+          {
+            "text": "(log a is a constant, so its derivative is 0;",
+            "added": true
+          },
+          {
+            "text": "  d/dx(log y) = (1/y) · y′ by the chain rule;",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  d/dx log(x + b) = 1/(x + b))",
+            "style": "indent",
+            "added": true
+          },
           "0 + 4(y′/y) = 5/(x + b)",
+          {
+            "text": "(divide both sides by 4)",
+            "added": true
+          },
           "y′/y = 5 / [4(x + b)]"
         ],
         "recall": {
@@ -130,7 +157,12 @@
           "Writing d/dx(logₑy) as 1/y and forgetting the chain-rule factor y′.",
           "Differentiating logₑa as 1/a instead of 0."
         ],
-        "memory_tip": "logₑy differentiates to y′/y — the derivative of the inside always sits on top."
+        "memory_tip": "logₑy differentiates to y′/y — the derivative of the inside always sits on top.",
+        "lines_compact": [
+          "Differentiate both sides with respect to x:",
+          "0 + 4(y′/y) = 5/(x + b)",
+          "y′/y = 5 / [4(x + b)]"
+        ]
       },
       {
         "id": "s3_second_differentiation",
@@ -140,12 +172,39 @@
         "mark_note": "Solution",
         "margin_note": "Third mark. The left side is a quotient of y′ by y, so use the quotient rule — that is where both yy″ and (y′)² come from.",
         "lines": [
+          {
+            "text": "(the quotient rule d/dx(u/v) = (v · u′ − u · v′)/v²,",
+            "added": true
+          },
+          {
+            "text": "  with u = y′ and v = y)",
+            "style": "indent",
+            "added": true
+          },
           "d/dx (y′/y) = [y″·y − y′·y′] / y²",
           {
             "text": "  = [yy″ − (y′)²] / y²",
             "style": "indent"
           },
+          {
+            "text": "(5/[4(x + b)] = (5/4)(x + b)⁻¹, and its derivative is",
+            "added": true
+          },
+          {
+            "text": "  (5/4) · (−1)(x + b)⁻² = −5/[4(x + b)²])",
+            "style": "indent",
+            "added": true
+          },
           "d/dx {5 / [4(x + b)]} = −5 / [4(x + b)²]",
+          {
+            "text": "(the two sides of y′/y = 5/[4(x + b)] are equal,",
+            "added": true
+          },
+          {
+            "text": "  so their derivatives are equal)",
+            "style": "indent",
+            "added": true
+          },
           "∴ [yy″ − (y′)²] / y² = −5 / [4(x + b)²]"
         ],
         "recall": {
@@ -175,7 +234,16 @@
           "Differentiating y′/y term by term instead of using the quotient rule.",
           "Losing the minus sign when differentiating 1/(x + b)."
         ],
-        "memory_tip": "The quotient rule on y′/y produces yy″ − (y′)² on top — both pieces of the required result in one move."
+        "memory_tip": "The quotient rule on y′/y produces yy″ − (y′)² on top — both pieces of the required result in one move.",
+        "lines_compact": [
+          "d/dx (y′/y) = [y″·y − y′·y′] / y²",
+          {
+            "text": "  = [yy″ − (y′)²] / y²",
+            "style": "indent"
+          },
+          "d/dx {5 / [4(x + b)]} = −5 / [4(x + b)²]",
+          "∴ [yy″ − (y′)²] / y² = −5 / [4(x + b)²]"
+        ]
       },
       {
         "id": "s4_substitute_and_finish",
@@ -185,14 +253,50 @@
         "mark_note": "Answer",
         "margin_note": "Last mark. x and b must not appear in the required result, so 1/(x + b) is replaced using step 2 before the final line.",
         "lines": [
+          {
+            "text": "(multiply both sides of y′/y = 5/[4(x + b)] by 4/5;",
+            "added": true
+          },
+          {
+            "text": "  then square both sides: (4y′/(5y))²",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  = 16(y′)²/(25y²))",
+            "style": "indent",
+            "added": true
+          },
           "From step 2,  1/(x + b) = 4y′/(5y),",
           "so  1/(x + b)² = 16(y′)² / (25y²)",
+          {
+            "text": "(write −5/[4(x + b)²] as −(5/4) · 1/(x + b)² and put in",
+            "added": true
+          },
+          {
+            "text": "  the value above; (5/4) · (16/25) = 80/100 = 4/5)",
+            "style": "indent",
+            "added": true
+          },
           "[yy″ − (y′)²] / y² = −(5/4) · 16(y′)²/(25y²)",
           {
             "text": "  = −(4/5)(y′)²/y²",
             "style": "indent"
           },
+          {
+            "text": "(multiply both sides by y²; then add (y′)² to both",
+            "added": true
+          },
+          {
+            "text": "  sides: 1 − 4/5 = 1/5)",
+            "style": "indent",
+            "added": true
+          },
           "yy″ − (y′)² = −(4/5)(y′)²   ⇒   yy″ = (1/5)(y′)²",
+          {
+            "text": "(multiply both sides by 5)",
+            "added": true
+          },
           {
             "text": "∴ 5yy″ = (y′)²",
             "style": "boxed"
@@ -225,7 +329,21 @@
           "Leaving x + b in the final answer.",
           "Squaring 4y′/(5y) as 4(y′)²/(5y²) instead of 16(y′)²/(25y²)."
         ],
-        "memory_tip": "The two indices decide the answer: with 4 logₑy = 5 logₑ(x + b), the coefficient is (5 − 4)/5 = 1/5, so the 5 in 5yy″ is the index of (x + b)."
+        "memory_tip": "The two indices decide the answer: with 4 logₑy = 5 logₑ(x + b), the coefficient is (5 − 4)/5 = 1/5, so the 5 in 5yy″ is the index of (x + b).",
+        "lines_compact": [
+          "From step 2,  1/(x + b) = 4y′/(5y),",
+          "so  1/(x + b)² = 16(y′)² / (25y²)",
+          "[yy″ − (y′)²] / y² = −(5/4) · 16(y′)²/(25y²)",
+          {
+            "text": "  = −(4/5)(y′)²/y²",
+            "style": "indent"
+          },
+          "yy″ − (y′)² = −(4/5)(y′)²   ⇒   yy″ = (1/5)(y′)²",
+          {
+            "text": "∴ 5yy″ = (y′)²",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

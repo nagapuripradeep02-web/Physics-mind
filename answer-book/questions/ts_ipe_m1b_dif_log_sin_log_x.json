@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.193, chapter 9 DIFFERENTIATION, Very Short Answer question 13. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer cot(log x)/x was checked against a numerical difference quotient before it was written: at x = 2 both read 0.6019449, and at x = 3 both read 0.1702388. Here log means logₑ, the convention of this paper."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.193, chapter 9 DIFFERENTIATION, Very Short Answer question 13. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer cot(log x)/x was checked against a numerical difference quotient before it was written: at x = 2 both read 0.6019449, and at x = 3 both read 0.1702388. Here log means logₑ, the convention of this paper. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — name the layers you differentiate and the order you take them in.",
   "answer": {
@@ -54,12 +54,16 @@
           },
           "y = log(sin(log x)) is a function of a function of a function.",
           "By the chain rule, differentiate the outer log first:",
+          "(d/dx(log u) = (1/u) · du/dx, with u = sin(log x))",
           "dy/dx = [1/sin(log x)] · d/dx[sin(log x)]",
+          "(d/dx(sin v) = cos v · dv/dx, with v = log x)",
           "d/dx[sin(log x)] = cos(log x) · d/dx(log x)",
+          "(d/dx(log x) = 1/x)",
           {
             "text": "  = cos(log x) · (1/x)",
             "style": "indent"
           },
+          "(put this derivative into the line for dy/dx)",
           "∴ dy/dx = [1/sin(log x)] · cos(log x) · (1/x)"
         ],
         "recall": {
@@ -100,8 +104,16 @@
         "margin_note": "Second mark. cos of an angle over sin of the same angle is cot of that angle, and the angle here is log x. The 1/x stays outside as a separate factor.",
         "memory_tip": "cos over sin of the same angle is always cot, whatever the angle is written as.",
         "lines": [
+          {
+            "text": "(cot θ = cos θ/sin θ, with θ = log x)",
+            "added": true
+          },
           "cos(log x)/sin(log x) = cot(log x)",
           "∴ dy/dx = cot(log x) · (1/x)",
+          {
+            "text": "(cot(log x) · (1/x) = cot(log x)/x)",
+            "added": true
+          },
           {
             "text": "∴ dy/dx = cot(log x)/x",
             "style": "boxed"
@@ -135,6 +147,16 @@
         "common_mistakes": [
           "Writing tan(log x)/x by taking the ratio the wrong way up.",
           "Putting the x inside the cotangent as cot(log x/x)."
+        ],
+        "lines_compact": [
+          "cos(log x)/sin(log x) = cot(log x)",
+          "∴ dy/dx = cot(log x) · (1/x)",
+          {
+            "text": "∴ dy/dx = cot(log x)/x",
+            "style": "boxed"
+          },
+          "This working needs sin(log x) > 0, that is log x in (0, π),",
+          "or in any interval (2kπ, (2k + 1)π)."
         ]
       }
     ]

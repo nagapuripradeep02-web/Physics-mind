@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.197, chapter 9 DIFFERENTIATION, Short Answer question 1(vi). **Only the question was taken. The solution, the step order and the mark split are this answer book’s own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK’S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. The book sets ONE shared instruction over nine sub-parts, so the stem here is that instruction written out for this sub-part alone; nothing in it was altered, and the question now reads on its own. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8 under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.197, chapter 9 DIFFERENTIATION, Short Answer question 1(vi). **Only the question was taken. The solution, the step order and the mark split are this answer book’s own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK’S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. The book sets ONE shared instruction over nine sub-parts, so the stem here is that instruction written out for this sub-part alone; nothing in it was altered, and the question now reads on its own. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8 under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — name the identity that turns a difference of two squared cosines into a product.",
   "answer": {
@@ -60,8 +60,10 @@
             "style": "heading"
           },
           "Let f(x) = cos²x",
+          "(the definition of the derivative from the first principle)",
           "By the first principle,",
           "f′(x) = lim(h → 0) [f(x + h) − f(x)]/h",
+          "(f(x + h) = cos²(x + h))",
           "= lim(h → 0) [cos²(x + h) − cos²x]/h"
         ],
         "recall": {
@@ -100,9 +102,31 @@
         "mark_note": "Method",
         "margin_note": "Second mark. This identity comes from sin(A + B) sin(A − B) = sin²A − sin²B together with sin²θ = 1 − cos²θ. Learn it as it stands: it saves three lines here.",
         "lines": [
+          {
+            "text": "(cos²A − cos²B = (cos A − cos B)(cos A + cos B),",
+            "added": true
+          },
+          {
+            "text": "  and the sum-to-product formulas turn this product",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  into −sin(A + B) sin(A − B))",
+            "style": "indent",
+            "added": true
+          },
           "cos²A − cos²B = −sin(A + B) sin(A − B)",
+          {
+            "text": "((x + h) + x = 2x + h and (x + h) − x = h)",
+            "added": true
+          },
           "Here A = x + h and B = x, so",
           "A + B = 2x + h  and  A − B = h",
+          {
+            "text": "(put A + B = 2x + h and A − B = h into the identity)",
+            "added": true
+          },
           "cos²(x + h) − cos²x = −sin(2x + h) sin h"
         ],
         "recall": {
@@ -132,7 +156,13 @@
           "Using +sin(A + B) sin(A − B), which equals sin²A − sin²B, not cos²A − cos²B.",
           "Squaring the sum-to-product form of cos A − cos B instead of using this identity."
         ],
-        "memory_tip": "cos²A − cos²B = −sin(A+B) sin(A−B): sines on the right, one minus in front."
+        "memory_tip": "cos²A − cos²B = −sin(A+B) sin(A−B): sines on the right, one minus in front.",
+        "lines_compact": [
+          "cos²A − cos²B = −sin(A + B) sin(A − B)",
+          "Here A = x + h and B = x, so",
+          "A + B = 2x + h  and  A − B = h",
+          "cos²(x + h) − cos²x = −sin(2x + h) sin h"
+        ]
       },
       {
         "id": "s3_standard_limit",
@@ -142,7 +172,15 @@
         "mark_note": "Method",
         "margin_note": "Third mark. No adjusting factor is needed here — the sine angle is already h. Say so, because the examiner wants the standard limit named.",
         "lines": [
+          {
+            "text": "(put the numerator from step 2 into the limit)",
+            "added": true
+          },
           "f′(x) = lim(h → 0) [−sin(2x + h) sin h]/h",
+          {
+            "text": "(write [−sin(2x + h) sin h]/h as −sin(2x + h) · (sin h)/h)",
+            "added": true
+          },
           "= lim(h → 0) −sin(2x + h) · (sin h)/h",
           "The angle h matches the denominator, so",
           "lim(h → 0) (sin h)/h = 1 applies directly"
@@ -174,7 +212,13 @@
           "Cancelling sin h against h as though they were equal.",
           "Letting h → 0 inside sin(2x + h) while still keeping h in sin h."
         ],
-        "memory_tip": "Split the product first, then take limits one factor at a time."
+        "memory_tip": "Split the product first, then take limits one factor at a time.",
+        "lines_compact": [
+          "f′(x) = lim(h → 0) [−sin(2x + h) sin h]/h",
+          "= lim(h → 0) −sin(2x + h) · (sin h)/h",
+          "The angle h matches the denominator, so",
+          "lim(h → 0) (sin h)/h = 1 applies directly"
+        ]
       },
       {
         "id": "s4_answer",
@@ -184,8 +228,21 @@
         "mark_note": "Answer",
         "margin_note": "Last mark. −sin 2x is the compact form. It equals 2 cos x × (−sin x), which is the chain-rule answer — a quick check that the limit work is right.",
         "lines": [
+          {
+            "text": "(sin is continuous, so sin(2x + h) → sin(2x + 0) = sin 2x)",
+            "added": true
+          },
           "As h → 0, sin(2x + h) → sin 2x and (sin h)/h → 1",
           "f′(x) = −sin 2x · 1",
+          {
+            "text": "(by the chain rule d/dx(cos x)² = 2 cos x · (−sin x),",
+            "added": true
+          },
+          {
+            "text": "  and 2 sin x cos x = sin 2x)",
+            "style": "indent",
+            "added": true
+          },
           "Check: −sin 2x = 2 cos x · (−sin x)",
           {
             "text": "∴ d/dx (cos²x) = −sin 2x",
@@ -218,7 +275,16 @@
           "Giving +sin 2x by dropping the minus from the identity.",
           "Treating −2 sin x cos x as a different answer from −sin 2x."
         ],
-        "memory_tip": "The answer is −sin 2x. The double angle comes from A + B = 2x + h."
+        "memory_tip": "The answer is −sin 2x. The double angle comes from A + B = 2x + h.",
+        "lines_compact": [
+          "As h → 0, sin(2x + h) → sin 2x and (sin h)/h → 1",
+          "f′(x) = −sin 2x · 1",
+          "Check: −sin 2x = 2 cos x · (−sin x)",
+          {
+            "text": "∴ d/dx (cos²x) = −sin 2x",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

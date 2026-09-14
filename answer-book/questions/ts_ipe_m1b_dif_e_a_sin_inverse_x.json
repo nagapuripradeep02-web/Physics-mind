@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.193, chapter 9 DIFFERENTIATION, Very Short Answer question 12. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The result was checked numerically before it was written, with the concrete value a = 2.5: the central difference quotient reads 4.2211033 at x = 0.2 against ay/√(1 − x²) = 4.2211033, and 19.293635 at x = 0.65 against 19.293635. The exponent is written in superscript as a Sin⁻¹x."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.193, chapter 9 DIFFERENTIATION, Very Short Answer question 12. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The result was checked numerically before it was written, with the concrete value a = 2.5: the central difference quotient reads 4.2211033 at x = 0.2 against ay/√(1 − x²) = 4.2211033, and 19.293635 at x = 0.65 against 19.293635. The exponent is written in superscript as a Sin⁻¹x. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say why the answer can be written in terms of y, and what the exponent differentiates to.",
   "answer": {
@@ -54,7 +54,9 @@
           },
           "Given y = eᵃ ˢⁱⁿ⁻¹ˣ, that is y = eᵘ where u = a Sin⁻¹x",
           "and a is a constant.",
+          "(the chain rule for the exponential)",
           "d/dx(eᵘ) = eᵘ · du/dx",
+          "(put u = a Sin⁻¹x)",
           "∴ dy/dx = eᵃ ˢⁱⁿ⁻¹ˣ · d/dx(a Sin⁻¹x)",
           "The exponential factor eᵃ ˢⁱⁿ⁻¹ˣ is y itself,",
           "so dy/dx = y · d/dx(a Sin⁻¹x)"
@@ -96,8 +98,16 @@
         "margin_note": "Second mark. a is a constant multiplier inside the exponent, so it stays as it is, and d/dx(Sin⁻¹x) = 1/√(1 − x²), valid for −1 < x < 1.",
         "memory_tip": "Sin⁻¹ contributes 1/√(1 − x²). The constant a is unchanged and stays as a multiplier beside the y.",
         "lines": [
+          {
+            "text": "(the standard derivative of Sin⁻¹x, for −1 < x < 1)",
+            "added": true
+          },
           "d/dx(Sin⁻¹x) = 1/√(1 − x²),",
           "so  d/dx(a Sin⁻¹x) = a/√(1 − x²)",
+          {
+            "text": "(put a/√(1 − x²) in place of d/dx(a Sin⁻¹x))",
+            "added": true
+          },
           "∴ dy/dx = eᵃ ˢⁱⁿ⁻¹ˣ · a/√(1 − x²)",
           "Replacing eᵃ ˢⁱⁿ⁻¹ˣ by y,",
           {
@@ -131,6 +141,16 @@
         "common_mistakes": [
           "Using 1/(1 + x²), which is the Tan⁻¹ derivative.",
           "Dropping the constant a from the numerator."
+        ],
+        "lines_compact": [
+          "d/dx(Sin⁻¹x) = 1/√(1 − x²),",
+          "so  d/dx(a Sin⁻¹x) = a/√(1 − x²)",
+          "∴ dy/dx = eᵃ ˢⁱⁿ⁻¹ˣ · a/√(1 − x²)",
+          "Replacing eᵃ ˢⁱⁿ⁻¹ˣ by y,",
+          {
+            "text": "∴ dy/dx = ay/√(1 − x²)",
+            "style": "boxed"
+          }
         ]
       }
     ]

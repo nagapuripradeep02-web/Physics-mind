@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.203, chapter 9 DIFFERENTIATION, Short Answer question 15. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8 under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.203, chapter 9 DIFFERENTIATION, Short Answer question 15. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8 under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say what the chain rule gives you and why the tan x term is in the result.",
   "answer": {
@@ -60,8 +60,18 @@
             "style": "heading"
           },
           "y = a cos(sin x) + b sin(sin x)",
+          "(d/dx cos u = −sin u · du/dx",
+          {
+            "text": "  and d/dx sin u = cos u · du/dx, with u = sin x)",
+            "style": "indent"
+          },
           "The inner function is sin x, whose derivative is cos x, so",
           "y₁ = [−a sin(sin x) + b cos(sin x)]·cos x",
+          "(−a sin(sin x) + b cos(sin x) is the same as",
+          {
+            "text": "  b cos(sin x) − a sin(sin x))",
+            "style": "indent"
+          },
           "Write P = b cos(sin x) − a sin(sin x),   so   y₁ = P cos x"
         ],
         "recall": {
@@ -101,8 +111,49 @@
         "mark_note": "Solution",
         "margin_note": "Second mark. Differentiating P returns −y cos x, because P and y swap places under differentiation. That single fact is what makes this question short.",
         "lines": [
+          {
+            "text": "(differentiate P with u = sin x:",
+            "added": true
+          },
+          {
+            "text": "  d/dx[b cos(sin x)] = −b sin(sin x) · cos x",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  and d/dx[−a sin(sin x)] = −a cos(sin x) · cos x)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "(−b sin(sin x) − a cos(sin x)",
+            "added": true
+          },
+          {
+            "text": "  = −[a cos(sin x) + b sin(sin x)] = −y)",
+            "style": "indent",
+            "added": true
+          },
           "P′ = [−b sin(sin x) − a cos(sin x)]·cos x = −y cos x",
+          {
+            "text": "(the product rule on y₁ = P cos x: y₂",
+            "added": true
+          },
+          {
+            "text": "  = P′ · cos x + P · (cos x)′,",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  and (cos x)′ = −sin x)",
+            "style": "indent",
+            "added": true
+          },
           "y₂ = P′cos x + P(−sin x)",
+          {
+            "text": "(put P′ = −y cos x: (−y cos x) · cos x = −y cos²x)",
+            "added": true
+          },
           "y₂ = −y cos²x − P sin x"
         ],
         "recall": {
@@ -132,7 +183,12 @@
           "Differentiating P cos x as P′cos x only, leaving out the second product term.",
           "Writing P′ as +y cos x, which gives +y cos²x in y₂ instead of −y cos²x."
         ],
-        "memory_tip": "y differentiates into P cos x and P differentiates into −y cos x — each differentiation brings the same cos x out of the inner sin x."
+        "memory_tip": "y differentiates into P cos x and P differentiates into −y cos x — each differentiation brings the same cos x out of the inner sin x.",
+        "lines_compact": [
+          "P′ = [−b sin(sin x) − a cos(sin x)]·cos x = −y cos x",
+          "y₂ = P′cos x + P(−sin x)",
+          "y₂ = −y cos²x − P sin x"
+        ]
       },
       {
         "id": "s3_middle_term",
@@ -142,7 +198,15 @@
         "mark_note": "Solution",
         "margin_note": "Third mark. This one line explains why the identity carries a tan x: it converts y₁, which has a cos x, into the P sin x that y₂ needs cancelling.",
         "lines": [
+          {
+            "text": "(tan x = sin x/cos x, and y₁ = P cos x from step 1)",
+            "added": true
+          },
           "(tan x)y₁ = (sin x / cos x)·P cos x",
+          {
+            "text": "(cos x cancels; cos x ≠ 0 wherever tan x is defined)",
+            "added": true
+          },
           "= P sin x"
         ],
         "recall": {
@@ -172,7 +236,11 @@
           "Writing (tan x)y₁ as P sin x cos x, forgetting the cancellation.",
           "Using cot x in place of tan x, which leaves a cos²x/sin x factor."
         ],
-        "memory_tip": "tan x = sin x / cos x, so multiplying anything that carries a cos x by tan x trades that cos x for a sin x."
+        "memory_tip": "tan x = sin x / cos x, so multiplying anything that carries a cos x by tan x trades that cos x for a sin x.",
+        "lines_compact": [
+          "(tan x)y₁ = (sin x / cos x)·P cos x",
+          "= P sin x"
+        ]
       },
       {
         "id": "s4_add_terms",
@@ -182,6 +250,15 @@
         "mark_note": "Answer",
         "margin_note": "Last mark. Two cancelling pairs: P sin x against −P sin x, and y cos²x against −y cos²x. Write both pairs down before claiming the result.",
         "lines": [
+          {
+            "text": "(put y₂ = −y cos²x − P sin x from step 2",
+            "added": true
+          },
+          {
+            "text": "  and (tan x)y₁ = P sin x from step 3)",
+            "style": "indent",
+            "added": true
+          },
           "y₂ + (tan x)y₁ + y cos²x",
           {
             "text": "  = (−y cos²x − P sin x) + P sin x + y cos²x",
@@ -189,6 +266,10 @@
           },
           "The two P sin x terms cancel,",
           "and so do the two y cos²x terms",
+          {
+            "text": "(−P sin x + P sin x = 0 and −y cos²x + y cos²x = 0)",
+            "added": true
+          },
           {
             "text": "∴ y₂ + (tan x)y₁ + y cos²x = 0",
             "style": "boxed"
@@ -221,7 +302,20 @@
           "Writing the answer as 0 without showing which terms cancelled.",
           "Substituting P back and expanding, which makes the cancelling much harder to see."
         ],
-        "memory_tip": "y₂ has two terms. The other two parts of the identity cancel one each: (tan x)y₁ removes −P sin x, and y cos²x removes −y cos²x."
+        "memory_tip": "y₂ has two terms. The other two parts of the identity cancel one each: (tan x)y₁ removes −P sin x, and y cos²x removes −y cos²x.",
+        "lines_compact": [
+          "y₂ + (tan x)y₁ + y cos²x",
+          {
+            "text": "  = (−y cos²x − P sin x) + P sin x + y cos²x",
+            "style": "indent"
+          },
+          "The two P sin x terms cancel,",
+          "and so do the two y cos²x terms",
+          {
+            "text": "∴ y₂ + (tan x)y₁ + y cos²x = 0",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },
