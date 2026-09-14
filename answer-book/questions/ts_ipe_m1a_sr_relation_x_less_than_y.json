@@ -80,7 +80,7 @@
             "dropped"
           ]
         },
-        "why": "The condition x < y is strict, so a pair with equal entries is not allowed. Taking each x separately means that check is made three times instead of once, which is where the two rejected pairs are caught.",
+        "why": "The condition x < y is strict, so a pair with equal entries is not allowed. Taking each x separately means that check is made three times instead of once, which is where the two pairs with equal entries, (1, 1) and (3, 3), are caught.",
         "memory_tip": "The condition is x < y, not x ≤ y — equal values are left out.",
         "common_mistakes": [
           "Including (1, 1) and (3, 3), which would need the condition to be x ≤ y.",
@@ -136,7 +136,7 @@
         "why": "R is a subset of A × B, so every pair must have its first entry in A and its second in B. Writing the count beside the list shows the answer has been checked and not just copied down.",
         "memory_tip": "Count the pairs from your working before writing them: 2 + 2 + 1 = 5.",
         "common_mistakes": [
-          "Writing (3, 1) or (6, 1), whose entries are in the wrong sets.",
+          "Writing reversed pairs such as (3, 1) or (6, 1): 3 < 1 is false, and 6 is not a member of A.",
           "Giving the answer as a list of y values instead of ordered pairs.",
           "Leaving out (3, 6), because 3 is the last element of A and is checked in a hurry."
         ],

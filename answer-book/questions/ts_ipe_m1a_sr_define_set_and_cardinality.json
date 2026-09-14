@@ -104,7 +104,12 @@
           "A set is finite when its elements can be counted and",
           "the counting comes to an end.",
           {
-            "text": "(an infinite set, such as N, has no cardinal number n(A))",
+            "text": "(n(A) is used only for a finite set; an infinite set",
+            "added": true
+          },
+          {
+            "text": "  such as N has no whole-number count)",
+            "style": "indent",
             "added": true
           },
           "The number of distinct elements in a finite set A is",

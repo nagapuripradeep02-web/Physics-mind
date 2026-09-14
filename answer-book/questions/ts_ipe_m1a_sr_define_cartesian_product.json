@@ -80,7 +80,7 @@
             "second from B"
           ]
         },
-        "why": "The word ordered is the whole of the definition: (1, 2) and (2, 1) are different elements of a Cartesian product, and that is what makes A × B different from B × A.",
+        "why": "The word ordered is essential: (1, 2) and (2, 1) are different elements of a Cartesian product, so in general A × B ≠ B × A. They are equal only when A = B, or when one of the sets is empty.",
         "memory_tip": "The first entry always comes from the first set — that is why it is A × B and not B × A.",
         "common_mistakes": [
           "Leaving out the word ordered, so the definition would treat (a, b) and (b, a) as the same.",

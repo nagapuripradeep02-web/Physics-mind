@@ -81,7 +81,7 @@
           ]
         },
         "why": "Both differences are needed and each is built by removing the same two shared letters, so writing the intersection once prevents the same slip being made twice.",
-        "memory_tip": "Find what the two sets share first; the symmetric difference is everything else.",
+        "memory_tip": "Find what the two sets share first; the symmetric difference is everything else in A ∪ B.",
         "common_mistakes": [
           "Writing A − B = {b, d, e, f, g, h}, which mixes in letters that belong to B.",
           "Removing a and c from A but forgetting to remove them from B."

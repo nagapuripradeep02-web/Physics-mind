@@ -161,7 +161,7 @@
           "Testing reflexivity with a pair such as (1, 39) instead of a pair of the form (x, x).",
           "Calling R transitive without first finding a chain (x, y) and (y, z) that both lie in R."
         ],
-        "memory_tip": "To reject a property you need one pair; to accept it you must argue for every pair.",
+        "memory_tip": "To reject a property you need one counterexample; to accept it you must argue for every pair.",
         "lines_compact": [
           "(i) Reflexive: (x, x) ∈ R would need 2x + x = 41,",
           "so x = 41/3, which is not in N.",

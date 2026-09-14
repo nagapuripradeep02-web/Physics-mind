@@ -146,7 +146,7 @@
         "why": "Both l and n have the same direction as m, so they have the same direction as each other, and transitivity takes one line of work. It also needs the same convention that a line is parallel to itself: l ∥ m and m ∥ l give l ∥ l by transitivity, and the strict definition — parallel lines must be distinct — would make l ∥ l false, so transitivity would fail without the convention.",
         "common_mistakes": [
           "Stopping after the three checks and never stating that R is an equivalence relation.",
-          "Arguing transitivity only from \"the lines never meet\", which does not by itself rule out l and n being the same line.",
+          "Arguing transitivity from \"the lines never meet\": under this convention a line is parallel to itself, so the argument must use \"same direction\", not \"never meet\".",
           "Checking only two of the three properties."
         ],
         "memory_tip": "Check reflexive, symmetric, transitive in that order every time, then write the conclusion as a full sentence.",

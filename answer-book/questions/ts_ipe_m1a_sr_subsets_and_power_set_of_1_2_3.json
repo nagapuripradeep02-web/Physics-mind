@@ -93,7 +93,7 @@
         "label": "List the subsets and write the power set",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Second mark. Parts (iii) and (iv) are the same eight objects named two ways: (iii) asks for the subsets themselves, (iv) asks for the one set that holds them as its elements. Write the list once and put braces around it for (iv).",
+        "margin_note": "Second mark. Parts (iii) and (iv) are the same eight objects named two ways: (iii) asks for the subsets themselves, (iv) asks for the one set that holds them as its elements. For (iv), put the same eight subsets inside one outer pair of braces.",
         "lines": [
           "(iii) The subsets of A are",
           {
@@ -136,12 +136,12 @@
             "braces"
           ]
         },
-        "why": "Ordering the list by size makes the count 1 + 3 + 3 + 1 visible on the page, so the list can be checked against part (ii) without recounting. Part (iv) then costs one line, because the objects are already written.",
+        "why": "Ordering the list by size makes the count 1 + 3 + 3 + 1 visible on the page, so the list can be checked against part (ii) without recounting. Part (iv) then needs no new working, because the objects are already found.",
         "memory_tip": "List by size: the empty set, then the singletons, then the pairs, then the whole set.",
         "common_mistakes": [
           "Leaving out ∅, or leaving out A itself, which gives 7 subsets instead of 8.",
           "Writing P(A) = {1, 2, 3} — dropping the inner braces makes it a set of numbers, not a set of sets.",
-          "Repeating the whole list twice for (iii) and (iv) instead of naming it once."
+          "Listing the eight subsets for (iii) but never putting them inside one outer pair of braces as the set P(A) for (iv)."
         ],
         "lines_compact": [
           "(iii) The subsets of A are",

@@ -140,7 +140,7 @@
         "common_mistakes": [
           "Keeping 3 in the answer, which gives A ∪ B instead.",
           "Computing only B − A and writing {4} as the answer.",
-          "Choosing two sets with no common element, so the example proves nothing."
+          "Choosing two sets with no common element, so A Δ B equals A ∪ B and the example does not show a shared element being left out."
         ],
         "lines_compact": [
           "Take A = {1, 2, 3} and B = {3, 4}.",
