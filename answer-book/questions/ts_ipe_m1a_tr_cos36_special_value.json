@@ -165,7 +165,7 @@
             "positive root"
           ]
         },
-        "why": "c = −1 does solve the cubic, because cos180° = −1 also satisfies 3θ = 180° − 2θ. It has to be rejected by name, since θ here is 36° and not 180°.",
+        "why": "c = −1 does solve the cubic, because θ = 180° also satisfies cos3θ = −cos2θ (both sides are −1), even though it does not satisfy 3θ = 180° − 2θ. It has to be rejected by name, since θ here is 36° and not 180°.",
         "common_mistakes": [
           "Keeping c = −1 as an answer.",
           "Taking the negative root (1 − √5)/4."

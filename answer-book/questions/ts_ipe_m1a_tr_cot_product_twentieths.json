@@ -150,7 +150,7 @@
         "mark_note": "Result",
         "margin_note": "Last mark. Each bracket is a cotangent times its own tangent, which is 1, and the middle factor is 1, so the whole product is 1.",
         "lines": [
-          "cot θ · tan θ = 1 for every angle θ",
+          "cot θ · tan θ = 1 wherever both are defined",
           {
             "text": "(cot θ = 1/tan θ)",
             "added": true
@@ -191,7 +191,7 @@
         ],
         "memory_tip": "cot θ and tan θ are reciprocals, so each bracket is exactly 1.",
         "lines_compact": [
-          "cot θ · tan θ = 1 for every angle θ",
+          "cot θ · tan θ = 1 wherever both are defined",
           "∴ L.H.S = 1 · 1 · 1 = 1",
           {
             "text": "∴ The product equals 1",

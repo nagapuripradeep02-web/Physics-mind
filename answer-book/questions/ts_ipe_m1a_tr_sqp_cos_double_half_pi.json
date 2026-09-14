@@ -108,7 +108,7 @@
         },
         "why": "The 2s inside cancel against the halves in the formula, so the messy 2A and 2B become plain A + B and A − B.",
         "common_mistakes": [
-          "Grouping cos 2B + cos 2C, which does not lead anywhere useful.",
+          "Grouping the first two and then using A + B = π − C, the triangle condition.",
           "Forgetting to halve the sum and difference."
         ]
       },

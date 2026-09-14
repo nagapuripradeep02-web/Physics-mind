@@ -104,9 +104,9 @@
             "sum to product"
           ]
         },
-        "why": "Pairing the first with the third instead would leave A and C mixed, and neither half would simplify. The pairing is chosen for what cancels.",
+        "why": "Any pairing works because the sum is symmetric in A, B, C; pairing cos S with cos(S−C) makes both pairs carry cos(C/2).",
         "common_mistakes": [
-          "Pairing the first with the last.",
+          "Applying the sum formula without halving the sum and the difference.",
           "Applying the formula to three terms at once."
         ]
       },

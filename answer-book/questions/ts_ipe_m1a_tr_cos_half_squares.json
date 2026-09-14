@@ -189,7 +189,7 @@
         },
         "why": "Two constants appear in this proof — this 1 and another later — and together they make the 2 that sits outside the answer.",
         "common_mistakes": [
-          "Converting the wrong term.",
+          "Converting two terms, which leaves no cos² − sin² pair.",
           "Writing 1 + sin² instead of 1 − sin²."
         ],
         "lines_compact": [

@@ -115,7 +115,7 @@
         "marks": 3,
         "mark_note": "Sum to product",
         "margin_note": "Three of the eight marks. Three terms will not factorise as they stand, so two of them are combined into a product first. Quote the formula in brackets — the formulas are what the examiner marks.",
-        "memory_tip": "Pair cos A with cos B — not cos B with −cos C. And cos(90° − C/2) is sin(C/2), not cos(C/2).",
+        "memory_tip": "Pair cos A with cos B: their half-sum (A+B)/2 turns into C/2 under the condition. And cos(90° − C/2) is sin(C/2), not cos(C/2).",
         "lines": [
           "L.H.S = (cosA + cosB) − cosC",
           {
@@ -159,7 +159,7 @@
         },
         "why": "Pairing the two whole-angle cosines is what produces a half-angle term, which is the form the answer needs.",
         "common_mistakes": [
-          "Pairing cos B with −cos C instead.",
+          "Using the sum formula on cos B − cos C, which is a difference.",
           "Writing cos(90° − C/2) = cos(C/2)."
         ],
         "lines_compact": [
@@ -176,7 +176,7 @@
         "label": "Use the condition",
         "marks": 2,
         "mark_note": "Substitution",
-        "margin_note": "Two more marks. This is where the angle condition is used: it converts an expression in A and B into one in C, so that every term shares a factor.",
+        "margin_note": "Two more marks. cos C is written as 1 − 2sin²(C/2); the minus in front turns it into −1 + 2sin²(C/2).",
         "memory_tip": "Use cos C = 1 − 2sin²(C/2) so the sign comes out right, and distribute the minus across the bracket.",
         "lines": [
           {
@@ -362,5 +362,5 @@
       }
     ]
   },
-  "insider_note": "The MINUS on cosC changes which half-angle form is needed: use cosθ = 1 − 2sin²(θ/2). The bracket then becomes a SUM of cosines, which yields cos(A/2)cos(B/2)."
+  "insider_note": "The MINUS on cos C, with cos C = 1 − 2sin²(C/2), gives the −1 and turns the bracket into a SUM of cosines, which yields cos(A/2)cos(B/2)."
 }

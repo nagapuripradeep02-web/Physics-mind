@@ -147,7 +147,7 @@
         "why": "The two S-terms differ only in which of A and B is subtracted, so their sum and difference are both simple — which is exactly what the formula needs.",
         "common_mistakes": [
           "Pairing one S-term with sin C instead.",
-          "Getting the half-difference as (A−B)/2 and picking up a sign."
+          "Getting the half-difference as (A+B)/2 instead of (B−A)/2."
         ],
         "lines_compact": [
           "L.H.S = sin(S−A) + sin(S−B) + sinC",
@@ -224,7 +224,7 @@
         "label": "Take the common factor out",
         "marks": 1,
         "mark_note": "Factorise",
-        "margin_note": "Seventh mark. The common factor comes out, and the condition is used a SECOND time inside the bracket so that both bracket terms are the same kind of function.",
+        "margin_note": "Seventh mark. The common factor comes out, and C = (S−A) + (S−B) is written inside the bracket, so the product comes out in (S−A)/2 and (S−B)/2.",
         "memory_tip": "The common factor comes out, and the condition is used again inside the bracket.",
         "lines": [
           {
@@ -268,7 +268,7 @@
         },
         "why": "The condition is used a second time, in reverse — C back into (S−A) + (S−B) — because the answer is stated in those shifted angles, not in C.",
         "common_mistakes": [
-          "Leaving the bracket in terms of C and B − A, which cannot combine.",
+          "Combining the bracket in terms of C and never rewriting the angles as (S−A)/2 and (S−B)/2.",
           "Losing the factor of 2."
         ],
         "lines_compact": [

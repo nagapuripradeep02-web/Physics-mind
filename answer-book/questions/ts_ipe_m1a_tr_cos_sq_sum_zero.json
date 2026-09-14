@@ -229,7 +229,7 @@
         "label": "Use the condition",
         "marks": 2,
         "mark_note": "Substitution",
-        "margin_note": "Two marks. cos(−C) = cos C because cosine is an even function. This is the only member of the family where the substitution carries no sign change.",
+        "margin_note": "Two marks. cos(−C) = cos C because cosine is an even function. Unlike the triangle version, cos(A+B) = cos(−C) = cos C carries no sign change.",
         "memory_tip": "cos(−C) = cos C. Cosine is even, so the sign survives untouched.",
         "lines": [
           {
@@ -324,7 +324,7 @@
         },
         "why": "A product formula needs two compound angles. Writing the inside cos C back as cos(A+B) gives the bracket a sum of cos(A−B) and cos(A+B), which one formula closes.",
         "common_mistakes": [
-          "Converting both cos C terms, which cancels the factor just taken out.",
+          "Converting both cos C terms, which leaves cos(A+B) outside the bracket instead of cos C.",
           "Taking out 2 cos C when there is no 2 to take."
         ],
         "lines_compact": [

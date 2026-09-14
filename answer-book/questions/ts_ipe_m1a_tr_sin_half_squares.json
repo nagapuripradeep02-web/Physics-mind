@@ -353,7 +353,7 @@
             "difference of cosines"
           ]
         },
-        "why": "Every half-angle question in this chapter ends the same way: a difference of cosines collapses into a product of two sines, supplying the last two factors.",
+        "why": "Here the bracket is a difference of cosines, so it collapses into a product of two sines, supplying the last two factors.",
         "common_mistakes": [
           "Getting the order of the arguments wrong and picking up a sign.",
           "Forgetting the leading 1."

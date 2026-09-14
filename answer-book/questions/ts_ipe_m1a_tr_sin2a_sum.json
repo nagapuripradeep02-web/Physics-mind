@@ -66,11 +66,7 @@
           },
           "Given",
           "A + B + C = 180°  ⇒  A + B = 180° − C",
-          "(A, B, C are the angles of a triangle. This",
-          {
-            "text": "  sum is used twice below.)",
-            "style": "indent"
-          }
+          "(This given sum is used twice below.)"
         ],
         "recall": {
           "credit": "say_it",
@@ -152,7 +148,7 @@
         "why": "Three terms cannot be factorised as they stand. Pairing two of them produces a common factor that the third can then join.",
         "common_mistakes": [
           "Trying to expand all three terms at once.",
-          "Pairing the wrong two terms, which leaves nothing in common."
+          "Forgetting to halve the sum and the difference of 2A and 2B."
         ],
         "lines_compact": [
           "L.H.S = sin2A + sin2B + sin2C",
@@ -220,7 +216,7 @@
         "label": "Take the common factor out",
         "marks": 1,
         "mark_note": "Factorise",
-        "margin_note": "Seventh mark. The common factor comes out, and the condition is used a SECOND time inside the bracket so that both bracket terms are the same kind of function.",
+        "margin_note": "Seventh mark. The common factor comes out, and the condition is used a SECOND time inside the bracket: cos C = −cos(A+B), so the bracket becomes a DIFFERENCE of cosines.",
         "memory_tip": "Take 2 sinC out, then use cos(180° − θ) = −cos θ so the bracket becomes a difference.",
         "lines": [
           {

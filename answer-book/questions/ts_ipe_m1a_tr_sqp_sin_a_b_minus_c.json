@@ -98,7 +98,7 @@
         },
         "why": "Halving the angle sum gives 90°, which is the fact every later substitution uses. Writing it at the start saves repeating it.",
         "common_mistakes": [
-          "Grouping sin B − sin C.",
+          "Using the sine sum formula on sin A − sin C, which is a difference.",
           "Forgetting to halve the angles."
         ]
       },

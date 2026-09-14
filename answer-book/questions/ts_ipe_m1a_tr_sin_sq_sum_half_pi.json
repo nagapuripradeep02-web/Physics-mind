@@ -270,7 +270,7 @@
             "cos A plus B"
           ]
         },
-        "why": "The right-hand side is a product of three sines, so every cosine of a compound angle has to become a sine. Only the π/2 condition does that.",
+        "why": "The right-hand side is a product of three sines, so every cosine of a compound angle has to become a sine. The π/2 condition does that; the triangle condition would give −cos C.",
         "common_mistakes": [
           "Writing cos(π/2 − C) = cos C.",
           "Using cos(π − C) = −cos C, which belongs to the triangle version of this question."

@@ -217,7 +217,7 @@
         "why": "cos C + cos D and cos C − cos D act on two cosines. A cosine plus a sine matches no standard formula, so the sine is converted first.",
         "common_mistakes": [
           "Trying to apply cos C + cos D to a cosine and a sine directly.",
-          "Writing sin θ = cos(θ − π/2) and then losing track of the sign."
+          "Writing sin θ = cos(θ + π/2), which is −sin θ, and losing the sign."
         ],
         "lines_compact": [
           "sin(α+β) = cos(π/2 − α − β)",

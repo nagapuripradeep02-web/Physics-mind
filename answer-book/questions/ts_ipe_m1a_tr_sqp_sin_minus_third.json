@@ -50,8 +50,8 @@
         "label": "Fix the quadrant",
         "marks": 1,
         "mark_note": "Quadrant",
-        "margin_note": "First mark. sin θ negative means Q3 or Q4. The question rules out Q3, so θ is in Q4 — and cos θ is positive there.",
-        "memory_tip": "sin negative means Q3 or Q4; Q3 is ruled out, so Q4 — where cos is POSITIVE.",
+        "margin_note": "First mark. sin θ negative means Q₃ or Q₄. The question rules out Q₃, so θ is in Q₄ — and cos θ is positive there.",
+        "memory_tip": "sin negative means Q₃ or Q₄; Q₃ is ruled out, so Q₄ — where cos is POSITIVE.",
         "lines": [
           {
             "text": "Sol:",

@@ -118,11 +118,11 @@
           },
           "⇒ (cot A cot B − 1)/(cot A + cot B) = 1",
           {
-            "text": "(multiply by cot A + cot B, then move",
+            "text": "(multiply by cot A + cot B, move cot A + cot B",
             "added": true
           },
           {
-            "text": "  cot A + cot B to the left)",
+            "text": "  to the left and −1 to the right)",
             "style": "indent",
             "added": true
           },

@@ -201,7 +201,7 @@
         },
         "why": "cos2θ has three standard forms and only one of them cancels here. Choosing the right one is the whole skill of the last line.",
         "common_mistakes": [
-          "Using cos2θ = 2cos²θ − 1 and being left with a mixture.",
+          "Writing cos2θ = 1 − sin²θ (dropping the 2), which gives a + a sin²θ instead of a.",
           "Cancelling before substituting."
         ],
         "memory_tip": "Choose cos2θ = 1 − 2sin²θ — the one form whose second term cancels what is already there.",

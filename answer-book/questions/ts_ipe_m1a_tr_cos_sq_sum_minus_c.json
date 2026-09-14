@@ -66,11 +66,7 @@
           },
           "Given",
           "A + B + C = π  ⇒  A + B = π − C",
-          "(A, B, C are the angles of a triangle. This",
-          {
-            "text": "  sum is used twice below.)",
-            "style": "indent"
-          }
+          "(This given sum is used twice below.)"
         ],
         "recall": {
           "credit": "say_it",

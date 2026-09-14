@@ -58,7 +58,7 @@
         "marks": 1,
         "mark_note": "Condition",
         "margin_note": "First mark. The condition here is π/2, not π. Write it as A + B = π/2 − C, the form step 3 needs.",
-        "memory_tip": "The sum is π/2 here, not π. The answer is a product of COSINES, and only the π/2 condition can produce cosines.",
+        "memory_tip": "The sum is π/2 here, not π. The answer is a product of COSINES, and here the π/2 condition (not the triangle condition) is what produces cosines.",
         "lines": [
           {
             "text": "Sol:",
@@ -154,7 +154,7 @@
         "why": "Three terms cannot be factorised as they stand. Pairing two makes a product, and opening the third gives it the cos C that the pair will end up sharing.",
         "common_mistakes": [
           "Trying to expand all three terms at once.",
-          "Pairing sin 2B with sin 2C, which leaves nothing in common."
+          "Writing sin 2C as 2 sin C instead of 2 sin C cos C."
         ],
         "lines_compact": [
           "L.H.S = (sin2A + sin2B) + sin2C",
@@ -207,7 +207,7 @@
             "sin A plus B"
           ]
         },
-        "why": "The right-hand side is a product of three cosines, so the compound sine has to become a cosine. Only the π/2 condition does that; the triangle condition would leave a sine.",
+        "why": "The right-hand side is a product of three cosines, so the compound sine has to become a cosine. The π/2 condition does that; the triangle condition would leave a sine.",
         "common_mistakes": [
           "Writing sin(π/2 − C) = sin C.",
           "Using sin(π − C) = sin C, which belongs to the triangle version of this question."

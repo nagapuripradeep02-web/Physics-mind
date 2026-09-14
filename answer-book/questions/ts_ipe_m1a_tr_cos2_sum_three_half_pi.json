@@ -100,7 +100,7 @@
         },
         "why": "The statement is false without the condition and false with the wrong one. Writing A + B = 3π/2 − C now fixes the sign of both substitutions below.",
         "common_mistakes": [
-          "Using A + B = π − C, which is the triangle condition and reverses the sign.",
+          "Using A + B = π − C, the triangle condition, which gives cos(A+B) = −cos C where −sin C is needed.",
           "Starting the transformation before writing the condition."
         ]
       },

@@ -102,7 +102,7 @@
             "sum to product"
           ]
         },
-        "why": "Note the shape: for a sum of SINES the sine takes the sum and the cosine takes the difference. For cosines it is the other way round.",
+        "why": "Note the shape: for a sum of SINES the sine takes the sum and the cosine takes the difference. For a sum of cosines both factors are cosines.",
         "common_mistakes": [
           "Using the cos C + cos D formula.",
           "Putting the cosine on the sum."
@@ -333,5 +333,5 @@
       }
     ]
   },
-  "insider_note": "The condition is A + B + C = 0, so sin(A+B) = −sinC — that minus is the whole reason the answer is negative. Otherwise the working matches the triangle version exactly."
+  "insider_note": "The condition is A + B + C = 0, so sin(A+B) = −sin C and, inside the bracket, cos C = +cos(A+B). Both differ from the triangle version, and together they give −4 sinA sinB sinC."
 }

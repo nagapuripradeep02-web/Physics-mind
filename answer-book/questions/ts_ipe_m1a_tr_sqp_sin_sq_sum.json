@@ -307,7 +307,7 @@
             "right hand side"
           ]
         },
-        "why": "The pair sin(X+Y) + sin(X−Y) always collapses to 2 sin X cos Y. It is the same identity used in step 1, run in the other direction.",
+        "why": "The pair sin(X+Y) + sin(X−Y) always collapses to 2 sin X cos Y. It is the sine sum formula sin p + sin q = 2 sin((p+q)/2) cos((p−q)/2) with p = B + C and q = B − C.",
         "common_mistakes": [
           "Writing 2 cos B sin C instead.",
           "Stopping before multiplying by the outside sin A."

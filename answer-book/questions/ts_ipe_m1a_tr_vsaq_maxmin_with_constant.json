@@ -80,7 +80,7 @@
             "constant"
           ]
         },
-        "why": "The amplitude happens to equal the constant here, which is why the maximum lands exactly on zero — a neat coincidence worth noticing as a check.",
+        "why": "The amplitude 13 is equal in size to the constant −13, which is why the maximum lands exactly on zero — worth noticing as a check.",
         "common_mistakes": [
           "Taking c as +13.",
           "Ignoring the constant entirely."
