@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.130, chapter 12 PROPERTIES OF TRIANGLES, Short Answer question 10. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to each of the four moves the answer is marked on — the sine rule, the pair of squares, the third square, and reading the right angle off the product. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks; Properties of Triangles is one of the units that fills that section. Verified numerically before authoring, in the direction the question asks and against a control: for a = 3, b = 4, c = 5 the condition holds (50 = 8R² = 50) and C is 90°, and for a = 5, b = 12, c = 13 it holds (338 = 338) with C again 90°; for the non-right a = 4, b = 5, c = 6 the two sides are 77 and 73.14, and for a = 7, b = 8, c = 9 they are 194 and 176.4. The intermediate identity sin²A + sin²B + sin²C = 2 + 2 cos A cos B cos C was checked separately on all four triangles. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.130, chapter 12 PROPERTIES OF TRIANGLES, Short Answer question 10. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to each of the four moves the answer is marked on — the sine rule, the pair of squares, the third square, and reading the right angle off the product. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks; Properties of Triangles is one of the units that fills that section. Verified numerically before authoring, in the direction the question asks and against a control: for a = 3, b = 4, c = 5 the condition holds (50 = 8R² = 50) and C is 90°, and for a = 5, b = 12, c = 13 it holds (338 = 338) with C again 90°; for the non-right a = 4, b = 5, c = 6 the two sides are 77 and 73.14, and for a = 7, b = 8, c = 9 they are 194 and 176.4. The intermediate identity sin²A + sin²B + sin²C = 2 + 2 cos A cos B cos C was checked separately on all four triangles. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — name each standard result you use and the order you use them in.",
   "answer": {
@@ -63,7 +63,9 @@
           "By the sine rule a = 2R sin A,",
           "b = 2R sin B, c = 2R sin C",
           "Given a² + b² + c² = 8R²",
+          "(square the sine rule: a² = 4R² sin²A, and so on)",
           "⇒ 4R²(sin²A + sin²B + sin²C) = 8R²",
+          "(divide by 4R²)",
           "⇒ sin²A + sin²B + sin²C = 2   …(1)"
         ],
         "recall": {
@@ -104,10 +106,26 @@
         "margin_note": "One mark. Lower the two squares to cos 2A and cos 2B, combine them, then use A + B = 180° − C so cos(A+B) = −cos C.",
         "memory_tip": "sin²θ = (1 − cos2θ)/2, then cos2A + cos2B = 2cos(A+B)cos(A−B), and cos(A+B) = −cos C.",
         "lines": [
+          {
+            "text": "(sin²θ = (1 − cos 2θ)/2)",
+            "added": true
+          },
           "sin²A + sin²B",
           "= (1 − cos2A)/2 + (1 − cos2B)/2",
+          {
+            "text": "(½ + ½ = 1)",
+            "added": true
+          },
           "= 1 − ½(cos2A + cos2B)",
+          {
+            "text": "(cos 2A + cos 2B = 2 cos(A+B) cos(A−B))",
+            "added": true
+          },
           "= 1 − cos(A+B) cos(A−B)",
+          {
+            "text": "(cos(A+B) = cos(180° − C) = −cos C)",
+            "added": true
+          },
           "= 1 + cos C cos(A−B)",
           "   [∵ A + B = 180° − C]"
         ],
@@ -138,6 +156,14 @@
         "common_mistakes": [
           "Writing sin²A = (1 + cos2A)/2.",
           "Writing cos(A+B) = cos C and losing the minus sign."
+        ],
+        "lines_compact": [
+          "sin²A + sin²B",
+          "= (1 − cos2A)/2 + (1 − cos2B)/2",
+          "= 1 − ½(cos2A + cos2B)",
+          "= 1 − cos(A+B) cos(A−B)",
+          "= 1 + cos C cos(A−B)",
+          "   [∵ A + B = 180° − C]"
         ]
       },
       {
@@ -151,9 +177,17 @@
         "lines": [
           "sin²C = 1 − cos²C, so (1) becomes",
           "2 + cos C cos(A−B) − cos²C = 2",
+          {
+            "text": "(take 2 from both sides and take out cos C)",
+            "added": true
+          },
           "⇒ cos C[cos(A−B) − cos C] = 0",
           "Now −cos C = cos(A+B), so",
           "cos(A−B) − cos C",
+          {
+            "text": "(cos(A−B) + cos(A+B) = 2 cos A cos B)",
+            "added": true
+          },
           "= cos(A−B) + cos(A+B) = 2 cos A cos B"
         ],
         "recall": {
@@ -183,6 +217,14 @@
         "common_mistakes": [
           "Writing sin²C = 1 + cos²C.",
           "Cancelling cos C out of the product; cos C may itself be zero, which is the answer."
+        ],
+        "lines_compact": [
+          "sin²C = 1 − cos²C, so (1) becomes",
+          "2 + cos C cos(A−B) − cos²C = 2",
+          "⇒ cos C[cos(A−B) − cos C] = 0",
+          "Now −cos C = cos(A+B), so",
+          "cos(A−B) − cos C",
+          "= cos(A−B) + cos(A+B) = 2 cos A cos B"
         ]
       },
       {
@@ -196,6 +238,10 @@
         "lines": [
           "∴ cos C · 2 cos A cos B = 0",
           "⇒ 2 cos A cos B cos C = 0",
+          {
+            "text": "(a product is 0 only when one factor is 0)",
+            "added": true
+          },
           "So cos A, cos B or cos C is zero.",
           "Each angle lies between 0° and 180°, and",
           "the only such angle with zero cosine is 90°.",
@@ -230,6 +276,17 @@
         "common_mistakes": [
           "Concluding C = 90° only — the condition is symmetric, so any one of the three may be the right angle.",
           "Dividing by cos A cos B cos C, which removes the answer."
+        ],
+        "lines_compact": [
+          "∴ cos C · 2 cos A cos B = 0",
+          "⇒ 2 cos A cos B cos C = 0",
+          "So cos A, cos B or cos C is zero.",
+          "Each angle lies between 0° and 180°, and",
+          "the only such angle with zero cosine is 90°.",
+          {
+            "text": "∴ △ABC is right angled",
+            "style": "boxed"
+          }
         ]
       }
     ]

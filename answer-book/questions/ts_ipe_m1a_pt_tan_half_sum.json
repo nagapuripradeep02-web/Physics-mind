@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.122, chapter 12 PROPERTIES OF TRIANGLES, Very Short Answer question 5(i). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to putting all three tangents over Δ and one to the expansion that produces bc + ca + ab − s²; the middle expansion step is kept in full at zero marks. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory; Properties of Triangles supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.122, chapter 12 PROPERTIES OF TRIANGLES, Very Short Answer question 5(i). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to putting all three tangents over Δ and one to the expansion that produces bc + ca + ab − s²; the middle expansion step is kept in full at zero marks. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory; Properties of Triangles supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — name each standard result you use and the order you use them in.",
   "answer": {
@@ -53,8 +53,11 @@
             "style": "heading"
           },
           "Heron's formula: Δ = √(s(s−a)(s−b)(s−c))",
+          "(the half-angle formula)",
           "tan(A/2) = √((s−b)(s−c)/(s(s−a)))",
+          "(multiply top and bottom by √((s−b)(s−c)))",
           "= (s−b)(s−c)/√(s(s−a)(s−b)(s−c))",
+          "(the root on the bottom is Δ)",
           "= (s−b)(s−c)/Δ",
           "Similarly tan(B/2) = (s−c)(s−a)/Δ",
           "and tan(C/2) = (s−a)(s−b)/Δ"
@@ -98,6 +101,10 @@
         "lines": [
           "∴ L.H.S = N/Δ, where",
           "N = (s−b)(s−c) + (s−c)(s−a) + (s−a)(s−b)",
+          {
+            "text": "(multiply out each pair of brackets)",
+            "added": true
+          },
           "(s−b)(s−c) = s² − s(b+c) + bc",
           "(s−c)(s−a) = s² − s(c+a) + ca",
           "(s−a)(s−b) = s² − s(a+b) + ab"
@@ -128,6 +135,13 @@
         "common_mistakes": [
           "Expanding (s−b)(s−c) as s² − bc.",
           "Dropping one of the three products."
+        ],
+        "lines_compact": [
+          "∴ L.H.S = N/Δ, where",
+          "N = (s−b)(s−c) + (s−c)(s−a) + (s−a)(s−b)",
+          "(s−b)(s−c) = s² − s(b+c) + bc",
+          "(s−c)(s−a) = s² − s(c+a) + ca",
+          "(s−a)(s−b) = s² − s(a+b) + ab"
         ]
       },
       {
@@ -139,7 +153,15 @@
         "margin_note": "The other mark. a + b + c = 2s turns 3s² − 2s(2s) into −s², which is the sign the answer needs.",
         "memory_tip": "a + b + c = 2s, so 3s² − 2s(2s) = 3s² − 4s² = −s².",
         "lines": [
+          {
+            "text": "(add: 3s², then −s(2a + 2b + 2c), then ab + bc + ca)",
+            "added": true
+          },
           "N = 3s² − 2s(a+b+c) + (ab + bc + ca)",
+          {
+            "text": "(2s × 2s = 4s²)",
+            "added": true
+          },
           "= 3s² − 4s² + (ab + bc + ca)   [∵ a+b+c = 2s]",
           "= ab + bc + ca − s²",
           {
@@ -173,6 +195,15 @@
         "common_mistakes": [
           "Writing a + b + c = s instead of 2s.",
           "Getting 3s² − 2s² and finishing with +s²."
+        ],
+        "lines_compact": [
+          "N = 3s² − 2s(a+b+c) + (ab + bc + ca)",
+          "= 3s² − 4s² + (ab + bc + ca)   [∵ a+b+c = 2s]",
+          "= ab + bc + ca − s²",
+          {
+            "text": "∴ L.H.S = (bc + ca + ab − s²)/Δ",
+            "style": "boxed"
+          }
         ]
       }
     ]

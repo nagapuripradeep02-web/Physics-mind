@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.121, chapter 12 PROPERTIES OF TRIANGLES, Very Short Answer question 3. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to the sine-rule and sum-to-product work and one to the angle-sum step that produces cot(A/2). Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory; Properties of Triangles supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.121, chapter 12 PROPERTIES OF TRIANGLES, Very Short Answer question 3. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to the sine-rule and sum-to-product work and one to the angle-sum step that produces cot(A/2). Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory; Properties of Triangles supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — name each standard result you use and the order you use them in.",
   "answer": {
@@ -53,9 +53,13 @@
             "style": "heading"
           },
           "By the sine rule, b = 2R sinB, c = 2R sinC",
+          "(the 2R cancels)",
           "∴ (b−c)/(b+c) = (sinB − sinC)/(sinB + sinC)",
+          "(sin x − sin y = 2 cos((x+y)/2) sin((x−y)/2))",
           "sinB − sinC = 2 cos((B+C)/2) sin((B−C)/2)",
+          "(sin x + sin y = 2 sin((x+y)/2) cos((x−y)/2))",
           "sinB + sinC = 2 sin((B+C)/2) cos((B−C)/2)",
+          "(divide: the 2s cancel; cos/sin = cot and sin/cos = tan)",
           "∴ (b−c)/(b+c) = cot((B+C)/2) tan((B−C)/2)"
         ],
         "recall": {
@@ -96,8 +100,16 @@
         "memory_tip": "(B+C)/2 = 90° − A/2, so cot((B+C)/2) = tan(A/2).",
         "lines": [
           "A + B + C = 180° ⇒ (B+C)/2 = 90° − A/2",
+          {
+            "text": "(cot(90° − x) = tan x)",
+            "added": true
+          },
           "∴ cot((B+C)/2) = cot(90° − A/2) = tan(A/2)",
           "So (b−c)/(b+c) = tan(A/2) tan((B−C)/2)",
+          {
+            "text": "(divide both sides by tan(A/2); 1/tan = cot)",
+            "added": true
+          },
           {
             "text": "∴ tan((B−C)/2) = ((b−c)/(b+c)) cot(A/2)",
             "style": "boxed"
@@ -129,6 +141,15 @@
         "common_mistakes": [
           "Writing cot((B+C)/2) = cot(A/2) and losing the complement.",
           "Leaving the answer divided by tan(A/2) instead of multiplied by cot(A/2)."
+        ],
+        "lines_compact": [
+          "A + B + C = 180° ⇒ (B+C)/2 = 90° − A/2",
+          "∴ cot((B+C)/2) = cot(90° − A/2) = tan(A/2)",
+          "So (b−c)/(b+c) = tan(A/2) tan((B−C)/2)",
+          {
+            "text": "∴ tan((B−C)/2) = ((b−c)/(b+c)) cot(A/2)",
+            "style": "boxed"
+          }
         ]
       }
     ]

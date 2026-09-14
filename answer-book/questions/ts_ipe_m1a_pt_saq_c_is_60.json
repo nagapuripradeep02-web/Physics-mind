@@ -39,7 +39,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.77 — SAQ chapter 13 Properties of Triangles, answer 86. Printed appearances: TS 17,19. The only question in the chapter that FINDS an angle rather than proving an identity. Everything is algebra until the very last line, where the cosine rule turns a side relation into an angle. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used in this unit are the book's own. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q17 is the Properties of Triangles slot. Together with Q24 (LAQ) this unit holds TWO slots — one of only two units to do so, Matrices being the other. RE-CUT 2026-08-31: this card was filed as SAQ at 4 marks and is now VSAQ at 2. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya FAST TRACK IPE Mathematics-IA 2026-27 edition files this chapter as 16 Very Short Answer questions and 11 Short Answer questions, and lists this one among the very short ones (VSAQ 1), not among the short answers. Only the question was taken; the boundary is recorded in docs/ORIGINALITY_MATHS.md. The mathematics and the steps are unchanged; only the mark scheme moved. The two marks sit on the algebra and the cosine-rule finish; the middle step is kept in full at zero marks. Still unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.77 — SAQ chapter 13 Properties of Triangles, answer 86. Printed appearances: TS 17,19. The only question in the chapter that FINDS an angle rather than proving an identity. Everything is algebra until the very last line, where the cosine rule turns a side relation into an angle. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used in this unit are the book's own. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q17 is the Properties of Triangles slot. Together with Q24 (LAQ) this unit holds TWO slots — one of only two units to do so, Matrices being the other. RE-CUT 2026-08-31: this card was filed as SAQ at 4 marks and is now VSAQ at 2. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya FAST TRACK IPE Mathematics-IA 2026-27 edition files this chapter as 16 Very Short Answer questions and 11 Short Answer questions, and lists this one among the very short ones (VSAQ 1), not among the short answers. Only the question was taken; the boundary is recorded in docs/ORIGINALITY_MATHS.md. The mathematics and the steps are unchanged; only the mark scheme moved. The two marks sit on the algebra and the cosine-rule finish; the middle step is kept in full at zero marks. Still unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — name each standard result you use and the order you use them in.",
   "answer": {
@@ -61,8 +61,11 @@
             "style": "heading"
           },
           "Given 1/(a+c) + 1/(b+c) = 3/(a+b+c)",
+          "(add the two fractions over (a + c)(b + c))",
           "⇒ [(b+c) + (a+c)]/[(a+c)(b+c)] = 3/(a+b+c)",
+          "((b + c) + (a + c) = (a + b + c) + c)",
           "⇒ [(a+b+c) + c]/[(a+c)(b+c)] = 3/(a+b+c)",
+          "(cross-multiply)",
           "⇒ (a+b+c)² + c(a+b+c) = 3(a+c)(b+c)"
         ],
         "recall": {
@@ -101,12 +104,25 @@
         "marks": 0,
         "margin_note": "No separate mark at this length — it finishes the algebra marked above. Expand both sides fully. Everything cancels except a² + b² − c² = ab — a pure side relation with no fractions left.",
         "lines": [
+          {
+            "text": "(expand (a + b + c)², c(a + b + c) and 3(a + c)(b + c))",
+            "added": true
+          },
           "⇒ (a²+b²+c²+2ab+2bc+2ca) + (ca+cb+c²)",
           {
             "text": "= 3(ab+ac+cb+c²)",
             "style": "indent"
           },
           "⇒ a²+b²+c²+2ab+2bc+2ca+ca+cb+c² = 3ab+3ac+3cb+3c²",
+          {
+            "text": "(take the right side away: 2ab − 3ab = −ab,",
+            "added": true
+          },
+          {
+            "text": "  2c² − 3c² = −c², and the bc and ca terms cancel)",
+            "style": "indent",
+            "added": true
+          },
           "⇒ a² + b² − c² = ab"
         ],
         "recall": {
@@ -136,7 +152,16 @@
           "Slipping a sign while expanding.",
           "Stopping before everything cancels."
         ],
-        "memory_tip": "Everything cancels except a² + b² − c² = ab — a pure side relation with no fractions."
+        "memory_tip": "Everything cancels except a² + b² − c² = ab — a pure side relation with no fractions.",
+        "lines_compact": [
+          "⇒ (a²+b²+c²+2ab+2bc+2ca) + (ca+cb+c²)",
+          {
+            "text": "= 3(ab+ac+cb+c²)",
+            "style": "indent"
+          },
+          "⇒ a²+b²+c²+2ab+2bc+2ca+ca+cb+c² = 3ab+3ac+3cb+3c²",
+          "⇒ a² + b² − c² = ab"
+        ]
       },
       {
         "id": "s3_apply_the_cosine_rule",
@@ -146,9 +171,17 @@
         "mark_note": "Conclusion",
         "margin_note": "Last mark. Divide both sides by 2ab: the left becomes cos C exactly, and the right becomes 1/2.",
         "lines": [
+          {
+            "text": "(cosine rule: cos C = (a² + b² − c²)/(2ab))",
+            "added": true
+          },
           "Dividing both sides by 2ab:",
           "(a² + b² − c²)/(2ab) = ab/(2ab)",
           "⇒ cos C = 1/2 = cos 60°",
+          {
+            "text": "(C lies between 0° and 180°)",
+            "added": true
+          },
           {
             "text": "∴ C = 60°",
             "style": "boxed"
@@ -181,7 +214,16 @@
           "Stopping at a² + b² − c² = ab.",
           "Writing cos C = 1/2 and giving C = 30°."
         ],
-        "memory_tip": "Divide by 2ab: the left becomes cos C exactly, the right becomes 1/2."
+        "memory_tip": "Divide by 2ab: the left becomes cos C exactly, the right becomes 1/2.",
+        "lines_compact": [
+          "Dividing both sides by 2ab:",
+          "(a² + b² − c²)/(2ab) = ab/(2ab)",
+          "⇒ cos C = 1/2 = cos 60°",
+          {
+            "text": "∴ C = 60°",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

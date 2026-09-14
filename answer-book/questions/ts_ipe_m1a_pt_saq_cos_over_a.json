@@ -35,7 +35,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.75 — SAQ chapter 13 Properties of Triangles, answer 82, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 17.  ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used in this unit are the book's own. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q17 is the Properties of Triangles slot. Together with Q24 (LAQ) this unit holds TWO slots — one of only two units to do so, Matrices being the other. RE-CUT 2026-08-31: this card was filed as SAQ at 4 marks and is now VSAQ at 2. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya FAST TRACK IPE Mathematics-IA 2026-27 edition files this chapter as 16 Very Short Answer questions and 11 Short Answer questions, and lists this one among the very short ones (VSAQ 7), not among the short answers. Only the question was taken; the boundary is recorded in docs/ORIGINALITY_MATHS.md. The mathematics and the steps are unchanged; only the mark scheme moved. Still unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.75 — SAQ chapter 13 Properties of Triangles, answer 82, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 17.  ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used in this unit are the book's own. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q17 is the Properties of Triangles slot. Together with Q24 (LAQ) this unit holds TWO slots — one of only two units to do so, Matrices being the other. RE-CUT 2026-08-31: this card was filed as SAQ at 4 marks and is now VSAQ at 2. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya FAST TRACK IPE Mathematics-IA 2026-27 edition files this chapter as 16 Very Short Answer questions and 11 Short Answer questions, and lists this one among the very short ones (VSAQ 7), not among the short answers. Only the question was taken; the boundary is recorded in docs/ORIGINALITY_MATHS.md. The mathematics and the steps are unchanged; only the mark scheme moved. Still unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — name each standard result you use and the order you use them in.",
   "answer": {
@@ -57,12 +57,14 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "(cosine rule for each cosine)",
           "L.H.S = cosA/a + cosB/b + cosC/c",
           "= (1/a)[(b²+c²−a²)/(2bc)] + (1/b)[(c²+a²−b²)/(2ca)]",
           {
             "text": "+ (1/c)[(a²+b²−c²)/(2ab)]",
             "style": "indent"
           },
+          "((1/a) × 1/(2bc) = 1/(2abc), and likewise)",
           "Each denominator is 2abc:"
         ],
         "recall": {
@@ -102,7 +104,15 @@
         "margin_note": "The other half. The three numerators cancel in pairs — each squared term survives once.",
         "memory_tip": "Over the common denominator each squared term survives exactly once.",
         "lines": [
+          {
+            "text": "(add the tops over 2abc)",
+            "added": true
+          },
           "= [(b²+c²−a²) + (c²+a²−b²) + (a²+b²−c²)]/(2abc)",
+          {
+            "text": "(each square appears twice with + and once with −)",
+            "added": true
+          },
           {
             "text": "= (a² + b² + c²)/(2abc) = R.H.S",
             "style": "boxed"
@@ -133,6 +143,13 @@
         "common_mistakes": [
           "Cancelling the squares to zero.",
           "Writing the denominator as abc."
+        ],
+        "lines_compact": [
+          "= [(b²+c²−a²) + (c²+a²−b²) + (a²+b²−c²)]/(2abc)",
+          {
+            "text": "= (a² + b² + c²)/(2abc) = R.H.S",
+            "style": "boxed"
+          }
         ]
       }
     ]

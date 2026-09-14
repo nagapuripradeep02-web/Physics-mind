@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.129, chapter 12 PROPERTIES OF TRIANGLES, Short Answer question 8. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split is 2 + 2: half the marks for choosing the grouping that keeps C to the end, half for the compound-angle finish. It matches the sibling card ts_ipe_m1a_pt_saq_r_r3_r1_minus_r2, which is the same identity written around B. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks; Properties of Triangles is one of the units that fills that section. Verified numerically before authoring: for a = 4, b = 5, c = 6 both sides come to 1.511858; for a = 2, b = 3, c = 4 both come to −2.065591; and for the right-angled a = 3, b = 4, c = 5 both are 0, as cos C = 0 requires. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.129, chapter 12 PROPERTIES OF TRIANGLES, Short Answer question 8. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split is 2 + 2: half the marks for choosing the grouping that keeps C to the end, half for the compound-angle finish. It matches the sibling card ts_ipe_m1a_pt_saq_r_r3_r1_minus_r2, which is the same identity written around B. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks; Properties of Triangles is one of the units that fills that section. Verified numerically before authoring: for a = 4, b = 5, c = 6 both sides come to 1.511858; for a = 2, b = 3, c = 4 both come to −2.065591; and for the right-angled a = 3, b = 4, c = 5 both are 0, as cos C = 0 requires. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — name each standard result you use and the order you use them in.",
   "answer": {
@@ -52,11 +52,17 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "(the formulas for r, r₁, r₂, r₃ in half angles)",
           "r = 4R sin(A/2)sin(B/2)sin(C/2),",
           "r₁ = 4R sin(A/2)cos(B/2)cos(C/2),",
           "r₂ = 4R cos(A/2)sin(B/2)cos(C/2),",
           "r₃ = 4R cos(A/2)cos(B/2)sin(C/2)",
           "L.H.S = (r₁ + r₂) + (r − r₃)",
+          "(take out 4R cos(C/2) from r₁ + r₂, and 4R sin(C/2)",
+          {
+            "text": "  from r − r₃)",
+            "style": "indent"
+          },
           "= 4R cos(C/2)[sin(A/2)cos(B/2)",
           "   + cos(A/2)sin(B/2)]",
           " − 4R sin(C/2)[cos(A/2)cos(B/2)",
@@ -100,11 +106,24 @@
         "margin_note": "The other half. The brackets become sin((A+B)/2) and cos((A+B)/2); the complementary angle turns both into C/2, and cos² − sin² gives cos C.",
         "memory_tip": "(A+B)/2 = 90° − C/2 turns both brackets into C, and cos²(C/2) − sin²(C/2) is cos C.",
         "lines": [
+          {
+            "text": "(sinX cosY + cosX sinY = sin(X + Y) and",
+            "added": true
+          },
+          {
+            "text": "  cosX cosY − sinX sinY = cos(X + Y))",
+            "style": "indent",
+            "added": true
+          },
           "= 4R cos(C/2) sin((A+B)/2)",
           " − 4R sin(C/2) cos((A+B)/2)",
           "Now (A+B)/2 = 90° − C/2, so",
           "sin((A+B)/2) = cos(C/2) and",
           "cos((A+B)/2) = sin(C/2)",
+          {
+            "text": "(so the two terms become 4R cos²(C/2) − 4R sin²(C/2))",
+            "added": true
+          },
           "= 4R[cos²(C/2) − sin²(C/2)]",
           "   [∵ cos 2θ = cos²θ − sin²θ]",
           {
@@ -138,6 +157,19 @@
         "common_mistakes": [
           "Adding the two squares instead of subtracting, which gives 4R.",
           "Writing (A+B)/2 = 90° − C and forgetting to halve C."
+        ],
+        "lines_compact": [
+          "= 4R cos(C/2) sin((A+B)/2)",
+          " − 4R sin(C/2) cos((A+B)/2)",
+          "Now (A+B)/2 = 90° − C/2, so",
+          "sin((A+B)/2) = cos(C/2) and",
+          "cos((A+B)/2) = sin(C/2)",
+          "= 4R[cos²(C/2) − sin²(C/2)]",
+          "   [∵ cos 2θ = cos²θ − sin²θ]",
+          {
+            "text": "∴ L.H.S = 4R cos C = R.H.S",
+            "style": "boxed"
+          }
         ]
       }
     ]

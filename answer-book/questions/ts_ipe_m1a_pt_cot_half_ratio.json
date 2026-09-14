@@ -34,7 +34,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.46 — LAQ chapter 6 Properties of Triangles, answer 35. Printed appearances: none — this answer carries no year tag. Worked from the RIGHT side, because that is the side with something to simplify. Its numerator and denominator are computed separately and then divided. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: this same chapter DOES print a full 1×7 split against answer 32 on book p.44, so the granularity is the chapter's own, and the weightings here follow the natural steps. The book's chapter header carries ★★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Q24 is the Properties of Triangles slot. Together with Q17 (SAQ) this unit holds TWO slots — one of only two units to do so, Matrices being the other. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to the \"Divide and simplify\" step. RE-CUT 2026-08-31: this card was filed as LAQ at 8 marks and is now SAQ at 4. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya FAST TRACK IPE Mathematics-IA 2026-27 edition files this chapter as 16 Very Short Answer questions and 11 Short Answer questions, lists this one among the short answers (SAQ 4), and prints no long-answer block for it at all. Only the question was taken; the boundary is recorded in docs/ORIGINALITY_MATHS.md. The mathematics and the steps are unchanged; only the mark scheme moved. Still unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.46 — LAQ chapter 6 Properties of Triangles, answer 35. Printed appearances: none — this answer carries no year tag. Worked from the RIGHT side, because that is the side with something to simplify. Its numerator and denominator are computed separately and then divided. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: this same chapter DOES print a full 1×7 split against answer 32 on book p.44, so the granularity is the chapter's own, and the weightings here follow the natural steps. The book's chapter header carries ★★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Q24 is the Properties of Triangles slot. Together with Q17 (SAQ) this unit holds TWO slots — one of only two units to do so, Matrices being the other. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to the \"Divide and simplify\" step. RE-CUT 2026-08-31: this card was filed as LAQ at 8 marks and is now SAQ at 4. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya FAST TRACK IPE Mathematics-IA 2026-27 edition files this chapter as 16 Very Short Answer questions and 11 Short Answer questions, lists this one among the short answers (SAQ 4), and prints no long-answer block for it at all. Only the question was taken; the boundary is recorded in docs/ORIGINALITY_MATHS.md. The mathematics and the steps are unchanged; only the mark scheme moved. Still unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — name each standard result you use and the order you use them in.",
   "answer": {
@@ -56,8 +56,11 @@
             "style": "heading"
           },
           "In R.H.S, numerator = cot(A/2) + cot(B/2) + cot(C/2)",
+          "(cot(A/2) = s(s−a)/Δ, from the half-angle formula)",
           "= s(s−a)/Δ + s(s−b)/Δ + s(s−c)/Δ",
+          "(take out the common s/Δ)",
           "= s[(s−a) + (s−b) + (s−c)]/Δ",
+          "(a + b + c = 2s)",
           "= s[3s − (a+b+c)]/Δ = s[3s − 2s]/Δ = s²/Δ   …(1)"
         ],
         "recall": {
@@ -98,7 +101,15 @@
         "margin_note": "Two marks — the longer half. Use cot = cos/sin, then the cosine rule on each numerator and Δ = ½bc sinA on each denominator. Everything lands over 4Δ.",
         "lines": [
           "In R.H.S, denominator = cotA + cotB + cotC",
+          {
+            "text": "(cot = cos/sin)",
+            "added": true
+          },
           "= cosA/sinA + cosB/sinB + cosC/sinC",
+          {
+            "text": "(cosine rule for each cosine)",
+            "added": true
+          },
           "= (b²+c²−a²)/(2bc sinA) + (c²+a²−b²)/(2ca sinB)",
           {
             "text": "+ (a²+b²−c²)/(2ab sinC)",
@@ -106,6 +117,10 @@
           },
           "= (b²+c²−a²)/(4Δ) + (c²+a²−b²)/(4Δ) + (a²+b²−c²)/(4Δ)",
           "  [∵ Δ = ½ bc sinA, so 2bc sinA = 4Δ]",
+          {
+            "text": "(each square appears twice with + and once with −)",
+            "added": true
+          },
           "= (a² + b² + c²)/(4Δ)   …(2)"
         ],
         "recall": {
@@ -135,7 +150,19 @@
           "Forgetting that 2bc sinA is 4Δ, not 2Δ.",
           "Mis-cancelling the squared terms."
         ],
-        "memory_tip": "cot = cos/sin, then the cosine rule on top and Δ = ½bc sinA below. Everything lands over 4Δ."
+        "memory_tip": "cot = cos/sin, then the cosine rule on top and Δ = ½bc sinA below. Everything lands over 4Δ.",
+        "lines_compact": [
+          "In R.H.S, denominator = cotA + cotB + cotC",
+          "= cosA/sinA + cosB/sinB + cosC/sinC",
+          "= (b²+c²−a²)/(2bc sinA) + (c²+a²−b²)/(2ca sinB)",
+          {
+            "text": "+ (a²+b²−c²)/(2ab sinC)",
+            "style": "indent"
+          },
+          "= (b²+c²−a²)/(4Δ) + (c²+a²−b²)/(4Δ) + (a²+b²−c²)/(4Δ)",
+          "  [∵ Δ = ½ bc sinA, so 2bc sinA = 4Δ]",
+          "= (a² + b² + c²)/(4Δ)   …(2)"
+        ]
       },
       {
         "id": "s3_divide_and_simplify",
@@ -146,8 +173,20 @@
         "margin_note": "The last mark. Divide (1) by (2). The Δ cancels, and 4s² is (2s)² — which is (a+b+c)².",
         "lines": [
           "From (1) and (2), R.H.S = (s²/Δ) ÷ ((a²+b²+c²)/(4Δ))",
+          {
+            "text": "(dividing by a fraction is multiplying by its reciprocal)",
+            "added": true
+          },
           "= 4s²/(a²+b²+c²)",
+          {
+            "text": "(4s² = (2s)²)",
+            "added": true
+          },
           "= (2s)²/(a²+b²+c²)",
+          {
+            "text": "(2s = a + b + c)",
+            "added": true
+          },
           {
             "text": "= (a+b+c)²/(a²+b²+c²) = L.H.S",
             "style": "boxed"
@@ -180,7 +219,16 @@
           "Leaving the answer as 4s².",
           "Multiplying by the second fraction instead of dividing."
         ],
-        "memory_tip": "The Δ cancels, and 4s² is (2s)² — which is (a + b + c)²."
+        "memory_tip": "The Δ cancels, and 4s² is (2s)² — which is (a + b + c)².",
+        "lines_compact": [
+          "From (1) and (2), R.H.S = (s²/Δ) ÷ ((a²+b²+c²)/(4Δ))",
+          "= 4s²/(a²+b²+c²)",
+          "= (2s)²/(a²+b²+c²)",
+          {
+            "text": "= (a+b+c)²/(a²+b²+c²) = L.H.S",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

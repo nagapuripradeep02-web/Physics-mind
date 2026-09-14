@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.48 — LAQ chapter 6 Properties of Triangles, answer 37. Printed appearances: the printed tags are 'IPE 14,09,07' — all PRE-BIFURCATION papers, before the 2014 TS/AP split. appearances[].board has no value for that era, so the years are recorded here in prose and appearances[] is left empty. The longest answer in the chapter. It is worked entirely in half angles, and the sigma notation is used to write one term and let the other two follow by symmetry. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: this same chapter DOES print a full 1×7 split against answer 32 on book p.44, so the granularity is the chapter's own, and the weightings here follow the natural steps. The book's chapter header carries ★★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Q24 is the Properties of Triangles slot. Together with Q17 (SAQ) this unit holds TWO slots — one of only two units to do so, Matrices being the other. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to the \"Expand and conclude\" step."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.48 — LAQ chapter 6 Properties of Triangles, answer 37. Printed appearances: the printed tags are 'IPE 14,09,07' — all PRE-BIFURCATION papers, before the 2014 TS/AP split. appearances[].board has no value for that era, so the years are recorded here in prose and appearances[] is left empty. The longest answer in the chapter. It is worked entirely in half angles, and the sigma notation is used to write one term and let the other two follow by symmetry. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: this same chapter DOES print a full 1×7 split against answer 32 on book p.44, so the granularity is the chapter's own, and the weightings here follow the natural steps. The book's chapter header carries ★★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Q24 is the Properties of Triangles slot. Together with Q17 (SAQ) this unit holds TWO slots — one of only two units to do so, Matrices being the other. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to the \"Expand and conclude\" step. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — name each standard result you use and the order you use them in.",
   "answer": {
@@ -61,12 +61,19 @@
             "style": "heading"
           },
           "L.H.S = Σ r₁/(bc)",
+          "(r₁ = 4R sin(A/2)cos(B/2)cos(C/2),",
+          {
+            "text": "  b = 2R sinB and c = 2R sinC)",
+            "style": "indent"
+          },
           "= Σ [4R sin(A/2)cos(B/2)cos(C/2)]",
           {
             "text": "/ [(2R sinB)(2R sinC)]",
             "style": "indent"
           },
+          "(4R/(4R²) = 1/R)",
           "= Σ [sin(A/2)cos(B/2)cos(C/2)] / [R sinB sinC]",
+          "(sin θ = 2 sin(θ/2) cos(θ/2))",
           "= Σ [sin(A/2)cos(B/2)cos(C/2)]",
           {
             "text": "/ [R(2 sin(B/2)cos(B/2))(2 sin(C/2)cos(C/2))]",
@@ -110,6 +117,10 @@
         "margin_note": "Two more marks. The cos(B/2) and cos(C/2) cancel top and bottom, and what is left has sin(A/2) over 4R sin(B/2)sin(C/2) — which becomes sin²(A/2)/r.",
         "memory_tip": "The cos(B/2) and cos(C/2) cancel; multiplying by sin(A/2) turns what is left into sin²(A/2)/r.",
         "lines": [
+          {
+            "text": "(cos(B/2) and cos(C/2) cancel, and 2 × 2 = 4)",
+            "added": true
+          },
           "= Σ sin(A/2) / [4R sin(B/2)sin(C/2)]",
           "= Σ sin²(A/2) / [4R sin(A/2)sin(B/2)sin(C/2)]",
           {
@@ -117,6 +128,10 @@
             "style": "indent"
           },
           "= Σ sin²(A/2)/r   [∵ r = 4R sin(A/2)sin(B/2)sin(C/2)]",
+          {
+            "text": "(the other two terms give sin²(B/2)/r and sin²(C/2)/r)",
+            "added": true
+          },
           "= (1/r)(sin²(A/2) + sin²(B/2) + sin²(C/2))"
         ],
         "recall": {
@@ -145,6 +160,16 @@
         "common_mistakes": [
           "Cancelling the sines rather than the cosines.",
           "Not spotting that the denominator is r."
+        ],
+        "lines_compact": [
+          "= Σ sin(A/2) / [4R sin(B/2)sin(C/2)]",
+          "= Σ sin²(A/2) / [4R sin(A/2)sin(B/2)sin(C/2)]",
+          {
+            "text": "[multiplying by sin(A/2)]",
+            "style": "indent"
+          },
+          "= Σ sin²(A/2)/r   [∵ r = 4R sin(A/2)sin(B/2)sin(C/2)]",
+          "= (1/r)(sin²(A/2) + sin²(B/2) + sin²(C/2))"
         ]
       },
       {
@@ -162,6 +187,10 @@
           {
             "text": "[∵ sin(A/2)sin(B/2)sin(C/2) = r/(4R)]",
             "style": "indent"
+          },
+          {
+            "text": "(2r/(4R) = r/(2R))",
+            "added": true
           },
           "= (1/r)[1 − r/(2R)]"
         ],
@@ -191,6 +220,16 @@
         "common_mistakes": [
           "Re-proving the identity from scratch.",
           "Writing the product as r/(2R)."
+        ],
+        "lines_compact": [
+          "= (1/r)[1 − 2 sin(A/2)sin(B/2)sin(C/2)]",
+          "  [∵ Σsin²(A/2) = 1 − 2 sin(A/2)sin(B/2)sin(C/2)]",
+          "= (1/r)[1 − 2(r/(4R))]",
+          {
+            "text": "[∵ sin(A/2)sin(B/2)sin(C/2) = r/(4R)]",
+            "style": "indent"
+          },
+          "= (1/r)[1 − r/(2R)]"
         ]
       },
       {
@@ -202,7 +241,15 @@
         "margin_note": "Last two marks. Multiply the 1/r through the bracket; the r in the second term cancels, leaving 1/(2R).",
         "memory_tip": "Multiply the 1/r through: the r in the second term cancels, leaving 1/(2R).",
         "lines": [
+          {
+            "text": "(multiply out the bracket)",
+            "added": true
+          },
           "= 1/r − (1/r)(r/(2R))",
+          {
+            "text": "((1/r)(r/(2R)) = 1/(2R))",
+            "added": true
+          },
           "= 1/r − 1/(2R)",
           {
             "text": "∴ r₁/(bc) + r₂/(ca) + r₃/(ab) = 1/r − 1/(2R)",
@@ -235,6 +282,14 @@
         "common_mistakes": [
           "Leaving the answer as (1/r)(1 − r/2R).",
           "Cancelling the r in the wrong term."
+        ],
+        "lines_compact": [
+          "= 1/r − (1/r)(r/(2R))",
+          "= 1/r − 1/(2R)",
+          {
+            "text": "∴ r₁/(bc) + r₂/(ca) + r₃/(ab) = 1/r − 1/(2R)",
+            "style": "boxed"
+          }
         ]
       }
     ]

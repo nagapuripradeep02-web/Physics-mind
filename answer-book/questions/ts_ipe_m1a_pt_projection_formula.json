@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.123, chapter 12 PROPERTIES OF TRIANGLES, Very Short Answer question 9. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to substituting the cosine rule for both cosines and one to the cancellation that leaves a. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory; Properties of Triangles supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.123, chapter 12 PROPERTIES OF TRIANGLES, Very Short Answer question 9. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to substituting the cosine rule for both cosines and one to the cancellation that leaves a. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory; Properties of Triangles supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — name each standard result you use and the order you use them in.",
   "answer": {
@@ -56,6 +56,7 @@
           "By the cosine rule,",
           "cos C = (a² + b² − c²)/(2ab)",
           "cos B = (c² + a² − b²)/(2ca)",
+          "(put both cosines into b cos C + c cos B)",
           "∴ R.H.S = b(a²+b²−c²)/(2ab)",
           {
             "text": "+ c(c²+a²−b²)/(2ca)",
@@ -99,8 +100,20 @@
         "margin_note": "The other mark. Both fractions reduce to a denominator of 2a, and then b² and c² cancel in pairs.",
         "memory_tip": "After cancelling, both fractions sit over 2a; b² and c² then cancel in pairs and leave 2a².",
         "lines": [
+          {
+            "text": "(cancel b in the first term and c in the second)",
+            "added": true
+          },
           "= (a²+b²−c²)/(2a) + (c²+a²−b²)/(2a)",
+          {
+            "text": "(same denominator 2a: add the tops)",
+            "added": true
+          },
           "= [(a²+b²−c²) + (a²+c²−b²)]/(2a)",
+          {
+            "text": "(b² − b² and c² − c² cancel)",
+            "added": true
+          },
           "= (2a²)/(2a) = a",
           {
             "text": "∴ b cos C + c cos B = a = L.H.S",
@@ -133,6 +146,15 @@
         "common_mistakes": [
           "Cancelling the a instead of the b, leaving different denominators.",
           "Losing a sign so that b² and c² do not cancel."
+        ],
+        "lines_compact": [
+          "= (a²+b²−c²)/(2a) + (c²+a²−b²)/(2a)",
+          "= [(a²+b²−c²) + (a²+c²−b²)]/(2a)",
+          "= (2a²)/(2a) = a",
+          {
+            "text": "∴ b cos C + c cos B = a = L.H.S",
+            "style": "boxed"
+          }
         ]
       }
     ]
