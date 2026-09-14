@@ -1,5 +1,29 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 📗 SESSION — Maths-1A opens: Trigonometry and Matrices written out in full, 214 cards (2026-09-14, `feat/answerbook-maths-1a-worked-in-full`)
+
+**Review link:** https://claude.ai/code/artifact/b84d56a4-e960-4c80-b0cf-69199fdd8095
+
+**Bottom line: the founder approved a Trigonometry LAQ sample (cos_half_squares) and said "do the chapter", then "start matrices", then "do a PR first and start with the next chapters". The two largest Maths-1A chapters are written out at the Maths-2B level with Simplify on every mark, examined, and fixed. 342 of 556 Maths-1A cards remain, on a separate branch.**
+
+| chapter | cards | lines | buttons | pages short → full | examiner defects fixed |
+|---|---|---|---|---|---|
+| Trigonometric Ratios and Transformations | 110 | 1,373 → 2,362 | 221 | 117 → 142 | 45 |
+| Matrices | 104 | 1,500 → 2,768 | 236 | 154 → 198 | 41 |
+
+### Verified
+tsc 0 · `check_cards --prefix ts_ipe_m1a` 556/556 · measure_wrap 0.0% in both chapters (3,218 + 3,155 lines) · vitest 459/459 · `find_label_clashes`: no collisions · sweep_simplify 221/221 and 236/236 pressed, no straddle · sweep_typeset_width (Matrices) 731 lines, 0 problems.
+
+### What was new in this session
+- **Generated explanation lines for numeric work, asserted against the card.** Matrices is 3×3 arithmetic, so determinant expansions, all nine cofactors, every row operation, every product entry and every inverse check were generated from the card's own matrices, and each generator asserts its result equals the card's next printed matrix. That independently recomputed all 13 cofactor matrices and every Gauss-Jordan and rank reduction in the chapter before a word was written. The helpers are scratchpad scripts (`matx.py`, `mat_sys.py`); the pattern is worth keeping for Maths-1B and any other arithmetic-heavy chapter.
+- **Base fixes before expanding, per chapter:** formula reasons that reused the triangle's own letters (cos C − cos D inside a proof about angle C) → x, y / p, q; 13 lines that already wrapped; an ASCII power; a zero-row argument that skipped the consistency condition.
+
+### What the examiners found, in one line each
+Every number and boxed answer in both chapters survived. Defects were in explanation fields (common_mistakes naming a valid route as a mistake on symmetric identities; rules stated as always true — "only the π/2 condition gives cosines", "rank is invisible until reduced", "clearing upwards reintroduces fractions"; miscounts), two working lines that concluded more than they showed ("So A·A⁻¹ = I" after checking one row), one letter clash (A as a matrix and an angle), and 3 of my own lines (a triangle assumed where only an angle sum was given ×2, a mislabelled generated check).
+
+### Next session
+Functions (73), Products of Vectors (72), then the six smaller chapters, on a branch cut from master (`feat/answerbook-maths-1a-worked-in-full-2`), so this PR can merge without waiting.
+
 ## 📗 SESSION — MATHS-2B IS COMPLETE: all eight chapters written out in full, 271 cards, Simplify on every mark (2026-09-13/14, `feat/answerbook-maths-2b-worked-in-full`)
 
 **Review link:** https://claude.ai/code/artifact/b9d7229b-5463-4c5f-b6d8-03209cef63df
