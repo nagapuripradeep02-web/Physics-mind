@@ -34,7 +34,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.73 — SAQ chapter 12 Inverse Trig Functions, answer 76.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: none — this answer carries no year tag. The twin of 76.1, but the third term is SUBTRACTED — so the second step uses the DIFFERENCE formula, whose denominator carries a plus where the addition one carries a minus. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: this same chapter DOES print 1+1+1+1 against answer 77 on book p.73, so the shape is the chapter's own, and the weightings here follow it. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. ONE PRESENTATION CHOICE, made deliberately: the book draws a small right triangle beside each answer that needs a second ratio (for example sinα = 4/5 giving cosα = 3/5). Those are authored here as the one-line algebraic step instead, with the triangle route named in the margin note — it keeps the nine answers consistent and avoids three near-identical figures where the algebra is a single line. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q16 is the Inverse Trig Functions slot. NOTE: Inverse Trigonometric Functions is an SAQ-ONLY unit — the paper gives it no Section-A and no Section-C slot, and this book has no Inverse Trig LAQ chapter (LAQ chapters are 1-6) and no VSAQ chapter (VSAQ chapters are 14-19). The same shape as Unit 7. Verified by walking to p.75, where SAQ chapter 13 Properties of Triangles begins."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.73 — SAQ chapter 12 Inverse Trig Functions, answer 76.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: none — this answer carries no year tag. The twin of 76.1, but the third term is SUBTRACTED — so the second step uses the DIFFERENCE formula, whose denominator carries a plus where the addition one carries a minus. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: this same chapter DOES print 1+1+1+1 against answer 77 on book p.73, so the shape is the chapter's own, and the weightings here follow it. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. ONE PRESENTATION CHOICE, made deliberately: the book draws a small right triangle beside each answer that needs a second ratio (for example sinα = 4/5 giving cosα = 3/5). Those are authored here as the one-line algebraic step instead, with the triangle route named in the margin note — it keeps the nine answers consistent and avoids three near-identical figures where the algebra is a single line. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q16 is the Inverse Trig Functions slot. NOTE: Inverse Trigonometric Functions is an SAQ-ONLY unit — the paper gives it no Section-A and no Section-C slot, and this book has no Inverse Trig LAQ chapter (LAQ chapters are 1-6) and no VSAQ chapter (VSAQ chapters are 14-19). The same shape as Unit 7. Verified by walking to p.75, where SAQ chapter 13 Properties of Triangles begins. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — name each move in order, and say which formula you reach for and why.",
   "answer": {
@@ -56,8 +56,10 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "(the addition formula; (3/4)(3/5) = 9/20 < 1, so it applies)",
           "Tan⁻¹(3/4) + Tan⁻¹(3/5)",
           "= Tan⁻¹((3/4 + 3/5)/(1 − (3/4)(3/5)))",
+          "(3/4 + 3/5 = 27/20 and 1 − 9/20 = 11/20)",
           "= Tan⁻¹((27/20)/(11/20)) = Tan⁻¹(27/11)"
         ],
         "recall": {
@@ -97,8 +99,16 @@
         "memory_tip": "The DIFFERENCE formula has a PLUS in the denominator: (x − y)/(1 + xy).",
         "lines": [
           "We know Tan⁻¹x − Tan⁻¹y = Tan⁻¹((x−y)/(1+xy))",
+          {
+            "text": "(it needs xy > −1; here xy is positive)",
+            "added": true
+          },
           "∴ L.H.S = Tan⁻¹(27/11) − Tan⁻¹(8/19)",
           "= Tan⁻¹((27/11 − 8/19)/(1 + (27/11)(8/19)))",
+          {
+            "text": "(multiply the top and the bottom by 11 × 19 = 209)",
+            "added": true
+          },
           "= Tan⁻¹((513 − 88)/(209 + 216)) = Tan⁻¹(425/425)"
         ],
         "recall": {
@@ -127,6 +137,12 @@
         "common_mistakes": [
           "Using 1 − xy in the denominator.",
           "Subtracting in the wrong order."
+        ],
+        "lines_compact": [
+          "We know Tan⁻¹x − Tan⁻¹y = Tan⁻¹((x−y)/(1+xy))",
+          "∴ L.H.S = Tan⁻¹(27/11) − Tan⁻¹(8/19)",
+          "= Tan⁻¹((27/11 − 8/19)/(1 + (27/11)(8/19)))",
+          "= Tan⁻¹((513 − 88)/(209 + 216)) = Tan⁻¹(425/425)"
         ]
       },
       {
@@ -138,6 +154,10 @@
         "margin_note": "Last mark. 425/425 is 1, so the answer is Tan⁻¹(1) = π/4 — the same value the all-addition version reaches.",
         "memory_tip": "425/425 is 1, so the answer is Tan⁻¹(1) = π/4.",
         "lines": [
+          {
+            "text": "(425/425 = 1, and tan(π/4) = 1)",
+            "added": true
+          },
           "= Tan⁻¹(1) = π/4",
           {
             "text": "∴ Tan⁻¹(3/4) + Tan⁻¹(3/5) − Tan⁻¹(8/19) = π/4",
@@ -169,6 +189,13 @@
         "common_mistakes": [
           "Leaving the answer as Tan⁻¹(425/425).",
           "Failing to simplify the fraction."
+        ],
+        "lines_compact": [
+          "= Tan⁻¹(1) = π/4",
+          {
+            "text": "∴ Tan⁻¹(3/4) + Tan⁻¹(3/5) − Tan⁻¹(8/19) = π/4",
+            "style": "boxed"
+          }
         ]
       }
     ]

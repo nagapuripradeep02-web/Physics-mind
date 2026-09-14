@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.115, chapter 10 INVERSE TRIGONOMETRIC FUNCTIONS, Short Answer question 9. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. A full mark is given to the domain and a full mark to testing the two candidates, because squaring creates a root here that the domain test alone does not remove. NOTATION: the book prints this question with the word arcsin; it is written here as Sin⁻¹ to match the notation used across the rest of this unit, and the mathematics is unchanged. Checked numerically to twelve decimal places: at x = 13 the left side equals 1.570796326795 = π/2, and at x = −13 it equals −1.570796326795, so −13 is rejected. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, at 4 marks each, under the 2026-27 pattern; Inverse Trigonometric Functions is an SAQ-only unit, so the paper gives it no Section-A and no Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.115, chapter 10 INVERSE TRIGONOMETRIC FUNCTIONS, Short Answer question 9. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. A full mark is given to the domain and a full mark to testing the two candidates, because squaring creates a root here that the domain test alone does not remove. NOTATION: the book prints this question with the word arcsin; it is written here as Sin⁻¹ to match the notation used across the rest of this unit, and the mathematics is unchanged. Checked numerically to twelve decimal places: at x = 13 the left side equals 1.570796326795 = π/2, and at x = −13 it equals −1.570796326795, so −13 is rejected. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, at 4 marks each, under the 2026-27 pattern; Inverse Trigonometric Functions is an SAQ-only unit, so the paper gives it no Section-A and no Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this one — name each move in order, and say how you test the roots you find.",
   "answer": {
@@ -61,8 +61,11 @@
             "style": "heading"
           },
           "Sin⁻¹k needs |k| ≤ 1, so here",
+          "(the sine of an angle lies between −1 and 1)",
           "|5/x| ≤ 1 and |12/x| ≤ 1, with x ≠ 0.",
+          "(|5/x| ≤ 1 means |x| ≥ 5; |12/x| ≤ 1 means |x| ≥ 12)",
           "⇒ |x| ≥ 5 and |x| ≥ 12",
+          "(both conditions must hold at once)",
           "⇒ |x| ≥ 12"
         ],
         "recall": {
@@ -102,9 +105,21 @@
         "margin_note": "Second mark. The right side is a square root, so it is never negative — that single fact rejects one root at the end.",
         "memory_tip": "sin(π/2 − θ) = cosθ, and cos(Sin⁻¹k) = √(1 − k²), always the positive root.",
         "lines": [
+          {
+            "text": "(take Sin⁻¹(12/x) to the other side of the given equation)",
+            "added": true
+          },
           "Sin⁻¹(5/x) = π/2 − Sin⁻¹(12/x)",
           "Take the sine of both sides:",
+          {
+            "text": "(sin(Sin⁻¹k) = k)",
+            "added": true
+          },
           "5/x = sin(π/2 − Sin⁻¹(12/x))",
+          {
+            "text": "(sin(π/2 − φ) = cos φ, and cos(Sin⁻¹k) = √(1 − k²) ≥ 0)",
+            "added": true
+          },
           "= cos(Sin⁻¹(12/x)) = √(1 − 144/x²)"
         ],
         "recall": {
@@ -133,6 +148,12 @@
         "common_mistakes": [
           "Writing sin(π/2 − θ) as sinθ.",
           "Taking the negative square root."
+        ],
+        "lines_compact": [
+          "Sin⁻¹(5/x) = π/2 − Sin⁻¹(12/x)",
+          "Take the sine of both sides:",
+          "5/x = sin(π/2 − Sin⁻¹(12/x))",
+          "= cos(Sin⁻¹(12/x)) = √(1 − 144/x²)"
         ]
       },
       {
@@ -145,7 +166,20 @@
         "memory_tip": "25 + 144 = 169, so x = ±13 — the 5, 12, 13 triangle again.",
         "lines": [
           "Square both sides:",
+          {
+            "text": "(squaring can bring in a wrong root, so both roots",
+            "added": true
+          },
+          {
+            "text": "  are tested in step 4)",
+            "style": "indent",
+            "added": true
+          },
           "25/x² = 1 − 144/x²",
+          {
+            "text": "(multiply by x² and move 144 across)",
+            "added": true
+          },
           "⇒ 25 + 144 = x²",
           "⇒ x² = 169 ⇒ x = 13 or x = −13"
         ],
@@ -175,6 +209,12 @@
         "common_mistakes": [
           "Reading 25/x² = 1 − 144/x² as 25 = 1 − 144.",
           "Giving only x = 13 with no test."
+        ],
+        "lines_compact": [
+          "Square both sides:",
+          "25/x² = 1 − 144/x²",
+          "⇒ 25 + 144 = x²",
+          "⇒ x² = 169 ⇒ x = 13 or x = −13"
         ]
       },
       {

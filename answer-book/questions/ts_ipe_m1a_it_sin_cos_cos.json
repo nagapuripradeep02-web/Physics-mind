@@ -39,7 +39,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.72 — SAQ chapter 12 Inverse Trig Functions, answer 74.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 16. The twin of 74.1, but the two inverses are of DIFFERENT functions and the target is a Cos⁻¹ — so the cosine addition formula is used, and its middle sign is a MINUS. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: this same chapter DOES print 1+1+1+1 against answer 77 on book p.73, so the shape is the chapter's own, and the weightings here follow it. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. ONE PRESENTATION CHOICE, made deliberately: the book draws a small right triangle beside each answer that needs a second ratio (for example sinα = 4/5 giving cosα = 3/5). Those are authored here as the one-line algebraic step instead, with the triangle route named in the margin note — it keeps the nine answers consistent and avoids three near-identical figures where the algebra is a single line. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q16 is the Inverse Trig Functions slot. NOTE: Inverse Trigonometric Functions is an SAQ-ONLY unit — the paper gives it no Section-A and no Section-C slot, and this book has no Inverse Trig LAQ chapter (LAQ chapters are 1-6) and no VSAQ chapter (VSAQ chapters are 14-19). The same shape as Unit 7. Verified by walking to p.75, where SAQ chapter 13 Properties of Triangles begins."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.72 — SAQ chapter 12 Inverse Trig Functions, answer 74.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 16. The twin of 74.1, but the two inverses are of DIFFERENT functions and the target is a Cos⁻¹ — so the cosine addition formula is used, and its middle sign is a MINUS. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: this same chapter DOES print 1+1+1+1 against answer 77 on book p.73, so the shape is the chapter's own, and the weightings here follow it. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. ONE PRESENTATION CHOICE, made deliberately: the book draws a small right triangle beside each answer that needs a second ratio (for example sinα = 4/5 giving cosα = 3/5). Those are authored here as the one-line algebraic step instead, with the triangle route named in the margin note — it keeps the nine answers consistent and avoids three near-identical figures where the algebra is a single line. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q16 is the Inverse Trig Functions slot. NOTE: Inverse Trigonometric Functions is an SAQ-ONLY unit — the paper gives it no Section-A and no Section-C slot, and this book has no Inverse Trig LAQ chapter (LAQ chapters are 1-6) and no VSAQ chapter (VSAQ chapters are 14-19). The same shape as Unit 7. Verified by walking to p.75, where SAQ chapter 13 Properties of Triangles begins. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — name each move in order, and say which formula you reach for and why.",
   "answer": {
@@ -63,7 +63,9 @@
           },
           "Take Sin⁻¹(3/5) = α and Cos⁻¹(12/13) = β",
           "RTP: α + β = Cos⁻¹(33/65), that is, cos(α+β) = 33/65",
+          "(cosα = √(1 − 9/25) = 4/5, positive because α is acute)",
           "Sin⁻¹(3/5) = α ⇒ sinα = 3/5 ⇒ cosα = 4/5",
+          "(sinβ = √(1 − 144/169) = 5/13, as β is acute)",
           "Cos⁻¹(12/13) = β ⇒ cosβ = 12/13 ⇒ sinβ = 5/13"
         ],
         "recall": {
@@ -104,8 +106,16 @@
         "margin_note": "Third mark. The target is a Cos⁻¹, so the cosine formula is the one to use — and note the MINUS between the two products, where the sine formula had a plus.",
         "memory_tip": "The target is a Cos⁻¹, so use cos(A + B) — with a MINUS between the two products.",
         "lines": [
+          {
+            "text": "(the cos(A + B) formula)",
+            "added": true
+          },
           "cos(α + β) = cosα cosβ − sinα sinβ",
           "= (4/5)(12/13) − (3/5)(5/13)",
+          {
+            "text": "((4/5)(12/13) = 48/65 and (3/5)(5/13) = 15/65)",
+            "added": true
+          },
           "= 48/65 − 15/65 = 33/65"
         ],
         "recall": {
@@ -135,6 +145,11 @@
         "common_mistakes": [
           "Using a plus between the two products.",
           "Using the sine addition formula because the first inverse was a sine."
+        ],
+        "lines_compact": [
+          "cos(α + β) = cosα cosβ − sinα sinβ",
+          "= (4/5)(12/13) − (3/5)(5/13)",
+          "= 48/65 − 15/65 = 33/65"
         ]
       },
       {
@@ -146,6 +161,15 @@
         "margin_note": "Last mark. cos(α+β) = 33/65 means α+β = Cos⁻¹(33/65).",
         "memory_tip": "cos(α + β) = 33/65 means α + β = Cos⁻¹(33/65), not Sin⁻¹.",
         "lines": [
+          {
+            "text": "(α and β are acute, so α + β lies in (0, π),",
+            "added": true
+          },
+          {
+            "text": "  inside the range of Cos⁻¹)",
+            "style": "indent",
+            "added": true
+          },
           "cos(α + β) = 33/65",
           "⇒ α + β = Cos⁻¹(33/65)",
           {
@@ -178,6 +202,14 @@
         "common_mistakes": [
           "Writing Sin⁻¹(33/65).",
           "Stopping at the fraction."
+        ],
+        "lines_compact": [
+          "cos(α + β) = 33/65",
+          "⇒ α + β = Cos⁻¹(33/65)",
+          {
+            "text": "∴ Sin⁻¹(3/5) + Cos⁻¹(12/13) = Cos⁻¹(33/65)",
+            "style": "boxed"
+          }
         ]
       }
     ]

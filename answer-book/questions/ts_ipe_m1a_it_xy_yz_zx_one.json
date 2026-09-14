@@ -39,7 +39,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.74 — SAQ chapter 12 Inverse Trig Functions, answer 79. Printed appearances: TS 17. The only question in the chapter with no numbers at all. Nothing is evaluated — the three inverses are named as angles and the condition is pushed through the tangent addition formula. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: this same chapter DOES print 1+1+1+1 against answer 77 on book p.73, so the shape is the chapter's own, and the weightings here follow it. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. ONE PRESENTATION CHOICE, made deliberately: the book draws a small right triangle beside each answer that needs a second ratio (for example sinα = 4/5 giving cosα = 3/5). Those are authored here as the one-line algebraic step instead, with the triangle route named in the margin note — it keeps the nine answers consistent and avoids three near-identical figures where the algebra is a single line. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q16 is the Inverse Trig Functions slot. NOTE: Inverse Trigonometric Functions is an SAQ-ONLY unit — the paper gives it no Section-A and no Section-C slot, and this book has no Inverse Trig LAQ chapter (LAQ chapters are 1-6) and no VSAQ chapter (VSAQ chapters are 14-19). The same shape as Unit 7. Verified by walking to p.75, where SAQ chapter 13 Properties of Triangles begins."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.74 — SAQ chapter 12 Inverse Trig Functions, answer 79. Printed appearances: TS 17. The only question in the chapter with no numbers at all. Nothing is evaluated — the three inverses are named as angles and the condition is pushed through the tangent addition formula. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: this same chapter DOES print 1+1+1+1 against answer 77 on book p.73, so the shape is the chapter's own, and the weightings here follow it. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. ONE PRESENTATION CHOICE, made deliberately: the book draws a small right triangle beside each answer that needs a second ratio (for example sinα = 4/5 giving cosα = 3/5). Those are authored here as the one-line algebraic step instead, with the triangle route named in the margin note — it keeps the nine answers consistent and avoids three near-identical figures where the algebra is a single line. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q16 is the Inverse Trig Functions slot. NOTE: Inverse Trigonometric Functions is an SAQ-ONLY unit — the paper gives it no Section-A and no Section-C slot, and this book has no Inverse Trig LAQ chapter (LAQ chapters are 1-6) and no VSAQ chapter (VSAQ chapters are 14-19). The same shape as Unit 7. Verified by walking to p.75, where SAQ chapter 13 Properties of Triangles begins. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — name each move in order, and say which formula you reach for and why.",
   "answer": {
@@ -64,6 +64,7 @@
           "Let Tan⁻¹x = A ⇒ tanA = x",
           "Tan⁻¹y = B ⇒ tanB = y",
           "Tan⁻¹z = C ⇒ tanC = z",
+          "(this is the condition given in the question)",
           "Hence A + B + C = π/2"
         ],
         "recall": {
@@ -104,7 +105,15 @@
         "memory_tip": "Move C across FIRST, then take tangents. tan(π/2 − C) = cot C = 1/tan C, which puts z in a denominator.",
         "lines": [
           "A + B + C = π/2 ⇒ A + B = π/2 − C",
+          {
+            "text": "(take C to the other side)",
+            "added": true
+          },
           "⇒ tan(A + B) = tan(π/2 − C)",
+          {
+            "text": "(tan(π/2 − C) = cotC)",
+            "added": true
+          },
           "⇒ (tanA + tanB)/(1 − tanA tanB) = cotC = 1/tanC"
         ],
         "recall": {
@@ -133,6 +142,11 @@
         "common_mistakes": [
           "Writing tan(π/2 − C) = tan C.",
           "Taking tangents before rearranging, which leaves three angles inside one tangent."
+        ],
+        "lines_compact": [
+          "A + B + C = π/2 ⇒ A + B = π/2 − C",
+          "⇒ tan(A + B) = tan(π/2 − C)",
+          "⇒ (tanA + tanB)/(1 − tanA tanB) = cotC = 1/tanC"
         ]
       },
       {
@@ -144,9 +158,25 @@
         "margin_note": "Last mark. Put the letters back in and cross-multiply. The z distributes over (x+y), and moving the xy across gives the symmetric result.",
         "memory_tip": "Cross-multiply: z distributes over (x + y), and moving xy across gives the symmetric result.",
         "lines": [
+          {
+            "text": "(put tanA = x, tanB = y and tanC = z)",
+            "added": true
+          },
           "⇒ (x + y)/(1 − xy) = 1/z",
+          {
+            "text": "(cross-multiply)",
+            "added": true
+          },
           "⇒ z(x + y) = 1 − xy",
+          {
+            "text": "(open the bracket)",
+            "added": true
+          },
           "⇒ zx + yz = 1 − xy",
+          {
+            "text": "(move −xy to the left)",
+            "added": true
+          },
           {
             "text": "∴ xy + yz + zx = 1",
             "style": "boxed"
@@ -178,6 +208,15 @@
         "common_mistakes": [
           "Cross-multiplying the wrong way to x + y = z(1 − xy).",
           "Stopping at zx + yz = 1 − xy without collecting."
+        ],
+        "lines_compact": [
+          "⇒ (x + y)/(1 − xy) = 1/z",
+          "⇒ z(x + y) = 1 − xy",
+          "⇒ zx + yz = 1 − xy",
+          {
+            "text": "∴ xy + yz + zx = 1",
+            "style": "boxed"
+          }
         ]
       }
     ]
