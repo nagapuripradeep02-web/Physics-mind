@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.42, chapter 5 MATRICES, Short Answer question 11. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 shape gives one mark each to the two row operations, the expansion, and the standard identity that finishes it. Paper position: Maths-1A Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern; Matrices carries a Section B slot and also appears in Section C. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.42, chapter 5 MATRICES, Short Answer question 11. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 shape gives one mark each to the two row operations, the expansion, and the standard identity that finishes it. Paper position: Maths-1A Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern; Matrices carries a Section B slot and also appears in Section C. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this one — name each row operation and the identity at the end.",
   "answer": {
@@ -68,6 +68,7 @@
           },
           "Apply R₁ → R₁ + R₃. Every entry of R₁",
           "becomes a + b + c, so it comes out:",
+          "((b+c) + a = (c+a) + b = (a+b) + c = a+b+c)",
           {
             "text": "\\Delta = (a+b+c)\\begin{vmatrix} 1 & 1 & 1 \\\\ a+b & b+c & c+a \\\\ a & b & c \\end{vmatrix}",
             "render": "katex",
@@ -112,6 +113,10 @@
         "lines": [
           "Apply R₂ → R₂ − R₃:",
           {
+            "text": "((a+b) − a = b, (b+c) − b = c, (c+a) − c = a)",
+            "added": true
+          },
+          {
             "text": "\\Delta = (a+b+c)\\begin{vmatrix} 1 & 1 & 1 \\\\ b & c & a \\\\ a & b & c \\end{vmatrix}",
             "render": "katex",
             "style": "eq"
@@ -142,6 +147,14 @@
         "common_mistakes": [
           "Subtracting in the wrong direction and getting (−b, −c, −a).",
           "Forgetting that the factor (a+b+c) stays outside during this operation."
+        ],
+        "lines_compact": [
+          "Apply R₂ → R₂ − R₃:",
+          {
+            "text": "\\Delta = (a+b+c)\\begin{vmatrix} 1 & 1 & 1 \\\\ b & c & a \\\\ a & b & c \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -154,8 +167,21 @@
         "memory_tip": "A top row of all 1s makes the expansion three small 2×2 determinants.",
         "lines": [
           "Expanding along R₁:",
+          {
+            "text": "(minors: (c)(c) − (a)(b), (b)(c) − (a)(a),",
+            "added": true
+          },
+          {
+            "text": "  (b)(b) − (c)(a))",
+            "style": "indent",
+            "added": true
+          },
           "= (a+b+c)[(c² − ab) − (bc − a²)",
           "                 + (b² − ca)]",
+          {
+            "text": "Open the brackets and collect:",
+            "added": true
+          },
           "= (a+b+c)(a² + b² + c² − ab − bc − ca)"
         ],
         "recall": {
@@ -183,6 +209,12 @@
         "common_mistakes": [
           "Using + + + and so getting +bc instead of −bc.",
           "Collecting only two of the three cross terms ab, bc and ca."
+        ],
+        "lines_compact": [
+          "Expanding along R₁:",
+          "= (a+b+c)[(c² − ab) − (bc − a²)",
+          "                 + (b² − ca)]",
+          "= (a+b+c)(a² + b² + c² − ab − bc − ca)"
         ]
       },
       {
@@ -197,6 +229,10 @@
           "This is the standard factorisation",
           "(a+b+c)(a²+b²+c²−ab−bc−ca)",
           "= a³ + b³ + c³ − 3abc.",
+          {
+            "text": "(multiplying out gives a³ + b³ + c³ − 3abc)",
+            "added": true
+          },
           {
             "text": "∴ Δ = a³ + b³ + c³ − 3abc",
             "style": "boxed"
@@ -227,6 +263,15 @@
         "common_mistakes": [
           "Multiplying the brackets out and stopping before the six cross terms cancel.",
           "Writing the second bracket as a² + b² + c² + ab + bc + ca."
+        ],
+        "lines_compact": [
+          "This is the standard factorisation",
+          "(a+b+c)(a²+b²+c²−ab−bc−ca)",
+          "= a³ + b³ + c³ − 3abc.",
+          {
+            "text": "∴ Δ = a³ + b³ + c³ − 3abc",
+            "style": "boxed"
+          }
         ]
       }
     ]

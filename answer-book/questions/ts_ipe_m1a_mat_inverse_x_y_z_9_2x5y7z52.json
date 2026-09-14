@@ -42,7 +42,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.51, chapter 5 MATRICES, Long Answer question 9(ii), matrix-inversion route. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+3+1+2 split gives three of the eight marks to the nine cofactors, because that is where most of the working and most of the errors are, and matches every other matrix-inversion answer in this unit. ONE CARD PER METHOD: the book asks this one system by matrix inversion, by Cramer's rule and by the Gauss-Jordan method, and this bank answers each method on its own card so that a student who opens one never has to read another. The siblings are ts_ipe_m1a_mat_cramer_x_y_z_9_2x5y7z52 and ts_ipe_m1a_mat_gauss_x_y_z_9_2x5y7z52, and all three land on the same solution x = 1, y = 3, z = 5. Working checked twice: det A was expanded along R₁ and again along C₁, both giving −4; A(Adj A) = (det A)I was checked on two entries before the inverse was used; and the solution was substituted back into all three original equations (9 = 9, 52 = 52, 0 = 0). Paper position: Maths-1A Section C prints 3 long answers at 8 marks each and the student answers any 2; Matrices is one of the units that can fill a Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.51, chapter 5 MATRICES, Long Answer question 9(ii), matrix-inversion route. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+3+1+2 split gives three of the eight marks to the nine cofactors, because that is where most of the working and most of the errors are, and matches every other matrix-inversion answer in this unit. ONE CARD PER METHOD: the book asks this one system by matrix inversion, by Cramer's rule and by the Gauss-Jordan method, and this bank answers each method on its own card so that a student who opens one never has to read another. The siblings are ts_ipe_m1a_mat_cramer_x_y_z_9_2x5y7z52 and ts_ipe_m1a_mat_gauss_x_y_z_9_2x5y7z52, and all three land on the same solution x = 1, y = 3, z = 5. Working checked twice: det A was expanded along R₁ and again along C₁, both giving −4; A(Adj A) = (det A)I was checked on two entries before the inverse was used; and the solution was substituted back into all three original equations (9 = 9, 52 = 52, 0 = 0). Paper position: Maths-1A Section C prints 3 long answers at 8 marks each and the student answers any 2; Matrices is one of the units that can fill a Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this by the matrix inversion method — say what you have to find first, how you build the inverse, what you multiply at the end, and how you check it.",
   "answer": {
@@ -70,7 +70,12 @@
             "render": "katex",
             "style": "eq"
           },
-          "The solution of AX = D is X = A⁻¹D."
+          "The solution of AX = D is X = A⁻¹D.",
+          "(multiply AX = D on the left by A⁻¹; A⁻¹A = I,",
+          {
+            "text": "  so X = A⁻¹D)",
+            "style": "indent"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -115,10 +120,47 @@
             "render": "katex",
             "style": "eq"
           },
+          {
+            "text": "Expand along R₁: each entry times the 2×2",
+            "added": true
+          },
+          {
+            "text": "  determinant left when its row and column",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  are deleted, with signs + − +:",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  + (1) × [(5)(−1) − (7)(1)]",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  − (1) × [(2)(−1) − (7)(2)]",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  + (1) × [(2)(1) − (5)(2)]",
+            "style": "indent",
+            "added": true
+          },
           "= 1(−5−7) − 1(−2−14) + 1(2−10)",
           "= −12 + 16 − 8 = −4",
+          {
+            "text": "(a second expansion gives the same value — a check)",
+            "added": true
+          },
           "Along C₁: 1(−12) − 2(−2) + 2(2) = −4",
-          "det A = −4 ≠ 0, so A⁻¹ exists."
+          "det A = −4 ≠ 0, so A⁻¹ exists.",
+          {
+            "text": "(A⁻¹ = Adj A ÷ det A, so det A must not be 0)",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -148,6 +190,17 @@
           "Computing det A but never writing that it is non-zero.",
           "Getting the sign pattern wrong: plus, minus, plus along the top row.",
           "Confusing det A with the trace or with the sum of a row."
+        ],
+        "lines_compact": [
+          {
+            "text": "\\det A = \\begin{vmatrix} 1 & 1 & 1 \\\\ 2 & 5 & 7 \\\\ 2 & 1 & -1 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= 1(−5−7) − 1(−2−14) + 1(2−10)",
+          "= −12 + 16 − 8 = −4",
+          "Along C₁: 1(−12) − 2(−2) + 2(2) = −4",
+          "det A = −4 ≠ 0, so A⁻¹ exists."
         ]
       },
       {
@@ -163,6 +216,55 @@
           "2×2 determinant, then apply the sign board",
           "+ − + / − + − / + − +. For example,",
           "A₁₂ = −(2(−1) − 7(2)) = −(−16) = 16.",
+          {
+            "text": "The nine cofactors, one by one:",
+            "added": true
+          },
+          {
+            "text": "  A₁₁ = +[(5)(−1) − (7)(1)] = −12",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  A₁₂ = −[(2)(−1) − (7)(2)] = 16",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  A₁₃ = +[(2)(1) − (5)(2)] = −8",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  A₂₁ = −[(1)(−1) − (1)(1)] = 2",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  A₂₂ = +[(1)(−1) − (1)(2)] = −3",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  A₂₃ = −[(1)(1) − (1)(2)] = 1",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  A₃₁ = +[(1)(7) − (1)(5)] = 2",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  A₃₂ = −[(1)(7) − (1)(2)] = −5",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  A₃₃ = +[(1)(5) − (1)(2)] = 3",
+            "style": "indent",
+            "added": true
+          },
           "A₁₁ = −12,  A₁₂ = 16,  A₁₃ = −8",
           "A₂₁ = 2,  A₂₂ = −3,  A₂₃ = 1",
           "A₃₁ = 2,  A₃₂ = −5,  A₃₃ = 3",
@@ -200,6 +302,20 @@
           "Writing the minors and forgetting the sign board entirely.",
           "Applying the signs to the wrong positions; the corners are all plus.",
           "Deleting the wrong row or column for the off-diagonal entries."
+        ],
+        "lines_compact": [
+          "Delete each entry's row and column, take the",
+          "2×2 determinant, then apply the sign board",
+          "+ − + / − + − / + − +. For example,",
+          "A₁₂ = −(2(−1) − 7(2)) = −(−16) = 16.",
+          "A₁₁ = −12,  A₁₂ = 16,  A₁₃ = −8",
+          "A₂₁ = 2,  A₂₂ = −3,  A₂₃ = 1",
+          "A₃₁ = 2,  A₃₂ = −5,  A₃₃ = 3",
+          {
+            "text": "\\text{Cofactor matrix} = \\begin{bmatrix} -12 & 16 & -8 \\\\ 2 & -3 & 1 \\\\ 2 & -5 & 3 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -216,6 +332,15 @@
             "text": "\\text{Adj } A = \\begin{bmatrix} -12 & 2 & 2 \\\\ 16 & -3 & -5 \\\\ -8 & 1 & 3 \\end{bmatrix}",
             "render": "katex",
             "style": "eq"
+          },
+          {
+            "text": "(row 1 of Adj A is column 1 of the cofactors,",
+            "added": true
+          },
+          {
+            "text": "  and so on)",
+            "style": "indent",
+            "added": true
           },
           {
             "text": "A^{-1} = \\frac{1}{\\det A}(\\text{Adj } A) = \\frac{1}{-4} \\begin{bmatrix} -12 & 2 & 2 \\\\ 16 & -3 & -5 \\\\ -8 & 1 & 3 \\end{bmatrix}",
@@ -255,6 +380,23 @@
           "Using the cofactor matrix directly as the adjoint without transposing.",
           "Dividing only one row by det A instead of the whole matrix.",
           "Multiplying by det A instead of dividing."
+        ],
+        "lines_compact": [
+          "Adj A is the transpose of the cofactors:",
+          {
+            "text": "\\text{Adj } A = \\begin{bmatrix} -12 & 2 & 2 \\\\ 16 & -3 & -5 \\\\ -8 & 1 & 3 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "A^{-1} = \\frac{1}{\\det A}(\\text{Adj } A) = \\frac{1}{-4} \\begin{bmatrix} -12 & 2 & 2 \\\\ 16 & -3 & -5 \\\\ -8 & 1 & 3 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "Check A(Adj A) = (det A)I on the top row:",
+          "1(−12) + 1(16) + 1(−8) = −4 = det A,",
+          "1(2) + 1(−3) + 1(1) = 0,  1(2) + 1(−5) + 1(3) = 0.",
+          "So A·A⁻¹ = I and the inverse is correct."
         ]
       },
       {
@@ -267,6 +409,10 @@
         "memory_tip": "Multiply row by column, divide every entry by det A, then put the three values back into the three original equations.",
         "lines": [
           "X = A⁻¹D. Multiplying row by column:",
+          {
+            "text": "(each row of Adj A times the column D = (9, 52, 0))",
+            "added": true
+          },
           "−12(9) + 2(52) + 2(0) = −108 + 104 = −4",
           "16(9) − 3(52) − 5(0) = 144 − 156 = −12",
           "−8(9) + 1(52) + 3(0) = −72 + 52 = −20",
@@ -274,6 +420,10 @@
             "text": "X = \\frac{1}{-4} \\begin{bmatrix} -4 \\\\ -12 \\\\ -20 \\end{bmatrix} = \\begin{bmatrix} 1 \\\\ 3 \\\\ 5 \\end{bmatrix}",
             "render": "katex",
             "style": "eq"
+          },
+          {
+            "text": "(divide each entry by det A = −4)",
+            "added": true
           },
           "Check: 1 + 3 + 5 = 9  ✓",
           "2(1) + 5(3) + 7(5) = 52  ✓",
@@ -312,6 +462,24 @@
           "Multiplying column by row instead of row by column.",
           "Dividing by det A only once instead of on every entry.",
           "Stopping without substituting the three values back into all three equations."
+        ],
+        "lines_compact": [
+          "X = A⁻¹D. Multiplying row by column:",
+          "−12(9) + 2(52) + 2(0) = −108 + 104 = −4",
+          "16(9) − 3(52) − 5(0) = 144 − 156 = −12",
+          "−8(9) + 1(52) + 3(0) = −72 + 52 = −20",
+          {
+            "text": "X = \\frac{1}{-4} \\begin{bmatrix} -4 \\\\ -12 \\\\ -20 \\end{bmatrix} = \\begin{bmatrix} 1 \\\\ 3 \\\\ 5 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "Check: 1 + 3 + 5 = 9  ✓",
+          "2(1) + 5(3) + 7(5) = 52  ✓",
+          "2(1) + 3 − 5 = 0  ✓",
+          {
+            "text": "∴ x = 1, y = 3, z = 5",
+            "style": "boxed"
+          }
         ]
       }
     ]

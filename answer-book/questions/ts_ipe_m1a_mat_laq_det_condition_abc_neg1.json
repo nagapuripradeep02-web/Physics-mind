@@ -42,7 +42,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.47, chapter 5 MATRICES, Long Answer question 3, determinant-condition route. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 2+2+2+1+1 split pays two marks for each of the three moves that carry the proof — splitting the third column, taking a, b, c out of the rows, and restoring the column order — and one mark each for the factorisation and the conclusion. The opening line carries no mark because it only copies the question down. Working checked: the identity Δ = (1 + abc)D was verified on a = 1, b = 2, c = 3, where Δ = 14, D = 2 and (1 + 6)(2) = 14. Paper position: Maths-1A Section C prints 3 long answers at 8 marks each and the student answers any 2; Matrices is one of the units that can fill a Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.47, chapter 5 MATRICES, Long Answer question 3, determinant-condition route. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 2+2+2+1+1 split pays two marks for each of the three moves that carry the proof — splitting the third column, taking a, b, c out of the rows, and restoring the column order — and one mark each for the factorisation and the conclusion. The opening line carries no mark because it only copies the question down. Working checked: the identity Δ = (1 + abc)D was verified on a = 1, b = 2, c = 3, where Δ = 14, D = 2 and (1 + 6)(2) = 14. Paper position: Maths-1A Section C prints 3 long answers at 8 marks each and the student answers any 2; Matrices is one of the units that can fill a Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — say how you break the third column up, what comes out common from the rows, and how the two given facts finish it.",
   "answer": {
@@ -115,6 +115,15 @@
           "Every entry of C₃ in Δ is a sum, so Δ splits",
           "into two determinants sharing C₁ and C₂:",
           {
+            "text": "(a determinant whose column is a sum p + q splits",
+            "added": true
+          },
+          {
+            "text": "  into one with p and one with q)",
+            "style": "indent",
+            "added": true
+          },
+          {
             "text": "\\Delta = \\begin{vmatrix} a & a^2 & 1 \\\\ b & b^2 & 1 \\\\ c & c^2 & 1 \\end{vmatrix} + \\begin{vmatrix} a & a^2 & a^3 \\\\ b & b^2 & b^3 \\\\ c & c^2 & c^3 \\end{vmatrix}",
             "render": "katex",
             "style": "eq"
@@ -148,6 +157,16 @@
           "Splitting more than one column at a time.",
           "Writing the two determinants with different first or second columns.",
           "Subtracting the second determinant instead of adding it."
+        ],
+        "lines_compact": [
+          "Every entry of C₃ in Δ is a sum, so Δ splits",
+          "into two determinants sharing C₁ and C₂:",
+          {
+            "text": "\\Delta = \\begin{vmatrix} a & a^2 & 1 \\\\ b & b^2 & 1 \\\\ c & c^2 & 1 \\end{vmatrix} + \\begin{vmatrix} a & a^2 & a^3 \\\\ b & b^2 & b^3 \\\\ c & c^2 & c^3 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "The first of these is D."
         ]
       },
       {
@@ -161,6 +180,10 @@
         "lines": [
           "In the second determinant, R₁ has a common a,",
           "R₂ has a common b and R₃ has a common c:",
+          {
+            "text": "(a, a², a³ = a × (1, a, a²), and so on)",
+            "added": true
+          },
           {
             "text": "\\begin{vmatrix} a & a^2 & a^3 \\\\ b & b^2 & b^3 \\\\ c & c^2 & c^3 \\end{vmatrix} = abc \\begin{vmatrix} 1 & a & a^2 \\\\ 1 & b & b^2 \\\\ 1 & c & c^2 \\end{vmatrix}",
             "render": "katex",
@@ -194,6 +217,15 @@
           "Taking abc out only once instead of one factor per row.",
           "Taking the factors out of the columns, where they are not common.",
           "Leaving the powers as a, a², a³ inside after the factor is removed."
+        ],
+        "lines_compact": [
+          "In the second determinant, R₁ has a common a,",
+          "R₂ has a common b and R₃ has a common c:",
+          {
+            "text": "\\begin{vmatrix} a & a^2 & a^3 \\\\ b & b^2 & b^3 \\\\ c & c^2 & c^3 \\end{vmatrix} = abc \\begin{vmatrix} 1 & a & a^2 \\\\ 1 & b & b^2 \\\\ 1 & c & c^2 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -208,6 +240,15 @@
           "Move C₁ to the last place by two interchanges,",
           "C₁ ↔ C₂ and then C₂ ↔ C₃. Each interchange",
           "changes the sign, so two leave the value alone:",
+          {
+            "text": "(C₁ ↔ C₂ gives (a, 1, a²); then C₂ ↔ C₃",
+            "added": true
+          },
+          {
+            "text": "  gives (a, a², 1))",
+            "style": "indent",
+            "added": true
+          },
           {
             "text": "\\begin{vmatrix} 1 & a & a^2 \\\\ 1 & b & b^2 \\\\ 1 & c & c^2 \\end{vmatrix} = \\begin{vmatrix} a & a^2 & 1 \\\\ b & b^2 & 1 \\\\ c & c^2 & 1 \\end{vmatrix} = D",
             "render": "katex",
@@ -241,6 +282,16 @@
           "Assuming the two determinants are equal without counting the interchanges.",
           "Counting one interchange instead of two and finishing with abc = 1.",
           "Interchanging rows instead of columns."
+        ],
+        "lines_compact": [
+          "Move C₁ to the last place by two interchanges,",
+          "C₁ ↔ C₂ and then C₂ ↔ C₃. Each interchange",
+          "changes the sign, so two leave the value alone:",
+          {
+            "text": "\\begin{vmatrix} 1 & a & a^2 \\\\ 1 & b & b^2 \\\\ 1 & c & c^2 \\end{vmatrix} = \\begin{vmatrix} a & a^2 & 1 \\\\ b & b^2 & 1 \\\\ c & c^2 & 1 \\end{vmatrix} = D",
+            "render": "katex",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -254,6 +305,10 @@
         "lines": [
           "Putting the two pieces together:",
           "Δ = D + abc·D",
+          {
+            "text": "(take out the common factor D)",
+            "added": true
+          },
           "Δ = (1 + abc)D"
         ],
         "recall": {
@@ -281,6 +336,11 @@
         "common_mistakes": [
           "Writing Δ = abc·D and losing the first piece.",
           "Writing Δ = (1 + abc) and dropping D altogether."
+        ],
+        "lines_compact": [
+          "Putting the two pieces together:",
+          "Δ = D + abc·D",
+          "Δ = (1 + abc)D"
         ]
       },
       {
@@ -293,6 +353,10 @@
         "memory_tip": "Both given facts are used here: Δ = 0 makes the product zero, D ≠ 0 rules out the other factor.",
         "lines": [
           "Δ = 0 is given, so (1 + abc)D = 0.",
+          {
+            "text": "(a product is 0 only when one factor is 0)",
+            "added": true
+          },
           "D ≠ 0 is also given, so the other factor is 0:",
           "1 + abc = 0",
           {
@@ -326,6 +390,15 @@
           "Dividing by D without saying that D is not zero.",
           "Concluding abc = 1 by dropping a sign.",
           "Using only Δ = 0 and never using D ≠ 0."
+        ],
+        "lines_compact": [
+          "Δ = 0 is given, so (1 + abc)D = 0.",
+          "D ≠ 0 is also given, so the other factor is 0:",
+          "1 + abc = 0",
+          {
+            "text": "∴ abc = −1",
+            "style": "boxed"
+          }
         ]
       }
     ]

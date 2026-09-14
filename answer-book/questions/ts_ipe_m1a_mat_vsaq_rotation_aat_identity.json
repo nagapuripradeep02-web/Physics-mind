@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 5 MATRICES, Very Short Answer question 9, book p.33. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split gives one mark to each product, because the question asks for two products and a student who computes only AAᵀ has answered half of it. NOTATION: the book prints the transpose as A¹ (a clipped dash); it is written here as Aᵀ, which is the form the rest of this unit uses, and the mathematics is unchanged. CHECKED: both products were expanded position by position and every diagonal entry reduced to cos²α + sin²α = 1 and every off-diagonal entry to cos α sin α − sin α cos α = 0, so both land on I. Related card in the same unit: ts_ipe_m1a_mat_sqp_rotation_inverse asks for the adjoint and inverse of the closely related matrix with rows (cos α, −sin α) and (sin α, cos α); this one asks for the two transpose products, so the two are not duplicates. Paper position: Maths-1A Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 5 MATRICES, Very Short Answer question 9, book p.33. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split gives one mark to each product, because the question asks for two products and a student who computes only AAᵀ has answered half of it. NOTATION: the book prints the transpose as A¹ (a clipped dash); it is written here as Aᵀ, which is the form the rest of this unit uses, and the mathematics is unchanged. CHECKED: both products were expanded position by position and every diagonal entry reduced to cos²α + sin²α = 1 and every off-diagonal entry to cos α sin α − sin α cos α = 0, so both land on I. Related card in the same unit: ts_ipe_m1a_mat_sqp_rotation_inverse asks for the adjoint and inverse of the closely related matrix with rows (cos α, −sin α) and (sin α, cos α); this one asks for the two transpose products, so the two are not duplicates. Paper position: Maths-1A Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would show that this matrix times its transpose is the unit matrix.",
   "answer": {
@@ -57,12 +57,22 @@
             "render": "katex",
             "style": "eq"
           },
+          "Multiply row by column:",
+          {
+            "text": "  (1,1): cos α cos α + sin α sin α",
+            "style": "indent"
+          },
+          {
+            "text": "  (2,2): (−sin α)(−sin α) + cos α cos α",
+            "style": "indent"
+          },
           "Each off-diagonal entry cancels:",
           "−cos α sin α + sin α cos α = 0.",
           {
             "text": "AA^{T} = \\begin{bmatrix} \\cos^{2}\\alpha + \\sin^{2}\\alpha & 0 \\\\ 0 & \\sin^{2}\\alpha + \\cos^{2}\\alpha \\end{bmatrix}",
             "render": "katex"
           },
+          "(cos²α + sin²α = 1)",
           {
             "text": "= \\begin{bmatrix} 1 & 0 \\\\ 0 & 1 \\end{bmatrix} = I",
             "render": "katex",
@@ -105,11 +115,19 @@
         "margin_note": "Second mark. The question asks for both products, so AᵀA is written out separately rather than quoted from the first.",
         "memory_tip": "Both products give I, so Aᵀ is the inverse of A. A matrix with this property is called orthogonal.",
         "lines": [
+          {
+            "text": "(1,2) of AᵀA: (cos α)(sin α) + (−sin α)(cos α)",
+            "added": true
+          },
           "Each off-diagonal entry cancels:",
           "cos α sin α − sin α cos α = 0.",
           {
             "text": "A^{T}A = \\begin{bmatrix} \\cos^{2}\\alpha + \\sin^{2}\\alpha & 0 \\\\ 0 & \\sin^{2}\\alpha + \\cos^{2}\\alpha \\end{bmatrix}",
             "render": "katex"
+          },
+          {
+            "text": "(cos²α + sin²α = 1)",
+            "added": true
           },
           {
             "text": "= \\begin{bmatrix} 1 & 0 \\\\ 0 & 1 \\end{bmatrix} = I",
@@ -146,6 +164,23 @@
         "common_mistakes": [
           "Writing 'similarly' and stopping, without showing the second product.",
           "Assuming AAᵀ = AᵀA holds for every square matrix."
+        ],
+        "lines_compact": [
+          "Each off-diagonal entry cancels:",
+          "cos α sin α − sin α cos α = 0.",
+          {
+            "text": "A^{T}A = \\begin{bmatrix} \\cos^{2}\\alpha + \\sin^{2}\\alpha & 0 \\\\ 0 & \\sin^{2}\\alpha + \\cos^{2}\\alpha \\end{bmatrix}",
+            "render": "katex"
+          },
+          {
+            "text": "= \\begin{bmatrix} 1 & 0 \\\\ 0 & 1 \\end{bmatrix} = I",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "∴ AAᵀ = AᵀA = I",
+            "style": "boxed"
+          }
         ]
       }
     ]

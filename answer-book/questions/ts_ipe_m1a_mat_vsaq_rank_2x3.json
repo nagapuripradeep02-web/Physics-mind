@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.35, chapter 5 MATRICES, Very Short Answer question 20(iv). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape puts one mark on the row reduction and one on counting the non-zero rows. Paper position: Maths-1A Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern; Matrices fills one of those Section A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.35, chapter 5 MATRICES, Very Short Answer question 20(iv). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape puts one mark on the row reduction and one on counting the non-zero rows. Paper position: Maths-1A Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern; Matrices fills one of those Section A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find the rank of this 2 × 3 matrix.",
   "answer": {
@@ -59,6 +59,19 @@
             "style": "eq"
           },
           "R₂ → R₂ − 2R₁:",
+          "R₂ − 2R₁:",
+          {
+            "text": "  (2, −1, 3)",
+            "style": "indent"
+          },
+          {
+            "text": "  − 2(1, 0, −4)",
+            "style": "indent"
+          },
+          {
+            "text": "  = (0, −1, 11)",
+            "style": "indent"
+          },
           {
             "text": "\\sim \\begin{bmatrix} 1 & 0 & -4 \\\\ 0 & -1 & 11 \\end{bmatrix}",
             "render": "katex",
@@ -102,11 +115,19 @@
         "memory_tip": "Two non-zero rows and the cap is 2 — the rank is 2 and the work stops there.",
         "lines": [
           "Both rows are non-zero, so the rank is 2.",
+          {
+            "text": "(a row operation does not change the rank)",
+            "added": true
+          },
           "Columns 1 and 2 give a non-zero minor:",
           {
             "text": "\\begin{vmatrix} 1 & 0 \\\\ 2 & -1 \\end{vmatrix} = -1 \\neq 0",
             "render": "katex",
             "style": "eq"
+          },
+          {
+            "text": "((1)(−1) − (0)(2) = −1)",
+            "added": true
           },
           {
             "text": "∴ Rank A = 2",
@@ -138,6 +159,19 @@
         "common_mistakes": [
           "Checking for a 3×3 minor, which this matrix cannot have.",
           "Reading the rank as 1 because the second row starts with 0."
+        ],
+        "lines_compact": [
+          "Both rows are non-zero, so the rank is 2.",
+          "Columns 1 and 2 give a non-zero minor:",
+          {
+            "text": "\\begin{vmatrix} 1 & 0 \\\\ 2 & -1 \\end{vmatrix} = -1 \\neq 0",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "∴ Rank A = 2",
+            "style": "boxed"
+          }
         ]
       }
     ]

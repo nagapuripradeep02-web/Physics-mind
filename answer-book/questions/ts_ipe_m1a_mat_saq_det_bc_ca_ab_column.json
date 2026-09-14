@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.43, chapter 5 MATRICES, Short Answer question 12. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 shape gives one mark to each of the four moves that can independently be right or wrong — the two row subtractions, the factoring, the expansion and the final simplification — because in a determinant identity a student who gets the first three right and the sign wrong at the end deserves three of four. Independently checked before authoring, by two numerical substitutions: a = 2, b = 3, c = 5 gives determinant 6 and (a−b)(b−c)(c−a) = (−1)(−2)(3) = 6; a = 1, b = −2, c = 4 gives determinant −54 and (3)(−6)(3) = −54. Both sides agree. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Matrices supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.43, chapter 5 MATRICES, Short Answer question 12. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 shape gives one mark to each of the four moves that can independently be right or wrong — the two row subtractions, the factoring, the expansion and the final simplification — because in a determinant identity a student who gets the first three right and the sign wrong at the end deserves three of four. Independently checked before authoring, by two numerical substitutions: a = 2, b = 3, c = 5 gives determinant 6 and (a−b)(b−c)(c−a) = (−1)(−2)(3) = 6; a = 1, b = −2, c = 4 gives determinant −54 and (3)(−6)(3) = −54. Both sides agree. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Matrices supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — say which rows you subtract, what comes out as a common factor, which line you expand along, and what is left.",
   "answer": {
@@ -66,10 +66,14 @@
             "style": "eq"
           },
           "Apply R₁ → R₁ − R₂ and R₂ → R₂ − R₃.",
+          "(subtracting rows does not change the value)",
           "bc − ca = −c(a − b)",
+          "(bc − ca = c(b − a) = −c(a − b))",
           "(b + c) − (c + a) = −(a − b)",
           "ca − ab = −a(b − c)",
+          "(ca − ab = a(c − b) = −a(b − c))",
           "(c + a) − (a + b) = −(b − c)",
+          "(C₃: 1 − 1 = 0 in both new rows)",
           {
             "text": "\\Delta = \\begin{vmatrix} -c(a-b) & -(a-b) & 0 \\\\ -a(b-c) & -(b-c) & 0 \\\\ ab & a+b & 1 \\end{vmatrix}",
             "render": "katex",
@@ -116,6 +120,15 @@
           "Take −(a − b) from R₁ and −(b − c) from R₂.",
           "The two minus signs multiply to give +1:",
           {
+            "text": "(R₁ = −(a−b)(c, 1, 0) and",
+            "added": true
+          },
+          {
+            "text": "  R₂ = −(b−c)(a, 1, 0))",
+            "style": "indent",
+            "added": true
+          },
+          {
             "text": "\\Delta = (a-b)(b-c)\\begin{vmatrix} c & 1 & 0 \\\\ a & 1 & 0 \\\\ ab & a+b & 1 \\end{vmatrix}",
             "render": "katex",
             "style": "eq"
@@ -148,6 +161,15 @@
         "common_mistakes": [
           "Taking the factor out twice because it appears in two entries of the row.",
           "Forgetting one of the two minus signs, which reverses the sign of the answer."
+        ],
+        "lines_compact": [
+          "Take −(a − b) from R₁ and −(b − c) from R₂.",
+          "The two minus signs multiply to give +1:",
+          {
+            "text": "\\Delta = (a-b)(b-c)\\begin{vmatrix} c & 1 & 0 \\\\ a & 1 & 0 \\\\ ab & a+b & 1 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -161,6 +183,10 @@
         "lines": [
           "Expand along C₃. Only row 3 has a non-zero",
           "entry there, and the sign at that position is +.",
+          {
+            "text": "(its minor deletes row 3 and column 3)",
+            "added": true
+          },
           {
             "text": "\\Delta = (a-b)(b-c) \\cdot 1 \\cdot \\begin{vmatrix} c & 1 \\\\ a & 1 \\end{vmatrix}",
             "render": "katex",
@@ -194,6 +220,15 @@
         "common_mistakes": [
           "Expanding along the first row and having to handle three terms.",
           "Attaching a minus sign to the (3,3) position; its sign is plus."
+        ],
+        "lines_compact": [
+          "Expand along C₃. Only row 3 has a non-zero",
+          "entry there, and the sign at that position is +.",
+          {
+            "text": "\\Delta = (a-b)(b-c) \\cdot 1 \\cdot \\begin{vmatrix} c & 1 \\\\ a & 1 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
         ]
       },
       {

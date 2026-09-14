@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.36, chapter 5 MATRICES, Very Short Answer question 23. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards the definition AB = BA = I separately from the existence condition det A ≠ 0 with a worked example, because a definition that omits the condition describes something that need not exist. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Related cards in the same unit: ts_ipe_m1a_mat_vsaq_inverse_1_2_3_minus5 and ts_ipe_m1a_mat_saq_inverse_formula_proof use the inverse; this question asks only for the definition."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.36, chapter 5 MATRICES, Very Short Answer question 23. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards the definition AB = BA = I separately from the existence condition det A ≠ 0 with a worked example, because a definition that omits the condition describes something that need not exist. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Related cards in the same unit: ts_ipe_m1a_mat_vsaq_inverse_1_2_3_minus5 and ts_ipe_m1a_mat_saq_inverse_formula_proof use the inverse; this question asks only for the definition. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say the definition of the inverse, and say when it exists.",
   "answer": {
@@ -103,14 +103,26 @@
           "only when A is non-singular. It is then unique,",
           "and A⁻¹ = (Adj A)/(det A).",
           {
+            "text": "Example:",
+            "added": true
+          },
+          {
             "text": "A = \\begin{bmatrix} 2 & 1 \\\\ 3 & 2 \\end{bmatrix}, \\quad \\det A = 1 \\neq 0",
             "render": "katex",
             "style": "eq"
           },
           {
+            "text": "(det A = (2)(2) − (1)(3) = 1)",
+            "added": true
+          },
+          {
             "text": "A^{-1} = \\begin{bmatrix} 2 & -1 \\\\ -3 & 2 \\end{bmatrix}, \\quad AA^{-1} = I",
             "render": "katex",
             "style": "eq"
+          },
+          {
+            "text": "(check (1,1): (2)(2) + (1)(−3) = 1)",
+            "added": true
           },
           {
             "text": "∴ AB = BA = I means B = A⁻¹, det A ≠ 0",
@@ -144,7 +156,26 @@
           "Writing A⁻¹ = (det A)/(Adj A), with the two the wrong way round.",
           "Giving an example whose determinant is 0."
         ],
-        "memory_tip": "No inverse without a non-zero determinant, because det A is the divisor in (Adj A)/(det A)."
+        "memory_tip": "No inverse without a non-zero determinant, because det A is the divisor in (Adj A)/(det A).",
+        "lines_compact": [
+          "A⁻¹ exists if and only if det A ≠ 0, that is",
+          "only when A is non-singular. It is then unique,",
+          "and A⁻¹ = (Adj A)/(det A).",
+          {
+            "text": "A = \\begin{bmatrix} 2 & 1 \\\\ 3 & 2 \\end{bmatrix}, \\quad \\det A = 1 \\neq 0",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "A^{-1} = \\begin{bmatrix} 2 & -1 \\\\ -3 & 2 \\end{bmatrix}, \\quad AA^{-1} = I",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "∴ AB = BA = I means B = A⁻¹, det A ≠ 0",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   }

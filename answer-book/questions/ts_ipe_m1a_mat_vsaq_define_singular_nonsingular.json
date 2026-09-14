@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.37, chapter 5 MATRICES, Very Short Answer question 29. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split follows the two things the question names, the definitions and the examples, so a student who defines both but gives no example earns exactly one mark. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.37, chapter 5 MATRICES, Very Short Answer question 29. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split follows the two things the question names, the definitions and the examples, so a student who defines both but gives no example earns exactly one mark. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Give both definitions in terms of the determinant, and one example of each.",
   "answer": {
@@ -102,11 +102,19 @@
             "render": "katex",
             "style": "eq"
           },
+          {
+            "text": "(det A = (1)(4) − (2)(2))",
+            "added": true
+          },
           "det A = 0, so A is singular.",
           {
             "text": "B = \\begin{bmatrix} 1 & 2 \\\\ 3 & 4 \\end{bmatrix}, \\quad \\det B = 4 - 6 = -2",
             "render": "katex",
             "style": "eq"
+          },
+          {
+            "text": "(det B = (1)(4) − (2)(3))",
+            "added": true
           },
           "det B = −2 ≠ 0, so B is non-singular.",
           {
@@ -141,7 +149,25 @@
           "Thinking the zero matrix is the only singular matrix.",
           "Labelling the examples the wrong way round."
         ],
-        "memory_tip": "A quick singular example: make one row a multiple of the other, and the determinant is 0."
+        "memory_tip": "A quick singular example: make one row a multiple of the other, and the determinant is 0.",
+        "lines_compact": [
+          {
+            "text": "A = \\begin{bmatrix} 1 & 2 \\\\ 2 & 4 \\end{bmatrix}, \\quad \\det A = 4 - 4 = 0",
+            "render": "katex",
+            "style": "eq"
+          },
+          "det A = 0, so A is singular.",
+          {
+            "text": "B = \\begin{bmatrix} 1 & 2 \\\\ 3 & 4 \\end{bmatrix}, \\quad \\det B = 4 - 6 = -2",
+            "render": "katex",
+            "style": "eq"
+          },
+          "det B = −2 ≠ 0, so B is non-singular.",
+          {
+            "text": "∴ A is singular, B is non-singular",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   }

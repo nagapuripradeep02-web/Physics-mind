@@ -42,7 +42,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.55, chapter 5 MATRICES, Long Answer question 9(v), Gauss-Jordan route. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+2+1+3+1 split matches every other unique-solution Gauss-Jordan answer in this unit. ONE CARD PER METHOD: the book asks this one system by Cramer's rule, by matrix inversion and by the Gauss-Jordan method, and this bank answers each method on its own card so that a student who opens one never has to read another. The siblings are ts_ipe_m1a_mat_cramer_x_minus_y_3z_5_negx and ts_ipe_m1a_mat_inverse_x_minus_y_3z_5_negx, and all three land on the same solution x = 0, y = 1, z = 2. A DIFFERENT system of a similar shape is already in the bank as ts_ipe_m1a_mat_cramer_x_minus_y_3z_5, whose third equation is x + 3y + z = 5 with a positive x; that card is not a duplicate of this one. PRINTED DEFECT IN THE STEM: the book prints the third equation as −x + 3y + 3z = 5, but every matrix it then writes uses the row (−1, 3, 1), that is −x + 3y + z = 5, and the book's own Δ = 50 and answer (0, 1, 2) belong to that version. This card is authored on −x + 3y + z = 5. The arithmetic settles it: with the printed 3z the determinant is 62, not 50, and the solution is x = 10/31, y = 5/31, z = 50/31 — fractions the book never prints; with z the determinant is 50 and the solution is (0, 1, 2), exactly what the book states. The book also mis-sets \"x − y + 33 = 5\" for x − y + 3z = 5 in its Cramer's-rule restatement of the same system. Both misprints are recorded here rather than silently repaired. Working checked twice: Δ = det A was expanded along R₁ and again along C₁, both giving 50, so the system was known to have one solution before the row reduction started, and the solution was substituted back into all three original equations (5 = 5, 0 = 0, 5 = 5). Paper position: Maths-1A Section C prints 3 long answers at 8 marks each and the student answers any 2; Matrices is one of the units that can fill a Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.55, chapter 5 MATRICES, Long Answer question 9(v), Gauss-Jordan route. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+2+1+3+1 split matches every other unique-solution Gauss-Jordan answer in this unit. ONE CARD PER METHOD: the book asks this one system by Cramer's rule, by matrix inversion and by the Gauss-Jordan method, and this bank answers each method on its own card so that a student who opens one never has to read another. The siblings are ts_ipe_m1a_mat_cramer_x_minus_y_3z_5_negx and ts_ipe_m1a_mat_inverse_x_minus_y_3z_5_negx, and all three land on the same solution x = 0, y = 1, z = 2. A DIFFERENT system of a similar shape is already in the bank as ts_ipe_m1a_mat_cramer_x_minus_y_3z_5, whose third equation is x + 3y + z = 5 with a positive x; that card is not a duplicate of this one. PRINTED DEFECT IN THE STEM: the book prints the third equation as −x + 3y + 3z = 5, but every matrix it then writes uses the row (−1, 3, 1), that is −x + 3y + z = 5, and the book's own Δ = 50 and answer (0, 1, 2) belong to that version. This card is authored on −x + 3y + z = 5. The arithmetic settles it: with the printed 3z the determinant is 62, not 50, and the solution is x = 10/31, y = 5/31, z = 50/31 — fractions the book never prints; with z the determinant is 50 and the solution is (0, 1, 2), exactly what the book states. The book also mis-sets \"x − y + 33 = 5\" for x − y + 3z = 5 in its Cramer's-rule restatement of the same system. Both misprints are recorded here rather than silently repaired. Working checked twice: Δ = det A was expanded along R₁ and again along C₁, both giving 50, so the system was known to have one solution before the row reduction started, and the solution was substituted back into all three original equations (5 = 5, 0 = 0, 5 = 5). Paper position: Maths-1A Section C prints 3 long answers at 8 marks each and the student answers any 2; Matrices is one of the units that can fill a Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this by the Gauss-Jordan method — say what matrix you write down first, which direction you clear in, and how you check the answer.",
   "answer": {
@@ -75,6 +75,11 @@
             "text": "\\left[\\begin{array}{ccc|c} 1 & -1 & 3 & 5 \\\\ 4 & 2 & -1 & 0 \\\\ -1 & 3 & 1 & 5 \\end{array}\\right]",
             "render": "katex",
             "style": "eq"
+          },
+          "(the constants are written as a fourth column,",
+          {
+            "text": "  after the bar; each row is one equation)",
+            "style": "indent"
           }
         ],
         "recall": {
@@ -115,13 +120,73 @@
         "margin_note": "Two marks. The top-left entry is already 1. Row 3 begins with −1, so it is ADDED rather than subtracted. Halving the new row 3 gives a leading 1 in column 2, so swap it up into the pivot position.",
         "memory_tip": "Row 3 begins with −1, so ADD row 1 to it. Then halve it to get a leading 1 and swap it up.",
         "lines": [
+          {
+            "text": "Each row operation below is worked out",
+            "added": true
+          },
+          {
+            "text": "  entry by entry:",
+            "style": "indent",
+            "added": true
+          },
           "R₂ → R₂ − 4R₁,  R₃ → R₃ + R₁",
+          {
+            "text": "R₂ − 4R₁:",
+            "added": true
+          },
+          {
+            "text": "  (4, 2, −1 | 0)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  − 4(1, −1, 3 | 5)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  = (0, 6, −13 | −20)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "R₃ + R₁:",
+            "added": true
+          },
+          {
+            "text": "  (−1, 3, 1 | 5)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  + (1, −1, 3 | 5)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  = (0, 2, 4 | 10)",
+            "style": "indent",
+            "added": true
+          },
           {
             "text": "\\left[\\begin{array}{ccc|c} 1 & -1 & 3 & 5 \\\\ 0 & 6 & -13 & -20 \\\\ 0 & 2 & 4 & 10 \\end{array}\\right]",
             "render": "katex",
             "style": "eq"
           },
           "R₃ → R₃ × ½, then R₂ ↔ R₃",
+          {
+            "text": "R₃ × ½: (0, 2, 4 | 10)",
+            "added": true
+          },
+          {
+            "text": "  → (0, 1, 2 | 5)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "R₂ ↔ R₃: rows 2 and 3 change places",
+            "added": true
+          },
           {
             "text": "\\left[\\begin{array}{ccc|c} 1 & -1 & 3 & 5 \\\\ 0 & 1 & 2 & 5 \\\\ 0 & 6 & -13 & -20 \\end{array}\\right]",
             "render": "katex",
@@ -156,6 +221,20 @@
           "Clearing the column with a pivot that is not 1, which forces fractions into every later row.",
           "Applying an operation to only part of a row — every entry moves, including the constant.",
           "Changing the pivot row while using it to clear the others."
+        ],
+        "lines_compact": [
+          "R₂ → R₂ − 4R₁,  R₃ → R₃ + R₁",
+          {
+            "text": "\\left[\\begin{array}{ccc|c} 1 & -1 & 3 & 5 \\\\ 0 & 6 & -13 & -20 \\\\ 0 & 2 & 4 & 10 \\end{array}\\right]",
+            "render": "katex",
+            "style": "eq"
+          },
+          "R₃ → R₃ × ½, then R₂ ↔ R₃",
+          {
+            "text": "\\left[\\begin{array}{ccc|c} 1 & -1 & 3 & 5 \\\\ 0 & 1 & 2 & 5 \\\\ 0 & 6 & -13 & -20 \\end{array}\\right]",
+            "render": "katex",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -169,11 +248,39 @@
         "lines": [
           "R₃ → R₃ − 6R₂",
           {
+            "text": "R₃ − 6R₂:",
+            "added": true
+          },
+          {
+            "text": "  (0, 6, −13 | −20)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  − 6(0, 1, 2 | 5)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  = (0, 0, −25 | −50)",
+            "style": "indent",
+            "added": true
+          },
+          {
             "text": "\\left[\\begin{array}{ccc|c} 1 & -1 & 3 & 5 \\\\ 0 & 1 & 2 & 5 \\\\ 0 & 0 & -25 & -50 \\end{array}\\right]",
             "render": "katex",
             "style": "eq"
           },
           "R₃ → R₃ × (−1/25)",
+          {
+            "text": "R₃ × −1/25: (0, 0, −25 | −50)",
+            "added": true
+          },
+          {
+            "text": "  → (0, 0, 1 | 2)",
+            "style": "indent",
+            "added": true
+          },
           {
             "text": "\\left[\\begin{array}{ccc|c} 1 & -1 & 3 & 5 \\\\ 0 & 1 & 2 & 5 \\\\ 0 & 0 & 1 & 2 \\end{array}\\right]",
             "render": "katex",
@@ -208,6 +315,20 @@
           "Dividing the row by the wrong entry.",
           "Dividing the coefficients but not the constant after the rule.",
           "Stopping here and calling it the answer; only z is known so far."
+        ],
+        "lines_compact": [
+          "R₃ → R₃ − 6R₂",
+          {
+            "text": "\\left[\\begin{array}{ccc|c} 1 & -1 & 3 & 5 \\\\ 0 & 1 & 2 & 5 \\\\ 0 & 0 & -25 & -50 \\end{array}\\right]",
+            "render": "katex",
+            "style": "eq"
+          },
+          "R₃ → R₃ × (−1/25)",
+          {
+            "text": "\\left[\\begin{array}{ccc|c} 1 & -1 & 3 & 5 \\\\ 0 & 1 & 2 & 5 \\\\ 0 & 0 & 1 & 2 \\end{array}\\right]",
+            "render": "katex",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -221,11 +342,68 @@
         "lines": [
           "R₁ → R₁ − 3R₃,  R₂ → R₂ − 2R₃",
           {
+            "text": "R₁ − 3R₃:",
+            "added": true
+          },
+          {
+            "text": "  (1, −1, 3 | 5)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  − 3(0, 0, 1 | 2)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  = (1, −1, 0 | −1)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "R₂ − 2R₃:",
+            "added": true
+          },
+          {
+            "text": "  (0, 1, 2 | 5)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  − 2(0, 0, 1 | 2)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  = (0, 1, 0 | 1)",
+            "style": "indent",
+            "added": true
+          },
+          {
             "text": "\\left[\\begin{array}{ccc|c} 1 & -1 & 0 & -1 \\\\ 0 & 1 & 0 & 1 \\\\ 0 & 0 & 1 & 2 \\end{array}\\right]",
             "render": "katex",
             "style": "eq"
           },
           "R₁ → R₁ + R₂",
+          {
+            "text": "R₁ + R₂:",
+            "added": true
+          },
+          {
+            "text": "  (1, −1, 0 | −1)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  + (0, 1, 0 | 1)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  = (1, 0, 0 | 0)",
+            "style": "indent",
+            "added": true
+          },
           {
             "text": "\\left[\\begin{array}{ccc|c} 1 & 0 & 0 & 0 \\\\ 0 & 1 & 0 & 1 \\\\ 0 & 0 & 1 & 2 \\end{array}\\right]",
             "render": "katex",
@@ -260,6 +438,20 @@
           "Stopping at the triangular form and back-substituting; that is Gauss, not Gauss-Jordan.",
           "Clearing upwards before the pivots are 1, which reintroduces fractions.",
           "Forgetting to carry the operation across the rule into the constant."
+        ],
+        "lines_compact": [
+          "R₁ → R₁ − 3R₃,  R₂ → R₂ − 2R₃",
+          {
+            "text": "\\left[\\begin{array}{ccc|c} 1 & -1 & 0 & -1 \\\\ 0 & 1 & 0 & 1 \\\\ 0 & 0 & 1 & 2 \\end{array}\\right]",
+            "render": "katex",
+            "style": "eq"
+          },
+          "R₁ → R₁ + R₂",
+          {
+            "text": "\\left[\\begin{array}{ccc|c} 1 & 0 & 0 & 0 \\\\ 0 & 1 & 0 & 1 \\\\ 0 & 0 & 1 & 2 \\end{array}\\right]",
+            "render": "katex",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -272,6 +464,10 @@
         "memory_tip": "Each row is now a one-letter equation, so the answer is read off with no substitution. Then check it in the original equations.",
         "lines": [
           "Each row is now a single equation:",
+          {
+            "text": "(a row (0, 1, 0 | 2) reads 0x + 1y + 0z = 2)",
+            "added": true
+          },
           "Row 1: x = 0,  Row 2: y = 1,  Row 3: z = 2",
           "Check: 0 − 1 + 3(2) = 5  ✓",
           "4(0) + 2(1) − 2 = 0  ✓",
@@ -309,6 +505,17 @@
           "Reading the values in the wrong order.",
           "Reading the answer off an earlier matrix instead of the final one.",
           "Stopping without substituting the three values back into all three equations."
+        ],
+        "lines_compact": [
+          "Each row is now a single equation:",
+          "Row 1: x = 0,  Row 2: y = 1,  Row 3: z = 2",
+          "Check: 0 − 1 + 3(2) = 5  ✓",
+          "4(0) + 2(1) − 2 = 0  ✓",
+          "−0 + 3(1) + 2 = 5  ✓",
+          {
+            "text": "∴ x = 0, y = 1, z = 2",
+            "style": "boxed"
+          }
         ]
       }
     ]

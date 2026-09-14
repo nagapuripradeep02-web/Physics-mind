@@ -51,7 +51,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.33 — LAQ chapter 3 Matrices, answer 20.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 16,18. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S. Book p.33 sets two Gauss-Jordan questions side by side in two columns, leaving no margin for the [N Marks] tags the chapter uses elsewhere, so no split is printed for any Gauss-Jordan answer. The 1+2+1+2+1 above follows the only split this book states for a solving-a-system question — the note on book p.30 reading 'Just finding A⁻¹ gives u 4 Marks. For remaining steps u get 3 Marks' — by weighting the bulk row-reduction (4 marks across clearing down and clearing up) against the setup and the finish (3 marks). The row-operation chain here is the book's own. The SAME split and the SAME step ids are used on both unique-solution Gauss-Jordan answers in this unit. The two remaining Gauss-Jordan answers, 20.3 and 20.4, do NOT share this skeleton: their systems have an infinite solution set and no solution respectively, so their closing steps are a different argument. Star rank is the CHAPTER's ★★★, not this question's. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to the \"Clear upwards to the identity\" step."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.33 — LAQ chapter 3 Matrices, answer 20.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 16,18. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S. Book p.33 sets two Gauss-Jordan questions side by side in two columns, leaving no margin for the [N Marks] tags the chapter uses elsewhere, so no split is printed for any Gauss-Jordan answer. The 1+2+1+2+1 above follows the only split this book states for a solving-a-system question — the note on book p.30 reading 'Just finding A⁻¹ gives u 4 Marks. For remaining steps u get 3 Marks' — by weighting the bulk row-reduction (4 marks across clearing down and clearing up) against the setup and the finish (3 marks). The row-operation chain here is the book's own. The SAME split and the SAME step ids are used on both unique-solution Gauss-Jordan answers in this unit. The two remaining Gauss-Jordan answers, 20.3 and 20.4, do NOT share this skeleton: their systems have an infinite solution set and no solution respectively, so their closing steps are a different argument. Star rank is the CHAPTER's ★★★, not this question's. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to the \"Clear upwards to the identity\" step. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this by the Gauss-Jordan method — say what matrix you write down first, which direction you clear in, and how you get the answer at the end.",
   "answer": {
@@ -84,6 +84,11 @@
             "text": "[A \\mid D] = \\left[\\begin{array}{ccc|c} 2 & -1 & 3 & 9 \\\\ 1 & 1 & 1 & 6 \\\\ 1 & -1 & 1 & 2 \\end{array}\\right]",
             "render": "katex",
             "style": "eq"
+          },
+          "(the constants are written as a fourth column,",
+          {
+            "text": "  after the bar; each row is one equation)",
+            "style": "indent"
           }
         ],
         "recall": {
@@ -124,7 +129,20 @@
         "margin_note": "Two marks. The top-left entry is 2, so swap rows 1 and 2 first — row 2 already starts with a 1, and a leading 1 keeps every later operation free of fractions.",
         "memory_tip": "Swap rows 1 and 2 first — row 2 already starts with a 1, and a leading 1 keeps later steps fraction-free.",
         "lines": [
+          {
+            "text": "Each row operation below is worked out",
+            "added": true
+          },
+          {
+            "text": "  entry by entry:",
+            "style": "indent",
+            "added": true
+          },
           "R₁ ↔ R₂  (to get a leading 1)",
+          {
+            "text": "R₁ ↔ R₂: rows 1 and 2 change places",
+            "added": true
+          },
           {
             "text": "\\left[\\begin{array}{ccc|c} 1 & 1 & 1 & 6 \\\\ 2 & -1 & 3 & 9 \\\\ 1 & -1 & 1 & 2 \\end{array}\\right]",
             "render": "katex",
@@ -132,11 +150,68 @@
           },
           "R₂ → R₂ − 2R₁,  R₃ → R₃ − R₁",
           {
+            "text": "R₂ − 2R₁:",
+            "added": true
+          },
+          {
+            "text": "  (2, −1, 3 | 9)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  − 2(1, 1, 1 | 6)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  = (0, −3, 1 | −3)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "R₃ − R₁:",
+            "added": true
+          },
+          {
+            "text": "  (1, −1, 1 | 2)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  − (1, 1, 1 | 6)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  = (0, −2, 0 | −4)",
+            "style": "indent",
+            "added": true
+          },
+          {
             "text": "\\left[\\begin{array}{ccc|c} 1 & 1 & 1 & 6 \\\\ 0 & -3 & 1 & -3 \\\\ 0 & -2 & 0 & -4 \\end{array}\\right]",
             "render": "katex",
             "style": "eq"
           },
           "R₂ → R₂ − R₃",
+          {
+            "text": "R₂ − R₃:",
+            "added": true
+          },
+          {
+            "text": "  (0, −3, 1 | −3)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  − (0, −2, 0 | −4)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  = (0, −1, 1 | 1)",
+            "style": "indent",
+            "added": true
+          },
           {
             "text": "\\left[\\begin{array}{ccc|c} 1 & 1 & 1 & 6 \\\\ 0 & -1 & 1 & 1 \\\\ 0 & -2 & 0 & -4 \\end{array}\\right]",
             "render": "katex",
@@ -171,6 +246,26 @@
           "Starting to clear the column before securing a leading 1, which fills the working with fractions.",
           "Applying an operation to only part of a row — every entry moves, including the constant.",
           "Changing the pivot row while using it to clear the others."
+        ],
+        "lines_compact": [
+          "R₁ ↔ R₂  (to get a leading 1)",
+          {
+            "text": "\\left[\\begin{array}{ccc|c} 1 & 1 & 1 & 6 \\\\ 2 & -1 & 3 & 9 \\\\ 1 & -1 & 1 & 2 \\end{array}\\right]",
+            "render": "katex",
+            "style": "eq"
+          },
+          "R₂ → R₂ − 2R₁,  R₃ → R₃ − R₁",
+          {
+            "text": "\\left[\\begin{array}{ccc|c} 1 & 1 & 1 & 6 \\\\ 0 & -3 & 1 & -3 \\\\ 0 & -2 & 0 & -4 \\end{array}\\right]",
+            "render": "katex",
+            "style": "eq"
+          },
+          "R₂ → R₂ − R₃",
+          {
+            "text": "\\left[\\begin{array}{ccc|c} 1 & 1 & 1 & 6 \\\\ 0 & -1 & 1 & 1 \\\\ 0 & -2 & 0 & -4 \\end{array}\\right]",
+            "render": "katex",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -184,11 +279,39 @@
         "lines": [
           "R₃ → R₃ − 2R₂",
           {
+            "text": "R₃ − 2R₂:",
+            "added": true
+          },
+          {
+            "text": "  (0, −2, 0 | −4)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  − 2(0, −1, 1 | 1)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  = (0, 0, −2 | −6)",
+            "style": "indent",
+            "added": true
+          },
+          {
             "text": "\\left[\\begin{array}{ccc|c} 1 & 1 & 1 & 6 \\\\ 0 & -1 & 1 & 1 \\\\ 0 & 0 & -2 & -6 \\end{array}\\right]",
             "render": "katex",
             "style": "eq"
           },
           "R₃ → R₃ × (−½)",
+          {
+            "text": "R₃ × −½: (0, 0, −2 | −6)",
+            "added": true
+          },
+          {
+            "text": "  → (0, 0, 1 | 3)",
+            "style": "indent",
+            "added": true
+          },
           {
             "text": "\\left[\\begin{array}{ccc|c} 1 & 1 & 1 & 6 \\\\ 0 & -1 & 1 & 1 \\\\ 0 & 0 & 1 & 3 \\end{array}\\right]",
             "render": "katex",
@@ -223,6 +346,20 @@
           "Dividing the row by the wrong entry.",
           "Dividing the coefficients but not the constant after the rule.",
           "Stopping here and calling it the answer; only z is known so far."
+        ],
+        "lines_compact": [
+          "R₃ → R₃ − 2R₂",
+          {
+            "text": "\\left[\\begin{array}{ccc|c} 1 & 1 & 1 & 6 \\\\ 0 & -1 & 1 & 1 \\\\ 0 & 0 & -2 & -6 \\end{array}\\right]",
+            "render": "katex",
+            "style": "eq"
+          },
+          "R₃ → R₃ × (−½)",
+          {
+            "text": "\\left[\\begin{array}{ccc|c} 1 & 1 & 1 & 6 \\\\ 0 & -1 & 1 & 1 \\\\ 0 & 0 & 1 & 3 \\end{array}\\right]",
+            "render": "katex",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -236,11 +373,68 @@
         "lines": [
           "R₁ → R₁ − R₃,  R₂ → R₂ − R₃",
           {
+            "text": "R₁ − R₃:",
+            "added": true
+          },
+          {
+            "text": "  (1, 1, 1 | 6)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  − (0, 0, 1 | 3)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  = (1, 1, 0 | 3)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "R₂ − R₃:",
+            "added": true
+          },
+          {
+            "text": "  (0, −1, 1 | 1)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  − (0, 0, 1 | 3)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  = (0, −1, 0 | −2)",
+            "style": "indent",
+            "added": true
+          },
+          {
             "text": "\\left[\\begin{array}{ccc|c} 1 & 1 & 0 & 3 \\\\ 0 & -1 & 0 & -2 \\\\ 0 & 0 & 1 & 3 \\end{array}\\right]",
             "render": "katex",
             "style": "eq"
           },
           "R₁ → R₁ + R₂",
+          {
+            "text": "R₁ + R₂:",
+            "added": true
+          },
+          {
+            "text": "  (1, 1, 0 | 3)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  + (0, −1, 0 | −2)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  = (1, 0, 0 | 1)",
+            "style": "indent",
+            "added": true
+          },
           {
             "text": "\\left[\\begin{array}{ccc|c} 1 & 0 & 0 & 1 \\\\ 0 & -1 & 0 & -2 \\\\ 0 & 0 & 1 & 3 \\end{array}\\right]",
             "render": "katex",
@@ -275,6 +469,20 @@
           "Stopping at the triangular form and back-substituting; that is Gauss, not Gauss-Jordan.",
           "Clearing upwards before the pivots are 1, which reintroduces fractions.",
           "Forgetting to carry the operation across the rule into the constant."
+        ],
+        "lines_compact": [
+          "R₁ → R₁ − R₃,  R₂ → R₂ − R₃",
+          {
+            "text": "\\left[\\begin{array}{ccc|c} 1 & 1 & 0 & 3 \\\\ 0 & -1 & 0 & -2 \\\\ 0 & 0 & 1 & 3 \\end{array}\\right]",
+            "render": "katex",
+            "style": "eq"
+          },
+          "R₁ → R₁ + R₂",
+          {
+            "text": "\\left[\\begin{array}{ccc|c} 1 & 0 & 0 & 1 \\\\ 0 & -1 & 0 & -2 \\\\ 0 & 0 & 1 & 3 \\end{array}\\right]",
+            "render": "katex",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -287,9 +495,32 @@
         "memory_tip": "Each row is now a one-letter equation, so the answer is read off with no substitution.",
         "lines": [
           "Each row is now a single equation:",
+          {
+            "text": "(a row (0, 1, 0 | 2) reads 0x + 1y + 0z = 2)",
+            "added": true
+          },
           "Row 1: x = 1",
           "Row 2: −y = −2  ⇒  y = 2",
           "Row 3: z = 3",
+          {
+            "text": "Check in the three equations:",
+            "added": true
+          },
+          {
+            "text": "  (2)(1) + (−1)(2) + (3)(3) = 9 ✓",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  (1)(1) + (1)(2) + (1)(3) = 6 ✓",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  (1)(1) + (−1)(2) + (1)(3) = 2 ✓",
+            "style": "indent",
+            "added": true
+          },
           {
             "text": "∴ x = 1, y = 2, z = 3",
             "style": "boxed"
@@ -323,6 +554,16 @@
           "Reading the values in the wrong order.",
           "Forgetting a row left with a −1 pivot, which needs one sign flip.",
           "Never substituting back to check — x=1, y=2, z=3 in the first equation gives 2−2+9 = 9."
+        ],
+        "lines_compact": [
+          "Each row is now a single equation:",
+          "Row 1: x = 1",
+          "Row 2: −y = −2  ⇒  y = 2",
+          "Row 3: z = 3",
+          {
+            "text": "∴ x = 1, y = 2, z = 3",
+            "style": "boxed"
+          }
         ]
       }
     ]

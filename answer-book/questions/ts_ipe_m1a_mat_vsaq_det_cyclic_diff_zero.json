@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.37, chapter 5 MATRICES, Very Short Answer question 31. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape puts one mark on the column operation and one on the conclusion it forces. Paper position: Maths-1A Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern; Matrices fills one of those Section A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.37, chapter 5 MATRICES, Very Short Answer question 31. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape puts one mark on the column operation and one on the conclusion it forces. Paper position: Maths-1A Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern; Matrices fills one of those Section A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would show this determinant is zero — name the operation you use.",
   "answer": {
@@ -59,6 +59,7 @@
             "style": "eq"
           },
           "Apply C₁ → C₁ + C₂ + C₃.",
+          "(adding columns does not change the value)",
           "In every row the three entries add to",
           "(a−b) + (b−c) + (c−a) = 0."
         ],
@@ -106,6 +107,10 @@
           },
           "A determinant with a zero column is 0.",
           {
+            "text": "(expanding along C₁, every term has the factor 0)",
+            "added": true
+          },
+          {
             "text": "∴ Δ = 0",
             "style": "boxed"
           }
@@ -135,6 +140,19 @@
         "common_mistakes": [
           "Writing 'hence proved' without naming the zero column.",
           "Deleting the zero column and expanding the 3×2 block that is left."
+        ],
+        "lines_compact": [
+          "So C₁ becomes a column of zeros:",
+          {
+            "text": "\\Delta = \\begin{vmatrix} 0 & b-c & c-a \\\\ 0 & c-a & a-b \\\\ 0 & a-b & b-c \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "A determinant with a zero column is 0.",
+          {
+            "text": "∴ Δ = 0",
+            "style": "boxed"
+          }
         ]
       }
     ]

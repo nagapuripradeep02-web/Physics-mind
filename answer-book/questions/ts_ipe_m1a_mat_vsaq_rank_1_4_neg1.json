@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.35, chapter 5 MATRICES, Very Short Answer question 20(ii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape puts one mark on the test that decides the rank and one on stating it. Paper position: Maths-1A Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern; Matrices fills one of those Section A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.35, chapter 5 MATRICES, Very Short Answer question 20(ii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape puts one mark on the test that decides the rank and one on stating it. Paper position: Maths-1A Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern; Matrices fills one of those Section A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find the rank of this matrix.",
   "answer": {
@@ -57,6 +57,27 @@
             "text": "|A| = \\begin{vmatrix} 1 & 4 & -1 \\\\ 2 & 3 & 0 \\\\ 0 & 1 & 2 \\end{vmatrix}",
             "render": "katex",
             "style": "eq"
+          },
+          "Expand along R₁: each entry times the 2×2",
+          {
+            "text": "  determinant left when its row and column",
+            "style": "indent"
+          },
+          {
+            "text": "  are deleted, with signs + − +:",
+            "style": "indent"
+          },
+          {
+            "text": "  + (1) × [(3)(2) − (0)(1)]",
+            "style": "indent"
+          },
+          {
+            "text": "  − (4) × [(2)(2) − (0)(0)]",
+            "style": "indent"
+          },
+          {
+            "text": "  + (−1) × [(2)(1) − (3)(0)]",
+            "style": "indent"
           },
           "= 1(6 − 0) − 4(4 − 0) + (−1)(2 − 0)",
           "= 6 − 16 − 2 = −12"
@@ -97,6 +118,10 @@
         "margin_note": "Second mark. A non-zero minor of order 3 exists, and a 3×3 matrix has no minor of order 4, so 3 is the largest order possible.",
         "memory_tip": "A non-zero 3×3 determinant settles it at once — the rank is the full 3.",
         "lines": [
+          {
+            "text": "(the rank is the order of the largest non-zero minor)",
+            "added": true
+          },
           "|A| = −12 ≠ 0, so a minor of order 3 is",
           "non-zero. A 3×3 matrix has no minor of",
           "order 4, so 3 is the largest order.",
@@ -130,6 +155,15 @@
         "common_mistakes": [
           "Going on to test 2×2 minors when the 3×3 one is already non-zero.",
           "Writing the value −12 as the rank."
+        ],
+        "lines_compact": [
+          "|A| = −12 ≠ 0, so a minor of order 3 is",
+          "non-zero. A 3×3 matrix has no minor of",
+          "order 4, so 3 is the largest order.",
+          {
+            "text": "∴ Rank A = 3",
+            "style": "boxed"
+          }
         ]
       }
     ]

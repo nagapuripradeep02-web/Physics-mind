@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.33, chapter 5 MATRICES, Very Short Answer question 13. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards the written definition and the diagonal sum separately, because the question asks for both and a bare number answers only half of it. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Two records for the reviewer. (1) The proposed question_id carries the word \"symmetric\", but the matrix printed in the stem is NOT symmetric: its (1,2) entry is 2 while its (2,1) entry is 0. The trace does not depend on that, so the card is authored on the matrix as printed and says nothing about symmetry; the file name is kept as assigned. (2) Related card in the same unit: ts_ipe_m1a_mat_vsaq_trace asks for the trace of a different matrix, so the two are separate questions that share one definition."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.33, chapter 5 MATRICES, Very Short Answer question 13. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards the written definition and the diagonal sum separately, because the question asks for both and a bare number answers only half of it. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Two records for the reviewer. (1) The proposed question_id carries the word \"symmetric\", but the matrix printed in the stem is NOT symmetric: its (1,2) entry is 2 while its (2,1) entry is 0. The trace does not depend on that, so the card is authored on the matrix as printed and says nothing about symmetry; the file name is kept as assigned. (2) Related card in the same unit: ts_ipe_m1a_mat_vsaq_trace asks for the trace of a different matrix, so the two are separate questions that share one definition. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say what the trace of a matrix is, and how you would find it for this matrix.",
   "answer": {
@@ -104,6 +104,15 @@
             "style": "eq"
           },
           "The principal diagonal is 1, −1, 1.",
+          {
+            "text": "(a₁₁ = 1, a₂₂ = −1, a₃₃ = 1; the fractions are",
+            "added": true
+          },
+          {
+            "text": "  off the diagonal)",
+            "style": "indent",
+            "added": true
+          },
           "Tr(A) = 1 + (−1) + 1 = 1",
           {
             "text": "∴ Tr(A) = 1",
@@ -137,7 +146,20 @@
           "Adding every entry of the matrix.",
           "Using the other diagonal, from top right to bottom left."
         ],
-        "memory_tip": "Read only the top-left to bottom-right line: 1, −1, 1."
+        "memory_tip": "Read only the top-left to bottom-right line: 1, −1, 1.",
+        "lines_compact": [
+          {
+            "text": "A = \\begin{bmatrix} 1 & 2 & -\\frac{1}{2} \\\\ 0 & -1 & 2 \\\\ -\\frac{1}{2} & 2 & 1 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "The principal diagonal is 1, −1, 1.",
+          "Tr(A) = 1 + (−1) + 1 = 1",
+          {
+            "text": "∴ Tr(A) = 1",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   }

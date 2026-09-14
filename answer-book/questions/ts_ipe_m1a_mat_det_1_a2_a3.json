@@ -59,7 +59,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.23 — LAQ chapter 3 Matrices, answer 13, on a ★★★ SSP (Super Scoring Page), and the book's self-declared 'No.1 in Dets'. The mark split is PRINTED in that book's margin as [1 Mark] against five working lines and [2 Marks] against the closing expansion — a sourced 1+1+1+1+1+2, not an inference. Appearances are printed board-split (TS 19 · AP 17,18). Star rank is the CHAPTER's ★★★, not this question's. ONE PRESENTATION CHANGE, made deliberately: the book prints a full intermediate determinant whose third-column entries are (b−a)(b²+ba+a²) and (c−a)(c²+ca+a²). That line is far wider than this page's body, so the two factorisations are written on their own line first and the determinant is then shown AFTER the common factors leave. Same mathematics, same number of marked steps, one fewer unreadable line. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to the \"Expand and simplify to the required form\" step."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.23 — LAQ chapter 3 Matrices, answer 13, on a ★★★ SSP (Super Scoring Page), and the book's self-declared 'No.1 in Dets'. The mark split is PRINTED in that book's margin as [1 Mark] against five working lines and [2 Marks] against the closing expansion — a sourced 1+1+1+1+1+2, not an inference. Appearances are printed board-split (TS 19 · AP 17,18). Star rank is the CHAPTER's ★★★, not this question's. ONE PRESENTATION CHANGE, made deliberately: the book prints a full intermediate determinant whose third-column entries are (b−a)(b²+ba+a²) and (c−a)(c²+ca+a²). That line is far wider than this page's body, so the two factorisations are written on their own line first and the determinant is then shown AFTER the common factors leave. Same mathematics, same number of marked steps, one fewer unreadable line. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to the \"Expand and simplify to the required form\" step. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this one — name the row operations in order, say what you take common at each stage, and say what the last bracket works out to.",
   "answer": {
@@ -84,6 +84,11 @@
             "text": "\\Delta = \\text{L.H.S} = \\begin{vmatrix} 1 & a^2 & a^3 \\\\ 1 & b^2 & b^3 \\\\ 1 & c^2 & c^3 \\end{vmatrix}",
             "render": "katex",
             "style": "eq"
+          },
+          "(Subtracting R₁ from R₂ and R₃ makes two zeros",
+          {
+            "text": "  in C₁, so one term is left when expanding.)",
+            "style": "indent"
           }
         ],
         "recall": {
@@ -125,6 +130,18 @@
         "lines": [
           "R₂ → R₂ − R₁ and R₃ → R₃ − R₁:",
           {
+            "text": "(these row operations do not change the value)",
+            "added": true
+          },
+          {
+            "text": "R₂ − R₁: (1 − 1, b² − a², b³ − a³)",
+            "added": true
+          },
+          {
+            "text": "R₃ − R₁: (1 − 1, c² − a², c³ − a³)",
+            "added": true
+          },
+          {
             "text": "\\Delta = \\begin{vmatrix} 1 & a^2 & a^3 \\\\ 0 & b^2-a^2 & b^3-a^3 \\\\ 0 & c^2-a^2 & c^3-a^3 \\end{vmatrix}",
             "render": "katex",
             "style": "eq"
@@ -157,6 +174,14 @@
         "common_mistakes": [
           "Doing R₁ − R₂ instead of R₂ − R₁, which flips the sign of the final answer.",
           "Changing row 1 as well; the row you subtract BY must stay as it is."
+        ],
+        "lines_compact": [
+          "R₂ → R₂ − R₁ and R₃ → R₃ − R₁:",
+          {
+            "text": "\\Delta = \\begin{vmatrix} 1 & a^2 & a^3 \\\\ 0 & b^2-a^2 & b^3-a^3 \\\\ 0 & c^2-a^2 & c^3-a^3 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -169,7 +194,15 @@
         "memory_tip": "Both differences leave the SAME bracket, and that shared bracket comes out next.",
         "lines": [
           "b² − a² = (b−a)(a+b)",
+          {
+            "text": "(difference of squares)",
+            "added": true
+          },
           "b³ − a³ = (b−a)(a² + ab + b²)",
+          {
+            "text": "(difference of cubes: p³ − q³ = (p − q)(p² + pq + q²))",
+            "added": true
+          },
           "The same two results hold with c in place of b.",
           "So R₂ has (b−a) in both entries, R₃ has (c−a)."
         ],
@@ -201,6 +234,12 @@
           "Writing b³ − a³ = (b−a)³, which is wrong.",
           "Getting the middle sign wrong: the second bracket is a² + ab + b², all plus.",
           "Factorising the squares but leaving the cubes alone."
+        ],
+        "lines_compact": [
+          "b² − a² = (b−a)(a+b)",
+          "b³ − a³ = (b−a)(a² + ab + b²)",
+          "The same two results hold with c in place of b.",
+          "So R₂ has (b−a) in both entries, R₃ has (c−a)."
         ]
       },
       {
@@ -213,6 +252,15 @@
         "memory_tip": "(b−a) leaves row 2 and (c−a) leaves row 3, and what stays behind is small enough to read.",
         "lines": [
           "Taking (b−a) from R₂ and (c−a) from R₃:",
+          {
+            "text": "(a factor common to a whole row can be taken",
+            "added": true
+          },
+          {
+            "text": "  out of the determinant)",
+            "style": "indent",
+            "added": true
+          },
           {
             "text": "\\Delta = (b-a)(c-a) \\begin{vmatrix} 1 & a^2 & a^3 \\\\ 0 & a+b & a^2+ab+b^2 \\\\ 0 & a+c & a^2+ac+c^2 \\end{vmatrix}",
             "render": "katex",
@@ -246,6 +294,14 @@
         "common_mistakes": [
           "Taking the factor out of a column instead of a row.",
           "Taking (b−a) out twice because it appeared in two entries of the same row."
+        ],
+        "lines_compact": [
+          "Taking (b−a) from R₂ and (c−a) from R₃:",
+          {
+            "text": "\\Delta = (b-a)(c-a) \\begin{vmatrix} 1 & a^2 & a^3 \\\\ 0 & a+b & a^2+ab+b^2 \\\\ 0 & a+c & a^2+ac+c^2 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -258,8 +314,21 @@
         "memory_tip": "Rows 2 and 3 now look alike, so R₃−R₂ is what makes (c−b) appear. This is the step most often missed.",
         "lines": [
           "R₃ → R₃ − R₂:",
+          {
+            "text": "First entry: 0 − 0 = 0",
+            "added": true
+          },
           "Middle entry:  (a+c) − (a+b) = c − b",
           "Last entry:  (a²+ac+c²) − (a²+ab+b²)",
+          {
+            "text": "(the a² cancels; ac − ab = a(c − b) and",
+            "added": true
+          },
+          {
+            "text": "  c² − b² = (c − b)(c + b))",
+            "style": "indent",
+            "added": true
+          },
           "  = a(c−b) + (c−b)(c+b) = (c−b)(a+b+c)"
         ],
         "recall": {
@@ -289,6 +358,12 @@
           "Doing R₂ − R₃ and getting the opposite sign.",
           "Expanding (a²+ac+c²) − (a²+ab+b²) into loose terms and never spotting the (c−b).",
           "Forgetting that a² cancels between the two entries."
+        ],
+        "lines_compact": [
+          "R₃ → R₃ − R₂:",
+          "Middle entry:  (a+c) − (a+b) = c − b",
+          "Last entry:  (a²+ac+c²) − (a²+ab+b²)",
+          "  = a(c−b) + (c−b)(c+b) = (c−b)(a+b+c)"
         ]
       },
       {
@@ -301,6 +376,10 @@
         "memory_tip": "All three brackets are now outside; only the (ab+bc+ca) is still to come.",
         "lines": [
           "Taking (c−b) common from R₃:",
+          {
+            "text": "(it is in both non-zero entries of R₃)",
+            "added": true
+          },
           {
             "text": "\\Delta = (b-a)(c-a)(c-b) \\begin{vmatrix} 1 & a^2 & a^3 \\\\ 0 & a+b & a^2+ab+b^2 \\\\ 0 & 1 & a+b+c \\end{vmatrix}",
             "render": "katex",
@@ -333,6 +412,14 @@
         "common_mistakes": [
           "Leaving (c−b) inside and trying to expand with it still there.",
           "Writing (b−c) instead of (c−b) and losing a sign."
+        ],
+        "lines_compact": [
+          "Taking (c−b) common from R₃:",
+          {
+            "text": "\\Delta = (b-a)(c-a)(c-b) \\begin{vmatrix} 1 & a^2 & a^3 \\\\ 0 & a+b & a^2+ab+b^2 \\\\ 0 & 1 & a+b+c \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -345,11 +432,41 @@
         "memory_tip": "Expand along column 1 — only the top 1 contributes — then a² and b² cancel.",
         "lines": [
           "Expanding along C₁:",
+          {
+            "text": "(C₁ is 1, 0, 0, so only the 1 gives a term; its",
+            "added": true
+          },
+          {
+            "text": "  sign is + and its minor is the lower-right 2×2)",
+            "style": "indent",
+            "added": true
+          },
           "Δ = (b−a)(c−a)(c−b)[(a+b)(a+b+c) − (a²+ab+b²)]",
+          {
+            "text": "Open the first product:",
+            "added": true
+          },
           "(a+b)(a+b+c) = a² + 2ab + b² + ca + cb",
+          {
+            "text": "((a+b)(a+b+c) = a² + ab + ac + ab + b² + bc)",
+            "added": true
+          },
           "Subtracting:  ab + bc + ca",
+          {
+            "text": "(a² and b² cancel, and 2ab − ab = ab)",
+            "added": true
+          },
           "Δ = (b−a)(c−a)(c−b)(ab+bc+ca)",
           "Two sign flips give the asked-for order:",
+          {
+            "text": "((b − a) = −(a − b) and (c − b) = −(b − c);",
+            "added": true
+          },
+          {
+            "text": "  (−1)(−1) = 1)",
+            "style": "indent",
+            "added": true
+          },
           {
             "text": "Δ = (a−b)(b−c)(c−a)(ab+bc+ca) = R.H.S",
             "style": "boxed"
@@ -384,6 +501,18 @@
           "Dropping the minus sign across the whole second bracket and getting 2a² + 3ab + 2b².",
           "Stopping at (b−a)(c−a)(c−b) and never writing the order the question asked for.",
           "Flipping only one bracket, which changes the sign of the answer."
+        ],
+        "lines_compact": [
+          "Expanding along C₁:",
+          "Δ = (b−a)(c−a)(c−b)[(a+b)(a+b+c) − (a²+ab+b²)]",
+          "(a+b)(a+b+c) = a² + 2ab + b² + ca + cb",
+          "Subtracting:  ab + bc + ca",
+          "Δ = (b−a)(c−a)(c−b)(ab+bc+ca)",
+          "Two sign flips give the asked-for order:",
+          {
+            "text": "Δ = (a−b)(b−c)(c−a)(ab+bc+ca) = R.H.S",
+            "style": "boxed"
+          }
         ]
       }
     ]

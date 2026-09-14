@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 5 MATRICES, Very Short Answer question 10, book p.33. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split gives one mark to each of the two matrices asked for, and Bᵀ is written inside the first step because both parts need it. ORDERS: A is 3×2 and B is 2×3, so Bᵀ is 3×2 and both sums are defined; A + B itself would not be. CHECKED: every entry of both answers was recomputed a second time straight from the stem, as 2aᵢⱼ + bⱼᵢ and 3bⱼᵢ − aᵢⱼ, and matched. Paper position: Maths-1A Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 5 MATRICES, Very Short Answer question 10, book p.33. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split gives one mark to each of the two matrices asked for, and Bᵀ is written inside the first step because both parts need it. ORDERS: A is 3×2 and B is 2×3, so Bᵀ is 3×2 and both sums are defined; A + B itself would not be. CHECKED: every entry of both answers was recomputed a second time straight from the stem, as 2aᵢⱼ + bⱼᵢ and 3bⱼᵢ − aᵢⱼ, and matched. Paper position: Maths-1A Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would work out 2A + Bᵀ and 3Bᵀ − A here.",
   "answer": {
@@ -58,11 +58,17 @@
             "render": "katex",
             "style": "eq"
           },
+          "(2A: every entry of A × 2)",
+          {
+            "text": "  (−2, 1), (5, 0), (−1, 4) → (−4, 2), (10, 0), (−2, 8)",
+            "style": "indent"
+          },
           {
             "text": "2A + B^{T} = \\begin{bmatrix} -4 & 2 \\\\ 10 & 0 \\\\ -2 & 8 \\end{bmatrix} + \\begin{bmatrix} -2 & 4 \\\\ 3 & 0 \\\\ 1 & 2 \\end{bmatrix} = \\begin{bmatrix} -6 & 6 \\\\ 13 & 0 \\\\ -1 & 10 \\end{bmatrix}",
             "render": "katex",
             "style": "eq"
-          }
+          },
+          "(add in each position: −4 + (−2) = −6, and so on)"
         ],
         "recall": {
           "credit": "say_it",
@@ -101,9 +107,27 @@
         "memory_tip": "Multiply Bᵀ by 3 first, then subtract A once. Subtracting before scaling changes the answer.",
         "lines": [
           {
+            "text": "(3Bᵀ: every entry of Bᵀ × 3)",
+            "added": true
+          },
+          {
             "text": "3B^{T} - A = \\begin{bmatrix} -6 & 12 \\\\ 9 & 0 \\\\ 3 & 6 \\end{bmatrix} - \\begin{bmatrix} -2 & 1 \\\\ 5 & 0 \\\\ -1 & 4 \\end{bmatrix} = \\begin{bmatrix} -4 & 11 \\\\ 4 & 0 \\\\ 4 & 2 \\end{bmatrix}",
             "render": "katex",
             "style": "eq"
+          },
+          {
+            "text": "(subtract in each position: −6 − (−2) = −4,",
+            "added": true
+          },
+          {
+            "text": "  12 − 1 = 11, 9 − 5 = 4, 0 − 0 = 0,",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  3 − (−1) = 4, 6 − 4 = 2)",
+            "style": "indent",
+            "added": true
           },
           "Both answers are 3×2 matrices.",
           {
@@ -136,6 +160,18 @@
         "common_mistakes": [
           "Computing A − 3Bᵀ and getting every sign wrong.",
           "Subtracting A before multiplying Bᵀ by 3."
+        ],
+        "lines_compact": [
+          {
+            "text": "3B^{T} - A = \\begin{bmatrix} -6 & 12 \\\\ 9 & 0 \\\\ 3 & 6 \\end{bmatrix} - \\begin{bmatrix} -2 & 1 \\\\ 5 & 0 \\\\ -1 & 4 \\end{bmatrix} = \\begin{bmatrix} -4 & 11 \\\\ 4 & 0 \\\\ 4 & 2 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "Both answers are 3×2 matrices.",
+          {
+            "text": "∴ 2A + Bᵀ and 3Bᵀ − A are as above",
+            "style": "boxed"
+          }
         ]
       }
     ]

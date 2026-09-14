@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.45, chapter 5 MATRICES, Short Answer question 16. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 shape gives one mark to each of the four independent moves — the column addition that produces the equal entries, the factoring, the two row subtractions that make the determinant triangular, and the diagonal product — because each can be right or wrong on its own and a student who reaches the triangular form has clearly earned three of four. Independently checked before authoring, by two numerical substitutions: x = 5, a = 2 gives determinant 81 and (5+4)(3)² = 81; x = 1, a = −3 gives determinant −80 and (1−6)(4)² = −80. Both sides agree. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Matrices supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.45, chapter 5 MATRICES, Short Answer question 16. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 shape gives one mark to each of the four independent moves — the column addition that produces the equal entries, the factoring, the two row subtractions that make the determinant triangular, and the diagonal product — because each can be right or wrong on its own and a student who reaches the triangular form has clearly earned three of four. Independently checked before authoring, by two numerical substitutions: x = 5, a = 2 gives determinant 81 and (5+4)(3)² = 81; x = 1, a = −3 gives determinant −80 and (1−6)(4)² = −80. Both sides agree. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Matrices supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — say which column operation you start with, what comes out as a factor, which rows you subtract, and how you finish.",
   "answer": {
@@ -67,6 +67,11 @@
           },
           "Every row adds up to x + 2a, so apply",
           "C₁ → C₁ + C₂ + C₃.",
+          "(C₂ and C₃ are added into C₁; the value does",
+          {
+            "text": "  not change)",
+            "style": "indent"
+          },
           {
             "text": "\\Delta = \\begin{vmatrix} x+2a & a & a \\\\ x+2a & x & a \\\\ x+2a & a & x \\end{vmatrix}",
             "render": "katex",
@@ -157,6 +162,15 @@
         "lines": [
           "Apply R₂ → R₂ − R₁ and R₃ → R₃ − R₁.",
           "R₂ becomes (0, x − a, 0) and R₃ becomes",
+          {
+            "text": "(R₂ − R₁ = (1−1, x−a, a−a);",
+            "added": true
+          },
+          {
+            "text": "  R₃ − R₁ = (1−1, a−a, x−a))",
+            "style": "indent",
+            "added": true
+          },
           "(0, 0, x − a).",
           {
             "text": "\\Delta = (x+2a)\\begin{vmatrix} 1 & a & a \\\\ 0 & x-a & 0 \\\\ 0 & 0 & x-a \\end{vmatrix}",
@@ -191,6 +205,16 @@
         "common_mistakes": [
           "Using R₃ → R₃ − R₂ instead of R₃ − R₁, which leaves no triangular form.",
           "Writing a − x instead of x − a and flipping the sign twice over."
+        ],
+        "lines_compact": [
+          "Apply R₂ → R₂ − R₁ and R₃ → R₃ − R₁.",
+          "R₂ becomes (0, x − a, 0) and R₃ becomes",
+          "(0, 0, x − a).",
+          {
+            "text": "\\Delta = (x+2a)\\begin{vmatrix} 1 & a & a \\\\ 0 & x-a & 0 \\\\ 0 & 0 & x-a \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -204,6 +228,10 @@
         "lines": [
           "The determinant is now upper triangular, so it",
           "equals the product of its diagonal entries:",
+          {
+            "text": "(every entry below the diagonal is 0)",
+            "added": true
+          },
           "1 × (x − a) × (x − a) = (x − a)².",
           {
             "text": "∴ Δ = (x + 2a)(x − a)²",
@@ -236,6 +264,15 @@
         "common_mistakes": [
           "Expanding the full 3×3 by cofactors and making an arithmetic slip.",
           "Writing (x − a) once instead of squared."
+        ],
+        "lines_compact": [
+          "The determinant is now upper triangular, so it",
+          "equals the product of its diagonal entries:",
+          "1 × (x − a) × (x − a) = (x − a)².",
+          {
+            "text": "∴ Δ = (x + 2a)(x − a)²",
+            "style": "boxed"
+          }
         ]
       }
     ]

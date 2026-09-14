@@ -47,7 +47,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.24 — LAQ chapter 3 Matrices, answer 15, on a ★★★ SSP (Super Scoring Page), the book's self-declared 'No.3 in Dets'. Printed appearance: AP 18 only. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this question, and the 2+1+2+1+1 above is inferred from the split the same book DOES print for the structurally identical answer 17 on book p.26 (1+1+1+2+1+1). It is deliberately the same split this book's answer 14 is given on the facing half of the page, because the two proofs are the same proof with rows and columns exchanged. Star rank is the CHAPTER's ★★★, not this question's. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to the \"Column operations C₂−C₁ and C₃−C₁\" step."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.24 — LAQ chapter 3 Matrices, answer 15, on a ★★★ SSP (Super Scoring Page), the book's self-declared 'No.3 in Dets'. Printed appearance: AP 18 only. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this question, and the 2+1+2+1+1 above is inferred from the split the same book DOES print for the structurally identical answer 17 on book p.26 (1+1+1+2+1+1). It is deliberately the same split this book's answer 14 is given on the facing half of the page, because the two proofs are the same proof with rows and columns exchanged. Star rank is the CHAPTER's ★★★, not this question's. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to the \"Column operations C₂−C₁ and C₃−C₁\" step. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — say which rows or columns you add together first, what comes out common, and how the determinant finishes.",
   "answer": {
@@ -72,6 +72,11 @@
             "text": "\\Delta = \\begin{vmatrix} a-b-c & 2a & 2a \\\\ 2b & b-c-a & 2b \\\\ 2c & 2c & c-a-b \\end{vmatrix}",
             "render": "katex",
             "style": "eq"
+          },
+          "(Adding all three rows gives a+b+c in every",
+          {
+            "text": "  column, so a common factor comes out.)",
+            "style": "indent"
           }
         ],
         "recall": {
@@ -111,6 +116,14 @@
         "lines": [
           "R₁ → R₁ + R₂ + R₃",
           "Column 1:  (a−b−c) + 2b + 2c = a+b+c",
+          {
+            "text": "Column 2: 2a + (b−c−a) + 2c = a+b+c",
+            "added": true
+          },
+          {
+            "text": "Column 3: 2a + 2b + (c−a−b) = a+b+c",
+            "added": true
+          },
           "Columns 2 and 3 give a+b+c in the same way:",
           {
             "text": "\\Delta = \\begin{vmatrix} a+b+c & a+b+c & a+b+c \\\\ 2b & b-c-a & 2b \\\\ 2c & 2c & c-a-b \\end{vmatrix}",
@@ -145,6 +158,16 @@
           "Adding columns instead of rows — here it is the rows that sum to a common value.",
           "Getting the cancellation wrong: in column 1 the −b and −c are cancelled by 2b and 2c, leaving +b and +c.",
           "Writing 2(a+b+c); the 2 belongs to the a+b+2c determinant, not to this one."
+        ],
+        "lines_compact": [
+          "R₁ → R₁ + R₂ + R₃",
+          "Column 1:  (a−b−c) + 2b + 2c = a+b+c",
+          "Columns 2 and 3 give a+b+c in the same way:",
+          {
+            "text": "\\Delta = \\begin{vmatrix} a+b+c & a+b+c & a+b+c \\\\ 2b & b-c-a & 2b \\\\ 2c & 2c & c-a-b \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -157,6 +180,10 @@
         "memory_tip": "Row 1 is now (a+b+c) three times over, so it comes out and the row becomes 1, 1, 1.",
         "lines": [
           "Taking (a+b+c) common from R₁:",
+          {
+            "text": "(each entry of R₁ is (a+b+c) × 1)",
+            "added": true
+          },
           {
             "text": "\\Delta = (a{+}b{+}c) \\begin{vmatrix} 1 & 1 & 1 \\\\ 2b & b-c-a & 2b \\\\ 2c & 2c & c-a-b \\end{vmatrix}",
             "render": "katex",
@@ -189,6 +216,14 @@
         "common_mistakes": [
           "Taking the factor out of a column instead of the row.",
           "Cubing it here; it comes out once."
+        ],
+        "lines_compact": [
+          "Taking (a+b+c) common from R₁:",
+          {
+            "text": "\\Delta = (a{+}b{+}c) \\begin{vmatrix} 1 & 1 & 1 \\\\ 2b & b-c-a & 2b \\\\ 2c & 2c & c-a-b \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -201,7 +236,23 @@
         "memory_tip": "Row 1 is all 1s, so subtracting column 1 clears it. Both surviving entries come out NEGATIVE.",
         "lines": [
           "C₂ → C₂ − C₁ and C₃ → C₃ − C₁:",
+          {
+            "text": "Row 1: 1 − 1 = 0 in both new columns",
+            "added": true
+          },
+          {
+            "text": "Row 2: C₂ gives (b−c−a) − 2b, C₃ gives 2b − 2b = 0",
+            "added": true
+          },
+          {
+            "text": "Row 3: C₂ gives 2c − 2c = 0, C₃ gives (c−a−b) − 2c",
+            "added": true
+          },
           "(b−c−a) − 2b = −(a+b+c),  (c−a−b) − 2c = −(a+b+c)",
+          {
+            "text": "(each of these is −a − b − c)",
+            "added": true
+          },
           {
             "text": "\\Delta = (a{+}b{+}c) \\begin{vmatrix} 1 & 0 & 0 \\\\ 2b & -(a{+}b{+}c) & 0 \\\\ 2c & 0 & -(a{+}b{+}c) \\end{vmatrix}",
             "render": "katex",
@@ -236,6 +287,15 @@
           "Writing +(a+b+c) on the diagonal and reaching the right answer by luck.",
           "Doing C₁ − C₂ instead of C₂ − C₁.",
           "Missing that the off-diagonal entries cancel to zero."
+        ],
+        "lines_compact": [
+          "C₂ → C₂ − C₁ and C₃ → C₃ − C₁:",
+          "(b−c−a) − 2b = −(a+b+c),  (c−a−b) − 2c = −(a+b+c)",
+          {
+            "text": "\\Delta = (a{+}b{+}c) \\begin{vmatrix} 1 & 0 & 0 \\\\ 2b & -(a{+}b{+}c) & 0 \\\\ 2c & 0 & -(a{+}b{+}c) \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -248,8 +308,16 @@
         "memory_tip": "The top row is 1, 0, 0, so one term survives, and its minor has zeros off the diagonal.",
         "lines": [
           "Expanding along R₁:",
+          {
+            "text": "(R₁ is 1, 0, 0, so only the 1 gives a term)",
+            "added": true
+          },
           "Δ = (a+b+c)[−(a+b+c) · −(a+b+c) − 0]",
           "The two minus signs cancel:",
+          {
+            "text": "(−(a+b+c) × −(a+b+c) = (a+b+c)²)",
+            "added": true
+          },
           "Δ = (a+b+c)·(a+b+c)²"
         ],
         "recall": {
@@ -280,6 +348,12 @@
           "Losing one minus sign and finishing with a negative answer.",
           "Expanding along a row or column with no zeros.",
           "Forgetting the (a+b+c) already standing outside."
+        ],
+        "lines_compact": [
+          "Expanding along R₁:",
+          "Δ = (a+b+c)[−(a+b+c) · −(a+b+c) − 0]",
+          "The two minus signs cancel:",
+          "Δ = (a+b+c)·(a+b+c)²"
         ]
       },
       {
@@ -292,6 +366,10 @@
         "memory_tip": "One factor came from the row and two from the diagonal — three in all, and no 2 anywhere here.",
         "lines": [
           "One (a+b+c) from R₁ and two from the minor:",
+          {
+            "text": "((a+b+c) × (a+b+c)² = (a+b+c)³)",
+            "added": true
+          },
           {
             "text": "Δ = (a+b+c)³ = R.H.S",
             "style": "boxed"
@@ -322,6 +400,13 @@
         "common_mistakes": [
           "Writing 2(a+b+c)³, which is the answer to the a+b+2c determinant, not to this one.",
           "Writing (a+b+c)² by forgetting the factor that came out of the row."
+        ],
+        "lines_compact": [
+          "One (a+b+c) from R₁ and two from the minor:",
+          {
+            "text": "Δ = (a+b+c)³ = R.H.S",
+            "style": "boxed"
+          }
         ]
       }
     ]
