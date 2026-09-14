@@ -99,10 +99,10 @@
         },
         "why": "The difference of two square roots is turned into a single fraction by (a − b)(a + b) = a² − b², which removes both roots from the numerator. The form ∞ − ∞ cannot be evaluated by substitution.",
         "common_mistakes": [
-          "Writing √(x + 1) − √x = √1 = 1; a square root does not split across addition.",
+          "Writing √(x + 1) − √x = √((x + 1) − x) = √1 = 1; the difference of two square roots is not the square root of the difference.",
           "Claiming ∞ − ∞ = 0 with no working, which earns nothing even though the answer is 0."
         ],
-        "memory_tip": "A difference of square roots is rationalised by their sum: the roots then cancel on the top."
+        "memory_tip": "A difference of square roots is rationalised by their sum: (√(x + 1))² − (√x)² = (x + 1) − x = 1, so no root is left on the top."
       },
       {
         "id": "s2_denominator_grows",
@@ -151,7 +151,7 @@
             "without bound"
           ]
         },
-        "why": "A fixed numerator over a denominator that increases without bound approaches 0. The two square roots get closer together as x increases, so their difference approaches 0.",
+        "why": "A fixed numerator over a denominator that increases without bound approaches 0. So the two square roots get closer together as x increases, and their difference approaches 0.",
         "common_mistakes": [
           "Giving 1, the numerator, without dividing by the denominator.",
           "Inverting the rationalised form to √(x + 1) + √x and giving ∞."

@@ -95,7 +95,7 @@
             "x minus a"
           ]
         },
-        "why": "Whether such a limit is a number or 0 is decided by the count of factors, so count them before cancelling. Here the count is 3 above against 2 below.",
+        "why": "Whether such a limit is 0, a non-zero number, or not a finite number is decided by the count of factors, so count them before cancelling. Here the count is 3 above against 2 below.",
         "common_mistakes": [
           "Reading (x² − a²)² as carrying four powers of (x − a).",
           "Cancelling all three powers above against the two below and answering 1/(2a)²."
@@ -170,7 +170,7 @@
             "goes to zero"
           ]
         },
-        "why": "The numerator is of higher order than the denominator, so the quotient is driven to 0 rather than to a finite non-zero value. The value checks numerically: with a = 2 the expression is 0.000622 at x = 2.01 and 0.0000625 at x = 2.001, falling by a factor of ten each time, exactly as (x − a)/(2a)² = (x − a)/16 does.",
+        "why": "The numerator is of higher order than the denominator, so the quotient approaches 0 rather than a finite non-zero value. The value checks numerically: with a = 2 the expression is 0.000622 at x = 2.01 and 0.0000625 at x = 2.001, falling by a factor of about ten each time, as (x − a)/(x + a)² does.",
         "common_mistakes": [
           "Calling (x − a)/(x + a)² indeterminate at x = a; only the numerator is 0 there, the denominator is (2a)² ≠ 0, so the factor is simply 0.",
           "Quoting tan(x − a)/(x − a) → 0 because tan 0 = 0, instead of using the standard limit, which is 1."

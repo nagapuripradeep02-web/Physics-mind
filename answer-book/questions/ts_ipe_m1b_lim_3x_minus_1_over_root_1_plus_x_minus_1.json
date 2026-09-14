@@ -71,7 +71,7 @@
             "style": "indent"
           },
           "The two standard limits are",
-          "lim(x → 0) (aˣ − 1)/x = logₑa",
+          "lim(x → 0) (aˣ − 1)/x = logₑa  for a > 0",
           "and   lim(x → 0) (√(1 + x) − 1)/x = 1/2"
         ],
         "recall": {
@@ -161,7 +161,7 @@
         "why": "The quotient rule for limits needs both limits to exist and the lower one to be non-zero, and both conditions hold here. The value checks numerically: at x = 0.00001 the expression is 2.19724, and 2 logₑ3 = 2.19722.",
         "common_mistakes": [
           "Multiplying by 1/2 instead of dividing by it, giving (logₑ3)/2.",
-          "Writing logₑ9 as 2 without noticing that logₑ9 = 2 logₑ3 is already the exact answer."
+          "Writing logₑ9 as 2 by confusing it with log₃9 = 2; logₑ9 = 2 logₑ3 ≈ 2.197 is the exact answer."
         ],
         "memory_tip": "Dividing by 1/2 doubles the number. So the answer is twice logₑ3, and 2 logₑ3 = logₑ9 by the power rule for logarithms.",
         "lines_compact": [

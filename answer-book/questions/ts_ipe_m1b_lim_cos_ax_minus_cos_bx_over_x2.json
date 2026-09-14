@@ -118,12 +118,22 @@
             "added": true
           },
           {
-            "text": "  this needs a + b ≠ 0 and b − a ≠ 0,",
+            "text": "  this needs a + b ≠ 0 and b − a ≠ 0;",
             "style": "indent",
             "added": true
           },
           {
-            "text": "  and if either is 0 both sides are 0 anyway)",
+            "text": "  if either is 0, then cos ax = cos bx,",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  and the expression and the answer",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  (b² − a²)/2 are both 0)",
             "style": "indent",
             "added": true
           },
@@ -167,7 +177,7 @@
             "twice"
           ]
         },
-        "why": "Each sine contributes one power of x, so x² is exactly used up and a finite value is left. The order of the answer checks against a simple case: putting a = 0 gives (1 − cos bx)/x² = b²/2, and (b² − 0)/2 = b²/2. Numerically, with a = 3 and b = 5 the value is 8, matching (25 − 9)/2.",
+        "why": "Each sine is divided by one x, so the two factors of x in x² are both used and a finite value is left. The order of the answer checks against a simple case: putting a = 0 gives lim(x → 0) (1 − cos bx)/x² = b²/2, and (b² − 0)/2 = b²/2. Numerically, with a = 3 and b = 5 the limit is 8, matching (25 − 9)/2.",
         "common_mistakes": [
           "Giving (a² − b²)/2, the correct size with the wrong sign.",
           "Forgetting the half-angle coefficients and answering 2(a + b)(b − a)."
@@ -188,5 +198,5 @@
       }
     ]
   },
-  "insider_note": "cos C − cos D turns the top into a product of two sines, and x² splits as x · x to feed one to each. The answer (b² − a²)/2 has b first — the order comes from (D − C)/2."
+  "insider_note": "The identity for cos C − cos D writes the numerator as a product of two sines, and x² is written as x · x so that each sine is divided by one x. The answer (b² − a²)/2 has b first — the order comes from (D − C)/2."
 }

@@ -53,8 +53,8 @@
         "label": "Check each piece on its own interval",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. The question says discuss, so the open intervals have to be dealt with as well as the junctions. Each piece is cleared by naming what it is and where its own formula could fail.",
-        "memory_tip": "A three-piece function has exactly two junctions, and every point that is not a junction is safe if its own formula is defined there.",
+        "margin_note": "First mark. The question says discuss, so the open intervals have to be dealt with as well as the junctions. Each piece is shown to be continuous by naming what it is and where its own formula could fail.",
+        "memory_tip": "Here the three pieces meet at two junctions. At every other point f is continuous, because its formula there is a polynomial or a quotient of continuous functions with a non-zero denominator.",
         "lines": [
           {
             "text": "Sol:",
@@ -110,7 +110,7 @@
             "rational function"
           ]
         },
-        "why": "The word discuss asks for the whole real line, not one point. Clearing the three open intervals first reduces the rest of the question to two ordinary junction tests.",
+        "why": "The word discuss asks for the whole real line, not one point. Showing continuity on the three open intervals first reduces the rest of the question to two junction tests.",
         "common_mistakes": [
           "Checking only x = 1 and never testing x = −2.",
           "Claiming 6/(x − 10) is discontinuous on (−∞, −2) because it is a fraction, when x = 10 is not in that interval."
@@ -201,7 +201,7 @@
         "label": "Test the junction x = −2",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Third mark. x = −2 also belongs to the middle piece, so the value and the right limit agree automatically. The left limit comes from 6/(x − 10) and is the number that breaks the test.",
+        "margin_note": "Third mark. x = −2 also belongs to the middle piece, so the value and the right limit agree automatically. The left limit comes from 6/(x − 10) and is the number that makes the test fail.",
         "memory_tip": "At x = −2 the denominator is −2 − 10 = −12. Both numbers are negative, so they combine to −12, not to −8 or 8.",
         "lines": [
           "At x = −2:",
@@ -345,7 +345,7 @@
             "one is fine"
           ]
         },
-        "why": "The question asks for a discussion of continuity, so the answer is a description of the whole domain, not a yes or a no. Naming the one failing point is the complete answer.",
+        "why": "The question asks for a discussion of continuity, so the answer is a description of the whole domain, not a yes or a no. Stating that f is continuous at every real number except the one failing point is the complete answer.",
         "common_mistakes": [
           "Answering only that f is not continuous, without saying where.",
           "Listing x = 1 as a point of discontinuity because two formulas meet there, when the test passes."

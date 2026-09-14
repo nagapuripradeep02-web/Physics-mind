@@ -97,7 +97,7 @@
           "Writing 0/0 as the answer instead of rewriting the expression.",
           "Multiplying only the numerator by the conjugate and leaving the denominator as x."
         ],
-        "memory_tip": "A square root minus a number over x is a conjugate question every time: multiply above and below by the same bracket with the middle sign changed."
+        "memory_tip": "When a square root minus a number over x gives 0/0, the conjugate is one method: multiply above and below by the same bracket with the middle sign changed."
       },
       {
         "id": "s2_cancel_and_substitute",

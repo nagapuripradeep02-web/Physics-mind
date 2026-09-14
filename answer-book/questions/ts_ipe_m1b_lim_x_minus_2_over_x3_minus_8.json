@@ -88,7 +88,7 @@
             "x minus two"
           ]
         },
-        "why": "Both parts are zero at x = 2, so (x − 2) is a factor of the denominator as well. The difference of cubes identity is the fastest way to pull it out, and it leaves a quadratic that is not zero at 2.",
+        "why": "Both parts are zero at x = 2, so (x − 2) is a factor of the denominator as well. The difference of cubes identity shows this factor directly, and it leaves a quadratic that is not zero at 2.",
         "common_mistakes": [
           "Writing x³ − 8 = (x − 2)³.",
           "Giving the second bracket as x² − 2x + 4, which is the difference-of-cubes bracket with the wrong sign."

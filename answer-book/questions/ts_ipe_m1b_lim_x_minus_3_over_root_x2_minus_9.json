@@ -45,7 +45,7 @@
         "label": "Split the square root into two roots",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. Factorise inside the root first, then split it. √(x² − 9) is real only for x > 3 near 3, so both x − 3 and x + 3 are positive and the split is valid.",
+        "margin_note": "First mark. Factorise inside the root first, then split it. Near 3, √(x² − 9) is defined and non-zero only for x > 3, so both x − 3 and x + 3 are positive and the split is valid.",
         "memory_tip": "Factorise inside the root before splitting it. A root of a product is the product of the roots when both parts are positive.",
         "lines": [
           {

@@ -100,7 +100,7 @@
         "label": "Divide by x² and use sin θ/θ → 1",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Second mark. Divide the top and the bottom by x² so that each sine is over its own angle. The m² and n² that are left give the answer.",
+        "margin_note": "Second mark. Divide the top and the bottom by x², then write sin(mx)/x = m · sin(mx)/(mx) and sin(nx)/x = n · sin(nx)/(nx), so that each sine is over its own angle. The m² and n² that come out give the answer.",
         "memory_tip": "sin(kx)/x → k, so a squared sine over x² gives k². Two sines, two squares: 2m² over n².",
         "lines": [
           "Divide the numerator and the denominator by x²:",
@@ -124,7 +124,12 @@
             "style": "indent"
           },
           {
-            "text": "(mx → 0 and nx → 0 as x → 0, so each bracket → 1;",
+            "text": "(mx → 0 and nx → 0 as x → 0,",
+            "added": true
+          },
+          {
+            "text": "  so lim sin(mx)/(mx) = 1 and lim sin(nx)/(nx) = 1;",
+            "style": "indent",
             "added": true
           },
           {

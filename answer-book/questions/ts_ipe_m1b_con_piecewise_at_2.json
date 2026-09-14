@@ -53,8 +53,8 @@
         "label": "State the continuity test at 2",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. Two different formulas meet at x = 2, so the two-sided test is the one to write: left limit = value = right limit. A single two-sided limit statement would not be enough here.",
-        "memory_tip": "Different formulas on the two sides means two separate limits — one two-sided limit statement cannot cover both.",
+        "margin_note": "First mark. Two different formulas meet at x = 2, so write the test with both one-sided limits: left limit = value = right limit. The limit at 2 cannot be found from one formula alone.",
+        "memory_tip": "Different formulas on the two sides means two one-sided limits must be found, one from each formula.",
         "lines": [
           {
             "text": "Sol:",
@@ -100,7 +100,7 @@
         },
         "why": "Naming all three quantities in advance is what stops the common half-answer: a student who checks only the left side finds agreement and concludes wrongly.",
         "common_mistakes": [
-          "Writing one two-sided limit statement when the two sides carry different formulas.",
+          "Finding the limit at 2 from one formula only, when the two sides carry different formulas.",
           "Reading f(2) = 0 as the left-hand formula evaluated at 2 rather than as a separately given value."
         ]
       },
@@ -211,7 +211,7 @@
         },
         "why": "Misreading the negative index is a common way the answer goes wrong. Writing 8x⁻³ as 8/x³ before substituting removes that risk.",
         "common_mistakes": [
-          "Reading 8x⁻³ as −8x³ and getting 2 − 64.",
+          "Reading 8x⁻³ as 8x³ and getting 2 − 64 = −62.",
           "Writing 8/2³ as 8/6 by multiplying 2 by 3 instead of cubing it."
         ],
         "lines_compact": [

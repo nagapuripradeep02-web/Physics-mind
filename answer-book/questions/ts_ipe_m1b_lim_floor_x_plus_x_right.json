@@ -55,7 +55,7 @@
           "[x] is the greatest integer less than or equal to x.",
           "(for example [2.7] = 2, [2] = 2 and [−0.5] = −1)",
           "x → 2⁺ means x takes values slightly greater than 2,",
-          "that is 2 < x < 3.",
+          "so we may take 2 < x < 3.",
           "(2 is the greatest integer that is ≤ x when 2 < x < 3)",
           "For every such x,  [x] = 2",
           "(for example [2.1] = 2 and [2.001] = 2)"
@@ -87,7 +87,7 @@
           "Writing [x] = 3 by rounding 2.001 up instead of taking the integer below.",
           "Assuming a one-sided limit at an integer can never equal the value there; just above 2 the greatest integer function is 2, which is [2] itself."
         ],
-        "memory_tip": "The greatest integer function steps down to the integer at or below x, so just above 2 it is still 2."
+        "memory_tip": "The greatest integer function gives the greatest integer at or below x, so for 2 < x < 3 it is 2."
       },
       {
         "id": "s2_add_and_limit",
@@ -144,7 +144,7 @@
           "Giving 3, which is the LEFT-hand limit, where [x] = 1.",
           "Leaving the answer as [2] + 2 without evaluating it."
         ],
-        "memory_tip": "Above 2 the step has already been taken, so [x] gives 2 and x gives 2.",
+        "memory_tip": "For 2 < x < 3, [x] is 2 and x approaches 2, so [x] + x approaches 2 + 2 = 4.",
         "lines_compact": [
           "So for 2 < x < 3,  [x] + x = 2 + x",
           "lim(x → 2⁺) ([x] + x) = lim(x → 2⁺) (2 + x)",

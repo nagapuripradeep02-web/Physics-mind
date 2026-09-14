@@ -88,7 +88,7 @@
             "two standard limits"
           ]
         },
-        "why": "Direct substitution gives 0/0. Splitting a limit into a difference is only allowed when each piece has a limit of its own, and both pieces here are the standard limits the chapter is built on, so the split is safe and each piece is already known.",
+        "why": "Direct substitution gives 0/0. A limit of a difference may be split into a difference of limits when each piece has a limit of its own; both pieces here are standard limits, so the split is allowed and each value is already known.",
         "common_mistakes": [
           "Grouping as eˣ − (sin x + 1), which leaves neither piece in standard form.",
           "Splitting the fraction but writing the second piece as sin x, not sin x/x."
@@ -101,7 +101,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Both standard limits equal 1, so the answer is 1 − 1 = 0. Write the two limits out before subtracting — the mark is for using them, not for the zero alone.",
-        "memory_tip": "Both standard limits here are worth exactly 1, so the answer is the difference of two ones.",
+        "memory_tip": "Both standard limits here equal 1, so the answer is 1 − 1 = 0.",
         "lines": [
           "We know lim(x → 0) (eˣ − 1)/x = 1",
           "and  lim(x → 0) (sin x)/x = 1",

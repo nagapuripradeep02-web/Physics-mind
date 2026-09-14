@@ -138,7 +138,7 @@
         "why": "Naming the substitution and saying t → 0 is what makes the standard limit apply. The 7 was taken outside at the previous step, so it is untouched by the limit and stands as the answer.",
         "common_mistakes": [
           "Giving 1 as the answer by forgetting the 7 taken outside.",
-          "Writing e⁷ as the answer by substituting x = 1 instead of taking a limit."
+          "Writing e⁷ − 1 as the answer by substituting x = 1 instead of taking the limit as x → 0."
         ],
         "lines_compact": [
           "Put t = 7x. As x → 0, t → 0.",
@@ -152,5 +152,5 @@
       }
     ]
   },
-  "insider_note": "Make the denominator match the power: write it as 7 · (e⁷ˣ − 1)/(7x). The 7 pulled out front IS the answer, since the bracket goes to 1."
+  "insider_note": "Make the denominator match the power: write it as 7 · (e⁷ˣ − 1)/(7x). The 7 taken outside the limit is the answer, since (e⁷ˣ − 1)/(7x) → 1."
 }

@@ -46,7 +46,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. The denominator carries √x, so the numerator must be written in terms of √x too. x − 4 is a difference of squares in √x, which is what produces the matching factor.",
-        "memory_tip": "x − 4 is (√x)² − 2². Whenever a root sits below, treat the number above as a difference of squares in that root.",
+        "memory_tip": "x − 4 is (√x)² − 2². When √x − 2 is in the denominator, write x − 4 in the numerator as (√x − 2)(√x + 2).",
         "lines": [
           {
             "text": "Sol:",
@@ -92,7 +92,7 @@
             "root x plus two"
           ]
         },
-        "why": "The 0/0 form comes from √x − 2 in the denominator, so that same factor has to be produced upstairs before anything can be cancelled. Splitting the middle term gives (x − 4), and writing it as a difference of squares in √x delivers √x − 2 exactly.",
+        "why": "The 0/0 form comes from √x − 2 in the denominator, so that same factor has to be produced in the numerator before anything can be cancelled. Splitting the middle term gives (x − 4), and writing it as a difference of squares in √x gives the factor √x − 2 exactly.",
         "common_mistakes": [
           "Splitting the middle term as 2x² − 7x − 4 = (2x − 1)(x + 4), which multiplies out to 2x² + 7x − 4.",
           "Writing x − 4 = (√x − 2)², which is x − 4√x + 4."

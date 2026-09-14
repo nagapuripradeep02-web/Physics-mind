@@ -45,7 +45,7 @@
         "label": "Factor x² − a²",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. x² − a² = (x − a)(x + a). The (x − a) matches the angle inside the tangent; the (x + a) is substituted at the end. This needs a ≠ 0, or the denominator limit is 0.",
+        "margin_note": "First mark. x² − a² = (x − a)(x + a). The (x − a) matches the angle inside the tangent; the (x + a) is substituted at the end. This needs a ≠ 0; for a = 0 the factor x + a also tends to 0 and the limit does not exist.",
         "lines": [
           {
             "text": "Sol:",
@@ -53,11 +53,7 @@
           },
           "At x = a, tan(x − a) = tan 0 = 0 and x² − a² = 0,",
           "so the form is 0/0. Take a ≠ 0.",
-          "(a² − b² = (a − b)(a + b), with x in place",
-          {
-            "text": "  of a and a in place of b)",
-            "style": "indent"
-          },
+          "(u² − v² = (u − v)(u + v), with u = x and v = a)",
           "Factor the denominator:  x² − a² = (x − a)(x + a).",
           "(1/[(x − a)(x + a)] = [1/(x − a)] · [1/(x + a)])",
           "tan(x − a)/(x² − a²) = [tan(x − a)/(x − a)] · [1/(x + a)]"

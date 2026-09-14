@@ -86,7 +86,7 @@
           "Cancelling |x| against x without first stating that x > 0.",
           "Using |x| = −x, which belongs to x → −∞."
         ],
-        "memory_tip": "Infinity lies on the positive side of the number line, so the modulus bars come off with a plus sign."
+        "memory_tip": "x → ∞ means x takes larger and larger positive values, so |x| = x and the modulus is removed with no change of sign."
       },
       {
         "id": "s2_cancel_x",

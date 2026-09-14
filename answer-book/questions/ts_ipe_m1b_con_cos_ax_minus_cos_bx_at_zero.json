@@ -162,7 +162,7 @@
             "a plus b by two"
           ]
         },
-        "why": "The product form puts one sine above for each factor of x below, which is exactly the shape the standard sine limit needs. The quotient of cosines has no such shape.",
+        "why": "The product form puts one sine above for each factor of x below, which is exactly the shape the standard sine limit needs. The difference of cosines has no such shape.",
         "common_mistakes": [
           "Writing cos C − cos D = 2 sin((C + D)/2) sin((C − D)/2), which reverses the sign of the answer.",
           "Using the sum formula for cos C + cos D instead of the difference formula."
@@ -182,7 +182,7 @@
         "label": "Apply the standard sine limit",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Third mark. Each bracket is forced into the exact form sin(angle)/(same angle) before the standard limit is quoted. The constants taken outside are what build (b² − a²)/2.",
+        "margin_note": "Third mark. Each bracket is written in the exact form sin(angle)/(same angle) before the standard limit is quoted. The constants taken outside give (b² − a²)/2.",
         "memory_tip": "sin(kx)/x tends to k, not to 1 — the constant multiplying x comes outside.",
         "lines": [
           {
@@ -206,7 +206,12 @@
             "added": true
           },
           {
-            "text": "  both sides are 0)",
+            "text": "  then cos ax = cos bx, and both f(x) and the answer",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  (b² − a²)/2 are 0)",
             "style": "indent",
             "added": true
           },
@@ -335,7 +340,7 @@
             "b squared minus a squared"
           ]
         },
-        "why": "The question is settled by comparing two numbers: the limit that was computed and the value that was given. They are equal, so the definition of continuity is met.",
+        "why": "The question is answered by comparing two numbers: the limit that was computed and the value that was given. They are equal, so the definition of continuity is met.",
         "common_mistakes": [
           "Stopping at the limit and never writing the comparison with f(0).",
           "Reading ½(b² − a²) as ½b² − a²."

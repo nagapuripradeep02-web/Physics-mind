@@ -91,7 +91,7 @@
             "continuous on the intervals"
           ]
         },
-        "why": "The question is about the whole of R, so the answer must account for every real number. Clearing the two open intervals in one line reduces the rest of the work to a single junction test.",
+        "why": "The question is about the whole of R, so the answer must account for every real number. Showing continuity on the two open intervals in one line reduces the rest of the work to a single junction test.",
         "common_mistakes": [
           "Testing x = 1 and stopping, without saying anything about the rest of the line.",
           "Assuming a piecewise function must be discontinuous somewhere just because it is written in two parts."
@@ -160,7 +160,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Third mark. The right limit uses the x piece. All three numbers come out as 1, which is why this function is continuous at the join.",
-        "memory_tip": "x² and x are equal at exactly two places, x = 0 and x = 1, and the join here is at one of them — that is why the pieces fit.",
+        "memory_tip": "x² and x are equal at exactly two places, x = 0 and x = 1, and the join here is at one of them — that is why the two pieces give the same value there.",
         "lines": [
           {
             "text": "(for x > 1, f(x) = x, so put x = 1)",
@@ -199,7 +199,7 @@
         },
         "why": "The two pieces are different functions but they take the same value at x = 1, so the graph joins without a break. That agreement is what the three equal numbers record.",
         "common_mistakes": [
-          "Using x² for the right limit as well, which happens to give 1 and hides the real check.",
+          "Using x² for the right limit as well, which happens to give 1 but skips the real check.",
           "Concluding a break exists because the formulas are different, without comparing their values at 1."
         ],
         "lines_compact": [
@@ -259,7 +259,7 @@
         },
         "why": "A claim about R needs a reason that covers R. Listing the three sets that were checked and noting that their union is the real line is that reason, and it takes one line.",
         "common_mistakes": [
-          "Answering yes on the strength of the x = 1 check alone.",
+          "Answering yes using only the x = 1 check.",
           "Leaving out the point x = 1 itself when listing what has been covered, so the union is not the whole line."
         ],
         "lines_compact": [

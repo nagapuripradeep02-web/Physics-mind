@@ -46,7 +46,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. The standard limit is (eᵗ − 1)/t, so the denominator must be made to match the power. Here the power is sin x, so sin x is the quantity that must appear underneath.",
-        "memory_tip": "Whatever sits in the power of e must also sit in the denominator. Supply it, and pay for it with a second fraction.",
+        "memory_tip": "Whatever is in the power of e must also be in the denominator. Multiply and divide by it; this gives a second fraction, (sin x)/x.",
         "lines": [
           {
             "text": "Sol:",
@@ -105,15 +105,16 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Say that sin x → 0 as x → 0, so the first factor is the standard limit with t = sin x. Both factors are 1, so the product is 1.",
-        "memory_tip": "Both factors are worth 1, so the answer is 1 × 1.",
+        "memory_tip": "Both factors approach 1, so the answer is 1 × 1 = 1.",
         "lines": [
           "As x → 0, sin x → 0. Put t = sin x, then t → 0.",
           {
-            "text": "(put t = sin x in the first limit)",
+            "text": "(put t = sin x; the standard limits lim(t → 0) (eᵗ − 1)/t = 1",
             "added": true
           },
           {
-            "text": "(the standard limit lim(θ → 0) (sin θ)/θ = 1)",
+            "text": "  and lim(x → 0) (sin x)/x = 1)",
+            "style": "indent",
             "added": true
           },
           "lim(x → 0) (eˢⁱⁿˣ − 1)/sin x = lim(t → 0) (eᵗ − 1)/t = 1",

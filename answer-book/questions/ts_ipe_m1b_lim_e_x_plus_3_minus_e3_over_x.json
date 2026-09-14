@@ -82,7 +82,7 @@
             "constant"
           ]
         },
-        "why": "The law eᵃ⁺ᵇ = eᵃ · eᵇ separates the fixed part of the power from the part that moves. e³ carries no x, so it plays no role in the limit and is taken outside, leaving the standard form behind.",
+        "why": "The law eᵃ⁺ᵇ = eᵃ · eᵇ separates the constant part of the power from the part that contains x. e³ does not contain x, so it does not change as x → 0; it is taken outside the limit as a constant factor, and the standard form is left inside.",
         "common_mistakes": [
           "Treating e³ as part of the limit and letting it change as x → 0.",
           "Writing eˣ⁺³ = eˣ + e³. A sum in the power means the two exponentials are multiplied, not added."
@@ -95,7 +95,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. The limit inside is exactly the standard one and equals 1, so the answer is the constant already outside. Leave it as e³; do not turn it into a decimal.",
-        "memory_tip": "The limit inside is worth 1, so the answer is whatever was carried outside.",
+        "memory_tip": "The limit inside is 1, so the answer is the constant taken outside, e³.",
         "lines": [
           {
             "text": "(the standard limit)",

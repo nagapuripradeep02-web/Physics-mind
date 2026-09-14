@@ -53,8 +53,8 @@
         "label": "Name the only point that needs checking",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. Continuity is given, k is not — so the work runs backwards. Say why only x = 1 matters: away from 1 each piece is a constant or a polynomial, and those are continuous for every k.",
-        "memory_tip": "For a two-piece function, each piece is continuous for every k away from the join — so the join gives the only equation.",
+        "margin_note": "First mark. Continuity is given and k is unknown, so the continuity condition is used to find k. Say why only x = 1 matters: away from 1 each piece is a constant or a polynomial, and those are continuous for every k.",
+        "memory_tip": "Here each piece is a constant or a polynomial, so it is continuous for every k away from the join — so the join gives the only equation.",
         "lines": [
           {
             "text": "Sol:",
@@ -110,7 +110,7 @@
         "label": "Write the two one-sided limits and f(1)",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Second mark. Note which piece x = 1 belongs to: the condition is x ≥ 1, so f(1) comes from k²x − k, not from the constant 2. Getting that wrong gives a different equation.",
+        "margin_note": "Second mark. Note which piece x = 1 belongs to: the condition is x ≥ 1, so f(1) comes from k²x − k, not from the constant 2.",
         "memory_tip": "The piece whose inequality carries the equals sign is the piece that gives the value at the join.",
         "lines": [
           {
@@ -188,7 +188,12 @@
             "style": "indent"
           },
           {
-            "text": "(put the left limit 2 and f(1) = k² − k)",
+            "text": "(the right limit k² − k is the same as f(1); the condition",
+            "added": true
+          },
+          {
+            "text": "  left limit = f(1) gives 2 = k² − k)",
+            "style": "indent",
             "added": true
           },
           "The right limit is already equal to f(1),",
@@ -262,11 +267,11 @@
             "text": "(put k = 2: 2²(1) − 2 = 2)",
             "added": true
           },
+          "Check: k = 2 gives f(1) = 4 − 2 = 2;",
           {
             "text": "(put k = −1: (−1)²(1) − (−1) = 1 + 1)",
             "added": true
           },
-          "Check: k = 2 gives f(1) = 4 − 2 = 2;",
           "k = −1 gives f(1) = 1 + 1 = 2. Both match the left limit 2.",
           {
             "text": "(a product is 0 only when a factor is 0:",

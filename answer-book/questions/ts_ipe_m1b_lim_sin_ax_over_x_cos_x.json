@@ -61,7 +61,7 @@
           "so the angle ax appears below the sine.",
           "(sin(ax)/x = a · sin(ax)/(ax), which needs a ≠ 0;",
           {
-            "text": "  for a = 0 both sides are 0)",
+            "text": "  for a = 0, sin(ax)/x is 0 and the answer a is also 0)",
             "style": "indent"
           },
           "= a · [sin(ax)/(ax)] · [1/cos x]"

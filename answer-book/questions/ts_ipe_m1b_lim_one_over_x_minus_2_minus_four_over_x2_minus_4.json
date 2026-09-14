@@ -52,7 +52,11 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "(near x = 2, 1/(x − 2) and 4/(x² − 4) become very large)",
+          "(near x = 2, 1/(x − 2) and 4/(x² − 4) become",
+          {
+            "text": "  very large in size)",
+            "style": "indent"
+          },
           "Neither part alone has a finite limit as x → 2,",
           "so the two are combined into one fraction.",
           "(a² − b² = (a − b)(a + b) with a = x and b = 2)",
