@@ -88,10 +88,10 @@
             "both planes"
           ]
         },
-        "why": "Two planes lean apart by exactly the angle their normals make, so a plane problem reduces to the line formula from the previous chapter with no extra work.",
+        "why": "The angle between two planes is defined as the angle between their normals, so a plane problem uses the angle-between-lines formula from the previous chapter.",
         "common_mistakes": [
           "Using the constant terms as coefficients.",
-          "Reading one plane's coefficients before rearranging it to = 0 form."
+          "Reading b₁ as 1 instead of −1 by dropping the minus sign in front of y."
         ]
       },
       {
@@ -164,9 +164,9 @@
             "the angle"
           ]
         },
-        "why": "The modulus is what fixes the answer as the acute angle — without it the same two planes could report an obtuse one, since a normal points both ways.",
+        "why": "The modulus is what fixes the answer as the acute angle — without it the formula can give the obtuse angle, since the normal can be taken in either of two opposite directions.",
         "common_mistakes": [
-          "Forgetting the modulus and reporting an obtuse angle.",
+          "Writing the numerator as 2 + 1 + 2 = 5 by dropping the minus sign of b₁.",
           "Adding the two sums of squares instead of multiplying them."
         ],
         "lines_compact": [

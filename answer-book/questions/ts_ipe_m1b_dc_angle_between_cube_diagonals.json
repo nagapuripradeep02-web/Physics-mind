@@ -68,7 +68,7 @@
         "label": "Set the cube on the axes",
         "marks": 2,
         "mark_note": "Method",
-        "margin_note": "First mark. Nothing in the question fixes a cube, so one is CHOSEN: put a vertex at the origin and three edges along the axes. Every coordinate is then 0 or a, and the side a cancels at the end — so the answer does not depend on the choice.",
+        "margin_note": "First two marks. Nothing in the question fixes a cube, so one is CHOSEN: put a vertex at the origin and three edges along the axes. Angles do not change when the cube is moved, so this placement is allowed; every coordinate is then 0 or a, and the side a cancels at the end.",
         "memory_tip": "Nothing fixes a cube, so CHOOSE one: a vertex at the origin, three edges along the axes.",
         "lines": [
           {
@@ -106,7 +106,7 @@
         "why": "Placing the cube on the axes is allowed, since the angles do not depend on where the cube is placed, and makes every vertex a triple of 0's and a's. The answer is a pure number, so a must cancel — and it does.",
         "common_mistakes": [
           "Trying to answer without choosing coordinates at all.",
-          "Placing the cube's CENTRE at the origin, which makes every coordinate a half."
+          "Placing a vertex at the origin but not putting the three edges from it along the axes, so the vertices are not triples of 0 and a."
         ]
       },
       {
@@ -160,7 +160,7 @@
         "why": "A cube's vertices are exactly the eight triples built from 0 and a, which is why this labelling is quick once the cube is on the axes.",
         "common_mistakes": [
           "Giving a vertex two zeros where it should have one.",
-          "Missing the far vertex (a,a,a), which every diagonal needs."
+          "Missing the far vertex (a,a,a), which the diagonal OP needs."
         ],
         "lines_compact": [
           "Take L, M, N on the XY-plane, YZ-plane, ZX-plane, then",
@@ -447,7 +447,7 @@
         },
         "why": "A cube has four body diagonals; any two of them make the same angle, so picking two particular ones answers the question in general.",
         "common_mistakes": [
-          "Using a FACE diagonal, which meets an edge rather than crossing the body.",
+          "Using a FACE diagonal, which lies in one face instead of passing through the inside of the cube.",
           "Subtracting the coordinates the wrong way round."
         ],
         "lines_compact": [
@@ -520,7 +520,7 @@
             "does not depend on a"
           ]
         },
-        "why": "The answer being independent of a is the check that the working is right — an angle between diagonals cannot depend on how big the cube is.",
+        "why": "The answer being independent of a is one check on the working — an angle between diagonals cannot depend on how big the cube is.",
         "common_mistakes": [
           "Leaving a in the final answer.",
           "Giving 90°, which is the angle between the diagonals of a SQUARE, not a cube."
@@ -546,5 +546,5 @@
       }
     ]
   },
-  "insider_note": "Put one corner at the origin, not the centre, or every coordinate turns into a half. Choose two body diagonals such as OP and CL, never face diagonals, and the a² cancels to leave Cos⁻¹(1/3) — never 90°."
+  "insider_note": "Put one corner at the origin so that every coordinate is 0 or a. Choose two body diagonals such as OP and CL, never face diagonals, and the a² cancels to leave Cos⁻¹(1/3) — never 90°."
 }

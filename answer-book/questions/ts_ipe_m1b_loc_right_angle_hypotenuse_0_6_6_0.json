@@ -179,7 +179,7 @@
         "why": "PA² is written straight from the distance formula as (x−x₁)² + (y−y₁)², with no root sign, because the condition was stated in squares.",
         "common_mistakes": [
           "Leaving a square root in, then having to square the whole line again.",
-          "Subtracting the coordinates the wrong way round inside a bracket that is not squared yet."
+          "Writing (y + 6)² instead of (y − 6)² for the fixed y-coordinate 6."
         ],
         "lines_compact": [
           "⇒ [(x−0)² + (y−6)²] + [(x−6)² + (y−0)²] = (0−6)² + (6−0)²"
@@ -220,11 +220,16 @@
           },
           "⇒ 2(x² + y² − 6x − 6y) = 0",
           {
-            "text": "(divide both sides by 2; P cannot be A or B itself,",
+            "text": "(divide both sides by 2; A and B satisfy this equation but",
             "added": true
           },
           {
-            "text": "  where there is no triangle)",
+            "text": "  are not part of the locus, since there is no angle",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  APB at A or at B)",
             "style": "indent",
             "added": true
           },

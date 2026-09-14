@@ -293,7 +293,7 @@
             "circle"
           ]
         },
-        "why": "When two distances are in a fixed ratio that is not 1:1, the locus is always a circle — the circle of Apollonius. Equal x² and y² coefficients confirm the algebra landed right.",
+        "why": "When two distances are in a fixed ratio that is not 1:1, the locus is always a circle — the circle of Apollonius. Equal x² and y² coefficients are a check that the algebra is right.",
         "common_mistakes": [
           "Dropping the constant 117 − 52 = 65.",
           "Collecting −54y and −24y as −30y instead of −78y."
@@ -318,5 +318,5 @@
       }
     ]
   },
-  "insider_note": "The ratio PA : PB = 2 : 3 becomes 3PA = 2PB, so the numbers cross over before squaring and it is 9PA² = 4PB². Both numbers get squared, and the y terms collect as −54y − 24y = −78y, the usual slip."
+  "insider_note": "The ratio PA : PB = 2 : 3 becomes 3PA = 2PB by cross-multiplying, and squaring gives 9PA² = 4PB². Both numbers get squared, and the y terms collect as −54y − 24y = −78y; writing −30y there is the usual slip."
 }

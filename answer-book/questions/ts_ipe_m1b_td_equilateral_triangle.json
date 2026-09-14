@@ -97,7 +97,7 @@
             "surd"
           ]
         },
-        "why": "Collinearity and the shape of a triangle are both settled by the same three pairwise distances — only the conclusion drawn from them differs.",
+        "why": "Collinearity and the shape of a triangle are both decided by the same three pairwise distances — only the conclusion drawn from them differs.",
         "common_mistakes": [
           "Forgetting the third squared difference and using the 2D formula.",
           "Simplifying a surd wrongly, which hides the pattern in the three answers."

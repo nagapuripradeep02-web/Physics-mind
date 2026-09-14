@@ -108,7 +108,7 @@
             "surd"
           ]
         },
-        "why": "Collinearity and the shape of a triangle are both settled by the same three pairwise distances — only the conclusion drawn from them differs.",
+        "why": "Collinearity and the shape of a triangle are both decided by the same three pairwise distances — only the conclusion drawn from them differs.",
         "common_mistakes": [
           "Forgetting the third squared difference and using the 2D formula.",
           "Simplifying a surd wrongly, which hides the pattern in the three answers."
@@ -171,7 +171,7 @@
             "one line"
           ]
         },
-        "why": "If the three points were NOT in a line they would form a triangle, and in any triangle two sides are strictly GREATER than the third. Exact equality is what rules a triangle out.",
+        "why": "If the three points were NOT in a line they would form a triangle, and in any triangle the sum of any two sides is strictly GREATER than the third side. So exact equality shows that the points cannot form a triangle.",
         "common_mistakes": [
           "Adding the wrong two distances — the longest must be the sum, not an addend.",
           "Concluding collinear from an approximate rather than exact match."
@@ -189,5 +189,5 @@
       }
     ]
   },
-  "insider_note": "Two questions in one, and the ratio comes free once the distances are done: AB : BC = 2√3 : 4√3. Reduce it to 1 : 2 — leaving 2 : 4 is an unfinished answer."
+  "insider_note": "Two questions in one, and the ratio follows directly from the distances already found: AB : BC = 2√3 : 4√3. Reduce it to 1 : 2 — leaving 2 : 4 is an unfinished answer."
 }

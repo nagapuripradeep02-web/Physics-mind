@@ -113,9 +113,9 @@
             "quadratic in m over n"
           ]
         },
-        "why": "The perpendicularity test needs only l₁l₂ + m₁m₂ + n₁n₂, and each product is the PRODUCT OF THE ROOTS of one of these quadratics — so the individual lines never have to be found. That is what keeps an eight-mark question short.",
+        "why": "The perpendicularity test needs only l₁l₂ + m₁m₂ + n₁n₂, and each PRODUCT OF THE ROOTS gives the ratio of two of these products, such as m₁m₂/(n₁n₂) — so the individual lines never have to be found. That is what keeps an eight-mark question short.",
         "common_mistakes": [
-          "Solving for the two lines explicitly, which is far more work than the question needs.",
+          "Multiplying out −3n(m + n) as −3mn + 3n², which changes the n² term.",
           "Substituting l = m + n and losing the minus sign, which changes the signs of both the 3nl and the 5lm term."
         ]
       },
@@ -261,7 +261,7 @@
             "l one l two"
           ]
         },
-        "why": "Each elimination produces one of the three products. Two eliminations are enough because the chain of equal fractions then links all three.",
+        "why": "Each elimination gives the ratio of two of the three products. Two eliminations are enough because the chain of equal fractions then links all three.",
         "common_mistakes": [
           "Eliminating l again and getting the same information twice.",
           "Reading the product of roots as b/a."

@@ -125,7 +125,7 @@
             "given condition"
           ]
         },
-        "why": "Squaring is safe here because both distances are positive, so no extra solution is created by removing the square roots.",
+        "why": "Squaring is safe here because both sides are distances and so are never negative, so no extra solution is created by removing the square roots.",
         "common_mistakes": [
           "Writing PA = 2OP, which reverses the sentence.",
           "Squaring to OP² = 2PA² and leaving the 2 unsquared."

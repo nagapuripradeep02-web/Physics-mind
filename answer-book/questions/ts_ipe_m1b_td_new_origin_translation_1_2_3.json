@@ -154,7 +154,7 @@
             "two three one"
           ]
         },
-        "why": "The subtraction is easy to reverse by accident, so the check matters: transforming (1, 2, 3) forward through the answer must give back (2, 3, 1) exactly.",
+        "why": "The subtraction is easy to reverse by accident, so the check matters: subtracting the answer from (1, 2, 3) must give (2, 3, 1) exactly.",
         "common_mistakes": [
           "Giving (1, 1, −2), which is the new point minus the old point.",
           "Stopping at the three equations without solving for h, k and l."

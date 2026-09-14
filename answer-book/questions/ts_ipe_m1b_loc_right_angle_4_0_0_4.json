@@ -190,7 +190,7 @@
         "why": "PA² is written straight from the distance formula as (x−x₁)² + (y−y₁)², with no root sign, because the condition was stated in squares.",
         "common_mistakes": [
           "Leaving a square root in, then having to square the whole line again.",
-          "Subtracting the coordinates the wrong way round inside a bracket that is not squared yet."
+          "Writing (x + 4)² instead of (x − 4)² for the fixed x-coordinate 4."
         ],
         "lines_compact": [
           "⇒ [(x−4)² + (y−0)²] + [(x−0)² + (y−4)²]",

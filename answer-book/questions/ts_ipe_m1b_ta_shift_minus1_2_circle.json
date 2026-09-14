@@ -58,8 +58,8 @@
         "label": "Take the given equation",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. The equation you are handed is the ORIGINAL one, so it is the one written in small x and small y. Number it (1) — the last step refers back to it.",
-        "memory_tip": "This one is the ORIGINAL, in small x and y. Number it (1) — the last step refers back.",
+        "margin_note": "First mark. The given equation is the ORIGINAL one, so it is written in small x and small y. Number it (1) — the substitution step uses it.",
+        "memory_tip": "This one is the ORIGINAL, in small x and y. Number it (1) — the substitution step uses it.",
         "lines": [
           {
             "text": "Sol:",
@@ -89,7 +89,7 @@
             "small x and y"
           ]
         },
-        "why": "The first move is to label which equation you were handed. A transformation question is always one of two shapes — given the original find the new, or given the new find the original — and every later step depends on which.",
+        "why": "The first move is to note which equation you were given. This question is one of two kinds — given the original, find the new; or given the new, find the original — and every later step depends on which.",
         "common_mistakes": [
           "Treating the given equation as the NEW equation and solving the wrong way round.",
           "Losing the equals-zero when copying the equation down."
@@ -151,8 +151,8 @@
         "label": "Substitute into the equation",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Third mark. Put those two lines into equation (1). Every x and every y goes, including the ones inside brackets and squares.",
-        "memory_tip": "Every x and y goes, including the ones inside brackets and squares.",
+        "margin_note": "Third mark. Put those two lines into equation (1). Every x and every y is replaced, including the ones in the squared terms.",
+        "memory_tip": "Every x and y is replaced, including the ones in the squared terms.",
         "lines": [
           {
             "text": "(put x = X − 1 and y = Y + 2 into (1))",

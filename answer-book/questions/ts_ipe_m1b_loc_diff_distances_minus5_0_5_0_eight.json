@@ -119,7 +119,17 @@
           },
           "⇒ PA² = 64 + PB² ± 16 PB",
           {
-            "text": "(move PA² to the right and ±16PB to the left)",
+            "text": "(move PA² to the right and ±16PB to the left;",
+            "added": true
+          },
+          {
+            "text": "  moving changes ±16PB to ∓16PB,",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  and ∓ covers the same two signs as ±)",
+            "style": "indent",
             "added": true
           },
           "⇒ ±16 PB = 64 + PB² − PA²"
@@ -147,7 +157,7 @@
             "modulus"
           ]
         },
-        "why": "A difference of distances behaves like a sum: it cannot be squared in one go. Isolating one distance first is the same move, and the ± must be carried because the modulus allows either order.",
+        "why": "A difference of distances is handled like a sum: squaring it directly leaves a PA·PB cross term. Isolating one distance first avoids that, and the ± must be kept because the modulus allows either order.",
         "common_mistakes": [
           "Dropping the modulus and writing only PA − PB = 8.",
           "Squaring PA − PB = 8 directly and being left with a cross term."
@@ -212,7 +222,7 @@
             "sixteen minus five x"
           ]
         },
-        "why": "Both fixed points sit on the x-axis at ±a, so the y² terms are identical and cancel, and what is left is a difference of two squares in x.",
+        "why": "Both fixed points sit on the x-axis at x = ±5, so the y² terms are identical and cancel, and what is left is a difference of two squares in x.",
         "common_mistakes": [
           "Using +4ab and getting 64 + 20x.",
           "Expanding both x-brackets fully and losing a sign instead of cancelling."
@@ -258,7 +268,12 @@
             "added": true
           },
           {
-            "text": "  25x² − 16x² = 9x², and 400 − 256 = 144)",
+            "text": "  move 16x², 16y² and 256 across: 25x² − 16x² = 9x²",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  and 400 − 256 = 144)",
             "style": "indent",
             "added": true
           },
@@ -290,7 +305,7 @@
             "hyperbola"
           ]
         },
-        "why": "A constant difference of distances to two fixed points is a hyperbola with those points as foci, so OPPOSITE signs on x² and y² are the expected finish — the one family here that is not a circle or an ellipse.",
+        "why": "A constant difference of distances to two fixed points, smaller than the distance between them, is a hyperbola with those points as foci, so OPPOSITE signs on x² and y² are the expected finish.",
         "common_mistakes": [
           "Forgetting that −160x appears on both sides and cancels.",
           "Writing 9x² + 16y² = 144 and turning a hyperbola into an ellipse."
@@ -308,5 +323,5 @@
       }
     ]
   },
-  "insider_note": "Isolate PA before squaring or a PA·PB cross term is left. The −160x appears on both sides and cancels; miss that and the x² coefficient comes out wrong. Opposite signs at the end mean a hyperbola, never an ellipse."
+  "insider_note": "Isolate PA before squaring or a PA·PB cross term is left. The −160x appears on both sides and cancels; miss that and a wrong x term is left in the answer. Opposite signs at the end mean a hyperbola, never an ellipse."
 }

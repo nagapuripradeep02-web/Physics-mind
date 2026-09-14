@@ -146,7 +146,7 @@
             "isolate"
           ]
         },
-        "why": "A sum of two distances cannot be squared directly — squaring PA + PB gives a cross term. Isolating one distance first is what keeps the algebra finite.",
+        "why": "Squaring PA + PB directly leaves a 2·PA·PB cross term. Isolating one distance first leaves only one square root, which the second squaring removes.",
         "common_mistakes": [
           "Squaring PA + PB = 8 directly and being left with a 2·PA·PB cross term.",
           "Squaring only one side of PA = 8 − PB."
@@ -211,7 +211,7 @@
             "sixteen plus three y"
           ]
         },
-        "why": "PA² − PB² is a difference of two squares, so the y-terms simplify by (a+b)² − (a−b)² = 4ab and the line becomes first degree.",
+        "why": "PB² − PA² is a difference of two squares, so the y-terms simplify by (a+b)² − (a−b)² = 4ab and the line becomes first degree.",
         "common_mistakes": [
           "Expanding both brackets in full and losing a sign instead of cancelling them.",
           "Using (a+b)² − (a−b)² = 2ab."
@@ -293,7 +293,7 @@
             "locus of P is"
           ]
         },
-        "why": "The locus of a point whose distances to two fixed points add to a constant is an ellipse with those points as foci, so unequal positive coefficients on x² and y² are the expected finish.",
+        "why": "The locus of a point whose distances to two fixed points add to a constant greater than the distance between those points is an ellipse with those points as foci, so unequal positive coefficients on x² and y² are the expected finish.",
         "common_mistakes": [
           "Forgetting that 96y appears on both sides and cancels.",
           "Multiplying only the first bracket by 16."

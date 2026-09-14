@@ -54,7 +54,7 @@
         "marks": 2,
         "mark_note": "Method",
         "margin_note": "First two marks. An angle of the triangle is the angle between the two sides that leave that vertex, so at each vertex subtract the vertex itself from the other two points. Write all six sets before starting any angle.",
-        "memory_tip": "Always subtract the vertex you are standing at: the d.r's of AB are B − A, not A − B.",
+        "memory_tip": "At each vertex, subtract that vertex from both other points: at A use B − A and C − A.",
         "lines": [
           {
             "text": "Sol:",
@@ -108,7 +108,7 @@
         "why": "The angle at a vertex is the angle between the two rays that leave it, so both sets of direction ratios must point away from that vertex. Reversing one of them would give the supplement of the angle wanted.",
         "common_mistakes": [
           "Using AB and BC for ∠A, which are not both at A.",
-          "Subtracting the other point from the vertex instead of the vertex from the other point."
+          "Subtracting the wrong way round for only one of the two sides at a vertex, which gives the supplement of the angle."
         ]
       },
       {
@@ -164,7 +164,7 @@
             "a one a two plus b one b two"
           ]
         },
-        "why": "The sign is kept here and no modulus is used, because an interior angle of a triangle can be obtuse and a modulus would report its acute partner instead. In this triangle all three sums turn out to be zero or positive, so all three angles are right or acute.",
+        "why": "The sign is kept here and no modulus is used, because an interior angle of a triangle can be obtuse and a modulus would give its supplement (180° minus the angle) instead. In this triangle all three sums turn out to be zero or positive, so all three angles are right or acute.",
         "common_mistakes": [
           "Putting a modulus on the top line — a triangle's own angle can be obtuse, so the sign is kept.",
           "Reading a zero numerator as an angle of 0°; a zero dot product means 90°."
@@ -241,7 +241,7 @@
             "three root seven by fourteen"
           ]
         },
-        "why": "Rationalising is what makes ∠B and ∠C comparable at the end: both cosines then sit over 14, and the check reads straight off the two answers.",
+        "why": "Rationalising puts both cosines over 14, which makes the final check sin B = cos C easier to write.",
         "common_mistakes": [
           "Leaving √28 unsimplified and never reaching the 3√7/14 form.",
           "Giving a decimal value instead of the inverse cosine."

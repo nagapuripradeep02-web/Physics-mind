@@ -122,7 +122,7 @@
             "style": "indent"
           },
           {
-            "text": "((p − q)² = p² − 2pq + q²;",
+            "text": "((p − q)² = p² − 2pq + q² and (p + q)² = p² + 2pq + q²;",
             "added": true
           },
           {
@@ -253,7 +253,7 @@
         "marks": 1,
         "mark_note": "Solution",
         "margin_note": "Last mark. Divide by cos2θ to get a tangent, then invert. The a = b case has to be handled separately, because the division by (a − b) is not allowed there.",
-        "memory_tip": "Divide by cos 2θ to get a tangent. The a = b case needs separate treatment — that division is illegal there.",
+        "memory_tip": "Divide by cos 2θ to get a tangent. The a = b case needs separate treatment — division by (a − b) is not allowed there.",
         "lines": [
           {
             "text": "(move sin 2θ (b − a) to the right side,",
@@ -321,7 +321,7 @@
             "a equals b"
           ]
         },
-        "why": "The a = b case is not an afterthought: the division by (a − b) fails there, and 2h/0 sends 2θ to a right angle, so θ = π/4. The question asks for both branches.",
+        "why": "The a = b case must be done separately, because division by (a − b) is not allowed there. The equation becomes 2h cos 2θ = 0, so cos 2θ = 0 (h ≠ 0), 2θ = π/2 and θ = π/4. The question asks for both cases.",
         "common_mistakes": [
           "Giving θ = Tan⁻¹(2h/(a − b)) without the factor ½.",
           "Omitting the a = b case that the question explicitly asks for."
@@ -342,5 +342,5 @@
       }
     ]
   },
-  "insider_note": "Set only the XY coefficient to zero, not the whole transformed equation — that single line is the key step of the proof. Keep the ½ at the end, and answer the a = b case the question names; that case is the fourth mark."
+  "insider_note": "Set only the XY coefficient to zero, not the whole transformed equation — that single line is the key step of the proof. Keep the ½ at the end, and answer the a = b case the question names; the fourth mark covers solving for θ in both cases."
 }

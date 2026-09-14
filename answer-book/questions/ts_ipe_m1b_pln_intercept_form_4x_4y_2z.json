@@ -89,7 +89,7 @@
             "intercept form"
           ]
         },
-        "why": "Intercept form must have 1 on the right-hand side — that is its whole definition. So the constant is moved across and everything divided by it, and the three denominators that appear ARE the intercepts.",
+        "why": "Intercept form x/a + y/b + z/c = 1 has 1 on the right-hand side, so the constant (which must not be 0) is moved across and every term divided by it, and the three denominators that appear ARE the intercepts.",
         "common_mistakes": [
           "Leaving a number other than 1 on the right.",
           "Dividing only some of the terms."
@@ -101,8 +101,8 @@
         "label": "Read off the intercept form",
         "marks": 1,
         "mark_note": "Solution",
-        "margin_note": "Second mark. Once each term reads x over something, that something IS the intercept on that axis. Take care with signs — a negative intercept is perfectly normal.",
-        "memory_tip": "Once each term reads x over something, that something IS the intercept. A negative intercept is normal.",
+        "margin_note": "Second mark. Once each term is written as a variable over a number, that number IS the intercept on that variable's axis. Take care with signs — a negative intercept is perfectly normal.",
+        "memory_tip": "Once each term is a variable over a number, that number IS the intercept. A negative intercept is normal.",
         "lines": [
           {
             "text": "(4x/(−5) = x/(−5/4), (−4y)/(−5) = y/(5/4)",

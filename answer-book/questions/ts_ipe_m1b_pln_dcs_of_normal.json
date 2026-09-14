@@ -71,7 +71,11 @@
             "text": "  the squares add to 1)",
             "style": "indent"
           },
-          "The d.c's of the plane ax + by + cz + d = 0 are",
+          "The d.c's of the normal to the plane",
+          {
+            "text": "  ax + by + cz + d = 0 are",
+            "style": "indent"
+          },
           "±( a/√(a²+b²+c²),  b/√(a²+b²+c²),  c/√(a²+b²+c²) )"
         ],
         "recall": {
@@ -108,14 +112,14 @@
         "label": "Substitute and simplify",
         "marks": 1,
         "mark_note": "Solution",
-        "margin_note": "Second mark. The numbers here were chosen so the root is exactly 3, giving a clean triple.",
-        "memory_tip": "1 + 4 + 4 = 9, so the root is exactly 3 and the triple is clean. The ± shows the normal points both ways.",
+        "margin_note": "Second mark. Here 1 + 4 + 4 = 9, so the root is exactly 3 and the triple has no roots left in it.",
+        "memory_tip": "1 + 4 + 4 = 9, so the root is exactly 3. The ± gives the two opposite directions of the normal.",
         "lines": [
           {
             "text": "(put a = 1, b = 2, c = 2)",
             "added": true
           },
-          "∴ d.c's of x + 2y + 2z − 4 = 0 are",
+          "∴ d.c's of the normal to x + 2y + 2z − 4 = 0 are",
           "±( 1/√(1+4+4),  2/√(1+4+4),  2/√(1+4+4) )",
           {
             "text": "(1 + 4 + 4 = 9)",
@@ -160,7 +164,7 @@
           "Adding the coefficients under the root instead of their squares."
         ],
         "lines_compact": [
-          "∴ d.c's of x + 2y + 2z − 4 = 0 are",
+          "∴ d.c's of the normal to x + 2y + 2z − 4 = 0 are",
           "±( 1/√(1+4+4),  2/√(1+4+4),  2/√(1+4+4) )",
           "= ±( 1/√9, 2/√9, 2/√9 )",
           {
@@ -171,5 +175,5 @@
       }
     ]
   },
-  "insider_note": "Both sign sets are valid, because a normal points both ways out of the plane; quoting one triad answers the question, and the ± shows both. Divide by √9 = 3, not by 9 — dividing by the sum of squares instead of its root is the usual slip."
+  "insider_note": "Both sign sets are valid, because the normal can be taken in either of two opposite directions; quoting one triad answers the question, and the ± shows both. Divide by √9 = 3, not by 9 — dividing by the sum of squares instead of its root is the usual slip."
 }

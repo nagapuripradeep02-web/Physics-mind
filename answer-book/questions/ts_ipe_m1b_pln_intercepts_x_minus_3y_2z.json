@@ -78,7 +78,7 @@
             "intercept form"
           ]
         },
-        "why": "Intercept form must have 1 on the right-hand side — that is its whole definition. Here 9 is already on the right, so every term is divided by 9, and the three denominators that appear ARE the intercepts.",
+        "why": "Intercept form x/a + y/b + z/c = 1 has 1 on the right-hand side. Here the nonzero constant 9 is already on the right, so every term is divided by 9, and the three denominators that appear ARE the intercepts.",
         "common_mistakes": [
           "Leaving a number other than 1 on the right.",
           "Dividing only some of the terms."
@@ -90,7 +90,7 @@
         "label": "Read off the three intercepts",
         "marks": 1,
         "mark_note": "Solution",
-        "margin_note": "Second mark. Once each term reads x over something, that something IS the intercept on that axis. Take care with signs — a negative intercept is perfectly normal.",
+        "margin_note": "Second mark. Once each term is written as a variable over a number, that number IS the intercept on that variable's axis. Take care with signs — a negative intercept is perfectly normal.",
         "memory_tip": "Read each denominator as the intercept: 9, −3 and 9/2.",
         "lines": [
           {

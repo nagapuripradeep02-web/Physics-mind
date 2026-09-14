@@ -96,8 +96,8 @@
         "label": "Write the given condition",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. Isolate one distance, then square — never square a sum of two roots directly.",
-        "memory_tip": "ISOLATE one distance before squaring — never square a sum of two roots directly.",
+        "margin_note": "First mark. Isolate one distance, then square — squaring the sum of two roots directly leaves a cross term and needs a longer second squaring.",
+        "memory_tip": "ISOLATE one distance before squaring, so that only one root is left after the first squaring.",
         "lines": [
           "Given condition: PA + PB = 6",
           {
@@ -138,7 +138,7 @@
             "isolate"
           ]
         },
-        "why": "A sum of two distances cannot be squared directly — squaring PA + PB gives a cross term. Isolating one distance first is what keeps the algebra finite.",
+        "why": "Squaring PA + PB directly leaves a 2·PA·PB cross term. Isolating one distance first leaves only one square root, which the second squaring removes.",
         "common_mistakes": [
           "Squaring PA + PB = 6 directly and being left with a cross term.",
           "Writing (6 − PB)² as 36 − PB²."
@@ -203,7 +203,7 @@
             "nine plus two y"
           ]
         },
-        "why": "PA² − PB² is a difference of two squares, so the y-terms simplify by (a+b)² − (a−b)² = 4ab and the line becomes first degree.",
+        "why": "PB² − PA² is a difference of two squares, so the y-terms simplify by (a+b)² − (a−b)² = 4ab and the line becomes first degree.",
         "common_mistakes": [
           "Expanding both y-brackets fully and slipping a sign instead of cancelling.",
           "Taking 4ab as 4(2)(y) but writing 8y² instead of 8y."
@@ -281,7 +281,7 @@
             "ellipse"
           ]
         },
-        "why": "The locus of a point whose distances to two fixed points add to a constant is an ellipse with those points as foci, so unequal positive coefficients on x² and y² are the expected finish.",
+        "why": "The locus of a point whose distances to two fixed points add to a constant greater than the distance between those points is an ellipse with those points as foci, so unequal positive coefficients on x² and y² are the expected finish.",
         "common_mistakes": [
           "Forgetting that 36y appears on both sides and cancels.",
           "Multiplying only x² by 9 and leaving the y-bracket alone."

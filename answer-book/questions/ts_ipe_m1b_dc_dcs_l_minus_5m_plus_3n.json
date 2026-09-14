@@ -109,7 +109,7 @@
         "label": "Eliminate and factorise",
         "marks": 3,
         "mark_note": "Method",
-        "margin_note": "Three marks. Substituting leaves one homogeneous quadratic in two letters. It always factors, and each factor is one of the two lines.",
+        "margin_note": "Three marks. Substituting leaves one homogeneous quadratic in two letters. Here it factors, and each factor gives one of the two lines.",
         "memory_tip": "One homogeneous quadratic comes out, and it factors into the two lines.",
         "lines": [
           {
@@ -189,7 +189,7 @@
             "two cases"
           ]
         },
-        "why": "The quadratic is homogeneous, so it factors into two linear pieces — which is exactly why there are TWO lines rather than one. The problem is a pair from the start.",
+        "why": "The quadratic gives two values of the ratio m/n, and here it factors into two linear factors — one factor for each of the TWO lines.",
         "common_mistakes": [
           "Trying to solve for numerical values of l, m, n rather than a ratio.",
           "Missing one of the two factors and finding only one line."
@@ -216,8 +216,8 @@
         "label": "Case (i): the first line",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "One mark. Take the first factor, feed it back into the linear relation, and read off the ratio l : m : n. Clearing the common letter leaves whole numbers.",
-        "memory_tip": "Feed the first factor back and read off the ratio l : m : n.",
+        "margin_note": "One mark. Put the first factor into the linear relation, and read off the ratio l : m : n. Clearing the common letter leaves whole numbers.",
+        "memory_tip": "Put the first factor into the linear relation and read off the ratio l : m : n.",
         "lines": [
           {
             "text": "(put m = 2n/3; 3n = 9n/3)",
@@ -254,7 +254,7 @@
             "cancel"
           ]
         },
-        "why": "Only the RATIO matters, so any common factor may be cancelled — which is what turns fractions into the small whole numbers the answer carries.",
+        "why": "Only the RATIO matters, so any common factor that is not zero may be cancelled — which is how the ratio is written in small whole numbers.",
         "common_mistakes": [
           "Keeping the common letter and carrying fractions forward.",
           "Reading the ratio in the wrong order."

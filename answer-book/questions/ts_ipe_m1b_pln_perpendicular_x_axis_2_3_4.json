@@ -94,7 +94,7 @@
         "label": "Write and simplify the plane",
         "marks": 1,
         "mark_note": "Solution",
-        "margin_note": "Second mark. Two of the three coefficients are 0, so the y and z brackets become zero and only the x coordinate of the point is left.",
+        "margin_note": "Second mark. Two of the three coefficients are 0, so the y and z terms become zero and only the x coordinate of the point is left.",
         "memory_tip": "b and c are 0, so the y and z terms become zero and only x = 2 is left.",
         "lines": [
           {

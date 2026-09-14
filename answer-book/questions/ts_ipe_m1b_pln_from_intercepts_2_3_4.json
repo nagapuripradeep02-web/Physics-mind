@@ -45,7 +45,7 @@
         "label": "Write the intercept form",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. This question runs the other way: the intercepts are given, so they go straight into the denominators of x/a + y/b + z/c = 1.",
+        "margin_note": "First mark. Here the intercepts are given, so they go straight into the denominators of x/a + y/b + z/c = 1.",
         "memory_tip": "Intercepts a, b, c go into the denominators: x/2 + y/3 + z/4 = 1.",
         "lines": [
           {
@@ -93,8 +93,8 @@
         "label": "Clear the fractions",
         "marks": 1,
         "mark_note": "Solution",
-        "margin_note": "Second mark. Put everything over a common denominator and multiply through, so the answer is in the plain ax + by + cz = d form the board expects.",
-        "memory_tip": "Common denominator 12, then multiply through for the plain form the board expects.",
+        "margin_note": "Second mark. Put everything over a common denominator and multiply through, so the answer has whole-number coefficients, as in 6x + 4y + 3z = 12.",
+        "memory_tip": "Common denominator 12, then multiply through to reach whole-number coefficients.",
         "lines": [
           {
             "text": "(the common denominator of 2,",
@@ -142,10 +142,10 @@
             "required plane"
           ]
         },
-        "why": "Leaving fractions in a final answer costs marks even when the mathematics is right, so the tidy-up is part of the answer.",
+        "why": "x/2 + y/3 + z/4 = 1 is already a correct equation of the plane; clearing the fractions writes it in the usual form with whole-number coefficients.",
         "common_mistakes": [
           "Multiplying only some terms by the common denominator.",
-          "Leaving the answer as a sum of fractions."
+          "Writing x/2 as 3x/12 instead of 6x/12."
         ],
         "lines_compact": [
           "⇒ (6x + 4y + 3z)/12 = 1",

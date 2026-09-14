@@ -296,7 +296,7 @@
             "locus of P is"
           ]
         },
-        "why": "When the coefficient of PC² is exactly 2 and there are two points on the left, the squared terms match on both sides and cancel — so this family always produces a line, never a circle.",
+        "why": "When the coefficient of PC² is exactly 2 and there are two points on the left, the squared terms match on both sides and cancel — so this family gives a line, not a circle (unless C is the midpoint of AB, when no x or y term is left).",
         "common_mistakes": [
           "Cancelling 2x² on the left against 2x² on the right but forgetting 2y².",
           "Stopping at 14x − 14y + 8 = 0 without dividing by 2."

@@ -97,7 +97,7 @@
         "label": "Write the given condition",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. Square both sides immediately. A ratio needs no isolating and no ±, which makes this the shortest answer in the chapter.",
+        "margin_note": "First mark. Square both sides immediately. A ratio needs no isolating and no ±, so this answer is shorter than the sum and difference answers.",
         "memory_tip": "Square both sides immediately. A ratio needs no isolating and no ±.",
         "lines": [
           "Given condition: PA = 2 PB",
@@ -191,7 +191,7 @@
             "substitute"
           ]
         },
-        "why": "The 4 multiplies a bracket holding both x and y terms, so it reaches the y² as well — that is what makes the y² coefficients differ across the equals sign and leaves a circle rather than a line.",
+        "why": "The 4 multiplies a bracket holding both x and y terms, so it reaches the y² as well — that is what makes the y² coefficients differ across the equals sign, so y² does not cancel and the locus is a circle.",
         "common_mistakes": [
           "Multiplying only the x-part of the right bracket by 4.",
           "Sign slip on (x + 3)², which expands with +6x."
@@ -207,8 +207,8 @@
         "label": "Simplify to the locus",
         "marks": 2,
         "mark_note": "Solution",
-        "margin_note": "The last two marks. Collect on the side that keeps the squared terms positive, then divide by 3. Equal x² and y² coefficients — a circle again, as every ratio condition gives.",
-        "memory_tip": "Equal x² and y² coefficients — a circle, as every ratio condition gives.",
+        "margin_note": "The last two marks. Collect on the side that keeps the squared terms positive, then divide by 3. Equal x² and y² coefficients — a circle again, as every ratio condition other than 1 : 1 gives.",
+        "memory_tip": "Equal x² and y² coefficients — a circle, as every ratio other than 1 : 1 gives.",
         "lines": [
           {
             "text": "(multiply the bracket by 4: 4x² + 24x + 36 + 4y²)",
@@ -262,10 +262,10 @@
             "locus of P is"
           ]
         },
-        "why": "Any fixed ratio of distances other than 1:1 gives a circle of Apollonius, so equal x² and y² coefficients are the check that the arithmetic held.",
+        "why": "Any fixed ratio of distances other than 1:1 gives a circle of Apollonius, so equal x² and y² coefficients are the check that the arithmetic is right.",
         "common_mistakes": [
           "Forgetting to divide through by the common factor 3.",
-          "Taking the constant as 9 − 36 = −27; moving the 9 across gives 36 − 9 = +27 on the right."
+          "Moving the 9 across with the wrong sign and getting 36 + 9 = 45 in place of 27."
         ],
         "lines_compact": [
           "⇒ x² − 6x + 9 + y² = 4x² + 24x + 36 + 4y²",

@@ -278,7 +278,7 @@
             "circle"
           ]
         },
-        "why": "When two distances are in a fixed ratio that is not 1 : 1, the locus is always a circle. Equal x² and y² coefficients are the sign that the algebra landed right.",
+        "why": "When two distances are in a fixed ratio that is not 1 : 1, the locus is always a circle. Equal x² and y² coefficients are a check that the algebra is right.",
         "common_mistakes": [
           "Losing the constant, which is 369 − 340 = 29.",
           "Collecting 72y and 48y as 24y instead of 120y."

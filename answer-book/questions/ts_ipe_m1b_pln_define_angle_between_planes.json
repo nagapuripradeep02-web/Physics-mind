@@ -149,10 +149,10 @@
             "modulus"
           ]
         },
-        "why": "A normal points in two opposite directions, so without the modulus the same pair of planes could report the obtuse angle. The modulus is what makes the definition give one answer.",
+        "why": "A normal can be taken in either of two opposite directions, so without the modulus the formula can give the obtuse angle for the same pair of planes. The modulus is what makes the definition give one answer.",
         "common_mistakes": [
           "Using the constant terms d₁ and d₂ in the formula, which do not affect the angle.",
-          "Leaving out the modulus and reporting an obtuse angle."
+          "Leaving out the modulus, which can give the obtuse angle instead of the acute one."
         ],
         "lines_compact": [
           "Let the planes be a₁x + b₁y + c₁z + d₁ = 0",

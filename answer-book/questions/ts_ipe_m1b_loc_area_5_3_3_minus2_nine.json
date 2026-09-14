@@ -131,7 +131,7 @@
             "added": true
           },
           {
-            "text": "\\Delta = \\tfrac{1}{2} \\begin{vmatrix} x_1-x_2 & x_1-x_3 \\\\ y_1-y_2 & y_1-y_3 \\end{vmatrix}",
+            "text": "\\Delta = \\tfrac{1}{2} \\left| \\begin{vmatrix} x_1-x_2 & x_1-x_3 \\\\ y_1-y_2 & y_1-y_3 \\end{vmatrix} \\right|",
             "render": "katex"
           }
         ],
@@ -165,7 +165,7 @@
         "lines_compact": [
           "Given condition: area of △PAB = 9 sq.units",
           {
-            "text": "\\Delta = \\tfrac{1}{2} \\begin{vmatrix} x_1-x_2 & x_1-x_3 \\\\ y_1-y_2 & y_1-y_3 \\end{vmatrix}",
+            "text": "\\Delta = \\tfrac{1}{2} \\left| \\begin{vmatrix} x_1-x_2 & x_1-x_3 \\\\ y_1-y_2 & y_1-y_3 \\end{vmatrix} \\right|",
             "render": "katex"
           }
         ]
@@ -176,8 +176,8 @@
         "label": "Substitute the coordinates",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Second mark. The determinant rows are differences of coordinates, so the moving point (x, y) enters as the third pair. Expand the 2×2 determinant as a cross product of diagonals.",
-        "memory_tip": "Expand the 2×2 determinant as a cross product of its diagonals.",
+        "margin_note": "Second mark. The determinant rows are differences of coordinates, so the moving point (x, y) enters as the third pair. Expand the 2×2 determinant as the product of the leading diagonal minus the product of the other diagonal.",
+        "memory_tip": "Expand the 2×2 determinant as the product of the leading diagonal minus the product of the other diagonal.",
         "lines": [
           "Here (x₁, y₁) = (5, 3), (x₂, y₂) = (3, −2), (x₃, y₃) = (x, y)",
           {
@@ -185,7 +185,7 @@
             "added": true
           },
           {
-            "text": "\\Rightarrow \\tfrac{1}{2} \\begin{vmatrix} 5-3 & 5-x \\\\ 3+2 & 3-y \\end{vmatrix} = 9",
+            "text": "\\Rightarrow \\tfrac{1}{2} \\left| \\begin{vmatrix} 5-3 & 5-x \\\\ 3+2 & 3-y \\end{vmatrix} \\right| = 9",
             "render": "katex"
           },
           {
@@ -193,16 +193,11 @@
             "added": true
           },
           {
-            "text": "\\Rightarrow \\begin{vmatrix} 2 & 5-x \\\\ 5 & 3-y \\end{vmatrix} = 2(9)",
+            "text": "\\Rightarrow \\left| \\begin{vmatrix} 2 & 5-x \\\\ 5 & 3-y \\end{vmatrix} \\right| = 2(9)",
             "render": "katex"
           },
           {
-            "text": "(a 2 × 2 determinant is ps − qr: 2(3 − y) − (5 − x)(5);",
-            "added": true
-          },
-          {
-            "text": "  the area needs the modulus)",
-            "style": "indent",
+            "text": "(a 2 × 2 determinant is ps − qr: 2(3 − y) − (5 − x)(5))",
             "added": true
           },
           "⇒ |2(3 − y) − 5(5 − x)| = 18",
@@ -236,17 +231,17 @@
         },
         "why": "Once the numbers are in, the determinant is a single 2×2 expansion and the condition becomes one modulus of a linear expression.",
         "common_mistakes": [
-          "Ordering the rows so the differences come out with the wrong sign.",
+          "Writing x₂ − x₁ in the first column but y₁ − y₂ below it, which changes the determinant and not just its sign.",
           "Expanding the determinant as a sum of diagonals instead of a difference."
         ],
         "lines_compact": [
           "Here (x₁, y₁) = (5, 3), (x₂, y₂) = (3, −2), (x₃, y₃) = (x, y)",
           {
-            "text": "\\Rightarrow \\tfrac{1}{2} \\begin{vmatrix} 5-3 & 5-x \\\\ 3+2 & 3-y \\end{vmatrix} = 9",
+            "text": "\\Rightarrow \\tfrac{1}{2} \\left| \\begin{vmatrix} 5-3 & 5-x \\\\ 3+2 & 3-y \\end{vmatrix} \\right| = 9",
             "render": "katex"
           },
           {
-            "text": "\\Rightarrow \\begin{vmatrix} 2 & 5-x \\\\ 5 & 3-y \\end{vmatrix} = 2(9)",
+            "text": "\\Rightarrow \\left| \\begin{vmatrix} 2 & 5-x \\\\ 5 & 3-y \\end{vmatrix} \\right| = 2(9)",
             "render": "katex"
           },
           "⇒ |2(3 − y) − 5(5 − x)| = 18",
@@ -314,7 +309,7 @@
             "locus of P is"
           ]
         },
-        "why": "A fixed area does not pin the point to one line: it can sit on either side of AB at the same perpendicular distance, so the locus is a PAIR of parallel lines and the answer must carry both.",
+        "why": "A fixed area does not fix the point on one line: it can be on either side of AB at the same perpendicular distance, so the locus is a PAIR of parallel lines and the answer must include both.",
         "common_mistakes": [
           "Keeping only the + branch and reporting a single line.",
           "Writing the two lines separately instead of as a product equal to zero."

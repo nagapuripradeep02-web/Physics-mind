@@ -45,7 +45,7 @@
         "label": "Write the parallel-plane form",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. Parallel planes share a normal, so the new plane keeps the SAME coefficients — only its constant changes. The point-form a(x−x₁) + b(y−y₁) + c(z−z₁) = 0 does both at once.",
+        "margin_note": "First mark. Parallel planes have proportional coefficients, so the new plane can keep the SAME coefficients — only its constant changes. The point-form a(x−x₁) + b(y−y₁) + c(z−z₁) = 0 does both at once.",
         "memory_tip": "Same normal means same coefficients. a(x−x₁) + b(y−y₁) + c(z−z₁) = 0 does both jobs at once.",
         "lines": [
           {
@@ -54,9 +54,13 @@
           },
           "(the coefficients of x, y, z in 2x − 3y + 6z = 0)",
           "Here, (x₁, y₁, z₁) = (1, 2, −3) and a = 2, b = −3, c = 6",
-          "(parallel planes have the same normal,",
+          "(parallel planes have parallel normals,",
           {
-            "text": "  so the same coefficients a, b, c)",
+            "text": "  so their coefficients are proportional;",
+            "style": "indent"
+          },
+          {
+            "text": "  take the same a, b, c)",
             "style": "indent"
           },
           "The equation of the plane passing through (x₁, y₁, z₁)",
@@ -86,7 +90,7 @@
             "only the constant changes"
           ]
         },
-        "why": "Two planes are parallel exactly when their normals point the same way, and the normal is given by the coefficients — so keeping them is the condition.",
+        "why": "Two planes are parallel exactly when their normals are parallel, that is, when their coefficients are proportional — so keeping the same coefficients is the simplest way to meet the condition.",
         "common_mistakes": [
           "Changing a coefficient, which tilts the plane.",
           "Using the original constant d, which reproduces the SAME plane rather than a parallel one."
@@ -147,7 +151,7 @@
             "required plane"
           ]
         },
-        "why": "The coefficients are unchanged from the given plane, so a final answer whose x, y, z coefficients differ from it is a sign that something went wrong.",
+        "why": "The coefficients are kept from the given plane, so a final answer whose x, y, z coefficients are not in the ratio 2 : −3 : 6 is a sign that something went wrong.",
         "common_mistakes": [
           "Sign slip when the point has a negative coordinate.",
           "Forgetting to expand one of the three brackets."
@@ -163,5 +167,5 @@
       }
     ]
   },
-  "insider_note": "Keep the coefficients 2, −3 and 6 exactly as they are — only the constant is free. The point's z is −3, so the bracket is (z + 3), and that sign is where the +22 is usually lost."
+  "insider_note": "Keep the coefficients 2, −3 and 6 as they are (any proportional set would also do) and find the constant. The point's z is −3, so the bracket is (z + 3), and that sign is where the +22 is usually lost."
 }

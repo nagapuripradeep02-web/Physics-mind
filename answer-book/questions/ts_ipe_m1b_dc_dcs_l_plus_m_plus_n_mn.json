@@ -108,7 +108,7 @@
         },
         "why": "Two relations connect three unknowns, so the pair fixes only the RATIO l : m : n — which is all a direction needs. Eliminating one letter turns the pair into a single quadratic, and its two roots are the two lines.",
         "common_mistakes": [
-          "Rearranging the second-degree relation instead, which needs a square root.",
+          "Rearranging the second-degree relation instead, which gives a fraction such as l = mn/(2(m + n)) and much longer working.",
           "Sign slip when moving a term across."
         ]
       },
@@ -118,8 +118,8 @@
         "label": "Eliminate and factorise",
         "marks": 3,
         "mark_note": "Method",
-        "margin_note": "Three marks. Substituting leaves one homogeneous quadratic in two letters. It always factors, and each factor is one of the two lines.",
-        "memory_tip": "Substituting leaves one homogeneous quadratic, which always factors.",
+        "margin_note": "Three marks. Substituting leaves one homogeneous quadratic in two letters. Here it factors, and each factor gives one of the two lines.",
+        "memory_tip": "Substituting leaves one homogeneous quadratic, which here factors.",
         "lines": [
           {
             "text": "(put l = −m − n into (2))",
@@ -194,7 +194,7 @@
             "two cases"
           ]
         },
-        "why": "The quadratic is homogeneous, so it factors into two linear pieces — which is exactly why there are TWO lines rather than one. The problem is a pair from the start.",
+        "why": "The quadratic gives two values of the ratio m/n, and here it factors into two linear factors — one factor for each of the TWO lines.",
         "common_mistakes": [
           "Trying to solve for numerical values of l, m, n rather than a ratio.",
           "Missing one of the two factors and finding only one line."
@@ -220,7 +220,7 @@
         "label": "Case (i): the first line",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "One mark. Take the first factor, feed it back into the linear relation, and read off the ratio l : m : n. Clearing the common letter leaves whole numbers.",
+        "margin_note": "One mark. Put the first factor into the linear relation, and read off the ratio l : m : n. Clearing the common letter leaves whole numbers.",
         "memory_tip": "First factor back into the linear relation, then clear the common letter.",
         "lines": [
           {
@@ -266,7 +266,7 @@
             "cancel"
           ]
         },
-        "why": "Only the RATIO matters, so any common factor may be cancelled — which is what turns fractions into the small whole numbers the answer carries.",
+        "why": "Only the RATIO matters, so any common factor that is not zero may be cancelled — which is how the ratio is written in small whole numbers.",
         "common_mistakes": [
           "Keeping the common letter and carrying fractions forward.",
           "Reading the ratio in the wrong order."

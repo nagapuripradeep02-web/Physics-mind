@@ -107,7 +107,17 @@
           },
           "⇒ PA² = 16 + PB² ± 8 PB",
           {
-            "text": "(move PA² to the right and ±8PB to the left)",
+            "text": "(move PA² to the right and ±8PB to the left;",
+            "added": true
+          },
+          {
+            "text": "  moving changes ±8PB to ∓8PB,",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  and ∓ covers the same two signs as ±)",
+            "style": "indent",
             "added": true
           },
           "⇒ ±8 PB = 16 + PB² − PA²"
@@ -135,7 +145,7 @@
             "modulus"
           ]
         },
-        "why": "A difference of distances behaves like a sum: it cannot be squared in one go. Isolating one distance first is the same move, and the ± must be carried because the modulus allows either order.",
+        "why": "A difference of distances is handled like a sum: squaring it directly leaves a PA·PB cross term. Isolating one distance first avoids that, and the ± must be kept because the modulus allows either order.",
         "common_mistakes": [
           "Dropping the modulus and writing only PA − PB = 4.",
           "Squaring PA − PB = 4 directly and being left with a cross term."
@@ -213,7 +223,7 @@
             "P B squared"
           ]
         },
-        "why": "Both fixed points sit on the x-axis at ±a, so the y² terms are identical and cancel, and what is left is a difference of two squares in x. PB is measured from B = (−4, 0), so PB² is the (x+4)² term.",
+        "why": "Both fixed points sit on the x-axis at x = ±4, so the y² terms are identical and cancel, and what is left is a difference of two squares in x. PB is measured from B = (−4, 0), so PB² is the (x+4)² term.",
         "common_mistakes": [
           "Using −4ab and getting 16 − 16x. Here PB² is the (x+4)² term, so the difference of squares is +4ab.",
           "Cancelling the 8 against the 16 as 1 instead of 2."
@@ -235,8 +245,8 @@
         "label": "Simplify to the locus",
         "marks": 2,
         "mark_note": "Solution",
-        "margin_note": "The last two marks. Opposite signs on x² and y² — a hyperbola, which is what a constant difference of two distances always gives.",
-        "memory_tip": "OPPOSITE signs on x² and y² — a hyperbola, as any difference condition gives.",
+        "margin_note": "The last two marks. Opposite signs on x² and y² — a hyperbola, which a constant difference of two distances gives when it is less than the distance between the points (here 4 < 8).",
+        "memory_tip": "OPPOSITE signs on x² and y² — a hyperbola, as a difference condition gives when the difference is less than AB.",
         "lines": [
           {
             "text": "(put PB² = (x + 4)² + y²; (x + 1)² = x² + 1 + 2x)",
@@ -290,7 +300,7 @@
             "locus of P is"
           ]
         },
-        "why": "A constant difference of distances to two fixed points is a hyperbola with those points as foci, so OPPOSITE signs on x² and y² are the expected finish — the one family here that is not a circle or an ellipse.",
+        "why": "A constant difference of distances to two fixed points, smaller than the distance between them, is a hyperbola with those points as foci, so OPPOSITE signs on x² and y² are the expected finish.",
         "common_mistakes": [
           "Leaving the answer as −3x² + y² + 12 = 0 without tidying the signs.",
           "Writing 3x² + y² = 12 and turning a hyperbola into an ellipse."
@@ -308,5 +318,5 @@
       }
     ]
   },
-  "insider_note": "Never square |PA − PB| = 4 directly; isolate PA first or a PA·PB cross term is left. PB is measured from B = (−4, 0), so PB² is the (x + 4)² bracket — swapping the two brackets changes the sign of the 16x."
+  "insider_note": "Isolate PA before squaring: squaring |PA − PB| = 4 directly leaves a PA·PB cross term and needs a longer second squaring. PB is measured from B = (−4, 0), so PB² is the (x + 4)² bracket — swapping the two brackets changes the sign of the 16x."
 }

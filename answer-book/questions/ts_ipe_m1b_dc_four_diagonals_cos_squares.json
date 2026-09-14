@@ -64,7 +64,7 @@
         "label": "Set the cube on the axes",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. Nothing in the question fixes a cube, so one is CHOSEN: put a vertex at the origin and three edges along the axes. Every coordinate is then 0 or a, and the side a cancels at the end — so the answer does not depend on the choice.",
+        "margin_note": "First mark. Nothing in the question fixes a cube, so one is CHOSEN: put a vertex at the origin and three edges along the axes. Angles do not change when the cube is moved, so this placement is allowed; every coordinate is then 0 or a, and the side a cancels at the end.",
         "memory_tip": "Choose the cube: vertex at the origin, edges along the axes. The side a cancels at the end.",
         "lines": [
           {
@@ -211,7 +211,7 @@
             "A M"
           ]
         },
-        "why": "A cube has exactly four body diagonals, one from each pair of opposite corners. Drawing them is the quickest way to see that there are four and not six.",
+        "why": "A cube has exactly four body diagonals, one for each of the four pairs of opposite corners. Drawing them helps you see all four.",
         "common_mistakes": [
           "Drawing only two diagonals; this question needs all four.",
           "Counting face diagonals among the four."
@@ -556,8 +556,8 @@
         "label": "Add the four squares",
         "marks": 2,
         "mark_note": "Solution",
-        "margin_note": "Two marks (the last two). Pair the four terms and use (a+b)² + (a−b)² = 2(a² + b²) twice — the cross terms cancel and only l² + m² + n² is left, which is 1.",
-        "memory_tip": "Pair the terms and use (a+b)² + (a−b)² = 2(a² + b²) twice — the cross terms cancel.",
+        "margin_note": "Two marks (the last two). Pair the four terms and use (a+b)² + (a−b)² = 2(a² + b²) on each pair, then once more on (l+m)² + (l−m)² — the cross terms cancel and (4/3)(l² + m² + n²) is left, with l² + m² + n² = 1.",
+        "memory_tip": "Pair the terms and use (a+b)² + (a−b)² = 2(a² + b²) on each pair, then on (l+m)² + (l−m)² — the cross terms cancel.",
         "lines": [
           "∴ cos²α + cos²β + cos²γ + cos²δ",
           {
@@ -626,9 +626,9 @@
             "equals one"
           ]
         },
-        "why": "The identity is applied TWICE — once to the pair carrying (l+m) and once to the pair carrying (l−m) — and every cross term cancels, leaving a result that does not depend on the ray at all.",
+        "why": "The identity is applied to the pair carrying (l+m), to the pair carrying (l−m), and then to (l+m)² + (l−m)² — every cross term cancels, leaving a result that does not depend on the ray at all.",
         "common_mistakes": [
-          "Applying the identity to the wrong pairing of the four terms.",
+          "Expanding one of the four squares with a sign slip, so the cross terms do not cancel.",
           "Forgetting that l² + m² + n² = 1 at the last step."
         ],
         "lines_compact": [
@@ -650,5 +650,5 @@
       }
     ]
   },
-  "insider_note": "All four body diagonals are needed here, not one pair. Pair the squares as (l + m ± n) with (l − m ± n) so (a + b)² + (a − b)² = 2(a² + b²) applies twice, then l² + m² + n² = 1 gives the answer."
+  "insider_note": "All four body diagonals are needed here, not one pair. Pair (l + m + n)² with (l + m − n)² and (l − m + n)² with (l − m − n)², use (a + b)² + (a − b)² = 2(a² + b²) on each pair and then on (l + m)² + (l − m)², and l² + m² + n² = 1 gives the answer."
 }

@@ -104,7 +104,7 @@
             "equate"
           ]
         },
-        "why": "A centroid condition gives one equation per coordinate, and the three are completely independent — so each unknown coordinate falls out on its own.",
+        "why": "A centroid condition gives one equation per coordinate, and the three are completely independent — so each unknown coordinate is found from its own equation.",
         "common_mistakes": [
           "Dividing by the wrong number of vertices.",
           "Mixing the x, y and z equations together."

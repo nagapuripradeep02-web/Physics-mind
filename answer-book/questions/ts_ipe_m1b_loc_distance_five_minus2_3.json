@@ -207,7 +207,12 @@
         "memory_tip": "Add the two bracket constants first (4 + 9 = 13), then take the 25 across.",
         "lines": [
           {
-            "text": "(move 25 to the left side and put the terms in order)",
+            "text": "(move 25 to the left side, put the terms in order,",
+            "added": true
+          },
+          {
+            "text": "  and add 4 + 9 = 13)",
+            "style": "indent",
             "added": true
           },
           "⇒ x² + y² + 4x − 6y + 13 − 25 = 0",

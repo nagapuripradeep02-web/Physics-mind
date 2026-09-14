@@ -105,8 +105,8 @@
         "label": "Solve for x",
         "marks": 1,
         "mark_note": "Solution",
-        "margin_note": "Second mark. Isolate the bracket and take the square root — remembering that a square root gives PLUS OR MINUS, which is why there are two answers.",
-        "memory_tip": "A square root gives PLUS OR MINUS, which is why there are two answers.",
+        "margin_note": "Second mark. Isolate the bracket and solve (x − 5)² = 9 — a number whose square is 9 can be 3 or −3, which is why there are two answers.",
+        "memory_tip": "(x − 5)² = 9 gives x − 5 = 3 or x − 5 = −3, which is why there are two answers.",
         "lines": [
           {
             "text": "(36 + 36 = 72; move 72 to the right side)",

@@ -48,8 +48,8 @@
         "kind": "text",
         "label": "Take the locus point",
         "marks": 0,
-        "margin_note": "No mark of its own. Here one of the two things P is measured from is a LINE, not a point — the y-axis. That single difference is what makes this question a parabola instead of a circle.",
-        "memory_tip": "One distance is to a point, one to a LINE, and the two are EQUAL — that always gives a parabola.",
+        "margin_note": "No mark of its own. Here one of the two things P is measured from is a LINE, not a point — the y-axis. That difference is what makes this locus a parabola instead of a straight line (equal distances from two points give the perpendicular bisector).",
+        "memory_tip": "One distance is to a point, one to a LINE, and the two are EQUAL — when the point is not on the line, that gives a parabola.",
         "lines": [
           {
             "text": "Sol:",
@@ -133,7 +133,7 @@
         "why": "Squaring is what lets the modulus be dropped safely: |x|² and x² are the same number for every real x, so nothing is lost or added.",
         "common_mistakes": [
           "Using |y| for the distance to the y-axis.",
-          "Dropping the modulus bars before squaring."
+          "Squaring only the left side and writing PA² = |x|."
         ],
         "lines_compact": [
           "Distance from P to the y-axis = |x|",
