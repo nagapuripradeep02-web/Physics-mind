@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.25, chapter 4 MATHEMATICAL INDUCTION, Short Answer question 1(i). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to each of the four moves an induction proof is marked on — the base case, the hypothesis, the inductive step and the closing appeal to the principle — and leaves the opening statement step unmarked, matching every other card in this chapter. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, and Mathematical Induction supplies one of them on almost every paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.25, chapter 4 MATHEMATICAL INDUCTION, Short Answer question 1(i). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to each of the four moves an induction proof is marked on — the base case, the hypothesis, the inductive step and the closing appeal to the principle — and leaves the opening statement step unmarked, matching every other card in this chapter. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, and Mathematical Induction supplies one of them on almost every paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this by induction — the nth term, the five moves, and what you add to both sides in the third step.",
   "answer": {
@@ -100,6 +100,10 @@
         "margin_note": "One mark. Work out BOTH sides separately at n = 1 and say they are equal.",
         "lines": [
           "Step 1 — check S(1)",
+          {
+            "text": "(put n = 1 on both sides)",
+            "added": true
+          },
           "L.H.S of S(1) = 1³ = 1",
           "R.H.S of S(1) = 1²(2)²/4 = 4/4 = 1",
           "∴ L.H.S = R.H.S, so S(1) is true."
@@ -131,7 +135,13 @@
           "Asserting S(1) is true without working out both sides.",
           "Reading 1²(2)²/4 as 1²(2)/4 and getting 1/2."
         ],
-        "memory_tip": "At n = 1: left side 1, right side 4/4 = 1. Write both, then write that they are equal."
+        "memory_tip": "At n = 1: left side 1, right side 4/4 = 1. Write both, then write that they are equal.",
+        "lines_compact": [
+          "Step 1 — check S(1)",
+          "L.H.S of S(1) = 1³ = 1",
+          "R.H.S of S(1) = 1²(2)²/4 = 4/4 = 1",
+          "∴ L.H.S = R.H.S, so S(1) is true."
+        ]
       },
       {
         "id": "s3_assume",
@@ -142,6 +152,10 @@
         "margin_note": "One mark. Assume it for ONE value k and number the line (1) — Step 3 quotes that number.",
         "lines": [
           "Step 2 — assume S(k) is true, k ∈ N",
+          {
+            "text": "(take S(k) as true for one natural number k)",
+            "added": true
+          },
           "S(k): 1³ + 2³ + … + k³",
           "        = k²(k+1)²/4   …(1)"
         ],
@@ -172,7 +186,12 @@
           "Assuming the statement for ALL k, which assumes what is being proved.",
           "Not numbering the line, so Step 3 cannot cite it."
         ],
-        "memory_tip": "Assume for one k and number the line (1). Step 3 adds the next term to that numbered line."
+        "memory_tip": "Assume for one k and number the line (1). Step 3 adds the next term to that numbered line.",
+        "lines_compact": [
+          "Step 2 — assume S(k) is true, k ∈ N",
+          "S(k): 1³ + 2³ + … + k³",
+          "        = k²(k+1)²/4   …(1)"
+        ]
       },
       {
         "id": "s4_inductive",
@@ -183,11 +202,31 @@
         "margin_note": "One mark, and the longest step on the page. Add (k+1)³ to both sides of (1), then take (k+1)² out as a common factor.",
         "lines": [
           "Step 3 — show S(k+1) is true",
+          {
+            "text": "(the (k + 1)th term is (k + 1)³)",
+            "added": true
+          },
           "Add (k+1)³ to both sides of (1):",
           "L.H.S = k²(k+1)²/4 + (k+1)³",
+          {
+            "text": "(write both parts over 4)",
+            "added": true
+          },
           "= [k²(k+1)² + 4(k+1)³]/4",
+          {
+            "text": "(take out (k + 1)²)",
+            "added": true
+          },
           "= (k+1)²[k² + 4(k+1)]/4",
+          {
+            "text": "(open the bracket)",
+            "added": true
+          },
           "= (k+1)²(k² + 4k + 4)/4",
+          {
+            "text": "(k² + 4k + 4 = (k + 2)²)",
+            "added": true
+          },
           "= (k+1)²(k+2)²/4 = R.H.S",
           "So S(k+1) is true whenever S(k) is true."
         ],
@@ -219,7 +258,17 @@
           "Expanding everything into a quartic instead of factorising, which will not simplify.",
           "Stopping before writing = R.H.S, so the step does not show what was asked."
         ],
-        "memory_tip": "Add (k+1)³, take (k+1)² out as a common factor, and k² + 4k + 4 folds into (k+2)²."
+        "memory_tip": "Add (k+1)³, take (k+1)² out as a common factor, and k² + 4k + 4 folds into (k+2)².",
+        "lines_compact": [
+          "Step 3 — show S(k+1) is true",
+          "Add (k+1)³ to both sides of (1):",
+          "L.H.S = k²(k+1)²/4 + (k+1)³",
+          "= [k²(k+1)² + 4(k+1)³]/4",
+          "= (k+1)²[k² + 4(k+1)]/4",
+          "= (k+1)²(k² + 4k + 4)/4",
+          "= (k+1)²(k+2)²/4 = R.H.S",
+          "So S(k+1) is true whenever S(k) is true."
+        ]
       },
       {
         "id": "s5_conclude",
@@ -229,6 +278,15 @@
         "mark_note": "Conclusion",
         "margin_note": "The last mark is for naming the principle. One sentence, one full mark.",
         "lines": [
+          {
+            "text": "(S(1) is true, and S(k) true gives S(k + 1) true,",
+            "added": true
+          },
+          {
+            "text": "  so S(2), S(3), … are true in turn)",
+            "style": "indent",
+            "added": true
+          },
           "Hence, by the principle of finite",
           "Mathematical Induction, S(n) is true",
           "for all n ∈ N."
@@ -259,7 +317,12 @@
           "Writing only 'hence proved' and never naming the principle.",
           "Claiming it for all real numbers instead of all n ∈ N."
         ],
-        "memory_tip": "The closing sentence names the principle and is worth a full mark on its own."
+        "memory_tip": "The closing sentence names the principle and is worth a full mark on its own.",
+        "lines_compact": [
+          "Hence, by the principle of finite",
+          "Mathematical Induction, S(n) is true",
+          "for all n ∈ N."
+        ]
       }
     ]
   }

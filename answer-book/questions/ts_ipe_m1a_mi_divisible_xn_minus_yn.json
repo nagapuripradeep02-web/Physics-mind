@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.29, chapter 4 MATHEMATICAL INDUCTION, Short Answer question 8(ii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to each of the four moves an induction proof is marked on — the base case, the hypothesis, the inductive step and the closing appeal to the principle — and leaves the opening statement step unmarked, matching every other card in this chapter. The condition x ≠ y is stated in the answer itself, in the opening step, because it is what makes x − y a non-zero divisor. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, and Mathematical Induction supplies one of them on almost every paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.29, chapter 4 MATHEMATICAL INDUCTION, Short Answer question 8(ii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to each of the four moves an induction proof is marked on — the base case, the hypothesis, the inductive step and the closing appeal to the principle — and leaves the opening statement step unmarked, matching every other card in this chapter. The condition x ≠ y is stated in the answer itself, in the opening step, because it is what makes x − y a non-zero divisor. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, and Mathematical Induction supplies one of them on almost every paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this by induction — what is held fixed, and the add-and-subtract move that makes the third step work.",
   "answer": {
@@ -61,7 +61,8 @@
           "x, y ∈ N and x ≠ y, so x − y ≠ 0.",
           "The induction is on n only.",
           "Let S(n): xⁿ − yⁿ = (x − y)q,",
-          "        where q ∈ Z"
+          "        where q ∈ Z",
+          "(divisible by x − y means equal to (x − y) × an integer)"
         ],
         "recall": {
           "credit": "say_it",
@@ -102,6 +103,10 @@
         "margin_note": "One mark. At n = 1 the expression IS x − y, so write it as (x − y) times 1 rather than just saying it is obvious.",
         "lines": [
           "Step 1 — check S(1)",
+          {
+            "text": "(put n = 1 on both sides)",
+            "added": true
+          },
           "x¹ − y¹ = x − y = (x − y)(1),",
           "and 1 is an integer,",
           "so x − y is divisible by x − y.",
@@ -133,7 +138,14 @@
           "Writing 'obvious' instead of showing x − y = (x − y)(1).",
           "Checking n = 2 first and never doing n = 1."
         ],
-        "memory_tip": "At n = 1 the expression is x − y itself, so q = 1. Say the value of q."
+        "memory_tip": "At n = 1 the expression is x − y itself, so q = 1. Say the value of q.",
+        "lines_compact": [
+          "Step 1 — check S(1)",
+          "x¹ − y¹ = x − y = (x − y)(1),",
+          "and 1 is an integer,",
+          "so x − y is divisible by x − y.",
+          "So S(1) is true."
+        ]
       },
       {
         "id": "s3_assume",
@@ -144,6 +156,10 @@
         "margin_note": "One mark. Assume it for ONE value k, with x and y unchanged, and number the line (1).",
         "lines": [
           "Step 2 — assume S(k) is true, k ∈ N",
+          {
+            "text": "(take S(k) as true for one natural number k)",
+            "added": true
+          },
           "S(k): xᵏ − yᵏ = (x − y)q   …(1)",
           "        where q ∈ Z"
         ],
@@ -174,7 +190,12 @@
           "Assuming the statement for ALL k, which assumes what is being proved.",
           "Not numbering the line, so Step 3 cannot cite it."
         ],
-        "memory_tip": "Replace n by k and keep x, y and q as they are. Number the line (1)."
+        "memory_tip": "Replace n by k and keep x, y and q as they are. Number the line (1).",
+        "lines_compact": [
+          "Step 2 — assume S(k) is true, k ∈ N",
+          "S(k): xᵏ − yᵏ = (x − y)q   …(1)",
+          "        where q ∈ Z"
+        ]
       },
       {
         "id": "s4_inductive",
@@ -186,10 +207,26 @@
         "lines": [
           "Step 3 — show S(k+1) is true",
           "xᵏ⁺¹ − yᵏ⁺¹ = x·xᵏ − y·yᵏ",
+          {
+            "text": "(subtract and add x·yᵏ, which does not change the value)",
+            "added": true
+          },
           "= x·xᵏ − x·yᵏ + x·yᵏ − y·yᵏ",
+          {
+            "text": "(take out x from the first pair and yᵏ from the second)",
+            "added": true
+          },
           "= x(xᵏ − yᵏ) + yᵏ(x − y)",
           "= x(x − y)q + yᵏ(x − y)   [from (1)]",
+          {
+            "text": "(take out x − y)",
+            "added": true
+          },
           "= (x − y)(xq + yᵏ)",
+          {
+            "text": "(x, q and yᵏ are integers)",
+            "added": true
+          },
           "which is divisible by x − y, since",
           "xq + yᵏ is an integer.",
           "So S(k+1) is true whenever S(k) is true."
@@ -222,7 +259,18 @@
           "Substituting (1) straight into x·xᵏ − y·yᵏ, where no xᵏ − yᵏ has appeared yet.",
           "Stopping at (x − y)(…) without saying the bracket is an integer, which is what divisibility requires."
         ],
-        "memory_tip": "Add and subtract x·yᵏ. One group becomes x(xᵏ − yᵏ), the other becomes yᵏ(x − y)."
+        "memory_tip": "Add and subtract x·yᵏ. One group becomes x(xᵏ − yᵏ), the other becomes yᵏ(x − y).",
+        "lines_compact": [
+          "Step 3 — show S(k+1) is true",
+          "xᵏ⁺¹ − yᵏ⁺¹ = x·xᵏ − y·yᵏ",
+          "= x·xᵏ − x·yᵏ + x·yᵏ − y·yᵏ",
+          "= x(xᵏ − yᵏ) + yᵏ(x − y)",
+          "= x(x − y)q + yᵏ(x − y)   [from (1)]",
+          "= (x − y)(xq + yᵏ)",
+          "which is divisible by x − y, since",
+          "xq + yᵏ is an integer.",
+          "So S(k+1) is true whenever S(k) is true."
+        ]
       },
       {
         "id": "s5_conclude",
@@ -232,6 +280,15 @@
         "mark_note": "Conclusion",
         "margin_note": "The last mark is for naming the principle. One sentence, one full mark.",
         "lines": [
+          {
+            "text": "(S(1) is true, and S(k) true gives S(k + 1) true,",
+            "added": true
+          },
+          {
+            "text": "  so S(2), S(3), … are true in turn)",
+            "style": "indent",
+            "added": true
+          },
           "Hence, by the principle of finite",
           "Mathematical Induction, S(n) is true",
           "for all n ∈ N."
@@ -261,7 +318,12 @@
         "common_mistakes": [
           "Writing 'hence proved' without naming the principle."
         ],
-        "memory_tip": "Name the principle in one sentence — it is worth a full mark."
+        "memory_tip": "Name the principle in one sentence — it is worth a full mark.",
+        "lines_compact": [
+          "Hence, by the principle of finite",
+          "Mathematical Induction, S(n) is true",
+          "for all n ∈ N."
+        ]
       }
     ]
   }

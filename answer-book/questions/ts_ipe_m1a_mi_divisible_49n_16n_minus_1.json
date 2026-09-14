@@ -51,7 +51,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.21 — LAQ chapter 2, question 10. Four [1 Mark] tags are printed on this page (statement, Step 1, Step 2, conclusion); the Step-3 tag is not legible on the scan, and 3 is the only value that makes the printed four sum to the chapter's 7. Publisher's claims until a Telangana IPE teacher confirms them. SUPERSEDED 2026-08-31 by the RE-CUT sentence at the end of this note — re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Step 3 — S(k+1) follows. RE-CUT 2026-08-31: this card was filed as LAQ at 8 marks and is now SAQ at 4 marks. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition) prints this chapter under a Short Answer Questions banner and prints no long-answer block for it at all. Only the question was taken from a source book; the solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. The mathematics and the steps are unchanged; only the mark scheme moved — the four induction moves (base case, hypothesis, inductive step, conclusion) now carry 1 mark each and the opening statement step carries 0. Still unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.21 — LAQ chapter 2, question 10. Four [1 Mark] tags are printed on this page (statement, Step 1, Step 2, conclusion); the Step-3 tag is not legible on the scan, and 3 is the only value that makes the printed four sum to the chapter's 7. Publisher's claims until a Telangana IPE teacher confirms them. SUPERSEDED 2026-08-31 by the RE-CUT sentence at the end of this note — re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Step 3 — S(k+1) follows. RE-CUT 2026-08-31: this card was filed as LAQ at 8 marks and is now SAQ at 4 marks. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition) prints this chapter under a Short Answer Questions banner and prints no long-answer block for it at all. Only the question was taken from a source book; the solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. The mathematics and the steps are unchanged; only the mark scheme moved — the four induction moves (base case, hypothesis, inductive step, conclusion) now carry 1 mark each and the opening statement step carries 0. Still unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this by induction — how you write divisibility as an equation, and what happens in the third step.",
   "answer": {
@@ -68,7 +68,8 @@
         "margin_note": "Unmarked setup at 4 marks, but never skip it — divisibility is written as an EQUATION, equal to 64 times an integer. Without that line there is nothing to substitute later.",
         "lines": [
           "Let S(n): 49ⁿ + 16n − 1 = 64q,",
-          "        where q ∈ Z"
+          "        where q ∈ Z",
+          "(divisible by 64 means equal to 64 times an integer)"
         ],
         "recall": {
           "credit": "say_it",
@@ -107,6 +108,10 @@
         "margin_note": "One mark. Substitute n = 1 and show the number that comes out is a multiple of 64.",
         "lines": [
           "Step 1 — check S(1)",
+          {
+            "text": "(put n = 1 on both sides)",
+            "added": true
+          },
           "49¹ + 16(1) − 1 = 49 + 16 − 1 = 64",
           "= 64(1), which is divisible by 64.",
           "So S(1) is true."
@@ -137,7 +142,13 @@
           "Getting 66 by mishandling the −1.",
           "Asserting S(1) without the arithmetic."
         ],
-        "memory_tip": "At n = 1: 49 + 16 − 1 = 64 = 64 × 1, exactly one multiple."
+        "memory_tip": "At n = 1: 49 + 16 − 1 = 64 = 64 × 1, exactly one multiple.",
+        "lines_compact": [
+          "Step 1 — check S(1)",
+          "49¹ + 16(1) − 1 = 49 + 16 − 1 = 64",
+          "= 64(1), which is divisible by 64.",
+          "So S(1) is true."
+        ]
       },
       {
         "id": "s3_assume",
@@ -148,7 +159,15 @@
         "margin_note": "One mark. Assume it for k, then REARRANGE to make 49ᵏ the subject — that rearranged line is what Step 3 substitutes.",
         "lines": [
           "Step 2 — assume S(k) is true, k ∈ N",
+          {
+            "text": "(take S(k) as true for one natural number k)",
+            "added": true
+          },
           "S(k): 49ᵏ + 16k − 1 = 64q   …(1)",
+          {
+            "text": "(move 16k − 1 to the other side)",
+            "added": true
+          },
           "⇒ 49ᵏ = 64q − 16k + 1"
         ],
         "recall": {
@@ -178,7 +197,12 @@
           "Assuming the statement for all k rather than one k.",
           "Not rearranging, which leaves Step 3 with nothing to put in."
         ],
-        "memory_tip": "Rearrange to make 49ᵏ the SUBJECT — the rearranged line is what Step 3 uses."
+        "memory_tip": "Rearrange to make 49ᵏ the SUBJECT — the rearranged line is what Step 3 uses.",
+        "lines_compact": [
+          "Step 2 — assume S(k) is true, k ∈ N",
+          "S(k): 49ᵏ + 16k − 1 = 64q   …(1)",
+          "⇒ 49ᵏ = 64q − 16k + 1"
+        ]
       },
       {
         "id": "s4_inductive",
@@ -189,11 +213,36 @@
         "margin_note": "One mark, and the longest step on the page. Split 49ᵏ⁺¹ as 49·49ᵏ, substitute (1), and gather until 64 comes out as a factor.",
         "lines": [
           "Step 3 — show S(k+1) is true",
+          {
+            "text": "(put n = k + 1; 49ᵏ⁺¹ = 49 × 49ᵏ and",
+            "added": true
+          },
+          {
+            "text": "  16(k + 1) − 1 = 16k + 15)",
+            "style": "indent",
+            "added": true
+          },
           "49ᵏ⁺¹ + 16(k+1) − 1 = 49·49ᵏ + 16k + 15",
           "= 49(64q − 16k + 1) + 16k + 15   [from (1)]",
+          {
+            "text": "(open the bracket)",
+            "added": true
+          },
           "= 49(64q) − 16k(49) + 49 + 16k + 15",
+          {
+            "text": "(−49(16k) + 16k = −16k(49 − 1), and 49 + 15 = 64)",
+            "added": true
+          },
           "= 49(64q) − 16k(49 − 1) + 64",
+          {
+            "text": "(49 − 1 = 48)",
+            "added": true
+          },
           "= 49(64q) − 16k(48) + 64",
+          {
+            "text": "(16k × 48 = 64 × 12k, so take out 64)",
+            "added": true
+          },
           "= 64(49q − 12k + 1)",
           "which is divisible by 64, since",
           "49q − 12k + 1 is an integer."
@@ -226,7 +275,18 @@
           "Stopping at 64(…) without saying the bracket is an integer, which is what divisibility requires.",
           "Slipping on 16(k+1) − 1 = 16k + 15."
         ],
-        "memory_tip": "Split 49ᵏ⁺¹ as 49·49ᵏ, substitute, and collect: 16k(49 − 1) = 16k(48) leaves 64 as a factor."
+        "memory_tip": "Split 49ᵏ⁺¹ as 49·49ᵏ, substitute, and collect: 16k(49 − 1) = 16k(48) leaves 64 as a factor.",
+        "lines_compact": [
+          "Step 3 — show S(k+1) is true",
+          "49ᵏ⁺¹ + 16(k+1) − 1 = 49·49ᵏ + 16k + 15",
+          "= 49(64q − 16k + 1) + 16k + 15   [from (1)]",
+          "= 49(64q) − 16k(49) + 49 + 16k + 15",
+          "= 49(64q) − 16k(49 − 1) + 64",
+          "= 49(64q) − 16k(48) + 64",
+          "= 64(49q − 12k + 1)",
+          "which is divisible by 64, since",
+          "49q − 12k + 1 is an integer."
+        ]
       },
       {
         "id": "s5_conclude",
@@ -236,6 +296,15 @@
         "mark_note": "Conclusion",
         "margin_note": "The last mark is for naming the principle. One sentence, one mark.",
         "lines": [
+          {
+            "text": "(S(1) is true, and S(k) true gives S(k + 1) true,",
+            "added": true
+          },
+          {
+            "text": "  so S(2), S(3), … are true in turn)",
+            "style": "indent",
+            "added": true
+          },
           "Hence, by the principle of finite",
           "Mathematical Induction, S(n) is true",
           "for all n ∈ N."
@@ -265,7 +334,12 @@
         "common_mistakes": [
           "Writing 'hence proved' without naming the principle."
         ],
-        "memory_tip": "Name the principle in one sentence — it is worth a full mark."
+        "memory_tip": "Name the principle in one sentence — it is worth a full mark.",
+        "lines_compact": [
+          "Hence, by the principle of finite",
+          "Mathematical Induction, S(n) is true",
+          "for all n ∈ N."
+        ]
       }
     ]
   },

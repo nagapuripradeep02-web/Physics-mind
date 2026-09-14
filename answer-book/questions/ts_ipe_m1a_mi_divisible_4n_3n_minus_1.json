@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.29, chapter 4 MATHEMATICAL INDUCTION, Short Answer question 7(iii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to each of the four moves an induction proof is marked on — the base case, the hypothesis, the inductive step and the closing appeal to the principle — and leaves the opening statement step unmarked, matching every other card in this chapter. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, and Mathematical Induction supplies one of them on almost every paper. A note on the base case: at n = 1 the expression is 0, and 0 = 9 × 0 is divisible by 9, so S(1) is true and the card says so in full rather than quietly starting at n = 2. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.29, chapter 4 MATHEMATICAL INDUCTION, Short Answer question 7(iii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to each of the four moves an induction proof is marked on — the base case, the hypothesis, the inductive step and the closing appeal to the principle — and leaves the opening statement step unmarked, matching every other card in this chapter. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, and Mathematical Induction supplies one of them on almost every paper. A note on the base case: at n = 1 the expression is 0, and 0 = 9 × 0 is divisible by 9, so S(1) is true and the card says so in full rather than quietly starting at n = 2. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this by induction — how you write divisibility as an equation, and what you substitute in the third step.",
   "answer": {
@@ -59,7 +59,8 @@
             "style": "heading"
           },
           "Let S(n): 4ⁿ − 3n − 1 = 9q,",
-          "        where q ∈ Z"
+          "        where q ∈ Z",
+          "(divisible by 9 means equal to 9 times an integer)"
         ],
         "recall": {
           "credit": "say_it",
@@ -98,6 +99,10 @@
         "margin_note": "One mark. The value at n = 1 is 0, and 0 is a multiple of 9 — write that out, do not skip past it.",
         "lines": [
           "Step 1 — check S(1)",
+          {
+            "text": "(put n = 1 on both sides)",
+            "added": true
+          },
           "4¹ − 3(1) − 1 = 4 − 3 − 1 = 0",
           "0 = 9(0), so 0 is divisible by 9.",
           "So S(1) is true."
@@ -128,7 +133,13 @@
           "Saying 0 is not divisible by 9 and starting the proof at n = 2 without being asked to.",
           "Mishandling the −1 and getting 1 instead of 0."
         ],
-        "memory_tip": "At n = 1 the value is 0, and 0 = 9 × 0. Check n = 2 as well: 16 − 6 − 1 = 9."
+        "memory_tip": "At n = 1 the value is 0, and 0 = 9 × 0. Check n = 2 as well: 16 − 6 − 1 = 9.",
+        "lines_compact": [
+          "Step 1 — check S(1)",
+          "4¹ − 3(1) − 1 = 4 − 3 − 1 = 0",
+          "0 = 9(0), so 0 is divisible by 9.",
+          "So S(1) is true."
+        ]
       },
       {
         "id": "s3_assume",
@@ -139,7 +150,15 @@
         "margin_note": "One mark. Assume it for k, then REARRANGE to make 4ᵏ the subject — that rearranged line is what Step 3 substitutes.",
         "lines": [
           "Step 2 — assume S(k) is true, k ∈ N",
+          {
+            "text": "(take S(k) as true for one natural number k)",
+            "added": true
+          },
           "S(k): 4ᵏ − 3k − 1 = 9q   …(1)",
+          {
+            "text": "(move 3k + 1 to the other side)",
+            "added": true
+          },
           "⇒ 4ᵏ = 9q + 3k + 1"
         ],
         "recall": {
@@ -169,7 +188,12 @@
           "Assuming the statement for all k rather than one k.",
           "Sign slip when moving −3k − 1 across, giving 4ᵏ = 9q − 3k − 1."
         ],
-        "memory_tip": "Rearrange to make 4ᵏ the SUBJECT: 4ᵏ = 9q + 3k + 1. Step 3 puts that straight in."
+        "memory_tip": "Rearrange to make 4ᵏ the SUBJECT: 4ᵏ = 9q + 3k + 1. Step 3 puts that straight in.",
+        "lines_compact": [
+          "Step 2 — assume S(k) is true, k ∈ N",
+          "S(k): 4ᵏ − 3k − 1 = 9q   …(1)",
+          "⇒ 4ᵏ = 9q + 3k + 1"
+        ]
       },
       {
         "id": "s4_inductive",
@@ -180,10 +204,26 @@
         "margin_note": "One mark, and the longest step on the page. Split 4ᵏ⁺¹ as 4·4ᵏ, substitute (1), and gather until 9 comes out as a factor.",
         "lines": [
           "Step 3 — show S(k+1) is true",
+          {
+            "text": "(put n = k + 1; 4ᵏ⁺¹ = 4 × 4ᵏ)",
+            "added": true
+          },
           "4ᵏ⁺¹ − 3(k+1) − 1 = 4·4ᵏ − 3k − 4",
           "= 4(9q + 3k + 1) − 3k − 4   [from (1)]",
+          {
+            "text": "(open the bracket)",
+            "added": true
+          },
           "= 36q + 12k + 4 − 3k − 4",
+          {
+            "text": "(+4 and −4 cancel; 12k − 3k = 9k)",
+            "added": true
+          },
           "= 36q + 9k",
+          {
+            "text": "(take out 9)",
+            "added": true
+          },
           "= 9(4q + k)",
           "which is divisible by 9, since",
           "4q + k is an integer."
@@ -216,7 +256,17 @@
           "Slipping on −3(k+1) − 1 = −3k − 4.",
           "Stopping at 9(…) without saying the bracket is an integer, which is what divisibility requires."
         ],
-        "memory_tip": "Split 4ᵏ⁺¹ as 4·4ᵏ, substitute, and the +4 and −4 cancel: 36q + 9k = 9(4q + k)."
+        "memory_tip": "Split 4ᵏ⁺¹ as 4·4ᵏ, substitute, and the +4 and −4 cancel: 36q + 9k = 9(4q + k).",
+        "lines_compact": [
+          "Step 3 — show S(k+1) is true",
+          "4ᵏ⁺¹ − 3(k+1) − 1 = 4·4ᵏ − 3k − 4",
+          "= 4(9q + 3k + 1) − 3k − 4   [from (1)]",
+          "= 36q + 12k + 4 − 3k − 4",
+          "= 36q + 9k",
+          "= 9(4q + k)",
+          "which is divisible by 9, since",
+          "4q + k is an integer."
+        ]
       },
       {
         "id": "s5_conclude",
@@ -226,6 +276,15 @@
         "mark_note": "Conclusion",
         "margin_note": "The last mark is for naming the principle. One sentence, one full mark.",
         "lines": [
+          {
+            "text": "(S(1) is true, and S(k) true gives S(k + 1) true,",
+            "added": true
+          },
+          {
+            "text": "  so S(2), S(3), … are true in turn)",
+            "style": "indent",
+            "added": true
+          },
           "Hence, by the principle of finite",
           "Mathematical Induction, S(n) is true",
           "for all n ∈ N."
@@ -255,7 +314,12 @@
         "common_mistakes": [
           "Writing 'hence proved' without naming the principle."
         ],
-        "memory_tip": "Name the principle in one sentence — it is worth a full mark."
+        "memory_tip": "Name the principle in one sentence — it is worth a full mark.",
+        "lines_compact": [
+          "Hence, by the principle of finite",
+          "Mathematical Induction, S(n) is true",
+          "for all n ∈ N."
+        ]
       }
     ]
   }
