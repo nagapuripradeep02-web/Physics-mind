@@ -82,7 +82,7 @@
         "why": "tanh y is a ratio, so multiplying top and bottom by eʸ changes nothing but removes every negative power. One unknown, e²ʸ, is then all that is left to find.",
         "common_mistakes": [
           "Multiplying only the numerator by eʸ.",
-          "Writing tanh y as (eʸ + e⁻ʸ)/(eʸ − e⁻ʸ), which is upside down."
+          "Writing tanh y as (eʸ + e⁻ʸ)/(eʸ − e⁻ʸ), which has the top and the bottom swapped."
         ]
       },
       {

@@ -139,11 +139,11 @@
         "memory_tip": "(3 + √8)(3 − √8) = 1, so the two logarithms are equal in size and opposite in sign.",
         "lines": [
           "The second solution is x = −logₑ(3 + √8)",
-          "The minus sign in the surd gives logₑ(3 − √8)",
+          "Taking the minus sign before the surd gives logₑ(3 − √8)",
           "(3 + √8)(3 − √8) = 9 − 8 = 1",
           "So 3 − √8 = 1/(3 + √8)",
           "∴ logₑ(3 − √8) = −logₑ(3 + √8)",
-          "So cosh x = 3 has two solutions in all, not three"
+          "So cosh x = 3 has exactly two solutions, ±logₑ(3 + √8)"
         ],
         "recall": {
           "credit": "say_it",

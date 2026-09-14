@@ -108,8 +108,8 @@
         "label": "Apply the double-angle formulas",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Second mark. Same two formulas as the question where sinh x is given. The surd survives into sinh2x but cancels out of cosh2x, since only the squares appear there.",
-        "memory_tip": "cosh 2x = cosh²x + sinh²x uses only the squares, so the surd cancels there but survives in sinh 2x.",
+        "margin_note": "Second mark. Same two formulas as the question where sinh x is given. The surd stays in sinh2x but cancels out of cosh2x, since only the squares appear there.",
+        "memory_tip": "cosh 2x = cosh²x + sinh²x uses only the squares, so the surd cancels there but stays in sinh 2x.",
         "lines": [
           "cosh 2x = cosh²x + sinh²x = 25/4 + 21/4 = 46/4 = 23/2",
           "sinh 2x = 2 sinh x cosh x = 2(√21/2)(5/2) = 5√21/2",
@@ -148,5 +148,5 @@
       }
     ]
   },
-  "insider_note": "cosh x = 5/2 is legal because cosh never drops below 1, and here sinh x = √(cosh²x − 1), the identity used the other way round. The √21 stays in sinh 2x; a tidy whole number is not expected."
+  "insider_note": "cosh x = 5/2 is possible because cosh x is never less than 1, and here sinh x = √(cosh²x − 1), the identity used the other way round. The √21 stays in sinh 2x; a tidy whole number is not expected."
 }

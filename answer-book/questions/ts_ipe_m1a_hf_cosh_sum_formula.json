@@ -94,8 +94,8 @@
         "label": "Cancel and read off cosh(x + y)",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Second mark. The two mixed terms cancel again, but this time the surviving terms ADD, so the numerator is 2eˣ⁺ʸ + 2e⁻⁽ˣ⁺ʸ⁾.",
-        "memory_tip": "Both x + y terms survive with a plus here, so the answer is a cosh and not a sinh.",
+        "margin_note": "Second mark. The two mixed terms cancel again, but this time the remaining terms ADD, so the numerator is 2eˣ⁺ʸ + 2e⁻⁽ˣ⁺ʸ⁾.",
+        "memory_tip": "Both x + y terms remain with a plus here, so the answer is a cosh and not a sinh.",
         "lines": [
           "= (eˣ⁺ʸ + eˣ⁻ʸ + eʸ⁻ˣ + e⁻⁽ˣ⁺ʸ⁾)",
           {
@@ -131,9 +131,9 @@
             "over two"
           ]
         },
-        "why": "A plus between the two surviving exponentials is exactly the cosh definition; a minus would be sinh. The sign is what names the answer.",
+        "why": "A plus between the two remaining exponentials is exactly the cosh definition; a minus would be sinh. The sign is what names the answer.",
         "common_mistakes": [
-          "Getting a minus between the surviving terms and calling the answer sinh(x + y).",
+          "Getting a minus between the remaining terms and calling the answer sinh(x + y).",
           "Losing a sign on eˣ⁻ʸ, so the mixed terms fail to cancel."
         ]
       }

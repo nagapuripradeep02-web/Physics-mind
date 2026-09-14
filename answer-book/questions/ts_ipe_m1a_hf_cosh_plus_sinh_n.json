@@ -96,7 +96,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. The right side is the same identity with nx in place of x — so it collapses to eⁿˣ too, and the two agree.",
-        "memory_tip": "The right side is the same identity with nx, so it collapses to eⁿˣ too. Write the comparison line.",
+        "memory_tip": "The right side is the same identity with nx, so it simplifies to eⁿˣ too. Write the comparison line.",
         "lines": [
           "R.H.S = cosh nx + sinh nx",
           "= (eⁿˣ + e⁻ⁿˣ)/2 + (eⁿˣ − e⁻ⁿˣ)/2",
@@ -137,5 +137,5 @@
       }
     ]
   },
-  "insider_note": "The bracket collapses to eˣ before the power matters, so the left side is eⁿˣ in one line. Both sides must be simplified separately and then compared; working one side only is half an answer."
+  "insider_note": "The bracket simplifies to eˣ before the power is used, so the left side is eⁿˣ in one line. Both sides must be simplified separately and then compared; working one side only is half an answer."
 }

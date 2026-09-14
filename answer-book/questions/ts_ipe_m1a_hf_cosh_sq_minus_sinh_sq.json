@@ -90,7 +90,7 @@
         "label": "Use (a+b)² − (a−b)² = 4ab",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Second mark. The shortcut does the whole job: with a = eˣ and b = e⁻ˣ the numerator is 4·eˣ·e⁻ˣ, and eˣ·e⁻ˣ is e⁰ = 1.",
+        "margin_note": "Second mark. The identity (a + b)² − (a − b)² = 4ab gives the answer at once: with a = eˣ and b = e⁻ˣ the numerator is 4·eˣ·e⁻ˣ, and eˣ·e⁻ˣ is e⁰ = 1.",
         "memory_tip": "(a + b)² − (a − b)² = 4ab, with a = eˣ and b = e⁻ˣ. Then eˣ·e⁻ˣ = e⁰ = 1.",
         "lines": [
           "= (4 · eˣ · e⁻ˣ) / 4   [∵ (a+b)² − (a−b)² = 4ab]",
@@ -122,10 +122,10 @@
             "exponentials multiply"
           ]
         },
-        "why": "Adding the exponents gives x + (−x) = 0, and e⁰ = 1. That is the only place the answer of exactly 1 comes from.",
+        "why": "Adding the exponents gives x + (−x) = 0, and e⁰ = 1. That is where the answer of exactly 1 comes from.",
         "common_mistakes": [
           "Expanding both squares in full and making a sign error.",
-          "Writing eˣ · e⁻ˣ as e^(x·−x)."
+          "Multiplying the exponents, so eˣ · e⁻ˣ becomes e to the power x × (−x), instead of adding them."
         ]
       }
     ]

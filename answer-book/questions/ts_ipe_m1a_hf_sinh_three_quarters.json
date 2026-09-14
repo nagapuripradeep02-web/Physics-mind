@@ -100,8 +100,8 @@
         "label": "Apply the double-angle formulas",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Second mark. cosh2x = cosh²x + sinh²x — a PLUS, unlike the circular cos2x which has a minus. sinh2x = 2 sinh x cosh x matches its circular twin exactly.",
-        "memory_tip": "cosh 2x = cosh²x + sinh²x, a PLUS, unlike cos 2x. sinh 2x = 2 sinh x cosh x matches its circular twin.",
+        "margin_note": "Second mark. cosh2x = cosh²x + sinh²x — a PLUS, unlike the circular cos2x which has a minus. sinh2x = 2 sinh x cosh x matches the circular formula sin 2x = 2 sin x cos x exactly.",
+        "memory_tip": "cosh 2x = cosh²x + sinh²x, a PLUS, unlike cos 2x. sinh 2x = 2 sinh x cosh x matches the circular formula sin 2x = 2 sin x cos x.",
         "lines": [
           "cosh 2x = cosh²x + sinh²x = 25/16 + 9/16 = 34/16 = 17/8",
           "sinh 2x = 2 sinh x cosh x = 2(3/4)(5/4) = 30/16 = 15/8",
@@ -132,7 +132,7 @@
             "fifteen over eight"
           ]
         },
-        "why": "cosh2x ADDS the two squares where cos2x subtracts them. That single sign is the commonest place a circular formula gets used by mistake.",
+        "why": "cosh2x ADDS the two squares where cos2x subtracts them. That single sign is a common place for the circular formula to be used by mistake.",
         "common_mistakes": [
           "Using cosh2x = cosh²x − sinh²x, which is always 1.",
           "Giving only one of the two answers."

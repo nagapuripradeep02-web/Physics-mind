@@ -46,7 +46,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. tanh is sinh over cosh, so write both parts using the difference formulas. These come from the addition formulas with y replaced by −y.",
-        "memory_tip": "Replace y by −y in the addition formulas: sinh(−y) = −sinh y and cosh(−y) = cosh y, so both signs flip to minus.",
+        "memory_tip": "Replace y by −y in the addition formulas: sinh(−y) = −sinh y and cosh(−y) = cosh y, so both signs change to minus.",
         "lines": [
           {
             "text": "Sol:",
@@ -78,7 +78,7 @@
             "denominator"
           ]
         },
-        "why": "There is no separate definition of tanh(x − y) to expand. The only route is through sinh and cosh, whose difference formulas the chapter already has.",
+        "why": "There is no separate definition of tanh(x − y) to expand. The way to it is through sinh and cosh, whose difference formulas the chapter already has.",
         "common_mistakes": [
           "Writing a plus in the denominator, copying the tan formula from trigonometry.",
           "Expanding tanh(x − y) as tanh x − tanh y."

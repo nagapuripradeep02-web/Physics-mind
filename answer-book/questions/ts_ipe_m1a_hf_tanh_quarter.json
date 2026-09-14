@@ -75,7 +75,7 @@
             "one plus x"
           ]
         },
-        "why": "Same formula, so the only difference from the Tanh⁻¹(1/2) question is the arithmetic that follows.",
+        "why": "Same formula, so the difference from the Tanh⁻¹(1/2) question is the arithmetic that follows.",
         "common_mistakes": [
           "Using the Sinh⁻¹ form.",
           "Dropping the half."
@@ -87,8 +87,8 @@
         "label": "Substitute x = 1/4",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Second mark. (1 + 1/4) over (1 − 1/4) is (5/4) over (3/4). The quarters cancel and 5/3 survives — a fraction, not a whole number.",
-        "memory_tip": "(5/4) divided by (3/4): the quarters cancel and 5/3 survives — a fraction, not a whole number.",
+        "margin_note": "Second mark. (1 + 1/4) over (1 − 1/4) is (5/4) over (3/4). The quarters cancel and 5/3 is left — a fraction, not a whole number.",
+        "memory_tip": "(5/4) divided by (3/4): the quarters cancel and 5/3 is left — a fraction, not a whole number.",
         "lines": [
           "∴ Tanh⁻¹(1/4) = (1/2) logₑ((1 + 1/4)/(1 − 1/4))",
           "= (1/2) logₑ((5/4)/(3/4))",

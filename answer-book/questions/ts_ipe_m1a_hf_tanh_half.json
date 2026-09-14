@@ -92,7 +92,7 @@
         "why": "The 1/2 in the answer is not something to derive — it is part of the formula. Recognising that saves hunting for where it came from.",
         "common_mistakes": [
           "Omitting the 1/2 outside the log.",
-          "Writing (1−x)/(1+x) upside down."
+          "Writing (1−x)/(1+x) in place of (1+x)/(1−x)."
         ]
       },
       {

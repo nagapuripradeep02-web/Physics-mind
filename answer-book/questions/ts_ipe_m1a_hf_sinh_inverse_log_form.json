@@ -80,7 +80,7 @@
             "multiply throughout"
           ]
         },
-        "why": "e⁻ʸ is the only thing stopping this from being a quadratic. Multiplying by eʸ removes it and turns the equation into one the quadratic formula solves.",
+        "why": "The e⁻ʸ term is what stops this from being a quadratic. Multiplying by eʸ removes it and turns the equation into one the quadratic formula solves.",
         "common_mistakes": [
           "Multiplying only one side by eʸ.",
           "Writing eʸ·e⁻ʸ as e⁻ʸ² instead of 1."
@@ -92,7 +92,7 @@
         "label": "Take the positive root",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Second mark. Both roots come out of the formula, but eʸ is always positive and x − √(x² + 1) is always negative, so only the plus root survives.",
+        "margin_note": "Second mark. Both roots come out of the formula, but eʸ is always positive and x − √(x² + 1) is always negative, so only the plus root is kept.",
         "memory_tip": "√(x² + 1) is bigger than x for every real x, so x − √(x² + 1) is negative and cannot equal eʸ.",
         "lines": [
           "eʸ = (2x ± √(4x² + 4))/2",

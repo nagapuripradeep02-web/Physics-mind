@@ -94,7 +94,7 @@
         "label": "Cancel and read off sinh(x + y)",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Second mark. The eˣ⁻ʸ terms and the eʸ⁻ˣ terms have opposite signs in the two brackets, so they cancel and only the x + y terms survive.",
+        "margin_note": "Second mark. The eˣ⁻ʸ terms and the eʸ⁻ˣ terms have opposite signs in the two brackets, so they cancel and only the x + y terms remain.",
         "memory_tip": "The mixed terms eˣ⁻ʸ and eʸ⁻ˣ appear once with a plus and once with a minus, so they cancel in pairs.",
         "lines": [
           "= (eˣ⁺ʸ + eˣ⁻ʸ − eʸ⁻ˣ − e⁻⁽ˣ⁺ʸ⁾)",
