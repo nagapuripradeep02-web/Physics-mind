@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.119, chapter 11 HYPERBOLIC FUNCTIONS, Very Short Answer question 10. The book prints this result as a Theorem rather than as a numbered exercise; it is asked and worked exactly like one. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards writing tanh y in terms of e²ʸ first, and forming (1 + x)/(1 − x) and taking logarithms second. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory; Hyperbolic Functions is a VSAQ-only unit on this paper, with no Section-B and no Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.119, chapter 11 HYPERBOLIC FUNCTIONS, Very Short Answer question 10. The book prints this result as a Theorem rather than as a numbered exercise; it is asked and worked exactly like one. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards writing tanh y in terms of e²ʸ first, and forming (1 + x)/(1 − x) and taking logarithms second. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory; Hyperbolic Functions is a VSAQ-only unit on this paper, with no Section-B and no Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — name the formula or definition you use and how you finish.",
   "answer": {
@@ -53,8 +53,10 @@
             "style": "heading"
           },
           "Let y = Tanh⁻¹x, so x = tanh y",
+          "(the definition of tanh y)",
           "x = (eʸ − e⁻ʸ)/(eʸ + e⁻ʸ)",
           "Multiply the top and the bottom by eʸ:",
+          "(eʸ × eʸ = e²ʸ and e⁻ʸ × eʸ = 1)",
           "x = (e²ʸ − 1)/(e²ʸ + 1)"
         ],
         "recall": {
@@ -94,12 +96,32 @@
         "margin_note": "Second mark. Build 1 + x and 1 − x separately; their common denominator cancels and the ratio is e²ʸ. The given range −1 < x < 1 is what keeps both of them positive.",
         "memory_tip": "1 + x and 1 − x share the denominator e²ʸ + 1, so dividing them leaves e²ʸ on its own.",
         "lines": [
+          {
+            "text": "(1 + x = (e²ʸ + 1 + e²ʸ − 1)/(e²ʸ + 1))",
+            "added": true
+          },
           "1 + x = 2e²ʸ/(e²ʸ + 1)",
+          {
+            "text": "(1 − x = (e²ʸ + 1 − e²ʸ + 1)/(e²ʸ + 1))",
+            "added": true
+          },
           "1 − x = 2/(e²ʸ + 1)",
+          {
+            "text": "(divide: the e²ʸ + 1 cancels)",
+            "added": true
+          },
           "∴ (1 + x)/(1 − x) = e²ʸ",
           "Here −1 < x < 1, so 1 + x > 0 and 1 − x > 0",
           "The ratio is positive, so its logarithm exists",
+          {
+            "text": "(take logₑ of both sides)",
+            "added": true
+          },
           "2y = logₑ((1 + x)/(1 − x))",
+          {
+            "text": "(divide by 2)",
+            "added": true
+          },
           {
             "text": "∴ Tanh⁻¹x = (1/2) logₑ((1 + x)/(1 − x))",
             "style": "boxed"
@@ -131,6 +153,18 @@
         "common_mistakes": [
           "Writing the ratio as (1 − x)/(1 + x), which gives e⁻²ʸ.",
           "Forgetting the 1/2 that comes from 2y on the left."
+        ],
+        "lines_compact": [
+          "1 + x = 2e²ʸ/(e²ʸ + 1)",
+          "1 − x = 2/(e²ʸ + 1)",
+          "∴ (1 + x)/(1 − x) = e²ʸ",
+          "Here −1 < x < 1, so 1 + x > 0 and 1 − x > 0",
+          "The ratio is positive, so its logarithm exists",
+          "2y = logₑ((1 + x)/(1 − x))",
+          {
+            "text": "∴ Tanh⁻¹x = (1/2) logₑ((1 + x)/(1 − x))",
+            "style": "boxed"
+          }
         ]
       }
     ]

@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.118, chapter 11 HYPERBOLIC FUNCTIONS, Very Short Answer question 5. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards stating the correct logarithmic form of Cosh⁻¹ first and evaluating the surd second; the third step, which shows that logₑ(3 − √8) is the same number with the opposite sign, carries no mark and is authored for the student, not for the examiner. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory; Hyperbolic Functions is a VSAQ-only unit on this paper, with no Section-B and no Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.118, chapter 11 HYPERBOLIC FUNCTIONS, Very Short Answer question 5. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards stating the correct logarithmic form of Cosh⁻¹ first and evaluating the surd second; the third step, which shows that logₑ(3 − √8) is the same number with the opposite sign, carries no mark and is authored for the student, not for the examiner. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory; Hyperbolic Functions is a VSAQ-only unit on this paper, with no Section-B and no Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — name the formula or definition you use and how you finish.",
   "answer": {
@@ -53,8 +53,10 @@
             "style": "heading"
           },
           "Given cosh x = 3, and 3 ≥ 1, so a real x exists",
+          "(the formula for the inverse of cosh)",
           "We know Cosh⁻¹t = logₑ(t + √(t² − 1)), t ≥ 1",
           "cosh(−x) = cosh x, so cosh is an even function",
+          "(so x and −x both give cosh = 3)",
           "∴ cosh x = 3 gives x = ± Cosh⁻¹(3)"
         ],
         "recall": {
@@ -94,7 +96,15 @@
         "margin_note": "Second mark. 9 − 1 = 8, so the surd is √8. The question asks for the positive value, so that is the one written in the box.",
         "memory_tip": "9 − 1 = 8, so the surd is √8, which is 2√2. It is not √9 − √1.",
         "lines": [
+          {
+            "text": "(put t = 3)",
+            "added": true
+          },
           "Cosh⁻¹(3) = logₑ(3 + √(3² − 1))",
+          {
+            "text": "(√(9 − 1) = √8)",
+            "added": true
+          },
           "= logₑ(3 + √(9 − 1))",
           "Taking the positive value asked for:",
           {
@@ -128,6 +138,15 @@
         "common_mistakes": [
           "Getting √10 by using the Sinh⁻¹ form by mistake.",
           "Writing √8 as √9 − √1 = 2."
+        ],
+        "lines_compact": [
+          "Cosh⁻¹(3) = logₑ(3 + √(3² − 1))",
+          "= logₑ(3 + √(9 − 1))",
+          "Taking the positive value asked for:",
+          {
+            "text": "∴ x = logₑ(3 + √8)",
+            "style": "boxed"
+          }
         ]
       },
       {
@@ -140,8 +159,20 @@
         "lines": [
           "The second solution is x = −logₑ(3 + √8)",
           "Taking the minus sign before the surd gives logₑ(3 − √8)",
+          {
+            "text": "(multiply the two brackets: (p + q)(p − q) = p² − q²)",
+            "added": true
+          },
           "(3 + √8)(3 − √8) = 9 − 8 = 1",
+          {
+            "text": "(divide both sides by 3 + √8)",
+            "added": true
+          },
           "So 3 − √8 = 1/(3 + √8)",
+          {
+            "text": "(logₑ(1/y) = −logₑ y)",
+            "added": true
+          },
           "∴ logₑ(3 − √8) = −logₑ(3 + √8)",
           "So cosh x = 3 has exactly two solutions, ±logₑ(3 + √8)"
         ],
@@ -171,6 +202,14 @@
         "common_mistakes": [
           "Treating logₑ(3 − √8) as a third, separate solution.",
           "Thinking logₑ(3 − √8) is undefined, when 3 − √8 is about 0.17 and positive."
+        ],
+        "lines_compact": [
+          "The second solution is x = −logₑ(3 + √8)",
+          "Taking the minus sign before the surd gives logₑ(3 − √8)",
+          "(3 + √8)(3 − √8) = 9 − 8 = 1",
+          "So 3 − √8 = 1/(3 + √8)",
+          "∴ logₑ(3 − √8) = −logₑ(3 + √8)",
+          "So cosh x = 3 has exactly two solutions, ±logₑ(3 + √8)"
         ]
       }
     ]

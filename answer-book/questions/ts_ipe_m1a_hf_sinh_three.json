@@ -43,7 +43,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.96 — VSAQ chapter 19 Hyperbolic Functions, answer 137.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 19 · TS 16 · AP 22.  ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four questions to a page in two columns. It is not a bare guess: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark VSAQ. The book's chapter header carries ★★★ and reads '2 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q10 is the Hyperbolic Functions slot. NOTE: Hyperbolic Functions is a VSAQ-ONLY unit — the paper gives it no Section-B and no Section-C slot, and this book has no hyperbolic LAQ chapter (LAQ chapters are 1-6) and no SAQ chapter (SAQ chapters are 7-13). Chapter 19 is the LAST VSAQ chapter; the boundary was walked to book p.98, where a separate 'Star Questions Plus' section begins."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.96 — VSAQ chapter 19 Hyperbolic Functions, answer 137.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 19 · TS 16 · AP 22.  ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four questions to a page in two columns. It is not a bare guess: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark VSAQ. The book's chapter header carries ★★★ and reads '2 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q10 is the Hyperbolic Functions slot. NOTE: Hyperbolic Functions is a VSAQ-ONLY unit — the paper gives it no Section-B and no Section-C slot, and this book has no hyperbolic LAQ chapter (LAQ chapters are 1-6) and no SAQ chapter (SAQ chapters are 7-13). Chapter 19 is the LAST VSAQ chapter; the boundary was walked to book p.98, where a separate 'Star Questions Plus' section begins. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — name the formula or definition you use and how you finish.",
   "answer": {
@@ -65,7 +65,8 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "We know Sinh⁻¹x = logₑ(x + √(x² + 1))"
+          "We know Sinh⁻¹x = logₑ(x + √(x² + 1))",
+          "(this holds for every real x)"
         ],
         "recall": {
           "credit": "say_it",
@@ -104,9 +105,21 @@
         "margin_note": "Second mark. sinh x = 3 means x is Sinh⁻¹(3). Substitute and simplify the surd: 9 + 1 = 10.",
         "memory_tip": "9 + 1 = 10, so the answer is logₑ(3 + √10). √10 is not √9 + √1.",
         "lines": [
+          {
+            "text": "(sinh x = 3 means x is the inverse sinh of 3)",
+            "added": true
+          },
           "Given sinh x = 3, so x = Sinh⁻¹(3)",
+          {
+            "text": "(put x = 3 in the formula)",
+            "added": true
+          },
           "= logₑ(3 + √(3² + 1))",
           "= logₑ(3 + √(9 + 1))",
+          {
+            "text": "(9 + 1 = 10)",
+            "added": true
+          },
           {
             "text": "∴ x = logₑ(3 + √10)",
             "style": "boxed"
@@ -138,6 +151,15 @@
         "common_mistakes": [
           "Reading sinh x = 3 as x = sinh 3 instead of x = Sinh⁻¹(3).",
           "Writing √10 as √9 + √1 = 4."
+        ],
+        "lines_compact": [
+          "Given sinh x = 3, so x = Sinh⁻¹(3)",
+          "= logₑ(3 + √(3² + 1))",
+          "= logₑ(3 + √(9 + 1))",
+          {
+            "text": "∴ x = logₑ(3 + √10)",
+            "style": "boxed"
+          }
         ]
       }
     ]

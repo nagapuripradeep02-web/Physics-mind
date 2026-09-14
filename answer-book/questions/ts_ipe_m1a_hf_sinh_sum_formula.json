@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.118, chapter 11 HYPERBOLIC FUNCTIONS, Very Short Answer question 8(i). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards writing both products from the exponential definitions first and the cancellation that leaves sinh(x + y) second. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory; Hyperbolic Functions is a VSAQ-only unit on this paper, with no Section-B and no Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.118, chapter 11 HYPERBOLIC FUNCTIONS, Very Short Answer question 8(i). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards writing both products from the exponential definitions first and the cancellation that leaves sinh(x + y) second. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory; Hyperbolic Functions is a VSAQ-only unit on this paper, with no Section-B and no Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — name the formula or definition you use and how you finish.",
   "answer": {
@@ -54,6 +54,7 @@
           },
           "R.H.S = sinh x cosh y + cosh x sinh y",
           "Each definition has a 2 below, so take 4·R.H.S",
+          "(each product of two definitions has 2 × 2 = 4 below it)",
           "4·R.H.S = (eˣ − e⁻ˣ)(eʸ + e⁻ʸ)",
           {
             "text": "+ (eˣ + e⁻ˣ)(eʸ − e⁻ʸ)",
@@ -97,12 +98,24 @@
         "margin_note": "Second mark. The eˣ⁻ʸ terms and the eʸ⁻ˣ terms have opposite signs in the two brackets, so they cancel and only the x + y terms remain.",
         "memory_tip": "The mixed terms eˣ⁻ʸ and eʸ⁻ˣ appear once with a plus and once with a minus, so they cancel in pairs.",
         "lines": [
+          {
+            "text": "(multiply out each bracket)",
+            "added": true
+          },
           "= (eˣ⁺ʸ + eˣ⁻ʸ − eʸ⁻ˣ − e⁻⁽ˣ⁺ʸ⁾)",
           {
             "text": "+ (eˣ⁺ʸ − eˣ⁻ʸ + eʸ⁻ˣ − e⁻⁽ˣ⁺ʸ⁾)",
             "style": "indent"
           },
+          {
+            "text": "(the eˣ⁻ʸ and eʸ⁻ˣ terms cancel)",
+            "added": true
+          },
           "= 2eˣ⁺ʸ − 2e⁻⁽ˣ⁺ʸ⁾",
+          {
+            "text": "(divide by 4)",
+            "added": true
+          },
           "∴ R.H.S = (eˣ⁺ʸ − e⁻⁽ˣ⁺ʸ⁾)/2",
           {
             "text": "= sinh(x + y) = L.H.S",
@@ -135,6 +148,19 @@
         "common_mistakes": [
           "Losing a sign on eʸ⁻ˣ, so the mixed terms fail to cancel.",
           "Dividing by 2 instead of 4 when going back from 4·R.H.S."
+        ],
+        "lines_compact": [
+          "= (eˣ⁺ʸ + eˣ⁻ʸ − eʸ⁻ˣ − e⁻⁽ˣ⁺ʸ⁾)",
+          {
+            "text": "+ (eˣ⁺ʸ − eˣ⁻ʸ + eʸ⁻ˣ − e⁻⁽ˣ⁺ʸ⁾)",
+            "style": "indent"
+          },
+          "= 2eˣ⁺ʸ − 2e⁻⁽ˣ⁺ʸ⁾",
+          "∴ R.H.S = (eˣ⁺ʸ − e⁻⁽ˣ⁺ʸ⁾)/2",
+          {
+            "text": "= sinh(x + y) = L.H.S",
+            "style": "boxed"
+          }
         ]
       }
     ]

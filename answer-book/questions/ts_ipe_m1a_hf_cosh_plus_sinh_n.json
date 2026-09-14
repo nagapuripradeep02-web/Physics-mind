@@ -35,7 +35,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.97 — VSAQ chapter 19 Hyperbolic Functions, answer 140.1. Printed appearances: AP 18. Proved from the DEFINITIONS rather than from any identity. Both sides collapse to the same exponential, which is the cleanest kind of proof in this chapter. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four questions to a page in two columns. It is not a bare guess: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark VSAQ. The book's chapter header carries ★★★ and reads '2 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q10 is the Hyperbolic Functions slot. NOTE: Hyperbolic Functions is a VSAQ-ONLY unit — the paper gives it no Section-B and no Section-C slot, and this book has no hyperbolic LAQ chapter (LAQ chapters are 1-6) and no SAQ chapter (SAQ chapters are 7-13). Chapter 19 is the LAST VSAQ chapter; the boundary was walked to book p.98, where a separate 'Star Questions Plus' section begins."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.97 — VSAQ chapter 19 Hyperbolic Functions, answer 140.1. Printed appearances: AP 18. Proved from the DEFINITIONS rather than from any identity. Both sides collapse to the same exponential, which is the cleanest kind of proof in this chapter. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four questions to a page in two columns. It is not a bare guess: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark VSAQ. The book's chapter header carries ★★★ and reads '2 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q10 is the Hyperbolic Functions slot. NOTE: Hyperbolic Functions is a VSAQ-ONLY unit — the paper gives it no Section-B and no Section-C slot, and this book has no hyperbolic LAQ chapter (LAQ chapters are 1-6) and no SAQ chapter (SAQ chapters are 7-13). Chapter 19 is the LAST VSAQ chapter; the boundary was walked to book p.98, where a separate 'Star Questions Plus' section begins. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — name the formula or definition you use and how you finish.",
   "answer": {
@@ -58,7 +58,9 @@
             "style": "heading"
           },
           "L.H.S = (cosh x + sinh x)ⁿ",
+          "(cosh x = (eˣ + e⁻ˣ)/2 and sinh x = (eˣ − e⁻ˣ)/2)",
           "= [(eˣ + e⁻ˣ)/2 + (eˣ − e⁻ˣ)/2]ⁿ",
+          "(the e⁻ˣ terms cancel and the eˣ terms add to 2eˣ)",
           "= [(2eˣ)/2]ⁿ = (eˣ)ⁿ = eⁿˣ   …(1)"
         ],
         "recall": {
@@ -98,6 +100,10 @@
         "margin_note": "Second mark. The right side is the same identity with nx in place of x — so it collapses to eⁿˣ too, and the two agree.",
         "memory_tip": "The right side is the same identity with nx, so it simplifies to eⁿˣ too. Write the comparison line.",
         "lines": [
+          {
+            "text": "(the same definitions with nx in place of x)",
+            "added": true
+          },
           "R.H.S = cosh nx + sinh nx",
           "= (eⁿˣ + e⁻ⁿˣ)/2 + (eⁿˣ − e⁻ⁿˣ)/2",
           "= (2eⁿˣ)/2 = eⁿˣ   …(2)",
@@ -133,6 +139,16 @@
         "common_mistakes": [
           "Computing both sides and never saying they agree.",
           "Stopping at (2eⁿˣ)/2 without writing it as eⁿˣ."
+        ],
+        "lines_compact": [
+          "R.H.S = cosh nx + sinh nx",
+          "= (eⁿˣ + e⁻ⁿˣ)/2 + (eⁿˣ − e⁻ⁿˣ)/2",
+          "= (2eⁿˣ)/2 = eⁿˣ   …(2)",
+          "From (1) and (2), L.H.S = R.H.S.",
+          {
+            "text": "∴ (cosh x + sinh x)ⁿ = cosh(nx) + sinh(nx)",
+            "style": "boxed"
+          }
         ]
       }
     ]
