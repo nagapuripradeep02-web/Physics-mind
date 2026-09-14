@@ -52,8 +52,10 @@
             "style": "heading"
           },
           "A = {−3, −2, −1, 0, 1, 2, 3}",
-          "Every member of A is an integer, and the members run from −3 up to 3 with none missing.",
-          "So the property shared by the members is: x ∈ Z and −3 ≤ x ≤ 3."
+          "Every member of A is an integer, and the members run",
+          "from −3 up to 3 with none missing.",
+          "So the property shared by the members is:",
+          "x ∈ Z and −3 ≤ x ≤ 3."
         ],
         "recall": {
           "credit": "say_it",
@@ -92,7 +94,8 @@
         "mark_note": "Answer",
         "margin_note": "Second mark. The colon is read as the words 'such that'. Keep both conditions inside the braces.",
         "lines": [
-          "Set-builder form writes a set as {x : the property x satisfies}.",
+          "Set-builder form writes a set as",
+          "{x : the property x satisfies}.",
           "Here the property has two parts, x ∈ Z and −3 ≤ x ≤ 3.",
           {
             "text": "∴ A = {x : x ∈ Z, −3 ≤ x ≤ 3}",

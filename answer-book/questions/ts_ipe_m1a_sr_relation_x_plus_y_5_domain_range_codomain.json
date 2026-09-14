@@ -51,9 +51,11 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "x + y = 5 gives y = 5 − x. Take each x ∈ A and keep the pair only if y ∈ B.",
+          "x + y = 5 gives y = 5 − x. Take each x ∈ A and keep",
+          "the pair only if y ∈ B.",
           "x = 0 → y = 5, and 5 ∉ B, so (0, 5) is rejected.",
-          "x = 1, 2, 3, 4, 5 → y = 4, 3, 2, 1, 0, and all of these are in B.",
+          "x = 1, 2, 3, 4, 5 → y = 4, 3, 2, 1, 0, and all of these",
+          "are in B.",
           "R = {(1, 4), (2, 3), (3, 2), (4, 1), (5, 0)}"
         ],
         "recall": {
@@ -96,9 +98,18 @@
         "lines": [
           "Domain = the set of first members of the pairs.",
           "Range = the set of second members of the pairs.",
-          "Codomain = B, the set the relation goes into, whether or not every member is used.",
+          "Codomain = B, the set the relation goes into,",
+          "whether or not every member is used.",
           {
-            "text": "∴ (i) domain = {1, 2, 3, 4, 5}   (ii) range = {0, 1, 2, 3, 4}   (iii) codomain = {0, 1, 2, 3, 4}",
+            "text": "∴ (i) domain = {1, 2, 3, 4, 5}",
+            "style": "boxed"
+          },
+          {
+            "text": "(ii) range = {0, 1, 2, 3, 4}",
+            "style": "boxed"
+          },
+          {
+            "text": "(iii) codomain = {0, 1, 2, 3, 4}",
             "style": "boxed"
           }
         ],

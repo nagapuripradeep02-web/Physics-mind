@@ -96,7 +96,9 @@
         "margin_note": "Second mark. Five ordered pairs inside one pair of braces, each with its first entry from A. The count 2 + 2 + 1 = 5 checks the list against the three lines above.",
         "lines": [
           "Collect the pairs from the three lines above:",
-          "x = 1 gives (1, 3) and (1, 6);  x = 2 gives (2, 3) and (2, 6);  x = 3 gives (3, 6)",
+          "x = 1 gives (1, 3) and (1, 6);",
+          "x = 2 gives (2, 3) and (2, 6);",
+          "x = 3 gives (3, 6)",
           "R has 5 pairs, and R ⊆ A × B, which has 3 × 3 = 9 pairs.",
           {
             "text": "∴ R = {(1, 3), (1, 6), (2, 3), (2, 6), (3, 6)}",

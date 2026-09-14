@@ -52,9 +52,15 @@
             "style": "heading"
           },
           "A set is a well-defined collection of distinct objects.",
-          "\"Well-defined\" means that for any given object it can be decided, without doubt, whether that object belongs to the collection or not.",
-          "The objects of a set are called its elements. If x is an element of A we write x ∈ A; if it is not, we write x ∉ A.",
-          "For example, {2, 4, 6, 8} is a set, but \"the tall students of a class\" is not, because \"tall\" fixes no clear test."
+          "\"Well-defined\" means that for any given object it can",
+          "be decided, without doubt, whether that object",
+          "belongs to the collection or not.",
+          "The objects of a set are called its elements. If x is",
+          "an element of A we write x ∈ A; if it is not, we",
+          "write x ∉ A.",
+          "For example, {2, 4, 6, 8} is a set, but \"the tall",
+          "students of a class\" is not, because \"tall\" fixes",
+          "no clear test."
         ],
         "recall": {
           "credit": "say_it",
@@ -94,11 +100,19 @@
         "mark_note": "Definition",
         "margin_note": "Second mark. Give the symbol n(A) and one short example; a definition without the symbol reads incomplete.",
         "lines": [
-          "A set is finite when its elements can be counted and the counting comes to an end.",
-          "The number of distinct elements in a finite set A is called the cardinality, or the cardinal number, of A, and is written n(A).",
-          "For example, if A = {2, 4, 6, 8} then n(A) = 4, and n(∅) = 0.",
+          "A set is finite when its elements can be counted and",
+          "the counting comes to an end.",
+          "The number of distinct elements in a finite set A is",
+          "called the cardinality, or the cardinal number, of A,",
+          "and is written n(A).",
+          "For example, if A = {2, 4, 6, 8} then n(A) = 4,",
+          "and n(∅) = 0.",
           {
-            "text": "∴ n(A) = the number of distinct elements of the finite set A.",
+            "text": "∴ n(A) = the number of distinct elements",
+            "style": "boxed"
+          },
+          {
+            "text": "of the finite set A.",
             "style": "boxed"
           }
         ],

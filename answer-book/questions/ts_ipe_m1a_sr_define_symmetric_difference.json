@@ -54,7 +54,8 @@
           "Let A and B be two sets.",
           "The symmetric difference of A and B, written A Δ B, is",
           "A Δ B = (A − B) ∪ (B − A)",
-          "So A Δ B is the set of elements that lie in exactly one of A and B."
+          "So A Δ B is the set of elements that lie in exactly",
+          "one of A and B."
         ],
         "recall": {
           "credit": "say_it",

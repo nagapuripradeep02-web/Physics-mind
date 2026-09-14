@@ -54,7 +54,8 @@
           "Let R be a relation on a set A, that is R ⊆ A × A.",
           "R is called transitive if, for all a, b, c ∈ A,",
           "(a, b) ∈ R  and  (b, c) ∈ R   ⇒   (a, c) ∈ R",
-          "So if a is related to b and b is related to c, then a is related to c."
+          "So if a is related to b and b is related to c,",
+          "then a is related to c."
         ],
         "recall": {
           "credit": "say_it",

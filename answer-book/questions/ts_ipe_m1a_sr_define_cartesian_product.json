@@ -52,8 +52,9 @@
             "style": "heading"
           },
           "Let A and B be two non-empty sets.",
-          "The Cartesian product of A and B, written A × B, is the set of all ordered pairs",
-          "whose first entry is taken from A and whose second entry is taken from B.",
+          "The Cartesian product of A and B, written A × B, is",
+          "the set of all ordered pairs whose first entry is",
+          "taken from A and whose second entry is taken from B.",
           "A × B = {(a, b) : a ∈ A and b ∈ B}"
         ],
         "recall": {

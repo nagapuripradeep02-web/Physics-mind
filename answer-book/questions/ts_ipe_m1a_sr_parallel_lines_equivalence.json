@@ -51,10 +51,14 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Let L be the set of all straight lines in a plane and let R = {(l, m) : l ∈ L, m ∈ L, l ∥ m}.",
-          "Use the usual convention that a line is parallel to itself, so two lines are parallel exactly when they have the same direction.",
+          "Let L be the set of all straight lines in a plane and",
+          "let R = {(l, m) : l ∈ L, m ∈ L, l ∥ m}.",
+          "Use the usual convention that a line is parallel to",
+          "itself, so two lines are parallel exactly when they",
+          "have the same direction.",
           "Reflexive: l ∥ l for every line l ∈ L, so (l, l) ∈ R.",
-          "Symmetric: if l ∥ m then l and m have the same direction, so m ∥ l and (m, l) ∈ R."
+          "Symmetric: if l ∥ m then l and m have the same",
+          "direction, so m ∥ l and (m, l) ∈ R."
         ],
         "recall": {
           "credit": "say_it",
@@ -96,9 +100,14 @@
         "lines": [
           "Transitive: let l ∥ m and m ∥ n, where l, m, n ∈ L.",
           "Then l has the direction of m, and m has the direction of n.",
-          "So l and n have the same direction, that is l ∥ n and (l, n) ∈ R.",
+          "So l and n have the same direction, that is l ∥ n",
+          "and (l, n) ∈ R.",
           {
-            "text": "∴ R is reflexive, symmetric and transitive, so \"parallel\" is an equivalence relation on L.",
+            "text": "∴ R is reflexive, symmetric and transitive,",
+            "style": "boxed"
+          },
+          {
+            "text": "so \"parallel\" is an equivalence relation on L.",
             "style": "boxed"
           }
         ],

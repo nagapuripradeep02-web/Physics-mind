@@ -52,7 +52,8 @@
             "style": "heading"
           },
           "A = {1, 2, 5, 7, 9} and R = {(x, y) : x ∈ A, y ∈ A, x = y}",
-          "A pair belongs to R only when its two members are the same number.",
+          "A pair belongs to R only when its two members are",
+          "the same number.",
           "So pair each member of A with itself:",
           "R = {(1, 1), (2, 2), (5, 5), (7, 7), (9, 9)}"
         ],
@@ -97,7 +98,11 @@
           "The domain of R is the set of first members of its pairs.",
           "The range of R is the set of second members of its pairs.",
           {
-            "text": "∴ (i) domain of R = {1, 2, 5, 7, 9} = A   and   (ii) range of R = {1, 2, 5, 7, 9} = A",
+            "text": "∴ (i) domain of R = {1, 2, 5, 7, 9} = A   and",
+            "style": "boxed"
+          },
+          {
+            "text": "(ii) range of R = {1, 2, 5, 7, 9} = A",
             "style": "boxed"
           }
         ],

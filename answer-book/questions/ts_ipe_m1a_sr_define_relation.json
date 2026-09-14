@@ -52,10 +52,12 @@
             "style": "heading"
           },
           "Let A and B be two non-empty sets.",
-          "A relation R from A to B is any subset of the Cartesian product A × B.",
+          "A relation R from A to B is any subset of the",
+          "Cartesian product A × B.",
           "R ⊆ A × B",
           "If (a, b) ∈ R we write a R b and say a is related to b.",
-          "The set of all first entries in R is the domain of R, and the set of all second entries is the range of R."
+          "The set of all first entries in R is the domain of R,",
+          "and the set of all second entries is the range of R."
         ],
         "recall": {
           "credit": "say_it",
@@ -99,7 +101,11 @@
           "A × B = {(1, 3), (1, 4), (2, 3), (2, 4)}",
           "Any subset of this is a relation from A to B. For example:",
           {
-            "text": "∴ R = {(1, 3), (2, 4)} is a relation from A to B, with domain {1, 2} and range {3, 4}.",
+            "text": "∴ R = {(1, 3), (2, 4)} is a relation from A to B,",
+            "style": "boxed"
+          },
+          {
+            "text": "with domain {1, 2} and range {3, 4}.",
             "style": "boxed"
           }
         ],

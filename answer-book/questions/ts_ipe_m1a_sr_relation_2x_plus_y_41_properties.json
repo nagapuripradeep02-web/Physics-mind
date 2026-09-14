@@ -52,7 +52,8 @@
             "style": "heading"
           },
           "Take N = {1, 2, 3, …}. From 2x + y = 41, y = 41 − 2x.",
-          "y ∈ N needs 41 − 2x ≥ 1, that is 2x ≤ 40, so x ≤ 20. Also x ≥ 1.",
+          "y ∈ N needs 41 − 2x ≥ 1, that is 2x ≤ 40, so x ≤ 20.",
+          "Also x ≥ 1.",
           "So x = 1, 2, 3, …, 20 and R has 20 ordered pairs.",
           "R = {(1, 39), (2, 37), (3, 35), …, (19, 3), (20, 1)}"
         ],
@@ -94,14 +95,22 @@
         "mark_note": "Answer",
         "margin_note": "Second mark. Each verdict needs its own counterexample written out; a bare \"not reflexive\" earns nothing.",
         "lines": [
-          "(i) Reflexive: (x, x) ∈ R would need 2x + x = 41, so x = 41/3, which is not in N.",
-          "For example 2(1) + 1 = 3 ≠ 41, so (1, 1) ∉ R. Hence R is not reflexive.",
-          "(ii) Symmetric: (1, 39) ∈ R, but 2(39) + 1 = 79 ≠ 41, so (39, 1) ∉ R.",
+          "(i) Reflexive: (x, x) ∈ R would need 2x + x = 41,",
+          "so x = 41/3, which is not in N.",
+          "For example 2(1) + 1 = 3 ≠ 41, so (1, 1) ∉ R.",
+          "Hence R is not reflexive.",
+          "(ii) Symmetric: (1, 39) ∈ R, but",
+          "2(39) + 1 = 79 ≠ 41, so (39, 1) ∉ R.",
           "Hence R is not symmetric.",
-          "(iii) Transitive: (12, 17) ∈ R and (17, 7) ∈ R, but 2(12) + 7 = 31 ≠ 41,",
+          "(iii) Transitive: (12, 17) ∈ R and (17, 7) ∈ R,",
+          "but 2(12) + 7 = 31 ≠ 41,",
           "so (12, 7) ∉ R. Hence R is not transitive.",
           {
-            "text": "∴ R is neither reflexive, nor symmetric, nor transitive.",
+            "text": "∴ R is neither reflexive, nor symmetric,",
+            "style": "boxed"
+          },
+          {
+            "text": "nor transitive.",
             "style": "boxed"
           }
         ],

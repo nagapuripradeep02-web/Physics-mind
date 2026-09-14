@@ -51,9 +51,11 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Let A be a set. The set of all subsets of A is called the power set of A, and is written P(A).",
+          "Let A be a set. The set of all subsets of A is called",
+          "the power set of A, and is written P(A).",
           "In set-builder form, P(A) = {X : X ⊆ A}.",
-          "Every power set contains ∅ and A itself, because ∅ ⊆ A and A ⊆ A."
+          "Every power set contains ∅ and A itself, because",
+          "∅ ⊆ A and A ⊆ A."
         ],
         "recall": {
           "credit": "say_it",
@@ -97,7 +99,11 @@
           "So P(A) = {∅, {a}, {b}, {a, b}} and n(P(A)) = 4 = 2².",
           "In general, if A is finite with n(A) = n, then n(P(A)) = 2ⁿ.",
           {
-            "text": "∴ P(A) = {X : X ⊆ A},  and n(P(A)) = 2ⁿ when n(A) = n",
+            "text": "∴ P(A) = {X : X ⊆ A},",
+            "style": "boxed"
+          },
+          {
+            "text": "and n(P(A)) = 2ⁿ when n(A) = n",
             "style": "boxed"
           }
         ],

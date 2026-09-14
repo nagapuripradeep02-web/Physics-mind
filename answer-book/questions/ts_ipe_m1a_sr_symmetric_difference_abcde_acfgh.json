@@ -96,7 +96,8 @@
         "lines": [
           "A Δ B = (A − B) ∪ (B − A)",
           "= {b, d, e} ∪ {f, g, h}",
-          "Check: A ∪ B has 8 letters and A ∩ B has 2, and 8 − 2 = 6.",
+          "Check: A ∪ B has 8 letters and A ∩ B has 2,",
+          "and 8 − 2 = 6.",
           {
             "text": "∴ A Δ B = {b, d, e, f, g, h}",
             "style": "boxed"
