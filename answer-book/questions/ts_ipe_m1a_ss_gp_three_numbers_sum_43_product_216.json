@@ -102,7 +102,11 @@
           "r = 6 gives  6/6, 6, 6(6)  =  1, 6, 36",
           "r = 1/6 gives the same three numbers reversed: 36, 6, 1",
           {
-            "text": "∴ the numbers are 1, 6, 36  (or 36, 6, 1 in the reverse order)",
+            "text": "∴ the numbers are 1, 6, 36",
+            "style": "boxed"
+          },
+          {
+            "text": "(or 36, 6, 1 in the reverse order)",
             "style": "boxed"
           }
         ],

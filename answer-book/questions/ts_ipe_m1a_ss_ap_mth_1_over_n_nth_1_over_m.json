@@ -80,7 +80,7 @@
             "m minus n"
           ]
         },
-        "why": "The right side 1/n − 1/m becomes (m − n)/(mn), and the same factor m − n stands on the left, so it cancels and leaves d directly.",
+        "why": "The right side 1/n − 1/m becomes (m − n)/(mn), and the same factor m − n appears on the left, so it cancels and leaves d directly.",
         "common_mistakes": [
           "Writing 1/n − 1/m = (n − m)/(mn) with the subtraction reversed.",
           "Writing 1/n − 1/m = 1/(n − m)."

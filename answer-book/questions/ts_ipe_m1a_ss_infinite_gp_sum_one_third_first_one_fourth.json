@@ -95,7 +95,11 @@
         "memory_tip": "Each term is a quarter of the one before it.",
         "lines": [
           "|r| = 1/4 < 1, so an infinite sum does exist for this ratio",
-          "The terms are a, ar, ar², ar³, … = 1/4, (1/4)(1/4), (1/4)(1/4)², …",
+          "The terms are a, ar, ar², ar³, …",
+          {
+            "text": "= 1/4, (1/4)(1/4), (1/4)(1/4)², …",
+            "style": "indent"
+          },
           {
             "text": "∴ The G.P. is 1/4, 1/16, 1/64, 1/256, …",
             "style": "boxed"

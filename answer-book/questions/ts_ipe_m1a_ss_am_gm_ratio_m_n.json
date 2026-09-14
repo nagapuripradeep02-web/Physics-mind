@@ -100,7 +100,11 @@
           "By componendo and dividendo again,",
           "√a/√b = (√(m + n) + √(m − n))/(√(m + n) − √(m − n))",
           "Squaring both sides,",
-          "a/b = [(m + n) + (m − n) + 2√((m + n)(m − n))] / [(m + n) + (m − n) − 2√((m + n)(m − n))]",
+          "a/b = [(m + n) + (m − n) + 2√((m + n)(m − n))]",
+          {
+            "text": "/ [(m + n) + (m − n) − 2√((m + n)(m − n))]",
+            "style": "indent"
+          },
           "= (2m + 2√(m² − n²))/(2m − 2√(m² − n²))",
           {
             "text": "∴ a : b = m + √(m² − n²) : m − √(m² − n²)",

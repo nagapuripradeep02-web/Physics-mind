@@ -55,7 +55,8 @@
           "Let the two numbers be a and b",
           "g is the geometric mean between a and b, so g² = ab",
           "p and q are two arithmetic means, so a, p, q, b are in A.P.",
-          "Let d be the common difference. Then p = a + d,  q = a + 2d,  b = a + 3d"
+          "Let d be the common difference. Then",
+          "p = a + d,  q = a + 2d,  b = a + 3d"
         ],
         "recall": {
           "credit": "say_it",
@@ -95,7 +96,11 @@
         "memory_tip": "2p − q gives back the first number and 2q − p gives back the second.",
         "lines": [
           "2p − q = 2(a + d) − (a + 2d) = 2a + 2d − a − 2d = a",
-          "2q − p = 2(a + 2d) − (a + d) = 2a + 4d − a − d = a + 3d = b",
+          "2q − p = 2(a + 2d) − (a + d)",
+          {
+            "text": "= 2a + 4d − a − d = a + 3d = b",
+            "style": "indent"
+          },
           "So (2p − q)(2q − p) = ab = g²",
           {
             "text": "∴ g² = (2p − q)(2q − p)",

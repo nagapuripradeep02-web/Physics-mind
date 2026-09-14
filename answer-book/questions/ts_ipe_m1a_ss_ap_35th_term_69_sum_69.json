@@ -79,7 +79,7 @@
             "two into a plus thirty four d"
           ]
         },
-        "why": "The bracket 2a + 68d is exactly 2(a + 34d), so the whole sum collapses to 69 × a₃₅. Finding a and d is impossible here, and also unnecessary.",
+        "why": "The bracket 2a + 68d is exactly 2(a + 34d), so the whole sum becomes 69 × a₃₅. Finding a and d is impossible here, and also unnecessary.",
         "common_mistakes": [
           "Trying to solve a + 34d = 69 for a and d, which has no unique solution.",
           "Writing Sₙ = n/2 [2a + nd] and losing the match with a + 34d."

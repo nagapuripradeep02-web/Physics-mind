@@ -52,10 +52,19 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "The differences run 1, 2, 1, 2, …, so the 2n terms are not one A.P.",
+          "The differences run 1, 2, 1, 2, …, so the 2n terms",
+          "are not one A.P.",
           "Take the terms in alternate positions:",
-          "1st, 3rd, 5th, … give  2, 5, 8, …  : an A.P. with a = 2, d = 3, n terms",
-          "2nd, 4th, 6th, … give  3, 6, 9, …  : an A.P. with a = 3, d = 3, n terms",
+          "1st, 3rd, 5th, … give  2, 5, 8, … :",
+          {
+            "text": "an A.P. with a = 2, d = 3, n terms",
+            "style": "indent"
+          },
+          "2nd, 4th, 6th, … give  3, 6, 9, … :",
+          {
+            "text": "an A.P. with a = 3, d = 3, n terms",
+            "style": "indent"
+          },
           "S = (2 + 5 + 8 + … n terms) + (3 + 6 + 9 + … n terms)"
         ],
         "recall": {

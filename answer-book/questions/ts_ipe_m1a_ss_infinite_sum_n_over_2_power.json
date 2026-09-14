@@ -53,7 +53,8 @@
             "style": "heading"
           },
           "Let S = 1 + 2/2 + 3/2² + 4/2³ + … to ∞",
-          "The numerators 1, 2, 3, 4, … are in A.P. and the denominators are in G.P. of ratio 1/2",
+          "The numerators 1, 2, 3, 4, … are in A.P. and the",
+          "denominators 1, 2, 2², … are in G.P. of ratio 2",
           "(1/2)S = 1/2 + 2/2² + 3/2³ + …",
           "S − (1/2)S = 1 + (2 − 1)/2 + (3 − 2)/2² + (4 − 3)/2³ + …"
         ],
@@ -79,7 +80,7 @@
             "not a G P"
           ]
         },
-        "why": "The terms are not in G.P., so a/(1 − r) cannot be applied to the series as it stands. Shifting by one place and subtracting makes every numerator difference equal to 1, and what is left IS a geometric series.",
+        "why": "The terms are not in G.P., so a/(1 − r) cannot be applied to the series as written. Shifting by one place and subtracting makes every numerator difference equal to 1, and what is left IS a geometric series.",
         "common_mistakes": [
           "Treating the series as a G.P. with r = 1/2 and giving 2.",
           "Multiplying by 2 instead of by the ratio 1/2, which does not line the terms up."
