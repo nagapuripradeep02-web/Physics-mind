@@ -49,8 +49,8 @@
         "label": "Combine the first two",
         "marks": 2,
         "mark_note": "Method",
-        "margin_note": "Half the marks. Addition formula for the first pair. Both parts land over 20, giving Tan⁻¹(27/11).",
-        "memory_tip": "Addition formula for the first pair; both parts land over 20, giving Tan⁻¹(27/11).",
+        "margin_note": "Half the marks. Addition formula for the first pair. Both parts have the denominator 20, giving Tan⁻¹(27/11).",
+        "memory_tip": "Addition formula for the first pair; both parts have the denominator 20, giving Tan⁻¹(27/11).",
         "lines": [
           {
             "text": "Sol:",
@@ -81,7 +81,7 @@
             "twenty seven over twenty"
           ]
         },
-        "why": "The same first pair can be reached by a different route — 27/11 turns up repeatedly in this chapter.",
+        "why": "The same first pair can be found in a different way — 27/11 appears in several questions in this chapter.",
         "common_mistakes": [
           "Using the difference formula on the first pair.",
           "Getting the denominator as 1 + xy."
@@ -123,7 +123,7 @@
             "plus in the denominator"
           ]
         },
-        "why": "The two formulas differ in BOTH signs — minus on top and plus underneath for a difference. Carrying the addition form across is the commonest error here.",
+        "why": "The two formulas differ in BOTH signs — minus on top and plus underneath for a difference. Using the addition form here is a common error.",
         "common_mistakes": [
           "Using 1 − xy in the denominator.",
           "Subtracting in the wrong order."
@@ -165,7 +165,7 @@
             "tan inverse one"
           ]
         },
-        "why": "Both twins land on π/4 — these questions are built backwards from that value, which is why the fractions always cancel exactly.",
+        "why": "This question and the similar one both come to π/4 — the fractions were chosen so that they cancel exactly.",
         "common_mistakes": [
           "Leaving the answer as Tan⁻¹(425/425).",
           "Failing to simplify the fraction."

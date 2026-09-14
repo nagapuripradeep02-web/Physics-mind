@@ -65,7 +65,8 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Tan⁻¹x + Tan⁻¹y = Tan⁻¹((x + y)/(1 − xy)), when xy < 1",
+          "Tan⁻¹x + Tan⁻¹y = Tan⁻¹((x + y)/(1 − xy)),",
+          "when xy < 1",
           "Here x = 1/7, y = 1/13, so xy = 1/91 < 1. ✓"
         ],
         "recall": {

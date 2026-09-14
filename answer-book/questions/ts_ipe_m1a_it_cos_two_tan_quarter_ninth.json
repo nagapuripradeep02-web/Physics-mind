@@ -98,7 +98,7 @@
         "label": "Double the angle",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Third mark. The tangent form of cos2θ is chosen because tanθ is the only ratio already in hand.",
+        "margin_note": "Third mark. The tangent form of cos2θ is chosen because tanθ is the ratio already known.",
         "memory_tip": "cos2θ = (1 − tan²θ)/(1 + tan²θ) works straight from tanθ, with no triangle needed.",
         "lines": [
           "Let θ = Tan⁻¹(1/2) ⇒ tanθ = 1/2",
@@ -128,9 +128,9 @@
             "tan theta half"
           ]
         },
-        "why": "Writing cos2θ in terms of tanθ avoids finding sinθ and cosθ separately. The tangent is the only ratio already known.",
+        "why": "Writing cos2θ in terms of tanθ avoids finding sinθ and cosθ separately. The tangent is the ratio already known.",
         "common_mistakes": [
-          "Turning the fraction upside down.",
+          "Using the reciprocal of the fraction by mistake.",
           "Writing tan²θ as 1/2 instead of 1/4."
         ]
       },

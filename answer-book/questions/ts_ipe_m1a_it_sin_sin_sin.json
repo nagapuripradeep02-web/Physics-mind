@@ -54,7 +54,7 @@
         "label": "Name the angles and find their other ratios",
         "marks": 2,
         "mark_note": "Method",
-        "margin_note": "Half the marks. Call each inverse an angle, then get the missing ratio from sin²+cos²=1. The fast exam route is to sketch the right triangle: sinα = 4/5 means opposite 4, hypotenuse 5, so the third side is 3 and cosα = 3/5.",
+        "margin_note": "Half the marks. Call each inverse an angle, then get the missing ratio from sin²+cos²=1. The fast exam method is to sketch the right triangle: sinα = 4/5 means opposite 4, hypotenuse 5, so the third side is 3 and cosα = 3/5.",
         "memory_tip": "Sketch the right triangle: sinα = 4/5 means opposite 4, hypotenuse 5, third side 3. Never add the fractions.",
         "lines": [
           {
@@ -184,5 +184,5 @@
       }
     ]
   },
-  "insider_note": "The target is a Sin⁻¹, so build sin(α + β) with the sin(A+B) formula. Both angles come from 3-4-5 and 7-24-25 triangles, so the cosines are exact and no root survives."
+  "insider_note": "The target is a Sin⁻¹, so build sin(α + β) with the sin(A+B) formula. Both angles come from 3-4-5 and 7-24-25 triangles, so the cosines are exact and no root is left."
 }
