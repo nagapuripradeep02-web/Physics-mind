@@ -70,7 +70,7 @@
         "label": "Write it as AX = D",
         "marks": 1,
         "mark_note": "Matrix form",
-        "margin_note": "First mark. A holds the coefficients in the order they appear, X holds the unknowns, D holds the right-hand sides. Write the equations out in x, y, z order before building A — a missing term is the commonest error in the whole question.",
+        "margin_note": "First mark. A holds the coefficients in x, y, z order, X holds the unknowns, D holds the right-hand sides. Write the equations out in x, y, z order before building A — a missing term is the commonest error in the whole question.",
         "memory_tip": "Line the equations up in x, y, z order first, so A holds the coefficients in the right places.",
         "lines": [
           {
@@ -515,7 +515,7 @@
             "z equals three"
           ]
         },
-        "why": "The whole method exists so that each unknown can be found on its own, without eliminating anything. That is also why an error in one determinant spoils only one unknown.",
+        "why": "The whole method exists so that each unknown can be found on its own, without eliminating anything. That is also why an error in Δ₁, Δ₂ or Δ₃ spoils only one unknown (an error in Δ spoils all three).",
         "common_mistakes": [
           "Dividing Δ by Δ₁ instead of Δ₁ by Δ.",
           "Losing a sign: a negative divided by a negative is positive.",

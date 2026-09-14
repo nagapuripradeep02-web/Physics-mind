@@ -143,7 +143,7 @@
             "first row"
           ]
         },
-        "why": "The sign pattern along the top row is plus, minus, plus. With every minor negative, dropping the middle minus flips the answer entirely.",
+        "why": "The sign pattern along the top row is plus, minus, plus. With every minor negative, dropping the middle minus gives −31 − 176 − 153 = −360 instead of −8.",
         "common_mistakes": [
           "Forgetting the minus in front of the middle term.",
           "Computing 9 × 25 − 16 × 16 as a positive number."

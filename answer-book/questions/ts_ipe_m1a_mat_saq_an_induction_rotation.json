@@ -145,17 +145,17 @@
         "marks": 2,
         "mark_note": "Inductive step",
         "margin_note": "Half the marks. Each of the four entries is a compound angle: cos kθ cos θ − sin kθ sin θ is cos(kθ + θ), and sin kθ cos θ + cos kθ sin θ is sin(kθ + θ). Then kθ + θ = (k+1)θ.",
-        "memory_tip": "Every entry is a compound angle: cos A cos B − sin A sin B is cos(A + B), and kθ + θ is (k+1)θ.",
+        "memory_tip": "Every entry is a compound angle: cos α cos β − sin α sin β is cos(α + β), and kθ + θ is (k+1)θ.",
         "lines": [
           {
             "text": "A^{k+1} = A^{k} \\cdot A = \\begin{bmatrix} \\cos k\\theta & \\sin k\\theta \\\\ -\\sin k\\theta & \\cos k\\theta \\end{bmatrix}\\begin{bmatrix} \\cos\\theta & \\sin\\theta \\\\ -\\sin\\theta & \\cos\\theta \\end{bmatrix}",
             "render": "katex",
             "style": "eq"
           },
-          "Use cos A cos B − sin A sin B = cos(A + B)",
-          "and sin A cos B + cos A sin B = sin(A + B).",
+          "Use cos α cos β − sin α sin β = cos(α + β)",
+          "and sin α cos β + cos α sin β = sin(α + β).",
           {
-            "text": "(here A = kθ and B = θ)",
+            "text": "(here α = kθ and β = θ)",
             "added": true
           },
           {
@@ -228,8 +228,8 @@
             "render": "katex",
             "style": "eq"
           },
-          "Use cos A cos B − sin A sin B = cos(A + B)",
-          "and sin A cos B + cos A sin B = sin(A + B).",
+          "Use cos α cos β − sin α sin β = cos(α + β)",
+          "and sin α cos β + cos α sin β = sin(α + β).",
           "Row 1 × column 1 = cos(kθ + θ) = cos(k+1)θ",
           "Row 1 × column 2 = sin(kθ + θ) = sin(k+1)θ",
           "Row 2 × column 1 = −sin(kθ + θ)",

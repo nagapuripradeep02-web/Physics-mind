@@ -506,7 +506,7 @@
         "why": "Clearing upwards as well as downwards is the ONLY difference between Gauss-Jordan and plain Gauss elimination. The answer can then be read straight off, with no back-substitution.",
         "common_mistakes": [
           "Stopping at the triangular form and back-substituting; that is Gauss, not Gauss-Jordan.",
-          "Clearing upwards before the pivots are 1, which reintroduces fractions.",
+          "Clearing a column with the wrong sign of multiple, which leaves a non-zero entry above the pivot.",
           "Forgetting to carry the operation across the rule into the constant."
         ],
         "lines_compact": [

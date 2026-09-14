@@ -102,7 +102,7 @@
         "why": "The answer is a power of (a+b+c) while no single entry contains it. That mismatch always means something has to be added together first.",
         "common_mistakes": [
           "Expanding directly, which produces a page of terms.",
-          "Adding the three COLUMNS, which is the opening move for the a+b+2c determinant whose answer is 2(a+b+c)³; in this one it is the rows that sum to a common value."
+          "Adding the three COLUMNS, which is the opening move for the a+b+2c determinant whose answer is 2(a+b+c)³; in this one it is the columns whose entries sum to a common value, so the rows are added into R₁."
         ]
       },
       {
@@ -155,7 +155,7 @@
         },
         "why": "Adding other rows into one row never changes a determinant's value. It earns its place when it makes a whole row identical, because an identical row can be taken out as a common factor.",
         "common_mistakes": [
-          "Adding columns instead of rows — here it is the rows that sum to a common value.",
+          "Adding columns instead of rows — here each column sums to a+b+c, which is why the rows are added.",
           "Getting the cancellation wrong: in column 1 the −b and −c are cancelled by 2b and 2c, leaving +b and +c.",
           "Writing 2(a+b+c); the 2 belongs to the a+b+2c determinant, not to this one."
         ],

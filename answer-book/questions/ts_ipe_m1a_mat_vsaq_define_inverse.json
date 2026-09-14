@@ -83,7 +83,7 @@
             "A B equals B A"
           ]
         },
-        "why": "Both products are written because matrix multiplication does not commute in general, so AB = I alone is a weaker statement. For square matrices of the same order the two conditions turn out to be equivalent, but the definition states both.",
+        "why": "Both products are written because matrix multiplication does not commute in general. For square matrices of the same order, AB = I in fact forces BA = I, but the definition states both.",
         "common_mistakes": [
           "Writing A⁻¹ = 1/A, which has no meaning for matrices.",
           "Giving only AB = I and leaving out BA = I.",
@@ -150,13 +150,13 @@
             "unique"
           ]
         },
-        "why": "The determinant sits in the denominator of A⁻¹ = (Adj A)/(det A), so a zero determinant leaves nothing to divide by. That is why the condition belongs inside the definition rather than being added later.",
+        "why": "A⁻¹ exists exactly when det A ≠ 0. That is a theorem, not part of the definition: if AB = I then (det A)(det B) = det I = 1, so det A cannot be 0; and when det A ≠ 0, (Adj A)/(det A) is an inverse.",
         "common_mistakes": [
           "Saying every square matrix has an inverse.",
           "Writing A⁻¹ = (det A)/(Adj A), with the two the wrong way round.",
           "Giving an example whose determinant is 0."
         ],
-        "memory_tip": "No inverse without a non-zero determinant, because det A is the divisor in (Adj A)/(det A).",
+        "memory_tip": "No inverse without a non-zero determinant: AB = I gives (det A)(det B) = 1.",
         "lines_compact": [
           "A⁻¹ exists if and only if det A ≠ 0, that is",
           "only when A is non-singular. It is then unique,",

@@ -165,5 +165,5 @@
       }
     ]
   },
-  "insider_note": "Multiply out A² symbolically and set EVERY entry to zero, not just one. The top-left is already 0 whatever k is; the other three all give k = −2, and that agreement is the check."
+  "insider_note": "Multiply out A² symbolically and set EVERY entry to zero, not just one. The top-left is already 0 whatever k is; 8 + 4k = 0 and −2 − k = 0 both give k = −2, and k² − 4 = 0 (k = ±2) agrees with it. That agreement is the check."
 }

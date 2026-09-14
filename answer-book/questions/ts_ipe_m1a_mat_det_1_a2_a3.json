@@ -498,7 +498,7 @@
         },
         "why": "The cancellation is the point: a² + 2ab + b² + ca + cb minus a² + ab + b² leaves one ab, not two. Rushing this line is where the two marks are lost.",
         "common_mistakes": [
-          "Dropping the minus sign across the whole second bracket and getting 2a² + 3ab + 2b².",
+          "Dropping the minus sign across the whole second bracket and getting 2a² + 3ab + 2b² + ca + cb.",
           "Stopping at (b−a)(c−a)(c−b) and never writing the order the question asked for.",
           "Flipping only one bracket, which changes the sign of the answer."
         ],

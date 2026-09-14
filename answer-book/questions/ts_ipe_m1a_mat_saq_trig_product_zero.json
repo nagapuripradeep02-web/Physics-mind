@@ -58,8 +58,8 @@
         "label": "Convert θ into φ",
         "marks": 1,
         "mark_note": "Angle condition",
-        "margin_note": "First mark, and the idea of the whole question. Two different angles cannot be multiplied together usefully — so use the given condition to write everything in ONE angle before touching the matrices.",
-        "memory_tip": "Two DIFFERENT angles cannot be multiplied usefully — use the condition to write both in one angle.",
+        "margin_note": "First mark, and the idea of this method: use the given condition to write everything in ONE angle before touching the matrices. (Multiplying first and using cos(θ − φ) = 0 is another route.)",
+        "memory_tip": "Use the condition to write both matrices in one angle, φ; then every entry can be compared directly.",
         "lines": [
           {
             "text": "Sol:",
@@ -93,11 +93,11 @@
             "ninety degrees"
           ]
         },
-        "why": "The two matrices are in different angles, and nothing cancels while that is true. Turning θ into φ is what makes every entry comparable — the algebra afterwards is routine.",
+        "why": "Turning θ into φ puts both matrices in one angle, so the entries of the product can be compared and seen to cancel; the algebra afterwards is routine.",
         "common_mistakes": [
           "Writing cos(π/2 + φ) = sin φ and losing the minus sign, which makes the product non-zero.",
           "Using θ = π/2 − φ instead of π/2 + φ.",
-          "Multiplying the matrices first and hoping the condition helps later."
+          "Multiplying the matrices first and not noticing that every entry has the factor cos θ cos φ + sin θ sin φ = cos(θ − φ)."
         ]
       },
       {
@@ -257,5 +257,5 @@
       }
     ]
   },
-  "insider_note": "Use θ = π/2 + φ to rewrite the FIRST matrix entirely in φ — comparing two different angles directly gets nowhere. cos θ = −sin φ, and that minus sign is what cancels everything."
+  "insider_note": "Use θ = π/2 + φ to rewrite the FIRST matrix entirely in φ; cos θ = −sin φ, and that minus sign is what cancels everything. (Multiplying first also works: every entry carries the factor cos(θ − φ) = cos(π/2) = 0.)"
 }

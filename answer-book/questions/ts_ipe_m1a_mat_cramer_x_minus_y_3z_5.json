@@ -506,7 +506,7 @@
             "z equals"
           ]
         },
-        "why": "The whole method exists so that each unknown can be found on its own, without eliminating anything. That is also why an error in one determinant spoils only one unknown.",
+        "why": "The whole method exists so that each unknown can be found on its own, without eliminating anything. That is also why an error in Δ₁, Δ₂ or Δ₃ spoils only one unknown (an error in Δ spoils all three).",
         "common_mistakes": [
           "Dividing Δ by Δ₁ instead of Δ₁ by Δ.",
           "Losing a sign when Δ or a numerator is negative.",

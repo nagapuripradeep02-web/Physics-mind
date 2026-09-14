@@ -259,7 +259,7 @@
             "factorisation"
           ]
         },
-        "why": "The identity is standard algebra from an earlier class. Recognising it saves multiplying two brackets out and reaching the same nine terms the long way.",
+        "why": "The identity is standard algebra from an earlier class. Recognising it saves multiplying out eighteen products and cancelling them down the long way.",
         "common_mistakes": [
           "Multiplying the brackets out and stopping before the six cross terms cancel.",
           "Writing the second bracket as a² + b² + c² + ab + bc + ca."

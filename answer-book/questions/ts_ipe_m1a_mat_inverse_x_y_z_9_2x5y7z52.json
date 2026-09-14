@@ -350,7 +350,7 @@
           "Check A(Adj A) = (det A)I on the top row:",
           "1(−12) + 1(16) + 1(−8) = −4 = det A,",
           "1(2) + 1(−3) + 1(1) = 0,  1(2) + 1(−5) + 1(3) = 0.",
-          "So A·A⁻¹ = I and the inverse is correct."
+          "So row 1 of A(Adj A) is (det A, 0, 0), as it should be."
         ],
         "recall": {
           "credit": "say_it",
@@ -375,7 +375,7 @@
             "one by det A"
           ]
         },
-        "why": "Forgetting the transpose gives a matrix that looks right and is wrong, and nothing later in the question will reveal it. Multiplying one row of A into one column of Adj A costs three products and proves the inverse before it is used.",
+        "why": "Forgetting the transpose gives a matrix that looks right and is wrong, and nothing later in the question will reveal it. Checking row 1 of A against the columns of Adj A tests the first row of A(Adj A) = (det A)I — a partial check, not a proof.",
         "common_mistakes": [
           "Using the cofactor matrix directly as the adjoint without transposing.",
           "Dividing only one row by det A instead of the whole matrix.",
@@ -396,7 +396,7 @@
           "Check A(Adj A) = (det A)I on the top row:",
           "1(−12) + 1(16) + 1(−8) = −4 = det A,",
           "1(2) + 1(−3) + 1(1) = 0,  1(2) + 1(−5) + 1(3) = 0.",
-          "So A·A⁻¹ = I and the inverse is correct."
+          "So row 1 of A(Adj A) is (det A, 0, 0), as it should be."
         ]
       },
       {
@@ -457,7 +457,7 @@
             "z equals five"
           ]
         },
-        "why": "X comes out as a single column matrix, and its three entries ARE x, y and z in that order. Substituting them back into the original equations is the only check that catches a slip inside the cofactors.",
+        "why": "X comes out as a single column matrix, and its three entries ARE x, y and z in that order. Substituting them back into the original equations is a check that also catches a slip inside the cofactors.",
         "common_mistakes": [
           "Multiplying column by row instead of row by column.",
           "Dividing by det A only once instead of on every entry.",

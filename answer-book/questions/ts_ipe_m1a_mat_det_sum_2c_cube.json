@@ -166,7 +166,7 @@
         },
         "why": "Adding other columns into one column never changes a determinant's value. It is worth doing when it makes a whole column identical — because an identical column can be taken out as a common factor.",
         "common_mistakes": [
-          "Adding rows instead of columns; here the columns are what sum to the same value.",
+          "Adding rows instead of columns; here each row sums to 2(a+b+c), which is why the columns are added.",
           "Adding into C₂ or C₃ instead of C₁, which works but makes the next step harder to see.",
           "Writing a+b+c instead of 2a+2b+2c — check the sum, every row has a 2 in it."
         ],

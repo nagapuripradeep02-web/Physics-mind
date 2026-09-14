@@ -85,7 +85,7 @@
             "largest"
           ]
         },
-        "why": "Both halves of the definition are needed. Part (i) alone would let any smaller non-zero minor be called the rank, and part (ii) alone is satisfied by the zero matrix, so together they pick out exactly one number.",
+        "why": "Both halves of the definition are needed. Part (i) alone would let any smaller non-zero minor be called the rank, and part (ii) alone holds for every r greater than or equal to the rank, so together they pick out exactly one number.",
         "common_mistakes": [
           "Saying the rank is the order of the matrix.",
           "Giving only part (i) and leaving out part (ii).",

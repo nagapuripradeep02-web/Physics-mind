@@ -90,9 +90,9 @@
             "scalar multiple"
           ]
         },
-        "why": "Spotting the scalar multiple turns four matrix multiplications into one arithmetic step. Multiplying it out four times gives the same answer far more slowly.",
+        "why": "Spotting the scalar multiple turns three matrix multiplications into one arithmetic step. Multiplying A out to A⁴ gives the same answer far more slowly.",
         "common_mistakes": [
-          "Multiplying the matrix by itself four times.",
+          "Multiplying A by itself four times, which gives A⁵, not A⁴.",
           "Treating the 3s as separate entries."
         ]
       },
@@ -142,7 +142,7 @@
             "eighty one I"
           ]
         },
-        "why": "The identity is unchanged by any power, which is exactly what makes it the multiplicative identity. Only the scalar does any work.",
+        "why": "Every power of I is I, because I·I = I, so only the scalar does any work. (What makes I the multiplicative identity is AI = IA = A.)",
         "common_mistakes": [
           "Writing 3⁴ as 12.",
           "Putting 81 in every entry rather than only the diagonal."
@@ -158,5 +158,5 @@
       }
     ]
   },
-  "insider_note": "Write A as 3I first, and then A⁴ = 3⁴I = 81I. Multiplying the matrix out four separate times reaches the same place after far more work."
+  "insider_note": "Write A as 3I first, and then A⁴ = 3⁴I = 81I. Multiplying A out to A⁴ reaches the same place after far more work."
 }

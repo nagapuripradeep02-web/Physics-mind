@@ -82,7 +82,7 @@
         },
         "why": "The rows are cyclic rotations of each other, so they all contain the same three entries in different orders, and a sum does not depend on the order.",
         "common_mistakes": [
-          "Adding rows instead of columns.",
+          "Adding only two of the three columns, which does not give 1 + ω + ω².",
           "Expanding the determinant directly and getting lost in powers of ω."
         ]
       },

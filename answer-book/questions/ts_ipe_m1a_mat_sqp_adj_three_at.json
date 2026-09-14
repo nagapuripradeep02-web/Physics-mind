@@ -116,10 +116,10 @@
             "expand"
           ]
         },
-        "why": "27 is 3³, and the 3 in adj A = 3Aᵀ is the same 3. Noticing that early makes the rest feel less arbitrary.",
+        "why": "det A = 27 is needed twice: it shows A⁻¹ exists, and it is the divisor in A⁻¹ = (Adj A)/(det A).",
         "common_mistakes": [
           "Sign slip on the middle term.",
-          "Expanding along a row with no zeros unnecessarily."
+          "Forgetting that the middle term of the R₁ expansion takes a minus sign."
         ]
       },
       {
@@ -363,5 +363,5 @@
       }
     ]
   },
-  "insider_note": "det A = 27 = 3³, which is why the adjoint comes out as exactly 3Aᵀ. Once that is shown, A⁻¹ = 3Aᵀ/27 = Aᵀ/9 with no further cofactor work."
+  "insider_note": "AAᵀ = 9I here, so A⁻¹ = Aᵀ/9 and adj A = (det A)A⁻¹ = 27Aᵀ/9 = 3Aᵀ. Once adj A = 3Aᵀ is shown, A⁻¹ = 3Aᵀ/27 = Aᵀ/9 with no further cofactor work."
 }

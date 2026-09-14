@@ -45,8 +45,8 @@
         "label": "Find |A| and Adj A",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. For a 2×2 there is a shortcut worth learning: swap the two diagonal entries, and change the sign of the other two. No nine cofactors needed.",
-        "memory_tip": "The 2×2 shortcut: SWAP the diagonal entries and change the sign of the other two. No nine cofactors.",
+        "margin_note": "First mark. For a 2×2 there is a shortcut worth learning: swap the two diagonal entries, and change the sign of the other two. No need to work out the four cofactors separately.",
+        "memory_tip": "The 2×2 shortcut: SWAP the diagonal entries and change the sign of the other two. No need to work out the four cofactors separately.",
         "lines": [
           {
             "text": "Sol:",

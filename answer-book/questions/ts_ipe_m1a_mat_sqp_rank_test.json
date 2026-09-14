@@ -224,9 +224,9 @@
             "reduce"
           ]
         },
-        "why": "Rank is read off the echelon form, so reducing is not optional — the ranks of the original matrices are invisible until it is done.",
+        "why": "Rank can be found from minors of the original matrices; row reduction is simply the quickest route, and it also shows the solution.",
         "common_mistakes": [
-          "Trying to read the rank off the original matrix.",
+          "Reading the rank from a matrix that is not yet in echelon form by counting its non-zero rows.",
           "Stopping before the form is triangular."
         ],
         "lines_compact": [

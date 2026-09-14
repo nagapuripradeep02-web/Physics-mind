@@ -501,7 +501,7 @@
             "z equals two"
           ]
         },
-        "why": "The whole method exists so that each unknown can be found on its own, without eliminating anything. Substituting back is the only check that catches a slip inside Δ₁, Δ₂ or Δ₃, because an error there spoils one unknown and leaves the other two looking right.",
+        "why": "The whole method exists so that each unknown can be found on its own, without eliminating anything. Substituting back is a check that also catches a slip inside Δ₁, Δ₂ or Δ₃, because an error there spoils one unknown and leaves the other two looking right.",
         "common_mistakes": [
           "Dividing Δ by Δ₁ instead of Δ₁ by Δ.",
           "Losing a sign: a negative divided by a negative is positive.",

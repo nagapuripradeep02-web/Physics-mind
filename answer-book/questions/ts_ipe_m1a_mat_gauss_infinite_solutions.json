@@ -224,7 +224,7 @@
         "marks": 1,
         "mark_note": "Zero row",
         "margin_note": "Fourth mark. Rows 2 and 3 are proportional, so one of them cancels completely. A row of all zeros — INCLUDING the constant after the rule — means that equation carried no information, not that something went wrong.",
-        "memory_tip": "Rows 2 and 3 are proportional, so one cancels completely. A row of all zeros INCLUDING the constant means infinitely many solutions.",
+        "memory_tip": "Rows 2 and 3 are proportional, so one cancels completely. A zero row including the constant, with no row reading 0 = non-zero, leaves fewer equations than unknowns, so there are infinitely many solutions.",
         "lines": [
           "R₃ → R₃ − (2/3)R₂",
           {

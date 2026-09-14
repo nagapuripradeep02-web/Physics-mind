@@ -258,7 +258,7 @@
             "A transpose"
           ]
         },
-        "why": "Each diagonal entry is a row of A dotted with itself, which is a sum of squares — that is why they are all 9 and positive. Each off-diagonal entry is one row dotted with a different one, and those vanish.",
+        "why": "Each diagonal entry of the bracketed matrix is a row of 3A dotted with itself (1 + 4 + 4 = 9); after the 1/9, AAᵀ has 1s on the diagonal. Each off-diagonal entry is one row dotted with a different one, and those vanish.",
         "common_mistakes": [
           "Forgetting the 1/9 and concluding AAᵀ = 9I.",
           "Writing \"= 1\" instead of \"= I\".",

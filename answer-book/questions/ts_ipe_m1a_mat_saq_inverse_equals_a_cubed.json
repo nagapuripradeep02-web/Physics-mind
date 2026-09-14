@@ -96,8 +96,8 @@
         "label": "Find A²",
         "marks": 2,
         "mark_note": "A squared",
-        "margin_note": "Half the marks. Nine row-by-column products. The middle row of A has a 0 in it, which shortens three of them — but every entry still has to be written out.",
-        "memory_tip": "Nine row-by-column products. The 0 in the middle row shortens three of them.",
+        "margin_note": "Half the marks. Nine row-by-column products. The bottom row of A has a 0 in it, which shortens three of them — but every entry still has to be written out.",
+        "memory_tip": "Nine row-by-column products. The 0 in the bottom row shortens three of them.",
         "lines": [
           {
             "text": "A^2 = A\\!\\cdot\\!A = \\begin{bmatrix} 3 & -3 & 4 \\\\ 2 & -3 & 4 \\\\ 0 & -1 & 1 \\end{bmatrix}\\begin{bmatrix} 3 & -3 & 4 \\\\ 2 & -3 & 4 \\\\ 0 & -1 & 1 \\end{bmatrix}",

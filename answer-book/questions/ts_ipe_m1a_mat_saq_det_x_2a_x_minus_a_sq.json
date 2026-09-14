@@ -102,7 +102,7 @@
         },
         "why": "The determinant is symmetric in the sense that every row has the same total. Adding the columns is the standard way to turn that hidden fact into a visible common factor.",
         "common_mistakes": [
-          "Adding the ROWS instead of the columns, which does not give a constant column.",
+          "Adding only C₂ into C₁ and getting x + a instead of x + 2a.",
           "Writing x + 2a as x + a because only one a was added."
         ]
       },
