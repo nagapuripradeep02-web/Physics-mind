@@ -154,7 +154,7 @@
         "label": "Use OA + OB + OC = OH",
         "marks": 1,
         "mark_note": "Circumcentre result",
-        "margin_note": "Third mark. This is the standard circumcentre-to-orthocentre result. Quote it, and give the one-bracket reason so the answer stands on its own even if part (i) was not attempted.",
+        "margin_note": "Third mark. This is the standard circumcentre-to-orthocentre result. Quote it, and give the one-bracket reason so the answer is complete even if OA + OB + OC = OH was not proved earlier.",
         "memory_tip": "The three circumradius vectors add to OH. Reason: the point P with OP = OA + OB + OC lies on two altitudes.",
         "lines": [
           "For any triangle, the circumcentre O and",

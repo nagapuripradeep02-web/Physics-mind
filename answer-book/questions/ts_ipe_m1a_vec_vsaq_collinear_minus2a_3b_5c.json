@@ -45,8 +45,8 @@
         "label": "Find PQ and PR",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. Name the points P, Q, R and take O as the origin. Because a, b and c are non-coplanar, their coefficients are collected separately, exactly as with i, j and k.",
-        "memory_tip": "Non-coplanar a, b, c behave like i, j and k: collect the a, b and c coefficients separately.",
+        "margin_note": "First mark. Name the points P, Q, R and take O as the origin. Subtract the a, b and c coefficients separately. Because a, b and c are non-coplanar, PQ is not the zero vector, so P and Q are different points.",
+        "memory_tip": "Subtract the a, b and c coefficients separately, as with i, j and k.",
         "lines": [
           {
             "text": "Sol:",
@@ -83,11 +83,11 @@
             "PQ and PR"
           ]
         },
-        "why": "Non-coplanar means no one of a, b, c can be built from the other two, so the coefficients can be collected separately. It also guarantees 3a − b − 2c is not the zero vector, so P and Q are genuinely different points.",
+        "why": "Subtracting position vectors collects the a, b and c coefficients separately. Because a, b and c are non-coplanar, 3a − b − 2c is not the zero vector, so P and Q are different points.",
         "common_mistakes": [
           "Adding the position vectors instead of subtracting them.",
           "Forgetting that OR has no b term, so its b coefficient is 0.",
-          "Building PQ and QR from different starting points and then comparing them."
+          "Comparing two vectors that share no point, which shows only that they are parallel."
         ]
       },
       {

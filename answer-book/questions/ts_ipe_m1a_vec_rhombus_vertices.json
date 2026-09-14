@@ -53,8 +53,8 @@
         "label": "Find the side vectors",
         "marks": 1,
         "mark_note": "Side vectors",
-        "margin_note": "First mark. Take the points in the order given as A, B, C, D and go round: AB, BC, CD, DA. Order matters — a different order makes the same four points into a crossed shape.",
-        "memory_tip": "Take the points in the ORDER given and go round: AB, BC, CD, DA. A different order makes a crossed shape.",
+        "margin_note": "First mark. Take the points in the order given as A, B, C, D and go round: AB, BC, CD, DA. Order matters — some other orders, such as A, B, D, C, make the same four points into a crossed shape.",
+        "memory_tip": "Take the points in the ORDER given and go round: AB, BC, CD, DA. Some other orders, such as A, B, D, C, make a crossed shape.",
         "lines": [
           {
             "text": "Sol:",
@@ -115,8 +115,8 @@
         "kind": "diagram",
         "label": "Draw the rhombus",
         "marks": 0,
-        "margin_note": "Worth no mark but worth drawing. The four tick marks say all four SIDES are equal; the two dashed diagonals are what must come out UNEQUAL. Equal sides alone would allow a square, so both halves of the check are in the picture.",
-        "memory_tip": "Four tick marks for the equal sides, two dashed diagonals for the unequal pair. Equal sides alone allow a square.",
+        "margin_note": "Worth no mark but worth drawing. The four tick marks say all four SIDES are equal; the two dashed diagonals are what must come out UNEQUAL. Equal sides in a parallelogram would still allow a square, so both halves of the check are in the picture.",
+        "memory_tip": "Four tick marks for the equal sides, two dashed diagonals for the unequal pair. Equal sides in a parallelogram still allow a square.",
         "recall": {
           "credit": "name_it",
           "must_convey": "That rhombus ABCD is sketched with its four equal sides marked and both diagonals drawn. Naming the drawing is full credit — it cannot be spoken.",
@@ -140,7 +140,7 @@
             "unequal"
           ]
         },
-        "why": "A rhombus needs BOTH facts: four equal sides, and diagonals that are not equal. Four equal sides on their own describe a square just as well, so the diagonals are what rule it out.",
+        "why": "This proof needs three facts: ABCD is a parallelogram (so it is flat), its four sides are equal (so it is a rhombus), and its diagonals are unequal (so it is not a square).",
         "common_mistakes": [
           "Checking only that the four sides are equal, which a square also satisfies.",
           "Taking AB and CD as diagonals — they are opposite sides."
@@ -294,7 +294,7 @@
             "magnitude"
           ]
         },
-        "why": "Four equal sides is what makes a quadrilateral a rhombus OR a square. It is necessary but not yet sufficient, which is why the next step exists.",
+        "why": "Four equal sides in a parallelogram is what makes it a rhombus OR a square. It is necessary but not yet sufficient, which is why the next step exists.",
         "common_mistakes": [
           "Checking two sides and asserting the other two by symmetry.",
           "Stopping here and calling it a rhombus."
@@ -354,7 +354,7 @@
             "unequal"
           ]
         },
-        "why": "A square is a rhombus with equal diagonals. Showing they differ is what rules the square out and pins the figure down as a rhombus specifically.",
+        "why": "A square is a rhombus with equal diagonals. Showing they differ is what rules the square out and shows the figure is a rhombus that is not a square.",
         "common_mistakes": [
           "Taking AB and CD as the diagonals; those are sides.",
           "Finding the diagonals but never comparing them."
@@ -373,8 +373,8 @@
         "label": "Conclude rhombus",
         "marks": 1,
         "mark_note": "Conclusion",
-        "margin_note": "Last mark. State both findings together — equal sides and unequal diagonals — because it is the pair of them that names the shape.",
-        "memory_tip": "State both findings together — equal sides AND unequal diagonals is what names the shape.",
+        "margin_note": "Last mark. State all three findings together — a parallelogram, equal sides and unequal diagonals — because it is the three of them that name the shape.",
+        "memory_tip": "State all three findings together — a parallelogram, equal sides AND unequal diagonals is what names the shape.",
         "lines": [
           {
             "text": "(a parallelogram with four equal sides is a rhombus;",
@@ -413,7 +413,7 @@
             "square"
           ]
         },
-        "why": "Naming both conditions is what separates a rhombus from a square in the examiner’s eyes. One without the other does not identify the shape.",
+        "why": "Naming the parallelogram, the equal sides and the unequal diagonals is what separates a rhombus from other shapes in the examiner’s eyes. Any two without the third do not identify the shape.",
         "common_mistakes": [
           "Concluding rhombus from the equal sides alone.",
           "Writing \"hence proved\" with neither condition named."

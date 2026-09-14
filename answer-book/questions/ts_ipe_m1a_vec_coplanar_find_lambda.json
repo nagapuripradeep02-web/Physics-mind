@@ -66,8 +66,8 @@
         "label": "Write the position vectors",
         "marks": 1,
         "mark_note": "Position vectors",
-        "margin_note": "First mark. Same opening as any coplanarity question — but note that λ rides along inside OS and must be carried as a letter all the way to the last line.",
-        "memory_tip": "Same opening as any coplanarity question, but λ rides inside OS and must be carried as a letter.",
+        "margin_note": "First mark. Same opening as any coplanarity question — but note that λ is part of OS and must be kept as a letter until the last line.",
+        "memory_tip": "Same opening as any coplanarity question, but λ is part of OS and must be kept as a letter.",
         "lines": [
           {
             "text": "Sol:",
@@ -101,7 +101,7 @@
             "origin"
           ]
         },
-        "why": "λ is unknown, so it cannot be evaluated — it has to survive every line until the equation that pins it down.",
+        "why": "λ is unknown, so it cannot be evaluated — it has to stay in every line until the equation that fixes its value.",
         "common_mistakes": [
           "Guessing a value for λ and checking it.",
           "Dropping λ when copying OS."
@@ -218,7 +218,7 @@
             "equation"
           ]
         },
-        "why": "Every other question in this chapter computes the determinant and finds it is zero. This one is told it is zero and works out what λ must be for that to happen.",
+        "why": "A \"show coplanar\" question computes the determinant and finds it is zero. This one is told it is zero and works out what λ must be for that to happen.",
         "common_mistakes": [
           "Evaluating the determinant without setting it to zero.",
           "Trying to show it is zero for every λ, which it is not."

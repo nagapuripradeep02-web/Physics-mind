@@ -58,8 +58,8 @@
         "label": "Add and find the magnitude",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. c has no i term — write it as 0i + j + 2k so the columns line up. The magnitude comes out to exactly 7, which is a good sign the addition is right.",
-        "memory_tip": "Write c as 0i + j + 2k so the columns line up. The magnitude comes to exactly 7 — a good check.",
+        "margin_note": "First mark. c has no i term — write it as 0i + j + 2k so the columns line up. The magnitude comes out to exactly 7, but a sign slip in the k column would give 7 too, so check each column.",
+        "memory_tip": "Write c as 0i + j + 2k so the columns line up, then check each column again.",
         "lines": [
           {
             "text": "Sol:",
@@ -94,10 +94,10 @@
             "forty nine"
           ]
         },
-        "why": "Writing the missing component as 0 rather than leaving a gap is what keeps the addition aligned. The magnitude landing on a whole number is the arithmetic checking itself.",
+        "why": "Writing the missing component as 0 rather than leaving a gap is what keeps the addition aligned. A whole-number magnitude does not prove the sum is right, so check each column again.",
         "common_mistakes": [
           "Dropping c entirely because it has no i term.",
-          "Sign slip on the k column: −5 + 1 + 2 = −2."
+          "A sign slip on the k column giving +2 instead of −5 + 1 + 2 = −2."
         ]
       },
       {

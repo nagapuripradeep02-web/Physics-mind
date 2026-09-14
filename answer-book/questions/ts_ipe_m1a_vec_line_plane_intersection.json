@@ -202,7 +202,7 @@
             "x equals zero"
           ]
         },
-        "why": "Independence is the whole reason the comparison is legal: if a, b, c were coplanar, one could be written using the other two and no column would stand on its own. Three columns give three equations, which is exactly enough for the three unknowns t, x and y.",
+        "why": "Independence is the whole reason the comparison is allowed: if a, b, c were coplanar, one could be written using the other two, and the three columns would no longer be separate. Three columns give three equations, which is exactly enough for the three unknowns t, x and y.",
         "common_mistakes": [
           "Comparing only two columns, which leaves t undetermined.",
           "Substituting y before finishing the b column, then losing the 2y term.",

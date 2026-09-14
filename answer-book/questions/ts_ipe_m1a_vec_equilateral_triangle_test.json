@@ -99,8 +99,8 @@
         "label": "Show they form a triangle",
         "marks": 1,
         "mark_note": "Closure",
-        "margin_note": "First mark. Three vectors placed head to tail form a triangle exactly when they add to the zero vector. Add the i, j and k components in three separate columns.",
-        "memory_tip": "Three vectors close into a triangle exactly when they add to the zero vector.",
+        "margin_note": "First mark. Three vectors, no two of them parallel, form a triangle head to tail exactly when they add to the zero vector. Add the i, j and k components in three separate columns.",
+        "memory_tip": "Three vectors, no two parallel, close into a triangle exactly when they add to the zero vector.",
         "lines": [
           {
             "text": "(add the i parts, the j parts and the k parts separately)",
@@ -145,7 +145,7 @@
             "triangle"
           ]
         },
-        "why": "Walking along three vectors head to tail returns you to the start exactly when their sum is zero, and a closed three-sided walk is a triangle. Without this the word \"triangle\" in the question is unearned.",
+        "why": "Walking along three vectors head to tail returns you to the start exactly when their sum is zero, and a closed three-sided path whose sides are not parallel is a triangle. Without this the word \"triangle\" in the question has no support.",
         "common_mistakes": [
           "Adding only the i components and assuming the rest follow.",
           "Writing the answer as 0 when the sum of vectors is the zero vector, not the number zero."

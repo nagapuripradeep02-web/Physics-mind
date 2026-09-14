@@ -210,7 +210,7 @@
             "AD"
           ]
         },
-        "why": "AE and BD are opposite sides of the rectangle ABDE, and AF and CD are opposite sides of ACDF. You can assert that from the picture in a moment, or fail to see it at all without one.",
+        "why": "AE and BD are opposite sides of the rectangle ABDE, and AF and CD are opposite sides of ACDF. The picture makes this easy to see; the reasons are written in the next step.",
         "common_mistakes": [
           "Skipping the figure and then guessing which vectors are equal.",
           "Labelling the vertices out of order, so ABCDEF does not run round the hexagon one vertex at a time."
@@ -222,8 +222,8 @@
         "label": "Swap AE and AF",
         "marks": 1,
         "mark_note": "Equal vectors",
-        "margin_note": "First mark. ABDE is a rectangle, so AE and BD are the same vector; ACDF is a rectangle, so AF and CD are the same. Replacing them is what lets the sum collapse.",
-        "memory_tip": "ABDE is a rectangle so AE = BD; ACDF is a rectangle so AF = CD. Those swaps make the sum collapse.",
+        "margin_note": "First mark. ABDE is a rectangle, so AE and BD are the same vector; ACDF is a rectangle, so AF and CD are the same. Replacing them is what lets the sum simplify.",
+        "memory_tip": "ABDE is a rectangle so AE = BD; ACDF is a rectangle so AF = CD. Those swaps let the sum simplify.",
         "lines": [
           {
             "text": "(group the five vectors as two, one and two)",
@@ -231,11 +231,11 @@
           },
           "∴ (AB + AC) + AD + (AE + AF)",
           {
-            "text": "(ABDE is a rectangle, so AE = BD; AFDC is a",
+            "text": "(AB = ED, so ABDE is a parallelogram and AE = BD;",
             "added": true
           },
           {
-            "text": "  parallelogram, so AF = CD)",
+            "text": "  CD = AF, as opposite sides of the regular hexagon)",
             "style": "indent",
             "added": true
           },
@@ -268,7 +268,7 @@
         "why": "Equal vectors have the same length AND direction, so one can be written for the other anywhere. Choosing BD and CD is not arbitrary — they are the ones that pair up with AB and AC in the next line.",
         "common_mistakes": [
           "Swapping to DB and DC, which are the reverses and flip the signs.",
-          "Assuming any two sides of a hexagon are equal vectors; only opposite ones are."
+          "Assuming any two sides of a hexagon are equal vectors; only an opposite side taken in the reverse direction is, such as CD = AF."
         ],
         "lines_compact": [
           "∴ (AB + AC) + AD + (AE + AF)",
@@ -282,7 +282,7 @@
         "label": "Regroup into three ADs",
         "marks": 2,
         "mark_note": "Triangle law",
-        "margin_note": "Half the marks. Regroup so each bracket is a head-to-tail pair: AB + BD lands on AD, and AC + CD lands on AD. With the AD already there, that is three of them.",
+        "margin_note": "Half the marks. Regroup so each bracket is a head-to-tail pair: AB + BD = AD, and AC + CD = AD. With the AD already there, that is three of them.",
         "memory_tip": "Regroup into head-to-tail pairs: AB + BD = AD and AC + CD = AD. With the AD already there, three of them.",
         "lines": [
           {
@@ -320,9 +320,9 @@
             "nose to tail"
           ]
         },
-        "why": "The triangle law says that going A to B and then B to D is the same as going A to D. Every bracket here is chosen so that the middle letter cancels that way.",
+        "why": "The triangle law says that going A to B and then B to D is the same as going A to D. Every bracket here is chosen so that the middle letter drops out that way.",
         "common_mistakes": [
-          "Regrouping as (AB + AC) and getting nothing that collapses.",
+          "Regrouping as (AB + AC), which gives no bracket that simplifies.",
           "Losing the standalone AD and finishing with 2AD.",
           "Adding the magnitudes instead of the vectors."
         ],

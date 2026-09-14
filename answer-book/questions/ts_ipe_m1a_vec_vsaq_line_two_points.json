@@ -54,7 +54,7 @@
         "label": "Name the two points",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. Both given vectors are POSITIONS — there is no direction given, so the two-point form is needed, not the point-and-direction form.",
+        "margin_note": "First mark. Both given vectors are POSITIONS — neither one is a direction, so use the two-point form, or the point-and-direction form with the direction b − a.",
         "memory_tip": "Both given vectors are POSITIONS here. No direction is handed over, which changes the formula.",
         "lines": [
           {

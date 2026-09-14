@@ -153,7 +153,7 @@
             "minus six"
           ]
         },
-        "why": "The sign is the trap. Both vectors point along the same line, but the first has a negative i component and the second must too — so μ cannot be positive.",
+        "why": "The sign is the trap. The j components 4 and 8 are both positive, so the second vector is a positive multiple (2) of the first. Its i component must then be negative like −3, so μ cannot be positive.",
         "common_mistakes": [
           "Writing μ = 6 and losing the sign.",
           "Solving λ/6 = 1/2 as λ = 12."

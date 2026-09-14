@@ -157,7 +157,7 @@
             "b plus c minus two a"
           ]
         },
-        "why": "The question hands over the answer and asks for a proof, so the honest structure is to name that point and test it. Bringing both vectors to the same top line is what makes the comparison one step long.",
+        "why": "The question gives the answer and asks for a proof, so the honest structure is to name that point and test it. Bringing both vectors to the same top line is what makes the comparison one step long.",
         "common_mistakes": [
           "Subtracting the wrong way round, giving AG as a − (a + b + c)/3.",
           "Not putting AG and AD over a common top line, so the multiple is hidden."

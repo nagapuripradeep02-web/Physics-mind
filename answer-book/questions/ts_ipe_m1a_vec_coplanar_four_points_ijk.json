@@ -93,7 +93,7 @@
             "P Q R S"
           ]
         },
-        "why": "A position vector is measured from the origin; the vector BETWEEN two points is the difference of their position vectors. Setting the origin up front is what makes that subtraction legal.",
+        "why": "A position vector is measured from the origin; the vector BETWEEN two points is the difference of their position vectors. Setting the origin up front is what makes that subtraction possible.",
         "common_mistakes": [
           "Treating the given vectors as the sides of the figure rather than as positions.",
           "Never naming an origin, so the differences below have nothing to be measured from."

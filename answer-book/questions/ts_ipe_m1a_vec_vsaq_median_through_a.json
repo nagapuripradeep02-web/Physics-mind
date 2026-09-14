@@ -91,8 +91,8 @@
         "label": "Write the two-point form",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Second mark. Two points and no direction given, so the two-point form is the one to use. t = 0 lands on A and t = 1 lands on D.",
-        "memory_tip": "Two points, so r = (1 − t)(first point) + t(second point). t = 0 sits at A, t = 1 sits at the midpoint.",
+        "margin_note": "Second mark. Two points and no direction given, so the two-point form is the one to use. t = 0 gives A and t = 1 gives D.",
+        "memory_tip": "Two points, so r = (1 − t)(first point) + t(second point). t = 0 gives A, t = 1 gives the midpoint.",
         "lines": [
           "A has position vector a, and D has (b + c)/2,",
           "so by the two-point form of a line,",
@@ -131,7 +131,7 @@
         "why": "The two-point form works because (1 − t) and t add to 1 for every value of t, and that sum being 1 is the test for a point lying on the line through A and D.",
         "common_mistakes": [
           "Using r = a + tb as though b were a direction vector.",
-          "Dropping t ∈ R, which describes only the segment AD.",
+          "Dropping t ∈ R, which leaves the range of the parameter unstated, so the whole line is not described.",
           "Writing r = (1 − t)a + (b + c)/2 with the t left off the second term."
         ],
         "lines_compact": [

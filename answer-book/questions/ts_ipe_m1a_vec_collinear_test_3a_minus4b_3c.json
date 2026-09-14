@@ -89,10 +89,10 @@
             "origin"
           ]
         },
-        "why": "A position vector is measured from the origin, and the vector joining two points is the difference of their position vectors. Fixing an origin first is what makes that subtraction legal.",
+        "why": "A position vector is measured from the origin, and the vector joining two points is the difference of their position vectors. Fixing an origin first is what makes that subtraction possible.",
         "common_mistakes": [
           "Treating the three given vectors as the sides of the figure instead of as positions.",
-          "Copying −4a as 4a, which turns a negative verdict into a false positive one."
+          "Copying −4a as 4a, which changes AB and makes every later line wrong."
         ]
       },
       {
@@ -144,9 +144,9 @@
             "a minus three b"
           ]
         },
-        "why": "Collinearity is a statement about direction, and two vectors can only be compared for direction if they start at the same point. Anchoring both at A is part of the test, not a habit.",
+        "why": "Collinearity needs two things: the vectors are parallel, and they share a point. Starting both at A gives the shared point.",
         "common_mistakes": [
-          "Building AB and BC, a chain, instead of two vectors from the same point A.",
+          "Comparing two vectors that share no point, which cannot show that the points are on one line.",
           "Subtracting the wrong way round; it is OB − OA, not OA − OB.",
           "A sign slip where the subtracted coefficient is already negative."
         ],

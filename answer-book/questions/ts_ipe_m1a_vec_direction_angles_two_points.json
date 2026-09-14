@@ -151,7 +151,7 @@
         "label": "Write the direction cosines",
         "marks": 1,
         "mark_note": "Direction cosines",
-        "margin_note": "Third mark. Divide each component by the magnitude. Keep the minus signs — they are what say the line points backwards along the y and z axes.",
+        "margin_note": "Third mark. Divide each component by the magnitude. Keep the minus signs — they show that AB points in the negative y and z directions.",
         "memory_tip": "Divide every component by the length. Keep the minus signs, and check l² + m² + n² = 1.",
         "lines": [
           {

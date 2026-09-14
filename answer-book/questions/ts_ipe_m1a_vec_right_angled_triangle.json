@@ -105,8 +105,8 @@
         "kind": "diagram",
         "label": "Draw the triangle",
         "marks": 0,
-        "margin_note": "Worth no mark but worth drawing. The right angle sits at C, between the two SHORTER sides — the sketch is what shows which side is the hypotenuse before Pythagoras is applied to it.",
-        "memory_tip": "The sketch shows which side is the hypotenuse before Pythagoras is applied to it.",
+        "margin_note": "Worth no mark but worth drawing. The right angle sits at C, between the two SHORTER sides — the squared lengths in the next step show which side is the hypotenuse, and the sketch records it.",
+        "memory_tip": "The squared lengths show which side is the hypotenuse; the sketch records where the right angle sits.",
         "recall": {
           "credit": "name_it",
           "must_convey": "That triangle ABC is sketched with the right angle marked at C. Naming the drawing is full credit — it cannot be spoken.",
@@ -129,7 +129,7 @@
             "hypotenuse"
           ]
         },
-        "why": "Pythagoras compares the LONGEST side against the other two, so the drawing is how you check which of the three magnitudes should sit alone on one side of the equation.",
+        "why": "Pythagoras compares the LONGEST side against the other two. The squared lengths in the next step show that AB is the longest, and the sketch records where the right angle then sits.",
         "common_mistakes": [
           "Marking the right angle at the wrong vertex, which tests the wrong pair of sides.",
           "Assuming the right angle is at A because A is named first, instead of finding which square equals the sum of the other two."
@@ -377,5 +377,5 @@
       }
     ]
   },
-  "insider_note": "Compare the SQUARES of the magnitudes, never the roots — 41 = 6 + 35 is exact while the roots are not. The longest side is AB, so the right angle sits at C, opposite it."
+  "insider_note": "Compare the SQUARES of the magnitudes: 41 = 6 + 35 is a whole-number check, while decimal forms of the roots never match exactly. The longest side is AB, so the right angle sits at C, opposite it."
 }

@@ -91,7 +91,7 @@
             "OA plus OB plus OC"
           ]
         },
-        "why": "The orthocentre is defined as the point where the altitudes meet, so it cannot be computed directly. Naming a candidate point and checking it against that definition is the only route open.",
+        "why": "The orthocentre is defined as the point where the altitudes meet, so it has no formula to start from. Naming a candidate point and checking it against that definition is the simplest route.",
         "common_mistakes": [
           "Trying to write OH down at the start, when H has no formula yet.",
           "Forgetting that circumcentre means equal distances, which is the only property of O the proof uses."
@@ -178,7 +178,7 @@
         "label": "Show BP is perpendicular to CA",
         "marks": 1,
         "mark_note": "Second altitude",
-        "margin_note": "Third mark. The same argument again, one vertex along. Repeat it in full rather than writing \"similarly\" — the examiner is paying for the second altitude, and two altitudes are what pin the point down.",
+        "margin_note": "Third mark. The same argument again, one vertex along. Repeat it in full rather than writing \"similarly\" — the examiner is paying for the second altitude, and two altitudes are what fix the point.",
         "memory_tip": "Repeat the same three lines at B: midpoint E of CA, OC + OA = 2 OE, and OE at right angles to CA.",
         "lines": [
           "Let E be the midpoint of CA.",

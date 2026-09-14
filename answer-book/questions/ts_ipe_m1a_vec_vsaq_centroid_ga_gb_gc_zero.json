@@ -84,7 +84,7 @@
         "common_mistakes": [
           "Writing g = a + b + c without dividing by 3.",
           "Assuming the triangle must be equilateral for the result to hold.",
-          "Placing the origin at G, which assumes what is to be proved."
+          "Using the origin at G but forgetting that then g = 0, so a + b + c = 0."
         ]
       },
       {

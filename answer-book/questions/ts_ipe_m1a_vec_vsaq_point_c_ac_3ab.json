@@ -93,7 +93,7 @@
         "label": "Solve for the position vector of C",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Second mark. Expand the bracket and collect the a terms. Two of the three a terms cancel, leaving −2a, and the coefficients 3 and −2 add to 1.",
+        "margin_note": "Second mark. Expand the bracket and collect the a terms. The +a cancels one of the three copies of −a, leaving −2a, and the coefficients 3 and −2 add to 1.",
         "memory_tip": "The coefficients of a and b must add to 1 for C to be on the line AB: 3 + (−2) = 1.",
         "lines": [
           {

@@ -53,7 +53,7 @@
         "label": "Write the position vectors",
         "marks": 1,
         "mark_note": "Position vectors",
-        "margin_note": "First mark. Name the three points A, B, C and take O as the origin. Writing the missing a term as 0a is worth the ink — the whole test below is a coefficient comparison, and a missing coefficient is the commonest way to lose it.",
+        "margin_note": "First mark. Name the three points A, B, C and take O as the origin. Write the missing a term as 0a — the whole test below is a coefficient comparison, and a missing coefficient is the commonest way to lose it.",
         "memory_tip": "Name the points A, B, C and write every missing coefficient as 0a, 0b or 0c so no column is empty.",
         "lines": [
           {
@@ -90,7 +90,7 @@
             "zero a"
           ]
         },
-        "why": "A position vector is measured from the origin, and the vector joining two points is the difference of their position vectors. Fixing an origin first is what makes that subtraction legal.",
+        "why": "A position vector is measured from the origin, and the vector joining two points is the difference of their position vectors. Fixing an origin first is what makes that subtraction possible.",
         "common_mistakes": [
           "Treating the three given vectors as the sides of the figure instead of as positions.",
           "Dropping the missing a term in the third point, which shifts the whole comparison."
@@ -158,7 +158,7 @@
         "label": "Find AC and compare",
         "marks": 1,
         "mark_note": "Second edge vector",
-        "margin_note": "Third mark. AC must start at the SAME point A as AB. Once you have it, factor out the common number instead of just staring at the three coefficients — writing −(a + 5b − 7c) is the line that earns the mark.",
+        "margin_note": "Third mark. AC must start at the SAME point A as AB. Once you have it, factor out the common number instead of only looking at the three coefficients — writing −(a + 5b − 7c) is the line that earns the mark.",
         "memory_tip": "Start AC at the same point A, then factor the answer so the multiple of AB is visible.",
         "lines": [
           "AC = OC − OA",
@@ -200,7 +200,7 @@
         },
         "why": "Two vectors are parallel exactly when one is a number times the other. Here that number is −1, which means AC points the opposite way to AB along the same line.",
         "common_mistakes": [
-          "Building AC from B instead of from A, so the two vectors no longer share a point.",
+          "Building AC as OA − OC instead of OC − OA, which reverses its sign.",
           "Stopping at −a − 5b + 7c and never showing it is a multiple of AB."
         ],
         "lines_compact": [

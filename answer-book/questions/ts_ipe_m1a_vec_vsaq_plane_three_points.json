@@ -58,7 +58,7 @@
         "label": "Name the three points",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. Three points fix a plane. Watch the gaps: the second has no i term and the third has no k term — write those components as 0 rather than leaving them out.",
+        "margin_note": "First mark. Three points that are not on one line fix a plane. Watch the gaps: the second has no i term and the third has no k term — write those components as 0 rather than leaving them out.",
         "memory_tip": "Mind the gaps: the second point has no i and the third has no k. Write those components as 0.",
         "lines": [
           {
@@ -94,7 +94,7 @@
             "plane"
           ]
         },
-        "why": "Two points give a line; three give a plane. The count of points is what selects the two-parameter form below.",
+        "why": "Two points give a line; three points that are not on one line give a plane. The count of points is what selects the two-parameter form below.",
         "common_mistakes": [
           "Missing a zero component when copying a vector.",
           "Using only two of the three points."

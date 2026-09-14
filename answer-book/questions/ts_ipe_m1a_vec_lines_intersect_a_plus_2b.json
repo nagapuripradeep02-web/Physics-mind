@@ -105,8 +105,8 @@
         "label": "Equation of the second line",
         "marks": 1,
         "mark_note": "Second line",
-        "margin_note": "Second mark. Same form, but a DIFFERENT parameter — s, not t. Reusing t would force the two lines to be travelled in step and would find only some of the intersections.",
-        "memory_tip": "Use a DIFFERENT parameter, s. Reusing t would force the two lines to be walked in step.",
+        "margin_note": "Second mark. Same form, but a DIFFERENT parameter — s, not t. Reusing t would force both lines to reach the common point at the same parameter value, so in general it would miss the intersection.",
+        "memory_tip": "Use a DIFFERENT parameter, s. Reusing t would force both lines to reach the common point at the same parameter value.",
         "lines": [
           "Let T = a − 2b + 3c,  S = a − 6b + 6c",
           "The line through T and S is",
@@ -288,5 +288,5 @@
       }
     ]
   },
-  "insider_note": "Write both lines in the two-point form, then COLLECT the a, b and c coefficients before comparing. Non-coplanar is what licenses comparing coefficients at all, so say so."
+  "insider_note": "Write both lines in the two-point form, then COLLECT the a, b and c coefficients before comparing. Comparing coefficients is allowed only because a, b, c are non-coplanar, so say so."
 }

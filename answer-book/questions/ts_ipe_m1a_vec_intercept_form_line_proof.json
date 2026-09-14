@@ -53,7 +53,7 @@
         "label": "Write the two intercept points",
         "marks": 1,
         "mark_note": "Set-up",
-        "margin_note": "First mark. Here a and b are NUMBERS, the two intercepts, not the vectors a and b used elsewhere in this chapter. An intercept a means the line crosses the x-axis at (a, 0), so both intercepts must be non-zero.",
+        "margin_note": "First mark. Here a and b are NUMBERS, the two intercepts, not the vectors a and b used elsewhere in this chapter. An intercept a means the line crosses the x-axis at (a, 0). Both intercepts must be non-zero, because the result divides by a and by b.",
         "memory_tip": "In this question a and b are numbers, not vectors. Intercept a means the crossing point (a, 0).",
         "lines": [
           {
