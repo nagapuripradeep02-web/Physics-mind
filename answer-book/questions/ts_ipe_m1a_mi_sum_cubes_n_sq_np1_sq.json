@@ -255,10 +255,10 @@
         "why": "The added term (k+1)³ shares the factor (k+1)² with the assumed sum. Taking that factor out leaves k² + 4k + 4, which is (k+2)² — exactly the bracket the formula needs at k+1.",
         "common_mistakes": [
           "Adding (k+1)² instead of (k+1)³ as the next term.",
-          "Expanding everything into a quartic instead of factorising, which will not simplify.",
+          "Expanding everything into a quartic instead of factorising, which takes longer and is easy to get wrong.",
           "Stopping before writing = R.H.S, so the step does not show what was asked."
         ],
-        "memory_tip": "Add (k+1)³, take (k+1)² out as a common factor, and k² + 4k + 4 folds into (k+2)².",
+        "memory_tip": "Add (k+1)³, take (k+1)² out as a common factor, and k² + 4k + 4 = (k+2)².",
         "lines_compact": [
           "Step 3 — show S(k+1) is true",
           "Add (k+1)³ to both sides of (1):",

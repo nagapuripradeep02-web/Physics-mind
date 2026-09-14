@@ -52,7 +52,7 @@
         "kind": "equation",
         "label": "Find the nth term",
         "marks": 0,
-        "margin_note": "Unmarked setup at 4 marks, and the hardest line in the chapter: the nth term is a fraction whose top and bottom each need their own standard formula.",
+        "margin_note": "Unmarked setup at 4 marks, and a line that needs care: the nth term is a fraction whose top and bottom each need their own standard formula.",
         "lines": [
           "(the nth term is (1³ + … + n³)/(1 + 3 + … + (2n − 1)))",
           "Numerator = 1³ + 2³ + … + n³ = n²(n+1)²/4",
@@ -204,7 +204,7 @@
         "label": "Show S(k+1) follows",
         "marks": 1,
         "mark_note": "Step 3",
-        "margin_note": "One mark, and the longest step on the page. The left side does factorise, as (k+1)(2k² + 13k + 24), but that factor is hard to spot — expanding BOTH sides to the same cubic also works.",
+        "margin_note": "One mark, and the longest step on the page. The left side does factorise, as ((k+1)/24)(2k² + 13k + 24), but that factor is hard to spot — expanding BOTH sides to the same cubic also works.",
         "lines": [
           "Step 3 — show S(k+1) is true",
           {
@@ -268,13 +268,13 @@
             "twenty four"
           ]
         },
-        "why": "2k³ + 15k² + 37k + 24 does factorise, as (k+1)(2k² + 13k + 24), which is exactly the right-hand side — a student who spots the (k+1) finishes faster and is fully correct. Spotting it under exam pressure is the hard part, so expanding both sides to the same cubic is the safer route and is the one shown.",
+        "why": "2k³ + 15k² + 37k + 24 = (k+1)(2k² + 13k + 24), so the left side is ((k+1)/24)(2k² + 13k + 24), which is exactly the right-hand side — a student who spots the (k+1) finishes faster and is fully correct. Spotting it under exam pressure is the hard part, so expanding both sides to the same cubic is the safer route and is the one shown.",
         "common_mistakes": [
           "Adding the next term as (k+1)²/4 instead of (k+2)²/4.",
           "Expanding only the left side and asserting it matches.",
           "Arithmetic slips in 6(k+2)² = 6k² + 24k + 24."
         ],
-        "memory_tip": "The left side factors as (k+1)(2k² + 13k + 24), which is the right side itself — but that is hard to spot, so EXPAND both sides to the same cubic.",
+        "memory_tip": "The left side is ((k+1)/24)(2k² + 13k + 24), which is the right side itself — but that is hard to spot, so EXPAND both sides to the same cubic.",
         "lines_compact": [
           "Step 3 — show S(k+1) is true",
           "(k+1)th term = (k+2)²/4",

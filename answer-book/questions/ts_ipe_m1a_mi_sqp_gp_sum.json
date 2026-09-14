@@ -156,7 +156,7 @@
         "label": "Assume S(k)",
         "marks": 1,
         "mark_note": "Hypothesis",
-        "margin_note": "Second mark. Assume the statement holds for some k and write it down — this is the induction hypothesis, and the next step leans on it entirely.",
+        "margin_note": "Second mark. Assume the statement holds for some k and write it down — this is the induction hypothesis, and the next step uses this equation.",
         "lines": [
           "Assume S(k) is true for some k ∈ N:",
           "a + ar + … + arᵏ⁻¹ = a(rᵏ − 1)/(r − 1)   …(1)"
@@ -188,7 +188,7 @@
           "Assuming S(n) rather than S(k).",
           "Assuming what has to be proved."
         ],
-        "memory_tip": "Write the hypothesis as a numbered equation; the next step leans on it entirely."
+        "memory_tip": "Write the hypothesis as a numbered equation; the next step uses this equation."
       },
       {
         "id": "s4_prove_s_k_1",

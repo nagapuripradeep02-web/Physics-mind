@@ -90,7 +90,7 @@
         "common_mistakes": [
           "Leaving the statement in words, so Step 3 has nothing to use.",
           "Forgetting to say q is an integer, which is what divisibility means.",
-          "Not saying why x ≠ y matters, so x − y could be zero."
+          "Not saying that x ≠ y makes x − y non-zero, so that (x − y)q is a real statement about divisibility."
         ],
         "memory_tip": "Two lines before any proof: x ≠ y makes x − y non-zero, and divisibility becomes = (x − y)q."
       },
@@ -104,7 +104,7 @@
         "lines": [
           "Step 1 — check S(1)",
           {
-            "text": "(put n = 1 on both sides)",
+            "text": "(put n = 1 in xⁿ − yⁿ)",
             "added": true
           },
           "x¹ − y¹ = x − y = (x − y)(1),",

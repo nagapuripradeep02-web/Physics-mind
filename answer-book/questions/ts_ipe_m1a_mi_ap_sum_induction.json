@@ -52,7 +52,7 @@
         "kind": "equation",
         "label": "Write the statement",
         "marks": 0,
-        "margin_note": "Unmarked setup at 4 marks. Say clearly that a and d are fixed and the induction runs on n alone — that sentence is what makes the proof valid.",
+        "margin_note": "Unmarked setup at 4 marks. Say clearly that a and d are fixed and the induction runs on n alone — it makes clear which letter changes.",
         "lines": [
           {
             "text": "Sol:",
@@ -88,12 +88,12 @@
             "nth term"
           ]
         },
-        "why": "This question carries two extra letters, a and d. Saying that a and d are fixed and that only n changes is what makes S(n) a statement about one variable, which is the kind of statement induction proves.",
+        "why": "This question carries two extra letters, a and d. Saying that a and d are fixed and that only n changes makes clear that S(n) is a statement about n, which is what induction proves.",
         "common_mistakes": [
           "Writing the nth term as a + nd instead of a + (n−1)d.",
           "Trying to induct on d or on a as well as on n."
         ],
-        "memory_tip": "The nth term is a + (n−1)d: the first term has taken no steps yet, so n = 1 gives a."
+        "memory_tip": "The nth term is a + (n−1)d: at n = 1, (n − 1)d = 0, so the first term is a."
       },
       {
         "id": "s2_base",

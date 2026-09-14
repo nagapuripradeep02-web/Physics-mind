@@ -109,7 +109,7 @@
         "lines": [
           "Step 1 — check S(1)",
           {
-            "text": "(put n = 1 on both sides)",
+            "text": "(put n = 1 in 49ⁿ + 16n − 1)",
             "added": true
           },
           "49¹ + 16(1) − 1 = 49 + 16 − 1 = 64",
@@ -137,7 +137,7 @@
             "s of one"
           ]
         },
-        "why": "Landing on exactly 64 is a good sign the expression was copied right — the base case doubles as a check.",
+        "why": "Getting exactly 64 is a good sign the expression was copied correctly, so the base case is also a check.",
         "common_mistakes": [
           "Getting 66 by mishandling the −1.",
           "Asserting S(1) without the arithmetic."
@@ -195,7 +195,7 @@
         "why": "Step 3 will meet 49ᵏ⁺¹, which is 49 × 49ᵏ. Having 49ᵏ already written in terms of q is what makes that substitution possible.",
         "common_mistakes": [
           "Assuming the statement for all k rather than one k.",
-          "Not rearranging, which leaves Step 3 with nothing to put in."
+          "Rearranging with a sign slip, giving 49ᵏ = 64q + 16k − 1."
         ],
         "memory_tip": "Rearrange to make 49ᵏ the SUBJECT — the rearranged line is what Step 3 uses.",
         "lines_compact": [

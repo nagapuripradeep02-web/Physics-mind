@@ -253,7 +253,7 @@
         "why": "The key step is that the added term shares the factor (k+1)(k+2)(k+3) with the assumed sum. Taking that common factor out is what makes the fourth bracket appear.",
         "common_mistakes": [
           "Adding the wrong next term — it is (k+1)(k+2)(k+3), not (k+1)(k+2).",
-          "Expanding everything instead of factorising, which leaves a cubic that will not simplify.",
+          "Expanding everything into a quartic instead of factorising, which takes longer and is easy to get wrong.",
           "Never writing = R.H.S, so the step does not reach what was to be shown."
         ],
         "memory_tip": "Add (k+1)(k+2)(k+3) to both sides, then take it out as a common factor: k + 4 is what is left.",
@@ -323,5 +323,5 @@
       }
     ]
   },
-  "insider_note": "Do not expand anything — take (k+1)(k+2)(k+3) out as a common factor and the bracket becomes k + 4 in one line. Expanding the quartic instead is where the time and the marks go."
+  "insider_note": "Do not expand anything — take (k+1)(k+2)(k+3) out as a common factor and the bracket becomes k + 4 in one line. Expanding the quartic instead takes much longer and gives more chances for a slip."
 }

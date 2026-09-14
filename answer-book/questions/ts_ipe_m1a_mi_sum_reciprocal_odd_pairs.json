@@ -92,7 +92,7 @@
             "odd"
           ]
         },
-        "why": "Both factors move in step, two apart. Naming them with the A.P. formula is what turns a visual pattern into an expression you can add.",
+        "why": "Both factors increase by 2 from term to term, and they always differ by 2. Naming them with the A.P. formula is what turns a visual pattern into an expression you can add.",
         "common_mistakes": [
           "Writing the nth term as 1/(n(n+2)), which fits the first term by accident and fails at the second.",
           "Taking d = 1 instead of 2 for a sequence of odd numbers."
@@ -263,7 +263,7 @@
         "common_mistakes": [
           "Not factorising 2k² + 3k + 1, so nothing cancels.",
           "Stopping at (k+1)/(2k+3) without showing it equals the formula at k+1.",
-          "Using (2k+1)(2k+3) wrongly as the (k+1)th denominator — check by replacing n with k+1."
+          "Using (2k−1)(2k+1) again as the (k+1)th denominator — replacing n with k+1 gives (2k+1)(2k+3)."
         ],
         "memory_tip": "Add the (k+1)th term over the common denominator; 2k² + 3k + 1 = (2k+1)(k+1) is what cancels.",
         "lines_compact": [

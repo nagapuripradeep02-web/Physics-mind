@@ -88,7 +88,7 @@
           "Leaving the statement in words, so Step 3 has nothing to use.",
           "Forgetting to say q is an integer, which is what divisibility means."
         ],
-        "memory_tip": "Divisibility becomes = 9q with q an integer. That one line is what Step 3 substitutes."
+        "memory_tip": "Divisibility becomes = 9q with q an integer. Step 3 later uses this line, written for k."
       },
       {
         "id": "s2_base",
@@ -100,7 +100,7 @@
         "lines": [
           "Step 1 — check S(1)",
           {
-            "text": "(put n = 1 on both sides)",
+            "text": "(put n = 1 in 4ⁿ − 3n − 1)",
             "added": true
           },
           "4¹ − 3(1) − 1 = 4 − 3 − 1 = 0",
@@ -156,7 +156,7 @@
           },
           "S(k): 4ᵏ − 3k − 1 = 9q   …(1)",
           {
-            "text": "(move 3k + 1 to the other side)",
+            "text": "(add 3k + 1 to both sides)",
             "added": true
           },
           "⇒ 4ᵏ = 9q + 3k + 1"

@@ -52,7 +52,7 @@
         "kind": "equation",
         "label": "Find the nth term",
         "marks": 0,
-        "margin_note": "Unmarked setup at 4 marks, and the step most students get wrong. Two things change from term to term: the number in front goes 2, 3, 4 and the power of 2 goes 0, 1, 2.",
+        "margin_note": "Unmarked setup at 4 marks, and a step that needs care. Two things change from term to term: the number in front goes 2, 3, 4 and the power of 2 goes 0, 1, 2.",
         "lines": [
           {
             "text": "Sol:",
@@ -256,7 +256,7 @@
           "Leaving the answer as 2ᵏ(2k+2) and not turning the spare 2 into the higher power.",
           "Stopping before writing = R.H.S, so the step does not show what was asked."
         ],
-        "memory_tip": "Take 2ᵏ out: k + (k+2) = 2k + 2 = 2(k+1), and that spare 2 lifts 2ᵏ to 2ᵏ⁺¹.",
+        "memory_tip": "Take 2ᵏ out: k + (k+2) = 2k + 2 = 2(k+1), and 2ᵏ × 2 = 2ᵏ⁺¹.",
         "lines_compact": [
           "Step 3 — show S(k+1) is true",
           "(k+1)th term = (k+2)·2ᵏ.",

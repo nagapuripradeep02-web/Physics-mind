@@ -186,7 +186,7 @@
         "why": "Isolating one power means Step 3 substitutes once and leaves a single leftover term to collect.",
         "common_mistakes": [
           "Assuming it for all k.",
-          "Rearranging for the wrong power, which makes the last step messier."
+          "Substituting without first rearranging (1) to make one power the subject."
         ],
         "memory_tip": "Assume for k, number the line, and rearrange to isolate the FIRST power — that is what Step 3 substitutes.",
         "lines_compact": [
@@ -201,7 +201,7 @@
         "label": "Show S(k+1) follows",
         "marks": 1,
         "mark_note": "Step 3",
-        "margin_note": "One mark, and the longest step on the page. The powers grow by 4² = 16 and 3³ = 27. Substitute the rearranged line and collect — 27 − 16 = 11 is what finishes it.",
+        "margin_note": "One mark, and the longest step on the page. The powers are multiplied by 4² = 16 and 3³ = 27. Substitute the rearranged line and collect — 27 − 16 = 11 gives the factor 11.",
         "lines": [
           "Step 3 — show S(k+1) is true",
           {
@@ -263,13 +263,13 @@
             "three to the three k plus one"
           ]
         },
-        "why": "27 − 16 = 11 is the hidden reason the question was chosen. Every divisibility proof of this shape is built around one such difference.",
+        "why": "27 − 16 = 11 is the reason 11 comes out as a factor. Divisibility proofs of this shape use one such difference.",
         "common_mistakes": [
           "Growth factors wrong: 4⁽²ᵏ⁺³⁾ is 16 × 4⁽²ᵏ⁺¹⁾ and 3⁽³ᵏ⁺⁴⁾ is 27 × 3⁽³ᵏ⁺¹⁾.",
-          "Substituting for both powers, leaving nothing to collect.",
+          "Substituting for both powers, which puts both powers back into the expression and gets nowhere.",
           "Not saying the final bracket is an integer."
         ],
-        "memory_tip": "The powers grow by 4² = 16 and 3³ = 27, and 27 − 16 = 11 is exactly what finishes it.",
+        "memory_tip": "The powers are multiplied by 4² = 16 and 3³ = 27, and 27 − 16 = 11 gives the factor 11.",
         "lines_compact": [
           "Step 3 — show S(k+1) is true",
           "2·4⁽²ᵏ⁺³⁾ + 3⁽³ᵏ⁺⁴⁾",
@@ -336,5 +336,5 @@
       }
     ]
   },
-  "insider_note": "Rearrange the assumption to isolate the first term, 2·4²ᵏ⁺¹ = 11q − 3³ᵏ⁺¹, before substituting. The powers step up by 16 and 27, and 27 − 16 = 11 is precisely what makes the remainder vanish."
+  "insider_note": "Rearrange the assumption to isolate the first term, 2·4²ᵏ⁺¹ = 11q − 3³ᵏ⁺¹, before substituting. The powers are multiplied by 16 and 27, and 27 − 16 = 11 is what makes 11 a factor."
 }

@@ -133,7 +133,7 @@
             "s of one"
           ]
         },
-        "why": "Landing on 64 from both sides is a good sign the nth term was read as (4n)³ and not 4n³. At n = 2 both sides give 576, which is a second check worth doing in rough work.",
+        "why": "Both sides give 64. At n = 2 both sides give 576, and that check confirms the nth term was read as (4n)³ and not 4n³.",
         "common_mistakes": [
           "Asserting S(1) is true without working out both sides.",
           "Reading 16(1)²(2)² as 16 × 1 × 2 and getting 32."
@@ -250,10 +250,10 @@
         "why": "The added term 64(k+1)³ shares 16(k+1)² with the assumed sum, because 64 = 16 × 4. What is left inside is k² + 4k + 4, which is (k+2)² — exactly the bracket the formula needs at k+1.",
         "common_mistakes": [
           "Writing the next term as 4(k+1)³ instead of [4(k+1)]³ = 64(k+1)³.",
-          "Expanding everything instead of factorising, which leaves a quartic that will not simplify.",
+          "Expanding everything instead of factorising, which gives a long quartic that is easy to get wrong.",
           "Stopping before writing = R.H.S, so the step does not show what was asked."
         ],
-        "memory_tip": "64 = 16 × 4, so 16(k+1)² comes out and leaves k² + 4k + 4, which folds into (k+2)².",
+        "memory_tip": "64 = 16 × 4, so 16(k+1)² comes out and leaves k² + 4k + 4, which is (k+2)².",
         "lines_compact": [
           "Step 3 — show S(k+1) is true",
           "(k+1)th term = [4(k+1)]³ = 64(k+1)³",

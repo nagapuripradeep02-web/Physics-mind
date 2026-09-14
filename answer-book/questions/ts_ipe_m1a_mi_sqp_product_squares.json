@@ -92,7 +92,7 @@
         },
         "why": "n² + 2n + 1 is (n+1)², so every factor is a ratio of consecutive squares. Seeing that lets the factors cancel one after another.",
         "common_mistakes": [
-          "Not simplifying the factor and working with the fraction as given.",
+          "Simplifying n² + 2n + 1 wrongly, for example as (n + 2)².",
           "Writing the denominators as n rather than n²."
         ],
         "memory_tip": "The denominators 1, 4, 9 are the squares, so the nth factor is 1 + (2n+1)/n² = (n+1)²/n²."
@@ -298,5 +298,5 @@
       }
     ]
   },
-  "insider_note": "Simplify the general factor to (n+1)²/n² BEFORE the induction starts; left as 1 + (2n+1)/n² it will not multiply cleanly. The (k+1)² then cancels, and that cancellation is the main step."
+  "insider_note": "Simplify the general factor to (n+1)²/n² BEFORE the induction starts; written as (n+1)²/n² it shows at once that the (k+1)² cancels. The (k+1)² then cancels, and that cancellation is the main step."
 }

@@ -89,7 +89,7 @@
           "Writing the nth term as 2n instead of n², which is the wrong series.",
           "Leaving S(n) unwritten, so Step 3 has no line to work from."
         ],
-        "memory_tip": "Three factors on the right: n, then n + 1, then 2n + 1, all over 6. The 2n + 1 is the odd one to remember."
+        "memory_tip": "Three factors on the right: n, then n + 1, then 2n + 1, all over 6. Remember the third factor, 2n + 1."
       },
       {
         "id": "s2_base",
@@ -255,7 +255,7 @@
         "why": "The added term (k+1)² shares the factor (k+1) with the assumed sum. Once that comes out, the quadratic left inside is 2k² + 7k + 6, which splits as (k+2)(2k+3) — exactly the two brackets the formula needs at k+1.",
         "common_mistakes": [
           "Adding (k+1) instead of (k+1)² as the next term.",
-          "Expanding everything into a cubic instead of factorising, which will not simplify.",
+          "Expanding everything into a cubic instead of factorising, which takes longer and is easy to get wrong.",
           "Writing the target as (k+1)(k+2)(2k+1) and forgetting that 2n + 1 becomes 2k + 3."
         ],
         "memory_tip": "Take (k+1) out first. What is left is 2k² + 7k + 6 = (k+2)(2k+3), and 2k + 3 is 2(k+1) + 1.",

@@ -64,7 +64,7 @@
         "margin_note": "Unmarked setup at 4 marks, but never skip it — each term is itself a sum of squares, so the nth term needs the standard sum-of-squares formula before S(n) can be written.",
         "lines": [
           "nth term = 1² + 2² + … + n²",
-          "(each term is the sum of the first n squares)",
+          "(the nth term is the sum of the first n squares)",
           "        = n(n+1)(2n+1)/6",
           "Let S(n): 1² + (1² + 2²) + …",
           "        + n(n+1)(2n+1)/6 = n(n+1)²(n+2)/12"
@@ -90,7 +90,7 @@
             "nth term"
           ]
         },
-        "why": "The terms are nested sums, so the nth term is a formula rather than a product. Getting it wrong makes every later line wrong.",
+        "why": "Each term is itself a sum of squares, so the nth term is given by the sum-of-squares formula n(n+1)(2n+1)/6. Getting it wrong makes every later line wrong.",
         "common_mistakes": [
           "Using n² as the nth term instead of the SUM of squares up to n.",
           "Misremembering the sum of squares as n(n+1)/2, which is the sum of the first n numbers."
@@ -334,5 +334,5 @@
       }
     ]
   },
-  "insider_note": "The nth term is itself a sum, k(k+1)(2k+1)/6, so write that down before starting. In the step, factor out (k+1)(k+2) and the bracket becomes k² + 5k + 6 = (k+2)(k+3)."
+  "insider_note": "The nth term is itself a sum, n(n+1)(2n+1)/6, so write that down before starting. In the step, factor out (k+1)(k+2) and the bracket becomes k² + 5k + 6 = (k+2)(k+3)."
 }
