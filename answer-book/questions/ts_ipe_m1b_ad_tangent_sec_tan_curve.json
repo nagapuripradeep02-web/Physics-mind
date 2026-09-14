@@ -195,11 +195,8 @@
         "lines": [
           "y sin θ = x − c sec θ + c tan θ sin θ",
           "= x − (c sec θ − c tan θ sin θ)",
-          "Now  sec θ = sec²θ · cos θ  and  tan θ sin θ",
-          {
-            "text": "  = tan²θ · cos θ,  so",
-            "style": "indent"
-          },
+          "Now  sec θ = sec²θ · cos θ",
+          "and  tan θ sin θ = tan²θ · cos θ,  so",
           "c sec θ − c tan θ sin θ = c cos θ (sec²θ − tan²θ)",
           "Since sec²θ − tan²θ = 1, this equals c cos θ.",
           {

@@ -204,11 +204,11 @@
           "= (a/4)(eˣ⁄ᵃ + e⁻ˣ⁄ᵃ)(eˣ⁄ᵃ − e⁻ˣ⁄ᵃ)",
           "= (a/4)(e²ˣ⁄ᵃ − e⁻²ˣ⁄ᵃ)",
           {
-            "text": "∴ Length of the normal = y²/a     Length",
+            "text": "∴ Length of the normal = y²/a",
             "style": "boxed"
           },
           {
-            "text": "of the subnormal = (a/4)(e²ˣ⁄ᵃ − e⁻²ˣ⁄ᵃ)",
+            "text": "Length of the subnormal = (a/4)(e²ˣ⁄ᵃ − e⁻²ˣ⁄ᵃ)",
             "style": "boxed"
           }
         ],
