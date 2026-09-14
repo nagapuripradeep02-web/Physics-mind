@@ -52,7 +52,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.58 — SAQ chapter 8 Transformation of Axes, answer 51.2. Printed appearances: TS 19 · AP,TS M-17 (March 2017) · TS J-16 (June 2016). ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter. But the four STEPS are the book's own: p.59 prints a boxed 'SOLUTION STEPS' panel beside answers 52 and 53 giving the method in exactly four moves — (1) take the given equation as the original (or as the new one), (2) write the change-of-axes formulas, (3) put them into the given equation, (4) simplify to get the answer. This answer is cut on those four printed moves at one mark each, so the DECOMPOSITION is sourced even though the per-step marks are not. Four equal marks also matches the only 4-mark shape the sister chapter prints (Locus answers 44 and 46 carry printed tags, and this chapter's answers are the same length). The chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7. NOTE: Transformation of Axes is an SAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 4 marks in Section B and nothing in Section A or Section C, and the book has no Transformation of Axes LAQ chapter (its LAQ chapters are 1-6) and no VSAQ chapter (its VSAQ chapters are 14-20). Chapter scoped by BOUNDARY WALK: book p.61 is SAQ chapter 9, The Straight Line. The book's separate STAR QUESTIONS PLUS bank (pp.104-108, answers 181-196) was also surveyed, and its ONLY Transformation of Axes question is answer 181, authored here as sqp1."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.58 — SAQ chapter 8 Transformation of Axes, answer 51.2. Printed appearances: TS 19 · AP,TS M-17 (March 2017) · TS J-16 (June 2016). ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter. But the four STEPS are the book's own: p.59 prints a boxed 'SOLUTION STEPS' panel beside answers 52 and 53 giving the method in exactly four moves — (1) take the given equation as the original (or as the new one), (2) write the change-of-axes formulas, (3) put them into the given equation, (4) simplify to get the answer. This answer is cut on those four printed moves at one mark each, so the DECOMPOSITION is sourced even though the per-step marks are not. Four equal marks also matches the only 4-mark shape the sister chapter prints (Locus answers 44 and 46 carry printed tags, and this chapter's answers are the same length). The chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7. NOTE: Transformation of Axes is an SAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 4 marks in Section B and nothing in Section A or Section C, and the book has no Transformation of Axes LAQ chapter (its LAQ chapters are 1-6) and no VSAQ chapter (its VSAQ chapters are 14-20). Chapter scoped by BOUNDARY WALK: book p.61 is SAQ chapter 9, The Straight Line. The book's separate STAR QUESTIONS PLUS bank (pp.104-108, answers 181-196) was also surveyed, and its ONLY Transformation of Axes question is answer 181, authored here as sqp1. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — name the two rotation formulas, and say what should happen to the XY term.",
   "answer": {
@@ -113,6 +113,19 @@
         "margin_note": "Second mark. Under a rotation the old coordinates mix BOTH new ones: x = Xcosθ − Ysinθ and y = Ycosθ + Xsinθ. Put θ = π/4 = 45° and read off the values.",
         "memory_tip": "Under a rotation each old coordinate mixes BOTH new ones: x = Xcosθ − Ysinθ, y = Ycosθ + Xsinθ.",
         "lines": [
+          {
+            "text": "(rotating the axes through θ: x = X cos θ − Y sin θ,",
+            "added": true
+          },
+          {
+            "text": "  y = X sin θ + Y cos θ)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "(cos 45° = sin 45° = 1/√2)",
+            "added": true
+          },
           "Angle of rotation θ = π/4 = 45°, then",
           "x = Xcos45° − Ysin45° = X(1/√2) − Y(1/√2)",
           {
@@ -151,6 +164,19 @@
         "common_mistakes": [
           "Writing x = Xcosθ + Ysinθ — the sign on the sine term is negative for x.",
           "Swapping the two formulas so that y gets the minus sign."
+        ],
+        "lines_compact": [
+          "Angle of rotation θ = π/4 = 45°, then",
+          "x = Xcos45° − Ysin45° = X(1/√2) − Y(1/√2)",
+          {
+            "text": "  ⇒  x = (X − Y)/√2",
+            "style": "indent"
+          },
+          "y = Ycos45° + Xsin45° = Y(1/√2) + X(1/√2)",
+          {
+            "text": "  ⇒  y = (X + Y)/√2",
+            "style": "indent"
+          }
         ]
       },
       {
@@ -162,11 +188,19 @@
         "margin_note": "Third mark. Put both lines into equation (1). Everything sits over a common denominator, so clearing it once at the end keeps the working short.",
         "memory_tip": "Everything sits over the same denominator 2 — clear it once at the end.",
         "lines": [
+          {
+            "text": "(put x = (X − Y)/√2 and y = (X + Y)/√2 into (1))",
+            "added": true
+          },
           "From (1), transformed equation is",
           "3((X − Y)/√2)² + 10((X − Y)/√2)((X + Y)/√2)",
           {
             "text": "  + 3((X + Y)/√2)² = 9",
             "style": "indent"
+          },
+          {
+            "text": "((1/√2)² = 1/2; (X − Y)(X + Y) = X² − Y²)",
+            "added": true
           },
           "⇒ 3(X² + Y² − 2XY)/2 + 10(X² − Y²)/2",
           {
@@ -199,6 +233,19 @@
         "common_mistakes": [
           "Substituting into the squared terms but not the xy term.",
           "Losing the denominator on one term only."
+        ],
+        "lines_compact": [
+          "From (1), transformed equation is",
+          "3((X − Y)/√2)² + 10((X − Y)/√2)((X + Y)/√2)",
+          {
+            "text": "  + 3((X + Y)/√2)² = 9",
+            "style": "indent"
+          },
+          "⇒ 3(X² + Y² − 2XY)/2 + 10(X² − Y²)/2",
+          {
+            "text": "  + 3(X² + Y² + 2XY)/2 = 9",
+            "style": "indent"
+          }
         ]
       },
       {
@@ -210,12 +257,29 @@
         "margin_note": "Last mark. Expand and collect. The XY terms cancel here — if an XY term is left, an expansion went wrong.",
         "memory_tip": "The XY terms CANCEL here. An XY term that is left means an expansion went wrong.",
         "lines": [
+          {
+            "text": "(write over the common denominator 2)",
+            "added": true
+          },
           "⇒ [3X² + 3Y² − 6XY + 10X² − 10Y²",
           {
             "text": "  + 3X² + 3Y² + 6XY] / 2 = 9",
             "style": "indent"
           },
+          {
+            "text": "(X²: 3 + 10 + 3 = 16; Y²: 3 − 10 + 3 = −4; XY: −6 + 6 = 0;",
+            "added": true
+          },
+          {
+            "text": "  multiply both sides by 2)",
+            "style": "indent",
+            "added": true
+          },
           "⇒ (16X² − 4Y²)/2 = 9   ⇒   16X² − 4Y² = 18",
+          {
+            "text": "(divide both sides by 2)",
+            "added": true
+          },
           {
             "text": "∴ Transformed equation is 8X² − 2Y² = 9",
             "style": "boxed"
@@ -247,6 +311,18 @@
         "common_mistakes": [
           "Leaving an XY term in the answer.",
           "Forgetting to clear the common denominator at the end."
+        ],
+        "lines_compact": [
+          "⇒ [3X² + 3Y² − 6XY + 10X² − 10Y²",
+          {
+            "text": "  + 3X² + 3Y² + 6XY] / 2 = 9",
+            "style": "indent"
+          },
+          "⇒ (16X² − 4Y²)/2 = 9   ⇒   16X² − 4Y² = 18",
+          {
+            "text": "∴ Transformed equation is 8X² − 2Y² = 9",
+            "style": "boxed"
+          }
         ]
       }
     ]

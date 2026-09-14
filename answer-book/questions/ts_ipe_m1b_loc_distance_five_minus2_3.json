@@ -34,7 +34,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 1 LOCUS, Short Answer question 10(i), book p.136. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split 1+1+2 rewards squaring the fixed distance, then putting the distance formula in, and gives the remaining two marks to the expansion and the collection of the constant, which is the only place this short question can go wrong. The unmarked opening step names the moving point and carries no mark of its own. Answer cross-checked by substituting the point (3, 3), which is exactly 5 units to the right of (−2, 3) and satisfies the final equation. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 1 LOCUS, Short Answer question 10(i), book p.136. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split 1+1+2 rewards squaring the fixed distance, then putting the distance formula in, and gives the remaining two marks to the expansion and the collection of the constant, which is the only place this short question can go wrong. The unmarked opening step names the moving point and carries no mark of its own. Answer cross-checked by substituting the point (3, 3), which is exactly 5 units to the right of (−2, 3) and satisfies the final equation. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — name the shape before you start, and say what you do to the 5.",
   "answer": {
@@ -55,6 +55,7 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "(a locus is the set of all points P that satisfy the condition)",
           "Let P = (x, y) be a point on the locus.",
           "Given point A = (−2, 3) and PA = 5"
         ],
@@ -96,6 +97,10 @@
         "memory_tip": "Square the 5 to 25, not double it to 10.",
         "lines": [
           "Given condition: PA = 5",
+          {
+            "text": "(square both sides so that no square root is needed)",
+            "added": true
+          },
           "⇒ PA² = 25"
         ],
         "recall": {
@@ -124,6 +129,10 @@
         "common_mistakes": [
           "Writing PA² = 5 and never squaring the right side.",
           "Writing PA² = 10 instead of 25."
+        ],
+        "lines_compact": [
+          "Given condition: PA = 5",
+          "⇒ PA² = 25"
         ]
       },
       {
@@ -135,7 +144,25 @@
         "margin_note": "Second mark. The fixed point is (−2, 3), so x − (−2) becomes x + 2. The sign inside the bracket is the opposite of the sign of the coordinate.",
         "memory_tip": "x − (−2) is x + 2 — the bracket carries the opposite sign to the coordinate.",
         "lines": [
+          {
+            "text": "(the distance formula, squared:",
+            "added": true
+          },
+          {
+            "text": "  PA² = (x − x₁)² + (y − y₁)²,",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  so no square root is left)",
+            "style": "indent",
+            "added": true
+          },
           "⇒ (x + 2)² + (y − 3)² = 25",
+          {
+            "text": "((x + 2)² = x² + 4x + 4 and (y − 3)² = y² − 6y + 9)",
+            "added": true
+          },
           "⇒ x² + 4x + 4 + y² − 6y + 9 = 25"
         ],
         "recall": {
@@ -164,6 +191,10 @@
         "common_mistakes": [
           "Writing (x − 2)² for a fixed x-coordinate of −2.",
           "Expanding (y − 3)² as y² − 6y + 3."
+        ],
+        "lines_compact": [
+          "⇒ (x + 2)² + (y − 3)² = 25",
+          "⇒ x² + 4x + 4 + y² − 6y + 9 = 25"
         ]
       },
       {
@@ -175,7 +206,15 @@
         "margin_note": "The last two marks. Collect 4 + 9 = 13 first, then take the 25 across to get −12. Check: (3, 3) is 5 units from (−2, 3) and satisfies this equation.",
         "memory_tip": "Add the two bracket constants first (4 + 9 = 13), then take the 25 across.",
         "lines": [
+          {
+            "text": "(move 25 to the left side and put the terms in order)",
+            "added": true
+          },
           "⇒ x² + y² + 4x − 6y + 13 − 25 = 0",
+          {
+            "text": "(4 + 9 − 25 = −12)",
+            "added": true
+          },
           "⇒ x² + y² + 4x − 6y − 12 = 0",
           {
             "text": "∴ Locus: x² + y² + 4x − 6y − 12 = 0",
@@ -208,6 +247,14 @@
         "common_mistakes": [
           "Leaving 13 − 25 as +12 instead of −12.",
           "Stopping at 13 − 25 without combining it."
+        ],
+        "lines_compact": [
+          "⇒ x² + y² + 4x − 6y + 13 − 25 = 0",
+          "⇒ x² + y² + 4x − 6y − 12 = 0",
+          {
+            "text": "∴ Locus: x² + y² + 4x − 6y − 12 = 0",
+            "style": "boxed"
+          }
         ]
       }
     ]

@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.85 — VSAQ chapter 16 The Plane, answer 103 PQ, on a ★★★ SSP (Super Scoring Page). No appearance years are printed against this practice question. ⚠ THE MARK SPLIT 1+1 IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter, whose pages are set two and three answers to a page in columns. It is not a bare guess: VSAQ answer 98 (book p.83, 3-D Coordinates) carries a printed 1+1 against exactly this shape — one mark for the setting-up move and one for the answer read off it — and the chapter header here reads '2 Marks' like that one. ⚠ THIS IS THE BOOK'S PRACTICE QUESTION ('PQ'), posed with ONLY ITS FINAL ANSWER PRINTED and no worked solution. THE WORKING BELOW IS OURS, checked against the book's own printed answer. Precedent: Maths-1A Unit 2 laq8. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Plane is a VSAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 2 marks in Section A and nothing in Section B or Section C, and the book has no Plane LAQ chapter (its LAQ chapters are 1-6) and no Plane SAQ chapter (its SAQ chapters are 7-13). Chapter scoped by BOUNDARY WALK: book p.87 opens VSAQ chapter 17, Limits. The STAR QUESTIONS PLUS bank (pp.104-108) contributes NOTHING to this unit — it holds no Plane question, so this is one of the three units (with 1 and 6) that receive none. Paper position: Maths-1B Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.85 — VSAQ chapter 16 The Plane, answer 103 PQ, on a ★★★ SSP (Super Scoring Page). No appearance years are printed against this practice question. ⚠ THE MARK SPLIT 1+1 IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter, whose pages are set two and three answers to a page in columns. It is not a bare guess: VSAQ answer 98 (book p.83, 3-D Coordinates) carries a printed 1+1 against exactly this shape — one mark for the setting-up move and one for the answer read off it — and the chapter header here reads '2 Marks' like that one. ⚠ THIS IS THE BOOK'S PRACTICE QUESTION ('PQ'), posed with ONLY ITS FINAL ANSWER PRINTED and no worked solution. THE WORKING BELOW IS OURS, checked against the book's own printed answer. Precedent: Maths-1A Unit 2 laq8. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Plane is a VSAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 2 marks in Section A and nothing in Section B or Section C, and the book has no Plane LAQ chapter (its LAQ chapters are 1-6) and no Plane SAQ chapter (its SAQ chapters are 7-13). Chapter scoped by BOUNDARY WALK: book p.87 opens VSAQ chapter 17, Limits. The STAR QUESTIONS PLUS bank (pp.104-108) contributes NOTHING to this unit — it holds no Plane question, so this is one of the three units (with 1 and 6) that receive none. Paper position: Maths-1B Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say where the given intercepts go, and what you do at the end.",
   "answer": {
@@ -52,8 +52,10 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "(a plane cutting the axes at (a, 0, 0), (0, b, 0) and (0, 0, c))",
           "The equation of the plane with intercepts a, b, c",
           "is  x/a + y/b + z/c = 1",
+          "(put a = 2, b = 3, c = 4)",
           "∴ the required equation of the plane",
           "is  x/2 + y/3 + z/4 = 1"
         ],
@@ -94,7 +96,25 @@
         "margin_note": "Second mark. Put everything over a common denominator and multiply through, so the answer is in the plain ax + by + cz = d form the board expects.",
         "memory_tip": "Common denominator 12, then multiply through for the plain form the board expects.",
         "lines": [
+          {
+            "text": "(the common denominator of 2,",
+            "added": true
+          },
+          {
+            "text": "  3 and 4 is 12: x/2 = 6x/12,",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  y/3 = 4y/12, z/4 = 3z/12)",
+            "style": "indent",
+            "added": true
+          },
           "⇒ (6x + 4y + 3z)/12 = 1",
+          {
+            "text": "(multiply both sides by 12)",
+            "added": true
+          },
           {
             "text": "⇒ 6x + 4y + 3z = 12",
             "style": "boxed"
@@ -126,6 +146,13 @@
         "common_mistakes": [
           "Multiplying only some terms by the common denominator.",
           "Leaving the answer as a sum of fractions."
+        ],
+        "lines_compact": [
+          "⇒ (6x + 4y + 3z)/12 = 1",
+          {
+            "text": "⇒ 6x + 4y + 3z = 12",
+            "style": "boxed"
+          }
         ]
       }
     ]

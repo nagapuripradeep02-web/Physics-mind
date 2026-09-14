@@ -34,7 +34,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 1 LOCUS, Short Answer question 11, book p.137. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split 1+1+2 rewards writing the condition already in squares, then the substitution in letters, and gives the remaining two marks to the cancellation of the ±2ax terms and the division by 2 — this question is answered entirely in letters, so the marks sit on the algebra, not on arithmetic. The unmarked opening step names the moving point and records the given range of a and c. Answer cross-checked at the point (√(c² − a²), 0): there PA² + PB² = (c² − 2a√(c² − a²)) + (c² + 2a√(c² − a²)) = 2c², as required. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 1 LOCUS, Short Answer question 11, book p.137. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split 1+1+2 rewards writing the condition already in squares, then the substitution in letters, and gives the remaining two marks to the cancellation of the ±2ax terms and the division by 2 — this question is answered entirely in letters, so the marks sit on the algebra, not on arithmetic. The unmarked opening step names the moving point and records the given range of a and c. Answer cross-checked at the point (√(c² − a²), 0): there PA² + PB² = (c² − 2a√(c² − a²)) + (c² + 2a√(c² − a²)) = 2c², as required. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say what happens to the terms in a, and name the shape and the radius you end with.",
   "answer": {
@@ -55,6 +55,7 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "(a locus is the set of all points P that satisfy the condition)",
           "Let P = (x, y) be a point on the locus.",
           "Given A = (a, 0), B = (−a, 0), 0 < |a| < |c|"
         ],
@@ -134,7 +135,25 @@
         "margin_note": "Second mark. The two brackets differ only in the sign of the a term, because A and B differ only in the sign of their x-coordinate.",
         "memory_tip": "The two brackets differ only in the sign of the a term, since A and B differ only in the sign of a.",
         "lines": [
+          {
+            "text": "(the distance formula, squared:",
+            "added": true
+          },
+          {
+            "text": "  PA² = (x − x₁)² + (y − y₁)²,",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  so no square root is left)",
+            "style": "indent",
+            "added": true
+          },
           "⇒ [(x−a)² + y²] + [(x+a)² + y²] = 2c²",
+          {
+            "text": "((x − a)² = x² − 2ax + a² and (x + a)² = x² + 2ax + a²)",
+            "added": true
+          },
           "⇒ (x² − 2ax + a² + y²)",
           "      + (x² + 2ax + a² + y²) = 2c²"
         ],
@@ -164,6 +183,11 @@
         "common_mistakes": [
           "Expanding (x + a)² as x² + 2ax − a².",
           "Writing only one y² when both distances contribute one."
+        ],
+        "lines_compact": [
+          "⇒ [(x−a)² + y²] + [(x+a)² + y²] = 2c²",
+          "⇒ (x² − 2ax + a² + y²)",
+          "      + (x² + 2ax + a² + y²) = 2c²"
         ]
       },
       {
@@ -175,9 +199,21 @@
         "margin_note": "The last two marks. The two 2ax terms cancel, every remaining term carries a factor 2, and dividing by 2 leaves a circle with centre at the origin and radius √(c² − a²).",
         "memory_tip": "The ±2ax terms cancel, then divide the whole line by 2 — the answer is a circle centred at the origin.",
         "lines": [
+          {
+            "text": "(x² + x² = 2x², y² + y² = 2y², a² + a² = 2a²)",
+            "added": true
+          },
           "⇒ 2x² + 2y² + 2a² = 2c²",
           "   [the −2ax and +2ax terms cancel]",
+          {
+            "text": "(divide both sides by 2 and move a² to the right side)",
+            "added": true
+          },
           "⇒ x² + y² = c² − a²",
+          {
+            "text": "(|a| < |c| gives a² < c²)",
+            "added": true
+          },
           "Here c² − a² > 0, because 0 < |a| < |c|.",
           {
             "text": "∴ Locus: x² + y² = c² − a²",
@@ -210,6 +246,16 @@
         "common_mistakes": [
           "Forgetting to divide the whole line by 2 and leaving 2a² and 2c².",
           "Writing the radius as c − a instead of √(c² − a²)."
+        ],
+        "lines_compact": [
+          "⇒ 2x² + 2y² + 2a² = 2c²",
+          "   [the −2ax and +2ax terms cancel]",
+          "⇒ x² + y² = c² − a²",
+          "Here c² − a² > 0, because 0 < |a| < |c|.",
+          {
+            "text": "∴ Locus: x² + y² = c² − a²",
+            "style": "boxed"
+          }
         ]
       }
     ]

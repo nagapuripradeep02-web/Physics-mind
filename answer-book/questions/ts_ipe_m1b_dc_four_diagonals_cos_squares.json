@@ -49,7 +49,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.31 — LAQ chapter 3 D.C's & D.R's, answer 20. Printed appearances: TS 16 · TS 18. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter. It is not a bare guess: the book prints 7-mark splits on three answers elsewhere in the book — LAQ answers 12 (p.24, 1+1+2+1+2), 15 (p.26, 1+1+1+1+1+2) and 21 (p.32, seven 1-mark tags) — so both an even 1-per-move cut and a weighted cut are the book's own shapes at this length. This answer is cut on the moves its own printed working takes, weighted so the two long eliminations carry the most. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: D.C's & D.R's is an LAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 7 marks in Section C and nothing in Section A or Section B, and the book has no D.C's SAQ chapter (its SAQ chapters are 7-13) and no VSAQ chapter (its VSAQ chapters are 14-20). The book's own LAQ chapter table calls it the EASIEST chapter of the six. Chapter scoped by BOUNDARY WALK: book p.32 opens LAQ chapter 4, Differentiation. The STAR QUESTIONS PLUS bank (pp.104-108) contributes NOTHING to this unit — it holds no D.C's or D.R's question. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Add the four squares."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.31 — LAQ chapter 3 D.C's & D.R's, answer 20. Printed appearances: TS 16 · TS 18. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter. It is not a bare guess: the book prints 7-mark splits on three answers elsewhere in the book — LAQ answers 12 (p.24, 1+1+2+1+2), 15 (p.26, 1+1+1+1+1+2) and 21 (p.32, seven 1-mark tags) — so both an even 1-per-move cut and a weighted cut are the book's own shapes at this length. This answer is cut on the moves its own printed working takes, weighted so the two long eliminations carry the most. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: D.C's & D.R's is an LAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 7 marks in Section C and nothing in Section A or Section B, and the book has no D.C's SAQ chapter (its SAQ chapters are 7-13) and no VSAQ chapter (its VSAQ chapters are 14-20). The book's own LAQ chapter table calls it the EASIEST chapter of the six. Chapter scoped by BOUNDARY WALK: book p.32 opens LAQ chapter 4, Differentiation. The STAR QUESTIONS PLUS bank (pp.104-108) contributes NOTHING to this unit — it holds no D.C's or D.R's question. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Add the four squares. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — say how many diagonals a cube has, and what identity collapses the sum.",
   "answer": {
@@ -115,10 +115,23 @@
         "lines": [
           "The vertices of the cube on xy-plane, yz-plane, zx-plane",
           "be L, M, N and P the remaining vertex in the space.",
+          {
+            "text": "(each body diagonal joins a vertex to the opposite vertex)",
+            "added": true
+          },
           "The 4 diagonals of the cube are  OP,  CL,  NB,  AM",
           "The coordinates of the vertices are",
           "A(a,0,0), B(0,a,0), C(0,0,a),",
           "L(a,a,0), M(0,a,a), N(a,0,a) and P(a,a,a)",
+          {
+            "text": "(the d.r's of a line are the differences of the coordinates",
+            "added": true
+          },
+          {
+            "text": "  of two of its points)",
+            "style": "indent",
+            "added": true
+          },
           "The d.r's of OP = (a−0, a−0, a−0) = (a, a, a)",
           "The d.r's of CL = (a−0, a−0, 0−a) = (a, a, −a)",
           "The d.r's of NB = (0−a, a−0, 0−a) = (−a, a, −a)",
@@ -152,6 +165,18 @@
         "common_mistakes": [
           "Listing only two diagonals; this question needs all four.",
           "Including face diagonals among the four."
+        ],
+        "lines_compact": [
+          "The vertices of the cube on xy-plane, yz-plane, zx-plane",
+          "be L, M, N and P the remaining vertex in the space.",
+          "The 4 diagonals of the cube are  OP,  CL,  NB,  AM",
+          "The coordinates of the vertices are",
+          "A(a,0,0), B(0,a,0), C(0,0,a),",
+          "L(a,a,0), M(0,a,a), N(a,0,a) and P(a,a,a)",
+          "The d.r's of OP = (a−0, a−0, a−0) = (a, a, a)",
+          "The d.r's of CL = (a−0, a−0, 0−a) = (a, a, −a)",
+          "The d.r's of NB = (0−a, a−0, 0−a) = (−a, a, −a)",
+          "The d.r's of AM = (0−a, a−0, a−0) = (−a, a, a)"
         ]
       },
       {
@@ -410,8 +435,30 @@
           "Let (l, m, n) be the d.c's of the given ray,",
           "then we have l² + m² + n² = 1",
           "The ray makes angles α, β, γ, δ with OP, CL, NB, AM",
+          {
+            "text": "(the angle between the ray (l, m, n) and OP (a, a, a);",
+            "added": true
+          },
+          {
+            "text": "  the modulus is left out, since cos²α is",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  all that is needed)",
+            "style": "indent",
+            "added": true
+          },
           "∴ cosα = (al + am + an) / √((a²+a²+a²)(l²+m²+n²))",
+          {
+            "text": "(a² + a² + a² = 3a² and l² + m² + n² = 1)",
+            "added": true
+          },
           "= a(l + m + n) / √(3a²(1)) = a(l + m + n) / (√3 a)",
+          {
+            "text": "(√(3a²) = √3 a, and a cancels)",
+            "added": true
+          },
           "⇒ cosα = (l + m + n)/√3"
         ],
         "recall": {
@@ -440,6 +487,14 @@
         "common_mistakes": [
           "Treating (l, m, n) as direction RATIOS, whose squares need not add to 1.",
           "Forgetting that a cancels."
+        ],
+        "lines_compact": [
+          "Let (l, m, n) be the d.c's of the given ray,",
+          "then we have l² + m² + n² = 1",
+          "The ray makes angles α, β, γ, δ with OP, CL, NB, AM",
+          "∴ cosα = (al + am + an) / √((a²+a²+a²)(l²+m²+n²))",
+          "= a(l + m + n) / √(3a²(1)) = a(l + m + n) / (√3 a)",
+          "⇒ cosα = (l + m + n)/√3"
         ]
       },
       {
@@ -451,6 +506,15 @@
         "margin_note": "One mark. The other three diagonals differ only in signs, so their cosines are the same expression with signs changed — no new working is needed.",
         "memory_tip": "The other three differ only in SIGNS, so no new working is needed.",
         "lines": [
+          {
+            "text": "(the same working with CL (a, a, −a),",
+            "added": true
+          },
+          {
+            "text": "  NB (−a, a, −a) and AM (−a, a, a))",
+            "style": "indent",
+            "added": true
+          },
           "Similarly,  cosβ = (l + m − n)/√3,",
           "cosγ = (−l + m − n)/√3,   cosδ = (−l + m + n)/√3"
         ],
@@ -480,6 +544,10 @@
         "common_mistakes": [
           "Recomputing each from scratch and slipping a sign.",
           "Giving all four the same expression."
+        ],
+        "lines_compact": [
+          "Similarly,  cosβ = (l + m − n)/√3,",
+          "cosγ = (−l + m − n)/√3,   cosδ = (−l + m + n)/√3"
         ]
       },
       {
@@ -492,14 +560,44 @@
         "memory_tip": "Pair the terms and use (a+b)² + (a−b)² = 2(a² + b²) twice — the cross terms cancel.",
         "lines": [
           "∴ cos²α + cos²β + cos²γ + cos²δ",
+          {
+            "text": "(square each cosine: (p/√3)² = p²/3)",
+            "added": true
+          },
           "= ⅓[(l+m+n)² + (l+m−n)² + (−l+m−n)² + (−l+m+n)²]",
+          {
+            "text": "((−p)² = p², so (−l + m − n)² = (l − m + n)²",
+            "added": true
+          },
+          {
+            "text": "  and (−l + m + n)² = (l − m − n)²)",
+            "style": "indent",
+            "added": true
+          },
           "= ⅓[(l+m+n)² + (l+m−n)² + (l−m+n)² + (l−m−n)²]",
+          {
+            "text": "(pair the first two and the last two)",
+            "added": true
+          },
           "= ⅓[2((l+m)² + n²) + 2((l−m)² + n²)]",
           {
             "text": "  [∵ (a+b)² + (a−b)² = 2(a² + b²)]",
             "style": "indent"
           },
+          {
+            "text": "(take out the common factor 2)",
+            "added": true
+          },
           "= ⅔[(l+m)² + (l−m)² + 2n²] = ⅔[2(l² + m²) + 2n²]",
+          {
+            "text": "((l + m)² + (l − m)² = 2l² + 2m²;",
+            "added": true
+          },
+          {
+            "text": "  ⅔ × 2 = 4/3, and l² + m² + n² = 1)",
+            "style": "indent",
+            "added": true
+          },
           "= (4/3)(l² + m² + n²) = (4/3)(1)",
           {
             "text": "∴ cos²α + cos²β + cos²γ + cos²δ = 4/3",
@@ -532,6 +630,22 @@
         "common_mistakes": [
           "Applying the identity to the wrong pairing of the four terms.",
           "Forgetting that l² + m² + n² = 1 at the last step."
+        ],
+        "lines_compact": [
+          "∴ cos²α + cos²β + cos²γ + cos²δ",
+          "= ⅓[(l+m+n)² + (l+m−n)² + (−l+m−n)² + (−l+m+n)²]",
+          "= ⅓[(l+m+n)² + (l+m−n)² + (l−m+n)² + (l−m−n)²]",
+          "= ⅓[2((l+m)² + n²) + 2((l−m)² + n²)]",
+          {
+            "text": "  [∵ (a+b)² + (a−b)² = 2(a² + b²)]",
+            "style": "indent"
+          },
+          "= ⅔[(l+m)² + (l−m)² + 2n²] = ⅔[2(l² + m²) + 2n²]",
+          "= (4/3)(l² + m² + n²) = (4/3)(1)",
+          {
+            "text": "∴ cos²α + cos²β + cos²γ + cos²δ = 4/3",
+            "style": "boxed"
+          }
         ]
       }
     ]

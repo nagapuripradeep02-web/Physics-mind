@@ -54,7 +54,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.27 — LAQ chapter 3 D.C's & D.R's, answer 16.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP,TS 19 · AP M-17. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter. It is not a bare guess: the book prints 7-mark splits on three answers elsewhere in the book — LAQ answers 12 (p.24, 1+1+2+1+2), 15 (p.26, 1+1+1+1+1+2) and 21 (p.32, seven 1-mark tags) — so both an even 1-per-move cut and a weighted cut are the book's own shapes at this length. This answer is cut on the moves its own printed working takes, weighted so the two long eliminations carry the most. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: D.C's & D.R's is an LAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 7 marks in Section C and nothing in Section A or Section B, and the book has no D.C's SAQ chapter (its SAQ chapters are 7-13) and no VSAQ chapter (its VSAQ chapters are 14-20). The book's own LAQ chapter table calls it the EASIEST chapter of the six. Chapter scoped by BOUNDARY WALK: book p.32 opens LAQ chapter 4, Differentiation. The STAR QUESTIONS PLUS bank (pp.104-108) contributes NOTHING to this unit — it holds no D.C's or D.R's question. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Eliminate and factorise."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.27 — LAQ chapter 3 D.C's & D.R's, answer 16.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP,TS 19 · AP M-17. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter. It is not a bare guess: the book prints 7-mark splits on three answers elsewhere in the book — LAQ answers 12 (p.24, 1+1+2+1+2), 15 (p.26, 1+1+1+1+1+2) and 21 (p.32, seven 1-mark tags) — so both an even 1-per-move cut and a weighted cut are the book's own shapes at this length. This answer is cut on the moves its own printed working takes, weighted so the two long eliminations carry the most. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: D.C's & D.R's is an LAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 7 marks in Section C and nothing in Section A or Section B, and the book has no D.C's SAQ chapter (its SAQ chapters are 7-13) and no VSAQ chapter (its VSAQ chapters are 14-20). The book's own LAQ chapter table calls it the EASIEST chapter of the six. Chapter scoped by BOUNDARY WALK: book p.32 opens LAQ chapter 4, Differentiation. The STAR QUESTIONS PLUS bank (pp.104-108) contributes NOTHING to this unit — it holds no D.C's or D.R's question. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Eliminate and factorise. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say which relation you rearrange first, and how many lines you expect.",
   "answer": {
@@ -76,6 +76,7 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "(make l the subject of the linear relation)",
           "Given l + m + n = 0  ⇒  l = −(m + n)  ……(1),",
           "l² + m² − n² = 0  ……(2)"
         ],
@@ -116,11 +117,31 @@
         "margin_note": "Three marks. Substituting leaves one homogeneous quadratic in two letters. It always factors, and each factor is one of the two lines.",
         "memory_tip": "Substituting gives one homogeneous quadratic in two letters, which factors into the two lines.",
         "lines": [
+          {
+            "text": "(put l = −(m + n) into (2))",
+            "added": true
+          },
           "Solving (1) & (2) we get",
           "[−(m + n)]² + m² − n² = 0",
+          {
+            "text": "([−(m + n)]² = (m + n)² = m² + n² + 2mn)",
+            "added": true
+          },
           "⇒ (m² + n² + 2mn) + m² − n² = 0",
+          {
+            "text": "(n² − n² = 0; take out 2)",
+            "added": true
+          },
           "⇒ 2m² + 2mn = 0   ⇒   2(m² + mn) = 0",
+          {
+            "text": "(divide by 2 and take out m)",
+            "added": true
+          },
           "⇒ m(m + n) = 0",
+          {
+            "text": "(a product is 0 when one of its factors is 0)",
+            "added": true
+          },
           "⇒ m = 0  (or)  m + n = 0  ⇒  m = 0  (or)  m = −n"
         ],
         "recall": {
@@ -149,6 +170,14 @@
         "common_mistakes": [
           "Trying to solve for numerical values of l, m, n rather than a ratio.",
           "Missing one of the two factors and finding only one line."
+        ],
+        "lines_compact": [
+          "Solving (1) & (2) we get",
+          "[−(m + n)]² + m² − n² = 0",
+          "⇒ (m² + n² + 2mn) + m² − n² = 0",
+          "⇒ 2m² + 2mn = 0   ⇒   2(m² + mn) = 0",
+          "⇒ m(m + n) = 0",
+          "⇒ m = 0  (or)  m + n = 0  ⇒  m = 0  (or)  m = −n"
         ]
       },
       {
@@ -160,8 +189,16 @@
         "margin_note": "One mark. Take the first factor, feed it back into the linear relation, and read off the ratio l : m : n. Clearing the common letter leaves whole numbers.",
         "memory_tip": "Put the first factor back into the linear relation and clear the common letter for whole numbers.",
         "lines": [
+          {
+            "text": "(put m = 0)",
+            "added": true
+          },
           "Case (i): Put m = 0 in (1), then",
           "l = −(0 + n) = −n   ∴ l = −n",
+          {
+            "text": "(divide by n, which is not 0)",
+            "added": true
+          },
           "Now, l : m : n = −n : 0 : n = −1 : 0 : 1",
           "So, d.r's of L₁ = (a₁, b₁, c₁) = (−1, 0, 1)  ……(3)"
         ],
@@ -191,6 +228,12 @@
         "common_mistakes": [
           "Keeping the common letter and carrying fractions forward.",
           "Reading the ratio in the wrong order."
+        ],
+        "lines_compact": [
+          "Case (i): Put m = 0 in (1), then",
+          "l = −(0 + n) = −n   ∴ l = −n",
+          "Now, l : m : n = −n : 0 : n = −1 : 0 : 1",
+          "So, d.r's of L₁ = (a₁, b₁, c₁) = (−1, 0, 1)  ……(3)"
         ]
       },
       {
@@ -202,8 +245,16 @@
         "margin_note": "One mark. The same work on the second factor. The two lines the question asks about are these two.",
         "memory_tip": "Repeat on the second factor. Those two lines are what the question is about.",
         "lines": [
+          {
+            "text": "(put m = −n)",
+            "added": true
+          },
           "Case (ii): Put m = −n in (1), then",
           "l = −(−n + n) = 0   ∴ l = 0",
+          {
+            "text": "(divide by n)",
+            "added": true
+          },
           "Now, l : m : n = 0 : −n : n = 0 : −1 : 1",
           "So, d.r's of L₂ = (a₂, b₂, c₂) = (0, −1, 1)  ……(4)"
         ],
@@ -233,6 +284,12 @@
         "common_mistakes": [
           "Reusing the first factor by mistake.",
           "Sign slip that makes the second line identical to the first."
+        ],
+        "lines_compact": [
+          "Case (ii): Put m = −n in (1), then",
+          "l = −(−n + n) = 0   ∴ l = 0",
+          "Now, l : m : n = 0 : −n : n = 0 : −1 : 1",
+          "So, d.r's of L₂ = (a₂, b₂, c₂) = (0, −1, 1)  ……(4)"
         ]
       },
       {
@@ -244,12 +301,24 @@
         "margin_note": "The last two marks. With one direction ratio triple for each line, the cosine of the angle between them comes straight from the standard formula.",
         "memory_tip": "The standard cosine formula on the two direction-ratio triples.",
         "lines": [
+          {
+            "text": "(the angle between two lines from their direction ratios)",
+            "added": true
+          },
           "If θ is the angle between the lines then from (3), (4), we get",
           "cosθ = |a₁a₂ + b₁b₂ + c₁c₂| / √((a₁²+b₁²+c₁²)(a₂²+b₂²+c₂²))",
+          {
+            "text": "(put the d.r's (−1, 0, 1) and (0, −1, 1))",
+            "added": true
+          },
           "= |(−1)(0) + (0)(−1) + (1)(1)|",
           {
             "text": "  / √(((−1)²+0²+1²)(0²+(−1)²+1²))",
             "style": "indent"
+          },
+          {
+            "text": "(1 + 0 + 1 = 2 twice; cos 60° = 1/2)",
+            "added": true
           },
           "= 1/√((2)(2)) = 1/√4 = 1/2 = cos60°",
           {
@@ -283,6 +352,20 @@
         "common_mistakes": [
           "Forgetting the modulus, which can give an obtuse angle instead of the acute one.",
           "Taking the square root of only one of the two sums of squares."
+        ],
+        "lines_compact": [
+          "If θ is the angle between the lines then from (3), (4), we get",
+          "cosθ = |a₁a₂ + b₁b₂ + c₁c₂| / √((a₁²+b₁²+c₁²)(a₂²+b₂²+c₂²))",
+          "= |(−1)(0) + (0)(−1) + (1)(1)|",
+          {
+            "text": "  / √(((−1)²+0²+1²)(0²+(−1)²+1²))",
+            "style": "indent"
+          },
+          "= 1/√((2)(2)) = 1/√4 = 1/2 = cos60°",
+          {
+            "text": "∴ Hence angle between the lines is 60°",
+            "style": "boxed"
+          }
         ]
       }
     ]

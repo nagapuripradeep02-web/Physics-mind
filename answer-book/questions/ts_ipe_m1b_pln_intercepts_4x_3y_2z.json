@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.85 — VSAQ chapter 16 The Plane, answer 102, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 18 · TS 18. ⚠ THE MARK SPLIT 1+1 IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter, whose pages are set two and three answers to a page in columns. It is not a bare guess: VSAQ answer 98 (book p.83, 3-D Coordinates) carries a printed 1+1 against exactly this shape — one mark for the setting-up move and one for the answer read off it — and the chapter header here reads '2 Marks' like that one. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Plane is a VSAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 2 marks in Section A and nothing in Section B or Section C, and the book has no Plane LAQ chapter (its LAQ chapters are 1-6) and no Plane SAQ chapter (its SAQ chapters are 7-13). Chapter scoped by BOUNDARY WALK: book p.87 opens VSAQ chapter 17, Limits. The STAR QUESTIONS PLUS bank (pp.104-108) contributes NOTHING to this unit — it holds no Plane question, so this is one of the three units (with 1 and 6) that receive none. Paper position: Maths-1B Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.85 — VSAQ chapter 16 The Plane, answer 102, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 18 · TS 18. ⚠ THE MARK SPLIT 1+1 IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter, whose pages are set two and three answers to a page in columns. It is not a bare guess: VSAQ answer 98 (book p.83, 3-D Coordinates) carries a printed 1+1 against exactly this shape — one mark for the setting-up move and one for the answer read off it — and the chapter header here reads '2 Marks' like that one. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Plane is a VSAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 2 marks in Section A and nothing in Section B or Section C, and the book has no Plane LAQ chapter (its LAQ chapters are 1-6) and no Plane SAQ chapter (its SAQ chapters are 7-13). Chapter scoped by BOUNDARY WALK: book p.87 opens VSAQ chapter 17, Limits. The STAR QUESTIONS PLUS bank (pp.104-108) contributes NOTHING to this unit — it holds no Plane question, so this is one of the three units (with 1 and 6) that receive none. Paper position: Maths-1B Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say what must be on the right-hand side, and what the denominators mean.",
   "answer": {
@@ -61,7 +61,9 @@
             "style": "heading"
           },
           "The given equation of the plane is  4x + 3y − 2z + 2 = 0",
+          "(move 2 to the right side)",
           "⇒ 4x + 3y − 2z = −2",
+          "(divide every term by −2, so that the right side is 1)",
           "⇒ 4x/(−2) + 3y/(−2) − 2z/(−2) = 1"
         ],
         "recall": {
@@ -101,8 +103,21 @@
         "margin_note": "Second mark. Once each term reads x over something, that something IS the intercept on that axis. Take care with signs — a negative intercept is perfectly normal.",
         "memory_tip": "The denominator under each variable IS its intercept. Two come out negative here, which is fine.",
         "lines": [
+          {
+            "text": "(4x/(−2) = x/(−1/2), 3y/(−2) = y/(−2/3)",
+            "added": true
+          },
+          {
+            "text": "  and −2z/(−2) = z/1)",
+            "style": "indent",
+            "added": true
+          },
           "⇒ x/(−1/2) + y/(−2/3) + z/1 = 1",
           "which is in the intercept form  x/a + y/b + z/c = 1",
+          {
+            "text": "(the denominators are the intercepts a, b, c)",
+            "added": true
+          },
           {
             "text": "Hence, x-intercept = −1/2,  y-intercept = −2/3,",
             "style": "boxed"
@@ -138,6 +153,18 @@
         "common_mistakes": [
           "Reading the numerator as the intercept.",
           "Losing a minus sign on a negative intercept."
+        ],
+        "lines_compact": [
+          "⇒ x/(−1/2) + y/(−2/3) + z/1 = 1",
+          "which is in the intercept form  x/a + y/b + z/c = 1",
+          {
+            "text": "Hence, x-intercept = −1/2,  y-intercept = −2/3,",
+            "style": "boxed"
+          },
+          {
+            "text": "z-intercept = 1",
+            "style": "boxed"
+          }
         ]
       }
     ]

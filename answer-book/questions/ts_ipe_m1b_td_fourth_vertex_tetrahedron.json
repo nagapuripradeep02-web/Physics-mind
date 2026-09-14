@@ -43,7 +43,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.83 — VSAQ chapter 15 3-D Coordinates, answer 97.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 15,17,22. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer, whose page is set two and three answers to a page in columns. It is not a bare guess: answer 98 in THIS SAME CHAPTER (book p.83) carries a printed 1+1 against exactly this shape — one mark for the setting-up equation and one for the answer read off it — and every answer in the unit takes those two moves. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: 3D-Coordinates is a VSAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 2 marks in Section A and nothing in Section B or Section C, and the book has no 3D LAQ chapter (its LAQ chapters are 1-6) and no 3D SAQ chapter (its SAQ chapters are 7-13). Its chapter header reads '2 Marks' and carries the note 'Just 2 Pages - 2 Marks'. Chapter scoped by BOUNDARY WALK: book p.85 opens VSAQ chapter 16, The Plane. Paper position: Maths-1B Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.83 — VSAQ chapter 15 3-D Coordinates, answer 97.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 15,17,22. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer, whose page is set two and three answers to a page in columns. It is not a bare guess: answer 98 in THIS SAME CHAPTER (book p.83) carries a printed 1+1 against exactly this shape — one mark for the setting-up equation and one for the answer read off it — and every answer in the unit takes those two moves. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: 3D-Coordinates is a VSAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 2 marks in Section A and nothing in Section B or Section C, and the book has no 3D LAQ chapter (its LAQ chapters are 1-6) and no 3D SAQ chapter (its SAQ chapters are 7-13). Its chapter header reads '2 Marks' and carries the note 'Just 2 Pages - 2 Marks'. Chapter scoped by BOUNDARY WALK: book p.85 opens VSAQ chapter 16, The Plane. Paper position: Maths-1B Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say what the centroid is in terms of the vertices, and how many equations that gives you.",
   "answer": {
@@ -68,13 +68,20 @@
           "We take A = (3, 2, −1), B = (4, 1, 1), C = (6, 2, 5)",
           "and fourth vertex D = (x₄, y₄, z₄)",
           "Given Centroid G = (4, 2, 2)",
+          "(the centroid of a tetrahedron is the average",
+          {
+            "text": "  of its four vertices)",
+            "style": "indent"
+          },
           "Centroid of Tetrahedron ABCD",
           "G = ((x₁+x₂+x₃+x₄)/4, (y₁+y₂+y₃+y₄)/4, (z₁+z₂+z₃+z₄)/4)",
+          "(put the three given vertices)",
           "⇒ ((3+4+6+x₄)/4, (2+1+2+y₄)/4, (−1+1+5+z₄)/4)",
           {
             "text": "  = (4, 2, 2)",
             "style": "indent"
           },
+          "(3 + 4 + 6 = 13, 2 + 1 + 2 = 5, −1 + 1 + 5 = 5)",
           "⇒ ((13 + x₄)/4, (5 + y₄)/4, (5 + z₄)/4) = (4, 2, 2)"
         ],
         "recall": {
@@ -114,8 +121,20 @@
         "margin_note": "Second mark. Solve the three equations one at a time. Nothing links them, so this is three short subtractions rather than a system.",
         "memory_tip": "Nothing links the three equations — this is three short subtractions, not a system.",
         "lines": [
+          {
+            "text": "(multiply both sides of (13 + x₄)/4 = 4 by 4)",
+            "added": true
+          },
           "⇒ 13 + x₄ = 16  ⇒  x₄ = 16 − 13 = 3;",
+          {
+            "text": "((5 + y₄)/4 = 2 gives 5 + y₄ = 8)",
+            "added": true
+          },
           "   5 + y₄ = 8  ⇒  y₄ = 8 − 5 = 3;",
+          {
+            "text": "((5 + z₄)/4 = 2 gives 5 + z₄ = 8)",
+            "added": true
+          },
           "   5 + z₄ = 8  ⇒  z₄ = 8 − 5 = 3",
           {
             "text": "∴ Hence, fourth vertex D = (3, 3, 3)",
@@ -148,6 +167,15 @@
         "common_mistakes": [
           "Carrying a value from the x equation into the y equation.",
           "Sign slip on a negative coordinate."
+        ],
+        "lines_compact": [
+          "⇒ 13 + x₄ = 16  ⇒  x₄ = 16 − 13 = 3;",
+          "   5 + y₄ = 8  ⇒  y₄ = 8 − 5 = 3;",
+          "   5 + z₄ = 8  ⇒  z₄ = 8 − 5 = 3",
+          {
+            "text": "∴ Hence, fourth vertex D = (3, 3, 3)",
+            "style": "boxed"
+          }
         ]
       }
     ]

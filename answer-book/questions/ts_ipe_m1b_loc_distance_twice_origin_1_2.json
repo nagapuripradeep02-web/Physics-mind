@@ -34,7 +34,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 1 LOCUS, Short Answer question 9, book p.136. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split 1+1+2 rewards reading the sentence as OP = 2PA and squaring it, then substituting the two distances, and gives the remaining two marks to the collection of terms that leaves the circle. The unmarked opening step names the moving point and carries no mark of its own. Answer cross-checked by substituting the point (2, 4), whose distance from the origin is 2√5 and from A is √5, and which satisfies the final equation. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 1 LOCUS, Short Answer question 9, book p.136. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split 1+1+2 rewards reading the sentence as OP = 2PA and squaring it, then substituting the two distances, and gives the remaining two marks to the collection of terms that leaves the circle. The unmarked opening step names the moving point and carries no mark of its own. Answer cross-checked by substituting the point (2, 4), whose distance from the origin is 2√5 and from A is √5, and which satisfies the final equation. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say which distance is the bigger one, and name the shape the locus turns out to be.",
   "answer": {
@@ -55,6 +55,7 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "(a locus is the set of all points P that satisfy the condition)",
           "Let P = (x, y) be a point on the locus.",
           "Given O = (0, 0) and A = (1, 2)"
         ],
@@ -96,6 +97,10 @@
         "memory_tip": "The 2 goes with PA, the smaller distance. Squaring turns that 2 into a 4.",
         "lines": [
           "Given condition: OP = 2 PA",
+          {
+            "text": "(square both sides: (2PA)² = 4PA²)",
+            "added": true
+          },
           "⇒ OP² = 4 PA²"
         ],
         "recall": {
@@ -124,6 +129,10 @@
         "common_mistakes": [
           "Writing PA = 2OP, which reverses the sentence.",
           "Squaring to OP² = 2PA² and leaving the 2 unsquared."
+        ],
+        "lines_compact": [
+          "Given condition: OP = 2 PA",
+          "⇒ OP² = 4 PA²"
         ]
       },
       {
@@ -135,8 +144,20 @@
         "margin_note": "Second mark. The 4 multiplies the whole bracket, so every one of its six terms is multiplied, including the constants 1 and 4.",
         "memory_tip": "The 4 multiplies the WHOLE bracket — all six terms, constants included.",
         "lines": [
+          {
+            "text": "(OP² = x² + y², and PA² from the distance formula)",
+            "added": true
+          },
           "⇒ x² + y² = 4[(x−1)² + (y−2)²]",
+          {
+            "text": "((x − 1)² = x² − 2x + 1 and (y − 2)² = y² − 4y + 4)",
+            "added": true
+          },
           "⇒ x² + y² = 4[x² − 2x + 1 + y² − 4y + 4]",
+          {
+            "text": "(multiply the bracket by 4; 4(1 + 4) = 20)",
+            "added": true
+          },
           "⇒ x² + y² = 4x² + 4y² − 8x − 16y + 20"
         ],
         "recall": {
@@ -165,6 +186,11 @@
         "common_mistakes": [
           "Multiplying only x² and y² inside the bracket by 4.",
           "Expanding (y − 2)² as y² − 4y + 2."
+        ],
+        "lines_compact": [
+          "⇒ x² + y² = 4[(x−1)² + (y−2)²]",
+          "⇒ x² + y² = 4[x² − 2x + 1 + y² − 4y + 4]",
+          "⇒ x² + y² = 4x² + 4y² − 8x − 16y + 20"
         ]
       },
       {
@@ -176,7 +202,15 @@
         "margin_note": "The last two marks. The x² and y² coefficients stay equal (both 3), so this locus is a circle. Check: (2, 4) is twice as far from the origin as from A, and it satisfies the final equation.",
         "memory_tip": "Both squared coefficients come out 3 — equal, so the locus is a circle.",
         "lines": [
+          {
+            "text": "(move x² + y² to the right side)",
+            "added": true
+          },
           "⇒ 4x² − x² + 4y² − y² − 8x − 16y + 20 = 0",
+          {
+            "text": "(4x² − x² = 3x² and 4y² − y² = 3y²)",
+            "added": true
+          },
           "⇒ 3x² + 3y² − 8x − 16y + 20 = 0",
           {
             "text": "∴ Locus: 3x² + 3y² − 8x − 16y + 20 = 0",
@@ -210,6 +244,14 @@
         "common_mistakes": [
           "Cancelling x² against 4x² but forgetting y² against 4y².",
           "Dropping the constant 20 while moving terms across."
+        ],
+        "lines_compact": [
+          "⇒ 4x² − x² + 4y² − y² − 8x − 16y + 20 = 0",
+          "⇒ 3x² + 3y² − 8x − 16y + 20 = 0",
+          {
+            "text": "∴ Locus: 3x² + 3y² − 8x − 16y + 20 = 0",
+            "style": "boxed"
+          }
         ]
       }
     ]

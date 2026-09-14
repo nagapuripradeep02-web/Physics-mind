@@ -42,7 +42,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.60 — SAQ chapter 8 Transformation of Axes, answer 54. Printed appearance: TS 17. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter. But the four STEPS are the book's own: p.59 prints a boxed 'SOLUTION STEPS' panel beside answers 52 and 53 giving the method in exactly four moves — (1) take the given equation as the original (or as the new one), (2) write the change-of-axes formulas, (3) put them into the given equation, (4) simplify to get the answer. This answer is cut on those four printed moves at one mark each, so the DECOMPOSITION is sourced even though the per-step marks are not. Four equal marks also matches the only 4-mark shape the sister chapter prints (Locus answers 44 and 46 carry printed tags, and this chapter's answers are the same length). This answer is the chapter's only fully general proof — it carries no numbers at all, and the book marks it 'Man of the Match'. Its four steps differ from the chapter's other seven, so its step ids and mark_split labels are its own rather than the shared four. The chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7. NOTE: Transformation of Axes is an SAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 4 marks in Section B and nothing in Section A or Section C, and the book has no Transformation of Axes LAQ chapter (its LAQ chapters are 1-6) and no VSAQ chapter (its VSAQ chapters are 14-20). Chapter scoped by BOUNDARY WALK: book p.61 is SAQ chapter 9, The Straight Line. The book's separate STAR QUESTIONS PLUS bank (pp.104-108, answers 181-196) was also surveyed, and its ONLY Transformation of Axes question is answer 181, authored here as sqp1."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.60 — SAQ chapter 8 Transformation of Axes, answer 54. Printed appearance: TS 17. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter. But the four STEPS are the book's own: p.59 prints a boxed 'SOLUTION STEPS' panel beside answers 52 and 53 giving the method in exactly four moves — (1) take the given equation as the original (or as the new one), (2) write the change-of-axes formulas, (3) put them into the given equation, (4) simplify to get the answer. This answer is cut on those four printed moves at one mark each, so the DECOMPOSITION is sourced even though the per-step marks are not. Four equal marks also matches the only 4-mark shape the sister chapter prints (Locus answers 44 and 46 carry printed tags, and this chapter's answers are the same length). This answer is the chapter's only fully general proof — it carries no numbers at all, and the book marks it 'Man of the Match'. Its four steps differ from the chapter's other seven, so its step ids and mark_split labels are its own rather than the shared four. The chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7. NOTE: Transformation of Axes is an SAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 4 marks in Section B and nothing in Section A or Section C, and the book has no Transformation of Axes LAQ chapter (its LAQ chapters are 1-6) and no VSAQ chapter (its VSAQ chapters are 14-20). Chapter scoped by BOUNDARY WALK: book p.61 is SAQ chapter 9, The Straight Line. The book's separate STAR QUESTIONS PLUS bank (pp.104-108, answers 181-196) was also surveyed, and its ONLY Transformation of Axes question is answer 181, authored here as sqp1. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — say what 'eliminate the xy term' means as an equation, and say what happens when a equals b.",
   "answer": {
@@ -65,6 +65,11 @@
             "style": "heading"
           },
           "Given original equation is  ax² + 2hxy + by² = 0  ……(1)",
+          "(rotating the axes through θ: x = X cos θ − Y sin θ,",
+          {
+            "text": "  y = X sin θ + Y cos θ)",
+            "style": "indent"
+          },
           "Angle of rotation is θ, then",
           "x = Xcosθ − Ysinθ",
           "y = Ycosθ + Xsinθ"
@@ -106,11 +111,24 @@
         "margin_note": "Second mark. Substitute into (1) and expand all three terms. Only the XY parts matter for what follows, but the whole expansion is written out.",
         "memory_tip": "Expand all three terms. Only the XY parts matter next, but the full expansion is what is marked.",
         "lines": [
+          {
+            "text": "(put these x and y into (1))",
+            "added": true
+          },
           "From (1), transformed equation is",
           "a(Xcosθ − Ysinθ)² + 2h(Xcosθ − Ysinθ)(Ycosθ + Xsinθ)",
           {
             "text": "  + b(Ycosθ + Xsinθ)² = 0",
             "style": "indent"
+          },
+          {
+            "text": "((p − q)² = p² − 2pq + q²;",
+            "added": true
+          },
+          {
+            "text": "  (Xcos θ − Ysin θ)(Ycos θ + Xsin θ) has four terms)",
+            "style": "indent",
+            "added": true
           },
           "⇒ a(X²cos²θ + Y²sin²θ − 2XYcosθsinθ)",
           "   + 2h(XYcos²θ + X²cosθsinθ − Y²sinθcosθ − XYsin²θ)",
@@ -142,6 +160,17 @@
         "common_mistakes": [
           "Expanding the squares but not the middle product.",
           "Dropping the factor 2 in front of h."
+        ],
+        "lines_compact": [
+          "From (1), transformed equation is",
+          "a(Xcosθ − Ysinθ)² + 2h(Xcosθ − Ysinθ)(Ycosθ + Xsinθ)",
+          {
+            "text": "  + b(Ycosθ + Xsinθ)² = 0",
+            "style": "indent"
+          },
+          "⇒ a(X²cos²θ + Y²sin²θ − 2XYcosθsinθ)",
+          "   + 2h(XYcos²θ + X²cosθsinθ − Y²sinθcosθ − XYsin²θ)",
+          "   + b(Y²cos²θ + X²sin²θ + 2XYsinθcosθ) = 0   ……(2)"
         ]
       },
       {
@@ -154,8 +183,30 @@
         "memory_tip": "Removing the xy term MEANS its coefficient is zero. Collect every XY term and set that total to 0.",
         "lines": [
           "To remove the XY term, its coefficient in (2) must be zero:",
+          {
+            "text": "(the XY terms: −2a cos θ sin θ from a;",
+            "added": true
+          },
+          {
+            "text": "  2h cos²θ and −2h sin²θ from 2h;",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  +2b sin θ cos θ from b)",
+            "style": "indent",
+            "added": true
+          },
           "⇒ −2a cosθ sinθ + 2h cos²θ − 2h sin²θ + 2b sinθ cosθ = 0",
+          {
+            "text": "(group the sin θ cos θ terms: −2a + 2b = 2(b − a))",
+            "added": true
+          },
           "⇒ 2 sinθ cosθ (b − a) + 2h(cos²θ − sin²θ) = 0",
+          {
+            "text": "(the double angle formulas below)",
+            "added": true
+          },
           "⇒ sin2θ (b − a) + 2h cos2θ = 0",
           "  [∵ 2sinθcosθ = sin2θ,  cos²θ − sin²θ = cos2θ]"
         ],
@@ -186,6 +237,13 @@
         "common_mistakes": [
           "Setting the whole transformed equation to zero instead of just the XY coefficient.",
           "Using cos2θ = cos²θ + sin²θ."
+        ],
+        "lines_compact": [
+          "To remove the XY term, its coefficient in (2) must be zero:",
+          "⇒ −2a cosθ sinθ + 2h cos²θ − 2h sin²θ + 2b sinθ cosθ = 0",
+          "⇒ 2 sinθ cosθ (b − a) + 2h(cos²θ − sin²θ) = 0",
+          "⇒ sin2θ (b − a) + 2h cos2θ = 0",
+          "  [∵ 2sinθcosθ = sin2θ,  cos²θ − sin²θ = cos2θ]"
         ]
       },
       {
@@ -197,9 +255,40 @@
         "margin_note": "Last mark. Divide by cos2θ to get a tangent, then invert. The a = b case has to be handled separately, because the division by (a − b) is not allowed there.",
         "memory_tip": "Divide by cos 2θ to get a tangent. The a = b case needs separate treatment — that division is illegal there.",
         "lines": [
+          {
+            "text": "(move sin 2θ (b − a) to the right side,",
+            "added": true
+          },
+          {
+            "text": "  where it becomes sin 2θ (a − b))",
+            "style": "indent",
+            "added": true
+          },
           "⇒ sin2θ (a − b) = 2h cos2θ",
+          {
+            "text": "(divide both sides by cos 2θ (a − b);",
+            "added": true
+          },
+          {
+            "text": "  this needs a ≠ b and cos 2θ ≠ 0)",
+            "style": "indent",
+            "added": true
+          },
           "⇒ sin2θ / cos2θ = 2h / (a − b),  a ≠ b",
+          {
+            "text": "(sin 2θ/cos 2θ = tan 2θ)",
+            "added": true
+          },
           "⇒ tan2θ = 2h / (a − b)   ⇒   2θ = Tan⁻¹(2h/(a − b))",
+          {
+            "text": "(divide by 2; if a = b then 2h cos 2θ = 0,",
+            "added": true
+          },
+          {
+            "text": "  so cos 2θ = 0 when h ≠ 0 and 2θ = π/2)",
+            "style": "indent",
+            "added": true
+          },
           {
             "text": "∴ θ = ½ Tan⁻¹(2h/(a − b)),",
             "style": "boxed"
@@ -236,6 +325,19 @@
         "common_mistakes": [
           "Giving θ = Tan⁻¹(2h/(a − b)) without the factor ½.",
           "Omitting the a = b case that the question explicitly asks for."
+        ],
+        "lines_compact": [
+          "⇒ sin2θ (a − b) = 2h cos2θ",
+          "⇒ sin2θ / cos2θ = 2h / (a − b),  a ≠ b",
+          "⇒ tan2θ = 2h / (a − b)   ⇒   2θ = Tan⁻¹(2h/(a − b))",
+          {
+            "text": "∴ θ = ½ Tan⁻¹(2h/(a − b)),",
+            "style": "boxed"
+          },
+          {
+            "text": "and if a = b then θ = ½(π/2) = π/4",
+            "style": "boxed"
+          }
         ]
       }
     ]

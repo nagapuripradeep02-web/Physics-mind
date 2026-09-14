@@ -34,7 +34,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 1 LOCUS, Short Answer question 10(ii), book p.136. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split 1+1+2 gives its first mark to the one move that decides this question — writing the distance from P to the y-axis as |x| — then one for the substitution, and the remaining two for the cancellation of x² that leaves a parabola. The unmarked opening step names the moving point and carries no mark of its own. Answer cross-checked by substituting the point (2, 2), which is 2 units from A(2, 0) and 2 units from the y-axis, and which satisfies the final equation. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 1 LOCUS, Short Answer question 10(ii), book p.136. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split 1+1+2 gives its first mark to the one move that decides this question — writing the distance from P to the y-axis as |x| — then one for the substitution, and the remaining two for the cancellation of x² that leaves a parabola. The unmarked opening step names the moving point and carries no mark of its own. Answer cross-checked by substituting the point (2, 2), which is 2 units from A(2, 0) and 2 units from the y-axis, and which satisfies the final equation. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say how far P is from the y-axis, and name the shape the locus turns out to be.",
   "answer": {
@@ -55,6 +55,7 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "(a locus is the set of all points P that satisfy the condition)",
           "Let P = (x, y) be a point on the locus.",
           "Given point A = (2, 0). The y-axis is x = 0."
         ],
@@ -95,8 +96,16 @@
         "margin_note": "First mark. The distance from P(x, y) to the y-axis is |x|, not |y| — it is the sideways gap. Squaring removes the modulus bars.",
         "memory_tip": "Distance to the y-axis is |x|, the sideways gap. Squaring removes the modulus bars.",
         "lines": [
+          {
+            "text": "(the distance from (x, y) to the line x = 0 is |x|)",
+            "added": true
+          },
           "Distance from P to the y-axis = |x|",
           "Given condition: PA = |x|",
+          {
+            "text": "(square both sides: |x|² = x²)",
+            "added": true
+          },
           "⇒ PA² = x²"
         ],
         "recall": {
@@ -125,6 +134,11 @@
         "common_mistakes": [
           "Using |y| for the distance to the y-axis.",
           "Dropping the modulus bars before squaring."
+        ],
+        "lines_compact": [
+          "Distance from P to the y-axis = |x|",
+          "Given condition: PA = |x|",
+          "⇒ PA² = x²"
         ]
       },
       {
@@ -136,7 +150,25 @@
         "margin_note": "Second mark. A(2, 0) has y-coordinate 0, so the second bracket is (y − 0)², which is simply y².",
         "memory_tip": "A sits on the x-axis, so its y bracket is (y − 0)², which is just y².",
         "lines": [
+          {
+            "text": "(the distance formula, squared:",
+            "added": true
+          },
+          {
+            "text": "  PA² = (x − x₁)² + (y − y₁)²,",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  so no square root is left)",
+            "style": "indent",
+            "added": true
+          },
           "⇒ (x − 2)² + (y − 0)² = x²",
+          {
+            "text": "((x − 2)² = x² − 4x + 4)",
+            "added": true
+          },
           "⇒ x² − 4x + 4 + y² = x²"
         ],
         "recall": {
@@ -165,6 +197,10 @@
         "common_mistakes": [
           "Writing (x + 2)² for a fixed x-coordinate of +2.",
           "Expanding (x − 2)² as x² − 4x + 2."
+        ],
+        "lines_compact": [
+          "⇒ (x − 2)² + (y − 0)² = x²",
+          "⇒ x² − 4x + 4 + y² = x²"
         ]
       },
       {
@@ -176,7 +212,15 @@
         "margin_note": "The last two marks. The x² cancels on both sides, so no x² is left — the locus is a parabola, y² = 4(x − 1), with vertex (1, 0). Check: (2, 2) is 2 units from A and 2 units from the y-axis, and satisfies this equation.",
         "memory_tip": "The x² cancels across the equals sign, so only y² is left — that is the parabola.",
         "lines": [
+          {
+            "text": "(x² is on both sides and cancels)",
+            "added": true
+          },
           "⇒ y² − 4x + 4 = 0",
+          {
+            "text": "(take out 4 from −4x + 4 and move it to the right side)",
+            "added": true
+          },
           "⇒ y² = 4(x − 1)",
           {
             "text": "∴ Locus: y² − 4x + 4 = 0",
@@ -209,6 +253,14 @@
         "common_mistakes": [
           "Cancelling the x² and also cancelling the −4x with it.",
           "Writing y² = 4(x + 1) by taking the 4 across with the wrong sign."
+        ],
+        "lines_compact": [
+          "⇒ y² − 4x + 4 = 0",
+          "⇒ y² = 4(x − 1)",
+          {
+            "text": "∴ Locus: y² − 4x + 4 = 0",
+            "style": "boxed"
+          }
         ]
       }
     ]

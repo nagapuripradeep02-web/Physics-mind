@@ -45,7 +45,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.83 — VSAQ chapter 15 3-D Coordinates, answer 97.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 15,18 · AP 15 · AP 20. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer, whose page is set two and three answers to a page in columns. It is not a bare guess: answer 98 in THIS SAME CHAPTER (book p.83) carries a printed 1+1 against exactly this shape — one mark for the setting-up equation and one for the answer read off it — and every answer in the unit takes those two moves. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: 3D-Coordinates is a VSAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 2 marks in Section A and nothing in Section B or Section C, and the book has no 3D LAQ chapter (its LAQ chapters are 1-6) and no 3D SAQ chapter (its SAQ chapters are 7-13). Its chapter header reads '2 Marks' and carries the note 'Just 2 Pages - 2 Marks'. Chapter scoped by BOUNDARY WALK: book p.85 opens VSAQ chapter 16, The Plane. Paper position: Maths-1B Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.83 — VSAQ chapter 15 3-D Coordinates, answer 97.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 15,18 · AP 15 · AP 20. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer, whose page is set two and three answers to a page in columns. It is not a bare guess: answer 98 in THIS SAME CHAPTER (book p.83) carries a printed 1+1 against exactly this shape — one mark for the setting-up equation and one for the answer read off it — and every answer in the unit takes those two moves. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: 3D-Coordinates is a VSAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 2 marks in Section A and nothing in Section B or Section C, and the book has no 3D LAQ chapter (its LAQ chapters are 1-6) and no 3D SAQ chapter (its SAQ chapters are 7-13). Its chapter header reads '2 Marks' and carries the note 'Just 2 Pages - 2 Marks'. Chapter scoped by BOUNDARY WALK: book p.85 opens VSAQ chapter 16, The Plane. Paper position: Maths-1B Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say what the centroid is in terms of the vertices, and how many equations that gives you.",
   "answer": {
@@ -70,9 +70,16 @@
           "We take A = (1, 1, 1), B = (−2, 4, 1) and",
           "Third vertex C = (x₃, y₃, z₃)",
           "Given Centroid G = (0, 0, 0)",
+          "(the centroid of a triangle is the average",
+          {
+            "text": "  of its three vertices)",
+            "style": "indent"
+          },
           "Centroid of △ABC",
           "G = ((x₁+x₂+x₃)/3, (y₁+y₂+y₃)/3, (z₁+z₂+z₃)/3)",
+          "(put A and B)",
           "⇒ ((1 − 2 + x₃)/3, (1 + 4 + y₃)/3, (1 + 1 + z₃)/3) = (0, 0, 0)",
+          "(1 − 2 = −1, 1 + 4 = 5, 1 + 1 = 2)",
           "⇒ ((x₃ − 1)/3, (y₃ + 5)/3, (z₃ + 2)/3) = (0, 0, 0)"
         ],
         "recall": {
@@ -112,9 +119,27 @@
         "margin_note": "Second mark. Solve the three equations one at a time. Nothing links them, so this is three short subtractions rather than a system.",
         "memory_tip": "Three independent equations, each one subtraction. The centroid at the origin makes every right side 0.",
         "lines": [
+          {
+            "text": "(a fraction with denominator 3 is 0 when its",
+            "added": true
+          },
+          {
+            "text": "  numerator is 0)",
+            "style": "indent",
+            "added": true
+          },
           "⇒ x₃ − 1 = 0  ⇒  x₃ = 1;",
           "   y₃ + 5 = 0  ⇒  y₃ = −5;",
           "   z₃ + 2 = 0  ⇒  z₃ = −2",
+          {
+            "text": "(check: (1 − 2 + 1)/3 = 0, (1 + 4 − 5)/3 = 0,",
+            "added": true
+          },
+          {
+            "text": "  (1 + 1 − 2)/3 = 0)",
+            "style": "indent",
+            "added": true
+          },
           {
             "text": "∴ Hence, third vertex C = (1, −5, −2)",
             "style": "boxed"
@@ -146,6 +171,15 @@
         "common_mistakes": [
           "Carrying a value from the x equation into the y equation.",
           "Sign slip on a negative coordinate."
+        ],
+        "lines_compact": [
+          "⇒ x₃ − 1 = 0  ⇒  x₃ = 1;",
+          "   y₃ + 5 = 0  ⇒  y₃ = −5;",
+          "   z₃ + 2 = 0  ⇒  z₃ = −2",
+          {
+            "text": "∴ Hence, third vertex C = (1, −5, −2)",
+            "style": "boxed"
+          }
         ]
       }
     ]

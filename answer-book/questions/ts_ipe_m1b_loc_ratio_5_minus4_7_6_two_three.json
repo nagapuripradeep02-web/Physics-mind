@@ -34,7 +34,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 1 LOCUS, Short Answer question 3, book p.134. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split 1+1+2 rewards the two method moves separately — turning the ratio into 9PA² = 4PB², then putting the distance formula in — and gives the remaining two marks to the expansion that produces the circle, which is where the arithmetic is lost. The unmarked opening step names the moving point and carries no mark of its own. Answer cross-checked by substituting the point (29/5, 0), which divides the join of the two given points in the ratio 2 : 3 and satisfies the final equation. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 1 LOCUS, Short Answer question 3, book p.134. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split 1+1+2 rewards the two method moves separately — turning the ratio into 9PA² = 4PB², then putting the distance formula in — and gives the remaining two marks to the expansion that produces the circle, which is where the arithmetic is lost. The unmarked opening step names the moving point and carries no mark of its own. Answer cross-checked by substituting the point (29/5, 0), which divides the join of the two given points in the ratio 2 : 3 and satisfies the final equation. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say what you would do with the ratio first, and name the shape the locus turns out to be.",
   "answer": {
@@ -55,6 +55,7 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "(a locus is the set of all points P that satisfy the condition)",
           "Let P = (x, y) be a point on the locus.",
           "Given points A = (5, −4), B = (7, 6)"
         ],
@@ -95,7 +96,15 @@
         "memory_tip": "Cross-multiply first, then square. The numbers get squared as well: 3 and 2 become 9 and 4.",
         "lines": [
           "Given condition: PA / PB = 2 / 3",
+          {
+            "text": "(multiply both sides by 3PB)",
+            "added": true
+          },
           "⇒ 3 PA = 2 PB",
+          {
+            "text": "(square both sides)",
+            "added": true
+          },
           "⇒ 9 PA² = 4 PB²"
         ],
         "recall": {
@@ -125,6 +134,11 @@
         "common_mistakes": [
           "Writing 2PA = 3PB, which inverts the ratio.",
           "Squaring to 3PA² = 2PB² and leaving the numbers unsquared."
+        ],
+        "lines_compact": [
+          "Given condition: PA / PB = 2 / 3",
+          "⇒ 3 PA = 2 PB",
+          "⇒ 9 PA² = 4 PB²"
         ]
       },
       {
@@ -136,8 +150,30 @@
         "margin_note": "Second mark. Put the squared distance formula into both brackets. The two fixed points share no coordinate here, so all four numbers change between the brackets.",
         "memory_tip": "Expand each bracket on its own line first — four numbers change between the two brackets, not one.",
         "lines": [
+          {
+            "text": "(the distance formula, squared:",
+            "added": true
+          },
+          {
+            "text": "  PA² = (x − x₁)² + (y − y₁)²,",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  so no square root is left)",
+            "style": "indent",
+            "added": true
+          },
           "⇒ 9[(x−5)² + (y+4)²] = 4[(x−7)² + (y−6)²]",
+          {
+            "text": "((x − 5)² = x² − 10x + 25 and (y + 4)² = y² + 8y + 16)",
+            "added": true
+          },
           "LHS bracket: x² − 10x + 25 + y² + 8y + 16",
+          {
+            "text": "((x − 7)² = x² − 14x + 49 and (y − 6)² = y² − 12y + 36)",
+            "added": true
+          },
           "RHS bracket: x² − 14x + 49 + y² − 12y + 36"
         ],
         "recall": {
@@ -167,6 +203,11 @@
         "common_mistakes": [
           "Expanding (y + 4)² as y² − 8y + 16.",
           "Multiplying only the first term of a bracket by 9 or by 4."
+        ],
+        "lines_compact": [
+          "⇒ 9[(x−5)² + (y+4)²] = 4[(x−7)² + (y−6)²]",
+          "LHS bracket: x² − 10x + 25 + y² + 8y + 16",
+          "RHS bracket: x² − 14x + 49 + y² − 12y + 36"
         ]
       },
       {
@@ -178,8 +219,36 @@
         "margin_note": "The last two marks. The x² and y² coefficients stay equal (both 5), so this locus is a circle. Check: the point (29/5, 0) divides the join of A and B in the ratio 2 : 3 and satisfies the final equation.",
         "memory_tip": "The x² and y² coefficients stay equal, so the locus is a circle, not a straight line (a straight line comes only from the ratio 1 : 1).",
         "lines": [
+          {
+            "text": "(9 times the left bracket: −90x, +72y, 9(25 + 16) = 369;",
+            "added": true
+          },
+          {
+            "text": "  4 times the right bracket: −56x, −48y,",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  4(49 + 36) = 340)",
+            "style": "indent",
+            "added": true
+          },
           "⇒ 9x² + 9y² − 90x + 72y + 369",
           "      = 4x² + 4y² − 56x − 48y + 340",
+          {
+            "text": "(move the right side to the left: 9 − 4 = 5;",
+            "added": true
+          },
+          {
+            "text": "  −90x + 56x = −34x; 72y + 48y = 120y;",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  369 − 340 = 29)",
+            "style": "indent",
+            "added": true
+          },
           "⇒ 5x² + 5y² − 34x + 120y + 29 = 0",
           {
             "text": "∴ Locus: 5x² + 5y² − 34x + 120y + 29 = 0",
@@ -213,6 +282,15 @@
         "common_mistakes": [
           "Losing the constant, which is 369 − 340 = 29.",
           "Collecting 72y and 48y as 24y instead of 120y."
+        ],
+        "lines_compact": [
+          "⇒ 9x² + 9y² − 90x + 72y + 369",
+          "      = 4x² + 4y² − 56x − 48y + 340",
+          "⇒ 5x² + 5y² − 34x + 120y + 29 = 0",
+          {
+            "text": "∴ Locus: 5x² + 5y² − 34x + 120y + 29 = 0",
+            "style": "boxed"
+          }
         ]
       }
     ]

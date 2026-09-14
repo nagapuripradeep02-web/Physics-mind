@@ -45,7 +45,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.55 — SAQ chapter 7 Locus, answer 46, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP J-16 (June 2016) · TS 15 · TS 22. The mark split 1+1+2 IS THE BOOK'S: this answer sits alone on its page and carries printed margin tags — '1 Mark' beside the given condition, '1 Mark' beside the substitution, and '2 Marks' beside the final locus. The chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7. NOTE: Locus is an SAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 4 marks in Section B and nothing in Section A or Section C, and the book has no Locus LAQ chapter (its LAQ chapters are 1-6) and no Locus VSAQ chapter (its VSAQ chapters are 14-20). It is the 1B counterpart of 1A's Units 7 and 8. Chapter scoped by BOUNDARY WALK, not from the TOP 35 SAQ hit list: that list names only 6 of this chapter's 12 questions. Verified by reading book p.57, where SAQ chapter 8 Transformation of Axes begins."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.55 — SAQ chapter 7 Locus, answer 46, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP J-16 (June 2016) · TS 15 · TS 22. The mark split 1+1+2 IS THE BOOK'S: this answer sits alone on its page and carries printed margin tags — '1 Mark' beside the given condition, '1 Mark' beside the substitution, and '2 Marks' beside the final locus. The chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7. NOTE: Locus is an SAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 4 marks in Section B and nothing in Section A or Section C, and the book has no Locus LAQ chapter (its LAQ chapters are 1-6) and no Locus VSAQ chapter (its VSAQ chapters are 14-20). It is the 1B counterpart of 1A's Units 7 and 8. Chapter scoped by BOUNDARY WALK, not from the TOP 35 SAQ hit list: that list names only 6 of this chapter's 12 questions. Verified by reading book p.57, where SAQ chapter 8 Transformation of Axes begins. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say what you would do with the ratio first, and name the shape the locus turns out to be.",
   "answer": {
@@ -66,6 +66,7 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "(a locus is the set of all points P that satisfy the condition)",
           "Let P = (x, y) be a point on the locus.",
           "Given points A = (2, 3), B = (2, −3)"
         ],
@@ -106,7 +107,15 @@
         "memory_tip": "Cross-multiply the ratio, then square BOTH sides at once. No cross term means one squaring clears both roots.",
         "lines": [
           "Given condition: PA / PB = 2 / 3",
+          {
+            "text": "(multiply both sides by 3PB)",
+            "added": true
+          },
           "⇒ 3 PA = 2 PB",
+          {
+            "text": "(square both sides)",
+            "added": true
+          },
           "⇒ 9 PA² = 4 PB²"
         ],
         "recall": {
@@ -136,6 +145,11 @@
         "common_mistakes": [
           "Writing 2PA = 3PB, which inverts the ratio.",
           "Squaring to 3PA² = 2PB² and forgetting to square the numbers too."
+        ],
+        "lines_compact": [
+          "Given condition: PA / PB = 2 / 3",
+          "⇒ 3 PA = 2 PB",
+          "⇒ 9 PA² = 4 PB²"
         ]
       },
       {
@@ -147,7 +161,30 @@
         "margin_note": "Second mark, also printed. Both distances go in squared. Note the two brackets differ only in the sign inside the y-term, because A and B differ only in the sign of their y-coordinate.",
         "memory_tip": "The two brackets differ ONLY in the sign inside the y-term, since A and B differ only in y.",
         "lines": [
+          {
+            "text": "(the distance formula, squared:",
+            "added": true
+          },
+          {
+            "text": "  PA² = (x − x₁)² + (y − y₁)²,",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  so no square root is left)",
+            "style": "indent",
+            "added": true
+          },
           "⇒ 9[(x−2)² + (y−3)²] = 4[(x−2)² + (y+3)²]",
+          {
+            "text": "((x − 2)² = x² + 4 − 4x, (y − 3)² = y² + 9 − 6y,",
+            "added": true
+          },
+          {
+            "text": "  (y + 3)² = y² + 9 + 6y)",
+            "style": "indent",
+            "added": true
+          },
           "⇒ 9[(x² + 4 − 4x) + (y² + 9 − 6y)]",
           {
             "text": "  = 4[(x² + 4 − 4x) + (y² + 9 + 6y)]",
@@ -181,6 +218,14 @@
         "common_mistakes": [
           "Multiplying the bracket contents by 9 and 4 unevenly.",
           "Sign slip on (y + 3)², which expands with +6y."
+        ],
+        "lines_compact": [
+          "⇒ 9[(x−2)² + (y−3)²] = 4[(x−2)² + (y+3)²]",
+          "⇒ 9[(x² + 4 − 4x) + (y² + 9 − 6y)]",
+          {
+            "text": "  = 4[(x² + 4 − 4x) + (y² + 9 + 6y)]",
+            "style": "indent"
+          }
         ]
       },
       {
@@ -192,15 +237,32 @@
         "margin_note": "The last two marks, printed as '2 Marks'. The x² and y² coefficients stay EQUAL (both 5), so this locus is a circle — the circle of Apollonius for the ratio 2:3.",
         "memory_tip": "The x² and y² coefficients stay EQUAL, so this is a circle — the circle of Apollonius.",
         "lines": [
+          {
+            "text": "(multiply each bracket by 9 and by 4)",
+            "added": true
+          },
           "⇒ 9x² + 36 − 36x + 9y² + 81 − 54y",
           {
             "text": "  = 4x² + 16 − 16x + 4y² + 36 + 24y",
             "style": "indent"
           },
+          {
+            "text": "(move every term to the left side and group like terms)",
+            "added": true
+          },
           "⇒ 9x² − 4x² + 9y² − 4y² − 36x + 16x",
           {
             "text": "  − 54y − 24y + 117 − 52 = 0",
             "style": "indent"
+          },
+          {
+            "text": "(9 − 4 = 5; −36 + 16 = −20; −54 − 24 = −78;",
+            "added": true
+          },
+          {
+            "text": "  36 + 81 − 16 − 36 = 65)",
+            "style": "indent",
+            "added": true
           },
           "⇒ 5x² + 5y² − 20x − 78y + 65 = 0",
           {
@@ -235,6 +297,23 @@
         "common_mistakes": [
           "Dropping the constant 117 − 52 = 65.",
           "Collecting −54y and −24y as −30y instead of −78y."
+        ],
+        "lines_compact": [
+          "⇒ 9x² + 36 − 36x + 9y² + 81 − 54y",
+          {
+            "text": "  = 4x² + 16 − 16x + 4y² + 36 + 24y",
+            "style": "indent"
+          },
+          "⇒ 9x² − 4x² + 9y² − 4y² − 36x + 16x",
+          {
+            "text": "  − 54y − 24y + 117 − 52 = 0",
+            "style": "indent"
+          },
+          "⇒ 5x² + 5y² − 20x − 78y + 65 = 0",
+          {
+            "text": "∴ Locus of P is 5x² + 5y² − 20x − 78y + 65 = 0",
+            "style": "boxed"
+          }
         ]
       }
     ]

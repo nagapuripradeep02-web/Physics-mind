@@ -47,7 +47,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.29 — LAQ chapter 3 D.C's & D.R's, answer 18. Printed appearances: AP 16 · AP 18. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter. It is not a bare guess: the book prints 7-mark splits on three answers elsewhere in the book — LAQ answers 12 (p.24, 1+1+2+1+2), 15 (p.26, 1+1+1+1+1+2) and 21 (p.32, seven 1-mark tags) — so both an even 1-per-move cut and a weighted cut are the book's own shapes at this length. This answer is cut on the moves its own printed working takes, weighted so the two long eliminations carry the most. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: D.C's & D.R's is an LAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 7 marks in Section C and nothing in Section A or Section B, and the book has no D.C's SAQ chapter (its SAQ chapters are 7-13) and no VSAQ chapter (its VSAQ chapters are 14-20). The book's own LAQ chapter table calls it the EASIEST chapter of the six. Chapter scoped by BOUNDARY WALK: book p.32 opens LAQ chapter 4, Differentiation. The STAR QUESTIONS PLUS bank (pp.104-108) contributes NOTHING to this unit — it holds no D.C's or D.R's question. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Eliminate n to get a quadratic in l/m."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.29 — LAQ chapter 3 D.C's & D.R's, answer 18. Printed appearances: AP 16 · AP 18. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter. It is not a bare guess: the book prints 7-mark splits on three answers elsewhere in the book — LAQ answers 12 (p.24, 1+1+2+1+2), 15 (p.26, 1+1+1+1+1+2) and 21 (p.32, seven 1-mark tags) — so both an even 1-per-move cut and a weighted cut are the book's own shapes at this length. This answer is cut on the moves its own printed working takes, weighted so the two long eliminations carry the most. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: D.C's & D.R's is an LAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 7 marks in Section C and nothing in Section A or Section B, and the book has no D.C's SAQ chapter (its SAQ chapters are 7-13) and no VSAQ chapter (its VSAQ chapters are 14-20). The book's own LAQ chapter table calls it the EASIEST chapter of the six. Chapter scoped by BOUNDARY WALK: book p.32 opens LAQ chapter 4, Differentiation. The STAR QUESTIONS PLUS bank (pp.104-108) contributes NOTHING to this unit — it holds no D.C's or D.R's question. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Eliminate n to get a quadratic in l/m. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — say whether you need to find the two lines, and what quantity you test at the end.",
   "answer": {
@@ -69,15 +69,23 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "(make l the subject of the linear relation)",
           "Given l + m + n = 0  ⇒  l = −(m + n)  ……(1);",
           "2mn + 3nl − 5lm = 0  ……(2)",
+          "(put l = −(m + n) into (2): 3n · l = −3n(m + n)",
+          {
+            "text": "  and −5l · m = +5m(m + n))",
+            "style": "indent"
+          },
           "Solving (1) & (2), we get",
           "2mn − 3n(m + n) + 5m(m + n) = 0",
+          "(multiply out the brackets)",
           "⇒ 2mn − 3mn − 3n² + 5m² + 5mn = 0",
           {
             "text": "  ⇒   5m² + 4mn − 3n² = 0",
             "style": "indent"
           },
+          "(divide every term by n², which is not 0 here)",
           "⇒ 5m²/n² + 4mn/n² − 3n²/n² = 0",
           {
             "text": "  ⇒   5(m/n)² + 4(m/n) − 3 = 0",
@@ -122,8 +130,26 @@
         "lines": [
           "This is a quadratic equation in m/n;",
           "its roots are taken as  m₁/n₁,  m₂/n₂",
+          {
+            "text": "(for ax² + bx + c = 0, the product of the roots is c/a;",
+            "added": true
+          },
+          {
+            "text": "  here a = 5, c = −3)",
+            "style": "indent",
+            "added": true
+          },
           "Product of roots  (m₁/n₁)(m₂/n₂) = c/a = −3/5",
           "  [∵ Product of roots of ax² + bx + c = 0 is αβ = c/a]",
+          {
+            "text": "(cross-multiply: 5m₁m₂ = −3n₁n₂;",
+            "added": true
+          },
+          {
+            "text": "  then divide both sides by 15)",
+            "style": "indent",
+            "added": true
+          },
           "⇒ m₁m₂/(n₁n₂) = −3/5   ⇒   m₁m₂/3 = n₁n₂/(−5)  ……(3)"
         ],
         "recall": {
@@ -152,6 +178,13 @@
         "common_mistakes": [
           "Using −b/a, the SUM of the roots, instead of c/a.",
           "Losing the minus sign on the 5."
+        ],
+        "lines_compact": [
+          "This is a quadratic equation in m/n;",
+          "its roots are taken as  m₁/n₁,  m₂/n₂",
+          "Product of roots  (m₁/n₁)(m₂/n₂) = c/a = −3/5",
+          "  [∵ Product of roots of ax² + bx + c = 0 is αβ = c/a]",
+          "⇒ m₁m₂/(n₁n₂) = −3/5   ⇒   m₁m₂/3 = n₁n₂/(−5)  ……(3)"
         ]
       },
       {
@@ -164,12 +197,29 @@
         "memory_tip": "The same move with a different letter removed, giving roots l₁/m₁ and l₂/m₂.",
         "lines": [
           "From (1), n = −(l + m)",
+          {
+            "text": "(put n = −(l + m) into (2))",
+            "added": true
+          },
           "Substituting this value of n in (2), we get",
           "−2m(l + m) − 3l(l + m) − 5lm = 0",
+          {
+            "text": "(multiply out the brackets; lm terms: −2 − 3 − 5 = −10;",
+            "added": true
+          },
+          {
+            "text": "  then multiply by −1)",
+            "style": "indent",
+            "added": true
+          },
           "⇒ −2lm − 2m² − 3l² − 3lm − 5lm = 0",
           {
             "text": "  ⇒   3l² + 10lm + 2m² = 0",
             "style": "indent"
+          },
+          {
+            "text": "(divide every term by m², which is not 0 here)",
+            "added": true
           },
           "⇒ 3l²/m² + 10lm/m² + 2m²/m² = 0",
           {
@@ -178,7 +228,15 @@
           },
           "This is a quadratic equation in l/m;",
           "its roots are taken as  l₁/m₁,  l₂/m₂",
+          {
+            "text": "(here a = 3 and c = 2)",
+            "added": true
+          },
           "Product of roots  (l₁/m₁)(l₂/m₂) = c/a = 2/3",
+          {
+            "text": "(cross-multiply: 3l₁l₂ = 2m₁m₂; then divide both sides by 6)",
+            "added": true
+          },
           "⇒ l₁l₂/(m₁m₂) = 2/3   ⇒   l₁l₂/2 = m₁m₂/3  ……(4)"
         ],
         "recall": {
@@ -207,6 +265,25 @@
         "common_mistakes": [
           "Eliminating l again and getting the same information twice.",
           "Reading the product of roots as b/a."
+        ],
+        "lines_compact": [
+          "From (1), n = −(l + m)",
+          "Substituting this value of n in (2), we get",
+          "−2m(l + m) − 3l(l + m) − 5lm = 0",
+          "⇒ −2lm − 2m² − 3l² − 3lm − 5lm = 0",
+          {
+            "text": "  ⇒   3l² + 10lm + 2m² = 0",
+            "style": "indent"
+          },
+          "⇒ 3l²/m² + 10lm/m² + 2m²/m² = 0",
+          {
+            "text": "  ⇒   3(l/m)² + 10(l/m) + 2 = 0",
+            "style": "indent"
+          },
+          "This is a quadratic equation in l/m;",
+          "its roots are taken as  l₁/m₁,  l₂/m₂",
+          "Product of roots  (l₁/m₁)(l₂/m₂) = c/a = 2/3",
+          "⇒ l₁l₂/(m₁m₂) = 2/3   ⇒   l₁l₂/2 = m₁m₂/3  ……(4)"
         ]
       },
       {
@@ -218,9 +295,21 @@
         "margin_note": "The last two marks. Chain (3) and (4) into one string of equal fractions, call the common value k, and add. Two lines are perpendicular exactly when that sum is zero.",
         "memory_tip": "Chain the results into one string of equal fractions, call it k, and add. Zero means perpendicular.",
         "lines": [
+          {
+            "text": "(m₁m₂/3 appears in both (3) and (4))",
+            "added": true
+          },
           "From (3) and (4), we get",
           "l₁l₂/2 = m₁m₂/3 = n₁n₂/(−5) = k  (say)",
+          {
+            "text": "(multiply each fraction by its denominator)",
+            "added": true
+          },
           "⇒ l₁l₂ = 2k,  m₁m₂ = 3k,  n₁n₂ = −5k",
+          {
+            "text": "(two lines are perpendicular when l₁l₂ + m₁m₂ + n₁n₂ = 0)",
+            "added": true
+          },
           "∴ l₁l₂ + m₁m₂ + n₁n₂ = 2k + 3k − 5k = 5k − 5k = 0",
           {
             "text": "Hence proved that the two lines are perpendicular",
@@ -254,6 +343,16 @@
         "common_mistakes": [
           "Adding the coefficients of the wrong relation.",
           "Concluding perpendicular without showing the sum is zero."
+        ],
+        "lines_compact": [
+          "From (3) and (4), we get",
+          "l₁l₂/2 = m₁m₂/3 = n₁n₂/(−5) = k  (say)",
+          "⇒ l₁l₂ = 2k,  m₁m₂ = 3k,  n₁n₂ = −5k",
+          "∴ l₁l₂ + m₁m₂ + n₁n₂ = 2k + 3k − 5k = 5k − 5k = 0",
+          {
+            "text": "Hence proved that the two lines are perpendicular",
+            "style": "boxed"
+          }
         ]
       }
     ]

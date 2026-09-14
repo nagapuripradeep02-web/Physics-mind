@@ -48,7 +48,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.86 — VSAQ chapter 16 The Plane, answer 106.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP,TS 15,17 · TS 19. ⚠ THE MARK SPLIT 1+1 IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter, whose pages are set two and three answers to a page in columns. It is not a bare guess: VSAQ answer 98 (book p.83, 3-D Coordinates) carries a printed 1+1 against exactly this shape — one mark for the setting-up move and one for the answer read off it — and the chapter header here reads '2 Marks' like that one. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Plane is a VSAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 2 marks in Section A and nothing in Section B or Section C, and the book has no Plane LAQ chapter (its LAQ chapters are 1-6) and no Plane SAQ chapter (its SAQ chapters are 7-13). Chapter scoped by BOUNDARY WALK: book p.87 opens VSAQ chapter 17, Limits. The STAR QUESTIONS PLUS bank (pp.104-108) contributes NOTHING to this unit — it holds no Plane question, so this is one of the three units (with 1 and 6) that receive none. Paper position: Maths-1B Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.86 — VSAQ chapter 16 The Plane, answer 106.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP,TS 15,17 · TS 19. ⚠ THE MARK SPLIT 1+1 IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter, whose pages are set two and three answers to a page in columns. It is not a bare guess: VSAQ answer 98 (book p.83, 3-D Coordinates) carries a printed 1+1 against exactly this shape — one mark for the setting-up move and one for the answer read off it — and the chapter header here reads '2 Marks' like that one. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Plane is a VSAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 2 marks in Section A and nothing in Section B or Section C, and the book has no Plane LAQ chapter (its LAQ chapters are 1-6) and no Plane SAQ chapter (its SAQ chapters are 7-13). Chapter scoped by BOUNDARY WALK: book p.87 opens VSAQ chapter 17, Limits. The STAR QUESTIONS PLUS bank (pp.104-108) contributes NOTHING to this unit — it holds no Plane question, so this is one of the three units (with 1 and 6) that receive none. Paper position: Maths-1B Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say what the angle between two planes really is, and which formula you use.",
   "answer": {
@@ -72,6 +72,7 @@
           },
           "Given planes are  x + 2y + 2z − 5 = 0,",
           "3x + 3y + 2z − 8 = 0",
+          "(the coefficients of x, y and z in each plane)",
           "⇒ a₁ = 1, b₁ = 2, c₁ = 2;",
           "   a₂ = 3, b₂ = 3, c₂ = 2"
         ],
@@ -112,13 +113,44 @@
         "margin_note": "Second mark. The same formula as for two lines. The modulus keeps the answer to the acute angle between the planes.",
         "memory_tip": "The modulus keeps the answer to the ACUTE angle. Here it stays as an inverse cosine.",
         "lines": [
+          {
+            "text": "(the angle between two planes is the angle between their",
+            "added": true
+          },
+          {
+            "text": "  normals, whose d.r's are the coefficients)",
+            "style": "indent",
+            "added": true
+          },
           "∴ cosθ = |a₁a₂ + b₁b₂ + c₁c₂|",
           {
             "text": "  / √((a₁²+b₁²+c₁²)(a₂²+b₂²+c₂²))",
             "style": "indent"
           },
+          {
+            "text": "(put a₁ = 1, b₁ = 2, c₁ = 2 and a₂ = 3, b₂ = 3, c₂ = 2;",
+            "added": true
+          },
+          {
+            "text": "  2² = 4, 3² = 9)",
+            "style": "indent",
+            "added": true
+          },
           "= |1(3) + 2(3) + 2(2)| / √((1 + 4 + 4)(9 + 9 + 4))",
+          {
+            "text": "(1 + 4 + 4 = 9 and 9 + 9 + 4 = 22;",
+            "added": true
+          },
+          {
+            "text": "  √(9 × 22) = √9 · √22)",
+            "style": "indent",
+            "added": true
+          },
           "= |3 + 6 + 4| / (√9 · √22)",
+          {
+            "text": "(√9 = 3)",
+            "added": true
+          },
           "= 13/(3√22)",
           {
             "text": "∴ cosθ = 13/(3√22)  ⇒  θ = Cos⁻¹(13/(3√22))",
@@ -151,6 +183,20 @@
         "common_mistakes": [
           "Forgetting the modulus and reporting an obtuse angle.",
           "Adding the two sums of squares instead of multiplying them."
+        ],
+        "lines_compact": [
+          "∴ cosθ = |a₁a₂ + b₁b₂ + c₁c₂|",
+          {
+            "text": "  / √((a₁²+b₁²+c₁²)(a₂²+b₂²+c₂²))",
+            "style": "indent"
+          },
+          "= |1(3) + 2(3) + 2(2)| / √((1 + 4 + 4)(9 + 9 + 4))",
+          "= |3 + 6 + 4| / (√9 · √22)",
+          "= 13/(3√22)",
+          {
+            "text": "∴ cosθ = 13/(3√22)  ⇒  θ = Cos⁻¹(13/(3√22))",
+            "style": "boxed"
+          }
         ]
       }
     ]
