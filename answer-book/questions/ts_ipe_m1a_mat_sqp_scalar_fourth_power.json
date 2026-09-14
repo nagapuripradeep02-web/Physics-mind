@@ -106,9 +106,10 @@
         "lines": [
           "A⁴ = (3I)⁴ = 3⁴ I⁴ = 81 I   [∵ I⁴ = I]",
           {
-            "text": "A⁴ = 81I, that is 81 on the diagonal and 0 elsewhere",
+            "text": "∴ A⁴ = 81I",
             "style": "boxed"
-          }
+          },
+          "(81 on each diagonal entry and 0 elsewhere)"
         ],
         "recall": {
           "credit": "say_it",

@@ -152,8 +152,9 @@
             "render": "katex",
             "style": "eq"
           },
+          "Its rows are (−9, −8, −2), (8, 7, 2), (−5, −4, −1).",
           {
-            "text": "∴ (A′)⁻¹ has rows (−9, −8, −2), (8, 7, 2), (−5, −4, −1)",
+            "text": "∴ (A′)⁻¹ is the matrix above",
             "style": "boxed"
           }
         ],

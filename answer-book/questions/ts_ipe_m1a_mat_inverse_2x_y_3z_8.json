@@ -167,8 +167,9 @@
         "margin_note": "Three marks, and the longest part of the question — nine 2×2 determinants. The sign board is + − + / − + − / + − +. Cross out the entry’s own row and column, take the determinant of what is left, then apply that sign.",
         "memory_tip": "Nine 2×2 determinants, with the sign board + − + / − + − / + − +. Cross out the entry's own row and column.",
         "lines": [
-          "Delete each entry’s row and column, take the 2×2",
-          "determinant, and apply the sign board + − + / − + − / + − +:",
+          "Delete each entry’s row and column, take the",
+          "2×2 determinant, then apply the sign board",
+          "+ − + / − + − / + − +:",
           {
             "text": "\\text{Cofactor matrix} = \\begin{bmatrix} -9 & -1 & -7 \\\\ -1 & -17 & -5 \\\\ -7 & -5 & 3 \\end{bmatrix}",
             "render": "katex",

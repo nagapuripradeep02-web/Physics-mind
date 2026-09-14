@@ -148,7 +148,7 @@
         "label": "Multiply Aᵏ by A",
         "marks": 2,
         "mark_note": "Inductive step",
-        "margin_note": "Half the marks. Use A^(k+1) = Aᵏ·A. Then rewrite each entry so that k + 1 is visible: 2k + 3 is 1 + 2(k+1), and −2k − 1 is 1 − 2(k+1).",
+        "margin_note": "Half the marks. Use Aᵏ⁺¹ = Aᵏ·A. Then rewrite each entry so that k + 1 is visible: 2k + 3 is 1 + 2(k+1), and −2k − 1 is 1 − 2(k+1).",
         "memory_tip": "After multiplying, rewrite every entry so k + 1 shows: 2k + 3 is 1 + 2(k+1).",
         "lines": [
           {

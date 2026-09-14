@@ -171,8 +171,10 @@
             "render": "katex",
             "style": "eq"
           },
-          "The last row is all zeros, so the system has",
-          "an infinite solution set."
+          "The last row is all zeros, and no row reads",
+          "0 = (a non-zero number). Two equations remain",
+          "for three unknowns, so there are infinitely",
+          "many solutions."
         ],
         "recall": {
           "credit": "say_it",
