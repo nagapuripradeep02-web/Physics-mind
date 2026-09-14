@@ -34,7 +34,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.227, chapter 10 APPLICATIONS OF DERIVATIVES, the MAXIMA AND MINIMA sub-section, Short Answer question 9. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. DEFECTIVE PRINTED STEM, RECORDED NOT SILENTLY CORRECTED: the book prints the interval as [2, 2]. That is a single point, so the function takes exactly one value on it and no meaningful absolute maximum or minimum can be asked of it; the book's own working, as recorded when this question was sourced, uses [−2, 2]. The stem authored above therefore reads [−2, 2], matching that working rather than the misprint. A teacher checking this card against the book will see [2, 2] on the page — the difference is deliberate and is logged here rather than repaired in silence. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4 Marks over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.227, chapter 10 APPLICATIONS OF DERIVATIVES, the MAXIMA AND MINIMA sub-section, Short Answer question 9. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. DEFECTIVE PRINTED STEM, RECORDED NOT SILENTLY CORRECTED: the book prints the interval as [2, 2]. That is a single point, so the function takes exactly one value on it and no meaningful absolute maximum or minimum can be asked of it; the book's own working, as recorded when this question was sourced, uses [−2, 2]. The stem authored above therefore reads [−2, 2], matching that working rather than the misprint. A teacher checking this card against the book will see [2, 2] on the page — the difference is deliberate and is logged here rather than repaired in silence. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4 Marks over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say which points you must test on a closed interval, and say how many places the maximum value is reached at here.",
   "answer": {
@@ -56,9 +56,23 @@
             "style": "heading"
           },
           "f(x) = x² on the closed interval [−2, 2].",
-          "f is continuous on [−2, 2] and differentiable on (−2, 2), so an absolute maximum and an absolute minimum both exist on this interval.",
+          "(x² is a polynomial, so it is continuous and",
+          {
+            "text": "  differentiable for every real x)",
+            "style": "indent"
+          },
+          "f is continuous on [−2, 2] and differentiable on (−2, 2),",
+          "so an absolute maximum and an absolute minimum",
+          "both exist on this interval.",
+          "(power rule: d/dx of xⁿ is nxⁿ⁻¹;",
+          {
+            "text": "  with n = 2 this gives 2x¹ = 2x)",
+            "style": "indent"
+          },
           "f′(x) = 2x",
+          "(put f′(x) = 0 and divide both sides by 2)",
           "f′(x) = 0   ⇒   2x = 0   ⇒   x = 0",
+          "(−2 < 0 < 2)",
           "x = 0 lies inside [−2, 2], so it is a critical point to be tested."
         ],
         "recall": {
@@ -84,12 +98,12 @@
             "inside the interval"
           ]
         },
-        "why": "An absolute extremum on a closed interval sits either where the derivative is zero or at an endpoint. Differentiating finds the first group, and there is only one such point here.",
+        "why": "For a differentiable function, an absolute extremum on a closed interval is either where the derivative is zero or at an endpoint. Differentiating finds the points of the first kind, and there is only one such point here.",
         "common_mistakes": [
           "Differentiating x² as x.",
           "Reporting x = ±2 as critical points, when they are endpoints rather than points where f′ = 0."
         ],
-        "memory_tip": "A critical point is where the derivative is zero. An endpoint is not a critical point, but it still has to be tested."
+        "memory_tip": "A critical point is where the derivative is zero or does not exist. An endpoint is not a critical point, but it still has to be tested."
       },
       {
         "id": "s2_evaluate",
@@ -99,9 +113,22 @@
         "mark_note": "Method",
         "margin_note": "Two marks. BOTH endpoints must appear. Forgetting them is the classic error on this question type, and here it would remove the maximum from the list altogether.",
         "lines": [
-          "For an absolute extremum on a closed interval, evaluate f at every critical point AND at both endpoints.",
+          "For an absolute extremum on a closed interval,",
+          "evaluate f at every critical point AND at both endpoints.",
+          {
+            "text": "(put 0 in place of x in f(x) = x²)",
+            "added": true
+          },
           "At the critical point:   f(0) = 0² = 0",
+          {
+            "text": "(put −2 in place of x: (−2)² = (−2)(−2) = 4)",
+            "added": true
+          },
           "At the left endpoint:    f(−2) = (−2)² = 4",
+          {
+            "text": "(put 2 in place of x: 2² = 2 × 2 = 4)",
+            "added": true
+          },
           "At the right endpoint:   f(2) = 2² = 4"
         ],
         "recall": {
@@ -132,7 +159,14 @@
           "Testing only x = 0 and reporting no maximum at all.",
           "Writing f(−2) = −4, by squaring only the 2 and keeping the minus sign."
         ],
-        "memory_tip": "Square the whole negative number, brackets included: (−2)² = 4, not −4. The bracket is what carries the sign into the square."
+        "memory_tip": "Square the negative number together with its bracket: (−2)² = 4, not −4. The bracket shows that the minus sign is squared too.",
+        "lines_compact": [
+          "For an absolute extremum on a closed interval,",
+          "evaluate f at every critical point AND at both endpoints.",
+          "At the critical point:   f(0) = 0² = 0",
+          "At the left endpoint:    f(−2) = (−2)² = 4",
+          "At the right endpoint:   f(2) = 2² = 4"
+        ]
       },
       {
         "id": "s3_compare",
@@ -142,12 +176,35 @@
         "mark_note": "Answer",
         "margin_note": "Fourth mark. Say that the maximum is reached at BOTH endpoints. An absolute maximum is a single VALUE but it may be attained at more than one point.",
         "lines": [
-          "Compare the list:  0,  4,  4",
-          "The smallest value is 0, reached at the interior point x = 0.",
-          "The largest value is 4, and it is reached at BOTH endpoints, x = −2 and x = 2.",
-          "So the minimum comes from the critical point and the maximum comes from the endpoints.",
           {
-            "text": "∴ absolute minimum = 0 at x = 0,  and absolute maximum = 4 at x = −2 and at x = 2",
+            "text": "(the three values found in step 2:",
+            "added": true
+          },
+          {
+            "text": "  f(0) = 0, f(−2) = 4 and f(2) = 4)",
+            "style": "indent",
+            "added": true
+          },
+          "Compare the list:  0,  4,  4",
+          {
+            "text": "(0 < 4)",
+            "added": true
+          },
+          "The smallest value is 0, reached at the interior point x = 0.",
+          "The largest value is 4, and it is reached",
+          "at BOTH endpoints, x = −2 and x = 2.",
+          "So the minimum comes from the critical point",
+          "and the maximum comes from the endpoints.",
+          {
+            "text": "∴ absolute minimum = 0 at x = 0,",
+            "style": "boxed"
+          },
+          {
+            "text": "and absolute maximum = 4 at x = −2",
+            "style": "boxed"
+          },
+          {
+            "text": "and at x = 2",
             "style": "boxed"
           }
         ],
@@ -179,7 +236,27 @@
           "Naming only x = 2 for the maximum and leaving out x = −2.",
           "Giving x = 0 as the minimum value instead of f(0) = 0 as the value."
         ],
-        "memory_tip": "The maximum VALUE is one number, but the points where it is reached can be several. Report the value first, then every x that gives it."
+        "memory_tip": "The maximum VALUE is one number, but the points where it is reached can be several. Report the value first, then every x that gives it.",
+        "lines_compact": [
+          "Compare the list:  0,  4,  4",
+          "The smallest value is 0, reached at the interior point x = 0.",
+          "The largest value is 4, and it is reached",
+          "at BOTH endpoints, x = −2 and x = 2.",
+          "So the minimum comes from the critical point",
+          "and the maximum comes from the endpoints.",
+          {
+            "text": "∴ absolute minimum = 0 at x = 0,",
+            "style": "boxed"
+          },
+          {
+            "text": "and absolute maximum = 4 at x = −2",
+            "style": "boxed"
+          },
+          {
+            "text": "and at x = 2",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

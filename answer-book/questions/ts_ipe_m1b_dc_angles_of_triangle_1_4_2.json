@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 6 DIRECTION COSINES AND DIRECTION RATIOS, Long Answer question 5, book p.181. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The even 2+2+2+2 split rewards the four moves the answer actually takes — the six sets of direction ratios once, then one angle each — because the three angle calculations are the same length and none of them is harder than the others. This book prints almost no exam-appearance years, so appearances[] is empty; the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section C runs Q19 to Q21 at 8 marks each, answer any 2 of 3, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 6 DIRECTION COSINES AND DIRECTION RATIOS, Long Answer question 5, book p.181. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The even 2+2+2+2 split rewards the four moves the answer actually takes — the six sets of direction ratios once, then one angle each — because the three angle calculations are the same length and none of them is harder than the others. This book prints almost no exam-appearance years, so appearances[] is empty; the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section C runs Q19 to Q21 at 8 marks each, answer any 2 of 3, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say which direction ratios you write at each vertex, which formula gives each angle, and how you check the three answers at the end.",
   "answer": {
@@ -54,7 +54,7 @@
         "marks": 2,
         "mark_note": "Method",
         "margin_note": "First two marks. An angle of the triangle is the angle between the two sides that leave that vertex, so at each vertex subtract the vertex itself from the other two points. Write all six sets before starting any angle.",
-        "memory_tip": "Always subtract the vertex you are standing at: the d.r's of AB are B − A, not A − B.",
+        "memory_tip": "At each vertex, subtract that vertex from both other points: at A use B − A and C − A.",
         "lines": [
           {
             "text": "Sol:",
@@ -62,14 +62,25 @@
           },
           "Given A = (1, 4, 2), B = (−2, 1, 2),",
           "C = (2, 3, −4)",
+          "(the angle at a vertex is between the two sides",
+          {
+            "text": "  from that vertex)",
+            "style": "indent"
+          },
           "∠A is between the sides AB and AC:",
+          "(B − A = (−2 − 1, 1 − 4, 2 − 2))",
           "d.r's of AB = (−2−1, 1−4, 2−2) = (−3, −3, 0)",
+          "(C − A = (2 − 1, 3 − 4, −4 − 2))",
           "d.r's of AC = (2−1, 3−4, −4−2) = (1, −1, −6)",
           "∠B is between the sides BA and BC:",
+          "(BA is AB reversed, so every sign changes)",
           "d.r's of BA = (3, 3, 0)",
+          "(C − B = (2 − (−2), 3 − 1, −4 − 2))",
           "d.r's of BC = (2+2, 3−1, −4−2) = (4, 2, −6)",
           "∠C is between the sides CA and CB:",
+          "(CA is AC reversed)",
           "d.r's of CA = (−1, 1, 6)",
+          "(CB is BC reversed)",
           "d.r's of CB = (−4, −2, 6)"
         ],
         "recall": {
@@ -97,7 +108,7 @@
         "why": "The angle at a vertex is the angle between the two rays that leave it, so both sets of direction ratios must point away from that vertex. Reversing one of them would give the supplement of the angle wanted.",
         "common_mistakes": [
           "Using AB and BC for ∠A, which are not both at A.",
-          "Subtracting the other point from the vertex instead of the vertex from the other point."
+          "Subtracting the wrong way round for only one of the two sides at a vertex, which gives the supplement of the angle."
         ]
       },
       {
@@ -109,6 +120,15 @@
         "margin_note": "Two marks. The top of the fraction comes out as 0, so the angle is a right angle and the roots underneath never have to be worked out. Say so at once.",
         "memory_tip": "A zero on the top means a right angle — stop there, the bottom cannot change it.",
         "lines": [
+          {
+            "text": "(the cosine of the angle between two lines from their",
+            "added": true
+          },
+          {
+            "text": "  direction ratios)",
+            "style": "indent",
+            "added": true
+          },
           "At A take (a₁, b₁, c₁) = (−3, −3, 0) and",
           "(a₂, b₂, c₂) = (1, −1, −6). Then",
           "cos A = (a₁a₂ + b₁b₂ + c₁c₂) /",
@@ -116,6 +136,10 @@
           "a₁a₂ + b₁b₂ + c₁c₂",
           "= (−3)(1) + (−3)(−1) + 0(−6)",
           "= −3 + 3 + 0 = 0",
+          {
+            "text": "(the numerator is 0, so the cosine is 0)",
+            "added": true
+          },
           "∴ cos A = 0  ⇒  ∠A = 90°"
         ],
         "recall": {
@@ -140,10 +164,20 @@
             "a one a two plus b one b two"
           ]
         },
-        "why": "The sign is kept here and no modulus is used, because an interior angle of a triangle can be obtuse and a modulus would report its acute partner instead. In this triangle all three sums turn out to be zero or positive, so all three angles are right or acute.",
+        "why": "The sign is kept here and no modulus is used, because an interior angle of a triangle can be obtuse and a modulus would give its supplement (180° minus the angle) instead. In this triangle all three sums turn out to be zero or positive, so all three angles are right or acute.",
         "common_mistakes": [
           "Putting a modulus on the top line — a triangle's own angle can be obtuse, so the sign is kept.",
           "Reading a zero numerator as an angle of 0°; a zero dot product means 90°."
+        ],
+        "lines_compact": [
+          "At A take (a₁, b₁, c₁) = (−3, −3, 0) and",
+          "(a₂, b₂, c₂) = (1, −1, −6). Then",
+          "cos A = (a₁a₂ + b₁b₂ + c₁c₂) /",
+          "        √((a₁²+b₁²+c₁²)(a₂²+b₂²+c₂²))",
+          "a₁a₂ + b₁b₂ + c₁c₂",
+          "= (−3)(1) + (−3)(−1) + 0(−6)",
+          "= −3 + 3 + 0 = 0",
+          "∴ cos A = 0  ⇒  ∠A = 90°"
         ]
       },
       {
@@ -155,13 +189,33 @@
         "margin_note": "Two marks. Both roots simplify: √18 = 3√2 and √56 = 2√14. Rationalise the denominator so the answer reads 3√7/14.",
         "memory_tip": "√28 = 2√7, so 3/(2√7) becomes 3√7/14 after rationalising.",
         "lines": [
+          {
+            "text": "(the numerator of cos B)",
+            "added": true
+          },
           "At B take (a₁, b₁, c₁) = (3, 3, 0) and",
           "(a₂, b₂, c₂) = (4, 2, −6). Then",
           "a₁a₂ + b₁b₂ + c₁c₂ = 3(4) + 3(2) + 0(−6)",
           "= 12 + 6 + 0 = 18",
+          {
+            "text": "(√18 = √(9 × 2) = 3√2)",
+            "added": true
+          },
           "√(a₁²+b₁²+c₁²) = √(9 + 9 + 0) = 3√2",
+          {
+            "text": "(√56 = √(4 × 14) = 2√14)",
+            "added": true
+          },
           "√(a₂²+b₂²+c₂²) = √(16 + 4 + 36) = 2√14",
+          {
+            "text": "(3 × 2 = 6 and √2 · √14 = √28)",
+            "added": true
+          },
           "∴ cos B = 18/(3√2 × 2√14) = 18/(6√28)",
+          {
+            "text": "(18/6 = 3; √28 = 2√7; multiply top and bottom by √7)",
+            "added": true
+          },
           "= 3/√28 = 3/(2√7) = 3√7/14",
           "⇒ ∠B = Cos⁻¹(3√7/14)"
         ],
@@ -187,10 +241,21 @@
             "three root seven by fourteen"
           ]
         },
-        "why": "Rationalising is what makes ∠B and ∠C comparable at the end: both cosines then sit over 14, and the check reads straight off the two answers.",
+        "why": "Rationalising puts both cosines over 14, which makes the final check sin B = cos C easier to write.",
         "common_mistakes": [
           "Leaving √28 unsimplified and never reaching the 3√7/14 form.",
           "Giving a decimal value instead of the inverse cosine."
+        ],
+        "lines_compact": [
+          "At B take (a₁, b₁, c₁) = (3, 3, 0) and",
+          "(a₂, b₂, c₂) = (4, 2, −6). Then",
+          "a₁a₂ + b₁b₂ + c₁c₂ = 3(4) + 3(2) + 0(−6)",
+          "= 12 + 6 + 0 = 18",
+          "√(a₁²+b₁²+c₁²) = √(9 + 9 + 0) = 3√2",
+          "√(a₂²+b₂²+c₂²) = √(16 + 4 + 36) = 2√14",
+          "∴ cos B = 18/(3√2 × 2√14) = 18/(6√28)",
+          "= 3/√28 = 3/(2√7) = 3√7/14",
+          "⇒ ∠B = Cos⁻¹(3√7/14)"
         ]
       },
       {
@@ -202,18 +267,50 @@
         "margin_note": "The last two marks. ∠C comes out as the complement of ∠B, which is exactly what a right angle at A forces. Write that check on the page — it is the natural test that all three answers are right.",
         "memory_tip": "∠A is 90°, so ∠B and ∠C must add to 90°: check that cos C equals sin B.",
         "lines": [
+          {
+            "text": "(the numerator of cos C)",
+            "added": true
+          },
           "At C take (a₁, b₁, c₁) = (−1, 1, 6) and",
           "(a₂, b₂, c₂) = (−4, −2, 6). Then",
           "a₁a₂ + b₁b₂ + c₁c₂",
           "= (−1)(−4) + 1(−2) + 6(6) = 4 − 2 + 36 = 38",
+          {
+            "text": "(1 + 1 + 36 = 38)",
+            "added": true
+          },
           "√(a₁²+b₁²+c₁²) = √(1 + 1 + 36) = √38",
+          {
+            "text": "(16 + 4 + 36 = 56 again)",
+            "added": true
+          },
           "√(a₂²+b₂²+c₂²) = √(16 + 4 + 36) = 2√14",
+          {
+            "text": "(38/√38 = √38)",
+            "added": true
+          },
           "∴ cos C = 38/(√38 × 2√14) = √38/(2√14)",
+          {
+            "text": "(multiply top and bottom by √14; 2 × 14 = 28)",
+            "added": true
+          },
           "= √38 × √14/28 = √532/28",
+          {
+            "text": "(532 = 4 × 133, so √532 = 2√133)",
+            "added": true
+          },
           "= 2√133/28 = √133/14",
           "⇒ ∠C = Cos⁻¹(√133/14)",
+          {
+            "text": "(1 − 63/196 = 133/196, and the square root of 196 is 14)",
+            "added": true
+          },
           "Check: cos B = 3√7/14, so cos²B = 63/196",
           "and sin B = √(1 − 63/196) = √133/14 = cos C",
+          {
+            "text": "(cos C = sin B = cos(90° − B), and both angles are acute)",
+            "added": true
+          },
           "⇒ ∠C = 90° − ∠B",
           "∴ ∠A + ∠B + ∠C = 90° + ∠B + 90° − ∠B = 180°",
           {
@@ -247,10 +344,34 @@
             "add to one eighty"
           ]
         },
-        "why": "The three angles of any triangle add to 180°, so the sum is a real test of the working and not an extra line. Here it closes exactly, because cos C equals sin B and ∠A is a right angle.",
+        "why": "The three angles of any triangle add to 180°, so the sum is a real test of the working and not an extra line. Here the sum is exactly 180°, because cos C equals sin B and ∠A is a right angle.",
         "common_mistakes": [
           "Stopping after ∠C without checking that the three angles add to 180°.",
           "Losing the factor 2 when simplifying √532 to 2√133."
+        ],
+        "lines_compact": [
+          "At C take (a₁, b₁, c₁) = (−1, 1, 6) and",
+          "(a₂, b₂, c₂) = (−4, −2, 6). Then",
+          "a₁a₂ + b₁b₂ + c₁c₂",
+          "= (−1)(−4) + 1(−2) + 6(6) = 4 − 2 + 36 = 38",
+          "√(a₁²+b₁²+c₁²) = √(1 + 1 + 36) = √38",
+          "√(a₂²+b₂²+c₂²) = √(16 + 4 + 36) = 2√14",
+          "∴ cos C = 38/(√38 × 2√14) = √38/(2√14)",
+          "= √38 × √14/28 = √532/28",
+          "= 2√133/28 = √133/14",
+          "⇒ ∠C = Cos⁻¹(√133/14)",
+          "Check: cos B = 3√7/14, so cos²B = 63/196",
+          "and sin B = √(1 − 63/196) = √133/14 = cos C",
+          "⇒ ∠C = 90° − ∠B",
+          "∴ ∠A + ∠B + ∠C = 90° + ∠B + 90° − ∠B = 180°",
+          {
+            "text": "∴ ∠A = 90°, ∠B = Cos⁻¹(3√7/14)",
+            "style": "boxed"
+          },
+          {
+            "text": "∠C = Cos⁻¹(√133/14)",
+            "style": "boxed"
+          }
         ]
       }
     ]

@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Very Short Answer question 5, book p.140. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The 1+1 split gives the first mark for the two intercepts p sec α and p cosec α, and the second for the area and the double-angle simplification. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Answer checked by a second route: writing the line as x cos α + y sin α − p = 0 and applying Δ = c²/(2|ab|) gives p²/(2|sin α cos α|) = p²/|sin 2α|, which matches the intercept route used here."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Very Short Answer question 5, book p.140. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The 1+1 split gives the first mark for the two intercepts p sec α and p cosec α, and the second for the area and the double-angle simplification. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Answer checked by a second route: writing the line as x cos α + y sin α − p = 0 and applying Δ = c²/(2|ab|) gives p²/(2|sin α cos α|) = p²/|sin 2α|, which matches the intercept route used here. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say how you get each intercept, and which identity turns the answer into sin 2α.",
   "answer": {
@@ -53,9 +53,16 @@
             "style": "heading"
           },
           "Given line is x cos α + y sin α = p",
+          "(p ≠ 0 as well, or the line passes through the origin",
+          {
+            "text": "  and there is no triangle)",
+            "style": "indent"
+          },
           "Here cos α ≠ 0 and sin α ≠ 0,",
           "else the line misses one axis.",
+          "(on the x-axis y = 0; 1/cos α = sec α)",
           "Put y = 0:  x cos α = p  ⇒  x = p sec α",
+          "(on the y-axis x = 0; 1/sin α = cosec α)",
           "Put x = 0:  y sin α = p  ⇒  y = p cosec α"
         ],
         "recall": {
@@ -80,7 +87,7 @@
             "intercept"
           ]
         },
-        "why": "The triangle has its right angle at the origin, and its two perpendicular sides are exactly these two intercepts, so finding them is the whole set-up.",
+        "why": "The triangle has its right angle at the origin, and its two perpendicular sides are exactly these two intercepts, so finding them is the set-up.",
         "common_mistakes": [
           "Writing the x-intercept as p cos α instead of p/cos α.",
           "Swapping the two intercepts."
@@ -92,13 +99,38 @@
         "label": "Compute the area",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Second mark. Half the product of the intercepts, in modulus, then 2 sin α cos α = sin 2α closes it.",
-        "memory_tip": "2 sin α cos α = sin 2α. The 2 from that identity meets the 2 in one half and clears the fraction.",
+        "margin_note": "Second mark. Half the product of the intercepts, in modulus, then use 2 sin α cos α = sin 2α.",
+        "memory_tip": "2 sin α cos α = sin 2α. The 2 in that identity cancels the 2 from the one half.",
         "lines": [
+          {
+            "text": "(the triangle has its right angle at the origin,",
+            "added": true
+          },
+          {
+            "text": "  and its two legs are the intercepts)",
+            "style": "indent",
+            "added": true
+          },
           "Δ = ½ |x-intercept × y-intercept|",
+          {
+            "text": "(put the intercepts p sec α and p cosec α)",
+            "added": true
+          },
           "= ½ |p sec α · p cosec α|",
+          {
+            "text": "(sec α · cosec α = 1/(sin α cos α), and p · p = p²)",
+            "added": true
+          },
           "= p²/(2 |sin α cos α|)",
+          {
+            "text": "(2|sin α cos α| = |2 sin α cos α|)",
+            "added": true
+          },
           "= p²/|2 sin α cos α|",
+          {
+            "text": "(2 sin α cos α = sin 2α)",
+            "added": true
+          },
           {
             "text": "∴ Δ = p²/|sin 2α| sq.units",
             "style": "boxed"
@@ -130,6 +162,16 @@
         "common_mistakes": [
           "Dropping the modulus and reporting a negative area for an obtuse α.",
           "Writing sin 2α as 2 sin α and losing the cos α."
+        ],
+        "lines_compact": [
+          "Δ = ½ |x-intercept × y-intercept|",
+          "= ½ |p sec α · p cosec α|",
+          "= p²/(2 |sin α cos α|)",
+          "= p²/|2 sin α cos α|",
+          {
+            "text": "∴ Δ = p²/|sin 2α| sq.units",
+            "style": "boxed"
+          }
         ]
       }
     ]

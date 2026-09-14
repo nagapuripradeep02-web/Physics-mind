@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 5 THREE DIMENSIONAL COORDINATES, Very Short Answer question 1, book p.175. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The 1+1 split rewards writing the centroid formula for a triangle first, and reading the three averages off the substitution second — the shape this bank uses for every Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty; the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 5 THREE DIMENSIONAL COORDINATES, Very Short Answer question 1, book p.175. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The 1+1 split rewards writing the centroid formula for a triangle first, and reading the three averages off the substitution second — the shape this bank uses for every Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty; the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say what the centroid of a triangle is in terms of its vertices, and what you do with each coordinate.",
   "answer": {
@@ -54,6 +54,11 @@
           },
           "We take A = (5, 4, 6), B = (1, −1, 3),",
           "C = (4, 3, 2)",
+          "(the centroid of a triangle is the average",
+          {
+            "text": "  of its three vertices)",
+            "style": "indent"
+          },
           "Centroid of triangle ABC is",
           "G = ((x₁+x₂+x₃)/3, (y₁+y₂+y₃)/3, (z₁+z₂+z₃)/3)"
         ],
@@ -94,8 +99,20 @@
         "margin_note": "Second mark. Add each column and divide by 3. Only the y column divides exactly, so two of the three answers stay as fractions.",
         "memory_tip": "Add down each column, then divide by 3. Keep 10/3 and 11/3 as fractions.",
         "lines": [
+          {
+            "text": "(put the three vertices)",
+            "added": true
+          },
           "⇒ G = ((5+1+4)/3, (4−1+3)/3, (6+3+2)/3)",
+          {
+            "text": "(5 + 1 + 4 = 10, 4 − 1 + 3 = 6, 6 + 3 + 2 = 11)",
+            "added": true
+          },
           "= (10/3, 6/3, 11/3)",
+          {
+            "text": "(6/3 = 2)",
+            "added": true
+          },
           {
             "text": "∴ Centroid G = (10/3, 2, 11/3)",
             "style": "boxed"
@@ -127,6 +144,14 @@
         "common_mistakes": [
           "Writing 10/3 and 11/3 as rounded decimals.",
           "Dropping the minus sign on −1 while adding the y column."
+        ],
+        "lines_compact": [
+          "⇒ G = ((5+1+4)/3, (4−1+3)/3, (6+3+2)/3)",
+          "= (10/3, 6/3, 11/3)",
+          {
+            "text": "∴ Centroid G = (10/3, 2, 11/3)",
+            "style": "boxed"
+          }
         ]
       }
     ]

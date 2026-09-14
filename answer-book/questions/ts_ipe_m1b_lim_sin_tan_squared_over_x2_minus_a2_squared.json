@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.185, chapter 8 LIMITS, Short & Very Short Answer question 11. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.185, chapter 8 LIMITS, Short & Very Short Answer question 11. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say how many powers of (x − a) sit above and below, and what is left over.",
   "answer": {
@@ -51,11 +51,27 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "At x = a both the numerator and the denominator are 0, so the form is 0/0. Take a ≠ 0.",
-          "The numerator sin(x − a) · tan²(x − a) behaves like (x − a)³ near x = a: three powers.",
-          "The denominator is  (x² − a²)² = (x − a)²(x + a)²:  two powers of (x − a).",
+          "(sin 0 = 0, tan 0 = 0 and a² − a² = 0)",
+          "At x = a both the numerator and the denominator are 0,",
+          "so the form is 0/0. Take a ≠ 0.",
+          "(sin t and tan t are close to t when t = x − a is close to 0)",
+          "The numerator sin(x − a) · tan²(x − a) behaves like",
+          "(x − a)³ near x = a: three powers.",
+          "(x² − a² = (x − a)(x + a), and squaring",
+          {
+            "text": "  squares both factors)",
+            "style": "indent"
+          },
+          "The denominator is  (x² − a²)² = (x − a)²(x + a)²:",
+          "two powers of (x − a).",
+          "((x − a)³ = (x − a) · (x − a)² above,",
+          {
+            "text": "  and (x − a)² cancels with the denominator)",
+            "style": "indent"
+          },
           "So write the expression as",
-          "[sin(x − a)/(x − a)] · [tan(x − a)/(x − a)]² · (x − a)/(x + a)²"
+          "[sin(x − a)/(x − a)] · [tan(x − a)/(x − a)]²",
+          "· (x − a)/(x + a)²"
         ],
         "recall": {
           "credit": "say_it",
@@ -79,7 +95,7 @@
             "x minus a"
           ]
         },
-        "why": "Whether such a limit is a number or 0 is settled entirely by the count of factors, so counting before cancelling is what decides the whole answer. Here the count is 3 above against 2 below.",
+        "why": "Whether such a limit is 0, a non-zero number, or not a finite number is decided by the count of factors, so count them before cancelling. Here the count is 3 above against 2 below.",
         "common_mistakes": [
           "Reading (x² − a²)² as carrying four powers of (x − a).",
           "Cancelling all three powers above against the two below and answering 1/(2a)²."
@@ -94,13 +110,41 @@
         "mark_note": "Answer",
         "margin_note": "Second mark. The two bracketed quotients tend to 1, and the leftover factor (x − a)/(x + a)² tends to 0/(2a)². The answer is 0.",
         "lines": [
+          {
+            "text": "(the standard limits (sin t)/t → 1",
+            "added": true
+          },
+          {
+            "text": "  and (tan t)/t → 1 with t = x − a)",
+            "style": "indent",
+            "added": true
+          },
           "As x → a, the angle (x − a) → 0, so",
-          "lim sin(x − a)/(x − a) = 1   and   lim [tan(x − a)/(x − a)]² = 1² = 1",
-          "The remaining factor is continuous at x = a, so substitute x = a:",
+          "lim sin(x − a)/(x − a) = 1",
+          "and   lim [tan(x − a)/(x − a)]² = 1² = 1",
+          "The remaining factor is continuous at x = a,",
+          "so substitute x = a:",
+          {
+            "text": "(x − a → 0, and (x + a)² → (2a)² = 4a²,",
+            "added": true
+          },
+          {
+            "text": "  which is not 0 because a ≠ 0)",
+            "style": "indent",
+            "added": true
+          },
           "(x − a)/(x + a)² → 0/(2a)² = 0",
+          {
+            "text": "(multiply the three limits)",
+            "added": true
+          },
           "∴ the limit = 1 · 1 · 0",
           {
-            "text": "∴ lim(x → a) (sin(x − a) · tan²(x − a))/((x² − a²)²) = 0,  a ≠ 0",
+            "text": "∴ lim(x → a) (sin(x − a) · tan²(x − a))",
+            "style": "boxed"
+          },
+          {
+            "text": "/((x² − a²)²) = 0,  a ≠ 0",
             "style": "boxed"
           }
         ],
@@ -126,14 +170,31 @@
             "goes to zero"
           ]
         },
-        "why": "The numerator is of higher order than the denominator, so the quotient is driven to 0 rather than to a finite non-zero value. The value checks numerically: with a = 2 the expression is 0.000622 at x = 2.01 and 0.0000625 at x = 2.001, falling by a factor of ten each time, exactly as (x − a)/(2a)² = (x − a)/16 does.",
+        "why": "The numerator is of higher order than the denominator, so the quotient approaches 0 rather than a finite non-zero value. The value checks numerically: with a = 2 the expression is 0.000622 at x = 2.01 and 0.0000625 at x = 2.001, falling by a factor of about ten each time, as (x − a)/(x + a)² does.",
         "common_mistakes": [
           "Calling (x − a)/(x + a)² indeterminate at x = a; only the numerator is 0 there, the denominator is (2a)² ≠ 0, so the factor is simply 0.",
           "Quoting tan(x − a)/(x − a) → 0 because tan 0 = 0, instead of using the standard limit, which is 1."
         ],
-        "memory_tip": "When the numerator carries more powers of (x − a) than the denominator, the limit is 0. Only equal counts give a non-zero number."
+        "memory_tip": "When the numerator carries more powers of (x − a) than the denominator, the limit is 0. Only equal counts give a non-zero number.",
+        "lines_compact": [
+          "As x → a, the angle (x − a) → 0, so",
+          "lim sin(x − a)/(x − a) = 1",
+          "and   lim [tan(x − a)/(x − a)]² = 1² = 1",
+          "The remaining factor is continuous at x = a,",
+          "so substitute x = a:",
+          "(x − a)/(x + a)² → 0/(2a)² = 0",
+          "∴ the limit = 1 · 1 · 0",
+          {
+            "text": "∴ lim(x → a) (sin(x − a) · tan²(x − a))",
+            "style": "boxed"
+          },
+          {
+            "text": "/((x² − a²)²) = 0,  a ≠ 0",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },
-  "insider_note": "Count powers of (x − a): three on top, two below, so one survives and drives the answer to 0. A limit of 0 is the correct answer here, not a sign of a mistake."
+  "insider_note": "Count powers of (x − a): three on top, two below, so one factor is left, and it makes the limit 0. A limit of 0 is the correct answer here, not a sign of a mistake."
 }

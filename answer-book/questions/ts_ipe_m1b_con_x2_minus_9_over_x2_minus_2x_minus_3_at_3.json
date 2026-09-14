@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.189, chapter 8 LIMITS AND CONTINUITY, the CONTINUITY sub-section, Short Answer question 3. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4 Marks over this CONTINUITY sub-section) but no per-step allocation on any answer. The 1+1+1+1 shape follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. ⚠ THE PRINTED STEM IS DEFECTIVE IN TWO WAYS, AND BOTH ARE REPAIRED HERE, NOT SILENTLY. (1) BRACKETS: the book prints the function as (x² − 9)/x² − 2x − 3), with an unmatched closing bracket and no opening bracket around the denominator. Read literally that is (x² − 9)/x² − 2x − 3, a different function. The reading authored here is the denominator (x² − 2x − 3). (2) THE POINT: the book never names the point at which continuity is to be tested. The point authored here is x = 3. Both repairs are self-confirming from the book's own data: (x² − 9)/(x² − 2x − 3) = (x − 3)(x + 3)/[(x − 3)(x + 1)] = (x + 3)/(x + 1), which is exactly 6/4 = 1.5 at x = 3 — the value the book itself assigns to f(3). A stem whose given f(3) equals the limit of the bracketed reading at x = 3 can only be that reading tested at that point. Note also that x = 3 is the only point of the stated domain 0 < x < 5 where the denominator vanishes: its other root, x = −1, lies outside that interval, which is why the domain is stated as it is."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.189, chapter 8 LIMITS AND CONTINUITY, the CONTINUITY sub-section, Short Answer question 3. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4 Marks over this CONTINUITY sub-section) but no per-step allocation on any answer. The 1+1+1+1 shape follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. ⚠ THE PRINTED STEM IS DEFECTIVE IN TWO WAYS, AND BOTH ARE REPAIRED HERE, NOT SILENTLY. (1) BRACKETS: the book prints the function as (x² − 9)/x² − 2x − 3), with an unmatched closing bracket and no opening bracket around the denominator. Read literally that is (x² − 9)/x² − 2x − 3, a different function. The reading authored here is the denominator (x² − 2x − 3). (2) THE POINT: the book never names the point at which continuity is to be tested. The point authored here is x = 3. Both repairs are self-confirming from the book's own data: (x² − 9)/(x² − 2x − 3) = (x − 3)(x + 3)/[(x − 3)(x + 1)] = (x + 3)/(x + 1), which is exactly 6/4 = 1.5 at x = 3 — the value the book itself assigns to f(3). A stem whose given f(3) equals the limit of the bracketed reading at x = 3 can only be that reading tested at that point. Note also that x = 3 is the only point of the stated domain 0 < x < 5 where the denominator vanishes: its other root, x = −1, lies outside that interval, which is why the domain is stated as it is. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say why you cannot just substitute 3, and what you would do to the numerator and the denominator first.",
   "answer": {
@@ -60,10 +60,15 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given f(x) = (x² − 9)/(x² − 2x − 3)   for 0 < x < 5, x ≠ 3,   and f(3) = 1.5",
+          "Given f(x) = (x² − 9)/(x² − 2x − 3)   for 0 < x < 5, x ≠ 3,",
+          "and f(3) = 1.5",
+          "(the definition of continuity at x = 3)",
           "f is continuous at x = 3 if   lim(x → 3) f(x) = f(3)",
-          "At x = 3:  numerator = 3² − 9 = 0  and  denominator = 3² − 2(3) − 3 = 0",
-          "So direct substitution gives 0/0, an indeterminate form, and the limit must be worked out."
+          "(3² = 9; 2(3) = 6, and 9 − 6 − 3 = 0)",
+          "At x = 3:  numerator = 3² − 9 = 0",
+          "and  denominator = 3² − 2(3) − 3 = 0",
+          "So direct substitution gives 0/0, an indeterminate form,",
+          "and the limit must be worked out."
         ],
         "recall": {
           "credit": "say_it",
@@ -99,12 +104,28 @@
         "label": "Factorise the numerator and the denominator",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Second mark. Both factorisations must show the common factor (x − 3). Splitting the middle term −2x as −3x + x is the quickest route for the denominator.",
+        "margin_note": "Second mark. Both factorisations must show the common factor (x − 3). Splitting the middle term −2x as −3x + x is a quick way to factorise the denominator.",
         "memory_tip": "For x² − 2x − 3 look for two numbers with product −3 and sum −2: they are −3 and +1, so the factors are (x − 3)(x + 1).",
         "lines": [
+          {
+            "text": "(a² − b² = (a − b)(a + b) with a = x and b = 3)",
+            "added": true
+          },
           "Numerator:   x² − 9 = x² − 3² = (x − 3)(x + 3)",
+          {
+            "text": "(split −2x as −3x + x, since (−3)(1) = −3)",
+            "added": true
+          },
           "Denominator:   x² − 2x − 3 = x² − 3x + x − 3",
+          {
+            "text": "(take out x, then 1, then the common factor x − 3)",
+            "added": true
+          },
           "= x(x − 3) + 1(x − 3) = (x − 3)(x + 1)",
+          {
+            "text": "(put both factorisations into f(x))",
+            "added": true
+          },
           "∴ f(x) = (x − 3)(x + 3) / [(x − 3)(x + 1)]   for x ≠ 3"
         ],
         "recall": {
@@ -133,6 +154,12 @@
         "common_mistakes": [
           "Factorising x² − 2x − 3 as (x + 3)(x − 1), which multiplies out to x² + 2x − 3.",
           "Writing x² − 9 as (x − 3)²."
+        ],
+        "lines_compact": [
+          "Numerator:   x² − 9 = x² − 3² = (x − 3)(x + 3)",
+          "Denominator:   x² − 2x − 3 = x² − 3x + x − 3",
+          "= x(x − 3) + 1(x − 3) = (x − 3)(x + 1)",
+          "∴ f(x) = (x − 3)(x + 3) / [(x − 3)(x + 1)]   for x ≠ 3"
         ]
       },
       {
@@ -141,12 +168,22 @@
         "label": "Cancel and take the limit",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Third mark. The cancellation is legal only because x ≠ 3 inside a limit at 3 — the limit never uses the value at the point itself. After cancelling, the value can simply be substituted.",
+        "margin_note": "Third mark. The cancellation is allowed because x ≠ 3 inside a limit at 3 — the limit does not use the value at the point itself. After cancelling, the value can simply be substituted.",
         "memory_tip": "In lim(x → 3), x is near 3 but never equal to 3, so a factor of (x − 3) is never zero and may be cancelled.",
         "lines": [
-          "In lim(x → 3), x is close to 3 but x ≠ 3, so (x − 3) ≠ 0 and it cancels:",
+          "In lim(x → 3), x is close to 3 but x ≠ 3, so (x − 3) ≠ 0",
+          "and it cancels:",
+          {
+            "text": "(cancel x − 3 from the top and the bottom)",
+            "added": true
+          },
           "f(x) = (x + 3)/(x + 1)   for 0 < x < 5, x ≠ 3",
-          "The remaining denominator x + 1 is 0 only at x = −1, which is outside 0 < x < 5",
+          "The remaining denominator x + 1 is 0 only at x = −1,",
+          "which is outside 0 < x < 5",
+          {
+            "text": "((x + 3)/(x + 1) is continuous at x = 3, so put x = 3)",
+            "added": true
+          },
           "∴ lim(x → 3) f(x) = (3 + 3)/(3 + 1) = 6/4 = 1.5"
         ],
         "recall": {
@@ -175,6 +212,14 @@
         "common_mistakes": [
           "Refusing to cancel because (x − 3) is 0 at x = 3, when the limit never uses that point.",
           "Writing 6/4 as 1.2 instead of 1.5."
+        ],
+        "lines_compact": [
+          "In lim(x → 3), x is close to 3 but x ≠ 3, so (x − 3) ≠ 0",
+          "and it cancels:",
+          "f(x) = (x + 3)/(x + 1)   for 0 < x < 5, x ≠ 3",
+          "The remaining denominator x + 1 is 0 only at x = −1,",
+          "which is outside 0 < x < 5",
+          "∴ lim(x → 3) f(x) = (3 + 3)/(3 + 1) = 6/4 = 1.5"
         ]
       },
       {
@@ -186,8 +231,21 @@
         "margin_note": "Last mark. The comparison line must be written out. Note that 6/4 and 1.5 are the same number written two ways — say so, rather than leaving the reader to check it.",
         "memory_tip": "Write the limit and the value side by side in one line before the conclusion — the examiner is looking for exactly that comparison.",
         "lines": [
+          {
+            "text": "(6/4 = 3/2, dividing the top and the bottom by 2;",
+            "added": true
+          },
+          {
+            "text": "  3/2 = 1.5)",
+            "style": "indent",
+            "added": true
+          },
           "lim(x → 3) f(x) = 6/4 = 3/2 = 1.5",
           "Given value:   f(3) = 1.5",
+          {
+            "text": "(both are 1.5)",
+            "added": true
+          },
           "∴ lim(x → 3) f(x) = f(3)",
           {
             "text": "∴ f is continuous at x = 3",
@@ -216,13 +274,22 @@
             "they are equal"
           ]
         },
-        "why": "The value f(3) = 1.5 was chosen precisely to close the gap the first formula leaves open, so the comparison is what shows the definition of continuity is met.",
+        "why": "The first formula has no value at x = 3, and the given f(3) = 1.5 equals the limit, so the comparison shows that the definition of continuity is met.",
         "common_mistakes": [
           "Stopping at the limit without comparing it with the given f(3).",
           "Reporting the answer as 3/2 without noting that the given value 1.5 is the same number."
+        ],
+        "lines_compact": [
+          "lim(x → 3) f(x) = 6/4 = 3/2 = 1.5",
+          "Given value:   f(3) = 1.5",
+          "∴ lim(x → 3) f(x) = f(3)",
+          {
+            "text": "∴ f is continuous at x = 3",
+            "style": "boxed"
+          }
         ]
       }
     ]
   },
-  "insider_note": "Both top and bottom vanish at 3, so factorise both and cancel the shared (x − 3). The surviving (x + 3)/(x + 1) gives 1.5, matching the given f(3) exactly."
+  "insider_note": "Both top and bottom vanish at 3, so factorise both and cancel the shared (x − 3). The expression left, (x + 3)/(x + 1), gives 1.5, which equals the given f(3)."
 }

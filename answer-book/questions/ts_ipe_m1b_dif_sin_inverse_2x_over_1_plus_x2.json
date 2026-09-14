@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.195, chapter 9 DIFFERENTIATION, Very Short Answer question 21. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer 2/(1 + x²) was checked against a numerical difference quotient before it was written: on the stated range both read 1.6000000 at x = 0.5, 1.3422819 at x = −0.7 and 1.1049724 at x = 0.9. A control was also run OUTSIDE that range: at x = 2 the difference quotient reads −0.4000000, which is −2/(1 + x²) and not the boxed answer — this is why the range −1 ≤ x ≤ 1 is written into the solution rather than left out."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.195, chapter 9 DIFFERENTIATION, Very Short Answer question 21. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer 2/(1 + x²) was checked against a numerical difference quotient before it was written: on the stated range both read 1.6000000 at x = 0.5, 1.3422819 at x = −0.7 and 1.1049724 at x = 0.9. A control was also run OUTSIDE that range: at x = 2 the difference quotient reads −0.4000000, which is −2/(1 + x²) and not the boxed answer — this is why the range −1 ≤ x ≤ 1 is written into the solution rather than left out. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — name the substitution and the double-angle identity it produces.",
   "answer": {
@@ -45,17 +45,28 @@
         "label": "Put x = tan θ and use sin 2θ = 2 tan θ/(1 + tan²θ)",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark, and the whole question. The 1 + x² in the denominator means the substitution x = tan θ. The expression 2 tan θ/(1 + tan²θ) is the tangent form of sin 2θ, so the inverse sine cancels a double angle here, not a triple one.",
+        "margin_note": "First mark, and the main step of the question. The 1 + x² in the denominator means the substitution x = tan θ. The expression 2 tan θ/(1 + tan²θ) is the tangent form of sin 2θ, so the inverse sine cancels a double angle here, not a triple one.",
         "memory_tip": "2x/(1 + x²) is sin 2θ, 2x/(1 − x²) is tan 2θ and (1 − x²)/(1 + x²) is cos 2θ — all three under the same substitution x = tan θ.",
         "lines": [
           {
             "text": "Sol:",
             "style": "heading"
           },
+          "(θ = Tan⁻¹x lies in (−π/2, π/2))",
           "Put x = tan θ, so θ = Tan⁻¹x",
-          "Then 2x/(1 + x²) = 2 tan θ/(1 + tan²θ) = sin 2θ   [double-angle identity]",
+          "(the double angle formula sin 2θ = 2 tan θ/(1 + tan²θ))",
+          "Then 2x/(1 + x²) = 2 tan θ/(1 + tan²θ) = sin 2θ",
+          "[double-angle identity]",
+          "(put sin 2θ in place of 2x/(1 + x²))",
           "∴ y = Sin⁻¹(sin 2θ)",
-          "Take θ in [−π/4, π/4], that is −1 ≤ x ≤ 1. Then 2θ lies in [−π/2, π/2], the principal range of Sin⁻¹, so",
+          "(Sin⁻¹(sin α) = α when α is in [−π/2, π/2];",
+          {
+            "text": "  tan(±π/4) = ±1)",
+            "style": "indent"
+          },
+          "Take θ in [−π/4, π/4], that is −1 ≤ x ≤ 1.",
+          "Then 2θ lies in [−π/2, π/2],",
+          "the principal range of Sin⁻¹, so",
           "y = 2θ = 2 Tan⁻¹x"
         ],
         "recall": {
@@ -80,11 +91,11 @@
             "two tan inverse x"
           ]
         },
-        "why": "The direct quotient-and-chain-rule route leaves √(1 − 4x²/(1 + x²)²), which only simplifies after clearing the fraction and factoring a perfect square. The substitution reaches 2 Tan⁻¹x in one line instead.",
+        "why": "The direct quotient-and-chain-rule method leaves √(1 − 4x²/(1 + x²)²), which only simplifies after clearing the fraction and factoring a perfect square. The substitution reaches 2 Tan⁻¹x in one line instead.",
         "common_mistakes": [
           "Substituting x = sin θ, which does not match the 1 + x² denominator.",
           "Reading 2x/(1 + x²) as tan 2θ, which is 2x/(1 − x²) and has a minus sign.",
-          "Omitting the range and writing y = 2 Tan⁻¹x for every x, when the sign is different for x > 1."
+          "Omitting the range and writing y = 2 Tan⁻¹x for every x, when y = π − 2 Tan⁻¹x for x > 1 and y = −π − 2 Tan⁻¹x for x < −1, so dy/dx changes sign for |x| > 1."
         ]
       },
       {
@@ -97,8 +108,20 @@
         "memory_tip": "Inverse tangent has 1 + x² and no root; inverse sine has √(1 − x²). The substitution decides which one the answer carries.",
         "lines": [
           "y = 2 Tan⁻¹x",
+          {
+            "text": "(the standard derivative of Tan⁻¹x)",
+            "added": true
+          },
           "We know d/dx(Tan⁻¹x) = 1/(1 + x²)",
+          {
+            "text": "(d/dx(2 Tan⁻¹x) = 2 · d/dx(Tan⁻¹x))",
+            "added": true
+          },
           "∴ dy/dx = 2 × 1/(1 + x²)",
+          {
+            "text": "(2 × 1/(1 + x²) = 2/(1 + x²), for −1 < x < 1)",
+            "added": true
+          },
           {
             "text": "∴ dy/dx = 2/(1 + x²)",
             "style": "boxed"
@@ -130,6 +153,15 @@
         "common_mistakes": [
           "Writing 2/√(1 − x²), by finishing with the Sin⁻¹ derivative because the question opened with sin⁻¹.",
           "Losing the factor 2 and answering 1/(1 + x²)."
+        ],
+        "lines_compact": [
+          "y = 2 Tan⁻¹x",
+          "We know d/dx(Tan⁻¹x) = 1/(1 + x²)",
+          "∴ dy/dx = 2 × 1/(1 + x²)",
+          {
+            "text": "∴ dy/dx = 2/(1 + x²)",
+            "style": "boxed"
+          }
         ]
       }
     ]

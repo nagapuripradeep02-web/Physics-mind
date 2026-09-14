@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.222, chapter 10 APPLICATIONS OF DERIVATIVES, the TANGENTS AND NORMALS sub-section, Short Answer question 13. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4M over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Note on notation: the stem is reproduced with the book's ASCII exponent, y = 2e^(−x/3); the working writes the same function in real Unicode as 2e⁻ˣ⁄³."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.222, chapter 10 APPLICATIONS OF DERIVATIVES, the TANGENTS AND NORMALS sub-section, Short Answer question 13. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4M over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Note on notation: the stem is reproduced with the book's ASCII exponent, y = 2e^(−x/3); the working writes the same function in real Unicode as 2e⁻ˣ⁄³. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — the point is not given, so say how you find it, then say the slope there and how you get the normal.",
   "answer": {
@@ -62,6 +62,7 @@
           "Given curve:  y = 2e⁻ˣ⁄³",
           "Every point on the y-axis has x = 0.",
           "Put x = 0 in the curve:",
+          "(e⁰ = 1)",
           "y = 2e⁰ = 2(1) = 2",
           "∴ the curve meets the y-axis at the point (0, 2)."
         ],
@@ -102,11 +103,29 @@
         "label": "Differentiate and find the slope at (0, 2)",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Second mark. The chain rule brings out the factor −1/3 from the exponent. Missing that factor is the commonest single error in this question.",
+        "margin_note": "Second mark. The chain rule brings out the factor −1/3 from the exponent. Do not miss that factor.",
         "lines": [
-          "Differentiate with respect to x. The chain rule gives the factor −1/3 from the exponent:",
+          "Differentiate with respect to x.",
+          "The chain rule gives the factor −1/3 from the exponent:",
+          {
+            "text": "(d/dx of eᵘ is eᵘ · du/dx with u = −x/3,",
+            "added": true
+          },
+          {
+            "text": "  and du/dx = −1/3)",
+            "style": "indent",
+            "added": true
+          },
           "dy/dx = 2 · e⁻ˣ⁄³ · (−1/3)",
+          {
+            "text": "(2 × (−1/3) = −2/3)",
+            "added": true
+          },
           "= (−2/3)e⁻ˣ⁄³",
+          {
+            "text": "(put 0 in place of x: e⁰ = 1)",
+            "added": true
+          },
           "At x = 0:   m = (−2/3)e⁰ = (−2/3)(1)",
           "∴ m = −2/3"
         ],
@@ -139,7 +158,15 @@
           "Using +1/3, taking the derivative of −x/3 as positive.",
           "Substituting x = 2 (the y-coordinate) instead of x = 0."
         ],
-        "memory_tip": "Differentiate the exponential as it stands, then multiply by the derivative of the exponent. Here the exponent −x/3 differentiates to −1/3."
+        "memory_tip": "Differentiate the exponential as it stands, then multiply by the derivative of the exponent. Here the exponent −x/3 differentiates to −1/3.",
+        "lines_compact": [
+          "Differentiate with respect to x.",
+          "The chain rule gives the factor −1/3 from the exponent:",
+          "dy/dx = 2 · e⁻ˣ⁄³ · (−1/3)",
+          "= (−2/3)e⁻ˣ⁄³",
+          "At x = 0:   m = (−2/3)e⁰ = (−2/3)(1)",
+          "∴ m = −2/3"
+        ]
       },
       {
         "id": "s3_tangent",
@@ -151,9 +178,21 @@
         "lines": [
           "Tangent at (x₁, y₁) with slope m:   y − y₁ = m(x − x₁)",
           "Here (x₁, y₁) = (0, 2) and m = −2/3:",
+          {
+            "text": "(put x₁ = 0, y₁ = 2 and m = −2/3)",
+            "added": true
+          },
           "y − 2 = (−2/3)(x − 0)",
+          {
+            "text": "(multiply both sides by 3)",
+            "added": true
+          },
           "3(y − 2) = −2x",
           "3y − 6 = −2x",
+          {
+            "text": "(move −2x to the left)",
+            "added": true
+          },
           "∴ 2x + 3y − 6 = 0"
         ],
         "recall": {
@@ -185,7 +224,15 @@
           "Writing 2x + 3y + 6 = 0, losing the sign when moving −6 across.",
           "Using the point (2, 0) instead of (0, 2)."
         ],
-        "memory_tip": "When the point sits on the y-axis, x₁ = 0 and the bracket (x − x₁) is simply x."
+        "memory_tip": "When the point sits on the y-axis, x₁ = 0 and the bracket (x − x₁) is simply x.",
+        "lines_compact": [
+          "Tangent at (x₁, y₁) with slope m:   y − y₁ = m(x − x₁)",
+          "Here (x₁, y₁) = (0, 2) and m = −2/3:",
+          "y − 2 = (−2/3)(x − 0)",
+          "3(y − 2) = −2x",
+          "3y − 6 = −2x",
+          "∴ 2x + 3y − 6 = 0"
+        ]
       },
       {
         "id": "s4_normal",
@@ -195,13 +242,39 @@
         "mark_note": "Answer",
         "margin_note": "Fourth mark. m = −2/3 is negative, so −1/m is positive: 3/2, not −3/2. Check the boxed normal at (0, 2): 0 − 4 + 4 = 0.",
         "lines": [
-          "The normal is perpendicular to the tangent at the same point,",
+          {
+            "text": "(−1 ÷ (−2/3) = −1 × (−3/2) = 3/2)",
+            "added": true
+          },
+          "The normal is perpendicular to the tangent",
+          "at the same point,",
           "so its slope is −1/m = −1 ÷ (−2/3) = 3/2.",
+          {
+            "text": "(the point-slope form with slope 3/2 at (0, 2))",
+            "added": true
+          },
           "y − 2 = (3/2)(x − 0)",
+          {
+            "text": "(multiply both sides by 2)",
+            "added": true
+          },
           "2(y − 2) = 3x",
           "2y − 4 = 3x",
           {
-            "text": "∴ Tangent: 2x + 3y − 6 = 0     Normal: 3x − 2y + 4 = 0",
+            "text": "(for the normal, move 2y − 4 to the right:",
+            "added": true
+          },
+          {
+            "text": "  0 = 3x − 2y + 4)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "∴ Tangent: 2x + 3y − 6 = 0",
+            "style": "boxed"
+          },
+          {
+            "text": "Normal: 3x − 2y + 4 = 0",
             "style": "boxed"
           }
         ],
@@ -234,7 +307,23 @@
           "Using 2/3 as the normal's slope, changing the sign but not inverting.",
           "Writing the normal through the origin because x₁ = 0, and dropping the y-intercept 2."
         ],
-        "memory_tip": "Multiply the two slopes together as a check. If the answer is not −1, one of them is wrong."
+        "memory_tip": "Multiply the two slopes together as a check. If the answer is not −1, one of them is wrong.",
+        "lines_compact": [
+          "The normal is perpendicular to the tangent",
+          "at the same point,",
+          "so its slope is −1/m = −1 ÷ (−2/3) = 3/2.",
+          "y − 2 = (3/2)(x − 0)",
+          "2(y − 2) = 3x",
+          "2y − 4 = 3x",
+          {
+            "text": "∴ Tangent: 2x + 3y − 6 = 0",
+            "style": "boxed"
+          },
+          {
+            "text": "Normal: 3x − 2y + 4 = 0",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

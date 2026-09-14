@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.193, chapter 9 DIFFERENTIATION, Very Short Answer question 10. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer was checked numerically before it was written: the central difference quotient reads 0.28029553 at x = 2.2 against 1/(x[1 + (log x)²]) = 0.28029553, and 0.05570580 at x = 5 against 0.05570580. The book prints the stem with a lower-case tan⁻¹; this bank writes principal-value inverse functions with a capital, so the stem here reads Tan⁻¹."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.193, chapter 9 DIFFERENTIATION, Very Short Answer question 10. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer was checked numerically before it was written: the central difference quotient reads 0.28029553 at x = 2.2 against 1/(x[1 + (log x)²]) = 0.28029553, and 0.05570580 at x = 5 against 0.05570580. The book prints the stem with a lower-case tan⁻¹; this bank writes principal-value inverse functions with a capital, so the stem here reads Tan⁻¹. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say what goes into the 1 + u² and what the inner derivative is.",
   "answer": {
@@ -45,15 +45,18 @@
         "label": "Apply the Tan⁻¹ rule",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. The u in 1 + u² is the whole inside function, log x, so the denominator is 1 + (log x)². It is not 1 + x².",
+        "margin_note": "First mark. The u in 1 + u² is the inside function, log x, so the denominator is 1 + (log x)². It is not 1 + x².",
         "memory_tip": "Whatever sits inside Tan⁻¹ is squared and added to 1. Copy the inside part exactly, then square it.",
         "lines": [
           {
             "text": "Sol:",
             "style": "heading"
           },
-          "Let y = Tan⁻¹(log x), where log is the natural logarithm and x > 0.",
+          "Let y = Tan⁻¹(log x), where log is the natural logarithm",
+          "and x > 0.",
+          "(the standard derivative of Tan⁻¹u with the chain rule)",
           "Take u = log x. Then d/dx(Tan⁻¹u) = 1/(1 + u²) · du/dx",
+          "(put u = log x, so u² = (log x)²)",
           "∴ dy/dx = 1/(1 + (log x)²) · d/dx(log x)"
         ],
         "recall": {
@@ -78,7 +81,7 @@
             "du by dx"
           ]
         },
-        "why": "Substituting the inside function into 1 + u² is the whole method mark. Writing 1 + x² is the standard slip and gives the derivative of a different function.",
+        "why": "Substituting the inside function into 1 + u² is the method mark. Writing 1 + x² is a common slip and gives the derivative of a different function.",
         "common_mistakes": [
           "Writing the denominator as 1 + x² instead of 1 + (log x)².",
           "Writing 1 + log x² , which squares x rather than log x."
@@ -91,10 +94,22 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. d/dx(log x) = 1/x, so an x joins the denominator. Both factors go under the line together.",
-        "memory_tip": "A log inside always produces a factor 1/x, so the final denominator carries an x as well as the bracket.",
+        "memory_tip": "log x inside produces a factor 1/x, so the final denominator carries an x as well as the bracket.",
         "lines": [
+          {
+            "text": "(the standard derivative of log x, for x > 0)",
+            "added": true
+          },
           "d/dx(log x) = 1/x",
+          {
+            "text": "(put 1/x in place of d/dx(log x))",
+            "added": true
+          },
           "∴ dy/dx = 1/(1 + (log x)²) · (1/x)",
+          {
+            "text": "(1/(1 + (log x)²) · 1/x = 1/(x[1 + (log x)²]))",
+            "added": true
+          },
           {
             "text": "∴ d/dx[Tan⁻¹(log x)] = 1/(x[1 + (log x)²])",
             "style": "boxed"
@@ -126,6 +141,14 @@
         "common_mistakes": [
           "Leaving out the 1/x factor.",
           "Putting the x in the numerator instead of the denominator."
+        ],
+        "lines_compact": [
+          "d/dx(log x) = 1/x",
+          "∴ dy/dx = 1/(1 + (log x)²) · (1/x)",
+          {
+            "text": "∴ d/dx[Tan⁻¹(log x)] = 1/(x[1 + (log x)²])",
+            "style": "boxed"
+          }
         ]
       }
     ]

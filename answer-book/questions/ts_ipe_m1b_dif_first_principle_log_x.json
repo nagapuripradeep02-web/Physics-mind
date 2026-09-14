@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.197, chapter 9 DIFFERENTIATION, Short Answer question 1(ix). **Only the question was taken. The solution, the step order and the mark split are this answer book’s own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK’S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. The book sets ONE shared instruction over nine sub-parts, so the stem here is that instruction written out for this sub-part alone; nothing in it was altered, and the question now reads on its own. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8 under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.197, chapter 9 DIFFERENTIATION, Short Answer question 1(ix). **Only the question was taken. The solution, the step order and the mark split are this answer book’s own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK’S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. The book sets ONE shared instruction over nine sub-parts, so the stem here is that instruction written out for this sub-part alone; nothing in it was altered, and the question now reads on its own. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8 under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say how you combine the two logarithms and which standard limit finishes it.",
   "answer": {
@@ -60,8 +60,10 @@
             "style": "heading"
           },
           "Let f(x) = log x, x > 0  (logarithm to base e)",
+          "(the definition of the derivative from the first principle)",
           "By the first principle,",
           "f′(x) = lim(h → 0) [f(x + h) − f(x)]/h",
+          "(f(x + h) = log(x + h))",
           "= lim(h → 0) [log(x + h) − log x]/h"
         ],
         "recall": {
@@ -103,7 +105,15 @@
         "lines": [
           "log A − log B = log(A/B), so",
           "log(x + h) − log x = log((x + h)/x)",
+          {
+            "text": "((x + h)/x = x/x + h/x = 1 + h/x)",
+            "added": true
+          },
           "= log(1 + h/x)",
+          {
+            "text": "(dividing by h is multiplying by 1/h)",
+            "added": true
+          },
           "f′(x) = lim(h → 0) (1/h) log(1 + h/x)"
         ],
         "recall": {
@@ -132,7 +142,13 @@
           "Writing log(x + h) − log x as log(x + h)/log x.",
           "Simplifying (x + h)/x to h/x and losing the 1."
         ],
-        "memory_tip": "log minus log is log of the quotient. Here that quotient is 1 + h/x."
+        "memory_tip": "log minus log is log of the quotient. Here that quotient is 1 + h/x.",
+        "lines_compact": [
+          "log A − log B = log(A/B), so",
+          "log(x + h) − log x = log((x + h)/x)",
+          "= log(1 + h/x)",
+          "f′(x) = lim(h → 0) (1/h) log(1 + h/x)"
+        ]
       },
       {
         "id": "s3_standard_limit",
@@ -142,8 +158,25 @@
         "mark_note": "Method",
         "margin_note": "Third mark. The standard limit is log(1 + t)/t → 1, so the denominator must be t and not h. The substitution h = xt is what supplies the 1/x.",
         "lines": [
+          {
+            "text": "(x > 0 is fixed, so t = h/x → 0 as h → 0)",
+            "added": true
+          },
           "Put t = h/x. As h → 0, t → 0, and h = xt",
+          {
+            "text": "(put h = xt and h/x = t)",
+            "added": true
+          },
           "f′(x) = lim(t → 0) (1/(xt)) log(1 + t)",
+          {
+            "text": "(1/(xt) = (1/x) · (1/t); the constant 1/x comes",
+            "added": true
+          },
+          {
+            "text": "  outside the limit)",
+            "style": "indent",
+            "added": true
+          },
           "= (1/x) · lim(t → 0) log(1 + t)/t",
           "and lim(t → 0) log(1 + t)/t = 1"
         ],
@@ -174,7 +207,13 @@
           "Using lim (log(1 + h/x))/h = 1, which is 1/x, not 1.",
           "Renaming the argument but forgetting that h itself becomes xt."
         ],
-        "memory_tip": "The standard limit needs the same small quantity above and below: log(1 + t) over t."
+        "memory_tip": "The standard limit needs the same small quantity above and below: log(1 + t) over t.",
+        "lines_compact": [
+          "Put t = h/x. As h → 0, t → 0, and h = xt",
+          "f′(x) = lim(t → 0) (1/(xt)) log(1 + t)",
+          "= (1/x) · lim(t → 0) log(1 + t)/t",
+          "and lim(t → 0) log(1 + t)/t = 1"
+        ]
       },
       {
         "id": "s4_answer",
@@ -185,6 +224,10 @@
         "margin_note": "Last mark. The 1/x came from the substitution, not from the limit — the limit itself contributes only 1. Keep the domain x > 0 beside the answer.",
         "lines": [
           "f′(x) = (1/x) · lim(t → 0) log(1 + t)/t",
+          {
+            "text": "(put lim(t → 0) log(1 + t)/t = 1)",
+            "added": true
+          },
           "= (1/x) · 1",
           {
             "text": "∴ d/dx (log x) = 1/x,  x > 0",
@@ -214,10 +257,18 @@
         },
         "why": "Every factor is now accounted for: the 1/x is outside the limit and the limit is 1, so nothing is left to evaluate.",
         "common_mistakes": [
-          "Giving 1/(x + h) by taking the limit in only part of the expression.",
+          "Putting t = 0 in log(1 + t) alone and giving the limit as 0 instead of 1.",
           "Giving (log x)/x by cancelling the wrong thing."
         ],
-        "memory_tip": "The 1/x is the factor pulled outside; the logarithm limit contributes only 1."
+        "memory_tip": "The 1/x is the factor pulled outside; the logarithm limit contributes only 1.",
+        "lines_compact": [
+          "f′(x) = (1/x) · lim(t → 0) log(1 + t)/t",
+          "= (1/x) · 1",
+          {
+            "text": "∴ d/dx (log x) = 1/x,  x > 0",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

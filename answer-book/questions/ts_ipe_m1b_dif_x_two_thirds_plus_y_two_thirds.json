@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.193, chapter 9 DIFFERENTIATION, Very Short Answer question 11. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The result was checked numerically before it was written, on the concrete curve a = 8, y = (a²⁄³ − x²⁄³)³⁄²: the central difference quotient reads −1.7320508 at x = 1 against −∛(y/x) = −1.7320508, and −1.0823743 at x = 2.5 against −1.0823743."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.193, chapter 9 DIFFERENTIATION, Very Short Answer question 11. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The result was checked numerically before it was written, on the concrete curve a = 8, y = (a²⁄³ − x²⁄³)³⁄²: the central difference quotient reads −1.7320508 at x = 1 against −∛(y/x) = −1.7320508, and −1.0823743 at x = 2.5 against −1.0823743. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say what you do to both sides, what a²⁄³ differentiates to, and how the negative powers turn over.",
   "answer": {
@@ -53,7 +53,17 @@
             "style": "heading"
           },
           "Given x²⁄³ + y²⁄³ = a²⁄³, where a is a constant.",
-          "Differentiate both sides with respect to x, treating y as a function of x:",
+          "Differentiate both sides with respect to x,",
+          "treating y as a function of x:",
+          "(d/dx(x²⁄³) = (2/3)x²⁄³⁻¹ = (2/3)x⁻¹⁄³;",
+          {
+            "text": "  d/dx(y²⁄³) = (2/3)y⁻¹⁄³ · dy/dx by the chain rule;",
+            "style": "indent"
+          },
+          {
+            "text": "  this needs x ≠ 0 and y ≠ 0)",
+            "style": "indent"
+          },
           "(2/3)x⁻¹⁄³ + (2/3)y⁻¹⁄³ · dy/dx = 0",
           "The right side is a constant, so its derivative is 0."
         ],
@@ -79,7 +89,7 @@
             "two by three"
           ]
         },
-        "why": "y is not written as a formula in x, so it cannot be differentiated directly. Implicit differentiation handles that by attaching dy/dx to every y term, which is the only new idea in this question.",
+        "why": "y is not written as a formula in x, so it cannot be differentiated directly. Implicit differentiation handles that by multiplying the derivative of every y term by dy/dx, which is the new idea in this question.",
         "common_mistakes": [
           "Differentiating a²⁄³ to (2/3)a⁻¹⁄³, treating the constant a as a variable.",
           "Writing d/dx(y²⁄³) = (2/3)y⁻¹⁄³ with no dy/dx attached."
@@ -94,9 +104,31 @@
         "margin_note": "Second mark. The 2/3 cancels from both terms. A negative power below the line becomes a positive power above it, which is how y⁻¹⁄³ in the denominator turns into y¹⁄³ on top.",
         "memory_tip": "Converting each negative power to a positive one moves y above the line and x below it, so the answer carries y on top.",
         "lines": [
+          {
+            "text": "(move (2/3)x⁻¹⁄³ to the right side)",
+            "added": true
+          },
           "(2/3)y⁻¹⁄³ · dy/dx = −(2/3)x⁻¹⁄³",
+          {
+            "text": "(divide both sides by (2/3)y⁻¹⁄³;",
+            "added": true
+          },
+          {
+            "text": "  x⁻¹⁄³ = 1/x¹⁄³ and 1/y⁻¹⁄³ = y¹⁄³,",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  so x⁻¹⁄³/y⁻¹⁄³ = y¹⁄³/x¹⁄³; and pᵐ/qᵐ = (p/q)ᵐ)",
+            "style": "indent",
+            "added": true
+          },
           "The factor 2/3 cancels from both sides, so",
           "dy/dx = −x⁻¹⁄³/y⁻¹⁄³ = −y¹⁄³/x¹⁄³ = −(y/x)¹⁄³",
+          {
+            "text": "((y/x)¹⁄³ = ∛(y/x))",
+            "added": true
+          },
           {
             "text": "∴ dy/dx = −∛(y/x)",
             "style": "boxed"
@@ -126,11 +158,20 @@
         },
         "why": "The target is given, so the mark is for reaching it by a valid method. Showing the step where the negative powers become positive is what proves the y belongs on top, rather than being copied from the question.",
         "common_mistakes": [
-          "Leaving the answer as −x⁻¹⁄³/y⁻¹⁄³ without converting the negative powers, so it reads as −∛(x/y).",
+          "Dropping the minus signs from the powers and writing −x¹⁄³/y¹⁄³, which is −∛(x/y).",
           "Writing ∛(y/x) without the minus sign."
+        ],
+        "lines_compact": [
+          "(2/3)y⁻¹⁄³ · dy/dx = −(2/3)x⁻¹⁄³",
+          "The factor 2/3 cancels from both sides, so",
+          "dy/dx = −x⁻¹⁄³/y⁻¹⁄³ = −y¹⁄³/x¹⁄³ = −(y/x)¹⁄³",
+          {
+            "text": "∴ dy/dx = −∛(y/x)",
+            "style": "boxed"
+          }
         ]
       }
     ]
   },
-  "insider_note": "Differentiate implicitly; the right side is a constant, so it goes to 0 and a never appears in the answer. The 2/3 cancels from both sides."
+  "insider_note": "Differentiate implicitly; the right side is a constant, so its derivative is 0 and a never appears in the answer. The 2/3 cancels from both sides."
 }

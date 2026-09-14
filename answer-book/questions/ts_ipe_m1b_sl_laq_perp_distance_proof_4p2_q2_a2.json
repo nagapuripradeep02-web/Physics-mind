@@ -42,7 +42,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.155, chapter 3 THE STRAIGHT LINE, Long Answer question 9. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split follows the shape of the proof: two marks each on the two genuine pieces of work, simplifying sec²α + cosec²α and reading off q, two more on adding the two results, and one each on setting up p and turning it into 4p². This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section C prints 3 long answer questions at 8 marks each and the student answers any 2, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The identity was checked numerically before it was written: at a = 5 and α = 30° the two perpendicular lengths are p = 5√3/4 ≈ 2.1651 and q = 2.5, giving 4p² + q² = 18.75 + 6.25 = 25 = a². The step for p was also checked a second way, by multiplying the first line through by sin α cos α, which turns it into x sin α + y cos α = a sin α cos α and gives the same p in one line."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.155, chapter 3 THE STRAIGHT LINE, Long Answer question 9. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split follows the shape of the proof: two marks each on the two genuine pieces of work, simplifying sec²α + cosec²α and reading off q, two more on adding the two results, and one each on setting up p and turning it into 4p². This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section C prints 3 long answer questions at 8 marks each and the student answers any 2, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The identity was checked numerically before it was written: at a = 5 and α = 30° the two perpendicular lengths are p = 5√3/4 ≈ 2.1651 and q = 2.5, giving 4p² + q² = 18.75 + 6.25 = 25 = a². The step for p was also checked a second way, by multiplying the first line through by sin α cos α, which turns it into x sin α + y cos α = a sin α cos α and gives the same p in one line. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — name the distance formula you use for each line, and say what identity closes the proof.",
   "answer": {
@@ -57,7 +57,7 @@
         "label": "Set up p from the origin",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. Write the line with 0 on the right, then put x = 0 and y = 0 into |ax + by + c|/√(a² + b²). Keep the modulus bars: p is a length.",
+        "margin_note": "First mark. Write the line with 0 on the right, then put x = 0 and y = 0 into |Ax + By + C|/√(A² + B²). Keep the modulus bars: p is a length.",
         "lines": [
           {
             "text": "Sol:",
@@ -65,8 +65,19 @@
           },
           "Here sin α ≠ 0 and cos α ≠ 0, so that",
           "sec α and cosec α are defined.",
+          "(move a to the left side)",
           "First line:  x sec α + y cosec α − a = 0",
+          "(the distance from (x₁, y₁) to Ax + By + C = 0 is",
+          {
+            "text": "  |Ax₁ + By₁ + C|/√(A² + B²); from the origin,",
+            "style": "indent"
+          },
+          {
+            "text": "  with A = sec α, B = cosec α, C = −a)",
+            "style": "indent"
+          },
           "p = |0 + 0 − a| / √(sec²α + cosec²α)",
+          "(|−a| = |a|)",
           "⇒ p = |a| / √(sec²α + cosec²α)"
         ],
         "recall": {
@@ -107,11 +118,35 @@
         "mark_note": "Method",
         "margin_note": "Two marks. Change both terms to sines and cosines, add over the common denominator sin²α cos²α, and use sin²α + cos²α = 1 on the top.",
         "lines": [
+          {
+            "text": "(sec α = 1/cos α and cosec α = 1/sin α)",
+            "added": true
+          },
           "Now sec²α + cosec²α = 1/cos²α + 1/sin²α",
+          {
+            "text": "(common denominator sin²α cos²α)",
+            "added": true
+          },
           "= (sin²α + cos²α)/(sin²α cos²α)",
+          {
+            "text": "(sin²α + cos²α = 1)",
+            "added": true
+          },
           "= 1/(sin²α cos²α)",
+          {
+            "text": "(√(1/(sin²α cos²α)) = 1/√(sin²α cos²α) = 1/|sin α cos α|)",
+            "added": true
+          },
           "∴ √(sec²α + cosec²α) = 1/|sin α cos α|",
+          {
+            "text": "(dividing by 1/|sin α cos α| is multiplying by |sin α cos α|)",
+            "added": true
+          },
           "⇒ p = |a| · |sin α cos α|",
+          {
+            "text": "(the product of two moduli is the modulus of the product)",
+            "added": true
+          },
           "⇒ p = |a sin α cos α|"
         ],
         "recall": {
@@ -136,12 +171,20 @@
             "a sin alpha cos alpha"
           ]
         },
-        "why": "Turning the two squared reciprocals into one fraction is what makes the square root come out exactly, and that is the only real difficulty in the whole proof.",
+        "why": "Turning the two squared reciprocals into one fraction is what makes the square root come out exactly, and that is the main difficulty in the proof.",
         "common_mistakes": [
           "Writing sec²α + cosec²α = 1/(sin²α + cos²α), adding the denominators.",
           "Taking √(1/(sin²α cos²α)) as 1/(sin α cos α), losing the modulus bars."
         ],
-        "memory_tip": "sec² + cosec² adds to ONE over sin² cos². The top collapses to 1 because sin²α + cos²α = 1."
+        "memory_tip": "sec²α + cosec²α = 1/(sin²α cos²α). The top becomes 1 because sin²α + cos²α = 1.",
+        "lines_compact": [
+          "Now sec²α + cosec²α = 1/cos²α + 1/sin²α",
+          "= (sin²α + cos²α)/(sin²α cos²α)",
+          "= 1/(sin²α cos²α)",
+          "∴ √(sec²α + cosec²α) = 1/|sin α cos α|",
+          "⇒ p = |a| · |sin α cos α|",
+          "⇒ p = |a sin α cos α|"
+        ]
       },
       {
         "id": "s3_four_p_squared",
@@ -151,8 +194,21 @@
         "mark_note": "Method",
         "margin_note": "One mark. Double p first, so the double angle appears, and only then square. Squaring removes the modulus by itself.",
         "lines": [
+          {
+            "text": "(the double-angle formula; then multiply",
+            "added": true
+          },
+          {
+            "text": "  p = |a sin α cos α| by 2)",
+            "style": "indent",
+            "added": true
+          },
           "Now 2 sin α cos α = sin 2α, so",
           "2p = |a| · |2 sin α cos α| = |a sin 2α|",
+          {
+            "text": "(square both sides: |a sin 2α|² = a² sin²2α)",
+            "added": true
+          },
           "⇒ 4p² = a² sin²2α   ……(1)"
         ],
         "recall": {
@@ -177,12 +233,17 @@
             "two p"
           ]
         },
-        "why": "The second line carries cos 2α, so the first one has to be pushed into a double angle as well before the two can be added.",
+        "why": "The second line carries cos 2α, so the first one has to be written with the double angle as well before the two can be added.",
         "common_mistakes": [
           "Writing 2p = a sin 2α and then 4p² = 2a² sin²2α.",
           "Forgetting to double p before squaring, and writing p² = a² sin²2α."
         ],
-        "memory_tip": "Double FIRST, square second. 2 sin α cos α is sin 2α, so 2p carries sin 2α and 4p² carries sin²2α."
+        "memory_tip": "Double FIRST, square second. 2 sin α cos α is sin 2α, so 2p carries sin 2α and 4p² carries sin²2α.",
+        "lines_compact": [
+          "Now 2 sin α cos α = sin 2α, so",
+          "2p = |a| · |2 sin α cos α| = |a sin 2α|",
+          "⇒ 4p² = a² sin²2α   ……(1)"
+        ]
       },
       {
         "id": "s4_find_q",
@@ -192,10 +253,36 @@
         "mark_note": "Method",
         "margin_note": "Two marks. The coefficients here are cos α and −sin α, so the square root at the bottom is exactly 1. Keep the modulus bars until you square.",
         "lines": [
+          {
+            "text": "(move a cos 2α to the left side)",
+            "added": true
+          },
           "Second line:  x cos α − y sin α − a cos 2α = 0",
+          {
+            "text": "(the distance from (x₁, y₁) to Ax + By + C = 0 is",
+            "added": true
+          },
+          {
+            "text": "  |Ax₁ + By₁ + C|/√(A² + B²); from the origin,",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  with A = cos α, B = −sin α, C = −a cos 2α)",
+            "style": "indent",
+            "added": true
+          },
           "q = |0 − 0 − a cos 2α| / √(cos²α + sin²α)",
+          {
+            "text": "(cos²α + sin²α = 1, and √1 = 1)",
+            "added": true
+          },
           "= |a cos 2α| / √1",
           "⇒ q = |a cos 2α|",
+          {
+            "text": "(square both sides)",
+            "added": true
+          },
           "⇒ q² = a² cos²2α   ……(2)"
         ],
         "recall": {
@@ -225,7 +312,14 @@
           "Writing √(cos²α + sin²α) as cos α + sin α.",
           "Dropping the cos 2α and writing q = |a|."
         ],
-        "memory_tip": "The second line is ALREADY in normal shape: cos²α + sin²α = 1, so the bottom is 1 and q is just the constant term."
+        "memory_tip": "The coefficients are cos α and −sin α, so the bottom is √(cos²α + sin²α) = 1 and q is the modulus of the constant term, |a cos 2α|.",
+        "lines_compact": [
+          "Second line:  x cos α − y sin α − a cos 2α = 0",
+          "q = |0 − 0 − a cos 2α| / √(cos²α + sin²α)",
+          "= |a cos 2α| / √1",
+          "⇒ q = |a cos 2α|",
+          "⇒ q² = a² cos²2α   ……(2)"
+        ]
       },
       {
         "id": "s5_add",
@@ -235,9 +329,21 @@
         "mark_note": "Solution",
         "margin_note": "The last two marks. Add the two numbered results (1) and (2), take a² out, and use sin²θ + cos²θ = 1 at θ = 2α.",
         "lines": [
+          {
+            "text": "(add 4p² = a² sin²2α and q² = a² cos²2α)",
+            "added": true
+          },
           "Adding (1) and (2),",
           "4p² + q² = a² sin²2α + a² cos²2α",
+          {
+            "text": "(take out the common factor a²)",
+            "added": true
+          },
           "= a²(sin²2α + cos²2α)",
+          {
+            "text": "(sin²θ + cos²θ = 1 with θ = 2α)",
+            "added": true
+          },
           "= a²(1)",
           {
             "text": "∴ 4p² + q² = a²",
@@ -266,12 +372,22 @@
             "equals one"
           ]
         },
-        "why": "Both results were pushed to the same angle 2α on purpose, so that sin²2α + cos²2α = 1 closes the proof in one line.",
+        "why": "Both results were written with the same angle 2α, so that sin²2α + cos²2α = 1 finishes the proof in one line.",
         "common_mistakes": [
           "Adding sin²2α + cos²2α and writing 2 instead of 1.",
           "Leaving the answer as a²(sin²2α + cos²2α) without finishing."
         ],
-        "memory_tip": "Both pieces were written at the SAME angle 2α on purpose. Add them and sin² + cos² = 1 does the rest."
+        "memory_tip": "Both pieces were written with the SAME angle 2α. Add them and use sin²2α + cos²2α = 1.",
+        "lines_compact": [
+          "Adding (1) and (2),",
+          "4p² + q² = a² sin²2α + a² cos²2α",
+          "= a²(sin²2α + cos²2α)",
+          "= a²(1)",
+          {
+            "text": "∴ 4p² + q² = a²",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   }

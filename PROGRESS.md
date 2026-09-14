@@ -1,5 +1,57 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 📗 SESSION — Maths-1B complete: all ten chapters written out in full, 375 cards (2026-09-14, `feat/answerbook-maths-1b-worked-in-full`)
+
+**Bottom line: every Maths-1B card is written out at the Maths-1A level, with a Simplify button on every mark. Each chapter was examined by sympy-backed Opus examiners and every verified finding was fixed. The founder said "no need for my approval just do the chapters as you did for maths 1A, 2A and 2B", so there was no sample card. Each chapter is three commits: base fix, expansion, examiner fixes.**
+
+| chapter | cards | lines | Simplify buttons | base fixes | examiner findings fixed |
+|---|---|---|---|---|---|
+| Applications of Derivatives | 89 | 1,567 → 2,488 | 146 | reflow (253 lines), ASCII, wording | 134 |
+| The Straight Line | 86 | 1,413 → 2,528 | 182 | reflow (68 lines) + 2 corrected arguments | 90 |
+| Differentiation | 72 | 1,222 → 2,020 | 154 | wording, Unicode powers, reflow | 114 |
+| Limits + Continuity | 36 + 7 | 624 → 971 | 56 | wording, Unicode, reflow | 71 |
+| Pair of Straight Lines | 22 | 516 → 943 | 67 | wording, reflow | 91 |
+| Locus | 17 | 223 → 428 | 49 | wording, reflow | 77 (with Plane) |
+| The Plane | 16 | 159 → 253 | 16 | wording, reflow | (with Locus) |
+| Three Dimensional Coordinates | 13 | 143 → 245 | 13 | wording, reflow | 91 (with TA + DC) |
+| Transformation of Axes | 9 | 139 → 229 | 27 | wording, reflow | (with 3D) |
+| Direction Cosines and Ratios | 8 | 227 → 361 | 29 | wording, reflow | (with 3D) |
+
+### Verified
+`check_cards --prefix ts_ipe_m1b_` 375/375 · measure_wrap 0 of 14,301 lines · `ascii_fields`: 0 outside the question headers (below) · sweep_simplify: every button pressed in every chapter, no defects beyond the CORS font console errors · sweep_typeset_width 0 problems · `find_label_clashes`: no collisions. tsc and vitest were not run, because this branch changes only card JSON.
+
+### Base lines the examiners showed were false (every boxed answer was correct)
+- **Pair of Lines.** `pl_angular_bisectors_proof`: the split now carries a constant k. Without it the identity forces |a|, |b| ≤ 1. `pl_area_triangle_proof`: the split was missing the factor b.
+- **Locus.** `loc_area_*` (two cards): the ½-determinant area formula now carries its modulus on every line. Without it the condition gives one line, not the two in the answer.
+- **Plane.** `pln_dcs_of_normal`: "the d.c's of the plane" now reads "the d.c's of the normal to the plane".
+- **3D.** `td_yz_plane_ratio` now reads "the ratio in which".
+- **Differentiation.**
+  - Sin⁻¹x − Sin⁻¹y = 2 Cot⁻¹a holds only for a > 0, so the constant is now c.
+  - Boxed answers now carry their ranges: 1/2 < x < 1, and x > −1/2.
+  - k ∈ Z; cosec in lower case.
+- **Limits.** x → 2⁻ now reads "so we may take 1 < x < 2", and (aˣ − 1)/x → logₑa carries a > 0.
+- **Straight Line.** 1/2h is written as 1/(2h).
+
+### What the examiners found, in one line
+The same classes as in 1A and 2B:
+- valid methods called mistakes;
+- common mistakes whose slip does not give the stated result;
+- rules missing their conditions: h² ≥ ab for a homogeneous pair, a constant difference less than AB for a hyperbola, a nonzero constant for intercept form, proportional rather than equal coefficients for parallel planes;
+- letter clashes: a as a circle's radius and as a coefficient; p, q next to the distances p₁, p₂;
+- overclaims ("always factors", "the check") and idioms (settle, handed, feed back, lean apart).
+
+### Teacher-verification flags
+- `loc_right_angle_hypotenuse_0_6_6_0` now notes that A and B satisfy the equation but are not on the locus. The boxed equation is unchanged; a teacher should say whether the board expects the exclusion written.
+- `pl_angular_bisectors_proof` now uses k in the split; textbooks print the proof without it.
+- Question headers are not edited. 14 still carry ASCII powers:
+  - `ad_normal_subnormal_catenary`, `ad_rolle_x_x_plus_3_e_minus_x_over_2`, `ad_subtangent_constant_subnormal_y2_over_a`, `ad_tangent_normal_2e_minus_x_over_3_y_axis`
+  - `dif_ax_n_plus_1_plus_bx_minus_n`, `dif_cos_inverse_a_cos_x_plus_b`, `dif_log_diff_fractional_powers`, `dif_sin_x_power_x_plus_x_power_sin_x`, `dif_x_power_log_y_equals_log_x`, `dif_x_power_tan_x_plus_sin_x_power_cos_x`, `dif_x_power_y_plus_y_power_x_equals_ab`, `dif_xy_equals_e_x_minus_y`
+  - `lim_e_power_sin_x_minus_1_over_x`, `lim_e_x_plus_3_minus_e3_over_x`
+- 2 headers write ℝ: `con_k_squared_x_minus_k_find_k`, `con_x2_and_x_on_r`.
+
+### Next session
+Maths-1B is ready for a PR; the founder merges. With 2A, 2B and 1A merged, all four IPE mathematics papers are written out in full once this merges.
+
 ## 📗 SESSION — Maths-1A completed: the remaining eight chapters written out in full, 342 cards (2026-09-14, `feat/answerbook-maths-1a-part-2`)
 
 **Review link (all ten chapters):** https://claude.ai/code/artifact/b84d56a4-e960-4c80-b0cf-69199fdd8095
@@ -37,7 +89,14 @@ Every boxed answer survived except two, both fixed: `te_sum_x_y_sin_sum` listed 
 - From Maths-2B: DE order/degree (Degree = 1 vs 6), ellipse equal intercepts, hyperbola x + 2y = 0 asymptote, the 30° asymptote angle reading, the non-real circle in System of Circles.
 
 ### Next session
-Maths-1A is complete once #206 and this PR merge. Maths-1B is the next paper.
+**Both merged 2026-09-14** — #206 (`ef94d943`) then #207 retargeted to master (`e9069196`). Maths-1A is complete on master: 556 cards.
+
+Maths-1B is the next and last maths paper — **read `MATHS_1B_HANDOFF.md`** (repo root of the main checkout). In short:
+- Desk `feat/answerbook-maths-1b-worked-in-full` is open at `e9069196`, with the helper kit in `.expansion_kit/` (untracked).
+- 375 cards in 10 units. 16.4% of its lines (863) already wrap, most of them equation or boxed lines, so every chapter needs a hand-assisted reflow in its base commit.
+- 40 working lines and 14 question headers have ASCII carets. Ask the founder whether headers may be fixed.
+- The `mpc` build is already 14.3 MB against the 16 MB artifact limit.
+- First step: base-fix Applications of Derivatives, expand one sample card, show the founder, wait.
 
 ## 📗 SESSION — Maths-1A opens: Trigonometry and Matrices written out in full, 214 cards (2026-09-14, `feat/answerbook-maths-1a-worked-in-full`)
 

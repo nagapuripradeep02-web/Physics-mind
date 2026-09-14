@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.187, chapter 8 LIMITS, Short & Very Short Answer question 23. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer 1/4 was checked numerically before it was written: the expression reads 0.2499937 at x = 2.0001 and 0.2500062 at x = 1.9999, closing on 0.25 from both sides."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.187, chapter 8 LIMITS, Short & Very Short Answer question 23. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer 1/4 was checked numerically before it was written: the expression reads 0.2499937 at x = 2.0001 and 0.2500062 at x = 1.9999, closing on 0.25 from both sides. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say what the common denominator is and what the numerator becomes.",
   "answer": {
@@ -52,10 +52,23 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "(near x = 2, 1/(x − 2) and 4/(x² − 4) become",
+          {
+            "text": "  very large in size)",
+            "style": "indent"
+          },
           "Neither part alone has a finite limit as x → 2,",
           "so the two are combined into one fraction.",
-          "x² − 4 = (x − 2)(x + 2), so the common denominator is (x − 2)(x + 2)",
-          "1/(x − 2) − 4/(x² − 4) = (x + 2)/[(x − 2)(x + 2)] − 4/[(x − 2)(x + 2)]",
+          "(a² − b² = (a − b)(a + b) with a = x and b = 2)",
+          "x² − 4 = (x − 2)(x + 2),",
+          "so the common denominator is (x − 2)(x + 2)",
+          "(multiply the top and the bottom of 1/(x − 2) by x + 2)",
+          "1/(x − 2) − 4/(x² − 4) = (x + 2)/[(x − 2)(x + 2)]",
+          {
+            "text": "  − 4/[(x − 2)(x + 2)]",
+            "style": "indent"
+          },
+          "(subtract the numerators; x + 2 − 4 = x − 2)",
           "= (x + 2 − 4)/[(x − 2)(x + 2)] = (x − 2)/[(x − 2)(x + 2)]"
         ],
         "recall": {
@@ -92,12 +105,24 @@
         "label": "Cancel (x − 2) and substitute",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Second mark. Say x ≠ 2 before cancelling. What is left, 1/(x + 2), is defined at 2, so substitution finishes it.",
-        "memory_tip": "After combining, the whole numerator is x − 2 — the same factor as below — so the fraction reduces to 1/(x + 2).",
+        "margin_note": "Second mark. Say x ≠ 2 before cancelling. What is left, 1/(x + 2), is defined at 2, so putting x = 2 gives the answer.",
+        "memory_tip": "After combining, the numerator is x − 2 — the same factor as below — so the fraction reduces to 1/(x + 2).",
         "lines": [
           "As x → 2 we have x ≠ 2, so (x − 2) may be cancelled:",
+          {
+            "text": "(cancel x − 2 from the top and the bottom)",
+            "added": true
+          },
           "= lim(x → 2) 1/(x + 2)",
+          {
+            "text": "(1/(x + 2) is defined at x = 2, so put x = 2)",
+            "added": true
+          },
           "= 1/(2 + 2)",
+          {
+            "text": "(2 + 2 = 4)",
+            "added": true
+          },
           {
             "text": "∴ lim(x → 2) (1/(x − 2) − 4/(x² − 4)) = 1/4",
             "style": "boxed"
@@ -125,13 +150,22 @@
             "two plus two"
           ]
         },
-        "why": "A limit as x → 2 uses only values of x other than 2, so (x − 2) is not zero and may be divided out. The surviving expression 1/(x + 2) is defined at 2, so direct substitution is valid.",
+        "why": "A limit as x → 2 uses only values of x other than 2, so (x − 2) is not zero and may be divided out. The expression left, 1/(x + 2), is defined at 2, so direct substitution is valid.",
         "common_mistakes": [
           "Writing 0 above after cancelling and giving the answer as 0.",
           "Cancelling (x + 2) instead of (x − 2)."
+        ],
+        "lines_compact": [
+          "As x → 2 we have x ≠ 2, so (x − 2) may be cancelled:",
+          "= lim(x → 2) 1/(x + 2)",
+          "= 1/(2 + 2)",
+          {
+            "text": "∴ lim(x → 2) (1/(x − 2) − 4/(x² − 4)) = 1/4",
+            "style": "boxed"
+          }
         ]
       }
     ]
   },
-  "insider_note": "Neither part has a limit on its own, so combine them over the common denominator FIRST. The top collapses to x − 2, which cancels and leaves 1/(x + 2)."
+  "insider_note": "Neither part has a limit on its own, so combine them over the common denominator FIRST. The numerator becomes x − 2, which cancels and leaves 1/(x + 2)."
 }

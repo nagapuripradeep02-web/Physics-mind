@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.223, chapter 10 APPLICATIONS OF DERIVATIVES, the TANGENTS AND NORMALS sub-section, Short Answer question 15. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4M over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Note on notation: the stem is reproduced with the book's ASCII exponent, y = b e^(x/a); the working writes the same function in real Unicode as b eˣ⁄ᵃ."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.223, chapter 10 APPLICATIONS OF DERIVATIVES, the TANGENTS AND NORMALS sub-section, Short Answer question 15. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4M over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Note on notation: the stem is reproduced with the book's ASCII exponent, y = b e^(x/a); the working writes the same function in real Unicode as b eˣ⁄ᵃ. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would show both parts — say what dy/dx works out to in terms of y, then the two formulas you divide and multiply with.",
   "answer": {
@@ -60,7 +60,9 @@
             "style": "heading"
           },
           "Given curve:   y = b eˣ⁄ᵃ",
-          "Differentiate with respect to x. The exponent x/a differentiates to 1/a:",
+          "Differentiate with respect to x.",
+          "(chain rule: d/dx of eᵘ is eᵘ · du/dx, with u = x/a)",
+          "The exponent x/a differentiates to 1/a:",
           "dy/dx = b · eˣ⁄ᵃ · (1/a) = (1/a)(b eˣ⁄ᵃ)",
           "But  b eˣ⁄ᵃ = y, so",
           "∴ m = dy/dx = y/a"
@@ -104,6 +106,10 @@
         "mark_note": "Method",
         "margin_note": "Second mark. Both definitions are worth writing down before either is used — the examiner gives the mark for the correct pair, and stating them stops the two being swapped.",
         "lines": [
+          {
+            "text": "(the two standard lengths at a point (x, y))",
+            "added": true
+          },
           "At a point (x, y) on a curve, with m = dy/dx:",
           "length of the subtangent = y/m",
           "length of the subnormal = y · m"
@@ -137,7 +143,12 @@
           "Using the length of the tangent y√(1 + m²)/m in place of the subtangent.",
           "Substituting numbers before either definition is stated, so no method mark is available."
         ],
-        "memory_tip": "Both start from y. The subtangent divides by the slope, the subnormal multiplies by it."
+        "memory_tip": "Both start from y. The subtangent divides by the slope, the subnormal multiplies by it.",
+        "lines_compact": [
+          "At a point (x, y) on a curve, with m = dy/dx:",
+          "length of the subtangent = y/m",
+          "length of the subnormal = y · m"
+        ]
       },
       {
         "id": "s3_subtangent",
@@ -147,12 +158,25 @@
         "mark_note": "Solution",
         "margin_note": "Third mark. y cancels completely, which is what makes the length constant. Say so in words — a proof of \"constant\" is not finished until the absence of x and y is stated.",
         "lines": [
+          {
+            "text": "(m = y/a from step 1)",
+            "added": true
+          },
           "Length of the subtangent = y/m",
           "= y ÷ (y/a)",
+          {
+            "text": "(dividing by y/a is multiplying by a/y)",
+            "added": true
+          },
           "= y · (a/y)",
+          {
+            "text": "(y/y = 1; y = b eˣ⁄ᵃ is never 0 when b ≠ 0)",
+            "added": true
+          },
           "= a",
           "a is a fixed number, and no x or y is left in the result.",
-          "∴ the length of the subtangent is a, the same at every point of the curve."
+          "∴ the length of the subtangent is a,",
+          "the same at every point of the curve."
         ],
         "recall": {
           "credit": "say_it",
@@ -183,7 +207,16 @@
           "Getting 1/a by cancelling the a as well.",
           "Stopping at the value a without saying that it does not depend on the point."
         ],
-        "memory_tip": "Dividing by y/a is the same as multiplying by a/y. The two y's then cancel and a survives alone."
+        "memory_tip": "Dividing by y/a is the same as multiplying by a/y. The two y's then cancel and a is left.",
+        "lines_compact": [
+          "Length of the subtangent = y/m",
+          "= y ÷ (y/a)",
+          "= y · (a/y)",
+          "= a",
+          "a is a fixed number, and no x or y is left in the result.",
+          "∴ the length of the subtangent is a,",
+          "the same at every point of the curve."
+        ]
       },
       {
         "id": "s4_subnormal",
@@ -194,10 +227,22 @@
         "margin_note": "Fourth mark. Same m, the other operation. The subnormal does depend on the point, so unlike part (i) it is not constant — do not claim it is.",
         "lines": [
           "Length of the subnormal = y · m",
+          {
+            "text": "(m = y/a from step 1)",
+            "added": true
+          },
           "= y · (y/a)",
+          {
+            "text": "(y · y = y²)",
+            "added": true
+          },
           "= y²/a",
           {
-            "text": "∴ (i) subtangent = a, a constant     (ii) subnormal = y²/a",
+            "text": "∴ (i) subtangent = a, a constant",
+            "style": "boxed"
+          },
+          {
+            "text": "(ii) subnormal = y²/a",
             "style": "boxed"
           }
         ],
@@ -230,7 +275,20 @@
           "Writing y²a instead of y²/a, multiplying by a rather than dividing.",
           "Saying the subnormal is also constant, when it still contains y."
         ],
-        "memory_tip": "Part (i) divides, part (ii) multiplies, and the slope y/a is the same in both. One answer keeps y, the other loses it."
+        "memory_tip": "Part (i) divides, part (ii) multiplies, and the slope y/a is the same in both. One answer keeps y, the other loses it.",
+        "lines_compact": [
+          "Length of the subnormal = y · m",
+          "= y · (y/a)",
+          "= y²/a",
+          {
+            "text": "∴ (i) subtangent = a, a constant",
+            "style": "boxed"
+          },
+          {
+            "text": "(ii) subnormal = y²/a",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

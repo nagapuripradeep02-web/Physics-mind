@@ -34,7 +34,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.209, chapter 10 APPLICATIONS OF DERIVATIVES, Very Short Answer question 2(ii), in the ERRORS AND APPROXIMATIONS sub-section. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and the book restarts its question numbering in each sub-section, so \"question 2(ii)\" is that sub-section's number and not the chapter's; we ship the five sub-sections as ONE unit, ordered by the syllabus. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks) over this sub-section but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question — one mark for choosing the nearby exact point and its derivative, one for applying the formula and reading the number. APPEARANCE YEAR: this part is one of the very few in the chapter that carries a printed year — the book prints (2009) beside it, and that single year is recorded in appearances[] as the year the SOURCE BOOK prints, not as a year we have checked against a TSBIE paper. It is recorded without a board because the book names none. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split and the year stay unverified until a Telangana IPE teacher confirms them."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.209, chapter 10 APPLICATIONS OF DERIVATIVES, Very Short Answer question 2(ii), in the ERRORS AND APPROXIMATIONS sub-section. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and the book restarts its question numbering in each sub-section, so \"question 2(ii)\" is that sub-section's number and not the chapter's; we ship the five sub-sections as ONE unit, ordered by the syllabus. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks) over this sub-section but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question — one mark for choosing the nearby exact point and its derivative, one for applying the formula and reading the number. APPEARANCE YEAR: this part is one of the very few in the chapter that carries a printed year — the book prints (2009) beside it, and that single year is recorded in appearances[] as the year the SOURCE BOOK prints, not as a year we have checked against a TSBIE paper. It is recorded without a board because the book names none. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split and the year stay unverified until a Telangana IPE teacher confirms them. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say which nearby value you start from, and the formula you then apply.",
   "answer": {
@@ -49,16 +49,24 @@
         "label": "Choose the nearby exact point",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark, and the whole choice of method sits here: name x = 81, Δx = 1 and f′(81) = 1/18. An examiner reads this line to see whether the nearest perfect square was found.",
+        "margin_note": "First mark, and the choice of method is made here: name x = 81, Δx = 1 and f′(81) = 1/18. An examiner reads this line to see whether the nearest perfect square was found.",
         "lines": [
           {
             "text": "Sol:",
             "style": "heading"
           },
+          "(this approximation is used when Δx is small)",
           "Let f(x) = √x. Then f(x + Δx) ≈ f(x) + f′(x)·Δx",
           "81 is the nearest perfect square to 82, and √81 = 9 exactly",
+          "(Δx = the given number − the chosen x)",
           "∴ take x = 81,  Δx = 82 − 81 = 1",
+          "(√x = x¹⁄², and by the power rule its derivative",
+          {
+            "text": "  is (1/2)x⁻¹⁄² = 1/(2√x))",
+            "style": "indent"
+          },
           "f′(x) = 1/(2√x)",
+          "(√81 = 9)",
           "f′(81) = 1/(2 × 9) = 1/18"
         ],
         "recall": {
@@ -88,7 +96,7 @@
           "Choosing x = 82 itself, which leaves the square root still unknown.",
           "Writing f′(x) = 1/√x and losing the 2 in the denominator."
         ],
-        "memory_tip": "For a square root, find the nearest perfect square; for a cube root, the nearest perfect cube. Δx carries whatever is left over."
+        "memory_tip": "For a square root, find the nearest perfect square; for a cube root, the nearest perfect cube. Δx is the difference between the given number and that number."
       },
       {
         "id": "s2_apply",
@@ -96,12 +104,32 @@
         "label": "Apply the approximation formula",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Second mark. 1/18 = 0.0555… recurs, so keep four decimal places before rounding. 82 is above 81, so the correction is added.",
+        "margin_note": "Second mark. 1/18 = 0.0555… recurs, so keep six decimal places, then round to four. 82 is above 81, so the correction is added.",
         "lines": [
+          {
+            "text": "(put x = 81 and Δx = 1 in the approximation)",
+            "added": true
+          },
           "√82 = f(81 + 1) ≈ f(81) + f′(81)·(1)",
+          {
+            "text": "(f(81) = √81 = 9 and f′(81) = 1/18)",
+            "added": true
+          },
           "= 9 + (1/18)(1)",
+          {
+            "text": "(1/18 = 0.055556, to six decimal places)",
+            "added": true
+          },
           "= 9 + 0.055556",
+          {
+            "text": "(9 + 0.055556 = 9.055556)",
+            "added": true
+          },
           "= 9.055556",
+          {
+            "text": "(rounded to four decimal places)",
+            "added": true
+          },
           {
             "text": "∴ √82 ≈ 9.0556",
             "style": "boxed"
@@ -132,9 +160,19 @@
         "why": "f′(x)·Δx is the correction the tangent line at x = 81 predicts. The true value is 9.055385, so this estimate is high by about 0.00017 — the straight line sits slightly above the curve, which is why every square-root estimate of this kind comes out a little large.",
         "common_mistakes": [
           "Reading 1/18 as 0.18 or as 0.005.",
-          "Rounding 9 + 0.0556 to 9.06 and losing the decimal places the question is asking for."
+          "Rounding 9 + 0.0556 to 9.06 and losing the decimal places the working already has."
         ],
-        "memory_tip": "New value ≈ old value + slope × step. The step keeps its sign, so an upward move adds."
+        "memory_tip": "New value ≈ old value + slope × step. The step keeps its sign, so an upward move adds.",
+        "lines_compact": [
+          "√82 = f(81 + 1) ≈ f(81) + f′(81)·(1)",
+          "= 9 + (1/18)(1)",
+          "= 9 + 0.055556",
+          "= 9.055556",
+          {
+            "text": "∴ √82 ≈ 9.0556",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

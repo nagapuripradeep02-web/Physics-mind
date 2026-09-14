@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.203, chapter 9 DIFFERENTIATION, Short Answer question 16. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8 under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.203, chapter 9 DIFFERENTIATION, Short Answer question 16. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8 under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say how many times you divide by dx/dt, and why.",
   "answer": {
@@ -59,7 +59,9 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "(d/dt(t − sin t) = 1 − cos t)",
           "x = a(t − sin t)   ⇒   dx/dt = a(1 − cos t)",
+          "(d/dt(1 + cos t) = 0 − sin t)",
           "y = a(1 + cos t)   ⇒   dy/dt = −a sin t"
         ],
         "recall": {
@@ -99,8 +101,20 @@
         "mark_note": "Solution",
         "margin_note": "Second mark. The half-angle forms are what make the next differentiation short: −cot(t/2) differentiates in one line, −sin t/(1 − cos t) does not.",
         "lines": [
+          {
+            "text": "(this needs 1 − cos t ≠ 0, that is t not a multiple of 2π)",
+            "added": true
+          },
           "dy/dx = (dy/dt) / (dx/dt) = −a sin t / [a(1 − cos t)]",
+          {
+            "text": "(the double angle formulas with t = 2 · (t/2))",
+            "added": true
+          },
           "sin t = 2 sin(t/2) cos(t/2)   and   1 − cos t = 2 sin²(t/2)",
+          {
+            "text": "(cancel 2 sin(t/2); cos(t/2)/sin(t/2) = cot(t/2))",
+            "added": true
+          },
           "dy/dx = −2 sin(t/2) cos(t/2) / [2 sin²(t/2)] = −cot(t/2)"
         ],
         "recall": {
@@ -130,7 +144,12 @@
           "Writing 1 − cos t as 2 cos²(t/2), which is 1 + cos t.",
           "Giving +cot(t/2) and losing the sign from dy/dt."
         ],
-        "memory_tip": "1 − cos t = 2 sin²(t/2) and 1 + cos t = 2 cos²(t/2) — the minus goes with the sine."
+        "memory_tip": "1 − cos t = 2 sin²(t/2) and 1 + cos t = 2 cos²(t/2) — the minus goes with the sine.",
+        "lines_compact": [
+          "dy/dx = (dy/dt) / (dx/dt) = −a sin t / [a(1 − cos t)]",
+          "sin t = 2 sin(t/2) cos(t/2)   and   1 − cos t = 2 sin²(t/2)",
+          "dy/dx = −2 sin(t/2) cos(t/2) / [2 sin²(t/2)] = −cot(t/2)"
+        ]
       },
       {
         "id": "s3_differentiate_dydx",
@@ -138,9 +157,32 @@
         "label": "Differentiate dy/dx with respect to t",
         "marks": 1,
         "mark_note": "Solution",
-        "margin_note": "Third mark. dy/dx is a function of t, not of x, so it can only be differentiated with respect to t. The ½ comes from the inner t/2.",
+        "margin_note": "Third mark. dy/dx is written in terms of t, so differentiate it with respect to t first; step 4 then divides by dx/dt. The ½ comes from the inner t/2.",
         "lines": [
+          {
+            "text": "(dy/dx is a function of t, so differentiate it",
+            "added": true
+          },
+          {
+            "text": "  with respect to t first)",
+            "style": "indent",
+            "added": true
+          },
           "d/dt (dy/dx) = d/dt[−cot(t/2)]",
+          {
+            "text": "(d/dt(cot u) = −cosec²u · du/dt,",
+            "added": true
+          },
+          {
+            "text": "  with u = t/2 and du/dt = 1/2;",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  the two minus signs give plus)",
+            "style": "indent",
+            "added": true
+          },
           "= cosec²(t/2) · (1/2)",
           "= ½ cosec²(t/2)"
         ],
@@ -169,9 +211,14 @@
         "why": "dy/dx has been written in t, so this differentiation is with respect to t. The chain rule on the inner t/2 supplies the factor ½.",
         "common_mistakes": [
           "Dropping the factor ½ from the inner t/2.",
-          "Giving −cosec²(t/2), keeping only one of the two minus signs."
+          "Giving −½ cosec²(t/2), keeping only one of the two minus signs."
         ],
-        "memory_tip": "d/dt(cot u) = −cosec²u · du/dt; here u = t/2, so du/dt = ½."
+        "memory_tip": "d/dt(cot u) = −cosec²u · du/dt; here u = t/2, so du/dt = ½.",
+        "lines_compact": [
+          "d/dt (dy/dx) = d/dt[−cot(t/2)]",
+          "= cosec²(t/2) · (1/2)",
+          "= ½ cosec²(t/2)"
+        ]
       },
       {
         "id": "s4_divide_again",
@@ -179,11 +226,37 @@
         "label": "Divide by dx/dt a second time",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Last mark, and the one most often lost. d²y/dx² is NOT d/dt(dy/dx). The chain rule needs a second division by dx/dt — write that division as its own line.",
+        "margin_note": "Last mark. d²y/dx² is NOT d/dt(dy/dx). The chain rule needs a second division by dx/dt — write that division as its own line.",
         "lines": [
+          {
+            "text": "(d²y/dx² = d/dx(dy/dx) = [d/dt(dy/dx)] · dt/dx,",
+            "added": true
+          },
+          {
+            "text": "  and dt/dx = 1/(dx/dt))",
+            "style": "indent",
+            "added": true
+          },
           "d²y/dx² = [d/dt (dy/dx)] / (dx/dt)",
+          {
+            "text": "(put d/dt(dy/dx) = ½ cosec²(t/2) and dx/dt = a(1 − cos t))",
+            "added": true
+          },
           "= ½ cosec²(t/2) / [a(1 − cos t)]",
+          {
+            "text": "(1 − cos t = 2 sin²(t/2))",
+            "added": true
+          },
           "= ½ cosec²(t/2) / [2a sin²(t/2)]",
+          {
+            "text": "(½ ÷ 2a = 1/(4a), and cosec²(t/2)/sin²(t/2)",
+            "added": true
+          },
+          {
+            "text": "  = cosec²(t/2) · cosec²(t/2))",
+            "style": "indent",
+            "added": true
+          },
           {
             "text": "∴ d²y/dx² = cosec⁴(t/2) / (4a)",
             "style": "boxed"
@@ -211,12 +284,21 @@
             "four a"
           ]
         },
-        "why": "d²y/dx² means d/dx of dy/dx, and the only route from d/dt to d/dx is another division by dx/dt. Stopping one division early is the commonest error in this chapter.",
+        "why": "d²y/dx² means d/dx of dy/dx, and going from d/dt to d/dx needs another division by dx/dt. Do not stop one division early.",
         "common_mistakes": [
           "Stopping at ½ cosec²(t/2) and calling it d²y/dx² — the second division by dx/dt is missing.",
           "Dividing by dy/dt instead of dx/dt."
         ],
-        "memory_tip": "One division for the first derivative, a second division for the second derivative — one dx/dt per order."
+        "memory_tip": "One division for the first derivative, a second division for the second derivative — one dx/dt per order.",
+        "lines_compact": [
+          "d²y/dx² = [d/dt (dy/dx)] / (dx/dt)",
+          "= ½ cosec²(t/2) / [a(1 − cos t)]",
+          "= ½ cosec²(t/2) / [2a sin²(t/2)]",
+          {
+            "text": "∴ d²y/dx² = cosec⁴(t/2) / (4a)",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

@@ -39,7 +39,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.86 — VSAQ chapter 16 The Plane, answer 106.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 15,17. ⚠ THE MARK SPLIT 1+1 IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter, whose pages are set two and three answers to a page in columns. It is not a bare guess: VSAQ answer 98 (book p.83, 3-D Coordinates) carries a printed 1+1 against exactly this shape — one mark for the setting-up move and one for the answer read off it — and the chapter header here reads '2 Marks' like that one. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Plane is a VSAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 2 marks in Section A and nothing in Section B or Section C, and the book has no Plane LAQ chapter (its LAQ chapters are 1-6) and no Plane SAQ chapter (its SAQ chapters are 7-13). Chapter scoped by BOUNDARY WALK: book p.87 opens VSAQ chapter 17, Limits. The STAR QUESTIONS PLUS bank (pp.104-108) contributes NOTHING to this unit — it holds no Plane question, so this is one of the three units (with 1 and 6) that receive none. Paper position: Maths-1B Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.86 — VSAQ chapter 16 The Plane, answer 106.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 15,17. ⚠ THE MARK SPLIT 1+1 IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter, whose pages are set two and three answers to a page in columns. It is not a bare guess: VSAQ answer 98 (book p.83, 3-D Coordinates) carries a printed 1+1 against exactly this shape — one mark for the setting-up move and one for the answer read off it — and the chapter header here reads '2 Marks' like that one. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Plane is a VSAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 2 marks in Section A and nothing in Section B or Section C, and the book has no Plane LAQ chapter (its LAQ chapters are 1-6) and no Plane SAQ chapter (its SAQ chapters are 7-13). Chapter scoped by BOUNDARY WALK: book p.87 opens VSAQ chapter 17, Limits. The STAR QUESTIONS PLUS bank (pp.104-108) contributes NOTHING to this unit — it holds no Plane question, so this is one of the three units (with 1 and 6) that receive none. Paper position: Maths-1B Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say what the angle between two planes really is, and which formula you use.",
   "answer": {
@@ -62,6 +62,7 @@
             "style": "heading"
           },
           "Given planes are  2x − y + z = 6,  x + y + 2z = 7",
+          "(the coefficients of x, y and z in each plane)",
           "⇒ a₁ = 2, b₁ = −1, c₁ = 1;",
           "   a₂ = 1, b₂ = 1,  c₂ = 2"
         ],
@@ -87,10 +88,10 @@
             "both planes"
           ]
         },
-        "why": "Two planes lean apart by exactly the angle their normals make, so a plane problem reduces to the line formula from the previous chapter with no extra work.",
+        "why": "The angle between two planes is defined as the angle between their normals, so a plane problem uses the angle-between-lines formula from the previous chapter.",
         "common_mistakes": [
           "Using the constant terms as coefficients.",
-          "Reading one plane's coefficients before rearranging it to = 0 form."
+          "Reading b₁ as 1 instead of −1 by dropping the minus sign in front of y."
         ]
       },
       {
@@ -102,9 +103,39 @@
         "margin_note": "Second mark. The same formula as for two lines. The modulus keeps the answer to the acute angle between the planes.",
         "memory_tip": "Both roots are √6, so the denominator is 6 and cos θ = 1/2 — a familiar angle.",
         "lines": [
-          "∴ cosθ = |a₁a₂ + b₁b₂ + c₁c₂| / √((a₁²+b₁²+c₁²)(a₂²+b₂²+c₂²))",
+          {
+            "text": "(the angle between two planes is the angle between their",
+            "added": true
+          },
+          {
+            "text": "  normals, whose d.r's are the coefficients)",
+            "style": "indent",
+            "added": true
+          },
+          "∴ cosθ = |a₁a₂ + b₁b₂ + c₁c₂|",
+          {
+            "text": "  / √((a₁²+b₁²+c₁²)(a₂²+b₂²+c₂²))",
+            "style": "indent"
+          },
+          {
+            "text": "(put a₁ = 2, b₁ = −1, c₁ = 1 and a₂ = 1, b₂ = 1, c₂ = 2)",
+            "added": true
+          },
           "= |2(1) − 1(1) + 1(2)| / √((2² + (−1)² + 1²)(1² + 1² + 2²))",
+          {
+            "text": "((−1)² = 1 and 2² = 4)",
+            "added": true
+          },
           "= |2 − 1 + 2| / √((4 + 1 + 1)(1 + 1 + 4))",
+          {
+            "text": "(2 − 1 + 2 = 3; 4 + 1 + 1 = 6 and 1 + 1 + 4 = 6;",
+            "added": true
+          },
+          {
+            "text": "  √(6 × 6) = 6; cos 60° = 1/2)",
+            "style": "indent",
+            "added": true
+          },
           "= 3/√(6 × 6) = 3/6 = 1/2 = cos60°",
           {
             "text": "∴ cosθ = 1/2  ⇒  θ = 60°",
@@ -133,10 +164,24 @@
             "the angle"
           ]
         },
-        "why": "The modulus is what fixes the answer as the acute angle — without it the same two planes could report an obtuse one, since a normal points both ways.",
+        "why": "The modulus is what fixes the answer as the acute angle — without it the formula can give the obtuse angle, since the normal can be taken in either of two opposite directions.",
         "common_mistakes": [
-          "Forgetting the modulus and reporting an obtuse angle.",
+          "Writing the numerator as 2 + 1 + 2 = 5 by dropping the minus sign of b₁.",
           "Adding the two sums of squares instead of multiplying them."
+        ],
+        "lines_compact": [
+          "∴ cosθ = |a₁a₂ + b₁b₂ + c₁c₂|",
+          {
+            "text": "  / √((a₁²+b₁²+c₁²)(a₂²+b₂²+c₂²))",
+            "style": "indent"
+          },
+          "= |2(1) − 1(1) + 1(2)| / √((2² + (−1)² + 1²)(1² + 1² + 2²))",
+          "= |2 − 1 + 2| / √((4 + 1 + 1)(1 + 1 + 4))",
+          "= 3/√(6 × 6) = 3/6 = 1/2 = cos60°",
+          {
+            "text": "∴ cosθ = 1/2  ⇒  θ = 60°",
+            "style": "boxed"
+          }
         ]
       }
     ]

@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.220, chapter 10 APPLICATIONS OF DERIVATIVES, the TANGENTS AND NORMALS sub-section, Short Answer question 8. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. WORDING NOTE, RECORDED NOT SILENTLY CORRECTED: the printed stem says varies WITH the length of the subnormal. The standard meaning in this topic is varies AS, that is, the ratio of the two is a constant, and that is what the working establishes: (subtangent)² = (8b/27) × subnormal. The stem is kept as printed and the answer states the constant explicitly. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4M over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.220, chapter 10 APPLICATIONS OF DERIVATIVES, the TANGENTS AND NORMALS sub-section, Short Answer question 8. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. WORDING NOTE, RECORDED NOT SILENTLY CORRECTED: the printed stem says varies WITH the length of the subnormal. The standard meaning in this topic is varies AS, that is, the ratio of the two is a constant, and that is what the working establishes: (subtangent)² = (8b/27) × subnormal. The stem is kept as printed and the answer states the constant explicitly. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4M over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — name the two formulas you use, say where you substitute the curve itself, and say what you have to show at the end.",
   "answer": {
@@ -59,9 +59,16 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Let P(x, y) be any point on the curve  by² = (x + a)³,  where a and b are constants.",
+          "Let P(x, y) be any point on the curve  by² = (x + a)³,",
+          "where a and b are constants.",
           "Differentiate both sides with respect to x:",
+          "(d/dx of by² is b · 2y · dy/dx; d/dx of (x + a)³",
+          {
+            "text": "  is 3(x + a)², by the chain rule)",
+            "style": "indent"
+          },
           "b · 2y (dy/dx) = 3(x + a)²",
+          "(divide both sides by 2by)",
           "∴ m = dy/dx = 3(x + a)²/(2by)"
         ],
         "recall": {
@@ -101,11 +108,27 @@
         "label": "Find the subtangent",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Second mark. After writing y/m, substitute by² = (x + a)³ into the numerator. That substitution is what collapses the expression to a single bracket.",
+        "margin_note": "Second mark. After writing y/m, substitute by² = (x + a)³ into the numerator. That substitution reduces the expression to a single bracket.",
         "lines": [
-          "Subtangent = y/m = y · 2by/(3(x + a)²) = 2by²/(3(x + a)²)",
+          {
+            "text": "(dividing by m is multiplying by 2by/(3(x + a)²))",
+            "added": true
+          },
+          "Subtangent = y/m = y · 2by/(3(x + a)²)",
+          {
+            "text": "  = 2by²/(3(x + a)²)",
+            "style": "indent"
+          },
+          {
+            "text": "(write (x + a)³ in place of by²)",
+            "added": true
+          },
           "But by² = (x + a)³ from the curve itself, so",
           "Subtangent = 2(x + a)³/(3(x + a)²)",
+          {
+            "text": "((x + a)³/(x + a)² = x + a)",
+            "added": true
+          },
           "∴ Subtangent = 2(x + a)/3"
         ],
         "recall": {
@@ -137,7 +160,17 @@
           "Cancelling (x + a)³ against (x + a)² to give (x + a)² instead of (x + a).",
           "Leaving the answer as 2by²/(3(x + a)²) without using the curve."
         ],
-        "memory_tip": "Sub-TANGENT has m underneath. Once it is written, look back at the curve for a substitution that clears the y."
+        "memory_tip": "Sub-TANGENT has m underneath. Once it is written, look back at the curve for a substitution that clears the y.",
+        "lines_compact": [
+          "Subtangent = y/m = y · 2by/(3(x + a)²)",
+          {
+            "text": "  = 2by²/(3(x + a)²)",
+            "style": "indent"
+          },
+          "But by² = (x + a)³ from the curve itself, so",
+          "Subtangent = 2(x + a)³/(3(x + a)²)",
+          "∴ Subtangent = 2(x + a)/3"
+        ]
       },
       {
         "id": "s3_subnormal",
@@ -147,6 +180,10 @@
         "mark_note": "Method",
         "margin_note": "Third mark. Here the y cancels on its own, so no substitution from the curve is needed. Notice that b stays in the answer — it is what makes the constant in the last step.",
         "lines": [
+          {
+            "text": "(multiply y by m from step 1)",
+            "added": true
+          },
           "Subnormal = ym = y · 3(x + a)²/(2by)",
           "The y cancels:",
           "∴ Subnormal = 3(x + a)²/(2b)"
@@ -180,7 +217,12 @@
           "Cancelling the 2b as well as the y.",
           "Squaring the subnormal instead of the subtangent."
         ],
-        "memory_tip": "Sub-NORMAL multiplies by m, and multiplying by y is what cancels the y sitting under the slope."
+        "memory_tip": "Sub-NORMAL multiplies by m, and multiplying by y is what cancels the y sitting under the slope.",
+        "lines_compact": [
+          "Subnormal = ym = y · 3(x + a)²/(2by)",
+          "The y cancels:",
+          "∴ Subnormal = 3(x + a)²/(2b)"
+        ]
       },
       {
         "id": "s4_ratio_constant",
@@ -190,13 +232,42 @@
         "mark_note": "Answer",
         "margin_note": "Last mark. Varies as means the ratio is free of x and y. Divide the square of the subtangent by the subnormal and show the brackets cancel completely.",
         "lines": [
+          {
+            "text": "(square the subtangent from step 2: 2² = 4 and 3² = 9)",
+            "added": true
+          },
           "(Subtangent)² = (2(x + a)/3)² = 4(x + a)²/9",
           "Divide by the subnormal:",
-          "(Subtangent)²/Subnormal = [4(x + a)²/9] ÷ [3(x + a)²/(2b)]",
-          "= [4(x + a)²/9] × [2b/(3(x + a)²)] = 8b/27",
-          "This is free of x and y, so it is the same at every point of the curve.",
+          "(Subtangent)²/Subnormal",
           {
-            "text": "∴ (Subtangent)² = (8b/27) × Subnormal, a constant multiple — so the square of the subtangent varies as the subnormal.",
+            "text": "(dividing by a fraction is multiplying by its reciprocal)",
+            "added": true
+          },
+          {
+            "text": "  = [4(x + a)²/9] ÷ [3(x + a)²/(2b)]",
+            "style": "indent"
+          },
+          {
+            "text": "((x + a)² cancels; (4 × 2b)/(9 × 3) = 8b/27)",
+            "added": true
+          },
+          "= [4(x + a)²/9] × [2b/(3(x + a)²)] = 8b/27",
+          "This is free of x and y, so it is the same",
+          "at every point of the curve.",
+          {
+            "text": "∴ (Subtangent)² = (8b/27) × Subnormal,",
+            "style": "boxed"
+          },
+          {
+            "text": "a constant multiple —",
+            "style": "boxed"
+          },
+          {
+            "text": "so the square of the subtangent",
+            "style": "boxed"
+          },
+          {
+            "text": "varies as the subnormal.",
             "style": "boxed"
           }
         ],
@@ -229,9 +300,37 @@
           "Stopping at the ratio without saying it contains no x or y, which is the point being proved.",
           "Writing (2(x + a)/3)² as 2(x + a)²/9 and forgetting to square the 2."
         ],
-        "memory_tip": "Varies as means one is a fixed number times the other, so divide and check that every letter except the constants disappears."
+        "memory_tip": "Varies as means one is a fixed number times the other, so divide and check that every letter except the constants disappears.",
+        "lines_compact": [
+          "(Subtangent)² = (2(x + a)/3)² = 4(x + a)²/9",
+          "Divide by the subnormal:",
+          "(Subtangent)²/Subnormal",
+          {
+            "text": "  = [4(x + a)²/9] ÷ [3(x + a)²/(2b)]",
+            "style": "indent"
+          },
+          "= [4(x + a)²/9] × [2b/(3(x + a)²)] = 8b/27",
+          "This is free of x and y, so it is the same",
+          "at every point of the curve.",
+          {
+            "text": "∴ (Subtangent)² = (8b/27) × Subnormal,",
+            "style": "boxed"
+          },
+          {
+            "text": "a constant multiple —",
+            "style": "boxed"
+          },
+          {
+            "text": "so the square of the subtangent",
+            "style": "boxed"
+          },
+          {
+            "text": "varies as the subnormal.",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },
-  "insider_note": "Form both lengths, then square the subtangent and compare — the question asks for a VARIES relation, not an equality. The constants b and a survive as the factor."
+  "insider_note": "Form both lengths, then square the subtangent and compare — the question asks for a VARIES relation, not an equality. The constant b remains in the factor 8b/27; a cancels."
 }

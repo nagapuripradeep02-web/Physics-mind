@@ -39,7 +39,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.56 — SAQ chapter 7 Locus, answer 48. Printed appearance: AP 16. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer, because it is set two-to-a-page in two columns and the columns take the margin those tags would occupy. It is not a bare guess: the SAME CHAPTER prints 1+1+2 on answers 44 (book p.54) and 46 (book p.55), both times against these exact three moves — write the given condition, substitute the coordinates, simplify to the locus. This answer takes the same three moves, so the shape is the book's own. The chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7. NOTE: Locus is an SAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 4 marks in Section B and nothing in Section A or Section C, and the book has no Locus LAQ chapter (its LAQ chapters are 1-6) and no Locus VSAQ chapter (its VSAQ chapters are 14-20). It is the 1B counterpart of 1A's Units 7 and 8. Chapter scoped by BOUNDARY WALK, not from the TOP 35 SAQ hit list: that list names only 6 of this chapter's 12 questions. Verified by reading book p.57, where SAQ chapter 8 Transformation of Axes begins."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.56 — SAQ chapter 7 Locus, answer 48. Printed appearance: AP 16. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer, because it is set two-to-a-page in two columns and the columns take the margin those tags would occupy. It is not a bare guess: the SAME CHAPTER prints 1+1+2 on answers 44 (book p.54) and 46 (book p.55), both times against these exact three moves — write the given condition, substitute the coordinates, simplify to the locus. This answer takes the same three moves, so the shape is the book's own. The chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7. NOTE: Locus is an SAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 4 marks in Section B and nothing in Section A or Section C, and the book has no Locus LAQ chapter (its LAQ chapters are 1-6) and no Locus VSAQ chapter (its VSAQ chapters are 14-20). It is the 1B counterpart of 1A's Units 7 and 8. Chapter scoped by BOUNDARY WALK, not from the TOP 35 SAQ hit list: that list names only 6 of this chapter's 12 questions. Verified by reading book p.57, where SAQ chapter 8 Transformation of Axes begins. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say what 'twice the distance' becomes as an equation, and name the shape the locus turns out to be.",
   "answer": {
@@ -54,12 +54,13 @@
         "label": "Take the locus point",
         "marks": 0,
         "margin_note": "No mark of its own. 'Twice' is a ratio in words — PA:PB = 2:1 — so this is the ratio family with the numbers hidden in a sentence.",
-        "memory_tip": "'Twice' is a RATIO in words — PA : PB = 2 : 1 — so this is the ratio family in disguise.",
+        "memory_tip": "'Twice' is a RATIO in words — PA : PB = 2 : 1 — so this is a ratio question.",
         "lines": [
           {
             "text": "Sol:",
             "style": "heading"
           },
+          "(a locus is the set of all points P that satisfy the condition)",
           "Let P = (x, y) be a point on the locus.",
           "Given points A = (3, 0), B = (−3, 0)"
         ],
@@ -96,10 +97,14 @@
         "label": "Write the given condition",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. Square both sides immediately. A ratio needs no isolating and no ±, which makes this the shortest answer in the chapter.",
+        "margin_note": "First mark. Square both sides immediately. A ratio needs no isolating and no ±, so this answer is shorter than the sum and difference answers.",
         "memory_tip": "Square both sides immediately. A ratio needs no isolating and no ±.",
         "lines": [
           "Given condition: PA = 2 PB",
+          {
+            "text": "(square both sides: (2PB)² = 4PB²)",
+            "added": true
+          },
           "⇒ PA² = 4 PB²"
         ],
         "recall": {
@@ -128,6 +133,10 @@
         "common_mistakes": [
           "Squaring to PA² = 2PB² and forgetting to square the 2.",
           "Reading it backwards as PB = 2PA."
+        ],
+        "lines_compact": [
+          "Given condition: PA = 2 PB",
+          "⇒ PA² = 4 PB²"
         ]
       },
       {
@@ -136,10 +145,28 @@
         "label": "Substitute the distances",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Second mark. Both distances go in squared, with the 4 multiplying the whole of the B bracket — its y² included, which is the step most often dropped.",
-        "memory_tip": "The 4 multiplies the WHOLE B bracket, its y² included — the step most often dropped.",
+        "margin_note": "Second mark. Both distances go in squared, with the 4 multiplying the whole of the B bracket — its y² included, which is a step that is often dropped.",
+        "memory_tip": "The 4 multiplies the WHOLE B bracket, its y² included — a step that is often dropped.",
         "lines": [
+          {
+            "text": "(the distance formula, squared:",
+            "added": true
+          },
+          {
+            "text": "  PA² = (x − x₁)² + (y − y₁)²,",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  so no square root is left)",
+            "style": "indent",
+            "added": true
+          },
           "⇒ (x−3)² + (y−0)² = 4[(x+3)² + (y−0)²]",
+          {
+            "text": "((x − 3)² = x² − 6x + 9 and (x + 3)² = x² + 6x + 9)",
+            "added": true
+          },
           "⇒ (x² − 6x + 9) + y² = 4[(x² + 6x + 9) + y²]"
         ],
         "recall": {
@@ -164,10 +191,14 @@
             "substitute"
           ]
         },
-        "why": "The 4 multiplies a bracket holding both x and y terms, so it reaches the y² as well — that is what makes the y² coefficients differ across the equals sign and leaves a circle rather than a line.",
+        "why": "The 4 multiplies a bracket holding both x and y terms, so it reaches the y² as well — that is what makes the y² coefficients differ across the equals sign, so y² does not cancel and the locus is a circle.",
         "common_mistakes": [
           "Multiplying only the x-part of the right bracket by 4.",
           "Sign slip on (x + 3)², which expands with +6x."
+        ],
+        "lines_compact": [
+          "⇒ (x−3)² + (y−0)² = 4[(x+3)² + (y−0)²]",
+          "⇒ (x² − 6x + 9) + y² = 4[(x² + 6x + 9) + y²]"
         ]
       },
       {
@@ -176,12 +207,33 @@
         "label": "Simplify to the locus",
         "marks": 2,
         "mark_note": "Solution",
-        "margin_note": "The last two marks. Collect on the side that keeps the squared terms positive, then divide by 3. Equal x² and y² coefficients — a circle again, as every ratio condition gives.",
-        "memory_tip": "Equal x² and y² coefficients — a circle, as every ratio condition gives.",
+        "margin_note": "The last two marks. Collect on the side that keeps the squared terms positive, then divide by 3. Equal x² and y² coefficients — a circle again, as every ratio condition other than 1 : 1 gives.",
+        "memory_tip": "Equal x² and y² coefficients — a circle, as every ratio other than 1 : 1 gives.",
         "lines": [
+          {
+            "text": "(multiply the bracket by 4: 4x² + 24x + 36 + 4y²)",
+            "added": true
+          },
           "⇒ x² − 6x + 9 + y² = 4x² + 24x + 36 + 4y²",
+          {
+            "text": "(move the left side to the right: 4x² − x² = 3x²,",
+            "added": true
+          },
+          {
+            "text": "  24x + 6x = 30x, 4y² − y² = 3y², 36 − 9 = 27)",
+            "style": "indent",
+            "added": true
+          },
           "⇒ 0 = 3x² + 3y² + 30x + 27",
+          {
+            "text": "(take out the common factor 3)",
+            "added": true
+          },
           "⇒ 3(x² + y² + 10x + 9) = 0",
+          {
+            "text": "(divide both sides by 3)",
+            "added": true
+          },
           {
             "text": "∴ Locus of P is x² + y² + 10x + 9 = 0",
             "style": "boxed"
@@ -210,10 +262,19 @@
             "locus of P is"
           ]
         },
-        "why": "Any fixed ratio of distances other than 1:1 gives a circle of Apollonius, so equal x² and y² coefficients are the check that the arithmetic held.",
+        "why": "Any fixed ratio of distances other than 1:1 gives a circle of Apollonius, so equal x² and y² coefficients are the check that the arithmetic is right.",
         "common_mistakes": [
           "Forgetting to divide through by the common factor 3.",
-          "Taking the constant as 9 − 36 = −27; moving the 9 across gives 36 − 9 = +27 on the right."
+          "Moving the 9 across with the wrong sign and getting 36 + 9 = 45 in place of 27."
+        ],
+        "lines_compact": [
+          "⇒ x² − 6x + 9 + y² = 4x² + 24x + 36 + 4y²",
+          "⇒ 0 = 3x² + 3y² + 30x + 27",
+          "⇒ 3(x² + y² + 10x + 9) = 0",
+          {
+            "text": "∴ Locus of P is x² + y² + 10x + 9 = 0",
+            "style": "boxed"
+          }
         ]
       }
     ]

@@ -35,7 +35,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.104 — the STAR QUESTIONS PLUS bank, answer 182, under its 'STRAIGHT LINES' heading. Printed appearance: AP 17. ⚠ THIS QUESTION COMES FROM THE STAR QUESTIONS PLUS BANK (book pp.104-108, answers 181-196), NOT from any of the unit's three numbered chapters — the bank sits AFTER every numbered chapter and is organised by chapter, so it is not part of any chapter's own inventory. Boundary walked to book p.109, the Bullet Model Paper. SECTION CLASSIFICATION IS OURS, NOT THE BOOK'S: the bank's headings name the CHAPTER, never the mark cut. This is filed as VSAQ because it is a single short move of exactly the length and shape of VSAQ chapter 14's own answers (compare answers 88.1-96 on book pp.79-82). ⚠ THE MARK SPLIT IS ALSO OURS — the bank prints no [N Marks] tags anywhere; 1+1 follows the shape used across VSAQ chapter 14 and matches the printed 1+1 on VSAQ answer 98 (book p.83). Paper position: Maths-1B Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; The Straight Line holds two of those ten slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.104 — the STAR QUESTIONS PLUS bank, answer 182, under its 'STRAIGHT LINES' heading. Printed appearance: AP 17. ⚠ THIS QUESTION COMES FROM THE STAR QUESTIONS PLUS BANK (book pp.104-108, answers 181-196), NOT from any of the unit's three numbered chapters — the bank sits AFTER every numbered chapter and is organised by chapter, so it is not part of any chapter's own inventory. Boundary walked to book p.109, the Bullet Model Paper. SECTION CLASSIFICATION IS OURS, NOT THE BOOK'S: the bank's headings name the CHAPTER, never the mark cut. This is filed as VSAQ because it is a single short move of exactly the length and shape of VSAQ chapter 14's own answers (compare answers 88.1-96 on book pp.79-82). ⚠ THE MARK SPLIT IS ALSO OURS — the bank prints no [N Marks] tags anywhere; 1+1 follows the shape used across VSAQ chapter 14 and matches the printed 1+1 on VSAQ answer 98 (book p.83). Paper position: Maths-1B Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; The Straight Line holds two of those ten slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say what parallel means for the two slopes.",
   "answer": {
@@ -56,8 +56,16 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Slope of the line 6x − 10y + 3 = 0 is  m₁ = −a/b = −(6/(−10)) = 3/5",
-          "Slope of the line kx − 5y + 8 = 0 is  m₂ = −a/b = −(k/(−5)) = k/5"
+          "(the slope of ax + by + c = 0 is −a/b;",
+          {
+            "text": "  here a = 6 and b = −10: −6/(−10) = 6/10 = 3/5)",
+            "style": "indent"
+          },
+          "Slope of the line 6x − 10y + 3 = 0 is",
+          "m₁ = −a/b = −(6/(−10)) = 3/5",
+          "(here a = k and b = −5: −k/(−5) = k/5)",
+          "Slope of the line kx − 5y + 8 = 0 is",
+          "m₂ = −a/b = −(k/(−5)) = k/5"
         ],
         "recall": {
           "credit": "say_it",
@@ -97,6 +105,10 @@
         "memory_tip": "Parallel means EQUAL slopes, so m₁ = m₂ gives k at once.",
         "lines": [
           "If the two lines are parallel then  m₁ = m₂",
+          {
+            "text": "(multiply both sides of 3/5 = k/5 by 5)",
+            "added": true
+          },
           "⇒ 3/5 = k/5   ⇒   k = 3",
           {
             "text": "∴ k = 3",
@@ -127,11 +139,19 @@
         "why": "Both denominators are 5, so the equation reduces to comparing the numerators directly.",
         "common_mistakes": [
           "Using m₁m₂ = −1, which is the perpendicular condition.",
-          "Multiplying the 3 by 5 as if the k side had no denominator, and getting k = 15."
+          "Multiplying only the left side by 5, which gives 3 = k/5 and k = 15."
         ],
-        "mark_note": "Solution"
+        "mark_note": "Solution",
+        "lines_compact": [
+          "If the two lines are parallel then  m₁ = m₂",
+          "⇒ 3/5 = k/5   ⇒   k = 3",
+          {
+            "text": "∴ k = 3",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },
-  "insider_note": "Slope is −a/b, so the −10 makes m₁ = +3/5; the sign of b is where this goes wrong. Parallel means m₁ = m₂, never m₁m₂ = −1, and both denominators being 5 gives k = 3 at once."
+  "insider_note": "Slope is −a/b, so the −10 makes m₁ = +3/5; watch the sign of b. Parallel means m₁ = m₂, never m₁m₂ = −1, and both denominators being 5 gives k = 3 at once."
 }

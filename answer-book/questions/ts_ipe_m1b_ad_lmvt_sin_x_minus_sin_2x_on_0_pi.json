@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.230, chapter 10 APPLICATIONS OF DERIVATIVES, the ROLLE'S AND LAGRANGE'S THEOREM sub-section, Very Short Answer question 8(ii). **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box; we ship the chapter as ONE unit, so the sub-section is named above instead of a sub-chapter number. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.230, chapter 10 APPLICATIONS OF DERIVATIVES, the ROLLE'S AND LAGRANGE'S THEOREM sub-section, Very Short Answer question 8(ii). **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box; we ship the chapter as ONE unit, so the sub-section is named above instead of a sub-chapter number. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say what the chord slope comes to here, and what that turns the equation for c into.",
   "answer": {
@@ -52,11 +52,17 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Lagrange's mean value theorem: if f is continuous on [a, b] and differentiable on (a, b), then there is at least one c in (a, b) with",
+          "Lagrange's mean value theorem:",
+          "if f is continuous on [a, b] and differentiable on (a, b),",
+          "then there is at least one c in (a, b) with",
           "f′(c) = (f(b) − f(a))/(b − a)",
           "Here f(x) = sin x − sin 2x, a = 0, b = π",
-          "sin x and sin 2x are continuous and differentiable for every real x, so f is continuous on [0, π] and differentiable on (0, π). Both conditions hold.",
+          "sin x and sin 2x are continuous and differentiable",
+          "for every real x, so f is continuous on [0, π]",
+          "and differentiable on (0, π). Both conditions hold.",
+          "(sin 0 = 0, sin π = 0 and sin 2π = 0)",
           "f(0) = sin 0 − sin 0 = 0,   f(π) = sin π − sin 2π = 0 − 0 = 0",
+          "(the slope of the chord joining (0, 0) and (π, 0))",
           "(f(π) − f(0))/(π − 0) = 0/π = 0"
         ],
         "recall": {
@@ -83,7 +89,7 @@
             "chord slope"
           ]
         },
-        "why": "Because both end values are 0, the chord slope is 0 and the mean value equation becomes f′(c) = 0 — the same equation Rolle's theorem gives for this function. Saying so shows the examiner you know why the two theorems meet here.",
+        "why": "Because both end values are 0, the chord slope is 0 and the mean value equation becomes f′(c) = 0 — the same equation Rolle's theorem gives for this function. Saying so shows the examiner you know why the two theorems give the same equation here.",
         "common_mistakes": [
           "Taking sin 2π as 1 instead of 0, which makes the chord slope −1/π.",
           "Writing only the value of c and leaving the two conditions unstated."
@@ -98,15 +104,69 @@
         "margin_note": "Second mark. Turn cos 2c into 2cos²c − 1 so the equation becomes a quadratic in cos c. Both roots of that quadratic lie between −1 and 1, so both give a usable c.",
         "memory_tip": "When an equation mixes cos x with cos 2x, replace cos 2x by 2cos²x − 1 and it becomes a quadratic in cos x.",
         "lines": [
+          {
+            "text": "(d/dx of sin x is cos x; d/dx of sin 2x is 2 cos 2x,",
+            "added": true
+          },
+          {
+            "text": "  by the chain rule)",
+            "style": "indent",
+            "added": true
+          },
           "f′(x) = cos x − 2 cos 2x",
+          {
+            "text": "(the chord slope from step 1 is 0)",
+            "added": true
+          },
           "By the theorem there is c in (0, π) with f′(c) = 0",
           "cos c − 2 cos 2c = 0.  Using cos 2c = 2cos²c − 1:",
+          {
+            "text": "(−2(2cos²c − 1) = −4cos²c + 2; then multiply by −1)",
+            "added": true
+          },
           "cos c − 2(2cos²c − 1) = 0 ⇒ 4cos²c − cos c − 2 = 0",
+          {
+            "text": "(this is 4u² − u − 2 = 0 with u = cos c; the quadratic",
+            "added": true
+          },
+          {
+            "text": "  formula gives u = (1 ± √(1 + 4 · 4 · 2))/(2 · 4))",
+            "style": "indent",
+            "added": true
+          },
           "cos c = (1 ± √(1 + 32))/8 = (1 ± √33)/8",
-          "(1 + √33)/8 ≈ 0.843 and (1 − √33)/8 ≈ −0.593, and both lie between −1 and 1",
+          {
+            "text": "(√33 ≈ 5.745: (1 + 5.745)/8 ≈ 0.843",
+            "added": true
+          },
+          {
+            "text": "  and (1 − 5.745)/8 ≈ −0.593)",
+            "style": "indent",
+            "added": true
+          },
+          "(1 + √33)/8 ≈ 0.843 and (1 − √33)/8 ≈ −0.593,",
+          "and both lie between −1 and 1",
+          {
+            "text": "(for each value between −1 and 1, Cos⁻¹ gives",
+            "added": true
+          },
+          {
+            "text": "  one angle in (0, π): Cos⁻¹(0.843) ≈ 0.568",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  and Cos⁻¹(−0.593) ≈ 2.206)",
+            "style": "indent",
+            "added": true
+          },
           "So c ≈ 0.568 or c ≈ 2.206 radians, and both lie in (0, π)",
           {
-            "text": "∴ c = Cos⁻¹((1 ± √33)/8), both values lying in (0, π)",
+            "text": "∴ c = Cos⁻¹((1 ± √33)/8),",
+            "style": "boxed"
+          },
+          {
+            "text": "both values lying in (0, π)",
             "style": "boxed"
           }
         ],
@@ -139,6 +199,24 @@
           "Differentiating sin 2x as cos 2x and losing the factor 2.",
           "Using cos 2c = 1 − 2sin²c, which leaves both sin c and cos c in the equation.",
           "Rejecting the negative root, which is valid because c may lie past π/2."
+        ],
+        "lines_compact": [
+          "f′(x) = cos x − 2 cos 2x",
+          "By the theorem there is c in (0, π) with f′(c) = 0",
+          "cos c − 2 cos 2c = 0.  Using cos 2c = 2cos²c − 1:",
+          "cos c − 2(2cos²c − 1) = 0 ⇒ 4cos²c − cos c − 2 = 0",
+          "cos c = (1 ± √(1 + 32))/8 = (1 ± √33)/8",
+          "(1 + √33)/8 ≈ 0.843 and (1 − √33)/8 ≈ −0.593,",
+          "and both lie between −1 and 1",
+          "So c ≈ 0.568 or c ≈ 2.206 radians, and both lie in (0, π)",
+          {
+            "text": "∴ c = Cos⁻¹((1 ± √33)/8),",
+            "style": "boxed"
+          },
+          {
+            "text": "both values lying in (0, π)",
+            "style": "boxed"
+          }
         ]
       }
     ]

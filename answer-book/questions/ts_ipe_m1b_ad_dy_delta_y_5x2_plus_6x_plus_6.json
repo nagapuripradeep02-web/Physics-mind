@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.209, chapter 10 APPLICATIONS OF DERIVATIVES, Very Short Answer question 1(iii), in the ERRORS AND APPROXIMATIONS sub-section. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and the book restarts its question numbering in each sub-section, so \"question 1(iii)\" is that sub-section's number and not the chapter's; we ship the five sub-sections as ONE unit, ordered by the syllabus. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks) over this sub-section but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question — one mark for dy and one for Δy, because the question asks for two different numbers. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.209, chapter 10 APPLICATIONS OF DERIVATIVES, Very Short Answer question 1(iii), in the ERRORS AND APPROXIMATIONS sub-section. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and the book restarts its question numbering in each sub-section, so \"question 1(iii)\" is that sub-section's number and not the chapter's; we ship the five sub-sections as ONE unit, ordered by the syllabus. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks) over this sub-section but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question — one mark for dy and one for Δy, because the question asks for two different numbers. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say how you get dy, and say what makes Δy a different number.",
   "answer": {
@@ -52,9 +52,13 @@
             "style": "heading"
           },
           "y = 5x² + 6x + 6,  x = 2,  Δx = 0.001",
+          "(d/dx of 5x² is 10x, of 6x is 6, and of 6 is 0)",
           "dy/dx = 10x + 6",
+          "(the differential: dy = (dy/dx) · Δx)",
           "dy = (dy/dx)·Δx = (10x + 6)Δx",
+          "(put 2 in place of x: 10(2) + 6 = 26)",
           "= (10(2) + 6)(0.001) = 26 × 0.001",
+          "(26 × 0.001 = 0.026)",
           "∴ dy = 0.026"
         ],
         "recall": {
@@ -94,10 +98,43 @@
         "mark_note": "Answer",
         "margin_note": "Second mark. Keep every decimal place of (2.001)² = 4.004001. Δx is only 0.001 here, so dy and Δy differ in the sixth decimal place — rounding early erases the difference the question is about.",
         "lines": [
+          {
+            "text": "(Δy is the actual change in y)",
+            "added": true
+          },
           "Δy = f(x + Δx) − f(x) = f(2.001) − f(2)",
+          {
+            "text": "(put 2.001 in place of x)",
+            "added": true
+          },
           "f(2.001) = 5(2.001)² + 6(2.001) + 6",
-          "= 5(4.004001) + 12.006 + 6 = 20.020005 + 12.006 + 6 = 38.026005",
+          {
+            "text": "((2.001)² = 4 + 2(2)(0.001) + (0.001)² = 4.004001;",
+            "added": true
+          },
+          {
+            "text": "  5 × 4.004001 = 20.020005, 6 × 2.001 = 12.006)",
+            "style": "indent",
+            "added": true
+          },
+          "= 5(4.004001) + 12.006 + 6 = 20.020005 + 12.006 + 6",
+          {
+            "text": "(20.020005 + 12.006 + 6 = 38.026005)",
+            "added": true
+          },
+          {
+            "text": "  = 38.026005",
+            "style": "indent"
+          },
+          {
+            "text": "(put 2 in place of x: 5(4) = 20 and 6(2) = 12)",
+            "added": true
+          },
           "f(2) = 5(4) + 12 + 6 = 38",
+          {
+            "text": "(38.026005 − 38 = 0.026005)",
+            "added": true
+          },
           "Δy = 38.026005 − 38 = 0.026005",
           {
             "text": "∴ dy = 0.026  and  Δy = 0.026005",
@@ -131,7 +168,22 @@
           "Rounding (2.001)² to 4.004 and losing the 0.000005 difference.",
           "Stopping at dy when the question asks for both numbers."
         ],
-        "memory_tip": "Δy is the after value minus the before value, in that order — a negative Δy is allowed and simply means y went down."
+        "memory_tip": "Δy is the after value minus the before value, in that order — a negative Δy is allowed and simply means y went down.",
+        "lines_compact": [
+          "Δy = f(x + Δx) − f(x) = f(2.001) − f(2)",
+          "f(2.001) = 5(2.001)² + 6(2.001) + 6",
+          "= 5(4.004001) + 12.006 + 6 = 20.020005 + 12.006 + 6",
+          {
+            "text": "  = 38.026005",
+            "style": "indent"
+          },
+          "f(2) = 5(4) + 12 + 6 = 38",
+          "Δy = 38.026005 − 38 = 0.026005",
+          {
+            "text": "∴ dy = 0.026  and  Δy = 0.026005",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

@@ -42,7 +42,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.155, chapter 3 THE STRAIGHT LINE, Long Answer question 11. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split rewards the angle condition, which is the whole idea of the question: two marks for writing it, two for opening the modulus and two for solving both branches, with one each for reading the base slope and writing the two lines out. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section C prints 3 long answer questions at 8 marks each and the student answers any 2, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The two sides were checked by finding the vertices. They meet the base at ((15 + √3)/6, (−3 − √3)/6) and ((15 − √3)/6, (−3 + √3)/6), which are about (2.7887, −0.7887) and (2.2113, −0.2113). All three sides then measure √(2/3) ≈ 0.8165, so the triangle really is equilateral. The altitude from (2, −1) to the base is |2 − 1 − 2|/√2 = 1/√2, and (√3/2) × 0.8165 = 0.7071 = 1/√2 agrees."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.155, chapter 3 THE STRAIGHT LINE, Long Answer question 11. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split rewards the angle condition, which is the whole idea of the question: two marks for writing it, two for opening the modulus and two for solving both branches, with one each for reading the base slope and writing the two lines out. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section C prints 3 long answer questions at 8 marks each and the student answers any 2, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The two sides were checked by finding the vertices. They meet the base at ((15 + √3)/6, (−3 − √3)/6) and ((15 − √3)/6, (−3 + √3)/6), which are about (2.7887, −0.7887) and (2.2113, −0.2113). All three sides then measure √(2/3) ≈ 0.8165, so the triangle really is equilateral. The altitude from (2, −1) to the base is |2 − 1 − 2|/√2 = 1/√2, and (√3/2) × 0.8165 = 0.7071 = 1/√2 agrees. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — name the angle you use, and say why the answer has two lines in it.",
   "answer": {
@@ -64,7 +64,9 @@
             "style": "heading"
           },
           "Base:  x + y − 2 = 0",
+          "(the slope of ax + by + c = 0 is −a/b; here a = b = 1)",
           "Its slope  m₁ = −a/b = −1/1 = −1",
+          "(each angle of an equilateral triangle is 60°)",
           "Each of the other two sides passes through",
           "the vertex A(2, −1) and meets the base at 60°.",
           "Let the slope of such a side be m."
@@ -91,7 +93,7 @@
             "equilateral"
           ]
         },
-        "why": "Every angle of an equilateral triangle is 60°, so both remaining sides make 60° with the base — that is the only fact the question gives.",
+        "why": "Every angle of an equilateral triangle is 60°, so both remaining sides make 60° with the base, and that angle condition gives their slopes.",
         "common_mistakes": [
           "Reading the slope of x + y − 2 = 0 as 1.",
           "Using 30° instead of 60° for the angle at the base."
@@ -107,8 +109,25 @@
         "margin_note": "Two marks. Quote tan θ = |(m − m₁)/(1 + m m₁)| in full before substituting, and use tan 60° = √3.",
         "lines": [
           "The angle between the base and a side is 60°.",
+          {
+            "text": "(the formula for the angle θ between two lines",
+            "added": true
+          },
+          {
+            "text": "  with slopes m and m₁)",
+            "style": "indent",
+            "added": true
+          },
           "tan 60° = |(m − m₁)/(1 + m m₁)|",
+          {
+            "text": "(tan 60° = √3, and m₁ = −1)",
+            "added": true
+          },
           "⇒ √3 = |(m − (−1))/(1 + m(−1))|",
+          {
+            "text": "(m − (−1) = m + 1 and m(−1) = −m)",
+            "added": true
+          },
           "⇒ √3 = |(m + 1)/(1 − m)|"
         ],
         "recall": {
@@ -133,12 +152,18 @@
             "m plus one"
           ]
         },
-        "why": "The side lengths are not given, so the only way into the question is the angle between two lines written through their slopes.",
+        "why": "The side lengths are not given, so the question is solved with the angle between two lines, written through their slopes.",
         "common_mistakes": [
           "Using sin 60° or cos 60° in place of tan 60°.",
           "Writing the denominator as 1 − m m₁."
         ],
-        "memory_tip": "tan θ = |(m − m₁)/(1 + m m₁)|, and tan 60° = √3. The angle, not the side length, is what is given."
+        "memory_tip": "tan θ = |(m − m₁)/(1 + m m₁)|, and tan 60° = √3. The angle, not the side length, is what is given.",
+        "lines_compact": [
+          "The angle between the base and a side is 60°.",
+          "tan 60° = |(m − m₁)/(1 + m m₁)|",
+          "⇒ √3 = |(m − (−1))/(1 + m(−1))|",
+          "⇒ √3 = |(m + 1)/(1 − m)|"
+        ]
       },
       {
         "id": "s3_open_modulus",
@@ -148,7 +173,20 @@
         "mark_note": "Method",
         "margin_note": "Two marks. Clear the modulus as ±, and say why both signs are kept: the two answers are the two remaining sides of the same triangle.",
         "lines": [
+          {
+            "text": "(multiply both sides by |1 − m|; m = 1 is not an answer,",
+            "added": true
+          },
+          {
+            "text": "  because a line of slope 1 meets the base at 90°)",
+            "style": "indent",
+            "added": true
+          },
           "⇒ |m + 1| = √3 |1 − m|",
+          {
+            "text": "(|p| = |q| means p = q or p = −q)",
+            "added": true
+          },
           "⇒ m + 1 = ±√3 (1 − m)",
           "The plus and the minus give two answers,",
           "and both are wanted: they are the two",
@@ -181,7 +219,14 @@
           "Dropping the ± and finding only one side.",
           "Opening the modulus on only one of the two brackets."
         ],
-        "memory_tip": "The ± is not a choice here. The two branches ARE the two remaining sides, one on each side of the altitude."
+        "memory_tip": "The ± is not a choice here. The two branches ARE the two remaining sides, one on each side of the altitude.",
+        "lines_compact": [
+          "⇒ |m + 1| = √3 |1 − m|",
+          "⇒ m + 1 = ±√3 (1 − m)",
+          "The plus and the minus give two answers,",
+          "and both are wanted: they are the two",
+          "remaining sides of the triangle."
+        ]
       },
       {
         "id": "s4_solve_branches",
@@ -191,13 +236,75 @@
         "mark_note": "Method",
         "margin_note": "Two marks. Solve each branch on its own line and rationalise. The two slopes come out as 2 − √3 and 2 + √3, which are tan 15° and tan 75°.",
         "lines": [
+          {
+            "text": "(the + sign: √3(1 − m) = √3 − √3 m)",
+            "added": true
+          },
           "Taking +:  m + 1 = √3 − √3 m",
+          {
+            "text": "(collect the m terms on the left: m + √3 m = m(1 + √3);",
+            "added": true
+          },
+          {
+            "text": "  take 1 to the right)",
+            "style": "indent",
+            "added": true
+          },
           "⇒ m(1 + √3) = √3 − 1",
+          {
+            "text": "(divide both sides by 1 + √3)",
+            "added": true
+          },
           "⇒ m = (√3 − 1)/(√3 + 1)",
+          {
+            "text": "(multiply the top and the bottom by √3 − 1:",
+            "added": true
+          },
+          {
+            "text": "  (√3 + 1)(√3 − 1) = 3 − 1 = 2 and",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  (√3 − 1)² = 3 − 2√3 + 1 = 4 − 2√3)",
+            "style": "indent",
+            "added": true
+          },
           "⇒ m = (√3 − 1)²/2 = (4 − 2√3)/2 = 2 − √3",
+          {
+            "text": "(the − sign: −√3(1 − m) = −√3 + √3 m)",
+            "added": true
+          },
           "Taking −:  m + 1 = −√3 + √3 m",
+          {
+            "text": "(collect the m terms: m − √3 m = m(1 − √3);",
+            "added": true
+          },
+          {
+            "text": "  take 1 to the right)",
+            "style": "indent",
+            "added": true
+          },
           "⇒ m(1 − √3) = −(√3 + 1)",
+          {
+            "text": "(divide by 1 − √3;",
+            "added": true
+          },
+          {
+            "text": "  −(√3 + 1)/(1 − √3) = (√3 + 1)/(√3 − 1))",
+            "style": "indent",
+            "added": true
+          },
           "⇒ m = (√3 + 1)/(√3 − 1)",
+          {
+            "text": "(multiply the top and the bottom by √3 + 1:",
+            "added": true
+          },
+          {
+            "text": "  (√3 + 1)² = 3 + 2√3 + 1 = 4 + 2√3)",
+            "style": "indent",
+            "added": true
+          },
           "⇒ m = (√3 + 1)²/2 = (4 + 2√3)/2 = 2 + √3"
         ],
         "recall": {
@@ -224,10 +331,20 @@
         },
         "why": "Both slopes have a surd in the denominator, so each one is rationalised before it is used, which also shows the two slopes are 2 − √3 and 2 + √3.",
         "common_mistakes": [
-          "Leaving the slope as (√3 − 1)/(√3 + 1) and substituting it unrationalised.",
+          "Expanding (√3 − 1)² as 3 − 1 = 2, which gives m = 1.",
           "A sign slip when the minus is taken over the bracket (1 − m)."
         ],
-        "memory_tip": "Multiply top and bottom by the same surd bracket. (√3 − 1)/(√3 + 1) becomes (√3 − 1)²/2 = 2 − √3."
+        "memory_tip": "Multiply top and bottom by the same surd bracket. (√3 − 1)/(√3 + 1) becomes (√3 − 1)²/2 = 2 − √3.",
+        "lines_compact": [
+          "Taking +:  m + 1 = √3 − √3 m",
+          "⇒ m(1 + √3) = √3 − 1",
+          "⇒ m = (√3 − 1)/(√3 + 1)",
+          "⇒ m = (√3 − 1)²/2 = (4 − 2√3)/2 = 2 − √3",
+          "Taking −:  m + 1 = −√3 + √3 m",
+          "⇒ m(1 − √3) = −(√3 + 1)",
+          "⇒ m = (√3 + 1)/(√3 − 1)",
+          "⇒ m = (√3 + 1)²/2 = (4 + 2√3)/2 = 2 + √3"
+        ]
       },
       {
         "id": "s5_two_sides",
@@ -237,10 +354,46 @@
         "mark_note": "Solution",
         "margin_note": "The last mark. Use y − y₁ = m(x − x₁) at A(2, −1) for each slope and expand carefully — the constant carries a surd.",
         "lines": [
+          {
+            "text": "(the point-slope form y − y₁ = m(x − x₁) at A(2, −1))",
+            "added": true
+          },
           "Through A(2, −1) with m = 2 − √3:",
           "y + 1 = (2 − √3)(x − 2)",
           "Through A(2, −1) with m = 2 + √3:",
           "y + 1 = (2 + √3)(x − 2)",
+          {
+            "text": "((2 − √3)(x − 2) = (2 − √3)x − 4 + 2√3; move y + 1",
+            "added": true
+          },
+          {
+            "text": "  to the right: (2 − √3)x − y − 4 + 2√3 − 1 = 0)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "((2 + √3)(x − 2) = (2 + √3)x − 4 − 2√3;",
+            "added": true
+          },
+          {
+            "text": "  so (2 + √3)x − y − 4 − 2√3 − 1 = 0)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "(check: 2 − √3 = tan 15° and 2 + √3 = tan 75°; the base",
+            "added": true
+          },
+          {
+            "text": "  has slope −1 = tan 135°, and 135° − 60° = 75°,",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  135° + 60° = 195°, whose tangent is tan 15°)",
+            "style": "indent",
+            "added": true
+          },
           "∴ The remaining two sides are",
           {
             "text": "(2 − √3)x − y + 2√3 − 5 = 0",
@@ -278,7 +431,22 @@
           "Multiplying out (2 ∓ √3)(x − 2) and losing one of the surd terms.",
           "Reporting slopes instead of equations of lines."
         ],
-        "memory_tip": "Same point, two slopes. Expand (2 ∓ √3)(x − 2) term by term so the 2√3 in the constant is not lost."
+        "memory_tip": "Same point, two slopes. Expand (2 ∓ √3)(x − 2) term by term so the 2√3 in the constant is not lost.",
+        "lines_compact": [
+          "Through A(2, −1) with m = 2 − √3:",
+          "y + 1 = (2 − √3)(x − 2)",
+          "Through A(2, −1) with m = 2 + √3:",
+          "y + 1 = (2 + √3)(x − 2)",
+          "∴ The remaining two sides are",
+          {
+            "text": "(2 − √3)x − y + 2√3 − 5 = 0",
+            "style": "boxed"
+          },
+          {
+            "text": "(2 + √3)x − y − 2√3 − 5 = 0",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   }

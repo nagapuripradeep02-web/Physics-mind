@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.184, chapter 8 LIMITS, Short & Very Short Answer question 1. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.184, chapter 8 LIMITS, Short & Very Short Answer question 1. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say what form the expression takes at x = 0 and what you multiply above and below by.",
   "answer": {
@@ -51,10 +51,23 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "At x = 0, √(1 + x) − 1 = 0 and x = 0, so the expression is of the indeterminate form 0/0.",
-          "Multiply the numerator and the denominator by the conjugate √(1 + x) + 1.",
+          "(√1 − 1 = 0)",
+          "At x = 0, √(1 + x) − 1 = 0 and x = 0,",
+          "so the expression is of the indeterminate form 0/0.",
+          "Multiply the numerator and the denominator",
+          "by the conjugate √(1 + x) + 1.",
+          "(multiplying the top and the bottom by the same non-zero",
+          {
+            "text": "  number √(1 + x) + 1)",
+            "style": "indent"
+          },
           "lim(x → 0) (√(1 + x) − 1)/x",
-          "= lim(x → 0) [(√(1 + x) − 1)(√(1 + x) + 1)] / [x(√(1 + x) + 1)]",
+          "= lim(x → 0) [(√(1 + x) − 1)(√(1 + x) + 1)]",
+          {
+            "text": "  / [x(√(1 + x) + 1)]",
+            "style": "indent"
+          },
+          "((p − q)(p + q) = p² − q², with p = √(1 + x) and q = 1)",
           "= lim(x → 0) (1 + x − 1) / [x(√(1 + x) + 1)]"
         ],
         "recall": {
@@ -84,7 +97,7 @@
           "Writing 0/0 as the answer instead of rewriting the expression.",
           "Multiplying only the numerator by the conjugate and leaving the denominator as x."
         ],
-        "memory_tip": "A square root minus a number over x is a conjugate question every time: multiply above and below by the same bracket with the middle sign changed."
+        "memory_tip": "When a square root minus a number over x gives 0/0, the conjugate is one method: multiply above and below by the same bracket with the middle sign changed."
       },
       {
         "id": "s2_cancel_and_substitute",
@@ -94,9 +107,21 @@
         "mark_note": "Answer",
         "margin_note": "Second mark. After the x cancels the form is no longer 0/0, so x = 0 may be substituted. Show the cancelled line before substituting.",
         "lines": [
+          {
+            "text": "(1 + x − 1 = x)",
+            "added": true
+          },
           "= lim(x → 0) x / [x(√(1 + x) + 1)]",
+          {
+            "text": "(cancel x, which is not 0)",
+            "added": true
+          },
           "= lim(x → 0) 1/(√(1 + x) + 1)",
           "This expression is defined at x = 0, so substitute x = 0.",
+          {
+            "text": "(√1 = 1, and 1 + 1 = 2)",
+            "added": true
+          },
           "= 1/(√1 + 1) = 1/2",
           {
             "text": "∴ lim(x → 0) (√(1 + x) − 1)/x = 1/2",
@@ -130,7 +155,17 @@
           "Substituting x = 0 before cancelling and writing 0/0 again.",
           "Dropping the + 1 in the denominator and giving 1 as the answer."
         ],
-        "memory_tip": "The denominator ends as √1 + 1 = 2, so this standard result is 1/2. Store it: (√(1 + x) − 1)/x → 1/2 as x → 0."
+        "memory_tip": "The denominator ends as √1 + 1 = 2, so this standard result is 1/2. Store it: (√(1 + x) − 1)/x → 1/2 as x → 0.",
+        "lines_compact": [
+          "= lim(x → 0) x / [x(√(1 + x) + 1)]",
+          "= lim(x → 0) 1/(√(1 + x) + 1)",
+          "This expression is defined at x = 0, so substitute x = 0.",
+          "= 1/(√1 + 1) = 1/2",
+          {
+            "text": "∴ lim(x → 0) (√(1 + x) − 1)/x = 1/2",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

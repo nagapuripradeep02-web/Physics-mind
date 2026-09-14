@@ -42,7 +42,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.203, chapter 9 DIFFERENTIATION, Long Answer question 1. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section C question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section C runs Q19 to Q21 at 8 marks each, answer any 2 of 3, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The mathematics was checked independently before writing: for a = 2 and a = 5, matching pairs (x, y) were generated from Sin⁻¹x − Sin⁻¹y = 2 Cot⁻¹a, the original equation √(1 − x²) + √(1 − y²) = a(x − y) was confirmed to hold at each pair, and √((1 − y²)/(1 − x²)) matched a central difference quotient for dy/dx at every one — for example a = 2, x = 0.664852, y = −0.198669, both giving 1.312046639. The same check showed a domain limit worth knowing but outside what the question asks: for a fixed a, a value of x has a partner y only once Sin⁻¹x ≥ 2 Cot⁻¹a − π/2, so a small a admits only x close to 1."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.203, chapter 9 DIFFERENTIATION, Long Answer question 1. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section C question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section C runs Q19 to Q21 at 8 marks each, answer any 2 of 3, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The mathematics was checked independently before writing: for a = 2 and a = 5, matching pairs (x, y) were generated from Sin⁻¹x − Sin⁻¹y = 2 Cot⁻¹a, the original equation √(1 − x²) + √(1 − y²) = a(x − y) was confirmed to hold at each pair, and √((1 − y²)/(1 − x²)) matched a central difference quotient for dy/dx at every one — for example a = 2, x = 0.664852, y = −0.198669, both giving 1.312046639. The same check showed a domain limit worth knowing but outside what the question asks: for a fixed a, a value of x has a partner y only once Sin⁻¹x ≥ 2 Cot⁻¹a − π/2, so a small a admits only x close to 1. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say what you substitute for x and y, and what the given equation turns into.",
   "answer": {
@@ -63,12 +63,33 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given √(1 − x²) + √(1 − y²) = a(x − y), where a is a constant.",
-          "Both roots need 1 − x² ≥ 0 and 1 − y² ≥ 0, so −1 ≤ x ≤ 1 and −1 ≤ y ≤ 1.",
-          "Put x = sin A and y = sin B, so A = Sin⁻¹x and B = Sin⁻¹y.",
-          "A and B lie in [−π/2, π/2], where cos A ≥ 0 and cos B ≥ 0.",
-          "∴ √(1 − x²) = √(1 − sin²A) = √(cos²A) = cos A,  and  √(1 − y²) = cos B",
-          "The given equation becomes  cos A + cos B = a(sin A − sin B)"
+          "Given √(1 − x²) + √(1 − y²) = a(x − y),",
+          "where a is a constant.",
+          "Both roots need 1 − x² ≥ 0 and 1 − y² ≥ 0, so −1 ≤ x ≤ 1",
+          "and −1 ≤ y ≤ 1.",
+          "(for x in [−1, 1] there is one angle A in [−π/2, π/2]",
+          {
+            "text": "  with sin A = x, and the same for y)",
+            "style": "indent"
+          },
+          "Put x = sin A and y = sin B, so A = Sin⁻¹x",
+          "and B = Sin⁻¹y.",
+          "A and B lie in [−π/2, π/2], where cos A ≥ 0",
+          "and cos B ≥ 0.",
+          "(1 − sin²A = cos²A, and √(cos²A) = |cos A| = cos A",
+          {
+            "text": "  because cos A ≥ 0)",
+            "style": "indent"
+          },
+          "∴ √(1 − x²) = √(1 − sin²A) = √(cos²A) = cos A,",
+          "and  √(1 − y²) = cos B",
+          "(put √(1 − x²) = cos A, √(1 − y²) = cos B,",
+          {
+            "text": "  x = sin A and y = sin B)",
+            "style": "indent"
+          },
+          "The given equation becomes",
+          "cos A + cos B = a(sin A − sin B)"
         ],
         "recall": {
           "credit": "say_it",
@@ -99,7 +120,7 @@
           "Writing √(1 − sin²A) as ±cos A. The principal value of Sin⁻¹ keeps A in [−π/2, π/2], where cos A is not negative, so only the plus sign is possible.",
           "Substituting x = tan A, which leaves √(1 − tan²A) and removes no root."
         ],
-        "memory_tip": "A root of the form √(1 − x²) always asks for x = sin θ. Its partner is √(1 + x²), which asks for x = tan θ."
+        "memory_tip": "A root of the form √(1 − x²) is usually removed by x = sin θ. Its partner √(1 + x²) is removed by x = tan θ."
       },
       {
         "id": "s2_sum_to_product",
@@ -113,7 +134,15 @@
           "cos C + cos D = 2 cos((C + D)/2) · cos((C − D)/2)",
           "sin C − sin D = 2 cos((C + D)/2) · sin((C − D)/2)",
           "The equation cos A + cos B = a(sin A − sin B) becomes",
-          "2 cos((A + B)/2) · cos((A − B)/2) = a · 2 cos((A + B)/2) · sin((A − B)/2)"
+          {
+            "text": "(put the two forms into each side, with C = A and D = B)",
+            "added": true
+          },
+          "2 cos((A + B)/2) · cos((A − B)/2)",
+          {
+            "text": "  = a · 2 cos((A + B)/2) · sin((A − B)/2)",
+            "style": "indent"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -144,7 +173,18 @@
           "Writing sin C − sin D = 2 sin((C + D)/2) cos((C − D)/2), which puts the sine on the half sum. That is the formula for sin C + sin D.",
           "Using the product form on cos A + cos B but expanding sin A − sin B term by term, so the common factor never appears."
         ],
-        "memory_tip": "Cosine plus cosine keeps two cosines. Sine minus sine takes the cosine of the half sum and the sine of the half difference."
+        "memory_tip": "Cosine plus cosine keeps two cosines. Sine minus sine takes the cosine of the half sum and the sine of the half difference.",
+        "lines_compact": [
+          "Use the two standard forms, with C = A and D = B:",
+          "cos C + cos D = 2 cos((C + D)/2) · cos((C − D)/2)",
+          "sin C − sin D = 2 cos((C + D)/2) · sin((C − D)/2)",
+          "The equation cos A + cos B = a(sin A − sin B) becomes",
+          "2 cos((A + B)/2) · cos((A − B)/2)",
+          {
+            "text": "  = a · 2 cos((A + B)/2) · sin((A − B)/2)",
+            "style": "indent"
+          }
+        ]
       },
       {
         "id": "s3_cancel",
@@ -154,10 +194,36 @@
         "mark_note": "Method",
         "margin_note": "Two marks: one for the cancellation, one for reaching a cotangent. The line naming when the factor could be zero is read as part of the method, not as extra writing.",
         "lines": [
-          "cos A ≥ 0 and cos B ≥ 0, so cos A + cos B = 0 would need cos A = cos B = 0, that is x = ±1 and y = ±1.",
-          "At those points 1 − x² = 0 and dy/dx has no value, so everywhere else cos((A + B)/2) ≠ 0 and may be cancelled from both sides:",
+          "cos A ≥ 0 and cos B ≥ 0,",
+          "so cos A + cos B = 0 would need cos A = cos B = 0,",
+          "that is x = ±1 and y = ±1.",
+          "At those points 1 − x² = 0 and dy/dx has no value,",
+          "so everywhere else cos((A + B)/2) ≠ 0",
+          "and may be cancelled from both sides:",
+          {
+            "text": "(cancel 2 cos((A + B)/2) from both sides)",
+            "added": true
+          },
           "cos((A − B)/2) = a sin((A − B)/2)",
+          {
+            "text": "(this needs sin((A − B)/2) ≠ 0: if A = B then x = y,",
+            "added": true
+          },
+          {
+            "text": "  and the given equation gives",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  2√(1 − x²) = 0, that is x = ±1)",
+            "style": "indent",
+            "added": true
+          },
           "Divide both sides by sin((A − B)/2):",
+          {
+            "text": "(cos/sin = cot)",
+            "added": true
+          },
           "∴ cot((A − B)/2) = a"
         ],
         "recall": {
@@ -189,7 +255,18 @@
           "Cancelling cos((A + B)/2) with no word about it being non-zero.",
           "Writing tan((A − B)/2) = a by turning the fraction the wrong way up."
         ],
-        "memory_tip": "Cosine over sine is cotangent. The angle left standing is the half difference (A − B)/2, and that is the one that turns out to be fixed."
+        "memory_tip": "Cosine over sine is cotangent. The angle left standing is the half difference (A − B)/2, and that is the one that turns out to be fixed.",
+        "lines_compact": [
+          "cos A ≥ 0 and cos B ≥ 0,",
+          "so cos A + cos B = 0 would need cos A = cos B = 0,",
+          "that is x = ±1 and y = ±1.",
+          "At those points 1 − x² = 0 and dy/dx has no value,",
+          "so everywhere else cos((A + B)/2) ≠ 0",
+          "and may be cancelled from both sides:",
+          "cos((A − B)/2) = a sin((A − B)/2)",
+          "Divide both sides by sin((A − B)/2):",
+          "∴ cot((A − B)/2) = a"
+        ]
       },
       {
         "id": "s4_constant",
@@ -197,13 +274,32 @@
         "label": "Read off that A − B is constant",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "One mark. The examiner wants the stated words that 2 Cot⁻¹a is a constant — that is what makes the right side differentiate to zero.",
+        "margin_note": "One mark. The examiner wants the stated words that A − B is a constant — that is what makes the right side differentiate to zero.",
         "lines": [
-          "cot((A − B)/2) = a, so  (A − B)/2 = Cot⁻¹a",
-          "∴ A − B = 2 Cot⁻¹a",
-          "a is a constant, so 2 Cot⁻¹a is a constant.",
+          {
+            "text": "((A − B)/2 lies in [−π/2, π/2] and Cot⁻¹a lies in (0, π);",
+            "added": true
+          },
+          {
+            "text": "  cot has period π, so the two angles are",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  equal or differ by π)",
+            "style": "indent",
+            "added": true
+          },
+          "cot((A − B)/2) = a, so (A − B)/2 = Cot⁻¹a when a > 0,",
+          "and (A − B)/2 = Cot⁻¹a − π when a < 0",
+          {
+            "text": "(multiply both sides by 2)",
+            "added": true
+          },
+          "∴ A − B = 2 Cot⁻¹a  or  A − B = 2 Cot⁻¹a − 2π",
+          "a is a constant, so A − B is a constant, c say.",
           "Putting back A = Sin⁻¹x and B = Sin⁻¹y:",
-          "∴ Sin⁻¹x − Sin⁻¹y = 2 Cot⁻¹a"
+          "∴ Sin⁻¹x − Sin⁻¹y = c"
         ],
         "recall": {
           "credit": "say_it",
@@ -228,12 +324,20 @@
             "two cot inverse"
           ]
         },
-        "why": "This one line is the point of the whole substitution. The given equation ties x and y together in a form that cannot be differentiated directly, while Sin⁻¹x − Sin⁻¹y = constant differentiates in a single move.",
+        "why": "This line is the reason for the substitution. The given equation connects x and y in a form that is hard to differentiate directly, while Sin⁻¹x − Sin⁻¹y = constant differentiates in a single move.",
         "common_mistakes": [
-          "Differentiating cot((A − B)/2) = a as it stands instead of first writing A − B = 2 Cot⁻¹a.",
+          "Writing A + B in place of A − B, which makes Sin⁻¹x + Sin⁻¹y the constant and gives dy/dx = −√((1 − y²)/(1 − x²)).",
           "Treating a as a variable, so the right side is differentiated as well."
         ],
-        "memory_tip": "An inverse function of a constant is itself a constant, so its derivative is zero. That is why the right side contributes nothing."
+        "memory_tip": "An inverse function of a constant is itself a constant, so its derivative is zero. That is why the right side contributes nothing.",
+        "lines_compact": [
+          "cot((A − B)/2) = a, so (A − B)/2 = Cot⁻¹a when a > 0,",
+          "and (A − B)/2 = Cot⁻¹a − π when a < 0",
+          "∴ A − B = 2 Cot⁻¹a  or  A − B = 2 Cot⁻¹a − 2π",
+          "a is a constant, so A − B is a constant, c say.",
+          "Putting back A = Sin⁻¹x and B = Sin⁻¹y:",
+          "∴ Sin⁻¹x − Sin⁻¹y = c"
+        ]
       },
       {
         "id": "s5_differentiate",
@@ -241,12 +345,39 @@
         "label": "Differentiate both sides",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Last mark. The two roots must end the right way round: the y root on top, the x root underneath. Check by putting a = 0, where the curve gives y = ±x and dy/dx must come out as ∓ the ratio of the two roots.",
+        "margin_note": "Last mark. The two roots must end the right way round: the y root on top, the x root underneath. Check with a = 1: then A − B = π/2 gives y = −√(1 − x²) for 0 < x < 1, so dy/dx = x/√(1 − x²), and √(1 − y²) = x gives the same value.",
         "lines": [
-          "Differentiate Sin⁻¹x − Sin⁻¹y = 2 Cot⁻¹a with respect to x, taking y as a function of x:",
+          "Differentiate Sin⁻¹x − Sin⁻¹y = c",
+          "with respect to x, taking y as a function of x:",
+          {
+            "text": "(d/dx(Sin⁻¹x) = 1/√(1 − x²);",
+            "added": true
+          },
+          {
+            "text": "  d/dx(Sin⁻¹y) = (1/√(1 − y²)) · dy/dx by",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  the chain rule; the derivative of the constant c is 0)",
+            "style": "indent",
+            "added": true
+          },
           "1/√(1 − x²) − (1/√(1 − y²))·(dy/dx) = 0",
+          {
+            "text": "(move the dy/dx term to the right side)",
+            "added": true
+          },
           "(1/√(1 − y²))·(dy/dx) = 1/√(1 − x²)",
+          {
+            "text": "(multiply both sides by √(1 − y²))",
+            "added": true
+          },
           "dy/dx = √(1 − y²)/√(1 − x²)",
+          {
+            "text": "(√p/√q = √(p/q) for p ≥ 0 and q > 0)",
+            "added": true
+          },
           {
             "text": "∴ dy/dx = √((1 − y²)/(1 − x²))",
             "style": "boxed"
@@ -275,12 +406,23 @@
             "right side zero"
           ]
         },
-        "why": "d/dx of Sin⁻¹y is (1/√(1 − y²))(dy/dx) because y is a function of x, and that extra dy/dx factor is the only thing being solved for. The right side is a constant, so it differentiates to zero.",
+        "why": "d/dx of Sin⁻¹y is (1/√(1 − y²))(dy/dx) because y is a function of x, and dy/dx is the quantity being solved for. The right side is a constant, so it differentiates to zero.",
         "common_mistakes": [
-          "Writing d/dx of Sin⁻¹y as 1/√(1 − y²) with no dy/dx factor, which makes the answer come out as 1.",
+          "Writing d/dx of Sin⁻¹y as 1/√(1 − y²) with no dy/dx factor, which leaves an equation with no dy/dx in it to solve.",
           "Losing the minus sign in front of Sin⁻¹y and reporting dy/dx = −√((1 − y²)/(1 − x²))."
         ],
-        "memory_tip": "The variable differentiated with respect to, x, ends up in the denominator; the other one, y, ends up on top."
+        "memory_tip": "The variable differentiated with respect to, x, ends up in the denominator; the other one, y, ends up on top.",
+        "lines_compact": [
+          "Differentiate Sin⁻¹x − Sin⁻¹y = c",
+          "with respect to x, taking y as a function of x:",
+          "1/√(1 − x²) − (1/√(1 − y²))·(dy/dx) = 0",
+          "(1/√(1 − y²))·(dy/dx) = 1/√(1 − x²)",
+          "dy/dx = √(1 − y²)/√(1 − x²)",
+          {
+            "text": "∴ dy/dx = √((1 − y²)/(1 − x²))",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

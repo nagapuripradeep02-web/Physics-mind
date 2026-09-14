@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.231, chapter 10 APPLICATIONS OF DERIVATIVES, the ROLLE'S AND LAGRANGE'S THEOREM sub-section, Very Short Answer question 10(i). **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box; we ship the chapter as ONE unit, so the sub-section is named above instead of a sub-chapter number. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.231, chapter 10 APPLICATIONS OF DERIVATIVES, the ROLLE'S AND LAGRANGE'S THEOREM sub-section, Very Short Answer question 10(i). **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box; we ship the chapter as ONE unit, so the sub-section is named above instead of a sub-chapter number. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — name the theorem this equation belongs to, and say what you compute first.",
   "answer": {
@@ -53,11 +53,47 @@
             "style": "heading"
           },
           "f(x) = x² − 3x − 1,   a = −11/7,   b = 13/7",
-          "f is a polynomial, so it is continuous on [a, b] and differentiable on (a, b).",
-          "f(13/7) = 169/49 − 39/7 − 1 = 169/49 − 273/49 − 49/49 = −153/49",
-          "f(−11/7) = 121/49 + 33/7 − 1 = 121/49 + 231/49 − 49/49 = 303/49",
+          "f is a polynomial, so it is continuous on [a, b]",
+          "and differentiable on (a, b).",
+          "(put 13/7 in place of x: (13/7)² = 169/49",
+          {
+            "text": "  and 3(13/7) = 39/7)",
+            "style": "indent"
+          },
+          "f(13/7) = 169/49 − 39/7 − 1",
+          "(39/7 = 273/49 and 1 = 49/49;",
+          {
+            "text": "  169 − 273 − 49 = −153)",
+            "style": "indent"
+          },
+          {
+            "text": "  = 169/49 − 273/49 − 49/49 = −153/49",
+            "style": "indent"
+          },
+          "(put −11/7 in place of x: (−11/7)² = 121/49",
+          {
+            "text": "  and −3(−11/7) = 33/7)",
+            "style": "indent"
+          },
+          "f(−11/7) = 121/49 + 33/7 − 1",
+          "(33/7 = 231/49; 121 + 231 − 49 = 303)",
+          {
+            "text": "  = 121/49 + 231/49 − 49/49 = 303/49",
+            "style": "indent"
+          },
+          "(subtracting −11/7 is adding 11/7)",
           "b − a = 13/7 − (−11/7) = 24/7",
-          "(f(b) − f(a))/(b − a) = (−153/49 − 303/49)/(24/7) = (−456/49)·(7/24) = −19/7"
+          "(−153 − 303 = −456; dividing by 24/7",
+          {
+            "text": "  is multiplying by 7/24)",
+            "style": "indent"
+          },
+          "(f(b) − f(a))/(b − a) = (−153/49 − 303/49)/(24/7)",
+          "(456/24 = 19 and 7/49 = 1/7)",
+          {
+            "text": "  = (−456/49)·(7/24) = −19/7",
+            "style": "indent"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -87,7 +123,7 @@
         "common_mistakes": [
           "Taking b − a as 2/7 by subtracting 11/7 instead of adding it.",
           "Writing 39/7 as 39/49 when putting the terms over a common denominator.",
-          "Dividing by 49 twice and getting −19/49."
+          "Dividing by 24 instead of by 24/7, and getting −19/49."
         ]
       },
       {
@@ -99,9 +135,25 @@
         "margin_note": "Second mark. c = 1/7 is the midpoint of [−11/7, 13/7], which is where the point always falls for a quadratic — a quick way to check the arithmetic.",
         "memory_tip": "For any quadratic, c is the midpoint of the interval: (−11/7 + 13/7)/2 = 1/7.",
         "lines": [
+          {
+            "text": "(d/dx of x² − 3x − 1 is 2x − 3)",
+            "added": true
+          },
           "f′(x) = 2x − 3,   so f′(c) = 2c − 3",
+          {
+            "text": "(put f′(c) equal to the chord slope −19/7)",
+            "added": true
+          },
           "2c − 3 = −19/7",
+          {
+            "text": "(add 3 to both sides; 3 = 21/7)",
+            "added": true
+          },
           "2c = 3 − 19/7 = (21 − 19)/7 = 2/7",
+          {
+            "text": "(divide both sides by 2)",
+            "added": true
+          },
           "c = 1/7",
           "−11/7 < 1/7 < 13/7, so c lies inside the interval",
           {
@@ -132,10 +184,21 @@
             "inside the interval"
           ]
         },
-        "why": "Solving f′(c) = chord slope is the whole content of the mean value theorem. Saying c lies inside (a, b) at the end is the check that the arithmetic is right, since a value outside would contradict the theorem.",
+        "why": "Solving f′(c) = chord slope is how the mean value theorem is applied. Saying c lies inside (a, b) at the end is a check: a value outside would contradict the theorem and would show an arithmetic slip.",
         "common_mistakes": [
           "Solving 2c = −19/7 and forgetting to move the −3 across.",
           "Giving c = 2/7 by not dividing by 2 at the last step."
+        ],
+        "lines_compact": [
+          "f′(x) = 2x − 3,   so f′(c) = 2c − 3",
+          "2c − 3 = −19/7",
+          "2c = 3 − 19/7 = (21 − 19)/7 = 2/7",
+          "c = 1/7",
+          "−11/7 < 1/7 < 13/7, so c lies inside the interval",
+          {
+            "text": "∴ c = 1/7",
+            "style": "boxed"
+          }
         ]
       }
     ]

@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 7 THE PLANE, Very Short Answer question 9, book p.183. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The 1+1 split rewards seeing that the foot of the perpendicular gives both a point on the plane and the direction ratios of the normal, and then writing the plane from those two facts — the shape this bank uses for every Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty; the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 7 THE PLANE, Very Short Answer question 9, book p.183. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The 1+1 split rewards seeing that the foot of the perpendicular gives both a point on the plane and the direction ratios of the normal, and then writing the plane from those two facts — the shape this bank uses for every Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty; the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say what the foot of the perpendicular tells you about the normal, and what else it gives you for free.",
   "answer": {
@@ -55,8 +55,18 @@
           "Let P = (1, 3, −5) be the foot of the",
           "perpendicular drawn from the origin O to",
           "the plane.",
+          "(the foot of the perpendicular lies on the plane,",
+          {
+            "text": "  and OP is perpendicular to it)",
+            "style": "indent"
+          },
           "OP is perpendicular to the plane, so OP is",
           "a normal to the plane.",
+          "(the d.r's of the line joining two points are the differences",
+          {
+            "text": "  of their coordinates)",
+            "style": "indent"
+          },
           "d.r's of OP = (1 − 0, 3 − 0, −5 − 0)",
           "= (1, 3, −5)"
         ],
@@ -97,10 +107,32 @@
         "margin_note": "Second mark. Use the point-and-normal form with P as the point and OP as the normal. The z coordinate is negative, so z − (−5) becomes z + 5.",
         "memory_tip": "The constant term is −35, and 35 = 1² + 3² + 5² is the square of the distance from the origin.",
         "lines": [
+          {
+            "text": "(the plane through (x₁, y₁, z₁) with normal (a, b, c) is",
+            "added": true
+          },
+          {
+            "text": "  a(x − x₁) + b(y − y₁) + c(z − z₁) = 0;",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  z − (−5) = z + 5)",
+            "style": "indent",
+            "added": true
+          },
           "The plane passes through P(1, 3, −5) with",
           "normal (a, b, c) = (1, 3, −5), so",
           "1(x − 1) + 3(y − 3) − 5(z + 5) = 0",
+          {
+            "text": "(3(y − 3) = 3y − 9 and −5(z + 5) = −5z − 25)",
+            "added": true
+          },
           "⇒ x − 1 + 3y − 9 − 5z − 25 = 0",
+          {
+            "text": "(−1 − 9 − 25 = −35)",
+            "added": true
+          },
           "⇒ x + 3y − 5z − 35 = 0",
           "Check: at (1, 3, −5) the left side is",
           "1 + 9 + 25 − 35 = 0",
@@ -135,6 +167,19 @@
         "common_mistakes": [
           "Writing −5(z − 5) instead of −5(z + 5) for the negative coordinate.",
           "Leaving the answer as x + 3y − 5z = 0, which is a parallel plane through the origin."
+        ],
+        "lines_compact": [
+          "The plane passes through P(1, 3, −5) with",
+          "normal (a, b, c) = (1, 3, −5), so",
+          "1(x − 1) + 3(y − 3) − 5(z + 5) = 0",
+          "⇒ x − 1 + 3y − 9 − 5z − 25 = 0",
+          "⇒ x + 3y − 5z − 35 = 0",
+          "Check: at (1, 3, −5) the left side is",
+          "1 + 9 + 25 − 35 = 0",
+          {
+            "text": "∴ x + 3y − 5z − 35 = 0",
+            "style": "boxed"
+          }
         ]
       }
     ]

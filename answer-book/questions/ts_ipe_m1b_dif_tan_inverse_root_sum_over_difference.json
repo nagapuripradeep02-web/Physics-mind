@@ -42,7 +42,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.205, chapter 9 DIFFERENTIATION, Long Answer question 3. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section C question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section C runs Q19 to Q21 at 8 marks each, answer any 2 of 3, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The mathematics was checked independently before writing, in two parts. First the closed form: the printed expression and π/4 + ½ Cos⁻¹(x²) agreed to nine decimal places at x = 0.3, 0.6, 0.9, −0.5 and −0.8. Then the derivative: −x/√(1 − x⁴) matched a central difference quotient at all five of those values — for example x = 0.6 gives −0.643119694 both ways, and x = −0.8 gives +1.041158413 both ways. Note the sign: y is an even function of x, so dy/dx is negative for positive x and positive for negative x."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.205, chapter 9 DIFFERENTIATION, Long Answer question 3. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section C question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section C runs Q19 to Q21 at 8 marks each, answer any 2 of 3, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The mathematics was checked independently before writing, in two parts. First the closed form: the printed expression and π/4 + ½ Cos⁻¹(x²) agreed to nine decimal places at x = 0.3, 0.6, 0.9, −0.5 and −0.8. Then the derivative: −x/√(1 − x⁴) matched a central difference quotient at all five of those values — for example x = 0.6 gives −0.643119694 both ways, and x = −0.8 gives +1.041158413 both ways. Note the sign: y is an even function of x, so dy/dx is negative for positive x and positive for negative x. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say what you substitute, and what the bracket becomes after the substitution.",
   "answer": {
@@ -63,11 +63,34 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given y = Tan⁻¹[(√(1 + x²) + √(1 − x²))/(√(1 + x²) − √(1 − x²))],  0 < |x| < 1.",
-          "The restriction is needed at both ends: |x| < 1 keeps 1 − x² ≥ 0, and x ≠ 0 is required because at x = 0 the denominator √(1 + x²) − √(1 − x²) is 0 and the fraction has no value.",
+          "Given y = Tan⁻¹[(√(1 + x²) + √(1 − x²))",
+          {
+            "text": "  /(√(1 + x²) − √(1 − x²))],  0 < |x| < 1.",
+            "style": "indent"
+          },
+          "The restriction is needed at both ends:",
+          "|x| < 1 keeps 1 − x² ≥ 0, and x ≠ 0 is required because",
+          "at x = 0 the denominator √(1 + x²) − √(1 − x²) is 0",
+          "and the fraction has no value.",
+          "(0 < x² < 1 gives an angle 2θ in (0, π/2) with cos 2θ = x²,",
+          {
+            "text": "  since cos 0 = 1 and cos(π/2) = 0)",
+            "style": "indent"
+          },
           "0 < |x| < 1 gives 0 < x² < 1, so put x² = cos 2θ.",
           "Then 2θ = Cos⁻¹(x²) with 0 < 2θ < π/2, so 0 < θ < π/4.",
-          "1 + x² = 1 + cos 2θ = 2cos²θ   and   1 − x² = 1 − cos 2θ = 2sin²θ",
+          "(the double angle formulas cos 2θ",
+          {
+            "text": "  = 2cos²θ − 1 = 1 − 2sin²θ)",
+            "style": "indent"
+          },
+          "1 + x² = 1 + cos 2θ = 2cos²θ",
+          "and   1 − x² = 1 − cos 2θ = 2sin²θ",
+          "(√(2cos²θ) = √2 |cos θ| = √2 cos θ,",
+          {
+            "text": "  and √(2sin²θ) = √2 sin θ)",
+            "style": "indent"
+          },
           "On 0 < θ < π/4 both sin θ > 0 and cos θ > 0, so",
           "∴ √(1 + x²) = √2 cos θ   and   √(1 − x²) = √2 sin θ"
         ],
@@ -94,7 +117,7 @@
             "two sin squared theta"
           ]
         },
-        "why": "Both roots contain x² and neither contains x by itself, so the substitution is made on x². Setting x² = cos 2θ turns 1 + x² and 1 − x² into perfect squares, which is the only way the two square roots come out without a surd left over.",
+        "why": "Both roots contain x² and neither contains x by itself, so the substitution is made on x². Setting x² = cos 2θ turns 1 + x² and 1 − x² into perfect squares, so both square roots can be removed.",
         "common_mistakes": [
           "Putting x = cos 2θ instead of x² = cos 2θ, which leaves 1 + x² as 1 + cos²2θ and simplifies nothing.",
           "Taking √(2sin²θ) as ±√2 sin θ. The range 0 < θ < π/4 makes sin θ positive, so only the plus sign occurs."
@@ -109,11 +132,35 @@
         "mark_note": "Method",
         "margin_note": "Two marks. Dividing the top and the bottom by cos θ is the move that produces tan θ; after that the compound angle form of tan(π/4 + θ) is recognised, not derived.",
         "lines": [
-          "Substitute both roots into the bracket. The factor √2 cancels:",
-          "(√2 cos θ + √2 sin θ)/(√2 cos θ − √2 sin θ) = (cos θ + sin θ)/(cos θ − sin θ)",
-          "cos θ ≠ 0 on 0 < θ < π/4, so divide the top and the bottom by cos θ:",
+          "Substitute both roots into the bracket.",
+          "The factor √2 cancels:",
+          "(√2 cos θ + √2 sin θ)/(√2 cos θ − √2 sin θ)",
+          {
+            "text": "(divide the top and the bottom by √2)",
+            "added": true
+          },
+          {
+            "text": "  = (cos θ + sin θ)/(cos θ − sin θ)",
+            "style": "indent"
+          },
+          "cos θ ≠ 0 on 0 < θ < π/4,",
+          "so divide the top and the bottom by cos θ:",
+          {
+            "text": "(cos θ/cos θ = 1 and sin θ/cos θ = tan θ)",
+            "added": true
+          },
           "= (1 + tan θ)/(1 − tan θ)",
-          "tan(π/4) = 1, so this is  (tan(π/4) + tan θ)/(1 − tan(π/4)·tan θ)",
+          "tan(π/4) = 1,",
+          "so this is  (tan(π/4) + tan θ)/(1 − tan(π/4)·tan θ)",
+          {
+            "text": "(the formula tan(A + B) = (tan A + tan B)/(1 − tan A",
+            "added": true
+          },
+          {
+            "text": "  tan B), with A = π/4 and B = θ)",
+            "style": "indent",
+            "added": true
+          },
           "∴ the bracket = tan(π/4 + θ)"
         ],
         "recall": {
@@ -139,12 +186,27 @@
             "compound angle"
           ]
         },
-        "why": "The whole bracket has to become a single tangent before the inverse tangent can be removed. Dividing by cos θ is what produces tan θ, and (1 + tan θ)/(1 − tan θ) is then read straight off as the expansion of tan(π/4 + θ) because tan(π/4) = 1.",
+        "why": "The whole bracket has to become a single tangent before the inverse tangent can be removed. Dividing by cos θ is what produces tan θ, and (1 + tan θ)/(1 − tan θ) is then recognised as the expansion of tan(π/4 + θ) because tan(π/4) = 1.",
         "common_mistakes": [
           "Squaring the fraction to clear the roots, which brings back a surd and does not lead to a tangent.",
           "Writing (1 + tan θ)/(1 − tan θ) as tan(π/4 − θ), which is the same expression with the signs swapped."
         ],
-        "memory_tip": "(1 + tan θ)/(1 − tan θ) is always tan(π/4 + θ), because the 1 in each place is tan(π/4). The minus sign in the denominator belongs to the plus sign in the angle."
+        "memory_tip": "(1 + tan θ)/(1 − tan θ) is always tan(π/4 + θ), because the 1 in each place is tan(π/4). The minus sign in the denominator belongs to the plus sign in the angle.",
+        "lines_compact": [
+          "Substitute both roots into the bracket.",
+          "The factor √2 cancels:",
+          "(√2 cos θ + √2 sin θ)/(√2 cos θ − √2 sin θ)",
+          {
+            "text": "  = (cos θ + sin θ)/(cos θ − sin θ)",
+            "style": "indent"
+          },
+          "cos θ ≠ 0 on 0 < θ < π/4,",
+          "so divide the top and the bottom by cos θ:",
+          "= (1 + tan θ)/(1 − tan θ)",
+          "tan(π/4) = 1,",
+          "so this is  (tan(π/4) + tan θ)/(1 − tan(π/4)·tan θ)",
+          "∴ the bracket = tan(π/4 + θ)"
+        ]
       },
       {
         "id": "s3_remove_inverse",
@@ -152,11 +214,16 @@
         "label": "Remove the inverse tangent",
         "marks": 2,
         "mark_note": "Method",
-        "margin_note": "Two marks, and this is the step most often lost: Tan⁻¹(tan A) = A only when A is inside (−π/2, π/2). Show that π/4 + θ is inside it before writing the next line.",
+        "margin_note": "Two marks: Tan⁻¹(tan A) = A only when A is inside (−π/2, π/2). Show that π/4 + θ is inside it before writing the next line.",
         "lines": [
           "y = Tan⁻¹(tan(π/4 + θ))",
+          {
+            "text": "(add π/4 to each part of 0 < θ < π/4)",
+            "added": true
+          },
           "0 < θ < π/4, so  π/4 < π/4 + θ < π/2.",
-          "That whole range lies inside (−π/2, π/2), which is the principal range of Tan⁻¹.",
+          "That whole range lies inside (−π/2, π/2),",
+          "which is the principal range of Tan⁻¹.",
           "∴ Tan⁻¹(tan(π/4 + θ)) = π/4 + θ",
           "∴ y = π/4 + θ"
         ],
@@ -188,7 +255,15 @@
           "Cancelling Tan⁻¹ and tan with no check on the range, which is the same working that goes wrong on many other questions of this type.",
           "Reading the range of Tan⁻¹ as [0, π], which belongs to Cos⁻¹."
         ],
-        "memory_tip": "Three principal ranges are worth holding: Sin⁻¹ gives [−π/2, π/2], Tan⁻¹ gives (−π/2, π/2), Cos⁻¹ gives [0, π]. Cos⁻¹ is the only one of the three with a different range."
+        "memory_tip": "Remember three principal ranges: Sin⁻¹ gives [−π/2, π/2], Tan⁻¹ gives (−π/2, π/2), Cos⁻¹ gives [0, π]. Cos⁻¹ is the one of the three whose range starts at 0.",
+        "lines_compact": [
+          "y = Tan⁻¹(tan(π/4 + θ))",
+          "0 < θ < π/4, so  π/4 < π/4 + θ < π/2.",
+          "That whole range lies inside (−π/2, π/2),",
+          "which is the principal range of Tan⁻¹.",
+          "∴ Tan⁻¹(tan(π/4 + θ)) = π/4 + θ",
+          "∴ y = π/4 + θ"
+        ]
       },
       {
         "id": "s4_back_to_x",
@@ -196,9 +271,17 @@
         "label": "Write y in terms of x",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "One mark. Going back to x before differentiating is safer than differentiating in θ and chasing dθ/dx afterwards.",
+        "margin_note": "One mark. Going back to x before differentiating is shorter than differentiating in θ and then finding dθ/dx separately.",
         "lines": [
+          {
+            "text": "(from step 1, x² = cos 2θ with 2θ in (0, π/2), inside [0, π])",
+            "added": true
+          },
           "From x² = cos 2θ:  2θ = Cos⁻¹(x²),  so  θ = ½ Cos⁻¹(x²)",
+          {
+            "text": "(put θ = ½ Cos⁻¹(x²) into y = π/4 + θ)",
+            "added": true
+          },
           "∴ y = π/4 + ½ Cos⁻¹(x²)"
         ],
         "recall": {
@@ -229,7 +312,11 @@
           "Leaving the answer as y = π/4 + θ and calling it finished, when the question asks for dy/dx.",
           "Writing θ = Cos⁻¹(x²) and dropping the factor of one half."
         ],
-        "memory_tip": "The substitution was x² = cos 2θ, so undoing it gives 2θ first and θ second. The one half comes from that 2."
+        "memory_tip": "The substitution was x² = cos 2θ, so undoing it gives 2θ first and θ second. The one half comes from that 2.",
+        "lines_compact": [
+          "From x² = cos 2θ:  2θ = Cos⁻¹(x²),  so  θ = ½ Cos⁻¹(x²)",
+          "∴ y = π/4 + ½ Cos⁻¹(x²)"
+        ]
       },
       {
         "id": "s5_differentiate",
@@ -240,8 +327,17 @@
         "margin_note": "Last mark. Two things carry it: the minus sign from Cos⁻¹, and the inner derivative 2x. The 2 from 2x cancels the one half, which is why the answer is as clean as it is.",
         "lines": [
           "π/4 is a constant, so it differentiates to 0.",
-          "d/dx[Cos⁻¹u] = −(1/√(1 − u²))·(du/dx), here with u = x² and du/dx = 2x:",
+          "d/dx[Cos⁻¹u] = −(1/√(1 − u²))·(du/dx), here with u = x²",
+          "and du/dx = 2x:",
+          {
+            "text": "(put u = x², so u² = x⁴, and du/dx = 2x)",
+            "added": true
+          },
           "dy/dx = 0 + ½ · (−1/√(1 − (x²)²)) · 2x",
+          {
+            "text": "(½ · 2x = x, and (x²)² = x⁴)",
+            "added": true
+          },
           "= −x/√(1 − x⁴)",
           {
             "text": "∴ dy/dx = −x/√(1 − x⁴)",
@@ -276,7 +372,18 @@
           "Dropping the minus sign from the derivative of Cos⁻¹ and reporting x/√(1 − x⁴).",
           "Writing √(1 − x²) in the denominator instead of √(1 − x⁴), by forgetting that u is x² and not x."
         ],
-        "memory_tip": "Sin⁻¹ and Cos⁻¹ have the same denominator and opposite signs. Cos⁻¹ takes the minus, because the cosine decreases as the angle grows."
+        "memory_tip": "Sin⁻¹ and Cos⁻¹ have the same denominator and opposite signs. Cos⁻¹ takes the minus, because the cosine decreases as the angle grows from 0 to π.",
+        "lines_compact": [
+          "π/4 is a constant, so it differentiates to 0.",
+          "d/dx[Cos⁻¹u] = −(1/√(1 − u²))·(du/dx), here with u = x²",
+          "and du/dx = 2x:",
+          "dy/dx = 0 + ½ · (−1/√(1 − (x²)²)) · 2x",
+          "= −x/√(1 − x⁴)",
+          {
+            "text": "∴ dy/dx = −x/√(1 − x⁴)",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

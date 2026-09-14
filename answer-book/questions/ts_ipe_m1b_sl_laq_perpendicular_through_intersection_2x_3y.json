@@ -42,7 +42,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Long Answer question 20(ii), book p.160. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split rewards the two independent halves of the question at two marks each — the slope from the perpendicular condition and the point from the pair of lines — then two marks for combining them in the point-slope form, one for clearing the fraction and one for the check. This book prints almost no exam-appearance years, so appearances[] is empty. Paper position: Maths-1B Section C runs Q19 to Q21 at 8 marks each, answer any 2 of 3, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Long Answer question 20(ii), book p.160. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split rewards the two independent halves of the question at two marks each — the slope from the perpendicular condition and the point from the pair of lines — then two marks for combining them in the point-slope form, one for clearing the fraction and one for the check. This book prints almost no exam-appearance years, so appearances[] is empty. Paper position: Maths-1B Section C runs Q19 to Q21 at 8 marks each, answer any 2 of 3, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say how you get the slope, how you get a point on the line, and how you check the answer.",
   "answer": {
@@ -56,14 +56,20 @@
         "kind": "equation",
         "label": "Find the required slope",
         "marks": 2,
-        "margin_note": "The first two marks. The new line is perpendicular to a given line, so its slope is fixed before any point is known. Read the given slope as −a/b, then flip and negate it.",
+        "margin_note": "The first two marks. The new line is perpendicular to a given line, so its slope is fixed before any point is known. Read the given slope as −a/b, then take its negative reciprocal.",
         "lines": [
           {
             "text": "Sol:",
             "style": "heading"
           },
           "Given line is 2x + 3y = 0",
+          "(the slope of ax + by + c = 0 is −a/b; here a = 2, b = 3)",
           "Its slope  m = −a/b = −2/3",
+          "(perpendicular slopes multiply to −1, so the new slope is",
+          {
+            "text": "  −1/m = −1 ÷ (−2/3) = 3/2)",
+            "style": "indent"
+          },
           "∴ Slope of its perpendicular is −1/m = 3/2"
         ],
         "recall": {
@@ -94,7 +100,7 @@
           "Reading the slope as −b/a."
         ],
         "mark_note": "Method",
-        "memory_tip": "PERPENDICULAR means flip and negate the given slope, before any point is known."
+        "memory_tip": "PERPENDICULAR means take the negative reciprocal of the given slope, before any point is known."
       },
       {
         "id": "s2_solve_the_pair",
@@ -105,7 +111,15 @@
         "lines": [
           "Given  x + 3y − 1 = 0 ……(1)",
           "and  x − 2y + 4 = 0 ……(2)",
+          {
+            "text": "(subtracting removes x: 3y − (−2y) = 5y and −1 − 4 = −5)",
+            "added": true
+          },
           "(1) − (2):  5y − 5 = 0  ⇒  y = 1",
+          {
+            "text": "(put y = 1 in (1): x = 1 − 3y)",
+            "added": true
+          },
           "From (1):  x = 1 − 3(1) = −2",
           "∴ Point of intersection P = (−2, 1)"
         ],
@@ -136,7 +150,14 @@
           "Sign slip when subtracting −2y from 3y."
         ],
         "mark_note": "Method",
-        "memory_tip": "Both equations start with a bare x, so subtracting removes x in one move."
+        "memory_tip": "Both equations start with a bare x, so subtracting removes x in one move.",
+        "lines_compact": [
+          "Given  x + 3y − 1 = 0 ……(1)",
+          "and  x − 2y + 4 = 0 ……(2)",
+          "(1) − (2):  5y − 5 = 0  ⇒  y = 1",
+          "From (1):  x = 1 − 3(1) = −2",
+          "∴ Point of intersection P = (−2, 1)"
+        ]
       },
       {
         "id": "s3_point_slope",
@@ -145,8 +166,16 @@
         "marks": 2,
         "margin_note": "The next two marks. A point and a slope fix a line, so the point-slope form y − y₁ = m(x − x₁) writes it in one line.",
         "lines": [
+          {
+            "text": "(the point-slope form, with (x₁, y₁) = (−2, 1) and m = 3/2)",
+            "added": true
+          },
           "Line through P(−2, 1) with slope 3/2 is",
           "y − y₁ = m(x − x₁)",
+          {
+            "text": "(x − (−2) = x + 2)",
+            "added": true
+          },
           "⇒ y − 1 = (3/2)(x + 2)"
         ],
         "recall": {
@@ -173,10 +202,15 @@
         "why": "A point and a slope determine a line uniquely, which is why the two independent halves are enough between them.",
         "common_mistakes": [
           "Writing x + 2 as x − 2 by forgetting the sign of x₁.",
-          "Using the slope-intercept form and having to find c separately."
+          "Writing (3/2)(x + 2) as (3/2)x + 2, without multiplying the 2 by 3/2."
         ],
         "mark_note": "Method",
-        "memory_tip": "y − y₁ = m(x − x₁) with the point and slope already found."
+        "memory_tip": "y − y₁ = m(x − x₁) with the point and slope already found.",
+        "lines_compact": [
+          "Line through P(−2, 1) with slope 3/2 is",
+          "y − y₁ = m(x − x₁)",
+          "⇒ y − 1 = (3/2)(x + 2)"
+        ]
       },
       {
         "id": "s4_simplify",
@@ -185,8 +219,20 @@
         "marks": 1,
         "margin_note": "One mark. Multiply out the 2, collect every term on one side and write it as ax + by + c = 0.",
         "lines": [
+          {
+            "text": "(multiply both sides by 2)",
+            "added": true
+          },
           "⇒ 2(y − 1) = 3(x + 2)",
+          {
+            "text": "(multiply out: 2(y − 1) = 2y − 2 and 3(x + 2) = 3x + 6)",
+            "added": true
+          },
           "⇒ 2y − 2 = 3x + 6",
+          {
+            "text": "(take 2y − 2 to the right: 0 = 3x − 2y + 6 + 2)",
+            "added": true
+          },
           "⇒ 3x − 2y + 8 = 0"
         ],
         "recall": {
@@ -217,7 +263,12 @@
           "Sign slip when moving 2y − 2 across."
         ],
         "mark_note": "Method",
-        "memory_tip": "Multiply by the denominator, then collect everything on one side."
+        "memory_tip": "Multiply by the denominator, then collect everything on one side.",
+        "lines_compact": [
+          "⇒ 2(y − 1) = 3(x + 2)",
+          "⇒ 2y − 2 = 3x + 6",
+          "⇒ 3x − 2y + 8 = 0"
+        ]
       },
       {
         "id": "s5_check",
@@ -226,7 +277,20 @@
         "marks": 1,
         "margin_note": "Last mark. Two checks cost one line each: P must satisfy the answer, and the two slopes must multiply to −1.",
         "lines": [
+          {
+            "text": "(put x = −2 and y = 1 in the answer)",
+            "added": true
+          },
           "At P(−2, 1):  3(−2) − 2(1) + 8 = 0, correct.",
+          {
+            "text": "(the slopes of 2x + 3y = 0 and 3x − 2y + 8 = 0",
+            "added": true
+          },
+          {
+            "text": "  are −2/3 and 3/2)",
+            "style": "indent",
+            "added": true
+          },
           "Slopes: (−2/3) × (3/2) = −1, so perpendicular.",
           {
             "text": "∴ Required line is 3x − 2y + 8 = 0",
@@ -255,13 +319,21 @@
             "required line"
           ]
         },
-        "why": "Both conditions the question set can be tested in one line each, so a sign slip anywhere above shows up here rather than in the marked answer.",
+        "why": "The point and the perpendicular condition can each be tested in one line, so a slip in steps 3 and 4 shows up here. A slip in finding P does not — put P back into (1) and (2) to test that.",
         "common_mistakes": [
           "Skipping the check and leaving a sign slip in the final answer.",
           "Checking only the point and not the perpendicular condition."
         ],
         "mark_note": "Method",
-        "memory_tip": "Check both conditions: the point satisfies the line, and the slopes multiply to −1."
+        "memory_tip": "Check both conditions: the point satisfies the line, and the slopes multiply to −1.",
+        "lines_compact": [
+          "At P(−2, 1):  3(−2) − 2(1) + 8 = 0, correct.",
+          "Slopes: (−2/3) × (3/2) = −1, so perpendicular.",
+          {
+            "text": "∴ Required line is 3x − 2y + 8 = 0",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   }

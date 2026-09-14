@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.196, chapter 9 DIFFERENTIATION, Very Short Answer question 29. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Both derivatives were checked numerically before they were written: at x = 0 the first difference quotient reads −0.08 against −2/(4x + 5)² = −0.08 and the second reads 0.1280000106 against 16/125 = 0.128; at x = 1 the second reads 0.02194786575 against 16/729 = 0.02194787380; at x = −2, where 4x + 5 = −3, it reads −0.5925925917 against 16/(−27) = −0.5925925926, so the sign follows the cube of 4x + 5 as it should. The quotient rule gives the same first derivative, which was the cross-check on the rewriting step."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.196, chapter 9 DIFFERENTIATION, Very Short Answer question 29. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Both derivatives were checked numerically before they were written: at x = 0 the first difference quotient reads −0.08 against −2/(4x + 5)² = −0.08 and the second reads 0.1280000106 against 16/125 = 0.128; at x = 1 the second reads 0.02194786575 against 16/729 = 0.02194787380; at x = −2, where 4x + 5 = −3, it reads −0.5925925917 against 16/(−27) = −0.5925925926, so the sign follows the cube of 4x + 5 as it should. The quotient rule gives the same first derivative, which was the cross-check on the rewriting step. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say how you rewrite the fraction before differentiating, and how many times you differentiate.",
   "answer": {
@@ -45,7 +45,7 @@
         "label": "Rewrite the fraction and differentiate once",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. Either route is accepted — the quotient rule gives the same −2/(4x + 5)². Check the division before using it: ½(4x + 5) + ½ = 2x + 2.5 + 0.5 = 2x + 3.",
+        "margin_note": "First mark. Either method is accepted — the quotient rule gives the same −2/(4x + 5)². Check the division before using it: ½(4x + 5) + ½ = 2x + 2.5 + 0.5 = 2x + 3.",
         "memory_tip": "A linear over a linear is always a constant plus a constant over the same linear. In that form each differentiation is one chain rule on a power.",
         "lines": [
           {
@@ -53,9 +53,28 @@
             "style": "heading"
           },
           "Write the numerator in terms of the denominator:",
+          "(½(4x + 5) = 2x + 5/2, and 2x + 5/2 + ½ = 2x + 3)",
           "2x + 3 = ½(4x + 5) + ½",
+          "(divide both sides by 4x + 5: ½(4x + 5)/(4x + 5) = ½,",
+          {
+            "text": "  and ½/(4x + 5) = ½(4x + 5)⁻¹;",
+            "style": "indent"
+          },
+          {
+            "text": "  the denominator 4x + 5 ≠ 0 gives x ≠ −5/4)",
+            "style": "indent"
+          },
           "∴ y = ½ + ½(4x + 5)⁻¹,  x ≠ −5/4",
           "Differentiate once, by the chain rule on the power:",
+          "(d/dx(½) = 0; d/dx(4x + 5)⁻¹ = (−1)(4x + 5)⁻² · 4,",
+          {
+            "text": "  where 4 is the derivative of 4x + 5;",
+            "style": "indent"
+          },
+          {
+            "text": "  and ½ · (−1) · 4 = −2)",
+            "style": "indent"
+          },
           "dy/dx = 0 + ½ · (−1)(4x + 5)⁻² · 4 = −2/(4x + 5)²"
         ],
         "recall": {
@@ -95,9 +114,21 @@
         "margin_note": "Second mark. Two minus signs multiply to a plus, so y″ is positive wherever 4x + 5 is positive. Check at x = 0: 16/125 = 0.128.",
         "memory_tip": "Each differentiation multiplies by the power and by the inner 4. Here (−2) × 4 = −8, and −2 × (−8) = 16.",
         "lines": [
+          {
+            "text": "(−2/(4x + 5)² written as a power)",
+            "added": true
+          },
           "dy/dx = −2(4x + 5)⁻²",
           "Differentiate again by the chain rule:",
+          {
+            "text": "(d/dx(4x + 5)⁻² = (−2)(4x + 5)⁻³ · 4)",
+            "added": true
+          },
           "d²y/dx² = −2 · (−2)(4x + 5)⁻³ · 4",
+          {
+            "text": "(−2 · (−2) · 4 = 16, and (4x + 5)⁻³ = 1/(4x + 5)³)",
+            "added": true
+          },
           {
             "text": "∴ y″ = 16/(4x + 5)³,  x ≠ −5/4",
             "style": "boxed"
@@ -129,6 +160,15 @@
         "common_mistakes": [
           "Losing one of the two minus signs and writing −16/(4x + 5)³.",
           "Forgetting the inner 4 the second time and writing 4/(4x + 5)³."
+        ],
+        "lines_compact": [
+          "dy/dx = −2(4x + 5)⁻²",
+          "Differentiate again by the chain rule:",
+          "d²y/dx² = −2 · (−2)(4x + 5)⁻³ · 4",
+          {
+            "text": "∴ y″ = 16/(4x + 5)³,  x ≠ −5/4",
+            "style": "boxed"
+          }
         ]
       }
     ]

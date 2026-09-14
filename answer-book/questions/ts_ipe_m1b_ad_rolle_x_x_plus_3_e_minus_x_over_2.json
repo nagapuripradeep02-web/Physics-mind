@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.229, chapter 10 APPLICATIONS OF DERIVATIVES, the ROLLE'S AND LAGRANGE'S THEOREM sub-section, Very Short Answer question 5. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question — one mark for the three conditions, one for producing c. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and we ship it as ONE unit, so the sub-section is named above. The derivative was checked against a numerical difference quotient at several points of the interval, and c = −2 was confirmed as the only root inside (−3, 0); the second root x = 3 is outside and is rejected in the working. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.229, chapter 10 APPLICATIONS OF DERIVATIVES, the ROLLE'S AND LAGRANGE'S THEOREM sub-section, Very Short Answer question 5. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question — one mark for the three conditions, one for producing c. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and we ship it as ONE unit, so the sub-section is named above. The derivative was checked against a numerical difference quotient at several points of the interval, and c = −2 was confirmed as the only root inside (−3, 0); the second root x = 3 is outside and is rejected in the working. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say what you take out as a common factor after differentiating, and which root you reject.",
   "answer": {
@@ -45,17 +45,28 @@
         "label": "Check the conditions on [−3, 0]",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. Anything multiplied by 0 is 0, whatever the exponential is worth. Write the zero bracket instead of working out a decimal for e^(3/2).",
+        "margin_note": "First mark. Anything multiplied by 0 is 0, whatever the value of the exponential. Write the zero bracket instead of working out a decimal for e³⁄².",
         "memory_tip": "e raised to any real power is positive, never zero, so a product with an exponential is zero only where the other factor is zero.",
         "lines": [
           {
             "text": "Sol:",
             "style": "heading"
           },
-          "f(x) = x(x + 3)e^(−x/2) = (x² + 3x)e^(−x/2)",
-          "(i) x² + 3x is a polynomial and e^(−x/2) is an exponential function; both are continuous for every real x, so f is continuous on [−3, 0]",
-          "(ii) both are differentiable for every real x, so f is differentiable on (−3, 0)",
-          "(iii) f(−3) = (−3)(−3 + 3)e^(3/2) = (−3)(0)e^(3/2) = 0  and  f(0) = (0)(0 + 3)e⁰ = 0",
+          "(x(x + 3) = x² + 3x)",
+          "f(x) = x(x + 3)e⁻ˣ⁄² = (x² + 3x)e⁻ˣ⁄²",
+          "(i) x² + 3x is a polynomial",
+          "and e⁻ˣ⁄² is an exponential function;",
+          "both are continuous for every real x,",
+          "so f is continuous on [−3, 0]",
+          "(ii) both are differentiable for every real x,",
+          "so f is differentiable on (−3, 0)",
+          "(at x = −3 the factor x + 3 is 0, and at x = 0",
+          {
+            "text": "  the factor x is 0; e⁰ = 1)",
+            "style": "indent"
+          },
+          "(iii) f(−3) = (−3)(−3 + 3)e³⁄² = (−3)(0)e³⁄² = 0",
+          "and  f(0) = (0)(0 + 3)e⁰ = 0",
           "∴ f(−3) = f(0) = 0, so Rolle's theorem applies on [−3, 0]."
         ],
         "recall": {
@@ -80,9 +91,9 @@
             "exponential"
           ]
         },
-        "why": "The exponential factor is never zero, so the end values come entirely from the polynomial part — and −3 and 0 are exactly its two roots. Saying so is quicker and safer than evaluating e^(3/2) as a decimal.",
+        "why": "The exponential factor is never zero, so the end values come entirely from the polynomial part — and −3 and 0 are exactly its two roots. Saying so is quicker and safer than evaluating e³⁄² as a decimal.",
         "common_mistakes": [
-          "Working out e^(3/2) as a decimal when the other factor is already 0.",
+          "Working out e³⁄² as a decimal when the other factor is already 0.",
           "Writing e⁰ as 0 instead of 1."
         ]
       },
@@ -95,12 +106,50 @@
         "margin_note": "Second mark. Rejecting x = 3 is part of the answer, not a detail — c has to lie strictly inside (−3, 0). Say which root is rejected and why.",
         "memory_tip": "Take the exponential out as a common factor first; only the bracket that is left can be zero.",
         "lines": [
-          "By the product rule, f′(x) = (2x + 3)e^(−x/2) + (x² + 3x)(−1/2)e^(−x/2)",
-          "= (e^(−x/2)/2)[2(2x + 3) − (x² + 3x)]",
-          "= (e^(−x/2)/2)(4x + 6 − x² − 3x) = (e^(−x/2)/2)(−x² + x + 6)",
-          "= −(e^(−x/2)/2)(x − 3)(x + 2)",
-          "e^(−x/2) > 0 for every real x, so f′(x) = 0 ⇒ (x − 3)(x + 2) = 0 ⇒ x = 3 or x = −2",
-          "x = 3 does not lie in (−3, 0), so it is rejected; x = −2 lies in (−3, 0)",
+          {
+            "text": "(product rule: (uv)′ = u′v + uv′ with u = x² + 3x",
+            "added": true
+          },
+          {
+            "text": "  and v = e⁻ˣ⁄²; chain rule: v′ = (−1/2)e⁻ˣ⁄²)",
+            "style": "indent",
+            "added": true
+          },
+          "By the product rule, f′(x) = (2x + 3)e⁻ˣ⁄²",
+          {
+            "text": "  + (x² + 3x)(−1/2)e⁻ˣ⁄²",
+            "style": "indent"
+          },
+          {
+            "text": "(take out e⁻ˣ⁄²/2 from both terms)",
+            "added": true
+          },
+          "= (e⁻ˣ⁄²/2)[2(2x + 3) − (x² + 3x)]",
+          {
+            "text": "(2(2x + 3) = 4x + 6, and 4x − 3x = x)",
+            "added": true
+          },
+          "= (e⁻ˣ⁄²/2)(4x + 6 − x² − 3x) = (e⁻ˣ⁄²/2)(−x² + x + 6)",
+          {
+            "text": "(−x² + x + 6 = −(x² − x − 6) = −(x − 3)(x + 2))",
+            "added": true
+          },
+          "= −(e⁻ˣ⁄²/2)(x − 3)(x + 2)",
+          {
+            "text": "(a product is 0 only when a factor is 0)",
+            "added": true
+          },
+          "e⁻ˣ⁄² > 0 for every real x, so f′(x) = 0 ⇒ (x − 3)(x + 2) = 0",
+          {
+            "text": "  ⇒ x = 3 or x = −2",
+            "style": "indent"
+          },
+          {
+            "text": "(3 > 0, so 3 is not in (−3, 0); and −3 < −2 < 0)",
+            "added": true
+          },
+          "x = 3 does not lie in (−3, 0), so it is rejected;",
+          "x = −2 lies in (−3, 0)",
           {
             "text": "∴ Rolle's theorem is verified, with c = −2 ∈ (−3, 0)",
             "style": "boxed"
@@ -129,11 +178,32 @@
             "minus two"
           ]
         },
-        "why": "The product rule leaves e^(−x/2) in both terms, and taking it out is what turns the equation into a quadratic. Since an exponential is never zero, every root of f′ has to come from the bracket that remains.",
+        "why": "The product rule leaves e⁻ˣ⁄² in both terms, and taking it out is what turns the equation into a quadratic. Since an exponential is never zero, every root of f′ has to come from the bracket that remains.",
         "common_mistakes": [
-          "Differentiating e^(−x/2) as e^(−x/2) and losing the factor −1/2 from the chain rule.",
-          "Setting e^(−x/2) = 0 and trying to solve it, when an exponential is never zero.",
+          "Differentiating e⁻ˣ⁄² as e⁻ˣ⁄² and losing the factor −1/2 from the chain rule.",
+          "Setting e⁻ˣ⁄² = 0 and trying to solve it, when an exponential is never zero.",
           "Keeping x = 3 as an answer; it is outside [−3, 0] and must be rejected."
+        ],
+        "lines_compact": [
+          "By the product rule, f′(x) = (2x + 3)e⁻ˣ⁄²",
+          {
+            "text": "  + (x² + 3x)(−1/2)e⁻ˣ⁄²",
+            "style": "indent"
+          },
+          "= (e⁻ˣ⁄²/2)[2(2x + 3) − (x² + 3x)]",
+          "= (e⁻ˣ⁄²/2)(4x + 6 − x² − 3x) = (e⁻ˣ⁄²/2)(−x² + x + 6)",
+          "= −(e⁻ˣ⁄²/2)(x − 3)(x + 2)",
+          "e⁻ˣ⁄² > 0 for every real x, so f′(x) = 0 ⇒ (x − 3)(x + 2) = 0",
+          {
+            "text": "  ⇒ x = 3 or x = −2",
+            "style": "indent"
+          },
+          "x = 3 does not lie in (−3, 0), so it is rejected;",
+          "x = −2 lies in (−3, 0)",
+          {
+            "text": "∴ Rolle's theorem is verified, with c = −2 ∈ (−3, 0)",
+            "style": "boxed"
+          }
         ]
       }
     ]

@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.188, chapter 8 LIMITS, Very Short Answer question 29. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.188, chapter 8 LIMITS, Very Short Answer question 29. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say which power of x you divide by, and which terms are left at the end.",
   "answer": {
@@ -51,9 +51,25 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "As x → ∞ both lines increase without bound, so this is the indeterminate form ∞/∞.",
-          "The highest power of x present is x³. Divide every term of both lines by x³ (x ≠ 0):",
-          "(11x³ − 3x + 4)/(13x³ − 5x² − 7) = (11 − 3/x² + 4/x³)/(13 − 5/x − 7/x³)"
+          "As x → ∞ both lines increase without bound,",
+          "so this is the indeterminate form ∞/∞.",
+          "The highest power of x present is x³.",
+          "(dividing the top and the bottom by the same non-zero",
+          {
+            "text": "  number does not change the fraction)",
+            "style": "indent"
+          },
+          "Divide every term of both lines by x³ (x ≠ 0):",
+          "(11x³/x³ = 11, 3x/x³ = 3/x², 4/x³ stays;",
+          {
+            "text": "  13x³/x³ = 13, 5x²/x³ = 5/x, 7/x³ stays)",
+            "style": "indent"
+          },
+          "(11x³ − 3x + 4)/(13x³ − 5x² − 7)",
+          {
+            "text": "  = (11 − 3/x² + 4/x³)/(13 − 5/x − 7/x³)",
+            "style": "indent"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -92,10 +108,22 @@
         "mark_note": "Answer",
         "margin_note": "Second mark. Box 11/13. It does not reduce — 11 and 13 are both prime, so the fraction is already in lowest terms.",
         "lines": [
+          {
+            "text": "(a fixed number divided by a growing power of x goes to 0)",
+            "added": true
+          },
           "As x → ∞:  3/x² → 0,  4/x³ → 0,  5/x → 0,  7/x³ → 0",
+          {
+            "text": "(put 0 for each of these terms)",
+            "added": true
+          },
           "∴ limit = (11 − 0 + 0)/(13 − 0 − 0) = 11/13",
           {
-            "text": "∴ lim(x → ∞) (11x³ − 3x + 4)/(13x³ − 5x² − 7) = 11/13",
+            "text": "∴ lim(x → ∞) (11x³ − 3x + 4)/(13x³ − 5x² − 7)",
+            "style": "boxed"
+          },
+          {
+            "text": "= 11/13",
             "style": "boxed"
           }
         ],
@@ -121,12 +149,24 @@
             "go to zero"
           ]
         },
-        "why": "Only the leading terms survive, so the value is the ratio of the coefficients of x³.",
+        "why": "The other terms go to 0, so the value is the ratio of the coefficients of x³.",
         "common_mistakes": [
           "Giving 13/11 by inverting the ratio.",
           "Trying to reduce 11/13 further; 11 and 13 have no common factor."
         ],
-        "memory_tip": "Only the x³ coefficients matter: 11 over 13."
+        "memory_tip": "Only the x³ coefficients matter: 11 over 13.",
+        "lines_compact": [
+          "As x → ∞:  3/x² → 0,  4/x³ → 0,  5/x → 0,  7/x³ → 0",
+          "∴ limit = (11 − 0 + 0)/(13 − 0 − 0) = 11/13",
+          {
+            "text": "∴ lim(x → ∞) (11x³ − 3x + 4)/(13x³ − 5x² − 7)",
+            "style": "boxed"
+          },
+          {
+            "text": "= 11/13",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

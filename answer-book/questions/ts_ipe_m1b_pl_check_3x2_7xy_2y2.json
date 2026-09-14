@@ -39,7 +39,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.23 — LAQ chapter 2 Pair of Straight Lines, answer 11. Printed appearance: AP J-16 (June 2016). ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. The chapter's only printed splits are on its two homogenisation answers (12 and 15), whose shape does not transfer. This split follows the answer's own printed lettering instead: the book sets it out as part (a) with four numbered checks (i)-(iv) and part (b) for the point of intersection, and the cut here gives the four checks four marks between them and part (b) the rest. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: Pair of Straight Lines holds TWO Section-C slots — the book's chapter header reads '7+7=14 Marks' and the IPE Blue Print (book p.3) gives it 14 marks, all in Section C and none in Section A or B, so it is an LAQ-ONLY unit and the only 1B unit besides Matrices-on-1A to carry two long slots. The chapter runs book pp.19-26 and its boundary was walked: p.27 opens LAQ chapter 3, D.C's & D.R's. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Find the point of intersection. RE-CUT 2026-08-31: this card was filed as LAQ at 8 marks and is now SAQ at 4 marks. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition) files this chapter under the printed banner \"2 x 4M = 8 M\" followed by \"Short Answer Questions\", lists every one of its questions there, and prints no long-answer block for this chapter at all. A chapter with no 8-mark block cannot hold an 8-mark question. The standing boundary for that book — \"Only the question was taken\" — holds here, and this card takes even less: what was read from it is the chapter’s printed section banner and nothing else. The solution, the step order and the mark split are this answer book’s own work, see docs/ORIGINALITY_MATHS.md. The mathematics and the steps are unchanged; only the mark scheme moved: the steps now carry 0+1+1+2 instead of 1+2+2+3 — reading the six coefficients off the given equation earns no mark of its own at 4 marks. Paper position now: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. Still unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.23 — LAQ chapter 2 Pair of Straight Lines, answer 11. Printed appearance: AP J-16 (June 2016). ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. The chapter's only printed splits are on its two homogenisation answers (12 and 15), whose shape does not transfer. This split follows the answer's own printed lettering instead: the book sets it out as part (a) with four numbered checks (i)-(iv) and part (b) for the point of intersection, and the cut here gives the four checks four marks between them and part (b) the rest. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: Pair of Straight Lines holds TWO Section-C slots — the book's chapter header reads '7+7=14 Marks' and the IPE Blue Print (book p.3) gives it 14 marks, all in Section C and none in Section A or B, so it is an LAQ-ONLY unit and the only 1B unit besides Matrices-on-1A to carry two long slots. The chapter runs book pp.19-26 and its boundary was walked: p.27 opens LAQ chapter 3, D.C's & D.R's. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Find the point of intersection. RE-CUT 2026-08-31: this card was filed as LAQ at 8 marks and is now SAQ at 4 marks. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition) files this chapter under the printed banner \"2 x 4M = 8 M\" followed by \"Short Answer Questions\", lists every one of its questions there, and prints no long-answer block for this chapter at all. A chapter with no 8-mark block cannot hold an 8-mark question. The standing boundary for that book — \"Only the question was taken\" — holds here, and this card takes even less: what was read from it is the chapter’s printed section banner and nothing else. The solution, the step order and the mark split are this answer book’s own work, see docs/ORIGINALITY_MATHS.md. The mathematics and the steps are unchanged; only the mark scheme moved: the steps now carry 0+1+1+2 instead of 1+2+2+3 — reading the six coefficients off the given equation earns no mark of its own at 4 marks. Paper position now: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. Still unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — name the four conditions you must check, and how you get the point without factorising.",
   "answer": {
@@ -60,8 +60,15 @@
             "style": "heading"
           },
           "Given equation is 3x² + 7xy + 2y² + 5x + 5y + 2 = 0",
-          "Comparing with ax² + 2hxy + by² + 2gx + 2fy + c = 0 we get",
-          "a = 3, 2h = 7 ⇒ h = 7/2, b = 2, 2g = 5 ⇒ g = 5/2, 2f = 5 ⇒ f = 5/2, c = 2"
+          "(the xy, x and y coefficients in the standard form are 2h,",
+          {
+            "text": "  2g and 2f, so halve them)",
+            "style": "indent"
+          },
+          "Comparing with ax² + 2hxy + by² + 2gx + 2fy + c = 0",
+          "we get",
+          "a = 3, 2h = 7 ⇒ h = 7/2, b = 2,",
+          "2g = 5 ⇒ g = 5/2, 2f = 5 ⇒ f = 5/2, c = 2"
         ],
         "recall": {
           "credit": "say_it",
@@ -86,7 +93,7 @@
             "six coefficients"
           ]
         },
-        "why": "The standard form writes the xy, x and y coefficients DOUBLED, so the numbers read straight off the question have to be halved to become h, g and f. Skipping that halving is the commonest error in the question type.",
+        "why": "The standard form writes the xy, x and y coefficients DOUBLED, so the numbers read straight off the question have to be halved to become h, g and f. Skipping that halving is a common error in this type of question.",
         "common_mistakes": [
           "Taking h as the whole xy coefficient instead of half of it.",
           "Getting the sign of a negative coefficient wrong."
@@ -98,11 +105,36 @@
         "kind": "equation",
         "label": "Test Δ = 0",
         "marks": 1,
-        "margin_note": "First mark. Δ = abc + 2fgh − af² − bg² − ch² is the master test — it is zero exactly when the equation factors into two lines.",
+        "margin_note": "First mark. Δ = abc + 2fgh − af² − bg² − ch² is the first test — it is zero exactly when the equation factors into two linear factors, which may not be real.",
         "lines": [
+          {
+            "text": "(the first of the four conditions for a pair of lines is Δ = 0)",
+            "added": true
+          },
           "(i) Δ = abc + 2fgh − af² − bg² − ch²",
-          "= 3(2)(2) + 2(5/2)(5/2)(7/2) − 3(5/2)² − 2(5/2)² − 2(7/2)²",
+          {
+            "text": "(put a = 3, b = 2, c = 2, f = 5/2, g = 5/2, h = 7/2)",
+            "added": true
+          },
+          "= 3(2)(2) + 2(5/2)(5/2)(7/2)",
+          {
+            "text": "  − 3(5/2)² − 2(5/2)² − 2(7/2)²",
+            "style": "indent"
+          },
+          {
+            "text": "(3(2)(2) = 12 = 48/4; 2(5/2)(5/2)(7/2) = 175/4;",
+            "added": true
+          },
+          {
+            "text": "  3(25/4) = 75/4; 2(25/4) = 50/4; 2(49/4) = 98/4)",
+            "style": "indent",
+            "added": true
+          },
           "= 12 + 175/4 − 75/4 − 50/4 − 98/4",
+          {
+            "text": "(48 + 175 = 223, and 75 + 50 + 98 = 223)",
+            "added": true
+          },
           "= (48 + 175 − 75 − 50 − 98)/4 = 0/4 = 0"
         ],
         "recall": {
@@ -133,19 +165,54 @@
           "Arithmetic slip with the quarters that come from halved coefficients."
         ],
         "mark_note": "Method",
-        "memory_tip": "Δ = abc + 2fgh − af² − bg² − ch² is zero exactly when the equation factors into two lines."
+        "memory_tip": "Δ = abc + 2fgh − af² − bg² − ch² is zero exactly when the equation factors into two linear factors (real or not).",
+        "lines_compact": [
+          "(i) Δ = abc + 2fgh − af² − bg² − ch²",
+          "= 3(2)(2) + 2(5/2)(5/2)(7/2)",
+          {
+            "text": "  − 3(5/2)² − 2(5/2)² − 2(7/2)²",
+            "style": "indent"
+          },
+          "= 12 + 175/4 − 75/4 − 50/4 − 98/4",
+          "= (48 + 175 − 75 − 50 − 98)/4 = 0/4 = 0"
+        ]
       },
       {
         "id": "s3_inequalities",
         "kind": "equation",
         "label": "Test the three inequalities",
         "marks": 1,
-        "margin_note": "One mark. Δ = 0 alone is not enough — the three inequalities confirm the factors are REAL rather than complex. All four conditions together settle it.",
+        "margin_note": "One mark. Δ = 0 alone is not enough — the three inequalities confirm the factors are REAL rather than complex. All four conditions together prove it.",
         "lines": [
-          "(ii) h² − ab = (7/2)² − 3(2) = 49/4 − 6 = (49 − 24)/4 = 25/4 > 0",
-          "(iii) f² − bc = (5/2)² − 2(2) = 25/4 − 4 = (25 − 16)/4 = 9/4 > 0",
-          "(iv) g² − ac = (5/2)² − 3(2) = 25/4 − 6 = (25 − 24)/4 = 1/4 > 0",
-          "All the four conditions of a pair of lines are satisfied. So, the given equation represents a pair of straight lines."
+          {
+            "text": "((7/2)² = 49/4, 6 = 24/4)",
+            "added": true
+          },
+          "(ii) h² − ab = (7/2)² − 3(2) = 49/4 − 6",
+          {
+            "text": "  = (49 − 24)/4 = 25/4 > 0",
+            "style": "indent"
+          },
+          {
+            "text": "((5/2)² = 25/4, 4 = 16/4)",
+            "added": true
+          },
+          "(iii) f² − bc = (5/2)² − 2(2) = 25/4 − 4",
+          {
+            "text": "  = (25 − 16)/4 = 9/4 > 0",
+            "style": "indent"
+          },
+          {
+            "text": "(6 = 24/4)",
+            "added": true
+          },
+          "(iv) g² − ac = (5/2)² − 3(2) = 25/4 − 6",
+          {
+            "text": "  = (25 − 24)/4 = 1/4 > 0",
+            "style": "indent"
+          },
+          "All the four conditions of a pair of lines are satisfied.",
+          "So, the given equation represents a pair of straight lines."
         ],
         "recall": {
           "credit": "say_it",
@@ -175,7 +242,26 @@
           "Testing only one of the three inequalities."
         ],
         "mark_note": "Method",
-        "memory_tip": "The three inequalities confirm the factors are real, not complex. All four conditions together settle it."
+        "memory_tip": "The three inequalities confirm the factors are real, not complex. All four conditions together prove it.",
+        "lines_compact": [
+          "(ii) h² − ab = (7/2)² − 3(2) = 49/4 − 6",
+          {
+            "text": "  = (49 − 24)/4 = 25/4 > 0",
+            "style": "indent"
+          },
+          "(iii) f² − bc = (5/2)² − 2(2) = 25/4 − 4",
+          {
+            "text": "  = (25 − 16)/4 = 9/4 > 0",
+            "style": "indent"
+          },
+          "(iv) g² − ac = (5/2)² − 3(2) = 25/4 − 6",
+          {
+            "text": "  = (25 − 24)/4 = 1/4 > 0",
+            "style": "indent"
+          },
+          "All the four conditions of a pair of lines are satisfied.",
+          "So, the given equation represents a pair of straight lines."
+        ]
       },
       {
         "id": "s4_point",
@@ -184,11 +270,96 @@
         "marks": 2,
         "margin_note": "The last two marks. The two lines meet at a point given directly by a formula in the same six coefficients — no factorising and no solving is needed.",
         "lines": [
-          "(b) Point of intersection  P = ((hf − bg)/(ab − h²), (gh − af)/(ab − h²))",
-          "(hf − bg)/(ab − h²) = [(7/2)(5/2) − 2(5/2)] / [3(2) − (7/2)²]",
-          "= (35/4 − 10/2) / (6 − 49/4) = (35/4 − 20/4) / ((24 − 49)/4) = (15/4)/(−25/4) = −3/5",
-          "(gh − af)/(ab − h²) = [(5/2)(7/2) − 3(5/2)] / [3(2) − (7/2)²]",
-          "= (35/4 − 15/2) / (6 − 49/4) = (35/4 − 30/4) / ((24 − 49)/4) = (5/4)/(−25/4) = −1/5",
+          {
+            "text": "(the point of intersection of the pair of lines)",
+            "added": true
+          },
+          "(b) Point of intersection",
+          "P = ((hf − bg)/(ab − h²), (gh − af)/(ab − h²))",
+          {
+            "text": "(put h = 7/2, f = 5/2, b = 2, g = 5/2, a = 3)",
+            "added": true
+          },
+          "(hf − bg)/(ab − h²)",
+          {
+            "text": "  = [(7/2)(5/2) − 2(5/2)] / [3(2) − (7/2)²]",
+            "style": "indent"
+          },
+          {
+            "text": "((7/2)(5/2) = 35/4, 2(5/2) = 10/2;",
+            "added": true
+          },
+          {
+            "text": "  3(2) = 6, (7/2)² = 49/4)",
+            "style": "indent",
+            "added": true
+          },
+          "= (35/4 − 10/2) / (6 − 49/4)",
+          {
+            "text": "(10/2 = 20/4 and 6 = 24/4)",
+            "added": true
+          },
+          {
+            "text": "  = (35/4 − 20/4) / ((24 − 49)/4)",
+            "style": "indent"
+          },
+          {
+            "text": "(35 − 20 = 15 and 24 − 49 = −25;",
+            "added": true
+          },
+          {
+            "text": "  the 4s cancel and 15/(−25) = −3/5)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  = (15/4)/(−25/4) = −3/5",
+            "style": "indent"
+          },
+          {
+            "text": "(put g = 5/2, h = 7/2, a = 3, f = 5/2)",
+            "added": true
+          },
+          "(gh − af)/(ab − h²)",
+          {
+            "text": "  = [(5/2)(7/2) − 3(5/2)] / [3(2) − (7/2)²]",
+            "style": "indent"
+          },
+          {
+            "text": "((5/2)(7/2) = 35/4, 3(5/2) = 15/2)",
+            "added": true
+          },
+          "= (35/4 − 15/2) / (6 − 49/4)",
+          {
+            "text": "(15/2 = 30/4)",
+            "added": true
+          },
+          {
+            "text": "  = (35/4 − 30/4) / ((24 − 49)/4)",
+            "style": "indent"
+          },
+          {
+            "text": "(35 − 30 = 5; 5/(−25) = −1/5)",
+            "added": true
+          },
+          {
+            "text": "  = (5/4)/(−25/4) = −1/5",
+            "style": "indent"
+          },
+          {
+            "text": "(check: the equation factorises as (3x + y + 2)(x + 2y + 1),",
+            "added": true
+          },
+          {
+            "text": "  and (−3/5, −1/5) satisfies both 3x + y = −2",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  and x + 2y = −1)",
+            "style": "indent",
+            "added": true
+          },
           {
             "text": "∴ Point of intersection = (−3/5, −1/5)",
             "style": "boxed"
@@ -222,9 +393,45 @@
           "Using ab + h² in the denominator."
         ],
         "mark_note": "Solution",
-        "memory_tip": "The intersection comes from a formula in the same six coefficients — nothing needs solving."
+        "memory_tip": "The intersection comes from a formula in the same six coefficients — nothing needs solving.",
+        "lines_compact": [
+          "(b) Point of intersection",
+          "P = ((hf − bg)/(ab − h²), (gh − af)/(ab − h²))",
+          "(hf − bg)/(ab − h²)",
+          {
+            "text": "  = [(7/2)(5/2) − 2(5/2)] / [3(2) − (7/2)²]",
+            "style": "indent"
+          },
+          "= (35/4 − 10/2) / (6 − 49/4)",
+          {
+            "text": "  = (35/4 − 20/4) / ((24 − 49)/4)",
+            "style": "indent"
+          },
+          {
+            "text": "  = (15/4)/(−25/4) = −3/5",
+            "style": "indent"
+          },
+          "(gh − af)/(ab − h²)",
+          {
+            "text": "  = [(5/2)(7/2) − 3(5/2)] / [3(2) − (7/2)²]",
+            "style": "indent"
+          },
+          "= (35/4 − 15/2) / (6 − 49/4)",
+          {
+            "text": "  = (35/4 − 30/4) / ((24 − 49)/4)",
+            "style": "indent"
+          },
+          {
+            "text": "  = (5/4)/(−25/4) = −1/5",
+            "style": "indent"
+          },
+          {
+            "text": "∴ Point of intersection = (−3/5, −1/5)",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },
-  "insider_note": "The point of intersection carries two of the four marks, so the Δ test and the inequalities are one line each. Both coordinates share the denominator ab − h² = −25/4, so work it out once and use it twice."
+  "insider_note": "The point of intersection carries two of the four marks, and the Δ test and the inequalities carry one mark each. Both coordinates share the denominator ab − h² = −25/4, so work it out once and use it twice."
 }

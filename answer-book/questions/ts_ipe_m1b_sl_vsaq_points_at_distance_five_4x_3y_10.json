@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Very Short Answer question 35(i), book p.146. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split gives one mark for turning the slope into cos θ and sin θ, which is what the parametric form needs, and one for reporting BOTH points; the middle step that writes the parametric point carries 0 marks because it is bookkeeping between the two marked moves. The stem is well posed: (1, −2) satisfies 4(1) − 3(−2) − 10 = 0, so the given point lies ON the line, which is what makes the parametric method available and what forces two answers rather than one. This book prints almost no exam-appearance years, so appearances[] is empty. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Very Short Answer question 35(i), book p.146. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split gives one mark for turning the slope into cos θ and sin θ, which is what the parametric form needs, and one for reporting BOTH points; the middle step that writes the parametric point carries 0 marks because it is bookkeeping between the two marked moves. The stem is well posed: (1, −2) satisfies 4(1) − 3(−2) − 10 = 0, so the given point lies ON the line, which is what makes the parametric method available and what forces two answers rather than one. This book prints almost no exam-appearance years, so appearances[] is empty. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say what you convert the slope into, and why there are two answers.",
   "answer": {
@@ -55,7 +55,17 @@
           "Given line is 4x − 3y − 10 = 0",
           "(1, −2) lies on it, because",
           "4(1) − 3(−2) − 10 = 4 + 6 − 10 = 0",
+          "(the slope of ax + by + c = 0 is −a/b; here a = 4, b = −3)",
           "Its slope  m = −a/b = −4/(−3) = 4/3",
+          "(tan θ = 4/3 with θ acute: a right triangle with sides 3",
+          {
+            "text": "  and 4 has hypotenuse 5; cos θ = 3/5",
+            "style": "indent"
+          },
+          {
+            "text": "  and sin θ = 4/5)",
+            "style": "indent"
+          },
           "m = tanθ = 4/3  ⇒  cosθ = 3/5,  sinθ = 4/5"
         ],
         "recall": {
@@ -92,14 +102,31 @@
         "kind": "equation",
         "label": "Write the parametric point",
         "marks": 0,
-        "margin_note": "The two points sit at distance 5 on EITHER side of (1, −2), so the ± is written into the parametric form from the start.",
-        "memory_tip": "The two points sit on EITHER side, so write the ± into the parametric form from the start.",
+        "margin_note": "The two points lie at distance 5 on EITHER side of (1, −2), so the ± is written into the parametric form from the start.",
+        "memory_tip": "The two points lie on EITHER side, so write the ± into the parametric form from the start.",
         "lines": [
+          {
+            "text": "(the two points at distance 5 from (1, −2),",
+            "added": true
+          },
+          {
+            "text": "  one in each direction along the line)",
+            "style": "indent",
+            "added": true
+          },
           "Given distance |r| = 5",
           "Given point (x₁, y₁) = (1, −2)",
           "Required points (x, y)",
           "= (x₁ ± r cosθ, y₁ ± r sinθ)",
+          {
+            "text": "(put r = 5, cos θ = 3/5 and sin θ = 4/5)",
+            "added": true
+          },
           "= (1 ± 5(3/5), −2 ± 5(4/5))",
+          {
+            "text": "(5(3/5) = 3 and 5(4/5) = 4)",
+            "added": true
+          },
           "= (1 ± 3, −2 ± 4)"
         ],
         "recall": {
@@ -128,6 +155,14 @@
         "common_mistakes": [
           "Using only + and finding one point.",
           "Multiplying 5 by cosθ and sinθ the wrong way round."
+        ],
+        "lines_compact": [
+          "Given distance |r| = 5",
+          "Given point (x₁, y₁) = (1, −2)",
+          "Required points (x, y)",
+          "= (x₁ ± r cosθ, y₁ ± r sinθ)",
+          "= (1 ± 5(3/5), −2 ± 5(4/5))",
+          "= (1 ± 3, −2 ± 4)"
         ]
       },
       {
@@ -171,7 +206,7 @@
             "signs together"
           ]
         },
-        "why": "The ± must be taken consistently in both coordinates, because they describe one step of length 5 in one direction along the line — mixing the signs steps sideways off the line. There are two answers because the given point is on the line and you can walk 5 units either way from it.",
+        "why": "The ± must be taken the same way in both coordinates, because together they give one move of length 5 in one direction along the line — mixing the signs gives a point that is not on the line. There are two answers because the given point is on the line, and there is one point 5 units from it in each direction along the line.",
         "common_mistakes": [
           "Mixing the signs and reporting (4, −6) or (−2, 2).",
           "Reporting only one of the two points."

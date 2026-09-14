@@ -42,7 +42,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.156, chapter 3 THE STRAIGHT LINE, Long Answer question 13. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split rewards the angle route, which is what the word show is asking for: two marks for each of the two angles, one for reading the three slopes, one for comparing the angles and two for the conclusion with its check. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section C prints 3 long answer questions at 8 marks each and the student answers any 2, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The vertices were found and the sides measured as an independent check: A(2, −2), B(−2, 2) and C(1, 1) give AB = 4√2, BC = √10 and CA = √10, so the two sides opposite the equal angles really are equal. Each vertex was substituted into both of the lines that meet there."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.156, chapter 3 THE STRAIGHT LINE, Long Answer question 13. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split rewards the angle route, which is what the word show is asking for: two marks for each of the two angles, one for reading the three slopes, one for comparing the angles and two for the conclusion with its check. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section C prints 3 long answer questions at 8 marks each and the student answers any 2, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The vertices were found and the sides measured as an independent check: A(2, −2), B(−2, 2) and C(1, 1) give AB = 4√2, BC = √10 and CA = √10, so the two sides opposite the equal angles really are equal. Each vertex was substituted into both of the lines that meet there. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would show this — name the two angles you compare, and say what equal angles tell you about the sides.",
   "answer": {
@@ -66,7 +66,13 @@
           "Let  x + y = 0  ……(1)",
           "3x + y − 4 = 0  ……(2)",
           "x + 3y − 4 = 0  ……(3)",
+          "(the slope of px + qy + r = 0 is −p/q:",
+          {
+            "text": "  −1/1 = −1, −3/1 = −3 and −1/3)",
+            "style": "indent"
+          },
           "Slopes:  m₁ = −1,  m₂ = −3,  m₃ = −1/3",
+          "(each vertex is where two of the three lines meet)",
           "A is where (1) meets (2),",
           "B is where (1) meets (3),",
           "and C is where (2) meets (3)."
@@ -98,7 +104,7 @@
           "Reading m₃ as −3 instead of −1/3.",
           "Naming the vertices in an order that does not match the lines used."
         ],
-        "memory_tip": "Number the lines first, then name each vertex by the two lines that meet there. Slope is always −a/b."
+        "memory_tip": "Number the lines first, then name each vertex by the two lines that meet there. The slope of px + qy + r = 0 is −p/q when q ≠ 0."
       },
       {
         "id": "s2_angle_a",
@@ -108,9 +114,26 @@
         "mark_note": "Method",
         "margin_note": "Two marks. Use the angle formula on the two lines that meet at A, and keep the modulus so the angle comes out as the acute one.",
         "lines": [
+          {
+            "text": "(the formula for the angle θ between two lines",
+            "added": true
+          },
+          {
+            "text": "  with slopes m₁ and m₂)",
+            "style": "indent",
+            "added": true
+          },
           "At A the sides are (1) and (2), so",
           "tan A = |(m₁ − m₂)/(1 + m₁m₂)|",
+          {
+            "text": "(put m₁ = −1 and m₂ = −3)",
+            "added": true
+          },
           "= |(−1 + 3)/(1 + (−1)(−3))|",
+          {
+            "text": "(−1 + 3 = 2, and (−1)(−3) = 3, so 1 + 3 = 4)",
+            "added": true
+          },
           "= |2/4| = 1/2"
         ],
         "recall": {
@@ -135,12 +158,18 @@
             "lines one and two"
           ]
         },
-        "why": "The angle at a vertex is the angle between the two lines that meet there, and that is the only quantity in this question that can be compared directly.",
+        "why": "The angle at a vertex is the angle between the two lines that meet there, so the formula gives the angles that are compared in step 4.",
         "common_mistakes": [
           "Using the wrong pair of lines for the angle at A.",
           "Writing the denominator as 1 − m₁m₂."
         ],
-        "memory_tip": "The angle at a vertex is the angle between the two lines that MEET there. Pick the pair by name, not by position."
+        "memory_tip": "The angle at a vertex is the angle between the two lines that MEET there. Pick the pair by name, not by position.",
+        "lines_compact": [
+          "At A the sides are (1) and (2), so",
+          "tan A = |(m₁ − m₂)/(1 + m₁m₂)|",
+          "= |(−1 + 3)/(1 + (−1)(−3))|",
+          "= |2/4| = 1/2"
+        ]
       },
       {
         "id": "s3_angle_b",
@@ -150,10 +179,31 @@
         "mark_note": "Method",
         "margin_note": "Two marks. Same formula, second pair of lines. Divide the two fractions by cancelling the common 1/3.",
         "lines": [
+          {
+            "text": "(the formula for the angle θ between two lines",
+            "added": true
+          },
+          {
+            "text": "  with slopes m₁ and m₃)",
+            "style": "indent",
+            "added": true
+          },
           "At B the sides are (1) and (3), so",
           "tan B = |(m₁ − m₃)/(1 + m₁m₃)|",
+          {
+            "text": "(put m₁ = −1 and m₃ = −1/3)",
+            "added": true
+          },
           "= |(−1 + 1/3)/(1 + (−1)(−1/3))|",
+          {
+            "text": "(−1 + 1/3 = −2/3; (−1)(−1/3) = 1/3, so 1 + 1/3 = 4/3)",
+            "added": true
+          },
           "= |(−2/3)/(4/3)|",
+          {
+            "text": "((−2/3)/(4/3) = −2/4 = −1/2, and |−1/2| = 1/2)",
+            "added": true
+          },
           "= 1/2"
         ],
         "recall": {
@@ -183,7 +233,14 @@
           "Arithmetic slip when the thirds are cancelled in (−2/3)/(4/3).",
           "Using lines (2) and (3) instead of (1) and (3)."
         ],
-        "memory_tip": "Divide the fractions by cancelling the common third: (−2/3)/(4/3) is just −2/4."
+        "memory_tip": "Divide the fractions by cancelling the common third: (−2/3)/(4/3) is just −2/4.",
+        "lines_compact": [
+          "At B the sides are (1) and (3), so",
+          "tan B = |(m₁ − m₃)/(1 + m₁m₃)|",
+          "= |(−1 + 1/3)/(1 + (−1)(−1/3))|",
+          "= |(−2/3)/(4/3)|",
+          "= 1/2"
+        ]
       },
       {
         "id": "s4_compare",
@@ -191,13 +248,36 @@
         "label": "Compare the two angles",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "One mark. Say why equal tangents give equal angles here: the modulus in the angle formula returns the acute angle at each vertex, so ∠A and ∠B are both acute and equal tangents force them equal.",
+        "margin_note": "One mark. Say why equal tangents give equal angles here: each interior angle is θ or 180° − θ with tan θ = 1/2, two angles of a triangle cannot add to 180°, and at most one can be obtuse, so ∠A = ∠B.",
         "lines": [
+          {
+            "text": "(the two values found in steps 2 and 3)",
+            "added": true
+          },
           "tan A = tan B = 1/2",
-          "A and B are angles of a triangle, and both",
-          "tangents are positive, so both are acute.",
-          "Two acute angles with the same tangent are",
-          "equal, so ∠A = ∠B."
+          "The formula gives the acute angle θ, tan θ = 1/2.",
+          {
+            "text": "(two crossing lines make the angles θ and 180° − θ;",
+            "added": true
+          },
+          {
+            "text": "  the triangle uses one of them at each vertex)",
+            "style": "indent",
+            "added": true
+          },
+          "Each of ∠A and ∠B is θ or 180° − θ.",
+          {
+            "text": "(θ + (180° − θ) = 180°, but ∠A + ∠B = 180° − ∠C < 180°;",
+            "added": true
+          },
+          {
+            "text": "  and 180° − θ is obtuse, because θ is acute)",
+            "style": "indent",
+            "added": true
+          },
+          "Two angles of a triangle cannot add to 180°,",
+          "and at most one angle can be obtuse,",
+          "so ∠A = ∠B = θ."
         ],
         "recall": {
           "credit": "say_it",
@@ -221,12 +301,20 @@
             "same angle"
           ]
         },
-        "why": "Equal tangents alone do not force equal angles, so the range has to be pinned down first. The modulus in the angle formula returns the acute angle at each vertex, and only one acute angle has tangent 1/2.",
+        "why": "The angle formula gives the acute angle θ between two lines, and the interior angle at a vertex is either θ or 180° − θ. Two angles of one triangle cannot add to 180° and cannot both be obtuse, so ∠A and ∠B are both θ.",
         "common_mistakes": [
-          "Writing ∠A = ∠B from tan A = tan B without saying both are acute.",
+          "Writing ∠A = ∠B from tan A = tan B without saying why neither angle is 180° − θ.",
           "Claiming the triangle is equilateral because two angles agree."
         ],
-        "memory_tip": "Equal tangents give equal angles only once the range is fixed. The modulus makes each angle the acute one, and that fixes it."
+        "memory_tip": "Each interior angle is θ or 180° − θ. Two angles of a triangle cannot add to 180°, so equal acute angles here mean ∠A = ∠B.",
+        "lines_compact": [
+          "tan A = tan B = 1/2",
+          "The formula gives the acute angle θ, tan θ = 1/2.",
+          "Each of ∠A and ∠B is θ or 180° − θ.",
+          "Two angles of a triangle cannot add to 180°,",
+          "and at most one angle can be obtuse,",
+          "so ∠A = ∠B = θ."
+        ]
       },
       {
         "id": "s5_conclude",
@@ -234,13 +322,34 @@
         "label": "Conclude and check",
         "marks": 2,
         "mark_note": "Solution",
-        "margin_note": "The last two marks. Name the two equal sides, then confirm by finding the vertices and measuring — two routes to the same conclusion.",
+        "margin_note": "The last two marks. Name the two equal sides, then confirm by finding the vertices and measuring — two methods that give the same conclusion.",
         "lines": [
+          {
+            "text": "(∠A is opposite the side BC and ∠B is opposite CA)",
+            "added": true
+          },
           "In a triangle the sides opposite equal angles",
           "are equal, so CA = CB.",
+          {
+            "text": "(A: (2) − (1) gives 2x = 4; B: (3) − (1) gives 2y = 4;",
+            "added": true
+          },
+          {
+            "text": "  C: (2) − (3) gives 2x − 2y = 0, so x = y and 4x = 4)",
+            "style": "indent",
+            "added": true
+          },
           "Check with the vertices:",
           "A(2, −2),  B(−2, 2),  C(1, 1)",
+          {
+            "text": "(from C(1, 1) to A(2, −2) the changes are 1 and −3)",
+            "added": true
+          },
           "CA = √(1² + 3²) = √10",
+          {
+            "text": "(from C(1, 1) to B(−2, 2) the changes are −3 and 1)",
+            "added": true
+          },
           "CB = √(3² + 1²) = √10",
           {
             "text": "∴ The triangle formed is isosceles.",
@@ -269,12 +378,24 @@
             "equal sides"
           ]
         },
-        "why": "The angle argument alone proves the result, and the side lengths are added as an independent check so the two routes can be seen to agree.",
+        "why": "The angle argument alone proves the result, and the side lengths are added as an independent check so the two methods can be seen to agree.",
         "common_mistakes": [
           "Stopping at ∠A = ∠B without naming the two equal sides.",
           "Naming AB as one of the equal sides."
         ],
-        "memory_tip": "Equal ANGLES give equal opposite SIDES. The side opposite ∠A is CB and the side opposite ∠B is CA."
+        "memory_tip": "Equal ANGLES give equal opposite SIDES. The side opposite ∠A is CB and the side opposite ∠B is CA.",
+        "lines_compact": [
+          "In a triangle the sides opposite equal angles",
+          "are equal, so CA = CB.",
+          "Check with the vertices:",
+          "A(2, −2),  B(−2, 2),  C(1, 1)",
+          "CA = √(1² + 3²) = √10",
+          "CB = √(3² + 1²) = √10",
+          {
+            "text": "∴ The triangle formed is isosceles.",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   }

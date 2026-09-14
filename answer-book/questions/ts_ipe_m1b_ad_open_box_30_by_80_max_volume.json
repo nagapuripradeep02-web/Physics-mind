@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.225, chapter 10 APPLICATIONS OF DERIVATIVES, the MAXIMA AND MINIMA sub-section, Short Answer question 2. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4 Marks over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.225, chapter 10 APPLICATIONS OF DERIVATIVES, the MAXIMA AND MINIMA sub-section, Short Answer question 2. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4 Marks over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say what the three dimensions of the box are in terms of x, what range x can take, and what you do with the second root.",
   "answer": {
@@ -59,12 +59,31 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "A square of side x is cut from each of the four corners and the flaps are turned up.",
-          "Each side of the sheet loses a square at BOTH ends, so each side loses 2x.",
+          "A square of side x is cut from each of the four corners",
+          "and the flaps are turned up.",
+          "Each side of the sheet loses a square at BOTH ends,",
+          "so each side loses 2x.",
+          "(the base is (80 − 2x) by (30 − 2x), and the",
+          {
+            "text": "  turned-up flaps give the height x)",
+            "style": "indent"
+          },
+          "(volume of a box = length × breadth × height)",
           "Length = 80 − 2x,  breadth = 30 − 2x,  height = x",
+          "((30 − 2x)(80 − 2x) = 2400 − 60x − 160x + 4x²",
+          {
+            "text": "  = 2400 − 220x + 4x²; then multiply by x)",
+            "style": "indent"
+          },
           "V(x) = x(30 − 2x)(80 − 2x)",
           "= x(2400 − 220x + 4x²) = 4x³ − 220x² + 2400x",
-          "Every dimension must be positive: x > 0 and 30 − 2x > 0, so the domain is 0 < x < 15."
+          "(80 − 2x > 0 gives x < 40, which already holds",
+          {
+            "text": "  when x < 15)",
+            "style": "indent"
+          },
+          "Every dimension must be positive:",
+          "x > 0 and 30 − 2x > 0, so the domain is 0 < x < 15."
         ],
         "recall": {
           "credit": "say_it",
@@ -103,12 +122,51 @@
         "label": "Differentiate and solve V′(x) = 0",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Second mark. Expand before differentiating — the product rule on three factors is where most slips happen. Take the factor 4 out of V′ before using the quadratic formula.",
+        "margin_note": "Second mark. Expand before differentiating — the product rule on three factors is easy to get wrong. Take the factor 4 out of V′ before using the quadratic formula.",
         "lines": [
+          {
+            "text": "(d/dx of 4x³ is 12x², of 220x² is 440x,",
+            "added": true
+          },
+          {
+            "text": "  of 2400x is 2400; then take out 4)",
+            "style": "indent",
+            "added": true
+          },
           "V′(x) = 12x² − 440x + 2400 = 4(3x² − 110x + 600)",
+          {
+            "text": "(4 ≠ 0, so the bracket is 0)",
+            "added": true
+          },
           "V′(x) = 0   ⇒   3x² − 110x + 600 = 0",
+          {
+            "text": "(the quadratic formula with coefficients 3, −110, 600)",
+            "added": true
+          },
           "x = [110 ± √(110² − 4·3·600)] / (2·3)",
-          "= [110 ± √(12100 − 7200)] / 6 = [110 ± √4900] / 6 = (110 ± 70)/6",
+          {
+            "text": "(110² = 12100, 4 · 3 · 600 = 7200,",
+            "added": true
+          },
+          {
+            "text": "  12100 − 7200 = 4900 and √4900 = 70)",
+            "style": "indent",
+            "added": true
+          },
+          "= [110 ± √(12100 − 7200)] / 6 = [110 ± √4900] / 6",
+          {
+            "text": "  = (110 ± 70)/6",
+            "style": "indent"
+          },
+          {
+            "text": "(110 + 70 = 180 and 110 − 70 = 40;",
+            "added": true
+          },
+          {
+            "text": "  180/6 = 30 and 40/6 = 20/3)",
+            "style": "indent",
+            "added": true
+          },
           "x = 180/6 = 30   or   x = 40/6 = 20/3"
         ],
         "recall": {
@@ -139,7 +197,18 @@
           "Applying the product rule to three factors and dropping one term.",
           "Dividing V′ by 4 but forgetting to divide the 2400 as well."
         ],
-        "memory_tip": "Multiply out before you differentiate. A cubic in one line is faster and safer than a product rule over three brackets."
+        "memory_tip": "Multiply out before you differentiate. A cubic in one line is faster and safer than a product rule over three brackets.",
+        "lines_compact": [
+          "V′(x) = 12x² − 440x + 2400 = 4(3x² − 110x + 600)",
+          "V′(x) = 0   ⇒   3x² − 110x + 600 = 0",
+          "x = [110 ± √(110² − 4·3·600)] / (2·3)",
+          "= [110 ± √(12100 − 7200)] / 6 = [110 ± √4900] / 6",
+          {
+            "text": "  = (110 ± 70)/6",
+            "style": "indent"
+          },
+          "x = 180/6 = 30   or   x = 40/6 = 20/3"
+        ]
       },
       {
         "id": "s3_reject_root",
@@ -149,9 +218,20 @@
         "mark_note": "Method",
         "margin_note": "Third mark, and it is a real mark, not a formality. The examiner looks for the reason, not just the word rejected — say which dimension turns negative.",
         "lines": [
-          "The domain found in step 1 is 0 < x < 15, so test both roots against it.",
-          "If x = 30, then the breadth is 30 − 2(30) = −30 cm, a negative length. No box exists, so this root is rejected.",
-          "If x = 20/3 ≈ 6.67, then the breadth is 50/3 ≈ 16.67 cm and the length is 200/3 ≈ 66.67 cm, both positive.",
+          "The domain found in step 1 is 0 < x < 15,",
+          "so test both roots against it.",
+          {
+            "text": "(put 30 in place of x in the breadth 30 − 2x)",
+            "added": true
+          },
+          "If x = 30, then the breadth is 30 − 2(30) = −30 cm,",
+          "a negative length. No box exists, so this root is rejected.",
+          {
+            "text": "(20/3 ≈ 6.67; 30 − 40/3 = 50/3 and 80 − 40/3 = 200/3)",
+            "added": true
+          },
+          "If x = 20/3 ≈ 6.67, then the breadth is 50/3 ≈ 16.67 cm",
+          "and the length is 200/3 ≈ 66.67 cm, both positive.",
           "∴ x = 20/3 is the only usable root."
         ],
         "recall": {
@@ -183,7 +263,16 @@
           "Rejecting x = 30 with no reason written down.",
           "Choosing the larger root because larger x looks like a larger box."
         ],
-        "memory_tip": "Test every root against the domain you wrote in step 1. A root that makes any side negative describes no box."
+        "memory_tip": "Test every root against the domain you wrote in step 1. A root that makes any side negative describes no box.",
+        "lines_compact": [
+          "The domain found in step 1 is 0 < x < 15,",
+          "so test both roots against it.",
+          "If x = 30, then the breadth is 30 − 2(30) = −30 cm,",
+          "a negative length. No box exists, so this root is rejected.",
+          "If x = 20/3 ≈ 6.67, then the breadth is 50/3 ≈ 16.67 cm",
+          "and the length is 200/3 ≈ 66.67 cm, both positive.",
+          "∴ x = 20/3 is the only usable root."
+        ]
       },
       {
         "id": "s4_confirm_maximum",
@@ -193,13 +282,53 @@
         "mark_note": "Answer",
         "margin_note": "Fourth mark. The second derivative test is what makes this a maximum rather than a minimum. Put the number in and state the sign.",
         "lines": [
-          "V″(x) = 24x − 440",
-          "At x = 20/3:  V″ = 24(20/3) − 440 = 160 − 440 = −280 < 0",
-          "A negative second derivative means the volume is maximum at this value.",
-          "Greatest volume = (20/3)(50/3)(200/3) = 200000/27 ≈ 7407.41 cm³",
-          "Check: x = 6 gives 7344 cm³ and x = 7 gives 7392 cm³, both less.",
           {
-            "text": "∴ x = 20/3 cm ≈ 6.67 cm gives the greatest volume",
+            "text": "(differentiate V′(x) = 12x² − 440x + 2400 again)",
+            "added": true
+          },
+          "V″(x) = 24x − 440",
+          {
+            "text": "(24 × 20/3 = 480/3 = 160)",
+            "added": true
+          },
+          "At x = 20/3:  V″ = 24(20/3) − 440 = 160 − 440",
+          {
+            "text": "  = −280 < 0",
+            "style": "indent"
+          },
+          "A negative second derivative means the volume",
+          "is maximum at this value.",
+          {
+            "text": "(the three dimensions at x = 20/3 from step 3;",
+            "added": true
+          },
+          {
+            "text": "  20 × 50 × 200 = 200000 and 3 × 3 × 3 = 27)",
+            "style": "indent",
+            "added": true
+          },
+          "Greatest volume = (20/3)(50/3)(200/3) = 200000/27",
+          {
+            "text": "  ≈ 7407.41 cm³",
+            "style": "indent"
+          },
+          {
+            "text": "(V(6) = 6 × 18 × 68 = 7344 and",
+            "added": true
+          },
+          {
+            "text": "  V(7) = 7 × 16 × 66 = 7392)",
+            "style": "indent",
+            "added": true
+          },
+          "Check: x = 6 gives 7344 cm³",
+          "and x = 7 gives 7392 cm³, both less.",
+          {
+            "text": "∴ x = 20/3 cm ≈ 6.67 cm",
+            "style": "boxed"
+          },
+          {
+            "text": "gives the greatest volume",
             "style": "boxed"
           }
         ],
@@ -231,7 +360,32 @@
           "Stopping at x = 20/3 with no second derivative test.",
           "Writing x = 6.67 as the exact answer instead of the fraction 20/3."
         ],
-        "memory_tip": "Second derivative negative means the graph bends downward there, so the point is the highest point of the curve."
+        "memory_tip": "Second derivative negative means the graph bends downward there, so the stationary point is a local maximum; on 0 < x < 15 it gives the greatest volume.",
+        "lines_compact": [
+          "V″(x) = 24x − 440",
+          "At x = 20/3:  V″ = 24(20/3) − 440 = 160 − 440",
+          {
+            "text": "  = −280 < 0",
+            "style": "indent"
+          },
+          "A negative second derivative means the volume",
+          "is maximum at this value.",
+          "Greatest volume = (20/3)(50/3)(200/3) = 200000/27",
+          {
+            "text": "  ≈ 7407.41 cm³",
+            "style": "indent"
+          },
+          "Check: x = 6 gives 7344 cm³",
+          "and x = 7 gives 7392 cm³, both less.",
+          {
+            "text": "∴ x = 20/3 cm ≈ 6.67 cm",
+            "style": "boxed"
+          },
+          {
+            "text": "gives the greatest volume",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },
