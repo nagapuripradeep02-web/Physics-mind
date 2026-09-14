@@ -143,7 +143,7 @@
         "why": "Both compositions giving x is exactly the test for a pair of inverse functions — the answer is worth stating, not just computing.",
         "common_mistakes": [
           "Writing 'same as (i)' instead of doing the second substitution.",
-          "Cancelling the 2 wrongly and leaving x + 1."
+          "Cancelling the 2 and then dropping the − 1, which leaves x + 1."
         ],
         "lines_compact": [
           "(fog)(x) = f[g(x)] = f((x + 1)/2)",

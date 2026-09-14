@@ -54,7 +54,7 @@
         "marks": 1,
         "mark_note": "Domains",
         "margin_note": "One of the four marks, and the decision that governs all three parts. f + 4 and f³ keep f's own domain {4, 5, 6}; only f/g is cut down to the intersection {4, 6}.",
-        "memory_tip": "One function alone keeps its own domain. Two functions together need the intersection.",
+        "memory_tip": "f + 4 and f³ keep f's own domain. f/g needs the intersection, with the zeros of g removed.",
         "lines": [
           {
             "text": "Sol:",

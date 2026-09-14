@@ -135,7 +135,7 @@
         },
         "why": "Between the roots one factor is positive and the other negative, so the product is negative there — that gap is exactly what is cut out.",
         "common_mistakes": [
-          "Giving [1, 2], the gap, which is where the function is NOT defined.",
+          "Giving [1, 2]. The function is not defined on the open gap (1, 2), and it is defined at 1 and at 2.",
           "Dropping one of the two pieces of the union."
         ],
         "lines_compact": [

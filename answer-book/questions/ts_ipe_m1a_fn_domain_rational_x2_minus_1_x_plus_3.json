@@ -95,7 +95,7 @@
         },
         "why": "A rational function is defined everywhere its denominator is non-zero. Factorising x² − 1 is what reveals the second excluded point.",
         "common_mistakes": [
-          "Leaving x² − 1 unfactorised, so only x = −3 gets excluded.",
+          "Solving x² − 1 = 0 as x = 1 only, which misses x = −1 and leaves two excluded points instead of three.",
           "Setting the denominator equal to zero and then giving THOSE values as the domain."
         ]
       },

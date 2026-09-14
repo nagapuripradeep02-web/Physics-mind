@@ -102,7 +102,7 @@
             "style": "heading"
           },
           {
-            "text": "(gof needs the codomain of f to be the domain of g)",
+            "text": "(gof is defined when the images of f lie in the domain of g)",
             "added": true
           },
           "f: A→B and g: B→C give gof: A→C.",
@@ -133,7 +133,7 @@
             "codomain"
           ]
         },
-        "why": "A composition exists only when the codomain of the inner function is the domain of the outer one. Checking that here is what makes both sides functions at all, so that they can be compared.",
+        "why": "gof is defined when every image of f lies in the domain of g, and here the codomain of f is exactly the domain of g. Checking that here is what makes both sides functions at all, so that they can be compared.",
         "common_mistakes": [
           "Assuming the two sides are comparable without checking the domains.",
           "Writing hog as a function from C to D instead of from B to D."

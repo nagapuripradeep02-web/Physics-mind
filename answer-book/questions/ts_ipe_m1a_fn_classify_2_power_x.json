@@ -46,7 +46,7 @@
         "marks": 1,
         "mark_note": "One one",
         "margin_note": "First mark. Copy the domain and the codomain from the question first. Then equate the two powers and use equal bases to equate the exponents.",
-        "memory_tip": "Equal powers of the same base mean equal exponents. Divide to get 2 to the power a − b equals 2 to the power 0.",
+        "memory_tip": "Equal powers of 2 mean equal exponents. Divide to get 2 to the power a − b equals 2 to the power 0.",
         "lines": [
           {
             "text": "Sol:",
@@ -85,7 +85,7 @@
             "exponent"
           ]
         },
-        "why": "Two powers of the same base are equal only when the exponents are equal, and dividing turns that into 2 to the power a − b equals 2 to the power 0. Writing that line is the proof; naming the graph is not.",
+        "why": "Two powers of 2 are equal only when the exponents are equal (this holds for any positive base other than 1), and dividing turns that into 2 to the power a − b equals 2 to the power 0. Writing that line is the proof; naming the graph is not.",
         "common_mistakes": [
           "Writing 'the exponential graph is increasing, so it is one one' with no algebra.",
           "Cancelling the 2 as if 2ᵃ meant 2 × a; a power is not a product, so it is the exponents that must be equated."

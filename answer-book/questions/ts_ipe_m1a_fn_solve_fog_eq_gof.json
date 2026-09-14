@@ -54,7 +54,7 @@
           "f(x) = x², g(x) = 2ˣ",
           "(g acts first in fog; f acts first in gof)",
           "(fog)(x) = f[g(x)] = f(2ˣ) = (2ˣ)²",
-          "((pᵐ)ⁿ = pᵐⁿ, so (2ˣ)² = 2²ˣ)",
+          "((pᵐ)ⁿ = pᵐⁿ for p > 0, so (2ˣ)² = 2²ˣ)",
           "So (fog)(x) = 2²ˣ",
           {
             "text": "(gof)(x) = g[f(x)] = g(x^{2}) = 2^{x^{2}}",
@@ -146,7 +146,7 @@
             "two"
           ]
         },
-        "why": "Two powers of the same base are equal only when the powers are equal, so the exponential equation becomes a quadratic. Factorising keeps both roots; dividing by x would lose x = 0.",
+        "why": "Two powers of 2 are equal only when the powers are equal, so the exponential equation becomes a quadratic. Factorising keeps both roots; dividing by x would lose x = 0.",
         "memory_tip": "Never divide by x to solve x² = 2x. Move everything to one side and factorise, so x = 0 is not lost.",
         "common_mistakes": [
           "Dividing both sides by x and giving only x = 2.",

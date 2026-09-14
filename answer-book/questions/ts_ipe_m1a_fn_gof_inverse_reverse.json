@@ -189,10 +189,7 @@
             "text": "Part 2 — the two sides give the same value",
             "style": "heading"
           },
-          {
-            "text": "Take any c ∈ C, and name b and a by:",
-            "added": true
-          },
+          "Take any c ∈ C. Let b = g⁻¹(c) and a = f⁻¹(b), so:",
           "f(a) = b ⇒ a = f⁻¹(b)   …(1)",
           "g(b) = c ⇒ b = g⁻¹(c)   …(2)",
           {
@@ -241,6 +238,7 @@
             "text": "Part 2 — the two sides give the same value",
             "style": "heading"
           },
+          "Take any c ∈ C. Let b = g⁻¹(c) and a = f⁻¹(b), so:",
           "f(a) = b ⇒ a = f⁻¹(b)   …(1)",
           "g(b) = c ⇒ b = g⁻¹(c)   …(2)",
           "(gof)(a) = c ⇒ a = (gof)⁻¹(c)   …(3)",

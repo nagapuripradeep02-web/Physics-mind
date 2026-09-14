@@ -85,7 +85,7 @@
         },
         "why": "The numerator is the constant 1, so the only way the formula can fail is a zero denominator. Rearranging to x² − 6x + 5 puts the quadratic in the form that factorises directly.",
         "common_mistakes": [
-          "Solving 6x − x² − 5 > 0, which is the condition for a square root, not for a denominator.",
+          "Solving 6x − x² − 5 > 0, which is the condition for a logarithm, not for a denominator.",
           "A sign slip when rearranging −x² + 6x − 5 into x² − 6x + 5."
         ]
       },

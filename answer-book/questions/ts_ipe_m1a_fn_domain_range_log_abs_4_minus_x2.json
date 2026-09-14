@@ -83,7 +83,7 @@
             "R minus two"
           ]
         },
-        "why": "A logarithm is real only for a positive input. The modulus already makes 4 − x² positive whenever it is not zero, so the inequality |4 − x²| > 0 removes nothing except the two roots of 4 − x² = 0. Solving 4 − x² > 0 instead would wrongly throw away everything outside (−2, 2).",
+        "why": "A logarithm is real only for a positive input. The modulus makes |4 − x²| positive whenever 4 − x² is not zero, so the inequality |4 − x²| > 0 removes nothing except the two roots of 4 − x² = 0. Solving 4 − x² > 0 instead would wrongly throw away everything outside (−2, 2).",
         "common_mistakes": [
           "Solving 4 − x² > 0 and giving (−2, 2); the modulus has already fixed the sign.",
           "Removing only x = 2 and forgetting x = −2.",

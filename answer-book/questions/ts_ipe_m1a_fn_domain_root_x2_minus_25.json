@@ -88,7 +88,7 @@
             "outside"
           ]
         },
-        "why": "This time the product of the two factors must be positive, and that happens outside the roots, not between them.",
+        "why": "This time the product of the two factors must be positive or zero, and that happens outside the roots, ends included, not between them.",
         "common_mistakes": [
           "Writing x² ≥ 25 as x ≥ 5 only, which loses the whole negative half of the domain.",
           "Treating it like 25 − x² and taking the inside interval."

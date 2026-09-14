@@ -196,7 +196,7 @@
             "reorder"
           ]
         },
-        "why": "gof happens to send 1 to 2 and 2 back to 1, so its inverse comes out as the same set of pairs. That is a property of these particular numbers, not a rule, and it is worth checking rather than reading as a slip.",
+        "why": "gof swaps 1 with 2 and 3 with 4, so reversing every pair gives the same set of pairs. That is a property of these particular numbers, not a rule, and it is worth checking rather than reading as a slip.",
         "common_mistakes": [
           "Writing (gof)⁻¹ = gof without reversing the pairs first.",
           "Reversing only some of the four pairs."

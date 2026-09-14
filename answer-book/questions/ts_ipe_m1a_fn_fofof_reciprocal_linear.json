@@ -59,7 +59,8 @@
           "((x + 1) − (x − 1) = 2)",
           "Denominator: (x + 1)/(x − 1) − 1 = 2/(x − 1)",
           "(dividing by 2/(x − 1) is multiplying by (x − 1)/2)",
-          "∴ (fof)(x) = 2x/(x − 1) × (x − 1)/2 = x"
+          "∴ (fof)(x) = 2x/(x − 1) × (x − 1)/2 = x",
+          "(f(0) = −1 is outside the domain, so fof also needs x ≠ 0)"
         ],
         "recall": {
           "credit": "say_it",
@@ -84,7 +85,7 @@
             "cancels"
           ]
         },
-        "why": "Both the numerator and the denominator carry the factor 1/(x − 1), so that factor cancels and only 2x over 2 is left. f itself needs x ≠ 1, and the question also rules out x = −1, so every line here is written for x ≠ ±1.",
+        "why": "Both the numerator and the denominator carry the factor 1/(x − 1), so that factor cancels and only 2x over 2 is left. f itself needs x ≠ 1, and the question also rules out x = −1, so every line here is written for x ≠ ±1. Also f(0) = −1 is outside that domain, so f cannot act a second time at x = 0, and fof needs x ≠ 0 as well.",
         "common_mistakes": [
           "Adding 1 to only the numerator of f(x) instead of to the whole fraction.",
           "Cancelling x − 1 before the top and the bottom are written as single fractions."
@@ -107,7 +108,7 @@
           },
           "Check at x = 2: f(2) = 3, f(3) = 2, f(2) = 3.",
           {
-            "text": "∴ (fofof)(x) = (x + 1)/(x − 1), x ≠ ±1",
+            "text": "∴ (fofof)(x) = (x + 1)/(x − 1), x ≠ 0, ±1",
             "style": "boxed"
           }
         ],
@@ -137,14 +138,14 @@
         "why": "Three copies of f split as one pair plus one single. The pair returns its input unchanged, so only the single f is left to act. Checking at x = 2 gives 3, and (2 + 1)/(2 − 1) = 3, which agrees.",
         "common_mistakes": [
           "Answering x, which is what an even number of applications gives, not three.",
-          "Leaving the condition x ≠ ±1 off the final line."
+          "Leaving the conditions x ≠ 0, ±1 off the final line."
         ],
         "lines_compact": [
           "(fofof)(x) = f[(fof)(x)]",
           "= f(x), since (fof)(x) = x",
           "Check at x = 2: f(2) = 3, f(3) = 2, f(2) = 3.",
           {
-            "text": "∴ (fofof)(x) = (x + 1)/(x − 1), x ≠ ±1",
+            "text": "∴ (fofof)(x) = (x + 1)/(x − 1), x ≠ 0, ±1",
             "style": "boxed"
           }
         ]

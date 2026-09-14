@@ -84,7 +84,7 @@
         },
         "why": "A modulus always has two cases, so the expression must be tested on both sides of 0. On the right it is exactly zero, and a square root of zero is a real number, so that half is not lost.",
         "common_mistakes": [
-          "Treating |x| − x as 0 for all x and concluding the function does not exist.",
+          "Solving |x| − x > 0 instead of ≥ 0, which keeps only x < 0 and loses every x ≥ 0.",
           "Writing |x| = −x for x ≥ 0, which swaps the two cases."
         ]
       },

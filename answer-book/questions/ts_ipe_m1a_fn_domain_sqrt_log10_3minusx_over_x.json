@@ -144,7 +144,7 @@
         },
         "why": "Comparing a quotient with 1 is only safe after moving everything to one side, because multiplying by x would need the sign of x, which is not yet known. Checking x < 0 separately is what rules that half out.",
         "common_mistakes": [
-          "Multiplying both sides by x and losing the case x < 0.",
+          "Multiplying both sides by x as if x were positive, which gives x ≤ 3/2 and wrongly lets in x < 0.",
           "Writing (0, 3/2) with a round bracket, although x = 3/2 gives log₁₀ 1 = 0 and √0 = 0."
         ],
         "lines_compact": [

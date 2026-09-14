@@ -97,8 +97,8 @@
         "label": "Square each image",
         "marks": 1,
         "mark_note": "The set f²",
-        "margin_note": "The second mark. f² squares the IMAGE, so every value comes out positive.",
-        "memory_tip": "f² squares the IMAGE, so every value comes out positive.",
+        "margin_note": "The second mark. f² squares the IMAGE, so no value is negative (here all three are positive, since no image is 0).",
+        "memory_tip": "f² squares the IMAGE, so no value comes out negative.",
         "lines": [
           {
             "text": "(f² squares each image: (−3)² = 9, (−1)² = 1)",
@@ -148,5 +148,5 @@
       }
     ]
   },
-  "insider_note": "2f doubles each image while f² squares it, so the two answers differ wherever the image is not 0 or 2. Squaring makes every image positive, and that is the quick visible check."
+  "insider_note": "2f doubles each image while f² squares it, so the two answers differ wherever the image is not 0 or 2. Squaring makes every image non-negative (here all positive, since no image is 0), and that is the quick visible check."
 }
