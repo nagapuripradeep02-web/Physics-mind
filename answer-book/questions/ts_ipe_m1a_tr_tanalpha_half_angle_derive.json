@@ -56,7 +56,7 @@
           "sin 2α = 2 sin α cos α",
           "1 + cos 2α = 1 + 2cos²α − 1 = 2cos²α",
           "This is not 0, because cos α ≠ 0.",
-          "sin 2α/(1 + cos 2α) = 2 sin α cos α/2cos²α",
+          "sin 2α/(1 + cos 2α) = (2 sin α cos α)/(2cos²α)",
           "= sin α/cos α = tan α"
         ],
         "recall": {

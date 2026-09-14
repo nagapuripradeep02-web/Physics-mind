@@ -58,7 +58,8 @@
           },
           "L.H.S = cosA cos2A cos4A cos8A",
           "= (2⁴ sinA)/(2⁴ sinA) · cosA cos2A cos4A cos8A",
-          "= (1/(16 sinA)) (2 sinA cosA)(2 cos2A)(2 cos4A)(2 cos8A)"
+          "= (1/(16 sinA)) (2 sinA cosA)(2 cos2A)",
+          "    · (2 cos4A)(2 cos8A)"
         ],
         "recall": {
           "credit": "say_it",

@@ -100,7 +100,7 @@
         "memory_tip": "105° = 60° + 45°, so use the sine addition formula, then multiply by sin60° = √3/2.",
         "lines": [
           "sin 105° = sin(60° + 45°)",
-          "= sin60 cos45 + cos60 sin45",
+          "= sin60° cos45° + cos60° sin45°",
           "= (√3/2)(1/√2) + (1/2)(1/√2) = (√3 + 1)/(2√2)",
           "Expression = (√3 + 1)/(2√2) × √3/2",
           {

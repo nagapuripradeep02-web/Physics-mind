@@ -110,7 +110,7 @@
         "lines": [
           "L.H.S = sin(S−A) + sin(S−B) + sinC",
           "= 2 sin(((S−A)+(S−B))/2) cos(((S−A)−(S−B))/2) + sinC",
-          "  [∵ sinC + sinD formula]",
+          "  [∵ sin p + sin q = 2 sin((p+q)/2) cos((p−q)/2)]",
           "= 2 sin((2S−(A+B))/2) cos((B−A)/2) + sinC"
         ],
         "recall": {
@@ -232,7 +232,7 @@
         "memory_tip": "One more formula turns the bracket into a product, giving the 4 in the answer.",
         "lines": [
           "= 2 sin(C/2) (2 cos((S−A)/2) cos((S−B)/2))",
-          "  [∵ cosC + cosD = 2 cos((C+D)/2) cos((C−D)/2)]",
+          "  [∵ cos p + cos q = 2 cos((p+q)/2) cos((p−q)/2)]",
           {
             "text": "= 4 cos((S−A)/2) cos((S−B)/2) sin(C/2) = R.H.S",
             "style": "boxed"

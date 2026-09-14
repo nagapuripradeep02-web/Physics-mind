@@ -110,7 +110,7 @@
         "lines": [
           "L.H.S = cos(S−A) + cos(S−B) + cosC",
           "= 2 cos(((S−A)+(S−B))/2) cos(((S−A)−(S−B))/2) + cosC",
-          "  [∵ cosC + cosD formula]",
+          "  [∵ cos p + cos q = 2 cos((p+q)/2) cos((p−q)/2)]",
           "= 2 cos((2S−(A+B))/2) cos((B−A)/2) + cosC"
         ],
         "recall": {
@@ -231,9 +231,10 @@
         "memory_tip": "Finish with cos(C/2), not sin(C/2) — and keep the −1.",
         "lines": [
           "= −1 + 2 cos(C/2) (2 cos((S−A)/2) cos((S−B)/2))",
-          "  [∵ cosC + cosD = 2 cos((C+D)/2) cos((C−D)/2)]",
+          "  [∵ cos p + cos q = 2 cos((p+q)/2) cos((p−q)/2)]",
+          "= −1 + 4 cos((S−A)/2) cos((S−B)/2) cos(C/2)",
           {
-            "text": "= −1 + 4 cos((S−A)/2) cos((S−B)/2) cos(C/2) = R.H.S",
+            "text": "∴ L.H.S = R.H.S",
             "style": "boxed"
           }
         ],

@@ -118,7 +118,7 @@
         "lines": [
           "L.H.S = (cosA + cosB) − cosC",
           "= 2 cos((A+B)/2) cos((A−B)/2) − cosC",
-          "  [∵ cosC + cosD formula]",
+          "  [∵ cos p + cos q = 2 cos((p+q)/2) cos((p−q)/2)]",
           "= 2 cos(90° − C/2) cos((A−B)/2) − cosC",
           "= 2 sin(C/2) cos((A−B)/2) − cosC"
         ],
@@ -241,7 +241,7 @@
         "memory_tip": "The coefficient is 4, not 2, and the −1 must survive to the last line.",
         "lines": [
           "= −1 + 2 sin(C/2) (2 cos(A/2) cos(B/2))",
-          "  [∵ cos(A+B) + cos(A−B) = 2 cosA cosB]",
+          "  [∵ cos(x+y) + cos(x−y) = 2 cos x cos y]",
           {
             "text": "= −1 + 4 cos(A/2) cos(B/2) sin(C/2) = R.H.S",
             "style": "boxed"

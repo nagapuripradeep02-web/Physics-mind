@@ -229,7 +229,7 @@
           "cos((A−B)/2) − cos((A+B)/2) = 2 sin(A/2) sin(B/2)",
           "L.H.S = 2 cos(C/2) · 2 sin(A/2) sin(B/2)",
           {
-            "text": "∴ sin A + sin B − sin C = 4 sin(A/2) sin(B/2) cos(C/2)",
+            "text": "= 4 sin(A/2) sin(B/2) cos(C/2) = R.H.S",
             "style": "boxed"
           }
         ],

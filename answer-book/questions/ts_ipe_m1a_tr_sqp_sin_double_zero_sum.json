@@ -234,7 +234,7 @@
           "cos(A − B) − cos(A + B) = 2 sin A sin B",
           "L.H.S = −2 sin C · 2 sin A sin B",
           {
-            "text": "∴ sin 2A + sin 2B + sin 2C = −4 sin A sin B sin C",
+            "text": "= −4 sin A sin B sin C = R.H.S",
             "style": "boxed"
           }
         ],

@@ -161,7 +161,7 @@
         "memory_tip": "This version's identity carries a leading minus, unlike the all-plus sin²(A/2) + sin²(B/2) + sin²(C/2) version's. And cos(90° − C/2) = sin(C/2).",
         "lines": [
           "= 1 + (−cos((A+B)/2) cos((A−B)/2)) − sin²(C/2)",
-          "  [∵ sin²A − cos²B = −cos(A+B) cos(A−B)]",
+          "  [∵ sin²x − cos²y = −cos(x+y) cos(x−y)]",
           "= 1 − cos(90° − C/2) cos((A−B)/2) − sin²(C/2)",
           "= 1 − sin(C/2) cos((A−B)/2) − sin²(C/2)"
         ],
@@ -244,7 +244,7 @@
         "memory_tip": "Use the sum formula to finish with cosines, and do not lose the leading 1.",
         "lines": [
           "= 1 − sin(C/2) (2 cos(A/2) cos(B/2))",
-          "  [∵ cosC + cosD = 2 cos((C+D)/2) cos((C−D)/2)]",
+          "  [∵ cos p + cos q = 2 cos((p+q)/2) cos((p−q)/2)]",
           {
             "text": "= 1 − 2 cos(A/2) cos(B/2) sin(C/2) = R.H.S",
             "style": "boxed"

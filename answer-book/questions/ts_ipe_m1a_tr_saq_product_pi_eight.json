@@ -100,7 +100,8 @@
         "margin_note": "Second mark. Pair each (1 + x) with its matching (1 − x). Each pair gives 1 − x², and 1 − cos² is sin².",
         "memory_tip": "Pair each (1 + x) with its matching (1 − x): each pair gives 1 − x², and 1 − cos² is sin².",
         "lines": [
-          "L.H.S = (1 + cos(π/8))(1 + cos(3π/8))(1 − cos(3π/8))(1 − cos(π/8))",
+          "L.H.S = (1 + cos(π/8))(1 + cos(3π/8))",
+          "    × (1 − cos(3π/8))(1 − cos(π/8))",
           "= (1 − cos²(π/8))(1 − cos²(3π/8))",
           "= sin²(π/8) sin²(3π/8)"
         ],
