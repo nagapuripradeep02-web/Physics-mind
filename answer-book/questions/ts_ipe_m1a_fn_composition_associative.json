@@ -34,7 +34,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 2 FUNCTIONS, the THEOREMS section, question 6, book p.19. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ON THE SOURCE FORM: the book prints this under its THEOREMS banner rather than as a numbered exercise question, so it carries no exercise number and no star rating of its own; it is authored here as a Section B short answer because that is the section and the length a Telangana paper asks a two-part proof of this size at. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+2+1 shape is one of the two shapes this bank uses for a Maths-1A Section B question; the double mark sits on the element chase because that is where both sides have to be unwrapped separately, and the opening 'Given' step is unmarked because it only records the test for equality of functions. Paper position: Maths-1A Section B prints 8 short answer questions, the student answers any 6, and each carries 4 marks (2026-27 pattern). The printed left gutter is intact on book p.19, so the source book's zero star count here is a reading rather than a clipped count; appearances[] is empty because the book prints no year for it. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 2 FUNCTIONS, the THEOREMS section, question 6, book p.19. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ON THE SOURCE FORM: the book prints this under its THEOREMS banner rather than as a numbered exercise question, so it carries no exercise number and no star rating of its own; it is authored here as a Section B short answer because that is the section and the length a Telangana paper asks a two-part proof of this size at. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+2+1 shape is one of the two shapes this bank uses for a Maths-1A Section B question; the double mark sits on the element chase because that is where both sides have to be unwrapped separately, and the opening 'Given' step is unmarked because it only records the test for equality of functions. Paper position: Maths-1A Section B prints 8 short answer questions, the student answers any 6, and each carries 4 marks (2026-27 pattern). The printed left gutter is intact on book p.19, so the source book's zero star count here is a reading rather than a clipped count; appearances[] is empty because the book prints no year for it. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — the two things you have to show, and how you handle a general element.",
   "answer": {
@@ -101,6 +101,10 @@
             "text": "Part 1 — both sides are functions A→D",
             "style": "heading"
           },
+          {
+            "text": "(gof needs the codomain of f to be the domain of g)",
+            "added": true
+          },
           "f: A→B and g: B→C give gof: A→C.",
           "gof: A→C and h: C→D give ho(gof): A→D.",
           "g: B→C and h: C→D give hog: B→D.",
@@ -133,6 +137,17 @@
         "common_mistakes": [
           "Assuming the two sides are comparable without checking the domains.",
           "Writing hog as a function from C to D instead of from B to D."
+        ],
+        "lines_compact": [
+          {
+            "text": "Part 1 — both sides are functions A→D",
+            "style": "heading"
+          },
+          "f: A→B and g: B→C give gof: A→C.",
+          "gof: A→C and h: C→D give ho(gof): A→D.",
+          "g: B→C and h: C→D give hog: B→D.",
+          "f: A→B and hog: B→D give (hog)of: A→D.",
+          "So both sides have domain A and codomain D."
         ]
       },
       {
@@ -150,8 +165,16 @@
           },
           "Let a ∈ A. Put f(a) = b, where b ∈ B,",
           "and g(b) = c, where c ∈ C.",
+          {
+            "text": "Left side, from the inside out:",
+            "added": true
+          },
           "[ho(gof)](a) = h[(gof)(a)] = h[g(f(a))]",
           "  = h[g(b)] = h(c)   …(1)",
+          {
+            "text": "Right side:",
+            "added": true
+          },
           "[(hog)of](a) = (hog)[f(a)] = (hog)(b)",
           "  = h[g(b)] = h(c)   …(2)",
           "From (1) and (2), both sides send a to h(c)."
@@ -182,6 +205,19 @@
         "common_mistakes": [
           "Checking one particular element instead of an arbitrary a.",
           "Opening the brackets of only one side and then declaring the two equal."
+        ],
+        "lines_compact": [
+          {
+            "text": "Part 2 — both sides give the same value",
+            "style": "heading"
+          },
+          "Let a ∈ A. Put f(a) = b, where b ∈ B,",
+          "and g(b) = c, where c ∈ C.",
+          "[ho(gof)](a) = h[(gof)(a)] = h[g(f(a))]",
+          "  = h[g(b)] = h(c)   …(1)",
+          "[(hog)of](a) = (hog)[f(a)] = (hog)(b)",
+          "  = h[g(b)] = h(c)   …(2)",
+          "From (1) and (2), both sides send a to h(c)."
         ]
       },
       {

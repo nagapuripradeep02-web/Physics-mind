@@ -35,7 +35,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.80 — VSAQ chapter 14 Functions, question 93.2. The book prints NO internal mark split on its VSAQ pages (unlike its LAQ/SAQ pages): the 1+1 across the two steps is our division of the 2 marks, not the source's. Appearance years are the book's, board-split. Publisher's claims until a Telangana IPE teacher confirms them."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.80 — VSAQ chapter 14 Functions, question 93.2. The book prints NO internal mark split on its VSAQ pages (unlike its LAQ/SAQ pages): the 1+1 across the two steps is our division of the 2 marks, not the source's. Appearance years are the book's, board-split. Publisher's claims until a Telangana IPE teacher confirms them. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find both sets — what each notation means, and the values.",
   "answer": {
@@ -58,6 +58,7 @@
             "style": "heading"
           },
           "f = {(1,2), (2,−3), (3,−1)}",
+          "(2f doubles each image and keeps each first entry)",
           "(i) 2f = {(1, 2(2)), (2, 2(−3)), (3, 2(−1))}",
           "= {(1,4), (2,−6), (3,−2)}"
         ],
@@ -99,6 +100,10 @@
         "margin_note": "The second mark. f² squares the IMAGE, so every value comes out positive.",
         "memory_tip": "f² squares the IMAGE, so every value comes out positive.",
         "lines": [
+          {
+            "text": "(f² squares each image: (−3)² = 9, (−1)² = 1)",
+            "added": true
+          },
           "(ii) f² = {(1, 2²), (2, (−3)²), (3, (−1)²)}",
           {
             "text": "= {(1,4), (2,9), (3,1)}",
@@ -132,6 +137,13 @@
         "common_mistakes": [
           "Reading f² as fof, the composition, which is not what is asked.",
           "Writing (−3)² as −9."
+        ],
+        "lines_compact": [
+          "(ii) f² = {(1, 2²), (2, (−3)²), (3, (−1)²)}",
+          {
+            "text": "= {(1,4), (2,9), (3,1)}",
+            "style": "boxed"
+          }
         ]
       }
     ]

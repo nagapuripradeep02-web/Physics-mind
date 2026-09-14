@@ -39,7 +39,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.79 — VSAQ chapter 14 Functions, question 89. The book prints NO internal mark split on its VSAQ pages (unlike its LAQ/SAQ pages): the 1+1 across the two steps is our division of the 2 marks, not the source's. Appearance years are the book's, board-split. Publisher's claims until a Telangana IPE teacher confirms them."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.79 — VSAQ chapter 14 Functions, question 89. The book prints NO internal mark split on its VSAQ pages (unlike its LAQ/SAQ pages): the 1+1 across the two steps is our division of the 2 marks, not the source's. Appearance years are the book's, board-split. Publisher's claims until a Telangana IPE teacher confirms them. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find both compositions — which function acts first in each, and what they simplify to.",
   "answer": {
@@ -61,6 +61,7 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "(f acts first, then g)",
           "(gof)(x) = g[f(x)] = g(2x − 1)",
           "= ((2x − 1) + 1)/2 = 2x/2 = x"
         ],
@@ -102,10 +103,18 @@
         "memory_tip": "Now g acts first. Both come to x — the two functions undo each other, which is the point.",
         "lines": [
           "(fog)(x) = f[g(x)] = f((x + 1)/2)",
+          {
+            "text": "(g acts first, then f)",
+            "added": true
+          },
           "= 2((x + 1)/2) − 1 = x + 1 − 1 = x",
           {
             "text": "∴ (gof)(x) = (fog)(x) = x",
             "style": "boxed"
+          },
+          {
+            "text": "(g undoes f and f undoes g: they are inverses)",
+            "added": true
           }
         ],
         "recall": {
@@ -135,6 +144,14 @@
         "common_mistakes": [
           "Writing 'same as (i)' instead of doing the second substitution.",
           "Cancelling the 2 wrongly and leaving x + 1."
+        ],
+        "lines_compact": [
+          "(fog)(x) = f[g(x)] = f((x + 1)/2)",
+          "= 2((x + 1)/2) − 1 = x + 1 − 1 = x",
+          {
+            "text": "∴ (gof)(x) = (fog)(x) = x",
+            "style": "boxed"
+          }
         ]
       }
     ]

@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.11, chapter 2 FUNCTIONS, Very Short Answer question 14. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards writing both compositions first and equating the powers to reach the two roots second. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The third step, which puts both roots back into the original equation, carries no mark and is authored for the student, not for the examiner."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.11, chapter 2 FUNCTIONS, Very Short Answer question 14. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards writing both compositions first and equating the powers to reach the two roots second. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The third step, which puts both roots back into the original equation, carries no mark and is authored for the student, not for the examiner. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — the two compositions, how the powers are compared, and the values of x.",
   "answer": {
@@ -52,7 +52,9 @@
             "style": "heading"
           },
           "f(x) = x², g(x) = 2ˣ",
+          "(g acts first in fog; f acts first in gof)",
           "(fog)(x) = f[g(x)] = f(2ˣ) = (2ˣ)²",
+          "((pᵐ)ⁿ = pᵐⁿ, so (2ˣ)² = 2²ˣ)",
           "So (fog)(x) = 2²ˣ",
           {
             "text": "(gof)(x) = g[f(x)] = g(x^{2}) = 2^{x^{2}}",
@@ -104,8 +106,20 @@
             "style": "normal"
           },
           "Same base, so the powers are equal:",
+          {
+            "text": "(2ᵘ = 2ᵛ only when u = v)",
+            "added": true
+          },
           "2x = x²",
+          {
+            "text": "Bring every term to one side:",
+            "added": true
+          },
           "x² − 2x = 0",
+          {
+            "text": "(take out the common factor x)",
+            "added": true
+          },
           "x(x − 2) = 0",
           "∴ x = 0 or x = 2"
         ],
@@ -137,6 +151,18 @@
         "common_mistakes": [
           "Dividing both sides by x and giving only x = 2.",
           "Factorising x² − 2x as x(x + 2) and giving the roots 0 and −2."
+        ],
+        "lines_compact": [
+          {
+            "text": "2^{2x} = 2^{x^{2}}",
+            "render": "katex",
+            "style": "normal"
+          },
+          "Same base, so the powers are equal:",
+          "2x = x²",
+          "x² − 2x = 0",
+          "x(x − 2) = 0",
+          "∴ x = 0 or x = 2"
         ]
       },
       {

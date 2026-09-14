@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.10, chapter 2 FUNCTIONS, Very Short Answer question 9(ii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape gives one mark to the collapse (fof)(x) = x and one to pairing the four copies of f, which is the step that separates this part from part (i). The printed condition x ≠ ±1 is kept as the book states it; f itself only needs x ≠ 1, and the extra exclusion of x = −1 changes no answer. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.10, chapter 2 FUNCTIONS, Very Short Answer question 9(ii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape gives one mark to the collapse (fof)(x) = x and one to pairing the four copies of f, which is the step that separates this part from part (i). The printed condition x ≠ ±1 is kept as the book states it; f itself only needs x ≠ 1, and the extra exclusion of x = −1 changes no answer. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find (fofofof)(x) — what a pair of f's does, and how you use that four times over.",
   "answer": {
@@ -54,8 +54,11 @@
           },
           "f(x) = (x + 1)/(x − 1), x ≠ ±1",
           "(fof)(x) = f[f(x)] = (f(x) + 1)/(f(x) − 1)",
+          "(1 = (x − 1)/(x − 1); (x + 1) + (x − 1) = 2x)",
           "Numerator: (x + 1)/(x − 1) + 1 = 2x/(x − 1)",
+          "((x + 1) − (x − 1) = 2)",
           "Denominator: (x + 1)/(x − 1) − 1 = 2/(x − 1)",
+          "(dividing by 2/(x − 1) is multiplying by (x − 1)/2)",
           "∴ (fof)(x) = 2x/(x − 1) × (x − 1)/2 = x"
         ],
         "recall": {
@@ -99,6 +102,10 @@
           "(fofofof)(x) = (fof)[(fof)(x)]",
           "Inside: (fof)(x) = x",
           "So (fofofof)(x) = (fof)(x) = x",
+          {
+            "text": "(f(5) = 6/4 = 3/2 and f(3/2) = (5/2)/(1/2) = 5)",
+            "added": true
+          },
           "Check at x = 5: f(5) = 3/2, f(3/2) = 5,",
           "then again 3/2 and 5, which is x.",
           {
@@ -133,6 +140,17 @@
         "common_mistakes": [
           "Answering (x + 1)/(x − 1), which is what an odd number of applications gives.",
           "Composing f only three times and stopping."
+        ],
+        "lines_compact": [
+          "(fofofof)(x) = (fof)[(fof)(x)]",
+          "Inside: (fof)(x) = x",
+          "So (fofofof)(x) = (fof)(x) = x",
+          "Check at x = 5: f(5) = 3/2, f(3/2) = 5,",
+          "then again 3/2 and 5, which is x.",
+          {
+            "text": "∴ (fofofof)(x) = x, x ≠ ±1",
+            "style": "boxed"
+          }
         ]
       }
     ]

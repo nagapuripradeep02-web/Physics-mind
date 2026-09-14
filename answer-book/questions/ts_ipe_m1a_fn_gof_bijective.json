@@ -47,7 +47,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.14 — LAQ chapter 1 Functions, question 1, on a ★★★ SSP (Super Scoring Page). The 3+4 mark split is PRINTED in that book's margin, so it is a sourced claim rather than an invented one — but the book is a coaching publication, not a TSBIE document, so it stays unverified until a Telangana IPE teacher confirms it. Appearance years are printed board-split (TS 17,19 · AP 16,18) and are recorded here with the appearances[].board tag that feat/ipe-answerbook added for physics in its Session 89; on master's schema that key is simply ignored, so the signal is stored now and renders as the 'Asked:' chip the moment that branch merges. No question numbers are printed. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Proof that gof is onto."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.14 — LAQ chapter 1 Functions, question 1, on a ★★★ SSP (Super Scoring Page). The 3+4 mark split is PRINTED in that book's margin, so it is a sourced claim rather than an invented one — but the book is a coaching publication, not a TSBIE document, so it stays unverified until a Telangana IPE teacher confirms it. Appearance years are printed board-split (TS 17,19 · AP 16,18) and are recorded here with the appearances[].board tag that feat/ipe-answerbook added for physics in its Session 89; on master's schema that key is simply ignored, so the signal is stored now and renders as the 'Asked:' chip the moment that branch merges. No question numbers are printed. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Proof that gof is onto. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove that gof is bijective — name the two things you have to prove, and say how each proof goes.",
   "answer": {
@@ -69,6 +69,7 @@
             "style": "heading"
           },
           "f: A→B and g: B→C are bijective functions.",
+          "(a bijection is a function that is one one and onto)",
           "So f and g are both one one and onto.",
           {
             "text": "To prove: gof: A→C is bijective, that is,",
@@ -121,10 +122,27 @@
             "text": "(i) To prove gof: A→C is one one",
             "style": "heading"
           },
+          {
+            "text": "(one one: equal images come only from equal inputs)",
+            "added": true
+          },
           "Let (gof)(a₁) = (gof)(a₂), where a₁, a₂ ∈ A",
           "⇒ g[f(a₁)] = g[f(a₂)]",
           "⇒ f(a₁) = f(a₂)   (∵ g is one one)",
+          {
+            "text": "(g is one one: g(p) = g(q) forces p = q,",
+            "added": true
+          },
+          {
+            "text": "  here with p = f(a₁) and q = f(a₂))",
+            "style": "indent",
+            "added": true
+          },
           "⇒ a₁ = a₂   (∵ f is one one)",
+          {
+            "text": "(f is one one: f(a₁) = f(a₂) forces a₁ = a₂)",
+            "added": true
+          },
           "∴ gof: A→C is one one."
         ],
         "recall": {
@@ -160,6 +178,17 @@
           "Removing f before g — the outer function is g, so g is removed first.",
           "Writing the chain with no reasons in brackets; the reasons carry the marks.",
           "Claiming gof is one one because f and g are, without the argument."
+        ],
+        "lines_compact": [
+          {
+            "text": "(i) To prove gof: A→C is one one",
+            "style": "heading"
+          },
+          "Let (gof)(a₁) = (gof)(a₂), where a₁, a₂ ∈ A",
+          "⇒ g[f(a₁)] = g[f(a₂)]",
+          "⇒ f(a₁) = f(a₂)   (∵ g is one one)",
+          "⇒ a₁ = a₂   (∵ f is one one)",
+          "∴ gof: A→C is one one."
         ]
       },
       {
@@ -174,6 +203,14 @@
           {
             "text": "(ii) To prove gof: A→C is onto",
             "style": "heading"
+          },
+          {
+            "text": "(onto: every element of the codomain C is an image)",
+            "added": true
+          },
+          {
+            "text": "Take any c ∈ C.",
+            "added": true
           },
           "g: B→C is onto, so for every c ∈ C there",
           "is b ∈ B with g(b) = c   …(1)",
@@ -217,6 +254,21 @@
           "Starting from a in A instead of from c in C; that proves nothing about coverage.",
           "Using f onto first — you have no b to feed it until g gives you one.",
           "Stopping at f(a) = b without showing that (gof)(a) = c."
+        ],
+        "lines_compact": [
+          {
+            "text": "(ii) To prove gof: A→C is onto",
+            "style": "heading"
+          },
+          "g: B→C is onto, so for every c ∈ C there",
+          "is b ∈ B with g(b) = c   …(1)",
+          "f: A→B is onto, so for this b ∈ B there",
+          "is a ∈ A with f(a) = b   …(2)",
+          "Now (gof)(a) = g[f(a)]",
+          "        = g(b)   (from (2))",
+          "        = c   (from (1))",
+          "So for every c ∈ C there is a ∈ A with",
+          "(gof)(a) = c.  ∴ gof: A→C is onto."
         ]
       },
       {

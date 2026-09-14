@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.11, chapter 2 FUNCTIONS, Very Short Answer question 18(iv). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape gives one mark to the one one argument and one to the onto argument, because the question asks for both and a student who proves only one still earns half. The verdict line carries no mark and is authored for the student, not for the examiner. The stem prints log x without naming a base; it is read here as logₑ x, the Intermediate default, and the answer line says so on the page. The verdict does not depend on the choice: for any base a > 0 with a ≠ 1 the same two arguments run with aʸ in place of eʸ, and the map is still a bijection. The domain and codomain answered against are the ones printed in the stem, (0, ∞) and R. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.11, chapter 2 FUNCTIONS, Very Short Answer question 18(iv). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape gives one mark to the one one argument and one to the onto argument, because the question asks for both and a student who proves only one still earns half. The verdict line carries no mark and is authored for the student, not for the examiner. The stem prints log x without naming a base; it is read here as logₑ x, the Intermediate default, and the answer line says so on the page. The verdict does not depend on the choice: for any base a > 0 with a ≠ 1 the same two arguments run with aʸ in place of eʸ, and the map is still a bijection. The domain and codomain answered against are the ones printed in the stem, (0, ∞) and R. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would decide this — how you prove one one for a logarithm, and how you find a pre-image for any real y.",
   "answer": {
@@ -54,8 +54,10 @@
           },
           "f: (0, ∞)→R, f(x) = log x, base e",
           "Domain = (0, ∞), codomain = R",
+          "(one one: equal images must come from equal inputs)",
           "Let f(a) = f(b), where a, b > 0",
           "⇒ log a = log b ⇒ log a − log b = 0",
+          "(log p − log q = log(p/q); log t = 0 only when t = 1)",
           "⇒ log(a/b) = 0 ⇒ a/b = e⁰ = 1 ⇒ a = b",
           "∴ f is one one (an injection)."
         ],
@@ -98,8 +100,16 @@
         "margin_note": "Second mark. Start from an arbitrary y in R, including negative y, and produce eʸ. It is positive for every real y, so it lies in the domain (0, ∞).",
         "memory_tip": "eʸ is positive for every real y, negative y included, so the pre-image is always inside (0, ∞).",
         "lines": [
+          {
+            "text": "(onto: every element of the codomain is an image)",
+            "added": true
+          },
           "Let y ∈ R, the codomain.",
           "Solve log x = y ⇒ x = eʸ",
+          {
+            "text": "(log x = y means x = eʸ, since the base is e)",
+            "added": true
+          },
           "eʸ > 0 for every real y, so x ∈ (0, ∞)",
           "and f(x) = log eʸ = y.",
           "∴ every y ∈ R has a pre-image; f is onto."
@@ -132,6 +142,13 @@
         "common_mistakes": [
           "Writing only 'the range of log is R' with no x produced for a general y.",
           "Thinking a negative y has no pre-image; e to a negative power is still positive."
+        ],
+        "lines_compact": [
+          "Let y ∈ R, the codomain.",
+          "Solve log x = y ⇒ x = eʸ",
+          "eʸ > 0 for every real y, so x ∈ (0, ∞)",
+          "and f(x) = log eʸ = y.",
+          "∴ every y ∈ R has a pre-image; f is onto."
         ]
       },
       {

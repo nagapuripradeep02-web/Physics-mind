@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.14, chapter 2 FUNCTIONS, Very Short Answer question 22. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape gives one mark to reducing both halves to t² − t + 1 and one to the conclusion that f is the constant 1, because the number 2016 does no work in this question and no mark can rest on it. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.14, chapter 2 FUNCTIONS, Very Short Answer question 22. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape gives one mark to reducing both halves to t² − t + 1 and one to the conclusion that f is the constant 1, because the number 2016 does no work in this question and no mark can rest on it. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would show f(2016) = 1 — what you substitute, and why the number 2016 does not matter.",
   "answer": {
@@ -53,9 +53,12 @@
             "style": "heading"
           },
           "Put t = cos²x, so sin²x = 1 − t.",
+          "(sin²x + cos²x = 1)",
           "Numerator = sin²x + cos⁴x",
+          "(cos⁴x = (cos²x)² = t²)",
           "= (1 − t) + t² = t² − t + 1",
           "Denominator = cos²x + sin⁴x",
+          "(sin⁴x = (sin²x)² = (1 − t)²)",
           "= t + (1 − t)²",
           "= t + 1 − 2t + t² = t² − t + 1"
         ],
@@ -100,6 +103,10 @@
         "lines": [
           "The two halves are the same expression.",
           "Also t² − t + 1 = (t − 1/2)² + 3/4 > 0,",
+          {
+            "text": "((t − 1/2)² = t² − t + 1/4, and 1/4 + 3/4 = 1)",
+            "added": true
+          },
           "so the denominator is never zero and f(x)",
           "is defined for every x ∈ R.",
           "∴ f(x) = 1 for every real x, and 2016 is",
@@ -137,6 +144,18 @@
           "Writing f(2016) = 1 with no simplification above it; the marks are for the simplification.",
           "Treating 2016 as degrees and reducing it by 360; x is a real number and the value is 1 either way.",
           "Leaving out the check that the denominator is never zero."
+        ],
+        "lines_compact": [
+          "The two halves are the same expression.",
+          "Also t² − t + 1 = (t − 1/2)² + 3/4 > 0,",
+          "so the denominator is never zero and f(x)",
+          "is defined for every x ∈ R.",
+          "∴ f(x) = 1 for every real x, and 2016 is",
+          "one such value of x.",
+          {
+            "text": "∴ f(2016) = 1",
+            "style": "boxed"
+          }
         ]
       }
     ]

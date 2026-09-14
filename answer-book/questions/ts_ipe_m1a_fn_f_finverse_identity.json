@@ -51,7 +51,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.15 — LAQ chapter 1 Functions, question 4. The 3+4 split is printed in that book's margin; appearance years are printed board-split as TS 16,18,19 and AP 15,17 — the most-asked question in this chapter across both boards. Publisher's claims until a Telangana IPE teacher confirms them. Lines naming an identity function use render:'katex' (a capital-letter subscript has no Unicode form). Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Proof that fof⁻¹ = I_B."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.15 — LAQ chapter 1 Functions, question 4. The 3+4 split is printed in that book's margin; appearance years are printed board-split as TS 16,18,19 and AP 15,17 — the most-asked question in this chapter across both boards. Publisher's claims until a Telangana IPE teacher confirms them. Lines naming an identity function use render:'katex' (a capital-letter subscript has no Unicode form). Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Proof that fof⁻¹ = I_B. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove that f composed with its inverse gives the identity — both ways round, and how each one goes.",
   "answer": {
@@ -74,15 +74,22 @@
           },
           "f: A→B is a bijective function,",
           "so f⁻¹: B→A is also a bijection.",
+          "(f⁻¹ exists because f is one one and onto)",
           {
             "text": "I_A : A \\to A, \\quad I_B : B \\to B",
             "render": "katex",
             "style": "normal"
           },
+          "(an identity function sends each element to itself)",
           {
             "text": "\\text{To prove: } f \\circ f^{-1} = I_B \\text{ and } f^{-1} \\circ f = I_A",
             "render": "katex",
             "style": "normal"
+          },
+          "(Two functions are equal when they have the same",
+          {
+            "text": "  domain and the same value at every point.)",
+            "style": "indent"
           }
         ],
         "recall": {
@@ -129,6 +136,10 @@
             "style": "heading"
           },
           {
+            "text": "First, the domains:",
+            "added": true
+          },
+          {
             "text": "f^{-1} : B \\to A \\text{ and } f : A \\to B",
             "render": "katex"
           },
@@ -141,8 +152,21 @@
             "style": "eq"
           },
           {
+            "text": "Now the values, at any b ∈ B:",
+            "added": true
+          },
+          {
             "text": "\\text{For } b \\in B, \\ (f \\circ f^{-1})(b) = f[f^{-1}(b)]",
             "render": "katex"
+          },
+          {
+            "text": "(f⁻¹(b) is the element a with f(a) = b; there is",
+            "added": true
+          },
+          {
+            "text": "  only one, because f is one one)",
+            "style": "indent",
+            "added": true
           },
           {
             "text": "= f(a) \\quad (\\because f(a) = b \\Rightarrow f^{-1}(b) = a)",
@@ -185,6 +209,41 @@
           "Starting from a in A on this side, which lands on the wrong identity.",
           "Writing I_A instead of I_B for a composition whose domain is B.",
           "Saying 'they cancel' instead of showing f[f⁻¹(b)] = b."
+        ],
+        "lines_compact": [
+          {
+            "text": "\\text{(i) To prove } f \\circ f^{-1} = I_B",
+            "render": "katex",
+            "style": "heading"
+          },
+          {
+            "text": "f^{-1} : B \\to A \\text{ and } f : A \\to B",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore f \\circ f^{-1} : B \\to B, \\ I_B : B \\to B",
+            "render": "katex"
+          },
+          {
+            "text": "So both sides have the same domain B.",
+            "style": "eq"
+          },
+          {
+            "text": "\\text{For } b \\in B, \\ (f \\circ f^{-1})(b) = f[f^{-1}(b)]",
+            "render": "katex"
+          },
+          {
+            "text": "= f(a) \\quad (\\because f(a) = b \\Rightarrow f^{-1}(b) = a)",
+            "render": "katex"
+          },
+          {
+            "text": "= b = I_B(b)",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore f \\circ f^{-1} = I_B",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -202,6 +261,10 @@
             "style": "heading"
           },
           {
+            "text": "First, the domains:",
+            "added": true
+          },
+          {
             "text": "f : A \\to B \\text{ and } f^{-1} : B \\to A",
             "render": "katex"
           },
@@ -214,8 +277,16 @@
             "style": "eq"
           },
           {
+            "text": "Now the values, at any a ∈ A:",
+            "added": true
+          },
+          {
             "text": "\\text{For } a \\in A, \\ (f^{-1} \\circ f)(a) = f^{-1}[f(a)]",
             "render": "katex"
+          },
+          {
+            "text": "(put b = f(a); then f⁻¹(b) = a by the meaning of f⁻¹)",
+            "added": true
           },
           {
             "text": "= f^{-1}(b) \\quad (\\text{where } b = f(a) \\in B)",
@@ -258,6 +329,41 @@
           "Writing 'by symmetry' and stopping — the examiner marks this part on its own.",
           "Ending at f⁻¹(b) without saying it equals a, so the identity is never reached.",
           "Swapping I_A and I_B between the two parts."
+        ],
+        "lines_compact": [
+          {
+            "text": "\\text{(ii) To prove } f^{-1} \\circ f = I_A",
+            "render": "katex",
+            "style": "heading"
+          },
+          {
+            "text": "f : A \\to B \\text{ and } f^{-1} : B \\to A",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore f^{-1} \\circ f : A \\to A, \\ I_A : A \\to A",
+            "render": "katex"
+          },
+          {
+            "text": "So both sides have the same domain A.",
+            "style": "eq"
+          },
+          {
+            "text": "\\text{For } a \\in A, \\ (f^{-1} \\circ f)(a) = f^{-1}[f(a)]",
+            "render": "katex"
+          },
+          {
+            "text": "= f^{-1}(b) \\quad (\\text{where } b = f(a) \\in B)",
+            "render": "katex"
+          },
+          {
+            "text": "= a = I_A(a)",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore f^{-1} \\circ f = I_A",
+            "render": "katex"
+          }
         ]
       },
       {

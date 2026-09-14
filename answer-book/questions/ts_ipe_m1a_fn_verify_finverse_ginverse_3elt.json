@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 2 FUNCTIONS, Short Answer question 1, book p.16. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 shape is the one this bank uses for a Maths-1A Section B question; here each mark buys one of the four separate objects the student has to produce — the bijection check, the composition gof, the three reversed sets, and the element-by-element comparison. Paper position: Maths-1A Section B prints 8 short answer questions, the student answers any 6, and each carries 4 marks (2026-27 pattern). The printed left gutter is intact on book p.16, so the source book's zero star count on this question is a reading rather than a clipped count; the book prints no appearance year for it, so appearances[] is empty. This card is the finite-set verification of the general theorem in ts_ipe_m1a_fn_gof_inverse_reverse in this same unit, so the two are not duplicates. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 2 FUNCTIONS, Short Answer question 1, book p.16. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 shape is the one this bank uses for a Maths-1A Section B question; here each mark buys one of the four separate objects the student has to produce — the bijection check, the composition gof, the three reversed sets, and the element-by-element comparison. Paper position: Maths-1A Section B prints 8 short answer questions, the student answers any 6, and each carries 4 marks (2026-27 pattern). The printed left gutter is intact on book p.16, so the source book's zero star count on this question is a reading rather than a clipped count; the book prints no appearance year for it, so appearances[] is empty. This card is the finite-set verification of the general theorem in ts_ipe_m1a_fn_gof_inverse_reverse in this same unit, so the two are not duplicates. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would check this — what you work out first, and how you compare the two sides at the end.",
   "answer": {
@@ -64,7 +64,8 @@
           "a, c, b are different and cover B.",
           "g = {(a,q), (b,r), (c,p)} is a bijection:",
           "q, r, p are different and cover C.",
-          "So f⁻¹ and g⁻¹ both exist."
+          "So f⁻¹ and g⁻¹ both exist.",
+          "(a bijection's inverse is found by reversing each pair)"
         ],
         "recall": {
           "credit": "say_it",
@@ -104,8 +105,24 @@
         "memory_tip": "In gof, f acts first. Read the symbol right to left: f, then g.",
         "lines": [
           "gof: A→C, where (gof)(x) = g(f(x)).",
+          {
+            "text": "(f acts first, then g)",
+            "added": true
+          },
+          {
+            "text": "(f(1) = a, then g(a) = q)",
+            "added": true
+          },
           "(gof)(1) = g(a) = q",
+          {
+            "text": "(f(2) = c, then g(c) = p)",
+            "added": true
+          },
           "(gof)(2) = g(c) = p",
+          {
+            "text": "(f(3) = b, then g(b) = r)",
+            "added": true
+          },
           "(gof)(3) = g(b) = r",
           "∴ gof = {(1,q), (2,p), (3,r)}"
         ],
@@ -135,6 +152,13 @@
         "common_mistakes": [
           "Computing fog instead of gof.",
           "Applying g to the first coordinate 1 instead of to f(1) = a."
+        ],
+        "lines_compact": [
+          "gof: A→C, where (gof)(x) = g(f(x)).",
+          "(gof)(1) = g(a) = q",
+          "(gof)(2) = g(c) = p",
+          "(gof)(3) = g(b) = r",
+          "∴ gof = {(1,q), (2,p), (3,r)}"
         ]
       },
       {
@@ -147,6 +171,10 @@
         "memory_tip": "An inverse only swaps the coordinates of each pair. Every pair is written the other way round.",
         "lines": [
           "gof is a bijection, so its inverse exists.",
+          {
+            "text": "(its images q, p, r are different and cover C)",
+            "added": true
+          },
           "Reverse the pairs of gof, f and g:",
           "(gof)⁻¹ = {(q,1), (p,2), (r,3)}   …(1)",
           "f⁻¹ = {(a,1), (c,2), (b,3)}",
@@ -178,6 +206,13 @@
         "common_mistakes": [
           "Leaving one pair unreversed.",
           "Writing g⁻¹ with domain B instead of C."
+        ],
+        "lines_compact": [
+          "gof is a bijection, so its inverse exists.",
+          "Reverse the pairs of gof, f and g:",
+          "(gof)⁻¹ = {(q,1), (p,2), (r,3)}   …(1)",
+          "f⁻¹ = {(a,1), (c,2), (b,3)}",
+          "g⁻¹ = {(q,a), (r,b), (p,c)}"
         ]
       },
       {
@@ -190,8 +225,20 @@
         "memory_tip": "The inverse reverses the order: (gof)⁻¹ has to undo g first, so g⁻¹ comes first.",
         "lines": [
           "f⁻¹og⁻¹ means g⁻¹ first, then f⁻¹.",
+          {
+            "text": "(g⁻¹(p) = c, then f⁻¹(c) = 2)",
+            "added": true
+          },
           "(f⁻¹og⁻¹)(p) = f⁻¹(c) = 2",
+          {
+            "text": "(g⁻¹(q) = a, then f⁻¹(a) = 1)",
+            "added": true
+          },
           "(f⁻¹og⁻¹)(q) = f⁻¹(a) = 1",
+          {
+            "text": "(g⁻¹(r) = b, then f⁻¹(b) = 3)",
+            "added": true
+          },
           "(f⁻¹og⁻¹)(r) = f⁻¹(b) = 3",
           "∴ f⁻¹og⁻¹ = {(p,2), (q,1), (r,3)}   …(2)",
           "(1) and (2) hold the same three pairs.",
@@ -226,6 +273,18 @@
         "common_mistakes": [
           "Composing f⁻¹ first and g⁻¹ second.",
           "Saying the two sets differ because the pairs are written in a different order."
+        ],
+        "lines_compact": [
+          "f⁻¹og⁻¹ means g⁻¹ first, then f⁻¹.",
+          "(f⁻¹og⁻¹)(p) = f⁻¹(c) = 2",
+          "(f⁻¹og⁻¹)(q) = f⁻¹(a) = 1",
+          "(f⁻¹og⁻¹)(r) = f⁻¹(b) = 3",
+          "∴ f⁻¹og⁻¹ = {(p,2), (q,1), (r,3)}   …(2)",
+          "(1) and (2) hold the same three pairs.",
+          {
+            "text": "∴ f⁻¹og⁻¹ = (gof)⁻¹",
+            "style": "boxed"
+          }
         ]
       }
     ]

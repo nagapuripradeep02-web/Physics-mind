@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.11, chapter 2 FUNCTIONS, Very Short Answer question 17(v). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape gives one mark to making x the subject and one to the finished inverse function, because those are the two places a student can go wrong. The check step, which shows f(f⁻¹(x)) = x and names the domain the inverse lives on, carries no mark and is authored for the student, not for the examiner. The book prints this part as v) and skips iv), so the part label recorded here is the printed one. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.11, chapter 2 FUNCTIONS, Very Short Answer question 17(v). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape gives one mark to making x the subject and one to the finished inverse function, because those are the two places a student can go wrong. The check step, which shows f(f⁻¹(x)) = x and names the domain the inverse lives on, carries no mark and is authored for the student, not for the examiner. The book prints this part as v) and skips iv), so the part label recorded here is the printed one. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find the inverse — the first move, the finished function, and how you check it.",
   "answer": {
@@ -54,7 +54,9 @@
           },
           "f: R→R, f(x) = (2x + 1)/3",
           "Take f(x) = y ⇒ x = f⁻¹(y)",
+          "(multiply both sides by 3)",
           "(2x + 1)/3 = y ⇒ 2x + 1 = 3y",
+          "(take away 1, then divide by 2)",
           "⇒ 2x = 3y − 1 ⇒ x = (3y − 1)/2",
           "∴ f⁻¹(y) = (3y − 1)/2"
         ],

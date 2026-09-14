@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.15, chapter 2 FUNCTIONS, Very Short Answer question 26(i). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape gives one mark to writing f(−x) and clearing e⁻ˣ and one to the comparison that names the parity, because the question asks for a decision and a student who simplifies correctly but names the wrong parity has still earned the first mark. The domain is R, since eˣ + 1 is never zero, and the card states that in its written lines rather than only here. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.15, chapter 2 FUNCTIONS, Very Short Answer question 26(i). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape gives one mark to writing f(−x) and clearing e⁻ˣ and one to the comparison that names the parity, because the question asks for a decision and a student who simplifies correctly but names the wrong parity has still earned the first mark. The domain is R, since eˣ + 1 is never zero, and the card states that in its written lines rather than only here. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would decide this — what you write for f(−x), and what you compare it with.",
   "answer": {
@@ -55,8 +55,10 @@
           "f(x) = x(eˣ − 1)/(eˣ + 1)",
           "eˣ + 1 > 0 for every x, so the domain is R,",
           "and −x is in the domain whenever x is.",
+          "(to test even or odd, compare f(−x) with f(x))",
           "f(−x) = −x(e⁻ˣ − 1)/(e⁻ˣ + 1)",
           "e⁻ˣ = 1/eˣ. Multiply top and bottom by eˣ:",
+          "((e⁻ˣ − 1)eˣ = 1 − eˣ and (e⁻ˣ + 1)eˣ = 1 + eˣ)",
           "f(−x) = −x(1 − eˣ)/(1 + eˣ)"
         ],
         "recall": {
@@ -100,6 +102,10 @@
         "lines": [
           "1 − eˣ = −(eˣ − 1), so",
           "f(−x) = (−x)·[−(eˣ − 1)/(eˣ + 1)]",
+          {
+            "text": "(minus times minus is plus)",
+            "added": true
+          },
           "= x(eˣ − 1)/(eˣ + 1)",
           "= f(x) for every x ∈ R",
           {
@@ -134,6 +140,16 @@
           "Counting only one sign change and calling the function odd.",
           "Writing 1 − eˣ = eˣ − 1, which loses a minus sign.",
           "Naming a parity without ever writing the line f(−x) = f(x)."
+        ],
+        "lines_compact": [
+          "1 − eˣ = −(eˣ − 1), so",
+          "f(−x) = (−x)·[−(eˣ − 1)/(eˣ + 1)]",
+          "= x(eˣ − 1)/(eˣ + 1)",
+          "= f(x) for every x ∈ R",
+          {
+            "text": "∴ f is an even function on R.",
+            "style": "boxed"
+          }
         ]
       }
     ]

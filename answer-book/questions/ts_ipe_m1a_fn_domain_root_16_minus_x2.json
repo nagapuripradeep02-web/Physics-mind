@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.81 — VSAQ chapter 14 Functions, question 94.2, on ★★★ SSP 81 (the book calls it 'the most dominating domain page'). Appearance years are printed board-split. UNLIKE the LAQ and SAQ pages, the book prints NO internal mark split on its VSAQ pages: the 1+1 across the two steps is our division of the 2 marks, not the source's. Publisher's claims until a Telangana IPE teacher confirms them. The only appearance printed for this one is 'IPE 09' — a pre-bifurcation paper (before the 2014 TS/AP split), for which appearances[].board has no value, so it is recorded here in prose rather than as data."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.81 — VSAQ chapter 14 Functions, question 94.2, on ★★★ SSP 81 (the book calls it 'the most dominating domain page'). Appearance years are printed board-split. UNLIKE the LAQ and SAQ pages, the book prints NO internal mark split on its VSAQ pages: the 1+1 across the two steps is our division of the 2 marks, not the source's. Publisher's claims until a Telangana IPE teacher confirms them. The only appearance printed for this one is 'IPE 09' — a pre-bifurcation paper (before the 2014 TS/AP split), for which appearances[].board has no value, so it is recorded here in prose rather than as data. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find this domain — the condition the formula forces, and the answer.",
   "answer": {
@@ -52,7 +52,9 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "(the number under a square root must not be negative)",
           "f(x) is defined when 16 − x² ≥ 0",
+          "(multiply by −1, which reverses the inequality)",
           "⇒ x² − 16 ≤ 0",
           "⇒ (x − 4)(x + 4) ≤ 0"
         ],
@@ -94,6 +96,15 @@
         "margin_note": "The second mark is the interval itself. Write it in interval form, and check every bracket.",
         "memory_tip": "A product ≤ 0 lies BETWEEN the roots, and zero is allowed: [−4, 4] with square brackets.",
         "lines": [
+          {
+            "text": "(the factors have opposite signs, or one is 0:",
+            "added": true
+          },
+          {
+            "text": "  this happens for −4 ≤ x ≤ 4)",
+            "style": "indent",
+            "added": true
+          },
           "⇒ x ∈ [−4, 4]",
           {
             "text": "∴ Domain = [−4, 4]",
@@ -132,6 +143,13 @@
         "common_mistakes": [
           "Writing (−4, 4) and losing the two endpoints.",
           "Giving the answer as a union, which is the solution to the opposite inequality."
+        ],
+        "lines_compact": [
+          "⇒ x ∈ [−4, 4]",
+          {
+            "text": "∴ Domain = [−4, 4]",
+            "style": "boxed"
+          }
         ]
       }
     ]

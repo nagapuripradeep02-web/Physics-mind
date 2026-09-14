@@ -39,7 +39,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.79 — VSAQ chapter 14 Functions, question 88. The book prints NO internal mark split on its VSAQ pages (unlike its LAQ/SAQ pages): the 1+1 across the two steps is our division of the 2 marks, not the source's. Appearance years are the book's, board-split. Publisher's claims until a Telangana IPE teacher confirms them."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.79 — VSAQ chapter 14 Functions, question 88. The book prints NO internal mark split on its VSAQ pages (unlike its LAQ/SAQ pages): the 1+1 across the two steps is our division of the 2 marks, not the source's. Appearance years are the book's, board-split. Publisher's claims until a Telangana IPE teacher confirms them. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find (fog)(2) — which function acts first, and the value.",
   "answer": {
@@ -62,6 +62,7 @@
             "style": "heading"
           },
           "(fog)(2) = f[g(2)]",
+          "(g acts first, then f)",
           "g(2) = 2² + 1 = 4 + 1 = 5"
         ],
         "recall": {
@@ -103,6 +104,10 @@
         "memory_tip": "Put g(2) = 5 into f: 3(5) − 1 = 14. The answer is one number.",
         "lines": [
           "∴ (fog)(2) = f(5) = 3(5) − 1",
+          {
+            "text": "(f(x) = 3x − 1 with x = 5)",
+            "added": true
+          },
           "= 15 − 1 = 14",
           {
             "text": "∴ (fog)(2) = 14",
@@ -135,6 +140,14 @@
         "common_mistakes": [
           "Writing f(2) instead of f(5) at the last step.",
           "Arithmetic slip: 3(5) − 1 read as 3(5 − 1)."
+        ],
+        "lines_compact": [
+          "∴ (fog)(2) = f(5) = 3(5) − 1",
+          "= 15 − 1 = 14",
+          {
+            "text": "∴ (fog)(2) = 14",
+            "style": "boxed"
+          }
         ]
       }
     ]

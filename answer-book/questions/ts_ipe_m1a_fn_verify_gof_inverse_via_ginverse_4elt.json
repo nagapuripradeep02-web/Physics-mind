@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 2 FUNCTIONS, Short Answer question 2, book p.16. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 shape is the one this bank uses for a Maths-1A Section B question; here each mark buys one of the four objects the student has to build in order — g, then gof, then the two reversed sets, then the comparison. Paper position: Maths-1A Section B prints 8 short answer questions, the student answers any 6, and each carries 4 marks (2026-27 pattern). The source book's own MODEL PAPER-IA puts this question at Q11, Section II, which is that paper's single Functions short-answer slot; that is the book's claim about its own model paper, not a printed board appearance, so appearances[] is empty. ON THE STEM: the printed stem never names A and B. They are read off the pairs as A = {1, 2, 3, 4} and B = {a, b, c, d}, which is the only reading under which f: A→B and g: B→A are both defined; the stem is well posed on that reading and has not been altered. Note also that g is supplied through g⁻¹, so the first thing the answer has to do is produce g. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 2 FUNCTIONS, Short Answer question 2, book p.16. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 shape is the one this bank uses for a Maths-1A Section B question; here each mark buys one of the four objects the student has to build in order — g, then gof, then the two reversed sets, then the comparison. Paper position: Maths-1A Section B prints 8 short answer questions, the student answers any 6, and each carries 4 marks (2026-27 pattern). The source book's own MODEL PAPER-IA puts this question at Q11, Section II, which is that paper's single Functions short-answer slot; that is the book's claim about its own model paper, not a printed board appearance, so appearances[] is empty. ON THE STEM: the printed stem never names A and B. They are read off the pairs as A = {1, 2, 3, 4} and B = {a, b, c, d}, which is the only reading under which f: A→B and g: B→A are both defined; the stem is well posed on that reading and has not been altered. Note also that g is supplied through g⁻¹, so the first thing the answer has to do is produce g. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would verify this — what you have to build from the given g⁻¹, and what you compare at the end.",
   "answer": {
@@ -63,6 +63,7 @@
           "The pairs give A = {1, 2, 3, 4} and",
           "B = {a, b, c, d}.",
           "g⁻¹ = {(2,a), (4,b), (1,c), (3,d)}",
+          "(if g⁻¹ sends 2 to a, then g sends a to 2)",
           "Reverse each pair to get g: B→A.",
           "g = {(a,2), (b,4), (c,1), (d,3)}"
         ],
@@ -104,6 +105,14 @@
         "memory_tip": "f carries 1 to a, then g carries a to 2. Follow one element the whole way before starting the next.",
         "lines": [
           "f = {(1,a), (2,c), (3,b), (4,d)}",
+          {
+            "text": "(f acts first, then g)",
+            "added": true
+          },
+          {
+            "text": "(f(1) = a, then g(a) = 2; the others the same way)",
+            "added": true
+          },
           "(gof)(1) = g(a) = 2",
           "(gof)(2) = g(c) = 1",
           "(gof)(3) = g(b) = 4",
@@ -136,6 +145,14 @@
         "common_mistakes": [
           "Applying g before f.",
           "Pairing the image of f with the wrong first coordinate."
+        ],
+        "lines_compact": [
+          "f = {(1,a), (2,c), (3,b), (4,d)}",
+          "(gof)(1) = g(a) = 2",
+          "(gof)(2) = g(c) = 1",
+          "(gof)(3) = g(b) = 4",
+          "(gof)(4) = g(d) = 3",
+          "∴ gof = {(1,2), (2,1), (3,4), (4,3)}"
         ]
       },
       {
@@ -148,6 +165,10 @@
         "memory_tip": "Reverse every pair, then reorder by the first coordinate. Reordering does not change the set.",
         "lines": [
           "gof is a bijection, so reverse every pair:",
+          {
+            "text": "(its images 2, 1, 4, 3 are different and cover A)",
+            "added": true
+          },
           "(gof)⁻¹ = {(2,1), (1,2), (4,3), (3,4)}",
           "  = {(1,2), (2,1), (3,4), (4,3)}   …(1)",
           "Reverse the pairs of f as well:",
@@ -179,6 +200,13 @@
         "common_mistakes": [
           "Writing (gof)⁻¹ = gof without reversing the pairs first.",
           "Reversing only some of the four pairs."
+        ],
+        "lines_compact": [
+          "gof is a bijection, so reverse every pair:",
+          "(gof)⁻¹ = {(2,1), (1,2), (4,3), (3,4)}",
+          "  = {(1,2), (2,1), (3,4), (4,3)}   …(1)",
+          "Reverse the pairs of f as well:",
+          "f⁻¹ = {(a,1), (c,2), (b,3), (d,4)}"
         ]
       },
       {
@@ -191,6 +219,10 @@
         "memory_tip": "The given g⁻¹ is used unchanged in this step. Only g needed reversing, back in the first step.",
         "lines": [
           "f⁻¹og⁻¹ means g⁻¹ first, then f⁻¹.",
+          {
+            "text": "(g⁻¹(1) = c, then f⁻¹(c) = 2; the others the same way)",
+            "added": true
+          },
           "(f⁻¹og⁻¹)(1) = f⁻¹(c) = 2",
           "(f⁻¹og⁻¹)(2) = f⁻¹(a) = 1",
           "(f⁻¹og⁻¹)(3) = f⁻¹(d) = 4",
@@ -228,6 +260,19 @@
         "common_mistakes": [
           "Working out g⁻¹of⁻¹ instead of f⁻¹og⁻¹.",
           "Using g instead of g⁻¹ in the composition."
+        ],
+        "lines_compact": [
+          "f⁻¹og⁻¹ means g⁻¹ first, then f⁻¹.",
+          "(f⁻¹og⁻¹)(1) = f⁻¹(c) = 2",
+          "(f⁻¹og⁻¹)(2) = f⁻¹(a) = 1",
+          "(f⁻¹og⁻¹)(3) = f⁻¹(d) = 4",
+          "(f⁻¹og⁻¹)(4) = f⁻¹(b) = 3",
+          "∴ f⁻¹og⁻¹ = {(1,2), (2,1), (3,4), (4,3)}",
+          "This is the same set of four pairs as (1).",
+          {
+            "text": "∴ (gof)⁻¹ = f⁻¹og⁻¹",
+            "style": "boxed"
+          }
         ]
       }
     ]

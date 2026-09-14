@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.9, chapter 2 FUNCTIONS, Very Short Answer question 3. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape gives one mark to the four images and one to collecting them into the range set, because those are the two things a student can leave out. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.9, chapter 2 FUNCTIONS, Very Short Answer question 3. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape gives one mark to the four images and one to collecting them into the range set, because those are the two things a student can leave out. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find the range here — what you work out, and what the answer has to look like.",
   "answer": {
@@ -99,6 +99,10 @@
         "memory_tip": "Range means the outputs, not the inputs. Put the four values inside one pair of braces.",
         "lines": [
           "The range is the set of all images of A.",
+          {
+            "text": "(A has four elements, so there are at most four images)",
+            "added": true
+          },
           "The four values are all different.",
           {
             "text": "Range of f = {1/2, 1, 7/4, 13/5}",
@@ -133,6 +137,14 @@
           "Giving the domain A, or the whole of R, as the range.",
           "Rounding 13/5 to 2.6; the exact fractions are the answer.",
           "Writing the four values without braces, so no set is named."
+        ],
+        "lines_compact": [
+          "The range is the set of all images of A.",
+          "The four values are all different.",
+          {
+            "text": "Range of f = {1/2, 1, 7/4, 13/5}",
+            "style": "boxed"
+          }
         ]
       }
     ]
