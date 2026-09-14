@@ -34,7 +34,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.72, chapter 7 PRODUCT OF VECTORS, Short Answer question 22. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives half the marks to the determinant and a full mark to the modulus, because a negative triple product reported as a volume is the single most common loss here. Three evaluations agree at −11: the first-row expansion gives 2(1 − 2) + 3(−1 − 4) + 2(1 + 2) = −11; the third-row expansion gives 2(−4) − 2 − 1 = −11; and computing b × c = (−1, 5, 3) and dotting with a gives −2 − 15 + 6 = −11. The volume is therefore |−11| = 11 cubic units, never −11. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Product of Vectors supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.72, chapter 7 PRODUCT OF VECTORS, Short Answer question 22. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives half the marks to the determinant and a full mark to the modulus, because a negative triple product reported as a volume is the single most common loss here. Three evaluations agree at −11: the first-row expansion gives 2(1 − 2) + 3(−1 − 4) + 2(1 + 2) = −11; the third-row expansion gives 2(−4) − 2 − 1 = −11; and computing b × c = (−1, 5, 3) and dotting with a gives −2 − 15 + 6 = −11. The volume is therefore |−11| = 11 cubic units, never −11. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Product of Vectors supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find this volume — the formula, the determinant, and what you do with the sign.",
   "answer": {
@@ -107,6 +107,35 @@
             "render": "katex",
             "style": "eq"
           },
+          {
+            "text": "Expand along R₁: each entry times the 2×2",
+            "added": true
+          },
+          {
+            "text": "  determinant left when its row and column",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  are deleted, with signs + − +:",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  + (2) × [(−1)(−1) − (2)(1)]",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  − (−3) × [(1)(−1) − (2)(2)]",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  + (2) × [(1)(1) − (−1)(2)]",
+            "style": "indent",
+            "added": true
+          },
           "= 2(1 − 2) + 3(−1 − 4) + 2(1 + 2)",
           "= −2 − 15 + 6 = −11",
           "Check by b × c = (−1, 5, 3):",
@@ -138,6 +167,17 @@
         "common_mistakes": [
           "Getting the sign of the middle cofactor wrong.",
           "Reading 2(1 − 2) as 2(2 − 1)."
+        ],
+        "lines_compact": [
+          {
+            "text": "[a\\ b\\ c] = \\begin{vmatrix} 2 & -3 & 2 \\\\ 1 & -1 & 2 \\\\ 2 & 1 & -1 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= 2(1 − 2) + 3(−1 − 4) + 2(1 + 2)",
+          "= −2 − 15 + 6 = −11",
+          "Check by b × c = (−1, 5, 3):",
+          "a·(b × c) = −2 − 15 + 6 = −11"
         ]
       },
       {

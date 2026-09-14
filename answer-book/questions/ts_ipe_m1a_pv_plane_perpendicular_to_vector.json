@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.73, chapter 7 PRODUCT OF VECTORS, Short Answer question 30. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 split rewards writing the point and the normal as vectors, stating the perpendicularity condition, expanding it in coordinates, and simplifying to the finished equation. PRINTED DEFECT RECORDED: the book prints the point as (3, −2, −1) in the stem, but its own working carries a third component of +1, that is (3, −2, 1). This card is authored from the stem as printed, (3, −2, −1), which gives 4x + 7y − 4z − 2 = 0; the book's working point would give 4x + 7y − 4z + 6 = 0. Nothing was silently repaired and nothing was skipped. Paper position: Maths-1A Section B prints 8 short answers at 4 marks each and the student answers any 6; Product of Vectors is one of the units that can fill a Section-B slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.73, chapter 7 PRODUCT OF VECTORS, Short Answer question 30. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 split rewards writing the point and the normal as vectors, stating the perpendicularity condition, expanding it in coordinates, and simplifying to the finished equation. PRINTED DEFECT RECORDED: the book prints the point as (3, −2, −1) in the stem, but its own working carries a third component of +1, that is (3, −2, 1). This card is authored from the stem as printed, (3, −2, −1), which gives 4x + 7y − 4z − 2 = 0; the book's working point would give 4x + 7y − 4z + 6 = 0. Nothing was silently repaired and nothing was skipped. Paper position: Maths-1A Section B prints 8 short answers at 4 marks each and the student answers any 6; Product of Vectors is one of the units that can fill a Section-B slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find the equation of a plane through a given point with a given normal vector.",
   "answer": {
@@ -147,6 +147,19 @@
         "memory_tip": "Subtracting a negative coordinate adds. y + 2 and z + 1, not y − 2 and z − 1.",
         "lines": [
           "r − a = (x − 3)i + (y + 2)j + (z + 1)k",
+          {
+            "text": "(x − 3, y − (−2) = y + 2, z − (−1) = z + 1)",
+            "added": true
+          },
+          {
+            "text": "(dot with n = 4i + 7j − 4k: multiply matching",
+            "added": true
+          },
+          {
+            "text": "  components and add)",
+            "style": "indent",
+            "added": true
+          },
           "So the condition becomes",
           "4(x − 3) + 7(y + 2) − 4(z + 1) = 0"
         ],
@@ -176,6 +189,11 @@
         "common_mistakes": [
           "Writing y − 2 and z − 1 instead of y + 2 and z + 1.",
           "Multiplying the brackets by the coordinates of the point instead of the normal."
+        ],
+        "lines_compact": [
+          "r − a = (x − 3)i + (y + 2)j + (z + 1)k",
+          "So the condition becomes",
+          "4(x − 3) + 7(y + 2) − 4(z + 1) = 0"
         ]
       },
       {
@@ -187,7 +205,15 @@
         "margin_note": "Last mark. The three constants are −12, +14 and −4, which add to −2. Put the point back in as a one-line check.",
         "memory_tip": "The constants are −12, +14 and −4, and they add to −2.",
         "lines": [
+          {
+            "text": "(open the brackets)",
+            "added": true
+          },
           "4x − 12 + 7y + 14 − 4z − 4 = 0",
+          {
+            "text": "(−12 + 14 − 4 = −2)",
+            "added": true
+          },
           {
             "text": "4x + 7y − 4z − 2 = 0",
             "style": "boxed"
@@ -220,6 +246,14 @@
         "common_mistakes": [
           "Adding the three constants to −22 or +2 by a sign slip.",
           "Leaving the answer with the brackets unexpanded."
+        ],
+        "lines_compact": [
+          "4x − 12 + 7y + 14 − 4z − 4 = 0",
+          {
+            "text": "4x + 7y − 4z − 2 = 0",
+            "style": "boxed"
+          },
+          "Check (3, −2, −1): 12 − 14 + 4 − 2 = 0"
         ]
       }
     ]

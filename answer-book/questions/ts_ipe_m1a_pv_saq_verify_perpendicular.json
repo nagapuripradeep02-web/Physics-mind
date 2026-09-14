@@ -43,7 +43,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.62 — SAQ chapter 9 Product of Vectors, answer 57, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 17,19. Two things are asked: a computation and a VERIFICATION. The verification is a separate mark and needs its own line of working — asserting it is not enough.⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: this same chapter DOES print splits for answers 58 and 59 on book p.63 (1+1+1+1) and for answer 61 on p.64 (1+2+1), so the shape used here is the chapter's own. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q13 is the Product of Vectors slot."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.62 — SAQ chapter 9 Product of Vectors, answer 57, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 17,19. Two things are asked: a computation and a VERIFICATION. The verification is a separate mark and needs its own line of working — asserting it is not enough.⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: this same chapter DOES print splits for answers 58 and 59 on book p.63 (1+1+1+1) and for answer 61 on p.64 (1+2+1), so the shape used here is the chapter's own. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q13 is the Product of Vectors slot. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would compute this and then check it is perpendicular to a.",
   "answer": {
@@ -70,6 +70,19 @@
             "text": "b \\times c = \\begin{vmatrix} i & j & k \\\\ 1 & 1 & -1 \\\\ 1 & -1 & 1 \\end{vmatrix}",
             "render": "katex",
             "style": "eq"
+          },
+          "Expand along the top row, i, j, k (signs + − +):",
+          {
+            "text": "  i: (1)(1) − (−1)(−1) = 0",
+            "style": "indent"
+          },
+          {
+            "text": "  j: (1)(1) − (−1)(1) = 2, with a minus in front",
+            "style": "indent"
+          },
+          {
+            "text": "  k: (1)(−1) − (1)(1) = −2",
+            "style": "indent"
           },
           "= i(1 − 1) − j(1 + 1) + k(−1 − 1)",
           "= 0i − 2j − 2k"
@@ -116,6 +129,25 @@
             "render": "katex",
             "style": "eq"
           },
+          {
+            "text": "Expand along the top row, i, j, k (signs + − +):",
+            "added": true
+          },
+          {
+            "text": "  i: (3)(−2) − (4)(−2) = 2",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  j: (2)(−2) − (4)(0) = −4, with a minus in front",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  k: (2)(−2) − (3)(0) = −4",
+            "style": "indent",
+            "added": true
+          },
           "= i(−6 + 8) − j(−4 − 0) + k(−4 − 0)",
           "= 2i + 4j − 4k"
         ],
@@ -145,6 +177,15 @@
         "common_mistakes": [
           "Reversing the rows.",
           "Forgetting that the j term already carries a minus from the expansion."
+        ],
+        "lines_compact": [
+          {
+            "text": "a \\times (b \\times c) = \\begin{vmatrix} i & j & k \\\\ 2 & 3 & 4 \\\\ 0 & -2 & -2 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= i(−6 + 8) − j(−4 − 0) + k(−4 − 0)",
+          "= 2i + 4j − 4k"
         ]
       },
       {

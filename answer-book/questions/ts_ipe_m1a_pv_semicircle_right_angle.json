@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 7 PRODUCT OF VECTORS, Short Answer question 6, book p.68. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. This is a general proof, so it was checked a second way on a concrete instance: unit circle, A = (1, 0), B = (−1, 0), P = (3/5, 4/5), giving PA = (2/5, −4/5) and PB = (−8/5, −4/5), whose dot product is −16/25 + 16/25 = 0. The proof itself turns only on |OA| = |OP| = r, and the step excluding P = A and P = B is written out because a zero vector is perpendicular to everything and would make the conclusion empty. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 split rewards the four separate acts: choosing the origin at the centre, writing the two sides as vector differences, showing their dot product vanishes, and drawing the conclusion. The figure carries no mark — an examiner marks the algebra — but it is drawn because the lettering cannot be read without it. Paper position: Maths-1A Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern; Product of Vectors carries a Section B slot on the paper and also appears in Section C. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 7 PRODUCT OF VECTORS, Short Answer question 6, book p.68. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. This is a general proof, so it was checked a second way on a concrete instance: unit circle, A = (1, 0), B = (−1, 0), P = (3/5, 4/5), giving PA = (2/5, −4/5) and PB = (−8/5, −4/5), whose dot product is −16/25 + 16/25 = 0. The proof itself turns only on |OA| = |OP| = r, and the step excluding P = A and P = B is written out because a zero vector is perpendicular to everything and would make the conclusion empty. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 split rewards the four separate acts: choosing the origin at the centre, writing the two sides as vector differences, showing their dot product vanishes, and drawing the conclusion. The figure carries no mark — an examiner marks the algebra — but it is drawn because the lettering cannot be read without it. Paper position: Maths-1A Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern; Product of Vectors carries a Section B slot on the paper and also appears in Section C. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove the angle in a semicircle is a right angle using vectors — name each move in order.",
   "answer": {
@@ -64,6 +64,7 @@
           "origin, and let the radius be r.",
           "Let AB be a diameter and let P be any",
           "point on the circle, P ≠ A and P ≠ B.",
+          "(A and B are the two ends of a diameter through O)",
           "Then OA = a, OB = −a, OP = p,",
           "with |a| = r and |p| = r."
         ],
@@ -222,6 +223,10 @@
         "lines": [
           "The angle at P is the angle between the",
           "vectors PA and PB.",
+          {
+            "text": "(each side vector is end point minus start point)",
+            "added": true
+          },
           "PA = OA − OP = a − p",
           "PB = OB − OP = −a − p"
         ],
@@ -251,6 +256,12 @@
         "common_mistakes": [
           "Writing PA as p − a, which points from A to P instead.",
           "Using AP for one side and PB for the other, which measures the wrong angle."
+        ],
+        "lines_compact": [
+          "The angle at P is the angle between the",
+          "vectors PA and PB.",
+          "PA = OA − OP = a − p",
+          "PB = OB − OP = −a − p"
         ]
       },
       {
@@ -263,6 +274,10 @@
         "memory_tip": "The cross terms cancel because a·p = p·a, so only −|a|² + |p|² is left.",
         "lines": [
           "PA · PB = (a − p)·(−a − p)",
+          {
+            "text": "(open the brackets term by term)",
+            "added": true
+          },
           "  = −a·a − a·p + p·a + p·p",
           "  = −|a|² + |p|²    (as a·p = p·a)",
           "  = −r² + r²",
@@ -295,6 +310,13 @@
         "common_mistakes": [
           "Losing a sign when multiplying out the second bracket.",
           "Treating a·p and p·a as different quantities so the cancellation is missed."
+        ],
+        "lines_compact": [
+          "PA · PB = (a − p)·(−a − p)",
+          "  = −a·a − a·p + p·a + p·p",
+          "  = −|a|² + |p|²    (as a·p = p·a)",
+          "  = −r² + r²",
+          "  = 0"
         ]
       },
       {

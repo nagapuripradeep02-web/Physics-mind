@@ -34,7 +34,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.70, chapter 7 PRODUCT OF VECTORS, Short Answer question 15. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives half the marks to the substitution, which carries both the dot product and the length of the normal, and single marks to the formula and to the final modulus. Checked a second way: dividing the plane by |n| = 7 puts it in normal form, the point gives a·n/7 = −9/7 against the plane's 4/7, and the gap is |−9/7 − 4/7| = 13/7 — the same answer. Checked a third way: the foot of the perpendicular is (176/49, 206/49, −121/49), which satisfies 6x − 3y + 2z = 4 exactly, and its distance from (2, 5, −3) is (13/49)×7 = 13/7. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Product of Vectors supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.70, chapter 7 PRODUCT OF VECTORS, Short Answer question 15. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives half the marks to the substitution, which carries both the dot product and the length of the normal, and single marks to the formula and to the final modulus. Checked a second way: dividing the plane by |n| = 7 puts it in normal form, the point gives a·n/7 = −9/7 against the plane's 4/7, and the gap is |−9/7 − 4/7| = 13/7 — the same answer. Checked a third way: the foot of the perpendicular is (176/49, 206/49, −121/49), which satisfies 6x − 3y + 2z = 4 exactly, and its distance from (2, 5, −3) is (13/49)×7 = 13/7. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Product of Vectors supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find this distance — the formula, what goes on top, and what goes underneath.",
   "answer": {
@@ -61,7 +61,8 @@
           "The point has position vector",
           "a = 2i + 5j − 3k.",
           "Distance from the point to the plane is",
-          "|a·n − d| / |n|"
+          "|a·n − d| / |n|",
+          "(the formula measures the gap along the normal n)"
         ],
         "recall": {
           "credit": "say_it",
@@ -100,9 +101,21 @@
         "margin_note": "Half the marks. Keep the sign of a·n all the way; the modulus is taken only at the very end.",
         "memory_tip": "36 + 9 + 4 = 49, a perfect square, so this one divides by exactly 7.",
         "lines": [
+          {
+            "text": "(multiply matching components and add)",
+            "added": true
+          },
           "a·n = 2(6) + 5(−3) + (−3)(2)",
           "= 12 − 15 − 6 = −9",
+          {
+            "text": "(d = 4)",
+            "added": true
+          },
           "a·n − d = −9 − 4 = −13",
+          {
+            "text": "(|n| = √(6² + (−3)² + 2²))",
+            "added": true
+          },
           "|n| = √(36 + 9 + 4) = √49 = 7"
         ],
         "recall": {
@@ -131,6 +144,12 @@
         "common_mistakes": [
           "Writing a·n − d as −9 + 4.",
           "Taking |n| as 6 − 3 + 2 instead of the square root of the sum of squares."
+        ],
+        "lines_compact": [
+          "a·n = 2(6) + 5(−3) + (−3)(2)",
+          "= 12 − 15 − 6 = −9",
+          "a·n − d = −9 − 4 = −13",
+          "|n| = √(36 + 9 + 4) = √49 = 7"
         ]
       },
       {
@@ -142,6 +161,10 @@
         "margin_note": "Last mark. A distance is never negative, so the modulus is what earns this mark.",
         "memory_tip": "13 over 7: the 13 comes from −9 − 4, and the 7 is √49.",
         "lines": [
+          {
+            "text": "(a distance cannot be negative, so take the modulus)",
+            "added": true
+          },
           "Distance = |−13| / 7 = 13/7",
           "Check: divide the plane by |n| = 7.",
           "Then r·(6i − 3j + 2k)/7 = 4/7 and",
@@ -178,6 +201,17 @@
         "common_mistakes": [
           "Reporting the distance as −13/7.",
           "Writing square units; a distance is in plain units."
+        ],
+        "lines_compact": [
+          "Distance = |−13| / 7 = 13/7",
+          "Check: divide the plane by |n| = 7.",
+          "Then r·(6i − 3j + 2k)/7 = 4/7 and",
+          "a·(6i − 3j + 2k)/7 = −9/7.",
+          "Gap = |−9/7 − 4/7| = 13/7  ✓",
+          {
+            "text": "Distance = 13/7 units",
+            "style": "boxed"
+          }
         ]
       }
     ]

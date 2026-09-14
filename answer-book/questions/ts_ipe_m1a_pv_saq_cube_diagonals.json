@@ -39,7 +39,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.64 — SAQ chapter 9 Product of Vectors, answer 62. Printed appearances: AP 17. The only PROOF in this chapter and the only answer with a figure. The book notes the same question appears in Maths-1B. It is proved on a UNIT cube because the angle does not depend on the size — a choice worth stating rather than assuming.⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: this same chapter DOES print splits for answers 58 and 59 on book p.63 (1+1+1+1) and for answer 61 on p.64 (1+2+1), so the shape used here is the chapter's own. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q13 is the Product of Vectors slot."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.64 — SAQ chapter 9 Product of Vectors, answer 62. Printed appearances: AP 17. The only PROOF in this chapter and the only answer with a figure. The book notes the same question appears in Maths-1B. It is proved on a UNIT cube because the angle does not depend on the size — a choice worth stating rather than assuming.⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: this same chapter DOES print splits for answers 58 and 59 on book p.63 (1+1+1+1) and for answer 61 on p.64 (1+2+1), so the shape used here is the chapter's own. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q13 is the Product of Vectors slot. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — say what cube you set up and which two diagonals you take.",
   "answer": {
@@ -267,7 +267,15 @@
         "memory_tip": "Walk each diagonal edge by edge. OP goes i, j, k; CL goes i, j, then BACK along k — hence the minus.",
         "lines": [
           "Consider the diagonals OP and CL.",
+          {
+            "text": "(OA = i, AL = j and LP = k along three edges)",
+            "added": true
+          },
           "OP = OA + AL + LP = i + j + k   …(1)",
+          {
+            "text": "(CN = i, NP = j and PL = −k)",
+            "added": true
+          },
           "CL = CN + NP + PL = i + j − k   …(2)"
         ],
         "recall": {
@@ -297,6 +305,11 @@
         "common_mistakes": [
           "Giving both diagonals as i + j + k, which are the same line.",
           "Losing the minus on the k component."
+        ],
+        "lines_compact": [
+          "Consider the diagonals OP and CL.",
+          "OP = OA + AL + LP = i + j + k   …(1)",
+          "CL = CN + NP + PL = i + j − k   …(2)"
         ]
       },
       {
@@ -312,6 +325,10 @@
             "text": "\\cos\\theta = \\frac{OP \\cdot CL}{|OP|\\,|CL|}",
             "render": "katex",
             "style": "eq"
+          },
+          {
+            "text": "(|OP| = |CL| = √(1 + 1 + 1) = √3)",
+            "added": true
           },
           "= [(1)(1) + (1)(1) + (1)(−1)] / (√3 · √3)",
           "= (1 + 1 − 1)/3",
@@ -348,6 +365,19 @@
           "Adding the magnitudes instead of multiplying them.",
           "Getting the dot product as 3 by ignoring the minus sign.",
           "Reporting the angle instead of its cosine when the cosine was asked for."
+        ],
+        "lines_compact": [
+          {
+            "text": "\\cos\\theta = \\frac{OP \\cdot CL}{|OP|\\,|CL|}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= [(1)(1) + (1)(1) + (1)(−1)] / (√3 · √3)",
+          "= (1 + 1 − 1)/3",
+          {
+            "text": "∴ cos θ = 1/3",
+            "style": "boxed"
+          }
         ]
       }
     ]

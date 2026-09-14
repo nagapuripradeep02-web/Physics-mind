@@ -63,7 +63,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.37 — LAQ chapter 4 Product of Vectors, answer 23, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 17,19 · AP 16,20. The book calls it \"the Top model LAQ in Vectors\", and it is the ONLY answer in this chapter whose mark split is printed.THE MARK SPLIT IS PRINTED in that book's margin as [1 Mark] against each of five working lines and [2 Marks] against the closing division — a sourced 1+1+1+1+1+2. The book's chapter header carries ★★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Q22 is the Product of Vectors slot. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Divide to get the shortest distance."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.37 — LAQ chapter 4 Product of Vectors, answer 23, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 17,19 · AP 16,20. The book calls it \"the Top model LAQ in Vectors\", and it is the ONLY answer in this chapter whose mark split is printed.THE MARK SPLIT IS PRINTED in that book's margin as [1 Mark] against each of five working lines and [2 Marks] against the closing division — a sourced 1+1+1+1+1+2. The book's chapter header carries ★★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Q22 is the Product of Vectors slot. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Divide to get the shortest distance. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find the shortest distance between two skew lines — say the formula and each piece you need.",
   "answer": {
@@ -93,6 +93,11 @@
             "text": "\\text{S.D} = \\frac{|(a-c)\\cdot(b \\times d)|}{|b \\times d|}",
             "render": "katex",
             "style": "eq"
+          },
+          "(the top is the projection of a − c on the common",
+          {
+            "text": "  normal b × d)",
+            "style": "indent"
           }
         ],
         "recall": {
@@ -136,6 +141,10 @@
           "a = 6i + 2j + 2k,  b = i − 2j + 2k",
           "c = −4i − k,  d = 3i − 2j − 2k",
           "So a − c = (6i + 2j + 2k) − (−4i − k)",
+          {
+            "text": "(6 − (−4) = 10, 2 − 0 = 2, 2 − (−1) = 3)",
+            "added": true
+          },
           "  = 10i + 2j + 3k"
         ],
         "recall": {
@@ -165,6 +174,13 @@
         "common_mistakes": [
           "Missing the zero j component of c = −4i − k and getting the j term of a − c wrong.",
           "Mixing up which vector is the point and which the direction."
+        ],
+        "lines_compact": [
+          "Comparing with r = a + tb and r = c + sd:",
+          "a = 6i + 2j + 2k,  b = i − 2j + 2k",
+          "c = −4i − k,  d = 3i − 2j − 2k",
+          "So a − c = (6i + 2j + 2k) − (−4i − k)",
+          "  = 10i + 2j + 3k"
         ]
       },
       {
@@ -180,6 +196,25 @@
             "text": "b \\times d = \\begin{vmatrix} i & j & k \\\\ 1 & -2 & 2 \\\\ 3 & -2 & -2 \\end{vmatrix}",
             "render": "katex",
             "style": "eq"
+          },
+          {
+            "text": "Expand along the top row, i, j, k (signs + − +):",
+            "added": true
+          },
+          {
+            "text": "  i: (−2)(−2) − (2)(−2) = 8",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  j: (1)(−2) − (2)(3) = −8, with a minus in front",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  k: (1)(−2) − (−2)(3) = 4",
+            "style": "indent",
+            "added": true
           },
           "= i(4 + 4) − j(−2 − 6) + k(−2 + 6)",
           "= 8i + 8j + 4k"
@@ -210,6 +245,15 @@
         "common_mistakes": [
           "Crossing the two POINTS instead of the two directions.",
           "Sign slip on the j term."
+        ],
+        "lines_compact": [
+          {
+            "text": "b \\times d = \\begin{vmatrix} i & j & k \\\\ 1 & -2 & 2 \\\\ 3 & -2 & -2 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= i(4 + 4) − j(−2 − 6) + k(−2 + 6)",
+          "= 8i + 8j + 4k"
         ]
       },
       {
@@ -222,6 +266,10 @@
         "memory_tip": "A dot product of the two results just found — the numerator, before the modulus.",
         "lines": [
           "(a − c)·(b × d) = (10i + 2j + 3k)·(8i + 8j + 4k)",
+          {
+            "text": "(10×8 + 2×8 + 3×4)",
+            "added": true
+          },
           "= 80 + 16 + 12 = 108"
         ],
         "recall": {
@@ -250,6 +298,10 @@
         "common_mistakes": [
           "Taking a cross product instead of a dot.",
           "Forgetting that the result is a number, not a vector."
+        ],
+        "lines_compact": [
+          "(a − c)·(b × d) = (10i + 2j + 3k)·(8i + 8j + 4k)",
+          "= 80 + 16 + 12 = 108"
         ]
       },
       {
@@ -304,6 +356,10 @@
           "S.D = |(a−c)·(b×d)| / |b×d|",
           "= 108 / 12",
           {
+            "text": "(108 ÷ 12 = 9)",
+            "added": true
+          },
+          {
             "text": "∴ Shortest distance = 9 units",
             "style": "boxed"
           }
@@ -333,6 +389,14 @@
         "common_mistakes": [
           "Reporting a negative distance.",
           "Dividing the other way round."
+        ],
+        "lines_compact": [
+          "S.D = |(a−c)·(b×d)| / |b×d|",
+          "= 108 / 12",
+          {
+            "text": "∴ Shortest distance = 9 units",
+            "style": "boxed"
+          }
         ]
       }
     ]

@@ -46,7 +46,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.79, chapter 7 PRODUCT OF VECTORS, Long Answer question 8. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+2+1+1+2 split puts the heaviest weight on the cross product that produces the normal and on the closing Cartesian form, where all three points are checked. Paper position: Maths-1A Section C prints 3 long answers at 8 marks each and the student answers any 2; Product of Vectors is one of the units that can fill a Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.79, chapter 7 PRODUCT OF VECTORS, Long Answer question 8. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+2+1+1+2 split puts the heaviest weight on the cross product that produces the normal and on the closing Cartesian form, where all three points are checked. Paper position: Maths-1A Section C prints 3 long answers at 8 marks each and the student answers any 2; Product of Vectors is one of the units that can fill a Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find the equation of a plane through three given points.",
   "answer": {
@@ -109,6 +109,10 @@
         "margin_note": "Second mark. Both differences start from the same point A. Two vectors from different starting points would still lie in the plane, but starting from A keeps the arithmetic in one place.",
         "memory_tip": "Both vectors from the same point A, so the subtractions share one row.",
         "lines": [
+          {
+            "text": "(two edges from A lie in the plane)",
+            "added": true
+          },
           "AB = b − a = 2i + 2j + 3k",
           "AC = c − a = i + 3j + 6k"
         ],
@@ -138,6 +142,10 @@
         "common_mistakes": [
           "Using the position vectors themselves instead of the differences.",
           "Subtracting the wrong way round, which reverses both vectors."
+        ],
+        "lines_compact": [
+          "AB = b − a = 2i + 2j + 3k",
+          "AC = c − a = i + 3j + 6k"
         ]
       },
       {
@@ -150,9 +158,37 @@
         "memory_tip": "The cross of two vectors IN the plane is at right angles to the plane.",
         "lines": [
           {
+            "text": "(AB × AC is at right angles to both edges, so it",
+            "added": true
+          },
+          {
+            "text": "  is a normal to the plane)",
+            "style": "indent",
+            "added": true
+          },
+          {
             "text": "n = AB \\times AC = \\begin{vmatrix} i & j & k \\\\ 2 & 2 & 3 \\\\ 1 & 3 & 6 \\end{vmatrix}",
             "render": "katex",
             "style": "eq"
+          },
+          {
+            "text": "Expand along the top row, i, j, k (signs + − +):",
+            "added": true
+          },
+          {
+            "text": "  i: (2)(6) − (3)(3) = 3",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  j: (2)(6) − (3)(1) = 9, with a minus in front",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  k: (2)(3) − (2)(1) = 4",
+            "style": "indent",
+            "added": true
           },
           "= i(12 − 9) − j(12 − 3) + k(6 − 2)",
           "= 3i − 9j + 4k"
@@ -184,6 +220,15 @@
         "common_mistakes": [
           "Taking a dot product, which gives a number and no direction.",
           "Losing the minus on the j term."
+        ],
+        "lines_compact": [
+          {
+            "text": "n = AB \\times AC = \\begin{vmatrix} i & j & k \\\\ 2 & 2 & 3 \\\\ 1 & 3 & 6 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= i(12 − 9) − j(12 − 3) + k(6 − 2)",
+          "= 3i − 9j + 4k"
         ]
       },
       {
@@ -196,6 +241,10 @@
         "memory_tip": "Any of the three points works. Use the one with the smallest numbers.",
         "lines": [
           "a·n = (2i + 3j − k)·(3i − 9j + 4k)",
+          {
+            "text": "(2×3 + 3×(−9) + (−1)×4)",
+            "added": true
+          },
           "= 6 − 27 − 4 = −25"
         ],
         "recall": {
@@ -223,6 +272,10 @@
         "common_mistakes": [
           "Dotting the normal with AB instead of with a position vector, which gives 0.",
           "Sign slip on the −k component."
+        ],
+        "lines_compact": [
+          "a·n = (2i + 3j − k)·(3i − 9j + 4k)",
+          "= 6 − 27 − 4 = −25"
         ]
       },
       {
@@ -274,6 +327,10 @@
         "memory_tip": "Check all three points, not just one. A wrong normal can still fit a single point.",
         "lines": [
           "Put r = xi + yj + zk :",
+          {
+            "text": "(dot r = xi + yj + zk with n)",
+            "added": true
+          },
           "3x − 9y + 4z = −25",
           {
             "text": "3x − 9y + 4z + 25 = 0",
@@ -309,6 +366,17 @@
         "common_mistakes": [
           "Checking only the point already used to find the constant.",
           "Moving the −25 across without changing its sign."
+        ],
+        "lines_compact": [
+          "Put r = xi + yj + zk :",
+          "3x − 9y + 4z = −25",
+          {
+            "text": "3x − 9y + 4z + 25 = 0",
+            "style": "boxed"
+          },
+          "Check A: 6 − 27 − 4 + 25 = 0",
+          "Check B: 12 − 45 + 8 + 25 = 0",
+          "Check C: 9 − 54 + 20 + 25 = 0"
         ]
       }
     ]

@@ -51,7 +51,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.38 — LAQ chapter 4 Product of Vectors, answer 25. Printed appearances: AP 15,19. The only PROOF in this chapter — every other answer computes with numbers. The book calls it \"Lengthy but Easy\", and that is fair: there is no trick, only bookkeeping. ONE PRESENTATION CHANGE, made deliberately: the book writes out all nine component terms of each side in full, across most of a page. Those lines are several times wider than this page body, so each side is expanded to its i-component and the pattern for j and k stated in words. Same mathematics, same marked steps, no line that would be truncated.⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer (its page is set two questions to a page in two columns, which takes the margin those tags would occupy). It follows the shape of the split the same chapter DOES print for answer 23 on book p.37, weighting each cross product against the closing step. The book's chapter header carries ★★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Q22 is the Product of Vectors slot. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Expand (c·a)b − (c·b)a."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.38 — LAQ chapter 4 Product of Vectors, answer 25. Printed appearances: AP 15,19. The only PROOF in this chapter — every other answer computes with numbers. The book calls it \"Lengthy but Easy\", and that is fair: there is no trick, only bookkeeping. ONE PRESENTATION CHANGE, made deliberately: the book writes out all nine component terms of each side in full, across most of a page. Those lines are several times wider than this page body, so each side is expanded to its i-component and the pattern for j and k stated in words. Same mathematics, same marked steps, no line that would be truncated.⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer (its page is set two questions to a page in two columns, which takes the margin those tags would occupy). It follows the shape of the split the same chapter DOES print for answer 23 on book p.37, weighting each cross product against the closing step. The book's chapter header carries ★★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Q22 is the Product of Vectors slot. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Expand (c·a)b − (c·b)a. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this identity — say what you do to each side and how they meet.",
   "answer": {
@@ -119,6 +119,15 @@
             "render": "katex",
             "style": "eq"
           },
+          {
+            "text": "(expand along i, j, k with signs + − +; the j term",
+            "added": true
+          },
+          {
+            "text": "  −(a₁b₃ − a₃b₁) is written as +(a₃b₁ − a₁b₃))",
+            "style": "indent",
+            "added": true
+          },
           "= i(a₂b₃ − a₃b₂) + j(a₃b₁ − a₁b₃)",
           "   + k(a₁b₂ − a₂b₁)"
         ],
@@ -148,6 +157,15 @@
         "common_mistakes": [
           "Losing the minus on the j term rather than absorbing it into the bracket.",
           "Swapping the order of the subscripts inside a bracket."
+        ],
+        "lines_compact": [
+          {
+            "text": "a \\times b = \\begin{vmatrix} i & j & k \\\\ a_1 & a_2 & a_3 \\\\ b_1 & b_2 & b_3 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= i(a₂b₃ − a₃b₂) + j(a₃b₁ − a₁b₃)",
+          "   + k(a₁b₂ − a₂b₁)"
         ]
       },
       {
@@ -159,6 +177,15 @@
         "margin_note": "Two marks. Cross that result with c, then multiply out. Only the i component is written in full below — j and k follow exactly the same pattern with the letters rotated.",
         "memory_tip": "Writing all three components in full is correct but long. Write the i component in full and say j and k follow the same pattern with the letters rotated.",
         "lines": [
+          {
+            "text": "(for u × c the i component is u₂c₃ − u₃c₂; here",
+            "added": true
+          },
+          {
+            "text": "  u₂ = a₃b₁ − a₁b₃ and u₃ = a₁b₂ − a₂b₁)",
+            "style": "indent",
+            "added": true
+          },
           "Now cross with c. The i component of (a×b)×c is",
           "(a₃b₁ − a₁b₃)c₃ − (a₁b₂ − a₂b₁)c₂",
           "= a₃b₁c₃ − a₁b₃c₃ − a₁b₂c₂ + a₂b₁c₂",
@@ -192,6 +219,13 @@
         "common_mistakes": [
           "Dropping a term when multiplying out.",
           "Writing the j and k components by copying the i one instead of rotating the letters."
+        ],
+        "lines_compact": [
+          "Now cross with c. The i component of (a×b)×c is",
+          "(a₃b₁ − a₁b₃)c₃ − (a₁b₂ − a₂b₁)c₂",
+          "= a₃b₁c₃ − a₁b₃c₃ − a₁b₂c₂ + a₂b₁c₂",
+          "The j and k components follow the same pattern",
+          "with the letters rotated.   …(1)"
         ]
       },
       {
@@ -207,7 +241,11 @@
           "c·b = c₁b₁ + c₂b₂ + c₃b₃",
           "The i component of (c·a)b − (c·b)a is",
           "(c₁a₁ + c₂a₂ + c₃a₃)b₁ − (c₁b₁ + c₂b₂ + c₃b₃)a₁",
-          "The a₁b₁c₁ terms cancel, leaving four terms.   …(2)"
+          "The a₁b₁c₁ terms cancel, leaving four terms.   …(2)",
+          {
+            "text": "(the four terms: a₂b₁c₂ + a₃b₁c₃ − a₁b₂c₂ − a₁b₃c₃)",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -236,6 +274,13 @@
         "common_mistakes": [
           "Treating c·a as a vector.",
           "Missing the cancellation and being left with six terms that will not match."
+        ],
+        "lines_compact": [
+          "c·a = c₁a₁ + c₂a₂ + c₃a₃,",
+          "c·b = c₁b₁ + c₂b₂ + c₃b₃",
+          "The i component of (c·a)b − (c·b)a is",
+          "(c₁a₁ + c₂a₂ + c₃a₃)b₁ − (c₁b₁ + c₂b₂ + c₃b₃)a₁",
+          "The a₁b₁c₁ terms cancel, leaving four terms.   …(2)"
         ]
       },
       {

@@ -43,7 +43,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.64 — SAQ chapter 9 Product of Vectors, answer 61. Printed appearances: TS 15,20. The difference from answer 60 is that VERTICES are given, not edges — so three subtractions come first. The book notes \"Tetra means 4\", which is the count of vertices, not of edges.THE MARK SPLIT IS PRINTED in that book's margin as [1 Mark] on the edge vectors, [2 Marks] on the determinant and [1 Mark] on the volume — a sourced 1+2+1 — a sourced split, not an inference. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q13 is the Product of Vectors slot."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.64 — SAQ chapter 9 Product of Vectors, answer 61. Printed appearances: TS 15,20. The difference from answer 60 is that VERTICES are given, not edges — so three subtractions come first. The book notes \"Tetra means 4\", which is the count of vertices, not of edges.THE MARK SPLIT IS PRINTED in that book's margin as [1 Mark] on the edge vectors, [2 Marks] on the determinant and [1 Mark] on the volume — a sourced 1+2+1 — a sourced split, not an inference. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q13 is the Product of Vectors slot. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find the volume of a tetrahedron from its four vertices.",
   "answer": {
@@ -67,6 +67,7 @@
           },
           "OA = i + 2j + k, OB = 3i + 2j + 5k,",
           "OC = 2i − j, OD = −i + k",
+          "(each edge is the other vertex minus A)",
           "AB = OB − OA = 2i + 4k",
           "AC = OC − OA = i − 3j − k",
           "AD = OD − OA = −2i − 2j"
@@ -114,7 +115,40 @@
             "render": "katex",
             "style": "eq"
           },
+          {
+            "text": "Expand along R₁: each entry times the 2×2",
+            "added": true
+          },
+          {
+            "text": "  determinant left when its row and column",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  are deleted, with signs + − +:",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  + (2) × [(−3)(0) − (−1)(−2)]",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  − (0) × [(1)(0) − (−1)(−2)]",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  + (4) × [(1)(−2) − (−3)(−2)]",
+            "style": "indent",
+            "added": true
+          },
           "= 2(0 − 2) + 4(−2 − 6)",
+          {
+            "text": "(the middle term is 0 × (…), so it drops out)",
+            "added": true
+          },
           "= −4 − 32 = −36"
         ],
         "recall": {
@@ -142,6 +176,15 @@
         "common_mistakes": [
           "Assuming the negative determinant is a mistake and re-doing correct arithmetic.",
           "Forgetting the middle term is multiplied by 0 and still writing it out."
+        ],
+        "lines_compact": [
+          {
+            "text": "[AB\\ AC\\ AD] = \\begin{vmatrix} 2 & 0 & 4 \\\\ 1 & -3 & -1 \\\\ -2 & -2 & 0 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= 2(0 − 2) + 4(−2 − 6)",
+          "= −4 − 32 = −36"
         ]
       },
       {

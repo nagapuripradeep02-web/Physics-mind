@@ -34,7 +34,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.105 — from the book's separate \"STAR QUESTIONS PLUS\" bank, answer 161. That bank (book pp.98-111, answers 142-180) sits AFTER all the numbered chapters and is organised by chapter rather than forming part of any chapter's own inventory; it is authored into this unit because that is where the question belongs on the paper (founder decision 2026-08-22). SECTION: classed SAQ on its length and shape. The bank prints no mark cut, so this classification is OURS. Printed appearances: none — this answer carries no year tag. A general proof with no numbers. The cyclic sum on the left is not obviously an area — expanding (b−a)×(c−a) is what turns one into the other. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — the bank prints no [N Marks] tags anywhere. The shapes used follow the splits the book DOES print elsewhere: 1+1 for a 2-mark VSAQ (answers 100, 101 on book p.82), 1+1+1+1 or 1+2+1 for a 4-mark SAQ (answers 58, 59 on p.63 and 61 on p.64), and the granular split for a 7-mark LAQ (answer 32 on p.44). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.105 — from the book's separate \"STAR QUESTIONS PLUS\" bank, answer 161. That bank (book pp.98-111, answers 142-180) sits AFTER all the numbered chapters and is organised by chapter rather than forming part of any chapter's own inventory; it is authored into this unit because that is where the question belongs on the paper (founder decision 2026-08-22). SECTION: classed SAQ on its length and shape. The bank prints no mark cut, so this classification is OURS. Printed appearances: none — this answer carries no year tag. A general proof with no numbers. The cyclic sum on the left is not obviously an area — expanding (b−a)×(c−a) is what turns one into the other. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — the bank prints no [N Marks] tags anywhere. The shapes used follow the splits the book DOES print elsewhere: 1+1 for a 2-mark VSAQ (answers 100, 101 on book p.82), 1+1+1+1 or 1+2+1 for a 4-mark SAQ (answers 58, 59 on p.63 and 61 on p.64), and the granular split for a 7-mark LAQ (answer 32 on p.44). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — name each move in order.",
   "answer": {
@@ -57,6 +57,7 @@
             "style": "heading"
           },
           "The position vectors are OA = a, OB = b, OC = c.",
+          "(each side vector is end point minus start point)",
           "AB = OB − OA = b − a",
           "AC = OC − OA = c − a"
         ],
@@ -98,6 +99,10 @@
         "memory_tip": "Area = ½|AB × AC|, so TWICE the area is |AB × AC| — which is what is being asked about.",
         "lines": [
           "Area of △ABC = ½ |AB × AC|",
+          {
+            "text": "(multiply both sides by 2)",
+            "added": true
+          },
           "⇒ 2(Area of △ABC) = |AB × AC|",
           "   = |(b − a) × (c − a)|"
         ],
@@ -127,6 +132,11 @@
         "common_mistakes": [
           "Forgetting the ½ in the area formula.",
           "Proving the area rather than twice the area."
+        ],
+        "lines_compact": [
+          "Area of △ABC = ½ |AB × AC|",
+          "⇒ 2(Area of △ABC) = |AB × AC|",
+          "   = |(b − a) × (c − a)|"
         ]
       },
       {
@@ -139,8 +149,16 @@
         "memory_tip": "Expand like brackets but keep the ORDER — cross products do not commute. The a × a term is zero.",
         "lines": [
           "(b − a) × (c − a)",
+          {
+            "text": "(the cross product distributes over subtraction)",
+            "added": true
+          },
           "= b×c − b×a − a×c + a×a",
           "= b×c − b×a − a×c + 0   [∵ a×a = 0]",
+          {
+            "text": "(swapping the order of a cross product changes its sign)",
+            "added": true
+          },
           "= b×c + a×b + c×a   [∵ −b×a = a×b, −a×c = c×a]",
           {
             "text": "∴ |(a×b) + (b×c) + (c×a)| = 2(Area of △ABC)",
@@ -174,6 +192,16 @@
         "common_mistakes": [
           "Treating the cross product as commutative and cancelling terms.",
           "Forgetting that a × a = 0."
+        ],
+        "lines_compact": [
+          "(b − a) × (c − a)",
+          "= b×c − b×a − a×c + a×a",
+          "= b×c − b×a − a×c + 0   [∵ a×a = 0]",
+          "= b×c + a×b + c×a   [∵ −b×a = a×b, −a×c = c×a]",
+          {
+            "text": "∴ |(a×b) + (b×c) + (c×a)| = 2(Area of △ABC)",
+            "style": "boxed"
+          }
         ]
       }
     ]

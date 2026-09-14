@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 7 PRODUCT OF VECTORS, Short Answer question 40, book p.75. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. Computed twice. Component route, the route on the page: 2a + b = 7i + 2j − 4k and a + 2b = 8i − 2j + k; their dot product is 56 − 4 − 4 = 48; |2a + b| = √(49 + 4 + 16) = √69 and |a + 2b| = √(64 + 4 + 1) = √69; so cos θ = 48/69 = 16/23. Symbolic route, done independently from |a|² = 17, |b|² = 17 and a·b = 6 − 4 − 6 = −4: |2a + b|² = 4(17) + 4(−4) + 17 = 69; |a + 2b|² = 17 + 4(−4) + 4(17) = 69; (2a + b)·(a + 2b) = 2(17) + 5(−4) + 2(17) = 34 − 20 + 34 = 48. Both routes give 48 and 69 twice, so cos θ = 16/23 ≈ 0.6957 and θ = Cos⁻¹(16/23) ≈ 45.92°. The two combined vectors happening to have equal length is a real feature of these numbers, not an arithmetic slip: |a| = |b| = √17, so 2a + b and a + 2b are mirror images of each other. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 split rewards the four separate acts: forming the two combinations, the dot product, the two magnitudes, and the angle. Paper position: Maths-1A Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern; Product of Vectors carries a Section B slot on the paper and also appears in Section C. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 7 PRODUCT OF VECTORS, Short Answer question 40, book p.75. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. Computed twice. Component route, the route on the page: 2a + b = 7i + 2j − 4k and a + 2b = 8i − 2j + k; their dot product is 56 − 4 − 4 = 48; |2a + b| = √(49 + 4 + 16) = √69 and |a + 2b| = √(64 + 4 + 1) = √69; so cos θ = 48/69 = 16/23. Symbolic route, done independently from |a|² = 17, |b|² = 17 and a·b = 6 − 4 − 6 = −4: |2a + b|² = 4(17) + 4(−4) + 17 = 69; |a + 2b|² = 17 + 4(−4) + 4(17) = 69; (2a + b)·(a + 2b) = 2(17) + 5(−4) + 2(17) = 34 − 20 + 34 = 48. Both routes give 48 and 69 twice, so cos θ = 16/23 ≈ 0.6957 and θ = Cos⁻¹(16/23) ≈ 45.92°. The two combined vectors happening to have equal length is a real feature of these numbers, not an arithmetic slip: |a| = |b| = √17, so 2a + b and a + 2b are mirror images of each other. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 split rewards the four separate acts: forming the two combinations, the dot product, the two magnitudes, and the angle. Paper position: Maths-1A Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern; Product of Vectors carries a Section B slot on the paper and also appears in Section C. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find the angle between two combinations of a and b — name each move in order.",
   "answer": {
@@ -61,7 +61,9 @@
             "style": "heading"
           },
           "a = 2i + 2j − 3k,  b = 3i − 2j + 2k",
+          "(2a doubles each component of a)",
           "2a = 4i + 4j − 6k",
+          "(add matching components)",
           "2a + b = 7i + 2j − 4k",
           "2b = 6i − 4j + 4k",
           "a + 2b = 8i − 2j + k"
@@ -104,6 +106,10 @@
         "memory_tip": "Name the two combinations u and v so the formula stays short.",
         "lines": [
           "Let u = 2a + b and v = a + 2b.",
+          {
+            "text": "(multiply matching components and add)",
+            "added": true
+          },
           "u·v = 7(8) + 2(−2) + (−4)(1)",
           "    = 56 − 4 − 4",
           "    = 48"
@@ -134,6 +140,12 @@
         "common_mistakes": [
           "Adding the two negative terms as +4 each.",
           "Taking a cross product, which does not give an angle directly."
+        ],
+        "lines_compact": [
+          "Let u = 2a + b and v = a + 2b.",
+          "u·v = 7(8) + 2(−2) + (−4)(1)",
+          "    = 56 − 4 − 4",
+          "    = 48"
         ]
       },
       {
@@ -145,6 +157,10 @@
         "margin_note": "Third mark. Both come out as √69 — that is genuine here, because |a| and |b| are both √17. Do not simplify √69 further; 69 = 3 × 23 has no square factor.",
         "memory_tip": "Both magnitudes are √69 here, so the product underneath is just 69.",
         "lines": [
+          {
+            "text": "(square each component, add, then take the square root)",
+            "added": true
+          },
           "|u| = √(7² + 2² + (−4)²)",
           "    = √(49 + 4 + 16) = √69",
           "|v| = √(8² + (−2)² + 1²)",
@@ -176,6 +192,12 @@
         "common_mistakes": [
           "Deciding the two equal magnitudes must be a slip and changing one of them; the equality is genuine here.",
           "Squaring −4 as −16."
+        ],
+        "lines_compact": [
+          "|u| = √(7² + 2² + (−4)²)",
+          "    = √(49 + 4 + 16) = √69",
+          "|v| = √(8² + (−2)² + 1²)",
+          "    = √(64 + 4 + 1) = √69"
         ]
       },
       {
@@ -190,6 +212,10 @@
           "Let θ be the angle between u and v.",
           "cos θ = (u·v)/(|u||v|)",
           "  = 48/(√69 × √69)",
+          {
+            "text": "(√69 × √69 = 69; divide 48 and 69 by 3)",
+            "added": true
+          },
           "  = 48/69 = 16/23",
           {
             "text": "∴ θ = Cos⁻¹(16/23)",
@@ -223,6 +249,17 @@
         "common_mistakes": [
           "Writing √69 × √69 as √138.",
           "Leaving 48/69 uncancelled, which is not wrong but loses the simplest form."
+        ],
+        "lines_compact": [
+          "Let θ be the angle between u and v.",
+          "cos θ = (u·v)/(|u||v|)",
+          "  = 48/(√69 × √69)",
+          "  = 48/69 = 16/23",
+          {
+            "text": "∴ θ = Cos⁻¹(16/23)",
+            "style": "boxed"
+          },
+          "16/23 ≈ 0.696, so θ ≈ 46°."
         ]
       }
     ]
