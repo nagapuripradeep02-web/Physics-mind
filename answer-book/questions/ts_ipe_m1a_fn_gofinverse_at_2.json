@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.10, chapter 2 FUNCTIONS, Very Short Answer question 8(i). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape gives one mark to finding f⁻¹(2) and one to evaluating g at that number, because those are the two places a student can go wrong. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.10, chapter 2 FUNCTIONS, Very Short Answer question 8(i). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape gives one mark to finding f⁻¹(2) and one to evaluating g at that number, because those are the two places a student can go wrong. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find (gof⁻¹)(2) — what f⁻¹(2) means, and what you do with it.",
   "answer": {
@@ -53,6 +53,7 @@
             "style": "heading"
           },
           "(gof⁻¹)(2) = g[f⁻¹(2)]",
+          "(f is one one and onto, so f⁻¹ exists)",
           "Let f⁻¹(2) = a. Then f(a) = 2.",
           "3a − 2 = 2 ⇒ 3a = 4 ⇒ a = 4/3",
           "∴ f⁻¹(2) = 4/3"
@@ -97,6 +98,10 @@
         "lines": [
           "Now apply g to 4/3:",
           "g(4/3) = (4/3)² + 1 = 16/9 + 1",
+          {
+            "text": "(1 = 9/9, so add over 9)",
+            "added": true
+          },
           "= 16/9 + 9/9 = 25/9",
           {
             "text": "∴ (gof⁻¹)(2) = 25/9",
@@ -129,6 +134,15 @@
         "common_mistakes": [
           "Squaring only the numerator, writing 16/3 in place of 16/9.",
           "Stopping at 16/9 and forgetting the + 1 that belongs to g."
+        ],
+        "lines_compact": [
+          "Now apply g to 4/3:",
+          "g(4/3) = (4/3)² + 1 = 16/9 + 1",
+          "= 16/9 + 9/9 = 25/9",
+          {
+            "text": "∴ (gof⁻¹)(2) = 25/9",
+            "style": "boxed"
+          }
         ]
       }
     ]

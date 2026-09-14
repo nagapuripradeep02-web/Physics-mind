@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.7, chapter 1 SETS & RELATIONS, Very Short Answer question 20. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sets and Relations is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The question prints three parts; all three are answered inside this one card, since together they are a single 2-mark answer."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.7, chapter 1 SETS & RELATIONS, Very Short Answer question 20. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sets and Relations is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The question prints three parts; all three are answered inside this one card, since together they are a single 2-mark answer. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would work this out — say what you do before pairing anything, and what parts (i) and (iii) should have in common.",
   "answer": {
@@ -52,8 +52,23 @@
             "style": "heading"
           },
           "A = {2, 3, 4},   B = {4, 5},   C = {5, 6, 7}",
+          "(B ∪ C: every number in B or C; only 5 is in both)",
           "B ∪ C = {4, 5, 6, 7}   and   B ∩ C = {5}",
-          "(i) A × (B ∪ C) = {(2,4), (2,5), (2,6), (2,7), (3,4), (3,5), (3,6), (3,7), (4,4), (4,5), (4,6), (4,7)}",
+          "(pair each of 2, 3, 4 with each of 4, 5, 6, 7:",
+          {
+            "text": "  3 × 4 = 12 pairs)",
+            "style": "indent"
+          },
+          "(i) A × (B ∪ C) = {(2,4), (2,5), (2,6), (2,7),",
+          {
+            "text": "(3,4), (3,5), (3,6), (3,7),",
+            "style": "indent"
+          },
+          {
+            "text": "(4,4), (4,5), (4,6), (4,7)}",
+            "style": "indent"
+          },
+          "(pair each of 2, 3, 4 with 5)",
           "(ii) A × (B ∩ C) = {(2,5), (3,5), (4,5)}"
         ],
         "recall": {
@@ -95,11 +110,36 @@
         "mark_note": "Answer",
         "margin_note": "Second mark. The pairs (2,5), (3,5) and (4,5) are in both products, so they are written once in the union. The result must match part (i) exactly.",
         "lines": [
-          "(iii) A × B = {(2,4), (2,5), (3,4), (3,5), (4,4), (4,5)}",
-          "A × C = {(2,5), (2,6), (2,7), (3,5), (3,6), (3,7), (4,5), (4,6), (4,7)}",
-          "Join the two, writing each pair once:",
           {
-            "text": "∴ (A × B) ∪ (A × C) = {(2,4), (2,5), (2,6), (2,7), (3,4), (3,5), (3,6), (3,7), (4,4), (4,5), (4,6), (4,7)} = A × (B ∪ C)",
+            "text": "(pair each of 2, 3, 4 with 4 and with 5: 6 pairs)",
+            "added": true
+          },
+          "(iii) A × B = {(2,4), (2,5), (3,4), (3,5), (4,4), (4,5)}",
+          {
+            "text": "(pair each of 2, 3, 4 with 5, 6 and 7: 9 pairs)",
+            "added": true
+          },
+          "A × C = {(2,5), (2,6), (2,7), (3,5), (3,6), (3,7),",
+          {
+            "text": "(4,5), (4,6), (4,7)}",
+            "style": "indent"
+          },
+          {
+            "text": "((2,5), (3,5), (4,5) are in both, so 6 + 9 − 3 = 12)",
+            "added": true
+          },
+          "Join the two, writing each pair once:",
+          "(A × B) ∪ (A × C) = {(2,4), (2,5), (2,6), (2,7),",
+          {
+            "text": "(3,4), (3,5), (3,6), (3,7), (4,4), (4,5), (4,6), (4,7)}",
+            "style": "indent"
+          },
+          {
+            "text": "(the same 12 pairs as in part (i))",
+            "added": true
+          },
+          {
+            "text": "∴ (A × B) ∪ (A × C) = A × (B ∪ C)",
             "style": "boxed"
           }
         ],
@@ -132,6 +172,24 @@
           "Listing (2,5), (3,5) and (4,5) twice, once from each product.",
           "Stopping after A × B and A × C without taking their union.",
           "Getting 15 pairs by adding the two counts 6 + 9 instead of removing the repeats."
+        ],
+        "lines_compact": [
+          "(iii) A × B = {(2,4), (2,5), (3,4), (3,5), (4,4), (4,5)}",
+          "A × C = {(2,5), (2,6), (2,7), (3,5), (3,6), (3,7),",
+          {
+            "text": "(4,5), (4,6), (4,7)}",
+            "style": "indent"
+          },
+          "Join the two, writing each pair once:",
+          "(A × B) ∪ (A × C) = {(2,4), (2,5), (2,6), (2,7),",
+          {
+            "text": "(3,4), (3,5), (3,6), (3,7), (4,4), (4,5), (4,6), (4,7)}",
+            "style": "indent"
+          },
+          {
+            "text": "∴ (A × B) ∪ (A × C) = A × (B ∪ C)",
+            "style": "boxed"
+          }
         ]
       }
     ]

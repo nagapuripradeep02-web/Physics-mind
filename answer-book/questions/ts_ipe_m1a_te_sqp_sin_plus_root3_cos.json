@@ -28,7 +28,7 @@
       "marks": 1
     },
     {
-      "label": "Collapse into one cosine",
+      "label": "Combine into one cosine",
       "marks": 1
     },
     {
@@ -43,7 +43,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.110 — from the book's separate \"STAR QUESTIONS PLUS\" bank, answer 175. That bank (book pp.98-111, answers 142-180) sits AFTER all the numbered chapters and is organised by chapter rather than forming part of any chapter's own inventory; it is authored into this unit because that is where the question belongs on the paper (founder decision 2026-08-22). SECTION: Trigonometric Equations is an SAQ-ONLY unit — the paper gives it only Section B — so the section is fixed by the unit, not inferred. Printed appearances: TS 18. The standard a sin x + b cos x = c route: divide by √(a² + b²) so the coefficients become a cosine and a sine of the SAME angle, then collapse to one cosine. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — the bank prints no [N Marks] tags anywhere. The shapes used follow the splits the book DOES print elsewhere: 1+1 for a 2-mark VSAQ (answers 100, 101 on book p.82), 1+1+1+1 or 1+2+1 for a 4-mark SAQ (answers 58, 59 on p.63 and 61 on p.64), and the granular split for a 7-mark LAQ (answer 32 on p.44). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.110 — from the book's separate \"STAR QUESTIONS PLUS\" bank, answer 175. That bank (book pp.98-111, answers 142-180) sits AFTER all the numbered chapters and is organised by chapter rather than forming part of any chapter's own inventory; it is authored into this unit because that is where the question belongs on the paper (founder decision 2026-08-22). SECTION: Trigonometric Equations is an SAQ-ONLY unit — the paper gives it only Section B — so the section is fixed by the unit, not inferred. Printed appearances: TS 18. The standard a sin x + b cos x = c route: divide by √(a² + b²) so the coefficients become a cosine and a sine of the SAME angle, then collapse to one cosine. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — the bank prints no [N Marks] tags anywhere. The shapes used follow the splits the book DOES print elsewhere: 1+1 for a 2-mark VSAQ (answers 100, 101 on book p.82), 1+1+1+1 or 1+2+1 for a 4-mark SAQ (answers 58, 59 on p.63 and 61 on p.64), and the granular split for a 7-mark LAQ (answer 32 on p.44). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — name each move in order.",
   "answer": {
@@ -58,13 +58,14 @@
         "label": "Divide by √(a² + b²)",
         "marks": 1,
         "mark_note": "Normalise",
-        "margin_note": "First mark. Here a = 1 and b = √3, so √(1 + 3) = 2. Dividing by 2 makes both coefficients at most 1, so they can be a sine and a cosine.",
+        "margin_note": "First mark. Here a = 1 and b = √3, so √(1 + 3) = 2. Dividing by 2 makes the squares of the coefficients add to 1 (1/4 + 3/4 = 1), so they are the sine and cosine of one angle.",
         "memory_tip": "a = 1 and b = √3, so √(1 + 3) = 2. Divide BOTH sides by 2, not by 4.",
         "lines": [
           {
             "text": "Sol:",
             "style": "heading"
           },
+          "(a = 1 and b = √3)",
           "Dividing both sides by √(1² + (√3)²) = √4 = 2:",
           "(1/2) sin x + (√3/2) cos x = √2/2"
         ],
@@ -98,7 +99,7 @@
       {
         "id": "s2_collapse_into_one_cosine",
         "kind": "equation",
-        "label": "Collapse into one cosine",
+        "label": "Combine into one cosine",
         "marks": 1,
         "mark_note": "Single ratio",
         "margin_note": "Second mark. ½ = sin 30° and √3/2 = cos 30°, so the left side is cos x cos(π/6) + sin x sin(π/6) = cos(x − π/6).",
@@ -106,7 +107,15 @@
         "lines": [
           "½ = sin(π/6) and √3/2 = cos(π/6), so",
           "sin x sin(π/6) + cos x cos(π/6) = √2/2",
+          {
+            "text": "(reorder the terms; √2/2 = 1/√2)",
+            "added": true
+          },
           "⇒ cos x cos(π/6) + sin x sin(π/6) = 1/√2",
+          {
+            "text": "(cos A cos B + sin A sin B = cos(A − B))",
+            "added": true
+          },
           "⇒ cos(x − π/6) = 1/√2"
         ],
         "recall": {
@@ -134,6 +143,12 @@
         "common_mistakes": [
           "Matching the sine pattern and getting sin(x + π/6).",
           "Writing √2/2 as √2 rather than 1/√2."
+        ],
+        "lines_compact": [
+          "½ = sin(π/6) and √3/2 = cos(π/6), so",
+          "sin x sin(π/6) + cos x cos(π/6) = √2/2",
+          "⇒ cos x cos(π/6) + sin x sin(π/6) = 1/√2",
+          "⇒ cos(x − π/6) = 1/√2"
         ]
       },
       {
@@ -187,7 +202,15 @@
         "lines": [
           "For cos θ = cos α, the general solution is",
           "θ = 2nπ ± α, n ∈ Z",
+          {
+            "text": "(here the angle is x − π/6 and α = π/4)",
+            "added": true
+          },
           "⇒ x − π/6 = 2nπ ± π/4",
+          {
+            "text": "(add π/6 to both sides)",
+            "added": true
+          },
           {
             "text": "∴ x = 2nπ ± π/4 + π/6, n ∈ Z",
             "style": "boxed"
@@ -215,10 +238,19 @@
             "pi by six"
           ]
         },
-        "why": "The cosine form uses 2nπ ± α; the sine form uses nπ + (−1)ⁿα. Using the wrong one here gives a set of angles that does not solve the equation.",
+        "why": "The cosine form uses 2nπ ± α; the sine form uses nπ + (−1)ⁿα. Using the wrong one here gives a set that contains angles which do not solve the equation and misses some that do.",
         "common_mistakes": [
           "Using the sine general solution.",
           "Forgetting to add π/6 back."
+        ],
+        "lines_compact": [
+          "For cos θ = cos α, the general solution is",
+          "θ = 2nπ ± α, n ∈ Z",
+          "⇒ x − π/6 = 2nπ ± π/4",
+          {
+            "text": "∴ x = 2nπ ± π/4 + π/6, n ∈ Z",
+            "style": "boxed"
+          }
         ]
       }
     ]

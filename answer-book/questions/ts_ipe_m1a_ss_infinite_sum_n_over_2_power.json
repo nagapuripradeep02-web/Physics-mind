@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.23, chapter 3 SEQUENCES & SERIES, Very Short Answer question 19. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sequences and Series is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.23, chapter 3 SEQUENCES & SERIES, Very Short Answer question 19. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sequences and Series is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say why a/(1 − r) cannot be used straight away, and what you do instead.",
   "answer": {
@@ -53,8 +53,11 @@
             "style": "heading"
           },
           "Let S = 1 + 2/2 + 3/2² + 4/2³ + … to ∞",
-          "The numerators 1, 2, 3, 4, … are in A.P. and the denominators are in G.P. of ratio 1/2",
+          "The numerators 1, 2, 3, 4, … are in A.P. and the",
+          "denominators 1, 2, 2², … are in G.P. of ratio 2",
+          "(multiply every term of S by 1/2)",
           "(1/2)S = 1/2 + 2/2² + 3/2³ + …",
+          "(subtract term by term, lining up equal powers of 2)",
           "S − (1/2)S = 1 + (2 − 1)/2 + (3 − 2)/2² + (4 − 3)/2³ + …"
         ],
         "recall": {
@@ -79,10 +82,10 @@
             "not a G P"
           ]
         },
-        "why": "The terms are not in G.P., so a/(1 − r) cannot be applied to the series as it stands. Shifting by one place and subtracting makes every numerator difference equal to 1, and what is left IS a geometric series.",
+        "why": "The terms are not in G.P., so a/(1 − r) cannot be applied to the series as written. Shifting by one place and subtracting makes every numerator difference equal to 1, and what is left IS a geometric series.",
         "common_mistakes": [
           "Treating the series as a G.P. with r = 1/2 and giving 2.",
-          "Multiplying by 2 instead of by the ratio 1/2, which does not line the terms up."
+          "Multiplying by 1/2 but subtracting terms that do not have the same power of 2, so the numerator differences do not all come out as 1."
         ]
       },
       {
@@ -92,11 +95,23 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. The last move — multiplying by 2 — is the one most often missed. What the subtraction gives is S/2, not S.",
-        "memory_tip": "After the subtraction you are holding half of S, so double it at the end.",
+        "memory_tip": "After the subtraction the left side is (1/2)S, so multiply by 2 at the end.",
         "lines": [
+          {
+            "text": "(each numerator difference is 1)",
+            "added": true
+          },
           "(1/2)S = 1 + 1/2 + 1/2² + 1/2³ + … to ∞",
+          {
+            "text": "(S∞ = a/(1 − r) with a = 1 and r = 1/2)",
+            "added": true
+          },
           "This is a G.P. with a = 1 and r = 1/2, and |r| < 1, so",
           "(1/2)S = 1/(1 − 1/2) = 1/(1/2) = 2",
+          {
+            "text": "(multiply both sides by 2)",
+            "added": true
+          },
           {
             "text": "∴ S = 2 × 2 = 4",
             "style": "boxed"
@@ -128,6 +143,15 @@
         "common_mistakes": [
           "Forgetting that the left side is (1/2)S and giving 2 as the final answer.",
           "Dropping the leading 1 when writing out the series that is left."
+        ],
+        "lines_compact": [
+          "(1/2)S = 1 + 1/2 + 1/2² + 1/2³ + … to ∞",
+          "This is a G.P. with a = 1 and r = 1/2, and |r| < 1, so",
+          "(1/2)S = 1/(1 − 1/2) = 1/(1/2) = 2",
+          {
+            "text": "∴ S = 2 × 2 = 4",
+            "style": "boxed"
+          }
         ]
       }
     ]

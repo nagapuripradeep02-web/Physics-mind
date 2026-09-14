@@ -34,7 +34,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.72, chapter 7 PRODUCT OF VECTORS, Short Answer question 23(i). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 2+1+1 split gives half the marks to the determinant, because the stem asks for a × b in its own right, and separates the magnitude from the final division so that the ± is written where the student can see it earn a mark. ANSWERS ARE DETERMINATE, not a method sketch: a × b = −26i − 9j + 5k and the unit vectors are ± (−26i − 9j + 5k)/√782. VERIFIED: the cross product dotted with a = (2, −3, 5) gives −52 + 27 + 25 = 0 and dotted with b = (−1, 4, 2) gives 26 − 36 + 10 = 0, so it is perpendicular to both; its squared length is 676 + 81 + 25 = 782, so the squared length of the reported unit vector is 782/782 = 1 exactly. 782 = 2 × 17 × 23 carries no square factor, so √782 does not simplify. BOTH SIGNS ARE ANSWERS: a plane has two unit normals, one on each side, and the card says so on the line the student reads. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Product of Vectors supplies at least one of those eight on almost every paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.72, chapter 7 PRODUCT OF VECTORS, Short Answer question 23(i). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 2+1+1 split gives half the marks to the determinant, because the stem asks for a × b in its own right, and separates the magnitude from the final division so that the ± is written where the student can see it earn a mark. ANSWERS ARE DETERMINATE, not a method sketch: a × b = −26i − 9j + 5k and the unit vectors are ± (−26i − 9j + 5k)/√782. VERIFIED: the cross product dotted with a = (2, −3, 5) gives −52 + 27 + 25 = 0 and dotted with b = (−1, 4, 2) gives 26 − 36 + 10 = 0, so it is perpendicular to both; its squared length is 676 + 81 + 25 = 782, so the squared length of the reported unit vector is 782/782 = 1 exactly. 782 = 2 × 17 × 23 carries no square factor, so √782 does not simplify. BOTH SIGNS ARE ANSWERS: a plane has two unit normals, one on each side, and the card says so on the line the student reads. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Product of Vectors supplies at least one of those eight on almost every paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would answer both parts — say why the final answer carries two signs.",
   "answer": {
@@ -61,6 +61,19 @@
             "text": "a \\times b = \\begin{vmatrix} i & j & k \\\\ 2 & -3 & 5 \\\\ -1 & 4 & 2 \\end{vmatrix}",
             "render": "katex",
             "style": "eq"
+          },
+          "Expand along the top row, i, j, k (signs + − +):",
+          {
+            "text": "  i: (−3)(2) − (5)(4) = −26",
+            "style": "indent"
+          },
+          {
+            "text": "  j: (2)(2) − (5)(−1) = 9, with a minus in front",
+            "style": "indent"
+          },
+          {
+            "text": "  k: (2)(4) − (−3)(−1) = 5",
+            "style": "indent"
           },
           "= i(−6 − 20) − j(4 + 5) + k(8 − 3)",
           "= −26i − 9j + 5k"
@@ -104,6 +117,10 @@
         "lines": [
           "Check: (a × b)·a = −52 + 27 + 25 = 0",
           "and (a × b)·b = 26 − 36 + 10 = 0",
+          {
+            "text": "(a × b is at right angles to both, so both dots are 0)",
+            "added": true
+          },
           "|a × b| = √(676 + 81 + 25)",
           {
             "text": "= √782",
@@ -136,6 +153,15 @@
         "common_mistakes": [
           "Adding the components instead of squaring them.",
           "Trying to simplify √782, which has no square factor."
+        ],
+        "lines_compact": [
+          "Check: (a × b)·a = −52 + 27 + 25 = 0",
+          "and (a × b)·b = 26 − 36 + 10 = 0",
+          "|a × b| = √(676 + 81 + 25)",
+          {
+            "text": "= √782",
+            "style": "indent"
+          }
         ]
       },
       {

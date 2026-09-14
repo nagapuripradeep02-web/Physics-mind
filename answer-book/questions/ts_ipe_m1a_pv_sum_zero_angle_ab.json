@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 7 PRODUCT OF VECTORS, Short Answer question 8, book p.68. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. Computed twice. Symbolically: c = −(a + b) gives |c|² = |a|² + |b|² + 2(a·b), so 49 = 9 + 25 + 2(a·b), a·b = 15/2, and cos θ = (15/2)/(3 × 5) = 1/2, θ = 60° = π/3. Checked a second way by direct arithmetic on concrete vectors: with a = (3, 0) and b at 60° to it, b = (2.5, 4.330127); then a + b = (5.5, 4.330127) and |a + b| = √(30.25 + 18.75) = √49 = 7, which is exactly |c|, so the 60° answer reproduces the given data. Note the angle asked for is between a and b themselves, not between a and the side of the triangle opposite them; the interior angle of the triangle formed by the three vectors placed head to tail is the supplement, 120°. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 split rewards the four separate acts: isolating c, expanding the square, solving for the dot product, and converting it to an angle. Paper position: Maths-1A Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern; Product of Vectors carries a Section B slot on the paper and also appears in Section C. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 7 PRODUCT OF VECTORS, Short Answer question 8, book p.68. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. Computed twice. Symbolically: c = −(a + b) gives |c|² = |a|² + |b|² + 2(a·b), so 49 = 9 + 25 + 2(a·b), a·b = 15/2, and cos θ = (15/2)/(3 × 5) = 1/2, θ = 60° = π/3. Checked a second way by direct arithmetic on concrete vectors: with a = (3, 0) and b at 60° to it, b = (2.5, 4.330127); then a + b = (5.5, 4.330127) and |a + b| = √(30.25 + 18.75) = √49 = 7, which is exactly |c|, so the 60° answer reproduces the given data. Note the angle asked for is between a and b themselves, not between a and the side of the triangle opposite them; the interior angle of the triangle formed by the three vectors placed head to tail is the supplement, 120°. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 split rewards the four separate acts: isolating c, expanding the square, solving for the dot product, and converting it to an angle. Paper position: Maths-1A Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern; Product of Vectors carries a Section B slot on the paper and also appears in Section C. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would get the angle between a and b when the three vectors add to zero — name each move in order.",
   "answer": {
@@ -61,8 +61,10 @@
             "style": "heading"
           },
           "a + b + c = 0",
+          "(take a + b to the other side)",
           "⇒ c = −(a + b)",
           "Taking magnitudes on both sides,",
+          "(|−v| = |v|)",
           "|c| = |a + b|",
           "∴ |c|² = |a + b|²"
         ],
@@ -100,11 +102,19 @@
         "label": "Expand |a + b|²",
         "marks": 1,
         "mark_note": "Expansion",
-        "margin_note": "Second mark. The minus sign disappears on squaring, because |−v|² = |v|². Substitute the three given lengths at once.",
+        "margin_note": "Second mark. Expand |a + b|² as (a + b)·(a + b); the cross terms give 2(a·b). Substitute the three given lengths at once.",
         "memory_tip": "|a + b|² = |a|² + |b|² + 2(a·b) — the same shape as (x + y)².",
         "lines": [
+          {
+            "text": "(|a + b|² = (a + b)·(a + b), and a·b = b·a)",
+            "added": true
+          },
           "|a + b|² = |a|² + |b|² + 2(a·b)",
           "So |c|² = |a|² + |b|² + 2(a·b)",
+          {
+            "text": "(put |c| = 7, |a| = 3, |b| = 5)",
+            "added": true
+          },
           "7² = 3² + 5² + 2(a·b)",
           "49 = 9 + 25 + 2(a·b)"
         ],
@@ -134,6 +144,12 @@
         "common_mistakes": [
           "Writing |a + b|² = |a|² + |b|² and dropping the 2(a·b) term.",
           "Squaring the lengths as 3 × 2 = 6 instead of 3² = 9."
+        ],
+        "lines_compact": [
+          "|a + b|² = |a|² + |b|² + 2(a·b)",
+          "So |c|² = |a|² + |b|² + 2(a·b)",
+          "7² = 3² + 5² + 2(a·b)",
+          "49 = 9 + 25 + 2(a·b)"
         ]
       },
       {
@@ -145,8 +161,16 @@
         "margin_note": "Third mark. Simple rearrangement. Keep 15/2 as a fraction — it cancels cleanly against 15 in the next step.",
         "memory_tip": "Keep a·b as the fraction 15/2; it cancels against |a||b| = 15.",
         "lines": [
+          {
+            "text": "(9 + 25 = 34)",
+            "added": true
+          },
           "49 = 34 + 2(a·b)",
           "2(a·b) = 49 − 34 = 15",
+          {
+            "text": "(divide by 2)",
+            "added": true
+          },
           "∴ a·b = 15/2"
         ],
         "recall": {
@@ -175,6 +199,11 @@
         "common_mistakes": [
           "Forgetting to divide by 2 and taking a·b as 15.",
           "Subtracting in the wrong order and getting a negative value."
+        ],
+        "lines_compact": [
+          "49 = 34 + 2(a·b)",
+          "2(a·b) = 49 − 34 = 15",
+          "∴ a·b = 15/2"
         ]
       },
       {
@@ -189,7 +218,15 @@
           "Let θ be the angle between a and b.",
           "cos θ = (a·b)/(|a||b|)",
           "  = (15/2)/(3 × 5)",
+          {
+            "text": "(3 × 5 = 15)",
+            "added": true
+          },
           "  = (15/2)/15 = 1/2",
+          {
+            "text": "(cos 60° = 1/2, and θ lies between 0° and 180°)",
+            "added": true
+          },
           {
             "text": "∴ θ = 60° = π/3",
             "style": "boxed"
@@ -221,6 +258,16 @@
         "common_mistakes": [
           "Leaving the answer as Cos⁻¹(1/2) when the exact angle 60° is known.",
           "Giving 120°, which is the interior angle of the triangle, not the angle between a and b."
+        ],
+        "lines_compact": [
+          "Let θ be the angle between a and b.",
+          "cos θ = (a·b)/(|a||b|)",
+          "  = (15/2)/(3 × 5)",
+          "  = (15/2)/15 = 1/2",
+          {
+            "text": "∴ θ = 60° = π/3",
+            "style": "boxed"
+          }
         ]
       }
     ]

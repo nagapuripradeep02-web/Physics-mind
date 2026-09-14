@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 7 PRODUCT OF VECTORS, Short Answer question 18(ii), book p.71. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. Computed twice. Component by component: a·b = 6(2) + 2(−9) + 3(6) = 12 − 18 + 18 = 12; |a| = √(36 + 4 + 9) = √49 = 7; |b| = √(4 + 81 + 36) = √121 = 11; cos θ = 12/77. Checked a second way with the cross-product identity |a × b|² = |a|²|b|² − (a·b)²: a × b = i(12 + 27) − j(36 − 6) + k(−54 − 4) = 39i − 30j − 58k, so |a × b|² = 1521 + 900 + 3364 = 5785, while |a|²|b|² − (a·b)² = 49 × 121 − 144 = 5929 − 144 = 5785. The two agree, which confirms both a·b = 12 and the two magnitudes. Numerically Cos⁻¹(12/77) = Cos⁻¹(0.15584) ≈ 81.03°, so the card says θ ≈ 81°. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 split rewards the four separate acts: the dot product, the two magnitudes, the cosine formula, and stating both of the two things the question asks for. Paper position: Maths-1A Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern; Product of Vectors carries a Section B slot on the paper and also appears in Section C. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 7 PRODUCT OF VECTORS, Short Answer question 18(ii), book p.71. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. Computed twice. Component by component: a·b = 6(2) + 2(−9) + 3(6) = 12 − 18 + 18 = 12; |a| = √(36 + 4 + 9) = √49 = 7; |b| = √(4 + 81 + 36) = √121 = 11; cos θ = 12/77. Checked a second way with the cross-product identity |a × b|² = |a|²|b|² − (a·b)²: a × b = i(12 + 27) − j(36 − 6) + k(−54 − 4) = 39i − 30j − 58k, so |a × b|² = 1521 + 900 + 3364 = 5785, while |a|²|b|² − (a·b)² = 49 × 121 − 144 = 5929 − 144 = 5785. The two agree, which confirms both a·b = 12 and the two magnitudes. Numerically Cos⁻¹(12/77) = Cos⁻¹(0.15584) ≈ 81.03°, so the card says θ ≈ 81°. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 split rewards the four separate acts: the dot product, the two magnitudes, the cosine formula, and stating both of the two things the question asks for. Paper position: Maths-1A Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern; Product of Vectors carries a Section B slot on the paper and also appears in Section C. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find the dot product and then the angle between two given vectors — name each move in order.",
   "answer": {
@@ -61,6 +61,7 @@
             "style": "heading"
           },
           "a = 6i + 2j + 3k,  b = 2i − 9j + 6k",
+          "(multiply matching components and add)",
           "a·b = 6(2) + 2(−9) + 3(6)",
           "    = 12 − 18 + 18",
           "    = 12"
@@ -102,6 +103,10 @@
         "margin_note": "Second mark. Both come out whole: 49 and 121 are perfect squares, so |a| = 7 and |b| = 11. If either root is not whole here, a component has been squared wrongly.",
         "memory_tip": "Both magnitudes are whole numbers here: √49 = 7 and √121 = 11.",
         "lines": [
+          {
+            "text": "(square each component, add, then take the square root)",
+            "added": true
+          },
           "|a| = √(6² + 2² + 3²)",
           "    = √(36 + 4 + 9) = √49 = 7",
           "|b| = √(2² + (−9)² + 6²)",
@@ -134,6 +139,12 @@
         "common_mistakes": [
           "Squaring −9 as −81 instead of 81.",
           "Adding the components rather than their squares."
+        ],
+        "lines_compact": [
+          "|a| = √(6² + 2² + 3²)",
+          "    = √(36 + 4 + 9) = √49 = 7",
+          "|b| = √(2² + (−9)² + 6²)",
+          "    = √(4 + 81 + 36) = √121 = 11"
         ]
       },
       {
@@ -148,6 +159,10 @@
           "Let θ be the angle between a and b.",
           "cos θ = (a·b)/(|a||b|)",
           "  = 12/(7 × 11)",
+          {
+            "text": "(7 × 11 = 77)",
+            "added": true
+          },
           "  = 12/77"
         ],
         "recall": {
@@ -175,6 +190,12 @@
         "common_mistakes": [
           "Adding the magnitudes instead of multiplying them.",
           "Cancelling 12/77 wrongly, for example to 12/7."
+        ],
+        "lines_compact": [
+          "Let θ be the angle between a and b.",
+          "cos θ = (a·b)/(|a||b|)",
+          "  = 12/(7 × 11)",
+          "  = 12/77"
         ]
       },
       {
@@ -189,6 +210,10 @@
           {
             "text": "∴ a·b = 12 and θ = Cos⁻¹(12/77)",
             "style": "boxed"
+          },
+          {
+            "text": "(Cos⁻¹ of a positive number lies between 0° and 90°)",
+            "added": true
           },
           "12/77 ≈ 0.156, which is positive and",
           "small, so θ is a little under 90°:",
@@ -220,6 +245,15 @@
         "common_mistakes": [
           "Answering only the angle and forgetting a·b, or the reverse.",
           "Writing θ = 12/77, which is a cosine and not an angle."
+        ],
+        "lines_compact": [
+          {
+            "text": "∴ a·b = 12 and θ = Cos⁻¹(12/77)",
+            "style": "boxed"
+          },
+          "12/77 ≈ 0.156, which is positive and",
+          "small, so θ is a little under 90°:",
+          "θ ≈ 81°."
         ]
       }
     ]

@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.15, chapter 2 FUNCTIONS, Very Short Answer question 24. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape gives one mark to building f(r) = 7r out of the given property, which is the whole idea of the question, and one to summing it, because a student who reaches f(r) = 7r and then misquotes the sum of the first n natural numbers has still done half the work. The property is used only for natural r, and the card says so in its written lines. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.15, chapter 2 FUNCTIONS, Very Short Answer question 24. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape gives one mark to building f(r) = 7r out of the given property, which is the whole idea of the question, and one to summing it, because a student who reaches f(r) = 7r and then misquotes the sum of the first n natural numbers has still done half the work. The property is used only for natural r, and the card says so in its written lines. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this — how you get f(r) from the given property, and how you finish the sum.",
   "answer": {
@@ -53,7 +53,9 @@
             "style": "heading"
           },
           "f(x + y) = f(x) + f(y) and f(1) = 7",
+          "(put x = y = 1)",
           "f(2) = f(1 + 1) = f(1) + f(1) = 2f(1)",
+          "(put x = 2 and y = 1)",
           "f(3) = f(2 + 1) = f(2) + f(1) = 3f(1)",
           "Adding f(1) one more time each step,",
           "f(r) = r f(1) for every r ∈ N.",
@@ -101,7 +103,15 @@
           "Σ f(r), r = 1 to n",
           "= f(1) + f(2) + … + f(n)",
           "= 7(1) + 7(2) + … + 7(n)",
+          {
+            "text": "(take out the common factor 7)",
+            "added": true
+          },
           "= 7(1 + 2 + … + n)",
+          {
+            "text": "(1 + 2 + … + n = n(n + 1)/2)",
+            "added": true
+          },
           "= 7 · n(n + 1)/2",
           {
             "text": "∴ Σ f(r) = 7n(n + 1)/2",
@@ -136,6 +146,17 @@
           "Quoting Σr as n(n + 1) and dropping the 2 in the denominator.",
           "Writing the answer as 7n, which adds one term instead of n terms.",
           "Leaving the answer as 7(1 + 2 + … + n) without using the standard sum."
+        ],
+        "lines_compact": [
+          "Σ f(r), r = 1 to n",
+          "= f(1) + f(2) + … + f(n)",
+          "= 7(1) + 7(2) + … + 7(n)",
+          "= 7(1 + 2 + … + n)",
+          "= 7 · n(n + 1)/2",
+          {
+            "text": "∴ Σ f(r) = 7n(n + 1)/2",
+            "style": "boxed"
+          }
         ]
       }
     ]

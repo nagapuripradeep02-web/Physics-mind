@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.65, chapter 6 ADDITION OF VECTORS, Short Answer question 8. Only the question was taken — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. NOTATION WARNING CARRIED INTO THE CARD: in this question a and b are NUMBERS, the two intercepts, not the vectors a and b used everywhere else in the chapter. The card says so in the first step rather than leaving a student to collide with it. The derivation uses the section form OP = (1 − t) OA + t OB, the same form the neighbouring line questions in this unit use, and compares i and j coefficients because i and j are not parallel. It was checked a second way at the two endpoints: t = 0 gives (a, 0) and t = 1 gives (0, b), and both satisfy x/a + y/b = 1. The conditions a ≠ 0 and b ≠ 0 are stated in the working where the student reads them, since the division by a and b needs them. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 split rewards the set-up, the parametric form, the coefficient comparison, and the elimination of the parameter. This book prints almost no exam-appearance years, so appearances[] is empty. Paper position: Maths-1A Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern; Addition of Vectors has no Section C slot on the paper, so the unit is SAQ and VSAQ only. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.65, chapter 6 ADDITION OF VECTORS, Short Answer question 8. Only the question was taken — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. NOTATION WARNING CARRIED INTO THE CARD: in this question a and b are NUMBERS, the two intercepts, not the vectors a and b used everywhere else in the chapter. The card says so in the first step rather than leaving a student to collide with it. The derivation uses the section form OP = (1 − t) OA + t OB, the same form the neighbouring line questions in this unit use, and compares i and j coefficients because i and j are not parallel. It was checked a second way at the two endpoints: t = 0 gives (a, 0) and t = 1 gives (0, b), and both satisfy x/a + y/b = 1. The conditions a ≠ 0 and b ≠ 0 are stated in the working where the student reads them, since the division by a and b needs them. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 split rewards the set-up, the parametric form, the coefficient comparison, and the elimination of the parameter. This book prints almost no exam-appearance years, so appearances[] is empty. Paper position: Maths-1A Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern; Addition of Vectors has no Section C slot on the paper, so the unit is SAQ and VSAQ only. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove the intercept form by vectors — say which two points you use and how the parameter disappears.",
   "answer": {
@@ -53,7 +53,7 @@
         "label": "Write the two intercept points",
         "marks": 1,
         "mark_note": "Set-up",
-        "margin_note": "First mark. Here a and b are NUMBERS, the two intercepts, not the vectors a and b used elsewhere in this chapter. An intercept a means the line crosses the x-axis at (a, 0), so both intercepts must be non-zero.",
+        "margin_note": "First mark. Here a and b are NUMBERS, the two intercepts, not the vectors a and b used elsewhere in this chapter. An intercept a means the line crosses the x-axis at (a, 0). Both intercepts must be non-zero, because the result divides by a and by b.",
         "memory_tip": "In this question a and b are numbers, not vectors. Intercept a means the crossing point (a, 0).",
         "lines": [
           {
@@ -64,6 +64,7 @@
           "not vectors. Both are non-zero.",
           "The line meets the x-axis at A(a, 0) and",
           "the y-axis at B(0, b).",
+          "(a point (x, 0) has position vector x i, and (0, y) has y j)",
           "OA = a i,  OB = b j"
         ],
         "recall": {
@@ -106,6 +107,15 @@
         "lines": [
           "Let P(x, y) be any point on the line AB,",
           "so OP = x i + y j.",
+          {
+            "text": "(every point of line AB is (1 − t)OA + t OB for one",
+            "added": true
+          },
+          {
+            "text": "  number t; t = 0 gives A and t = 1 gives B)",
+            "style": "indent",
+            "added": true
+          },
           "P lies on AB, so for some number t",
           "OP = (1−t) OA + t OB",
           "  = (1−t)a i + t b j   ……(1)"
@@ -137,6 +147,13 @@
         "common_mistakes": [
           "Using OP = OA + t OB, which is not a line through both points.",
           "Forgetting to say that P is a general point, which is what makes the result an equation of the line."
+        ],
+        "lines_compact": [
+          "Let P(x, y) be any point on the line AB,",
+          "so OP = x i + y j.",
+          "P lies on AB, so for some number t",
+          "OP = (1−t) OA + t OB",
+          "  = (1−t)a i + t b j   ……(1)"
         ]
       },
       {
@@ -150,6 +167,10 @@
         "lines": [
           "i and j are not parallel, so compare their",
           "coefficients in (1):",
+          {
+            "text": "(the i parts: x and (1 − t)a; the j parts: y and tb)",
+            "added": true
+          },
           "x = (1−t)a   ……(2)",
           "y = t b   ……(3)",
           "a ≠ 0 and b ≠ 0, so divide (2) by a and",
@@ -183,6 +204,15 @@
         "common_mistakes": [
           "Comparing coefficients without saying that i and j are not parallel.",
           "Dividing by a or b without noting that neither is zero."
+        ],
+        "lines_compact": [
+          "i and j are not parallel, so compare their",
+          "coefficients in (1):",
+          "x = (1−t)a   ……(2)",
+          "y = t b   ……(3)",
+          "a ≠ 0 and b ≠ 0, so divide (2) by a and",
+          "(3) by b:",
+          "x/a = 1 − t   and   y/b = t"
         ]
       },
       {
@@ -196,6 +226,10 @@
         "lines": [
           "Add the two results:",
           "x/a + y/b = (1 − t) + t = 1",
+          {
+            "text": "(the t and the −t cancel)",
+            "added": true
+          },
           "Check: t = 0 gives A(a, 0) and t = 1 gives",
           "B(0, b), and both satisfy this equation.",
           {
@@ -229,6 +263,16 @@
         "common_mistakes": [
           "Leaving t in the final answer.",
           "Subtracting instead of adding, which gives 1 − 2t rather than 1."
+        ],
+        "lines_compact": [
+          "Add the two results:",
+          "x/a + y/b = (1 − t) + t = 1",
+          "Check: t = 0 gives A(a, 0) and t = 1 gives",
+          "B(0, b), and both satisfy this equation.",
+          {
+            "text": "∴ x/a + y/b = 1",
+            "style": "boxed"
+          }
         ]
       }
     ]

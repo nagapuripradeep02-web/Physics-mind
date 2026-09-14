@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.124, chapter 12 PROPERTIES OF TRIANGLES, Very Short Answer question 13. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to reducing the four areas to their radii and one to the sum of the reciprocal exradii. In this question the letters A, A₁, A₂, A₃ stand for AREAS, not for the angle A; the card keeps the book's letters and states the meaning in the first line. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory; Properties of Triangles supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.124, chapter 12 PROPERTIES OF TRIANGLES, Very Short Answer question 13. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to reducing the four areas to their radii and one to the sum of the reciprocal exradii. In this question the letters A, A₁, A₂, A₃ stand for AREAS, not for the angle A; the card keeps the book's letters and states the meaning in the first line. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory; Properties of Triangles supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — name each standard result you use and the order you use them in.",
   "answer": {
@@ -54,9 +54,11 @@
           },
           "Here A, A₁, A₂, A₃ are AREAS, not angles.",
           "Let r be the inradius and r₁, r₂, r₃ the exradii.",
+          "(a circle of radius ρ has area πρ²)",
           "A = πr², A₁ = πr₁², A₂ = πr₂², A₃ = πr₃²",
           "Every radius is positive, so",
           "√A = r√π and √A₁ = r₁√π (same for r₂, r₃)",
+          "(1/√A₁ = 1/(r₁√π), and the same for A₂ and A₃)",
           "∴ L.H.S = (1/r₁ + 1/r₂ + 1/r₃)/√π"
         ],
         "recall": {
@@ -97,8 +99,16 @@
         "memory_tip": "(s−a) + (s−b) + (s−c) = 3s − 2s = s, so 1/r₁ + 1/r₂ + 1/r₃ = s/Δ = 1/r.",
         "lines": [
           "r₁ = Δ/(s−a), r₂ = Δ/(s−b), r₃ = Δ/(s−c)",
+          {
+            "text": "(take the reciprocal of each; the denominator Δ is shared)",
+            "added": true
+          },
           "∴ 1/r₁ + 1/r₂ + 1/r₃ = [(s−a)+(s−b)+(s−c)]/Δ",
           "= (3s − 2s)/Δ = s/Δ = 1/r   [∵ r = Δ/s]",
+          {
+            "text": "(put 1/r₁ + 1/r₂ + 1/r₃ = 1/r into step 1)",
+            "added": true
+          },
           "∴ L.H.S = 1/(r√π) = 1/√(πr²) = 1/√A",
           {
             "text": "∴ 1/√A₁ + 1/√A₂ + 1/√A₃ = 1/√A",
@@ -131,6 +141,16 @@
         "common_mistakes": [
           "Writing r₁ = (s−a)/Δ instead of Δ/(s−a).",
           "Adding (s−a) + (s−b) + (s−c) and getting 2s instead of s."
+        ],
+        "lines_compact": [
+          "r₁ = Δ/(s−a), r₂ = Δ/(s−b), r₃ = Δ/(s−c)",
+          "∴ 1/r₁ + 1/r₂ + 1/r₃ = [(s−a)+(s−b)+(s−c)]/Δ",
+          "= (3s − 2s)/Δ = s/Δ = 1/r   [∵ r = Δ/s]",
+          "∴ L.H.S = 1/(r√π) = 1/√(πr²) = 1/√A",
+          {
+            "text": "∴ 1/√A₁ + 1/√A₂ + 1/√A₃ = 1/√A",
+            "style": "boxed"
+          }
         ]
       }
     ]

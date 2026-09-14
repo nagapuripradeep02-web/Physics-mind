@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.20, chapter 3 SEQUENCES & SERIES, Very Short Answer question 4. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sequences and Series is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.20, chapter 3 SEQUENCES & SERIES, Very Short Answer question 4. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sequences and Series is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this — say what r is and how the sign of the term decides your answer.",
   "answer": {
@@ -52,6 +52,7 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "(r is a term divided by the term before it)",
           "Here a = 5 and r = −10/5 = −2",
           "Check on the next pair:  20/(−10) = −2",
           "For a G.P., the nth term is  aₙ = a rⁿ⁻¹",
@@ -79,7 +80,7 @@
             "three twenty"
           ]
         },
-        "why": "The ratio is negative, so the terms alternate in sign. Writing r = −2 rather than 2 is what makes the sign of the answer come out right.",
+        "why": "The ratio is negative, so the terms alternate in sign. With r = −2 a term is positive only when n − 1 is even, so the sign of 320 must be checked before n is accepted.",
         "common_mistakes": [
           "Taking r = 2 and ignoring the minus signs in the sequence.",
           "Writing aₙ = a rⁿ, which shifts every term one place."
@@ -94,8 +95,20 @@
         "margin_note": "Second mark. The power must be even for the term to be positive. (−2)⁶ = +64, so the 7th term is +320.",
         "memory_tip": "64 = 2⁶, and an even power of a negative number is positive.",
         "lines": [
+          {
+            "text": "(divide both sides by 5)",
+            "added": true
+          },
           "(−2)ⁿ⁻¹ = 320/5 = 64",
+          {
+            "text": "(an even power of −2 is positive: (−2)⁶ = 64)",
+            "added": true
+          },
           "64 is positive, and 64 = 2⁶, so (−2)ⁿ⁻¹ = (−2)⁶",
+          {
+            "text": "(equal powers of −2 have equal exponents)",
+            "added": true
+          },
           "n − 1 = 6  ⇒  n = 7",
           "Check:  a₇ = 5(−2)⁶ = 5 × 64 = 320",
           {
@@ -129,6 +142,16 @@
         "common_mistakes": [
           "Answering n = 6 by solving rⁿ = 64 instead of rⁿ⁻¹ = 64.",
           "Saying no term equals 320 because the ratio is negative."
+        ],
+        "lines_compact": [
+          "(−2)ⁿ⁻¹ = 320/5 = 64",
+          "64 is positive, and 64 = 2⁶, so (−2)ⁿ⁻¹ = (−2)⁶",
+          "n − 1 = 6  ⇒  n = 7",
+          "Check:  a₇ = 5(−2)⁶ = 5 × 64 = 320",
+          {
+            "text": "∴ 320 is the 7th term",
+            "style": "boxed"
+          }
         ]
       }
     ]

@@ -34,7 +34,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.72, chapter 7 PRODUCT OF VECTORS, Short Answer question 25. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives half the marks to the determinant and a full mark to the substitution check, because a value of p is only proved once the determinant reads exactly zero. Both evaluations agree at 7p + 28: the first-row expansion gives 2(10 + 3p) + 1(5 + 9) + 1(p − 6), and computing b × c = (10 + 3p, −14, p − 6) and dotting with a gives the same. Substituting p = −4 gives 2(10 − 12) + 1(5 + 9) + 1(−4 − 6) = −4 + 14 − 10 = 0 exactly. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Product of Vectors supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.72, chapter 7 PRODUCT OF VECTORS, Short Answer question 25. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives half the marks to the determinant and a full mark to the substitution check, because a value of p is only proved once the determinant reads exactly zero. Both evaluations agree at 7p + 28: the first-row expansion gives 2(10 + 3p) + 1(5 + 9) + 1(p − 6), and computing b × c = (10 + 3p, −14, p − 6) and dotting with a gives the same. Substituting p = −4 gives 2(10 − 12) + 1(5 + 9) + 1(−4 − 6) = −4 + 14 − 10 = 0 exactly. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Product of Vectors supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find p — the condition for coplanar vectors, the determinant, and how you check your value.",
   "answer": {
@@ -104,6 +104,15 @@
             "render": "katex",
             "style": "eq"
           },
+          {
+            "text": "(minors along row 1: 2(5) − (−3)(p) = 10 + 3p,",
+            "added": true
+          },
+          {
+            "text": "  1(5) − (−3)(3) = 14, 1(p) − 2(3) = p − 6)",
+            "style": "indent",
+            "added": true
+          },
           "= 2(10 + 3p) + 1(5 + 9) + 1(p − 6)",
           "= 20 + 6p + 14 + p − 6 = 7p + 28",
           "Check by b × c = (10 + 3p, −14, p − 6):",
@@ -136,6 +145,18 @@
         "common_mistakes": [
           "Writing −(−1) as −1 in the middle term.",
           "Expanding 2(10 + 3p) as 20 + 3p."
+        ],
+        "lines_compact": [
+          {
+            "text": "[a\\ b\\ c] = \\begin{vmatrix} 2 & -1 & 1 \\\\ 1 & 2 & -3 \\\\ 3 & p & 5 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= 2(10 + 3p) + 1(5 + 9) + 1(p − 6)",
+          "= 20 + 6p + 14 + p − 6 = 7p + 28",
+          "Check by b × c = (10 + 3p, −14, p − 6):",
+          "a·(b × c) = 2(10 + 3p) + 14 + p − 6",
+          "= 7p + 28"
         ]
       },
       {

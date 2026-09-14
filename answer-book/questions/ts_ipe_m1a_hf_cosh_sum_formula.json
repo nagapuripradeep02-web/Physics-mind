@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.118, chapter 11 HYPERBOLIC FUNCTIONS, Very Short Answer question 8(ii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards writing both products from the exponential definitions first and the cancellation that leaves cosh(x + y) second. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory; Hyperbolic Functions is a VSAQ-only unit on this paper, with no Section-B and no Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.118, chapter 11 HYPERBOLIC FUNCTIONS, Very Short Answer question 8(ii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards writing both products from the exponential definitions first and the cancellation that leaves cosh(x + y) second. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory; Hyperbolic Functions is a VSAQ-only unit on this paper, with no Section-B and no Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — name the formula or definition you use and how you finish.",
   "answer": {
@@ -45,7 +45,7 @@
         "label": "Substitute the definitions",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. Both products are like signs this time: cosh with cosh, sinh with sinh. Note that the hyperbolic sum formula has a PLUS here, unlike the trigonometric one.",
+        "margin_note": "First mark. Both products pair like functions this time: cosh with cosh, sinh with sinh. Note that the hyperbolic sum formula has a PLUS here, unlike the trigonometric one.",
         "memory_tip": "For cosh the two products are cosh·cosh and sinh·sinh, joined by a PLUS. The trigonometric cos formula has a minus there.",
         "lines": [
           {
@@ -54,6 +54,7 @@
           },
           "R.H.S = cosh x cosh y + sinh x sinh y",
           "Each definition has a 2 below, so take 4·R.H.S",
+          "(each product of two definitions has 2 × 2 = 4 below it)",
           "4·R.H.S = (eˣ + e⁻ˣ)(eʸ + e⁻ʸ)",
           {
             "text": "+ (eˣ − e⁻ˣ)(eʸ − e⁻ʸ)",
@@ -82,7 +83,7 @@
             "e to the minus x"
           ]
         },
-        "why": "The two brackets differ only in their inner signs, so the expansion is the same work twice with one sign changed. That is what makes the cancellation predictable.",
+        "why": "The second product has the inner sign of both brackets changed, so in the expansion the two mixed terms change sign and the other two do not. That is what makes the cancellation predictable.",
         "common_mistakes": [
           "Writing a minus between the two products, copying the cos formula from trigonometry.",
           "Using a denominator of 2 instead of 4 for a product of two definitions."
@@ -94,15 +95,27 @@
         "label": "Cancel and read off cosh(x + y)",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Second mark. The two mixed terms cancel again, but this time the surviving terms ADD, so the numerator is 2eˣ⁺ʸ + 2e⁻⁽ˣ⁺ʸ⁾.",
-        "memory_tip": "Both x + y terms survive with a plus here, so the answer is a cosh and not a sinh.",
+        "margin_note": "Second mark. The two mixed terms cancel again, but this time the remaining terms ADD, so the numerator is 2eˣ⁺ʸ + 2e⁻⁽ˣ⁺ʸ⁾.",
+        "memory_tip": "Both x + y terms remain with a plus here, so the answer is a cosh and not a sinh.",
         "lines": [
+          {
+            "text": "(multiply out each bracket: eˣeʸ = eˣ⁺ʸ, eˣe⁻ʸ = eˣ⁻ʸ, and so on)",
+            "added": true
+          },
           "= (eˣ⁺ʸ + eˣ⁻ʸ + eʸ⁻ˣ + e⁻⁽ˣ⁺ʸ⁾)",
           {
             "text": "+ (eˣ⁺ʸ − eˣ⁻ʸ − eʸ⁻ˣ + e⁻⁽ˣ⁺ʸ⁾)",
             "style": "indent"
           },
+          {
+            "text": "(the eˣ⁻ʸ and eʸ⁻ˣ terms cancel)",
+            "added": true
+          },
           "= 2eˣ⁺ʸ + 2e⁻⁽ˣ⁺ʸ⁾",
+          {
+            "text": "(divide by 4)",
+            "added": true
+          },
           "∴ R.H.S = (eˣ⁺ʸ + e⁻⁽ˣ⁺ʸ⁾)/2",
           {
             "text": "= cosh(x + y) = L.H.S",
@@ -131,10 +144,23 @@
             "over two"
           ]
         },
-        "why": "A plus between the two surviving exponentials is exactly the cosh definition; a minus would be sinh. The sign is what names the answer.",
+        "why": "A plus between the two remaining exponentials is exactly the cosh definition; a minus would be sinh. The sign is what names the answer.",
         "common_mistakes": [
-          "Getting a minus between the surviving terms and calling the answer sinh(x + y).",
+          "Getting a minus between the remaining terms and calling the answer sinh(x + y).",
           "Losing a sign on eˣ⁻ʸ, so the mixed terms fail to cancel."
+        ],
+        "lines_compact": [
+          "= (eˣ⁺ʸ + eˣ⁻ʸ + eʸ⁻ˣ + e⁻⁽ˣ⁺ʸ⁾)",
+          {
+            "text": "+ (eˣ⁺ʸ − eˣ⁻ʸ − eʸ⁻ˣ + e⁻⁽ˣ⁺ʸ⁾)",
+            "style": "indent"
+          },
+          "= 2eˣ⁺ʸ + 2e⁻⁽ˣ⁺ʸ⁾",
+          "∴ R.H.S = (eˣ⁺ʸ + e⁻⁽ˣ⁺ʸ⁾)/2",
+          {
+            "text": "= cosh(x + y) = L.H.S",
+            "style": "boxed"
+          }
         ]
       }
     ]

@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.12, chapter 2 FUNCTIONS, Very Short Answer question 19 part (a-iii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape rewards the conditions the expression forces and the final interval as two separate pieces of work, which is how a domain question is marked. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.12, chapter 2 FUNCTIONS, Very Short Answer question 19 part (a-iii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape rewards the conditions the expression forces and the final interval as two separate pieces of work, which is how a domain question is marked. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find this domain — the conditions the formula forces, and the answer.",
   "answer": {
@@ -55,7 +55,8 @@
           "Three conditions must hold together.",
           "First root: 3 + x ≥ 0 ⇒ x ≥ −3",
           "Second root: 3 − x ≥ 0 ⇒ x ≤ 3",
-          "Denominator: x ≠ 0"
+          "Denominator: x ≠ 0",
+          "(dividing by 0 is not allowed)"
         ],
         "recall": {
           "credit": "say_it",
@@ -100,6 +101,10 @@
           "x ≥ −3 and x ≤ 3 together give x ∈ [−3, 3]",
           "Now remove x = 0 from that interval.",
           {
+            "text": "(0 is inside [−3, 3], so the interval splits in two)",
+            "added": true
+          },
+          {
             "text": "∴ Domain = [−3, 0) ∪ (0, 3]",
             "style": "boxed"
           }
@@ -138,6 +143,14 @@
         "common_mistakes": [
           "Writing [−3, 3] and losing the mark for the hole at 0.",
           "Using square brackets at 0, where the function is undefined."
+        ],
+        "lines_compact": [
+          "x ≥ −3 and x ≤ 3 together give x ∈ [−3, 3]",
+          "Now remove x = 0 from that interval.",
+          {
+            "text": "∴ Domain = [−3, 0) ∪ (0, 3]",
+            "style": "boxed"
+          }
         ]
       }
     ]

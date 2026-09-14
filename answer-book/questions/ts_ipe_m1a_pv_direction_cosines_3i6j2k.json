@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 7 PRODUCT OF VECTORS, Short Answer question 36, book p.74. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. The stem's vector is 3i − 6j + 2k, with a MINUS on the j term. Computed twice. Component route: |v| = √(9 + 36 + 4) = √49 = 7 exactly, so cos α = 3/7, cos β = −6/7, cos γ = 2/7. Dot-product route, done independently: cos α = (v·i)/(|v||i|) = 3/7, cos β = (v·j)/(|v||j|) = −6/7, cos γ = (v·k)/(|v||k|) = 2/7 — the same three values. Checked against the identity: (9 + 36 + 4)/49 = 49/49 = 1. cos β is NEGATIVE and that is the correct answer, not a sign slip: β = Cos⁻¹(−6/7) ≈ 149.0° is obtuse because the vector points along −j. For reference the other two are α ≈ 64.6° and γ ≈ 73.4°. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 split rewards the four separate acts: the magnitude, saying what a direction cosine is, writing the three values with their signs, and verifying the identity. Paper position: Maths-1A Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern; Product of Vectors carries a Section B slot on the paper and also appears in Section C. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 7 PRODUCT OF VECTORS, Short Answer question 36, book p.74. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. The stem's vector is 3i − 6j + 2k, with a MINUS on the j term. Computed twice. Component route: |v| = √(9 + 36 + 4) = √49 = 7 exactly, so cos α = 3/7, cos β = −6/7, cos γ = 2/7. Dot-product route, done independently: cos α = (v·i)/(|v||i|) = 3/7, cos β = (v·j)/(|v||j|) = −6/7, cos γ = (v·k)/(|v||k|) = 2/7 — the same three values. Checked against the identity: (9 + 36 + 4)/49 = 49/49 = 1. cos β is NEGATIVE and that is the correct answer, not a sign slip: β = Cos⁻¹(−6/7) ≈ 149.0° is obtuse because the vector points along −j. For reference the other two are α ≈ 64.6° and γ ≈ 73.4°. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 split rewards the four separate acts: the magnitude, saying what a direction cosine is, writing the three values with their signs, and verifying the identity. Paper position: Maths-1A Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern; Product of Vectors carries a Section B slot on the paper and also appears in Section C. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find the cosines of the angles a vector makes with the three axes — name each move in order.",
   "answer": {
@@ -104,6 +104,10 @@
         "lines": [
           "α, β, γ are the angles v makes with the",
           "positive x, y and z axes.",
+          {
+            "text": "(v·i = |v||i| cos α, and |i| = 1)",
+            "added": true
+          },
           "cos α = (v·i)/(|v||i|) = (v·i)/|v|",
           "and the same for j and k.",
           "So cos α, cos β, cos γ are the components",
@@ -135,6 +139,14 @@
         "common_mistakes": [
           "Confusing direction cosines with direction ratios, which are the components themselves.",
           "Dividing by |v|² instead of |v|."
+        ],
+        "lines_compact": [
+          "α, β, γ are the angles v makes with the",
+          "positive x, y and z axes.",
+          "cos α = (v·i)/(|v||i|) = (v·i)/|v|",
+          "and the same for j and k.",
+          "So cos α, cos β, cos γ are the components",
+          "of the unit vector along v."
         ]
       },
       {
@@ -143,10 +155,14 @@
         "label": "Write the three cosines",
         "marks": 1,
         "mark_note": "The values",
-        "margin_note": "Third mark. Divide each component by 7, keeping its sign. cos β is negative, which is correct: the vector points along the negative y direction.",
+        "margin_note": "Third mark. Divide each component by 7, keeping its sign. cos β is negative, which is correct: the y component of the vector is negative, so it makes an obtuse angle with the positive y axis.",
         "memory_tip": "Divide each component by 7 and KEEP its sign.",
         "lines": [
           "Unit vector along v = v/|v|",
+          {
+            "text": "(divide each component by 7)",
+            "added": true
+          },
           "  = (3i − 6j + 2k)/7",
           "cos α = 3/7",
           "cos β = −6/7",
@@ -178,6 +194,13 @@
         "common_mistakes": [
           "Dropping the minus sign and writing cos β = 6/7.",
           "Pairing the values with the wrong axes."
+        ],
+        "lines_compact": [
+          "Unit vector along v = v/|v|",
+          "  = (3i − 6j + 2k)/7",
+          "cos α = 3/7",
+          "cos β = −6/7",
+          "cos γ = 2/7"
         ]
       },
       {
@@ -189,6 +212,10 @@
         "margin_note": "Last mark. The squares of the three direction cosines always add to 1, because they are the components of a unit vector. It is a free check on every sign and every division.",
         "memory_tip": "cos²α + cos²β + cos²γ = 1 always — a free check on the arithmetic.",
         "lines": [
+          {
+            "text": "(the squares of the direction cosines always add to 1)",
+            "added": true
+          },
           "cos²α + cos²β + cos²γ",
           "  = (9 + 36 + 4)/49",
           "  = 49/49 = 1",
@@ -201,7 +228,7 @@
             "style": "boxed"
           },
           "cos β is negative, so β is obtuse. That is",
-          "correct, since v points along −j."
+          "right, since the j component of v, −6, is negative."
         ],
         "recall": {
           "credit": "say_it",
@@ -229,6 +256,21 @@
         "common_mistakes": [
           "Taking the modulus of cos β to make all three positive.",
           "Dividing by 7 instead of 49 when squaring."
+        ],
+        "lines_compact": [
+          "cos²α + cos²β + cos²γ",
+          "  = (9 + 36 + 4)/49",
+          "  = 49/49 = 1",
+          {
+            "text": "∴ cos α = 3/7, cos β = −6/7,",
+            "style": "boxed"
+          },
+          {
+            "text": "cos γ = 2/7",
+            "style": "boxed"
+          },
+          "cos β is negative, so β is obtuse. That is",
+          "right, since the j component of v, −6, is negative."
         ]
       }
     ]

@@ -35,7 +35,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.15 — LAQ chapter 1 Functions, question 3. The 3+4 split is printed in that book's margin; the only appearance year printed is AP 18. Publisher's claims until a Telangana IPE teacher confirms them. Written lines use render:'katex' wherever the identity functions appear, because a capital-letter subscript has no Unicode form (docs/IPE_MATHS_1A_SOURCE.md). Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Proof that foI_A = f."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.15 — LAQ chapter 1 Functions, question 3. The 3+4 split is printed in that book's margin; the only appearance year printed is AP 18. Publisher's claims until a Telangana IPE teacher confirms them. Written lines use render:'katex' wherever the identity functions appear, because a capital-letter subscript has no Unicode form (docs/IPE_MATHS_1A_SOURCE.md). Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Proof that foI_A = f. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove that composing f with the identity on either side leaves f unchanged — the two parts, and how each part goes.",
   "answer": {
@@ -63,6 +63,7 @@
             "render": "katex",
             "style": "normal"
           },
+          "(an identity function sends each element to itself)",
           {
             "text": "\\text{To prove: } f \\circ I_A = f = I_B \\circ f",
             "render": "katex",
@@ -114,6 +115,10 @@
             "style": "heading"
           },
           {
+            "text": "First, the domains:",
+            "added": true
+          },
+          {
             "text": "I_A : A \\to A \\text{ and } f : A \\to B",
             "render": "katex"
           },
@@ -124,6 +129,10 @@
           {
             "text": "So both sides have the same domain A.",
             "style": "eq"
+          },
+          {
+            "text": "Now the values, at any a ∈ A:",
+            "added": true
           },
           {
             "text": "\\text{For } a \\in A, \\ (f \\circ I_A)(a) = f[I_A(a)]",
@@ -165,6 +174,37 @@
         "common_mistakes": [
           "Proving only the values match and never the domains.",
           "Writing I_B where I_A belongs — the inner function must accept elements of A."
+        ],
+        "lines_compact": [
+          {
+            "text": "\\text{(i) To prove } f \\circ I_A = f",
+            "render": "katex",
+            "style": "heading"
+          },
+          {
+            "text": "I_A : A \\to A \\text{ and } f : A \\to B",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore f \\circ I_A : A \\to B",
+            "render": "katex"
+          },
+          {
+            "text": "So both sides have the same domain A.",
+            "style": "eq"
+          },
+          {
+            "text": "\\text{For } a \\in A, \\ (f \\circ I_A)(a) = f[I_A(a)]",
+            "render": "katex"
+          },
+          {
+            "text": "= f(a) \\quad (\\because I_A(a) = a)",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore f \\circ I_A = f",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -182,6 +222,10 @@
             "style": "heading"
           },
           {
+            "text": "First, the domains:",
+            "added": true
+          },
+          {
             "text": "f : A \\to B \\text{ and } I_B : B \\to B",
             "render": "katex"
           },
@@ -192,6 +236,10 @@
           {
             "text": "So both sides have the same domain A.",
             "style": "eq"
+          },
+          {
+            "text": "Now the values, at any a ∈ A:",
+            "added": true
           },
           {
             "text": "\\text{For } a \\in A, \\ (I_B \\circ f)(a) = I_B[f(a)]",
@@ -234,6 +282,37 @@
           "Writing 'by symmetry' instead of doing the second part — the examiner marks it separately.",
           "Using I_A on the output side, where the elements are f(a) ∈ B.",
           "Dropping the domain line in part (ii) after writing it in part (i)."
+        ],
+        "lines_compact": [
+          {
+            "text": "\\text{(ii) To prove } I_B \\circ f = f",
+            "render": "katex",
+            "style": "heading"
+          },
+          {
+            "text": "f : A \\to B \\text{ and } I_B : B \\to B",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore I_B \\circ f : A \\to B",
+            "render": "katex"
+          },
+          {
+            "text": "So both sides have the same domain A.",
+            "style": "eq"
+          },
+          {
+            "text": "\\text{For } a \\in A, \\ (I_B \\circ f)(a) = I_B[f(a)]",
+            "render": "katex"
+          },
+          {
+            "text": "= f(a) \\quad (\\because I_B(y) = y, \\ f(a) \\in B)",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore I_B \\circ f = f",
+            "render": "katex"
+          }
         ]
       },
       {

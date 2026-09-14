@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.61, chapter 6 ADDITION OF VECTORS, Very Short Answer question 12. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question: the first mark is for turning AC = 3AB into one equation in position vectors, the second for solving that equation. This book prints almost no exam-appearance years, so appearances[] is empty — Addition of Vectors has long been examined, we simply have no sourced years for this question. Paper position: Maths-1A Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer 3b − 2a was checked a second way on a number line: taking a = 0 and b = 1 gives c = 3, and then AC = 3 and AB = 1, so AC = 3AB with C beyond B. The coefficients 3 and −2 add to 1, which is the test for C lying on the line AB."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.61, chapter 6 ADDITION OF VECTORS, Very Short Answer question 12. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question: the first mark is for turning AC = 3AB into one equation in position vectors, the second for solving that equation. This book prints almost no exam-appearance years, so appearances[] is empty — Addition of Vectors has long been examined, we simply have no sourced years for this question. Paper position: Maths-1A Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer 3b − 2a was checked a second way on a number line: taking a = 0 and b = 1 gives c = 3, and then AC = 3 and AB = 1, so AC = 3AB with C beyond B. The coefficients 3 and −2 add to 1, which is the test for C lying on the line AB. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find the position vector of a point placed along AB produced.",
   "answer": {
@@ -54,6 +54,7 @@
           },
           "Let O be the origin and let c be the",
           "position vector of C.",
+          "(a vector between two points is end minus start)",
           "AB = b − a and AC = c − a",
           "Given AC = 3AB, so",
           "c − a = 3(b − a)"
@@ -92,12 +93,28 @@
         "label": "Solve for the position vector of C",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Second mark. Expand the bracket and collect the a terms. Two of the three a terms cancel, leaving −2a, and the coefficients 3 and −2 add to 1.",
+        "margin_note": "Second mark. Expand the bracket and collect the a terms. The +a cancels one of the three copies of −a, leaving −2a, and the coefficients 3 and −2 add to 1.",
         "memory_tip": "The coefficients of a and b must add to 1 for C to be on the line AB: 3 + (−2) = 1.",
         "lines": [
+          {
+            "text": "(open the bracket)",
+            "added": true
+          },
           "c − a = 3b − 3a",
+          {
+            "text": "(add a to both sides)",
+            "added": true
+          },
           "⇒ c = 3b − 3a + a",
+          {
+            "text": "(−3a + a = −2a)",
+            "added": true
+          },
           "⇒ c = 3b − 2a",
+          {
+            "text": "(check: c − a = 3b − 3a = 3(b − a))",
+            "added": true
+          },
           {
             "text": "∴ Position vector of C = 3b − 2a",
             "style": "boxed"
@@ -128,6 +145,15 @@
         "common_mistakes": [
           "Stopping at 3b − 3a and losing the +a brought across.",
           "Answering 3b, which is not on the line AB in general."
+        ],
+        "lines_compact": [
+          "c − a = 3b − 3a",
+          "⇒ c = 3b − 3a + a",
+          "⇒ c = 3b − 2a",
+          {
+            "text": "∴ Position vector of C = 3b − 2a",
+            "style": "boxed"
+          }
         ]
       }
     ]

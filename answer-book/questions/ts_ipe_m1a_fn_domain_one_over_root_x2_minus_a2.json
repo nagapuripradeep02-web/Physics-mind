@@ -35,7 +35,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.81 — VSAQ chapter 14 Functions, question 96.2, on ★★★ SSP 81 (the book calls it 'the most dominating domain page'). Appearance years are printed board-split. UNLIKE the LAQ and SAQ pages, the book prints NO internal mark split on its VSAQ pages: the 1+1 across the two steps is our division of the 2 marks, not the source's. Publisher's claims until a Telangana IPE teacher confirms them."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.81 — VSAQ chapter 14 Functions, question 96.2, on ★★★ SSP 81 (the book calls it 'the most dominating domain page'). Appearance years are printed board-split. UNLIKE the LAQ and SAQ pages, the book prints NO internal mark split on its VSAQ pages: the 1+1 across the two steps is our division of the 2 marks, not the source's. Publisher's claims until a Telangana IPE teacher confirms them. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find this domain — the condition the formula forces, and the answer.",
   "answer": {
@@ -53,7 +53,17 @@
         "margin_note": "One of the two marks is for the condition alone. Write it before any factorising.",
         "memory_tip": "Root under a denominator, so strictly > 0: (x − a)(x + a) > 0.",
         "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "The root sits in a denominator, so what is",
+          {
+            "text": "  under it must be strictly positive:",
+            "style": "indent"
+          },
           "f(x) is defined when x² − a² > 0",
+          "(take a > 0)",
           "⇒ (x − a)(x + a) > 0"
         ],
         "recall": {
@@ -94,8 +104,15 @@
         "margin_note": "The second mark is the interval itself. Write it in interval form, and check every bracket.",
         "memory_tip": "A product > 0 is OUTSIDE the roots, with round brackets: (−∞, −a) ∪ (a, ∞).",
         "lines": [
+          {
+            "text": "(both factors positive: x > a; both negative: x < −a)",
+            "added": true
+          },
           "⇒ x ∈ (−∞, −a) ∪ (a, ∞)",
-          "∴ Domain = (−∞, −a) ∪ (a, ∞)"
+          {
+            "text": "∴ Domain = (−∞, −a) ∪ (a, ∞)",
+            "style": "boxed"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -129,6 +146,13 @@
         "common_mistakes": [
           "Writing square brackets at ±a, where the denominator is zero.",
           "Giving the inside interval (−a, a), where x² − a² is negative."
+        ],
+        "lines_compact": [
+          "⇒ x ∈ (−∞, −a) ∪ (a, ∞)",
+          {
+            "text": "∴ Domain = (−∞, −a) ∪ (a, ∞)",
+            "style": "boxed"
+          }
         ]
       }
     ]

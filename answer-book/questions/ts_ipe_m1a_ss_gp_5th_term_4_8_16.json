@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.22, chapter 3 SEQUENCES & SERIES, Very Short Answer question 15. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sequences and Series is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.22, chapter 3 SEQUENCES & SERIES, Very Short Answer question 15. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sequences and Series is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — name the formula for the nth term of a G.P. and say what a and r are here.",
   "answer": {
@@ -53,6 +53,7 @@
             "style": "heading"
           },
           "For the G.P. 4, 8, 16, …",
+          "(r is a term divided by the term before it)",
           "a = 4  and  r = 8/4 = 2",
           "The nth term of a G.P. is  tₙ = arⁿ⁻¹"
         ],
@@ -78,7 +79,7 @@
             "two"
           ]
         },
-        "why": "The ratio has to be read off the given terms before any formula is used, and writing tₙ = arⁿ⁻¹ earns a mark on its own even if the arithmetic then slips.",
+        "why": "The ratio has to be read off the given terms before any formula is used. Writing a, r and tₙ = arⁿ⁻¹ earns the method mark even if the arithmetic then goes wrong.",
         "common_mistakes": [
           "Taking r as 8 − 4 = 4, which is a common difference and belongs to an A.P.",
           "Writing the nth term as arⁿ, which returns the 6th term when n = 5."
@@ -93,7 +94,15 @@
         "margin_note": "Second mark. Show ar⁴ before the number. Writing the terms out — 4, 8, 16, 32, 64 — is a fair check of the answer.",
         "memory_tip": "Doubling 4 four times gives 8, 16, 32, 64, and 64 is the fifth term.",
         "lines": [
+          {
+            "text": "(put n = 5)",
+            "added": true
+          },
           "t₅ = ar⁵⁻¹ = ar⁴",
+          {
+            "text": "(2⁴ = 16)",
+            "added": true
+          },
           "= 4 × 2⁴ = 4 × 16",
           {
             "text": "∴ t₅ = 64",
@@ -126,6 +135,14 @@
         "common_mistakes": [
           "Multiplying the power instead of raising it: 4 × 2 × 4 = 32.",
           "Using 2⁵ = 32 and giving 128, which is the 6th term."
+        ],
+        "lines_compact": [
+          "t₅ = ar⁵⁻¹ = ar⁴",
+          "= 4 × 2⁴ = 4 × 16",
+          {
+            "text": "∴ t₅ = 64",
+            "style": "boxed"
+          }
         ]
       }
     ]

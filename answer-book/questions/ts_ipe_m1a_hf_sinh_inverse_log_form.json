@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.118, chapter 11 HYPERBOLIC FUNCTIONS, Very Short Answer question 9. The book prints this result as a Theorem rather than as a numbered exercise; it is asked and worked exactly like one. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards forming the quadratic in eʸ first and choosing the positive root and taking logarithms second. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory; Hyperbolic Functions is a VSAQ-only unit on this paper, with no Section-B and no Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.118, chapter 11 HYPERBOLIC FUNCTIONS, Very Short Answer question 9. The book prints this result as a Theorem rather than as a numbered exercise; it is asked and worked exactly like one. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards forming the quadratic in eʸ first and choosing the positive root and taking logarithms second. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory; Hyperbolic Functions is a VSAQ-only unit on this paper, with no Section-B and no Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — name the formula or definition you use and how you finish.",
   "answer": {
@@ -53,9 +53,12 @@
             "style": "heading"
           },
           "Let y = Sinh⁻¹x, so x = sinh y",
+          "(the definition of sinh y)",
           "x = (eʸ − e⁻ʸ)/2 ⇒ 2x = eʸ − e⁻ʸ",
+          "(eʸ × e⁻ʸ = 1)",
           "Multiply throughout by eʸ:",
           "2x·eʸ = e²ʸ − 1",
+          "(move 2x·eʸ to the right side)",
           "∴ e²ʸ − 2x·eʸ − 1 = 0, a quadratic in eʸ"
         ],
         "recall": {
@@ -80,7 +83,7 @@
             "multiply throughout"
           ]
         },
-        "why": "e⁻ʸ is the only thing stopping this from being a quadratic. Multiplying by eʸ removes it and turns the equation into one the quadratic formula solves.",
+        "why": "The e⁻ʸ term is what stops this from being a quadratic. Multiplying by eʸ removes it and turns the equation into one the quadratic formula solves.",
         "common_mistakes": [
           "Multiplying only one side by eʸ.",
           "Writing eʸ·e⁻ʸ as e⁻ʸ² instead of 1."
@@ -92,14 +95,34 @@
         "label": "Take the positive root",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Second mark. Both roots come out of the formula, but eʸ is always positive and x − √(x² + 1) is always negative, so only the plus root survives.",
+        "margin_note": "Second mark. Both roots come out of the formula, but eʸ is always positive and x − √(x² + 1) is always negative, so only the plus root is kept.",
         "memory_tip": "√(x² + 1) is bigger than x for every real x, so x − √(x² + 1) is negative and cannot equal eʸ.",
         "lines": [
+          {
+            "text": "(the quadratic formula with a = 1, b = −2x, c = −1)",
+            "added": true
+          },
           "eʸ = (2x ± √(4x² + 4))/2",
+          {
+            "text": "(√(4x² + 4) = 2√(x² + 1); divide by 2)",
+            "added": true
+          },
           "= x ± √(x² + 1)",
+          {
+            "text": "(√(x² + 1) > √(x²) = |x| ≥ x)",
+            "added": true
+          },
           "For every real x, √(x² + 1) > x",
           "So x − √(x² + 1) < 0, but eʸ > 0",
+          {
+            "text": "(so the minus root is rejected)",
+            "added": true
+          },
           "∴ eʸ = x + √(x² + 1)",
+          {
+            "text": "(take logₑ of both sides: y = logₑ(x + √(x² + 1)))",
+            "added": true
+          },
           {
             "text": "∴ Sinh⁻¹x = logₑ(x + √(x² + 1))",
             "style": "boxed"
@@ -131,6 +154,17 @@
         "common_mistakes": [
           "Keeping both roots and writing logₑ(x ± √(x² + 1)).",
           "Choosing the minus root, whose logarithm does not exist."
+        ],
+        "lines_compact": [
+          "eʸ = (2x ± √(4x² + 4))/2",
+          "= x ± √(x² + 1)",
+          "For every real x, √(x² + 1) > x",
+          "So x − √(x² + 1) < 0, but eʸ > 0",
+          "∴ eʸ = x + √(x² + 1)",
+          {
+            "text": "∴ Sinh⁻¹x = logₑ(x + √(x² + 1))",
+            "style": "boxed"
+          }
         ]
       }
     ]

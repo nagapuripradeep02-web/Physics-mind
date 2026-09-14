@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.11, chapter 2 FUNCTIONS, Very Short Answer question 18(iii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape gives one mark to the one one argument and one to the onto argument, because the question asks for both and a student who proves only one still earns half. The verdict line carries no mark and is authored for the student, not for the examiner. The codomain printed in the stem is (0, ∞), not R, and the onto argument is answered against that codomain; read as a map from R to R the same rule would NOT be onto, because 2ˣ is never zero or negative. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.11, chapter 2 FUNCTIONS, Very Short Answer question 18(iii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape gives one mark to the one one argument and one to the onto argument, because the question asks for both and a student who proves only one still earns half. The verdict line carries no mark and is authored for the student, not for the examiner. The codomain printed in the stem is (0, ∞), not R, and the onto argument is answered against that codomain; read as a map from R to R the same rule would NOT be onto, because 2ˣ is never zero or negative. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would decide this — how you prove one one for a power, and how the codomain (0, ∞) makes the onto part work.",
   "answer": {
@@ -46,7 +46,7 @@
         "marks": 1,
         "mark_note": "One one",
         "margin_note": "First mark. Copy the domain and the codomain from the question first. Then equate the two powers and use equal bases to equate the exponents.",
-        "memory_tip": "Equal powers of the same base mean equal exponents. Divide to get 2 to the power a − b equals 2 to the power 0.",
+        "memory_tip": "Equal powers of 2 mean equal exponents. Divide to get 2 to the power a − b equals 2 to the power 0.",
         "lines": [
           {
             "text": "Sol:",
@@ -54,8 +54,10 @@
           },
           "f: R→(0, ∞), f(x) = 2ˣ",
           "Domain = R, codomain = (0, ∞)",
+          "(one one: equal images must come from equal inputs)",
           "Let f(a) = f(b), where a, b ∈ R",
           "⇒ 2ᵃ = 2ᵇ ⇒ 2ᵃ/2ᵇ = 1 ⇒ 2ᵃ⁻ᵇ = 2⁰",
+          "(2ᵃ/2ᵇ = 2ᵃ⁻ᵇ, and 2ᵗ = 1 only when t = 0)",
           "⇒ a − b = 0 ⇒ a = b",
           "∴ f is one one (an injection)."
         ],
@@ -83,7 +85,7 @@
             "exponent"
           ]
         },
-        "why": "Two powers of the same base are equal only when the exponents are equal, and dividing turns that into 2 to the power a − b equals 2 to the power 0. Writing that line is the proof; naming the graph is not.",
+        "why": "Two powers of 2 are equal only when the exponents are equal (this holds for any positive base other than 1), and dividing turns that into 2 to the power a − b equals 2 to the power 0. Writing that line is the proof; naming the graph is not.",
         "common_mistakes": [
           "Writing 'the exponential graph is increasing, so it is one one' with no algebra.",
           "Cancelling the 2 as if 2ᵃ meant 2 × a; a power is not a product, so it is the exponents that must be equated."
@@ -98,9 +100,17 @@
         "margin_note": "Second mark. The codomain is (0, ∞), so y is strictly positive and log₂ y is a real number. That is exactly what makes this map onto.",
         "memory_tip": "log₂ y is real only when y > 0, and the codomain (0, ∞) gives you exactly that.",
         "lines": [
+          {
+            "text": "(onto: every element of the codomain is an image)",
+            "added": true
+          },
           "Let y ∈ (0, ∞), so y > 0.",
           "Solve 2ˣ = y. Taking log₂ on both sides,",
           "x = log₂ y, which is real because y > 0.",
+          {
+            "text": "(2 raised to log₂ y is y, by the meaning of log₂)",
+            "added": true
+          },
           "So x ∈ R and f(x) = 2ˣ = y.",
           "∴ every y > 0 has a pre-image; f is onto."
         ],
@@ -132,6 +142,13 @@
         "common_mistakes": [
           "Answering for the codomain R instead of (0, ∞) and calling f not onto.",
           "Writing x = log₂ y without saying that y > 0 is what makes it real."
+        ],
+        "lines_compact": [
+          "Let y ∈ (0, ∞), so y > 0.",
+          "Solve 2ˣ = y. Taking log₂ on both sides,",
+          "x = log₂ y, which is real because y > 0.",
+          "So x ∈ R and f(x) = 2ˣ = y.",
+          "∴ every y > 0 has a pre-image; f is onto."
         ]
       },
       {

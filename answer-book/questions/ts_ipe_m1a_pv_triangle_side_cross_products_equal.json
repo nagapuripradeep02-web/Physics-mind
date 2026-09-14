@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.69, chapter 7 PRODUCT OF VECTORS, Short Answer question 11. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 split rewards the four moves a proof of this shape is marked on — the closure relation a + b + c = 0, each of the two substitutions, and the closing statement. CHECKED ON A CONCRETE TRIANGLE as well as algebraically: with A(0, 0, 0), B(1, 0, 0) and C(0, 1, 0) the sides are a = BC = (−1, 1, 0), b = CA = (0, −1, 0) and c = AB = (1, 0, 0), which sum to the zero vector, and a × b = b × c = c × a = k. That common vector was dotted with a, giving −0 + 0 + 0 = 0, and with b, giving 0 — it is perpendicular to both sides, and its length 1 is twice the area of a triangle with legs 1 and 1. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Product of Vectors supplies at least one of those eight on almost every paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.69, chapter 7 PRODUCT OF VECTORS, Short Answer question 11. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 split rewards the four moves a proof of this shape is marked on — the closure relation a + b + c = 0, each of the two substitutions, and the closing statement. CHECKED ON A CONCRETE TRIANGLE as well as algebraically: with A(0, 0, 0), B(1, 0, 0) and C(0, 1, 0) the sides are a = BC = (−1, 1, 0), b = CA = (0, −1, 0) and c = AB = (1, 0, 0), which sum to the zero vector, and a × b = b × c = c × a = k. That common vector was dotted with a, giving −0 + 0 + 0 = 0, and with b, giving 0 — it is perpendicular to both sides, and its length 1 is twice the area of a triangle with legs 1 and 1. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Product of Vectors supplies at least one of those eight on almost every paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — name the one relation the whole proof rests on.",
   "answer": {
@@ -63,6 +63,7 @@
           "The three sides taken in order form a",
           "closed path, so BC + CA + AB = 0.",
           "∴ a + b + c = 0",
+          "(take a + b to the other side)",
           "⇒ c = −(a + b)"
         ],
         "recall": {
@@ -103,8 +104,16 @@
         "memory_tip": "Any vector crossed with itself is zero, and reversing a cross product flips its sign.",
         "lines": [
           "b × c = b × (−(a + b))",
+          {
+            "text": "(open the bracket; the minus sign comes out)",
+            "added": true
+          },
           "= −(b × a) − (b × b)",
           "= −(b × a)   [∵ b × b = 0]",
+          {
+            "text": "(swapping the order of a cross product changes its sign)",
+            "added": true
+          },
           "= a × b"
         ],
         "recall": {
@@ -133,6 +142,12 @@
         "common_mistakes": [
           "Treating b × a as equal to a × b.",
           "Forgetting that b × b = 0."
+        ],
+        "lines_compact": [
+          "b × c = b × (−(a + b))",
+          "= −(b × a) − (b × b)",
+          "= −(b × a)   [∵ b × b = 0]",
+          "= a × b"
         ]
       },
       {
@@ -145,8 +160,16 @@
         "memory_tip": "Same substitution, same two facts — only the vector that vanishes changes, from b × b to a × a.",
         "lines": [
           "c × a = (−(a + b)) × a",
+          {
+            "text": "(open the bracket; the minus sign comes out)",
+            "added": true
+          },
           "= −(a × a) − (b × a)",
           "= −(b × a)   [∵ a × a = 0]",
+          {
+            "text": "(swapping the order of a cross product changes its sign)",
+            "added": true
+          },
           "= a × b"
         ],
         "recall": {
@@ -175,6 +198,12 @@
         "common_mistakes": [
           "Expanding (−(a + b)) × a as a × a + b × a, with the sign lost.",
           "Claiming the result by symmetry without showing the working."
+        ],
+        "lines_compact": [
+          "c × a = (−(a + b)) × a",
+          "= −(a × a) − (b × a)",
+          "= −(b × a)   [∵ a × a = 0]",
+          "= a × b"
         ]
       },
       {
@@ -189,6 +218,15 @@
           "Both products reduce to a × b.",
           "Its length |a × b| is twice the area",
           "of triangle ABC.",
+          {
+            "text": "(|a × b| is the area of the parallelogram on a and b,",
+            "added": true
+          },
+          {
+            "text": "  and the triangle is half of it)",
+            "style": "indent",
+            "added": true
+          },
           {
             "text": "∴ a × b = b × c = c × a",
             "style": "boxed"
@@ -220,6 +258,15 @@
         "common_mistakes": [
           "Stating that only two of the three products are equal.",
           "Writing the common value as a number instead of a vector."
+        ],
+        "lines_compact": [
+          "Both products reduce to a × b.",
+          "Its length |a × b| is twice the area",
+          "of triangle ABC.",
+          {
+            "text": "∴ a × b = b × c = c × a",
+            "style": "boxed"
+          }
         ]
       }
     ]

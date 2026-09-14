@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.12, chapter 2 FUNCTIONS, Very Short Answer question 19 part (a-vi). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape rewards the conditions the expression forces and the final interval as two separate pieces of work, which is how a domain question is marked. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.12, chapter 2 FUNCTIONS, Very Short Answer question 19 part (a-vi). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape rewards the conditions the expression forces and the final interval as two separate pieces of work, which is how a domain question is marked. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find this domain — the conditions the formula forces, and the answer.",
   "answer": {
@@ -56,6 +56,7 @@
           "⇒ x < 2",
           "The logarithm is in the denominator, so",
           "log(2 − x) ≠ 0, that is 2 − x ≠ 1",
+          "(log t = 0 exactly when t = 1)",
           "⇒ x ≠ 1"
         ],
         "recall": {
@@ -101,6 +102,10 @@
           "x < 2 gives x ∈ (−∞, 2)",
           "Remove the single point x = 1 from it.",
           {
+            "text": "(1 < 2, so x = 1 is inside (−∞, 2))",
+            "added": true
+          },
+          {
             "text": "∴ Domain = (−∞, 1) ∪ (1, 2)",
             "style": "boxed"
           }
@@ -139,6 +144,14 @@
         "common_mistakes": [
           "Giving (−∞, 2) and losing the excluded point x = 1.",
           "Removing x = 2 as well, although it is already outside the interval."
+        ],
+        "lines_compact": [
+          "x < 2 gives x ∈ (−∞, 2)",
+          "Remove the single point x = 1 from it.",
+          {
+            "text": "∴ Domain = (−∞, 1) ∪ (1, 2)",
+            "style": "boxed"
+          }
         ]
       }
     ]

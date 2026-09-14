@@ -46,7 +46,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.79, chapter 7 PRODUCT OF VECTORS, Long Answer question 10. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+2+2+1+1 split gives two marks to each of the two perpendicularity conditions, because writing them as dot products is the whole method, and keeps single marks for the set-up, the addition and the conclusion. Paper position: Maths-1A Section C prints 3 long answers at 8 marks each and the student answers any 2; Product of Vectors is one of the units that can fill a Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.79, chapter 7 PRODUCT OF VECTORS, Long Answer question 10. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+2+2+1+1 split gives two marks to each of the two perpendicularity conditions, because writing them as dot products is the whole method, and keeps single marks for the set-up, the addition and the conclusion. Paper position: Maths-1A Section C prints 3 long answers at 8 marks each and the student answers any 2; Product of Vectors is one of the units that can fill a Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove that the three altitudes of a triangle meet at one point.",
   "answer": {
@@ -117,7 +117,11 @@
           "Take O as the origin and let a, b, c be",
           "the position vectors of A, B, C.",
           "Then OA = a, OB = b, OC = c and",
-          "BC = c − b, CA = a − c, BA = a − b."
+          "BC = c − b, CA = a − c, BA = a − b.",
+          {
+            "text": "(each is end point minus start point, e.g. BC = OC − OB)",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -145,6 +149,12 @@
         "common_mistakes": [
           "Taking A as the origin, which leaves OA as a difference and lengthens every line.",
           "Writing BC as b − c, which is the vector from C to B."
+        ],
+        "lines_compact": [
+          "Take O as the origin and let a, b, c be",
+          "the position vectors of A, B, C.",
+          "Then OA = a, OB = b, OC = c and",
+          "BC = c − b, CA = a − c, BA = a − b."
         ]
       },
       {
@@ -158,7 +168,20 @@
         "lines": [
           "O lies on the altitude through A, so",
           "OA ⊥ BC :",
+          {
+            "text": "(two vectors are perpendicular exactly when their",
+            "added": true
+          },
+          {
+            "text": "  dot product is 0)",
+            "style": "indent",
+            "added": true
+          },
           "a·(c − b) = 0",
+          {
+            "text": "(open the bracket)",
+            "added": true
+          },
           "a·c − a·b = 0    …(1)"
         ],
         "recall": {
@@ -187,6 +210,12 @@
         "common_mistakes": [
           "Pairing A with a side through A instead of the opposite side BC.",
           "Using a × (c − b) = 0, which says parallel and not at right angles."
+        ],
+        "lines_compact": [
+          "O lies on the altitude through A, so",
+          "OA ⊥ BC :",
+          "a·(c − b) = 0",
+          "a·c − a·b = 0    …(1)"
         ]
       },
       {
@@ -201,6 +230,10 @@
           "O lies on the altitude through B, so",
           "OB ⊥ CA :",
           "b·(a − c) = 0",
+          {
+            "text": "(open the bracket and write b·a as a·b)",
+            "added": true
+          },
           "a·b − b·c = 0    …(2)"
         ],
         "recall": {
@@ -229,6 +262,12 @@
         "common_mistakes": [
           "Leaving the term as b·a, so the cancellation in the next step is not visible.",
           "Pairing B with BC instead of with the opposite side CA."
+        ],
+        "lines_compact": [
+          "O lies on the altitude through B, so",
+          "OB ⊥ CA :",
+          "b·(a − c) = 0",
+          "a·b − b·c = 0    …(2)"
         ]
       },
       {
@@ -241,7 +280,15 @@
         "memory_tip": "The a·b terms carry opposite signs, so adding removes them.",
         "lines": [
           "Adding (1) and (2), the a·b terms cancel:",
+          {
+            "text": "(a·c − a·b + a·b − b·c)",
+            "added": true
+          },
           "a·c − b·c = 0",
+          {
+            "text": "(take out the common c)",
+            "added": true
+          },
           "(a − b)·c = 0"
         ],
         "recall": {
@@ -270,6 +317,11 @@
         "common_mistakes": [
           "Subtracting the two equations, which leaves a·c + b·c − 2a·b and no third condition.",
           "Thinking the a·b terms add rather than cancel, and being left with 2a·b."
+        ],
+        "lines_compact": [
+          "Adding (1) and (2), the a·b terms cancel:",
+          "a·c − b·c = 0",
+          "(a − b)·c = 0"
         ]
       },
       {
@@ -282,6 +334,18 @@
         "memory_tip": "a − b is BA, so the result says OC is at right angles to AB.",
         "lines": [
           "Now a − b = BA, so c·BA = 0, that is",
+          {
+            "text": "(if c = 0 then O = C, which is already on the",
+            "added": true
+          },
+          {
+            "text": "  altitude through C; otherwise c ≠ 0 and BA ≠ 0,",
+            "added": true
+          },
+          {
+            "text": "  and a dot product of 0 means they are perpendicular)",
+            "added": true
+          },
           "OC ⊥ AB.",
           "So O lies on the line through C at right",
           "angles to AB, which is the third altitude.",
@@ -317,6 +381,16 @@
         "common_mistakes": [
           "Stopping at (a − b)·c = 0 without saying what it means.",
           "Naming the point of concurrence without saying the third altitude passes through it."
+        ],
+        "lines_compact": [
+          "Now a − b = BA, so c·BA = 0, that is",
+          "OC ⊥ AB.",
+          "So O lies on the line through C at right",
+          "angles to AB, which is the third altitude.",
+          {
+            "text": "The three altitudes meet at O.",
+            "style": "boxed"
+          }
         ]
       }
     ]

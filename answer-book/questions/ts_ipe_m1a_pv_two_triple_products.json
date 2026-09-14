@@ -47,7 +47,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.36 — LAQ chapter 4 Product of Vectors, answer 22.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 16,18. TWO answers are wanted, and they are DIFFERENT — 5√14 and 3√6. That is the point of the question: the vector triple product is not associative, so the bracket position changes the answer.⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer (its page is set two questions to a page in two columns, which takes the margin those tags would occupy). It follows the shape of the split the same chapter DOES print for answer 23 on book p.37, weighting each cross product against the closing step. The book's chapter header carries ★★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Q22 is the Product of Vectors slot. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Find |a×(b×c)|."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.36 — LAQ chapter 4 Product of Vectors, answer 22.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 16,18. TWO answers are wanted, and they are DIFFERENT — 5√14 and 3√6. That is the point of the question: the vector triple product is not associative, so the bracket position changes the answer.⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer (its page is set two questions to a page in two columns, which takes the margin those tags would occupy). It follows the shape of the split the same chapter DOES print for answer 23 on book p.37, weighting each cross product against the closing step. The book's chapter header carries ★★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Q22 is the Product of Vectors slot. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Find |a×(b×c)|. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find both of these — and say what the two answers show.",
   "answer": {
@@ -112,6 +112,25 @@
             "render": "katex",
             "style": "eq"
           },
+          {
+            "text": "Expand along the top row, i, j, k (signs + − +):",
+            "added": true
+          },
+          {
+            "text": "  i: (−2)(1) − (3)(1) = −5",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  j: (1)(1) − (3)(2) = −5, with a minus in front",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  k: (1)(1) − (−2)(2) = 5",
+            "style": "indent",
+            "added": true
+          },
           "= i(−2 − 3) − j(1 − 6) + k(1 + 4)",
           "= −5i + 5j + 5k"
         ],
@@ -141,6 +160,15 @@
         "common_mistakes": [
           "Computing b×c because it looks similar.",
           "Sign slip on the j term."
+        ],
+        "lines_compact": [
+          {
+            "text": "a \\times b = \\begin{vmatrix} i & j & k \\\\ 1 & -2 & 3 \\\\ 2 & 1 & 1 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= i(−2 − 3) − j(1 − 6) + k(1 + 4)",
+          "= −5i + 5j + 5k"
         ]
       },
       {
@@ -157,8 +185,31 @@
             "render": "katex",
             "style": "eq"
           },
+          {
+            "text": "Expand along the top row, i, j, k (signs + − +):",
+            "added": true
+          },
+          {
+            "text": "  i: (5)(2) − (5)(1) = 5",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  j: (−5)(2) − (5)(1) = −15, with a minus in front",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  k: (−5)(1) − (5)(1) = −10",
+            "style": "indent",
+            "added": true
+          },
           "= i(10 − 5) − j(−10 − 5) + k(−5 − 5)",
           "= 5i + 15j − 10k = 5(i + 3j − 2k)",
+          {
+            "text": "(|5v| = 5|v|)",
+            "added": true
+          },
           "|(a×b)×c| = 5√(1 + 9 + 4) = 5√14"
         ],
         "recall": {
@@ -187,6 +238,16 @@
         "common_mistakes": [
           "Crossing c×(a×b) instead, which reverses the sign.",
           "Leaving the 5 inside the square root."
+        ],
+        "lines_compact": [
+          {
+            "text": "(a \\times b) \\times c = \\begin{vmatrix} i & j & k \\\\ -5 & 5 & 5 \\\\ 1 & 1 & 2 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= i(10 − 5) − j(−10 − 5) + k(−5 − 5)",
+          "= 5i + 15j − 10k = 5(i + 3j − 2k)",
+          "|(a×b)×c| = 5√(1 + 9 + 4) = 5√14"
         ]
       },
       {
@@ -203,6 +264,25 @@
             "text": "b \\times c = \\begin{vmatrix} i & j & k \\\\ 2 & 1 & 1 \\\\ 1 & 1 & 2 \\end{vmatrix}",
             "render": "katex",
             "style": "eq"
+          },
+          {
+            "text": "Expand along the top row, i, j, k (signs + − +):",
+            "added": true
+          },
+          {
+            "text": "  i: (1)(2) − (1)(1) = 1",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  j: (2)(2) − (1)(1) = 3, with a minus in front",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  k: (2)(1) − (1)(1) = 1",
+            "style": "indent",
+            "added": true
           },
           "= i(2 − 1) − j(4 − 1) + k(2 − 1)",
           "= i − 3j + k"
@@ -233,6 +313,16 @@
         "common_mistakes": [
           "Reusing a×b from the first part.",
           "Assuming the second answer must equal the first."
+        ],
+        "lines_compact": [
+          "For the second part the bracket is b×c:",
+          {
+            "text": "b \\times c = \\begin{vmatrix} i & j & k \\\\ 2 & 1 & 1 \\\\ 1 & 1 & 2 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= i(2 − 1) − j(4 − 1) + k(2 − 1)",
+          "= i − 3j + k"
         ]
       },
       {
@@ -249,8 +339,31 @@
             "render": "katex",
             "style": "eq"
           },
+          {
+            "text": "Expand along the top row, i, j, k (signs + − +):",
+            "added": true
+          },
+          {
+            "text": "  i: (−2)(1) − (3)(−3) = 7",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  j: (1)(1) − (3)(1) = −2, with a minus in front",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  k: (1)(−3) − (−2)(1) = −1",
+            "style": "indent",
+            "added": true
+          },
           "= i(−2 + 9) − j(1 − 3) + k(−3 + 2)",
           "= 7i + 2j − k",
+          {
+            "text": "(√54 = √(9 × 6) = 3√6)",
+            "added": true
+          },
           "|a×(b×c)| = √(49 + 4 + 1) = √54 = 3√6",
           {
             "text": "|(a×b)×c| = 5√14,  |a×(b×c)| = 3√6",
@@ -284,6 +397,20 @@
         "common_mistakes": [
           "Assuming the two answers must match and going back to look for a mistake.",
           "Leaving √54 unsimplified."
+        ],
+        "lines_compact": [
+          {
+            "text": "a \\times (b \\times c) = \\begin{vmatrix} i & j & k \\\\ 1 & -2 & 3 \\\\ 1 & -3 & 1 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= i(−2 + 9) − j(1 − 3) + k(−3 + 2)",
+          "= 7i + 2j − k",
+          "|a×(b×c)| = √(49 + 4 + 1) = √54 = 3√6",
+          {
+            "text": "|(a×b)×c| = 5√14,  |a×(b×c)| = 3√6",
+            "style": "boxed"
+          }
         ]
       }
     ]

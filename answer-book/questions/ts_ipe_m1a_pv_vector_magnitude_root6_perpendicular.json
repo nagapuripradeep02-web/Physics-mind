@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 7 PRODUCT OF VECTORS, Short Answer question 5, book p.68. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. The stem prints the second vector as 3j − i − k; it is rewritten here in the usual i, j, k order as −i + 3j − k, which is the same vector. Computed twice: a × b = 3i + 3j + 6k by determinant expansion, |a × b| = √54 = 3√6, so the unit vector is (i + j + 2k)/√6 and the required vector is ±(i + j + 2k). Checked a second way directly on the answer: (i + j + 2k)·(2i − k) = 2 − 2 = 0, (i + j + 2k)·(−i + 3j − k) = −1 + 3 − 2 = 0, and |i + j + 2k| = √(1 + 1 + 4) = √6. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 split rewards the four separate acts: setting up the cross product, expanding it, turning it into a unit vector, and scaling that to the required length. Paper position: Maths-1A Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern; Product of Vectors carries a Section B slot on the paper and also appears in Section C. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 7 PRODUCT OF VECTORS, Short Answer question 5, book p.68. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. The stem prints the second vector as 3j − i − k; it is rewritten here in the usual i, j, k order as −i + 3j − k, which is the same vector. Computed twice: a × b = 3i + 3j + 6k by determinant expansion, |a × b| = √54 = 3√6, so the unit vector is (i + j + 2k)/√6 and the required vector is ±(i + j + 2k). Checked a second way directly on the answer: (i + j + 2k)·(2i − k) = 2 − 2 = 0, (i + j + 2k)·(−i + 3j − k) = −1 + 3 − 2 = 0, and |i + j + 2k| = √(1 + 1 + 4) = √6. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 split rewards the four separate acts: setting up the cross product, expanding it, turning it into a unit vector, and scaling that to the required length. Paper position: Maths-1A Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern; Product of Vectors carries a Section B slot on the paper and also appears in Section C. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would build a vector of a given length that is perpendicular to two given vectors — name each move in order.",
   "answer": {
@@ -64,6 +64,7 @@
           "b = −i + 3j − k.",
           "(The stem writes b as 3j − i − k.)",
           "A vector perpendicular to both a and b",
+          "(a × b is at right angles to both a and b)",
           "lies along a × b.",
           {
             "text": "a \\times b = \\begin{vmatrix} i & j & k \\\\ 2 & 0 & -1 \\\\ -1 & 3 & -1 \\end{vmatrix}",
@@ -108,10 +109,23 @@
         "margin_note": "Second mark. Expand along the top row. The j term already carries a minus sign from the expansion, so a negative inside the bracket makes the j component positive here.",
         "memory_tip": "The middle term of a cross product expansion always carries its own minus sign.",
         "lines": [
+          {
+            "text": "(each of i, j, k times the 2 × 2 determinant left",
+            "added": true
+          },
+          {
+            "text": "  when its row and column are deleted; signs + − +)",
+            "style": "indent",
+            "added": true
+          },
           "= i[(0)(−1) − (−1)(3)]",
           "  − j[(2)(−1) − (−1)(−1)]",
           "  + k[(2)(3) − (0)(−1)]",
           "= i(0 + 3) − j(−2 − 1) + k(6 − 0)",
+          {
+            "text": "(−j(−3) = +3j)",
+            "added": true
+          },
           "= 3i + 3j + 6k"
         ],
         "recall": {
@@ -140,6 +154,13 @@
         "common_mistakes": [
           "Forgetting the minus in front of the j term.",
           "Sign slip on (−1)(−1), which is +1, not −1."
+        ],
+        "lines_compact": [
+          "= i[(0)(−1) − (−1)(3)]",
+          "  − j[(2)(−1) − (−1)(−1)]",
+          "  + k[(2)(3) − (0)(−1)]",
+          "= i(0 + 3) − j(−2 − 1) + k(6 − 0)",
+          "= 3i + 3j + 6k"
         ]
       },
       {
@@ -153,8 +174,16 @@
         "lines": [
           "|a × b| = √(3² + 3² + 6²)",
           "  = √(9 + 9 + 36) = √54 = 3√6",
+          {
+            "text": "(a vector divided by its length has length 1)",
+            "added": true
+          },
           "Unit vector along a × b",
           "  = (3i + 3j + 6k)/(3√6)",
+          {
+            "text": "(3i + 3j + 6k = 3(i + j + 2k); cancel the 3)",
+            "added": true
+          },
           "  = (i + j + 2k)/√6"
         ],
         "recall": {
@@ -183,6 +212,13 @@
         "common_mistakes": [
           "Dividing by 54 instead of by √54.",
           "Leaving the answer as the cross product itself, which has length 3√6 and not √6."
+        ],
+        "lines_compact": [
+          "|a × b| = √(3² + 3² + 6²)",
+          "  = √(9 + 9 + 36) = √54 = 3√6",
+          "Unit vector along a × b",
+          "  = (3i + 3j + 6k)/(3√6)",
+          "  = (i + j + 2k)/√6"
         ]
       },
       {
@@ -194,8 +230,16 @@
         "margin_note": "Last mark. Multiply the unit vector by the required length √6, and the √6 in the denominator cancels. Both signs are correct answers, so write ±.",
         "memory_tip": "Required vector = required length × unit vector, and both signs work.",
         "lines": [
+          {
+            "text": "(a unit vector times √6 has length √6)",
+            "added": true
+          },
           "Required vector",
           "  = √6 × (i + j + 2k)/√6",
+          {
+            "text": "(the √6 cancels)",
+            "added": true
+          },
           "  = i + j + 2k",
           "The opposite vector is perpendicular to a",
           "and b as well, so either sign is correct.",
@@ -231,6 +275,18 @@
         "common_mistakes": [
           "Giving only one sign when both are correct.",
           "Multiplying by 6 instead of √6."
+        ],
+        "lines_compact": [
+          "Required vector",
+          "  = √6 × (i + j + 2k)/√6",
+          "  = i + j + 2k",
+          "The opposite vector is perpendicular to a",
+          "and b as well, so either sign is correct.",
+          {
+            "text": "∴ Required vector = ±(i + j + 2k)",
+            "style": "boxed"
+          },
+          "Check: |i + j + 2k| = √(1 + 1 + 4) = √6"
         ]
       }
     ]

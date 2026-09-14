@@ -39,7 +39,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.81 — VSAQ chapter 14 Functions, question 95.1, on ★★★ SSP 81 (the book calls it 'the most dominating domain page'). Appearance years are printed board-split. UNLIKE the LAQ and SAQ pages, the book prints NO internal mark split on its VSAQ pages: the 1+1 across the two steps is our division of the 2 marks, not the source's. Publisher's claims until a Telangana IPE teacher confirms them."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.81 — VSAQ chapter 14 Functions, question 95.1, on ★★★ SSP 81 (the book calls it 'the most dominating domain page'). Appearance years are printed board-split. UNLIKE the LAQ and SAQ pages, the book prints NO internal mark split on its VSAQ pages: the 1+1 across the two steps is our division of the 2 marks, not the source's. Publisher's claims until a Telangana IPE teacher confirms them. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find this domain — the condition the formula forces, and the answer.",
   "answer": {
@@ -57,6 +57,11 @@
         "margin_note": "One of the two marks is for the condition alone. Write it before any factorising.",
         "memory_tip": "Already the right way round: x² − 25 ≥ 0, so (x − 5)(x + 5) ≥ 0.",
         "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "(the number under a square root must not be negative)",
           "f(x) is defined when x² − 25 ≥ 0",
           "⇒ (x − 5)(x + 5) ≥ 0"
         ],
@@ -83,7 +88,7 @@
             "outside"
           ]
         },
-        "why": "This time the product of the two factors must be positive, and that happens outside the roots, not between them.",
+        "why": "This time the product of the two factors must be positive or zero, and that happens outside the roots, ends included, not between them.",
         "common_mistakes": [
           "Writing x² ≥ 25 as x ≥ 5 only, which loses the whole negative half of the domain.",
           "Treating it like 25 − x² and taking the inside interval."
@@ -98,8 +103,15 @@
         "margin_note": "The second mark is the interval itself. Write it in interval form, and check every bracket.",
         "memory_tip": "A product ≥ 0 is OUTSIDE the roots, ends included: (−∞, −5] ∪ [5, ∞).",
         "lines": [
+          {
+            "text": "(both factors ≥ 0 gives x ≥ 5; both ≤ 0 gives x ≤ −5)",
+            "added": true
+          },
           "⇒ x ∈ (−∞, −5] ∪ [5, ∞)",
-          "∴ Domain = (−∞, −5] ∪ [5, ∞)"
+          {
+            "text": "∴ Domain = (−∞, −5] ∪ [5, ∞)",
+            "style": "boxed"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -133,6 +145,13 @@
         "common_mistakes": [
           "Giving [−5, 5], which is the answer to the opposite inequality.",
           "Writing the union with round brackets at ±5, where equality is allowed."
+        ],
+        "lines_compact": [
+          "⇒ x ∈ (−∞, −5] ∪ [5, ∞)",
+          {
+            "text": "∴ Domain = (−∞, −5] ∪ [5, ∞)",
+            "style": "boxed"
+          }
         ]
       }
     ]

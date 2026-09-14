@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.21 — the PRACTICE question printed at the foot of LAQ chapter 2. IMPORTANT: the book poses this question but gives NO worked solution and NO mark split, so unlike every other question in this unit BOTH the solution and the 1+1+1+3+1 split are ours — the split copied from the chapter's solved questions, the working done and checked here (n=1 gives 209 = 11 × 19; the step turns on 16 − 27 being a multiple of 11). No appearance years are printed. Everything here needs a teacher's confirmation. SUPERSEDED 2026-08-31 by the RE-CUT sentence at the end of this note — re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Step 3 — S(k+1) follows. RE-CUT 2026-08-31: this card was filed as LAQ at 8 marks and is now SAQ at 4 marks. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition) prints this chapter under a Short Answer Questions banner and prints no long-answer block for it at all. Only the question was taken from a source book; the solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. The mathematics and the steps are unchanged; only the mark scheme moved — the four induction moves (base case, hypothesis, inductive step, conclusion) now carry 1 mark each and the opening statement step carries 0. Still unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.21 — the PRACTICE question printed at the foot of LAQ chapter 2. IMPORTANT: the book poses this question but gives NO worked solution and NO mark split, so unlike every other question in this unit BOTH the solution and the 1+1+1+3+1 split are ours — the split copied from the chapter's solved questions, the working done and checked here (n=1 gives 209 = 11 × 19; the step turns on 16 − 27 being a multiple of 11). No appearance years are printed. Everything here needs a teacher's confirmation. SUPERSEDED 2026-08-31 by the RE-CUT sentence at the end of this note — re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Step 3 — S(k+1) follows. RE-CUT 2026-08-31: this card was filed as LAQ at 8 marks and is now SAQ at 4 marks. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition) prints this chapter under a Short Answer Questions banner and prints no long-answer block for it at all. Only the question was taken from a source book; the solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. The mathematics and the steps are unchanged; only the mark scheme moved — the four induction moves (base case, hypothesis, inductive step, conclusion) now carry 1 mark each and the opening statement step carries 0. Still unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this by induction — how each power grows, and which subtraction produces the 11.",
   "answer": {
@@ -55,7 +55,8 @@
         "margin_note": "Unmarked setup at 4 marks, but never skip it — same first move as every divisibility proof: turn the word into an equation.",
         "lines": [
           "Let S(n): 2·4⁽²ⁿ⁺¹⁾ + 3⁽³ⁿ⁺¹⁾ = 11q,",
-          "        where q ∈ Z"
+          "        where q ∈ Z",
+          "(divisible by 11 means equal to 11 times an integer)"
         ],
         "recall": {
           "credit": "say_it",
@@ -93,7 +94,15 @@
         "margin_note": "One mark. Work out both powers at n = 1 and name the multiple of 11.",
         "lines": [
           "Step 1 — check S(1)",
+          {
+            "text": "(put n = 1: 2n + 1 = 3 and 3n + 1 = 4)",
+            "added": true
+          },
           "2·4³ + 3⁴ = 2(64) + 81",
+          {
+            "text": "(209 = 11 × 19)",
+            "added": true
+          },
           "= 128 + 81 = 209 = 11(19)",
           "which is divisible by 11. So S(1) is true."
         ],
@@ -124,7 +133,13 @@
           "Exponent slip: at n = 1, 2n+1 is 3 and 3n+1 is 4.",
           "Writing 209 without showing the factor 11."
         ],
-        "memory_tip": "At n = 1 the powers are 4³ and 3⁴: 128 + 81 = 209 = 11 × 19. Name the multiple."
+        "memory_tip": "At n = 1 the powers are 4³ and 3⁴: 128 + 81 = 209 = 11 × 19. Name the multiple.",
+        "lines_compact": [
+          "Step 1 — check S(1)",
+          "2·4³ + 3⁴ = 2(64) + 81",
+          "= 128 + 81 = 209 = 11(19)",
+          "which is divisible by 11. So S(1) is true."
+        ]
       },
       {
         "id": "s3_assume",
@@ -135,7 +150,15 @@
         "margin_note": "One mark. Assume for k, number the line, and rearrange to isolate the first power — that is what Step 3 substitutes.",
         "lines": [
           "Step 2 — assume S(k) is true, k ∈ N",
+          {
+            "text": "(take S(k) as true for one natural number k)",
+            "added": true
+          },
           "S(k): 2·4⁽²ᵏ⁺¹⁾ + 3⁽³ᵏ⁺¹⁾ = 11q   …(1)",
+          {
+            "text": "(take 3³ᵏ⁺¹ to the other side)",
+            "added": true
+          },
           "⇒ 2·4⁽²ᵏ⁺¹⁾ = 11q − 3⁽³ᵏ⁺¹⁾"
         ],
         "recall": {
@@ -163,9 +186,14 @@
         "why": "Isolating one power means Step 3 substitutes once and leaves a single leftover term to collect.",
         "common_mistakes": [
           "Assuming it for all k.",
-          "Rearranging for the wrong power, which makes the last step messier."
+          "Substituting without first rearranging (1) to make one power the subject."
         ],
-        "memory_tip": "Assume for k, number the line, and rearrange to isolate the FIRST power — that is what Step 3 substitutes."
+        "memory_tip": "Assume for k, number the line, and rearrange to isolate the FIRST power — that is what Step 3 substitutes.",
+        "lines_compact": [
+          "Step 2 — assume S(k) is true, k ∈ N",
+          "S(k): 2·4⁽²ᵏ⁺¹⁾ + 3⁽³ᵏ⁺¹⁾ = 11q   …(1)",
+          "⇒ 2·4⁽²ᵏ⁺¹⁾ = 11q − 3⁽³ᵏ⁺¹⁾"
+        ]
       },
       {
         "id": "s4_inductive",
@@ -173,15 +201,44 @@
         "label": "Show S(k+1) follows",
         "marks": 1,
         "mark_note": "Step 3",
-        "margin_note": "One mark, and the longest step on the page. The powers grow by 4² = 16 and 3³ = 27. Substitute the rearranged line and collect — 27 − 16 = 11 is what finishes it.",
+        "margin_note": "One mark, and the longest step on the page. The powers are multiplied by 4² = 16 and 3³ = 27. Substitute the rearranged line and collect — 27 − 16 = 11 gives the factor 11.",
         "lines": [
           "Step 3 — show S(k+1) is true",
+          {
+            "text": "(put n = k + 1: 2(k + 1) + 1 = 2k + 3 and",
+            "added": true
+          },
+          {
+            "text": "  3(k + 1) + 1 = 3k + 4)",
+            "style": "indent",
+            "added": true
+          },
           "2·4⁽²ᵏ⁺³⁾ + 3⁽³ᵏ⁺⁴⁾",
+          {
+            "text": "(4²ᵏ⁺³ = 16 × 4²ᵏ⁺¹ and 3³ᵏ⁺⁴ = 27 × 3³ᵏ⁺¹)",
+            "added": true
+          },
           "= 16(2·4⁽²ᵏ⁺¹⁾) + 27(3⁽³ᵏ⁺¹⁾)",
           "= 16(11q − 3⁽³ᵏ⁺¹⁾) + 27(3⁽³ᵏ⁺¹⁾)   [from (1)]",
+          {
+            "text": "(open the bracket)",
+            "added": true
+          },
           "= 16(11q) − 16(3⁽³ᵏ⁺¹⁾) + 27(3⁽³ᵏ⁺¹⁾)",
+          {
+            "text": "(−16 + 27 = 11)",
+            "added": true
+          },
           "= 16(11q) + 11(3⁽³ᵏ⁺¹⁾)",
+          {
+            "text": "(take out 11)",
+            "added": true
+          },
           "= 11(16q + 3⁽³ᵏ⁺¹⁾)",
+          {
+            "text": "(16q + 3³ᵏ⁺¹ is an integer)",
+            "added": true
+          },
           "which is divisible by 11."
         ],
         "recall": {
@@ -206,13 +263,23 @@
             "three to the three k plus one"
           ]
         },
-        "why": "27 − 16 = 11 is the hidden reason the question was chosen. Every divisibility proof of this shape is built around one such difference.",
+        "why": "27 − 16 = 11 is the reason 11 comes out as a factor. Divisibility proofs of this shape use one such difference.",
         "common_mistakes": [
           "Growth factors wrong: 4⁽²ᵏ⁺³⁾ is 16 × 4⁽²ᵏ⁺¹⁾ and 3⁽³ᵏ⁺⁴⁾ is 27 × 3⁽³ᵏ⁺¹⁾.",
-          "Substituting for both powers, leaving nothing to collect.",
+          "Substituting for both powers, which puts both powers back into the expression and gets nowhere.",
           "Not saying the final bracket is an integer."
         ],
-        "memory_tip": "The powers grow by 4² = 16 and 3³ = 27, and 27 − 16 = 11 is exactly what finishes it."
+        "memory_tip": "The powers are multiplied by 4² = 16 and 3³ = 27, and 27 − 16 = 11 gives the factor 11.",
+        "lines_compact": [
+          "Step 3 — show S(k+1) is true",
+          "2·4⁽²ᵏ⁺³⁾ + 3⁽³ᵏ⁺⁴⁾",
+          "= 16(2·4⁽²ᵏ⁺¹⁾) + 27(3⁽³ᵏ⁺¹⁾)",
+          "= 16(11q − 3⁽³ᵏ⁺¹⁾) + 27(3⁽³ᵏ⁺¹⁾)   [from (1)]",
+          "= 16(11q) − 16(3⁽³ᵏ⁺¹⁾) + 27(3⁽³ᵏ⁺¹⁾)",
+          "= 16(11q) + 11(3⁽³ᵏ⁺¹⁾)",
+          "= 11(16q + 3⁽³ᵏ⁺¹⁾)",
+          "which is divisible by 11."
+        ]
       },
       {
         "id": "s5_conclude",
@@ -222,6 +289,15 @@
         "mark_note": "Conclusion",
         "margin_note": "The last mark is for naming the principle. One sentence, one mark.",
         "lines": [
+          {
+            "text": "(S(1) is true, and S(k) true gives S(k + 1) true,",
+            "added": true
+          },
+          {
+            "text": "  so S(2), S(3), … are true in turn)",
+            "style": "indent",
+            "added": true
+          },
           "Hence, by the principle of finite",
           "Mathematical Induction, S(n) is true",
           "for all n ∈ N."
@@ -251,9 +327,14 @@
         "common_mistakes": [
           "Writing 'hence proved' without naming the principle."
         ],
-        "memory_tip": "One sentence naming the principle is a whole mark. Write it."
+        "memory_tip": "One sentence naming the principle is a whole mark. Write it.",
+        "lines_compact": [
+          "Hence, by the principle of finite",
+          "Mathematical Induction, S(n) is true",
+          "for all n ∈ N."
+        ]
       }
     ]
   },
-  "insider_note": "Rearrange the assumption to isolate the first term, 2·4^(2k+1) = 11q − 3^(3k+1), before substituting. The powers step up by 16 and 27, and 27 − 16 = 11 is precisely what makes the remainder vanish."
+  "insider_note": "Rearrange the assumption to isolate the first term, 2·4²ᵏ⁺¹ = 11q − 3³ᵏ⁺¹, before substituting. The powers are multiplied by 16 and 27, and 27 − 16 = 11 is what makes 11 a factor."
 }

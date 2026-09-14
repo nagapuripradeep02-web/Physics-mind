@@ -46,7 +46,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.79, chapter 7 PRODUCT OF VECTORS, Long Answer question 9. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+2+1+1+2 split pays two marks for the cross product that produces the normal and two for the closing Cartesian form, where the point and both directions are checked. Paper position: Maths-1A Section C prints 3 long answers at 8 marks each and the student answers any 2; Product of Vectors is one of the units that can fill a Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.79, chapter 7 PRODUCT OF VECTORS, Long Answer question 9. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+2+1+1+2 split pays two marks for the cross product that produces the normal and two for the closing Cartesian form, where the point and both directions are checked. Paper position: Maths-1A Section C prints 3 long answers at 8 marks each and the student answers any 2; Product of Vectors is one of the units that can fill a Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find the equation of a plane through a point and parallel to two given vectors.",
   "answer": {
@@ -147,13 +147,32 @@
         "label": "Find b × c",
         "marks": 2,
         "mark_note": "Normal",
-        "margin_note": "Two marks. b on the top row, c below. The j term is −(−5 − 12), so it comes out positive and large.",
+        "margin_note": "Two marks. i, j, k on top, then b on the second row and c on the third. The j term is −(−5 − 12), so it comes out positive and large.",
         "memory_tip": "The j bracket is −(−5 − 12) = +17, the largest number in the answer.",
         "lines": [
           {
             "text": "n = b \\times c = \\begin{vmatrix} i & j & k \\\\ 1 & -2 & 4 \\\\ 3 & 2 & -5 \\end{vmatrix}",
             "render": "katex",
             "style": "eq"
+          },
+          {
+            "text": "Expand along the top row, i, j, k (signs + − +):",
+            "added": true
+          },
+          {
+            "text": "  i: (−2)(−5) − (4)(2) = 2",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  j: (1)(−5) − (4)(3) = −17, with a minus in front",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  k: (1)(2) − (−2)(3) = 8",
+            "style": "indent",
+            "added": true
           },
           "= i(10 − 8) − j(−5 − 12) + k(2 + 6)",
           "= 2i + 17j + 8k"
@@ -183,7 +202,16 @@
         "why": "The j term carries two minus signs, one from the expansion and one from the arithmetic, so it turns positive. That is the single place this determinant goes wrong.",
         "common_mistakes": [
           "Writing the j term as −17 by keeping only one of the two minus signs.",
-          "Putting c on the top row, which reverses the whole normal."
+          "Putting c above b, which reverses the whole normal."
+        ],
+        "lines_compact": [
+          {
+            "text": "n = b \\times c = \\begin{vmatrix} i & j & k \\\\ 1 & -2 & 4 \\\\ 3 & 2 & -5 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= i(10 − 8) − j(−5 − 12) + k(2 + 6)",
+          "= 2i + 17j + 8k"
         ]
       },
       {
@@ -196,6 +224,10 @@
         "memory_tip": "Only the POINT goes in here. The directions would each give zero.",
         "lines": [
           "a·n = (3i − 2j − k)·(2i + 17j + 8k)",
+          {
+            "text": "(3×2 + (−2)×17 + (−1)×8)",
+            "added": true
+          },
           "= 6 − 34 − 8 = −36"
         ],
         "recall": {
@@ -223,6 +255,10 @@
         "common_mistakes": [
           "Dotting b or c with n, which gives 0 and a plane through the origin.",
           "Sign slip on the −2j and −k components."
+        ],
+        "lines_compact": [
+          "a·n = (3i − 2j − k)·(2i + 17j + 8k)",
+          "= 6 − 34 − 8 = −36"
         ]
       },
       {
@@ -234,6 +270,10 @@
         "margin_note": "Sixth mark. One line, and the paper may ask for this form alone.",
         "memory_tip": "The plane is every r with the SAME dot product against n that A has.",
         "lines": [
+          {
+            "text": "(every point r of the plane has (r − a)·n = 0)",
+            "added": true
+          },
           "The plane is r·n = a·n, that is",
           "r·(2i + 17j + 8k) = −36"
         ],
@@ -262,6 +302,10 @@
         "common_mistakes": [
           "Writing r·n = 0, which is a different, parallel plane.",
           "Leaving the constant on the left as +36."
+        ],
+        "lines_compact": [
+          "The plane is r·n = a·n, that is",
+          "r·(2i + 17j + 8k) = −36"
         ]
       },
       {
@@ -274,6 +318,10 @@
         "memory_tip": "Two checks: the point fits the equation, and each direction dots to zero.",
         "lines": [
           "Put r = xi + yj + zk :",
+          {
+            "text": "((xi + yj + zk)·(2i + 17j + 8k) = 2x + 17y + 8z)",
+            "added": true
+          },
           "2x + 17y + 8z = −36",
           {
             "text": "2x + 17y + 8z + 36 = 0",
@@ -310,6 +358,18 @@
         "common_mistakes": [
           "Checking the point but never the two directions.",
           "Moving the −36 across without changing its sign."
+        ],
+        "lines_compact": [
+          "Put r = xi + yj + zk :",
+          "2x + 17y + 8z = −36",
+          {
+            "text": "2x + 17y + 8z + 36 = 0",
+            "style": "boxed"
+          },
+          "Check A: 6 − 34 − 8 + 36 = 0",
+          "Also b·n = 2 − 34 + 32 = 0 and",
+          "c·n = 6 + 34 − 40 = 0, so the plane is",
+          "parallel to b and to c."
         ]
       }
     ]

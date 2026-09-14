@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.107, chapter 9 TRIGONOMETRIC EQUATIONS, Short Answer question 2(i). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 shape gives one mark to each root because BOTH survive here — the surd coefficient makes students expect a rejection, and this question is the one in the set where no root is discarded. EXTRANEOUS-ROOT RECORD: nothing is squared and no denominator is cleared, so no candidate can enter that the original equation refuses. Both cosθ = √3/2 and cosθ = 1/2 lie inside [−1, 1] and both were substituted back: 4(3/4) + √3 = 3 + √3 against 2(√3+1)(√3/2) = 3 + √3, and 4(1/4) + √3 = 1 + √3 against 2(√3+1)(1/2) = √3 + 1. The card says both are kept and why, so a student does not discard one out of habit. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Trigonometric Equations supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.107, chapter 9 TRIGONOMETRIC EQUATIONS, Short Answer question 2(i). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 shape gives one mark to each root because BOTH survive here — the surd coefficient makes students expect a rejection, and this question is the one in the set where no root is discarded. EXTRANEOUS-ROOT RECORD: nothing is squared and no denominator is cleared, so no candidate can enter that the original equation refuses. Both cosθ = √3/2 and cosθ = 1/2 lie inside [−1, 1] and both were substituted back: 4(3/4) + √3 = 3 + √3 against 2(√3+1)(√3/2) = 3 + √3, and 4(1/4) + √3 = 1 + √3 against 2(√3+1)(1/2) = √3 + 1. The card says both are kept and why, so a student does not discard one out of habit. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Trigonometric Equations supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — name each move in order, and say which general solution formula you would use.",
   "answer": {
@@ -61,6 +61,7 @@
             "style": "heading"
           },
           "Given 4cos²θ + √3 = 2(√3 + 1) cosθ",
+          "(take every term to the left side)",
           "⇒ 4cos²θ − 2(√3 + 1) cosθ + √3 = 0",
           "This is a quadratic in cosθ."
         ],
@@ -85,7 +86,7 @@
             "two root three plus one"
           ]
         },
-        "why": "The equation already holds one ratio, so the Pythagorean identity is not needed. Recognising it as a quadratic is the only insight this step asks for.",
+        "why": "The equation already holds one ratio, so the Pythagorean identity is not needed. Recognising it as a quadratic is the main idea of this step.",
         "common_mistakes": [
           "Replacing cos²θ by 1 − sin²θ and creating a second ratio.",
           "Losing the sign when moving 2(√3 + 1) cosθ across."
@@ -100,9 +101,22 @@
         "margin_note": "Second mark. Expand 2(√3 + 1) as 2√3 + 2 and split the middle term into those two pieces. The bracket (2cosθ − √3) is then shared.",
         "memory_tip": "2(√3 + 1) = 2√3 + 2, and the split is already written for you: −2√3 cosθ and −2cosθ.",
         "lines": [
+          {
+            "text": "(the two parts must multiply to 4 × √3 = 4√3,",
+            "added": true
+          },
+          {
+            "text": "  and (−2√3)(−2) = 4√3)",
+            "style": "indent",
+            "added": true
+          },
           "Now 2(√3 + 1) = 2√3 + 2, so split the",
           "middle term as −2√3 cosθ − 2cosθ:",
           "⇒ 4cos²θ − 2√3 cosθ − 2cosθ + √3 = 0",
+          {
+            "text": "(take out 2cosθ from the first pair and −1 from the second)",
+            "added": true
+          },
           "⇒ 2cosθ(2cosθ − √3) − 1(2cosθ − √3) = 0",
           "⇒ (2cosθ − √3)(2cosθ − 1) = 0"
         ],
@@ -132,6 +146,13 @@
         "common_mistakes": [
           "Using the quadratic formula and mishandling √(16 − 8√3).",
           "Splitting as −√3 cosθ − (√3 + 2) cosθ, which shares no bracket."
+        ],
+        "lines_compact": [
+          "Now 2(√3 + 1) = 2√3 + 2, so split the",
+          "middle term as −2√3 cosθ − 2cosθ:",
+          "⇒ 4cos²θ − 2√3 cosθ − 2cosθ + √3 = 0",
+          "⇒ 2cosθ(2cosθ − √3) − 1(2cosθ − √3) = 0",
+          "⇒ (2cosθ − √3)(2cosθ − 1) = 0"
         ]
       },
       {
@@ -145,6 +166,10 @@
         "lines": [
           "⇒ 2cosθ − √3 = 0  (or)  2cosθ − 1 = 0",
           "⇒ cosθ = √3/2  (or)  cosθ = 1/2",
+          {
+            "text": "(|cosθ| ≤ 1 for every θ)",
+            "added": true
+          },
           "Both lie between −1 and 1, so both are kept.",
           "Now cosθ = √3/2 = cos(π/6), so α = π/6",
           "For cosθ = cosα, θ = 2nπ ± α",
@@ -174,8 +199,16 @@
         },
         "why": "Checking the range is a habit worth keeping even when nothing fails it — here both values are possible cosines, so discarding one would lose half the answer.",
         "common_mistakes": [
-          "Discarding cosθ = 1/2 as if it were out of range.",
+          "Discarding cosθ = √3/2 by misreading it as √3 ≈ 1.73, which is greater than 1.",
           "Using the sine general solution nπ + (−1)ⁿα for a cosine equation."
+        ],
+        "lines_compact": [
+          "⇒ 2cosθ − √3 = 0  (or)  2cosθ − 1 = 0",
+          "⇒ cosθ = √3/2  (or)  cosθ = 1/2",
+          "Both lie between −1 and 1, so both are kept.",
+          "Now cosθ = √3/2 = cos(π/6), so α = π/6",
+          "For cosθ = cosα, θ = 2nπ ± α",
+          "⇒ θ = 2nπ ± π/6,  n ∈ Z"
         ]
       },
       {
@@ -188,6 +221,10 @@
         "memory_tip": "cosθ = 1/2 = cos(π/3). Two factors, two families — write both in the final line.",
         "lines": [
           "Now cosθ = 1/2 = cos(π/3), so α = π/3",
+          {
+            "text": "(the same formula with α = π/3)",
+            "added": true
+          },
           "⇒ θ = 2nπ ± π/3,  n ∈ Z",
           "Both families are solutions of the equation.",
           {
@@ -222,6 +259,15 @@
           "Writing only one of the two families.",
           "Combining them into a single nπ ± α line, which is a different set.",
           "Omitting n ∈ Z."
+        ],
+        "lines_compact": [
+          "Now cosθ = 1/2 = cos(π/3), so α = π/3",
+          "⇒ θ = 2nπ ± π/3,  n ∈ Z",
+          "Both families are solutions of the equation.",
+          {
+            "text": "∴ θ = 2nπ ± π/6 or 2nπ ± π/3, n ∈ Z",
+            "style": "boxed"
+          }
         ]
       }
     ]

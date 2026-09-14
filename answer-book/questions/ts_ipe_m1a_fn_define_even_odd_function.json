@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.15, chapter 2 FUNCTIONS, Very Short Answer question 27. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question, and here it also matches the question itself, which asks for two definitions. The condition on the domain, that x ∈ A implies −x ∈ A, is stated in the written lines because without it neither definition can be tested. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.15, chapter 2 FUNCTIONS, Very Short Answer question 27. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question, and here it also matches the question itself, which asks for two definitions. The condition on the domain, that x ∈ A implies −x ∈ A, is stated in the written lines because without it neither definition can be tested. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say the two definitions in your own words, and give one example of each.",
   "answer": {
@@ -53,10 +53,12 @@
             "style": "heading"
           },
           "Let A ⊆ R be a set such that x ∈ A ⇒ −x ∈ A.",
+          "(this makes f(−x) meaningful whenever f(x) is)",
           "A function f: A → R is called an EVEN function",
           "if f(−x) = f(x) for every x ∈ A.",
           "For example, f(x) = x² and f(x) = cos x are",
-          "even functions on R."
+          "even functions on R.",
+          "((−x)² = x² and cos(−x) = cos x)"
         ],
         "recall": {
           "credit": "say_it",
@@ -102,8 +104,21 @@
           "where A again satisfies x ∈ A ⇒ −x ∈ A.",
           "For example, f(x) = x³ and f(x) = sin x are",
           "odd functions on R.",
+          {
+            "text": "((−x)³ = −x³ and sin(−x) = −sin x)",
+            "added": true
+          },
           "A function need not be either: f(x) = x + 1 is",
           "neither, since f(−1) = 0 but f(1) = 2.",
+          {
+            "text": "(f(−1) ≠ f(1), so it is not even; f(−1) ≠ −f(1),",
+            "added": true
+          },
+          {
+            "text": "  so it is not odd)",
+            "style": "indent",
+            "added": true
+          },
           {
             "text": "∴ even: f(−x) = f(x), odd: f(−x) = −f(x)",
             "style": "boxed"
@@ -137,6 +152,19 @@
           "Writing f(−x) = −f(−x), which mixes the two sides up.",
           "Claiming every function is either even or odd.",
           "Giving sin x as an even function and cos x as an odd one; the two are swapped."
+        ],
+        "lines_compact": [
+          "A function f: A → R is called an ODD function",
+          "if f(−x) = −f(x) for every x ∈ A,",
+          "where A again satisfies x ∈ A ⇒ −x ∈ A.",
+          "For example, f(x) = x³ and f(x) = sin x are",
+          "odd functions on R.",
+          "A function need not be either: f(x) = x + 1 is",
+          "neither, since f(−1) = 0 but f(1) = 2.",
+          {
+            "text": "∴ even: f(−x) = f(x), odd: f(−x) = −f(x)",
+            "style": "boxed"
+          }
         ]
       }
     ]

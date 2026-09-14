@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.118, chapter 11 HYPERBOLIC FUNCTIONS, Very Short Answer question 7. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards the factorisation of the difference of two squares first and the reduction to cosh 2x second. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory; Hyperbolic Functions is a VSAQ-only unit on this paper, with no Section-B and no Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.118, chapter 11 HYPERBOLIC FUNCTIONS, Very Short Answer question 7. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards the factorisation of the difference of two squares first and the reduction to cosh 2x second. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory; Hyperbolic Functions is a VSAQ-only unit on this paper, with no Section-B and no Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — name the formula or definition you use and how you finish.",
   "answer": {
@@ -46,16 +46,19 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Read cosh⁴x − sinh⁴x as a⁴ − b⁴ and factorise. The second bracket is cosh²x − sinh²x, which is 1.",
-        "memory_tip": "a⁴ − b⁴ = (a² + b²)(a² − b²). Here the second bracket is the Pythagorean identity and equals 1.",
+        "memory_tip": "a⁴ − b⁴ = (a² + b²)(a² − b²). Here the second bracket is the hyperbolic identity cosh²x − sinh²x, which equals 1.",
         "lines": [
           {
             "text": "Sol:",
             "style": "heading"
           },
           "L.H.S = cosh⁴x − sinh⁴x",
+          "(x⁴ = (x²)²)",
           "= (cosh²x)² − (sinh²x)²",
+          "(p² − q² = (p + q)(p − q))",
           "= (cosh²x + sinh²x)(cosh²x − sinh²x)",
           "But cosh²x − sinh²x = 1",
+          "(the second bracket is 1)",
           "= cosh²x + sinh²x"
         ],
         "recall": {
@@ -95,9 +98,21 @@
         "margin_note": "Second mark. Replace sinh²x by cosh²x − 1, so the sum becomes 2cosh²x − 1, which is the double-angle form of cosh 2x.",
         "memory_tip": "sinh²x = cosh²x − 1, so cosh²x + sinh²x becomes 2cosh²x − 1, and that is cosh 2x.",
         "lines": [
+          {
+            "text": "(from cosh²x − sinh²x = 1)",
+            "added": true
+          },
           "Also sinh²x = cosh²x − 1",
+          {
+            "text": "(put this in place of sinh²x)",
+            "added": true
+          },
           "∴ cosh²x + sinh²x = cosh²x + cosh²x − 1",
           "= 2cosh²x − 1",
+          {
+            "text": "(cosh 2x = 2cosh²x − 1)",
+            "added": true
+          },
           {
             "text": "= cosh 2x = R.H.S",
             "style": "boxed"
@@ -129,6 +144,15 @@
         "common_mistakes": [
           "Writing cosh²x + sinh²x = 1, which is the wrong sign between the squares.",
           "Stopping at cosh²x + sinh²x without naming it cosh 2x."
+        ],
+        "lines_compact": [
+          "Also sinh²x = cosh²x − 1",
+          "∴ cosh²x + sinh²x = cosh²x + cosh²x − 1",
+          "= 2cosh²x − 1",
+          {
+            "text": "= cosh 2x = R.H.S",
+            "style": "boxed"
+          }
         ]
       }
     ]

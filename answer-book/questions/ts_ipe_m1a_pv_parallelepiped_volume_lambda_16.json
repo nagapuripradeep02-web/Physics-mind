@@ -34,7 +34,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.67, chapter 7 PRODUCT OF VECTORS, Short Answer question 4(i). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives half the marks to the determinant, because that is where the work is, and a full mark to the modulus step, because the modulus is what produces both values of λ. The book prints this item as \"4. i)\" but no part ii) follows it — the next printed item is question 5 — so the card is filed under part (i) as printed. Both evaluations of the box product agree at −4λ: the first-row expansion gives 1(−λ) − 1(3λ) + 0 = −4λ, and the third-column expansion gives λ(1(−1) − 1(3)) = −4λ; computing b × c = (−λ, −3λ, 9) and dotting with a gives −4λ a third time. The answer is λ = ±4, not λ = −4 alone: the volume is |[a b c]| = 4|λ|, so λ = 4 builds a box of the same size with the edges taken in the opposite order. A solution that prints only one value has dropped the modulus. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Product of Vectors supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.67, chapter 7 PRODUCT OF VECTORS, Short Answer question 4(i). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives half the marks to the determinant, because that is where the work is, and a full mark to the modulus step, because the modulus is what produces both values of λ. The book prints this item as \"4. i)\" but no part ii) follows it — the next printed item is question 5 — so the card is filed under part (i) as printed. Both evaluations of the box product agree at −4λ: the first-row expansion gives 1(−λ) − 1(3λ) + 0 = −4λ, and the third-column expansion gives λ(1(−1) − 1(3)) = −4λ; computing b × c = (−λ, −3λ, 9) and dotting with a gives −4λ a third time. The answer is λ = ±4, not λ = −4 alone: the volume is |[a b c]| = 4|λ|, so λ = 4 builds a box of the same size with the edges taken in the opposite order. A solution that prints only one value has dropped the modulus. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Product of Vectors supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find λ here — name the formula, the determinant, and what the modulus does to your answer.",
   "answer": {
@@ -108,6 +108,10 @@
             "render": "katex",
             "style": "eq"
           },
+          {
+            "text": "(row 1 is (1, 1, 0); its minors are −λ, 3λ and 9)",
+            "added": true
+          },
           "= 1(−λ − 0) − 1(3λ − 0) + 0(9 − 0)",
           "= −λ − 3λ = −4λ",
           "Check along the third column:",
@@ -139,6 +143,17 @@
         "common_mistakes": [
           "Leaving out the zero k components of a and b.",
           "Getting the plus, minus, plus sign pattern wrong."
+        ],
+        "lines_compact": [
+          {
+            "text": "[a\\ b\\ c] = \\begin{vmatrix} 1 & 1 & 0 \\\\ 3 & -1 & 0 \\\\ 0 & 3 & \\lambda \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= 1(−λ − 0) − 1(3λ − 0) + 0(9 − 0)",
+          "= −λ − 3λ = −4λ",
+          "Check along the third column:",
+          "λ(1(−1) − 1(3)) = λ(−4) = −4λ"
         ]
       },
       {
@@ -152,6 +167,10 @@
         "lines": [
           "Volume = |−4λ| = 4|λ|",
           "4|λ| = 16 ⇒ |λ| = 4",
+          {
+            "text": "(|λ| = 4 means λ is 4 or −4)",
+            "added": true
+          },
           {
             "text": "∴ λ = 4 or λ = −4",
             "style": "boxed"
@@ -183,6 +202,14 @@
         "common_mistakes": [
           "Solving −4λ = 16 and giving only λ = −4.",
           "Dropping the modulus and losing one of the two answers."
+        ],
+        "lines_compact": [
+          "Volume = |−4λ| = 4|λ|",
+          "4|λ| = 16 ⇒ |λ| = 4",
+          {
+            "text": "∴ λ = 4 or λ = −4",
+            "style": "boxed"
+          }
         ]
       }
     ]

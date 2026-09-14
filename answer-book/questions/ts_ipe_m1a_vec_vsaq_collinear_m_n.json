@@ -51,7 +51,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.88 — VSAQ chapter 16 Addition of Vectors, answer 115.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 20,22 · TS 15,17,18 — five printed tags. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four questions to a page in two columns. It is not a bare guess: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark VSAQ, applied here to the two steps of this question. The book's chapter header carries ★★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because Addition of Vectors holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q5 and Q6 are the two Addition of Vectors slots."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.88 — VSAQ chapter 16 Addition of Vectors, answer 115.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 20,22 · TS 15,17,18 — five printed tags. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four questions to a page in two columns. It is not a bare guess: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark VSAQ, applied here to the two steps of this question. The book's chapter header carries ★★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because Addition of Vectors holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q5 and Q6 are the two Addition of Vectors slots. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find the unknowns when two vectors are collinear.",
   "answer": {
@@ -75,7 +75,13 @@
           },
           "Given a = 2i + 5j + k and b = 4i + mj + nk",
           "are collinear.",
+          "(collinear vectors are multiples of each other, so",
+          {
+            "text": "  matching components are in one ratio)",
+            "style": "indent"
+          },
           "∴ 2/4 = 5/m = 1/n",
+          "(2/4 = 1/2)",
           "⇒ 1/2 = 5/m = 1/n"
         ],
         "recall": {
@@ -115,8 +121,20 @@
         "margin_note": "Second mark. The ratio 2/4 simplifies to 1/2 first, which makes both solves one line each.",
         "memory_tip": "Simplify 2/4 to 1/2 first; both solves are then one line each.",
         "lines": [
+          {
+            "text": "(cross-multiply: 5 × 2 = m × 1)",
+            "added": true
+          },
           "1/2 = 5/m ⇒ m = 2 × 5 = 10",
+          {
+            "text": "(cross-multiply: 1 × 2 = n × 1)",
+            "added": true
+          },
           "1/2 = 1/n ⇒ n = 2",
+          {
+            "text": "(check: 4i + 10j + 2k = 2(2i + 5j + k))",
+            "added": true
+          },
           {
             "text": "∴ m = 10, n = 2",
             "style": "boxed"
@@ -147,6 +165,14 @@
         "common_mistakes": [
           "Getting m = 5/2 by cross-multiplying the wrong way.",
           "Finding m and forgetting n."
+        ],
+        "lines_compact": [
+          "1/2 = 5/m ⇒ m = 2 × 5 = 10",
+          "1/2 = 1/n ⇒ n = 2",
+          {
+            "text": "∴ m = 10, n = 2",
+            "style": "boxed"
+          }
         ]
       }
     ]

@@ -39,7 +39,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.76 — SAQ chapter 13 Properties of Triangles, answer 84.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 18,22. The twin of 84.1. Same method, but the pairs are chosen around B instead of C — and the answer keeps a cos B because the angles do not sum to 180° inside the bracket this time. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used in this unit are the book's own. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q17 is the Properties of Triangles slot. Together with Q24 (LAQ) this unit holds TWO slots — one of only two units to do so, Matrices being the other."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.76 — SAQ chapter 13 Properties of Triangles, answer 84.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 18,22. The twin of 84.1. Same method, but the pairs are chosen around B instead of C — and the answer keeps a cos B because the angles do not sum to 180° inside the bracket this time. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used in this unit are the book's own. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q17 is the Properties of Triangles slot. Together with Q24 (LAQ) this unit holds TWO slots — one of only two units to do so, Matrices being the other. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — name each standard result you use and the order you use them in.",
   "answer": {
@@ -54,16 +54,30 @@
         "label": "Group into two pairs",
         "marks": 2,
         "mark_note": "Method",
-        "margin_note": "Half the marks. Group (r₃ + r₁) and (r − r₂), which share 4R cos(B/2) and 4R sin(B/2) — the B half-angle, since B is what the answer keeps.",
-        "memory_tip": "Group (r₃ + r₁) and (r − r₂) — they share the B half-angle, which is what the answer keeps.",
+        "margin_note": "Half the marks. Group (r₃ + r₁) and (r − r₂), which share 4R cos(B/2) and 4R sin(B/2) — the B half-angle, which leads straight to cos B.",
+        "memory_tip": "Group (r₃ + r₁) and (r − r₂) — they share the B half-angle, which leads to cos B.",
         "lines": [
           {
             "text": "Sol:",
             "style": "heading"
           },
+          "(r₁ = 4R sin(A/2)cos(B/2)cos(C/2), and so on)",
           "L.H.S = (r₃ + r₁) + (r − r₂)",
-          "= [4R cos(A/2)cos(B/2)sin(C/2) + 4R sin(A/2)cos(B/2)cos(C/2)]",
-          "  + [4R sin(A/2)sin(B/2)sin(C/2) − 4R cos(A/2)sin(B/2)cos(C/2)]",
+          "= [4R cos(A/2)cos(B/2)sin(C/2)",
+          {
+            "text": "+ 4R sin(A/2)cos(B/2)cos(C/2)]",
+            "style": "indent"
+          },
+          "+ [4R sin(A/2)sin(B/2)sin(C/2)",
+          {
+            "text": "− 4R cos(A/2)sin(B/2)cos(C/2)]",
+            "style": "indent"
+          },
+          "(take out 4R cos(B/2) from the first bracket and",
+          {
+            "text": "  4R sin(B/2) from the second)",
+            "style": "indent"
+          },
           "= 4R cos(B/2)[cos(A/2)sin(C/2) + sin(A/2)cos(C/2)]",
           "  − 4R sin(B/2)[cos(A/2)cos(C/2) − sin(A/2)sin(C/2)]"
         ],
@@ -89,9 +103,9 @@
             "sin half B"
           ]
         },
-        "why": "The answer keeps a cos B, so the grouping must leave B behind rather than cancel it — which is why the pairs are chosen around B and not C.",
+        "why": "The answer contains cos B, so grouping (r₃ + r₁) and (r − r₂) lets the B half-angles come out as factors and gives cos²(B/2) − sin²(B/2) directly.",
         "common_mistakes": [
-          "Grouping around C, as in the r₁ + r₂ + r₃ − r question, instead of around B.",
+          "Putting r₂ in the first group, so the minus sign is attached to the wrong radius.",
           "Losing the minus in front of the second group."
         ]
       },
@@ -101,12 +115,20 @@
         "label": "Apply the compound formulas",
         "marks": 2,
         "mark_note": "Conclusion",
-        "margin_note": "The other half. The brackets become sin((A+C)/2) and cos((A+C)/2); then (A+C)/2 = 90° − B/2 turns both into B, and cos²−sin² gives cos B.",
-        "memory_tip": "(A + C)/2 = 90° − B/2 turns both brackets into B, and cos² − sin² gives cos B.",
+        "margin_note": "The other half. The brackets become sin((A+C)/2) and cos((A+C)/2); then (A+C)/2 = 90° − B/2 turns them into cos(B/2) and sin(B/2), and cos²(B/2) − sin²(B/2) gives cos B.",
+        "memory_tip": "(A + C)/2 = 90° − B/2 turns the brackets into cos(B/2) and sin(B/2), and cos²(B/2) − sin²(B/2) gives cos B.",
         "lines": [
+          {
+            "text": "(the brackets are sin((A+C)/2) and cos((A+C)/2))",
+            "added": true
+          },
           "= 4R cos(B/2) sin((A+C)/2) − 4R sin(B/2) cos((A+C)/2)",
           "= 4R cos(B/2) cos(B/2) − 4R sin(B/2) sin(B/2)",
           "  [∵ (A+C)/2 = 90° − B/2, so sin((A+C)/2) = cos(B/2)]",
+          {
+            "text": "(and cos((A+C)/2) = sin(B/2) in the same way)",
+            "added": true
+          },
           "= 4R[cos²(B/2) − sin²(B/2)]",
           {
             "text": "= 4R cos B = R.H.S   [∵ cos2θ = cos²θ − sin²θ]",
@@ -135,13 +157,23 @@
             "cos B"
           ]
         },
-        "why": "cos²θ − sin²θ = cos 2θ, and here θ is B/2 — so the answer is cos B exactly. That is why the B half-angles had to be the ones factored out.",
+        "why": "cos²θ − sin²θ = cos 2θ, and here θ is B/2 — so the answer is cos B exactly. That is why factoring out the B half-angles leads straight to cos B.",
         "common_mistakes": [
           "Using cos²+sin² and getting 4R.",
           "Writing (A+C)/2 = 90° − B, without halving B."
+        ],
+        "lines_compact": [
+          "= 4R cos(B/2) sin((A+C)/2) − 4R sin(B/2) cos((A+C)/2)",
+          "= 4R cos(B/2) cos(B/2) − 4R sin(B/2) sin(B/2)",
+          "  [∵ (A+C)/2 = 90° − B/2, so sin((A+C)/2) = cos(B/2)]",
+          "= 4R[cos²(B/2) − sin²(B/2)]",
+          {
+            "text": "= 4R cos B = R.H.S   [∵ cos2θ = cos²θ − sin²θ]",
+            "style": "boxed"
+          }
         ]
       }
     ]
   },
-  "insider_note": "Group as (r₃ + r₁) and (r − r₂) so that cos(B/2) and sin(B/2) come out as factors. (A+C)/2 = 90° − B/2 is the substitution that makes both brackets collapse."
+  "insider_note": "Group as (r₃ + r₁) and (r − r₂) so that cos(B/2) and sin(B/2) come out as factors. (A+C)/2 = 90° − B/2 is the substitution that turns the brackets into cos(B/2) and sin(B/2)."
 }

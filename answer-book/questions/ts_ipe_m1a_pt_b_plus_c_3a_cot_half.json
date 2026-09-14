@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.125, chapter 12 PROPERTIES OF TRIANGLES, Very Short Answer question 16. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to the product rule for the two half-angle cotangents and one to substituting b + c = 3a and evaluating. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory; Properties of Triangles supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.125, chapter 12 PROPERTIES OF TRIANGLES, Very Short Answer question 16. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to the product rule for the two half-angle cotangents and one to substituting b + c = 3a and evaluating. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory; Properties of Triangles supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — name each standard result you use and the order you use them in.",
   "answer": {
@@ -52,8 +52,10 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "(half-angle formulas for cot(B/2) and cot(C/2))",
           "cot(B/2) = √(s(s−b)/((s−c)(s−a)))",
           "cot(C/2) = √(s(s−c)/((s−a)(s−b)))",
+          "(multiply: the factors (s − b) and (s − c) cancel)",
           "∴ cot(B/2) cot(C/2) = √(s²/(s−a)²)",
           "= s/(s−a)   [∵ s > a, both are positive]"
         ],
@@ -79,7 +81,7 @@
             "cot half B"
           ]
         },
-        "why": "Multiplying the two roots cancels (s−b) and (s−c) completely and leaves s over the bracket of the angle that was not asked for. That is why the answer depends only on a.",
+        "why": "Multiplying the two roots cancels (s−b) and (s−c) completely and leaves s over the bracket of the angle that was not asked for. That is why only s and s − a are left, and the given b + c = 3a is enough to find them.",
         "common_mistakes": [
           "Writing cot(B/2) cot(C/2) = s/(s−b) or s/(s−c).",
           "Adding the two cotangents instead of multiplying them."
@@ -94,6 +96,10 @@
         "margin_note": "The other mark. 2s = a + (b+c) = 4a gives s = 2a, so s − a = a and the ratio is 2a/a = 2.",
         "memory_tip": "2s = a + (b + c) = a + 3a = 4a, so s = 2a and s − a = a; the ratio is 2.",
         "lines": [
+          {
+            "text": "(put b + c = 3a into 2s = a + b + c)",
+            "added": true
+          },
           "2s = a + b + c = a + 3a = 4a ⇒ s = 2a",
           "∴ s − a = 2a − a = a",
           "cot(B/2) cot(C/2) = s/(s−a) = 2a/a",
@@ -128,6 +134,15 @@
         "common_mistakes": [
           "Writing s = a + b + c instead of 2s = a + b + c.",
           "Substituting b + c = 3a into b and c separately."
+        ],
+        "lines_compact": [
+          "2s = a + b + c = a + 3a = 4a ⇒ s = 2a",
+          "∴ s − a = 2a − a = a",
+          "cot(B/2) cot(C/2) = s/(s−a) = 2a/a",
+          {
+            "text": "∴ cot(B/2) cot(C/2) = 2",
+            "style": "boxed"
+          }
         ]
       }
     ]

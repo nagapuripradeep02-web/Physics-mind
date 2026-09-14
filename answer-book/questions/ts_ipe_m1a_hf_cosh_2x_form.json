@@ -35,7 +35,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.97 — VSAQ chapter 19 Hyperbolic Functions, answer 141.2. Printed appearances: AP 18. Worked from the RIGHT side rather than the left — because the right side is the messier one, and simplifying it is easier than building it up. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four questions to a page in two columns. It is not a bare guess: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark VSAQ. The book's chapter header carries ★★★ and reads '2 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q10 is the Hyperbolic Functions slot. NOTE: Hyperbolic Functions is a VSAQ-ONLY unit — the paper gives it no Section-B and no Section-C slot, and this book has no hyperbolic LAQ chapter (LAQ chapters are 1-6) and no SAQ chapter (SAQ chapters are 7-13). Chapter 19 is the LAST VSAQ chapter; the boundary was walked to book p.98, where a separate 'Star Questions Plus' section begins."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.97 — VSAQ chapter 19 Hyperbolic Functions, answer 141.2. Printed appearances: AP 18. Worked from the RIGHT side rather than the left — because the right side is the messier one, and simplifying it is easier than building it up. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four questions to a page in two columns. It is not a bare guess: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark VSAQ. The book's chapter header carries ★★★ and reads '2 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q10 is the Hyperbolic Functions slot. NOTE: Hyperbolic Functions is a VSAQ-ONLY unit — the paper gives it no Section-B and no Section-C slot, and this book has no hyperbolic LAQ chapter (LAQ chapters are 1-6) and no SAQ chapter (SAQ chapters are 7-13). Chapter 19 is the LAST VSAQ chapter; the boundary was walked to book p.98, where a separate 'Star Questions Plus' section begins. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — name the formula or definition you use and how you finish.",
   "answer": {
@@ -58,8 +58,15 @@
             "style": "heading"
           },
           "R.H.S = 2 cosh²x − 1",
+          "(cosh x = (eˣ + e⁻ˣ)/2)",
           "= 2((eˣ + e⁻ˣ)/2)² − 1",
+          "((eˣ + e⁻ˣ)² = e²ˣ + 2eˣe⁻ˣ + e⁻²ˣ,",
+          {
+            "text": "  and eˣe⁻ˣ = 1)",
+            "style": "indent"
+          },
           "= 2 · (e²ˣ + e⁻²ˣ + 2)/4 − 1",
+          "(2/4 = 1/2)",
           "= (e²ˣ + e⁻²ˣ + 2)/2 − 1"
         ],
         "recall": {
@@ -84,7 +91,7 @@
             "over two"
           ]
         },
-        "why": "The middle term of the square is 2·eˣ·e⁻ˣ = 2, not 2e⁰ˣ or anything else — the exponentials cancel to give a plain number.",
+        "why": "The middle term of the square is 2·eˣ·e⁻ˣ = 2e⁰ = 2, not 2e²ˣ — the powers x and −x add to 0, so the term is a plain number.",
         "common_mistakes": [
           "Getting the middle term wrong and losing the +2.",
           "Cancelling the 2 outside against the wrong factor."
@@ -99,8 +106,16 @@
         "margin_note": "Second mark. The +2/2 is exactly 1, which the −1 removes — and what is left is the definition of cosh 2x.",
         "memory_tip": "The +2/2 is exactly 1, and the −1 removes it. What is left is the definition of cosh 2x.",
         "lines": [
+          {
+            "text": "(write 1 as 2/2)",
+            "added": true
+          },
           "= (e²ˣ + e⁻²ˣ + 2 − 2)/2",
           "= (e²ˣ + e⁻²ˣ)/2",
+          {
+            "text": "(cosh 2x = (e²ˣ + e⁻²ˣ)/2 by the definition)",
+            "added": true
+          },
           {
             "text": "= cosh 2x = L.H.S",
             "style": "boxed"
@@ -128,10 +143,18 @@
             "definition"
           ]
         },
-        "why": "Recognising (e²ˣ + e⁻²ˣ)/2 as cosh 2x rather than leaving it in exponentials is what finishes the proof — the definition read backwards.",
+        "why": "Recognising (e²ˣ + e⁻²ˣ)/2 as cosh 2x rather than leaving it in exponentials is what finishes the proof — the definition used from right to left.",
         "common_mistakes": [
           "Leaving the answer in exponential form.",
           "Forgetting that the −1 cancels the +2/2 exactly."
+        ],
+        "lines_compact": [
+          "= (e²ˣ + e⁻²ˣ + 2 − 2)/2",
+          "= (e²ˣ + e⁻²ˣ)/2",
+          {
+            "text": "= cosh 2x = L.H.S",
+            "style": "boxed"
+          }
         ]
       }
     ]

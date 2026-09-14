@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.123, chapter 12 PROPERTIES OF TRIANGLES, Very Short Answer question 11. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to the expansion and grouping and one to the double-angle step that produces the cosine rule. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory; Properties of Triangles supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.123, chapter 12 PROPERTIES OF TRIANGLES, Very Short Answer question 11. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to the expansion and grouping and one to the double-angle step that produces the cosine rule. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory; Properties of Triangles supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — name each standard result you use and the order you use them in.",
   "answer": {
@@ -54,11 +54,17 @@
           },
           "(b−c)² = b² + c² − 2bc",
           "(b+c)² = b² + c² + 2bc",
+          "(multiply out, then collect the b² + c² terms and",
+          {
+            "text": "  the 2bc terms)",
+            "style": "indent"
+          },
           "L.H.S = (b²+c²)[cos²(A/2) + sin²(A/2)]",
           {
             "text": "+ 2bc[sin²(A/2) − cos²(A/2)]",
             "style": "indent"
           },
+          "(cos² + sin² = 1; take the minus sign outside)",
           "= (b² + c²) − 2bc[cos²(A/2) − sin²(A/2)]"
         ],
         "recall": {
@@ -98,6 +104,10 @@
         "margin_note": "The other mark. cos²(A/2) − sin²(A/2) is cos A, and b² + c² − 2bc cos A is the cosine rule for a².",
         "memory_tip": "cos²θ − sin²θ = cos 2θ, so with θ = A/2 the bracket is cos A and the line becomes the cosine rule.",
         "lines": [
+          {
+            "text": "(cos 2θ = cos²θ − sin²θ with θ = A/2)",
+            "added": true
+          },
           "cos²(A/2) − sin²(A/2) = cos A",
           "∴ L.H.S = b² + c² − 2bc cos A",
           "= a²   [∵ a² = b² + c² − 2bc cosA]",
@@ -132,6 +142,15 @@
         "common_mistakes": [
           "Writing cos²(A/2) − sin²(A/2) = cos(A/2).",
           "Using a² = b² + c² + 2bc cosA with the wrong sign."
+        ],
+        "lines_compact": [
+          "cos²(A/2) − sin²(A/2) = cos A",
+          "∴ L.H.S = b² + c² − 2bc cos A",
+          "= a²   [∵ a² = b² + c² − 2bc cosA]",
+          {
+            "text": "∴ L.H.S = a² = R.H.S",
+            "style": "boxed"
+          }
         ]
       }
     ]

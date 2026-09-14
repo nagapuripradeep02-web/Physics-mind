@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.119, chapter 11 HYPERBOLIC FUNCTIONS, Very Short Answer question 11. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards writing tanh(x − y) as the ratio of the two difference formulas first and the division by cosh x cosh y second. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory; Hyperbolic Functions is a VSAQ-only unit on this paper, with no Section-B and no Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.119, chapter 11 HYPERBOLIC FUNCTIONS, Very Short Answer question 11. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards writing tanh(x − y) as the ratio of the two difference formulas first and the division by cosh x cosh y second. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory; Hyperbolic Functions is a VSAQ-only unit on this paper, with no Section-B and no Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — name the formula or definition you use and how you finish.",
   "answer": {
@@ -46,14 +46,16 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. tanh is sinh over cosh, so write both parts using the difference formulas. These come from the addition formulas with y replaced by −y.",
-        "memory_tip": "Replace y by −y in the addition formulas: sinh(−y) = −sinh y and cosh(−y) = cosh y, so both signs flip to minus.",
+        "memory_tip": "Replace y by −y in the addition formulas: sinh(−y) = −sinh y and cosh(−y) = cosh y, so both signs change to minus.",
         "lines": [
           {
             "text": "Sol:",
             "style": "heading"
           },
           "L.H.S = tanh(x − y) = sinh(x − y)/cosh(x − y)",
+          "(tanh = sinh/cosh)",
           "Numerator = sinh x cosh y − cosh x sinh y",
+          "(the subtraction formulas for sinh and cosh)",
           "Denominator = cosh x cosh y − sinh x sinh y"
         ],
         "recall": {
@@ -78,7 +80,7 @@
             "denominator"
           ]
         },
-        "why": "There is no separate definition of tanh(x − y) to expand. The only route is through sinh and cosh, whose difference formulas the chapter already has.",
+        "why": "tanh(x − y) could be expanded from the exponential definition, but that is longer. The shorter method uses sinh and cosh, whose difference formulas the chapter already has.",
         "common_mistakes": [
           "Writing a plus in the denominator, copying the tan formula from trigonometry.",
           "Expanding tanh(x − y) as tanh x − tanh y."
@@ -95,7 +97,15 @@
         "lines": [
           "cosh x ≥ 1 and cosh y ≥ 1, so cosh x cosh y ≠ 0",
           "Divide the top and the bottom by cosh x cosh y",
+          {
+            "text": "(sinh x cosh y/(cosh x cosh y) = tanh x, and so on)",
+            "added": true
+          },
           "The top becomes tanh x − tanh y",
+          {
+            "text": "(cosh x cosh y/(cosh x cosh y) = 1)",
+            "added": true
+          },
           "The bottom becomes 1 − tanh x tanh y",
           "∴ tanh(x − y)",
           {
@@ -125,10 +135,21 @@
             "never zero"
           ]
         },
-        "why": "Dividing by cosh x cosh y is the one move that converts every term at once, because each sinh is paired with the cosh of the same variable.",
+        "why": "Dividing by cosh x cosh y converts every term at once, because every term is a product of one function of x and one function of y, so each sinh ends up over the cosh of its own variable.",
         "common_mistakes": [
           "Dividing by cosh(x − y) instead of by cosh x cosh y.",
-          "Getting 1 in the numerator and forgetting it belongs in the denominator."
+          "Writing the cosh formula on top and the sinh formula below, which gives the reciprocal (1 − tanh x tanh y)/(tanh x − tanh y)."
+        ],
+        "lines_compact": [
+          "cosh x ≥ 1 and cosh y ≥ 1, so cosh x cosh y ≠ 0",
+          "Divide the top and the bottom by cosh x cosh y",
+          "The top becomes tanh x − tanh y",
+          "The bottom becomes 1 − tanh x tanh y",
+          "∴ tanh(x − y)",
+          {
+            "text": "= (tanh x − tanh y)/(1 − tanh x tanh y)",
+            "style": "boxed"
+          }
         ]
       }
     ]

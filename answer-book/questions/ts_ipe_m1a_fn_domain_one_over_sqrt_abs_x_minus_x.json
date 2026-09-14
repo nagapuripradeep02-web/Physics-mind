@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.13, chapter 2 FUNCTIONS, Very Short Answer question 19 part (b-v). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape rewards the conditions the expression forces and the final interval as two separate pieces of work, which is how a domain question is marked. The book prints this part as v. where the earlier parts of the block use i) to iv); the numbering style changes, the question does not. The same expression appears in part (b-iii) without the fraction, where the answer is the whole of R. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.13, chapter 2 FUNCTIONS, Very Short Answer question 19 part (b-v). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape rewards the conditions the expression forces and the final interval as two separate pieces of work, which is how a domain question is marked. The book prints this part as v. where the earlier parts of the block use i) to iv); the numbering style changes, the question does not. The same expression appears in part (b-iii) without the fraction, where the answer is the whole of R. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find this domain — the conditions the formula forces, and the answer.",
   "answer": {
@@ -54,6 +54,7 @@
           },
           "The root is in a denominator, so it must be",
           "|x| − x > 0, strictly",
+          "(a zero under the root would make the denominator 0)",
           "If x ≥ 0 then |x| = x, so |x| − x = 0, which fails",
           "If x < 0 then |x| = −x, so |x| − x = −2x > 0"
         ],
@@ -98,6 +99,10 @@
         "lines": [
           "Only x < 0 makes |x| − x strictly positive.",
           {
+            "text": "(for x < 0, −2x is positive)",
+            "added": true
+          },
+          {
             "text": "∴ Domain = (−∞, 0)",
             "style": "boxed"
           }
@@ -135,6 +140,13 @@
         "common_mistakes": [
           "Writing (−∞, 0] and including 0, where the function is undefined.",
           "Writing (0, ∞), the wrong half of the line."
+        ],
+        "lines_compact": [
+          "Only x < 0 makes |x| − x strictly positive.",
+          {
+            "text": "∴ Domain = (−∞, 0)",
+            "style": "boxed"
+          }
         ]
       }
     ]

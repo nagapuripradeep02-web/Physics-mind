@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.109, chapter 9 TRIGONOMETRIC EQUATIONS, Short Answer question 6. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 shape gives a mark to EACH parity of n, because the short route — assume both angles are acute and set their sum to 90° — reaches 37° without ever showing that the other family gives nothing acute, and that is the half of the question a 4-mark answer is expected to write. CANDIDATE RECORD: the even family gives x = 90m + 37, so 37° (acute, kept) and 127°, 217°, … (not acute); the odd family gives x = −180m − 6, so −6°, 174°, … (not acute). Every one of those satisfies the equation — they are rejected by the words 'x is acute', not by being extraneous, and the card says which kind of rejection it is. The answer was checked: sin47° = cos43° is true because 47° + 43° = 90°. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Trigonometric Equations supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.109, chapter 9 TRIGONOMETRIC EQUATIONS, Short Answer question 6. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 shape gives a mark to EACH parity of n, because the short route — assume both angles are acute and set their sum to 90° — reaches 37° without ever showing that the other family gives nothing acute, and that is the half of the question a 4-mark answer is expected to write. CANDIDATE RECORD: the even family gives x = 90m + 37, so 37° (acute, kept) and 127°, 217°, … (not acute); the odd family gives x = −180m − 6, so −6°, 174°, … (not acute). Every one of those satisfies the equation — they are rejected by the words 'x is acute', not by being extraneous, and the card says which kind of rejection it is. The answer was checked: sin47° = cos43° is true because 47° + 43° = 90°. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Trigonometric Equations supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — name each move in order, and say how the word 'acute' picks out the answer.",
   "answer": {
@@ -63,6 +63,8 @@
           "Given sin(x + 10°) = cos(3x − 68°)",
           "Now cosA = sin(90° − A), so",
           "cos(3x − 68°) = sin(90° − 3x + 68°)",
+          "(90° − (3x − 68°) = 90° − 3x + 68°)",
+          "(90° + 68° = 158°)",
           "  = sin(158° − 3x)",
           "⇒ sin(x + 10°) = sin(158° − 3x)"
         ],
@@ -88,7 +90,7 @@
             "sin of x plus ten"
           ]
         },
-        "why": "Two trigonometric expressions can only be equated angle-to-angle when they are the SAME function. Converting the cosine to a sine is what makes the comparison legal.",
+        "why": "Two trigonometric expressions can only be equated angle-to-angle when they are the SAME function. Converting the cosine to a sine is what makes the comparison valid.",
         "common_mistakes": [
           "Writing 90° − 3x − 68° and getting 22° − 3x.",
           "Equating x + 10° with 3x − 68° directly, mixing sine with cosine."
@@ -106,6 +108,10 @@
           "For sinA = sinB the general solution is",
           "A = n(180°) + (−1)ⁿ B,  n ∈ Z",
           "Here A = x + 10° and B = 158° − 3x",
+          {
+            "text": "(put A and B into the formula)",
+            "added": true
+          },
           "⇒ x + 10° = n(180°) + (−1)ⁿ(158° − 3x)"
         ],
         "recall": {
@@ -134,6 +140,12 @@
         "common_mistakes": [
           "Writing A = B only and losing the second family.",
           "Using π instead of 180° while the angles are in degrees."
+        ],
+        "lines_compact": [
+          "For sinA = sinB the general solution is",
+          "A = n(180°) + (−1)ⁿ B,  n ∈ Z",
+          "Here A = x + 10° and B = 158° − 3x",
+          "⇒ x + 10° = n(180°) + (−1)ⁿ(158° − 3x)"
         ]
       },
       {
@@ -148,8 +160,20 @@
           "If n is even, put n = 2m so (−1)ⁿ = 1.",
           "All angles below are in degrees.",
           "⇒ x + 10 = 360m + 158 − 3x",
+          {
+            "text": "(move −3x across and take 10 away)",
+            "added": true
+          },
           "⇒ 4x = 360m + 148",
+          {
+            "text": "(divide by 4)",
+            "added": true
+          },
           "⇒ x = 90m + 37",
+          {
+            "text": "(an acute angle lies between 0° and 90°)",
+            "added": true
+          },
           "m = 0 gives x = 37°, which is acute.",
           "m = 1 gives x = 127°, which is not acute."
         ],
@@ -177,8 +201,17 @@
         },
         "why": "With n even the sign is +1, and the three x terms collect into one linear equation. The family it produces is spaced 90° apart, so at most one member can be acute.",
         "common_mistakes": [
-          "Collecting 3x on the wrong side and getting 2x instead of 4x.",
+          "Moving −3x across without changing its sign and getting 2x instead of 4x.",
           "Dropping the 360m term so the family looks like a single value."
+        ],
+        "lines_compact": [
+          "If n is even, put n = 2m so (−1)ⁿ = 1.",
+          "All angles below are in degrees.",
+          "⇒ x + 10 = 360m + 158 − 3x",
+          "⇒ 4x = 360m + 148",
+          "⇒ x = 90m + 37",
+          "m = 0 gives x = 37°, which is acute.",
+          "m = 1 gives x = 127°, which is not acute."
         ]
       },
       {
@@ -192,8 +225,20 @@
         "lines": [
           "If n is odd, put n = 2m + 1 so (−1)ⁿ = −1.",
           "⇒ x + 10 = 360m + 180 − (158 − 3x)",
+          {
+            "text": "(open the bracket: −(158 − 3x) = −158 + 3x)",
+            "added": true
+          },
           "⇒ x + 10 = 360m + 22 + 3x",
+          {
+            "text": "(move x to the right side and 360m + 22 to the left)",
+            "added": true
+          },
           "⇒ 2x = −360m − 12",
+          {
+            "text": "(divide by 2)",
+            "added": true
+          },
           "⇒ x = −180m − 6",
           "This gives −6°, 174°, … and none is acute.",
           "Check x = 37°: sin47° = cos43°, since",
@@ -231,6 +276,20 @@
           "Answering 37° without ever testing the odd family.",
           "Calling −6° a wrong answer instead of one the restriction removes.",
           "Dropping the degree sign from the final answer."
+        ],
+        "lines_compact": [
+          "If n is odd, put n = 2m + 1 so (−1)ⁿ = −1.",
+          "⇒ x + 10 = 360m + 180 − (158 − 3x)",
+          "⇒ x + 10 = 360m + 22 + 3x",
+          "⇒ 2x = −360m − 12",
+          "⇒ x = −180m − 6",
+          "This gives −6°, 174°, … and none is acute.",
+          "Check x = 37°: sin47° = cos43°, since",
+          "47° + 43° = 90°. So it is correct.",
+          {
+            "text": "∴ x = 37°",
+            "style": "boxed"
+          }
         ]
       }
     ]

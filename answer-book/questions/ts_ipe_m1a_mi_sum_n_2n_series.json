@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.30, chapter 4 MATHEMATICAL INDUCTION, Short Answer question 9. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to each of the four moves an induction proof is marked on — the base case, the hypothesis, the inductive step and the closing appeal to the principle — and leaves the opening statement step unmarked, matching every other card in this chapter. The nth term is read off the printed pattern as (n+1)·2ⁿ⁻¹, which reproduces 2, 3·2, 4·2² at n = 1, 2, 3 and gives the stated sum n·2ⁿ at n = 1, 2 and 3; that reading is ours, since the book states only the first three terms. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, and Mathematical Induction supplies one of them on almost every paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.30, chapter 4 MATHEMATICAL INDUCTION, Short Answer question 9. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to each of the four moves an induction proof is marked on — the base case, the hypothesis, the inductive step and the closing appeal to the principle — and leaves the opening statement step unmarked, matching every other card in this chapter. The nth term is read off the printed pattern as (n+1)·2ⁿ⁻¹, which reproduces 2, 3·2, 4·2² at n = 1, 2, 3 and gives the stated sum n·2ⁿ at n = 1, 2 and 3; that reading is ours, since the book states only the first three terms. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, and Mathematical Induction supplies one of them on almost every paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this by induction — how you read the nth term off the pattern, and how the powers of 2 combine in the third step.",
   "answer": {
@@ -52,13 +52,14 @@
         "kind": "equation",
         "label": "Find the nth term",
         "marks": 0,
-        "margin_note": "Unmarked setup at 4 marks, and the step most students get wrong. Two things change from term to term: the number in front goes 2, 3, 4 and the power of 2 goes 0, 1, 2.",
+        "margin_note": "Unmarked setup at 4 marks, and a step that needs care. Two things change from term to term: the number in front goes 2, 3, 4 and the power of 2 goes 0, 1, 2.",
         "lines": [
           {
             "text": "Sol:",
             "style": "heading"
           },
           "Terms: 2·2⁰, 3·2¹, 4·2², …",
+          "(each term is (n + 1) times 2ⁿ⁻¹)",
           "nth term = (n+1)·2ⁿ⁻¹",
           "Let S(n): 2 + 3·2 + 4·2² + …",
           "        + (n+1)·2ⁿ⁻¹ = n·2ⁿ"
@@ -101,6 +102,10 @@
         "margin_note": "One mark. Work out BOTH sides separately at n = 1 and say they are equal.",
         "lines": [
           "Step 1 — check S(1)",
+          {
+            "text": "(put n = 1 on both sides)",
+            "added": true
+          },
           "L.H.S of S(1) = (2)·2⁰ = 2",
           "R.H.S of S(1) = 1·2¹ = 2",
           "∴ L.H.S = R.H.S, so S(1) is true."
@@ -132,7 +137,13 @@
           "Asserting S(1) is true without working out both sides.",
           "Reading 2⁰ as 0 instead of 1."
         ],
-        "memory_tip": "At n = 1: left side 2·2⁰ = 2, right side 1·2¹ = 2. At n = 2 both sides give 8."
+        "memory_tip": "At n = 1: left side 2·2⁰ = 2, right side 1·2¹ = 2. At n = 2 both sides give 8.",
+        "lines_compact": [
+          "Step 1 — check S(1)",
+          "L.H.S of S(1) = (2)·2⁰ = 2",
+          "R.H.S of S(1) = 1·2¹ = 2",
+          "∴ L.H.S = R.H.S, so S(1) is true."
+        ]
       },
       {
         "id": "s3_assume",
@@ -143,6 +154,10 @@
         "margin_note": "One mark. Assume it for ONE value k and number the line (1) — Step 3 quotes that number.",
         "lines": [
           "Step 2 — assume S(k) is true, k ∈ N",
+          {
+            "text": "(take S(k) as true for one natural number k)",
+            "added": true
+          },
           "S(k): 2 + 3·2 + … + (k+1)·2ᵏ⁻¹",
           "        = k·2ᵏ   …(1)"
         ],
@@ -168,12 +183,17 @@
             "induction hypothesis"
           ]
         },
-        "why": "This is the assumption the method rests on. It is granted for one value only, and Step 3 has to earn the right to pass it on to the next value.",
+        "why": "This is the assumption the method uses. It is taken as true for one value only, and Step 3 has to show that it then holds for the next value.",
         "common_mistakes": [
           "Assuming the statement for ALL k, which assumes what is being proved.",
           "Writing the last term as (k+1)·2ᵏ instead of (k+1)·2ᵏ⁻¹."
         ],
-        "memory_tip": "Replace n by k everywhere, including inside the power. Number the line (1)."
+        "memory_tip": "Replace n by k everywhere, including inside the power. Number the line (1).",
+        "lines_compact": [
+          "Step 2 — assume S(k) is true, k ∈ N",
+          "S(k): 2 + 3·2 + … + (k+1)·2ᵏ⁻¹",
+          "        = k·2ᵏ   …(1)"
+        ]
       },
       {
         "id": "s4_inductive",
@@ -184,11 +204,27 @@
         "margin_note": "One mark, and the longest step on the page. The next term is (k+2)·2ᵏ. Both terms carry 2ᵏ, so take it out and the rest is easy.",
         "lines": [
           "Step 3 — show S(k+1) is true",
+          {
+            "text": "(put n = k + 1 in (n + 1)·2ⁿ⁻¹)",
+            "added": true
+          },
           "(k+1)th term = (k+2)·2ᵏ.",
           "Add it to both sides of (1):",
           "L.H.S = k·2ᵏ + (k+2)·2ᵏ",
+          {
+            "text": "(take out 2ᵏ)",
+            "added": true
+          },
           "= 2ᵏ(k + k + 2) = 2ᵏ(2k + 2)",
+          {
+            "text": "(2k + 2 = 2(k + 1))",
+            "added": true
+          },
           "= 2ᵏ·2(k+1)",
+          {
+            "text": "(2ᵏ × 2 = 2ᵏ⁺¹)",
+            "added": true
+          },
           "= (k+1)·2ᵏ⁺¹ = R.H.S",
           "So S(k+1) is true whenever S(k) is true."
         ],
@@ -214,13 +250,23 @@
             "two to the k plus one"
           ]
         },
-        "why": "Both terms already carry 2ᵏ, so the whole step is one factorisation. The spare 2 inside 2(k+1) is what pushes the power from 2ᵏ up to 2ᵏ⁺¹.",
+        "why": "Both terms already carry 2ᵏ, so the whole step is one factorisation. The spare 2 inside 2(k+1) is what raises the power from 2ᵏ to 2ᵏ⁺¹.",
         "common_mistakes": [
           "Writing the next term as (k+1)·2ᵏ — put n = k+1 into (n+1)·2ⁿ⁻¹ and the coefficient is k + 2.",
           "Leaving the answer as 2ᵏ(2k+2) and not turning the spare 2 into the higher power.",
           "Stopping before writing = R.H.S, so the step does not show what was asked."
         ],
-        "memory_tip": "Take 2ᵏ out: k + (k+2) = 2k + 2 = 2(k+1), and that spare 2 lifts 2ᵏ to 2ᵏ⁺¹."
+        "memory_tip": "Take 2ᵏ out: k + (k+2) = 2k + 2 = 2(k+1), and 2ᵏ × 2 = 2ᵏ⁺¹.",
+        "lines_compact": [
+          "Step 3 — show S(k+1) is true",
+          "(k+1)th term = (k+2)·2ᵏ.",
+          "Add it to both sides of (1):",
+          "L.H.S = k·2ᵏ + (k+2)·2ᵏ",
+          "= 2ᵏ(k + k + 2) = 2ᵏ(2k + 2)",
+          "= 2ᵏ·2(k+1)",
+          "= (k+1)·2ᵏ⁺¹ = R.H.S",
+          "So S(k+1) is true whenever S(k) is true."
+        ]
       },
       {
         "id": "s5_conclude",
@@ -230,6 +276,15 @@
         "mark_note": "Conclusion",
         "margin_note": "The last mark is for naming the principle. One sentence, one full mark.",
         "lines": [
+          {
+            "text": "(S(1) is true, and S(k) true gives S(k + 1) true,",
+            "added": true
+          },
+          {
+            "text": "  so S(2), S(3), … are true in turn)",
+            "style": "indent",
+            "added": true
+          },
           "Hence, by the principle of finite",
           "Mathematical Induction, S(n) is true",
           "for all n ∈ N."
@@ -260,7 +315,12 @@
           "Writing only 'hence proved' and never naming the principle.",
           "Claiming it for all real numbers instead of all n ∈ N."
         ],
-        "memory_tip": "The closing sentence names the principle and is worth a full mark on its own."
+        "memory_tip": "The closing sentence names the principle and is worth a full mark on its own.",
+        "lines_compact": [
+          "Hence, by the principle of finite",
+          "Mathematical Induction, S(n) is true",
+          "for all n ∈ N."
+        ]
       }
     ]
   }

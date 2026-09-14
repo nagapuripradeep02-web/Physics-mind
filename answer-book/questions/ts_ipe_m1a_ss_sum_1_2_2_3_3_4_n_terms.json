@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.24, chapter 3 SEQUENCES & SERIES, Very Short Answer question 25. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sequences and Series is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.24, chapter 3 SEQUENCES & SERIES, Very Short Answer question 25. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sequences and Series is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say what the nth term is, and which two standard sums you use.",
   "answer": {
@@ -54,6 +54,7 @@
           },
           "The terms are 1·2, 2·3, 3·4, …, so the nth term is",
           "tₙ = n(n + 1) = n² + n",
+          "(Σn² = n(n + 1)(2n + 1)/6 and Σn = n(n + 1)/2)",
           "Sₙ = Σn² + Σn = n(n + 1)(2n + 1)/6 + n(n + 1)/2"
         ],
         "recall": {
@@ -94,8 +95,20 @@
         "memory_tip": "The answer uses the next consecutive number: n(n + 1)(n + 2) divided by 3.",
         "lines": [
           "Sₙ = n(n + 1)(2n + 1)/6 + n(n + 1)/2",
+          {
+            "text": "(take out the common factor n(n + 1); 1/2 = 3/6)",
+            "added": true
+          },
           "= n(n + 1)[(2n + 1)/6 + 1/2] = n(n + 1)[(2n + 1 + 3)/6]",
+          {
+            "text": "(2n + 4 = 2(n + 2))",
+            "added": true
+          },
           "= n(n + 1)(2n + 4)/6 = 2n(n + 1)(n + 2)/6",
+          {
+            "text": "(2/6 = 1/3)",
+            "added": true
+          },
           {
             "text": "∴ Sₙ = n(n + 1)(n + 2)/3",
             "style": "boxed"
@@ -127,6 +140,15 @@
         "common_mistakes": [
           "Adding the two formulas without a common denominator of 6.",
           "Leaving the answer as n(n + 1)(2n + 4)/6 without cancelling the 2."
+        ],
+        "lines_compact": [
+          "Sₙ = n(n + 1)(2n + 1)/6 + n(n + 1)/2",
+          "= n(n + 1)[(2n + 1)/6 + 1/2] = n(n + 1)[(2n + 1 + 3)/6]",
+          "= n(n + 1)(2n + 4)/6 = 2n(n + 1)(n + 2)/6",
+          {
+            "text": "∴ Sₙ = n(n + 1)(n + 2)/3",
+            "style": "boxed"
+          }
         ]
       }
     ]

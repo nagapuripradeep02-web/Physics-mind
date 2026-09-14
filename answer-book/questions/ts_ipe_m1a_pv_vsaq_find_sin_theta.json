@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.91 — VSAQ chapter 17 Product of Vectors, answer 122.2. Printed appearances: none — this answer carries no year tag. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four questions to a page in two columns. It is not a bare guess: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark VSAQ, applied here to the two steps of this question. The book's chapter header carries ★★★ and reads '2 Marks'. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q7 is the Product of Vectors slot."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.91 — VSAQ chapter 17 Product of Vectors, answer 122.2. Printed appearances: none — this answer carries no year tag. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four questions to a page in two columns. It is not a bare guess: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark VSAQ, applied here to the two steps of this question. The book's chapter header carries ★★★ and reads '2 Marks'. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q7 is the Product of Vectors slot. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find sin of the angle between two vectors.",
   "answer": {
@@ -56,6 +56,19 @@
             "text": "a \\times b = \\begin{vmatrix} i & j & k \\\\ 2 & -1 & 1 \\\\ 3 & 4 & -1 \\end{vmatrix}",
             "render": "katex",
             "style": "eq"
+          },
+          "Expand along the top row, i, j, k (signs + − +):",
+          {
+            "text": "  i: (−1)(−1) − (1)(4) = −3",
+            "style": "indent"
+          },
+          {
+            "text": "  j: (2)(−1) − (1)(3) = −5, with a minus in front",
+            "style": "indent"
+          },
+          {
+            "text": "  k: (2)(4) − (−1)(3) = 11",
+            "style": "indent"
           },
           "= i(1 − 4) − j(−2 − 3) + k(8 + 3)",
           "= −3i + 5j + 11k",
@@ -105,6 +118,10 @@
             "render": "katex",
             "style": "eq"
           },
+          {
+            "text": "(|a||b| = √6 × √26 = √156)",
+            "added": true
+          },
           "= √155/(√6 · √26) = √155/√156",
           {
             "text": "∴ sin θ = √(155/156)",
@@ -137,6 +154,18 @@
         "common_mistakes": [
           "Adding the magnitudes instead of multiplying.",
           "Leaving the answer as a decimal."
+        ],
+        "lines_compact": [
+          {
+            "text": "\\sin\\theta = \\frac{|a \\times b|}{|a|\\,|b|}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= √155/(√6 · √26) = √155/√156",
+          {
+            "text": "∴ sin θ = √(155/156)",
+            "style": "boxed"
+          }
         ]
       }
     ]

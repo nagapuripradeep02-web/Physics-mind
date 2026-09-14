@@ -39,7 +39,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.111 — from the book's separate \"STAR QUESTIONS PLUS\" bank, answer 178, under its \"PROPERTIES OF TRIANGLES\" heading. That bank (book pp.98-111, answers 142-180) sits AFTER all the numbered chapters and is organised by chapter rather than being part of any chapter's inventory; it is authored into this unit because that is where the question belongs on the paper. ⚠ IT CARRIES NO MARK CUT. The Star Questions Plus headings name the chapter but not the section, so this answer is classed as an SAQ on its length and shape — it is comparable to answers 80-87 in the Properties of Triangles SAQ chapter — and that classification is OURS, not the book's. Printed appearances: AP 19. The angle C appears only as cos C, and in a triangle cos C = −cos(A+B) — which turns each numerator into a difference of two cosines and then into a difference of squares. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used in this unit are the book's own. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q17 is the Properties of Triangles slot. Together with Q24 (LAQ) this unit holds TWO slots — one of only two units to do so, Matrices being the other."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.111 — from the book's separate \"STAR QUESTIONS PLUS\" bank, answer 178, under its \"PROPERTIES OF TRIANGLES\" heading. That bank (book pp.98-111, answers 142-180) sits AFTER all the numbered chapters and is organised by chapter rather than being part of any chapter's inventory; it is authored into this unit because that is where the question belongs on the paper. ⚠ IT CARRIES NO MARK CUT. The Star Questions Plus headings name the chapter but not the section, so this answer is classed as an SAQ on its length and shape — it is comparable to answers 80-87 in the Properties of Triangles SAQ chapter — and that classification is OURS, not the book's. Printed appearances: AP 19. The angle C appears only as cos C, and in a triangle cos C = −cos(A+B) — which turns each numerator into a difference of two cosines and then into a difference of squares. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used in this unit are the book's own. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q17 is the Properties of Triangles slot. Together with Q24 (LAQ) this unit holds TWO slots — one of only two units to do so, Matrices being the other. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — name each standard result you use and the order you use them in.",
   "answer": {
@@ -63,7 +63,12 @@
           },
           "In a △ABC, A + B + C = 180°",
           "⇒ C = 180° − (A+B) and B = 180° − (A+C)",
-          "L.H.S = [1 + cos(A−B)cos(180°−(A+B))] / [1 + cos(A−C)cos(180°−(A+C))]",
+          "(cos(180° − x) = −cos x)",
+          "L.H.S = [1 + cos(A−B)cos(180°−(A+B))]",
+          {
+            "text": "/ [1 + cos(A−C)cos(180°−(A+C))]",
+            "style": "indent"
+          },
           "= [1 − cos(A+B)cos(A−B)] / [1 − cos(A+C)cos(A−C)]"
         ],
         "recall": {
@@ -103,10 +108,22 @@
         "margin_note": "Third mark. cos(A+B)cos(A−B) = cos²A − sin²B — the standard product result, which turns each bracket into squares.",
         "memory_tip": "cos(A + B)cos(A − B) = cos²A − sin²B turns each bracket into squares.",
         "lines": [
+          {
+            "text": "(cos(x + y) cos(x − y) = cos²x − sin²y)",
+            "added": true
+          },
           "= [1 − (cos²A − sin²B)] / [1 − (cos²A − sin²C)]",
           "  [∵ cos(A+B)cos(A−B) = cos²A − sin²B]",
+          {
+            "text": "(open the brackets)",
+            "added": true
+          },
           "= (1 − cos²A + sin²B) / (1 − cos²A + sin²C)",
-          "= (sin²A + sin²B) / (sin²A + sin²C)   [∵ 1 − cos²A = sin²A]"
+          "= (sin²A + sin²B) / (sin²A + sin²C)",
+          {
+            "text": "[∵ 1 − cos²A = sin²A]",
+            "style": "indent"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -133,6 +150,16 @@
         "common_mistakes": [
           "Using cos²A − cos²B instead.",
           "Losing the sign when distributing the minus."
+        ],
+        "lines_compact": [
+          "= [1 − (cos²A − sin²B)] / [1 − (cos²A − sin²C)]",
+          "  [∵ cos(A+B)cos(A−B) = cos²A − sin²B]",
+          "= (1 − cos²A + sin²B) / (1 − cos²A + sin²C)",
+          "= (sin²A + sin²B) / (sin²A + sin²C)",
+          {
+            "text": "[∵ 1 − cos²A = sin²A]",
+            "style": "indent"
+          }
         ]
       },
       {
@@ -145,7 +172,15 @@
         "memory_tip": "sinA = a/(2R), and the (2R)² cancels top and bottom, leaving the sides.",
         "lines": [
           "By the sine rule, sinA = a/2R, sinB = b/2R, sinC = c/2R",
+          {
+            "text": "(put these into the result of step 2)",
+            "added": true
+          },
           "= [(a/2R)² + (b/2R)²] / [(a/2R)² + (c/2R)²]",
+          {
+            "text": "(every square has 4R² below it, so 4R² cancels)",
+            "added": true
+          },
           "= (a² + b²)/(4R²) ÷ (a² + c²)/(4R²)",
           {
             "text": "= (a² + b²)/(a² + c²) = R.H.S",
@@ -178,9 +213,18 @@
         "common_mistakes": [
           "Forgetting to square the 2R.",
           "Cancelling only one of the two."
+        ],
+        "lines_compact": [
+          "By the sine rule, sinA = a/2R, sinB = b/2R, sinC = c/2R",
+          "= [(a/2R)² + (b/2R)²] / [(a/2R)² + (c/2R)²]",
+          "= (a² + b²)/(4R²) ÷ (a² + c²)/(4R²)",
+          {
+            "text": "= (a² + b²)/(a² + c²) = R.H.S",
+            "style": "boxed"
+          }
         ]
       }
     ]
   },
-  "insider_note": "Use A + B + C = 180° to replace C by 180° − (A+B), which turns that cosine negative. Then cos(A+B)cos(A−B) = cos²A − sin²B is the identity that collapses everything."
+  "insider_note": "Use A + B + C = 180° to write cos C = −cos(A+B), which brings in a minus sign. Then cos(A+B)cos(A−B) = cos²A − sin²B turns both brackets into squares."
 }

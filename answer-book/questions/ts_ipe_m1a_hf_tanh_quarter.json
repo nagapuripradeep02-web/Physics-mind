@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.96 — VSAQ chapter 19 Hyperbolic Functions, answer 138.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: none — this answer carries no year tag. The twin of 138.1. Here the compound fraction does NOT reduce to a whole number, so the answer keeps a fraction inside the logarithm. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four questions to a page in two columns. It is not a bare guess: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark VSAQ. The book's chapter header carries ★★★ and reads '2 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q10 is the Hyperbolic Functions slot. NOTE: Hyperbolic Functions is a VSAQ-ONLY unit — the paper gives it no Section-B and no Section-C slot, and this book has no hyperbolic LAQ chapter (LAQ chapters are 1-6) and no SAQ chapter (SAQ chapters are 7-13). Chapter 19 is the LAST VSAQ chapter; the boundary was walked to book p.98, where a separate 'Star Questions Plus' section begins."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.96 — VSAQ chapter 19 Hyperbolic Functions, answer 138.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: none — this answer carries no year tag. The twin of 138.1. Here the compound fraction does NOT reduce to a whole number, so the answer keeps a fraction inside the logarithm. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four questions to a page in two columns. It is not a bare guess: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark VSAQ. The book's chapter header carries ★★★ and reads '2 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q10 is the Hyperbolic Functions slot. NOTE: Hyperbolic Functions is a VSAQ-ONLY unit — the paper gives it no Section-B and no Section-C slot, and this book has no hyperbolic LAQ chapter (LAQ chapters are 1-6) and no SAQ chapter (SAQ chapters are 7-13). Chapter 19 is the LAST VSAQ chapter; the boundary was walked to book p.98, where a separate 'Star Questions Plus' section begins. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — name the formula or definition you use and how you finish.",
   "answer": {
@@ -52,7 +52,8 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "We know Tanh⁻¹x = (1/2) logₑ((1 + x)/(1 − x))"
+          "We know Tanh⁻¹x = (1/2) logₑ((1 + x)/(1 − x))",
+          "(this holds for −1 < x < 1)"
         ],
         "recall": {
           "credit": "say_it",
@@ -75,7 +76,7 @@
             "one plus x"
           ]
         },
-        "why": "Same formula, so the only difference from the Tanh⁻¹(1/2) question is the arithmetic that follows.",
+        "why": "Same formula, so the difference from the Tanh⁻¹(1/2) question is the arithmetic that follows.",
         "common_mistakes": [
           "Using the Sinh⁻¹ form.",
           "Dropping the half."
@@ -87,11 +88,23 @@
         "label": "Substitute x = 1/4",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Second mark. (1 + 1/4) over (1 − 1/4) is (5/4) over (3/4). The quarters cancel and 5/3 survives — a fraction, not a whole number.",
-        "memory_tip": "(5/4) divided by (3/4): the quarters cancel and 5/3 survives — a fraction, not a whole number.",
+        "margin_note": "Second mark. (1 + 1/4) over (1 − 1/4) is (5/4) over (3/4). The quarters cancel and 5/3 is left — a fraction, not a whole number.",
+        "memory_tip": "(5/4) divided by (3/4): the quarters cancel and 5/3 is left — a fraction, not a whole number.",
         "lines": [
+          {
+            "text": "(put x = 1/4)",
+            "added": true
+          },
           "∴ Tanh⁻¹(1/4) = (1/2) logₑ((1 + 1/4)/(1 − 1/4))",
+          {
+            "text": "(1 + 1/4 = 5/4 and 1 − 1/4 = 3/4)",
+            "added": true
+          },
           "= (1/2) logₑ((5/4)/(3/4))",
+          {
+            "text": "((5/4)/(3/4) = 5/3)",
+            "added": true
+          },
           {
             "text": "= (1/2) logₑ(5/3)",
             "style": "boxed"
@@ -119,10 +132,18 @@
             "half log"
           ]
         },
-        "why": "The quarters cancel top and bottom, which is why the answer is 5/3 and not 5/16 or anything messier.",
+        "why": "The quarters cancel top and bottom, which is why the answer is 5/3 and not 15/16, the result of multiplying instead of dividing.",
         "common_mistakes": [
           "Multiplying the fractions instead of dividing.",
           "Writing logₑ5 − logₑ3 without the half."
+        ],
+        "lines_compact": [
+          "∴ Tanh⁻¹(1/4) = (1/2) logₑ((1 + 1/4)/(1 − 1/4))",
+          "= (1/2) logₑ((5/4)/(3/4))",
+          {
+            "text": "= (1/2) logₑ(5/3)",
+            "style": "boxed"
+          }
         ]
       }
     ]

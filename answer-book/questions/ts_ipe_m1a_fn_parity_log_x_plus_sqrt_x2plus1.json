@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.15, chapter 2 FUNCTIONS, Very Short Answer question 26(ii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape gives one mark to the product (−x + √(x² + 1))(x + √(x² + 1)) = 1, which is the idea the whole question turns on, and one to the logarithm law that finishes it. The domain condition is part of the answer: x + √(x² + 1) is positive for every real x because √(x² + 1) > |x|, so the domain is R and the parity test is meaningful; that is written in the lines, not only here. The result does not depend on the base of the logarithm, since log(1/u) = −log u in any base, and the card says so. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.15, chapter 2 FUNCTIONS, Very Short Answer question 26(ii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape gives one mark to the product (−x + √(x² + 1))(x + √(x² + 1)) = 1, which is the idea the whole question turns on, and one to the logarithm law that finishes it. The domain condition is part of the answer: x + √(x² + 1) is positive for every real x because √(x² + 1) > |x|, so the domain is R and the parity test is meaningful; that is written in the lines, not only here. The result does not depend on the base of the logarithm, since log(1/u) = −log u in any base, and the card says so. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would decide this — why the logarithm is defined everywhere, and the product you multiply to simplify f(−x).",
   "answer": {
@@ -54,7 +54,9 @@
           },
           "√(x² + 1) > √(x²) = |x| ≥ −x for all x ∈ R,",
           "so x + √(x² + 1) > 0 and the domain is R.",
+          "(to test even or odd, compare f(−x) with f(x))",
           "f(−x) = log(−x + √(x² + 1))",
+          "(multiply the two, using (p − q)(p + q) = p² − q²)",
           "(−x + √(x² + 1))(x + √(x² + 1))",
           "= (√(x² + 1))² − x² = x² + 1 − x² = 1",
           "⇒ −x + √(x² + 1) = 1/(x + √(x² + 1))"
@@ -104,6 +106,15 @@
           "This holds in any base, since log(1/u) = −log u",
           "is true for every base of the logarithm.",
           {
+            "text": "(f(−x) = −f(x) for every x in the domain is the",
+            "added": true
+          },
+          {
+            "text": "  definition of an odd function)",
+            "style": "indent",
+            "added": true
+          },
+          {
             "text": "∴ f is an odd function on R.",
             "style": "boxed"
           }
@@ -135,6 +146,17 @@
           "Writing log(1/u) as 1/log u instead of −log u.",
           "Stopping at −log(x + √(x² + 1)) and not saying that this is −f(x).",
           "Naming the function even because the expression contains x²."
+        ],
+        "lines_compact": [
+          "f(−x) = log[1/(x + √(x² + 1))]",
+          "= −log(x + √(x² + 1))   [∵ log(1/u) = −log u]",
+          "= −f(x) for every x ∈ R",
+          "This holds in any base, since log(1/u) = −log u",
+          "is true for every base of the logarithm.",
+          {
+            "text": "∴ f is an odd function on R.",
+            "style": "boxed"
+          }
         ]
       }
     ]

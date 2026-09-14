@@ -34,7 +34,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.74, chapter 7 PRODUCT OF VECTORS, Short Answer question 34. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives half the marks to the determinant and a full mark to naming the reason the answer had to be zero. Three evaluations agree at 0: the first-row expansion gives 1(1) + 1(−1) + 0 = 0; the third-column expansion gives 1(0 − 1) + 1(1) = 0; and computing (j − k) × (k − i) = i + j + k and dotting with (i − j) gives 1 − 1 + 0 = 0. The answer is the NUMBER 0, not the zero vector — a scalar triple product is a scalar. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Product of Vectors supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.74, chapter 7 PRODUCT OF VECTORS, Short Answer question 34. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives half the marks to the determinant and a full mark to naming the reason the answer had to be zero. Three evaluations agree at 0: the first-row expansion gives 1(1) + 1(−1) + 0 = 0; the third-column expansion gives 1(0 − 1) + 1(1) = 0; and computing (j − k) × (k − i) = i + j + k and dotting with (i − j) gives 1 − 1 + 0 = 0. The answer is the NUMBER 0, not the zero vector — a scalar triple product is a scalar. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Product of Vectors supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would compute this — the determinant you write, and the one-line reason the answer had to be zero.",
   "answer": {
@@ -104,6 +104,35 @@
             "render": "katex",
             "style": "eq"
           },
+          {
+            "text": "Expand along R₁: each entry times the 2×2",
+            "added": true
+          },
+          {
+            "text": "  determinant left when its row and column",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  are deleted, with signs + − +:",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  + (1) × [(1)(1) − (−1)(0)]",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  − (−1) × [(0)(1) − (−1)(−1)]",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  + (0) × [(0)(0) − (1)(−1)]",
+            "style": "indent",
+            "added": true
+          },
           "= 1(1 − 0) + 1(0 − 1) + 0(0 + 1)",
           "= 1 − 1 + 0 = 0",
           "Check: (j − k) × (k − i) = i + j + k,",
@@ -135,6 +164,17 @@
         "common_mistakes": [
           "Getting the sign of the middle cofactor wrong and reporting 2.",
           "Reporting the answer as the vector 0 instead of the number 0."
+        ],
+        "lines_compact": [
+          {
+            "text": "[a\\ b\\ c] = \\begin{vmatrix} 1 & -1 & 0 \\\\ 0 & 1 & -1 \\\\ -1 & 0 & 1 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= 1(1 − 0) + 1(0 − 1) + 0(0 + 1)",
+          "= 1 − 1 + 0 = 0",
+          "Check: (j − k) × (k − i) = i + j + k,",
+          "so (i − j)·(i + j + k) = 1 − 1 + 0 = 0."
         ]
       },
       {

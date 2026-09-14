@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.87 — VSAQ chapter 16 Addition of Vectors, answer 113.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: none — this answer carries no year tag. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four questions to a page in two columns. It is not a bare guess: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark VSAQ, applied here to the two steps of this question. The book's chapter header carries ★★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because Addition of Vectors holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q5 and Q6 are the two Addition of Vectors slots."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.87 — VSAQ chapter 16 Addition of Vectors, answer 113.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: none — this answer carries no year tag. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four questions to a page in two columns. It is not a bare guess: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark VSAQ, applied here to the two steps of this question. The book's chapter header carries ★★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because Addition of Vectors holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q5 and Q6 are the two Addition of Vectors slots. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would build a vector of a given length in a given direction.",
   "answer": {
@@ -53,7 +53,9 @@
             "style": "heading"
           },
           "Given a = i − 2j, then",
+          "(1² + (−2)² = 1 + 4 = 5)",
           "|a| = √(1² + (−2)²) = √5",
+          "(a vector divided by its length has length 1)",
           "∴ Unit vector = a/|a| = (i − 2j)/√5"
         ],
         "recall": {
@@ -92,6 +94,10 @@
         "margin_note": "Second mark. Length times direction: 7 times the unit vector has length exactly 7 and points the same way.",
         "memory_tip": "Length times direction: 7 times the unit vector has length exactly 7 and points the same way.",
         "lines": [
+          {
+            "text": "(its length is 7 × 1 = 7, in the direction of a)",
+            "added": true
+          },
           "A vector of magnitude 7 in this direction is",
           "7 × (unit vector):",
           {
@@ -124,6 +130,14 @@
         "common_mistakes": [
           "Multiplying the original vector by 7 without dividing by √5 first.",
           "Dividing by 7 instead of multiplying."
+        ],
+        "lines_compact": [
+          "A vector of magnitude 7 in this direction is",
+          "7 × (unit vector):",
+          {
+            "text": "= 7(i − 2j)/√5",
+            "style": "boxed"
+          }
         ]
       }
     ]

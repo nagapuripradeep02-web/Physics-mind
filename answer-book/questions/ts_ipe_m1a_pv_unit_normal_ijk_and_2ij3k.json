@@ -34,7 +34,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.72, chapter 7 PRODUCT OF VECTORS, Short Answer question 23(ii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+2+1 split rewards naming the construction, the determinant that does the work, and the division that turns a normal vector into a unit vector; it mirrors the split used on the sibling part 23(i) so the pair reads consistently. ANSWER IS DETERMINATE, not a method sketch: the unit vectors are ± (2i − j − k)/√6. VERIFIED: a × b = 2i − j − k dotted with a = (1, 1, 1) gives 2 − 1 − 1 = 0 and dotted with b = (2, 1, 3) gives 4 − 1 − 3 = 0, so it is perpendicular to both; its squared length is 4 + 1 + 1 = 6, so the reported unit vector has squared length 6/6 = 1 exactly. BOTH SIGNS ARE ANSWERS: the two vectors span a plane, and a plane has one unit normal on each side, so the ± is written on the line the student reads, not left to the note. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Product of Vectors supplies at least one of those eight on almost every paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.72, chapter 7 PRODUCT OF VECTORS, Short Answer question 23(ii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+2+1 split rewards naming the construction, the determinant that does the work, and the division that turns a normal vector into a unit vector; it mirrors the split used on the sibling part 23(i) so the pair reads consistently. ANSWER IS DETERMINATE, not a method sketch: the unit vectors are ± (2i − j − k)/√6. VERIFIED: a × b = 2i − j − k dotted with a = (1, 1, 1) gives 2 − 1 − 1 = 0 and dotted with b = (2, 1, 3) gives 4 − 1 − 3 = 0, so it is perpendicular to both; its squared length is 4 + 1 + 1 = 6, so the reported unit vector has squared length 6/6 = 1 exactly. BOTH SIGNS ARE ANSWERS: the two vectors span a plane, and a plane has one unit normal on each side, so the ± is written on the line the student reads, not left to the note. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Product of Vectors supplies at least one of those eight on almost every paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would build this unit vector — say why there are two answers.",
   "answer": {
@@ -106,6 +106,25 @@
             "render": "katex",
             "style": "eq"
           },
+          {
+            "text": "Expand along the top row, i, j, k (signs + − +):",
+            "added": true
+          },
+          {
+            "text": "  i: (1)(3) − (1)(1) = 2",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  j: (1)(3) − (1)(2) = 1, with a minus in front",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  k: (1)(1) − (1)(2) = −1",
+            "style": "indent",
+            "added": true
+          },
           "= i(3 − 1) − j(3 − 2) + k(1 − 2)",
           "= 2i − j − k",
           "Check: (2i − j − k)·a = 2 − 1 − 1 = 0",
@@ -133,10 +152,21 @@
             "three minus one"
           ]
         },
-        "why": "The determinant is the whole calculation, and the two dot products check its direction: a cross product that is not perpendicular to both inputs has a sign error in it. They do not test the magnitude, so re-read the determinant for that.",
+        "why": "The determinant is the whole calculation, and the two dot products check it: a result that is not perpendicular to both inputs has an arithmetic error in it. They cannot catch a change of every sign or a scaling of every component, so re-read the determinant for those.",
         "common_mistakes": [
           "Dropping the minus in front of the j term.",
           "Writing the second row as 2, 1, 3 and the third as 1, 1, 1, which reverses the answer."
+        ],
+        "lines_compact": [
+          {
+            "text": "a \\times b = \\begin{vmatrix} i & j & k \\\\ 1 & 1 & 1 \\\\ 2 & 1 & 3 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= i(3 − 1) − j(3 − 2) + k(1 − 2)",
+          "= 2i − j − k",
+          "Check: (2i − j − k)·a = 2 − 1 − 1 = 0",
+          "and (2i − j − k)·b = 4 − 1 − 3 = 0"
         ]
       },
       {
@@ -149,6 +179,10 @@
         "memory_tip": "Divide by the square root, never by the sum of squares — and keep both signs.",
         "lines": [
           "|a × b| = √(4 + 1 + 1) = √6",
+          {
+            "text": "(a vector divided by its length has length 1)",
+            "added": true
+          },
           "Both directions are unit normals, so",
           "the answer carries a ± sign.",
           {
@@ -182,6 +216,15 @@
         "common_mistakes": [
           "Dividing by 6 instead of √6.",
           "Omitting the ± sign."
+        ],
+        "lines_compact": [
+          "|a × b| = √(4 + 1 + 1) = √6",
+          "Both directions are unit normals, so",
+          "the answer carries a ± sign.",
+          {
+            "text": "∴ Unit vector = ± (2i − j − k)/√6",
+            "style": "boxed"
+          }
         ]
       }
     ]
