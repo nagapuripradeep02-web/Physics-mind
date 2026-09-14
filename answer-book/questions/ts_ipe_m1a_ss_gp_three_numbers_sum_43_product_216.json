@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.20, chapter 3 SEQUENCES & SERIES, Very Short Answer question 5. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sequences and Series is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.20, chapter 3 SEQUENCES & SERIES, Very Short Answer question 5. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sequences and Series is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would set up the three numbers, and say why that choice makes the product easy.",
   "answer": {
@@ -52,8 +52,11 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "(three terms in G.P. with middle term a and ratio r)",
           "Let the three numbers be  a/r,  a,  ar",
+          "(the r and the 1/r cancel; 6³ = 216)",
           "Product:  (a/r)(a)(ar) = a³ = 216  ⇒  a = 6",
+          "(take 6 from both sides)",
           "Sum:  6/r + 6 + 6r = 43  ⇒  6/r + 6r = 37",
           "Multiply through by r:  6 + 6r² = 37r",
           "6r² − 37r + 6 = 0"
@@ -96,7 +99,15 @@
         "margin_note": "Second mark. Check both conditions: 1 + 6 + 36 = 43 and 1 × 6 × 36 = 216. Either order is a correct answer.",
         "memory_tip": "The two roots 6 and 1/6 are reciprocals, so the same list only reverses.",
         "lines": [
+          {
+            "text": "(split −37r as −36r − r, because 6 × 6 = 36)",
+            "added": true
+          },
           "6r² − 36r − r + 6 = 0",
+          {
+            "text": "(take out 6r from the first pair and −1 from the second)",
+            "added": true
+          },
           "6r(r − 6) − 1(r − 6) = 0  ⇒  (r − 6)(6r − 1) = 0",
           "r = 6  or  r = 1/6",
           "r = 6 gives  6/6, 6, 6(6)  =  1, 6, 36",
@@ -136,6 +147,21 @@
         "common_mistakes": [
           "Reporting only r = 6 and saying the other root fails.",
           "Splitting the middle term with the wrong signs and getting r = −6."
+        ],
+        "lines_compact": [
+          "6r² − 36r − r + 6 = 0",
+          "6r(r − 6) − 1(r − 6) = 0  ⇒  (r − 6)(6r − 1) = 0",
+          "r = 6  or  r = 1/6",
+          "r = 6 gives  6/6, 6, 6(6)  =  1, 6, 36",
+          "r = 1/6 gives the same three numbers reversed: 36, 6, 1",
+          {
+            "text": "∴ the numbers are 1, 6, 36",
+            "style": "boxed"
+          },
+          {
+            "text": "(or 36, 6, 1 in the reverse order)",
+            "style": "boxed"
+          }
         ]
       }
     ]

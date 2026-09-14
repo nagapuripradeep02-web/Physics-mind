@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.23, chapter 3 SEQUENCES & SERIES, Very Short Answer question 20. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sequences and Series is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.23, chapter 3 SEQUENCES & SERIES, Very Short Answer question 20. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sequences and Series is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say which formula you rearrange, and what the question asks you to write at the end.",
   "answer": {
@@ -54,6 +54,7 @@
           },
           "Given S∞ = 1/3 and a = 1/4",
           "S∞ = a/(1 − r)  ⇒  1/3 = (1/4)/(1 − r)",
+          "(cross-multiply: 1 − r = 3 × (1/4))",
           "1 − r = (1/4) × 3 = 3/4",
           "r = 1 − 3/4 = 1/4"
         ],
@@ -95,10 +96,18 @@
         "memory_tip": "Each term is a quarter of the one before it.",
         "lines": [
           "|r| = 1/4 < 1, so an infinite sum does exist for this ratio",
+          {
+            "text": "(a = 1/4 and r = 1/4)",
+            "added": true
+          },
           "The terms are a, ar, ar², ar³, …",
           {
             "text": "= 1/4, (1/4)(1/4), (1/4)(1/4)², …",
             "style": "indent"
+          },
+          {
+            "text": "((1/4)(1/4) = 1/16 and (1/4)(1/4)² = 1/64)",
+            "added": true
           },
           {
             "text": "∴ The G.P. is 1/4, 1/16, 1/64, 1/256, …",
@@ -131,6 +140,18 @@
         "common_mistakes": [
           "Stopping at r = 1/4 and not writing the G.P.",
           "Writing 1/4, 2/16, 3/64 by adding a pattern instead of multiplying by r."
+        ],
+        "lines_compact": [
+          "|r| = 1/4 < 1, so an infinite sum does exist for this ratio",
+          "The terms are a, ar, ar², ar³, …",
+          {
+            "text": "= 1/4, (1/4)(1/4), (1/4)(1/4)², …",
+            "style": "indent"
+          },
+          {
+            "text": "∴ The G.P. is 1/4, 1/16, 1/64, 1/256, …",
+            "style": "boxed"
+          }
         ]
       }
     ]

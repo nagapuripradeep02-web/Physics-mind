@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.20, chapter 3 SEQUENCES & SERIES, Very Short Answer question 3. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sequences and Series is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.20, chapter 3 SEQUENCES & SERIES, Very Short Answer question 3. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sequences and Series is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this — say what S₆₉ turns into and why you never need a and d separately.",
   "answer": {
@@ -52,9 +52,12 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "(the nth term is a + (n − 1)d, so a₃₅ = a + 34d)",
           "Given  a₃₅ = a + 34d = 69",
           "Sum of the first n terms:  Sₙ = n/2 [2a + (n − 1)d]",
+          "(put n = 69, so (n − 1)d = 68d)",
           "S₆₉ = 69/2 [2a + 68d]",
+          "(2a + 68d = 2(a + 34d), and 69/2 × 2 = 69)",
           "= 69/2 × 2(a + 34d) = 69(a + 34d)"
         ],
         "recall": {
@@ -95,7 +98,15 @@
         "memory_tip": "S₆₉ = 69 × 69 = 4761.",
         "lines": [
           "S₆₉ = 69 × (a + 34d)",
+          {
+            "text": "(put a + 34d = 69)",
+            "added": true
+          },
           "= 69 × 69",
+          {
+            "text": "(69 × 69 = 4761)",
+            "added": true
+          },
           {
             "text": "∴ S₆₉ = 4761",
             "style": "boxed"
@@ -126,6 +137,14 @@
         "common_mistakes": [
           "Slipping in the arithmetic of 69 × 69.",
           "Halving a second time and writing 4761/2."
+        ],
+        "lines_compact": [
+          "S₆₉ = 69 × (a + 34d)",
+          "= 69 × 69",
+          {
+            "text": "∴ S₆₉ = 4761",
+            "style": "boxed"
+          }
         ]
       }
     ]

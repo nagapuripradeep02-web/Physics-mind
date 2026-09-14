@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.23, chapter 3 SEQUENCES & SERIES, Very Short Answer question 22. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sequences and Series is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.23, chapter 3 SEQUENCES & SERIES, Very Short Answer question 22. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sequences and Series is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say what the two means give you about the numbers, and how you turn that into one equation.",
   "answer": {
@@ -53,7 +53,9 @@
             "style": "heading"
           },
           "Let the two positive numbers be a and b",
+          "(multiply both sides by 2)",
           "A.M. = (a + b)/2 = 34  ⇒  a + b = 68",
+          "(square both sides)",
           "G.M. = √(ab) = 16  ⇒  ab = 16² = 256"
         ],
         "recall": {
@@ -93,14 +95,39 @@
         "margin_note": "Second mark. Both numbers must be given. √3600 = 60 exactly, so the roots are whole numbers — a fractional answer here means an arithmetic slip.",
         "memory_tip": "Sum and product go straight into x² − (sum)x + product = 0.",
         "lines": [
+          {
+            "text": "(the quadratic with roots a and b is",
+            "added": true
+          },
+          {
+            "text": "  x² − (sum of roots)x + (product of roots) = 0)",
+            "style": "indent",
+            "added": true
+          },
           "a and b are the roots of  x² − (a + b)x + ab = 0",
           "x² − 68x + 256 = 0",
+          {
+            "text": "(the quadratic formula)",
+            "added": true
+          },
           "x = [68 ± √(68² − 4 × 256)]/2",
+          {
+            "text": "(68² = 4624 and 4 × 256 = 1024)",
+            "added": true
+          },
           {
             "text": "= [68 ± √(4624 − 1024)]/2",
             "style": "indent"
           },
+          {
+            "text": "(4624 − 1024 = 3600 and √3600 = 60)",
+            "added": true
+          },
           "= [68 ± √3600]/2 = (68 ± 60)/2",
+          {
+            "text": "((68 + 60)/2 = 64 and (68 − 60)/2 = 4)",
+            "added": true
+          },
           {
             "text": "∴ x = 64 or 4, so the two numbers are 64 and 4",
             "style": "boxed"
@@ -132,6 +159,20 @@
         "common_mistakes": [
           "Writing x² − 68x − 256 = 0, with the wrong sign on the product term.",
           "Giving only one root when the question asks for both numbers."
+        ],
+        "lines_compact": [
+          "a and b are the roots of  x² − (a + b)x + ab = 0",
+          "x² − 68x + 256 = 0",
+          "x = [68 ± √(68² − 4 × 256)]/2",
+          {
+            "text": "= [68 ± √(4624 − 1024)]/2",
+            "style": "indent"
+          },
+          "= [68 ± √3600]/2 = (68 ± 60)/2",
+          {
+            "text": "∴ x = 64 or 4, so the two numbers are 64 and 4",
+            "style": "boxed"
+          }
         ]
       }
     ]

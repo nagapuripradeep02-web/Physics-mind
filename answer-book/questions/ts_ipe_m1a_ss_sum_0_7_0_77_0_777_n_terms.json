@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.22, chapter 3 SEQUENCES & SERIES, Very Short Answer question 17. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sequences and Series is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.22, chapter 3 SEQUENCES & SERIES, Very Short Answer question 17. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sequences and Series is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say what you multiply and divide by, and which part of the working is the geometric series.",
   "answer": {
@@ -53,8 +53,11 @@
             "style": "heading"
           },
           "Sₙ = 0.7 + 0.77 + 0.777 + … to n terms",
+          "(take out the common factor 7)",
           "= 7(0.1 + 0.11 + 0.111 + …)",
+          "(multiply and divide by 9: 9 × 0.1 = 0.9, 9 × 0.11 = 0.99)",
           "= (7/9)(0.9 + 0.99 + 0.999 + …)",
+          "(0.9 = 1 − 1/10, 0.99 = 1 − 1/10², …)",
           "= (7/9)[(1 − 1/10) + (1 − 1/10²) + … + (1 − 1/10ⁿ)]"
         ],
         "recall": {
@@ -94,10 +97,31 @@
         "margin_note": "Second mark. Both pieces must appear: the n from the ones, and the finite G.P. sum. Either boxed form is a complete answer.",
         "memory_tip": "n ones minus a shrinking G.P., all multiplied by 7/9.",
         "lines": [
+          {
+            "text": "(the n ones add to n; the fractions are collected)",
+            "added": true
+          },
           "= (7/9)[n − (1/10 + 1/10² + … + 1/10ⁿ)]",
+          {
+            "text": "(the sum of n terms of a G.P. is a(1 − rⁿ)/(1 − r))",
+            "added": true
+          },
           "The bracketed series is a G.P. with a = 1/10 and",
           "r = 1/10, so its sum is",
           "(1/10)(1 − (1/10)ⁿ)/(1 − 1/10) = (1/9)(1 − (1/10)ⁿ)",
+          {
+            "text": "((1/10)/(9/10) = 1/9)",
+            "added": true
+          },
+          {
+            "text": "(then write 7/9 as (7/81) × 9 and multiply the",
+            "added": true
+          },
+          {
+            "text": "  bracket by 9)",
+            "style": "indent",
+            "added": true
+          },
           {
             "text": "∴ Sₙ = (7/9)[n − (1/9)(1 − (1/10)ⁿ)]",
             "style": "boxed"
@@ -133,6 +157,20 @@
         "common_mistakes": [
           "Using the infinite sum a/(1 − r) when the question asks for n terms.",
           "Losing the n and writing only the geometric part as the answer."
+        ],
+        "lines_compact": [
+          "= (7/9)[n − (1/10 + 1/10² + … + 1/10ⁿ)]",
+          "The bracketed series is a G.P. with a = 1/10 and",
+          "r = 1/10, so its sum is",
+          "(1/10)(1 − (1/10)ⁿ)/(1 − 1/10) = (1/9)(1 − (1/10)ⁿ)",
+          {
+            "text": "∴ Sₙ = (7/9)[n − (1/9)(1 − (1/10)ⁿ)]",
+            "style": "boxed"
+          },
+          {
+            "text": "= (7/81)[9n − 1 + (1/10)ⁿ]",
+            "style": "boxed"
+          }
         ]
       }
     ]
