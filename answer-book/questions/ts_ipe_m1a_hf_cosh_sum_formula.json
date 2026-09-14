@@ -45,7 +45,7 @@
         "label": "Substitute the definitions",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. Both products are like signs this time: cosh with cosh, sinh with sinh. Note that the hyperbolic sum formula has a PLUS here, unlike the trigonometric one.",
+        "margin_note": "First mark. Both products pair like functions this time: cosh with cosh, sinh with sinh. Note that the hyperbolic sum formula has a PLUS here, unlike the trigonometric one.",
         "memory_tip": "For cosh the two products are cosh·cosh and sinh·sinh, joined by a PLUS. The trigonometric cos formula has a minus there.",
         "lines": [
           {
@@ -83,7 +83,7 @@
             "e to the minus x"
           ]
         },
-        "why": "The two brackets differ only in their inner signs, so the expansion is the same work twice with one sign changed. That is what makes the cancellation predictable.",
+        "why": "The second product has the inner sign of both brackets changed, so in the expansion the two mixed terms change sign and the other two do not. That is what makes the cancellation predictable.",
         "common_mistakes": [
           "Writing a minus between the two products, copying the cos formula from trigonometry.",
           "Using a denominator of 2 instead of 4 for a product of two definitions."

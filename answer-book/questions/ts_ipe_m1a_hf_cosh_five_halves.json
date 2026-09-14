@@ -62,8 +62,8 @@
         "label": "Find sinh x",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. Rearranged the other way this time: sinh x = √(cosh²x − 1) — a MINUS, because the identity is cosh² − sinh² = 1.",
-        "memory_tip": "cosh x is given, so sinh x = √(cosh²x − 1) — a MINUS, from cosh² − sinh² = 1.",
+        "margin_note": "First mark. Rearranged the other way this time: sinh x = ±√(cosh²x − 1), with + when x > 0 — a MINUS under the root, because the identity is cosh² − sinh² = 1.",
+        "memory_tip": "cosh x is given, so sinh x = ±√(cosh²x − 1), with + when x > 0 — a MINUS under the root, from cosh² − sinh² = 1.",
         "lines": [
           {
             "text": "Sol:",
@@ -104,7 +104,7 @@
         },
         "why": "The same identity gives a plus under the root when solving for cosh and a minus when solving for sinh. Which one you need depends on what was given.",
         "common_mistakes": [
-          "Using √(cosh²x + 1), which is the form for a question where sinh x is the given value.",
+          "Putting a plus under the root, √(cosh²x + 1). The plus form is cosh x = √(sinh²x + 1), used when sinh x is the given value.",
           "Getting 25/4 − 1 as 24/4."
         ]
       },
@@ -114,8 +114,8 @@
         "label": "Apply the double-angle formulas",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Second mark. Same two formulas as the question where sinh x is given. The surd stays in sinh2x but cancels out of cosh2x, since only the squares appear there.",
-        "memory_tip": "cosh 2x = cosh²x + sinh²x uses only the squares, so the surd cancels there but stays in sinh 2x.",
+        "margin_note": "Second mark. The surd stays in sinh 2x but not in cosh 2x, because cosh 2x uses only the squares and (√21/2)² = 21/4.",
+        "memory_tip": "cosh 2x = cosh²x + sinh²x uses only the squares, so the surd is not in cosh 2x but stays in sinh 2x.",
         "lines": [
           {
             "text": "(cosh²x = 25/4 and sinh²x = 21/4)",
@@ -130,7 +130,8 @@
           {
             "text": "∴ cosh 2x = 23/2,  sinh 2x = 5√21/2",
             "style": "boxed"
-          }
+          },
+          "(taking x > 0; for x < 0, sinh 2x = −5√21/2)"
         ],
         "recall": {
           "credit": "say_it",
@@ -165,10 +166,11 @@
           {
             "text": "∴ cosh 2x = 23/2,  sinh 2x = 5√21/2",
             "style": "boxed"
-          }
+          },
+          "(taking x > 0; for x < 0, sinh 2x = −5√21/2)"
         ]
       }
     ]
   },
-  "insider_note": "cosh x = 5/2 is possible because cosh x is never less than 1, and here sinh x = √(cosh²x − 1), the identity used the other way round. The √21 stays in sinh 2x; a tidy whole number is not expected."
+  "insider_note": "cosh x = 5/2 is possible because cosh x is never less than 1, and here sinh x = √(cosh²x − 1) for x > 0, the identity used the other way round. The √21 stays in sinh 2x; a tidy whole number is not expected."
 }

@@ -149,7 +149,7 @@
             "half log"
           ]
         },
-        "why": "The range −1 < x < 1 is not decoration. Outside it one of 1 + x and 1 − x is negative or zero, the ratio is not positive, and the logarithm has no value.",
+        "why": "The range −1 < x < 1 is needed. tanh y always lies strictly between −1 and 1, and outside that range the ratio (1 + x)/(1 − x) is negative, zero or undefined, so the logarithm has no value.",
         "common_mistakes": [
           "Writing the ratio as (1 − x)/(1 + x), which gives e⁻²ʸ.",
           "Forgetting the 1/2 that comes from 2y on the left."

@@ -80,7 +80,7 @@
             "denominator"
           ]
         },
-        "why": "There is no separate definition of tanh(x − y) to expand. The way to it is through sinh and cosh, whose difference formulas the chapter already has.",
+        "why": "tanh(x − y) could be expanded from the exponential definition, but that is longer. The shorter method uses sinh and cosh, whose difference formulas the chapter already has.",
         "common_mistakes": [
           "Writing a plus in the denominator, copying the tan formula from trigonometry.",
           "Expanding tanh(x − y) as tanh x − tanh y."
@@ -135,10 +135,10 @@
             "never zero"
           ]
         },
-        "why": "Dividing by cosh x cosh y is the one move that converts every term at once, because each sinh is paired with the cosh of the same variable.",
+        "why": "Dividing by cosh x cosh y converts every term at once, because every term is a product of one function of x and one function of y, so each sinh ends up over the cosh of its own variable.",
         "common_mistakes": [
           "Dividing by cosh(x − y) instead of by cosh x cosh y.",
-          "Getting 1 in the numerator and forgetting it belongs in the denominator."
+          "Writing the cosh formula on top and the sinh formula below, which gives the reciprocal (1 − tanh x tanh y)/(tanh x − tanh y)."
         ],
         "lines_compact": [
           "cosh x ≥ 1 and cosh y ≥ 1, so cosh x cosh y ≠ 0",

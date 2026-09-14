@@ -102,7 +102,7 @@
           },
           "Cosh⁻¹(3) = logₑ(3 + √(3² − 1))",
           {
-            "text": "(√(9 − 1) = √8)",
+            "text": "(3² = 9)",
             "added": true
           },
           "= logₑ(3 + √(9 − 1))",
@@ -134,7 +134,7 @@
             "positive value"
           ]
         },
-        "why": "Only the surd changes when the number is put in. Getting √8 rather than √10 is the whole difference between the Cosh⁻¹ form and the Sinh⁻¹ form.",
+        "why": "Only the surd changes when the number is put in: √(9 − 1) = √8 for Cosh⁻¹, against √(9 + 1) = √10 for Sinh⁻¹.",
         "common_mistakes": [
           "Getting √10 by using the Sinh⁻¹ form by mistake.",
           "Writing √8 as √9 − √1 = 2."
@@ -198,7 +198,7 @@
             "minus log"
           ]
         },
-        "why": "A student who solves cosh x = 3 straight from the exponential definition reaches logₑ(3 − √8) and thinks the answer is wrong. Showing the product is 1 settles that in one line.",
+        "why": "A student who solves cosh x = 3 from the exponential definition gets eˣ = 3 ± √8, so both logₑ(3 + √8) and logₑ(3 − √8) appear. Showing the product is 1 proves they are the same number with opposite signs.",
         "common_mistakes": [
           "Treating logₑ(3 − √8) as a third, separate solution.",
           "Thinking logₑ(3 − √8) is undefined, when 3 − √8 is about 0.17 and positive."

@@ -50,7 +50,7 @@
         "label": "Simplify the left side",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark, and the observation the whole question rests on: cosh x + sinh x is just eˣ, because the e⁻ˣ terms cancel.",
+        "margin_note": "First mark, and the fact the whole proof uses: cosh x + sinh x is just eˣ, because the e⁻ˣ terms cancel.",
         "memory_tip": "cosh x + sinh x is just eˣ — the e⁻ˣ terms cancel. No binomial expansion is needed.",
         "lines": [
           {
@@ -97,7 +97,7 @@
         "label": "Simplify the right side and compare",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Second mark. The right side is the same identity with nx in place of x — so it collapses to eⁿˣ too, and the two agree.",
+        "margin_note": "Second mark. The right side is the same identity with nx in place of x — so it simplifies to eⁿˣ too, and the two sides are equal.",
         "memory_tip": "The right side is the same identity with nx, so it simplifies to eⁿˣ too. Write the comparison line.",
         "lines": [
           {
@@ -135,7 +135,7 @@
             "cosh n x"
           ]
         },
-        "why": "The same cancellation happens on both sides, just with a different exponent. Recognising that saves doing any new work for the right-hand side.",
+        "why": "The same cancellation happens on the right side with nx in place of x, so its working follows the same pattern — but it must still be written out.",
         "common_mistakes": [
           "Computing both sides and never saying they agree.",
           "Stopping at (2eⁿˣ)/2 without writing it as eⁿˣ."
@@ -153,5 +153,5 @@
       }
     ]
   },
-  "insider_note": "The bracket simplifies to eˣ before the power is used, so the left side is eⁿˣ in one line. Both sides must be simplified separately and then compared; working one side only is half an answer."
+  "insider_note": "The bracket simplifies to eˣ before the power is used, so the left side is eⁿˣ in one line. Simplify each side to eⁿˣ and then say the two sides are equal; stopping after the left side alone does not reach the right side."
 }

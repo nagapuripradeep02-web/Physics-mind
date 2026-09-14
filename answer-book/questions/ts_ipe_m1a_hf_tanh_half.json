@@ -90,7 +90,7 @@
             "one minus x"
           ]
         },
-        "why": "The 1/2 in the answer is not something to derive — it is part of the formula. Recognising that saves hunting for where it came from.",
+        "why": "The 1/2 in the answer is not something to derive — it is part of the formula.",
         "common_mistakes": [
           "Omitting the 1/2 outside the log.",
           "Writing (1−x)/(1+x) in place of (1+x)/(1−x)."
@@ -161,5 +161,5 @@
       }
     ]
   },
-  "insider_note": "Quote Tanh⁻¹x = (1/2)logₑ((1 + x)/(1 − x)) and substitute. The ½ in front belongs to the formula and is not something to cancel, and (3/2)/(1/2) simplifies to 3 before the log is touched."
+  "insider_note": "Quote Tanh⁻¹x = (1/2)logₑ((1 + x)/(1 − x)) and substitute. The ½ in front belongs to the formula and is not something to cancel, and (3/2)/(1/2) simplifies to 3 inside the logarithm."
 }

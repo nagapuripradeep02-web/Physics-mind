@@ -28,7 +28,7 @@
       "marks": 1
     },
     {
-      "label": "Substitute x = 5",
+      "label": "Substitute 5 into the formula",
       "marks": 1
     }
   ],
@@ -90,7 +90,7 @@
       {
         "id": "s2_answer",
         "kind": "boxed_final",
-        "label": "Substitute x = 5",
+        "label": "Substitute 5 into the formula",
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. 25 + 1 = 26, and √26 does not simplify — the surd is the final form.",
@@ -102,7 +102,7 @@
           },
           "Given sinh x = 5, so x = Sinh⁻¹(5)",
           {
-            "text": "(put x = 5 in the formula)",
+            "text": "(put 5 in place of x in the formula)",
             "added": true
           },
           "= logₑ(5 + √(5² + 1))",
@@ -138,7 +138,7 @@
             "five"
           ]
         },
-        "why": "26 has no square factor, so √26 stands as it is. Trying to simplify it is wasted effort.",
+        "why": "26 has no square factor, so √26 is left as it is. Trying to simplify it gains nothing.",
         "common_mistakes": [
           "Attempting to simplify √26.",
           "Writing √26 as 5.1 and losing exactness."

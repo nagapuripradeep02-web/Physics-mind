@@ -91,7 +91,7 @@
             "over two"
           ]
         },
-        "why": "The middle term of the square is 2·eˣ·e⁻ˣ = 2, not 2e⁰ˣ or anything else — the exponentials cancel to give a plain number.",
+        "why": "The middle term of the square is 2·eˣ·e⁻ˣ = 2e⁰ = 2, not 2e²ˣ — the powers x and −x add to 0, so the term is a plain number.",
         "common_mistakes": [
           "Getting the middle term wrong and losing the +2.",
           "Cancelling the 2 outside against the wrong factor."
@@ -143,7 +143,7 @@
             "definition"
           ]
         },
-        "why": "Recognising (e²ˣ + e⁻²ˣ)/2 as cosh 2x rather than leaving it in exponentials is what finishes the proof — the definition read backwards.",
+        "why": "Recognising (e²ˣ + e⁻²ˣ)/2 as cosh 2x rather than leaving it in exponentials is what finishes the proof — the definition used from right to left.",
         "common_mistakes": [
           "Leaving the answer in exponential form.",
           "Forgetting that the −1 cancels the +2/2 exactly."

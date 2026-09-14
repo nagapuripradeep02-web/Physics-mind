@@ -46,7 +46,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Read cosh⁴x − sinh⁴x as a⁴ − b⁴ and factorise. The second bracket is cosh²x − sinh²x, which is 1.",
-        "memory_tip": "a⁴ − b⁴ = (a² + b²)(a² − b²). Here the second bracket is the Pythagorean identity and equals 1.",
+        "memory_tip": "a⁴ − b⁴ = (a² + b²)(a² − b²). Here the second bracket is the hyperbolic identity cosh²x − sinh²x, which equals 1.",
         "lines": [
           {
             "text": "Sol:",

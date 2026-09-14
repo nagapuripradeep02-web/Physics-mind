@@ -132,7 +132,7 @@
             "half log"
           ]
         },
-        "why": "The quarters cancel top and bottom, which is why the answer is 5/3 and not 5/16 or anything messier.",
+        "why": "The quarters cancel top and bottom, which is why the answer is 5/3 and not 15/16, the result of multiplying instead of dividing.",
         "common_mistakes": [
           "Multiplying the fractions instead of dividing.",
           "Writing logₑ5 − logₑ3 without the half."

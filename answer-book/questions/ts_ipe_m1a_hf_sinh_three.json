@@ -36,7 +36,7 @@
       "marks": 1
     },
     {
-      "label": "Substitute x = 3",
+      "label": "Substitute 3 into the formula",
       "marks": 1
     }
   ],
@@ -90,7 +90,7 @@
             "root"
           ]
         },
-        "why": "Sinh⁻¹ has +1 under the root and Cosh⁻¹ has −1. Getting that sign wrong is the difference between a real answer and an impossible one.",
+        "why": "Sinh⁻¹ has +1 under the root and Cosh⁻¹ has −1. Using the wrong one gives a different number: logₑ(3 + √8) instead of logₑ(3 + √10).",
         "common_mistakes": [
           "Writing √(x² − 1), which is the Cosh⁻¹ form.",
           "Omitting the logarithm entirely."
@@ -99,7 +99,7 @@
       {
         "id": "s2_answer",
         "kind": "boxed_final",
-        "label": "Substitute x = 3",
+        "label": "Substitute 3 into the formula",
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. sinh x = 3 means x is Sinh⁻¹(3). Substitute and simplify the surd: 9 + 1 = 10.",
@@ -111,7 +111,7 @@
           },
           "Given sinh x = 3, so x = Sinh⁻¹(3)",
           {
-            "text": "(put x = 3 in the formula)",
+            "text": "(put 3 in place of x in the formula)",
             "added": true
           },
           "= logₑ(3 + √(3² + 1))",
