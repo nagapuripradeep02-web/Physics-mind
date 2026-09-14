@@ -85,7 +85,7 @@
         "why": "The terms are not in G.P., so a/(1 − r) cannot be applied to the series as written. Shifting by one place and subtracting makes every numerator difference equal to 1, and what is left IS a geometric series.",
         "common_mistakes": [
           "Treating the series as a G.P. with r = 1/2 and giving 2.",
-          "Multiplying by 2 instead of by the ratio 1/2, which does not line the terms up."
+          "Multiplying by 1/2 but subtracting terms that do not have the same power of 2, so the numerator differences do not all come out as 1."
         ]
       },
       {
@@ -95,7 +95,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. The last move — multiplying by 2 — is the one most often missed. What the subtraction gives is S/2, not S.",
-        "memory_tip": "After the subtraction you are holding half of S, so double it at the end.",
+        "memory_tip": "After the subtraction the left side is (1/2)S, so multiply by 2 at the end.",
         "lines": [
           {
             "text": "(each numerator difference is 1)",

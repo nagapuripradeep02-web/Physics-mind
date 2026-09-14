@@ -46,7 +46,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. a + b = 2x, and the two neighbour relations y² = az and z² = yb. Naming a, y, z, b as a G.P. is the key line.",
-        "memory_tip": "In a G.P. every term squared equals the product of the two terms beside it.",
+        "memory_tip": "In a G.P. every middle term squared equals the product of the two terms beside it.",
         "lines": [
           {
             "text": "Sol:",
@@ -57,8 +57,8 @@
           "that is  a + b = 2x",
           "y and z are two geometric means, so a, y, z, b are in G.P.",
           "(a, y, z, b in G.P. means y/a = z/y = b/z)",
-          "In a G.P. each term squared is the product of its",
-          "neighbours:  y² = az  and  z² = yb"
+          "In a G.P. each middle term squared is the product",
+          "of its neighbours:  y² = az  and  z² = yb"
         ],
         "recall": {
           "credit": "say_it",
@@ -82,7 +82,7 @@
             "z squared is y b"
           ]
         },
-        "why": "Two geometric means between a and b make a four-term G.P., and in a G.P. each term squared equals the product of its neighbours. Those two relations are all this identity needs.",
+        "why": "Two geometric means between a and b make a four-term G.P., and in a G.P. each middle term squared equals the product of its neighbours. Those two relations, with a + b = 2x, are all this identity needs.",
         "common_mistakes": [
           "Putting a, y, z, b in A.P. instead of G.P. A.P. is the condition for arithmetic means; y and z here are geometric means.",
           "Writing y² = ab, which is the rule for a single geometric mean, not for two."
@@ -141,7 +141,7 @@
         },
         "why": "Multiplying each squared relation by its own term turns the squares into cubes and leaves yz as a common factor. The bracket that remains is a + b, which the arithmetic mean has already replaced by 2x.",
         "common_mistakes": [
-          "Factorising y³ + z³ as (y + z)(y² − yz + z²): correct algebra, but a dead end here, because neither mean condition fits that bracket.",
+          "Factorising y³ + z³ as (y + z)(y² − yz + z²): correct algebra, but it does not lead to the result here, because neither mean condition can be used on that bracket.",
           "Leaving the answer as yz(a + b) without putting a + b = 2x."
         ],
         "lines_compact": [

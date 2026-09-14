@@ -95,10 +95,10 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Check with n = 1: (8/81)(100 − 9 − 10) = (8/81)(81) = 8, which is the first term.",
-        "memory_tip": "One G.P. of tens, then take away n ones, then multiply by 8/81.",
+        "memory_tip": "Sum the G.P. of powers of 10, take away n, then multiply by 8/9.",
         "lines": [
           {
-            "text": "(the n ones make −n)",
+            "text": "(the n copies of −1 add to −n)",
             "added": true
           },
           "= (8/9)[(10 + 10² + … + 10ⁿ) − n]",
@@ -144,7 +144,7 @@
             "minus nine n"
           ]
         },
-        "why": "The bracket splits into a G.P. of powers of 10 and n copies of −1. Both are standard sums, so the answer closes in one line.",
+        "why": "The bracket splits into a G.P. of powers of 10 and n copies of −1. Both are standard sums, so each can be written down straight away.",
         "common_mistakes": [
           "Subtracting 1 instead of n, forgetting that there are n terms each carrying a −1.",
           "Using a = 1 for the G.P. of powers of 10, which actually starts at 10."

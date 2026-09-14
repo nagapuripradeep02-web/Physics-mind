@@ -61,9 +61,9 @@
           "(a + b + 2√(ab))/(a + b − 2√(ab)) = (m + n)/(m − n)",
           "(a + b ± 2√(ab) = (√a ± √b)²)",
           "(√a + √b)²/(√a − √b)² = (m + n)/(m − n)",
-          "(take a > b, so √a − √b > 0 and the positive root",
+          "(take a > b, so √a − √b > 0; A.M. > G.M. for a ≠ b,",
           {
-            "text": "  is the right one)",
+            "text": "  so m > n > 0 and √(m − n) is real)",
             "style": "indent"
           },
           "(√a + √b)/(√a − √b) = √(m + n)/√(m − n)"
@@ -90,7 +90,7 @@
             "m minus n"
           ]
         },
-        "why": "Adding and subtracting 2√(ab) turns both sides of the ratio into perfect squares, so the square root can be taken cleanly.",
+        "why": "Adding and subtracting 2√(ab) turns the top and the bottom of the left-hand fraction into perfect squares, so the square root of both sides can be taken.",
         "common_mistakes": [
           "Writing (a + b)/√(ab) = m/n and losing the 2 in the denominator.",
           "Taking the square root of only one side of the ratio."

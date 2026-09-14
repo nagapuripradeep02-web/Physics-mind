@@ -107,18 +107,18 @@
           "By componendo and dividendo again,",
           "(√a + √b + √a − √b)/(√a + √b − √a + √b)",
           {
-            "text": "(the tops add to 2√a and 2√b)",
-            "added": true
-          },
-          {
             "text": "= (√2 + 1)/(√2 − 1)",
             "style": "indent"
           },
           {
-            "text": "(cancel the 2s)",
+            "text": "(the top simplifies to 2√a and the bottom to 2√b)",
             "added": true
           },
           "2√a/(2√b) = (√2 + 1)/(√2 − 1)",
+          {
+            "text": "(cancel the 2s)",
+            "added": true
+          },
           "⇒  √a/√b = (√2 + 1)/(√2 − 1)",
           {
             "text": "((√2 ± 1)² = 2 ± 2√2 + 1 = 3 ± 2√2)",

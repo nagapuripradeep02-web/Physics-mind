@@ -114,6 +114,10 @@
             "added": true
           },
           {
+            "text": "∴ Sₙ = (7/9)[n − (1/9)(1 − (1/10)ⁿ)]",
+            "style": "boxed"
+          },
+          {
             "text": "(then write 7/9 as (7/81) × 9 and multiply the",
             "added": true
           },
@@ -121,10 +125,6 @@
             "text": "  bracket by 9)",
             "style": "indent",
             "added": true
-          },
-          {
-            "text": "∴ Sₙ = (7/9)[n − (1/9)(1 − (1/10)ⁿ)]",
-            "style": "boxed"
           },
           {
             "text": "= (7/81)[9n − 1 + (1/10)ⁿ]",
@@ -153,7 +153,7 @@
             "finite G P"
           ]
         },
-        "why": "The n ones add to n, and what is left is a finite G.P. of ratio 1/10. Putting n = 1 gives (7/81)(9 − 1 + 0.1) = 0.7, which checks the whole answer in one line.",
+        "why": "The n ones add to n, and what is left is a finite G.P. of ratio 1/10. Putting n = 1 gives (7/81)(9 − 1 + 0.1) = 0.7, the first term, which is a quick check on the answer.",
         "common_mistakes": [
           "Using the infinite sum a/(1 − r) when the question asks for n terms.",
           "Losing the n and writing only the geometric part as the answer."

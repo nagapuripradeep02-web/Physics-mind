@@ -82,7 +82,7 @@
             "first term"
           ]
         },
-        "why": "The second term needs the first term, and the only route to it is the given 15th term. Fourteen common differences are subtracted, not fifteen.",
+        "why": "This method finds the first term from the given 15th term and then adds one common difference. Fourteen common differences are subtracted, not fifteen.",
         "common_mistakes": [
           "Using 15d = 45 instead of 14d = 42, which gives a = −8.",
           "Writing a = 37 + 42 = 79 by moving 42 across with the wrong sign."

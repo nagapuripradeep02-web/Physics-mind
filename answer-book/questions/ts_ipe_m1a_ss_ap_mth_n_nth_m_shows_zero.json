@@ -81,7 +81,7 @@
             "m minus n"
           ]
         },
-        "why": "Subtracting the two equations removes a in one line and leaves d alone, which is the only unknown that can be found from what is given.",
+        "why": "Subtracting the two equations removes a in one line and leaves d alone. Once d is known, equation (1) gives a.",
         "common_mistakes": [
           "Adding the two equations instead of subtracting, which keeps a in the working.",
           "Cancelling (m − n) without stating m ≠ n."

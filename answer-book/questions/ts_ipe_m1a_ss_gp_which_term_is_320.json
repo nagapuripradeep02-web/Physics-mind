@@ -52,7 +52,7 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "(r is the ratio of neighbouring terms)",
+          "(r is a term divided by the term before it)",
           "Here a = 5 and r = −10/5 = −2",
           "Check on the next pair:  20/(−10) = −2",
           "For a G.P., the nth term is  aₙ = a rⁿ⁻¹",
@@ -80,7 +80,7 @@
             "three twenty"
           ]
         },
-        "why": "The ratio is negative, so the terms alternate in sign. Writing r = −2 rather than 2 is what makes the sign of the answer come out right.",
+        "why": "The ratio is negative, so the terms alternate in sign. With r = −2 a term is positive only when n − 1 is even, so the sign of 320 must be checked before n is accepted.",
         "common_mistakes": [
           "Taking r = 2 and ignoring the minus signs in the sequence.",
           "Writing aₙ = a rⁿ, which shifts every term one place."

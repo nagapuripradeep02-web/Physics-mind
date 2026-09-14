@@ -53,7 +53,7 @@
             "style": "heading"
           },
           "For the G.P. 4, 8, 16, …",
-          "(r is the ratio of neighbouring terms)",
+          "(r is a term divided by the term before it)",
           "a = 4  and  r = 8/4 = 2",
           "The nth term of a G.P. is  tₙ = arⁿ⁻¹"
         ],
@@ -79,7 +79,7 @@
             "two"
           ]
         },
-        "why": "The ratio has to be read off the given terms before any formula is used, and writing tₙ = arⁿ⁻¹ earns a mark on its own even if the arithmetic then slips.",
+        "why": "The ratio has to be read off the given terms before any formula is used. Writing a, r and tₙ = arⁿ⁻¹ earns the method mark even if the arithmetic then goes wrong.",
         "common_mistakes": [
           "Taking r as 8 − 4 = 4, which is a common difference and belongs to an A.P.",
           "Writing the nth term as arⁿ, which returns the 6th term when n = 5."

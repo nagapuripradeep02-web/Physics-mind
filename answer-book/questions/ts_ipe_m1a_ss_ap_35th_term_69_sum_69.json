@@ -94,7 +94,7 @@
         "label": "Substitute the given 35th term",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Second mark. 69² = 4761. The answer coming out as a perfect square is the sign that the short route was taken.",
+        "margin_note": "Second mark. 69² = 4761. The answer is a perfect square because S₆₉ = 69 × a₃₅ and a₃₅ = 69.",
         "memory_tip": "S₆₉ = 69 × 69 = 4761.",
         "lines": [
           "S₆₉ = 69 × (a + 34d)",

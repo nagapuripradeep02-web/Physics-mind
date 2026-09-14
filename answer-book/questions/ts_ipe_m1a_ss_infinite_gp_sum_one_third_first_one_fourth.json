@@ -136,7 +136,7 @@
             "and so on"
           ]
         },
-        "why": "The question asks for the series, not for r, so the terms have to be written out. Checking |r| < 1 confirms the ratio found is a legal one for an infinite sum.",
+        "why": "The question asks for the series, not for r, so the terms have to be written out. Checking |r| < 1 confirms that the sum to infinity exists for the ratio found.",
         "common_mistakes": [
           "Stopping at r = 1/4 and not writing the G.P.",
           "Writing 1/4, 2/16, 3/64 by adding a pattern instead of multiplying by r."

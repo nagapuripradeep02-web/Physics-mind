@@ -45,8 +45,8 @@
         "label": "Write the five terms about the middle one",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. The symmetric naming is the whole method. The examiner is looking for the middle term called a and set equal to 4.",
-        "memory_tip": "Put the known middle term in the middle: two terms below it and two above.",
+        "margin_note": "First mark. The symmetric naming is the method being marked. The examiner is looking for the middle term called a and set equal to 4.",
+        "memory_tip": "Put the known middle term in the middle: two terms before it and two after it.",
         "lines": [
           {
             "text": "Sol:",
@@ -92,7 +92,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Show that the powers of r add to zero — that line is the reason no value of r is ever needed.",
-        "memory_tip": "The powers −2, −1, 0, 1, 2 add to zero, so only the middle term is left.",
+        "memory_tip": "The powers −2, −1, 0, 1, 2 add to zero, so only a⁵ is left: the middle term to the fifth power.",
         "lines": [
           "Product = (a/r²)(a/r)(a)(ar)(ar²)",
           {

@@ -86,7 +86,7 @@
         },
         "why": "Choosing a/r, a, ar makes the product a³ because r cancels. That gives a immediately and leaves only r unknown in the sum.",
         "common_mistakes": [
-          "Taking the numbers as a, ar, ar² also works — a³r³ = 216 gives ar = 6 — but a/r, a, ar gives a = 6 directly and is shorter.",
+          "Writing the product (a/r)(a)(ar) as a³r and trying to solve for both a and r, instead of seeing that r cancels to give a³ = 216.",
           "Forgetting to multiply the whole sum equation by r before forming the quadratic."
         ]
       },
