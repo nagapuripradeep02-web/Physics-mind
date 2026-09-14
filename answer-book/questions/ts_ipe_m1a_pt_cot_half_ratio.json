@@ -99,7 +99,11 @@
         "lines": [
           "In R.H.S, denominator = cotA + cotB + cotC",
           "= cosA/sinA + cosB/sinB + cosC/sinC",
-          "= (b²+c²−a²)/(2bc sinA) + (c²+a²−b²)/(2ca sinB) + (a²+b²−c²)/(2ab sinC)",
+          "= (b²+c²−a²)/(2bc sinA) + (c²+a²−b²)/(2ca sinB)",
+          {
+            "text": "+ (a²+b²−c²)/(2ab sinC)",
+            "style": "indent"
+          },
           "= (b²+c²−a²)/(4Δ) + (c²+a²−b²)/(4Δ) + (a²+b²−c²)/(4Δ)",
           "  [∵ Δ = ½ bc sinA, so 2bc sinA = 4Δ]",
           "= (a² + b² + c²)/(4Δ)   …(2)"

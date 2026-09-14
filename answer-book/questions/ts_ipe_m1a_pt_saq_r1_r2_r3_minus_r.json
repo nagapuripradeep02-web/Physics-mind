@@ -53,8 +53,16 @@
             "style": "heading"
           },
           "L.H.S = (r₁ + r₂) + (r₃ − r)",
-          "= [4R sin(A/2)cos(B/2)cos(C/2) + 4R cos(A/2)sin(B/2)cos(C/2)]",
-          "  + [4R cos(A/2)cos(B/2)sin(C/2) − 4R sin(A/2)sin(B/2)sin(C/2)]",
+          "= [4R sin(A/2)cos(B/2)cos(C/2)",
+          {
+            "text": "+ 4R cos(A/2)sin(B/2)cos(C/2)]",
+            "style": "indent"
+          },
+          "+ [4R cos(A/2)cos(B/2)sin(C/2)",
+          {
+            "text": "− 4R sin(A/2)sin(B/2)sin(C/2)]",
+            "style": "indent"
+          },
           "= 4R cos(C/2)[sin(A/2)cos(B/2) + cos(A/2)sin(B/2)]",
           "  + 4R sin(C/2)[cos(A/2)cos(B/2) − sin(A/2)sin(B/2)]"
         ],
@@ -96,7 +104,11 @@
         "memory_tip": "The two combine into 4R sin((A+B+C)/2) = 4R sin 90° = 4R.",
         "lines": [
           "= 4R cos(C/2) sin((A+B)/2) + 4R sin(C/2) cos((A+B)/2)",
-          "= 4R sin((A+B)/2 + C/2)   [∵ sinX cosY + cosX sinY = sin(X+Y)]",
+          "= 4R sin((A+B)/2 + C/2)",
+          {
+            "text": "[∵ sinX cosY + cosX sinY = sin(X+Y)]",
+            "style": "indent"
+          },
           "= 4R sin((A+B+C)/2) = 4R sin(180°/2)",
           {
             "text": "= 4R sin90° = 4R = R.H.S",

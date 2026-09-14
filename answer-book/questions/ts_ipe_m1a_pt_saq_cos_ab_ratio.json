@@ -63,7 +63,11 @@
           },
           "In a △ABC, A + B + C = 180°",
           "⇒ C = 180° − (A+B) and B = 180° − (A+C)",
-          "L.H.S = [1 + cos(A−B)cos(180°−(A+B))] / [1 + cos(A−C)cos(180°−(A+C))]",
+          "L.H.S = [1 + cos(A−B)cos(180°−(A+B))]",
+          {
+            "text": "/ [1 + cos(A−C)cos(180°−(A+C))]",
+            "style": "indent"
+          },
           "= [1 − cos(A+B)cos(A−B)] / [1 − cos(A+C)cos(A−C)]"
         ],
         "recall": {
@@ -106,7 +110,11 @@
           "= [1 − (cos²A − sin²B)] / [1 − (cos²A − sin²C)]",
           "  [∵ cos(A+B)cos(A−B) = cos²A − sin²B]",
           "= (1 − cos²A + sin²B) / (1 − cos²A + sin²C)",
-          "= (sin²A + sin²B) / (sin²A + sin²C)   [∵ 1 − cos²A = sin²A]"
+          "= (sin²A + sin²B) / (sin²A + sin²C)",
+          {
+            "text": "[∵ 1 − cos²A = sin²A]",
+            "style": "indent"
+          }
         ],
         "recall": {
           "credit": "say_it",

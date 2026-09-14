@@ -61,9 +61,18 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "L.H.S = cotA + cotB + cotC = cosA/sinA + cosB/sinB + cosC/sinC",
-          "= (b²+c²−a²)/(2bc sinA) + (c²+a²−b²)/(2ca sinB) + (a²+b²−c²)/(2ab sinC)",
-          "Now Δ = ½ bc sinA ⇒ 2bc sinA = 4Δ, and similarly for the others"
+          "L.H.S = cotA + cotB + cotC",
+          {
+            "text": "= cosA/sinA + cosB/sinB + cosC/sinC",
+            "style": "indent"
+          },
+          "= (b²+c²−a²)/(2bc sinA) + (c²+a²−b²)/(2ca sinB)",
+          {
+            "text": "+ (a²+b²−c²)/(2ab sinC)",
+            "style": "indent"
+          },
+          "Now Δ = ½ bc sinA ⇒ 2bc sinA = 4Δ,",
+          "and similarly for the others"
         ],
         "recall": {
           "credit": "say_it",

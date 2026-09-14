@@ -58,7 +58,11 @@
             "style": "heading"
           },
           "L.H.S = cosA/a + cosB/b + cosC/c",
-          "= (1/a)[(b²+c²−a²)/(2bc)] + (1/b)[(c²+a²−b²)/(2ca)] + (1/c)[(a²+b²−c²)/(2ab)]",
+          "= (1/a)[(b²+c²−a²)/(2bc)] + (1/b)[(c²+a²−b²)/(2ca)]",
+          {
+            "text": "+ (1/c)[(a²+b²−c²)/(2ab)]",
+            "style": "indent"
+          },
           "Each denominator is 2abc:"
         ],
         "recall": {

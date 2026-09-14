@@ -58,8 +58,16 @@
             "style": "heading"
           },
           "L.H.S = a²cotA + b²cotB + c²cotC",
-          "= (2R sinA)²(cosA/sinA) + (2R sinB)²(cosB/sinB) + (2R sinC)²(cosC/sinC)",
-          "= 4R² sin²A · cosA/sinA + … = 2R²(2 sinA cosA + 2 sinB cosB + 2 sinC cosC)",
+          "= (2R sinA)²(cosA/sinA) + (2R sinB)²(cosB/sinB)",
+          {
+            "text": "+ (2R sinC)²(cosC/sinC)",
+            "style": "indent"
+          },
+          "= 4R² sin²A · cosA/sinA + …",
+          {
+            "text": "= 2R²(2 sinA cosA + 2 sinB cosB + 2 sinC cosC)",
+            "style": "indent"
+          },
           "= 2R²(sin2A + sin2B + sin2C)"
         ],
         "recall": {
@@ -99,8 +107,16 @@
         "margin_note": "The other half. sin2A + sin2B + sin2C = 4 sinA sinB sinC in any triangle; then each sine goes back to a side through the sine rule.",
         "memory_tip": "Σsin2A = 4 sinA sinB sinC in any triangle; then each sine goes back to a side by the sine rule.",
         "lines": [
-          "= 2R²(4 sinA sinB sinC)   [∵ in a △, Σsin2A = 4 sinA sinB sinC]",
-          "= (1/R)(2R sinA)(2R sinB)(2R sinC)   [regrouping 8R³ as 8R³/R × 1]",
+          "= 2R²(4 sinA sinB sinC)",
+          {
+            "text": "[∵ in a △, Σsin2A = 4 sinA sinB sinC]",
+            "style": "indent"
+          },
+          "= (1/R)(2R sinA)(2R sinB)(2R sinC)",
+          {
+            "text": "[∵ 8R² = 8R³/R]",
+            "style": "indent"
+          },
           {
             "text": "= abc/R = R.H.S",
             "style": "boxed"

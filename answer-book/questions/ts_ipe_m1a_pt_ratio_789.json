@@ -140,8 +140,16 @@
         "marks": 0,
         "margin_note": "No separate mark of its own — it is covered by the mark above. Same rule, rotating which side is subtracted: b² for cos B, c² for cos C.",
         "lines": [
-          "cos B = (c² + a² − b²)/(2ca) = (81 + 49 − 64)/(2 · 9 · 7) = 66/126 = 11/21",
-          "cos C = (a² + b² − c²)/(2ab) = (49 + 64 − 81)/(2 · 7 · 8) = 32/112 = 2/7"
+          "cos B = (c² + a² − b²)/(2ca)",
+          {
+            "text": "= (81 + 49 − 64)/(2 · 9 · 7) = 66/126 = 11/21",
+            "style": "indent"
+          },
+          "cos C = (a² + b² − c²)/(2ab)",
+          {
+            "text": "= (49 + 64 − 81)/(2 · 7 · 8) = 32/112 = 2/7",
+            "style": "indent"
+          }
         ],
         "recall": {
           "credit": "say_it",

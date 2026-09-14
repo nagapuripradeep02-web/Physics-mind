@@ -62,8 +62,16 @@
             "style": "heading"
           },
           "L.H.S = (r₃ + r₁) + (r − r₂)",
-          "= [4R cos(A/2)cos(B/2)sin(C/2) + 4R sin(A/2)cos(B/2)cos(C/2)]",
-          "  + [4R sin(A/2)sin(B/2)sin(C/2) − 4R cos(A/2)sin(B/2)cos(C/2)]",
+          "= [4R cos(A/2)cos(B/2)sin(C/2)",
+          {
+            "text": "+ 4R sin(A/2)cos(B/2)cos(C/2)]",
+            "style": "indent"
+          },
+          "+ [4R sin(A/2)sin(B/2)sin(C/2)",
+          {
+            "text": "− 4R cos(A/2)sin(B/2)cos(C/2)]",
+            "style": "indent"
+          },
           "= 4R cos(B/2)[cos(A/2)sin(C/2) + sin(A/2)cos(C/2)]",
           "  − 4R sin(B/2)[cos(A/2)cos(C/2) − sin(A/2)sin(C/2)]"
         ],

@@ -61,9 +61,17 @@
             "style": "heading"
           },
           "L.H.S = Σ r₁/(bc)",
-          "= Σ [4R sin(A/2)cos(B/2)cos(C/2)] / [(2R sinB)(2R sinC)]",
+          "= Σ [4R sin(A/2)cos(B/2)cos(C/2)]",
+          {
+            "text": "/ [(2R sinB)(2R sinC)]",
+            "style": "indent"
+          },
           "= Σ [sin(A/2)cos(B/2)cos(C/2)] / [R sinB sinC]",
-          "= Σ [sin(A/2)cos(B/2)cos(C/2)] / [R(2 sin(B/2)cos(B/2))(2 sin(C/2)cos(C/2))]"
+          "= Σ [sin(A/2)cos(B/2)cos(C/2)]",
+          {
+            "text": "/ [R(2 sin(B/2)cos(B/2))(2 sin(C/2)cos(C/2))]",
+            "style": "indent"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -103,7 +111,11 @@
         "memory_tip": "The cos(B/2) and cos(C/2) cancel; multiplying by sin(A/2) turns what is left into sin²(A/2)/r.",
         "lines": [
           "= Σ sin(A/2) / [4R sin(B/2)sin(C/2)]",
-          "= Σ sin²(A/2) / [4R sin(A/2)sin(B/2)sin(C/2)]   [multiplying by sin(A/2)]",
+          "= Σ sin²(A/2) / [4R sin(A/2)sin(B/2)sin(C/2)]",
+          {
+            "text": "[multiplying by sin(A/2)]",
+            "style": "indent"
+          },
           "= Σ sin²(A/2)/r   [∵ r = 4R sin(A/2)sin(B/2)sin(C/2)]",
           "= (1/r)(sin²(A/2) + sin²(B/2) + sin²(C/2))"
         ],
@@ -146,7 +158,11 @@
         "lines": [
           "= (1/r)[1 − 2 sin(A/2)sin(B/2)sin(C/2)]",
           "  [∵ Σsin²(A/2) = 1 − 2 sin(A/2)sin(B/2)sin(C/2)]",
-          "= (1/r)[1 − 2(r/(4R))]   [∵ sin(A/2)sin(B/2)sin(C/2) = r/(4R)]",
+          "= (1/r)[1 − 2(r/(4R))]",
+          {
+            "text": "[∵ sin(A/2)sin(B/2)sin(C/2) = r/(4R)]",
+            "style": "indent"
+          },
           "= (1/r)[1 − r/(2R)]"
         ],
         "recall": {

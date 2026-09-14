@@ -108,7 +108,11 @@
         "memory_tip": "a = 2R sin A makes each term 2R sinA cosA, which is R sin 2A — bringing double angles in.",
         "lines": [
           "a cosA + b cosB + c cosC",
-          "= 2R sinA cosA + 2R sinB cosB + 2R sinC cosC   [∵ a = 2R sinA]",
+          "= 2R sinA cosA + 2R sinB cosB + 2R sinC cosC",
+          {
+            "text": "[∵ a = 2R sinA]",
+            "style": "indent"
+          },
           "= R(2 sinA cosA + 2 sinB cosB + 2 sinC cosC)",
           "= R(sin2A + sin2B + sin2C)"
         ],
@@ -149,7 +153,15 @@
         "margin_note": "Two more marks. sin2A + sin2B + sin2C = 4 sinA sinB sinC in any triangle — the Trigonometric Ratios and Transformations identity, quoted here rather than re-proved.",
         "memory_tip": "In any triangle sin2A + sin2B + sin2C = 4 sinA sinB sinC. Quote it, do not re-prove it.",
         "lines": [
-          "= R(4 sinA sinB sinC)   [∵ in a △, sin2A+sin2B+sin2C = 4 sinA sinB sinC]",
+          "= R(4 sinA sinB sinC)",
+          {
+            "text": "[∵ in a △, sin2A+sin2B+sin2C",
+            "style": "indent"
+          },
+          {
+            "text": "= 4 sinA sinB sinC]",
+            "style": "indent"
+          },
           "∴ L.H.S = s + (R · 4 sinA sinB sinC)/2",
           "= s + 2R sinA sinB sinC"
         ],
@@ -190,7 +202,11 @@
         "margin_note": "Last two marks. Multiply and divide by R: 2R² sinA sinB sinC is Δ, so the whole term becomes Δ/R.",
         "memory_tip": "Multiply and divide by R: 2R² sinA sinB sinC is Δ, so the term becomes Δ/R.",
         "lines": [
-          "= s + (2R² sinA sinB sinC)/R   [multiplying and dividing by R]",
+          "= s + (2R² sinA sinB sinC)/R",
+          {
+            "text": "[multiplying and dividing by R]",
+            "style": "indent"
+          },
           "= s + Δ/R   [∵ Δ = 2R² sinA sinB sinC]",
           {
             "text": "∴ L.H.S = s + Δ/R = R.H.S",

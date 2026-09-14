@@ -57,7 +57,11 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "r₁ + r₂ = 4R sin(A/2)cos(B/2)cos(C/2) + 4R cos(A/2)sin(B/2)cos(C/2)",
+          "r₁ + r₂ = 4R sin(A/2)cos(B/2)cos(C/2)",
+          {
+            "text": "+ 4R cos(A/2)sin(B/2)cos(C/2)",
+            "style": "indent"
+          },
           "= 4R cos(C/2)[sin(A/2)cos(B/2) + cos(A/2)sin(B/2)]",
           "= 4R cos(C/2) sin((A+B)/2)",
           "= 4R cos(C/2) cos(C/2)   [∵ (A+B)/2 = 90° − C/2]",
@@ -104,7 +108,11 @@
           "By the same working with the letters rotated,",
           "(r₂ + r₃) sec²(A/2) = 4R  and  (r₃ + r₁) sec²(B/2) = 4R",
           {
-            "text": "∴ all three are equal to 4R, hence equal to each other",
+            "text": "∴ all three are equal to 4R,",
+            "style": "boxed"
+          },
+          {
+            "text": "hence equal to each other",
             "style": "boxed"
           }
         ],

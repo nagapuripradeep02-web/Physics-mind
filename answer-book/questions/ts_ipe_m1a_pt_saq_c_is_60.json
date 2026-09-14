@@ -101,7 +101,11 @@
         "marks": 0,
         "margin_note": "No separate mark at this length — it finishes the algebra marked above. Expand both sides fully. Everything cancels except a² + b² − c² = ab — a pure side relation with no fractions left.",
         "lines": [
-          "⇒ (a²+b²+c²+2ab+2bc+2ca) + (ca+cb+c²) = 3(ab+ac+cb+c²)",
+          "⇒ (a²+b²+c²+2ab+2bc+2ca) + (ca+cb+c²)",
+          {
+            "text": "= 3(ab+ac+cb+c²)",
+            "style": "indent"
+          },
           "⇒ a²+b²+c²+2ab+2bc+2ca+ca+cb+c² = 3ab+3ac+3cb+3c²",
           "⇒ a² + b² − c² = ab"
         ],
