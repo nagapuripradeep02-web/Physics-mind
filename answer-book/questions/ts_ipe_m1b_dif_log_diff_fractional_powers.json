@@ -64,10 +64,17 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "y = [(1 − 2x)^(2/3)(1 + 3x)^(−3/4)] / [(1 − 6x)^(5/6)(1 + 7x)^(−6/7)]",
-          "The function is a product and a quotient of four powers. Applying the product rule and the quotient rule directly takes many lines, and a term is easily lost part way through.",
-          "A logarithm turns a product into a sum and a quotient into a difference, and brings every power down in front. So take logarithms of both sides.",
-          "All four brackets must be positive for the logarithms to exist, which holds for −1/7 < x < 1/6."
+          "y = [(1 − 2x)²ᐟ³(1 + 3x)⁻³ᐟ⁴] / [(1 − 6x)⁵ᐟ⁶(1 + 7x)⁻⁶ᐟ⁷]",
+          "The function is a product and a quotient of four powers.",
+          "Applying the product rule",
+          "and the quotient rule directly takes many lines,",
+          "and a term is easily lost part way through.",
+          "A logarithm turns a product into a sum",
+          "and a quotient into a difference,",
+          "and brings every power down in front.",
+          "So take logarithms of both sides.",
+          "All four brackets must be positive for the logarithms",
+          "to exist, which holds for −1/7 < x < 1/6."
         ],
         "recall": {
           "credit": "say_it",
@@ -92,9 +99,9 @@
             "powers come down"
           ]
         },
-        "why": "This is logarithmic differentiation used for a different reason from a variable power such as xˣ, where the method is the only way in. Nothing here forces it, but it replaces one very long quotient-rule calculation with four one-line derivatives.",
+        "why": "This is logarithmic differentiation used for a different reason from a variable power such as xˣ, where the method is needed. It is not needed here, but it replaces one very long quotient-rule calculation with four one-line derivatives.",
         "common_mistakes": [
-          "Starting the quotient rule on the whole expression and running out of room part way through.",
+          "Using the quotient rule on the complete expression, which makes the working very long and easy to get wrong.",
           "Saying the method is needed because the power rule fails, which is not true here — the powers are constants."
         ]
       },
@@ -104,13 +111,21 @@
         "label": "Take logarithms and expand into four terms",
         "marks": 2,
         "mark_note": "Method",
-        "margin_note": "Two marks. Watch the two negative powers. (1 + 3x)^(−3/4) is in the numerator, so its term is −(3/4)log(1 + 3x); (1 + 7x)^(−6/7) is in the denominator, so subtracting a negative gives +(6/7)log(1 + 7x).",
-        "memory_tip": "Numerator terms get a plus, denominator terms get a minus, and a negative power flips that sign once more.",
+        "margin_note": "Two marks. Watch the two negative powers. (1 + 3x)⁻³ᐟ⁴ is in the numerator, so its term is −(3/4)log(1 + 3x); (1 + 7x)⁻⁶ᐟ⁷ is in the denominator, so subtracting a negative gives +(6/7)log(1 + 7x).",
+        "memory_tip": "Numerator terms get a plus, denominator terms get a minus, and a negative power changes that sign once more.",
         "lines": [
           "Taking logarithms on both sides,",
-          "log y = log[(1 − 2x)^(2/3)] + log[(1 + 3x)^(−3/4)] − log[(1 − 6x)^(5/6)] − log[(1 + 7x)^(−6/7)]",
+          "log y = log[(1 − 2x)²ᐟ³] + log[(1 + 3x)⁻³ᐟ⁴]",
+          {
+            "text": "  − log[(1 − 6x)⁵ᐟ⁶] − log[(1 + 7x)⁻⁶ᐟ⁷]",
+            "style": "indent"
+          },
           "Bringing each power down in front,",
-          "∴ log y = (2/3)log(1 − 2x) − (3/4)log(1 + 3x) − (5/6)log(1 − 6x) + (6/7)log(1 + 7x)      …(1)"
+          "∴ log y = (2/3)log(1 − 2x) − (3/4)log(1 + 3x)",
+          {
+            "text": "  − (5/6)log(1 − 6x) + (6/7)log(1 + 7x)      …(1)",
+            "style": "indent"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -139,7 +154,7 @@
         "why": "The negative exponents are what make this step worth two marks. A factor with a negative power really belongs on the other side of the fraction bar, and that shows up in the logarithm form as a change of sign.",
         "common_mistakes": [
           "Giving all four terms a plus sign by forgetting that the denominator is subtracted.",
-          "Reading (1 + 7x)^(−6/7) in the denominator as a minus term, when the two minus signs make it plus."
+          "Reading (1 + 7x)⁻⁶ᐟ⁷ in the denominator as a minus term, when the two minus signs make it plus."
         ]
       },
       {
@@ -151,8 +166,13 @@
         "margin_note": "Two marks. The left side gives (1/y)(dy/dx). On the right each term needs the chain rule, so each one brings out the derivative of its own bracket: −2, 3, −6 and 7.",
         "memory_tip": "Every log(bracket) differentiates to (derivative of the bracket) over (the bracket). The number in front of x is what comes out on top.",
         "lines": [
-          "Differentiating (1) with respect to x, using the chain rule on each term,",
-          "(1/y)(dy/dx) = (2/3)·(−2)/(1 − 2x) − (3/4)·(3)/(1 + 3x) − (5/6)·(−6)/(1 − 6x) + (6/7)·(7)/(1 + 7x)      …(2)"
+          "Differentiating (1) with respect to x,",
+          "using the chain rule on each term,",
+          "(1/y)(dy/dx) = (2/3)·(−2)/(1 − 2x) − (3/4)·(3)/(1 + 3x)",
+          {
+            "text": "  − (5/6)·(−6)/(1 − 6x) + (6/7)·(7)/(1 + 7x)  …(2)",
+            "style": "indent"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -194,8 +214,13 @@
         "memory_tip": "In the last two terms the fraction and the bracket derivative cancel exactly: 5/6 with 6, and 6/7 with 7. Only the first two stay as fractions.",
         "lines": [
           "Simplifying each coefficient,",
-          "(2/3)·(−2) = −4/3,   (3/4)·(3) = 9/4,   (5/6)·(−6) = −5,   (6/7)·(7) = 6",
-          "∴ (1/y)(dy/dx) = −4/(3(1 − 2x)) − 9/(4(1 + 3x)) + 5/(1 − 6x) + 6/(1 + 7x)      …(3)"
+          "(2/3)·(−2) = −4/3,   (3/4)·(3) = 9/4,",
+          "(5/6)·(−6) = −5,   (6/7)·(7) = 6",
+          "∴ (1/y)(dy/dx) = −4/(3(1 − 2x)) − 9/(4(1 + 3x))",
+          {
+            "text": "  + 5/(1 − 6x) + 6/(1 + 7x)      …(3)",
+            "style": "indent"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -238,7 +263,19 @@
         "lines": [
           "Multiplying both sides of (3) by y,",
           {
-            "text": "∴ dy/dx = [(1 − 2x)^(2/3)(1 + 3x)^(−3/4)]/[(1 − 6x)^(5/6)(1 + 7x)^(−6/7)] × [ −4/(3(1 − 2x)) − 9/(4(1 + 3x)) + 5/(1 − 6x) + 6/(1 + 7x) ]",
+            "text": "∴ dy/dx = [(1 − 2x)²ᐟ³(1 + 3x)⁻³ᐟ⁴]",
+            "style": "boxed"
+          },
+          {
+            "text": "/[(1 − 6x)⁵ᐟ⁶(1 + 7x)⁻⁶ᐟ⁷]",
+            "style": "boxed"
+          },
+          {
+            "text": "× [ −4/(3(1 − 2x)) − 9/(4(1 + 3x))",
+            "style": "boxed"
+          },
+          {
+            "text": "+ 5/(1 − 6x) + 6/(1 + 7x) ]",
             "style": "boxed"
           }
         ],

@@ -130,7 +130,7 @@
         },
         "why": "sec has no addition formula of its own. Written as 1/cos it becomes an ordinary difference of fractions, and the top is then a difference of cosines that the standard identity handles.",
         "common_mistakes": [
-          "Keeping the order cos(3x + 3h) − cos 3x on top after taking reciprocals, which flips the sign of the answer.",
+          "Keeping the order cos(3x + 3h) − cos 3x on top after taking reciprocals, which changes the sign of the answer.",
           "Writing 1/cos A − 1/cos B as 1/(cos A − cos B)."
         ],
         "memory_tip": "Taking reciprocals swaps the order on top: 1/p − 1/q = (q − p)/pq."
@@ -176,7 +176,7 @@
           "Ignoring sin(−3h/2) = −sin(3h/2) and finishing with the wrong sign.",
           "Halving 3h to get 3h instead of 3h/2."
         ],
-        "memory_tip": "cos minus cos: minus two, sine of the half sum, sine of the half difference. Sine is an odd function, so a negative half difference flips the sign back."
+        "memory_tip": "cos minus cos: minus two, sine of the half sum, sine of the half difference. Sine is an odd function, so a negative half difference changes the sign back."
       },
       {
         "id": "s4_answer",

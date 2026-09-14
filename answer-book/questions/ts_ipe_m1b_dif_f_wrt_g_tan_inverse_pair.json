@@ -170,7 +170,7 @@
           "Writing d/dx(Tan⁻¹x) as 1/(1 − x²).",
           "Dropping the ½ from f and getting 1 instead of ½ at the end."
         ],
-        "memory_tip": "f is exactly half of g, so f′ must be exactly half of g′ — check the ½ survives."
+        "memory_tip": "f is exactly half of g, so f′ must be exactly half of g′ — check that the ½ is still there."
       },
       {
         "id": "s4_divide",
@@ -209,7 +209,7 @@
             "constant"
           ]
         },
-        "why": "The answer is independent of x, and that is the check on the working: f and g differ only by the factor ½, so no x can survive.",
+        "why": "The answer is independent of x, and that is the check on the working: f and g differ only by the factor ½, so no x can remain.",
         "common_mistakes": [
           "Leaving x in the final answer, which means the simplification in step 2 was not completed.",
           "Giving 2 instead of 1/2 by dividing the wrong way round."

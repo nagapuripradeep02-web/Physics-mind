@@ -45,7 +45,7 @@
         "label": "Rewrite the fraction and differentiate once",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. Either route is accepted — the quotient rule gives the same −2/(4x + 5)². Check the division before using it: ½(4x + 5) + ½ = 2x + 2.5 + 0.5 = 2x + 3.",
+        "margin_note": "First mark. Either method is accepted — the quotient rule gives the same −2/(4x + 5)². Check the division before using it: ½(4x + 5) + ½ = 2x + 2.5 + 0.5 = 2x + 3.",
         "memory_tip": "A linear over a linear is always a constant plus a constant over the same linear. In that form each differentiation is one chain rule on a power.",
         "lines": [
           {

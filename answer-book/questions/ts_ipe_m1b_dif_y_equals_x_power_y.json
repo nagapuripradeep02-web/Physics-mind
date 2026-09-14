@@ -92,7 +92,7 @@
           "Writing log(xʸ) as (log x)ʸ instead of y log x.",
           "Treating xʸ as a power of x and writing y·xʸ⁻¹, which is only valid when the index is a constant."
         ],
-        "memory_tip": "One line, two uses: log y = y log x opens the question and closes it. It also connects the two printed forms of the answer."
+        "memory_tip": "log y = y log x is used twice: at the start and at the end. It also connects the two printed forms of the answer."
       },
       {
         "id": "s2_differentiate",
@@ -102,7 +102,10 @@
         "mark_note": "Method",
         "margin_note": "Second mark. Two dy/dx terms must appear — one from the left side by the chain rule, one from the right side by the product rule. Missing either one loses this mark.",
         "lines": [
-          "Differentiate with respect to x. The left side needs the chain rule and the right side the product rule, because y is a function of x.",
+          "Differentiate with respect to x.",
+          "The left side needs the chain rule",
+          "and the right side the product rule,",
+          "because y is a function of x.",
           "(1/y)(dy/dx) = (dy/dx)(log x) + y(1/x)"
         ],
         "recall": {
@@ -217,7 +220,7 @@
             "both forms"
           ]
         },
-        "why": "The two printed answers are not two results. They are one result written with the bracket in two ways, and the relation taken in step 1 is exactly what converts one into the other, so the equivalence costs one line.",
+        "why": "The two printed answers are not two results. They are one result written with the bracket in two ways, and the relation taken in step 1 is exactly what converts one into the other, so the equivalence takes one line.",
         "common_mistakes": [
           "Giving only one of the two forms when the question asks for both.",
           "Trying to prove the equivalence from the original relation y = xʸ again instead of using the logarithm line already written."

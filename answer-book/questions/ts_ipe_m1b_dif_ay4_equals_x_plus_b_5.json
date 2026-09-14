@@ -90,7 +90,7 @@
           "Writing logₑ(ay⁴) as logₑa · 4 logₑy instead of logₑa + 4 logₑy.",
           "Taking logarithms of only one side."
         ],
-        "memory_tip": "A product becomes a sum and an index becomes a multiplier — that is the whole reason for taking logarithms here."
+        "memory_tip": "A product becomes a sum and an index becomes a multiplier — that is the reason for taking logarithms here."
       },
       {
         "id": "s2_first_differentiation",
@@ -140,7 +140,11 @@
         "mark_note": "Solution",
         "margin_note": "Third mark. The left side is a quotient of y′ by y, so use the quotient rule — that is where both yy″ and (y′)² come from.",
         "lines": [
-          "d/dx (y′/y) = [y″·y − y′·y′] / y² = [yy″ − (y′)²] / y²",
+          "d/dx (y′/y) = [y″·y − y′·y′] / y²",
+          {
+            "text": "  = [yy″ − (y′)²] / y²",
+            "style": "indent"
+          },
           "d/dx {5 / [4(x + b)]} = −5 / [4(x + b)²]",
           "∴ [yy″ − (y′)²] / y² = −5 / [4(x + b)²]"
         ],
@@ -166,7 +170,7 @@
             "minus five"
           ]
         },
-        "why": "The two terms the question asks about, yy″ and (y′)², are exactly the numerator of the quotient rule applied to y′/y. That is why this route is short.",
+        "why": "The two terms the question asks about, yy″ and (y′)², are exactly the numerator of the quotient rule applied to y′/y. That is why this method is short.",
         "common_mistakes": [
           "Differentiating y′/y term by term instead of using the quotient rule.",
           "Losing the minus sign when differentiating 1/(x + b)."
@@ -181,8 +185,13 @@
         "mark_note": "Answer",
         "margin_note": "Last mark. x and b must not appear in the required result, so 1/(x + b) is replaced using step 2 before the final line.",
         "lines": [
-          "From step 2,  1/(x + b) = 4y′/(5y),  so  1/(x + b)² = 16(y′)² / (25y²)",
-          "[yy″ − (y′)²] / y² = −(5/4) · 16(y′)²/(25y²) = −(4/5)(y′)²/y²",
+          "From step 2,  1/(x + b) = 4y′/(5y),",
+          "so  1/(x + b)² = 16(y′)² / (25y²)",
+          "[yy″ − (y′)²] / y² = −(5/4) · 16(y′)²/(25y²)",
+          {
+            "text": "  = −(4/5)(y′)²/y²",
+            "style": "indent"
+          },
           "yy″ − (y′)² = −(4/5)(y′)²   ⇒   yy″ = (1/5)(y′)²",
           {
             "text": "∴ 5yy″ = (y′)²",

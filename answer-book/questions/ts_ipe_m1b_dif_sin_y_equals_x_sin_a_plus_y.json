@@ -53,15 +53,18 @@
         "label": "Make x the subject",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. Choosing the direction is the whole skill in this question. x is already a single term, so it comes out in one move; y is inside two different sines and cannot be separated at all.",
+        "margin_note": "First mark. The main decision is which variable to make the subject. x is a single term, so it is found in one step; y is inside two different sines and is much harder to separate.",
         "lines": [
           {
             "text": "Sol:",
             "style": "heading"
           },
           "Given sin y = x sin(a + y), where a is a constant",
-          "x can be separated in one step, but y cannot be separated from the two sines at all.",
-          "So find dx/dy first and invert at the end, rather than differentiating the given relation with respect to x.",
+          "x can be separated in one step,",
+          "but y is inside two sines and is harder to separate.",
+          "So find dx/dy first and invert at the end,",
+          "rather than differentiating the given relation",
+          "with respect to x.",
           "∴ x = sin y/sin(a + y)"
         ],
         "recall": {
@@ -102,7 +105,8 @@
         "mark_note": "Method",
         "margin_note": "Second mark. a is a constant, so d/dy of sin(a + y) is cos(a + y) with no extra factor. Write the quotient rule out in full — the four terms in the numerator are needed for the next step.",
         "lines": [
-          "Differentiate with respect to y by the quotient rule, taking u = sin y and v = sin(a + y):",
+          "Differentiate with respect to y by the quotient rule,",
+          "taking u = sin y and v = sin(a + y):",
           "du/dy = cos y  and  dv/dy = cos(a + y)",
           "dx/dy = [sin(a + y)·cos y − sin y·cos(a + y)]/sin²(a + y)"
         ],
@@ -142,10 +146,11 @@
         "label": "Use the sine difference formula",
         "marks": 1,
         "mark_note": "Solution",
-        "margin_note": "Third mark. The examiner looks for the named identity sin A cos B − cos A sin B = sin(A − B) with A = a + y and B = y. The y cancels inside the sine and only the constant a survives.",
+        "margin_note": "Third mark. The examiner looks for the named identity sin A cos B − cos A sin B = sin(A − B) with A = a + y and B = y. The y cancels inside the sine and only the constant a is left.",
         "lines": [
           "The numerator is the expansion of the sine of a difference:",
-          "sin A cos B − cos A sin B = sin(A − B), with A = a + y and B = y",
+          "sin A cos B − cos A sin B = sin(A − B), with A = a + y",
+          "and B = y",
           "sin(a + y)cos y − cos(a + y)sin y = sin((a + y) − y) = sin a",
           "∴ dx/dy = sin a/sin²(a + y)"
         ],
@@ -172,7 +177,7 @@
             "y cancels"
           ]
         },
-        "why": "Without the compound angle formula the numerator stays as four trigonometric terms and nothing simplifies. Recognising it as sin((a + y) − y) reduces the whole numerator to the constant sin a in one line.",
+        "why": "Without the compound angle formula the numerator stays as four trigonometric terms and nothing simplifies. Recognising it as sin((a + y) − y) reduces the numerator to the constant sin a in one line.",
         "common_mistakes": [
           "Expanding sin(a + y) and cos(a + y) term by term, which fills a page and rarely reaches sin a.",
           "Writing the numerator as sin(a + 2y) by adding the angles instead of subtracting them."
@@ -185,9 +190,10 @@
         "label": "Invert to get dy/dx",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Last mark. State why sin a ≠ 0 before inverting. The condition given in the question, that a is not a multiple of π, is exactly what makes the reciprocal legal — sin(nπ) = 0 for every integer n.",
+        "margin_note": "Last mark. State why sin a ≠ 0 before inverting. The condition given in the question, that a is not a multiple of π, is what allows the reciprocal — sin(nπ) = 0 for every integer n.",
         "lines": [
-          "a is not a multiple of π, so sin a ≠ 0 and therefore dx/dy ≠ 0.",
+          "a is not a multiple of π, so sin a ≠ 0",
+          "and therefore dx/dy ≠ 0.",
           "A non-zero derivative may be inverted: dy/dx = 1/(dx/dy)",
           "dy/dx = 1/[sin a/sin²(a + y)]",
           {
@@ -218,14 +224,14 @@
             "multiple of pi"
           ]
         },
-        "why": "dy/dx = 1/(dx/dy) holds only where dx/dy is not zero. Here dx/dy = sin a/sin²(a + y), which is zero exactly when sin a = 0, so the condition printed in the question is what makes the final line valid rather than a decoration.",
+        "why": "dy/dx = 1/(dx/dy) holds only where dx/dy is not zero. Here dx/dy = sin a/sin²(a + y), which is zero exactly when sin a = 0, so the condition printed in the question is what makes the final line valid.",
         "common_mistakes": [
           "Inverting without saying why sin a ≠ 0, which is the one condition the question states.",
           "Writing the answer as sin a/sin²(a + y), which is dx/dy and not dy/dx."
         ],
-        "memory_tip": "The answer is the previous line turned upside down. Check the sine that ends up in the denominator is sin a, the constant one."
+        "memory_tip": "The answer is the reciprocal of the previous line. Check that the sine in the denominator is sin a, the constant one."
       }
     ]
   },
-  "insider_note": "x separates but y does not, so write x = sin y/sin(a + y), find dx/dy, and invert. The numerator collapses by the compound formula to sin a, which is the constant in the answer."
+  "insider_note": "x separates but y does not, so write x = sin y/sin(a + y), find dx/dy, and invert. The numerator becomes sin a by the compound angle formula, which is the constant in the answer."
 }

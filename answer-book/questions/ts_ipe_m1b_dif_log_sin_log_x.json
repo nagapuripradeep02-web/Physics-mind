@@ -55,7 +55,11 @@
           "y = log(sin(log x)) is a function of a function of a function.",
           "By the chain rule, differentiate the outer log first:",
           "dy/dx = [1/sin(log x)] · d/dx[sin(log x)]",
-          "d/dx[sin(log x)] = cos(log x) · d/dx(log x) = cos(log x) · (1/x)",
+          "d/dx[sin(log x)] = cos(log x) · d/dx(log x)",
+          {
+            "text": "  = cos(log x) · (1/x)",
+            "style": "indent"
+          },
           "∴ dy/dx = [1/sin(log x)] · cos(log x) · (1/x)"
         ],
         "recall": {
@@ -102,7 +106,8 @@
             "text": "∴ dy/dx = cot(log x)/x",
             "style": "boxed"
           },
-          "This working needs sin(log x) > 0, that is log x in (0, π), or in any interval (2kπ, (2k + 1)π)."
+          "This working needs sin(log x) > 0, that is log x in (0, π),",
+          "or in any interval (2kπ, (2k + 1)π)."
         ],
         "recall": {
           "credit": "say_it",
@@ -134,5 +139,5 @@
       }
     ]
   },
-  "insider_note": "Three layers, so the chain rule is applied twice, working from the outside in. cos/sin collapses to cot, and the final 1/x comes from the inner logarithm."
+  "insider_note": "Three layers, so the chain rule is applied twice, working from the outside in. cos/sin gives cot, and the final 1/x comes from the inner logarithm."
 }

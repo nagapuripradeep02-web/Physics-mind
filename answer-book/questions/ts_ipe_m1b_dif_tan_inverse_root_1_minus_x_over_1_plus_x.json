@@ -53,7 +53,7 @@
         "label": "Substitute x = cos 2θ",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. Choosing cos 2θ rather than sin θ or tan θ is the whole decision here. It is chosen because 1 − cos 2θ and 1 + cos 2θ are both perfect squares, which is what removes the square root.",
+        "margin_note": "First mark. Choosing cos 2θ rather than sin θ or tan θ is the main decision here. It is chosen because 1 − cos 2θ and 1 + cos 2θ are both perfect squares, which is what removes the square root.",
         "lines": [
           {
             "text": "Sol:",
@@ -61,7 +61,8 @@
           },
           "Let y = tan⁻¹√((1 − x)/(1 + x)),  where |x| < 1",
           "Put x = cos 2θ,  so that 2θ = cos⁻¹x  and  θ = ½cos⁻¹x",
-          "Since |x| < 1, cos⁻¹x lies in (0, π), so 2θ lies in (0, π) and θ lies in (0, π/2)"
+          "Since |x| < 1, cos⁻¹x lies in (0, π), so 2θ lies in (0, π)",
+          "and θ lies in (0, π/2)"
         ],
         "recall": {
           "credit": "say_it",
@@ -102,7 +103,11 @@
         "margin_note": "Second mark. Quote both half-angle identities. Say why the square root is +tan θ and not ±tan θ: θ lies in (0, π/2), so tan θ is positive there.",
         "lines": [
           "1 − cos 2θ = 2sin²θ   and   1 + cos 2θ = 2cos²θ",
-          "√((1 − x)/(1 + x)) = √(2sin²θ/2cos²θ) = √(tan²θ) = |tan θ|",
+          "√((1 − x)/(1 + x)) = √(2sin²θ/2cos²θ)",
+          {
+            "text": "  = √(tan²θ) = |tan θ|",
+            "style": "indent"
+          },
           "θ lies in (0, π/2), so tan θ > 0",
           "∴ √((1 − x)/(1 + x)) = tan θ"
         ],
@@ -134,7 +139,7 @@
           "Writing √(tan²θ) as tan θ without checking the sign, which is only true because θ is in (0, π/2).",
           "Mixing the identities up and using 1 − cos 2θ = 2cos²θ."
         ],
-        "memory_tip": "Remember the pair by which function survives: 1 MINUS cos 2θ keeps the SINE, 1 PLUS cos 2θ keeps the COSINE."
+        "memory_tip": "Remember the pair: 1 MINUS cos 2θ = 2 SIN²θ and 1 PLUS cos 2θ = 2 COS²θ."
       },
       {
         "id": "s3_reduce",
@@ -145,7 +150,8 @@
         "margin_note": "Third mark. tan⁻¹(tan θ) = θ only when θ is inside (−π/2, π/2). That was established in step 1, so this line is justified and not assumed.",
         "lines": [
           "y = tan⁻¹(tan θ)",
-          "θ lies in (0, π/2), which is inside the principal range (−π/2, π/2) of tan⁻¹, so",
+          "θ lies in (0, π/2), which is inside",
+          "the principal range (−π/2, π/2) of tan⁻¹, so",
           "y = θ",
           "∴ y = ½cos⁻¹x"
         ],
@@ -172,7 +178,7 @@
             "theta"
           ]
         },
-        "why": "The whole point of the substitution is that a complicated inverse tangent becomes a simple inverse cosine. Once y = ½cos⁻¹x is written, the question is a one-line differentiation.",
+        "why": "The substitution is used because it changes a complicated inverse tangent into a simple inverse cosine. Once y = ½cos⁻¹x is written, the question is a one-line differentiation.",
         "common_mistakes": [
           "Writing y = θ without checking that θ lies in the principal range of tan⁻¹.",
           "Forgetting the factor ½ and writing y = cos⁻¹x."
@@ -185,7 +191,7 @@
         "label": "Differentiate",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Last mark. The minus sign belongs to cos⁻¹x and must survive to the final line. The answer is negative for every |x| < 1, which agrees with y decreasing as x increases.",
+        "margin_note": "Last mark. The minus sign belongs to cos⁻¹x and must stay in the final line. The answer is negative for every |x| < 1, which agrees with y decreasing as x increases.",
         "lines": [
           "d/dx (cos⁻¹x) = −1/√(1 − x²),  valid for |x| < 1",
           "dy/dx = ½ · (−1/√(1 − x²))",

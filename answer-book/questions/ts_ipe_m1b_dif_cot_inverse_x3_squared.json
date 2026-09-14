@@ -53,7 +53,8 @@
             "style": "heading"
           },
           "Let y = (Cot⁻¹(x³))²",
-          "Take u = Cot⁻¹(x³). Then y = u² and d/dx(u²) = 2u · du/dx",
+          "Take u = Cot⁻¹(x³). Then y = u²",
+          "and d/dx(u²) = 2u · du/dx",
           "∴ dy/dx = 2·Cot⁻¹(x³) · d/dx(Cot⁻¹(x³))"
         ],
         "recall": {
@@ -78,7 +79,7 @@
             "square first"
           ]
         },
-        "why": "Reading the layers in the right order is the only decision here. Differentiating the inverse function first and squaring afterwards changes the expression completely.",
+        "why": "The main decision here is the order of the layers. Differentiating the inverse function first and squaring afterwards changes the expression completely.",
         "common_mistakes": [
           "Differentiating Cot⁻¹ first and then squaring the result.",
           "Writing 2·Cot⁻¹(x³) alone, with no further derivative attached."
@@ -93,7 +94,8 @@
         "margin_note": "Second mark. Two things are checked here: the minus sign that belongs to the Cot⁻¹ derivative, and the denominator, which is 1 + x⁶ because (x³)² = x⁶.",
         "memory_tip": "Tan⁻¹ is positive and Cot⁻¹ is the same expression with a minus in front. The pair Sin⁻¹ and Cos⁻¹ works the same way.",
         "lines": [
-          "For v = x³,  d/dx(Cot⁻¹v) = −1/(1 + v²) · dv/dx  and  dv/dx = 3x²",
+          "For v = x³,  d/dx(Cot⁻¹v) = −1/(1 + v²) · dv/dx",
+          "and  dv/dx = 3x²",
           "(x³)² = x⁶, so d/dx(Cot⁻¹(x³)) = −3x²/(1 + x⁶)",
           "∴ dy/dx = 2·Cot⁻¹(x³) · (−3x²/(1 + x⁶))",
           {

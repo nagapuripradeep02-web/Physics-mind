@@ -60,7 +60,8 @@
             "style": "heading"
           },
           "Let y = tan⁻¹((3a²x − x³)/(a(a² − 3x²)))",
-          "Put x = a tan θ,  so that tan θ = x/a  and  θ = tan⁻¹(x/a)"
+          "Put x = a tan θ,",
+          "so that tan θ = x/a  and  θ = tan⁻¹(x/a)"
         ],
         "recall": {
           "credit": "say_it",
@@ -100,10 +101,15 @@
         "mark_note": "Method",
         "margin_note": "Second mark. Name the identity: tan 3θ = (3tan θ − tan³θ)/(1 − 3tan²θ). The examiner is looking for that name, not just for the algebra.",
         "lines": [
-          "Numerator = 3a²(a tan θ) − (a tan θ)³ = a³(3tan θ − tan³θ)",
+          "Numerator = 3a²(a tan θ) − (a tan θ)³",
+          {
+            "text": "  = a³(3tan θ − tan³θ)",
+            "style": "indent"
+          },
           "Denominator = a(a² − 3a²tan²θ) = a³(1 − 3tan²θ)",
           "So the fraction = (3tan θ − tan³θ)/(1 − 3tan²θ) = tan 3θ",
-          "[tangent triple angle formula: tan 3θ = (3tan θ − tan³θ)/(1 − 3tan²θ)]"
+          "[tangent triple angle formula:",
+          "tan 3θ = (3tan θ − tan³θ)/(1 − 3tan²θ)]"
         ],
         "recall": {
           "credit": "say_it",
@@ -146,7 +152,8 @@
           "y = tan⁻¹(tan 3θ) = 3θ",
           "and θ = tan⁻¹(x/a), so",
           "∴ y = 3 tan⁻¹(x/a)",
-          "(For |x| ≥ a/√3 the two sides differ by the constant π, which does not change the derivative.)"
+          "(For |x| > a/√3 the two sides differ by π or by −π,",
+          "a constant, which does not change the derivative.)"
         ],
         "recall": {
           "credit": "say_it",
@@ -186,7 +193,8 @@
         "mark_note": "Answer",
         "margin_note": "Last mark. Multiply top and bottom by a² to clear the inner fraction. One a cancels against the 1/a from the chain rule, so a single a is left on top.",
         "lines": [
-          "d/dx [tan⁻¹u] = (1/(1 + u²))(du/dx),  with u = x/a and du/dx = 1/a",
+          "d/dx [tan⁻¹u] = (1/(1 + u²))(du/dx),",
+          "with u = x/a and du/dx = 1/a",
           "dy/dx = 3 · [1/(1 + x²/a²)] · (1/a)",
           "= 3 · [a²/(a² + x²)] · (1/a)",
           {
@@ -217,7 +225,7 @@
             "one plus u squared"
           ]
         },
-        "why": "Clearing the inner fraction turns 1/(1 + x²/a²) into a²/(a² + x²), and that a² divided by the a from du/dx leaves one a. A quick check on the answer: doubling both a and x halves 3a/(a² + x²), which is what a derivative must do when the whole picture is scaled up.",
+        "why": "Clearing the inner fraction turns 1/(1 + x²/a²) into a²/(a² + x²), and that a² divided by the a from du/dx leaves one a. A quick check on the answer: doubling both a and x halves 3a/(a² + x²), which is what a derivative must do when a and x are both multiplied by the same number.",
         "common_mistakes": [
           "Stopping at 3/(a(1 + x²/a²)) — correct, but clear the inner fraction so the answer reads 3a/(a² + x²).",
           "Cancelling both a's and writing 3/(a² + x²)."

@@ -52,10 +52,17 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Put x = tan θ, so θ = Tan⁻¹x, with θ in (−π/2, π/2) and x ≠ 0",
-          "√(1 + x²) = √(1 + tan²θ) = √(sec²θ) = sec θ   [sec θ > 0 on this range]",
-          "(√(1 + x²) − 1)/x = (sec θ − 1)/tan θ = ((1/cos θ) − 1)/(sin θ/cos θ) = (1 − cos θ)/sin θ",
-          "Now 1 − cos θ = 2sin²(θ/2) and sin θ = 2 sin(θ/2) cos(θ/2), so",
+          "Put x = tan θ, so θ = Tan⁻¹x,",
+          "with θ in (−π/2, π/2) and x ≠ 0",
+          "√(1 + x²) = √(1 + tan²θ) = √(sec²θ) = sec θ",
+          "[sec θ > 0 on this range]",
+          "(√(1 + x²) − 1)/x = (sec θ − 1)/tan θ",
+          {
+            "text": "  = ((1/cos θ) − 1)/(sin θ/cos θ) = (1 − cos θ)/sin θ",
+            "style": "indent"
+          },
+          "Now 1 − cos θ = 2sin²(θ/2)",
+          "and sin θ = 2 sin(θ/2) cos(θ/2), so",
           "(1 − cos θ)/sin θ = sin(θ/2)/cos(θ/2) = tan(θ/2)"
         ],
         "recall": {
@@ -93,9 +100,10 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. θ/2 lies in (−π/4, π/4), inside the principal range of Tan⁻¹, so the inverse tangent cancels and y = (1/2)Tan⁻¹x. Only the constant 1/2 separates this from the standard derivative.",
-        "memory_tip": "The whole expression is half of Tan⁻¹x, so the answer is half the standard derivative 1/(1 + x²).",
+        "memory_tip": "y is half of Tan⁻¹x, so the answer is half the standard derivative 1/(1 + x²).",
         "lines": [
-          "∴ y = Tan⁻¹(tan(θ/2)) = θ/2, since θ/2 lies in (−π/4, π/4)",
+          "∴ y = Tan⁻¹(tan(θ/2)) = θ/2,",
+          "since θ/2 lies in (−π/4, π/4)",
           "θ = Tan⁻¹x, so y = (1/2) Tan⁻¹x",
           "We know d/dx(Tan⁻¹x) = 1/(1 + x²)",
           {
@@ -125,7 +133,7 @@
             "theta by two"
           ]
         },
-        "why": "The mark is for finishing with the standard derivative of Tan⁻¹x and keeping the 1/2. Losing the half is the commonest way this question is marked down.",
+        "why": "The mark is for finishing with the standard derivative of Tan⁻¹x and keeping the 1/2. Do not lose the half.",
         "common_mistakes": [
           "Writing 1/(1 + x²) and losing the factor 1/2 that came from θ/2.",
           "Writing 1/(2 + x²) by putting the 2 inside the bracket instead of multiplying the whole denominator."
@@ -133,5 +141,5 @@
       }
     ]
   },
-  "insider_note": "x = tan θ makes the bracket (1 − cos θ)/sin θ, which is tan(θ/2) — so y = θ/2 and the answer is half the Tan⁻¹ derivative. The halving is the whole point."
+  "insider_note": "x = tan θ makes the bracket (1 − cos θ)/sin θ, which is tan(θ/2) — so y = θ/2 and the answer is half the Tan⁻¹ derivative. Do not lose the ½."
 }

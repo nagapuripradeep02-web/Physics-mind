@@ -63,11 +63,19 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given y = Tan⁻¹[(√(1 + x²) + √(1 − x²))/(√(1 + x²) − √(1 − x²))],  0 < |x| < 1.",
-          "The restriction is needed at both ends: |x| < 1 keeps 1 − x² ≥ 0, and x ≠ 0 is required because at x = 0 the denominator √(1 + x²) − √(1 − x²) is 0 and the fraction has no value.",
+          "Given y = Tan⁻¹[(√(1 + x²) + √(1 − x²))",
+          {
+            "text": "  /(√(1 + x²) − √(1 − x²))],  0 < |x| < 1.",
+            "style": "indent"
+          },
+          "The restriction is needed at both ends:",
+          "|x| < 1 keeps 1 − x² ≥ 0, and x ≠ 0 is required because",
+          "at x = 0 the denominator √(1 + x²) − √(1 − x²) is 0",
+          "and the fraction has no value.",
           "0 < |x| < 1 gives 0 < x² < 1, so put x² = cos 2θ.",
           "Then 2θ = Cos⁻¹(x²) with 0 < 2θ < π/2, so 0 < θ < π/4.",
-          "1 + x² = 1 + cos 2θ = 2cos²θ   and   1 − x² = 1 − cos 2θ = 2sin²θ",
+          "1 + x² = 1 + cos 2θ = 2cos²θ",
+          "and   1 − x² = 1 − cos 2θ = 2sin²θ",
           "On 0 < θ < π/4 both sin θ > 0 and cos θ > 0, so",
           "∴ √(1 + x²) = √2 cos θ   and   √(1 − x²) = √2 sin θ"
         ],
@@ -94,7 +102,7 @@
             "two sin squared theta"
           ]
         },
-        "why": "Both roots contain x² and neither contains x by itself, so the substitution is made on x². Setting x² = cos 2θ turns 1 + x² and 1 − x² into perfect squares, which is the only way the two square roots come out without a surd left over.",
+        "why": "Both roots contain x² and neither contains x by itself, so the substitution is made on x². Setting x² = cos 2θ turns 1 + x² and 1 − x² into perfect squares, so both square roots can be removed.",
         "common_mistakes": [
           "Putting x = cos 2θ instead of x² = cos 2θ, which leaves 1 + x² as 1 + cos²2θ and simplifies nothing.",
           "Taking √(2sin²θ) as ±√2 sin θ. The range 0 < θ < π/4 makes sin θ positive, so only the plus sign occurs."
@@ -109,11 +117,18 @@
         "mark_note": "Method",
         "margin_note": "Two marks. Dividing the top and the bottom by cos θ is the move that produces tan θ; after that the compound angle form of tan(π/4 + θ) is recognised, not derived.",
         "lines": [
-          "Substitute both roots into the bracket. The factor √2 cancels:",
-          "(√2 cos θ + √2 sin θ)/(√2 cos θ − √2 sin θ) = (cos θ + sin θ)/(cos θ − sin θ)",
-          "cos θ ≠ 0 on 0 < θ < π/4, so divide the top and the bottom by cos θ:",
+          "Substitute both roots into the bracket.",
+          "The factor √2 cancels:",
+          "(√2 cos θ + √2 sin θ)/(√2 cos θ − √2 sin θ)",
+          {
+            "text": "  = (cos θ + sin θ)/(cos θ − sin θ)",
+            "style": "indent"
+          },
+          "cos θ ≠ 0 on 0 < θ < π/4,",
+          "so divide the top and the bottom by cos θ:",
           "= (1 + tan θ)/(1 − tan θ)",
-          "tan(π/4) = 1, so this is  (tan(π/4) + tan θ)/(1 − tan(π/4)·tan θ)",
+          "tan(π/4) = 1,",
+          "so this is  (tan(π/4) + tan θ)/(1 − tan(π/4)·tan θ)",
           "∴ the bracket = tan(π/4 + θ)"
         ],
         "recall": {
@@ -139,7 +154,7 @@
             "compound angle"
           ]
         },
-        "why": "The whole bracket has to become a single tangent before the inverse tangent can be removed. Dividing by cos θ is what produces tan θ, and (1 + tan θ)/(1 − tan θ) is then read straight off as the expansion of tan(π/4 + θ) because tan(π/4) = 1.",
+        "why": "The whole bracket has to become a single tangent before the inverse tangent can be removed. Dividing by cos θ is what produces tan θ, and (1 + tan θ)/(1 − tan θ) is then recognised as the expansion of tan(π/4 + θ) because tan(π/4) = 1.",
         "common_mistakes": [
           "Squaring the fraction to clear the roots, which brings back a surd and does not lead to a tangent.",
           "Writing (1 + tan θ)/(1 − tan θ) as tan(π/4 − θ), which is the same expression with the signs swapped."
@@ -152,11 +167,12 @@
         "label": "Remove the inverse tangent",
         "marks": 2,
         "mark_note": "Method",
-        "margin_note": "Two marks, and this is the step most often lost: Tan⁻¹(tan A) = A only when A is inside (−π/2, π/2). Show that π/4 + θ is inside it before writing the next line.",
+        "margin_note": "Two marks: Tan⁻¹(tan A) = A only when A is inside (−π/2, π/2). Show that π/4 + θ is inside it before writing the next line.",
         "lines": [
           "y = Tan⁻¹(tan(π/4 + θ))",
           "0 < θ < π/4, so  π/4 < π/4 + θ < π/2.",
-          "That whole range lies inside (−π/2, π/2), which is the principal range of Tan⁻¹.",
+          "That whole range lies inside (−π/2, π/2),",
+          "which is the principal range of Tan⁻¹.",
           "∴ Tan⁻¹(tan(π/4 + θ)) = π/4 + θ",
           "∴ y = π/4 + θ"
         ],
@@ -188,7 +204,7 @@
           "Cancelling Tan⁻¹ and tan with no check on the range, which is the same working that goes wrong on many other questions of this type.",
           "Reading the range of Tan⁻¹ as [0, π], which belongs to Cos⁻¹."
         ],
-        "memory_tip": "Three principal ranges are worth holding: Sin⁻¹ gives [−π/2, π/2], Tan⁻¹ gives (−π/2, π/2), Cos⁻¹ gives [0, π]. Cos⁻¹ is the only one of the three with a different range."
+        "memory_tip": "Remember three principal ranges: Sin⁻¹ gives [−π/2, π/2], Tan⁻¹ gives (−π/2, π/2), Cos⁻¹ gives [0, π]. Cos⁻¹ is the one of the three whose range starts at 0."
       },
       {
         "id": "s4_back_to_x",
@@ -240,7 +256,8 @@
         "margin_note": "Last mark. Two things carry it: the minus sign from Cos⁻¹, and the inner derivative 2x. The 2 from 2x cancels the one half, which is why the answer is as clean as it is.",
         "lines": [
           "π/4 is a constant, so it differentiates to 0.",
-          "d/dx[Cos⁻¹u] = −(1/√(1 − u²))·(du/dx), here with u = x² and du/dx = 2x:",
+          "d/dx[Cos⁻¹u] = −(1/√(1 − u²))·(du/dx), here with u = x²",
+          "and du/dx = 2x:",
           "dy/dx = 0 + ½ · (−1/√(1 − (x²)²)) · 2x",
           "= −x/√(1 − x⁴)",
           {

@@ -94,7 +94,8 @@
         "margin_note": "Second mark. At x = 1 every power is 1, so f′(1) is the sum of the coefficients 1, 2, …, n. That sum is the standard result n(n+1)/2 and stays a formula, not a number.",
         "memory_tip": "Test any general answer on a small case. For n = 3, f′(1) = 1 + 2 + 3 = 6 and n(n+1)/2 = 3 × 4/2 = 6.",
         "lines": [
-          "Put x = 1. Every power of 1 equals 1, so each term reduces to its coefficient.",
+          "Put x = 1. Every power of 1 equals 1,",
+          "so each term reduces to its coefficient.",
           "f′(1) = 1 + 2 + 3 + ⋯ + n",
           "This is the sum of the first n natural numbers.",
           {

@@ -53,15 +53,15 @@
         "label": "Take logarithms of both sides",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. The mark is for the logarithm step itself. Write log(e^(x−y)) = x − y in one move — log and e are inverse functions, so the right side needs no further work.",
+        "margin_note": "First mark. The mark is for the logarithm step itself. Write log(eˣ⁻ʸ) = x − y in one move — log and e are inverse functions, so the right side needs no further work.",
         "lines": [
           {
             "text": "Sol:",
             "style": "heading"
           },
-          "Given xʸ = e^(x−y)",
+          "Given xʸ = eˣ⁻ʸ",
           "Take logarithms on both sides (log means logₑ throughout):",
-          "log(xʸ) = log(e^(x−y))",
+          "log(xʸ) = log(eˣ⁻ʸ)",
           "⇒ y log x = x − y"
         ],
         "recall": {
@@ -90,7 +90,7 @@
         "why": "A variable index cannot be differentiated by the power rule or by the exponential rule on its own. Taking logarithms brings the index down as a multiplier, and both sides then become expressions the product and quotient rules can handle.",
         "common_mistakes": [
           "Writing log(xʸ) as (log x)ʸ instead of y log x.",
-          "Leaving the right side as log(e^(x−y)) without simplifying it to x − y."
+          "Leaving the right side as log(eˣ⁻ʸ) without simplifying it to x − y."
         ],
         "memory_tip": "When the unknown sits in the index, the first line is always \"take logarithms\". The same opening move works for y = xʸ and for every xˣ question in this chapter."
       },
@@ -135,7 +135,7 @@
           "Writing y log x + y as y(log x) + y and failing to factor it as y(1 + log x).",
           "Dividing by log x instead of by the whole bracket (1 + log x)."
         ],
-        "memory_tip": "The bracket (1 + log x) appears here for the first time and then again, squared, in the answer — one bracket carried through the whole question."
+        "memory_tip": "The bracket (1 + log x) appears here for the first time and then again, squared, in the answer — the same bracket is used all through the question."
       },
       {
         "id": "s3_quotient_rule",
@@ -145,8 +145,10 @@
         "mark_note": "Method",
         "margin_note": "Third mark. Name u and v before differentiating. The examiner looks for dv/dx = 1/x — the derivative of the constant 1 is zero, so only log x contributes.",
         "lines": [
-          "Differentiate both sides with respect to x by the quotient rule",
-          "d/dx (u/v) = (v·du/dx − u·dv/dx)/v²,  with u = x and v = 1 + log x",
+          "Differentiate both sides with respect to x",
+          "by the quotient rule",
+          "d/dx (u/v) = (v·du/dx − u·dv/dx)/v²,",
+          "with u = x and v = 1 + log x",
           "du/dx = 1  and  dv/dx = 1/x",
           "dy/dx = [(1 + log x)(1) − x(1/x)]/(1 + log x)²"
         ],
@@ -222,7 +224,7 @@
           "Cancelling (1 + log x) between numerator and denominator.",
           "Stopping at (1 + log x − 1)/(1 + log x)² without simplifying the numerator."
         ],
-        "memory_tip": "Top loses its 1, bottom keeps its square — that one sentence is the whole simplification."
+        "memory_tip": "The numerator loses its 1 and the denominator keeps its square."
       }
     ]
   },

@@ -101,7 +101,8 @@
             "text": "∴ dy/dx = 1/(2√(x − x²))",
             "style": "boxed"
           },
-          "This holds for 0 < x < 1, where both square roots are real and non-zero."
+          "This holds for 0 < x < 1, where both square roots are real",
+          "and non-zero."
         ],
         "recall": {
           "credit": "say_it",

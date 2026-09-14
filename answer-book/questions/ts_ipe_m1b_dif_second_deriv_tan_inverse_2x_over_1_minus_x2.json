@@ -79,7 +79,7 @@
             "two over one plus x squared"
           ]
         },
-        "why": "The quotient rule on 2x/(1 − x²) followed by the chain rule through the inverse tangent gives the same first derivative, but it takes far more algebra and has to be done again for the second derivative. The substitution reduces the whole function to 2 Tan⁻¹x in three lines.",
+        "why": "The quotient rule on 2x/(1 − x²) followed by the chain rule through the inverse tangent gives the same first derivative, but it takes far more algebra and has to be done again for the second derivative. The substitution reduces the function to 2 Tan⁻¹x in three lines.",
         "common_mistakes": [
           "Using the quotient rule directly and dropping a factor of 2 in the algebra.",
           "Writing y = 2 Tan⁻¹x for every x, with no restriction on the range."

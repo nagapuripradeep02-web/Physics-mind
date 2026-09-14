@@ -81,12 +81,12 @@
             "first principle"
           ]
         },
-        "why": "The definition is the marked move. The whole of x + 1 sits under the root, so x + h + 1 does too — writing it any other way loses the question.",
+        "why": "The definition is the marked move. The whole of x + 1 is under the root, so x + h + 1 is too — writing it any other way gives a wrong answer.",
         "common_mistakes": [
           "Writing √(x + h + 1) as √(x + 1) + √h.",
           "Substituting h in place of x + h."
         ],
-        "memory_tip": "The whole of x + 1 sits under the root, so x + h + 1 does too."
+        "memory_tip": "The whole of x + 1 is under the root, so x + h + 1 is too."
       },
       {
         "id": "s2_conjugate",

@@ -97,7 +97,11 @@
         "lines": [
           "d/dx(tan eˣ) = sec²(eˣ) · d/dx(eˣ) = eˣ·sec²(eˣ)",
           "∴ f′(x) = eˣ·sec²(eˣ)/tan(eˣ)",
-          "This may be tidied, since sec²θ/tan θ = 1/(sin θ cos θ) = 2/sin 2θ",
+          "This may be tidied, since sec²θ/tan θ = 1/(sin θ cos θ)",
+          {
+            "text": "  = 2/sin 2θ",
+            "style": "indent"
+          },
           {
             "text": "∴ f′(x) = eˣ·sec²(eˣ)/tan(eˣ) = 2eˣ·Cosec(2eˣ)",
             "style": "boxed"

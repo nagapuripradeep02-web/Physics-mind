@@ -45,14 +45,15 @@
         "label": "Apply the Tan⁻¹ rule",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. The u in 1 + u² is the whole inside function, log x, so the denominator is 1 + (log x)². It is not 1 + x².",
+        "margin_note": "First mark. The u in 1 + u² is the inside function, log x, so the denominator is 1 + (log x)². It is not 1 + x².",
         "memory_tip": "Whatever sits inside Tan⁻¹ is squared and added to 1. Copy the inside part exactly, then square it.",
         "lines": [
           {
             "text": "Sol:",
             "style": "heading"
           },
-          "Let y = Tan⁻¹(log x), where log is the natural logarithm and x > 0.",
+          "Let y = Tan⁻¹(log x), where log is the natural logarithm",
+          "and x > 0.",
           "Take u = log x. Then d/dx(Tan⁻¹u) = 1/(1 + u²) · du/dx",
           "∴ dy/dx = 1/(1 + (log x)²) · d/dx(log x)"
         ],
@@ -78,7 +79,7 @@
             "du by dx"
           ]
         },
-        "why": "Substituting the inside function into 1 + u² is the whole method mark. Writing 1 + x² is the standard slip and gives the derivative of a different function.",
+        "why": "Substituting the inside function into 1 + u² is the method mark. Writing 1 + x² is a common slip and gives the derivative of a different function.",
         "common_mistakes": [
           "Writing the denominator as 1 + x² instead of 1 + (log x)².",
           "Writing 1 + log x² , which squares x rather than log x."

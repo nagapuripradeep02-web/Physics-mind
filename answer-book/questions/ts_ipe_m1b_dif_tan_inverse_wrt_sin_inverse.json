@@ -57,17 +57,21 @@
         "label": "Write what derivative with respect to g means",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark, and the one most often lost. The question does not ask for df/dx. Write the chain rule line before doing any trigonometry.",
+        "margin_note": "First mark. The question does not ask for df/dx. Write the chain rule line before doing any trigonometry.",
         "lines": [
           {
             "text": "Sol:",
             "style": "heading"
           },
-          "Given f(x) = Tan⁻¹(2x/(1 − x²))  and  g(x) = Sin⁻¹(2x/(1 + x²)).",
-          "The derivative of f with respect to g means df/dg, not df/dx.",
-          "By the chain rule,  df/dx = (df/dg)·(dg/dx),  so provided dg/dx ≠ 0,",
+          "Given f(x) = Tan⁻¹(2x/(1 − x²))",
+          "and  g(x) = Sin⁻¹(2x/(1 + x²)).",
+          "The derivative of f with respect to g",
+          "means df/dg, not df/dx.",
+          "By the chain rule,  df/dx = (df/dg)·(dg/dx),",
+          "so provided dg/dx ≠ 0,",
           "∴ df/dg = (df/dx)/(dg/dx)",
-          "So f and g are each differentiated with respect to x, and the two results are divided."
+          "So f and g are each differentiated with respect to x,",
+          "and the two results are divided."
         ],
         "recall": {
           "credit": "say_it",
@@ -92,7 +96,7 @@
             "divide"
           ]
         },
-        "why": "Differentiating with respect to a function rather than with respect to x is what this question tests. The chain rule turns it into two ordinary derivatives in x and one division, and the condition dg/dx ≠ 0 is what makes that division legal.",
+        "why": "Differentiating with respect to a function rather than with respect to x is what this question tests. The chain rule turns it into two ordinary derivatives in x and one division, and the condition dg/dx ≠ 0 is needed for that division.",
         "common_mistakes": [
           "Answering df/dx and stopping, which ignores the words with respect to g entirely.",
           "Writing df/dg = (dg/dx)/(df/dx), which is the reciprocal of the answer."
@@ -108,8 +112,11 @@
         "margin_note": "One mark. Both brackets are standard forms in tan θ, so one substitution serves both. Naming the range −1 < x < 1 here saves the argument in both of the next two steps.",
         "lines": [
           "Put x = tan θ, so θ = Tan⁻¹x.",
-          "Take −1 < x < 1. Then −π/4 < θ < π/4, so −π/2 < 2θ < π/2.",
-          "That range for 2θ is what both inverse functions need: it is inside (−π/2, π/2) for Tan⁻¹ and inside [−π/2, π/2] for Sin⁻¹."
+          "Take −1 < x < 1. Then −π/4 < θ < π/4,",
+          "so −π/2 < 2θ < π/2.",
+          "That range for 2θ is what both inverse functions need:",
+          "it is inside (−π/2, π/2) for Tan⁻¹",
+          "and inside [−π/2, π/2] for Sin⁻¹."
         ],
         "recall": {
           "credit": "say_it",
@@ -134,7 +141,7 @@
             "principal range"
           ]
         },
-        "why": "Both 2x/(1 − x²) and 2x/(1 + x²) become simple functions of 2θ under the same substitution, so choosing it once serves the whole question. The range matters because outside −1 < x < 1 the two inverse functions no longer return 2θ in the same way, and the final answer changes sign.",
+        "why": "Both 2x/(1 − x²) and 2x/(1 + x²) become simple functions of 2θ under the same substitution, so one substitution is used for the whole question. The range matters because outside −1 < x < 1 the two inverse functions no longer return 2θ in the same way, and the final answer changes sign.",
         "common_mistakes": [
           "Using a different substitution for each function, which loses the shared angle 2θ that makes the answer come out.",
           "Not stating any range, so the last step cannot say where the answer holds."
@@ -149,9 +156,11 @@
         "mark_note": "Method",
         "margin_note": "Two marks. Quote the double angle formula for tangent, cancel the inverse, and only then differentiate. Differentiating Tan⁻¹(2x/(1 − x²)) by the quotient rule is far longer and earns no more.",
         "lines": [
-          "The double angle formula for tangent is  tan 2θ = 2 tan θ/(1 − tan²θ).",
+          "The double angle formula for tangent",
+          "is  tan 2θ = 2 tan θ/(1 − tan²θ).",
           "With x = tan θ:  2x/(1 − x²) = tan 2θ",
-          "f = Tan⁻¹(tan 2θ), and 2θ lies in (−π/2, π/2), the principal range of Tan⁻¹, so",
+          "f = Tan⁻¹(tan 2θ), and 2θ lies in (−π/2, π/2),",
+          "the principal range of Tan⁻¹, so",
           "f = 2θ = 2 Tan⁻¹x",
           "∴ df/dx = 2/(1 + x²)"
         ],
@@ -195,8 +204,13 @@
         "lines": [
           "With x = tan θ:  2x/(1 + x²) = 2 tan θ/(1 + tan²θ)",
           "1 + tan²θ = sec²θ, so",
-          "2 tan θ/sec²θ = 2·(sin θ/cos θ)·cos²θ = 2 sin θ cos θ = sin 2θ",
-          "g = Sin⁻¹(sin 2θ), and 2θ lies in [−π/2, π/2], the principal range of Sin⁻¹, so",
+          "2 tan θ/sec²θ = 2·(sin θ/cos θ)·cos²θ",
+          {
+            "text": "  = 2 sin θ cos θ = sin 2θ",
+            "style": "indent"
+          },
+          "g = Sin⁻¹(sin 2θ), and 2θ lies in [−π/2, π/2],",
+          "the principal range of Sin⁻¹, so",
           "g = 2θ = 2 Tan⁻¹x",
           "∴ dg/dx = 2/(1 + x²)"
         ],
@@ -223,7 +237,7 @@
             "two sin theta cos theta"
           ]
         },
-        "why": "1 + tan²θ = sec²θ turns the fraction into 2 sin θ cos θ, which is sin 2θ. So g reduces to the same 2θ that f did, and that is the whole reason the final ratio is as simple as it is.",
+        "why": "1 + tan²θ = sec²θ turns the fraction into 2 sin θ cos θ, which is sin 2θ. So g reduces to the same 2θ that f did, and that is why the final ratio is simple.",
         "common_mistakes": [
           "Reading 2x/(1 + x²) as tan 2θ, mixing it up with the first bracket, which has 1 − x² underneath.",
           "Writing g = Sin⁻¹(sin 2θ) = 2θ with no check on the range, which is exactly the check that fails when |x| > 1."
@@ -238,9 +252,12 @@
         "mark_note": "Answer",
         "margin_note": "Last two marks. State that dg/dx is never zero before dividing, then give the answer with the range attached. An answer of exactly 1 is the sign that both reductions were done on the right branch.",
         "lines": [
-          "dg/dx = 2/(1 + x²), which is not zero for any real x, so the division is allowed.",
+          "dg/dx = 2/(1 + x²), which is not zero for any real x,",
+          "so the division is allowed.",
           "df/dg = (df/dx)/(dg/dx) = [2/(1 + x²)] ÷ [2/(1 + x²)]",
-          "On −1 < x < 1 both f and g reduce to the same function 2 Tan⁻¹x, so the two derivatives are identical and their ratio is 1.",
+          "On −1 < x < 1 both f and g reduce",
+          "to the same function 2 Tan⁻¹x,",
+          "so the two derivatives are identical and their ratio is 1.",
           {
             "text": "∴ df/dg = 1,  for −1 < x < 1",
             "style": "boxed"

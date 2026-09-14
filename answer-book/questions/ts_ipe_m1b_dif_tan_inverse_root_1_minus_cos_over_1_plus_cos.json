@@ -54,7 +54,11 @@
           },
           "Use the half-angle identities",
           "1 − cos x = 2sin²(x/2)   and   1 + cos x = 2cos²(x/2)",
-          "∴ (1 − cos x)/(1 + cos x) = 2sin²(x/2) / 2cos²(x/2) = tan²(x/2)",
+          "∴ (1 − cos x)/(1 + cos x) = 2sin²(x/2) / 2cos²(x/2)",
+          {
+            "text": "  = tan²(x/2)",
+            "style": "indent"
+          },
           "For 0 < x < π, x/2 lies in (0, π/2), where tan(x/2) > 0, so",
           "√(tan²(x/2)) = tan(x/2)"
         ],
@@ -96,7 +100,8 @@
         "memory_tip": "The whole expression reduces to x/2, so the derivative is a constant and no chain rule is needed.",
         "lines": [
           "∴ y = Tan⁻¹(tan(x/2))",
-          "x/2 lies in (0, π/2), which is inside the principal range of Tan⁻¹, so",
+          "x/2 lies in (0, π/2),",
+          "which is inside the principal range of Tan⁻¹, so",
           "y = x/2",
           "Differentiating,",
           {

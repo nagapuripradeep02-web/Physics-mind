@@ -55,7 +55,8 @@
           "y = Cosec⁻¹(u), where u = e²ˣ⁺¹",
           "d/dx(Cosec⁻¹u) = −1/(|u|√(u² − 1)) · du/dx",
           "du/dx = e²ˣ⁺¹ · d/dx(2x + 1) = 2e²ˣ⁺¹",
-          "An exponential is positive for every real x, so u = e²ˣ⁺¹ > 0 and |u| = e²ˣ⁺¹",
+          "An exponential is positive for every real x, so u = e²ˣ⁺¹ > 0",
+          "and |u| = e²ˣ⁺¹",
           "∴ dy/dx = −2e²ˣ⁺¹ / (e²ˣ⁺¹ · √((e²ˣ⁺¹)² − 1))"
         ],
         "recall": {
@@ -80,7 +81,7 @@
             "two e power"
           ]
         },
-        "why": "The modulus is part of the formula and is not decoration — it exists because Cosec⁻¹ is defined for u ≤ −1 as well as u ≥ 1. Here u = e²ˣ⁺¹ is positive, so only the branch u ≥ 1 arises, and that branch needs 2x + 1 > 0. Saying why the modulus resolves is what separates a quoted formula from an applied one.",
+        "why": "The modulus is part of the formula. It is there because Cosec⁻¹ is defined for u ≤ −1 as well as u ≥ 1. Here u = e²ˣ⁺¹ is positive, so only the branch u ≥ 1 arises, and that branch needs 2x + 1 > 0. Say why the modulus can be removed.",
         "common_mistakes": [
           "Dropping the modulus with no reason given.",
           "Writing du/dx = e²ˣ⁺¹ and losing the factor 2 from the exponent."
@@ -96,7 +97,8 @@
         "memory_tip": "Squaring an exponential doubles the whole exponent: (e²ˣ⁺¹)² = e⁴ˣ⁺², not e⁴ˣ⁺¹.",
         "lines": [
           "(e²ˣ⁺¹)² = e²⁽²ˣ⁺¹⁾ = e⁴ˣ⁺²",
-          "The e²ˣ⁺¹ in the numerator cancels the e²ˣ⁺¹ in the denominator.",
+          "The e²ˣ⁺¹ in the numerator cancels the e²ˣ⁺¹",
+          "in the denominator.",
           {
             "text": "∴ dy/dx = −2/√(e⁴ˣ⁺² − 1)",
             "style": "boxed"

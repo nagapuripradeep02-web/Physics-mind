@@ -53,9 +53,11 @@
             "style": "heading"
           },
           "Put x = cos θ, so θ = Cos⁻¹x",
-          "Then 4x³ − 3x = 4cos³θ − 3cos θ = cos 3θ   [triple-angle identity]",
+          "Then 4x³ − 3x = 4cos³θ − 3cos θ = cos 3θ",
+          "[triple-angle identity]",
           "∴ y = Cos⁻¹(cos 3θ)",
-          "Take θ in [0, π/3], that is 1/2 ≤ x ≤ 1. Then 3θ lies in [0, π], the principal range of Cos⁻¹, so",
+          "Take θ in [0, π/3], that is 1/2 ≤ x ≤ 1.",
+          "Then 3θ lies in [0, π], the principal range of Cos⁻¹, so",
           "y = 3θ = 3 Cos⁻¹x"
         ],
         "recall": {
@@ -134,5 +136,5 @@
       }
     ]
   },
-  "insider_note": "4x³ − 3x is cos3θ, so put x = cos θ and the whole thing collapses to 3Cos⁻¹x. Differentiating the original directly is far harder and rarely lands."
+  "insider_note": "4x³ − 3x is cos3θ, so put x = cos θ; for 1/2 ≤ x ≤ 1 the expression becomes 3Cos⁻¹x. Differentiating the original directly takes much longer."
 }

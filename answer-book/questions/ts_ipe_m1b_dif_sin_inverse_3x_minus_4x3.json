@@ -53,9 +53,12 @@
             "style": "heading"
           },
           "Put x = sin θ, so θ = Sin⁻¹x",
-          "Then 3x − 4x³ = 3 sin θ − 4sin³θ = sin 3θ   [triple-angle identity]",
+          "Then 3x − 4x³ = 3 sin θ − 4sin³θ = sin 3θ",
+          "[triple-angle identity]",
           "∴ y = Sin⁻¹(sin 3θ)",
-          "Take θ in [−π/6, π/6], that is −1/2 ≤ x ≤ 1/2. Then 3θ lies in [−π/2, π/2], the principal range of Sin⁻¹, so",
+          "Take θ in [−π/6, π/6], that is −1/2 ≤ x ≤ 1/2.",
+          "Then 3θ lies in [−π/2, π/2],",
+          "the principal range of Sin⁻¹, so",
           "y = 3θ = 3 Sin⁻¹x"
         ],
         "recall": {

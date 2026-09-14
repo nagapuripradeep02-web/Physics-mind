@@ -179,7 +179,7 @@
         "label": "Divide by dx/dt a second time",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Last mark, and the one most often lost. d²y/dx² is NOT d/dt(dy/dx). The chain rule needs a second division by dx/dt — write that division as its own line.",
+        "margin_note": "Last mark. d²y/dx² is NOT d/dt(dy/dx). The chain rule needs a second division by dx/dt — write that division as its own line.",
         "lines": [
           "d²y/dx² = [d/dt (dy/dx)] / (dx/dt)",
           "= ½ cosec²(t/2) / [a(1 − cos t)]",
@@ -211,7 +211,7 @@
             "four a"
           ]
         },
-        "why": "d²y/dx² means d/dx of dy/dx, and the only route from d/dt to d/dx is another division by dx/dt. Stopping one division early is the commonest error in this chapter.",
+        "why": "d²y/dx² means d/dx of dy/dx, and going from d/dt to d/dx needs another division by dx/dt. Do not stop one division early.",
         "common_mistakes": [
           "Stopping at ½ cosec²(t/2) and calling it d²y/dx² — the second division by dx/dt is missing.",
           "Dividing by dy/dt instead of dx/dt."

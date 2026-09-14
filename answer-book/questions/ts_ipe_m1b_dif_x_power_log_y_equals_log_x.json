@@ -60,11 +60,14 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given  x^(log y) = log x",
-          "The left side has x in the base and log y in the power, so neither the power rule nor the exponential rule applies. Take logarithms of both sides.",
-          "log[x^(log y)] = log(log x)",
+          "Given  xˡᵒᵍʸ = log x",
+          "The left side has x in the base and log y in the power,",
+          "so neither the power rule nor the exponential rule applies.",
+          "Take logarithms of both sides.",
+          "log[xˡᵒᵍʸ] = log(log x)",
           "∴ (log y)(log x) = log(log x)      …(1)",
-          "This needs x > 1, so that log x is positive and log(log x) exists, and y > 0."
+          "This needs x > 1, so that log x is positive",
+          "and log(log x) exists, and y > 0."
         ],
         "recall": {
           "credit": "say_it",
@@ -92,7 +95,7 @@
         "why": "The logarithm brings the power log y down in front, turning the left side into a product that the product rule can handle. The right side must be logged as well, which is what produces log(log x).",
         "common_mistakes": [
           "Leaving the right side as log x after taking logarithms of the left side.",
-          "Writing log[x^(log y)] as (log x)^(log y), which keeps the power where it was."
+          "Writing log[xˡᵒᵍʸ] as (log x)ˡᵒᵍʸ, which keeps the power where it was."
         ]
       },
       {

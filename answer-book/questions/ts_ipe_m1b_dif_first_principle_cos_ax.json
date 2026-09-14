@@ -170,7 +170,7 @@
             "substitute"
           ]
         },
-        "why": "The standard limit holds only when the angle inside the sine equals the whole denominator. The substitution makes that true and leaves the factor a outside, which is exactly the a in the final answer.",
+        "why": "The standard limit lim sin t/t = 1 is used with the angle inside the sine equal to the denominator. The substitution makes that true and leaves the factor a outside, which is exactly the a in the final answer.",
         "common_mistakes": [
           "Using lim (sin(ah/2))/h = 1, which is a/2, not 1.",
           "Substituting the angle but forgetting that h itself becomes 2t/a."
@@ -183,7 +183,7 @@
         "label": "Take the limit",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Last mark. The a in front is the derivative of the inside angle ax, and the minus comes from cos C − cos D. Both have to survive to the box.",
+        "margin_note": "Last mark. The a in front is the derivative of the inside angle ax, and the minus comes from cos C − cos D. Both must appear in the final answer.",
         "lines": [
           "As t → 0, sin(ax + t) → sin ax and (sin t)/t → 1",
           "f′(x) = −a · sin ax · 1",
@@ -213,7 +213,7 @@
             "one"
           ]
         },
-        "why": "Setting a = 1 checks the whole answer in one second: it gives −sin x, the derivative of cos x, so the general form is consistent.",
+        "why": "Setting a = 1 is a quick check of the answer: it gives −sin x, the derivative of cos x, so the general form is consistent.",
         "common_mistakes": [
           "Writing −sin ax and losing the factor a.",
           "Writing a sin ax with no minus sign."

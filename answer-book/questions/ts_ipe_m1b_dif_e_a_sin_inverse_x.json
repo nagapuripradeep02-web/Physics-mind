@@ -45,17 +45,19 @@
         "label": "Differentiate the exponential and name it y",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. eᵘ differentiates to eᵘ times du/dx, and here eᵘ is the whole of y. That is the reason the answer is stated in terms of y rather than the exponential.",
+        "margin_note": "First mark. eᵘ differentiates to eᵘ times du/dx, and here eᵘ is y itself. That is the reason the answer is stated in terms of y rather than the exponential.",
         "memory_tip": "An exponential differentiates to itself, so eᵃ ˢⁱⁿ⁻¹ˣ can be replaced by y at any point in the working.",
         "lines": [
           {
             "text": "Sol:",
             "style": "heading"
           },
-          "Given y = eᵃ ˢⁱⁿ⁻¹ˣ, that is y = eᵘ where u = a Sin⁻¹x and a is a constant.",
+          "Given y = eᵃ ˢⁱⁿ⁻¹ˣ, that is y = eᵘ where u = a Sin⁻¹x",
+          "and a is a constant.",
           "d/dx(eᵘ) = eᵘ · du/dx",
           "∴ dy/dx = eᵃ ˢⁱⁿ⁻¹ˣ · d/dx(a Sin⁻¹x)",
-          "The exponential factor eᵃ ˢⁱⁿ⁻¹ˣ is y itself, so dy/dx = y · d/dx(a Sin⁻¹x)"
+          "The exponential factor eᵃ ˢⁱⁿ⁻¹ˣ is y itself,",
+          "so dy/dx = y · d/dx(a Sin⁻¹x)"
         ],
         "recall": {
           "credit": "say_it",
@@ -94,7 +96,8 @@
         "margin_note": "Second mark. a is a constant multiplier inside the exponent, so it stays as it is, and d/dx(Sin⁻¹x) = 1/√(1 − x²), valid for −1 < x < 1.",
         "memory_tip": "Sin⁻¹ contributes 1/√(1 − x²). The constant a is unchanged and stays as a multiplier beside the y.",
         "lines": [
-          "d/dx(Sin⁻¹x) = 1/√(1 − x²),  so  d/dx(a Sin⁻¹x) = a/√(1 − x²)",
+          "d/dx(Sin⁻¹x) = 1/√(1 − x²),",
+          "so  d/dx(a Sin⁻¹x) = a/√(1 − x²)",
           "∴ dy/dx = eᵃ ˢⁱⁿ⁻¹ˣ · a/√(1 − x²)",
           "Replacing eᵃ ˢⁱⁿ⁻¹ˣ by y,",
           {

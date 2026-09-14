@@ -127,10 +127,10 @@
             "product rule"
           ]
         },
-        "why": "P is built from the same two functions as y with the roles exchanged, so its derivative returns y. That is why the answer closes with only y, y₁ and y₂ in it.",
+        "why": "P is made of the same two functions as y with the roles exchanged, so its derivative contains y. That is why the final equation contains only y, y₁ and y₂.",
         "common_mistakes": [
           "Differentiating P cos x as P′cos x only, leaving out the second product term.",
-          "Writing P′ as +y cos x and losing the sign of the whole result."
+          "Writing P′ as +y cos x, which gives +y cos²x in y₂ instead of −y cos²x."
         ],
         "memory_tip": "y differentiates into P cos x and P differentiates into −y cos x — each differentiation brings the same cos x out of the inner sin x."
       },
@@ -182,8 +182,13 @@
         "mark_note": "Answer",
         "margin_note": "Last mark. Two cancelling pairs: P sin x against −P sin x, and y cos²x against −y cos²x. Write both pairs down before claiming the result.",
         "lines": [
-          "y₂ + (tan x)y₁ + y cos²x = (−y cos²x − P sin x) + P sin x + y cos²x",
-          "The two P sin x terms cancel, and so do the two y cos²x terms",
+          "y₂ + (tan x)y₁ + y cos²x",
+          {
+            "text": "  = (−y cos²x − P sin x) + P sin x + y cos²x",
+            "style": "indent"
+          },
+          "The two P sin x terms cancel,",
+          "and so do the two y cos²x terms",
           {
             "text": "∴ y₂ + (tan x)y₁ + y cos²x = 0",
             "style": "boxed"
@@ -220,5 +225,5 @@
       }
     ]
   },
-  "insider_note": "Name the bracket P = b cos(sin x) − a sin(sin x) so the second differentiation stays readable. P′ comes out as −y cos x, and that is what makes every term collapse."
+  "insider_note": "Name the bracket P = b cos(sin x) − a sin(sin x) so the second differentiation stays readable. P′ comes out as −y cos x, and that is what makes the terms cancel."
 }

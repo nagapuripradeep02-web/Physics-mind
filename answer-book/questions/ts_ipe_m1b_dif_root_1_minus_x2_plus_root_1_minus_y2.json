@@ -63,12 +63,18 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given √(1 − x²) + √(1 − y²) = a(x − y), where a is a constant.",
-          "Both roots need 1 − x² ≥ 0 and 1 − y² ≥ 0, so −1 ≤ x ≤ 1 and −1 ≤ y ≤ 1.",
-          "Put x = sin A and y = sin B, so A = Sin⁻¹x and B = Sin⁻¹y.",
-          "A and B lie in [−π/2, π/2], where cos A ≥ 0 and cos B ≥ 0.",
-          "∴ √(1 − x²) = √(1 − sin²A) = √(cos²A) = cos A,  and  √(1 − y²) = cos B",
-          "The given equation becomes  cos A + cos B = a(sin A − sin B)"
+          "Given √(1 − x²) + √(1 − y²) = a(x − y),",
+          "where a is a constant.",
+          "Both roots need 1 − x² ≥ 0 and 1 − y² ≥ 0, so −1 ≤ x ≤ 1",
+          "and −1 ≤ y ≤ 1.",
+          "Put x = sin A and y = sin B, so A = Sin⁻¹x",
+          "and B = Sin⁻¹y.",
+          "A and B lie in [−π/2, π/2], where cos A ≥ 0",
+          "and cos B ≥ 0.",
+          "∴ √(1 − x²) = √(1 − sin²A) = √(cos²A) = cos A,",
+          "and  √(1 − y²) = cos B",
+          "The given equation becomes",
+          "cos A + cos B = a(sin A − sin B)"
         ],
         "recall": {
           "credit": "say_it",
@@ -113,7 +119,11 @@
           "cos C + cos D = 2 cos((C + D)/2) · cos((C − D)/2)",
           "sin C − sin D = 2 cos((C + D)/2) · sin((C − D)/2)",
           "The equation cos A + cos B = a(sin A − sin B) becomes",
-          "2 cos((A + B)/2) · cos((A − B)/2) = a · 2 cos((A + B)/2) · sin((A − B)/2)"
+          "2 cos((A + B)/2) · cos((A − B)/2)",
+          {
+            "text": "  = a · 2 cos((A + B)/2) · sin((A − B)/2)",
+            "style": "indent"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -154,8 +164,12 @@
         "mark_note": "Method",
         "margin_note": "Two marks: one for the cancellation, one for reaching a cotangent. The line naming when the factor could be zero is read as part of the method, not as extra writing.",
         "lines": [
-          "cos A ≥ 0 and cos B ≥ 0, so cos A + cos B = 0 would need cos A = cos B = 0, that is x = ±1 and y = ±1.",
-          "At those points 1 − x² = 0 and dy/dx has no value, so everywhere else cos((A + B)/2) ≠ 0 and may be cancelled from both sides:",
+          "cos A ≥ 0 and cos B ≥ 0,",
+          "so cos A + cos B = 0 would need cos A = cos B = 0,",
+          "that is x = ±1 and y = ±1.",
+          "At those points 1 − x² = 0 and dy/dx has no value,",
+          "so everywhere else cos((A + B)/2) ≠ 0",
+          "and may be cancelled from both sides:",
           "cos((A − B)/2) = a sin((A − B)/2)",
           "Divide both sides by sin((A − B)/2):",
           "∴ cot((A − B)/2) = a"
@@ -228,7 +242,7 @@
             "two cot inverse"
           ]
         },
-        "why": "This one line is the point of the whole substitution. The given equation ties x and y together in a form that cannot be differentiated directly, while Sin⁻¹x − Sin⁻¹y = constant differentiates in a single move.",
+        "why": "This line is the reason for the substitution. The given equation connects x and y in a form that is hard to differentiate directly, while Sin⁻¹x − Sin⁻¹y = constant differentiates in a single move.",
         "common_mistakes": [
           "Differentiating cot((A − B)/2) = a as it stands instead of first writing A − B = 2 Cot⁻¹a.",
           "Treating a as a variable, so the right side is differentiated as well."
@@ -243,7 +257,8 @@
         "mark_note": "Answer",
         "margin_note": "Last mark. The two roots must end the right way round: the y root on top, the x root underneath. Check by putting a = 0, where the curve gives y = ±x and dy/dx must come out as ∓ the ratio of the two roots.",
         "lines": [
-          "Differentiate Sin⁻¹x − Sin⁻¹y = 2 Cot⁻¹a with respect to x, taking y as a function of x:",
+          "Differentiate Sin⁻¹x − Sin⁻¹y = 2 Cot⁻¹a",
+          "with respect to x, taking y as a function of x:",
           "1/√(1 − x²) − (1/√(1 − y²))·(dy/dx) = 0",
           "(1/√(1 − y²))·(dy/dx) = 1/√(1 − x²)",
           "dy/dx = √(1 − y²)/√(1 − x²)",
@@ -275,7 +290,7 @@
             "right side zero"
           ]
         },
-        "why": "d/dx of Sin⁻¹y is (1/√(1 − y²))(dy/dx) because y is a function of x, and that extra dy/dx factor is the only thing being solved for. The right side is a constant, so it differentiates to zero.",
+        "why": "d/dx of Sin⁻¹y is (1/√(1 − y²))(dy/dx) because y is a function of x, and dy/dx is the quantity being solved for. The right side is a constant, so it differentiates to zero.",
         "common_mistakes": [
           "Writing d/dx of Sin⁻¹y as 1/√(1 − y²) with no dy/dx factor, which makes the answer come out as 1.",
           "Losing the minus sign in front of Sin⁻¹y and reporting dy/dx = −√((1 − y²)/(1 − x²))."

@@ -52,8 +52,11 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "y is not given in terms of x on its own, so differentiate implicitly: every term with respect to x, treating y as a function of x.",
-          "The term 3axy is a product of x and y, so it needs the product rule.",
+          "y is not given in terms of x on its own,",
+          "so differentiate implicitly: every term with respect to x,",
+          "treating y as a function of x.",
+          "The term 3axy is a product of x and y,",
+          "so it needs the product rule.",
           "d/dx(x³) + d/dx(y³) − 3a · d/dx(xy) = 0",
           "3x² + 3y²(dy/dx) − 3a[ y · 1 + x · (dy/dx) ] = 0"
         ],
@@ -79,7 +82,7 @@
             "d y by d x"
           ]
         },
-        "why": "The equation is a cubic in y, so writing y in terms of x is not useful here. Implicit differentiation is the only practical route, and the product rule on 3axy is the part of it this question tests.",
+        "why": "The equation is a cubic in y, so writing y in terms of x is not useful here. Implicit differentiation is the practical method, and the product rule on 3axy is the part of it this question tests.",
         "common_mistakes": [
           "Writing d/dx(3axy) as 3ay, which drops the x · dy/dx half of the product rule.",
           "Writing d/dx(y³) as 3y² and forgetting the dy/dx factor."
@@ -94,8 +97,10 @@
         "margin_note": "Second mark. Divide by 3 first, then move the two dy/dx terms to one side and everything else to the other. State y² ≠ ax, where the tangent is vertical.",
         "memory_tip": "The denominator is the numerator with x and y exchanged and then the sign reversed: ay − x² on top, y² − ax below. Check the sign, not only the letters.",
         "lines": [
-          "Divide throughout by 3:  x² + y²(dy/dx) − ay − ax(dy/dx) = 0",
-          "Take the dy/dx terms to one side:  (y² − ax)(dy/dx) = ay − x²",
+          "Divide throughout by 3:",
+          "x² + y²(dy/dx) − ay − ax(dy/dx) = 0",
+          "Take the dy/dx terms to one side:",
+          "(y² − ax)(dy/dx) = ay − x²",
           {
             "text": "∴ dy/dx = (ay − x²)/(y² − ax),  y² ≠ ax",
             "style": "boxed"

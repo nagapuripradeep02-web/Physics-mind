@@ -52,9 +52,15 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "y is not given in terms of x on its own, so differentiate implicitly, term by term, with respect to x.",
-          "The term 3xy is a product of x and y, so it needs the product rule.",
-          "4x − 3[ y · 1 + x · (dy/dx) ] + 2y(dy/dx) + 1 + 2(dy/dx) = 0",
+          "y is not given in terms of x on its own,",
+          "so differentiate implicitly, term by term, with respect to x.",
+          "The term 3xy is a product of x and y,",
+          "so it needs the product rule.",
+          "4x − 3[ y · 1 + x · (dy/dx) ] + 2y(dy/dx) + 1",
+          {
+            "text": "  + 2(dy/dx) = 0",
+            "style": "indent"
+          },
           "4x − 3y − 3x(dy/dx) + 2y(dy/dx) + 1 + 2(dy/dx) = 0"
         ],
         "recall": {
@@ -97,7 +103,11 @@
           "Collect the dy/dx terms on one side:",
           "(−3x + 2y + 2)(dy/dx) = 3y − 4x − 1",
           {
-            "text": "∴ dy/dx = (3y − 4x − 1)/(2y − 3x + 2),  2y − 3x + 2 ≠ 0",
+            "text": "∴ dy/dx = (3y − 4x − 1)/(2y − 3x + 2),",
+            "style": "boxed"
+          },
+          {
+            "text": "2y − 3x + 2 ≠ 0",
             "style": "boxed"
           }
         ],

@@ -146,7 +146,11 @@
         "lines": [
           "y = a(sin t − t cos t). Use the product rule on t cos t:",
           "d/dt (t cos t) = t·(−sin t) + cos t·1 = −t sin t + cos t",
-          "dy/dt = a[cos t − (−t sin t + cos t)] = a[cos t + t sin t − cos t]",
+          "dy/dt = a[cos t − (−t sin t + cos t)]",
+          {
+            "text": "  = a[cos t + t sin t − cos t]",
+            "style": "indent"
+          },
           "∴ dy/dt = a t sin t"
         ],
         "recall": {
@@ -172,12 +176,12 @@
             "product rule"
           ]
         },
-        "why": "The minus sign sits in front of the whole product t cos t, so both terms of its derivative change sign. Missing that is the usual reason a student gets cot t or a stray cos t here.",
+        "why": "The minus sign is in front of the product t cos t, so both terms of its derivative change sign.",
         "common_mistakes": [
           "Applying the minus sign to only the first term of the product-rule result.",
           "Writing d/dt (t cos t) as −t sin t and dropping the cos t term."
         ],
-        "memory_tip": "This step mirrors the dx/dt working: there the sin t terms cancelled, here the cos t terms do. Both leave a single term with a t in it."
+        "memory_tip": "This step is like the dx/dt working: there the sin t terms cancelled, here the cos t terms do. Both leave a single term with a t in it."
       },
       {
         "id": "s4_divide",
@@ -222,7 +226,7 @@
           "Leaving a or t in the final answer instead of cancelling them.",
           "Writing cot t by dividing the derivatives the wrong way round."
         ],
-        "memory_tip": "If a survives to the last line, go back — a scales both x and y equally, so it can never appear in dy/dx."
+        "memory_tip": "If a is still in the last line, check the working — a scales both x and y equally, so it can never appear in dy/dx."
       }
     ]
   },

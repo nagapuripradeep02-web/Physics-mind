@@ -52,7 +52,8 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "x and y are both given in terms of t, so use the parametric rule",
+          "x and y are both given in terms of t,",
+          "so use the parametric rule",
           "dy/dx = (dy/dt)/(dx/dt)",
           "x = a cos³t  ⇒  dx/dt = 3a cos²t · (−sin t) = −3a cos²t sin t",
           "y = a sin³t  ⇒  dy/dt = 3a sin²t · (cos t) = 3a sin²t cos t"
@@ -79,7 +80,7 @@
             "chain rule"
           ]
         },
-        "why": "There is no equation linking x and y directly, so neither can be differentiated with respect to the other. The parameter t is the only link between them, so both are differentiated with respect to t first.",
+        "why": "There is no equation linking x and y directly, so neither can be differentiated with respect to the other. x and y are connected through the parameter t, so both are differentiated with respect to t first.",
         "common_mistakes": [
           "Writing dx/dt as 3a cos²t, which leaves out the derivative of cos t inside.",
           "Dropping the minus sign that comes from differentiating cos t."
@@ -92,10 +93,15 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Write the fraction out before cancelling — the mark is for the division, not for the two words −tan t on their own.",
-        "memory_tip": "Everything cancels except one sin t over one cos t, so the whole answer is −tan t.",
+        "memory_tip": "After cancelling, −sin t over cos t is left, so the answer is −tan t.",
         "lines": [
-          "dy/dx = (dy/dt)/(dx/dt) = (3a sin²t cos t)/(−3a cos²t sin t)",
-          "The factor 3a cancels, and one sin t and one cos t cancel as well.",
+          "dy/dx = (dy/dt)/(dx/dt)",
+          {
+            "text": "  = (3a sin²t cos t)/(−3a cos²t sin t)",
+            "style": "indent"
+          },
+          "The factor 3a cancels, and one sin t",
+          "and one cos t cancel as well.",
           "= −(sin t)/(cos t)",
           {
             "text": "∴ dy/dx = −tan t",

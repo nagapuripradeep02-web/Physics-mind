@@ -53,7 +53,8 @@
             "style": "heading"
           },
           "Given x²⁄³ + y²⁄³ = a²⁄³, where a is a constant.",
-          "Differentiate both sides with respect to x, treating y as a function of x:",
+          "Differentiate both sides with respect to x,",
+          "treating y as a function of x:",
           "(2/3)x⁻¹⁄³ + (2/3)y⁻¹⁄³ · dy/dx = 0",
           "The right side is a constant, so its derivative is 0."
         ],
@@ -79,7 +80,7 @@
             "two by three"
           ]
         },
-        "why": "y is not written as a formula in x, so it cannot be differentiated directly. Implicit differentiation handles that by attaching dy/dx to every y term, which is the only new idea in this question.",
+        "why": "y is not written as a formula in x, so it cannot be differentiated directly. Implicit differentiation handles that by multiplying the derivative of every y term by dy/dx, which is the new idea in this question.",
         "common_mistakes": [
           "Differentiating a²⁄³ to (2/3)a⁻¹⁄³, treating the constant a as a variable.",
           "Writing d/dx(y²⁄³) = (2/3)y⁻¹⁄³ with no dy/dx attached."

@@ -53,18 +53,22 @@
         "label": "Split y and take logarithms separately",
         "marks": 2,
         "mark_note": "Method",
-        "margin_note": "First two marks. One mark for the split y = u + v, one for saying that logarithms are taken on u and on v one at a time. The logarithm of a sum does not open out, so a single logarithm of the whole of y leads nowhere.",
-        "memory_tip": "Two terms, two logarithms, two derivatives, then add. Never one logarithm for the whole of y.",
+        "margin_note": "First two marks. One mark for the split y = u + v, one for saying that logarithms are taken on u and on v one at a time. The logarithm of a sum does not open out, so a single logarithm of y does not help.",
+        "memory_tip": "Two terms, two logarithms, two derivatives, then add. Do not take one logarithm of y itself.",
         "lines": [
           {
             "text": "Sol:",
             "style": "heading"
           },
-          "Let y = u + v,  where u = (sin x)ˣ  and  v = x^(sin x)",
+          "Let y = u + v,  where u = (sin x)ˣ  and  v = xˢⁱⁿˣ",
           "Then dy/dx = du/dx + dv/dx",
-          "In each term the variable x stands in the base and in the power. The power rule needs a constant power and the exponential rule needs a constant base, so neither rule applies to either term.",
+          "In each term the variable x stands in the base",
+          "and in the power. The power rule needs a constant power",
+          "and the exponential rule needs a constant base,",
+          "so neither rule applies to either term.",
           "So take logarithms of u and of v separately.",
-          "This requires sin x > 0 and x > 0, so that log(sin x) and log x exist."
+          "This requires sin x > 0 and x > 0, so that log(sin x)",
+          "and log x exist."
         ],
         "recall": {
           "credit": "say_it",
@@ -90,11 +94,11 @@
             "sin x to the power x"
           ]
         },
-        "why": "A logarithm turns a power into a product, which is the only way to differentiate a term whose base and power both contain x. The split comes first because log(u + v) is not log u + log v.",
+        "why": "A logarithm turns a power into a product, which is the standard method for a term whose base and power both contain x. The split comes first because log(u + v) is not log u + log v.",
         "common_mistakes": [
-          "Writing log y = log[(sin x)ˣ + x^(sin x)] and then splitting it as log of the first term plus log of the second.",
+          "Writing log y = log[(sin x)ˣ + xˢⁱⁿˣ] and then splitting it as log of the first term plus log of the second.",
           "Using the power rule on (sin x)ˣ as if the power x were a constant.",
-          "Using the exponential rule on x^(sin x) as if the base x were a constant."
+          "Using the exponential rule on xˢⁱⁿˣ as if the base x were a constant."
         ]
       },
       {
@@ -152,11 +156,11 @@
         "margin_note": "Two marks. The product is the other way round here: sin x multiplies log x, so the derivative of the sine comes first and the 1/x comes second.",
         "memory_tip": "In u the power was x and the base was sin x; in v the two are swapped. Writing log v = sin x · log x puts that swap on the page.",
         "lines": [
-          "v = x^(sin x)",
+          "v = xˢⁱⁿˣ",
           "Taking logarithms,   log v = sin x · log x",
           "Differentiating both sides with respect to x,",
           "(1/v)(dv/dx) = cos x · log x + sin x · (1/x)",
-          "∴ dv/dx = x^(sin x) [cos x · log x + (sin x)/x]"
+          "∴ dv/dx = xˢⁱⁿˣ [cos x · log x + (sin x)/x]"
         ],
         "recall": {
           "credit": "say_it",
@@ -195,11 +199,15 @@
         "marks": 2,
         "mark_note": "Answer",
         "margin_note": "The last two marks. Each bracket must keep its own outside factor. The two brackets share no factor, so this two-bracket form is the final form.",
-        "memory_tip": "Each bracket stays attached to the term it came from: the (sin x)ˣ bracket holds cot x, the x^(sin x) bracket holds log x.",
+        "memory_tip": "Each bracket stays attached to the term it came from: the (sin x)ˣ bracket holds cot x, the xˢⁱⁿˣ bracket holds log x.",
         "lines": [
           "dy/dx = du/dx + dv/dx",
           {
-            "text": "∴ dy/dx = (sin x)ˣ [log(sin x) + x cot x] + x^(sin x) [cos x · log x + (sin x)/x]",
+            "text": "∴ dy/dx = (sin x)ˣ [log(sin x) + x cot x]",
+            "style": "boxed"
+          },
+          {
+            "text": "+ xˢⁱⁿˣ [cos x · log x + (sin x)/x]",
             "style": "boxed"
           }
         ],

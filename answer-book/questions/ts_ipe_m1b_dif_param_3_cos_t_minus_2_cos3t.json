@@ -174,7 +174,7 @@
         },
         "why": "The inner derivative of sin³t is cos t, so both terms carry cos t and it factors out. The bracket 1 − 2sin²t is cos 2t written in sines, the same quantity that came out of dx/dt.",
         "common_mistakes": [
-          "Writing the bracket as 2sin²t − 1, which is −cos 2t and flips the sign of the answer.",
+          "Writing the bracket as 2sin²t − 1, which is −cos 2t and changes the sign of the answer.",
           "Differentiating sin³t as 3sin²t without the inner cos t."
         ],
         "memory_tip": "Two of the three cos 2t forms are used in this question — the cosine one for x, the sine one for y. Both are the same number."

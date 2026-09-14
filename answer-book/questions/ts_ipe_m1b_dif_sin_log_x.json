@@ -53,8 +53,10 @@
             "style": "heading"
           },
           "f(x) = sin(log x),  x > 0, where log is the natural logarithm.",
-          "The condition x > 0 is given because log x is defined only for positive x.",
-          "Take u = log x. Then f(x) = sin u and d/dx(sin u) = cos u · du/dx",
+          "The condition x > 0 is given",
+          "because log x is defined only for positive x.",
+          "Take u = log x. Then f(x) = sin u",
+          "and d/dx(sin u) = cos u · du/dx",
           "∴ f′(x) = cos(log x) · d/dx(log x)"
         ],
         "recall": {
@@ -123,7 +125,7 @@
             "log derivative"
           ]
         },
-        "why": "The 1/x is the whole of this mark. Leaving it out gives cos(log x), which is the derivative with respect to log x, not with respect to x.",
+        "why": "This mark is for the 1/x. Leaving it out gives cos(log x), which is the derivative with respect to log x, not with respect to x.",
         "common_mistakes": [
           "Leaving out the 1/x factor.",
           "Writing the answer as cos(log x)·log x by differentiating log x wrongly."

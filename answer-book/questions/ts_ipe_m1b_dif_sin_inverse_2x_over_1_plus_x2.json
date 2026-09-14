@@ -45,7 +45,7 @@
         "label": "Put x = tan θ and use sin 2θ = 2 tan θ/(1 + tan²θ)",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark, and the whole question. The 1 + x² in the denominator means the substitution x = tan θ. The expression 2 tan θ/(1 + tan²θ) is the tangent form of sin 2θ, so the inverse sine cancels a double angle here, not a triple one.",
+        "margin_note": "First mark, and the main step of the question. The 1 + x² in the denominator means the substitution x = tan θ. The expression 2 tan θ/(1 + tan²θ) is the tangent form of sin 2θ, so the inverse sine cancels a double angle here, not a triple one.",
         "memory_tip": "2x/(1 + x²) is sin 2θ, 2x/(1 − x²) is tan 2θ and (1 − x²)/(1 + x²) is cos 2θ — all three under the same substitution x = tan θ.",
         "lines": [
           {
@@ -53,9 +53,12 @@
             "style": "heading"
           },
           "Put x = tan θ, so θ = Tan⁻¹x",
-          "Then 2x/(1 + x²) = 2 tan θ/(1 + tan²θ) = sin 2θ   [double-angle identity]",
+          "Then 2x/(1 + x²) = 2 tan θ/(1 + tan²θ) = sin 2θ",
+          "[double-angle identity]",
           "∴ y = Sin⁻¹(sin 2θ)",
-          "Take θ in [−π/4, π/4], that is −1 ≤ x ≤ 1. Then 2θ lies in [−π/2, π/2], the principal range of Sin⁻¹, so",
+          "Take θ in [−π/4, π/4], that is −1 ≤ x ≤ 1.",
+          "Then 2θ lies in [−π/2, π/2],",
+          "the principal range of Sin⁻¹, so",
           "y = 2θ = 2 Tan⁻¹x"
         ],
         "recall": {
@@ -80,7 +83,7 @@
             "two tan inverse x"
           ]
         },
-        "why": "The direct quotient-and-chain-rule route leaves √(1 − 4x²/(1 + x²)²), which only simplifies after clearing the fraction and factoring a perfect square. The substitution reaches 2 Tan⁻¹x in one line instead.",
+        "why": "The direct quotient-and-chain-rule method leaves √(1 − 4x²/(1 + x²)²), which only simplifies after clearing the fraction and factoring a perfect square. The substitution reaches 2 Tan⁻¹x in one line instead.",
         "common_mistakes": [
           "Substituting x = sin θ, which does not match the 1 + x² denominator.",
           "Reading 2x/(1 + x²) as tan 2θ, which is 2x/(1 − x²) and has a minus sign.",

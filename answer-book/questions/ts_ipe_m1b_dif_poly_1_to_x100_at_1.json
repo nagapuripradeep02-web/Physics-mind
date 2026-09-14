@@ -45,7 +45,7 @@
         "label": "Differentiate term by term",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. Differentiate the sum one term at a time using d/dx(xⁿ) = nxⁿ⁻¹. The constant 1 at the front differentiates to 0, so the first surviving term of f′ is the 1 that comes from x.",
+        "margin_note": "First mark. Differentiate the sum one term at a time using d/dx(xⁿ) = nxⁿ⁻¹. The constant 1 at the front differentiates to 0, so the first non-zero term of f′ is the 1 that comes from x.",
         "memory_tip": "Every power drops by one and the old power comes down in front, so the coefficients of f′ read 1, 2, 3 up to 100.",
         "lines": [
           {
@@ -93,9 +93,11 @@
         "margin_note": "Second mark. At x = 1 every power of x is 1, so each term is just its own coefficient. The sum of the first n natural numbers is n(n+1)/2, with n = 100 here.",
         "memory_tip": "1 raised to any power is 1, so putting x = 1 leaves only the coefficients to add.",
         "lines": [
-          "Put x = 1. Every power of 1 equals 1, so each term reduces to its coefficient.",
+          "Put x = 1. Every power of 1 equals 1,",
+          "so each term reduces to its coefficient.",
           "f′(1) = 1 + 2 + 3 + ⋯ + 100",
-          "Sum of the first n natural numbers = n(n+1)/2, with n = 100",
+          "Sum of the first n natural numbers = n(n+1)/2,",
+          "with n = 100",
           "= (100 × 101)/2 = 10100/2",
           {
             "text": "∴ f′(1) = 5050",
@@ -124,7 +126,7 @@
             "hundred into hundred one by two"
           ]
         },
-        "why": "The sum formula is the whole point of the question. Adding 1 to 100 term by term would also reach 5050, but it is far slower than the single line n(n + 1)/2.",
+        "why": "The sum formula is the main idea of the question. Adding 1 to 100 term by term would also reach 5050, but it is far slower than the single line n(n + 1)/2.",
         "common_mistakes": [
           "Trying to add 1 + 2 + ⋯ + 100 one number at a time and running out of time.",
           "Using n(n+1)/2 with n = 99, because the last derivative term shows x⁹⁹."

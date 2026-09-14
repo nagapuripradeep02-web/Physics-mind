@@ -45,14 +45,16 @@
         "label": "Split the logarithm and differentiate once",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. Either route is accepted; differentiating directly gives dy/dx = 8x/(4x² − 9), which is the same thing. Domain: 4x² − 9 > 0, so x > 3/2 or x < −3/2.",
+        "margin_note": "First mark. Either method is accepted; differentiating directly gives dy/dx = 8x/(4x² − 9), which is the same thing. Domain: 4x² − 9 > 0, so x > 3/2 or x < −3/2.",
         "memory_tip": "A difference of two squares inside a logarithm becomes two logarithms added. Factorise before differentiating, not after.",
         "lines": [
           {
             "text": "Sol:",
             "style": "heading"
           },
-          "4x² − 9 = (2x − 3)(2x + 3), and the logarithm of a product is the sum of the logarithms.",
+          "4x² − 9 = (2x − 3)(2x + 3),",
+          "and the logarithm of a product",
+          "is the sum of the logarithms.",
           "∴ y = log(2x − 3) + log(2x + 3),  x > 3/2",
           "Differentiate once, using the chain rule on each term:",
           "dy/dx = 2/(2x − 3) + 2/(2x + 3)"
@@ -94,11 +96,20 @@
         "margin_note": "Second mark. Either form is a complete answer. Check at x = 2: −4/1 − 4/49 = −4.0816, and the numerical second derivative there is −4.0816 as well.",
         "memory_tip": "Both terms have the same shape, so differentiate one and copy the pattern with the sign inside changed.",
         "lines": [
-          "Write each term as a power:  dy/dx = 2(2x − 3)⁻¹ + 2(2x + 3)⁻¹",
+          "Write each term as a power:",
+          "dy/dx = 2(2x − 3)⁻¹ + 2(2x + 3)⁻¹",
           "Differentiate again by the chain rule on each:",
-          "d²y/dx² = 2 · (−1)(2x − 3)⁻² · 2 + 2 · (−1)(2x + 3)⁻² · 2",
+          "d²y/dx² = 2 · (−1)(2x − 3)⁻² · 2",
           {
-            "text": "∴ y″ = −4/(2x − 3)² − 4/(2x + 3)² = −8(4x² + 9)/(4x² − 9)²",
+            "text": "  + 2 · (−1)(2x + 3)⁻² · 2",
+            "style": "indent"
+          },
+          {
+            "text": "∴ y″ = −4/(2x − 3)² − 4/(2x + 3)²",
+            "style": "boxed"
+          },
+          {
+            "text": "= −8(4x² + 9)/(4x² − 9)²",
             "style": "boxed"
           }
         ],

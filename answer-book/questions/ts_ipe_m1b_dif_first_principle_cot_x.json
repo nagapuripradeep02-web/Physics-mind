@@ -94,7 +94,7 @@
         "label": "Combine and simplify the top",
         "marks": 2,
         "mark_note": "Method",
-        "margin_note": "Two marks: one for the common denominator, one for seeing the top collapse to −sin h. The minus is produced by the order of subtraction, not put in by hand.",
+        "margin_note": "Two marks: one for the common denominator, one for showing that the numerator becomes −sin h. The minus is produced by the order of subtraction, not put in by hand.",
         "lines": [
           "cot θ = cos θ/sin θ, so",
           "cot(x + h) − cot x",
@@ -180,5 +180,5 @@
       }
     ]
   },
-  "insider_note": "Write both cotangents as cos/sin and combine over one denominator; the numerator collapses to sin(−h) by the compound formula. That minus is why the answer is −cosec²x."
+  "insider_note": "Write both cotangents as cos/sin and combine over one denominator; the numerator becomes sin(−h) by the compound angle formula. That minus is why the answer is −cosec²x."
 }

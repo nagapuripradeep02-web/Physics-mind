@@ -93,7 +93,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. eˣ appears in all three terms, so it comes out as a common factor. Inside the bracket, sin x appears twice and groups as (1 + x) sin x.",
-        "memory_tip": "eˣ is its own derivative, so it appears in all three terms and can be taken out of the whole answer.",
+        "memory_tip": "eˣ is its own derivative, so it appears in all three terms and can be taken out as a common factor.",
         "lines": [
           "d/dx(xeˣ sin x) = (1)eˣ sin x + x(eˣ) sin x + xeˣ(cos x)",
           "= eˣ sin x + xeˣ sin x + xeˣ cos x",

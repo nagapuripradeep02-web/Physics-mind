@@ -53,7 +53,11 @@
             "style": "heading"
           },
           "Let y = xˣ,  x > 0",
-          "The base x and the exponent x are both variables. The power rule d/dx(xⁿ) = n xⁿ⁻¹ needs a constant exponent, and the exponential rule d/dx(aˣ) = aˣ log a needs a constant base. Neither one applies, so take logarithms first.",
+          "The base x and the exponent x are both variables.",
+          "The power rule d/dx(xⁿ) = n xⁿ⁻¹",
+          "needs a constant exponent, and the exponential rule",
+          "d/dx(aˣ) = aˣ log a needs a constant base.",
+          "Neither one applies, so take logarithms first.",
           "log y = log(xˣ)",
           "∴ log y = x log x"
         ],
@@ -79,7 +83,7 @@
             "logarithmic differentiation"
           ]
         },
-        "why": "Taking logarithms turns the power into a product, and a product is something the product rule can handle. That is the whole reason this method is called logarithmic differentiation.",
+        "why": "Taking logarithms turns the power into a product, and a product is something the product rule can handle. That is why the method is called logarithmic differentiation.",
         "common_mistakes": [
           "Writing the derivative as x · xˣ⁻¹ by using the power rule with a variable exponent.",
           "Writing the derivative as xˣ log x by using the exponential rule with a variable base."
@@ -94,7 +98,9 @@
         "margin_note": "Second mark. Multiply back by y and then replace y with xˣ — the answer must be written in x alone. Check at x = 1: xˣ = 1 and 1 + log 1 = 1, so the derivative is 1.",
         "memory_tip": "The left side always gives one over y times dy/dx, so y always has to be multiplied back at the end.",
         "lines": [
-          "Differentiate both sides with respect to x. The left side needs the chain rule, the right side the product rule.",
+          "Differentiate both sides with respect to x.",
+          "The left side needs the chain rule,",
+          "the right side the product rule.",
           "(1/y)(dy/dx) = x · (1/x) + (log x) · 1",
           "(1/y)(dy/dx) = 1 + log x",
           "dy/dx = y(1 + log x)",

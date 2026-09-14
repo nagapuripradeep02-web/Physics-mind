@@ -140,7 +140,7 @@
         "label": "Differentiate with respect to θ",
         "marks": 1,
         "mark_note": "Solution",
-        "margin_note": "Third mark. The factor 2 comes from the chain rule on 2θ and cancels between the two derivatives, so only the sign and b/a survive.",
+        "margin_note": "Third mark. The factor 2 comes from the chain rule on 2θ and cancels between the two derivatives, so only the sign and b/a are left.",
         "lines": [
           "dx/dθ = a(−sin 2θ)(2) = −2a sin 2θ",
           "dy/dθ = b(cos 2θ)(2) = 2b cos 2θ",
@@ -168,7 +168,7 @@
             "cos two theta"
           ]
         },
-        "why": "Dividing cos 2θ by sin 2θ gives cot 2θ, so the result is one short term instead of the long quotient the direct route produces.",
+        "why": "Dividing cos 2θ by sin 2θ gives cot 2θ, so the result is one short term instead of the long quotient that the direct method gives.",
         "common_mistakes": [
           "Leaving out the factor 2 from the chain rule on 2θ.",
           "Losing the minus sign that comes from differentiating cos 2θ."

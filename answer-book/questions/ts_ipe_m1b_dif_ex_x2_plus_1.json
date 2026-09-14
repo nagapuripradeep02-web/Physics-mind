@@ -52,7 +52,8 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Let y = eˣ(x² + 1). This is a product, so take u = eˣ and v = x² + 1",
+          "Let y = eˣ(x² + 1). This is a product, so take u = eˣ",
+          "and v = x² + 1",
           "d/dx(uv) = u · dv/dx + v · du/dx",
           "du/dx = eˣ  and  dv/dx = 2x",
           "∴ dy/dx = eˣ(2x) + (x² + 1)eˣ"

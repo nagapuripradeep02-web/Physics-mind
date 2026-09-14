@@ -136,8 +136,13 @@
         "mark_note": "Answer",
         "margin_note": "Last mark. Write the two lines side by side before cancelling — the a cos x pair and the (b + 2x) sin x pair each cancel, and 4 cos x is all that is left.",
         "lines": [
-          "y″ + y = [−a cos x + 4 cos x − (b + 2x) sin x] + [a cos x + (b + 2x) sin x]",
-          "The −a cos x and a cos x cancel, and the two (b + 2x) sin x terms cancel",
+          "y″ + y = [−a cos x + 4 cos x − (b + 2x) sin x]",
+          {
+            "text": "  + [a cos x + (b + 2x) sin x]",
+            "style": "indent"
+          },
+          "The −a cos x and a cos x cancel,",
+          "and the two (b + 2x) sin x terms cancel",
           {
             "text": "∴ y″ + y = 4 cos x",
             "style": "boxed"
@@ -170,7 +175,7 @@
           "Subtracting y instead of adding it.",
           "Leaving a or b in the final line, which means an earlier sign is wrong."
         ],
-        "memory_tip": "The result has no a and no b, so if either survives the cancelling, go back to y″."
+        "memory_tip": "The result has no a and no b, so if either is still there after cancelling, check y″ again."
       }
     ]
   },

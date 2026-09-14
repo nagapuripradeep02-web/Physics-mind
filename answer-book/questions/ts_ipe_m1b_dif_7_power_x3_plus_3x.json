@@ -53,7 +53,8 @@
             "style": "heading"
           },
           "Let y = 7ˣ³⁺³ˣ",
-          "The base 7 is a constant and the exponent is a function of x, so the rule is",
+          "The base 7 is a constant and the exponent",
+          "is a function of x, so the rule is",
           "d/dx(aᵘ) = aᵘ · logₑa · du/dx",
           "Here a = 7 and u = x³ + 3x",
           "∴ dy/dx = 7ˣ³⁺³ˣ · logₑ7 · d/dx(x³ + 3x)"
@@ -80,7 +81,7 @@
             "derivative of the power"
           ]
         },
-        "why": "Choosing the rule is the whole decision in this question. The power rule d/dx(uⁿ) = nuⁿ⁻¹ applies when the power is a fixed number; here the power moves with x and the base does not, so the exponential rule applies instead. logₑ7 means the natural logarithm of 7, written simply as log 7 at this level.",
+        "why": "The main decision in this question is which rule to use. The power rule d/dx(uⁿ) = nuⁿ⁻¹ applies when the power is a fixed number; here the power changes with x and the base does not, so the exponential rule applies instead. logₑ7 means the natural logarithm of 7, written simply as log 7 at this level.",
         "common_mistakes": [
           "Using the power rule and writing (x³ + 3x)·7ˣ³⁺³ˣ⁻¹.",
           "Leaving out the logₑ7 factor."

@@ -60,7 +60,8 @@
             "style": "heading"
           },
           "y = axⁿ⁺¹ + bx⁻ⁿ",
-          "Differentiate each power by bringing the index down and reducing it by one:",
+          "Differentiate each power by bringing the index down",
+          "and reducing it by one:",
           "y′ = a(n + 1)xⁿ − bn x⁻ⁿ⁻¹"
         ],
         "recall": {
@@ -98,7 +99,7 @@
         "label": "Differentiate again",
         "marks": 1,
         "mark_note": "Solution",
-        "margin_note": "Second mark. Both terms now carry the same factor n(n + 1) — that shared factor is the whole reason the result works.",
+        "margin_note": "Second mark. Both terms now carry the same factor n(n + 1) — that common factor is what gives the result.",
         "lines": [
           "y″ = a(n + 1)n xⁿ⁻¹ − bn(−n − 1)x⁻ⁿ⁻²",
           "y″ = an(n + 1)xⁿ⁻¹ + bn(n + 1)x⁻ⁿ⁻²"

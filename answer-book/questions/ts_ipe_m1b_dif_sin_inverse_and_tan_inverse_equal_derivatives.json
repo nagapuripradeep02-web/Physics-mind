@@ -63,12 +63,22 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given f(x) = Sin⁻¹√((x − β)/(α − β))  and  g(x) = Tan⁻¹√((x − β)/(α − x)),  with β < x < α.",
-          "β < x < α makes x − β > 0, α − x > 0 and α − β > 0, so both radicands are positive and both functions are defined. That is what the given condition is for.",
+          "Given f(x) = Sin⁻¹√((x − β)/(α − β))",
+          "and  g(x) = Tan⁻¹√((x − β)/(α − x)),  with β < x < α.",
+          "β < x < α makes x − β > 0, α − x > 0 and α − β > 0,",
+          "so both radicands are positive",
+          "and both functions are defined.",
+          "That is what the given condition is for.",
           "Also 0 < (x − β)/(α − β) < 1.",
-          "Put x − β = (α − β)sin²θ,  so  sin²θ = (x − β)/(α − β)  and  θ = Sin⁻¹√((x − β)/(α − β)).",
-          "Then 0 < sin²θ < 1, and taking the principal value gives 0 < θ < π/2.",
-          "α − x = (α − β) − (x − β) = (α − β) − (α − β)sin²θ = (α − β)cos²θ"
+          "Put x − β = (α − β)sin²θ,  so  sin²θ = (x − β)/(α − β)",
+          "and  θ = Sin⁻¹√((x − β)/(α − β)).",
+          "Then 0 < sin²θ < 1, and taking the principal value",
+          "gives 0 < θ < π/2.",
+          "α − x = (α − β) − (x − β) = (α − β) − (α − β)sin²θ",
+          {
+            "text": "  = (α − β)cos²θ",
+            "style": "indent"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -113,7 +123,8 @@
           "f(x) = Sin⁻¹√(sin²θ) = Sin⁻¹|sin θ|",
           "0 < θ < π/2, so sin θ > 0 and |sin θ| = sin θ:",
           "f(x) = Sin⁻¹(sin θ)",
-          "θ lies in (0, π/2), which is inside [−π/2, π/2], the principal range of Sin⁻¹.",
+          "θ lies in (0, π/2), which is inside [−π/2, π/2],",
+          "the principal range of Sin⁻¹.",
           "∴ f(x) = θ"
         ],
         "recall": {
@@ -154,11 +165,16 @@
         "mark_note": "Method",
         "margin_note": "Two marks. This is the step the question is really testing: the SAME θ comes out of a different-looking function. The factor (α − β) cancels between the top and the bottom.",
         "lines": [
-          "(x − β)/(α − x) = (α − β)sin²θ/((α − β)cos²θ) = sin²θ/cos²θ = tan²θ",
+          "(x − β)/(α − x) = (α − β)sin²θ/((α − β)cos²θ)",
+          {
+            "text": "  = sin²θ/cos²θ = tan²θ",
+            "style": "indent"
+          },
           "g(x) = Tan⁻¹√(tan²θ) = Tan⁻¹|tan θ|",
           "0 < θ < π/2, so tan θ > 0 and |tan θ| = tan θ:",
           "g(x) = Tan⁻¹(tan θ)",
-          "θ lies in (0, π/2), which is inside (−π/2, π/2), the principal range of Tan⁻¹.",
+          "θ lies in (0, π/2), which is inside (−π/2, π/2),",
+          "the principal range of Tan⁻¹.",
           "∴ g(x) = θ"
         ],
         "recall": {
@@ -184,12 +200,12 @@
             "alpha minus beta cancels"
           ]
         },
-        "why": "Once α − x is written as (α − β)cos²θ, the common factor α − β cancels and only sin²θ/cos²θ is left. That is the whole reason a sine inverse and a tangent inverse of two different fractions turn out to be the same angle.",
+        "why": "Once α − x is written as (α − β)cos²θ, the common factor α − β cancels and only sin²θ/cos²θ is left. That is why a sine inverse and a tangent inverse of two different fractions turn out to be the same angle.",
         "common_mistakes": [
           "Using α − β in place of α − x in the denominator of g, which is the other function and defeats the question.",
           "Writing √(tan²θ) as tan θ with no word about the sign, the same slip as in the previous step."
         ],
-        "memory_tip": "f carries the whole interval α − β underneath and g carries only the part above x. The substitution splits α − β into sin²θ and cos²θ parts, so f sees a sine and g sees a tangent."
+        "memory_tip": "f carries the whole interval α − β underneath and g carries only the part above x. The substitution splits α − β into sin²θ and cos²θ parts, so f gives a sine and g gives a tangent."
       },
       {
         "id": "s4_equal",
@@ -199,9 +215,11 @@
         "mark_note": "Solution",
         "margin_note": "One mark. This is the sentence the question asks for. Say that f and g agree at EVERY point of the open interval, not at one point — equality at a single point would prove nothing about derivatives.",
         "lines": [
-          "For every x with β < x < α, both f(x) and g(x) equal the same θ.",
+          "For every x with β < x < α, both f(x)",
+          "and g(x) equal the same θ.",
           "∴ f(x) = g(x) for all x in (β, α)",
-          "Two functions that are equal at every point of an interval have equal derivatives at every interior point of it.",
+          "Two functions that are equal at every point of an interval",
+          "have equal derivatives at every interior point of it.",
           "∴ f′(x) = g′(x)"
         ],
         "recall": {
@@ -242,9 +260,19 @@
         "mark_note": "Answer",
         "margin_note": "Last mark. One extra line gives the shared value, and it is the honest check on everything above: the result is symmetric in x − β and α − x, exactly as the two forms of the question are.",
         "lines": [
-          "Differentiate sin²θ = (x − β)/(α − β) with respect to x, taking θ as a function of x:",
-          "2 sin θ cos θ · (dθ/dx) = 1/(α − β),  that is  (α − β) sin 2θ · (dθ/dx) = 1",
-          "(α − β) sin 2θ = 2(α − β) sin θ cos θ = 2·√((α − β)sin²θ)·√((α − β)cos²θ) = 2√(x − β)·√(α − x)",
+          "Differentiate sin²θ = (x − β)/(α − β) with respect to x,",
+          "taking θ as a function of x:",
+          "2 sin θ cos θ · (dθ/dx) = 1/(α − β),",
+          "that is  (α − β) sin 2θ · (dθ/dx) = 1",
+          "(α − β) sin 2θ = 2(α − β) sin θ cos θ",
+          {
+            "text": "  = 2·√((α − β)sin²θ)·√((α − β)cos²θ)",
+            "style": "indent"
+          },
+          {
+            "text": "  = 2√(x − β)·√(α − x)",
+            "style": "indent"
+          },
           "f(x) = g(x) = θ, so f′(x) = g′(x) = dθ/dx",
           {
             "text": "∴ f′(x) = g′(x) = 1/(2√((x − β)(α − x)))",

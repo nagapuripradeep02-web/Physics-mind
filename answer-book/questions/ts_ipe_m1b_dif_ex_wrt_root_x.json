@@ -93,10 +93,11 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. x > 0 is stated because √x has no derivative at x = 0. Dividing by 1/(2√x) multiplies by 2√x, so the answer is eˣ times 2√x — larger than eˣ when x > 1/4, smaller when x < 1/4.",
-        "memory_tip": "The 2 in the answer comes from turning 1/(2√x) upside down. A half underneath becomes a two on top.",
+        "memory_tip": "The 2 in the answer comes from dividing by 1/(2√x), which is the same as multiplying by 2√x.",
         "lines": [
           "du/dv = (du/dx)/(dv/dx) = eˣ ÷ 1/(2√x)",
-          "Dividing by a fraction is the same as multiplying by its reciprocal.",
+          "Dividing by a fraction",
+          "is the same as multiplying by its reciprocal.",
           "= eˣ · 2√x",
           {
             "text": "∴ d(eˣ)/d(√x) = 2√x · eˣ,  x > 0",
@@ -125,7 +126,7 @@
             "flip"
           ]
         },
-        "why": "Dividing by 1/(2√x) is the same as multiplying by 2√x. Writing 2√x on top rather than underneath is the check that the fraction has not been turned over the wrong way.",
+        "why": "Dividing by 1/(2√x) is the same as multiplying by 2√x. Check that 2√x is in the numerator, not in the denominator.",
         "common_mistakes": [
           "Multiplying by 1/(2√x) instead of dividing, which gives eˣ/(2√x).",
           "Writing 2√x · eˣ as 2√(x eˣ), putting eˣ inside the square root."

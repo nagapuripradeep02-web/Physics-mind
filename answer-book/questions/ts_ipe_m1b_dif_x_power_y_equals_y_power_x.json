@@ -61,7 +61,9 @@
             "style": "heading"
           },
           "Given  xʸ = yˣ",
-          "Here x and y each stand in a base and in a power, so neither the power rule nor the exponential rule applies. Take logarithms of both sides.",
+          "Here x and y each stand in a base and in a power,",
+          "so neither the power rule nor the exponential rule applies.",
+          "Take logarithms of both sides.",
           "log(xʸ) = log(yˣ)",
           "∴ y log x = x log y      …(1)",
           "This needs x > 0 and y > 0, so that log x and log y exist."
@@ -104,7 +106,8 @@
         "margin_note": "Two marks. Each side is a product of two factors, and y is a function of x, so every derivative of y carries a dy/dx with it. Four terms should appear, two on each side.",
         "memory_tip": "y is not a constant. Every time y is differentiated, a dy/dx is written beside it.",
         "lines": [
-          "Differentiating (1) with respect to x, using the product rule on each side,",
+          "Differentiating (1) with respect to x,",
+          "using the product rule on each side,",
           "y · (1/x) + log x · (dy/dx) = x · (1/y)(dy/dx) + log y · 1",
           "∴ (y/x) + log x · (dy/dx) = (x/y)(dy/dx) + log y      …(2)"
         ],
@@ -147,7 +150,8 @@
         "margin_note": "Two marks. Move both dy/dx terms to the left and both plain terms to the right, then take dy/dx outside a bracket. Nothing is cancelled here, only rearranged.",
         "memory_tip": "All the dy/dx terms go to one side and everything else to the other, exactly as with an ordinary linear equation in one unknown.",
         "lines": [
-          "From (2), bringing the dy/dx terms to the left and the rest to the right,",
+          "From (2), bringing the dy/dx terms to the left",
+          "and the rest to the right,",
           "log x · (dy/dx) − (x/y)(dy/dx) = log y − (y/x)",
           "∴ (dy/dx)[log x − (x/y)] = log y − (y/x)      …(3)"
         ],
@@ -175,7 +179,7 @@
             "dy by dx"
           ]
         },
-        "why": "The equation is linear in dy/dx, so gathering its two terms and factoring it out is the only move needed to make it the subject.",
+        "why": "The equation is linear in dy/dx, so gathering its two terms and factoring it out is the step that makes it the subject.",
         "common_mistakes": [
           "Changing a sign while shifting a term across the equals sign.",
           "Taking dy/dx outside but leaving one of its terms behind on the right."
@@ -191,7 +195,8 @@
         "memory_tip": "The y that was under the bracket on the left ends up on top of the answer, and the x that was under the right side ends up on the bottom.",
         "lines": [
           "Writing each side over a single denominator,",
-          "log x − (x/y) = (y log x − x)/y     and     log y − (y/x) = (x log y − y)/x",
+          "log x − (x/y) = (y log x − x)/y",
+          "and     log y − (y/x) = (x log y − y)/x",
           "So (3) becomes  (dy/dx) · (y log x − x)/y = (x log y − y)/x",
           "∴ dy/dx = [(x log y − y)/x] · [y/(y log x − x)]",
           {
@@ -226,7 +231,7 @@
         "why": "The question states the answer, so the marks are for landing on that exact form. Clearing the small fractions x/y and y/x is what turns the rearranged equation into the printed expression, with y on top and x on the bottom.",
         "common_mistakes": [
           "Leaving the answer as (log y − y/x)/(log x − x/y), which is correct but is not the form asked for.",
-          "Exchanging x and y in the final line, which reverses the whole fraction."
+          "Exchanging x and y in the final line, which gives a different fraction."
         ]
       }
     ]

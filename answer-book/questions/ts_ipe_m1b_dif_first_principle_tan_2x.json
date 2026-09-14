@@ -141,7 +141,7 @@
         "label": "Recognise sin 2h on top",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Third mark. The whole numerator collapses to sin 2h. x has left the top, so everything that still depends on x is in the denominator.",
+        "margin_note": "Third mark. The numerator becomes sin 2h. x is no longer in the numerator, so everything that still depends on x is in the denominator.",
         "lines": [
           "sin A cos B − cos A sin B = sin(A − B), so with",
           "A = 2x + 2h and B = 2x,",

@@ -53,8 +53,10 @@
             "style": "heading"
           },
           "Let y = sec(√(tan x)),  where tan x ≥ 0",
-          "There are three layers: sec is outside, √ is next, and tan x is inside.",
-          "Take u = √(tan x). Then y = sec u and d/dx(sec u) = sec u · tan u · du/dx",
+          "There are three layers: sec is outside, √ is next,",
+          "and tan x is inside.",
+          "Take u = √(tan x). Then y = sec u",
+          "and d/dx(sec u) = sec u · tan u · du/dx",
           "∴ dy/dx = sec(√(tan x))·tan(√(tan x)) · d/dx(√(tan x))"
         ],
         "recall": {
@@ -94,10 +96,15 @@
         "margin_note": "Second mark. Two pieces sit here: the square root gives 1/(2√(tan x)), and tan x gives sec²x. Both must appear.",
         "memory_tip": "A square root always leaves its own inside under the line: √v gives 1/(2√v), so √(tan x) leaves 2√(tan x) in the denominator.",
         "lines": [
-          "For v = tan x,  d/dx(√v) = 1/(2√v) · dv/dx  and  d/dx(tan x) = sec²x",
+          "For v = tan x,  d/dx(√v) = 1/(2√v) · dv/dx",
+          "and  d/dx(tan x) = sec²x",
           "∴ d/dx(√(tan x)) = sec²x / (2√(tan x))",
           {
-            "text": "∴ dy/dx = [sec²x · sec(√(tan x)) · tan(√(tan x))] / (2√(tan x))",
+            "text": "∴ dy/dx = [sec²x · sec(√(tan x)) · tan(√(tan x))]",
+            "style": "boxed"
+          },
+          {
+            "text": "/ (2√(tan x))",
             "style": "boxed"
           }
         ],

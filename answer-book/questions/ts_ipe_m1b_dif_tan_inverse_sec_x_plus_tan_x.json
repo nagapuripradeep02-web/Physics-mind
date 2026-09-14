@@ -99,9 +99,21 @@
         "mark_note": "Method",
         "margin_note": "Second mark. 1 + sin x is a perfect square in the half angles, and cos x factorises with the same bracket — that shared factor is what cancels.",
         "lines": [
-          "1 + sin x = cos²(x/2) + sin²(x/2) + 2 sin(x/2) cos(x/2) = (cos(x/2) + sin(x/2))²",
-          "cos x = cos²(x/2) − sin²(x/2) = (cos(x/2) + sin(x/2))(cos(x/2) − sin(x/2))",
-          "(1 + sin x)/cos x = (cos(x/2) + sin(x/2)) / (cos(x/2) − sin(x/2))"
+          "1 + sin x = cos²(x/2) + sin²(x/2) + 2 sin(x/2) cos(x/2)",
+          {
+            "text": "  = (cos(x/2) + sin(x/2))²",
+            "style": "indent"
+          },
+          "cos x = cos²(x/2) − sin²(x/2)",
+          {
+            "text": "  = (cos(x/2) + sin(x/2))(cos(x/2) − sin(x/2))",
+            "style": "indent"
+          },
+          "(1 + sin x)/cos x",
+          {
+            "text": "  = (cos(x/2) + sin(x/2)) / (cos(x/2) − sin(x/2))",
+            "style": "indent"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -142,8 +154,10 @@
         "margin_note": "Third mark. This is the identity the question is built on. For −π/2 < x < π/2 the angle π/4 + x/2 lies in (0, π/2), inside the principal range, so the inverse tangent cancels the tangent exactly.",
         "lines": [
           "Divide numerator and denominator by cos(x/2):",
-          "= (1 + tan(x/2)) / (1 − tan(x/2)) = tan(π/4 + x/2),  since tan(π/4) = 1",
-          "For −π/2 < x < π/2, the angle π/4 + x/2 lies in (0, π/2), so",
+          "= (1 + tan(x/2)) / (1 − tan(x/2)) = tan(π/4 + x/2),",
+          "since tan(π/4) = 1",
+          "For −π/2 < x < π/2,",
+          "the angle π/4 + x/2 lies in (0, π/2), so",
           "y = Tan⁻¹(tan(π/4 + x/2)) = π/4 + x/2"
         ],
         "recall": {
@@ -212,7 +226,7 @@
             "pi by four"
           ]
         },
-        "why": "After the simplification the function is a straight line in x, so its derivative is the constant slope 1/2 — no trigonometric term survives.",
+        "why": "After the simplification the function is a straight line in x, so its derivative is the constant slope 1/2 — no trigonometric term is left.",
         "common_mistakes": [
           "Differentiating π/4 as π/4 rather than 0.",
           "Giving 2 instead of 1/2 by differentiating x/2 as 2x."
