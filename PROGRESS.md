@@ -37,7 +37,14 @@ Every boxed answer survived except two, both fixed: `te_sum_x_y_sin_sum` listed 
 - From Maths-2B: DE order/degree (Degree = 1 vs 6), ellipse equal intercepts, hyperbola x + 2y = 0 asymptote, the 30° asymptote angle reading, the non-real circle in System of Circles.
 
 ### Next session
-Maths-1A is complete once #206 and this PR merge. Maths-1B is the next paper.
+**Both merged 2026-09-14** — #206 (`ef94d943`) then #207 retargeted to master (`e9069196`). Maths-1A is complete on master: 556 cards.
+
+Maths-1B is the next and last maths paper — **read `MATHS_1B_HANDOFF.md`** (repo root of the main checkout). In short:
+- Desk `feat/answerbook-maths-1b-worked-in-full` is open at `e9069196`, with the helper kit in `.expansion_kit/` (untracked).
+- 375 cards in 10 units. 16.4% of its lines (863) already wrap, most of them equation or boxed lines, so every chapter needs a hand-assisted reflow in its base commit.
+- 40 working lines and 14 question headers have ASCII carets. Ask the founder whether headers may be fixed.
+- The `mpc` build is already 14.3 MB against the 16 MB artifact limit.
+- First step: base-fix Applications of Derivatives, expand one sample card, show the founder, wait.
 
 ## 📗 SESSION — Maths-1A opens: Trigonometry and Matrices written out in full, 214 cards (2026-09-14, `feat/answerbook-maths-1a-worked-in-full`)
 
