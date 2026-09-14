@@ -52,10 +52,19 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Putting x = 3 gives (9 − 24 + 15)/(9 − 9) = 0/0, so both parts are factorised.",
-          "x² − 8x + 15 = x² − 3x − 5x + 15 = x(x − 3) − 5(x − 3) = (x − 3)(x − 5)",
+          "Putting x = 3 gives (9 − 24 + 15)/(9 − 9) = 0/0,",
+          "so both parts are factorised.",
+          "x² − 8x + 15 = x² − 3x − 5x + 15 = x(x − 3) − 5(x − 3)",
+          {
+            "text": "  = (x − 3)(x − 5)",
+            "style": "indent"
+          },
           "x² − 9 = x² − 3² = (x − 3)(x + 3)",
-          "∴ lim(x → 3) (x² − 8x + 15)/(x² − 9) = lim(x → 3) (x − 3)(x − 5)/[(x − 3)(x + 3)]"
+          "∴ lim(x → 3) (x² − 8x + 15)/(x² − 9)",
+          {
+            "text": "  = lim(x → 3) (x − 3)(x − 5)/[(x − 3)(x + 3)]",
+            "style": "indent"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -91,7 +100,7 @@
         "label": "Cancel (x − 3) and substitute",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Second mark. Say x ≠ 3 before cancelling — a limit at 3 never uses the value at 3, which is what makes the cancelling legal.",
+        "margin_note": "Second mark. Say x ≠ 3 before cancelling — a limit at 3 does not use the value at 3, which is what allows the cancelling.",
         "memory_tip": "Cancel first, substitute second. Substituting before cancelling gives 0/0 again.",
         "lines": [
           "As x → 3 we have x ≠ 3, so (x − 3) may be cancelled:",

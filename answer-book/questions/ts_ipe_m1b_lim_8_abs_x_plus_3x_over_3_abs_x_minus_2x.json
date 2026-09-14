@@ -51,7 +51,8 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "x → ∞ means x takes larger and larger positive values, so x > 0.",
+          "x → ∞ means x takes larger and larger positive values,",
+          "so x > 0.",
           "For x > 0,  |x| = x",
           "∴ 8|x| + 3x = 8x + 3x = 11x",
           "and 3|x| − 2x = 3x − 2x = x"
@@ -131,5 +132,5 @@
       }
     ]
   },
-  "insider_note": "x → ∞ means x is POSITIVE, so |x| = x and the modulus simply disappears. The whole question is deciding the sign of x before anything else."
+  "insider_note": "x → ∞ means x is POSITIVE, so |x| = x and the modulus can be removed. Decide the sign of x before anything else."
 }

@@ -52,9 +52,11 @@
             "style": "heading"
           },
           "At x = 0, sin ax = 0 and x cos x = 0, so the form is 0/0.",
-          "Split the expression into the indeterminate part and the ordinary part.",
+          "Split the expression into the indeterminate part",
+          "and the ordinary part.",
           "sin(ax)/(x cos x) = [sin(ax)/x] · [1/cos x]",
-          "Multiply and divide the first factor by a so the angle ax appears below the sine.",
+          "Multiply and divide the first factor by a",
+          "so the angle ax appears below the sine.",
           "= a · [sin(ax)/(ax)] · [1/cos x]"
         ],
         "recall": {
@@ -92,7 +94,7 @@
         "label": "Apply lim sin θ / θ = 1",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Second mark. As x → 0 the angle ax → 0, so the sine bracket is 1, and cos 0 = 1. Only the coefficient a survives.",
+        "margin_note": "Second mark. As x → 0 the angle ax → 0, so the sine bracket is 1, and cos 0 = 1. The coefficient a is left.",
         "lines": [
           "As x → 0, ax → 0, so lim(x → 0) sin(ax)/(ax) = 1.",
           "Also cos x → cos 0 = 1, so 1/cos x → 1.",

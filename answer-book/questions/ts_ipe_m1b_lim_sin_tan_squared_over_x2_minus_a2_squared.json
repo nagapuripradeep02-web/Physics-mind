@@ -51,11 +51,15 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "At x = a both the numerator and the denominator are 0, so the form is 0/0. Take a ≠ 0.",
-          "The numerator sin(x − a) · tan²(x − a) behaves like (x − a)³ near x = a: three powers.",
-          "The denominator is  (x² − a²)² = (x − a)²(x + a)²:  two powers of (x − a).",
+          "At x = a both the numerator and the denominator are 0,",
+          "so the form is 0/0. Take a ≠ 0.",
+          "The numerator sin(x − a) · tan²(x − a) behaves like",
+          "(x − a)³ near x = a: three powers.",
+          "The denominator is  (x² − a²)² = (x − a)²(x + a)²:",
+          "two powers of (x − a).",
           "So write the expression as",
-          "[sin(x − a)/(x − a)] · [tan(x − a)/(x − a)]² · (x − a)/(x + a)²"
+          "[sin(x − a)/(x − a)] · [tan(x − a)/(x − a)]²",
+          "· (x − a)/(x + a)²"
         ],
         "recall": {
           "credit": "say_it",
@@ -79,7 +83,7 @@
             "x minus a"
           ]
         },
-        "why": "Whether such a limit is a number or 0 is settled entirely by the count of factors, so counting before cancelling is what decides the whole answer. Here the count is 3 above against 2 below.",
+        "why": "Whether such a limit is a number or 0 is decided by the count of factors, so count them before cancelling. Here the count is 3 above against 2 below.",
         "common_mistakes": [
           "Reading (x² − a²)² as carrying four powers of (x − a).",
           "Cancelling all three powers above against the two below and answering 1/(2a)²."
@@ -95,12 +99,18 @@
         "margin_note": "Second mark. The two bracketed quotients tend to 1, and the leftover factor (x − a)/(x + a)² tends to 0/(2a)². The answer is 0.",
         "lines": [
           "As x → a, the angle (x − a) → 0, so",
-          "lim sin(x − a)/(x − a) = 1   and   lim [tan(x − a)/(x − a)]² = 1² = 1",
-          "The remaining factor is continuous at x = a, so substitute x = a:",
+          "lim sin(x − a)/(x − a) = 1",
+          "and   lim [tan(x − a)/(x − a)]² = 1² = 1",
+          "The remaining factor is continuous at x = a,",
+          "so substitute x = a:",
           "(x − a)/(x + a)² → 0/(2a)² = 0",
           "∴ the limit = 1 · 1 · 0",
           {
-            "text": "∴ lim(x → a) (sin(x − a) · tan²(x − a))/((x² − a²)²) = 0,  a ≠ 0",
+            "text": "∴ lim(x → a) (sin(x − a) · tan²(x − a))",
+            "style": "boxed"
+          },
+          {
+            "text": "/((x² − a²)²) = 0,  a ≠ 0",
             "style": "boxed"
           }
         ],
@@ -135,5 +145,5 @@
       }
     ]
   },
-  "insider_note": "Count powers of (x − a): three on top, two below, so one survives and drives the answer to 0. A limit of 0 is the correct answer here, not a sign of a mistake."
+  "insider_note": "Count powers of (x − a): three on top, two below, so one factor is left, and it makes the limit 0. A limit of 0 is the correct answer here, not a sign of a mistake."
 }

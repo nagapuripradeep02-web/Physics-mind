@@ -51,7 +51,8 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "At x = 1, sin(x − 1) = sin 0 = 0 and x² − 1 = 0, so the form is 0/0.",
+          "At x = 1, sin(x − 1) = sin 0 = 0 and x² − 1 = 0,",
+          "so the form is 0/0.",
           "Factor the denominator:  x² − 1 = (x − 1)(x + 1).",
           "sin(x − 1)/(x² − 1) = [sin(x − 1)/(x − 1)] · [1/(x + 1)]"
         ],
@@ -92,8 +93,10 @@
         "mark_note": "Answer",
         "margin_note": "Second mark. As x → 1 the angle x − 1 → 0, so the first bracket tends to 1; the second bracket is continuous at x = 1 and is substituted.",
         "lines": [
-          "As x → 1, the angle (x − 1) → 0, so lim(x → 1) sin(x − 1)/(x − 1) = 1.",
-          "The factor 1/(x + 1) is defined at x = 1, so substitute x = 1: 1/(1 + 1) = 1/2.",
+          "As x → 1, the angle (x − 1) → 0,",
+          "so lim(x → 1) sin(x − 1)/(x − 1) = 1.",
+          "The factor 1/(x + 1) is defined at x = 1,",
+          "so substitute x = 1: 1/(1 + 1) = 1/2.",
           "= 1 · 1/2",
           {
             "text": "∴ lim(x → 1) sin(x − 1)/(x² − 1) = 1/2",

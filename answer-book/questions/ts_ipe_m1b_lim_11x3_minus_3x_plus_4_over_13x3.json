@@ -51,9 +51,15 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "As x → ∞ both lines increase without bound, so this is the indeterminate form ∞/∞.",
-          "The highest power of x present is x³. Divide every term of both lines by x³ (x ≠ 0):",
-          "(11x³ − 3x + 4)/(13x³ − 5x² − 7) = (11 − 3/x² + 4/x³)/(13 − 5/x − 7/x³)"
+          "As x → ∞ both lines increase without bound,",
+          "so this is the indeterminate form ∞/∞.",
+          "The highest power of x present is x³.",
+          "Divide every term of both lines by x³ (x ≠ 0):",
+          "(11x³ − 3x + 4)/(13x³ − 5x² − 7)",
+          {
+            "text": "  = (11 − 3/x² + 4/x³)/(13 − 5/x − 7/x³)",
+            "style": "indent"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -95,7 +101,11 @@
           "As x → ∞:  3/x² → 0,  4/x³ → 0,  5/x → 0,  7/x³ → 0",
           "∴ limit = (11 − 0 + 0)/(13 − 0 − 0) = 11/13",
           {
-            "text": "∴ lim(x → ∞) (11x³ − 3x + 4)/(13x³ − 5x² − 7) = 11/13",
+            "text": "∴ lim(x → ∞) (11x³ − 3x + 4)/(13x³ − 5x² − 7)",
+            "style": "boxed"
+          },
+          {
+            "text": "= 11/13",
             "style": "boxed"
           }
         ],
@@ -121,7 +131,7 @@
             "go to zero"
           ]
         },
-        "why": "Only the leading terms survive, so the value is the ratio of the coefficients of x³.",
+        "why": "The other terms go to 0, so the value is the ratio of the coefficients of x³.",
         "common_mistakes": [
           "Giving 13/11 by inverting the ratio.",
           "Trying to reduce 11/13 further; 11 and 13 have no common factor."

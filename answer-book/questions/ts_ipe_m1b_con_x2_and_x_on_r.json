@@ -53,7 +53,7 @@
         "label": "Check each piece on its own interval",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. The question asks about ℝ, not about one point, so the two open intervals must be dealt with before the join. Both pieces are polynomials, which is the shortest possible reason.",
+        "margin_note": "First mark. The question asks about R, not about one point, so the two open intervals must be dealt with before the join. Both pieces are polynomials, which is a short reason.",
         "memory_tip": "Every polynomial is continuous at every real number, so a piecewise function built from polynomials can only fail where the pieces meet.",
         "lines": [
           {
@@ -61,9 +61,12 @@
             "style": "heading"
           },
           "Given f(x) = x²   for x ≤ 1,   and f(x) = x   for x > 1",
-          "For x < 1:  f(x) = x² is a polynomial, so f is continuous on (−∞, 1).",
-          "For x > 1:  f(x) = x is a polynomial, so f is continuous on (1, ∞).",
-          "The two formulas meet at x = 1, so that single point is all that is left to check."
+          "For x < 1:  f(x) = x² is a polynomial,",
+          "so f is continuous on (−∞, 1).",
+          "For x > 1:  f(x) = x is a polynomial,",
+          "so f is continuous on (1, ∞).",
+          "The two formulas meet at x = 1,",
+          "so that single point is all that is left to check."
         ],
         "recall": {
           "credit": "say_it",
@@ -87,7 +90,7 @@
             "continuous on the intervals"
           ]
         },
-        "why": "The question is about the whole of ℝ, so the answer must account for every real number. Clearing the two open intervals in one line reduces the rest of the work to a single junction test.",
+        "why": "The question is about the whole of R, so the answer must account for every real number. Clearing the two open intervals in one line reduces the rest of the work to a single junction test.",
         "common_mistakes": [
           "Testing x = 1 and stopping, without saying anything about the rest of the line.",
           "Assuming a piecewise function must be discontinuous somewhere just because it is written in two parts."
@@ -104,7 +107,8 @@
         "lines": [
           "At x = 1:",
           "lim(x → 1⁻) f(x) = lim(x → 1⁻) x² = 1² = 1",
-          "f(1) = 1² = 1      (x = 1 satisfies x ≤ 1, so the value comes from the x² piece)"
+          "f(1) = 1² = 1",
+          "(x = 1 satisfies x ≤ 1, so the value comes from the x² piece)"
         ],
         "recall": {
           "credit": "say_it",
@@ -140,12 +144,13 @@
         "label": "Find the right limit at 1",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Third mark. The right limit uses the x piece. All three numbers come out as 1, which is the whole reason this function is continuous at the join.",
+        "margin_note": "Third mark. The right limit uses the x piece. All three numbers come out as 1, which is why this function is continuous at the join.",
         "memory_tip": "x² and x are equal at exactly two places, x = 0 and x = 1, and the join here is at one of them — that is why the pieces fit.",
         "lines": [
           "lim(x → 1⁺) f(x) = lim(x → 1⁺) x = 1",
           "∴ lim(x → 1⁻) f(x) = f(1) = lim(x → 1⁺) f(x) = 1",
-          "The two formulas take the same value at x = 1, since 1² = 1, so f is continuous at x = 1."
+          "The two formulas take the same value at x = 1,",
+          "since 1² = 1, so f is continuous at x = 1."
         ],
         "recall": {
           "credit": "say_it",
@@ -181,19 +186,21 @@
         "label": "Conclude for the whole real line",
         "marks": 1,
         "mark_note": "Solution",
-        "margin_note": "Last mark. Say why one point settles ℝ: the two open intervals and the single point x = 1 together are every real number, so nothing is left untested.",
-        "memory_tip": "(−∞, 1) together with {1} and (1, ∞) is the whole of ℝ — three sets, no gaps, so three checks finish the question.",
+        "margin_note": "Last mark. Say why checking one point is enough for R: the two open intervals and the single point x = 1 together are every real number, so nothing is left untested.",
+        "memory_tip": "(−∞, 1) together with {1} and (1, ∞) is all of R — three sets, no gaps, so three checks finish the question.",
         "lines": [
-          "f is continuous on (−∞, 1), continuous at x = 1, and continuous on (1, ∞).",
-          "These three sets together are the whole real line, so no real number is left unchecked.",
+          "f is continuous on (−∞, 1), continuous at x = 1,",
+          "and continuous on (1, ∞).",
+          "These three sets together are the whole real line,",
+          "so no real number is left unchecked.",
           {
-            "text": "∴ Yes, f is continuous on ℝ",
+            "text": "∴ Yes, f is continuous on R",
             "style": "boxed"
           }
         ],
         "recall": {
           "credit": "say_it",
-          "must_convey": "That the two open intervals plus the point x = 1 make up all of ℝ, so f is continuous on ℝ.",
+          "must_convey": "That the two open intervals plus the point x = 1 make up all of R, so f is continuous on R.",
           "accept": [
             "yes f is continuous on the whole real line",
             "the two intervals and the point one cover every real number",
@@ -213,7 +220,7 @@
             "nothing left"
           ]
         },
-        "why": "A claim about ℝ needs a reason that covers ℝ. Listing the three sets that were checked and noting that their union is the real line is that reason, and it takes one line.",
+        "why": "A claim about R needs a reason that covers R. Listing the three sets that were checked and noting that their union is the real line is that reason, and it takes one line.",
         "common_mistakes": [
           "Answering yes on the strength of the x = 1 check alone.",
           "Leaving out the point x = 1 itself when listing what has been covered, so the union is not the whole line."
@@ -221,5 +228,5 @@
       }
     ]
   },
-  "insider_note": "Both pieces are polynomials, so only the join at x = 1 can fail — and 1² = 1 makes both sides agree. Saying the three sets cover all of ℝ is what turns this into a proof on ℝ."
+  "insider_note": "Both pieces are polynomials, so only the join at x = 1 can fail — and 1² = 1 makes both sides agree. Saying the three sets cover all of R is what turns this into a proof on R."
 }

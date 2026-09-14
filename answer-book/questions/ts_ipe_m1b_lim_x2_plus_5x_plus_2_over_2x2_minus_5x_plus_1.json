@@ -51,9 +51,15 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "As x → ∞ both lines increase without bound, so this is the indeterminate form ∞/∞.",
-          "The highest power of x present is x². Divide every term of both lines by x² (x ≠ 0):",
-          "(x² + 5x + 2)/(2x² − 5x + 1) = (1 + 5/x + 2/x²)/(2 − 5/x + 1/x²)"
+          "As x → ∞ both lines increase without bound,",
+          "so this is the indeterminate form ∞/∞.",
+          "The highest power of x present is x².",
+          "Divide every term of both lines by x² (x ≠ 0):",
+          "(x² + 5x + 2)/(2x² − 5x + 1)",
+          {
+            "text": "  = (1 + 5/x + 2/x²)/(2 − 5/x + 1/x²)",
+            "style": "indent"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -123,7 +129,7 @@
         },
         "why": "Each term of the form c/xⁿ approaches 0 as x increases without bound, so only the two leading coefficients remain.",
         "common_mistakes": [
-          "Giving 2, by writing the ratio of coefficients upside down.",
+          "Giving 2, by writing the ratio of the coefficients as 2/1 instead of 1/2.",
           "Keeping 5/x in the final answer instead of letting it approach 0."
         ],
         "memory_tip": "Coefficient of x² on top over coefficient of x² below: 1 over 2."

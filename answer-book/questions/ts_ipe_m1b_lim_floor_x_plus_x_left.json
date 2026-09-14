@@ -51,8 +51,10 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "[x] is the greatest integer function: [x] is the greatest integer less than or equal to x.",
-          "x → 2⁻ means x takes values slightly less than 2, that is 1 < x < 2.",
+          "[x] is the greatest integer function:",
+          "[x] is the greatest integer less than or equal to x.",
+          "x → 2⁻ means x takes values slightly less than 2,",
+          "that is 1 < x < 2.",
           "For every such x,  [x] = 1",
           "(for example [1.9] = 1 and [1.999] = 1)"
         ],

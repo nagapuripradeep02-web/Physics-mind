@@ -52,10 +52,16 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Putting x = 0 gives 0/0, so the numerator is regrouped first.",
+          "Putting x = 0 gives 0/0,",
+          "so the numerator is regrouped first.",
           "eˣ − sin x − 1 = (eˣ − 1) − sin x",
-          "∴ lim(x → 0) (eˣ − sin x − 1)/x = lim(x → 0) (eˣ − 1)/x − lim(x → 0) (sin x)/x",
-          "Both of these limits exist, so the difference may be taken term by term."
+          "∴ lim(x → 0) (eˣ − sin x − 1)/x = lim(x → 0) (eˣ − 1)/x",
+          {
+            "text": "  − lim(x → 0) (sin x)/x",
+            "style": "indent"
+          },
+          "Both of these limits exist,",
+          "so the difference may be taken term by term."
         ],
         "recall": {
           "credit": "say_it",
@@ -94,7 +100,8 @@
         "margin_note": "Second mark. Both standard limits equal 1, so the answer is 1 − 1 = 0. Write the two limits out before subtracting — the mark is for using them, not for the zero alone.",
         "memory_tip": "Both standard limits here are worth exactly 1, so the answer is the difference of two ones.",
         "lines": [
-          "We know lim(x → 0) (eˣ − 1)/x = 1  and  lim(x → 0) (sin x)/x = 1",
+          "We know lim(x → 0) (eˣ − 1)/x = 1",
+          "and  lim(x → 0) (sin x)/x = 1",
           "= 1 − 1",
           {
             "text": "∴ lim(x → 0) (eˣ − sin x − 1)/x = 0",

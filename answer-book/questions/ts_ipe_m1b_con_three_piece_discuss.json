@@ -63,10 +63,15 @@
           "Given f(x) = (x − 1)/(√x − 1)   for x > 1",
           "f(x) = 5 − 3x   for −2 ≤ x ≤ 1",
           "f(x) = 6/(x − 10)   for x < −2",
-          "For x < −2:  6/(x − 10) is a rational function; its denominator is 0 only at x = 10, which is not in (−∞, −2). So f is continuous on (−∞, −2).",
-          "For −2 < x < 1:  5 − 3x is a polynomial, so f is continuous on (−2, 1).",
-          "For x > 1:  √x − 1 = 0 only at x = 1, so f is continuous on (1, ∞).",
-          "So only the two junction points x = −2 and x = 1 remain to be checked."
+          "For x < −2:  6/(x − 10) is a rational function;",
+          "its denominator is 0 only at x = 10,",
+          "which is not in (−∞, −2). So f is continuous on (−∞, −2).",
+          "For −2 < x < 1:  5 − 3x is a polynomial,",
+          "so f is continuous on (−2, 1).",
+          "For x > 1:  √x − 1 = 0 only at x = 1,",
+          "so f is continuous on (1, ∞).",
+          "So only the two junction points x = −2",
+          "and x = 1 remain to be checked."
         ],
         "recall": {
           "credit": "say_it",
@@ -107,9 +112,11 @@
         "lines": [
           "At x = 1:",
           "lim(x → 1⁻) f(x) = lim(x → 1⁻) (5 − 3x) = 5 − 3(1) = 2",
-          "f(1) = 5 − 3(1) = 2      (x = 1 belongs to the piece −2 ≤ x ≤ 1)",
+          "f(1) = 5 − 3(1) = 2",
+          "(x = 1 belongs to the piece −2 ≤ x ≤ 1)",
           "For x > 1,  x − 1 = (√x)² − 1² = (√x − 1)(√x + 1)",
-          "∴ (x − 1)/(√x − 1) = (√x − 1)(√x + 1)/(√x − 1) = √x + 1     (√x − 1 ≠ 0 for x > 1)",
+          "∴ (x − 1)/(√x − 1) = (√x − 1)(√x + 1)/(√x − 1) = √x + 1",
+          "(√x − 1 ≠ 0 for x > 1)",
           "lim(x → 1⁺) f(x) = lim(x → 1⁺) (√x + 1) = √1 + 1 = 2",
           "All three are 2, so f is continuous at x = 1."
         ],
@@ -151,10 +158,20 @@
         "memory_tip": "At x = −2 the denominator is −2 − 10 = −12. Both numbers are negative, so they combine to −12, not to −8 or 8.",
         "lines": [
           "At x = −2:",
-          "lim(x → −2⁻) f(x) = lim(x → −2⁻) 6/(x − 10) = 6/(−2 − 10) = 6/(−12) = −1/2",
-          "f(−2) = 5 − 3(−2) = 5 + 6 = 11      (x = −2 belongs to the piece −2 ≤ x ≤ 1)",
-          "lim(x → −2⁺) f(x) = lim(x → −2⁺) (5 − 3x) = 5 − 3(−2) = 11",
-          "−1/2 ≠ 11, so the left limit and the right limit are different and lim(x → −2) f(x) does not exist.",
+          "lim(x → −2⁻) f(x) = lim(x → −2⁻) 6/(x − 10)",
+          {
+            "text": "  = 6/(−2 − 10) = 6/(−12) = −1/2",
+            "style": "indent"
+          },
+          "f(−2) = 5 − 3(−2) = 5 + 6 = 11",
+          "(x = −2 belongs to the piece −2 ≤ x ≤ 1)",
+          "lim(x → −2⁺) f(x) = lim(x → −2⁺) (5 − 3x)",
+          {
+            "text": "  = 5 − 3(−2) = 11",
+            "style": "indent"
+          },
+          "−1/2 ≠ 11, so the left limit and the right limit are different",
+          "and lim(x → −2) f(x) does not exist.",
           "∴ f is not continuous at x = −2."
         ],
         "recall": {
@@ -191,20 +208,26 @@
         "label": "State where f is continuous",
         "marks": 1,
         "mark_note": "Solution",
-        "margin_note": "Last mark. The verdict has to cover the whole line: three open intervals plus the two junctions, one of which passes and one of which fails. A one-word answer earns nothing here.",
+        "margin_note": "Last mark. The verdict has to cover the whole line: three open intervals plus the two junctions, one of which passes and one of which fails. A yes or a no alone is not enough here.",
         "memory_tip": "For a discuss question, write the verdict as everywhere except the listed points — that form covers the whole line in one line.",
         "lines": [
           "f is continuous on (−∞, −2), on (−2, 1) and on (1, ∞).",
-          "f is continuous at x = 1, since the left limit, f(1) and the right limit are all 2.",
-          "f is not continuous at x = −2, since the left limit is −1/2 and the right limit is 11.",
+          "f is continuous at x = 1, since the left limit, f(1)",
+          "and the right limit are all 2.",
+          "f is not continuous at x = −2, since the left limit is −1/2",
+          "and the right limit is 11.",
           {
-            "text": "∴ f is continuous at every real number except x = −2",
+            "text": "∴ f is continuous",
+            "style": "boxed"
+          },
+          {
+            "text": "at every real number except x = −2",
             "style": "boxed"
           }
         ],
         "recall": {
           "credit": "say_it",
-          "must_convey": "That f is continuous everywhere on ℝ except at the single point x = −2.",
+          "must_convey": "That f is continuous everywhere on R except at the single point x = −2.",
           "accept": [
             "f is continuous everywhere except at x equals minus two",
             "the only point of discontinuity is minus two",

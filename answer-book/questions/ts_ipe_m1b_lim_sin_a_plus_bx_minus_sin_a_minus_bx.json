@@ -51,8 +51,10 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "At x = 0 the numerator is sin a − sin a = 0 and the denominator is 0, so the form is 0/0.",
-          "Use  sin C − sin D = 2 cos((C + D)/2) · sin((C − D)/2)  with C = a + bx and D = a − bx.",
+          "At x = 0 the numerator is sin a − sin a = 0",
+          "and the denominator is 0, so the form is 0/0.",
+          "Use  sin C − sin D = 2 cos((C + D)/2) · sin((C − D)/2)",
+          "with C = a + bx and D = a − bx.",
           "(C + D)/2 = a   and   (C − D)/2 = bx",
           "∴ sin(a + bx) − sin(a − bx) = 2 cos a · sin(bx)"
         ],
@@ -78,7 +80,7 @@
             "sum to product"
           ]
         },
-        "why": "A difference of two sines cannot be cancelled against x as it stands. Turning it into a product isolates a single sin(bx), which is the only part that depends on x and the only part the standard limit is needed for.",
+        "why": "A difference of two sines cannot be cancelled against x as it stands. Turning it into a product gives 2 cos a · sin(bx); cos a has no x in it, so the standard limit is needed for sin(bx) alone.",
         "common_mistakes": [
           "Expanding both sines with the compound-angle formula and then losing a term while subtracting.",
           "Using the cos C − cos D identity, which carries a minus sign in front."
@@ -93,12 +95,20 @@
         "mark_note": "Answer",
         "margin_note": "Second mark. Multiply and divide by b so the angle bx sits under its own sine. The b that comes out is where the factor b in the answer originates.",
         "lines": [
-          "lim(x → 0) (sin(a + bx) − sin(a − bx))/x = lim(x → 0) 2 cos a · sin(bx)/x",
+          "lim(x → 0) (sin(a + bx) − sin(a − bx))/x",
+          {
+            "text": "  = lim(x → 0) 2 cos a · sin(bx)/x",
+            "style": "indent"
+          },
           "= 2 cos a · lim(x → 0) [sin(bx)/(bx)] · b",
           "As x → 0, bx → 0, so lim(x → 0) sin(bx)/(bx) = 1.",
           "= 2 cos a · 1 · b",
           {
-            "text": "∴ lim(x → 0) (sin(a + bx) − sin(a − bx))/x = 2b cos a",
+            "text": "∴ lim(x → 0) (sin(a + bx) − sin(a − bx))/x",
+            "style": "boxed"
+          },
+          {
+            "text": "= 2b cos a",
             "style": "boxed"
           }
         ],

@@ -51,10 +51,16 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "At x = 0, √(1 + x) − 1 = 0 and x = 0, so the expression is of the indeterminate form 0/0.",
-          "Multiply the numerator and the denominator by the conjugate √(1 + x) + 1.",
+          "At x = 0, √(1 + x) − 1 = 0 and x = 0,",
+          "so the expression is of the indeterminate form 0/0.",
+          "Multiply the numerator and the denominator",
+          "by the conjugate √(1 + x) + 1.",
           "lim(x → 0) (√(1 + x) − 1)/x",
-          "= lim(x → 0) [(√(1 + x) − 1)(√(1 + x) + 1)] / [x(√(1 + x) + 1)]",
+          "= lim(x → 0) [(√(1 + x) − 1)(√(1 + x) + 1)]",
+          {
+            "text": "  / [x(√(1 + x) + 1)]",
+            "style": "indent"
+          },
           "= lim(x → 0) (1 + x − 1) / [x(√(1 + x) + 1)]"
         ],
         "recall": {

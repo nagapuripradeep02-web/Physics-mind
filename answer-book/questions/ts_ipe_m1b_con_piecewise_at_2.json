@@ -63,8 +63,13 @@
           "Given f(x) = (x² − 4)/2   for 0 < x < 2",
           "f(2) = 0",
           "f(x) = 2 − 8x⁻³   for x > 2",
-          "The formula on the left of 2 is different from the formula on the right, so both one-sided limits are needed.",
-          "f is continuous at x = 2 if   lim(x → 2⁻) f(x) = f(2) = lim(x → 2⁺) f(x)"
+          "The formula on the left of 2 is different from the formula",
+          "on the right, so both one-sided limits are needed.",
+          "f is continuous at x = 2 if   lim(x → 2⁻) f(x) = f(2)",
+          {
+            "text": "  = lim(x → 2⁺) f(x)",
+            "style": "indent"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -106,7 +111,8 @@
           "For 0 < x < 2,   f(x) = (x² − 4)/2, a polynomial in x",
           "lim(x → 2⁻) f(x) = (2² − 4)/2 = (4 − 4)/2 = 0/2 = 0",
           "Given value:   f(2) = 0",
-          "∴ lim(x → 2⁻) f(x) = f(2) = 0, so f is continuous from the left at x = 2."
+          "∴ lim(x → 2⁻) f(x) = f(2) = 0,",
+          "so f is continuous from the left at x = 2."
         ],
         "recall": {
           "credit": "say_it",
@@ -171,7 +177,7 @@
             "two cubed"
           ]
         },
-        "why": "The negative index is the only piece of notation in this question, and misreading it is the usual way the answer goes wrong. Writing 8x⁻³ as 8/x³ before substituting removes that risk.",
+        "why": "Misreading the negative index is a common way the answer goes wrong. Writing 8x⁻³ as 8/x³ before substituting removes that risk.",
         "common_mistakes": [
           "Reading 8x⁻³ as −8x³ and getting 2 − 64.",
           "Writing 8/2³ as 8/6 by multiplying 2 by 3 instead of cubing it."
@@ -187,8 +193,11 @@
         "memory_tip": "When the two one-sided limits differ, the two-sided limit does not exist at all, and that is a jump discontinuity.",
         "lines": [
           "lim(x → 2⁻) f(x) = 0,   f(2) = 0,   lim(x → 2⁺) f(x) = 1",
-          "0 ≠ 1, so the left limit and the right limit are different and lim(x → 2) f(x) does not exist.",
-          "f is continuous from the left at x = 2, but continuity at a point needs both sides to agree with the value.",
+          "0 ≠ 1, so the left limit and the right limit are different",
+          "and lim(x → 2) f(x) does not exist.",
+          "f is continuous from the left at x = 2,",
+          "but continuity at a point needs both sides",
+          "to agree with the value.",
           {
             "text": "∴ f is not continuous at x = 2",
             "style": "boxed"

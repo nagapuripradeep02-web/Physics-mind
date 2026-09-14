@@ -52,7 +52,8 @@
             "style": "heading"
           },
           "For every x ≠ 0,  −1 ≤ sin(1/x) ≤ 1",
-          "Multiply throughout by x², which is positive for x ≠ 0, so the inequalities keep their direction:",
+          "Multiply throughout by x², which is positive for x ≠ 0,",
+          "so the inequalities keep their direction:",
           "−x² ≤ x² sin(1/x) ≤ x²"
         ],
         "recall": {
@@ -93,7 +94,10 @@
         "margin_note": "Second mark. Name the Sandwich theorem in words, then box 0. Both outer limits must be shown equal before the theorem can be used.",
         "lines": [
           "Now  lim(x → 0) (−x²) = 0  and  lim(x → 0) x² = 0",
-          "The two outer limits are equal, so by the Sandwich theorem (also called the squeeze theorem) the expression between them has the same limit.",
+          "The two outer limits are equal,",
+          "so by the Sandwich theorem",
+          "(also called the squeeze theorem)",
+          "the expression between them has the same limit.",
           {
             "text": "∴ lim(x → 0) x² sin(1/x) = 0",
             "style": "boxed"

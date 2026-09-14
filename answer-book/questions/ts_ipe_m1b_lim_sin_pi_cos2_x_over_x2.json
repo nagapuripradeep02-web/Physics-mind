@@ -51,7 +51,8 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "At x = 0 the numerator is sin π = 0 and the denominator is 0, so the form is 0/0.",
+          "At x = 0 the numerator is sin π = 0",
+          "and the denominator is 0, so the form is 0/0.",
           "cos²x = 1 − sin²x,  so  π cos²x = π(1 − sin²x) = π − π sin²x",
           "Using sin(π − θ) = sin θ  with  θ = π sin²x :",
           "∴ sin(π cos²x) = sin(π − π sin²x) = sin(π sin²x)"
@@ -93,8 +94,13 @@
         "mark_note": "Answer",
         "margin_note": "Second mark. Box π. Checked numerically: at x = 0.001 the expression is 3.14159 to five decimal places.",
         "lines": [
-          "sin(π sin²x)/x² = [sin(π sin²x)/(π sin²x)] · π · ((sin x)/x)²",
-          "As x → 0,  π sin²x → 0, so the first bracket → 1, and (sin x)/x → 1",
+          "sin(π sin²x)/x²",
+          {
+            "text": "  = [sin(π sin²x)/(π sin²x)] · π · ((sin x)/x)²",
+            "style": "indent"
+          },
+          "As x → 0,  π sin²x → 0, so the first bracket → 1,",
+          "and (sin x)/x → 1",
           "∴ limit = 1 · π · 1² = π",
           {
             "text": "∴ lim(x → 0) sin(π cos²x)/x² = π",

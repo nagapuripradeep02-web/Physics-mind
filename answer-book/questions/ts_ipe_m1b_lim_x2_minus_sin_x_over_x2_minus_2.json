@@ -93,7 +93,8 @@
         "mark_note": "Answer",
         "margin_note": "Second mark. Box 1. Both outer bounds −1/x² and 1/x² approach 0, so the quantity between them does as well.",
         "lines": [
-          "As x → ∞,  1/x² → 0, so by the Sandwich theorem (sin x)/x² → 0",
+          "As x → ∞, 1/x² → 0,",
+          "so by the Sandwich theorem (sin x)/x² → 0",
           "Also 2/x² → 0",
           "∴ limit = (1 − 0)/(1 − 0) = 1",
           {

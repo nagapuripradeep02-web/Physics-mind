@@ -52,8 +52,13 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Putting x = 4 gives (32 − 28 − 4)/(7 · 0) = 0/0, so the expression is factorised first.",
-          "2x² − 7x − 4 = 2x² − 8x + x − 4 = 2x(x − 4) + 1(x − 4) = (2x + 1)(x − 4)",
+          "Putting x = 4 gives (32 − 28 − 4)/(7 · 0) = 0/0,",
+          "so the expression is factorised first.",
+          "2x² − 7x − 4 = 2x² − 8x + x − 4 = 2x(x − 4) + 1(x − 4)",
+          {
+            "text": "  = (2x + 1)(x − 4)",
+            "style": "indent"
+          },
           "For x > 0,  x − 4 = (√x)² − 2² = (√x − 2)(√x + 2)",
           "∴ 2x² − 7x − 4 = (2x + 1)(√x − 2)(√x + 2)"
         ],
@@ -94,12 +99,17 @@
         "margin_note": "Second mark. Only √x − 2 cancels; the factor (2x − 1) in the denominator is 7 at x = 4 and stays where it is. Say x ≠ 4 before cancelling.",
         "memory_tip": "Cancel only the factor that is zero at the limit point. (2x − 1) is 7 there, so it stays below.",
         "lines": [
-          "As x → 4 we have x ≠ 4, so √x − 2 ≠ 0 and it may be cancelled:",
+          "As x → 4 we have x ≠ 4, so √x − 2 ≠ 0",
+          "and it may be cancelled:",
           "lim(x → 4) (2x + 1)(√x − 2)(√x + 2) / [(2x − 1)(√x − 2)]",
           "= lim(x → 4) (2x + 1)(√x + 2)/(2x − 1)",
           "= (8 + 1)(2 + 2)/(8 − 1) = (9)(4)/7",
           {
-            "text": "∴ lim(x → 4) (2x² − 7x − 4)/((2x − 1)(√x − 2)) = 36/7",
+            "text": "∴ lim(x → 4) (2x² − 7x − 4)/((2x − 1)(√x − 2))",
+            "style": "boxed"
+          },
+          {
+            "text": "= 36/7",
             "style": "boxed"
           }
         ],
@@ -133,5 +143,5 @@
       }
     ]
   },
-  "insider_note": "The (√x − 2) below must be matched above, so write x − 4 as (√x − 2)(√x + 2) after factorising the quadratic. Cancelling that root factor is the only way past the 0/0."
+  "insider_note": "The (√x − 2) below must be matched above, so write x − 4 as (√x − 2)(√x + 2) after factorising the quadratic. Cancelling that root factor removes the 0/0."
 }

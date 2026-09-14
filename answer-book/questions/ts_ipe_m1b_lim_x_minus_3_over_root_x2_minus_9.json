@@ -52,8 +52,10 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Putting x = 3 gives 0/√0 = 0/0, so the expression is rewritten first.",
-          "√(x² − 9) is real only when x ≥ 3 or x ≤ −3, so near 3 we take x > 3.",
+          "Putting x = 3 gives 0/√0 = 0/0,",
+          "so the expression is rewritten first.",
+          "√(x² − 9) is real only when x ≥ 3 or x ≤ −3,",
+          "so near 3 we take x > 3.",
           "Then x − 3 > 0 and x + 3 > 0, so",
           "√(x² − 9) = √[(x − 3)(x + 3)] = √(x − 3) · √(x + 3)"
         ],
@@ -91,11 +93,21 @@
         "label": "Cancel √(x − 3) and substitute",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Second mark. x − 3 = √(x − 3) · √(x − 3), so one root cancels and one root is left above. That surviving √(x − 3) is what goes to 0.",
+        "margin_note": "Second mark. x − 3 = √(x − 3) · √(x − 3), so one root cancels and one root is left above. The √(x − 3) that is left is what goes to 0.",
         "memory_tip": "x − 3 is √(x − 3) squared. Cancel one copy and one copy stays on top.",
         "lines": [
-          "For x > 3,  x − 3 = √(x − 3) · √(x − 3), and as x → 3 we have x ≠ 3, so √(x − 3) ≠ 0 and may be cancelled:",
-          "lim(x → 3) (x − 3)/√(x² − 9) = lim(x → 3) [√(x − 3) · √(x − 3)] / [√(x − 3) · √(x + 3)]",
+          "For x > 3,  x − 3 = √(x − 3) · √(x − 3),",
+          "and as x → 3 we have x ≠ 3, so √(x − 3) ≠ 0",
+          "and may be cancelled:",
+          "lim(x → 3) (x − 3)/√(x² − 9)",
+          {
+            "text": "  = lim(x → 3) [√(x − 3) · √(x − 3)]",
+            "style": "indent"
+          },
+          {
+            "text": "  / [√(x − 3) · √(x + 3)]",
+            "style": "indent"
+          },
           "= lim(x → 3) √(x − 3)/√(x + 3)",
           "= √(3 − 3)/√(3 + 3) = 0/√6",
           {

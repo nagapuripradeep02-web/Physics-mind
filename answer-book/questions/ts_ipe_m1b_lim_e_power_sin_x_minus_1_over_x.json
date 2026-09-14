@@ -53,9 +53,11 @@
             "style": "heading"
           },
           "Putting x = 0 gives 0/0, so the expression is rewritten first.",
-          "For x close to 0 with x ≠ 0 we have sin x ≠ 0, so we may multiply and divide by sin x.",
-          "(e^(sin x) − 1)/x = [(e^(sin x) − 1)/sin x] · [(sin x)/x]",
-          "∴ lim(x → 0) (e^(sin x) − 1)/x = lim(x → 0) (e^(sin x) − 1)/sin x · lim(x → 0) (sin x)/x"
+          "For x close to 0 with x ≠ 0 we have sin x ≠ 0,",
+          "so we may multiply and divide by sin x.",
+          "(eˢⁱⁿˣ − 1)/x = [(eˢⁱⁿˣ − 1)/sin x] · [(sin x)/x]",
+          "∴ lim(x → 0) (eˢⁱⁿˣ − 1)/x = lim(x → 0) (eˢⁱⁿˣ − 1)/sin x",
+          "· lim(x → 0) (sin x)/x"
         ],
         "recall": {
           "credit": "say_it",
@@ -79,10 +81,10 @@
             "power of e"
           ]
         },
-        "why": "The standard limit is (eᵗ − 1)/t → 1, so the denominator has to carry the same quantity as the power. A limit at 0 only looks at values with x ≠ 0, and for those x near 0 the value sin x is not zero, so dividing by sin x is legal there. This is the reason the multiply-and-divide is allowed and not a division by zero.",
+        "why": "The standard limit is (eᵗ − 1)/t → 1, so the denominator has to carry the same quantity as the power. A limit at 0 only looks at values with x ≠ 0, and for those x near 0 the value sin x is not zero, so dividing by sin x is allowed there. This is the reason the multiply-and-divide is allowed and not a division by zero.",
         "common_mistakes": [
           "Multiplying and dividing by x instead of sin x, which leaves the power and the denominator unmatched.",
-          "Writing (e^(sin x) − 1)/x = (eˣ − 1)/x by dropping the sine from the power."
+          "Writing (eˢⁱⁿˣ − 1)/x = (eˣ − 1)/x by dropping the sine from the power."
         ]
       },
       {
@@ -95,11 +97,11 @@
         "memory_tip": "Both factors are worth 1, so the answer is 1 × 1.",
         "lines": [
           "As x → 0, sin x → 0. Put t = sin x, then t → 0.",
-          "lim(x → 0) (e^(sin x) − 1)/sin x = lim(t → 0) (eᵗ − 1)/t = 1",
+          "lim(x → 0) (eˢⁱⁿˣ − 1)/sin x = lim(t → 0) (eᵗ − 1)/t = 1",
           "and  lim(x → 0) (sin x)/x = 1",
           "= 1 · 1",
           {
-            "text": "∴ lim(x → 0) (e^(sin x) − 1)/x = 1",
+            "text": "∴ lim(x → 0) (eˢⁱⁿˣ − 1)/x = 1",
             "style": "boxed"
           }
         ],
@@ -133,5 +135,5 @@
       }
     ]
   },
-  "insider_note": "Multiply and divide by sin x so it splits into (e^t − 1)/t and (sin x)/x, both of which go to 1. Expanding the exponential as a series is not on this syllabus — the multiply-and-divide route is the one the examiner expects."
+  "insider_note": "Multiply and divide by sin x so it splits into (eᵗ − 1)/t and (sin x)/x, both of which go to 1. Expanding the exponential as a series is not on this syllabus — the multiply-and-divide method is the one the examiner expects."
 }

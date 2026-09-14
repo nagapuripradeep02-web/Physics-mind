@@ -51,11 +51,17 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "At x = 0, 3ˣ − 1 = 0 and √(1 + x) − 1 = 0, so the expression is of the indeterminate form 0/0.",
+          "At x = 0, 3ˣ − 1 = 0 and √(1 + x) − 1 = 0,",
+          "so the expression is of the indeterminate form 0/0.",
           "For x ≠ 0 divide the numerator and the denominator by x.",
-          "lim(x → 0) (3ˣ − 1)/(√(1 + x) − 1)  =  lim(x → 0) [(3ˣ − 1)/x] / [(√(1 + x) − 1)/x]",
+          "lim(x → 0) (3ˣ − 1)/(√(1 + x) − 1)",
+          {
+            "text": "  =  lim(x → 0) [(3ˣ − 1)/x] / [(√(1 + x) − 1)/x]",
+            "style": "indent"
+          },
           "The two standard limits are",
-          "lim(x → 0) (aˣ − 1)/x = logₑa   and   lim(x → 0) (√(1 + x) − 1)/x = 1/2"
+          "lim(x → 0) (aˣ − 1)/x = logₑa",
+          "and   lim(x → 0) (√(1 + x) − 1)/x = 1/2"
         ],
         "recall": {
           "credit": "say_it",
@@ -94,11 +100,16 @@
         "mark_note": "Answer",
         "margin_note": "Second mark. Both limits exist and the lower one, 1/2, is not 0, so the limit of the quotient is the quotient of the limits. Dividing by 1/2 is multiplying by 2.",
         "lines": [
-          "Both limits exist and the denominator limit 1/2 is not 0, so the limit of the quotient is the quotient of the limits.",
+          "Both limits exist and the denominator limit 1/2 is not 0,",
+          "so the limit of the quotient is the quotient of the limits.",
           "= logₑ3 / (1/2)",
           "= 2 logₑ3",
           {
-            "text": "∴ lim(x → 0) (3ˣ − 1)/(√(1 + x) − 1) = 2 logₑ3 = logₑ9",
+            "text": "∴ lim(x → 0) (3ˣ − 1)/(√(1 + x) − 1)",
+            "style": "boxed"
+          },
+          {
+            "text": "= 2 logₑ3 = logₑ9",
             "style": "boxed"
           }
         ],

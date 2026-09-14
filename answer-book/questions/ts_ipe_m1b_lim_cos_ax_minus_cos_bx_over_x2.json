@@ -51,8 +51,10 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "At x = 0 the numerator is 1 − 1 = 0 and x² = 0, so the form is 0/0.",
-          "Use  cos C − cos D = 2 sin((C + D)/2) · sin((D − C)/2)  with C = ax and D = bx.",
+          "At x = 0 the numerator is 1 − 1 = 0 and x² = 0,",
+          "so the form is 0/0.",
+          "Use  cos C − cos D = 2 sin((C + D)/2) · sin((D − C)/2)",
+          "with C = ax and D = bx.",
           "(C + D)/2 = (a + b)x/2   and   (D − C)/2 = (b − a)x/2",
           "∴ cos ax − cos bx = 2 sin((a + b)x/2) · sin((b − a)x/2)"
         ],
@@ -94,7 +96,9 @@
         "margin_note": "Second mark. Split x² as x · x and give one x to each sine. Each bracket then needs its own half-angle coefficient outside.",
         "lines": [
           "Write x² = x · x and give one x to each sine.",
-          "(cos ax − cos bx)/x² = 2 · [sin((a + b)x/2) / ((a + b)x/2)] · ((a + b)/2) · [sin((b − a)x/2) / ((b − a)x/2)] · ((b − a)/2)",
+          "(cos ax − cos bx)/x² = 2 · [sin((a + b)x/2) / ((a + b)x/2)]",
+          "· ((a + b)/2) · [sin((b − a)x/2) / ((b − a)x/2)]",
+          "· ((b − a)/2)",
           "Each bracketed quotient tends to 1 as x → 0, so",
           "= 2 · ((a + b)/2) · ((b − a)/2) = (a + b)(b − a)/2",
           {
@@ -129,7 +133,7 @@
           "Giving (a² − b²)/2, the correct size with the wrong sign.",
           "Forgetting the half-angle coefficients and answering 2(a + b)(b − a)."
         ],
-        "memory_tip": "The alternative route gives the same check: (cos ax − 1)/x² → −a²/2 and (1 − cos bx)/x² → b²/2, and adding them gives (b² − a²)/2."
+        "memory_tip": "The other method gives the same result: (cos ax − 1)/x² → −a²/2 and (1 − cos bx)/x² → b²/2, and adding them gives (b² − a²)/2."
       }
     ]
   },

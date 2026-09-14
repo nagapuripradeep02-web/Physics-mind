@@ -53,10 +53,15 @@
             "style": "heading"
           },
           "Here n ≠ 0, else sin² nx is zero for all x.",
-          "Putting x = 0 gives 0/0, so the expression must be rewritten first.",
+          "Putting x = 0 gives 0/0,",
+          "so the expression must be rewritten first.",
           "We know 1 − cos 2θ = 2sin²θ",
           "Put θ = mx, then 1 − cos 2mx = 2sin²(mx)",
-          "∴ lim(x → 0) (1 − cos 2mx)/sin² nx = lim(x → 0) 2sin²(mx)/sin²(nx)"
+          "∴ lim(x → 0) (1 − cos 2mx)/sin² nx",
+          {
+            "text": "  = lim(x → 0) 2sin²(mx)/sin²(nx)",
+            "style": "indent"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -92,12 +97,16 @@
         "label": "Divide by x² and use sin θ/θ → 1",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Second mark. Divide the top and the bottom by x² so that each sine sits over its own angle. The m² and n² left behind are the whole answer.",
+        "margin_note": "Second mark. Divide the top and the bottom by x² so that each sine is over its own angle. The m² and n² that are left give the answer.",
         "memory_tip": "sin(kx)/x → k, so a squared sine over x² gives k². Two sines, two squares: 2m² over n².",
         "lines": [
           "Divide the numerator and the denominator by x²:",
           "= 2 · lim(x → 0) [sin(mx)/x]² / [sin(nx)/x]²",
-          "= 2 · [m · lim(x → 0) sin(mx)/(mx)]² / [n · lim(x → 0) sin(nx)/(nx)]²",
+          "= 2 · [m · lim(x → 0) sin(mx)/(mx)]²",
+          {
+            "text": "  / [n · lim(x → 0) sin(nx)/(nx)]²",
+            "style": "indent"
+          },
           "= 2 · (m · 1)² / (n · 1)²",
           {
             "text": "∴ lim(x → 0) (1 − cos 2mx)/sin² nx = 2m²/n²",
@@ -134,5 +143,5 @@
       }
     ]
   },
-  "insider_note": "Use 1 − cos2θ = 2sin²θ with θ = mx — that turns the whole thing into sines and no other identity is needed. Divide top and bottom by x², not by x, since both are squared."
+  "insider_note": "Use 1 − cos2θ = 2sin²θ with θ = mx — that writes the expression in sines, and no other identity is needed. Divide top and bottom by x², not by x, since both are squared."
 }

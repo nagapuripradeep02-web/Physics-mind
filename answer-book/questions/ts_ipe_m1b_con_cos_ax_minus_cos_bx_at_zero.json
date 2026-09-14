@@ -60,10 +60,13 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given f(x) = (cos ax − cos bx)/x²   for x ≠ 0,   and f(0) = ½(b² − a²)",
+          "Given f(x) = (cos ax − cos bx)/x²   for x ≠ 0,",
+          "and f(0) = ½(b² − a²)",
           "f is continuous at x = 0 if   lim(x → 0) f(x) = f(0)",
-          "One single formula covers both sides of 0, so one two-sided limit settles the question.",
-          "Putting x = 0 in (cos ax − cos bx)/x² gives 0/0, an indeterminate form, so the limit must be worked out."
+          "One single formula covers both sides of 0,",
+          "so one two-sided limit is enough.",
+          "Putting x = 0 in (cos ax − cos bx)/x² gives 0/0,",
+          "an indeterminate form, so the limit must be worked out."
         ],
         "recall": {
           "credit": "say_it",
@@ -103,7 +106,8 @@
         "memory_tip": "Two cosines subtracted give two sines multiplied, and the second sine takes the second angle first: (D − C)/2.",
         "lines": [
           "For x ≠ 0,   f(x) = (cos ax − cos bx)/x²",
-          "Use the identity   cos C − cos D = 2 sin((C + D)/2) · sin((D − C)/2)",
+          "Use the identity",
+          "cos C − cos D = 2 sin((C + D)/2) · sin((D − C)/2)",
           "Take C = ax and D = bx. Then",
           "cos ax − cos bx = 2 sin((a + b)x/2) · sin((b − a)x/2)",
           "∴ f(x) = 2 sin((a + b)x/2) · sin((b − a)x/2) / x²"
@@ -145,11 +149,20 @@
         "margin_note": "Third mark. Each bracket is forced into the exact form sin(angle)/(same angle) before the standard limit is quoted. The constants taken outside are what build (b² − a²)/2.",
         "memory_tip": "sin(kx)/x tends to k, not to 1 — the constant multiplying x comes outside.",
         "lines": [
-          "lim(x → 0) f(x) = lim(x → 0) 2 · [sin((a + b)x/2) / x] · [sin((b − a)x/2) / x]",
-          "Multiply and divide the first bracket by (a + b)/2 and the second by (b − a)/2:",
-          "= 2 · ((a + b)/2) · ((b − a)/2) · lim(x → 0) [sin((a + b)x/2) / ((a + b)x/2)] · [sin((b − a)x/2) / ((b − a)x/2)]",
-          "Standard limit:   lim(θ → 0) (sin θ)/θ = 1,   so each bracket tends to 1",
-          "= 2 · ((a + b)/2) · ((b − a)/2) = (a + b)(b − a)/2 = (b² − a²)/2"
+          "lim(x → 0) f(x) = lim(x → 0) 2 · [sin((a + b)x/2) / x]",
+          "· [sin((b − a)x/2) / x]",
+          "Multiply and divide the first bracket by (a + b)/2",
+          "and the second by (b − a)/2:",
+          "= 2 · ((a + b)/2) · ((b − a)/2) · lim(x → 0)",
+          "[sin((a + b)x/2) / ((a + b)x/2)]",
+          "· [sin((b − a)x/2) / ((b − a)x/2)]",
+          "Standard limit:   lim(θ → 0) (sin θ)/θ = 1,",
+          "so each bracket tends to 1",
+          "= 2 · ((a + b)/2) · ((b − a)/2) = (a + b)(b − a)/2",
+          {
+            "text": "  = (b² − a²)/2",
+            "style": "indent"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -226,5 +239,5 @@
       }
     ]
   },
-  "insider_note": "One formula covers both sides of 0, so a single two-sided limit settles it — no left and right work needed. The limit comes to (b² − a²)/2, which is exactly the given f(0)."
+  "insider_note": "One formula covers both sides of 0, so a single two-sided limit is enough — no separate left and right work is needed. The limit comes to (b² − a²)/2, which is exactly the given f(0)."
 }

@@ -51,10 +51,16 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "At x = 0, aˣ − 1 = 0 and bˣ − 1 = 0, so the expression is of the indeterminate form 0/0.",
+          "At x = 0, aˣ − 1 = 0 and bˣ − 1 = 0,",
+          "so the expression is of the indeterminate form 0/0.",
           "For x ≠ 0 divide the numerator and the denominator by x.",
-          "lim(x → 0) (aˣ − 1)/(bˣ − 1)  =  lim(x → 0) [(aˣ − 1)/x] / [(bˣ − 1)/x]",
-          "The standard limit is  lim(x → 0) (aˣ − 1)/x = logₑa  for a > 0."
+          "lim(x → 0) (aˣ − 1)/(bˣ − 1)",
+          {
+            "text": "  =  lim(x → 0) [(aˣ − 1)/x] / [(bˣ − 1)/x]",
+            "style": "indent"
+          },
+          "The standard limit is",
+          "lim(x → 0) (aˣ − 1)/x = logₑa  for a > 0."
         ],
         "recall": {
           "credit": "say_it",
@@ -93,7 +99,8 @@
         "mark_note": "Answer",
         "margin_note": "Second mark. b ≠ 1 is what makes logₑb ≠ 0, so the quotient rule for limits may be used. The answer is also written as the logarithm of a to the base b, by the change-of-base rule.",
         "lines": [
-          "Since b ≠ 1, logₑb ≠ 0, so the limit of the quotient is the quotient of the limits.",
+          "Since b ≠ 1, logₑb ≠ 0, so the limit of the quotient",
+          "is the quotient of the limits.",
           "= logₑa / logₑb",
           {
             "text": "∴ lim(x → 0) (aˣ − 1)/(bˣ − 1) = logₑa / logₑb",

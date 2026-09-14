@@ -51,7 +51,8 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "At x = a the numerator is a sin a − a sin a = 0 and x − a = 0, so the form is 0/0.",
+          "At x = a the numerator is a sin a − a sin a = 0",
+          "and x − a = 0, so the form is 0/0.",
           "Add and subtract a sin a in the numerator.",
           "x sin a − a sin x = (x sin a − a sin a) + (a sin a − a sin x)",
           "= sin a (x − a) − a (sin x − sin a)"
@@ -94,12 +95,24 @@
         "margin_note": "Second mark. The first piece cancels to the constant sin a; the second piece becomes cos a by the sum-to-product formula for sin x − sin a. Keep the minus sign in front of it.",
         "lines": [
           "Divide both pieces by (x − a):",
-          "(x sin a − a sin x)/(x − a) = sin a − a · [(sin x − sin a)/(x − a)]",
-          "Now  sin x − sin a = 2 cos((x + a)/2) · sin((x − a)/2),  so dividing by (x − a) gives  cos((x + a)/2) · sin((x − a)/2)/((x − a)/2).",
-          "As x → a the angle (x − a)/2 → 0, so this tends to cos a · 1 = cos a   (it is also the derivative of sin x at x = a).",
+          "(x sin a − a sin x)/(x − a)",
+          {
+            "text": "  = sin a − a · [(sin x − sin a)/(x − a)]",
+            "style": "indent"
+          },
+          "Now  sin x − sin a = 2 cos((x + a)/2) · sin((x − a)/2),",
+          "so dividing by (x − a) gives",
+          "cos((x + a)/2) · sin((x − a)/2)/((x − a)/2).",
+          "As x → a the angle (x − a)/2 → 0,",
+          "so this tends to cos a · 1 = cos a",
+          "(it is also the derivative of sin x at x = a).",
           "∴ the limit = sin a − a cos a",
           {
-            "text": "∴ lim(x → a) (x sin a − a sin x)/(x − a) = sin a − a cos a",
+            "text": "∴ lim(x → a) (x sin a − a sin x)/(x − a)",
+            "style": "boxed"
+          },
+          {
+            "text": "= sin a − a cos a",
             "style": "boxed"
           }
         ],

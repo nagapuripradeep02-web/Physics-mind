@@ -51,7 +51,8 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "At x = a, tan(x − a) = tan 0 = 0 and x² − a² = 0, so the form is 0/0. Take a ≠ 0.",
+          "At x = a, tan(x − a) = tan 0 = 0 and x² − a² = 0,",
+          "so the form is 0/0. Take a ≠ 0.",
           "Factor the denominator:  x² − a² = (x − a)(x + a).",
           "tan(x − a)/(x² − a²) = [tan(x − a)/(x − a)] · [1/(x + a)]"
         ],
@@ -92,8 +93,10 @@
         "mark_note": "Answer",
         "margin_note": "Second mark. The angle x − a → 0, so the tangent bracket tends to 1; the factor 1/(x + a) is substituted and gives 1/(2a).",
         "lines": [
-          "As x → a, the angle (x − a) → 0, so lim(x → a) tan(x − a)/(x − a) = 1.",
-          "The factor 1/(x + a) is defined at x = a, so substitute x = a: 1/(a + a) = 1/(2a).",
+          "As x → a, the angle (x − a) → 0,",
+          "so lim(x → a) tan(x − a)/(x − a) = 1.",
+          "The factor 1/(x + a) is defined at x = a,",
+          "so substitute x = a: 1/(a + a) = 1/(2a).",
           "= 1 · 1/(2a)",
           {
             "text": "∴ lim(x → a) tan(x − a)/(x² − a²) = 1/(2a),  a ≠ 0",

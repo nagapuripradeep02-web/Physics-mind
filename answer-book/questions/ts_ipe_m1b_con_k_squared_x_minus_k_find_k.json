@@ -54,17 +54,20 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Continuity is given, k is not — so the work runs backwards. Say why only x = 1 matters: away from 1 each piece is a constant or a polynomial, and those are continuous for every k.",
-        "memory_tip": "For a two-piece function, every value of k is safe except at the join — so the join is the only equation you ever get.",
+        "memory_tip": "For a two-piece function, each piece is continuous for every k away from the join — so the join gives the only equation.",
         "lines": [
           {
             "text": "Sol:",
             "style": "heading"
           },
           "Given f(x) = k²x − k   for x ≥ 1,   and f(x) = 2   for x < 1",
-          "For x < 1, f is the constant 2, which is continuous for every value of k.",
-          "For x > 1, f is the polynomial k²x − k, which is continuous for every value of k.",
-          "So f can fail to be continuous only where the two pieces meet, at x = 1.",
-          "f is continuous on ℝ ⇒ f is continuous at x = 1."
+          "For x < 1, f is the constant 2,",
+          "which is continuous for every value of k.",
+          "For x > 1, f is the polynomial k²x − k,",
+          "which is continuous for every value of k.",
+          "So f can fail to be continuous only",
+          "where the two pieces meet, at x = 1.",
+          "f is continuous on R ⇒ f is continuous at x = 1."
         ],
         "recall": {
           "credit": "say_it",
@@ -100,12 +103,17 @@
         "label": "Write the two one-sided limits and f(1)",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Second mark. Note which piece x = 1 belongs to: the condition is x ≥ 1, so f(1) comes from k²x − k, not from the constant 2. Getting that wrong reverses the whole equation.",
+        "margin_note": "Second mark. Note which piece x = 1 belongs to: the condition is x ≥ 1, so f(1) comes from k²x − k, not from the constant 2. Getting that wrong gives a different equation.",
         "memory_tip": "The piece whose inequality carries the equals sign is the piece that gives the value at the join.",
         "lines": [
           "Left limit:   lim(x → 1⁻) f(x) = lim(x → 1⁻) 2 = 2",
-          "Value at 1:   x = 1 satisfies x ≥ 1, so f(1) = k²(1) − k = k² − k",
-          "Right limit:   lim(x → 1⁺) f(x) = lim(x → 1⁺) (k²x − k) = k²(1) − k = k² − k"
+          "Value at 1:   x = 1 satisfies x ≥ 1,",
+          "so f(1) = k²(1) − k = k² − k",
+          "Right limit:   lim(x → 1⁺) f(x) = lim(x → 1⁺) (k²x − k)",
+          {
+            "text": "  = k²(1) − k = k² − k",
+            "style": "indent"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -142,11 +150,16 @@
         "label": "Match the two pieces at x = 1",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Third mark. The right limit already equals f(1), so the three-part condition collapses to one equation. Say that, rather than leaving two identical expressions on the page.",
+        "margin_note": "Third mark. The right limit already equals f(1), so the three-part condition becomes one equation. Say that, rather than leaving two identical expressions on the page.",
         "memory_tip": "Continuity at a join is one equation: left limit = right limit = value. When the value comes from the right piece, only the left limit is a new condition.",
         "lines": [
-          "f is continuous at x = 1  ⇒  lim(x → 1⁻) f(x) = f(1) = lim(x → 1⁺) f(x)",
-          "The right limit is already equal to f(1), so the only new condition is",
+          "f is continuous at x = 1  ⇒  lim(x → 1⁻) f(x) = f(1)",
+          {
+            "text": "  = lim(x → 1⁺) f(x)",
+            "style": "indent"
+          },
+          "The right limit is already equal to f(1),",
+          "so the only new condition is",
           "2 = k² − k",
           "⇒ k² − k − 2 = 0"
         ],
@@ -189,7 +202,8 @@
         "lines": [
           "k² − k − 2 = 0   ⇒   k² − 2k + k − 2 = 0",
           "⇒ k(k − 2) + 1(k − 2) = 0   ⇒   (k − 2)(k + 1) = 0",
-          "Check: k = 2 gives f(1) = 4 − 2 = 2; k = −1 gives f(1) = 1 + 1 = 2. Both match the left limit 2.",
+          "Check: k = 2 gives f(1) = 4 − 2 = 2;",
+          "k = −1 gives f(1) = 1 + 1 = 2. Both match the left limit 2.",
           {
             "text": "∴ k = 2  or  k = −1",
             "style": "boxed"

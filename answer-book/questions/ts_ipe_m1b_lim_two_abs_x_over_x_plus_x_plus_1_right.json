@@ -51,7 +51,8 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "x → 0⁺ means x approaches 0 through values greater than 0.",
+          "x → 0⁺ means x approaches 0",
+          "through values greater than 0.",
           "For x > 0,  |x| = x",
           "∴ 2|x|/x = 2x/x = 2   (x ≠ 0, so the cancellation is allowed)"
         ],
@@ -77,7 +78,7 @@
             "two x over x"
           ]
         },
-        "why": "The side of approach decides the whole question. On the right side x is positive, so |x| = x and the first term is simply the constant 2.",
+        "why": "The side of approach decides the answer. On the right side x is positive, so |x| = x and the first term is simply the constant 2.",
         "common_mistakes": [
           "Writing |x| = −x, which is the rule for the LEFT side.",
           "Cancelling x/x at x = 0 itself; a limit only uses values with x ≠ 0."

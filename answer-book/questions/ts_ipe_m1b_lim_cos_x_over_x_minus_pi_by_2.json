@@ -52,8 +52,10 @@
             "style": "heading"
           },
           "At x = π/2, cos x = 0 and x − π/2 = 0, so the form is 0/0.",
-          "The standard limit lim(θ → 0) sin θ / θ = 1 is stated at 0, so shift the point to 0.",
-          "Put  x = π/2 + h.  Then x → π/2 means h → 0, and x − π/2 = h.",
+          "The standard limit lim(θ → 0) sin θ / θ = 1 is stated at 0,",
+          "so shift the point to 0.",
+          "Put  x = π/2 + h.  Then x → π/2 means h → 0,",
+          "and x − π/2 = h.",
           "cos x = cos(π/2 + h) = −sin h"
         ],
         "recall": {
@@ -122,7 +124,7 @@
             "negative one"
           ]
         },
-        "why": "The sign is the whole content of the answer here, and it comes from cos(π/2 + h) = −sin h. The value checks numerically: at x = π/2 + 0.00001 the expression is −1.000000, and it is also −1 from the left.",
+        "why": "The sign is the main point of the answer here, and it comes from cos(π/2 + h) = −sin h. The value checks numerically: at x = π/2 + 0.00001 the expression is −1.000000, and it is also −1 from the left.",
         "common_mistakes": [
           "Giving +1 by dropping the minus sign from cos(π/2 + h).",
           "Substituting x = π/2 directly and writing 0/0 as the answer."
@@ -131,5 +133,5 @@
       }
     ]
   },
-  "insider_note": "The standard limit lives at 0, so shift the point: put x = π/2 + h. cos(π/2 + h) = −sin h, and that minus sign is the whole answer."
+  "insider_note": "The standard limit is at 0, so move the point: put x = π/2 + h. cos(π/2 + h) = −sin h, and that minus sign gives the answer −1."
 }

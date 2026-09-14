@@ -53,9 +53,14 @@
             "style": "heading"
           },
           "Here log means the natural logarithm logₑ.",
-          "Putting x = 0 gives log 1 / 0 = 0/0, so the expression is rewritten first.",
+          "Putting x = 0 gives log 1 / 0 = 0/0,",
+          "so the expression is rewritten first.",
           "log(1 + 5x)/x = 5 · log(1 + 5x)/(5x)",
-          "∴ lim(x → 0) log(1 + 5x)/x = 5 · lim(x → 0) log(1 + 5x)/(5x)"
+          "∴ lim(x → 0) log(1 + 5x)/x",
+          {
+            "text": "  = 5 · lim(x → 0) log(1 + 5x)/(5x)",
+            "style": "indent"
+          }
         ],
         "recall": {
           "credit": "say_it",

@@ -58,7 +58,8 @@
           },
           "Given f(x) = (sin 2x)/x   for x ≠ 0,   and f(0) = 1",
           "f is continuous at x = 0 if   lim(x → 0) f(x) = f(0)",
-          "The same formula applies for x < 0 and for x > 0, so one two-sided limit settles it.",
+          "The same formula applies for x < 0 and for x > 0,",
+          "so one two-sided limit is enough.",
           "So the limit must be found and then compared with 1."
         ],
         "recall": {
@@ -101,8 +102,13 @@
           "For x ≠ 0,   (sin 2x)/x = 2 · (sin 2x)/(2x)",
           "Put θ = 2x. As x → 0, θ → 0 as well.",
           "Standard limit:   lim(θ → 0) (sin θ)/θ = 1",
-          "∴ lim(x → 0) (sin 2x)/x = 2 · lim(θ → 0) (sin θ)/θ = 2 · 1 = 2",
-          "The same value is reached from the left and from the right, so lim(x → 0) f(x) exists and equals 2."
+          "∴ lim(x → 0) (sin 2x)/x = 2 · lim(θ → 0) (sin θ)/θ",
+          {
+            "text": "  = 2 · 1 = 2",
+            "style": "indent"
+          },
+          "The same value is reached from the left and from the right,",
+          "so lim(x → 0) f(x) exists and equals 2."
         ],
         "recall": {
           "credit": "say_it",
@@ -126,7 +132,7 @@
             "multiply and divide by two"
           ]
         },
-        "why": "The standard limit works only when the angle inside the sine matches the expression below it. Making the denominator 2x costs a factor of 2 outside, and that factor is the whole difference between the limit and the given value.",
+        "why": "The standard limit works only when the angle inside the sine matches the expression below it. Making the denominator 2x puts a factor of 2 outside, and that factor of 2 is why the limit is 2.",
         "common_mistakes": [
           "Writing lim (sin 2x)/x = 1 by quoting the standard limit without matching the angle.",
           "Cancelling the 2 wrongly and getting ½ instead of 2."
@@ -143,7 +149,10 @@
         "lines": [
           "lim(x → 0) f(x) = 2,   but the given value is   f(0) = 1",
           "2 ≠ 1, so lim(x → 0) f(x) ≠ f(0)",
-          "The limit exists but does not equal the value, so this is a removable discontinuity: defining f(0) = 2 instead of 1 would make f continuous at 0.",
+          "The limit exists but does not equal the value,",
+          "so this is a removable discontinuity:",
+          "defining f(0) = 2 instead of 1",
+          "would make f continuous at 0.",
           {
             "text": "∴ f is not continuous at x = 0",
             "style": "boxed"

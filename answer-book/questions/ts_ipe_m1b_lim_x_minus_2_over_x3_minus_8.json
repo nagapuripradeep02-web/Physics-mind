@@ -52,10 +52,16 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Putting x = 2 gives 0/(8 − 8) = 0/0, so the denominator is factorised.",
+          "Putting x = 2 gives 0/(8 − 8) = 0/0,",
+          "so the denominator is factorised.",
           "We know a³ − b³ = (a − b)(a² + ab + b²)",
-          "Put a = x, b = 2, then  x³ − 8 = x³ − 2³ = (x − 2)(x² + 2x + 4)",
-          "∴ lim(x → 2) (x − 2)/(x³ − 8) = lim(x → 2) (x − 2)/[(x − 2)(x² + 2x + 4)]"
+          "Put a = x, b = 2, then",
+          "x³ − 8 = x³ − 2³ = (x − 2)(x² + 2x + 4)",
+          "∴ lim(x → 2) (x − 2)/(x³ − 8)",
+          {
+            "text": "  = lim(x → 2) (x − 2)/[(x − 2)(x² + 2x + 4)]",
+            "style": "indent"
+          }
         ],
         "recall": {
           "credit": "say_it",

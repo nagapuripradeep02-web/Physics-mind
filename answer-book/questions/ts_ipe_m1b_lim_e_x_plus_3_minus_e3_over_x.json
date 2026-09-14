@@ -46,16 +46,16 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. e³ is a fixed number, not a function of x, so it comes outside the limit sign. What is left inside is the plain standard form (eˣ − 1)/x.",
-        "memory_tip": "e^(x+3) is e³ times eˣ. Split the power at the plus sign and the constant part comes straight out.",
+        "memory_tip": "eˣ⁺³ is e³ times eˣ. Split the power at the plus sign and the constant part comes straight out.",
         "lines": [
           {
             "text": "Sol:",
             "style": "heading"
           },
           "Putting x = 0 gives 0/0, so the numerator is rewritten first.",
-          "e^(x+3) = eˣ · e³, so  e^(x+3) − e³ = e³(eˣ − 1)",
+          "eˣ⁺³ = eˣ · e³, so  eˣ⁺³ − e³ = e³(eˣ − 1)",
           "e³ is a constant, so it comes outside the limit:",
-          "∴ lim(x → 0) (e^(x+3) − e³)/x = e³ · lim(x → 0) (eˣ − 1)/x"
+          "∴ lim(x → 0) (eˣ⁺³ − e³)/x = e³ · lim(x → 0) (eˣ − 1)/x"
         ],
         "recall": {
           "credit": "say_it",
@@ -79,10 +79,10 @@
             "constant"
           ]
         },
-        "why": "The law e^(a+b) = eᵃ · eᵇ separates the fixed part of the power from the part that moves. e³ carries no x, so it plays no role in the limit and is taken outside, leaving the standard form behind.",
+        "why": "The law eᵃ⁺ᵇ = eᵃ · eᵇ separates the fixed part of the power from the part that moves. e³ carries no x, so it plays no role in the limit and is taken outside, leaving the standard form behind.",
         "common_mistakes": [
           "Treating e³ as part of the limit and letting it change as x → 0.",
-          "Writing e^(x+3) = eˣ + e³. A sum in the power means the two exponentials are multiplied, not added."
+          "Writing eˣ⁺³ = eˣ + e³. A sum in the power means the two exponentials are multiplied, not added."
         ]
       },
       {
@@ -91,13 +91,13 @@
         "label": "Apply (eˣ − 1)/x → 1",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Second mark. The limit inside is exactly the standard one and equals 1, so the constant already outside is the whole answer. Leave it as e³; do not turn it into a decimal.",
+        "margin_note": "Second mark. The limit inside is exactly the standard one and equals 1, so the answer is the constant already outside. Leave it as e³; do not turn it into a decimal.",
         "memory_tip": "The limit inside is worth 1, so the answer is whatever was carried outside.",
         "lines": [
           "We know lim(x → 0) (eˣ − 1)/x = 1",
           "= e³ · 1",
           {
-            "text": "∴ lim(x → 0) (e^(x+3) − e³)/x = e³",
+            "text": "∴ lim(x → 0) (eˣ⁺³ − e³)/x = e³",
             "style": "boxed"
           }
         ],
@@ -131,5 +131,5 @@
       }
     ]
   },
-  "insider_note": "Split the power first: e^(x+3) = eˣ · e³, so e³ comes out as a constant. What is left is the standard (eˣ − 1)/x → 1, making the answer e³ and not 1."
+  "insider_note": "Split the power first: eˣ⁺³ = eˣ · e³, so e³ comes out as a constant. What is left is the standard (eˣ − 1)/x → 1, making the answer e³ and not 1."
 }

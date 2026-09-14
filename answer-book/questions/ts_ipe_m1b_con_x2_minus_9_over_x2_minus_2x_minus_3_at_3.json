@@ -60,10 +60,13 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given f(x) = (x² − 9)/(x² − 2x − 3)   for 0 < x < 5, x ≠ 3,   and f(3) = 1.5",
+          "Given f(x) = (x² − 9)/(x² − 2x − 3)   for 0 < x < 5, x ≠ 3,",
+          "and f(3) = 1.5",
           "f is continuous at x = 3 if   lim(x → 3) f(x) = f(3)",
-          "At x = 3:  numerator = 3² − 9 = 0  and  denominator = 3² − 2(3) − 3 = 0",
-          "So direct substitution gives 0/0, an indeterminate form, and the limit must be worked out."
+          "At x = 3:  numerator = 3² − 9 = 0",
+          "and  denominator = 3² − 2(3) − 3 = 0",
+          "So direct substitution gives 0/0, an indeterminate form,",
+          "and the limit must be worked out."
         ],
         "recall": {
           "credit": "say_it",
@@ -99,7 +102,7 @@
         "label": "Factorise the numerator and the denominator",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Second mark. Both factorisations must show the common factor (x − 3). Splitting the middle term −2x as −3x + x is the quickest route for the denominator.",
+        "margin_note": "Second mark. Both factorisations must show the common factor (x − 3). Splitting the middle term −2x as −3x + x is a quick way to factorise the denominator.",
         "memory_tip": "For x² − 2x − 3 look for two numbers with product −3 and sum −2: they are −3 and +1, so the factors are (x − 3)(x + 1).",
         "lines": [
           "Numerator:   x² − 9 = x² − 3² = (x − 3)(x + 3)",
@@ -141,12 +144,14 @@
         "label": "Cancel and take the limit",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Third mark. The cancellation is legal only because x ≠ 3 inside a limit at 3 — the limit never uses the value at the point itself. After cancelling, the value can simply be substituted.",
+        "margin_note": "Third mark. The cancellation is allowed because x ≠ 3 inside a limit at 3 — the limit does not use the value at the point itself. After cancelling, the value can simply be substituted.",
         "memory_tip": "In lim(x → 3), x is near 3 but never equal to 3, so a factor of (x − 3) is never zero and may be cancelled.",
         "lines": [
-          "In lim(x → 3), x is close to 3 but x ≠ 3, so (x − 3) ≠ 0 and it cancels:",
+          "In lim(x → 3), x is close to 3 but x ≠ 3, so (x − 3) ≠ 0",
+          "and it cancels:",
           "f(x) = (x + 3)/(x + 1)   for 0 < x < 5, x ≠ 3",
-          "The remaining denominator x + 1 is 0 only at x = −1, which is outside 0 < x < 5",
+          "The remaining denominator x + 1 is 0 only at x = −1,",
+          "which is outside 0 < x < 5",
           "∴ lim(x → 3) f(x) = (3 + 3)/(3 + 1) = 6/4 = 1.5"
         ],
         "recall": {
@@ -216,7 +221,7 @@
             "they are equal"
           ]
         },
-        "why": "The value f(3) = 1.5 was chosen precisely to close the gap the first formula leaves open, so the comparison is what shows the definition of continuity is met.",
+        "why": "The first formula has no value at x = 3, and the given f(3) = 1.5 equals the limit, so the comparison shows that the definition of continuity is met.",
         "common_mistakes": [
           "Stopping at the limit without comparing it with the given f(3).",
           "Reporting the answer as 3/2 without noting that the given value 1.5 is the same number."
@@ -224,5 +229,5 @@
       }
     ]
   },
-  "insider_note": "Both top and bottom vanish at 3, so factorise both and cancel the shared (x − 3). The surviving (x + 3)/(x + 1) gives 1.5, matching the given f(3) exactly."
+  "insider_note": "Both top and bottom vanish at 3, so factorise both and cancel the shared (x − 3). The expression left, (x + 3)/(x + 1), gives 1.5, which equals the given f(3)."
 }
