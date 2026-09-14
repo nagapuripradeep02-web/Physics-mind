@@ -95,7 +95,7 @@
             "forty nine"
           ]
         },
-        "why": "cos2θ has three forms, and the tangent one is chosen because tanα is what the inverse hands you directly — no square roots needed.",
+        "why": "cos2θ has four standard forms, and the tangent one is chosen because tanα is known directly — no square roots needed.",
         "common_mistakes": [
           "Using cos2θ = 2cos²θ − 1 and having to find cosα first.",
           "Getting (1/7)² as 1/14."

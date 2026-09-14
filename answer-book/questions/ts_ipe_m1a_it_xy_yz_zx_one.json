@@ -89,7 +89,7 @@
             "name the angles"
           ]
         },
-        "why": "The letters x, y, z are tangents in disguise. Naming the angles is what lets the ordinary tangent formulas be used on them.",
+        "why": "The letters x, y, z are the tangents of three angles. Naming the angles is what lets the ordinary tangent formulas be used on them.",
         "common_mistakes": [
           "Trying to manipulate the inverses directly.",
           "Forgetting to write down what each tangent equals."
@@ -106,10 +106,24 @@
         "lines": [
           "A + B + C = π/2 ⇒ A + B = π/2 − C",
           {
-            "text": "(take C to the other side)",
+            "text": "(take the tangent of both sides)",
             "added": true
           },
           "⇒ tan(A + B) = tan(π/2 − C)",
+          {
+            "text": "(if z = 0, then A + B = π/2, so xy = 1 and",
+            "added": true
+          },
+          {
+            "text": "  xy + yz + zx = 1 at once;",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  otherwise z ≠ 0 and xy ≠ 1)",
+            "style": "indent",
+            "added": true
+          },
           {
             "text": "(tan(π/2 − C) = cotC)",
             "added": true

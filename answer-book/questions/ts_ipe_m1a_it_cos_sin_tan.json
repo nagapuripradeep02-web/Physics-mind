@@ -144,7 +144,7 @@
             "twenty seven over eleven"
           ]
         },
-        "why": "Both numerator and denominator come out over 20, so the 20s cancel and the answer is exact. That is why the fractions were left uncancelled until the end.",
+        "why": "Both numerator and denominator come out over 20, so the 20s cancel and leave 27/11.",
         "common_mistakes": [
           "Adding the tangents without the denominator.",
           "Getting the denominator as 1 + tanα tanβ."

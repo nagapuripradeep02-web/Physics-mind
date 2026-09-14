@@ -27,7 +27,7 @@
       "marks": 2
     },
     {
-      "label": "Check the range and close",
+      "label": "Check the range and finish",
       "marks": 1
     }
   ],
@@ -139,7 +139,7 @@
             "minus sin sin"
           ]
         },
-        "why": "Cosine is used rather than sine because the answer is asked as a Cos⁻¹. Expanding sin(A + B) would give 77/85 and would not match the statement.",
+        "why": "Cosine is used because the answer is asked as a Cos⁻¹. Expanding sin(A + B) gives 77/85, which would need one more step to change Sin⁻¹(77/85) into Cos⁻¹(36/85).",
         "common_mistakes": [
           "Expanding sin(A + B) instead.",
           "Writing a plus sign between the two products."
@@ -154,11 +154,11 @@
       {
         "id": "s3_check_the_range_and_close",
         "kind": "boxed_final",
-        "label": "Check the range and close",
+        "label": "Check the range and finish",
         "marks": 1,
         "mark_note": "Conclusion",
-        "margin_note": "Last mark. The range line is not decoration — without it the final equality is only a statement about cosines, not about the angles.",
-        "memory_tip": "Cos⁻¹ returns angles in [0, π]. Two first-quadrant angles add to less than π, so the step is safe.",
+        "margin_note": "Last mark. The range line is needed — without it the final equality is only a statement about cosines, not about the angles.",
+        "memory_tip": "Cos⁻¹ returns angles in [0, π]. Two first-quadrant angles add to less than π, so the step is valid.",
         "lines": [
           "A, B ∈ (0, π/2) ⇒ A + B ∈ (0, π)",
           "[0, π] is the range of Cos⁻¹, so the",

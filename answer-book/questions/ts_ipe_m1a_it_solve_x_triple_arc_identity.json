@@ -31,7 +31,7 @@
       "marks": 1
     },
     {
-      "label": "Check the range and close",
+      "label": "Check the range and finish",
       "marks": 1
     }
   ],
@@ -53,7 +53,7 @@
         "label": "State the three standard forms",
         "marks": 1,
         "mark_note": "Formula",
-        "margin_note": "First mark. Naming the range is the whole difficulty here — outside 0 ≤ x < 1 each form gains or loses a π and the working changes.",
+        "margin_note": "First mark. Naming the ranges is the main difficulty — outside 0 ≤ x < 1 at least one of the three forms is no longer 2Tan⁻¹x.",
         "memory_tip": "All three reduce to 2Tan⁻¹x, but on different ranges: |x| ≤ 1, x ≥ 0 and |x| < 1. The common part is 0 ≤ x < 1.",
         "lines": [
           {
@@ -102,7 +102,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Second mark. Collect the coefficients first — all three terms are the same quantity, so only 6 − 8 + 4 matters.",
-        "memory_tip": "6 − 8 + 4 = 2, so the whole left side is 2 Tan⁻¹x.",
+        "memory_tip": "6 − 8 + 4 = 2, so on 0 ≤ x < 1 the left side is 2 Tan⁻¹x.",
         "lines": [
           "On 0 ≤ x < 1, put t = Tan⁻¹x.",
           {
@@ -141,7 +141,7 @@
         },
         "why": "All three terms carry the same 2Tan⁻¹x, so the whole left side becomes a single multiple of it. The coefficients 3, −4 and 2 give 6 − 8 + 4 = 2.",
         "common_mistakes": [
-          "Adding 3, 4 and 2 as 9 instead of 6 − 8 + 4.",
+          "Adding the coefficients as 3 + 4 + 2 = 9 instead of 3 − 4 + 2 = 1.",
           "Dropping the minus sign on the Cos⁻¹ term."
         ],
         "lines_compact": [
@@ -198,7 +198,7 @@
             "tan pi by six"
           ]
         },
-        "why": "Dividing by 2 first keeps the angle inside the principal range of Tan⁻¹, so the tangent can be taken directly.",
+        "why": "Dividing by 2 first gives Tan⁻¹x = π/6, and π/6 lies in (−π/2, π/2), the range of Tan⁻¹, so x = tan(π/6) with no extra root.",
         "common_mistakes": [
           "Writing tan(π/6) as √3.",
           "Solving Tan⁻¹x = π/3 instead of π/6."
@@ -212,7 +212,7 @@
       {
         "id": "s4_check_the_range_and_close",
         "kind": "boxed_final",
-        "label": "Check the range and close",
+        "label": "Check the range and finish",
         "marks": 1,
         "mark_note": "Conclusion",
         "margin_note": "Last mark. The range check is the marked idea here, not the arithmetic — a root outside 0 ≤ x < 1 would have to be thrown away.",
@@ -250,10 +250,10 @@
             "one over root three"
           ]
         },
-        "why": "A root found on a restricted range must be shown to lie in that range. Outside 0 ≤ x < 1 the three forms change by π and the left side is negative, so x = 1/√3 is the only answer.",
+        "why": "A root found on a restricted range must be shown to lie in that range. Outside 0 ≤ x < 1 the forms are no longer all 2Tan⁻¹x, and the left side is negative, so x = 1/√3 is the only answer.",
         "common_mistakes": [
           "Skipping the range check on the root.",
-          "Giving −1/√3 as a second answer."
+          "Giving −√3 (from 2x/(1 − x²) = √3) as a second answer."
         ]
       }
     ]

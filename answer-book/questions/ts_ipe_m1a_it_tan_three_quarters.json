@@ -83,7 +83,7 @@
             "twenty seven over twenty"
           ]
         },
-        "why": "The same first pair can be found in a different way — 27/11 appears in several questions in this chapter.",
+        "why": "The two terms are combined first with the addition formula because (3/4)(3/5) = 9/20 < 1; the result Tan⁻¹(27/11) is then used with the third term.",
         "common_mistakes": [
           "Using the difference formula on the first pair.",
           "Getting the denominator as 1 + xy."
@@ -185,7 +185,7 @@
             "tan inverse one"
           ]
         },
-        "why": "This question and the similar one both come to π/4 — the fractions were chosen so that they cancel exactly.",
+        "why": "The fractions were chosen so that the top and the bottom both come to 425, which gives Tan⁻¹(1) = π/4.",
         "common_mistakes": [
           "Leaving the answer as Tan⁻¹(425/425).",
           "Failing to simplify the fraction."

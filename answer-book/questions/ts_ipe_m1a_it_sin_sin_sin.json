@@ -93,7 +93,7 @@
             "twenty four"
           ]
         },
-        "why": "An inverse trig value cannot be added directly, but ANGLES can. Naming them turns the whole question into ordinary trigonometry.",
+        "why": "The fractions 4/5 and 7/25 cannot be added inside Sin⁻¹. Naming the angles α and β lets the sin(A + B) formula be used.",
         "common_mistakes": [
           "Trying to add the fractions 4/5 and 7/25 directly.",
           "Forgetting to restate what has to be proved in terms of sin(α+β)."

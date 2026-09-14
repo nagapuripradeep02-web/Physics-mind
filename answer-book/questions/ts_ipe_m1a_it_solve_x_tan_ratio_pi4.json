@@ -206,7 +206,7 @@
         "why": "The x² − 4 factors cancel, so the equation is a plain quadratic. Both signs of the square root stay candidates until they are tested.",
         "common_mistakes": [
           "Keeping only the positive root without testing.",
-          "Cancelling x² − 4 while the excluded values still need it."
+          "Cancelling x² − 4 without first stating x ≠ 2 and x ≠ −2."
         ],
         "lines_compact": [
           "tan(π/4) = 1, so (u + v)/(1 − uv) = 1",
@@ -222,7 +222,7 @@
         "marks": 1,
         "mark_note": "Conclusion",
         "margin_note": "Last mark. Replacing x by −x swaps u and v, so the left side has the same value at both roots and neither is rejected.",
-        "memory_tip": "Test each root in the original equation. The check is uv < 1 — if uv is not less than 1, the sum needs an extra π.",
+        "memory_tip": "Test each root in the original equation. The check is uv < 1. If uv > 1, the sum differs from Tan⁻¹((u + v)/(1 − uv)) by π (add π when u, v > 0, subtract π when u, v < 0).",
         "lines": [
           {
             "text": "(test both roots, because the formula needs uv < 1)",
@@ -263,7 +263,7 @@
             "one over root two"
           ]
         },
-        "why": "Tan⁻¹u + Tan⁻¹v equals Tan⁻¹((u + v)/(1 − uv)) only when uv < 1; otherwise a π has to be added. Here uv = 1/7, so no π is needed and both roots stand.",
+        "why": "Tan⁻¹u + Tan⁻¹v equals Tan⁻¹((u + v)/(1 − uv)) only when uv < 1; when uv > 1 a π must be added (u, v > 0) or subtracted (u, v < 0). Here uv = 1/7, so no π is needed and both roots are accepted.",
         "common_mistakes": [
           "Reporting only x = 1/√2.",
           "Skipping the uv < 1 check on the roots."

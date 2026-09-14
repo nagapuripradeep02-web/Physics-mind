@@ -57,7 +57,7 @@
             "style": "heading"
           },
           "Let θ = Sin⁻¹√(13/17)",
-          "(Sin⁻¹ of a positive number lies in (0, π/2))",
+          "(Sin⁻¹ of a number between 0 and 1 lies in (0, π/2))",
           "⇒ sinθ = √(13/17), and θ ∈ (0, π/2)",
           "(cos²θ = 1 − sin²θ)",
           "cos²θ = 1 − 13/17 = 4/17",
@@ -88,7 +88,7 @@
             "two over root thirteen"
           ]
         },
-        "why": "Sin⁻¹ of a positive number is a first-quadrant angle, so the positive square root is the only correct one for cosθ.",
+        "why": "Sin⁻¹ of a number between 0 and 1 is a first-quadrant angle, so the positive square root is the only correct one for cosθ.",
         "common_mistakes": [
           "Taking cosθ as the negative root.",
           "Writing cotθ as sinθ/cosθ."
@@ -110,11 +110,11 @@
             "added": true
           },
           "Opposite 2, adjacent 3,",
-          "hypotenuse √(2² + 3²) = √13",
           {
             "text": "(by Pythagoras)",
             "added": true
           },
+          "hypotenuse √(2² + 3²) = √13",
           {
             "text": "(sin = opposite/hypotenuse)",
             "added": true
@@ -166,11 +166,11 @@
         "memory_tip": "Both sides come to 2/√13. Rationalise once at the end: 2√13/13.",
         "lines": [
           "Both sides equal 2/√13,",
-          "that is 2√13/13.",
           {
             "text": "(multiply top and bottom by √13)",
             "added": true
           },
+          "that is 2√13/13.",
           {
             "text": "∴ cot(Sin⁻¹√(13/17)) = sin(Tan⁻¹(2/3))",
             "style": "boxed"

@@ -27,7 +27,7 @@
       "marks": 1
     },
     {
-      "label": "Simplify and close",
+      "label": "Simplify and finish",
       "marks": 1
     }
   ],
@@ -89,7 +89,7 @@
             "tan inverse one half"
           ]
         },
-        "why": "When xy > 1 the formula needs an extra π on the right-hand side. The product 1/18 is well below 1, so the plain formula is the correct one here.",
+        "why": "When xy > 1, the formula needs +π on the right if x > 0, and −π if x < 0. The product 1/18 is well below 1, so the plain formula is the correct one here.",
         "common_mistakes": [
           "Using the formula without checking xy < 1.",
           "Writing the denominator as 1 + xy."
@@ -154,10 +154,10 @@
       {
         "id": "s3_simplify_and_close",
         "kind": "boxed_final",
-        "label": "Simplify and close",
+        "label": "Simplify and finish",
         "marks": 1,
         "mark_note": "Result",
-        "margin_note": "Last mark. θ was only a name for the combined angle, so 2θ is exactly the bracket the question doubles.",
+        "margin_note": "Last mark. θ is the sum inside the bracket, so 2θ is exactly twice the bracket, as in the question.",
         "memory_tip": "(3/4) ÷ (5/4) = 3/5 — the quarters cancel.",
         "lines": [
           {
@@ -197,7 +197,7 @@
             "three by five"
           ]
         },
-        "why": "The 4s cancel in (3/4)/(5/4), so the whole expression comes to exactly 3/5 and not to a decimal.",
+        "why": "The 4s cancel in (3/4)/(5/4), which leaves 3/5.",
         "common_mistakes": [
           "Leaving the answer as (3/4)/(5/4).",
           "Forgetting that 2θ is the whole bracket doubled."

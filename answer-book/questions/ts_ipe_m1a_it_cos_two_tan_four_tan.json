@@ -96,8 +96,8 @@
         "label": "Find tan2β first",
         "marks": 2,
         "mark_note": "Method",
-        "margin_note": "Half the marks. sin4β cannot be reached in one step. Compute tan2β first — then 4β is just 2(2β) and the same formula applies again.",
-        "memory_tip": "sin 4β cannot be reached in one step. Get tan 2β first, then treat 4β as 2(2β).",
+        "margin_note": "Half the marks. Compute tan2β first. Then 4β = 2(2β), and sin2θ = 2tanθ/(1 + tan²θ) is used with θ = 2β.",
+        "memory_tip": "Get tan 2β first, then treat 4β as 2(2β) and use sin2θ = 2tanθ/(1 + tan²θ) with θ = 2β.",
         "lines": [
           {
             "text": "(the tan2β formula)",
@@ -137,7 +137,7 @@
             "one minus tan squared"
           ]
         },
-        "why": "There is no formula for sin4θ in terms of tanθ directly. Stepping through tan2θ is what makes the second application possible.",
+        "why": "sin4θ can be written in terms of tanθ, but that formula is long. Finding tan2θ first lets the short sin2θ formula be used on 2β.",
         "common_mistakes": [
           "Trying to double the angle twice in one line.",
           "Using the sin2θ formula where the tan2θ one is needed."

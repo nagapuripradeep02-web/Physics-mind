@@ -31,7 +31,7 @@
       "marks": 1
     },
     {
-      "label": "Check the range and close",
+      "label": "Check the range and finish",
       "marks": 1
     }
   ],
@@ -53,7 +53,7 @@
         "label": "Name the two angles",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. Naming the angles turns the statement into cos(2A − B) = 323/325, which is a plain expansion.",
+        "margin_note": "First mark. Naming the angles means we need cos(2A − B) = 323/325, together with 2A − B ∈ [0, π].",
         "memory_tip": "3-4-5 and 5-12-13 are the two triangles here. Write all four ratios before starting.",
         "lines": [
           {
@@ -90,7 +90,7 @@
             "first quadrant"
           ]
         },
-        "why": "Both inverse values are positive, so A and B are first-quadrant angles. Every sine and cosine below is then a positive number.",
+        "why": "Both 3/5 and 5/13 are positive, so A and B are first-quadrant angles. Every sine and cosine below is then a positive number.",
         "common_mistakes": [
           "Taking cosA as −4/5.",
           "Reading Sin⁻¹(3/5) as an angle whose cosine is 3/5."
@@ -158,7 +158,7 @@
         "label": "Expand cos of the difference",
         "marks": 1,
         "mark_note": "Formula",
-        "margin_note": "Third mark. Both products already sit over 325, so they add with no extra work.",
+        "margin_note": "Third mark. Both products already have the denominator 325, so they add with no extra work.",
         "memory_tip": "cos(X − Y) = cosX cosY + sinX sinY — the sign turns to plus for a difference.",
         "lines": [
           {
@@ -196,7 +196,7 @@
             "plus sin sin"
           ]
         },
-        "why": "The difference formula for cosine carries a plus sign between the two products. That sign is what produces 323 and not 253.",
+        "why": "The difference formula for cosine carries a plus sign between the two products. That sign is what produces 323 and not −253.",
         "common_mistakes": [
           "Writing a minus sign between the two products.",
           "Using the sine difference formula instead."
@@ -211,12 +211,21 @@
       {
         "id": "s4_check_the_range_and_close",
         "kind": "boxed_final",
-        "label": "Check the range and close",
+        "label": "Check the range and finish",
         "marks": 1,
         "mark_note": "Conclusion",
         "margin_note": "Last mark. Cosine decreases as the angle increases on (0, π), so the smaller cosine 7/25 belongs to the bigger angle — that is how 2A > B is proved.",
         "memory_tip": "Cos⁻¹ only returns angles in [0, π]. Show 2A − B is positive and below π before writing the last line.",
         "lines": [
+          {
+            "text": "(A ∈ (0, π/2) gives 2A ∈ (0, π), and a positive cosine",
+            "added": true
+          },
+          {
+            "text": "  there means 2A ∈ (0, π/2))",
+            "style": "indent",
+            "added": true
+          },
           "cos2A = 7/25 > 0 ⇒ 2A ∈ (0, π/2)",
           "7/25 < 5/13 and cos decreases on (0, π/2),",
           "so 2A > B, giving 2A − B ∈ (0, π/2).",
@@ -253,6 +262,17 @@
         "common_mistakes": [
           "Writing the Cos⁻¹ line without checking the range.",
           "Assuming 2A > B with no reason given."
+        ],
+        "lines_compact": [
+          "cos2A = 7/25 > 0 ⇒ 2A ∈ (0, π/2)",
+          "7/25 < 5/13 and cos decreases on (0, π/2),",
+          "so 2A > B, giving 2A − B ∈ (0, π/2).",
+          "This is inside [0, π], the range of Cos⁻¹.",
+          "2Sin⁻¹(3/5) − Cos⁻¹(5/13) = Cos⁻¹(323/325)",
+          {
+            "text": "∴ L.H.S = Cos⁻¹(323/325) = R.H.S",
+            "style": "boxed"
+          }
         ]
       }
     ]

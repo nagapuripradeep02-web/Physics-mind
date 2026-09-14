@@ -97,7 +97,7 @@
         "label": "Apply the tangent sum formula",
         "marks": 2,
         "mark_note": "Formula",
-        "margin_note": "Two marks — the formula and its condition together. tanα tanβ = 1/2, so the denominator is not zero and the sum is a genuine angle.",
+        "margin_note": "Two marks — the formula and its condition together. tanα tanβ = 1/2, so the denominator is not zero and tan(α + β) exists.",
         "memory_tip": "Sum on top, 1 minus the product below. The formula needs tanα tanβ ≠ 1.",
         "lines": [
           {

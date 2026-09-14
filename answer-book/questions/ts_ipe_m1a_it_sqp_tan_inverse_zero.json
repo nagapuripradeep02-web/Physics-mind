@@ -91,7 +91,7 @@
             "one over ninety one"
           ]
         },
-        "why": "The formula has a DIFFERENT right-hand side when xy > 1 — a π has to be added. Checking the condition is what makes this version valid.",
+        "why": "The formula has a DIFFERENT right-hand side when xy > 1 — a π is added when x, y > 0 and subtracted when x, y < 0. Checking the condition is what makes this version valid.",
         "common_mistakes": [
           "Using the formula without checking xy < 1.",
           "Writing the denominator as 1 + xy."
@@ -183,7 +183,7 @@
             "cancel"
           ]
         },
-        "why": "20/90 reducing to exactly 2/9 is the whole point — it matches the third term in the question, which is what makes the difference zero.",
+        "why": "20/90 reduces to exactly 2/9, which matches the third term in the question — that is what makes the difference zero.",
         "common_mistakes": [
           "Leaving the answer as 20/90.",
           "Reducing 20/90 to 2/10."
@@ -251,5 +251,5 @@
       }
     ]
   },
-  "insider_note": "Check that xy < 1 before using the addition formula — here it is 1/91, and stating it earns credit. The 91s cancel to leave 20/90, which must be reduced to 2/9 for the subtraction to close."
+  "insider_note": "Check that xy < 1 before using the addition formula — here it is 1/91, and stating it earns credit. The 91s cancel to leave 20/90, which must be reduced to 2/9 so that the subtraction gives 0."
 }
