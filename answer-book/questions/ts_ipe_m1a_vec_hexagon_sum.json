@@ -259,8 +259,8 @@
         "label": "Regroup into three ADs",
         "marks": 2,
         "mark_note": "Triangle law",
-        "margin_note": "Half the marks. Regroup so each bracket is a nose-to-tail pair: AB + BD lands on AD, and AC + CD lands on AD. With the AD already there, that is three of them.",
-        "memory_tip": "Regroup into nose-to-tail pairs: AB + BD = AD and AC + CD = AD. With the AD already there, three of them.",
+        "margin_note": "Half the marks. Regroup so each bracket is a head-to-tail pair: AB + BD lands on AD, and AC + CD lands on AD. With the AD already there, that is three of them.",
+        "memory_tip": "Regroup into head-to-tail pairs: AB + BD = AD and AC + CD = AD. With the AD already there, three of them.",
         "lines": [
           "= (AB + BD) + AD + (AC + CD)",
           "= AD + AD + AD",

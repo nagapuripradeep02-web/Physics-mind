@@ -92,7 +92,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. PQ + QR = PR is the triangle law, and it extends to a chain of any length. Three routes from A to C give three copies of AC, so λ = 3.",
-        "memory_tip": "Any nose-to-tail route from A to C adds up to AC. Three routes here, so 3AC and λ = 3.",
+        "memory_tip": "Any head-to-tail route from A to C adds up to AC. Three routes here, so 3AC and λ = 3.",
         "lines": [
           "By the triangle law,",
           "AB + BC = AC and AE + ED + DC = AC",
@@ -125,7 +125,7 @@
             "nose to tail"
           ]
         },
-        "why": "Adding vectors nose to tail from A to C gives AC by whatever route is taken. That is the same fact as saying the sides of a closed polygon, taken in order, add to the zero vector, and it needs no property of the pentagon at all.",
+        "why": "Adding vectors head to tail from A to C gives AC by whatever route is taken. That is the same fact as saying the sides of a closed polygon, taken in order, add to the zero vector, and it needs no property of the pentagon at all.",
         "common_mistakes": [
           "Answering λ = 2 by forgetting the AC that was already in the list.",
           "Assuming the pentagon has to be regular for the result to hold."

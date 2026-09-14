@@ -48,7 +48,7 @@
         "kind": "text",
         "label": "Name the three vectors",
         "marks": 0,
-        "margin_note": "No mark of its own, but it makes every line below shorter. Give the three vectors short names and say what they are meant to be — the sides of a triangle placed nose to tail.",
+        "margin_note": "No mark of its own, but it makes every line below shorter. Give the three vectors short names and say what they are meant to be — the sides of a triangle placed head to tail.",
         "memory_tip": "Give the three vectors short names p, q, r before you start, so no line has to repeat the components.",
         "lines": [
           {
@@ -58,7 +58,7 @@
           "Let p = 3i + 5j + 2k,  q = 2i − 3j − 5k,",
           "r = −5i − 2j + 3k.",
           "If these form a triangle, they are its",
-          "sides taken nose to tail."
+          "sides placed head to tail."
         ],
         "recall": {
           "credit": "say_it",
@@ -94,14 +94,14 @@
         "label": "Show they form a triangle",
         "marks": 1,
         "mark_note": "Closure",
-        "margin_note": "First mark. Three vectors placed nose to tail form a triangle exactly when they add to the zero vector. Add the i, j and k components in three separate columns.",
+        "margin_note": "First mark. Three vectors placed head to tail form a triangle exactly when they add to the zero vector. Add the i, j and k components in three separate columns.",
         "memory_tip": "Three vectors close into a triangle exactly when they add to the zero vector.",
         "lines": [
           "p + q + r",
           "  = (3+2−5)i + (5−3−2)j + (2−5+3)k",
           "  = 0i + 0j + 0k = 0",
-          "The three add to the zero vector, so nose",
-          "to tail they close up.",
+          "The three add to the zero vector, so placed",
+          "head to tail they form a closed path.",
           "∴ they do form a triangle."
         ],
         "recall": {
@@ -127,7 +127,7 @@
             "triangle"
           ]
         },
-        "why": "Walking along three vectors nose to tail returns you to the start exactly when their sum is zero, and a closed three-sided walk is a triangle. Without this the word \"triangle\" in the question is unearned.",
+        "why": "Walking along three vectors head to tail returns you to the start exactly when their sum is zero, and a closed three-sided walk is a triangle. Without this the word \"triangle\" in the question is unearned.",
         "common_mistakes": [
           "Adding only the i components and assuming the rest follow.",
           "Writing the answer as 0 when the sum of vectors is the zero vector, not the number zero."

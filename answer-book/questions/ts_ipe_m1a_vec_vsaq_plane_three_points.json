@@ -107,7 +107,11 @@
           "Vector equation of the plane is",
           "r = (1−s−t)a + sb + tc,  s, t ∈ R",
           {
-            "text": "∴ r = (1−s−t)(i − 2j + 5k) + s(−5j − k) + t(−3i + 5j)",
+            "text": "∴ r = (1−s−t)(i − 2j + 5k)",
+            "style": "boxed"
+          },
+          {
+            "text": "+ s(−5j − k) + t(−3i + 5j),  s, t ∈ R",
             "style": "boxed"
           }
         ],

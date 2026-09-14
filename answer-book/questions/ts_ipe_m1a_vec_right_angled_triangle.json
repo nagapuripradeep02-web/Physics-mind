@@ -293,7 +293,11 @@
         "lines": [
           "The relation holds, so the angle opposite AB is 90°.",
           {
-            "text": "∴ A, B, C are the vertices of a right-angled triangle.",
+            "text": "∴ A, B, C are the vertices of a",
+            "style": "boxed"
+          },
+          {
+            "text": "right-angled triangle.",
             "style": "boxed"
           }
         ],
