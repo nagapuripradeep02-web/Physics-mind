@@ -39,7 +39,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.80 — VSAQ chapter 14 Straight Lines, answer 90.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 16,20. ⚠ THE MARK SPLIT 1+1 IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on this chapter's pages, which are set two and three answers to a page in columns, taking the margin those tags would occupy. It is not a bare guess: the very next VSAQ chapter prints 1+1 on answer 98 (book p.83, 3-D Coordinates), and 1A's own VSAQ pages print 1-mark tags in the same style. The chapter header reads '2+2=4 Marks', meaning the paper asks TWO of these, each worth 2 — so one question is 2 marks, cut here as one for the method and one for the answer. Paper position: Maths-1B Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; The Straight Line holds two of those ten slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.80 — VSAQ chapter 14 Straight Lines, answer 90.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 16,20. ⚠ THE MARK SPLIT 1+1 IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on this chapter's pages, which are set two and three answers to a page in columns, taking the margin those tags would occupy. It is not a bare guess: the very next VSAQ chapter prints 1+1 on answer 98 (book p.83, 3-D Coordinates), and 1A's own VSAQ pages print 1-mark tags in the same style. The chapter header reads '2+2=4 Marks', meaning the paper asks TWO of these, each worth 2 — so one question is 2 marks, cut here as one for the method and one for the answer. Paper position: Maths-1B Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; The Straight Line holds two of those ten slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say what each of the two forms must look like when you are finished.",
   "answer": {
@@ -61,8 +61,11 @@
             "style": "heading"
           },
           "(i) Slope intercept form is  y = mx + c",
+          "(add 3y to both sides)",
           "∴ 4x − 3y + 12 = 0  ⇒  3y = 4x + 12",
+          "(divide every term by 3)",
           "⇒ y = (4/3)x + 12/3",
+          "(12/3 = 4; the slope is 4/3 and the y-intercept is 4)",
           "⇒ y = (4/3)x + 4"
         ],
         "recall": {
@@ -102,8 +105,20 @@
         "memory_tip": "x/a + y/b = 1: move the constant right and divide everything by it — the denominators are the intercepts.",
         "lines": [
           "(ii) Intercept form is  x/a + y/b = 1",
+          {
+            "text": "(move 12 to the right side)",
+            "added": true
+          },
           "∴ 4x − 3y + 12 = 0  ⇒  4x − 3y = −12",
+          {
+            "text": "(divide every term by −12, so that the right side is 1)",
+            "added": true
+          },
           "⇒ 4x/(−12) − 3y/(−12) = 1",
+          {
+            "text": "(4x/(−12) = x/(−3) and −3y/(−12) = y/4)",
+            "added": true
+          },
           {
             "text": "⇒ x/(−3) + y/4 = 1",
             "style": "boxed"
@@ -136,7 +151,16 @@
           "Leaving a number other than 1 on the right.",
           "Forgetting to divide one of the two terms."
         ],
-        "mark_note": "Solution"
+        "mark_note": "Solution",
+        "lines_compact": [
+          "(ii) Intercept form is  x/a + y/b = 1",
+          "∴ 4x − 3y + 12 = 0  ⇒  4x − 3y = −12",
+          "⇒ 4x/(−12) − 3y/(−12) = 1",
+          {
+            "text": "⇒ x/(−3) + y/4 = 1",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

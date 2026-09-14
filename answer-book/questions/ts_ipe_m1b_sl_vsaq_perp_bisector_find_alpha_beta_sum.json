@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Very Short Answer question 24, book p.143. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The 1+1 split gives the first mark for recognising that (α, β) is the image of the given point in the line and writing the image relation, and the second for the arithmetic and the required sum. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Answer checked against both defining properties of a perpendicular bisector. Midpoint of (3, −4) and (−1, 2) is (1, −1), and 2(1) − 3(−1) − 5 = 2 + 3 − 5 = 0, so the midpoint lies on the line. Slope of the segment is (2 + 4)/(−1 − 3) = −3/2 and the slope of the line is 2/3, and (−3/2)(2/3) = −1, so the segment meets the line at right angles. Hence (α, β) = (−1, 2) and α + β = 1. The image relation used here is the one proved in ts_ipe_m1b_sl_image_of_point_proof, which is the same unit's standard result."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Very Short Answer question 24, book p.143. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The 1+1 split gives the first mark for recognising that (α, β) is the image of the given point in the line and writing the image relation, and the second for the arithmetic and the required sum. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Answer checked against both defining properties of a perpendicular bisector. Midpoint of (3, −4) and (−1, 2) is (1, −1), and 2(1) − 3(−1) − 5 = 2 + 3 − 5 = 0, so the midpoint lies on the line. Slope of the segment is (2 + 4)/(−1 − 3) = −3/2 and the slope of the line is 2/3, and (−3/2)(2/3) = −1, so the segment meets the line at right angles. Hence (α, β) = (−1, 2) and α + β = 1. The image relation used here is the one proved in ts_ipe_m1b_sl_image_of_point_proof, which is the same unit's standard result. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say what (α, β) is with respect to the line, and the relation you then use.",
   "answer": {
@@ -54,6 +54,7 @@
           },
           "The line bisects the segment at right angles,",
           "so (α, β) is the image of (3, −4) in it.",
+          "(the image formula from the image-of-a-point proof)",
           "For P(x₁, y₁) and ax + by + c = 0,",
           "(α − x₁)/a = (β − y₁)/b = r,  where",
           "r = −2(ax₁ + by₁ + c)/(a² + b²)",
@@ -96,12 +97,41 @@
         "margin_note": "Second mark. Here ax₁ + by₁ + c and a² + b² are both 13, so r = −2 and the two coordinates follow at once.",
         "memory_tip": "Work out the numerator and a² + b² separately, then divide once. Only one division is needed.",
         "lines": [
+          {
+            "text": "(put a = 2, b = −3, c = −5, x₁ = 3 and y₁ = −4)",
+            "added": true
+          },
           "ax₁ + by₁ + c = 2(3) − 3(−4) − 5",
           "= 6 + 12 − 5 = 13",
+          {
+            "text": "(2² = 4 and (−3)² = 9)",
+            "added": true
+          },
           "a² + b² = 4 + 9 = 13",
+          {
+            "text": "(−2 × 13 = −26, and −26/13 = −2)",
+            "added": true
+          },
           "∴ r = −2(13)/13 = −2",
+          {
+            "text": "(α − x₁ = ar, so α = x₁ + ar)",
+            "added": true
+          },
           "α = x₁ + ar = 3 + 2(−2) = −1",
+          {
+            "text": "(β − y₁ = br, so β = y₁ + br)",
+            "added": true
+          },
           "β = y₁ + br = −4 + (−3)(−2) = 2",
+          {
+            "text": "(check: the midpoint of (3, −4) and (−1, 2) is (1, −1),",
+            "added": true
+          },
+          {
+            "text": "  and 2(1) − 3(−1) − 5 = 0)",
+            "style": "indent",
+            "added": true
+          },
           {
             "text": "∴ α + β = −1 + 2 = 1",
             "style": "boxed"
@@ -133,6 +163,18 @@
         "common_mistakes": [
           "Dropping the minus sign in r and getting (7, −10).",
           "Sign slip in β, writing −4 − 6 = −10 instead of −4 + 6 = 2."
+        ],
+        "lines_compact": [
+          "ax₁ + by₁ + c = 2(3) − 3(−4) − 5",
+          "= 6 + 12 − 5 = 13",
+          "a² + b² = 4 + 9 = 13",
+          "∴ r = −2(13)/13 = −2",
+          "α = x₁ + ar = 3 + 2(−2) = −1",
+          "β = y₁ + br = −4 + (−3)(−2) = 2",
+          {
+            "text": "∴ α + β = −1 + 2 = 1",
+            "style": "boxed"
+          }
         ]
       }
     ]

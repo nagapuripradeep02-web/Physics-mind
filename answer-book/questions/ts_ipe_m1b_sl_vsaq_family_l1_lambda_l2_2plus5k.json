@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Very Short Answer question 17, book p.142. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. PRINTED DEFECT RECORDED: the book prints the instruction as \"Transofrm the equation\", a typographical error for \"Transform\". The mathematics of the stem is sound, so only the spelling was normalised in question_text; no number, sign or coefficient was changed. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The 1+1 split gives the first mark for the regrouping that exposes L₁ and L₂, and the second for solving them; the question asks for two things and the split follows them. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Answer checked three ways. In L₂: 5(5) − 6(4) − 1 = 0. In L₁: 2(5) − 3(4) + 2 = 0. In the original equation with k = 1: (2 + 5)(5) − 3(1 + 2)(4) + (2 − 1) = 35 − 36 + 1 = 0; and with k = 0: 2(5) − 3(4) + 2 = 0. So (5, 4) lies on the line for more than one value of k."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Very Short Answer question 17, book p.142. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. PRINTED DEFECT RECORDED: the book prints the instruction as \"Transofrm the equation\", a typographical error for \"Transform\". The mathematics of the stem is sound, so only the spelling was normalised in question_text; no number, sign or coefficient was changed. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The 1+1 split gives the first mark for the regrouping that exposes L₁ and L₂, and the second for solving them; the question asks for two things and the split follows them. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Answer checked three ways. In L₂: 5(5) − 6(4) − 1 = 0. In L₁: 2(5) − 3(4) + 2 = 0. In the original equation with k = 1: (2 + 5)(5) − 3(1 + 2)(4) + (2 − 1) = 35 − 36 + 1 = 0; and with k = 0: 2(5) − 3(4) + 2 = 0. So (5, 4) lies on the line for more than one value of k. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say how you separate the k terms, and what you then do with the two lines.",
   "answer": {
@@ -53,7 +53,13 @@
             "style": "heading"
           },
           "(2 + 5k)x − 3(1 + 2k)y + (2 − k) = 0",
+          "(multiply out: 5k · x = 5kx and −3 · 2k · y = −6ky)",
           "⇒ 2x + 5kx − 3y − 6ky + 2 − k = 0",
+          "(put the terms without k in one bracket and take",
+          {
+            "text": "  k out of the rest)",
+            "style": "indent"
+          },
           "⇒ (2x − 3y + 2) + k(5x − 6y − 1) = 0",
           "This is L₁ + λL₂ = 0 with λ = k, where",
           "L₁ ≡ 2x − 3y + 2 = 0  ……(1)",
@@ -96,12 +102,41 @@
         "margin_note": "Second mark. The fixed point is where L₁ and L₂ meet, because only there do both brackets vanish at once. Doubling (1) matches the y terms so subtracting removes them.",
         "memory_tip": "Both brackets must be zero at once, so the fixed point is where L₁ and L₂ cross.",
         "lines": [
+          {
+            "text": "(if L₁ = 0 and L₂ = 0 at a point, then L₁ + kL₂ = 0",
+            "added": true
+          },
+          {
+            "text": "  there for every k)",
+            "style": "indent",
+            "added": true
+          },
           "The point where L₁ = 0 and L₂ = 0 makes",
           "the equation true for every k.",
+          {
+            "text": "(multiply (1) by 2 so that both y terms are −6y)",
+            "added": true
+          },
           "(1) × 2:  4x − 6y + 4 = 0   ……(3)",
+          {
+            "text": "(subtracting removes y: 5x − 4x = x and −1 − 4 = −5)",
+            "added": true
+          },
           "(2) − (3):  x − 5 = 0  ⇒  x = 5",
+          {
+            "text": "(put x = 5 in (1))",
+            "added": true
+          },
           "In (1):  2(5) − 3y + 2 = 0",
+          {
+            "text": "(10 + 2 = 12; take −3y across)",
+            "added": true
+          },
           "⇒ 3y = 12  ⇒  y = 4",
+          {
+            "text": "(check in (2): 5(5) − 6(4) − 1 = 25 − 24 − 1 = 0)",
+            "added": true
+          },
           {
             "text": "∴ Point of concurrency is (5, 4)",
             "style": "boxed"
@@ -133,6 +168,18 @@
         "common_mistakes": [
           "Substituting one value of k and solving that single line, which gives a point on it but not the common point.",
           "Sign slip when subtracting, giving x = −5."
+        ],
+        "lines_compact": [
+          "The point where L₁ = 0 and L₂ = 0 makes",
+          "the equation true for every k.",
+          "(1) × 2:  4x − 6y + 4 = 0   ……(3)",
+          "(2) − (3):  x − 5 = 0  ⇒  x = 5",
+          "In (1):  2(5) − 3y + 2 = 0",
+          "⇒ 3y = 12  ⇒  y = 4",
+          {
+            "text": "∴ Point of concurrency is (5, 4)",
+            "style": "boxed"
+          }
         ]
       }
     ]

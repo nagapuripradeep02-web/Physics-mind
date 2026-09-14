@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.80 — VSAQ chapter 14 Straight Lines, answer 91.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP M 17 · TS 18. ⚠ THE MARK SPLIT 1+1 IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on this chapter's pages, which are set two and three answers to a page in columns, taking the margin those tags would occupy. It is not a bare guess: the very next VSAQ chapter prints 1+1 on answer 98 (book p.83, 3-D Coordinates), and 1A's own VSAQ pages print 1-mark tags in the same style. The chapter header reads '2+2=4 Marks', meaning the paper asks TWO of these, each worth 2 — so one question is 2 marks, cut here as one for the method and one for the answer. Paper position: Maths-1B Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; The Straight Line holds two of those ten slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.80 — VSAQ chapter 14 Straight Lines, answer 91.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP M 17 · TS 18. ⚠ THE MARK SPLIT 1+1 IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on this chapter's pages, which are set two and three answers to a page in columns, taking the margin those tags would occupy. It is not a bare guess: the very next VSAQ chapter prints 1+1 on answer 98 (book p.83, 3-D Coordinates), and 1A's own VSAQ pages print 1-mark tags in the same style. The chapter header reads '2+2=4 Marks', meaning the paper asks TWO of these, each worth 2 — so one question is 2 marks, cut here as one for the method and one for the answer. Paper position: Maths-1B Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; The Straight Line holds two of those ten slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say what has to be true of p, and what you divide by.",
   "answer": {
@@ -60,7 +60,9 @@
             "style": "heading"
           },
           "Normal form is  xcosα + ysinα = p,  p > 0",
+          "(move 1 to the right side)",
           "∴ x + y + 1 = 0  ⇒  x + y = −1",
+          "(the right side −1 is negative, so multiply every term by −1)",
           "⇒ −x − y = 1"
         ],
         "recall": {
@@ -100,15 +102,41 @@
         "margin_note": "Second mark. Divide through by √(a²+b²) so the coefficients square-and-add to 1, then name the angle whose cosine and sine they are.",
         "memory_tip": "Divide by √(a²+b²); the coefficients are then the cosine and sine of the normal's angle.",
         "lines": [
+          {
+            "text": "(the coefficients of x and y are −1 and −1;",
+            "added": true
+          },
+          {
+            "text": "  divide every term by √2)",
+            "style": "indent",
+            "added": true
+          },
           "On dividing by √((−1)² + (−1)²) = √2, we get",
           "−(1/√2)x − (1/√2)y = 1/√2",
           "which is  x(−1/√2) + y(−1/√2) = 1/√2",
+          {
+            "text": "(compare with x cos α + y sin α = p)",
+            "added": true
+          },
           "Here cosα = −1/√2 and sinα = −1/√2, both negative",
           {
             "text": "  ⇒ α is in the third quadrant",
             "style": "indent"
           },
+          {
+            "text": "(cos 45° = sin 45° = 1/√2; in the third quadrant",
+            "added": true
+          },
+          {
+            "text": "  α = 180° + 45°)",
+            "style": "indent",
+            "added": true
+          },
           "⇒ α = 225°",
+          {
+            "text": "(p = 1/√2 > 0)",
+            "added": true
+          },
           {
             "text": "⇒ x cos225° + y sin225° = 1/√2",
             "style": "boxed"
@@ -142,7 +170,22 @@
           "Dividing by a + b instead of √(a² + b²).",
           "Naming an angle in the wrong quadrant for the signs obtained."
         ],
-        "mark_note": "Solution"
+        "mark_note": "Solution",
+        "lines_compact": [
+          "On dividing by √((−1)² + (−1)²) = √2, we get",
+          "−(1/√2)x − (1/√2)y = 1/√2",
+          "which is  x(−1/√2) + y(−1/√2) = 1/√2",
+          "Here cosα = −1/√2 and sinα = −1/√2, both negative",
+          {
+            "text": "  ⇒ α is in the third quadrant",
+            "style": "indent"
+          },
+          "⇒ α = 225°",
+          {
+            "text": "⇒ x cos225° + y sin225° = 1/√2",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

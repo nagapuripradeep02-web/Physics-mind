@@ -42,7 +42,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.158, chapter 3 THE STRAIGHT LINE, Long Answer question 16(v). **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split follows the three parts the question names: two marks for each of the two easy forms, and four for the normal form, which is the only part with a sign condition in it — one for making the right side positive, two for dividing and reading cos α and sin α, and one for naming α. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section C prints 3 long answer questions at 8 marks each and the student answers any 2, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Every form was checked back against the original. The slope-intercept form y = −x + 2 rearranges to x + y − 2 = 0; the intercept form x/2 + y/2 = 1 multiplies by 2 to x + y = 2; and the normal form, with cos 45° = 1/√2 and sin 45° = 1/√2, reads x/√2 + y/√2 = √2, which multiplies by √2 back to x + y = 2. The value p = √2 also agrees with the direct perpendicular distance from the origin, |0 + 0 − 2|/√(1² + 1²) = 2/√2 = √2. Note that this line and x + y + 2 = 0 are parallel and equally far from the origin, and their normal angles differ by 180°, which is the expected pattern."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.158, chapter 3 THE STRAIGHT LINE, Long Answer question 16(v). **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split follows the three parts the question names: two marks for each of the two easy forms, and four for the normal form, which is the only part with a sign condition in it — one for making the right side positive, two for dividing and reading cos α and sin α, and one for naming α. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section C prints 3 long answer questions at 8 marks each and the student answers any 2, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Every form was checked back against the original. The slope-intercept form y = −x + 2 rearranges to x + y − 2 = 0; the intercept form x/2 + y/2 = 1 multiplies by 2 to x + y = 2; and the normal form, with cos 45° = 1/√2 and sin 45° = 1/√2, reads x/√2 + y/√2 = √2, which multiplies by √2 back to x + y = 2. The value p = √2 also agrees with the direct perpendicular distance from the origin, |0 + 0 − 2|/√(1² + 1²) = 2/√2 = √2. Note that this line and x + y + 2 = 0 are parallel and equally far from the origin, and their normal angles differ by 180°, which is the expected pattern. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this — name all three forms, and say what condition fixes the angle in the normal form.",
   "answer": {
@@ -64,7 +64,9 @@
             "style": "heading"
           },
           "(a) Slope-intercept form is  y = mx + c",
+          "(move x − 2 to the right side)",
           "x + y − 2 = 0  ⇒  y = −x + 2",
+          "(compare with y = mx + c)",
           "∴ m = −1  and  c = 2"
         ],
         "recall": {
@@ -105,8 +107,20 @@
         "margin_note": "The next two marks. Quote x/a + y/b = 1, move the constant to the right, and divide every term by it.",
         "lines": [
           "(b) Intercept form is  x/a + y/b = 1",
+          {
+            "text": "(move −2 to the right side)",
+            "added": true
+          },
           "x + y − 2 = 0  ⇒  x + y = 2",
+          {
+            "text": "(divide every term by 2, so that the right side is 1)",
+            "added": true
+          },
           "Dividing by 2,  x/2 + y/2 = 1",
+          {
+            "text": "(the denominators are the intercepts)",
+            "added": true
+          },
           "∴ a = 2  and  b = 2"
         ],
         "recall": {
@@ -136,7 +150,13 @@
           "Leaving 2 on the right instead of dividing to make it 1.",
           "Dividing only one of the two terms by 2."
         ],
-        "memory_tip": "x/a + y/b = 1 needs 1 on the right, so divide every term by the constant."
+        "memory_tip": "x/a + y/b = 1 needs 1 on the right, so divide every term by the constant.",
+        "lines_compact": [
+          "(b) Intercept form is  x/a + y/b = 1",
+          "x + y − 2 = 0  ⇒  x + y = 2",
+          "Dividing by 2,  x/2 + y/2 = 1",
+          "∴ a = 2  and  b = 2"
+        ]
       },
       {
         "id": "s3_make_positive",
@@ -146,8 +166,21 @@
         "mark_note": "Method",
         "margin_note": "One mark. Normal form carries the condition p > 0. Move the constant across and, if it is negative, change every sign.",
         "lines": [
+          {
+            "text": "(p is the length of the perpendicular from the",
+            "added": true
+          },
+          {
+            "text": "  origin, so p > 0)",
+            "style": "indent",
+            "added": true
+          },
           "(c) Normal form is  x cos α + y sin α = p,",
           "where p > 0.",
+          {
+            "text": "(the right side 2 is positive)",
+            "added": true
+          },
           "x + y = 2  already has a positive right side,",
           "so no sign needs to be changed."
         ],
@@ -178,7 +211,13 @@
           "Changing every sign anyway, which makes the right side negative.",
           "Not checking the sign of the constant at all before dividing."
         ],
-        "memory_tip": "p is a distance, so p > 0. Check the sign of the constant before dividing; here it is already positive."
+        "memory_tip": "p is a distance, so p > 0. Check the sign of the constant before dividing; here it is already positive.",
+        "lines_compact": [
+          "(c) Normal form is  x cos α + y sin α = p,",
+          "where p > 0.",
+          "x + y = 2  already has a positive right side,",
+          "so no sign needs to be changed."
+        ]
       },
       {
         "id": "s4_divide",
@@ -188,9 +227,21 @@
         "mark_note": "Method",
         "margin_note": "Two marks. Divide every term by √(a² + b²), then read cos α, sin α and p off the result in that order.",
         "lines": [
+          {
+            "text": "(1² + 1² = 2)",
+            "added": true
+          },
           "Here √(1² + 1²) = √2.",
+          {
+            "text": "(2/√2 = √2, because 2 = √2 · √2)",
+            "added": true
+          },
           "On dividing by √2, we get",
           "x(1/√2) + y(1/√2) = 2/√2 = √2",
+          {
+            "text": "(compare with x cos α + y sin α = p)",
+            "added": true
+          },
           "∴ cos α = 1/√2,  sin α = 1/√2,  p = √2"
         ],
         "recall": {
@@ -220,7 +271,13 @@
           "Writing p as 2 instead of 2/√2.",
           "Dividing the left side by √2 but not the right."
         ],
-        "memory_tip": "Divide by √(a² + b²) — the square root of the sum of the squares of the two coefficients."
+        "memory_tip": "Divide by √(a² + b²) — the square root of the sum of the squares of the two coefficients.",
+        "lines_compact": [
+          "Here √(1² + 1²) = √2.",
+          "On dividing by √2, we get",
+          "x(1/√2) + y(1/√2) = 2/√2 = √2",
+          "∴ cos α = 1/√2,  sin α = 1/√2,  p = √2"
+        ]
       },
       {
         "id": "s5_alpha",
@@ -230,8 +287,16 @@
         "mark_note": "Solution",
         "margin_note": "The last mark. Use the signs of cos α and sin α to name the quadrant, then write the finished normal form with the angle in it.",
         "lines": [
+          {
+            "text": "(cos α > 0 and sin α > 0)",
+            "added": true
+          },
           "cos α and sin α are both positive, so α lies",
           "in the first quadrant.",
+          {
+            "text": "(cos 45° = sin 45° = 1/√2)",
+            "added": true
+          },
           "The related acute angle is 45°,",
           "so α = 45°",
           {
@@ -266,7 +331,17 @@
           "Placing α in the third quadrant, where both would be negative.",
           "Leaving the answer as x/√2 + y/√2 = √2 without naming α."
         ],
-        "memory_tip": "Both cosine and sine positive means the first quadrant, so α is the related acute angle itself."
+        "memory_tip": "Both cosine and sine positive means the first quadrant, so α is the related acute angle itself.",
+        "lines_compact": [
+          "cos α and sin α are both positive, so α lies",
+          "in the first quadrant.",
+          "The related acute angle is 45°,",
+          "so α = 45°",
+          {
+            "text": "∴ x cos 45° + y sin 45° = √2",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   }

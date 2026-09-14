@@ -34,7 +34,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.80 — VSAQ chapter 14 Straight Lines, answer 91.2, on a ★★★ SSP (Super Scoring Page). Printed appearance: TS 17. ⚠ THE MARK SPLIT 1+1 IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on this chapter's pages, which are set two and three answers to a page in columns, taking the margin those tags would occupy. It is not a bare guess: the very next VSAQ chapter prints 1+1 on answer 98 (book p.83, 3-D Coordinates), and 1A's own VSAQ pages print 1-mark tags in the same style. The chapter header reads '2+2=4 Marks', meaning the paper asks TWO of these, each worth 2 — so one question is 2 marks, cut here as one for the method and one for the answer. Paper position: Maths-1B Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; The Straight Line holds two of those ten slots. NOTE: the book leaves this answer at the values of cosα, sinα and p rather than naming a single degree measure, because Tan⁻¹(4/3) is not a standard angle — unlike its facing question 91.1, whose angle is exactly 225°. This file follows the book and reports the quadrant. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.80 — VSAQ chapter 14 Straight Lines, answer 91.2, on a ★★★ SSP (Super Scoring Page). Printed appearance: TS 17. ⚠ THE MARK SPLIT 1+1 IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on this chapter's pages, which are set two and three answers to a page in columns, taking the margin those tags would occupy. It is not a bare guess: the very next VSAQ chapter prints 1+1 on answer 98 (book p.83, 3-D Coordinates), and 1A's own VSAQ pages print 1-mark tags in the same style. The chapter header reads '2+2=4 Marks', meaning the paper asks TWO of these, each worth 2 — so one question is 2 marks, cut here as one for the method and one for the answer. Paper position: Maths-1B Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; The Straight Line holds two of those ten slots. NOTE: the book leaves this answer at the values of cosα, sinα and p rather than naming a single degree measure, because Tan⁻¹(4/3) is not a standard angle — unlike its facing question 91.1, whose angle is exactly 225°. This file follows the book and reports the quadrant. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say what has to be true of p, and what you divide by.",
   "answer": {
@@ -56,7 +56,13 @@
             "style": "heading"
           },
           "Normal form is  xcosα + ysinα = p,  p > 0",
+          "(move 12 to the right side)",
           "∴ 3x + 4y + 12 = 0  ⇒  3x + 4y = −12",
+          "(the right side −12 is negative,",
+          {
+            "text": "  so multiply every term by −1)",
+            "style": "indent"
+          },
           "⇒ −3x − 4y = 12"
         ],
         "recall": {
@@ -96,6 +102,15 @@
         "margin_note": "Second mark. Divide through by √(a²+b²) so the coefficients square-and-add to 1, then name the angle whose cosine and sine they are.",
         "memory_tip": "Divide by √(a²+b²) so the coefficients square-and-add to 1, then name the angle.",
         "lines": [
+          {
+            "text": "(the coefficients of x and y are −3 and −4; dividing",
+            "added": true
+          },
+          {
+            "text": "  by 5 gives −3/5, −4/5 and 12/5)",
+            "style": "indent",
+            "added": true
+          },
           "Now, dividing by √((−3)² + (−4)²) = √(9 + 16)",
           {
             "text": "  = √25 = 5, we get",
@@ -103,9 +118,26 @@
           },
           "−(3/5)x − (4/5)y = 12/5",
           "We write it as x cosα + y sinα = p",
+          {
+            "text": "(compare the two forms)",
+            "added": true
+          },
           "Where cosα = −3/5, sinα = −4/5, p = 12/5",
+          {
+            "text": "(tan α = sin α/cos α = (−4/5)/(−3/5) = 4/3; cos α < 0",
+            "added": true
+          },
+          {
+            "text": "  and sin α < 0 put α in the third quadrant)",
+            "style": "indent",
+            "added": true
+          },
           "Hence tanα = 4/3, and α lies in Q₃,",
           "so α = 180° + Tan⁻¹(4/3)",
+          {
+            "text": "(check: cos²α + sin²α = 9/25 + 16/25 = 1)",
+            "added": true
+          },
           {
             "text": "⇒ x(−3/5) + y(−4/5) = 12/5,",
             "style": "boxed"
@@ -147,7 +179,31 @@
           "Dividing by a + b instead of √(a² + b²).",
           "Naming an angle in the wrong quadrant for the signs obtained."
         ],
-        "mark_note": "Solution"
+        "mark_note": "Solution",
+        "lines_compact": [
+          "Now, dividing by √((−3)² + (−4)²) = √(9 + 16)",
+          {
+            "text": "  = √25 = 5, we get",
+            "style": "indent"
+          },
+          "−(3/5)x − (4/5)y = 12/5",
+          "We write it as x cosα + y sinα = p",
+          "Where cosα = −3/5, sinα = −4/5, p = 12/5",
+          "Hence tanα = 4/3, and α lies in Q₃,",
+          "so α = 180° + Tan⁻¹(4/3)",
+          {
+            "text": "⇒ x(−3/5) + y(−4/5) = 12/5,",
+            "style": "boxed"
+          },
+          {
+            "text": "with α = 180° + Tan⁻¹(4/3)",
+            "style": "boxed"
+          },
+          {
+            "text": "in the third quadrant",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

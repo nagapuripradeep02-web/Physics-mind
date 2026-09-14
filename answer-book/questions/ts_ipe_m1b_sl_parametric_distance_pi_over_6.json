@@ -42,7 +42,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.63 — SAQ chapter 9 The Straight Line, answer 58.2, on a ★★★ SSP (Super Scoring Page). Printed appearance: TS 19. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: the SAME CHAPTER prints 1+1+2 on answer 59 (book p.63), and this answer is cut to the same shape — the two setting-up moves at one mark each and the closing work at two. Where an answer's own shape is four equal moves instead, 1+1+1+1 is used and this note says so. Paper position: Maths-1B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3. RE-CUT 2026-08-31: this card was filed as SAQ at 4 marks and is now LAQ at 8 marks. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya FAST TRACK IPE Mathematics-IB 2026-27 edition files this chapter under the banner 8M + 2 × 2M = 12M, asks this question as Long Answer Question 17, and prints no short-answer block for it at all. Only the question was taken; the working, the mark split and every note here are ours (docs/ORIGINALITY_MATHS.md). The mathematics and the steps are unchanged; only the mark scheme moved — the four marks become eight, at 1 + 2 + 3 + 2. The extra four went where the work is: three on substituting P into the given line and reducing to one equation in r, which is the only real algebra here, two on building the parametric point and two on the distance itself. Writing the angle down stays at one mark because the question states it. Still unverified until a Telangana IPE teacher confirms it. AUTHOR DOUBT, recorded rather than hidden: at 8 marks this answer is short, and its first step is close to free — the question hands over the angle. The work in it reads closer to four or five marks, and it is filed long on the book’s section placement alone. If a Telangana IPE teacher confirms the placement, the right repair is to EXTEND the answer, not to spread these eight marks thinner."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.63 — SAQ chapter 9 The Straight Line, answer 58.2, on a ★★★ SSP (Super Scoring Page). Printed appearance: TS 19. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: the SAME CHAPTER prints 1+1+2 on answer 59 (book p.63), and this answer is cut to the same shape — the two setting-up moves at one mark each and the closing work at two. Where an answer's own shape is four equal moves instead, 1+1+1+1 is used and this note says so. Paper position: Maths-1B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3. RE-CUT 2026-08-31: this card was filed as SAQ at 4 marks and is now LAQ at 8 marks. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya FAST TRACK IPE Mathematics-IB 2026-27 edition files this chapter under the banner 8M + 2 × 2M = 12M, asks this question as Long Answer Question 17, and prints no short-answer block for it at all. Only the question was taken; the working, the mark split and every note here are ours (docs/ORIGINALITY_MATHS.md). The mathematics and the steps are unchanged; only the mark scheme moved — the four marks become eight, at 1 + 2 + 3 + 2. The extra four went where the work is: three on substituting P into the given line and reducing to one equation in r, which is the only real algebra here, two on building the parametric point and two on the distance itself. Writing the angle down stays at one mark because the question states it. Still unverified until a Telangana IPE teacher confirms it. AUTHOR DOUBT, recorded rather than hidden: at 8 marks this answer is short, and its first step is close to free — the question hands over the angle. The work in it reads closer to four or five marks, and it is filed long on the book’s section placement alone. If a Telangana IPE teacher confirms the placement, the right repair is to EXTEND the answer, not to spread these eight marks thinner. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say what the parametric form gives you, and what r means at the end.",
   "answer": {
@@ -62,6 +62,7 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "(π radians = 180°, so π/6 = 180°/6 = 30°)",
           "Given angle θ = π/6 = 30°"
         ],
         "recall": {
@@ -101,9 +102,26 @@
         "marks": 2,
         "margin_note": "The next two marks. Any point at distance r from Q along the line is (x₁ + r cosθ, y₁ + r sinθ). Writing P this way turns an unknown POINT into a single unknown NUMBER.",
         "lines": [
+          {
+            "text": "(a point at distance r from (x₁, y₁) along a line of",
+            "added": true
+          },
+          {
+            "text": "  inclination θ is (x₁ + r cos θ, y₁ + r sin θ))",
+            "style": "indent",
+            "added": true
+          },
           "Given point Q(x₁, y₁) = (√3, 2) and distance PQ = r, then",
           "P = (x₁ + r cosθ, y₁ + r sinθ)",
+          {
+            "text": "(put x₁ = √3, y₁ = 2 and θ = 30°)",
+            "added": true
+          },
           "= (√3 + r cos30°, 2 + r sin30°)",
+          {
+            "text": "(cos 30° = √3/2 and sin 30° = 1/2)",
+            "added": true
+          },
           "= (√3 + r(√3/2), 2 + r(1/2))",
           "∴ P = (√3 + √3r/2, 2 + r/2)"
         ],
@@ -135,7 +153,14 @@
           "Leaving r out of one of the two coordinates."
         ],
         "mark_note": "Method",
-        "memory_tip": "A point at distance r along the line is (x₁ + r cos θ, y₁ + r sin θ) — an unknown POINT becomes one unknown NUMBER."
+        "memory_tip": "A point at distance r along the line is (x₁ + r cos θ, y₁ + r sin θ) — an unknown POINT becomes one unknown NUMBER.",
+        "lines_compact": [
+          "Given point Q(x₁, y₁) = (√3, 2) and distance PQ = r, then",
+          "P = (x₁ + r cosθ, y₁ + r sinθ)",
+          "= (√3 + r cos30°, 2 + r sin30°)",
+          "= (√3 + r(√3/2), 2 + r(1/2))",
+          "∴ P = (√3 + √3r/2, 2 + r/2)"
+        ]
       },
       {
         "id": "s3_put_on_the_line",
@@ -144,10 +169,31 @@
         "marks": 3,
         "margin_note": "The next three marks. P is stated to lie on the given line, so its coordinates satisfy that equation. Substituting produces one equation in r alone.",
         "lines": [
+          {
+            "text": "(the coordinates of P satisfy √3x − 4y + 8 = 0)",
+            "added": true
+          },
           "But P lies on the line √3x − 4y + 8 = 0",
           "⇒ √3(√3 + √3r/2) − 4(2 + r/2) + 8 = 0",
+          {
+            "text": "(√3 · √3 = 3 and √3 · √3r/2 = 3r/2;",
+            "added": true
+          },
+          {
+            "text": "  −4 · 2 = −8 and −4 · r/2 = −2r)",
+            "style": "indent",
+            "added": true
+          },
           "⇒ 3 + 3r/2 − 8 − 2r + 8 = 0",
+          {
+            "text": "(−8 + 8 = 0; take 3 to the right and the r terms to the left)",
+            "added": true
+          },
           "⇒ 3 + 3r/2 − 2r = 0   ⇒   2r − 3r/2 = 3",
+          {
+            "text": "(2r = 4r/2)",
+            "added": true
+          },
           "⇒ (4r − 3r)/2 = 3"
         ],
         "recall": {
@@ -177,7 +223,14 @@
           "Forgetting to distribute a coefficient across both parts of a coordinate."
         ],
         "mark_note": "Method",
-        "memory_tip": "P lies on the given line, so substituting produces one equation in r alone."
+        "memory_tip": "P lies on the given line, so substituting produces one equation in r alone.",
+        "lines_compact": [
+          "But P lies on the line √3x − 4y + 8 = 0",
+          "⇒ √3(√3 + √3r/2) − 4(2 + r/2) + 8 = 0",
+          "⇒ 3 + 3r/2 − 8 − 2r + 8 = 0",
+          "⇒ 3 + 3r/2 − 2r = 0   ⇒   2r − 3r/2 = 3",
+          "⇒ (4r − 3r)/2 = 3"
+        ]
       },
       {
         "id": "s4_solve_for_r",
@@ -186,6 +239,19 @@
         "marks": 2,
         "margin_note": "The last two marks. The distance PQ IS r, so solving for r finishes the question with no extra work.",
         "lines": [
+          {
+            "text": "((4r − 3r)/2 = r/2; multiply both sides by 2)",
+            "added": true
+          },
+          {
+            "text": "(check: P = (√3 + 3√3, 2 + 3) = (4√3, 5), and",
+            "added": true
+          },
+          {
+            "text": "  √3(4√3) − 4(5) + 8 = 12 − 20 + 8 = 0)",
+            "style": "indent",
+            "added": true
+          },
           {
             "text": "∴ r/2 = 3  ⇒  Distance PQ = r = 6",
             "style": "boxed"
@@ -218,7 +284,13 @@
           "Leaving r negative when the question asks for a distance."
         ],
         "mark_note": "Solution",
-        "memory_tip": "The distance PQ IS r, so solving for r finishes the question."
+        "memory_tip": "The distance PQ IS r, so solving for r finishes the question.",
+        "lines_compact": [
+          {
+            "text": "∴ r/2 = 3  ⇒  Distance PQ = r = 6",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

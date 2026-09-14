@@ -43,7 +43,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.18 — LAQ chapter 1 The Straight Line, answer 5.2. Printed appearance: AP 19. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this LAQ chapter. It is not a bare guess: the book prints its own numbered 'Step-1 / Step-2 / Step-3' structure against this very answer, and the split follows those printed steps, giving the two long eliminations two marks each and the closing solve two, with one for setting up. The only printed splits in this UNIT are on SAQ answer 59 (book p.63, 1+1+2) and VSAQ answer 98 (p.83, 1+1) — both shorter cuts, so neither fixes a 7-mark shape. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. ⚠ The book prints a note between answers 5.1 and 5.2 reading 'First half of the solution is same to same' — the two proofs share their first three steps EXACTLY, and differ only in the closing condition. The step ids and labels here are deliberately identical across the two files for that reason, which follows the Maths-1A precedent of giving one method over different conditions one shared skeleton. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Find r from the condition."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.18 — LAQ chapter 1 The Straight Line, answer 5.2. Printed appearance: AP 19. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this LAQ chapter. It is not a bare guess: the book prints its own numbered 'Step-1 / Step-2 / Step-3' structure against this very answer, and the split follows those printed steps, giving the two long eliminations two marks each and the closing solve two, with one for setting up. The only printed splits in this UNIT are on SAQ answer 59 (book p.63, 1+1+2) and VSAQ answer 98 (p.83, 1+1) — both shorter cuts, so neither fixes a 7-mark shape. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. ⚠ The book prints a note between answers 5.1 and 5.2 reading 'First half of the solution is same to same' — the two proofs share their first three steps EXACTLY, and differ only in the closing condition. The step ids and labels here are deliberately identical across the two files for that reason, which follows the Maths-1A precedent of giving one method over different conditions one shared skeleton. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Find r from the condition. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — say what perpendicularity gives you, and what condition on Q finishes it.",
   "answer": {
@@ -65,7 +65,21 @@
             "style": "heading"
           },
           "Given P = (x₁, y₁), Q = (h, k)",
+          "(the slope of the line through (x₁, y₁) and (x₂, y₂) is",
+          {
+            "text": "  (y₂ − y₁)/(x₂ − x₁); here the second point is Q(h, k))",
+            "style": "indent"
+          },
           "Slope of PQ is  m₁ = (y₂ − y₁)/(x₂ − x₁) = (k − y₁)/(h − x₁)",
+          "(the slope of ax + by + c = 0 is −a/b; the working",
+          {
+            "text": "  takes a ≠ 0 and b ≠ 0, so the line is neither",
+            "style": "indent"
+          },
+          {
+            "text": "  horizontal nor vertical)",
+            "style": "indent"
+          },
           "Slope of the line ax + by + c = 0 is  m₂ = −a/b"
         ],
         "recall": {
@@ -222,13 +236,39 @@
         "margin_note": "Two marks. PQ meets the line at a right angle, so m₁m₂ = −1. Rearranged, that says (h − x₁)/a and (k − y₁)/b are EQUAL — and giving that common value the name r is what makes the rest of the proof short.",
         "memory_tip": "m₁m₂ = −1 makes the two ratios equal; call the common value r.",
         "lines": [
+          {
+            "text": "(perpendicular lines have slopes whose product is −1)",
+            "added": true
+          },
           "Two lines are perpendicular ⇒ m₁m₂ = −1",
+          {
+            "text": "(put m₁ = (k − y₁)/(h − x₁) and m₂ = −a/b;",
+            "added": true
+          },
+          {
+            "text": "  then multiply both sides by −1)",
+            "style": "indent",
+            "added": true
+          },
           "⇒ [(k − y₁)/(h − x₁)] · (−a/b) = −1",
           {
             "text": "  ⇒   [(k − y₁)/(h − x₁)](a/b) = 1",
             "style": "indent"
           },
+          {
+            "text": "(multiply both sides by b/a; then cross-multiply:",
+            "added": true
+          },
+          {
+            "text": "  a(k − y₁) = b(h − x₁), and divide both sides by ab)",
+            "style": "indent",
+            "added": true
+          },
           "⇒ (k − y₁)/(h − x₁) = b/a   ⇒   (h − x₁)/a = (k − y₁)/b",
+          {
+            "text": "(call this common value r)",
+            "added": true
+          },
           "We take  (h − x₁)/a = (k − y₁)/b = r  ……(1)"
         ],
         "recall": {
@@ -258,7 +298,17 @@
           "Setting m₁m₂ = 1 instead of −1.",
           "Keeping h and k separate and ending with two unknowns and one equation."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "lines_compact": [
+          "Two lines are perpendicular ⇒ m₁m₂ = −1",
+          "⇒ [(k − y₁)/(h − x₁)] · (−a/b) = −1",
+          {
+            "text": "  ⇒   [(k − y₁)/(h − x₁)](a/b) = 1",
+            "style": "indent"
+          },
+          "⇒ (k − y₁)/(h − x₁) = b/a   ⇒   (h − x₁)/a = (k − y₁)/b",
+          "We take  (h − x₁)/a = (k − y₁)/b = r  ……(1)"
+        ]
       },
       {
         "id": "s3_write_h_and_k",
@@ -268,7 +318,15 @@
         "margin_note": "Two marks. Read (1) both ways round: each of h and k is now its P-coordinate plus a multiple of r. The point Q is fixed by the single number r.",
         "memory_tip": "h and k are each P's coordinate plus a multiple of r.",
         "lines": [
+          {
+            "text": "(multiply (h − x₁)/a = r by a, then add x₁)",
+            "added": true
+          },
           "∴ (h − x₁)/a = r  ⇒  h − x₁ = ar  ⇒  h = x₁ + ar",
+          {
+            "text": "(in the same way, multiply by b and then add y₁)",
+            "added": true
+          },
           "   (k − y₁)/b = r  ⇒  k − y₁ = br  ⇒  k = y₁ + br"
         ],
         "recall": {
@@ -297,7 +355,11 @@
           "Writing h = x₁ + br and k = y₁ + ar, with a and b swapped.",
           "Dropping the x₁ or y₁ when rearranging."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "lines_compact": [
+          "∴ (h − x₁)/a = r  ⇒  h − x₁ = ar  ⇒  h = x₁ + ar",
+          "   (k − y₁)/b = r  ⇒  k − y₁ = br  ⇒  k = y₁ + br"
+        ]
       },
       {
         "id": "s4_find_r",
@@ -307,14 +369,61 @@
         "margin_note": "The last three marks, and the step where this proof differs from the foot-of-perpendicular proof. The IMAGE is the reflection of P, so the line bisects PQ — it is the MIDPOINT R that lies on the line, not Q itself. That midpoint is where the factor 2 in the answer comes from.",
         "memory_tip": "The IMAGE is the reflection of P, so the MIDPOINT of PQ lies on the line, not Q — and that is where the 2 comes from.",
         "lines": [
+          {
+            "text": "(the midpoint of (x₁, y₁) and (x₂, y₂) is",
+            "added": true
+          },
+          {
+            "text": "  ((x₁ + x₂)/2, (y₁ + y₂)/2))",
+            "style": "indent",
+            "added": true
+          },
           "Now P = (x₁, y₁), Q = (h, k) ⇒ Mid point of PQ is",
           "R = ((x₁ + h)/2, (y₁ + k)/2)",
+          {
+            "text": "(the line is the perpendicular bisector of PQ,",
+            "added": true
+          },
+          {
+            "text": "  so the midpoint R is on the line)",
+            "style": "indent",
+            "added": true
+          },
           "But R lies on ax + by + c = 0",
+          {
+            "text": "(put the coordinates of R into ax + by + c = 0)",
+            "added": true
+          },
           "⇒ a(x₁ + h)/2 + b(y₁ + k)/2 + c = 0",
+          {
+            "text": "(multiply every term by 2)",
+            "added": true
+          },
           "⇒ a(x₁ + h) + b(y₁ + k) + 2c = 0",
+          {
+            "text": "(write h = x₁ + ar and k = y₁ + br, from step 3)",
+            "added": true
+          },
           "⇒ a[x₁ + (x₁ + ar)] + b[y₁ + (y₁ + br)] + 2c = 0",
+          {
+            "text": "(x₁ + x₁ + ar = 2x₁ + ar; multiply out by a and by b)",
+            "added": true
+          },
           "⇒ 2ax₁ + a²r + 2by₁ + b²r + 2c = 0",
+          {
+            "text": "(collect the r terms on the left; 2ax₁ + 2by₁ + 2c",
+            "added": true
+          },
+          {
+            "text": "  = 2(ax₁ + by₁ + c) moves to the right)",
+            "style": "indent",
+            "added": true
+          },
           "⇒ r(a² + b²) = −2(ax₁ + by₁ + c)",
+          {
+            "text": "(divide by a² + b², which is not 0)",
+            "added": true
+          },
           "⇒ r = −2(ax₁ + by₁ + c)/(a² + b²)  ……(2)",
           "From (1) & (2),",
           {
@@ -353,7 +462,27 @@
           "Putting Q on the line, which gives the foot-of-perpendicular answer with no factor 2.",
           "Forgetting to multiply the constant c by 2 when clearing the halves."
         ],
-        "mark_note": "Solution"
+        "mark_note": "Solution",
+        "lines_compact": [
+          "Now P = (x₁, y₁), Q = (h, k) ⇒ Mid point of PQ is",
+          "R = ((x₁ + h)/2, (y₁ + k)/2)",
+          "But R lies on ax + by + c = 0",
+          "⇒ a(x₁ + h)/2 + b(y₁ + k)/2 + c = 0",
+          "⇒ a(x₁ + h) + b(y₁ + k) + 2c = 0",
+          "⇒ a[x₁ + (x₁ + ar)] + b[y₁ + (y₁ + br)] + 2c = 0",
+          "⇒ 2ax₁ + a²r + 2by₁ + b²r + 2c = 0",
+          "⇒ r(a² + b²) = −2(ax₁ + by₁ + c)",
+          "⇒ r = −2(ax₁ + by₁ + c)/(a² + b²)  ……(2)",
+          "From (1) & (2),",
+          {
+            "text": "∴ (h − x₁)/a = (k − y₁)/b",
+            "style": "boxed"
+          },
+          {
+            "text": "= −2(ax₁ + by₁ + c)/(a² + b²)",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

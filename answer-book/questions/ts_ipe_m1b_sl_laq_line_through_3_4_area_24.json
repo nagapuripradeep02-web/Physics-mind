@@ -42,7 +42,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Long Answer question 22, book p.161. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split rewards the two conditions the question sets, at one and two marks, then the algebra that combines them — two marks for forming and solving the quadratic, which is the only real work here, and two for writing the line and checking both conditions on it. The setting-up line takes one mark because it is one line. This book prints almost no exam-appearance years, so appearances[] is empty. Paper position: Maths-1B Section C runs Q19 to Q21 at 8 marks each, answer any 2 of 3, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. AUTHOR NOTE on the number of answers: a line cutting a triangle of GIVEN area from the axes usually gives a quadratic with two roots and two admissible lines. Here the quadratic is (p − 6)² = 0, a perfect square, so exactly ONE line qualifies. That is not a slip: 24 square units is the SMALLEST area a first-quadrant line through (3, 4) can cut off, reached only when (3, 4) is the midpoint of the intercept segment, so the two roots coincide. Dropping the first-quadrant restriction would admit two further lines, x-intercept −6 ± 6√2, whose triangles lie in the second and fourth quadrants; the stem excludes them, and the card says so."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Long Answer question 22, book p.161. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split rewards the two conditions the question sets, at one and two marks, then the algebra that combines them — two marks for forming and solving the quadratic, which is the only real work here, and two for writing the line and checking both conditions on it. The setting-up line takes one mark because it is one line. This book prints almost no exam-appearance years, so appearances[] is empty. Paper position: Maths-1B Section C runs Q19 to Q21 at 8 marks each, answer any 2 of 3, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. AUTHOR NOTE on the number of answers: a line cutting a triangle of GIVEN area from the axes usually gives a quadratic with two roots and two admissible lines. Here the quadratic is (p − 6)² = 0, a perfect square, so exactly ONE line qualifies. That is not a slip: 24 square units is the SMALLEST area a first-quadrant line through (3, 4) can cut off, reached only when (3, 4) is the midpoint of the intercept segment, so the two roots coincide. Dropping the first-quadrant restriction would admit two further lines, x-intercept −6 ± 6√2, whose triangles lie in the second and fourth quadrants; the stem excludes them, and the card says so. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say which two conditions you use, and why there is only one answer here.",
   "answer": {
@@ -61,6 +61,11 @@
           {
             "text": "Sol:",
             "style": "heading"
+          },
+          "(the intercept form: the line meets the x-axis at (p, 0)",
+          {
+            "text": "  and the y-axis at (0, q))",
+            "style": "indent"
           },
           "Let the line be x/p + y/q = 1",
           "p = x-intercept, q = y-intercept",
@@ -104,6 +109,10 @@
         "marks": 1,
         "margin_note": "One mark. The line passes through (3, 4), so those coordinates satisfy the intercept form. This is the first of the two conditions.",
         "lines": [
+          {
+            "text": "(put x = 3 and y = 4 in x/p + y/q = 1)",
+            "added": true
+          },
           "The line passes through (3, 4), so",
           "3/p + 4/q = 1 ……(1)"
         ],
@@ -135,7 +144,11 @@
           "Swapping 3 and 4 between the two terms."
         ],
         "mark_note": "Method",
-        "memory_tip": "Two unknowns need two conditions: the POINT gives the first."
+        "memory_tip": "Two unknowns need two conditions: the POINT gives the first.",
+        "lines_compact": [
+          "The line passes through (3, 4), so",
+          "3/p + 4/q = 1 ……(1)"
+        ]
       },
       {
         "id": "s3_area_condition",
@@ -144,8 +157,25 @@
         "marks": 2,
         "margin_note": "The next two marks. The triangle has legs p and q along the axes, so its area is half their product. Setting that to 24 gives the second condition.",
         "lines": [
+          {
+            "text": "(the triangle has vertices (0, 0), (p, 0) and (0, q),",
+            "added": true
+          },
+          {
+            "text": "  a right angle at the origin, and legs p and q)",
+            "style": "indent",
+            "added": true
+          },
           "Area of the triangle = (1/2) p q",
+          {
+            "text": "(multiply both sides by 2)",
+            "added": true
+          },
           "⇒ (1/2) p q = 24  ⇒  pq = 48",
+          {
+            "text": "(divide both sides by p, which is not 0)",
+            "added": true
+          },
           "∴ q = 48/p ……(2)"
         ],
         "recall": {
@@ -176,7 +206,12 @@
           "Writing the area with a modulus and then losing the positive sign."
         ],
         "mark_note": "Method",
-        "memory_tip": "The legs of the triangle ARE the two intercepts, so area = (1/2)pq."
+        "memory_tip": "The legs of the triangle ARE the two intercepts, so area = (1/2)pq.",
+        "lines_compact": [
+          "Area of the triangle = (1/2) p q",
+          "⇒ (1/2) p q = 24  ⇒  pq = 48",
+          "∴ q = 48/p ……(2)"
+        ]
       },
       {
         "id": "s4_quadratic",
@@ -185,10 +220,35 @@
         "marks": 2,
         "margin_note": "Two more marks. Put (2) into (1), clear the fractions by multiplying by 12p, and the quadratic turns out to be a perfect square — one repeated root, so one line.",
         "lines": [
+          {
+            "text": "(write 48/p in place of q in (1): 4 ÷ (48/p) = 4p/48)",
+            "added": true
+          },
           "Put (2) in (1):  3/p + 4p/48 = 1",
+          {
+            "text": "(4/48 = 1/12)",
+            "added": true
+          },
           "⇒ 3/p + p/12 = 1",
+          {
+            "text": "(12p × 3/p = 36, 12p × p/12 = p², and 12p × 1 = 12p)",
+            "added": true
+          },
           "Multiply by 12p:  36 + p² = 12p",
+          {
+            "text": "(take 12p to the left; p² − 12p + 36 = (p − 6)²,",
+            "added": true
+          },
+          {
+            "text": "  because 6 + 6 = 12 and 6 × 6 = 36)",
+            "style": "indent",
+            "added": true
+          },
           "⇒ p² − 12p + 36 = 0  ⇒  (p − 6)² = 0",
+          {
+            "text": "(a square is 0 only when the number squared is 0)",
+            "added": true
+          },
           "∴ p = 6 (repeated), and q = 48/6 = 8"
         ],
         "recall": {
@@ -219,7 +279,14 @@
           "Reporting two different values of p from a perfect square."
         ],
         "mark_note": "Method",
-        "memory_tip": "A perfect square means ONE line, not none — 24 is the smallest area possible here."
+        "memory_tip": "A perfect square means ONE line, not none — 24 is the smallest area possible here.",
+        "lines_compact": [
+          "Put (2) in (1):  3/p + 4p/48 = 1",
+          "⇒ 3/p + p/12 = 1",
+          "Multiply by 12p:  36 + p² = 12p",
+          "⇒ p² − 12p + 36 = 0  ⇒  (p − 6)² = 0",
+          "∴ p = 6 (repeated), and q = 48/6 = 8"
+        ]
       },
       {
         "id": "s5_write_and_check",
@@ -228,6 +295,10 @@
         "marks": 2,
         "margin_note": "The last two marks. Put p and q back into the intercept form, clear it, then test both given conditions on the answer — the point and the area.",
         "lines": [
+          {
+            "text": "(multiply x/6 + y/8 = 1 by 24: 4x + 3y = 24)",
+            "added": true
+          },
           "Line: x/6 + y/8 = 1  ⇒  4x + 3y = 24",
           "Check (3, 4):  4(3) + 3(4) = 24, correct.",
           "Check area:  (1/2)(6)(8) = 24 sq. units",
@@ -264,7 +335,16 @@
           "Checking the point but not the area."
         ],
         "mark_note": "Method",
-        "memory_tip": "Test BOTH given conditions on the finished line: the point and the area."
+        "memory_tip": "Test BOTH given conditions on the finished line: the point and the area.",
+        "lines_compact": [
+          "Line: x/6 + y/8 = 1  ⇒  4x + 3y = 24",
+          "Check (3, 4):  4(3) + 3(4) = 24, correct.",
+          "Check area:  (1/2)(6)(8) = 24 sq. units",
+          {
+            "text": "∴ Required line is 4x + 3y − 24 = 0",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   }

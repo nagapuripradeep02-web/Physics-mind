@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Very Short Answer question 28, book p.144 (the printed folio is hidden or clipped on this scan; the page is taken from the strictly consecutive neighbours). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split gives one mark for stating that the coefficients of the two equations are proportional and one for naming the middle ratio as r. The question implicitly assumes a, b and c are all non-zero, which is what makes the three ratios meaningful; that condition is stated on the page. This book prints almost no exam-appearance years, so appearances[] is empty. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Very Short Answer question 28, book p.144 (the printed folio is hidden or clipped on this scan; the page is taken from the strictly consecutive neighbours). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split gives one mark for stating that the coefficients of the two equations are proportional and one for naming the middle ratio as r. The question implicitly assumes a, b and c are all non-zero, which is what makes the three ratios meaningful; that condition is stated on the page. This book prints almost no exam-appearance years, so appearances[] is empty. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say what it means for two equations to be the same line, and where m and b sit in that statement.",
   "answer": {
@@ -54,6 +54,11 @@
           },
           "Given lines  ax + by + c = 0  ……(1)",
           "and  lx + my + n = 0  ……(2)",
+          "(one equation is a non-zero multiple of the other,",
+          {
+            "text": "  so the coefficients are in the same ratio)",
+            "style": "indent"
+          },
           "(1) and (2) are one and the same line,",
           "so their coefficients are proportional:",
           "l/a = m/b = n/c   (a, b, c all non-zero)"
@@ -95,6 +100,10 @@
         "margin_note": "Second mark. r is defined as the common ratio, and m/b is that same common ratio, so the answer is one line.",
         "memory_tip": "r is the common ratio, so r equals whichever of the three ratios you are asked for.",
         "lines": [
+          {
+            "text": "(the value of r given in the question)",
+            "added": true
+          },
           "Given  r = l/a = n/c",
           "So r is the common ratio of the chain,",
           "and m/b is that same common ratio.",
@@ -131,6 +140,18 @@
         "common_mistakes": [
           "Writing r = b/m, the reciprocal of the correct ratio.",
           "Answering with l/a again instead of the ratio the question asks for."
+        ],
+        "lines_compact": [
+          "Given  r = l/a = n/c",
+          "So r is the common ratio of the chain,",
+          "and m/b is that same common ratio.",
+          {
+            "text": "∴ r = m/b",
+            "style": "boxed"
+          },
+          "Check: 2x + 3y + 4 = 0 and 6x + 9y + 12 = 0 are",
+          "the same line; r = 6/2 = 3, n/c = 12/4 = 3,",
+          "and m/b = 9/3 = 3."
         ]
       }
     ]

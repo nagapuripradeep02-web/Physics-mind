@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Very Short Answer question 41, book p.148. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split gives one mark for writing BOTH bisector conditions as two equations in h and k, and one for solving them. B = (−8/5, −6/5) was obtained twice by independent routes — the two-condition route written on the page, and the reflection formula (x − x₁)/a = (y − y₁)/b = −2(ax₁ + by₁ + c)/(a² + b²) — and then checked: the midpoint (−13/10, −21/10) satisfies x − 3y − 5 = 0, and the slope of AB is −3, so (1/3)(−3) = −1. The fractional answer is correct, not a slip. This book prints almost no exam-appearance years, so appearances[] is empty. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Very Short Answer question 41, book p.148. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split gives one mark for writing BOTH bisector conditions as two equations in h and k, and one for solving them. B = (−8/5, −6/5) was obtained twice by independent routes — the two-condition route written on the page, and the reflection formula (x − x₁)/a = (y − y₁)/b = −2(ax₁ + by₁ + c)/(a² + b²) — and then checked: the midpoint (−13/10, −21/10) satisfies x − 3y − 5 = 0, and the slope of AB is −3, so (1/3)(−3) = −1. The fractional answer is correct, not a slip. This book prints almost no exam-appearance years, so appearances[] is empty. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say the two things a perpendicular bisector tells you, and how many unknowns you are solving for.",
   "answer": {
@@ -53,17 +53,29 @@
             "style": "heading"
           },
           "Let B = (h, k).  Given A = (−1, −3)",
+          "(the slope of ax + by + c = 0 is −a/b: −1/(−3) = 1/3)",
           "Given line  x − 3y − 5 = 0, slope = 1/3",
           "A perpendicular bisector gives BOTH:",
           "(i) the midpoint of AB lies on the line,",
           "(ii) AB is perpendicular to the line.",
+          "(the midpoint formula, with A(−1, −3) and B(h, k))",
           "(i) Midpoint = ((h − 1)/2, (k − 3)/2)",
+          "(put the midpoint into x − 3y − 5 = 0)",
           "⇒ (h − 1)/2 − 3(k − 3)/2 − 5 = 0",
+          "(multiply every term by 2; −3(k − 3) = −3k + 9)",
           "⇒ h − 1 − 3k + 9 − 10 = 0",
+          "(−1 + 9 − 10 = −2)",
           "⇒ h − 3k − 2 = 0  ……(1)",
+          "(perpendicular slopes multiply to −1,",
+          {
+            "text": "  so the slope of AB is −3)",
+            "style": "indent"
+          },
           "(ii) Slope of AB = (k + 3)/(h + 1) = −3,",
           "since (1/3)(−3) = −1",
+          "(multiply both sides by h + 1: k + 3 = −3(h + 1))",
           "⇒ k + 3 = −3h − 3",
+          "(take every term to the left)",
           "⇒ 3h + k + 6 = 0  ……(2)"
         ],
         "recall": {
@@ -104,9 +116,25 @@
         "memory_tip": "Make one unknown the subject in the simpler equation, substitute into the other, then go back for it.",
         "lines": [
           "(2) ⇒ k = −3h − 6. Put this in (1):",
+          {
+            "text": "(write −3h − 6 in place of k)",
+            "added": true
+          },
           "h − 3(−3h − 6) − 2 = 0",
+          {
+            "text": "(−3(−3h − 6) = 9h + 18; h + 9h = 10h and 18 − 2 = 16)",
+            "added": true
+          },
           "⇒ h + 9h + 18 − 2 = 0  ⇒  10h = −16",
+          {
+            "text": "(divide both sides by 10: −16/10 = −8/5)",
+            "added": true
+          },
           "⇒ h = −8/5",
+          {
+            "text": "(−3(−8/5) = 24/5, and 6 = 30/5)",
+            "added": true
+          },
           "Then k = −3(−8/5) − 6 = 24/5 − 30/5 = −6/5",
           {
             "text": "∴ B = (−8/5, −6/5)",
@@ -143,6 +171,21 @@
         "common_mistakes": [
           "Sign slip when moving the constant across, writing 10h = 16 instead of 10h = −16.",
           "Solving for h and stopping there, without also solving for k."
+        ],
+        "lines_compact": [
+          "(2) ⇒ k = −3h − 6. Put this in (1):",
+          "h − 3(−3h − 6) − 2 = 0",
+          "⇒ h + 9h + 18 − 2 = 0  ⇒  10h = −16",
+          "⇒ h = −8/5",
+          "Then k = −3(−8/5) − 6 = 24/5 − 30/5 = −6/5",
+          {
+            "text": "∴ B = (−8/5, −6/5)",
+            "style": "boxed"
+          },
+          "Check: midpoint of AB = (−13/10, −21/10) and",
+          "−13/10 + 63/10 − 50/10 = 0, so it is on the",
+          "line.  Slope of AB = (9/5)/(−3/5) = −3, and",
+          "(1/3)(−3) = −1."
         ]
       }
     ]

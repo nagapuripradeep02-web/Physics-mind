@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.16 — LAQ chapter 1 The Straight Line, answer 3 PQ. No appearance years are printed against this practice question. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this LAQ chapter. It is not a bare guess: the book prints its own numbered 'Step-1 / Step-2 / Step-3' structure against this very answer, and the split follows those printed steps, giving the two long eliminations two marks each and the closing solve two, with one for setting up. The only printed splits in this UNIT are on SAQ answer 59 (book p.63, 1+1+2) and VSAQ answer 98 (p.83, 1+1) — both shorter cuts, so neither fixes a 7-mark shape. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. ⚠ NOTE ON THIS ANSWER: vertex A here IS the orthocentre, because the triangle is right angled — sides (1) x+y+10=0 and (2) x−y−2=0 have slopes −1 and 1, whose product is −1. In a right-angled triangle the orthocentre sits exactly on the right-angled vertex, so altitude (5) coming out identical to side (1) is correct rather than an error. The book gives only the answer (−4,−6) and no working, so this observation is ours. ⚠ THIS IS THE BOOK'S PRACTICE QUESTION ('PQ'), posed beside the worked answer with ONLY ITS FINAL ANSWER PRINTED and no worked solution. THE WORKING BELOW IS OURS — it is the same method the facing worked answer uses, and it lands on the book's own printed answer, which is the check. The 1A precedent for authoring a practice question this way is Maths-1A Unit 2 laq8. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Solve the pair."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.16 — LAQ chapter 1 The Straight Line, answer 3 PQ. No appearance years are printed against this practice question. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this LAQ chapter. It is not a bare guess: the book prints its own numbered 'Step-1 / Step-2 / Step-3' structure against this very answer, and the split follows those printed steps, giving the two long eliminations two marks each and the closing solve two, with one for setting up. The only printed splits in this UNIT are on SAQ answer 59 (book p.63, 1+1+2) and VSAQ answer 98 (p.83, 1+1) — both shorter cuts, so neither fixes a 7-mark shape. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. ⚠ NOTE ON THIS ANSWER: vertex A here IS the orthocentre, because the triangle is right angled — sides (1) x+y+10=0 and (2) x−y−2=0 have slopes −1 and 1, whose product is −1. In a right-angled triangle the orthocentre sits exactly on the right-angled vertex, so altitude (5) coming out identical to side (1) is correct rather than an error. The book gives only the answer (−4,−6) and no working, so this observation is ours. ⚠ THIS IS THE BOOK'S PRACTICE QUESTION ('PQ'), posed beside the worked answer with ONLY ITS FINAL ANSWER PRINTED and no worked solution. THE WORKING BELOW IS OURS — it is the same method the facing worked answer uses, and it lands on the book's own printed answer, which is the check. The 1A precedent for authoring a practice question this way is Maths-1A Unit 2 laq8. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Solve the pair. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say what you must find first when the SIDES are given, and which side each altitude is perpendicular to.",
   "answer": {
@@ -61,9 +61,17 @@
           },
           "Given lines are  x + y + 10 = 0 ……(1),",
           "x − y − 2 = 0 ……(2),  2x + y − 7 = 0 ……(3)",
+          "(an altitude through a vertex is perpendicular to the side",
+          {
+            "text": "  opposite that vertex)",
+            "style": "indent"
+          },
           "Step-1: Finding altitude through A:",
+          "(A is where lines (1) and (2) meet)",
           "Solving (1) and (2), we get A;",
+          "(adding removes y: x + x = 2x and 10 − 2 = 8)",
           "(1) + (2) ⇒ 2x + 8 = 0   ⇒   x = −4",
+          "(put x = −4 in (1))",
           "(1) ⇒ −4 + y + 10 = 0   ⇒   y = −6   ∴ A = (−4, −6)"
         ],
         "recall": {
@@ -240,10 +248,31 @@
         "margin_note": "Two marks. The altitude from A is perpendicular to the side OPPOSITE A — that is the third line, the one not used to find A. Its slope comes straight off the coefficients as −a/b.",
         "memory_tip": "Perpendicular to the side opposite A — the third line, the one not used for A.",
         "lines": [
+          {
+            "text": "(line (3) does not pass through A,",
+            "added": true
+          },
+          {
+            "text": "  so it is the side opposite A)",
+            "style": "indent",
+            "added": true
+          },
           "From (3), slope of 2x + y − 7 = 0 is m = −a/b = −2/1 = −2",
+          {
+            "text": "(perpendicular slopes multiply to −1: −1 ÷ (−2) = 1/2)",
+            "added": true
+          },
           "Its perpendicular slope is −1/m = −1/(−2) = 1/2",
+          {
+            "text": "(y − (−6) = y + 6; multiply both sides by 2)",
+            "added": true
+          },
           "Eq. of line through A(−4, −6) with slope 1/2 is",
           "y + 6 = (1/2)(x + 4)   ⇒   2y + 12 = x + 4",
+          {
+            "text": "(take 2y + 12 to the right: 0 = x − 2y + 4 − 12)",
+            "added": true
+          },
           "⇒ x − 2y − 8 = 0  ……(4)"
         ],
         "recall": {
@@ -273,7 +302,14 @@
           "Using one of the two lines that MEET at A as the opposite side.",
           "Reading the slope as −b/a."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "lines_compact": [
+          "From (3), slope of 2x + y − 7 = 0 is m = −a/b = −2/1 = −2",
+          "Its perpendicular slope is −1/m = −1/(−2) = 1/2",
+          "Eq. of line through A(−4, −6) with slope 1/2 is",
+          "y + 6 = (1/2)(x + 4)   ⇒   2y + 12 = x + 4",
+          "⇒ x − 2y − 8 = 0  ……(4)"
+        ]
       },
       {
         "id": "s3_vertex_b_and_altitude",
@@ -284,11 +320,36 @@
         "memory_tip": "Same two moves from a second vertex, with a different opposite side.",
         "lines": [
           "Step-2: Finding altitude through B:",
+          {
+            "text": "(B is where lines (1) and (3) meet)",
+            "added": true
+          },
           "Solving (1) and (3), we get B;",
+          {
+            "text": "(subtracting removes y: 2x − x = x and −7 − 10 = −17)",
+            "added": true
+          },
           "(3) − (1) ⇒ x − 17 = 0   ⇒   x = 17",
+          {
+            "text": "(put x = 17 in (1))",
+            "added": true
+          },
           "(1) ⇒ 17 + y + 10 = 0   ⇒   y = −27   ∴ B = (17, −27)",
+          {
+            "text": "(line (2) does not pass through B,",
+            "added": true
+          },
+          {
+            "text": "  so it is the side opposite B)",
+            "style": "indent",
+            "added": true
+          },
           "From (2), slope of x − y − 2 = 0 is m = −a/b = −1/(−1) = 1",
           "Its perpendicular slope is −1/m = −1/1 = −1",
+          {
+            "text": "(y + 27 = −x + 17, so x + y + 27 − 17 = 0)",
+            "added": true
+          },
           "Eq. of line through B(17, −27) with slope −1 is",
           "y + 27 = −1(x − 17)   ⇒   x + y + 10 = 0  ……(5)"
         ],
@@ -319,7 +380,17 @@
           "Reusing the same opposite side for both altitudes.",
           "Solving for a vertex that is the same point as A."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "lines_compact": [
+          "Step-2: Finding altitude through B:",
+          "Solving (1) and (3), we get B;",
+          "(3) − (1) ⇒ x − 17 = 0   ⇒   x = 17",
+          "(1) ⇒ 17 + y + 10 = 0   ⇒   y = −27   ∴ B = (17, −27)",
+          "From (2), slope of x − y − 2 = 0 is m = −a/b = −1/(−1) = 1",
+          "Its perpendicular slope is −1/m = −1/1 = −1",
+          "Eq. of line through B(17, −27) with slope −1 is",
+          "y + 27 = −1(x − 17)   ⇒   x + y + 10 = 0  ……(5)"
+        ]
       },
       {
         "id": "s4_solve_the_pair",
@@ -331,8 +402,35 @@
         "lines": [
           "Step-3: Solving (4) and (5), we get O;",
           "(4) ⇒ x − 2y − 8 = 0;   (5) ⇒ x + y + 10 = 0",
+          {
+            "text": "(subtracting removes x: −2y − y = −3y and −8 − 10 = −18)",
+            "added": true
+          },
           "(4) − (5) ⇒ −3y − 18 = 0   ⇒   y = −6",
+          {
+            "text": "(put y = −6 in (5))",
+            "added": true
+          },
           "(5) ⇒ x − 6 + 10 = 0   ⇒   x = −4",
+          {
+            "text": "(O is the vertex A: lines (1) and (2) have slopes −1 and 1,",
+            "added": true
+          },
+          {
+            "text": "  whose product is −1, so the angle at A is 90°,",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  and the altitudes of a right triangle",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  meet at that vertex)",
+            "style": "indent",
+            "added": true
+          },
           {
             "text": "∴ Orthocentre O(x, y) = (−4, −6)",
             "style": "boxed"
@@ -364,7 +462,17 @@
           "Solving one altitude against an original side instead of the other altitude.",
           "Arithmetic slip in the final elimination."
         ],
-        "mark_note": "Solution"
+        "mark_note": "Solution",
+        "lines_compact": [
+          "Step-3: Solving (4) and (5), we get O;",
+          "(4) ⇒ x − 2y − 8 = 0;   (5) ⇒ x + y + 10 = 0",
+          "(4) − (5) ⇒ −3y − 18 = 0   ⇒   y = −6",
+          "(5) ⇒ x − 6 + 10 = 0   ⇒   x = −4",
+          {
+            "text": "∴ Orthocentre O(x, y) = (−4, −6)",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

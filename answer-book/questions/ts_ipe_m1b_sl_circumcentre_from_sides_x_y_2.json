@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.17 — LAQ chapter 1 The Straight Line, answer 4. No appearance years are printed against this answer. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this LAQ chapter. It is not a bare guess: the book prints its own numbered 'Step-1 / Step-2 / Step-3' structure against this very answer, and the split follows those printed steps, giving the two long eliminations two marks each and the closing solve two, with one for setting up. The only printed splits in this UNIT are on SAQ answer 59 (book p.63, 1+1+2) and VSAQ answer 98 (p.83, 1+1) — both shorter cuts, so neither fixes a 7-mark shape. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. The book prints its own boxed 'SOLUTION STEPS' panel beside this answer: solve the three lines to get the three vertices, then SA = SB, then SB = SC, then solve the two perpendicular bisectors. The split follows those printed stages. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Solve the pair."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.17 — LAQ chapter 1 The Straight Line, answer 4. No appearance years are printed against this answer. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this LAQ chapter. It is not a bare guess: the book prints its own numbered 'Step-1 / Step-2 / Step-3' structure against this very answer, and the split follows those printed steps, giving the two long eliminations two marks each and the closing solve two, with one for setting up. The only printed splits in this UNIT are on SAQ answer 59 (book p.63, 1+1+2) and VSAQ answer 98 (p.83, 1+1) — both shorter cuts, so neither fixes a 7-mark shape. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. The book prints its own boxed 'SOLUTION STEPS' panel beside this answer: solve the three lines to get the three vertices, then SA = SB, then SB = SC, then solve the two perpendicular bisectors. The split follows those printed stages. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Solve the pair. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say what has to be found first when the SIDES are given, and how many vertices you need.",
   "answer": {
@@ -62,14 +62,21 @@
           "Given lines  x + y + 2 = 0 ……(1),",
           "5x − y − 2 = 0 ……(2),  x − 2y + 5 = 0 ……(3)",
           "Step-1: Solving (1) & (2), we get A;",
+          "(adding removes y: y + (−y) = 0; x + 5x = 6x, 2 − 2 = 0)",
           "(1) + (2) ⇒ 6x = 0 ⇒ x = 0",
+          "(put x = 0 in (1))",
           "∴ (1) ⇒ 0 + y + 2 = 0 ⇒ y = −2   ∴ A = (0, −2)",
           "Step-2: Solving (1) & (3), we get B;",
+          "(subtracting removes x: y − (−2y) = 3y, 2 − 5 = −3)",
           "(1) − (3) ⇒ 3y − 3 = 0 ⇒ y = 1",
+          "(put y = 1 in (1))",
           "∴ (1) ⇒ x + 1 + 2 = 0 ⇒ x = −3   ∴ B = (−3, 1)",
           "Step-3: Solving (2) & (3), we get C;",
+          "(double (2), so that its y term is −2y, as in (3))",
           "(2)×2 ⇒ 10x − 2y − 4 = 0",
+          "(10x − x = 9x, −2y − (−2y) = 0 and −4 − 5 = −9)",
           "On subtracting (3):  9x − 9 = 0 ⇒ x = 1",
+          "(put x = 1 in (3))",
           "∴ (3) ⇒ 1 − 2y + 5 = 0 ⇒ 2y = 6 ⇒ y = 3   ∴ C = (1, 3)"
         ],
         "recall": {
@@ -270,12 +277,34 @@
         "memory_tip": "Square SA = SB; the x² and y² terms cancel and the equation of a straight line is left.",
         "lines": [
           "S(x, y) as circumcentre",
+          {
+            "text": "(the distance formula, with A(0, −2) and B(−3, 1))",
+            "added": true
+          },
           "Step-4: SA = SB ⇒ √((x−0)² + (y+2)²)",
           {
             "text": "  = √((x+3)² + (y−1)²)",
             "style": "indent"
           },
+          {
+            "text": "(square both sides; (y + 2)² = y² + 4y + 4,",
+            "added": true
+          },
+          {
+            "text": "  (x + 3)² = x² + 6x + 9, (y − 1)² = y² − 2y + 1)",
+            "style": "indent",
+            "added": true
+          },
           "⇒ x² + (y² + 4y + 4) = (x² + 9 + 6x) + (y² + 1 − 2y)",
+          {
+            "text": "(x² and y² cancel; take 4y + 4 to the right:",
+            "added": true
+          },
+          {
+            "text": "  −2y − 4y = −6y and 9 + 1 − 4 = 6)",
+            "style": "indent",
+            "added": true
+          },
           "⇒ 6x − 6y + 6 = 0   ⇒   6(x − y + 1) = 0",
           {
             "text": "  ⇒   x − y + 1 = 0  ……(4)",
@@ -309,7 +338,21 @@
           "Squaring only one side.",
           "Carrying x² terms forward instead of cancelling."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "lines_compact": [
+          "S(x, y) as circumcentre",
+          "Step-4: SA = SB ⇒ √((x−0)² + (y+2)²)",
+          {
+            "text": "  = √((x+3)² + (y−1)²)",
+            "style": "indent"
+          },
+          "⇒ x² + (y² + 4y + 4) = (x² + 9 + 6x) + (y² + 1 − 2y)",
+          "⇒ 6x − 6y + 6 = 0   ⇒   6(x − y + 1) = 0",
+          {
+            "text": "  ⇒   x − y + 1 = 0  ……(4)",
+            "style": "indent"
+          }
+        ]
       },
       {
         "id": "s3_second_equation",
@@ -321,18 +364,44 @@
         "lines": [
           "Step-5: SB = SC ⇒ √((x+3)² + (y−1)²)",
           {
+            "text": "(the distance formula, with C(1, 3))",
+            "added": true
+          },
+          {
             "text": "  = √((x−1)² + (y−3)²)",
             "style": "indent"
+          },
+          {
+            "text": "(square both sides; (x − 1)² = x² − 2x + 1",
+            "added": true
+          },
+          {
+            "text": "  and (y − 3)² = y² − 6y + 9)",
+            "style": "indent",
+            "added": true
           },
           "⇒ (x² + 9 + 6x) + (y² + 1 − 2y) = (x² + 1 − 2x)",
           {
             "text": "  + (y² + 9 − 6y)",
             "style": "indent"
           },
+          {
+            "text": "(x², y² and the constants 9 + 1 = 1 + 9 cancel;",
+            "added": true
+          },
+          {
+            "text": "  take −2x − 6y to the left)",
+            "style": "indent",
+            "added": true
+          },
           "⇒ 6x + 2x − 2y + 6y = 0   ⇒   8x + 4y = 0",
           {
             "text": "  ⇒   4(2x + y) = 0",
             "style": "indent"
+          },
+          {
+            "text": "(divide both sides by 4)",
+            "added": true
           },
           "⇒ 2x + y = 0  ……(5)"
         ],
@@ -362,7 +431,25 @@
           "Using SA = SC and repeating work already done.",
           "Sign slip on a negative coordinate."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "lines_compact": [
+          "Step-5: SB = SC ⇒ √((x+3)² + (y−1)²)",
+          {
+            "text": "  = √((x−1)² + (y−3)²)",
+            "style": "indent"
+          },
+          "⇒ (x² + 9 + 6x) + (y² + 1 − 2y) = (x² + 1 − 2x)",
+          {
+            "text": "  + (y² + 9 − 6y)",
+            "style": "indent"
+          },
+          "⇒ 6x + 2x − 2y + 6y = 0   ⇒   8x + 4y = 0",
+          {
+            "text": "  ⇒   4(2x + y) = 0",
+            "style": "indent"
+          },
+          "⇒ 2x + y = 0  ……(5)"
+        ]
       },
       {
         "id": "s4_solve_the_pair",
@@ -373,8 +460,25 @@
         "memory_tip": "Solve the two linear equations for the single point.",
         "lines": [
           "Step-6: Solving (4) & (5) we get S;",
+          {
+            "text": "(adding removes y: −y + y = 0; x + 2x = 3x)",
+            "added": true
+          },
           "(4) + (5) ⇒ 3x + 1 = 0   ⇒   3x = −1   ⇒   x = −1/3",
+          {
+            "text": "(put x = −1/3 in (5), which gives y = −2x)",
+            "added": true
+          },
           "(5) ⇒ y = −2x = −2(−1/3) = 2/3",
+          {
+            "text": "(check: SA² = (−1/3)² + (8/3)² = 65/9",
+            "added": true
+          },
+          {
+            "text": "  and SB² = (8/3)² + (−1/3)² = 65/9)",
+            "style": "indent",
+            "added": true
+          },
           {
             "text": "∴ Circumcentre S = (−1/3, 2/3)",
             "style": "boxed"
@@ -406,7 +510,16 @@
           "Arithmetic slip in the elimination.",
           "Writing the coordinates the wrong way round."
         ],
-        "mark_note": "Solution"
+        "mark_note": "Solution",
+        "lines_compact": [
+          "Step-6: Solving (4) & (5) we get S;",
+          "(4) + (5) ⇒ 3x + 1 = 0   ⇒   3x = −1   ⇒   x = −1/3",
+          "(5) ⇒ y = −2x = −2(−1/3) = 2/3",
+          {
+            "text": "∴ Circumcentre S = (−1/3, 2/3)",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

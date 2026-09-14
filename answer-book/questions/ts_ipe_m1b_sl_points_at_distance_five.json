@@ -39,7 +39,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.63 — SAQ chapter 9 The Straight Line, answer 59, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP M-16 · AP 15. THE MARK SPLIT 1+1+2 IS THE BOOK'S: answer 59 on book p.63 is the ONE answer in this unit's SAQ chapter that carries printed margin tags — '1 Mark' beside the slope-to-cos-and-sin step, '1 Mark' beside the parametric-point line, and '2 Marks' beside the two required points. Paper position: Maths-1B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3. RE-CUT 2026-08-31: this card was filed as SAQ at 4 marks and is now VSAQ at 2 marks. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya FAST TRACK IPE Mathematics-IB 2026-27 edition files this chapter under the banner 8M + 2 × 2M = 12M, asks this question as Very Short Answer Question 35 ii, and prints no short-answer block for it at all. Only the question was taken; the working, the mark split and every note here are ours (docs/ORIGINALITY_MATHS.md). The mathematics and the steps are unchanged; only the mark scheme moved — the four marks become two, at 1 + 0 + 1, with the parametric-point line carried unmarked as setup for the two points that follow. Still unverified until a Telangana IPE teacher confirms it. IMPORTANT, and the one place in this unit where two sources disagree outright: the 1 + 1 + 2 tags recorded above are PRINTED in the Baby Bullet margin, so this is the only Straight Line card whose old 4-mark split was the book's own rather than ours. Those tags are kept above as history and are no longer this card's mark scheme, because the 2026-27 chapter has no 4-mark slot for this unit to fill. The mark-position wording in the step margins was rewritten accordingly and no longer claims the book printed it."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.63 — SAQ chapter 9 The Straight Line, answer 59, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP M-16 · AP 15. THE MARK SPLIT 1+1+2 IS THE BOOK'S: answer 59 on book p.63 is the ONE answer in this unit's SAQ chapter that carries printed margin tags — '1 Mark' beside the slope-to-cos-and-sin step, '1 Mark' beside the parametric-point line, and '2 Marks' beside the two required points. Paper position: Maths-1B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3. RE-CUT 2026-08-31: this card was filed as SAQ at 4 marks and is now VSAQ at 2 marks. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya FAST TRACK IPE Mathematics-IB 2026-27 edition files this chapter under the banner 8M + 2 × 2M = 12M, asks this question as Very Short Answer Question 35 ii, and prints no short-answer block for it at all. Only the question was taken; the working, the mark split and every note here are ours (docs/ORIGINALITY_MATHS.md). The mathematics and the steps are unchanged; only the mark scheme moved — the four marks become two, at 1 + 0 + 1, with the parametric-point line carried unmarked as setup for the two points that follow. Still unverified until a Telangana IPE teacher confirms it. IMPORTANT, and the one place in this unit where two sources disagree outright: the 1 + 1 + 2 tags recorded above are PRINTED in the Baby Bullet margin, so this is the only Straight Line card whose old 4-mark split was the book's own rather than ours. Those tags are kept above as history and are no longer this card's mark scheme, because the 2026-27 chapter has no 4-mark slot for this unit to fill. The mark-position wording in the step margins was rewritten accordingly and no longer claims the book printed it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say what you convert the slope into, and why there are two answers.",
   "answer": {
@@ -59,8 +59,15 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "(the point (3, 2) is on the line: 3(3) − 4(2) − 1 = 0)",
           "Given line is 3x − 4y − 1 = 0",
+          "(the slope of ax + by + c = 0 is −a/b; here a = 3, b = −4)",
           "Its slope  m = −a/b = −3/(−4) = 3/4",
+          "(tan θ = 3/4 with θ acute: a right triangle with sides",
+          {
+            "text": "  3 and 4 has hypotenuse √(9 + 16) = 5)",
+            "style": "indent"
+          },
           "m = tanθ = 3/4  ⇒  cosθ = 4/5,  sinθ = 3/5"
         ],
         "recall": {
@@ -101,10 +108,27 @@
         "marks": 0,
         "margin_note": "The two points lie at distance 5 on EITHER side of (3,2), so the ± is written into the parametric form from the start.",
         "lines": [
+          {
+            "text": "(the two points at distance 5 from (3, 2),",
+            "added": true
+          },
+          {
+            "text": "  one in each direction along the line)",
+            "style": "indent",
+            "added": true
+          },
           "Given distance |r| = 5",
           "Given point (x₁, y₁) = (3, 2)",
           "Required points (x, y) = (x₁ ± r cosθ, y₁ ± r sinθ)",
+          {
+            "text": "(put r = 5, cos θ = 4/5 and sin θ = 3/5)",
+            "added": true
+          },
           "= (3 ± 5(4/5), 2 ± 5(3/5))",
+          {
+            "text": "(5(4/5) = 4 and 5(3/5) = 3)",
+            "added": true
+          },
           "= (3 ± 4, 2 ± 3)"
         ],
         "recall": {
@@ -134,7 +158,14 @@
           "Using only + and finding one point.",
           "Multiplying 5 by cosθ and sinθ the wrong way round."
         ],
-        "memory_tip": "The two points lie on EITHER side, so write the ± into the parametric form from the start."
+        "memory_tip": "The two points lie on EITHER side, so write the ± into the parametric form from the start.",
+        "lines_compact": [
+          "Given distance |r| = 5",
+          "Given point (x₁, y₁) = (3, 2)",
+          "Required points (x, y) = (x₁ ± r cosθ, y₁ ± r sinθ)",
+          "= (3 ± 5(4/5), 2 ± 5(3/5))",
+          "= (3 ± 4, 2 ± 3)"
+        ]
       },
       {
         "id": "s3_state_both_points",
@@ -145,6 +176,10 @@
         "lines": [
           "Taking both upper signs:  (3 + 4, 2 + 3) = (7, 5)",
           "Taking both lower signs:  (3 − 4, 2 − 3) = (−1, −1)",
+          {
+            "text": "(check: 3(7) − 4(5) − 1 = 0 and 3(−1) − 4(−1) − 1 = 0)",
+            "added": true
+          },
           {
             "text": "∴ The required points are (7, 5) and (−1, −1)",
             "style": "boxed"
@@ -178,7 +213,15 @@
           "Reporting only one of the two points."
         ],
         "mark_note": "Solution",
-        "memory_tip": "Take the signs TOGETHER — both plus, then both minus. Mixing them gives points off the line."
+        "memory_tip": "Take the signs TOGETHER — both plus, then both minus. Mixing them gives points off the line.",
+        "lines_compact": [
+          "Taking both upper signs:  (3 + 4, 2 + 3) = (7, 5)",
+          "Taking both lower signs:  (3 − 4, 2 − 3) = (−1, −1)",
+          {
+            "text": "∴ The required points are (7, 5) and (−1, −1)",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

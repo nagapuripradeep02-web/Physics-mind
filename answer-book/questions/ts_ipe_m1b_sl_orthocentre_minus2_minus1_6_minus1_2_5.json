@@ -49,7 +49,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.15 — LAQ chapter 1 The Straight Line, answer 2.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 19,22 · AP 18. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this LAQ chapter. It is not a bare guess: the book prints its own numbered 'Step-1 / Step-2 / Step-3' structure against this very answer, and the split follows those printed steps, giving the two long eliminations two marks each and the closing solve two, with one for setting up. The only printed splits in this UNIT are on SAQ answer 59 (book p.63, 1+1+2) and VSAQ answer 98 (p.83, 1+1) — both shorter cuts, so neither fixes a 7-mark shape. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Solve the pair."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.15 — LAQ chapter 1 The Straight Line, answer 2.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 19,22 · AP 18. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this LAQ chapter. It is not a bare guess: the book prints its own numbered 'Step-1 / Step-2 / Step-3' structure against this very answer, and the split follows those printed steps, giving the two long eliminations two marks each and the closing solve two, with one for setting up. The only printed splits in this UNIT are on SAQ answer 59 (book p.63, 1+1+2) and VSAQ answer 98 (p.83, 1+1) — both shorter cuts, so neither fixes a 7-mark shape. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Solve the pair. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say which lines meet at the orthocentre, and how you get each one's slope.",
   "answer": {
@@ -70,6 +70,7 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "(the orthocentre is the point where the altitudes meet)",
           "Take O(x, y) as Orthocentre",
           "Vertices A = (−2, −1), B = (6, −1), C = (2, 5)"
         ],
@@ -245,10 +246,31 @@
         "memory_tip": "Opposite side's slope, then its negative reciprocal, then point-slope through the vertex.",
         "lines": [
           "Step-1: Finding altitude through A(−2, −1):",
+          {
+            "text": "(the altitude through A is perpendicular to BC;",
+            "added": true
+          },
+          {
+            "text": "  B = (6, −1) and C = (2, 5))",
+            "style": "indent",
+            "added": true
+          },
           "Slope of BC is m = (5 + 1)/(2 − 6) = 6/(−4) = −3/2",
+          {
+            "text": "(−1 ÷ (−3/2) = −1 × (−2/3) = 2/3)",
+            "added": true
+          },
           "Its perpendicular slope is −1/m = −1/(−3/2) = 2/3",
+          {
+            "text": "(the point-slope form at A; multiply both sides by 3)",
+            "added": true
+          },
           "Eq. of line through A(−2, −1) with slope 2/3 is",
           "y + 1 = (2/3)(x + 2)   ⇒   3y + 3 = 2x + 4",
+          {
+            "text": "(take 3y + 3 to the right: 0 = 2x − 3y + 4 − 3)",
+            "added": true
+          },
           "⇒ 2x − 3y + 1 = 0  ……(1)"
         ],
         "recall": {
@@ -278,7 +300,15 @@
           "Using the slope of AB or AC instead of the opposite side BC.",
           "Taking the perpendicular slope as −m rather than −1/m."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "lines_compact": [
+          "Step-1: Finding altitude through A(−2, −1):",
+          "Slope of BC is m = (5 + 1)/(2 − 6) = 6/(−4) = −3/2",
+          "Its perpendicular slope is −1/m = −1/(−3/2) = 2/3",
+          "Eq. of line through A(−2, −1) with slope 2/3 is",
+          "y + 1 = (2/3)(x + 2)   ⇒   3y + 3 = 2x + 4",
+          "⇒ 2x − 3y + 1 = 0  ……(1)"
+        ]
       },
       {
         "id": "s3_second_altitude",
@@ -289,10 +319,31 @@
         "memory_tip": "The same three moves from a second vertex.",
         "lines": [
           "Step-2: Finding altitude through B(6, −1):",
+          {
+            "text": "(the altitude through B is perpendicular to AC;",
+            "added": true
+          },
+          {
+            "text": "  A = (−2, −1) and C = (2, 5))",
+            "style": "indent",
+            "added": true
+          },
           "Slope of AC is m = (5 + 1)/(2 + 2) = 6/4 = 3/2",
+          {
+            "text": "(−1 ÷ (3/2) = −2/3)",
+            "added": true
+          },
           "Its perpendicular slope is −1/m = −1/(3/2) = −2/3",
+          {
+            "text": "(multiply both sides by 3; −2(x − 6) = −2x + 12)",
+            "added": true
+          },
           "Eq. of line through B(6, −1) with slope −2/3 is",
           "y + 1 = (−2/3)(x − 6)   ⇒   3y + 3 = −2x + 12",
+          {
+            "text": "(take everything to the left: 2x + 3y + 3 − 12 = 0)",
+            "added": true
+          },
           "⇒ 2x + 3y − 9 = 0  ……(2)"
         ],
         "recall": {
@@ -322,7 +373,15 @@
           "Reusing the slope of BC for the second altitude.",
           "Sign slip when the perpendicular slope is a negative fraction."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "lines_compact": [
+          "Step-2: Finding altitude through B(6, −1):",
+          "Slope of AC is m = (5 + 1)/(2 + 2) = 6/4 = 3/2",
+          "Its perpendicular slope is −1/m = −1/(3/2) = −2/3",
+          "Eq. of line through B(6, −1) with slope −2/3 is",
+          "y + 1 = (−2/3)(x − 6)   ⇒   3y + 3 = −2x + 12",
+          "⇒ 2x + 3y − 9 = 0  ……(2)"
+        ]
       },
       {
         "id": "s4_solve_the_pair",
@@ -334,8 +393,30 @@
         "lines": [
           "Step-3: Solving (1), (2), we get O;",
           "(1) ⇒ 2x − 3y + 1 = 0;   (2) ⇒ 2x + 3y − 9 = 0",
+          {
+            "text": "(adding removes y: 2x + 2x = 4x and 1 − 9 = −8)",
+            "added": true
+          },
           "(1) + (2) ⇒ 4x − 8 = 0   ⇒   4x = 8   ⇒   x = 2",
+          {
+            "text": "(put x = 2 in (1): 4 + 1 = 5)",
+            "added": true
+          },
           "(1) ⇒ 2(2) − 3y + 1 = 0   ⇒   3y = 5   ⇒   y = 5/3",
+          {
+            "text": "(check: AB is horizontal, as A and B both have y = −1,",
+            "added": true
+          },
+          {
+            "text": "  so the altitude from C is the line x = 2,",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  which passes through O)",
+            "style": "indent",
+            "added": true
+          },
           {
             "text": "∴ Orthocentre O(x, y) = (2, 5/3)",
             "style": "boxed"
@@ -368,7 +449,17 @@
           "Arithmetic slip in the elimination.",
           "Writing the coordinates the wrong way round."
         ],
-        "mark_note": "Solution"
+        "mark_note": "Solution",
+        "lines_compact": [
+          "Step-3: Solving (1), (2), we get O;",
+          "(1) ⇒ 2x − 3y + 1 = 0;   (2) ⇒ 2x + 3y − 9 = 0",
+          "(1) + (2) ⇒ 4x − 8 = 0   ⇒   4x = 8   ⇒   x = 2",
+          "(1) ⇒ 2(2) − 3y + 1 = 0   ⇒   3y = 5   ⇒   y = 5/3",
+          {
+            "text": "∴ Orthocentre O(x, y) = (2, 5/3)",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Very Short Answer question 32(ii), book p.144 (the printed folio is hidden or clipped on this scan; the page is taken from the strictly consecutive neighbours). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split gives one mark for solving the pair of lines that are free of p and one for using concurrency on the third. This book prints almost no exam-appearance years, so appearances[] is empty. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Very Short Answer question 32(ii), book p.144 (the printed folio is hidden or clipped on this scan; the page is taken from the strictly consecutive neighbours). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split gives one mark for solving the pair of lines that are free of p and one for using concurrency on the third. This book prints almost no exam-appearance years, so appearances[] is empty. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say which two lines you solve first and why, and what concurrency then gives you.",
   "answer": {
@@ -52,12 +52,20 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "(write 4x − 3y = 7 with 0 on the right)",
           "The two lines free of p are",
           "4x − 3y − 7 = 0  ……(1)",
           "6x + 5y − 1 = 0  ……(2)",
+          "(multiply (1) by 5 and (2) by 3,",
+          {
+            "text": "  so the y terms are −15y and +15y)",
+            "style": "indent"
+          },
           "(1) × 5:  20x − 15y − 35 = 0",
           "(2) × 3:  18x + 15y − 3 = 0",
+          "(adding removes y: 20x + 18x = 38x and −35 − 3 = −38)",
           "Adding:  38x − 38 = 0  ⇒  x = 1",
+          "(put x = 1 in (1): 4 − 3y = 7, so −3y = 3)",
           "From (1):  4 − 3y = 7  ⇒  y = −1",
           "∴ Point of intersection is (1, −1)"
         ],
@@ -98,9 +106,21 @@
         "margin_note": "Second mark. Concurrency puts that point on the remaining line as well, and the equation it produces has only p in it.",
         "memory_tip": "Put the point into the line that carries the unknown, and solve the one equation it gives.",
         "lines": [
+          {
+            "text": "(concurrent lines all pass through one point)",
+            "added": true
+          },
           "The lines are concurrent, so (1, −1) also",
           "lies on 2x + py + 2 = 0",
+          {
+            "text": "(put x = 1 and y = −1)",
+            "added": true
+          },
           "⇒ 2(1) + p(−1) + 2 = 0",
+          {
+            "text": "(2 + 2 = 4 and p(−1) = −p)",
+            "added": true
+          },
           "⇒ 4 − p = 0",
           {
             "text": "∴ p = 4",
@@ -136,6 +156,19 @@
         "common_mistakes": [
           "Reading p(−1) as +p and getting p = −4.",
           "Substituting into one of the first two lines, which gives no equation in p."
+        ],
+        "lines_compact": [
+          "The lines are concurrent, so (1, −1) also",
+          "lies on 2x + py + 2 = 0",
+          "⇒ 2(1) + p(−1) + 2 = 0",
+          "⇒ 4 − p = 0",
+          {
+            "text": "∴ p = 4",
+            "style": "boxed"
+          },
+          "Check: with p = 4 the line is 2x + 4y + 2 = 0,",
+          "and at (1, −1) it gives 2 − 4 + 2 = 0.",
+          "The point also satisfies 6(1) + 5(−1) − 1 = 0."
         ]
       }
     ]

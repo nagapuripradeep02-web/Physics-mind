@@ -42,7 +42,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.64 — SAQ chapter 9 The Straight Line, answer 61. Printed appearance: TS 19. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. The chapter's one printed split is 1+1+2 on answer 59 (book p.63); this answer's own shape is four roughly equal moves rather than two short ones and a long one, so it is cut 1+1+1+1. Both shapes total the 4 marks the chapter header prints. Paper position: Maths-1B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3. RE-CUT 2026-08-31: this card was filed as SAQ at 4 marks and is now LAQ at 8 marks. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya FAST TRACK IPE Mathematics-IB 2026-27 edition files this chapter under the banner 8M + 2 × 2M = 12M, asks this question as Long Answer Question 15, and prints no short-answer block for it at all. Only the question was taken; the working, the mark split and every note here are ours (docs/ORIGINALITY_MATHS.md). The mathematics and the steps are unchanged; only the mark scheme moved — the four marks become eight, at 1 + 2 + 2 + 3. The question makes two separate demands, so the marks follow them: five for the transformation into normal form (clearing the fractions, the divide, and the term-by-term comparison that produces cosα, sinα and p) and three for the deduction that closes it. This is the one card of the four raised here that reads long on its own weight, because it asks for two results rather than one. Still unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.64 — SAQ chapter 9 The Straight Line, answer 61. Printed appearance: TS 19. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. The chapter's one printed split is 1+1+2 on answer 59 (book p.63); this answer's own shape is four roughly equal moves rather than two short ones and a long one, so it is cut 1+1+1+1. Both shapes total the 4 marks the chapter header prints. Paper position: Maths-1B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3. RE-CUT 2026-08-31: this card was filed as SAQ at 4 marks and is now LAQ at 8 marks. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya FAST TRACK IPE Mathematics-IB 2026-27 edition files this chapter under the banner 8M + 2 × 2M = 12M, asks this question as Long Answer Question 15, and prints no short-answer block for it at all. Only the question was taken; the working, the mark split and every note here are ours (docs/ORIGINALITY_MATHS.md). The mathematics and the steps are unchanged; only the mark scheme moved — the four marks become eight, at 1 + 2 + 2 + 3. The question makes two separate demands, so the marks follow them: five for the transformation into normal form (clearing the fractions, the divide, and the term-by-term comparison that produces cosα, sinα and p) and three for the deduction that closes it. This is the one card of the four raised here that reads long on its own weight, because it asks for two results rather than one. Still unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say what you divide by to reach normal form, and what you do to p at the end.",
   "answer": {
@@ -63,6 +63,11 @@
             "style": "heading"
           },
           "The given equation is  x/a + y/b = 1",
+          "(common denominator ab on the left, then multiply",
+          {
+            "text": "  both sides by ab; a ≠ 0 and b ≠ 0)",
+            "style": "indent"
+          },
           "⇒ (bx + ay)/ab = 1   ⇒   bx + ay = ab"
         ],
         "recall": {
@@ -102,6 +107,15 @@
         "marks": 2,
         "margin_note": "The next two marks. Normal form needs the coefficients of x and y to square-and-add to 1, which is exactly what dividing by √(a²+b²) arranges.",
         "lines": [
+          {
+            "text": "(the coefficients of x and y are b and a,",
+            "added": true
+          },
+          {
+            "text": "  and √(b² + a²) = √(a² + b²))",
+            "style": "indent",
+            "added": true
+          },
           "On dividing by √(a² + b²), we get",
           "bx/√(a²+b²) + ay/√(a²+b²) = ab/√(a²+b²)"
         ],
@@ -133,7 +147,11 @@
           "Dividing only the left side."
         ],
         "mark_note": "Method",
-        "memory_tip": "Divide by √(a²+b²) so the x and y coefficients square-and-add to 1."
+        "memory_tip": "Divide by √(a²+b²) so the x and y coefficients square-and-add to 1.",
+        "lines_compact": [
+          "On dividing by √(a² + b²), we get",
+          "bx/√(a²+b²) + ay/√(a²+b²) = ab/√(a²+b²)"
+        ]
       },
       {
         "id": "s3_read_off",
@@ -142,6 +160,15 @@
         "marks": 2,
         "margin_note": "Two more marks. Compare with xcosα + ysinα = p term by term. Note that cosα has b and sinα has a, because the x-intercept is a but the x-coefficient is b. Normal form needs p > 0, so this takes a and b positive; otherwise p = |ab|/√(a²+b²), since p is a distance.",
         "lines": [
+          {
+            "text": "(compare the coefficients of x and y and the constant;",
+            "added": true
+          },
+          {
+            "text": "  check: cos²α + sin²α = (b² + a²)/(a² + b²) = 1)",
+            "style": "indent",
+            "added": true
+          },
           "This is in the normal form  xcosα + ysinα = p,  where",
           "cosα = b/√(a²+b²),   sinα = a/√(a²+b²)",
           "and   p = ab/√(a²+b²)"
@@ -174,7 +201,12 @@
           "Forgetting to state p separately."
         ],
         "mark_note": "Method",
-        "memory_tip": "cos α goes with b and sin α goes with a, because the x-intercept is a but the x-coefficient is b."
+        "memory_tip": "cos α goes with b and sin α goes with a, because the x-intercept is a but the x-coefficient is b.",
+        "lines_compact": [
+          "This is in the normal form  xcosα + ysinα = p,  where",
+          "cosα = b/√(a²+b²),   sinα = a/√(a²+b²)",
+          "and   p = ab/√(a²+b²)"
+        ]
       },
       {
         "id": "s4_deduce",
@@ -183,8 +215,20 @@
         "marks": 3,
         "margin_note": "The last three marks. Square p, invert it, and split the single fraction into two — the a² and b² separate because the numerator is a product.",
         "lines": [
+          {
+            "text": "(square p: (ab)² = a²b² and (√(a² + b²))² = a² + b²)",
+            "added": true
+          },
           "So, p = ab/√(a²+b²)  ⇒  p² = a²b²/(a²+b²)",
+          {
+            "text": "(take the reciprocal of both sides, then split the fraction)",
+            "added": true
+          },
           "⇒ 1/p² = (a² + b²)/(a²b²) = a²/(a²b²) + b²/(a²b²)",
+          {
+            "text": "(a²/(a²b²) = 1/b² and b²/(a²b²) = 1/a²)",
+            "added": true
+          },
           {
             "text": "∴ 1/p² = 1/b² + 1/a² = 1/a² + 1/b²",
             "style": "boxed"
@@ -218,7 +262,15 @@
           "Cancelling a² against a²b² incorrectly."
         ],
         "mark_note": "Solution",
-        "memory_tip": "Square p, invert, and split the fraction — a² and b² separate because the numerator is a product."
+        "memory_tip": "Square p, invert, and split the fraction — a² and b² separate because the numerator is a product.",
+        "lines_compact": [
+          "So, p = ab/√(a²+b²)  ⇒  p² = a²b²/(a²+b²)",
+          "⇒ 1/p² = (a² + b²)/(a²b²) = a²/(a²b²) + b²/(a²b²)",
+          {
+            "text": "∴ 1/p² = 1/b² + 1/a² = 1/a² + 1/b²",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

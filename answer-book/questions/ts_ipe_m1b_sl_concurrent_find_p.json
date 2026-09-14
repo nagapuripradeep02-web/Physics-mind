@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.61 — SAQ chapter 9 The Straight Line, answer 55.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 17 · TS 22. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: the SAME CHAPTER prints 1+1+2 on answer 59 (book p.63), and this answer is cut to the same shape — the two setting-up moves at one mark each and the closing work at two. Where an answer's own shape is four equal moves instead, 1+1+1+1 is used and this note says so. Paper position: Maths-1B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3. RE-CUT 2026-08-31: this card was filed as SAQ at 4 marks and is now VSAQ at 2 marks. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya FAST TRACK IPE Mathematics-IB 2026-27 edition files this chapter under the banner 8M + 2 × 2M = 12M, asks this question as Very Short Answer Question 32 i, and prints no short-answer block for it at all. Only the question was taken; the working, the mark split and every note here are ours (docs/ORIGINALITY_MATHS.md). The mathematics and the steps are unchanged; only the mark scheme moved — the four marks become two, at 1 + 0 + 1, with the point-of-intersection line carried unmarked as a statement of what the first mark produced. Still unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.61 — SAQ chapter 9 The Straight Line, answer 55.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 17 · TS 22. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: the SAME CHAPTER prints 1+1+2 on answer 59 (book p.63), and this answer is cut to the same shape — the two setting-up moves at one mark each and the closing work at two. Where an answer's own shape is four equal moves instead, 1+1+1+1 is used and this note says so. Paper position: Maths-1B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3. RE-CUT 2026-08-31: this card was filed as SAQ at 4 marks and is now VSAQ at 2 marks. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya FAST TRACK IPE Mathematics-IB 2026-27 edition files this chapter under the banner 8M + 2 × 2M = 12M, asks this question as Very Short Answer Question 32 i, and prints no short-answer block for it at all. Only the question was taken; the working, the mark split and every note here are ours (docs/ORIGINALITY_MATHS.md). The mathematics and the steps are unchanged; only the mark scheme moved — the four marks become two, at 1 + 0 + 1, with the point-of-intersection line carried unmarked as a statement of what the first mark produced. Still unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say which two lines you would solve first and why, and what concurrency lets you do with the third.",
   "answer": {
@@ -58,16 +58,45 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "(write each line with 0 on the right:",
+          {
+            "text": "  3x + 4y = 5 becomes 3x + 4y − 5 = 0)",
+            "style": "indent"
+          },
           "Given lines  3x + 4y − 5 = 0 ……(1),",
           "2x + 3y − 4 = 0 ……(2)",
           "(the third line px + 4y − 6 = 0 carries the unknown p)",
           "Solving (1) and (2), we get P",
+          "(the cross-multiplication rule: for a₁x + b₁y + c₁ = 0",
+          {
+            "text": "  and a₂x + b₂y + c₂ = 0,",
+            "style": "indent"
+          },
+          {
+            "text": "  x/(b₁c₂ − b₂c₁) = y/(c₁a₂ − c₂a₁)",
+            "style": "indent"
+          },
+          {
+            "text": "  = 1/(a₁b₂ − a₂b₁))",
+            "style": "indent"
+          },
+          "(here a₁ = 3, b₁ = 4, c₁ = −5",
+          {
+            "text": "  and a₂ = 2, b₂ = 3, c₂ = −4)",
+            "style": "indent"
+          },
           "x / [4(−4) − 3(−5)] = y / [(−5)(2) − (−4)(3)]",
           {
             "text": "  = 1 / [3(3) − 2(4)]",
             "style": "indent"
           },
+          "(4(−4) = −16, 3(−5) = −15; (−5)(2) = −10,",
+          {
+            "text": "  (−4)(3) = −12; 3(3) = 9, 2(4) = 8)",
+            "style": "indent"
+          },
           "⇒ x/(−16 + 15) = y/(−10 + 12) = 1/(9 − 8)",
+          "(−16 + 15 = −1, −10 + 12 = 2 and 9 − 8 = 1)",
           "⇒ x/(−1) = y/2 = 1/1   ⇒   x = −1,  y = 2"
         ],
         "recall": {
@@ -107,6 +136,10 @@
         "marks": 0,
         "margin_note": "State the point plainly — it is the point every one of the three lines must pass through.",
         "lines": [
+          {
+            "text": "(check in (2): 2(−1) + 3(2) − 4 = −2 + 6 − 4 = 0)",
+            "added": true
+          },
           "∴ Point of intersection is P(−1, 2)"
         ],
         "recall": {
@@ -135,7 +168,10 @@
           "Writing the coordinates the wrong way round.",
           "Leaving the point as a pair of fractions without simplifying."
         ],
-        "memory_tip": "That point is where all three must pass."
+        "memory_tip": "That point is where all three must pass.",
+        "lines_compact": [
+          "∴ Point of intersection is P(−1, 2)"
+        ]
       },
       {
         "id": "s3_substitute_third",
@@ -144,9 +180,25 @@
         "marks": 1,
         "margin_note": "The last mark. Because the three are concurrent, that point lies on the third line too — so putting it in must satisfy that equation, and that equation gives the one unknown.",
         "lines": [
+          {
+            "text": "(concurrent lines all pass through one point)",
+            "added": true
+          },
           "Given lines are concurrent, so P(−1, 2) lies on px + 4y = 6",
+          {
+            "text": "(put −1 in place of x and 2 in place of y)",
+            "added": true
+          },
           "⇒ p(−1) + 4(2) = 6",
+          {
+            "text": "(p(−1) = −p and 4(2) = 8; take 8 to the right: 6 − 8 = −2)",
+            "added": true
+          },
           "⇒ −p + 8 = 6   ⇒   −p = −2",
+          {
+            "text": "(multiply both sides by −1)",
+            "added": true
+          },
           {
             "text": "∴ p = 2",
             "style": "boxed"
@@ -180,7 +232,16 @@
           "Sign slip when the point has a negative coordinate."
         ],
         "mark_note": "Solution",
-        "memory_tip": "The point must satisfy the third line, and that equation fixes p."
+        "memory_tip": "The point must satisfy the third line, and that equation fixes p.",
+        "lines_compact": [
+          "Given lines are concurrent, so P(−1, 2) lies on px + 4y = 6",
+          "⇒ p(−1) + 4(2) = 6",
+          "⇒ −p + 8 = 6   ⇒   −p = −2",
+          {
+            "text": "∴ p = 2",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

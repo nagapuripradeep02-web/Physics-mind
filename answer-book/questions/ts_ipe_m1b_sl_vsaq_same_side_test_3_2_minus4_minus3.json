@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Very Short Answer question 20, book p.143. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The 1+1 split gives the first mark for the two substituted values written out with their signs, and the second for the comparison and the stated verdict; the two signed numbers are the working an examiner looks for, so a bare verdict earns only the second mark at best. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Answer checked a second way: the line 2x − 3y + 4 = 0 is y = (2x + 4)/3, which at x = 3 gives y = 10/3 and at x = −4 gives y = −4/3. The point (3, 2) has 2 < 10/3 and the point (−4, −3) has −3 < −4/3, so both points sit below the line, which agrees with the two positive values found in the answer."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Very Short Answer question 20, book p.143. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The 1+1 split gives the first mark for the two substituted values written out with their signs, and the second for the comparison and the stated verdict; the two signed numbers are the working an examiner looks for, so a bare verdict earns only the second mark at best. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Answer checked a second way: the line 2x − 3y + 4 = 0 is y = (2x + 4)/3, which at x = 3 gives y = 10/3 and at x = −4 gives y = −4/3. The point (3, 2) has 2 < 10/3 and the point (−4, −3) has −3 < −4/3, so both points sit below the line, which agrees with the two positive values found in the answer. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say what you substitute, and what the two answers have to be compared for.",
   "answer": {
@@ -53,8 +53,10 @@
             "style": "heading"
           },
           "Let L(x, y) = 2x − 3y + 4",
+          "(put x = 3 and y = 2 in L)",
           "At (3, 2):  L = 2(3) − 3(2) + 4",
           "= 6 − 6 + 4 = 4",
+          "(put x = −4 and y = −3 in L; −3(−3) = +9)",
           "At (−4, −3):  L = 2(−4) − 3(−3) + 4",
           "= −8 + 9 + 4 = 5"
         ],
@@ -95,10 +97,23 @@
         "margin_note": "Second mark. Only the signs matter, not the sizes. Same sign means the same side, opposite signs mean opposite sides, and a zero would mean that point is on the line.",
         "memory_tip": "Same sign, same side. Opposite signs, opposite sides. A zero means the point is on the line.",
         "lines": [
+          {
+            "text": "(the two values found in step 1)",
+            "added": true
+          },
           "L(3, 2) = 4 > 0",
           "L(−4, −3) = 5 > 0",
           "Both values are positive,",
           "so they have the same sign.",
+          {
+            "text": "(points where L has the same sign lie on the same",
+            "added": true
+          },
+          {
+            "text": "  side of the line)",
+            "style": "indent",
+            "added": true
+          },
           {
             "text": "∴ The two points lie on the same side",
             "style": "boxed"
@@ -130,6 +145,16 @@
         "common_mistakes": [
           "Comparing 4 and 5 as sizes and concluding the points are at different distances, which the question does not ask.",
           "Answering only same side with no values shown, which leaves the working mark unearned."
+        ],
+        "lines_compact": [
+          "L(3, 2) = 4 > 0",
+          "L(−4, −3) = 5 > 0",
+          "Both values are positive,",
+          "so they have the same sign.",
+          {
+            "text": "∴ The two points lie on the same side",
+            "style": "boxed"
+          }
         ]
       }
     ]

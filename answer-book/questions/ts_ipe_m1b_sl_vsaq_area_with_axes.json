@@ -35,7 +35,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.81 — VSAQ chapter 14 Straight Lines, answer 93.1. Printed appearance: AP 15. ⚠ THE MARK SPLIT 1+1 IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on this chapter's pages, which are set two and three answers to a page in columns, taking the margin those tags would occupy. It is not a bare guess: the very next VSAQ chapter prints 1+1 on answer 98 (book p.83, 3-D Coordinates), and 1A's own VSAQ pages print 1-mark tags in the same style. The chapter header reads '2+2=4 Marks', meaning the paper asks TWO of these, each worth 2 — so one question is 2 marks, cut here as one for the method and one for the answer. Paper position: Maths-1B Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; The Straight Line holds two of those ten slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.81 — VSAQ chapter 14 Straight Lines, answer 93.1. Printed appearance: AP 15. ⚠ THE MARK SPLIT 1+1 IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on this chapter's pages, which are set two and three answers to a page in columns, taking the margin those tags would occupy. It is not a bare guess: the very next VSAQ chapter prints 1+1 on answer 98 (book p.83, 3-D Coordinates), and 1A's own VSAQ pages print 1-mark tags in the same style. The chapter header reads '2+2=4 Marks', meaning the paper asks TWO of these, each worth 2 — so one question is 2 marks, cut here as one for the method and one for the answer. Paper position: Maths-1B Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; The Straight Line holds two of those ten slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — name the area formula for a line with the two axes.",
   "answer": {
@@ -59,6 +59,11 @@
           "Given line is 3x − 4y + 12 = 0",
           "On comparing with ax + by + c = 0, we get",
           "a = 3, b = −4, c = 12",
+          "(the intercepts are −c/a and −c/b, so the area is",
+          {
+            "text": "  ½ · |c/a| · |c/b| = c²/(2|ab|))",
+            "style": "indent"
+          },
           "Area of the triangle is  Δ = c²/(2|ab|)"
         ],
         "recall": {
@@ -98,8 +103,20 @@
         "margin_note": "Second mark. Substitute and simplify. Area is always positive, which is what the modulus in the denominator guarantees.",
         "memory_tip": "Area is always positive — that is what the modulus in the denominator guarantees.",
         "lines": [
+          {
+            "text": "(put a = 3, b = −4 and c = 12)",
+            "added": true
+          },
           "∴ Δ = c²/(2|ab|) = 12²/(2|(3)(−4)|)",
+          {
+            "text": "(12² = 144 and |(3)(−4)| = 12)",
+            "added": true
+          },
           "= 144/(2 × 12) = 144/24 = 6",
+          {
+            "text": "(check: the intercepts are −4 and 3, and ½ × 4 × 3 = 6)",
+            "added": true
+          },
           {
             "text": "∴ Area of the triangle is 6 sq.units",
             "style": "boxed"
@@ -132,7 +149,15 @@
           "Forgetting the 2 in the denominator.",
           "Losing the square on c."
         ],
-        "mark_note": "Solution"
+        "mark_note": "Solution",
+        "lines_compact": [
+          "∴ Δ = c²/(2|ab|) = 12²/(2|(3)(−4)|)",
+          "= 144/(2 × 12) = 144/24 = 6",
+          {
+            "text": "∴ Area of the triangle is 6 sq.units",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

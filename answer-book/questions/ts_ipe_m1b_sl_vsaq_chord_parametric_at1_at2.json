@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Very Short Answer question 10, book p.141. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The 1+1 split gives the first mark for the cancellation that reduces the slope to 2/(t₁ + t₂), which is where this question is won or lost, and the second for the point-slope work. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Answer checked by substituting both given points into 2x − (t₁ + t₂)y + 2at₁t₂ = 0. At (at₁², 2at₁): 2at₁² − 2at₁² − 2at₁t₂ + 2at₁t₂ = 0. At (at₂², 2at₂): 2at₂² − 2at₁t₂ − 2at₂² + 2at₁t₂ = 0. Both give 0, so both points lie on the boxed line. The stem carries no restriction on t₁ and t₂; two distinct points need t₁ ≠ t₂, and that condition is stated in the answer where the student reads it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Very Short Answer question 10, book p.141. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The 1+1 split gives the first mark for the cancellation that reduces the slope to 2/(t₁ + t₂), which is where this question is won or lost, and the second for the point-slope work. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Answer checked by substituting both given points into 2x − (t₁ + t₂)y + 2at₁t₂ = 0. At (at₁², 2at₁): 2at₁² − 2at₁² − 2at₁t₂ + 2at₁t₂ = 0. At (at₂², 2at₂): 2at₂² − 2at₁t₂ − 2at₂² + 2at₁t₂ = 0. Both give 0, so both points lie on the boxed line. The stem carries no restriction on t₁ and t₂; two distinct points need t₁ ≠ t₂, and that condition is stated in the answer where the student reads it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say what cancels in the slope, and which point you then use.",
   "answer": {
@@ -54,8 +54,19 @@
           },
           "Let A = (at₁², 2at₁),  B = (at₂², 2at₂)",
           "The points are distinct, so t₁ ≠ t₂",
+          "(the slope through two points: the difference of the y's",
+          {
+            "text": "  over the difference of the x's)",
+            "style": "indent"
+          },
           "Slope m = (2at₂ − 2at₁)/(at₂² − at₁²)",
+          "(take out 2a on top; take out a below, and",
+          {
+            "text": "  t₂² − t₁² = (t₂ − t₁)(t₂ + t₁))",
+            "style": "indent"
+          },
           "= 2a(t₂ − t₁)/[a(t₂ − t₁)(t₂ + t₁)]",
+          "(cancel a(t₂ − t₁), which is not 0)",
           "∴ m = 2/(t₁ + t₂),  if t₁ + t₂ ≠ 0"
         ],
         "recall": {
@@ -97,9 +108,25 @@
         "lines": [
           "Point-slope form at A(at₁², 2at₁):",
           "y − 2at₁ = [2/(t₁ + t₂)](x − at₁²)",
+          {
+            "text": "(multiply both sides by t₁ + t₂)",
+            "added": true
+          },
           "⇒ (t₁ + t₂)(y − 2at₁) = 2(x − at₁²)",
+          {
+            "text": "(multiply out: (t₁ + t₂) · 2at₁ = 2at₁² + 2at₁t₂)",
+            "added": true
+          },
           "⇒ (t₁ + t₂)y − 2at₁² − 2at₁t₂ = 2x − 2at₁²",
+          {
+            "text": "(add 2at₁² to both sides)",
+            "added": true
+          },
           "⇒ (t₁ + t₂)y − 2at₁t₂ = 2x",
+          {
+            "text": "(take every term to one side)",
+            "added": true
+          },
           {
             "text": "∴ 2x − (t₁ + t₂)y + 2at₁t₂ = 0",
             "style": "boxed"
@@ -131,6 +158,17 @@
         "common_mistakes": [
           "Multiplying only the left side by t₁ + t₂ and leaving the right side unchanged.",
           "Writing the constant as 2at₁² instead of 2at₁t₂."
+        ],
+        "lines_compact": [
+          "Point-slope form at A(at₁², 2at₁):",
+          "y − 2at₁ = [2/(t₁ + t₂)](x − at₁²)",
+          "⇒ (t₁ + t₂)(y − 2at₁) = 2(x − at₁²)",
+          "⇒ (t₁ + t₂)y − 2at₁² − 2at₁t₂ = 2x − 2at₁²",
+          "⇒ (t₁ + t₂)y − 2at₁t₂ = 2x",
+          {
+            "text": "∴ 2x − (t₁ + t₂)y + 2at₁t₂ = 0",
+            "style": "boxed"
+          }
         ]
       }
     ]

@@ -42,7 +42,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Long Answer question 19, book p.160. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split rewards the five moves the answer takes — one mark for reading the inclination off the parallel line, two for the parametric point, two for the substitution, two for collecting the r terms and solving, and one for rationalising the denominator, which is the only tidy-up left. This book prints almost no exam-appearance years, so appearances[] is empty. Paper position: Maths-1B Section C runs Q19 to Q21 at 8 marks each, answer any 2 of 3, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Long Answer question 19, book p.160. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split rewards the five moves the answer takes — one mark for reading the inclination off the parallel line, two for the parametric point, two for the substitution, two for collecting the r terms and solving, and one for rationalising the denominator, which is the only tidy-up left. This book prints almost no exam-appearance years, so appearances[] is empty. Paper position: Maths-1B Section C runs Q19 to Q21 at 8 marks each, answer any 2 of 3, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say how the parallel line gives you the angle, and what r means at the end.",
   "answer": {
@@ -62,9 +62,12 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "(y = √3x has slope √3)",
           "The line is parallel to y = √3x",
+          "(tan 60° = √3, with θ between 0° and 180°)",
           "Parallel lines have equal slopes, so",
           "tan θ = √3  ⇒  θ = 60°",
+          "(the standard values for 60°)",
           "cos 60° = 1/2,  sin 60° = √3/2"
         ],
         "recall": {
@@ -104,9 +107,26 @@
         "marks": 2,
         "margin_note": "The next two marks. Q is the base point and r is the unknown distance, so P is (x₁ + r cos θ, y₁ + r sin θ) with the 60° values put in.",
         "lines": [
+          {
+            "text": "(a point at distance r from (x₁, y₁) along a line of",
+            "added": true
+          },
+          {
+            "text": "  inclination θ is (x₁ + r cos θ, y₁ + r sin θ))",
+            "style": "indent",
+            "added": true
+          },
           "Let PQ = r and Q(x₁, y₁) = (2, 3)",
           "P = (x₁ + r cos θ, y₁ + r sin θ)",
+          {
+            "text": "(put x₁ = 2, y₁ = 3 and θ = 60°)",
+            "added": true
+          },
           "= (2 + r cos 60°, 3 + r sin 60°)",
+          {
+            "text": "(r cos 60° = r/2 and r sin 60° = √3r/2)",
+            "added": true
+          },
           "∴ P = (2 + r/2, 3 + √3r/2)"
         ],
         "recall": {
@@ -137,7 +157,13 @@
           "Writing √3r/2 as √(3r)/2."
         ],
         "mark_note": "Method",
-        "memory_tip": "A point at distance r along the line is (x₁ + r cos θ, y₁ + r sin θ)."
+        "memory_tip": "A point at distance r along the line is (x₁ + r cos θ, y₁ + r sin θ).",
+        "lines_compact": [
+          "Let PQ = r and Q(x₁, y₁) = (2, 3)",
+          "P = (x₁ + r cos θ, y₁ + r sin θ)",
+          "= (2 + r cos 60°, 3 + r sin 60°)",
+          "∴ P = (2 + r/2, 3 + √3r/2)"
+        ]
       },
       {
         "id": "s3_put_p_on_the_line",
@@ -146,9 +172,21 @@
         "marks": 2,
         "margin_note": "The next two marks. P is on 2x + 4y − 27 = 0, so substituting turns the geometry into one equation in r. Distribute both coefficients across both parts.",
         "lines": [
+          {
+            "text": "(the coordinates of P satisfy 2x + 4y − 27 = 0)",
+            "added": true
+          },
           "P lies on 2x + 4y − 27 = 0, so",
           "2(2 + r/2) + 4(3 + √3r/2) − 27 = 0",
+          {
+            "text": "(2(2 + r/2) = 4 + r and 4(3 + √3r/2) = 12 + 2√3r)",
+            "added": true
+          },
           "⇒ 4 + r + 12 + 2√3r − 27 = 0",
+          {
+            "text": "(4 + 12 − 27 = −11)",
+            "added": true
+          },
           "⇒ r + 2√3r − 11 = 0"
         ],
         "recall": {
@@ -178,7 +216,13 @@
           "Losing the √3 while collecting the r terms."
         ],
         "mark_note": "Method",
-        "memory_tip": "P lies on the given line, so substituting leaves one equation in r alone."
+        "memory_tip": "P lies on the given line, so substituting leaves one equation in r alone.",
+        "lines_compact": [
+          "P lies on 2x + 4y − 27 = 0, so",
+          "2(2 + r/2) + 4(3 + √3r/2) − 27 = 0",
+          "⇒ 4 + r + 12 + 2√3r − 27 = 0",
+          "⇒ r + 2√3r − 11 = 0"
+        ]
       },
       {
         "id": "s4_solve_for_r",
@@ -187,7 +231,15 @@
         "marks": 2,
         "margin_note": "Two more marks. Both r terms are linear, so take r out as a common factor and divide once.",
         "lines": [
+          {
+            "text": "(take out the common factor r and move 11 across)",
+            "added": true
+          },
           "⇒ r(1 + 2√3) = 11",
+          {
+            "text": "(divide both sides by 1 + 2√3)",
+            "added": true
+          },
           "∴ r = 11/(2√3 + 1)"
         ],
         "recall": {
@@ -217,7 +269,11 @@
           "Dividing only one term by (2√3 + 1)."
         ],
         "mark_note": "Method",
-        "memory_tip": "Both r terms are linear, so take r common and divide once."
+        "memory_tip": "Both r terms are linear, so take r common and divide once.",
+        "lines_compact": [
+          "⇒ r(1 + 2√3) = 11",
+          "∴ r = 11/(2√3 + 1)"
+        ]
       },
       {
         "id": "s5_rationalise",
@@ -226,9 +282,30 @@
         "marks": 1,
         "margin_note": "Last mark. Multiply above and below by the conjugate (2√3 − 1). The denominator becomes 12 − 1 = 11, which cancels the 11 on top exactly.",
         "lines": [
+          {
+            "text": "(multiplying by the conjugate removes the surd",
+            "added": true
+          },
+          {
+            "text": "  from the denominator)",
+            "style": "indent",
+            "added": true
+          },
           "Multiply above and below by (2√3 − 1):",
+          {
+            "text": "((p + q)(p − q) = p² − q², with p = 2√3 and q = 1)",
+            "added": true
+          },
           "r = 11(2√3 − 1)/((2√3)² − 1²)",
+          {
+            "text": "((2√3)² = 4 × 3 = 12, and 12 − 1 = 11)",
+            "added": true
+          },
           "= 11(2√3 − 1)/11",
+          {
+            "text": "(the 11s cancel; r > 0, so PQ = r)",
+            "added": true
+          },
           {
             "text": "∴ PQ = r = 2√3 − 1 units",
             "style": "boxed"
@@ -262,7 +339,16 @@
           "Using (2√3 + 1) again instead of the conjugate."
         ],
         "mark_note": "Method",
-        "memory_tip": "Multiply by the conjugate: (2√3)² − 1² = 11, which cancels the 11 on top."
+        "memory_tip": "Multiply by the conjugate: (2√3)² − 1² = 11, which cancels the 11 on top.",
+        "lines_compact": [
+          "Multiply above and below by (2√3 − 1):",
+          "r = 11(2√3 − 1)/((2√3)² − 1²)",
+          "= 11(2√3 − 1)/11",
+          {
+            "text": "∴ PQ = r = 2√3 − 1 units",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   }

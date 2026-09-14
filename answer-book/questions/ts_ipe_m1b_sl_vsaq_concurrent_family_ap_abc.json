@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Very Short Answer question 16, book p.142. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The 1+1 split gives the first mark for turning the arithmetic progression into a − 2b + c = 0, and the second for matching that against ax + by + c = 0 and naming the point; the question asks for two things, so the split follows them. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Answer checked by substitution: putting x = 1, y = −2 into ax + by + c gives a − 2b + c, which the arithmetic progression makes 0 for every such a, b, c. Tested on one member of the family, a = 1, b = 2, c = 3: the line x + 2y + 3 = 0 gives 1 − 4 + 3 = 0 at (1, −2). Tested on a second, a = 5, b = 3, c = 1: the line 5x + 3y + 1 = 0 gives 5 − 6 + 1 = 0 at the same point."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Very Short Answer question 16, book p.142. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The 1+1 split gives the first mark for turning the arithmetic progression into a − 2b + c = 0, and the second for matching that against ax + by + c = 0 and naming the point; the question asks for two things, so the split follows them. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Answer checked by substitution: putting x = 1, y = −2 into ax + by + c gives a − 2b + c, which the arithmetic progression makes 0 for every such a, b, c. Tested on one member of the family, a = 1, b = 2, c = 3: the line x + 2y + 3 = 0 gives 1 − 4 + 3 = 0 at (1, −2). Tested on a second, a = 5, b = 3, c = 1: the line 5x + 3y + 1 = 0 gives 5 − 6 + 1 = 0 at the same point. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say what arithmetic progression gives you, and how you read the fixed point off it.",
   "answer": {
@@ -53,8 +53,15 @@
             "style": "heading"
           },
           "Given a, b, c are in A.P.",
+          "(in an A.P. the difference between consecutive terms",
+          {
+            "text": "  is the same)",
+            "style": "indent"
+          },
           "∴ b − a = c − b",
+          "(add a + b to both sides)",
           "⇒ 2b = a + c",
+          "(move 2b to the right side)",
           "⇒ a − 2b + c = 0   ……(1)"
         ],
         "recall": {
@@ -95,7 +102,25 @@
         "memory_tip": "Write the condition as a(x) + b(y) + c = 0. The numbers beside a and b are the fixed point.",
         "lines": [
           "Given line is ax + by + c = 0   ……(2)",
+          {
+            "text": "(in (1) the numbers multiplying a,",
+            "added": true
+          },
+          {
+            "text": "  b and c are 1, −2 and 1)",
+            "style": "indent",
+            "added": true
+          },
           "Write (1) as  a(1) + b(−2) + c = 0",
+          {
+            "text": "(put x = 1 and y = −2 in (2): a(1) + b(−2) + c,",
+            "added": true
+          },
+          {
+            "text": "  which is 0 by (1))",
+            "style": "indent",
+            "added": true
+          },
           "So x = 1, y = −2 satisfies (2)",
           "for every a, b, c in A.P.  (a, b not both 0)",
           "∴ all the lines pass through one fixed point",
@@ -130,6 +155,17 @@
         "common_mistakes": [
           "Giving the point as (1, 2) and losing the minus sign that came from −2b.",
           "Solving two particular lines instead of matching the condition, which takes far longer than two marks allow."
+        ],
+        "lines_compact": [
+          "Given line is ax + by + c = 0   ……(2)",
+          "Write (1) as  a(1) + b(−2) + c = 0",
+          "So x = 1, y = −2 satisfies (2)",
+          "for every a, b, c in A.P.  (a, b not both 0)",
+          "∴ all the lines pass through one fixed point",
+          {
+            "text": "∴ Point of concurrency is (1, −2)",
+            "style": "boxed"
+          }
         ]
       }
     ]

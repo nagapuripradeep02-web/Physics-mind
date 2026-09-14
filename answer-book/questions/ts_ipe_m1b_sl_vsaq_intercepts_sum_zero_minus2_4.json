@@ -39,7 +39,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.79 — VSAQ chapter 14 Straight Lines, answer 89.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP J-17 (June 2017) · AP 15. ⚠ THE MARK SPLIT 1+1 IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on this chapter's pages, which are set two and three answers to a page in columns, taking the margin those tags would occupy. It is not a bare guess: the very next VSAQ chapter prints 1+1 on answer 98 (book p.83, 3-D Coordinates), and 1A's own VSAQ pages print 1-mark tags in the same style. The chapter header reads '2+2=4 Marks', meaning the paper asks TWO of these, each worth 2 — so one question is 2 marks, cut here as one for the method and one for the answer. Paper position: Maths-1B Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; The Straight Line holds two of those ten slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.79 — VSAQ chapter 14 Straight Lines, answer 89.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP J-17 (June 2017) · AP 15. ⚠ THE MARK SPLIT 1+1 IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on this chapter's pages, which are set two and three answers to a page in columns, taking the margin those tags would occupy. It is not a bare guess: the very next VSAQ chapter prints 1+1 on answer 98 (book p.83, 3-D Coordinates), and 1A's own VSAQ pages print 1-mark tags in the same style. The chapter header reads '2+2=4 Marks', meaning the paper asks TWO of these, each worth 2 — so one question is 2 marks, cut here as one for the method and one for the answer. Paper position: Maths-1B Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; The Straight Line holds two of those ten slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say which form you would use and why, and what the condition tells you about the two intercepts.",
   "answer": {
@@ -61,9 +61,21 @@
             "style": "heading"
           },
           "Given that, sum of intercepts is zero.",
+          "(the intercept form needs a ≠ 0;",
+          {
+            "text": "  the line y = −2x through the origin also passes",
+            "style": "indent"
+          },
+          {
+            "text": "  through (−2, 4), with intercepts 0 and 0)",
+            "style": "indent"
+          },
           "So, we take a, −a as the intercepts.",
+          "(the intercept form of a line with intercepts a and b)",
           "Intercept form:  x/a + y/b = 1",
+          "(put b = −a)",
           "∴ x/a + y/(−a) = 1",
+          "(multiply both sides by a)",
           "⇒ x − y = a  ……(1)"
         ],
         "recall": {
@@ -103,9 +115,21 @@
         "margin_note": "Second mark. The line passes through the given point, so that point satisfies the equation — substitute it, find the one remaining unknown, and write the line.",
         "memory_tip": "The point lies on the line, so substituting fixes a.",
         "lines": [
+          {
+            "text": "(put x = −2 and y = 4 in (1))",
+            "added": true
+          },
           "But (−2, 4) lies on (1)",
           "⇒ −2 − 4 = a  ⇒  a = −6",
+          {
+            "text": "(put a = −6 in x − y = a)",
+            "added": true
+          },
           "∴ x − y = −6",
+          {
+            "text": "(move −6 to the left side)",
+            "added": true
+          },
           {
             "text": "⇒ x − y + 6 = 0",
             "style": "boxed"
@@ -138,7 +162,16 @@
           "Substituting the coordinates the wrong way round.",
           "Stopping at the value of a without writing the line."
         ],
-        "mark_note": "Solution"
+        "mark_note": "Solution",
+        "lines_compact": [
+          "But (−2, 4) lies on (1)",
+          "⇒ −2 − 4 = a  ⇒  a = −6",
+          "∴ x − y = −6",
+          {
+            "text": "⇒ x − y + 6 = 0",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

@@ -42,7 +42,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.155, chapter 3 THE STRAIGHT LINE, Long Answer question 10. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split puts two marks on each of the two pieces of real work — finding the meeting point and turning the distance condition into an equation in m — two more on solving it, and one each on writing the line through the point and on reporting both answers. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section C prints 3 long answer questions at 8 marks each and the student answers any 2, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Both answers were substituted back before they were written: y − 1 = 0 passes through (−2, 1) and its distance from (2, −1) is |−1 − 1| = 2, and 4x + 3y + 5 = 0 gives −8 + 3 + 5 = 0 at (−2, 1) and |8 − 3 + 5|/5 = 2 at (2, −1). The pair was also reached a second way, through the family (3x + 2y + 4) + λ(2x + 5y − 1) = 0, which gives λ = 1/14 and λ = −3/2 and the same two lines."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.155, chapter 3 THE STRAIGHT LINE, Long Answer question 10. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split puts two marks on each of the two pieces of real work — finding the meeting point and turning the distance condition into an equation in m — two more on solving it, and one each on writing the line through the point and on reporting both answers. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section C prints 3 long answer questions at 8 marks each and the student answers any 2, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Both answers were substituted back before they were written: y − 1 = 0 passes through (−2, 1) and its distance from (2, −1) is |−1 − 1| = 2, and 4x + 3y + 5 = 0 gives −8 + 3 + 5 = 0 at (−2, 1) and |8 − 3 + 5|/5 = 2 at (2, −1). The pair was also reached a second way, through the family (3x + 2y + 4) + λ(2x + 5y − 1) = 0, which gives λ = 1/14 and λ = −3/2 and the same two lines. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — name the point every answer must pass through, and say why the question has two answers.",
   "answer": {
@@ -64,10 +64,14 @@
             "style": "heading"
           },
           "Given lines  3x + 2y + 4 = 0  ……(1)",
+          "(write 2x + 5y = 1 with 0 on the right)",
           "and  2x + 5y − 1 = 0  ……(2)",
+          "(multiply (1) by 5 and (2) by 2, so both y terms are 10y)",
           "(1) × 5:  15x + 10y + 20 = 0",
           "(2) × 2:  4x + 10y − 2 = 0",
+          "(subtracting removes y: 15x − 4x = 11x, 20 − (−2) = 22)",
           "Subtracting,  11x + 22 = 0  ⇒  x = −2",
+          "(put x = −2 in (2): 2(−2) = −4)",
           "From (2),  −4 + 5y − 1 = 0  ⇒  y = 1",
           "∴ The lines meet at P(−2, 1)"
         ],
@@ -108,10 +112,27 @@
         "mark_note": "Method",
         "margin_note": "One mark. Test the vertical line first, then write the point-slope form through P and bring it to ax + by + c = 0 shape.",
         "lines": [
+          {
+            "text": "(a vertical line has no slope, so it is checked first;",
+            "added": true
+          },
+          {
+            "text": "  its distance from (2, −1) is the gap in the x values)",
+            "style": "indent",
+            "added": true
+          },
           "The vertical line x = −2 through P is at",
           "distance |2 − (−2)| = 4 from (2, −1), not 2,",
           "so the required line has a slope m.",
+          {
+            "text": "(the point-slope form through P(−2, 1))",
+            "added": true
+          },
           "y − 1 = m(x + 2)",
+          {
+            "text": "(multiply out: y − 1 = mx + 2m; take y − 1 to the right)",
+            "added": true
+          },
           "⇒ mx − y + 2m + 1 = 0"
         ],
         "recall": {
@@ -141,7 +162,14 @@
           "Starting from y = mx + c and never using the point P.",
           "Never checking the vertical line, so a possible answer is not ruled out."
         ],
-        "memory_tip": "The slope form cannot describe a vertical line, so check x = −2 by hand first, then use y − y₁ = m(x − x₁)."
+        "memory_tip": "The slope form cannot describe a vertical line, so check x = −2 by hand first, then use y − y₁ = m(x − x₁).",
+        "lines_compact": [
+          "The vertical line x = −2 through P is at",
+          "distance |2 − (−2)| = 4 from (2, −1), not 2,",
+          "so the required line has a slope m.",
+          "y − 1 = m(x + 2)",
+          "⇒ mx − y + 2m + 1 = 0"
+        ]
       },
       {
         "id": "s3_distance_condition",
@@ -151,9 +179,36 @@
         "mark_note": "Method",
         "margin_note": "Two marks. Put (2, −1) into |ax + by + c|/√(a² + b²) for the line just written, set it equal to 2, and take the common factor 2 out.",
         "lines": [
+          {
+            "text": "(the distance from (x₁, y₁) to px + qy + r = 0 is",
+            "added": true
+          },
+          {
+            "text": "  |px₁ + qy₁ + r|/√(p² + q²); here p = m, q = −1,",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  r = 2m + 1 and (x₁, y₁) = (2, −1))",
+            "style": "indent",
+            "added": true
+          },
           "Its distance from (2, −1) is 2, so",
           "|m(2) − (−1) + 2m + 1| / √(m² + 1) = 2",
+          {
+            "text": "(2m + 1 + 2m + 1 = 4m + 2; multiply both",
+            "added": true
+          },
+          {
+            "text": "  sides by √(m² + 1))",
+            "style": "indent",
+            "added": true
+          },
           "⇒ |4m + 2| = 2√(m² + 1)",
+          {
+            "text": "(4m + 2 = 2(2m + 1); divide both sides by 2)",
+            "added": true
+          },
           "⇒ |2m + 1| = √(m² + 1)"
         ],
         "recall": {
@@ -183,7 +238,13 @@
           "Putting the coordinates of P into the distance formula instead of (2, −1).",
           "Cancelling the 2 on the right without dividing the left side as well."
         ],
-        "memory_tip": "The POINT goes into the formula, the LINE gives the coefficients. Here 4m + 2 has a factor 2 that cancels the 2 on the right."
+        "memory_tip": "The POINT goes into the formula, the LINE gives the coefficients. Here 4m + 2 has a factor 2 that cancels the 2 on the right.",
+        "lines_compact": [
+          "Its distance from (2, −1) is 2, so",
+          "|m(2) − (−1) + 2m + 1| / √(m² + 1) = 2",
+          "⇒ |4m + 2| = 2√(m² + 1)",
+          "⇒ |2m + 1| = √(m² + 1)"
+        ]
       },
       {
         "id": "s4_solve_m",
@@ -193,10 +254,36 @@
         "mark_note": "Method",
         "margin_note": "Two marks. Square, cancel the 1 on both sides, and take m out as a common factor. Never divide by m — that throws away the answer m = 0.",
         "lines": [
+          {
+            "text": "(neither side is negative, so squaring keeps them equal;",
+            "added": true
+          },
+          {
+            "text": "  (2m + 1)² = 4m² + 4m + 1)",
+            "style": "indent",
+            "added": true
+          },
           "Squaring both sides,",
           "4m² + 4m + 1 = m² + 1",
+          {
+            "text": "(take m² + 1 to the left: 4m² − m² = 3m², 1 − 1 = 0)",
+            "added": true
+          },
           "⇒ 3m² + 4m = 0",
+          {
+            "text": "(take out the common factor m)",
+            "added": true
+          },
           "⇒ m(3m + 4) = 0",
+          {
+            "text": "(a product is 0 only when a factor is 0;",
+            "added": true
+          },
+          {
+            "text": "  3m + 4 = 0 gives m = −4/3)",
+            "style": "indent",
+            "added": true
+          },
           "⇒ m = 0  (or)  m = −4/3"
         ],
         "recall": {
@@ -226,7 +313,14 @@
           "Dividing by m and losing the root m = 0.",
           "Writing 4m² + 4m + 1 = m² + 1 as 3m² + 4m + 2 = 0."
         ],
-        "memory_tip": "Take m OUT as a factor, never divide by it. Dividing by m loses the line y = 1."
+        "memory_tip": "Take m OUT as a factor, never divide by it. Dividing by m loses the line y = 1.",
+        "lines_compact": [
+          "Squaring both sides,",
+          "4m² + 4m + 1 = m² + 1",
+          "⇒ 3m² + 4m = 0",
+          "⇒ m(3m + 4) = 0",
+          "⇒ m = 0  (or)  m = −4/3"
+        ]
       },
       {
         "id": "s5_both_lines",
@@ -236,10 +330,31 @@
         "mark_note": "Solution",
         "margin_note": "The last mark. Put each slope back into y − 1 = m(x + 2) and clear the fractions. Both lines are part of the answer.",
         "lines": [
+          {
+            "text": "(put m = 0 in y − 1 = m(x + 2))",
+            "added": true
+          },
           "m = 0:  y − 1 = 0",
+          {
+            "text": "(put m = −4/3 and multiply both sides by 3)",
+            "added": true
+          },
           "m = −4/3:  3(y − 1) = −4(x + 2)",
           "⇒ 3y − 3 = −4x − 8",
+          {
+            "text": "(take −4x − 8 to the left: 4x + 3y − 3 + 8 = 0)",
+            "added": true
+          },
           "⇒ 4x + 3y + 5 = 0",
+          {
+            "text": "(check: the distance from (2, −1) to 4x + 3y + 5 = 0",
+            "added": true
+          },
+          {
+            "text": "  is |8 − 3 + 5|/√(16 + 9) = 10/5 = 2)",
+            "style": "indent",
+            "added": true
+          },
           "∴ The required lines are",
           {
             "text": "y − 1 = 0  and  4x + 3y + 5 = 0",
@@ -273,7 +388,18 @@
           "Reporting only one of the two lines.",
           "Leaving the answer as a slope instead of an equation."
         ],
-        "memory_tip": "Two slopes means TWO equations. Put each one back into the point-slope form and clear the fraction."
+        "memory_tip": "Two slopes means TWO equations. Put each one back into the point-slope form and clear the fraction.",
+        "lines_compact": [
+          "m = 0:  y − 1 = 0",
+          "m = −4/3:  3(y − 1) = −4(x + 2)",
+          "⇒ 3y − 3 = −4x − 8",
+          "⇒ 4x + 3y + 5 = 0",
+          "∴ The required lines are",
+          {
+            "text": "y − 1 = 0  and  4x + 3y + 5 = 0",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   }

@@ -45,7 +45,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.63 — SAQ chapter 9 The Straight Line, answer 58.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 22 · TS 15. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: the SAME CHAPTER prints 1+1+2 on answer 59 (book p.63), and this answer is cut to the same shape — the two setting-up moves at one mark each and the closing work at two. Where an answer's own shape is four equal moves instead, 1+1+1+1 is used and this note says so. Paper position: Maths-1B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.63 — SAQ chapter 9 The Straight Line, answer 58.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 22 · TS 15. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: the SAME CHAPTER prints 1+1+2 on answer 59 (book p.63), and this answer is cut to the same shape — the two setting-up moves at one mark each and the closing work at two. Where an answer's own shape is four equal moves instead, 1+1+1+1 is used and this note says so. Paper position: Maths-1B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say what the parametric form gives you, and what r means at the end.",
   "answer": {
@@ -66,7 +66,9 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "(the slope is tan θ, where θ is the inclination)",
           "Given slope m = 1  ⇒  tanθ = tan45°",
+          "(tan 45° = 1, with θ between 0° and 180°)",
           "⇒ θ = 45°"
         ],
         "recall": {
@@ -106,9 +108,26 @@
         "margin_note": "Second mark. Any point at distance r from Q along the line is (x₁ + r cosθ, y₁ + r sinθ). Writing P this way turns an unknown POINT into a single unknown NUMBER.",
         "memory_tip": "Write P as (x₁ + r cos θ, y₁ + r sin θ), turning the unknown point into a single number r.",
         "lines": [
+          {
+            "text": "(a point at distance r from (x₁, y₁) along a line of",
+            "added": true
+          },
+          {
+            "text": "  inclination θ is (x₁ + r cos θ, y₁ + r sin θ))",
+            "style": "indent",
+            "added": true
+          },
           "Given point Q(x₁, y₁) = (−3, 5) and distance PQ = r, then",
           "P = (x₁ + r cosθ, y₁ + r sinθ)",
+          {
+            "text": "(put x₁ = −3, y₁ = 5 and θ = 45°)",
+            "added": true
+          },
           "= (−3 + r cos45°, 5 + r sin45°)",
+          {
+            "text": "(cos 45° = sin 45° = 1/√2)",
+            "added": true
+          },
           "= (−3 + r(1/√2), 5 + r(1/√2))",
           "∴ P = (−3 + r/√2, 5 + r/√2)"
         ],
@@ -139,7 +158,14 @@
           "Swapping cosθ and sinθ between the two coordinates.",
           "Leaving r out of one of the two coordinates."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "lines_compact": [
+          "Given point Q(x₁, y₁) = (−3, 5) and distance PQ = r, then",
+          "P = (x₁ + r cosθ, y₁ + r sinθ)",
+          "= (−3 + r cos45°, 5 + r sin45°)",
+          "= (−3 + r(1/√2), 5 + r(1/√2))",
+          "∴ P = (−3 + r/√2, 5 + r/√2)"
+        ]
       },
       {
         "id": "s3_put_on_the_line",
@@ -149,8 +175,21 @@
         "margin_note": "Third mark. P is stated to lie on the given line, so its coordinates satisfy that equation. Substituting produces one equation in r alone.",
         "memory_tip": "P is on the given line, so substituting gives one equation in r.",
         "lines": [
+          {
+            "text": "(the coordinates of P satisfy x + y − 6 = 0)",
+            "added": true
+          },
           "But P lies on the line x + y − 6 = 0 ⇒ x + y = 6",
           "⇒ (−3 + r/√2) + (5 + r/√2) = 6",
+          {
+            "text": "(−3 + 5 = 2 and r/√2 + r/√2 = 2r/√2;",
+            "added": true
+          },
+          {
+            "text": "  take 2 to the right)",
+            "style": "indent",
+            "added": true
+          },
           "⇒ 2 + 2r/√2 = 6   ⇒   2r/√2 = 4"
         ],
         "recall": {
@@ -179,7 +218,12 @@
           "Substituting into the wrong line.",
           "Forgetting that BOTH coordinates carry r/√2, so the two r-terms add."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "lines_compact": [
+          "But P lies on the line x + y − 6 = 0 ⇒ x + y = 6",
+          "⇒ (−3 + r/√2) + (5 + r/√2) = 6",
+          "⇒ 2 + 2r/√2 = 6   ⇒   2r/√2 = 4"
+        ]
       },
       {
         "id": "s4_solve_for_r",
@@ -189,6 +233,15 @@
         "margin_note": "Last mark. The distance PQ IS r, so solving for r finishes the question with no extra work.",
         "memory_tip": "PQ is r itself — no extra work after solving.",
         "lines": [
+          {
+            "text": "(2r/√2 = 4 gives r/√2 = 2; multiply both sides by √2;",
+            "added": true
+          },
+          {
+            "text": "  check: P = (−1, 7), and −1 + 7 − 6 = 0)",
+            "style": "indent",
+            "added": true
+          },
           {
             "text": "∴ r/√2 = 2  ⇒  Distance PQ = r = 2√2",
             "style": "boxed"
@@ -220,7 +273,13 @@
           "Finding P's coordinates and then applying the distance formula, which wastes time.",
           "Leaving r negative when the question asks for a distance."
         ],
-        "mark_note": "Solution"
+        "mark_note": "Solution",
+        "lines_compact": [
+          {
+            "text": "∴ r/√2 = 2  ⇒  Distance PQ = r = 2√2",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

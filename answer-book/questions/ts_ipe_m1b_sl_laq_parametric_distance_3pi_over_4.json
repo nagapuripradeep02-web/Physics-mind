@@ -42,7 +42,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Long Answer question 18, book p.160. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split rewards the five moves the answer takes — one mark for turning the given angle into the inclination, two for building the parametric point, two for substituting it into the given line, two for solving the resulting equation in r, and one for naming P and reading the distance off r. This book prints almost no exam-appearance years, so appearances[] is empty. Paper position: Maths-1B Section C runs Q19 to Q21 at 8 marks each, answer any 2 of 3, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. SOURCE DEFECT, recorded not repaired: the book prints “makes on angles”, a typo for “makes an angle”, and the card uses the sensible reading. The stem measures the angle from the NEGATIVE X-direction, which gives inclination π/4, not 3π/4. That reading is forced, not chosen: an inclination of 3π/4 gives slope −1, which is parallel to x + y − 7 = 0, so the two lines would never meet and the question would have no answer. The card says so in the first step."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Long Answer question 18, book p.160. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split rewards the five moves the answer takes — one mark for turning the given angle into the inclination, two for building the parametric point, two for substituting it into the given line, two for solving the resulting equation in r, and one for naming P and reading the distance off r. This book prints almost no exam-appearance years, so appearances[] is empty. Paper position: Maths-1B Section C runs Q19 to Q21 at 8 marks each, answer any 2 of 3, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. SOURCE DEFECT, recorded not repaired: the book prints “makes on angles”, a typo for “makes an angle”, and the card uses the sensible reading. The stem measures the angle from the NEGATIVE X-direction, which gives inclination π/4, not 3π/4. That reading is forced, not chosen: an inclination of 3π/4 gives slope −1, which is parallel to x + y − 7 = 0, so the two lines would never meet and the question would have no answer. The card says so in the first step. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say how you get the inclination, what the parametric point is, and what r means at the end.",
   "answer": {
@@ -63,7 +63,13 @@
             "style": "heading"
           },
           "Angle with the negative X-direction = 3π/4",
+          "(the inclination is measured from the positive X-direction;",
+          {
+            "text": "  the angles with the two directions add to π)",
+            "style": "indent"
+          },
           "∴ Inclination θ = π − 3π/4 = π/4 = 45°",
+          "(cos 45° = sin 45° = 1/√2)",
           "cos 45° = 1/√2,  sin 45° = 1/√2"
         ],
         "recall": {
@@ -103,9 +109,26 @@
         "marks": 2,
         "margin_note": "The next two marks. Any point at distance r from Q along the line is (x₁ + r cos θ, y₁ + r sin θ). This turns an unknown POINT into one unknown NUMBER.",
         "lines": [
+          {
+            "text": "(a point at distance r from (x₁, y₁) along a line of",
+            "added": true
+          },
+          {
+            "text": "  inclination θ is (x₁ + r cos θ, y₁ + r sin θ))",
+            "style": "indent",
+            "added": true
+          },
           "Let PQ = r and Q(x₁, y₁) = (2, 3)",
           "P = (x₁ + r cos θ, y₁ + r sin θ)",
+          {
+            "text": "(put x₁ = 2, y₁ = 3 and θ = 45°)",
+            "added": true
+          },
           "= (2 + r cos 45°, 3 + r sin 45°)",
+          {
+            "text": "(r cos 45° = r/√2 and r sin 45° = r/√2)",
+            "added": true
+          },
           "∴ P = (2 + r/√2, 3 + r/√2)"
         ],
         "recall": {
@@ -136,7 +159,13 @@
           "Leaving r out of one of the two coordinates."
         ],
         "mark_note": "Method",
-        "memory_tip": "A point at distance r along the line is (x₁ + r cos θ, y₁ + r sin θ)."
+        "memory_tip": "A point at distance r along the line is (x₁ + r cos θ, y₁ + r sin θ).",
+        "lines_compact": [
+          "Let PQ = r and Q(x₁, y₁) = (2, 3)",
+          "P = (x₁ + r cos θ, y₁ + r sin θ)",
+          "= (2 + r cos 45°, 3 + r sin 45°)",
+          "∴ P = (2 + r/√2, 3 + r/√2)"
+        ]
       },
       {
         "id": "s3_put_p_on_the_line",
@@ -145,9 +174,21 @@
         "marks": 2,
         "margin_note": "The next two marks. P is stated to lie on x + y − 7 = 0, so its coordinates satisfy that equation. Substituting leaves one equation in r alone.",
         "lines": [
+          {
+            "text": "(the coordinates of P satisfy x + y − 7 = 0)",
+            "added": true
+          },
           "P lies on x + y − 7 = 0, so",
           "(2 + r/√2) + (3 + r/√2) − 7 = 0",
+          {
+            "text": "(2 + 3 = 5 and r/√2 + r/√2 = 2r/√2)",
+            "added": true
+          },
           "⇒ 5 + 2r/√2 − 7 = 0",
+          {
+            "text": "(take 5 − 7 = −2 to the right side)",
+            "added": true
+          },
           "⇒ 2r/√2 = 2"
         ],
         "recall": {
@@ -177,7 +218,13 @@
           "Dropping the −7 while collecting the constants."
         ],
         "mark_note": "Method",
-        "memory_tip": "P lies on the given line, so substituting produces one equation in r alone."
+        "memory_tip": "P lies on the given line, so substituting produces one equation in r alone.",
+        "lines_compact": [
+          "P lies on x + y − 7 = 0, so",
+          "(2 + r/√2) + (3 + r/√2) − 7 = 0",
+          "⇒ 5 + 2r/√2 − 7 = 0",
+          "⇒ 2r/√2 = 2"
+        ]
       },
       {
         "id": "s4_solve_for_r",
@@ -186,7 +233,15 @@
         "marks": 2,
         "margin_note": "Two more marks. 2/√2 is √2, so the equation is already linear in r. Rationalise once and the distance is out.",
         "lines": [
+          {
+            "text": "(2/√2 = √2, because 2 = √2 · √2)",
+            "added": true
+          },
           "2r/√2 = r√2,  so  r√2 = 2",
+          {
+            "text": "(divide both sides by √2)",
+            "added": true
+          },
           "⇒ r = 2/√2 = √2",
           "r is positive, so P lies where x increases."
         ],
@@ -217,7 +272,12 @@
           "Treating a negative r as an error rather than as the other direction."
         ],
         "mark_note": "Method",
-        "memory_tip": "r is a SIGNED distance: its sign tells you which side of Q the point is on."
+        "memory_tip": "r is a SIGNED distance: its sign tells you which side of Q the point is on.",
+        "lines_compact": [
+          "2r/√2 = r√2,  so  r√2 = 2",
+          "⇒ r = 2/√2 = √2",
+          "r is positive, so P lies where x increases."
+        ]
       },
       {
         "id": "s5_name_p_and_pq",
@@ -226,6 +286,10 @@
         "marks": 1,
         "margin_note": "Last mark. Putting r back gives P, and substituting P into the given line checks the answer in one line.",
         "lines": [
+          {
+            "text": "(put r = √2 in P = (2 + r/√2, 3 + r/√2); √2/√2 = 1)",
+            "added": true
+          },
           "P = (2 + √2/√2, 3 + √2/√2) = (3, 4)",
           "Check: 3 + 4 − 7 = 0, so P is on the line.",
           {
@@ -261,7 +325,15 @@
           "Writing the answer without units."
         ],
         "mark_note": "Method",
-        "memory_tip": "The distance PQ IS r — and putting P back into the line checks every step above."
+        "memory_tip": "The distance PQ IS r — and putting P back into the line checks every step above.",
+        "lines_compact": [
+          "P = (2 + √2/√2, 3 + √2/√2) = (3, 4)",
+          "Check: 3 + 4 − 7 = 0, so P is on the line.",
+          {
+            "text": "∴ PQ = r = √2 units",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   }

@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.81 — VSAQ chapter 14 Straight Lines, answer 92.1. No appearance years are printed against this answer. ⚠ THE MARK SPLIT 1+1 IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on this chapter's pages, which are set two and three answers to a page in columns, taking the margin those tags would occupy. It is not a bare guess: the very next VSAQ chapter prints 1+1 on answer 98 (book p.83, 3-D Coordinates), and 1A's own VSAQ pages print 1-mark tags in the same style. The chapter header reads '2+2=4 Marks', meaning the paper asks TWO of these, each worth 2 — so one question is 2 marks, cut here as one for the method and one for the answer. Paper position: Maths-1B Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; The Straight Line holds two of those ten slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.81 — VSAQ chapter 14 Straight Lines, answer 92.1. No appearance years are printed against this answer. ⚠ THE MARK SPLIT 1+1 IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on this chapter's pages, which are set two and three answers to a page in columns, taking the margin those tags would occupy. It is not a bare guess: the very next VSAQ chapter prints 1+1 on answer 98 (book p.83, 3-D Coordinates), and 1A's own VSAQ pages print 1-mark tags in the same style. The chapter header reads '2+2=4 Marks', meaning the paper asks TWO of these, each worth 2 — so one question is 2 marks, cut here as one for the method and one for the answer. Paper position: Maths-1B Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; The Straight Line holds two of those ten slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say what the slope must be, and which form you would use.",
   "answer": {
@@ -52,7 +52,9 @@
             "style": "heading"
           },
           "Given line is 2x + 3y + 7 = 0",
+          "(the slope of ax + by + c = 0 is −a/b; here a = 2, b = 3)",
           "Its slope  m = −a/b = −2/3",
+          "(parallel lines have equal slopes)",
           "A parallel line has the same slope,",
           "so the required slope is −2/3"
         ],
@@ -92,11 +94,27 @@
         "margin_note": "Second mark. Point-slope form, then clear the fraction and collect. A shorter one-line method for this type is given below.",
         "memory_tip": "Point-slope form, then clear the fraction and collect.",
         "lines": [
+          {
+            "text": "(the point-slope form, with (x₁, y₁) = (5, 4) and m = −2/3)",
+            "added": true
+          },
           "Parallel line through (5, 4) with slope −2/3 is",
           "y − y₁ = m(x − x₁)",
           "⇒ y − 4 = (−2/3)(x − 5)",
+          {
+            "text": "(multiply both sides by 3)",
+            "added": true
+          },
           "⇒ 3(y − 4) = −2(x − 5)",
+          {
+            "text": "(multiply out both sides)",
+            "added": true
+          },
           "⇒ 3y − 12 = −2x + 10",
+          {
+            "text": "(take −2x + 10 to the left: 2x + 3y − 12 − 10 = 0)",
+            "added": true
+          },
           {
             "text": "⇒ 2x + 3y − 22 = 0",
             "style": "boxed"
@@ -105,8 +123,20 @@
             "text": "Easy Solution:",
             "style": "heading"
           },
+          {
+            "text": "(a line parallel to ax + by + c = 0 has the same a and b)",
+            "added": true
+          },
           "The parallel line is given by  a(x − x₁) + b(y − y₁) = 0",
+          {
+            "text": "(put a = 2, b = 3 and (x₁, y₁) = (5, 4))",
+            "added": true
+          },
           "⇒ 2(x − 5) + 3(y − 4) = 0",
+          {
+            "text": "(2(x − 5) = 2x − 10 and 3(y − 4) = 3y − 12)",
+            "added": true
+          },
           "⇒ 2x + 3y − 10 − 12 = 0  ⇒  2x + 3y − 22 = 0"
         ],
         "recall": {
@@ -135,7 +165,25 @@
           "Sign slip when the point has a negative coordinate.",
           "Leaving the answer with a fraction in it."
         ],
-        "mark_note": "Solution"
+        "mark_note": "Solution",
+        "lines_compact": [
+          "Parallel line through (5, 4) with slope −2/3 is",
+          "y − y₁ = m(x − x₁)",
+          "⇒ y − 4 = (−2/3)(x − 5)",
+          "⇒ 3(y − 4) = −2(x − 5)",
+          "⇒ 3y − 12 = −2x + 10",
+          {
+            "text": "⇒ 2x + 3y − 22 = 0",
+            "style": "boxed"
+          },
+          {
+            "text": "Easy Solution:",
+            "style": "heading"
+          },
+          "The parallel line is given by  a(x − x₁) + b(y − y₁) = 0",
+          "⇒ 2(x − 5) + 3(y − 4) = 0",
+          "⇒ 2x + 3y − 10 − 12 = 0  ⇒  2x + 3y − 22 = 0"
+        ]
       }
     ]
   },
