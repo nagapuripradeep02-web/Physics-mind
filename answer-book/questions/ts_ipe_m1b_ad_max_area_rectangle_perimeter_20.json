@@ -34,7 +34,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.226, chapter 10 APPLICATIONS OF DERIVATIVES, the MAXIMA AND MINIMA sub-section, Short Answer question 3. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4 Marks over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.226, chapter 10 APPLICATIONS OF DERIVATIVES, the MAXIMA AND MINIMA sub-section, Short Answer question 3. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4 Marks over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say how the perimeter lets you remove one side, and how you would prove the value you find gives the largest area.",
   "answer": {
@@ -56,12 +56,20 @@
             "style": "heading"
           },
           "Let the sides of the rectangle be x and y, both positive.",
+          "(the perimeter of a rectangle is 2(x + y);",
+          {
+            "text": "  divide both sides by 2)",
+            "style": "indent"
+          },
           "Perimeter is fixed:  2(x + y) = 20   ⇒   x + y = 10",
+          "(move x to the other side)",
           {
             "text": "  ⇒   y = 10 − x",
             "style": "indent"
           },
+          "(x > 0, and y = 10 − x > 0 gives x < 10)",
           "Both sides are positive, so the domain is 0 < x < 10.",
+          "(area of a rectangle = length × breadth)",
           "Area:  A(x) = xy = x(10 − x) = 10x − x²"
         ],
         "recall": {
@@ -102,11 +110,27 @@
         "mark_note": "Method",
         "margin_note": "Two marks: one for A′(x) = 0 solved, one for the second derivative test. A stationary point is not a maximum until A″ < 0 is written down.",
         "lines": [
+          {
+            "text": "(d/dx of 10x is 10 and d/dx of x² is 2x)",
+            "added": true
+          },
           "A′(x) = 10 − 2x",
+          {
+            "text": "(put A′(x) = 0; move 2x across and divide by 2)",
+            "added": true
+          },
           "A′(x) = 0   ⇒   10 − 2x = 0   ⇒   x = 5",
+          {
+            "text": "(differentiate A′(x) = 10 − 2x again)",
+            "added": true
+          },
           "A″(x) = −2, which is negative for every x.",
           "A negative second derivative means the stationary point",
           "is a maximum.",
+          {
+            "text": "(0 < 5 < 10, so x = 5 is in the domain)",
+            "added": true
+          },
           "So the area is greatest at x = 5."
         ],
         "recall": {
@@ -137,7 +161,15 @@
           "Writing x = 5 and calling it a maximum with no test.",
           "Differentiating 10x − x² as 10 − x."
         ],
-        "memory_tip": "For a quadratic with a negative x² term the second derivative is a constant negative number, so the test is one line long."
+        "memory_tip": "For a quadratic with a negative x² term the second derivative is a constant negative number, so the test is one line long.",
+        "lines_compact": [
+          "A′(x) = 10 − 2x",
+          "A′(x) = 0   ⇒   10 − 2x = 0   ⇒   x = 5",
+          "A″(x) = −2, which is negative for every x.",
+          "A negative second derivative means the stationary point",
+          "is a maximum.",
+          "So the area is greatest at x = 5."
+        ]
       },
       {
         "id": "s3_maximum_area",
@@ -147,9 +179,17 @@
         "mark_note": "Answer",
         "margin_note": "Fourth mark. The question asks for the AREA, not for x, so the number 25 must appear. Naming the shape as a square is a useful extra line but is not the answer by itself.",
         "lines": [
+          {
+            "text": "(put 5 in place of x in y = 10 − x)",
+            "added": true
+          },
           "x = 5   ⇒   y = 10 − 5 = 5",
           "So the rectangle of greatest area is a square of side 5.",
           "Maximum area = 5 × 5 = 25 square units",
+          {
+            "text": "(4 × 6 = 24 and 3 × 7 = 21; both pairs add to 10)",
+            "added": true
+          },
           "Check: sides 4 and 6 give 24 and sides 3 and 7 give 21,",
           "both less than 25.",
           {
@@ -189,7 +229,22 @@
           "Stopping at x = 5 and never computing the area.",
           "Giving the perimeter 20 as the answer."
         ],
-        "memory_tip": "Among all rectangles with the same perimeter the square has the largest area. That result is worth remembering as a check on the working."
+        "memory_tip": "Among all rectangles with the same perimeter the square has the largest area. That result is worth remembering as a check on the working.",
+        "lines_compact": [
+          "x = 5   ⇒   y = 10 − 5 = 5",
+          "So the rectangle of greatest area is a square of side 5.",
+          "Maximum area = 5 × 5 = 25 square units",
+          "Check: sides 4 and 6 give 24 and sides 3 and 7 give 21,",
+          "both less than 25.",
+          {
+            "text": "∴ the maximum area is 25 square units,",
+            "style": "boxed"
+          },
+          {
+            "text": "reached when the rectangle is a square of side 5",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

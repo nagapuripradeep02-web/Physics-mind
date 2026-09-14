@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.221, chapter 10 APPLICATIONS OF DERIVATIVES, the TANGENTS AND NORMALS sub-section, Short Answer question 10. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4M over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.221, chapter 10 APPLICATIONS OF DERIVATIVES, the TANGENTS AND NORMALS sub-section, Short Answer question 10. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4M over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say what you differentiate, what number you get for the slope at (0, 5), and how the normal's slope comes from it.",
   "answer": {
@@ -60,9 +60,15 @@
             "style": "heading"
           },
           "Given curve:  y = x⁴ − 6x³ + 13x² − 10x + 5",
+          "(every term with x is 0 at x = 0)",
           "Check the point: at x = 0,  y = 0 − 0 + 0 − 0 + 5 = 5,",
           "so (0, 5) lies on the curve.",
           "Differentiate term by term with respect to x:",
+          "(power rule on each term: 4x³, 6(3x²) = 18x²,",
+          {
+            "text": "  13(2x) = 26x, and 10)",
+            "style": "indent"
+          },
           "dy/dx = 4x³ − 18x² + 26x − 10"
         ],
         "recall": {
@@ -108,6 +114,10 @@
           "The slope of the tangent is the value of dy/dx",
           "at the given point.",
           "At x = 0:",
+          {
+            "text": "(every term with x is 0 at x = 0)",
+            "added": true
+          },
           "m = 4(0)³ − 18(0)² + 26(0) − 10",
           "∴ m = −10"
         ],
@@ -140,7 +150,14 @@
           "Writing m = −10x and leaving x in the slope.",
           "Substituting into the original curve instead of into dy/dx."
         ],
-        "memory_tip": "At x = 0 every term carrying an x disappears, so the slope is just the constant term of dy/dx. Here that constant is −10."
+        "memory_tip": "At x = 0 every term carrying an x disappears, so the slope is just the constant term of dy/dx. Here that constant is −10.",
+        "lines_compact": [
+          "The slope of the tangent is the value of dy/dx",
+          "at the given point.",
+          "At x = 0:",
+          "m = 4(0)³ − 18(0)² + 26(0) − 10",
+          "∴ m = −10"
+        ]
       },
       {
         "id": "s3_tangent",
@@ -152,8 +169,16 @@
         "lines": [
           "Tangent at (x₁, y₁) with slope m:   y − y₁ = m(x − x₁)",
           "Here (x₁, y₁) = (0, 5) and m = −10:",
+          {
+            "text": "(put x₁ = 0, y₁ = 5 and m = −10)",
+            "added": true
+          },
           "y − 5 = −10(x − 0)",
           "y − 5 = −10x",
+          {
+            "text": "(move −10x to the left)",
+            "added": true
+          },
           "∴ 10x + y − 5 = 0"
         ],
         "recall": {
@@ -185,7 +210,14 @@
           "Using the normal's slope 1/10 here instead of m = −10.",
           "Leaving the answer as y = −10x + 5 when the general form is asked for."
         ],
-        "memory_tip": "Point-slope form is y minus the y of the point, equals m times x minus the x of the point. Nothing else goes in."
+        "memory_tip": "Point-slope form is y minus the y of the point, equals m times x minus the x of the point. Nothing else goes in.",
+        "lines_compact": [
+          "Tangent at (x₁, y₁) with slope m:   y − y₁ = m(x − x₁)",
+          "Here (x₁, y₁) = (0, 5) and m = −10:",
+          "y − 5 = −10(x − 0)",
+          "y − 5 = −10x",
+          "∴ 10x + y − 5 = 0"
+        ]
       },
       {
         "id": "s4_normal",
@@ -195,11 +227,27 @@
         "mark_note": "Answer",
         "margin_note": "Fourth mark. The most common loss on this question is the normal's slope: it is −1/m, so −10 becomes +1/10, not −1/10. Check the answer by putting (0, 5) back in: 0 − 50 + 50 = 0.",
         "lines": [
+          {
+            "text": "(−1/(−10) = 1/10)",
+            "added": true
+          },
           "The normal is perpendicular to the tangent",
           "at the same point,",
           "so its slope is −1/m = −1/(−10) = 1/10.",
+          {
+            "text": "(the point-slope form with slope 1/10 at (0, 5))",
+            "added": true
+          },
           "y − 5 = (1/10)(x − 0)",
+          {
+            "text": "(multiply both sides by 10)",
+            "added": true
+          },
           "10y − 50 = x",
+          {
+            "text": "(move 10y − 50 to the right: 0 = x − 10y + 50)",
+            "added": true
+          },
           {
             "text": "∴ Tangent: 10x + y − 5 = 0",
             "style": "boxed"
@@ -239,7 +287,22 @@
           "Using −m = 10 as the normal's slope instead of −1/m.",
           "Writing the normal through a different point than (0, 5)."
         ],
-        "memory_tip": "Take the reciprocal of the tangent slope, then change its sign. Both moves, every time."
+        "memory_tip": "Take the reciprocal of the tangent slope, then change its sign. Both moves, every time.",
+        "lines_compact": [
+          "The normal is perpendicular to the tangent",
+          "at the same point,",
+          "so its slope is −1/m = −1/(−10) = 1/10.",
+          "y − 5 = (1/10)(x − 0)",
+          "10y − 50 = x",
+          {
+            "text": "∴ Tangent: 10x + y − 5 = 0",
+            "style": "boxed"
+          },
+          {
+            "text": "Normal: x − 10y + 50 = 0",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

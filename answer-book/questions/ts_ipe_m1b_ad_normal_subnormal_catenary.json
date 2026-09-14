@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.223, chapter 10 APPLICATIONS OF DERIVATIVES, the TANGENTS AND NORMALS sub-section, Short Answer question 14. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4M over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Two notes on the stem. Notation: it is reproduced with the book's ASCII exponents, e^(x/a) and e^(−x/a); the working writes the same function in real Unicode as eˣ⁄ᵃ and e⁻ˣ⁄ᵃ. Condition: the printed stem does not state a > 0, and the working assumes it, because √(y²/a²) = y/a needs a positive a (y itself is positive at every point of this curve). Nothing was changed in the question itself."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.223, chapter 10 APPLICATIONS OF DERIVATIVES, the TANGENTS AND NORMALS sub-section, Short Answer question 14. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4M over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Two notes on the stem. Notation: it is reproduced with the book's ASCII exponents, e^(x/a) and e^(−x/a); the working writes the same function in real Unicode as eˣ⁄ᵃ and e⁻ˣ⁄ᵃ. Condition: the printed stem does not state a > 0, and the working assumes it, because √(y²/a²) = y/a needs a positive a (y itself is positive at every point of this curve). Nothing was changed in the question itself. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say what dy/dx is, what 1 + (dy/dx)² simplifies to on this curve, and the formulas for the length of the normal and the subnormal.",
   "answer": {
@@ -62,8 +62,15 @@
           "Given curve:   y = (a/2)(eˣ⁄ᵃ + e⁻ˣ⁄ᵃ),   a > 0",
           "Differentiate with respect to x.",
           "The exponents x/a and −x/a differentiate to 1/a and −1/a:",
+          "(chain rule: d/dx of eᵘ is eᵘ · du/dx; u = x/a gives",
+          {
+            "text": "  du/dx = 1/a, and u = −x/a gives −1/a)",
+            "style": "indent"
+          },
           "dy/dx = (a/2)[(1/a)eˣ⁄ᵃ − (1/a)e⁻ˣ⁄ᵃ]",
+          "(take out the common factor 1/a)",
           "= (a/2)(1/a)(eˣ⁄ᵃ − e⁻ˣ⁄ᵃ)",
+          "((a/2)(1/a) = 1/2)",
           "∴ m = dy/dx = (1/2)(eˣ⁄ᵃ − e⁻ˣ⁄ᵃ)"
         ],
         "recall": {
@@ -106,11 +113,39 @@
         "mark_note": "Method",
         "margin_note": "Second mark. Both lengths carry a √(1 + m²), so simplifying it once here does the work for both. The +1 is what turns the −2 inside the square into +2 and completes the perfect square.",
         "lines": [
+          {
+            "text": "(put m from step 1; (1/2)² = 1/4)",
+            "added": true
+          },
           "1 + m² = 1 + (1/4)(eˣ⁄ᵃ − e⁻ˣ⁄ᵃ)²",
+          {
+            "text": "((p − q)² = p² − 2pq + q², where eˣ⁄ᵃ · e⁻ˣ⁄ᵃ = e⁰ = 1)",
+            "added": true
+          },
           "= 1 + (1/4)(e²ˣ⁄ᵃ − 2 + e⁻²ˣ⁄ᵃ)",
+          {
+            "text": "(write 1 as (1/4) × 4)",
+            "added": true
+          },
           "= (1/4)(e²ˣ⁄ᵃ − 2 + e⁻²ˣ⁄ᵃ + 4)",
+          {
+            "text": "(−2 + 4 = 2)",
+            "added": true
+          },
           "= (1/4)(e²ˣ⁄ᵃ + 2 + e⁻²ˣ⁄ᵃ)",
+          {
+            "text": "((p + q)² = p² + 2pq + q², with pq = 1 again)",
+            "added": true
+          },
           "= (1/4)(eˣ⁄ᵃ + e⁻ˣ⁄ᵃ)²",
+          {
+            "text": "(multiply y = (a/2)(eˣ⁄ᵃ + e⁻ˣ⁄ᵃ) by 2/a)",
+            "added": true
+          },
+          {
+            "text": "((2y/a)² = 4y²/a², and (1/4)(4y²/a²) = y²/a²)",
+            "added": true
+          },
           "From the curve,  eˣ⁄ᵃ + e⁻ˣ⁄ᵃ = 2y/a, so",
           "∴ 1 + m² = (1/4)(2y/a)² = y²/a²"
         ],
@@ -143,7 +178,16 @@
           "Forgetting to write 1 as 4/4 before adding, and losing the +2.",
           "Writing eˣ⁄ᵃ + e⁻ˣ⁄ᵃ = y/a instead of 2y/a."
         ],
-        "memory_tip": "The square of a difference has −2 in the middle; adding 1 changes it to +2, which is the square of the sum. That is the simplification used here."
+        "memory_tip": "The square of a difference has −2 in the middle; adding 1 changes it to +2, which is the square of the sum. That is the simplification used here.",
+        "lines_compact": [
+          "1 + m² = 1 + (1/4)(eˣ⁄ᵃ − e⁻ˣ⁄ᵃ)²",
+          "= 1 + (1/4)(e²ˣ⁄ᵃ − 2 + e⁻²ˣ⁄ᵃ)",
+          "= (1/4)(e²ˣ⁄ᵃ − 2 + e⁻²ˣ⁄ᵃ + 4)",
+          "= (1/4)(e²ˣ⁄ᵃ + 2 + e⁻²ˣ⁄ᵃ)",
+          "= (1/4)(eˣ⁄ᵃ + e⁻ˣ⁄ᵃ)²",
+          "From the curve,  eˣ⁄ᵃ + e⁻ˣ⁄ᵃ = 2y/a, so",
+          "∴ 1 + m² = (1/4)(2y/a)² = y²/a²"
+        ]
       },
       {
         "id": "s3_normal_length",
@@ -153,11 +197,33 @@
         "mark_note": "Solution",
         "margin_note": "Third mark. State the formula before substituting. y is positive everywhere on this curve and a > 0, so the square root is y/a with no sign to worry about.",
         "lines": [
+          {
+            "text": "(the standard formula for the length of the normal)",
+            "added": true
+          },
           "At a point (x, y) with m = dy/dx:",
           "length of the normal = |y √(1 + m²)|",
+          {
+            "text": "(√(y²/a²) = |y|/|a| = y/a; y > 0 because a > 0",
+            "added": true
+          },
+          {
+            "text": "  and each exponential is positive)",
+            "style": "indent",
+            "added": true
+          },
           "Here √(1 + m²) = √(y²/a²) = y/a,  since y > 0 and a > 0.",
           "Length of the normal = y · (y/a)",
           "∴ length of the normal = y²/a",
+          {
+            "text": "(y² = (a²/4)(eˣ⁄ᵃ + e⁻ˣ⁄ᵃ)², and dividing by a",
+            "added": true
+          },
+          {
+            "text": "  gives (a/4)(eˣ⁄ᵃ + e⁻ˣ⁄ᵃ)²)",
+            "style": "indent",
+            "added": true
+          },
           "In terms of x this is  (a/4)(eˣ⁄ᵃ + e⁻ˣ⁄ᵃ)²."
         ],
         "recall": {
@@ -189,7 +255,15 @@
           "Writing √(y²/a²) as y²/a² — the root removes the squares, so the factor is y/a; only multiplying by y afterwards gives y²/a.",
           "Giving the subnormal ym here instead of the length of the normal y√(1 + m²)."
         ],
-        "memory_tip": "Length of the normal = y√(1 + m²); the length of the tangent is the same thing divided by m. The normal has no m in the denominator."
+        "memory_tip": "Length of the normal = y√(1 + m²); the length of the tangent is the same thing divided by m. The normal has no m in the denominator.",
+        "lines_compact": [
+          "At a point (x, y) with m = dy/dx:",
+          "length of the normal = |y √(1 + m²)|",
+          "Here √(1 + m²) = √(y²/a²) = y/a,  since y > 0 and a > 0.",
+          "Length of the normal = y · (y/a)",
+          "∴ length of the normal = y²/a",
+          "In terms of x this is  (a/4)(eˣ⁄ᵃ + e⁻ˣ⁄ᵃ)²."
+        ]
       },
       {
         "id": "s4_subnormal",
@@ -200,9 +274,30 @@
         "margin_note": "Fourth mark. The subnormal is the product y·m, and here that product is a difference of squares: (P + Q)(P − Q) with P = eˣ⁄ᵃ and Q = e⁻ˣ⁄ᵃ.",
         "lines": [
           "Length of the subnormal = y · m",
+          {
+            "text": "(put y and m from step 1)",
+            "added": true
+          },
           "= (a/2)(eˣ⁄ᵃ + e⁻ˣ⁄ᵃ) · (1/2)(eˣ⁄ᵃ − e⁻ˣ⁄ᵃ)",
+          {
+            "text": "((a/2)(1/2) = a/4)",
+            "added": true
+          },
           "= (a/4)(eˣ⁄ᵃ + e⁻ˣ⁄ᵃ)(eˣ⁄ᵃ − e⁻ˣ⁄ᵃ)",
+          {
+            "text": "((p + q)(p − q) = p² − q², and (eˣ⁄ᵃ)² = e²ˣ⁄ᵃ)",
+            "added": true
+          },
           "= (a/4)(e²ˣ⁄ᵃ − e⁻²ˣ⁄ᵃ)",
+          {
+            "text": "(this value is negative when x < 0; the length",
+            "added": true
+          },
+          {
+            "text": "  is then its modulus)",
+            "style": "indent",
+            "added": true
+          },
           {
             "text": "∴ Length of the normal = y²/a",
             "style": "boxed"
@@ -241,7 +336,21 @@
           "Expanding the product term by term and keeping the two cross terms that cancel.",
           "Writing the coefficient as a/2 instead of a/4."
         ],
-        "memory_tip": "Subtangent divides, subnormal multiplies: y/m and ym. The word with more letters, subtangent, is the one that DIVIDES."
+        "memory_tip": "Subtangent divides, subnormal multiplies: y/m and ym. The word with more letters, subtangent, is the one that DIVIDES.",
+        "lines_compact": [
+          "Length of the subnormal = y · m",
+          "= (a/2)(eˣ⁄ᵃ + e⁻ˣ⁄ᵃ) · (1/2)(eˣ⁄ᵃ − e⁻ˣ⁄ᵃ)",
+          "= (a/4)(eˣ⁄ᵃ + e⁻ˣ⁄ᵃ)(eˣ⁄ᵃ − e⁻ˣ⁄ᵃ)",
+          "= (a/4)(e²ˣ⁄ᵃ − e⁻²ˣ⁄ᵃ)",
+          {
+            "text": "∴ Length of the normal = y²/a",
+            "style": "boxed"
+          },
+          {
+            "text": "Length of the subnormal = (a/4)(e²ˣ⁄ᵃ − e⁻²ˣ⁄ᵃ)",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

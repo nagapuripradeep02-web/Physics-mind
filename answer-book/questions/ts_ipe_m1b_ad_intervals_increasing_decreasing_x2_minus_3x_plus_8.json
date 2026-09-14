@@ -34,7 +34,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.227, chapter 10 APPLICATIONS OF DERIVATIVES, the MAXIMA AND MINIMA sub-section, Short Answer question 10. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4 Marks over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.227, chapter 10 APPLICATIONS OF DERIVATIVES, the MAXIMA AND MINIMA sub-section, Short Answer question 10. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4 Marks over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say what inequality you solve for increasing and what you solve for decreasing, and say whether a second derivative is needed.",
   "answer": {
@@ -58,6 +58,7 @@
           "f(x) = x² − 3x + 8",
           "f is a polynomial, so it is continuous",
           "and differentiable for every real x.",
+          "(d/dx of x² is 2x, of 3x is 3, and of 8 is 0)",
           "f′(x) = 2x − 3",
           "The sign of f′ decides where f increases",
           "and where it decreases:",
@@ -103,8 +104,21 @@
         "margin_note": "Two marks, one for each inequality. Solve them as inequalities, not by testing a couple of sample numbers — the examiner looks for the two lines of algebra.",
         "lines": [
           "Increasing:  f′(x) > 0",
+          {
+            "text": "(put f′(x) = 2x − 3; add 3 to both sides,",
+            "added": true
+          },
+          {
+            "text": "  then divide by 2)",
+            "style": "indent",
+            "added": true
+          },
           "2x − 3 > 0   ⇒   2x > 3   ⇒   x > 3/2",
           "Decreasing:  f′(x) < 0",
+          {
+            "text": "(the same steps, with < in place of >)",
+            "added": true
+          },
           "2x − 3 < 0   ⇒   2x < 3   ⇒   x < 3/2",
           "At x = 3/2 the derivative is zero,",
           "so f is neither increasing nor decreasing",
@@ -138,7 +152,16 @@
           "Dividing by 2 and writing x > 3 instead of x > 3/2.",
           "Reversing the inequality sign when dividing by the positive number 2."
         ],
-        "memory_tip": "Set the derivative to zero once to find the boundary, then decide which side is positive. A linear derivative changes sign only at that single value."
+        "memory_tip": "Set the derivative to zero once to find the boundary, then decide which side is positive. A linear derivative changes sign only at that single value.",
+        "lines_compact": [
+          "Increasing:  f′(x) > 0",
+          "2x − 3 > 0   ⇒   2x > 3   ⇒   x > 3/2",
+          "Decreasing:  f′(x) < 0",
+          "2x − 3 < 0   ⇒   2x < 3   ⇒   x < 3/2",
+          "At x = 3/2 the derivative is zero,",
+          "so f is neither increasing nor decreasing",
+          "at that single point."
+        ]
       },
       {
         "id": "s3_state_intervals",
@@ -150,6 +173,19 @@
         "lines": [
           "The boundary value 3/2 belongs to neither open interval,",
           "since f′(3/2) = 0.",
+          {
+            "text": "(put 1, 3/2 and 2 in place of x in x² − 3x + 8)",
+            "added": true
+          },
+          {
+            "text": "((3/2)² = 9/4 and 3(3/2) = 9/2 = 18/4;",
+            "added": true
+          },
+          {
+            "text": "  9/4 − 18/4 + 32/4 = 23/4)",
+            "style": "indent",
+            "added": true
+          },
           "Check: f(1) = 1 − 3 + 8 = 6,",
           "f(3/2) = 9/4 − 9/2 + 8 = 23/4 = 5.75,",
           "f(2) = 4 − 6 + 8 = 6.",
@@ -192,7 +228,24 @@
           "Swapping the two labels and calling the left interval increasing.",
           "Applying the second derivative test, which answers a different question."
         ],
-        "memory_tip": "For an upward parabola the graph falls to the vertex and rises after it, so decreasing always comes first and increasing second."
+        "memory_tip": "For an upward parabola the graph falls to the vertex and rises after it, so decreasing always comes first and increasing second.",
+        "lines_compact": [
+          "The boundary value 3/2 belongs to neither open interval,",
+          "since f′(3/2) = 0.",
+          "Check: f(1) = 1 − 3 + 8 = 6,",
+          "f(3/2) = 9/4 − 9/2 + 8 = 23/4 = 5.75,",
+          "f(2) = 4 − 6 + 8 = 6.",
+          "The values fall up to x = 3/2 and rise after it,",
+          "which matches the intervals found.",
+          {
+            "text": "∴ f is decreasing on (−∞, 3/2)",
+            "style": "boxed"
+          },
+          {
+            "text": "and increasing on (3/2, ∞)",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

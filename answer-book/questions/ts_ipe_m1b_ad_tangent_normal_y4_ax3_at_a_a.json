@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.222, chapter 10 APPLICATIONS OF DERIVATIVES, the TANGENTS AND NORMALS sub-section, Short Answer question 11(iii). Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4M over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. One further note on the stem: the printed question does not state a ≠ 0. The working here says so, because at a = 0 the curve is y⁴ = 0 and the point (a, a) is the origin, where the slope 3ax²/(4y³) is not defined. Nothing was changed in the question itself."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.222, chapter 10 APPLICATIONS OF DERIVATIVES, the TANGENTS AND NORMALS sub-section, Short Answer question 11(iii). Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4M over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. One further note on the stem: the printed question does not state a ≠ 0. The working here says so, because at a = 0 the curve is y⁴ = 0 and the point (a, a) is the origin, where the slope 3ax²/(4y³) is not defined. Nothing was changed in the question itself. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say how you differentiate y⁴ = ax³, what the slope works out to at (a, a), and what happens to the letter a in the answer.",
   "answer": {
@@ -60,12 +60,14 @@
             "style": "heading"
           },
           "Given curve:  y⁴ = ax³   (a ≠ 0)",
+          "(put a in place of x and of y)",
           "Check the point: at (a, a),",
           "LHS = a⁴   and   RHS = a(a³) = a⁴,",
           "so (a, a) lies on the curve for every value of a.",
           "y is not given in terms of x,",
           "so differentiate both sides with respect to x.",
           "The chain rule attaches dy/dx to y⁴:",
+          "(d/dx of y⁴ is 4y³ · dy/dx; d/dx of ax³ is 3ax²)",
           "4y³ (dy/dx) = 3ax²"
         ],
         "recall": {
@@ -108,8 +110,16 @@
         "margin_note": "Second mark. Substitute BOTH x = a and y = a. All three a's cancel and m = 3/4 — a plain number, with no a left in it.",
         "lines": [
           "Make dy/dx the subject:",
+          {
+            "text": "(divide both sides by 4y³; y ≠ 0 at (a, a), as a ≠ 0)",
+            "added": true
+          },
           "dy/dx = 3ax²/(4y³)",
           "At the point (a, a), put x = a and y = a:",
+          {
+            "text": "(a · a² = a³, and a³ cancels)",
+            "added": true
+          },
           "m = 3a(a²)/(4a³) = 3a³/(4a³)",
           "∴ m = 3/4"
         ],
@@ -142,7 +152,14 @@
           "Substituting x = a but leaving y in the answer.",
           "Writing m = 4/3, which is the reciprocal and belongs to the normal."
         ],
-        "memory_tip": "Both coordinates of the point are a, so every a in dy/dx becomes the same letter and cancels. A pure number is the expected result."
+        "memory_tip": "Both coordinates of the point are a, so every a in dy/dx becomes the same letter and cancels. A pure number is the expected result.",
+        "lines_compact": [
+          "Make dy/dx the subject:",
+          "dy/dx = 3ax²/(4y³)",
+          "At the point (a, a), put x = a and y = a:",
+          "m = 3a(a²)/(4a³) = 3a³/(4a³)",
+          "∴ m = 3/4"
+        ]
       },
       {
         "id": "s3_tangent",
@@ -154,9 +171,25 @@
         "lines": [
           "Tangent at (x₁, y₁) with slope m:   y − y₁ = m(x − x₁)",
           "Here (x₁, y₁) = (a, a) and m = 3/4:",
+          {
+            "text": "(put x₁ = a, y₁ = a and m = 3/4)",
+            "added": true
+          },
           "y − a = (3/4)(x − a)",
+          {
+            "text": "(multiply both sides by 4)",
+            "added": true
+          },
           "4(y − a) = 3(x − a)",
+          {
+            "text": "(multiply out both sides)",
+            "added": true
+          },
           "4y − 4a = 3x − 3a",
+          {
+            "text": "(move 4y − 4a to the right: 0 = 3x − 4y − 3a + 4a)",
+            "added": true
+          },
           "∴ 3x − 4y + a = 0"
         ],
         "recall": {
@@ -188,7 +221,15 @@
           "Dropping a altogether because it cancelled in the slope.",
           "Multiplying only the left side by 4."
         ],
-        "memory_tip": "a cancelled in the slope but not in the point, so expect exactly one a in the final line."
+        "memory_tip": "a cancelled in the slope but not in the point, so expect exactly one a in the final line.",
+        "lines_compact": [
+          "Tangent at (x₁, y₁) with slope m:   y − y₁ = m(x − x₁)",
+          "Here (x₁, y₁) = (a, a) and m = 3/4:",
+          "y − a = (3/4)(x − a)",
+          "4(y − a) = 3(x − a)",
+          "4y − 4a = 3x − 3a",
+          "∴ 3x − 4y + a = 0"
+        ]
       },
       {
         "id": "s4_normal",
@@ -198,12 +239,32 @@
         "mark_note": "Answer",
         "margin_note": "Fourth mark. The normal's slope is −1/m = −4/3, so the reciprocal AND the sign both change. Check at (a, a): 4a + 3a − 7a = 0.",
         "lines": [
+          {
+            "text": "(−1 ÷ (3/4) = −4/3)",
+            "added": true
+          },
           "The normal is perpendicular to the tangent",
           "at the same point,",
           "so its slope is −1/m = −4/3.",
+          {
+            "text": "(the point-slope form with slope −4/3 at (a, a))",
+            "added": true
+          },
           "y − a = (−4/3)(x − a)",
+          {
+            "text": "(multiply both sides by 3)",
+            "added": true
+          },
           "3(y − a) = −4(x − a)",
+          {
+            "text": "(multiply out both sides)",
+            "added": true
+          },
           "3y − 3a = −4x + 4a",
+          {
+            "text": "(move −4x + 4a to the left: 4x + 3y − 3a − 4a = 0)",
+            "added": true
+          },
           {
             "text": "∴ Tangent: 3x − 4y + a = 0",
             "style": "boxed"
@@ -242,7 +303,23 @@
           "Collecting the a terms to −a instead of −7a.",
           "Using the tangent's slope 3/4 in the normal by copying the previous line."
         ],
-        "memory_tip": "The reciprocal of the tangent slope 3/4 is 4/3, and the sign changes to minus. The two lines then have slopes whose product is −1."
+        "memory_tip": "The reciprocal of the tangent slope 3/4 is 4/3, and the sign changes to minus. The two lines then have slopes whose product is −1.",
+        "lines_compact": [
+          "The normal is perpendicular to the tangent",
+          "at the same point,",
+          "so its slope is −1/m = −4/3.",
+          "y − a = (−4/3)(x − a)",
+          "3(y − a) = −4(x − a)",
+          "3y − 3a = −4x + 4a",
+          {
+            "text": "∴ Tangent: 3x − 4y + a = 0",
+            "style": "boxed"
+          },
+          {
+            "text": "Normal: 4x + 3y − 7a = 0",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

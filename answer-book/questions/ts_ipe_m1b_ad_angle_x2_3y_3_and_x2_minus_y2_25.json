@@ -34,7 +34,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.220, chapter 10 APPLICATIONS OF DERIVATIVES, the TANGENTS AND NORMALS sub-section, Short Answer question 7(iv). Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4M over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question, weighted 2 on the points of intersection because one of the two roots for y has to be rejected in writing. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.220, chapter 10 APPLICATIONS OF DERIVATIVES, the TANGENTS AND NORMALS sub-section, Short Answer question 7(iv). Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4M over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question, weighted 2 on the points of intersection because one of the two roots for y has to be rejected in writing. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say which variable you eliminate, which root of y you reject and why, and what formula gives the angle.",
   "answer": {
@@ -57,14 +57,29 @@
           },
           "Given curves:  x² + 3y = 3   …(i)",
           "and   x² − y² + 25 = 0   …(ii)",
+          "(move 3y to the other side of (i))",
           "From (i):  x² = 3 − 3y",
+          "(write 3 − 3y in place of x² in (ii))",
           "Put this in (ii):  (3 − 3y) − y² + 25 = 0",
+          "(3 + 25 = 28; then multiply every term by −1)",
           "−y² − 3y + 28 = 0   ⇒   y² + 3y − 28 = 0",
+          "(7 × (−4) = −28 and 7 + (−4) = 3)",
           "(y + 7)(y − 4) = 0   ⇒   y = −7 or y = 4",
+          "(put y = 4 in x² = 3 − 3y; a square is never negative)",
           "If y = 4:  x² = 3 − 12 = −9, which is impossible.",
           "Reject y = 4.",
+          "(put y = −7: 3 − 3(−7) = 3 + 21 = 24;",
+          {
+            "text": "  √24 = √(4 × 6) = 2√6)",
+            "style": "indent"
+          },
           "If y = −7:  x² = 3 + 21 = 24  ⇒  x = ±2√6",
           "∴ the curves meet at P(2√6, −7) and at (−2√6, −7).",
+          "(both curves contain x only as x², so the angle",
+          {
+            "text": "  at (−2√6, −7) is the same as at P)",
+            "style": "indent"
+          },
           "Work at P."
         ],
         "recall": {
@@ -107,9 +122,25 @@
         "mark_note": "Method",
         "margin_note": "Third mark. Keep the surd as 2√6 all through this step. Turning it into a decimal here makes the cancelling in the last step impossible to see.",
         "lines": [
+          {
+            "text": "(differentiate (i) with respect to x)",
+            "added": true
+          },
           "From (i):  2x + 3 (dy/dx) = 0  ⇒  dy/dx = −2x/3",
+          {
+            "text": "(put x = 2√6)",
+            "added": true
+          },
           "At P(2√6, −7):  m₁ = −2(2√6)/3 = −4√6/3",
+          {
+            "text": "(differentiate (ii); then divide both sides by 2y)",
+            "added": true
+          },
           "From (ii):  2x − 2y (dy/dx) = 0  ⇒  dy/dx = x/y",
+          {
+            "text": "(put x = 2√6 and y = −7)",
+            "added": true
+          },
           "At P(2√6, −7):  m₂ = 2√6/(−7) = −2√6/7"
         ],
         "recall": {
@@ -141,7 +172,13 @@
           "Replacing 2√6 by 4.9 and then being unable to reach an exact answer.",
           "Differentiating 3y as 3 without the dy/dx factor."
         ],
-        "memory_tip": "For x² − y² = k the slope is x/y, and for x² + y² = k it is −x/y — the sign between x² and y² decides the sign of the slope."
+        "memory_tip": "For x² − y² = k the slope is x/y, and for x² + y² = k it is −x/y — the sign between x² and y² decides the sign of the slope.",
+        "lines_compact": [
+          "From (i):  2x + 3 (dy/dx) = 0  ⇒  dy/dx = −2x/3",
+          "At P(2√6, −7):  m₁ = −2(2√6)/3 = −4√6/3",
+          "From (ii):  2x − 2y (dy/dx) = 0  ⇒  dy/dx = x/y",
+          "At P(2√6, −7):  m₂ = 2√6/(−7) = −2√6/7"
+        ]
       },
       {
         "id": "s3_angle",
@@ -151,15 +188,54 @@
         "mark_note": "Answer",
         "margin_note": "Last mark. Take the numerator over the common denominator 21 and write the denominator over 21 as well; the 21s then cancel and leave 22√6/69.",
         "lines": [
+          {
+            "text": "(the formula for the angle between two lines",
+            "added": true
+          },
+          {
+            "text": "  with slopes m₁ and m₂)",
+            "style": "indent",
+            "added": true
+          },
           "tanθ = |(m₁ − m₂)/(1 + m₁m₂)|",
+          {
+            "text": "(common denominator 21: −4√6/3 = −28√6/21",
+            "added": true
+          },
+          {
+            "text": "  and 2√6/7 = 6√6/21)",
+            "style": "indent",
+            "added": true
+          },
           "m₁ − m₂ = −4√6/3 + 2√6/7 = √6(−28 + 6)/21",
           {
             "text": "  = −22√6/21",
             "style": "indent"
           },
+          {
+            "text": "(√6 × √6 = 6, and 3 × 7 = 21)",
+            "added": true
+          },
           "m₁m₂ = (−4√6/3)(−2√6/7) = 8(6)/21 = 48/21",
+          {
+            "text": "(1 = 21/21, and 21 + 48 = 69)",
+            "added": true
+          },
           "1 + m₁m₂ = 1 + 48/21 = 69/21",
+          {
+            "text": "(the 21s cancel; the modulus removes the minus sign)",
+            "added": true
+          },
           "tanθ = |(−22√6/21)/(69/21)| = 22√6/69",
+          {
+            "text": "(22√6/69 ≈ 22(2.4495)/69 ≈ 0.7810; a calculator",
+            "added": true
+          },
+          {
+            "text": "  gives Tan⁻¹(0.7810) ≈ 37°59′)",
+            "style": "indent",
+            "added": true
+          },
           {
             "text": "∴ θ = Tan⁻¹(22√6/69) ≈ 37°59′",
             "style": "boxed"
@@ -195,7 +271,22 @@
           "Cancelling 22 against 69, which share no factor.",
           "Forgetting the 1 in 1 + m₁m₂ and using only 48/21."
         ],
-        "memory_tip": "Put both the numerator and the denominator over the same number, here 21, and that number cancels itself out."
+        "memory_tip": "Put both the numerator and the denominator over the same number, here 21, and that number cancels itself out.",
+        "lines_compact": [
+          "tanθ = |(m₁ − m₂)/(1 + m₁m₂)|",
+          "m₁ − m₂ = −4√6/3 + 2√6/7 = √6(−28 + 6)/21",
+          {
+            "text": "  = −22√6/21",
+            "style": "indent"
+          },
+          "m₁m₂ = (−4√6/3)(−2√6/7) = 8(6)/21 = 48/21",
+          "1 + m₁m₂ = 1 + 48/21 = 69/21",
+          "tanθ = |(−22√6/21)/(69/21)| = 22√6/69",
+          {
+            "text": "∴ θ = Tan⁻¹(22√6/69) ≈ 37°59′",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

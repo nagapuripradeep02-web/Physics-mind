@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.221, chapter 10 APPLICATIONS OF DERIVATIVES, the TANGENTS AND NORMALS sub-section, Short Answer question 9. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. TYPOGRAPHY, NOT A CHANGE OF MEANING: the exponents are set here in superscript form (a¹⁻ᵏxᵏ), the same expression the book prints with a caret. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4M over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.221, chapter 10 APPLICATIONS OF DERIVATIVES, the TANGENTS AND NORMALS sub-section, Short Answer question 9. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. TYPOGRAPHY, NOT A CHANGE OF MEANING: the exponents are set here in superscript form (a¹⁻ᵏxᵏ), the same expression the book prints with a caret. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4M over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say what the subnormal comes to, and say what condition on the power of x makes it constant.",
   "answer": {
@@ -60,6 +60,7 @@
             "style": "heading"
           },
           "Given curve:  y = a¹⁻ᵏxᵏ,  where a and k are constants.",
+          "(power rule: d/dx of xᵏ is kxᵏ⁻¹)",
           "Here a¹⁻ᵏ is a constant multiplier, so",
           "dy/dx = a¹⁻ᵏ · k xᵏ⁻¹",
           "∴ m = dy/dx = k a¹⁻ᵏxᵏ⁻¹"
@@ -103,9 +104,26 @@
         "mark_note": "Method",
         "margin_note": "Second mark. Subnormal = ym. When two powers of the same letter multiply, their indices add — so collect the powers of a and the powers of x separately.",
         "lines": [
+          {
+            "text": "(the length of the subnormal is y · m)",
+            "added": true
+          },
           "At any point (x, y) on the curve,",
           "Subnormal = y · (dy/dx) = (a¹⁻ᵏxᵏ)(k a¹⁻ᵏxᵏ⁻¹)",
+          {
+            "text": "(put the factors side by side)",
+            "added": true
+          },
           "= k · a¹⁻ᵏ · a¹⁻ᵏ · xᵏ · xᵏ⁻¹",
+          {
+            "text": "(when powers of one base are multiplied,",
+            "added": true
+          },
+          {
+            "text": "  their indices are added)",
+            "style": "indent",
+            "added": true
+          },
           "Adding the indices:  (1 − k) + (1 − k) = 2 − 2k",
           "and  k + (k − 1) = 2k − 1",
           "∴ Subnormal = k a²⁻²ᵏ x²ᵏ⁻¹"
@@ -139,7 +157,15 @@
           "Multiplying the powers of x instead of adding them.",
           "Writing the power of x as 2k rather than 2k − 1."
         ],
-        "memory_tip": "Sub-NORMAL multiplies; sub-TANGENT divides. When two powers of the same letter multiply, their indices add."
+        "memory_tip": "Sub-NORMAL multiplies; sub-TANGENT divides. When two powers of the same letter multiply, their indices add.",
+        "lines_compact": [
+          "At any point (x, y) on the curve,",
+          "Subnormal = y · (dy/dx) = (a¹⁻ᵏxᵏ)(k a¹⁻ᵏxᵏ⁻¹)",
+          "= k · a¹⁻ᵏ · a¹⁻ᵏ · xᵏ · xᵏ⁻¹",
+          "Adding the indices:  (1 − k) + (1 − k) = 2 − 2k",
+          "and  k + (k − 1) = 2k − 1",
+          "∴ Subnormal = k a²⁻²ᵏ x²ᵏ⁻¹"
+        ]
       },
       {
         "id": "s3_power_zero",
@@ -149,12 +175,24 @@
         "mark_note": "Method",
         "margin_note": "Third mark. Constant means the same at every point, so the expression must contain no x. Since k and a are already constants, the only way is for the power of x to be zero.",
         "lines": [
+          {
+            "text": "(from step 2)",
+            "added": true
+          },
           "Subnormal = k a²⁻²ᵏ x²ᵏ⁻¹",
           "The factor k a²⁻²ᵏ is a constant.",
           "The subnormal is constant at every point",
           "only if it does not depend on x.",
+          {
+            "text": "(x⁰ = 1, while xᵖ with p ≠ 0 changes as x changes)",
+            "added": true
+          },
           "So the power of x must be zero:",
           "2k − 1 = 0",
+          {
+            "text": "(add 1 to both sides and divide by 2)",
+            "added": true
+          },
           "∴ k = 1/2"
         ],
         "recall": {
@@ -186,7 +224,16 @@
           "Setting 2k − 1 = 1 and getting k = 1.",
           "Setting the power of a to zero as well, which is not required."
         ],
-        "memory_tip": "Free of x means the power of x is zero, because x⁰ = 1 for every x."
+        "memory_tip": "Free of x means the power of x is zero, because x⁰ = 1 for every x.",
+        "lines_compact": [
+          "Subnormal = k a²⁻²ᵏ x²ᵏ⁻¹",
+          "The factor k a²⁻²ᵏ is a constant.",
+          "The subnormal is constant at every point",
+          "only if it does not depend on x.",
+          "So the power of x must be zero:",
+          "2k − 1 = 0",
+          "∴ k = 1/2"
+        ]
       },
       {
         "id": "s4_check",
@@ -198,8 +245,25 @@
         "lines": [
           "Put k = 1/2 in the subnormal:",
           "2 − 2k = 2 − 1 = 1   and   2k − 1 = 1 − 1 = 0",
+          {
+            "text": "(a¹ = a and x⁰ = 1)",
+            "added": true
+          },
           "Subnormal = (1/2) a¹ x⁰ = (1/2)a = a/2",
           "This has no x in it, so it is the same at every point.",
+          {
+            "text": "(put k = 1/2 in y = a¹⁻ᵏxᵏ: 1 − 1/2 = 1/2;",
+            "added": true
+          },
+          {
+            "text": "  squaring both sides gives y² = ax)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "(for y² = ax: 2y · dy/dx = a, so y · dy/dx = a/2)",
+            "added": true
+          },
           "Check on the curve itself: k = 1/2 gives y = a¹⁄²x¹⁄²,",
           "that is y² = ax,",
           "a parabola, and its subnormal is a/2 at every point.",
@@ -241,7 +305,24 @@
           "Simplifying 2 − 2k with k = 1/2 to 2 instead of 1, so the constant comes out as a²/2.",
           "Writing the curve as y = ax rather than y² = ax."
         ],
-        "memory_tip": "Only the parabola y² = 4ax family has a constant subnormal, so k = 1/2 is the power that turns this curve into a parabola."
+        "memory_tip": "Only the parabola y² = 4ax family has a constant subnormal, so k = 1/2 is the power that turns this curve into a parabola.",
+        "lines_compact": [
+          "Put k = 1/2 in the subnormal:",
+          "2 − 2k = 2 − 1 = 1   and   2k − 1 = 1 − 1 = 0",
+          "Subnormal = (1/2) a¹ x⁰ = (1/2)a = a/2",
+          "This has no x in it, so it is the same at every point.",
+          "Check on the curve itself: k = 1/2 gives y = a¹⁄²x¹⁄²,",
+          "that is y² = ax,",
+          "a parabola, and its subnormal is a/2 at every point.",
+          {
+            "text": "∴ k = 1/2,",
+            "style": "boxed"
+          },
+          {
+            "text": "and the constant length of the subnormal is a/2.",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

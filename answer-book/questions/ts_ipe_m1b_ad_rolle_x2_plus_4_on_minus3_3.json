@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.228, chapter 10 APPLICATIONS OF DERIVATIVES, the ROLLE'S AND LAGRANGE'S THEOREM sub-section, Very Short Answer question 2(i). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question — one mark for the three conditions, one for producing c. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and we ship it as ONE unit, so the sub-section is named above. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.228, chapter 10 APPLICATIONS OF DERIVATIVES, the ROLLE'S AND LAGRANGE'S THEOREM sub-section, Very Short Answer question 2(i). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question — one mark for the three conditions, one for producing c. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and we ship it as ONE unit, so the sub-section is named above. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say what you check first, and how you reach the value of c.",
   "answer": {
@@ -55,6 +55,7 @@
           "f(x) = x² + 4 is a polynomial function, so",
           "(i) f is continuous on the closed interval [−3, 3]",
           "(ii) f is differentiable on the open interval (−3, 3)",
+          "((−3)² = 9 and 3² = 9)",
           "(iii) f(−3) = (−3)² + 4 = 9 + 4 = 13",
           "and  f(3) = 3² + 4 = 9 + 4 = 13",
           "∴ f(−3) = f(3),",
@@ -98,8 +99,16 @@
         "margin_note": "Second mark. The constant 4 differentiates to 0, so only 2x is left. Say in words that c = 0 lies inside the interval.",
         "memory_tip": "The lowest point of x² + 4 is at x = 0, and the tangent at the lowest point of a parabola is horizontal.",
         "lines": [
+          {
+            "text": "(d/dx of x² is 2x, and d/dx of 4 is 0)",
+            "added": true
+          },
           "f′(x) = 2x",
           "By Rolle's theorem there is a c ∈ (−3, 3) with f′(c) = 0",
+          {
+            "text": "(divide 2c = 0 by 2)",
+            "added": true
+          },
           "2c = 0  ⇒  c = 0",
           "−3 < 0 < 3, so c = 0 lies in the open interval (−3, 3)",
           {
@@ -133,6 +142,16 @@
         "common_mistakes": [
           "Differentiating x² + 4 as 2x + 4, by carrying the constant through instead of differentiating it to 0.",
           "Stopping at c = 0 without saying that 0 lies in (−3, 3)."
+        ],
+        "lines_compact": [
+          "f′(x) = 2x",
+          "By Rolle's theorem there is a c ∈ (−3, 3) with f′(c) = 0",
+          "2c = 0  ⇒  c = 0",
+          "−3 < 0 < 3, so c = 0 lies in the open interval (−3, 3)",
+          {
+            "text": "∴ Rolle's theorem is verified, with c = 0 ∈ (−3, 3)",
+            "style": "boxed"
+          }
         ]
       }
     ]

@@ -34,7 +34,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.217, chapter 10 APPLICATIONS OF DERIVATIVES, the TANGENTS AND NORMALS sub-section, Short Answer question 5(ii). Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4M over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question, weighted 2 on the point of intersection because a wrong point makes both later steps worthless. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.217, chapter 10 APPLICATIONS OF DERIVATIVES, the TANGENTS AND NORMALS sub-section, Short Answer question 5(ii). Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4M over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question, weighted 2 on the point of intersection because a wrong point makes both later steps worthless. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say how you find where the curves meet, which root you reject and why, and what formula gives the angle.",
   "answer": {
@@ -57,12 +57,20 @@
           },
           "Given curves:  y² = 8x   …(i)   and   4x² + y² = 32   …(ii)",
           "Put y² = 8x into (ii):",
+          "(divide every term by 4, then move 8 to the left)",
           "4x² + 8x = 32   ⇒   x² + 2x − 8 = 0",
+          "(4 × (−2) = −8 and 4 + (−2) = 2)",
           "(x + 4)(x − 2) = 0   ⇒   x = −4 or x = 2",
           "From (i), y² = 8x ≥ 0, so x cannot be negative.",
           "Reject x = −4.",
+          "(put x = 2 in y² = 8x: y² = 16, so y = 4 or y = −4)",
           "x = 2  ⇒  y² = 16  ⇒  y = ±4",
           "∴ the curves meet at P(2, 4) and at (2, −4).",
+          "(both curves are unchanged when y is replaced by −y,",
+          {
+            "text": "  so the angle at (2, −4) is the same as at P)",
+            "style": "indent"
+          },
           "Work at P(2, 4)."
         ],
         "recall": {
@@ -104,9 +112,25 @@
         "mark_note": "Method",
         "margin_note": "Third mark. Differentiate each curve implicitly, then substitute (2, 4). The 4 in 4x² becomes 8x, which is where the slope −4x/y comes from.",
         "lines": [
+          {
+            "text": "(differentiate (i) with respect to x)",
+            "added": true
+          },
           "From (i):  2y (dy/dx) = 8  ⇒  dy/dx = 4/y",
+          {
+            "text": "(put y = 4)",
+            "added": true
+          },
           "At P(2, 4):  m₁ = 4/4 = 1",
+          {
+            "text": "(differentiate (ii); then divide both sides by 2y)",
+            "added": true
+          },
           "From (ii):  8x + 2y (dy/dx) = 0  ⇒  dy/dx = −4x/y",
+          {
+            "text": "(put x = 2 and y = 4)",
+            "added": true
+          },
           "At P(2, 4):  m₂ = −4(2)/4 = −2"
         ],
         "recall": {
@@ -139,7 +163,13 @@
           "Writing the ellipse slope as −x/y, which is the circle formula, not this one.",
           "Substituting x = 2 and y = 4 into the curve before differentiating."
         ],
-        "memory_tip": "For any curve Ax² + By² = C the slope is −Ax/(By) — the circle case A = B = 1 is just the simplest example."
+        "memory_tip": "For any curve Ax² + By² = C the slope is −Ax/(By) — the circle case A = B = 1 is just the simplest example.",
+        "lines_compact": [
+          "From (i):  2y (dy/dx) = 8  ⇒  dy/dx = 4/y",
+          "At P(2, 4):  m₁ = 4/4 = 1",
+          "From (ii):  8x + 2y (dy/dx) = 0  ⇒  dy/dx = −4x/y",
+          "At P(2, 4):  m₂ = −4(2)/4 = −2"
+        ]
       },
       {
         "id": "s3_angle",
@@ -149,10 +179,45 @@
         "mark_note": "Answer",
         "margin_note": "Last mark. Here 1 + m₁m₂ = −1, so the fraction is negative before the modulus is taken. The modulus is what keeps the acute angle.",
         "lines": [
+          {
+            "text": "(the angle between two curves is the angle between",
+            "added": true
+          },
+          {
+            "text": "  their tangents at the common point)",
+            "style": "indent",
+            "added": true
+          },
           "If θ is the angle between the curves at P, then",
+          {
+            "text": "(the formula for the angle between two lines",
+            "added": true
+          },
+          {
+            "text": "  with slopes m₁ and m₂)",
+            "style": "indent",
+            "added": true
+          },
           "tanθ = |(m₁ − m₂)/(1 + m₁m₂)|",
+          {
+            "text": "(put m₁ = 1 and m₂ = −2)",
+            "added": true
+          },
           "= |(1 − (−2))/(1 + (1)(−2))|",
+          {
+            "text": "(1 + 2 = 3; (1)(−2) = −2, so 1 − 2 = −1)",
+            "added": true
+          },
           "= |3/(−1)| = 3",
+          {
+            "text": "(|3/(−1)| = |−3| = 3; a calculator gives",
+            "added": true
+          },
+          {
+            "text": "  Tan⁻¹ 3 ≈ 71°34′)",
+            "style": "indent",
+            "added": true
+          },
           {
             "text": "∴ θ = Tan⁻¹(3) ≈ 71°34′",
             "style": "boxed"
@@ -188,7 +253,17 @@
           "Writing 1 − m₁m₂ in the denominator instead of 1 + m₁m₂.",
           "Writing the numerator as 1 + (−2) = −1 instead of 1 − (−2) = 3."
         ],
-        "memory_tip": "The difference of the slopes on top, one plus their product underneath, and the modulus of the fraction."
+        "memory_tip": "The difference of the slopes on top, one plus their product underneath, and the modulus of the fraction.",
+        "lines_compact": [
+          "If θ is the angle between the curves at P, then",
+          "tanθ = |(m₁ − m₂)/(1 + m₁m₂)|",
+          "= |(1 − (−2))/(1 + (1)(−2))|",
+          "= |3/(−1)| = 3",
+          {
+            "text": "∴ θ = Tan⁻¹(3) ≈ 71°34′",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

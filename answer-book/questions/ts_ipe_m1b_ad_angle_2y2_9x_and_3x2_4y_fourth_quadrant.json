@@ -34,7 +34,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.219, chapter 10 APPLICATIONS OF DERIVATIVES, the TANGENTS AND NORMALS sub-section, Short Answer question 7(ii). Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4M over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question, weighted 2 on the point of intersection because this stem has TWO common points and only one of them is in the fourth quadrant. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.219, chapter 10 APPLICATIONS OF DERIVATIVES, the TANGENTS AND NORMALS sub-section, Short Answer question 7(ii). Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4M over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question, weighted 2 on the point of intersection because this stem has TWO common points and only one of them is in the fourth quadrant. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say how many points the curves share, which one the question asks for and why, and what formula gives the angle.",
   "answer": {
@@ -57,15 +57,30 @@
           },
           "Given curves:  2y² − 9x = 0   …(i)",
           "and   3x² + 4y = 0   …(ii)",
+          "(move 9x across and divide both sides by 9)",
           "From (i):  x = 2y²/9",
           "Put this in (ii):  3(2y²/9)² + 4y = 0",
+          "((2y²/9)² = 4y⁴/81, and 3 × 4/81 = 12/81 = 4/27)",
           "3(4y⁴/81) + 4y = 0   ⇒   4y⁴/27 + 4y = 0",
+          "((27/4)(4y⁴/27) = y⁴ and (27/4)(4y) = 27y;",
+          {
+            "text": "  then take out the common factor y)",
+            "style": "indent"
+          },
           "Multiply by 27/4:  y⁴ + 27y = 0  ⇒  y(y³ + 27) = 0",
+          "(a product is 0 when one factor is 0;",
+          {
+            "text": "  the only real cube root of −27 is −3)",
+            "style": "indent"
+          },
           "⇒ y = 0  or  y³ = −27, that is y = −3",
+          "(put y = 0 in x = 2y²/9)",
           "y = 0 gives x = 0, the origin, which lies on the axes",
           "and not in any quadrant.",
+          "(put y = −3: y² = 9, so x = 2(9)/9)",
           "y = −3 gives x = 2(9)/9 = 2, so the point is (2, −3),",
           "where x > 0 and y < 0.",
+          "(the fourth quadrant is where x > 0 and y < 0)",
           "∴ the fourth-quadrant point of intersection is P(2, −3)."
         ],
         "recall": {
@@ -108,9 +123,35 @@
         "mark_note": "Method",
         "margin_note": "Third mark. The first slope needs y and the second needs x, so both coordinates of P are used. Substitute only after differentiating.",
         "lines": [
+          {
+            "text": "(differentiate (i) with respect to x: d/dx of y²",
+            "added": true
+          },
+          {
+            "text": "  is 2y · dy/dx, so d/dx of 2y² is 4y · dy/dx)",
+            "style": "indent",
+            "added": true
+          },
           "From (i):  4y (dy/dx) − 9 = 0  ⇒  dy/dx = 9/(4y)",
+          {
+            "text": "(put y = −3: 4(−3) = −12, and 9/(−12) = −3/4)",
+            "added": true
+          },
           "At P(2, −3):  m₁ = 9/(4(−3)) = −3/4",
+          {
+            "text": "(differentiate (ii): d/dx of 3x² is 6x,",
+            "added": true
+          },
+          {
+            "text": "  and d/dx of 4y is 4 · dy/dx)",
+            "style": "indent",
+            "added": true
+          },
           "From (ii):  6x + 4 (dy/dx) = 0  ⇒  dy/dx = −3x/2",
+          {
+            "text": "(put x = 2: −3(2)/2 = −6/2)",
+            "added": true
+          },
           "At P(2, −3):  m₂ = −3(2)/2 = −3"
         ],
         "recall": {
@@ -143,7 +184,13 @@
           "Losing the minus sign when substituting y = −3 into 9/(4y).",
           "Differentiating 3x² as 3x."
         ],
-        "memory_tip": "The curve with y² gives a slope in y; the curve with x² and a plain y gives a slope in x."
+        "memory_tip": "The curve with y² gives a slope in y; the curve with x² and a plain y gives a slope in x.",
+        "lines_compact": [
+          "From (i):  4y (dy/dx) − 9 = 0  ⇒  dy/dx = 9/(4y)",
+          "At P(2, −3):  m₁ = 9/(4(−3)) = −3/4",
+          "From (ii):  6x + 4 (dy/dx) = 0  ⇒  dy/dx = −3x/2",
+          "At P(2, −3):  m₂ = −3(2)/2 = −3"
+        ]
       },
       {
         "id": "s3_angle",
@@ -153,10 +200,50 @@
         "mark_note": "Answer",
         "margin_note": "Last mark. Both slopes are negative, so their product is positive and the denominator 1 + m₁m₂ = 13/4. The 4s cancel and leave 9/13.",
         "lines": [
+          {
+            "text": "(the angle between two curves is the angle between",
+            "added": true
+          },
+          {
+            "text": "  their tangents at the common point)",
+            "style": "indent",
+            "added": true
+          },
           "If θ is the angle between the curves at P, then",
+          {
+            "text": "(the formula for the angle between two lines",
+            "added": true
+          },
+          {
+            "text": "  with slopes m₁ and m₂)",
+            "style": "indent",
+            "added": true
+          },
           "tanθ = |(m₁ − m₂)/(1 + m₁m₂)|",
+          {
+            "text": "(put m₁ = −3/4 and m₂ = −3)",
+            "added": true
+          },
           "= |(−3/4 − (−3))/(1 + (−3/4)(−3))|",
+          {
+            "text": "(−3/4 + 3 = −3/4 + 12/4 = 9/4, and (−3/4)(−3) = 9/4;",
+            "added": true
+          },
+          {
+            "text": "  1 + 9/4 = 4/4 + 9/4 = 13/4)",
+            "style": "indent",
+            "added": true
+          },
           "= |(9/4)/(1 + 9/4)| = |(9/4)/(13/4)| = 9/13",
+          {
+            "text": "((9/4)/(13/4) = 9/13 ≈ 0.6923; a calculator gives",
+            "added": true
+          },
+          {
+            "text": "  Tan⁻¹(0.6923) ≈ 34°42′)",
+            "style": "indent",
+            "added": true
+          },
           {
             "text": "∴ θ = Tan⁻¹(9/13) ≈ 34°42′",
             "style": "boxed"
@@ -191,7 +278,17 @@
           "Taking the product of two negative slopes as negative.",
           "Reporting the answer as Tan⁻¹(13/9) with the fraction inverted."
         ],
-        "memory_tip": "The difference of the slopes on top, one plus their product underneath, and the modulus of the fraction."
+        "memory_tip": "The difference of the slopes on top, one plus their product underneath, and the modulus of the fraction.",
+        "lines_compact": [
+          "If θ is the angle between the curves at P, then",
+          "tanθ = |(m₁ − m₂)/(1 + m₁m₂)|",
+          "= |(−3/4 − (−3))/(1 + (−3/4)(−3))|",
+          "= |(9/4)/(1 + 9/4)| = |(9/4)/(13/4)| = 9/13",
+          {
+            "text": "∴ θ = Tan⁻¹(9/13) ≈ 34°42′",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

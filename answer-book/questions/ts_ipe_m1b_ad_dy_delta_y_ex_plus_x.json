@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.209, chapter 10 APPLICATIONS OF DERIVATIVES, Very Short Answer question 1(iv), in the ERRORS AND APPROXIMATIONS sub-section. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and the book restarts its question numbering in each sub-section, so \"question 1(iv)\" is that sub-section's number and not the chapter's; we ship the five sub-sections as ONE unit, ordered by the syllabus. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks) over this sub-section but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question — one mark for dy and one for Δy, because the question asks for two different numbers. ONE TYPESET LINE: the exact change needs the number e raised to the power 5.02, and a decimal exponent has no honest one-line Unicode form, so that single line carries render \"katex\". Every other line on the card is plain. Both answers are also given in terms of e⁵, since the exponential does not cancel out of either one. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. TYPOGRAPHY: the exact-change line was first set with KaTeX because a decimal exponent has no Unicode superscript form. It is now written e^(5.02) in the caret form this bank already uses for compound exponents (e^(−y), e^(∫P dx), e^(−Eₐ/RT) and 74 others), so the chapter carries no typeset lines at all — every typeset line is a small break in the handwriting look."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.209, chapter 10 APPLICATIONS OF DERIVATIVES, Very Short Answer question 1(iv), in the ERRORS AND APPROXIMATIONS sub-section. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and the book restarts its question numbering in each sub-section, so \"question 1(iv)\" is that sub-section's number and not the chapter's; we ship the five sub-sections as ONE unit, ordered by the syllabus. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks) over this sub-section but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question — one mark for dy and one for Δy, because the question asks for two different numbers. ONE TYPESET LINE: the exact change needs the number e raised to the power 5.02, and a decimal exponent has no honest one-line Unicode form, so that single line carries render \"katex\". Every other line on the card is plain. Both answers are also given in terms of e⁵, since the exponential does not cancel out of either one. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. TYPOGRAPHY: the exact-change line was first set with KaTeX because a decimal exponent has no Unicode superscript form. It is now written e^(5.02) in the caret form this bank already uses for compound exponents (e^(−y), e^(∫P dx), e^(−Eₐ/RT) and 74 others), so the chapter carries no typeset lines at all — every typeset line is a small break in the handwriting look. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say how you get dy, and say what makes Δy a different number.",
   "answer": {
@@ -52,14 +52,20 @@
             "style": "heading"
           },
           "y = eˣ + x,  x = 5,  Δx = 0.02",
+          "(d/dx of eˣ is eˣ, and d/dx of x is 1)",
           "dy/dx = eˣ + 1",
+          "(the differential: dy = (dy/dx) · Δx)",
           "dy = (dy/dx)·Δx = (eˣ + 1)Δx",
+          "(put 5 in place of x and 0.02 for Δx)",
           "= (e⁵ + 1)(0.02) = 0.02e⁵ + 0.02",
+          "(e⁵ ≈ 148.4132, from a calculator or tables)",
           "e⁵ = 148.4132, so dy = 0.02(148.4132) + 0.02",
+          "(0.02 × 148.4132 = 2.968264 ≈ 2.9683)",
           {
             "text": "  = 2.9683 + 0.02",
             "style": "indent"
           },
+          "(2.9683 + 0.02 = 2.9883)",
           "∴ dy = 0.02(e⁵ + 1) ≈ 2.9883"
         ],
         "recall": {
@@ -99,14 +105,34 @@
         "mark_note": "Answer",
         "margin_note": "Second mark. The two x terms give +0.02, so the rest of Δy comes from the exponential part. Here dy and Δy differ by about 0.03 — much more than in the polynomial examples, because the slope of eˣ changes quickly near x = 5.",
         "lines": [
+          {
+            "text": "(Δy is the actual change in y)",
+            "added": true
+          },
           "Δy = f(x + Δx) − f(x) = f(5.02) − f(5)",
+          {
+            "text": "(put 5.02 and 5 in place of x in y = eˣ + x)",
+            "added": true
+          },
           {
             "text": "Δy = (e^{5.02} + 5.02) - (e^{5} + 5) = e^{5.02} - e^{5} + 0.02",
             "render": "katex",
             "style": "normal"
           },
+          {
+            "text": "(a calculator gives e to the power 5.02 ≈ 151.4113)",
+            "added": true
+          },
           "= 151.4113 − 148.4132 + 0.02",
+          {
+            "text": "(151.4113 − 148.4132 = 2.9981)",
+            "added": true
+          },
           "= 2.9981 + 0.02",
+          {
+            "text": "(2.9981 + 0.02 = 3.0181)",
+            "added": true
+          },
           {
             "text": "∴ dy = 0.02(e⁵ + 1) ≈ 2.9883  and  Δy ≈ 3.0181",
             "style": "boxed"
@@ -139,7 +165,21 @@
           "Writing e raised to 5.02 as e⁵ plus e raised to 0.02 — those two powers multiply, they do not add.",
           "Stopping at dy when the question asks for both numbers."
         ],
-        "memory_tip": "Δy is the after value minus the before value, in that order — a negative Δy is allowed and simply means y went down."
+        "memory_tip": "Δy is the after value minus the before value, in that order — a negative Δy is allowed and simply means y went down.",
+        "lines_compact": [
+          "Δy = f(x + Δx) − f(x) = f(5.02) − f(5)",
+          {
+            "text": "Δy = (e^{5.02} + 5.02) - (e^{5} + 5) = e^{5.02} - e^{5} + 0.02",
+            "render": "katex",
+            "style": "normal"
+          },
+          "= 151.4113 − 148.4132 + 0.02",
+          "= 2.9981 + 0.02",
+          {
+            "text": "∴ dy = 0.02(e⁵ + 1) ≈ 2.9883  and  Δy ≈ 3.0181",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

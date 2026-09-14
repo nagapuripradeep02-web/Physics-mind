@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.222, chapter 10 APPLICATIONS OF DERIVATIVES, the TANGENTS AND NORMALS sub-section, Short Answer question 12. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4M over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.222, chapter 10 APPLICATIONS OF DERIVATIVES, the TANGENTS AND NORMALS sub-section, Short Answer question 12. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4M over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would show this — say how you get dy/dx for a curve given through θ, what that slope simplifies to, and which identity you use at the end.",
   "answer": {
@@ -61,7 +61,9 @@
           },
           "Given:   x = c sec θ,   y = c tan θ",
           "Differentiate each with respect to θ:",
+          "(d/dθ of sec θ is sec θ tan θ)",
           "dx/dθ = c sec θ tan θ",
+          "(d/dθ of tan θ is sec²θ)",
           "dy/dθ = c sec²θ"
         ],
         "recall": {
@@ -105,8 +107,20 @@
         "lines": [
           "For a curve given through θ:   dy/dx = (dy/dθ) / (dx/dθ)",
           "dy/dx = c sec²θ / (c sec θ tan θ)",
+          {
+            "text": "(c cancels, and one sec θ cancels)",
+            "added": true
+          },
           "= sec θ / tan θ",
+          {
+            "text": "(sec θ = 1/cos θ and 1/tan θ = cos θ/sin θ)",
+            "added": true
+          },
           "= (1/cos θ) · (cos θ / sin θ)",
+          {
+            "text": "(cos θ cancels; 1/sin θ = cosec θ)",
+            "added": true
+          },
           "∴ dy/dx = 1/sin θ = cosec θ"
         ],
         "recall": {
@@ -138,7 +152,14 @@
           "Simplifying sec θ/tan θ to cos θ instead of cosec θ.",
           "Leaving c in the slope after it has cancelled."
         ],
-        "memory_tip": "Divide the y-derivative by the x-derivative — the letter on top matches the letter on top of dy/dx."
+        "memory_tip": "Divide the y-derivative by the x-derivative — the letter on top matches the letter on top of dy/dx.",
+        "lines_compact": [
+          "For a curve given through θ:   dy/dx = (dy/dθ) / (dx/dθ)",
+          "dy/dx = c sec²θ / (c sec θ tan θ)",
+          "= sec θ / tan θ",
+          "= (1/cos θ) · (cos θ / sin θ)",
+          "∴ dy/dx = 1/sin θ = cosec θ"
+        ]
       },
       {
         "id": "s3_write_tangent",
@@ -150,8 +171,16 @@
         "lines": [
           "The point on the curve at parameter θ is  (c sec θ, c tan θ).",
           "Tangent at (x₁, y₁) with slope m:   y − y₁ = m(x − x₁)",
+          {
+            "text": "(put x₁ = c sec θ, y₁ = c tan θ and m = 1/sin θ)",
+            "added": true
+          },
           "y − c tan θ = (1/sin θ)(x − c sec θ)",
           "Multiply both sides by sin θ:",
+          {
+            "text": "(sin θ × (1/sin θ) = 1)",
+            "added": true
+          },
           "y sin θ − c tan θ sin θ = x − c sec θ"
         ],
         "recall": {
@@ -183,7 +212,14 @@
           "Multiplying only the left side by sin θ.",
           "Expanding (1/sin θ)(x − c sec θ) term by term and losing the c sec θ."
         ],
-        "memory_tip": "Look at the printed answer first. It has y sin θ on the left, so multiply by sin θ as soon as the line is written."
+        "memory_tip": "Look at the printed answer first. It has y sin θ on the left, so multiply by sin θ as soon as the line is written.",
+        "lines_compact": [
+          "The point on the curve at parameter θ is  (c sec θ, c tan θ).",
+          "Tangent at (x₁, y₁) with slope m:   y − y₁ = m(x − x₁)",
+          "y − c tan θ = (1/sin θ)(x − c sec θ)",
+          "Multiply both sides by sin θ:",
+          "y sin θ − c tan θ sin θ = x − c sec θ"
+        ]
       },
       {
         "id": "s4_simplify",
@@ -193,8 +229,30 @@
         "mark_note": "Answer",
         "margin_note": "Fourth mark. This is where sec²θ − tan²θ = 1 is used. Take c cos θ out of the two constant terms and the bracket that is left equals 1.",
         "lines": [
+          {
+            "text": "(move c tan θ sin θ to the right side)",
+            "added": true
+          },
           "y sin θ = x − c sec θ + c tan θ sin θ",
+          {
+            "text": "(take out −1 from the last two terms)",
+            "added": true
+          },
           "= x − (c sec θ − c tan θ sin θ)",
+          {
+            "text": "(sec θ = 1/cos θ = (1/cos²θ) · cos θ, and",
+            "added": true
+          },
+          {
+            "text": "  tan θ sin θ = (sin²θ/cos²θ) · cos θ;",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  so c cos θ is a common factor of both terms)",
+            "style": "indent",
+            "added": true
+          },
           "Now  sec θ = sec²θ · cos θ",
           "and  tan θ sin θ = tan²θ · cos θ,  so",
           "c sec θ − c tan θ sin θ = c cos θ (sec²θ − tan²θ)",
@@ -233,7 +291,19 @@
           "Losing the minus sign when moving −c tan θ sin θ across the equals sign.",
           "Stopping at x − c(1 − sin²θ)/cos θ without reducing it to c cos θ."
         ],
-        "memory_tip": "sec²θ − tan²θ = 1 comes straight from 1 + tan²θ = sec²θ. Whenever sec and tan appear squared together, that identity is the one to use."
+        "memory_tip": "sec²θ − tan²θ = 1 comes straight from 1 + tan²θ = sec²θ. Whenever sec and tan appear squared together, that identity is the one to use.",
+        "lines_compact": [
+          "y sin θ = x − c sec θ + c tan θ sin θ",
+          "= x − (c sec θ − c tan θ sin θ)",
+          "Now  sec θ = sec²θ · cos θ",
+          "and  tan θ sin θ = tan²θ · cos θ,  so",
+          "c sec θ − c tan θ sin θ = c cos θ (sec²θ − tan²θ)",
+          "Since sec²θ − tan²θ = 1, this equals c cos θ.",
+          {
+            "text": "∴ y sin θ = x − c cos θ",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.230, chapter 10 APPLICATIONS OF DERIVATIVES, the ROLLE'S AND LAGRANGE'S THEOREM sub-section, Very Short Answer question 9. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. PRINTED STEM, RECORDED NOT SILENTLY CORRECTED: the book prints the function as \"log_e^x\", which is its typesetting of logₑ x, the natural logarithm — the e is the base, not an exponent, and the x is the argument. We authored the stem as logₑ x. Read as written, \"log e to the power x\" would be log(eˣ) = x, whose derivative is the constant 1 and whose mean value point would be every point of the interval, so the question would have no single answer; the natural-logarithm reading is the only one that makes it a question. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box; we ship the chapter as ONE unit, so the sub-section is named above instead of a sub-chapter number. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.230, chapter 10 APPLICATIONS OF DERIVATIVES, the ROLLE'S AND LAGRANGE'S THEOREM sub-section, Very Short Answer question 9. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. PRINTED STEM, RECORDED NOT SILENTLY CORRECTED: the book prints the function as \"log_e^x\", which is its typesetting of logₑ x, the natural logarithm — the e is the base, not an exponent, and the x is the argument. We authored the stem as logₑ x. Read as written, \"log e to the power x\" would be log(eˣ) = x, whose derivative is the constant 1 and whose mean value point would be every point of the interval, so the question would have no single answer; the natural-logarithm reading is the only one that makes it a question. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box; we ship the chapter as ONE unit, so the sub-section is named above instead of a sub-chapter number. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say why the conditions hold on this interval, and what equation gives c.",
   "answer": {
@@ -57,12 +57,15 @@
           "then there is at least one c in (a, b) with",
           "f′(c) = (f(b) − f(a))/(b − a)",
           "Here f(x) = logₑ x, a = 1, b = 2",
+          "(the derivative of logₑ x is 1/x, for every x > 0)",
           "logₑ x is defined, continuous",
           "and differentiable for every x > 0,",
           "and [1, 2] lies inside x > 0.",
           "So f is continuous on [1, 2] and differentiable on (1, 2).",
           "Both conditions hold.",
+          "(logₑ 1 = 0, because e⁰ = 1)",
           "f(1) = logₑ 1 = 0,   f(2) = logₑ 2",
+          "(the slope of the chord joining (1, 0) and (2, logₑ 2))",
           "(f(2) − f(1))/(2 − 1) = (logₑ 2 − 0)/1 = logₑ 2"
         ],
         "recall": {
@@ -104,9 +107,21 @@
         "margin_note": "Second mark. c = 1/logₑ 2 is the exact answer; the decimal 1.443 is only there to show it lies between 1 and 2. Keep the exact form in the box.",
         "memory_tip": "logₑ 2 is a little under 0.7, so its reciprocal is a little over 1.4 — comfortably inside 1 to 2.",
         "lines": [
+          {
+            "text": "(d/dx of logₑ x is 1/x)",
+            "added": true
+          },
           "f′(x) = 1/x,   so f′(c) = 1/c",
           "By the theorem there is c in (1, 2) with f′(c) = logₑ 2",
+          {
+            "text": "(logₑ 2 ≠ 0, so take the reciprocal of both sides)",
+            "added": true
+          },
           "1/c = logₑ 2 ⇒ c = 1/logₑ 2",
+          {
+            "text": "(logₑ 2 ≈ 0.6931, and 1/0.6931 ≈ 1.443)",
+            "added": true
+          },
           "logₑ 2 ≈ 0.693, so c ≈ 1.443, and 1 < 1.443 < 2",
           {
             "text": "∴ c = 1/logₑ 2 ≈ 1.443 ∈ (1, 2)",
@@ -141,6 +156,16 @@
           "Giving c = logₑ 2 rather than 1/logₑ 2.",
           "Writing 1/logₑ 2 as logₑ(1/2), which is negative.",
           "Rounding to 1.4 and losing the exact value in the final line."
+        ],
+        "lines_compact": [
+          "f′(x) = 1/x,   so f′(c) = 1/c",
+          "By the theorem there is c in (1, 2) with f′(c) = logₑ 2",
+          "1/c = logₑ 2 ⇒ c = 1/logₑ 2",
+          "logₑ 2 ≈ 0.693, so c ≈ 1.443, and 1 < 1.443 < 2",
+          {
+            "text": "∴ c = 1/logₑ 2 ≈ 1.443 ∈ (1, 2)",
+            "style": "boxed"
+          }
         ]
       }
     ]

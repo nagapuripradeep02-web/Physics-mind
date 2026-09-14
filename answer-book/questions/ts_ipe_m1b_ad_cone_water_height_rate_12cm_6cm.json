@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.212, chapter 10 APPLICATIONS OF DERIVATIVES, the RATE MEASURE sub-section, Very Short Answer question 2. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.212, chapter 10 APPLICATIONS OF DERIVATIVES, the RATE MEASURE sub-section, Very Short Answer question 2. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — name the formula you would write first, say what you do about the radius, and say what you differentiate with respect to.",
   "answer": {
@@ -54,9 +54,20 @@
           "Given: dV/dt = 12 cm³/sec.  Asked: dh/dt when h = 8 cm.",
           "Let r be the radius and h the height",
           "of the water cone at time t.",
+          "(the formula for the volume of a cone)",
           "Volume of a cone:  V = (1/3)πr²h",
+          "(radius : height is the same for both cones,",
+          {
+            "text": "  and for the full cone it is 6 : 12)",
+            "style": "indent"
+          },
           "The water cone and the full cone are similar, so",
           "r/h = 6/12 = 1/2   ⇒   r = h/2",
+          "(write h/2 in place of r; (h/2)² = h²/4;",
+          {
+            "text": "  (1/3)(1/4) = 1/12)",
+            "style": "indent"
+          },
           "∴ V = (1/3)π(h/2)²h = (1/3)π(h²/4)h = πh³/12"
         ],
         "recall": {
@@ -100,10 +111,31 @@
         "margin_note": "Second mark. Differentiate with respect to TIME, then substitute h = 8. The unit cm/sec belongs inside the box — a rate written without its unit is not a complete answer.",
         "lines": [
           "Differentiate both sides with respect to time t:",
+          {
+            "text": "(chain rule: d/dt of h³ is 3h² · (dh/dt);",
+            "added": true
+          },
+          {
+            "text": "  then 3/12 = 1/4)",
+            "style": "indent",
+            "added": true
+          },
           "dV/dt = (π/12)·3h²·(dh/dt) = (πh²/4)(dh/dt)",
           "Put h = 8 and dV/dt = 12:",
+          {
+            "text": "(8² = 64 and 64/4 = 16)",
+            "added": true
+          },
           "12 = (π(8²)/4)(dh/dt) = (64π/4)(dh/dt) = 16π(dh/dt)",
+          {
+            "text": "(divide both sides by 16π; 12/16 = 3/4)",
+            "added": true
+          },
           "dh/dt = 12/(16π) = 3/(4π)",
+          {
+            "text": "(4π ≈ 12.566 and 3/12.566 ≈ 0.24)",
+            "added": true
+          },
           {
             "text": "∴ dh/dt = 3/(4π) cm/sec ≈ 0.24 cm/sec",
             "style": "boxed"
@@ -139,7 +171,18 @@
           "Dropping the dh/dt factor that the chain rule produces.",
           "Leaving 12/(16π) unreduced, or writing the answer with no unit."
         ],
-        "memory_tip": "Differentiate first, substitute second — a number put in early has no derivative left to give."
+        "memory_tip": "Differentiate first, substitute second — a number put in early has no derivative left to give.",
+        "lines_compact": [
+          "Differentiate both sides with respect to time t:",
+          "dV/dt = (π/12)·3h²·(dh/dt) = (πh²/4)(dh/dt)",
+          "Put h = 8 and dV/dt = 12:",
+          "12 = (π(8²)/4)(dh/dt) = (64π/4)(dh/dt) = 16π(dh/dt)",
+          "dh/dt = 12/(16π) = 3/(4π)",
+          {
+            "text": "∴ dh/dt = 3/(4π) cm/sec ≈ 0.24 cm/sec",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

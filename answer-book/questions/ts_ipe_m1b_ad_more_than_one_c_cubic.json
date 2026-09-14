@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.229, chapter 10 APPLICATIONS OF DERIVATIVES, the ROLLE'S AND LAGRANGE'S THEOREM sub-section, Very Short Answer question 4. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question — one mark for setting up the two subintervals, one for the two applications and the conclusion. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and we ship it as ONE unit, so the sub-section is named above. This is the one question in the slice that is a PROOF rather than a verification, so the answer argues from Rolle's theorem applied twice rather than solving f′(x) = 0; the roots of f′ are quoted only as a numerical check (verified: 2 ∓ 1/√3 ≈ 1.423 and 2.577, one in each subinterval). This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.229, chapter 10 APPLICATIONS OF DERIVATIVES, the ROLLE'S AND LAGRANGE'S THEOREM sub-section, Very Short Answer question 4. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question — one mark for setting up the two subintervals, one for the two applications and the conclusion. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and we ship it as ONE unit, so the sub-section is named above. This is the one question in the slice that is a PROOF rather than a verification, so the answer argues from Rolle's theorem applied twice rather than solving f′(x) = 0; the roots of f′ are quoted only as a numerical check (verified: 2 ∓ 1/√3 ≈ 1.423 and 2.577, one in each subinterval). This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — say how many times you use Rolle's theorem, and on which intervals.",
   "answer": {
@@ -56,6 +56,11 @@
           "so f is continuous and differentiable for every real x.",
           "In particular f is continuous on [1, 2] and on [2, 3],",
           "and differentiable on (1, 2) and on (2, 3).",
+          "(each of 1, 2 and 3 makes one bracket zero,",
+          {
+            "text": "  so the product is zero)",
+            "style": "indent"
+          },
           "f(1) = 0,  f(2) = 0,  f(3) = 0",
           "∴ f(1) = f(2) and f(2) = f(3),",
           "so Rolle's theorem applies on [1, 2] and again on [2, 3]."
@@ -98,6 +103,20 @@
         "margin_note": "Second mark. As a numerical check, f(x) = x³ − 6x² + 11x − 6 gives f′(x) = 3x² − 12x + 11, whose roots 2 − 1/√3 ≈ 1.423 and 2 + 1/√3 ≈ 2.577 sit exactly one in each subinterval.",
         "memory_tip": "Rolle's theorem applied between each neighbouring pair of roots gives one point per gap.",
         "lines": [
+          {
+            "text": "(Rolle's theorem: if f is continuous on [a, b],",
+            "added": true
+          },
+          {
+            "text": "  differentiable on (a, b) and f(a) = f(b), then",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  f′(c) = 0 for some c in (a, b))",
+            "style": "indent",
+            "added": true
+          },
           "On [1, 2]: f is continuous on [1, 2], differentiable on (1, 2)",
           "and f(1) = f(2) = 0,",
           "so by Rolle's theorem there exists c₁ ∈ (1, 2) with f′(c₁) = 0.",
@@ -106,6 +125,20 @@
           "so by Rolle's theorem there exists c₂ ∈ (2, 3) with f′(c₂) = 0.",
           "The intervals (1, 2) and (2, 3) have no point in common,",
           "so c₁ ≠ c₂, and both lie in (1, 3).",
+          {
+            "text": "(check: f(x) = x³ − 6x² + 11x − 6, so",
+            "added": true
+          },
+          {
+            "text": "  f′(x) = 3x² − 12x + 11 = 0 at x = 2 ± 1/√3,",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  that is x ≈ 1.42 and x ≈ 2.58)",
+            "style": "indent",
+            "added": true
+          },
           {
             "text": "∴ there are at least two points c ∈ (1, 3)",
             "style": "boxed"
@@ -142,6 +175,24 @@
         "common_mistakes": [
           "Stopping at 'there is a c in each interval' without saying the two values are different.",
           "Finding one c and stopping, when the question asks for more than one."
+        ],
+        "lines_compact": [
+          "On [1, 2]: f is continuous on [1, 2], differentiable on (1, 2)",
+          "and f(1) = f(2) = 0,",
+          "so by Rolle's theorem there exists c₁ ∈ (1, 2) with f′(c₁) = 0.",
+          "On [2, 3]: f is continuous on [2, 3], differentiable on (2, 3)",
+          "and f(2) = f(3) = 0,",
+          "so by Rolle's theorem there exists c₂ ∈ (2, 3) with f′(c₂) = 0.",
+          "The intervals (1, 2) and (2, 3) have no point in common,",
+          "so c₁ ≠ c₂, and both lie in (1, 3).",
+          {
+            "text": "∴ there are at least two points c ∈ (1, 3)",
+            "style": "boxed"
+          },
+          {
+            "text": "with f′(c) = 0",
+            "style": "boxed"
+          }
         ]
       }
     ]

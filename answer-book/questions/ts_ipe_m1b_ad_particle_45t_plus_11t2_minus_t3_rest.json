@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.214, chapter 10 APPLICATIONS OF DERIVATIVES, the RATE MEASURE sub-section, Very Short Answer question 14. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; this bank ships the whole chapter as ONE unit. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks) over this sub-section but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.214, chapter 10 APPLICATIONS OF DERIVATIVES, the RATE MEASURE sub-section, Very Short Answer question 14. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; this bank ships the whole chapter as ONE unit. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks) over this sub-section but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say what comes to rest means in symbols, and what you do with the two roots.",
   "answer": {
@@ -56,6 +56,7 @@
           "The particle comes to rest when its velocity is zero,",
           "so first find v = dS/dt.",
           "S = 45t + 11t² − t³",
+          "(d/dt of 45t is 45, of 11t² is 22t, of t³ is 3t²)",
           "v = dS/dt = 45 + 22t − 3t²",
           "At rest, v = 0  ⇒  45 + 22t − 3t² = 0"
         ],
@@ -97,9 +98,30 @@
         "margin_note": "Second mark. Multiply through by −1 first so the t² term is positive, then split −22t as −27t + 5t. State in words why −5/3 is rejected.",
         "memory_tip": "A quadratic gives two times; the clock starts at zero, so a negative root is not a time.",
         "lines": [
+          {
+            "text": "(multiply 45 + 22t − 3t² = 0 by −1 and reorder)",
+            "added": true
+          },
           "3t² − 22t − 45 = 0",
+          {
+            "text": "(split −22t into −27t + 5t, because",
+            "added": true
+          },
+          {
+            "text": "  (−27)(5) = −135 = 3 × (−45) and −27 + 5 = −22)",
+            "style": "indent",
+            "added": true
+          },
           "3t² − 27t + 5t − 45 = 0",
+          {
+            "text": "(take out 3t from the first pair and 5 from the second)",
+            "added": true
+          },
           "3t(t − 9) + 5(t − 9) = 0",
+          {
+            "text": "(take out the common factor (t − 9))",
+            "added": true
+          },
           "(t − 9)(3t + 5) = 0  ⇒  t = 9 or t = −5/3",
           "Time cannot be negative, so t = −5/3 is rejected.",
           {
@@ -134,6 +156,17 @@
           "Keeping t = −5/3 as a second answer.",
           "Splitting the middle term wrongly, so the factors do not multiply back to 3t² − 22t − 45.",
           "Writing 9 with no unit."
+        ],
+        "lines_compact": [
+          "3t² − 22t − 45 = 0",
+          "3t² − 27t + 5t − 45 = 0",
+          "3t(t − 9) + 5(t − 9) = 0",
+          "(t − 9)(3t + 5) = 0  ⇒  t = 9 or t = −5/3",
+          "Time cannot be negative, so t = −5/3 is rejected.",
+          {
+            "text": "∴ the particle comes to rest at t = 9 sec",
+            "style": "boxed"
+          }
         ]
       }
     ]

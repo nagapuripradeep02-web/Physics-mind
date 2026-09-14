@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.216, chapter 10 APPLICATIONS OF DERIVATIVES, the TANGENTS AND NORMALS sub-section, Short Answer question 3. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4M over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question — one mark for each of the four quantities asked for, which is also how the question is worded. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.216, chapter 10 APPLICATIONS OF DERIVATIVES, the TANGENTS AND NORMALS sub-section, Short Answer question 3. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4M over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question — one mark for each of the four quantities asked for, which is also how the question is worded. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say what the slope comes to, name the four formulas you use, and say which half-angle identities you need.",
   "answer": {
@@ -59,14 +59,31 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "(d/dt of t is 1 and d/dt of sin t is cos t;",
+          {
+            "text": "  1 + cos t = 2cos²(t/2))",
+            "style": "indent"
+          },
           "x = a(t + sin t)  ⇒  dx/dt = a(1 + cos t) = 2a cos²(t/2)",
+          "(d/dt of −cos t is sin t;",
+          {
+            "text": "  sin t = 2 sin(t/2)cos(t/2))",
+            "style": "indent"
+          },
           "y = a(1 − cos t)  ⇒  dy/dt = a sin t = 2a sin(t/2)cos(t/2)",
+          "(for x and y given in terms of t,",
+          {
+            "text": "  dy/dx = (dy/dt)/(dx/dt))",
+            "style": "indent"
+          },
           "m = dy/dx = (dy/dt)/(dx/dt)",
           {
             "text": "  = [2a sin(t/2)cos(t/2)]/[2a cos²(t/2)]",
             "style": "indent"
           },
+          "(cancel 2a and one cos(t/2); sin/cos = tan)",
           "∴ m = tan(t/2)",
+          "(1 − cos t = 2sin²(t/2))",
           "Also  y = a(1 − cos t) = 2a sin²(t/2)",
           "Take 0 < t < π, so sin(t/2) > 0 and cos(t/2) > 0",
           "and every length below is positive."
@@ -111,12 +128,34 @@
         "mark_note": "Method",
         "margin_note": "Second mark. The four definitions are worth a mark on their own. 1 + tan²(t/2) = sec²(t/2) is the identity that makes the two lengths simplify.",
         "lines": [
+          {
+            "text": "(the four standard lengths at a point (x, y)",
+            "added": true
+          },
+          {
+            "text": "  of a curve where the slope is m)",
+            "style": "indent",
+            "added": true
+          },
           "At a point where the slope is m,",
           "subtangent = y/m,   subnormal = ym,",
           "length of tangent = |y√(1 + m²)/m|,",
           "length of normal = |y√(1 + m²)|",
+          {
+            "text": "(1 + tan²θ = sec²θ, used with θ = t/2)",
+            "added": true
+          },
           "Here m = tan(t/2), so",
           "1 + m² = 1 + tan²(t/2) = sec²(t/2)",
+          {
+            "text": "(sec(t/2) > 0 because cos(t/2) > 0,",
+            "added": true
+          },
+          {
+            "text": "  so the square root is sec(t/2) itself)",
+            "style": "indent",
+            "added": true
+          },
           "∴ √(1 + m²) = sec(t/2)"
         ],
         "recall": {
@@ -149,7 +188,16 @@
           "Writing √(1 + m²) as 1 + m.",
           "Answering only two of the four quantities the question asks for."
         ],
-        "memory_tip": "Sub-TANGENT goes with the tangent, so m goes underneath as it does in the tangent line; sub-NORMAL goes with the normal, so m multiplies."
+        "memory_tip": "Sub-TANGENT goes with the tangent, so m goes underneath as it does in the tangent line; sub-NORMAL goes with the normal, so m multiplies.",
+        "lines_compact": [
+          "At a point where the slope is m,",
+          "subtangent = y/m,   subnormal = ym,",
+          "length of tangent = |y√(1 + m²)/m|,",
+          "length of normal = |y√(1 + m²)|",
+          "Here m = tan(t/2), so",
+          "1 + m² = 1 + tan²(t/2) = sec²(t/2)",
+          "∴ √(1 + m²) = sec(t/2)"
+        ]
       },
       {
         "id": "s3_subtangent_subnormal",
@@ -159,11 +207,40 @@
         "mark_note": "Solution",
         "margin_note": "Third mark. The subtangent simplifies all the way back to a sin t, which is a useful check: it is exactly dy/dt.",
         "lines": [
+          {
+            "text": "(put y = 2a sin²(t/2) and m = tan(t/2) from step 1)",
+            "added": true
+          },
           "Subtangent = y/m = 2a sin²(t/2)/tan(t/2)",
+          {
+            "text": "(dividing by tan(t/2) is multiplying",
+            "added": true
+          },
+          {
+            "text": "  by cos(t/2)/sin(t/2))",
+            "style": "indent",
+            "added": true
+          },
           "= 2a sin²(t/2) · cos(t/2)/sin(t/2)",
+          {
+            "text": "(one sin(t/2) cancels; 2 sin(t/2)cos(t/2) = sin t)",
+            "added": true
+          },
           "= 2a sin(t/2)cos(t/2) = a sin t",
+          {
+            "text": "(multiply y = 2a sin²(t/2) by m = tan(t/2))",
+            "added": true
+          },
           "Subnormal = ym = 2a sin²(t/2) · tan(t/2)",
+          {
+            "text": "(tan(t/2) = sin(t/2)/cos(t/2))",
+            "added": true
+          },
           "= 2a sin³(t/2)/cos(t/2)",
+          {
+            "text": "(2a sin²(t/2) = a(1 − cos t), from step 1)",
+            "added": true
+          },
           "which may also be written as a(1 − cos t)tan(t/2)."
         ],
         "recall": {
@@ -196,7 +273,15 @@
           "Leaving the subtangent as 2a sin²(t/2)/tan(t/2) without simplifying to a sin t.",
           "Writing 2 sin(t/2)cos(t/2) as sin(t/2) rather than sin t."
         ],
-        "memory_tip": "Dividing by tan(t/2) is multiplying by cos(t/2)/sin(t/2), and one sin(t/2) cancels."
+        "memory_tip": "Dividing by tan(t/2) is multiplying by cos(t/2)/sin(t/2), and one sin(t/2) cancels.",
+        "lines_compact": [
+          "Subtangent = y/m = 2a sin²(t/2)/tan(t/2)",
+          "= 2a sin²(t/2) · cos(t/2)/sin(t/2)",
+          "= 2a sin(t/2)cos(t/2) = a sin t",
+          "Subnormal = ym = 2a sin²(t/2) · tan(t/2)",
+          "= 2a sin³(t/2)/cos(t/2)",
+          "which may also be written as a(1 − cos t)tan(t/2)."
+        ]
       },
       {
         "id": "s4_lengths",
@@ -206,17 +291,47 @@
         "mark_note": "Answer",
         "margin_note": "Last mark. The length of the tangent comes to 2a sin(t/2), which equals √(2ay) — a quick check, since y = 2a sin²(t/2). Present all four answers together in the box.",
         "lines": [
+          {
+            "text": "(put y = 2a sin²(t/2), √(1 + m²) = sec(t/2)",
+            "added": true
+          },
+          {
+            "text": "  and m = tan(t/2); all three are positive)",
+            "style": "indent",
+            "added": true
+          },
           "Length of tangent = |y√(1 + m²)/m|",
           {
             "text": "  = 2a sin²(t/2)·sec(t/2)/tan(t/2)",
             "style": "indent"
           },
+          {
+            "text": "(sec(t/2) = 1/cos(t/2), and dividing by tan(t/2)",
+            "added": true
+          },
+          {
+            "text": "  is multiplying by cos(t/2)/sin(t/2))",
+            "style": "indent",
+            "added": true
+          },
           "= 2a sin²(t/2) · (1/cos(t/2)) · (cos(t/2)/sin(t/2))",
+          {
+            "text": "(cos(t/2) cancels, and one sin(t/2) cancels)",
+            "added": true
+          },
           {
             "text": "  = 2a sin(t/2)",
             "style": "indent"
           },
+          {
+            "text": "(multiply y by √(1 + m²) = sec(t/2))",
+            "added": true
+          },
           "Length of normal = |y√(1 + m²)| = 2a sin²(t/2)·sec(t/2)",
+          {
+            "text": "(sin²(t/2)/cos(t/2) = sin(t/2) · sin(t/2)/cos(t/2))",
+            "added": true
+          },
           "= 2a sin²(t/2)/cos(t/2) = 2a sin(t/2)tan(t/2)",
           {
             "text": "∴ length of tangent = 2a sin(t/2),",
@@ -265,7 +380,37 @@
           "Cancelling sec(t/2) against tan(t/2) incorrectly and losing the factor sin(t/2).",
           "Writing the length of the normal as 2a sin²(t/2), forgetting the sec(t/2) factor."
         ],
-        "memory_tip": "The two lengths differ by one factor of m: length of normal = m × length of tangent, exactly as subnormal = m² × subtangent."
+        "memory_tip": "The two lengths differ by one factor of m: length of normal = m × length of tangent, exactly as subnormal = m² × subtangent.",
+        "lines_compact": [
+          "Length of tangent = |y√(1 + m²)/m|",
+          {
+            "text": "  = 2a sin²(t/2)·sec(t/2)/tan(t/2)",
+            "style": "indent"
+          },
+          "= 2a sin²(t/2) · (1/cos(t/2)) · (cos(t/2)/sin(t/2))",
+          {
+            "text": "  = 2a sin(t/2)",
+            "style": "indent"
+          },
+          "Length of normal = |y√(1 + m²)| = 2a sin²(t/2)·sec(t/2)",
+          "= 2a sin²(t/2)/cos(t/2) = 2a sin(t/2)tan(t/2)",
+          {
+            "text": "∴ length of tangent = 2a sin(t/2),",
+            "style": "boxed"
+          },
+          {
+            "text": "length of normal = 2a sin(t/2)tan(t/2),",
+            "style": "boxed"
+          },
+          {
+            "text": "subtangent = a sin t,",
+            "style": "boxed"
+          },
+          {
+            "text": "subnormal = 2a sin³(t/2)/cos(t/2)",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

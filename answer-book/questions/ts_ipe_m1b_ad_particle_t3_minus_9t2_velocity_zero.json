@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.214, chapter 10 APPLICATIONS OF DERIVATIVES, the RATE MEASURE sub-section, Very Short Answer question 15. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; this bank ships the whole chapter as ONE unit. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. The printed stem gives no units, so the answer is written in seconds and metres, the standard reading for a distance-time formula, and a margin note says so. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks) over this sub-section but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.214, chapter 10 APPLICATIONS OF DERIVATIVES, the RATE MEASURE sub-section, Very Short Answer question 15. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; this bank ships the whole chapter as ONE unit. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. The printed stem gives no units, so the answer is written in seconds and metres, the standard reading for a distance-time formula, and a margin note says so. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks) over this sub-section but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say what when asks for, what where asks for, and how many answers there are.",
   "answer": {
@@ -56,7 +56,13 @@
           "Velocity v = dS/dt, and the question asks for",
           "the times and also the positions at those times.",
           "S = t³ − 9t² + 24t − 18",
+          "(d/dt of t³ is 3t², of 9t² is 18t, of 24t is 24;",
+          {
+            "text": "  then take out the common factor 3)",
+            "style": "indent"
+          },
           "v = dS/dt = 3t² − 18t + 24 = 3(t² − 6t + 8)",
+          "((t − 2)(t − 4) = t² − 6t + 8)",
           "v = 0  ⇒  3(t − 2)(t − 4) = 0  ⇒  t = 2 or t = 4"
         ],
         "recall": {
@@ -97,15 +103,35 @@
         "margin_note": "Second mark: do not answer only 'when'. Put each time back into S. A negative S is a real position — it is 2 units on the negative side of the origin, not a mistake. The particle starts at S(0) = −18 and crosses S = 0 at t = 3 on the way back. The stem prints no units; seconds and metres are the standard reading.",
         "memory_tip": "Where means position, and position lives in S. Substitute back into the original formula, never into v.",
         "lines": [
+          {
+            "text": "(put 2 in place of t in S)",
+            "added": true
+          },
           "At t = 2:  S = (2)³ − 9(2)² + 24(2) − 18",
+          {
+            "text": "(2³ = 8, 9(4) = 36 and 24(2) = 48)",
+            "added": true
+          },
           {
             "text": "  = 8 − 36 + 48 − 18 = 2",
             "style": "indent"
           },
+          {
+            "text": "(put 4 in place of t in S)",
+            "added": true
+          },
           "At t = 4:  S = (4)³ − 9(4)² + 24(4) − 18",
+          {
+            "text": "(4³ = 64, 9(16) = 144 and 24(4) = 96)",
+            "added": true
+          },
           {
             "text": "  = 64 − 144 + 96 − 18 = −2",
             "style": "indent"
+          },
+          {
+            "text": "(S is in metres and t in seconds)",
+            "added": true
           },
           {
             "text": "∴ the velocity is zero at t = 2 sec, where S = 2 m,",
@@ -143,6 +169,26 @@
           "Stopping after t = 2 and t = 4 and never finding the positions, which loses half the question.",
           "Substituting the times into v instead of S.",
           "Changing the sign of S = −2 because a negative distance looks wrong."
+        ],
+        "lines_compact": [
+          "At t = 2:  S = (2)³ − 9(2)² + 24(2) − 18",
+          {
+            "text": "  = 8 − 36 + 48 − 18 = 2",
+            "style": "indent"
+          },
+          "At t = 4:  S = (4)³ − 9(4)² + 24(4) − 18",
+          {
+            "text": "  = 64 − 144 + 96 − 18 = −2",
+            "style": "indent"
+          },
+          {
+            "text": "∴ the velocity is zero at t = 2 sec, where S = 2 m,",
+            "style": "boxed"
+          },
+          {
+            "text": "and at t = 4 sec, where S = −2 m",
+            "style": "boxed"
+          }
         ]
       }
     ]

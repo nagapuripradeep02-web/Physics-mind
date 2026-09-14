@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.216, chapter 10 APPLICATIONS OF DERIVATIVES, the TANGENTS AND NORMALS sub-section, Short Answer question 2. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. TYPOGRAPHY, NOT A CHANGE OF MEANING: the negative half powers are set here in superscript form (x₁⁻¹⁄²), the same expression the book prints with a caret; x₁⁻¹⁄² is 1/√x₁ and a¹⁄² is √a. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4M over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.216, chapter 10 APPLICATIONS OF DERIVATIVES, the TANGENTS AND NORMALS sub-section, Short Answer question 2. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. TYPOGRAPHY, NOT A CHANGE OF MEANING: the negative half powers are set here in superscript form (x₁⁻¹⁄²), the same expression the book prints with a caret; x₁⁻¹⁄² is 1/√x₁ and a¹⁄² is √a. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4M over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say how you differentiate the curve, what the slope is at the given point, and which given fact you use in the last line.",
   "answer": {
@@ -61,8 +61,15 @@
           },
           "Given curve:  √x + √y = √a,  where a is a constant.",
           "Differentiate both sides with respect to x:",
+          "(d/dx of √x is 1/(2√x); d/dx of √y is",
+          {
+            "text": "  (1/(2√y)) · dy/dx; d/dx of √a is 0)",
+            "style": "indent"
+          },
           "1/(2√x) + 1/(2√y) · dy/dx = 0",
+          "(move 1/(2√x) to the right)",
           "1/(2√y) · dy/dx = −1/(2√x)",
+          "(multiply both sides by 2√y)",
           "∴ dy/dx = −√y/√x"
         ],
         "recall": {
@@ -108,6 +115,10 @@
           "The point (x₁, y₁) lies on the curve, so",
           "√x₁ + √y₁ = √a     …(i)",
           "Slope of the tangent at (x₁, y₁):",
+          {
+            "text": "(put x₁ in place of x and y₁ in place of y)",
+            "added": true
+          },
           "m = (dy/dx) at (x₁, y₁) = −√y₁/√x₁"
         ],
         "recall": {
@@ -139,7 +150,13 @@
           "Never writing √x₁ + √y₁ = √a, which leaves no way to reach √a at the end.",
           "Writing the slope as −√x₁/√y₁ with the two swapped."
         ],
-        "memory_tip": "Two facts belong to the point: it satisfies the curve, and it fixes the slope. Write both before touching the tangent."
+        "memory_tip": "Two facts belong to the point: it satisfies the curve, and it fixes the slope. Write both before touching the tangent.",
+        "lines_compact": [
+          "The point (x₁, y₁) lies on the curve, so",
+          "√x₁ + √y₁ = √a     …(i)",
+          "Slope of the tangent at (x₁, y₁):",
+          "m = (dy/dx) at (x₁, y₁) = −√y₁/√x₁"
+        ]
       },
       {
         "id": "s3_form_tangent",
@@ -150,9 +167,21 @@
         "margin_note": "Third mark. Multiply through by √x₁ at once. Working with a fraction of surds through the next two lines is where the algebra usually breaks.",
         "lines": [
           "Tangent at (x₁, y₁):  y − y₁ = m(x − x₁)",
+          {
+            "text": "(put m = −√y₁/√x₁)",
+            "added": true
+          },
           "y − y₁ = −(√y₁/√x₁)(x − x₁)",
           "Multiply both sides by √x₁:",
+          {
+            "text": "(multiply out both sides)",
+            "added": true
+          },
           "√x₁ y − √x₁ y₁ = −√y₁ x + √y₁ x₁",
+          {
+            "text": "(move −√y₁ x to the left and −√x₁ y₁ to the right)",
+            "added": true
+          },
           "∴ √y₁ x + √x₁ y = √y₁ x₁ + √x₁ y₁     …(ii)"
         ],
         "recall": {
@@ -184,7 +213,14 @@
           "Multiplying only the left side by √x₁.",
           "Writing the point-slope form as y − y₁ = m(x + x₁)."
         ],
-        "memory_tip": "Point-slope first, denominator cleared second, terms collected third — always in that order."
+        "memory_tip": "Point-slope first, denominator cleared second, terms collected third — always in that order.",
+        "lines_compact": [
+          "Tangent at (x₁, y₁):  y − y₁ = m(x − x₁)",
+          "y − y₁ = −(√y₁/√x₁)(x − x₁)",
+          "Multiply both sides by √x₁:",
+          "√x₁ y − √x₁ y₁ = −√y₁ x + √y₁ x₁",
+          "∴ √y₁ x + √x₁ y = √y₁ x₁ + √x₁ y₁     …(ii)"
+        ]
       },
       {
         "id": "s4_use_condition",
@@ -195,11 +231,37 @@
         "margin_note": "Last mark. The right side of (ii) factorises as √(x₁y₁)(√x₁ + √y₁). That factor is √a by (i), and dividing by √(x₁y₁) produces exactly the printed form.",
         "lines": [
           "Right side of (ii):  √y₁ x₁ + √x₁ y₁",
+          {
+            "text": "(x₁ = √x₁ · √x₁ and y₁ = √y₁ · √y₁;",
+            "added": true
+          },
+          {
+            "text": "  then take out √x₁ · √y₁ = √(x₁y₁))",
+            "style": "indent",
+            "added": true
+          },
           "= √x₁·√x₁·√y₁ + √x₁·√y₁·√y₁ = √(x₁y₁)(√x₁ + √y₁)",
           "By (i), √x₁ + √y₁ = √a, so the right side is √(x₁y₁)·√a.",
           "So (ii) becomes  √y₁ x + √x₁ y = √(x₁y₁)·√a",
+          {
+            "text": "(this needs x₁ > 0 and y₁ > 0)",
+            "added": true
+          },
           "Divide both sides by √(x₁y₁) = √x₁·√y₁:",
+          {
+            "text": "(√y₁ x/(√x₁ √y₁) = x/√x₁",
+            "added": true
+          },
+          {
+            "text": "  and √x₁ y/(√x₁ √y₁) = y/√y₁)",
+            "style": "indent",
+            "added": true
+          },
           "x/√x₁ + y/√y₁ = √a",
+          {
+            "text": "(1/√x₁ = x₁⁻¹⁄² and √a = a¹⁄²)",
+            "added": true
+          },
           {
             "text": "∴ x·x₁⁻¹⁄² + y·y₁⁻¹⁄² = a¹⁄²,",
             "style": "boxed"
@@ -239,7 +301,23 @@
           "Reading x₁⁻¹⁄² as −√x₁ instead of 1/√x₁.",
           "Stopping at √y₁ x + √x₁ y = √(x₁y₁)·√a without dividing, so the printed form is never reached."
         ],
-        "memory_tip": "A negative power means the reciprocal and a power 1/2 means a square root, so x₁⁻¹⁄² is simply 1/√x₁."
+        "memory_tip": "A negative power means the reciprocal and a power 1/2 means a square root, so x₁⁻¹⁄² is simply 1/√x₁.",
+        "lines_compact": [
+          "Right side of (ii):  √y₁ x₁ + √x₁ y₁",
+          "= √x₁·√x₁·√y₁ + √x₁·√y₁·√y₁ = √(x₁y₁)(√x₁ + √y₁)",
+          "By (i), √x₁ + √y₁ = √a, so the right side is √(x₁y₁)·√a.",
+          "So (ii) becomes  √y₁ x + √x₁ y = √(x₁y₁)·√a",
+          "Divide both sides by √(x₁y₁) = √x₁·√y₁:",
+          "x/√x₁ + y/√y₁ = √a",
+          {
+            "text": "∴ x·x₁⁻¹⁄² + y·y₁⁻¹⁄² = a¹⁄²,",
+            "style": "boxed"
+          },
+          {
+            "text": "which is the required equation of the tangent.",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

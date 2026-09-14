@@ -34,7 +34,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.217, chapter 10 APPLICATIONS OF DERIVATIVES, the TANGENTS AND NORMALS sub-section, Short Answer question 4. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4M over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question, weighted 2 on the point of intersection because a wrong point makes both later steps worthless. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.217, chapter 10 APPLICATIONS OF DERIVATIVES, the TANGENTS AND NORMALS sub-section, Short Answer question 4. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4M over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question, weighted 2 on the point of intersection because a wrong point makes both later steps worthless. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say how you find where the two curves meet, and say what orthogonally means in terms of the slopes.",
   "answer": {
@@ -59,8 +59,19 @@
           "and   y² = 36(9 − x)   …(ii)",
           "At a common point both right sides are equal:",
           "4(x + 1) = 36(9 − x)",
+          "(4(x + 1) = 4x + 4 and 36(9 − x) = 324 − 36x)",
           "4x + 4 = 324 − 36x",
+          "(add 36x and take 4 from both sides: 40x = 320;",
+          {
+            "text": "  320/40 = 8)",
+            "style": "indent"
+          },
           "40x = 320  ⇒  x = 8",
+          "(put 8 in place of x: 8 + 1 = 9 and 4 × 9 = 36;",
+          {
+            "text": "  y² = 36 gives y = 6 or y = −6)",
+            "style": "indent"
+          },
           "From (i):  y² = 4(8 + 1) = 36  ⇒  y = ±6",
           "∴ the curves meet at P(8, 6) and Q(8, −6)."
         ],
@@ -103,9 +114,35 @@
         "mark_note": "Method",
         "margin_note": "Third mark. Differentiate each curve implicitly and keep the slope in terms of y, because the common points differ only in y. Note the sign: the second curve has −x inside the bracket.",
         "lines": [
+          {
+            "text": "(differentiate (i) with respect to x: d/dx of y²",
+            "added": true
+          },
+          {
+            "text": "  is 2y · dy/dx, and d/dx of 4(x + 1) is 4)",
+            "style": "indent",
+            "added": true
+          },
           "From (i):  2y (dy/dx) = 4  ⇒  m₁ = dy/dx = 2/y",
+          {
+            "text": "(differentiate (ii): d/dx of 36(9 − x) is −36;",
+            "added": true
+          },
+          {
+            "text": "  then divide both sides by 2y)",
+            "style": "indent",
+            "added": true
+          },
           "From (ii): 2y (dy/dx) = −36  ⇒  m₂ = dy/dx = −18/y",
+          {
+            "text": "(put y = 6: 2/6 = 1/3 and −18/6 = −3)",
+            "added": true
+          },
           "At P(8, 6):   m₁ = 2/6 = 1/3,   m₂ = −18/6 = −3",
+          {
+            "text": "(put y = −6: 2/(−6) = −1/3 and −18/(−6) = 3)",
+            "added": true
+          },
           "At Q(8, −6):  m₁ = −1/3,   m₂ = 3"
         ],
         "recall": {
@@ -138,7 +175,13 @@
           "Cancelling 2y into 4 as y/2 rather than 2/y.",
           "Substituting x = 8 into a slope that contains only y."
         ],
-        "memory_tip": "Both curves are y² = something, so both differentiate to 2y·dy/dx = that something's derivative — only the right side changes."
+        "memory_tip": "Both curves are y² = something, so both differentiate to 2y·dy/dx = that something's derivative — only the right side changes.",
+        "lines_compact": [
+          "From (i):  2y (dy/dx) = 4  ⇒  m₁ = dy/dx = 2/y",
+          "From (ii): 2y (dy/dx) = −36  ⇒  m₂ = dy/dx = −18/y",
+          "At P(8, 6):   m₁ = 2/6 = 1/3,   m₂ = −18/6 = −3",
+          "At Q(8, −6):  m₁ = −1/3,   m₂ = 3"
+        ]
       },
       {
         "id": "s3_product_minus_one",
@@ -150,8 +193,25 @@
         "lines": [
           "Two curves cut orthogonally at a common point",
           "when m₁m₂ = −1 there.",
+          {
+            "text": "(the slopes at P from step 2)",
+            "added": true
+          },
           "At P(8, 6):   m₁m₂ = (1/3)(−3) = −1",
+          {
+            "text": "(the slopes at Q from step 2)",
+            "added": true
+          },
           "At Q(8, −6):  m₁m₂ = (−1/3)(3) = −1",
+          {
+            "text": "(for any common point, with m₁ = 2/y and m₂ = −18/y;",
+            "added": true
+          },
+          {
+            "text": "  every common point has y² = 36)",
+            "style": "indent",
+            "added": true
+          },
           "In general, m₁m₂ = (2/y)(−18/y) = −36/y² = −36/36 = −1",
           "(since y² = 36).",
           {
@@ -196,7 +256,27 @@
           "Using tanθ = |(m₁ − m₂)/(1 + m₁m₂)|, which has 1 + m₁m₂ = 0 in the denominator here and is undefined.",
           "Writing the condition as m₁m₂ = 1 or m₁ = −m₂."
         ],
-        "memory_tip": "Perpendicular slopes multiply to −1, exactly as in straight lines — at the shared point each curve has the direction of its own tangent."
+        "memory_tip": "Perpendicular slopes multiply to −1, exactly as in straight lines — at the shared point each curve has the direction of its own tangent.",
+        "lines_compact": [
+          "Two curves cut orthogonally at a common point",
+          "when m₁m₂ = −1 there.",
+          "At P(8, 6):   m₁m₂ = (1/3)(−3) = −1",
+          "At Q(8, −6):  m₁m₂ = (−1/3)(3) = −1",
+          "In general, m₁m₂ = (2/y)(−18/y) = −36/y² = −36/36 = −1",
+          "(since y² = 36).",
+          {
+            "text": "∴ m₁m₂ = −1 at every common point,",
+            "style": "boxed"
+          },
+          {
+            "text": "so the curves y² = 4(x + 1)",
+            "style": "boxed"
+          },
+          {
+            "text": "and y² = 36(9 − x) intersect orthogonally.",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

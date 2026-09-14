@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.209, chapter 10 APPLICATIONS OF DERIVATIVES, Very Short Answer question 2(iv), in the ERRORS AND APPROXIMATIONS sub-section. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and the book restarts its question numbering in each sub-section, so \"question 2(iv)\" is that sub-section's number and not the chapter's; we ship the five sub-sections as ONE unit, ordered by the syllabus. DISCREPANCY INSIDE THE SOURCE, RECORDED NOT RESOLVED: the book's question list prints a SQUARE root, √65, and that is the stem we authored and answered. The book's own worked solution for this part appears to use a CUBE root instead. The printed page was checked: the two neighbouring parts, ∛999 and ∛7.8, carry clear cube-root signs and this one does not, so the question as asked is √65. We answer the printed question and note the mismatch here rather than following the book's working or silently changing the stem. A reader who wants the other reading can compute it separately; this card is the square root. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks) over this sub-section but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question — one mark for choosing the nearby exact point and its derivative, one for applying the formula and reading the number. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.209, chapter 10 APPLICATIONS OF DERIVATIVES, Very Short Answer question 2(iv), in the ERRORS AND APPROXIMATIONS sub-section. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and the book restarts its question numbering in each sub-section, so \"question 2(iv)\" is that sub-section's number and not the chapter's; we ship the five sub-sections as ONE unit, ordered by the syllabus. DISCREPANCY INSIDE THE SOURCE, RECORDED NOT RESOLVED: the book's question list prints a SQUARE root, √65, and that is the stem we authored and answered. The book's own worked solution for this part appears to use a CUBE root instead. The printed page was checked: the two neighbouring parts, ∛999 and ∛7.8, carry clear cube-root signs and this one does not, so the question as asked is √65. We answer the printed question and note the mismatch here rather than following the book's working or silently changing the stem. A reader who wants the other reading can compute it separately; this card is the square root. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks) over this sub-section but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question — one mark for choosing the nearby exact point and its derivative, one for applying the formula and reading the number. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say which nearby value you start from, and the formula you then apply.",
   "answer": {
@@ -51,11 +51,19 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "(this approximation is used when Δx is small)",
           "Let f(x) = √x. Then f(x + Δx) ≈ f(x) + f′(x)·Δx",
           "64 is the nearest perfect square to 65,",
           "and √64 = 8 exactly",
+          "(Δx = the given number − the chosen x)",
           "∴ take x = 64,  Δx = 65 − 64 = 1",
+          "(√x = x¹⁄², and by the power rule its derivative",
+          {
+            "text": "  is (1/2)x⁻¹⁄² = 1/(2√x))",
+            "style": "indent"
+          },
           "f′(x) = 1/(2√x)",
+          "(√64 = 8)",
           "f′(64) = 1/(2 × 8) = 1/16"
         ],
         "recall": {
@@ -95,8 +103,20 @@
         "mark_note": "Answer",
         "margin_note": "Second mark. 1/16 = 0.0625 exactly, so this one needs no rounding at all. 65 is above 64, so the correction is added.",
         "lines": [
+          {
+            "text": "(put x = 64 and Δx = 1 in the approximation)",
+            "added": true
+          },
           "√65 = f(64 + 1) ≈ f(64) + f′(64)·(1)",
+          {
+            "text": "(f(64) = √64 = 8 and f′(64) = 1/16)",
+            "added": true
+          },
           "= 8 + (1/16)(1)",
+          {
+            "text": "(1/16 = 0.0625)",
+            "added": true
+          },
           "= 8 + 0.0625",
           {
             "text": "∴ √65 ≈ 8.0625",
@@ -130,7 +150,16 @@
           "Reading 1/16 as 0.16 or as 0.016.",
           "Giving 8.06 when the working already provides four decimal places."
         ],
-        "memory_tip": "New value ≈ old value + slope × step. The step keeps its sign, so an upward move adds."
+        "memory_tip": "New value ≈ old value + slope × step. The step keeps its sign, so an upward move adds.",
+        "lines_compact": [
+          "√65 = f(64 + 1) ≈ f(64) + f′(64)·(1)",
+          "= 8 + (1/16)(1)",
+          "= 8 + 0.0625",
+          {
+            "text": "∴ √65 ≈ 8.0625",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

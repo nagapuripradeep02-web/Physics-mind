@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.227, chapter 10 APPLICATIONS OF DERIVATIVES, the MAXIMA AND MINIMA sub-section, Short Answer question 7. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4 Marks over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.227, chapter 10 APPLICATIONS OF DERIVATIVES, the MAXIMA AND MINIMA sub-section, Short Answer question 7. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4 Marks over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say which points you must evaluate the function at on a closed interval, and say whether the second derivative test is needed here.",
   "answer": {
@@ -60,10 +60,25 @@
             "style": "heading"
           },
           "f(x) = x + sin 2x on the closed interval [0, π].",
+          "(x and sin 2x are continuous and differentiable",
+          {
+            "text": "  for every real x)",
+            "style": "indent"
+          },
           "f is continuous on [0, π] and differentiable on (0, π),",
           "so an absolute maximum and an absolute minimum",
           "both exist on this interval.",
+          "(d/dx of x is 1; d/dx of sin 2x is cos 2x × 2,",
+          {
+            "text": "  by the chain rule)",
+            "style": "indent"
+          },
           "f′(x) = 1 + 2cos 2x",
+          "(a critical point inside the interval is a point",
+          {
+            "text": "  where f′(x) = 0)",
+            "style": "indent"
+          },
           "For critical points, put f′(x) = 0."
         ],
         "recall": {
@@ -104,10 +119,31 @@
         "mark_note": "Method",
         "margin_note": "Second mark. Convert the range for x into a range for 2x first. Missing the second solution 4π/3 is the usual slip here.",
         "lines": [
+          {
+            "text": "(put f′(x) = 0; move 1 across and divide by 2)",
+            "added": true
+          },
           "1 + 2cos 2x = 0   ⇒   cos 2x = −1/2",
+          {
+            "text": "(0 ≤ x ≤ π; multiply each part by 2)",
+            "added": true
+          },
           "x lies in [0, π], so 2x lies in [0, 2π].",
+          {
+            "text": "(cos is negative in the second and third quadrants;",
+            "added": true
+          },
+          {
+            "text": "  cos(π/3) = 1/2, so 2x = π − π/3 or 2x = π + π/3)",
+            "style": "indent",
+            "added": true
+          },
           "In [0, 2π] the equation cos 2x = −1/2 has the solutions",
           "2x = 2π/3   and   2x = 4π/3",
+          {
+            "text": "(divide each value by 2)",
+            "added": true
+          },
           "∴ x = π/3  and  x = 2π/3 are the critical points,",
           "and both lie in [0, π]."
         ],
@@ -139,7 +175,15 @@
           "Finding only 2x = 2π/3 and missing 2x = 4π/3.",
           "Solving cos x = −1/2 instead of cos 2x = −1/2, giving x = 2π/3 alone."
         ],
-        "memory_tip": "Solve for the angle 2x first, over its range [0, 2π], and divide by 2 only at the end."
+        "memory_tip": "Solve for the angle 2x first, over its range [0, 2π], and divide by 2 only at the end.",
+        "lines_compact": [
+          "1 + 2cos 2x = 0   ⇒   cos 2x = −1/2",
+          "x lies in [0, π], so 2x lies in [0, 2π].",
+          "In [0, 2π] the equation cos 2x = −1/2 has the solutions",
+          "2x = 2π/3   and   2x = 4π/3",
+          "∴ x = π/3  and  x = 2π/3 are the critical points,",
+          "and both lie in [0, π]."
+        ]
       },
       {
         "id": "s3_evaluate",
@@ -151,9 +195,35 @@
         "lines": [
           "For an absolute extremum on a closed interval,",
           "evaluate f at every critical point AND at both endpoints.",
+          {
+            "text": "(sin 0 = 0)",
+            "added": true
+          },
           "f(0) = 0 + sin 0 = 0",
+          {
+            "text": "(sin(2π/3) = sin(π − π/3) = sin(π/3) = √3/2;",
+            "added": true
+          },
+          {
+            "text": "  π/3 ≈ 1.0472 and √3/2 ≈ 0.8660)",
+            "style": "indent",
+            "added": true
+          },
           "f(π/3) = π/3 + sin(2π/3) = π/3 + √3/2 ≈ 1.9132",
+          {
+            "text": "(sin(4π/3) = sin(π + π/3) = −sin(π/3) = −√3/2;",
+            "added": true
+          },
+          {
+            "text": "  2π/3 ≈ 2.0944)",
+            "style": "indent",
+            "added": true
+          },
           "f(2π/3) = 2π/3 + sin(4π/3) = 2π/3 − √3/2 ≈ 1.2284",
+          {
+            "text": "(sin 2π = 0 and π ≈ 3.1416)",
+            "added": true
+          },
           "f(π) = π + sin 2π = π + 0 = π ≈ 3.1416"
         ],
         "recall": {
@@ -184,7 +254,15 @@
           "Testing only the critical points and never the endpoints.",
           "Writing sin(4π/3) as +√3/2 instead of −√3/2."
         ],
-        "memory_tip": "On a closed interval the list has one entry for each critical point inside the interval and one entry for each endpoint."
+        "memory_tip": "On a closed interval the list has one entry for each critical point inside the interval and one entry for each endpoint.",
+        "lines_compact": [
+          "For an absolute extremum on a closed interval,",
+          "evaluate f at every critical point AND at both endpoints.",
+          "f(0) = 0 + sin 0 = 0",
+          "f(π/3) = π/3 + sin(2π/3) = π/3 + √3/2 ≈ 1.9132",
+          "f(2π/3) = 2π/3 + sin(4π/3) = 2π/3 − √3/2 ≈ 1.2284",
+          "f(π) = π + sin 2π = π + 0 = π ≈ 3.1416"
+        ]
       },
       {
         "id": "s4_compare",
@@ -194,8 +272,25 @@
         "mark_note": "Answer",
         "margin_note": "Fourth mark. Both extrema here sit at the endpoints. A student who compared only the two critical values would answer 1.9132 and 1.2284, and both would be wrong.",
         "lines": [
+          {
+            "text": "(the four values found in step 3:",
+            "added": true
+          },
+          {
+            "text": "  f(0), f(π/3), f(2π/3) and f(π))",
+            "style": "indent",
+            "added": true
+          },
           "Compare the four values:  0,  1.9132,  1.2284,  3.1416",
+          {
+            "text": "(3.1416 is greater than each of the other three)",
+            "added": true
+          },
           "The largest is π, reached at x = π.",
+          {
+            "text": "(0 is less than each of the other three)",
+            "added": true
+          },
           "The smallest is 0, reached at x = 0.",
           "Both extreme values occur at the ENDPOINTS,",
           "not at either critical point.",
@@ -236,7 +331,22 @@
           "Applying the second derivative test and reporting a local extremum as the absolute one.",
           "Giving the x values instead of the function values as the maximum and minimum."
         ],
-        "memory_tip": "Absolute extrema on a closed interval are found by comparing a LIST, not by a sign test. Build the list, then read off the largest and the smallest."
+        "memory_tip": "Absolute extrema on a closed interval are found by comparing a LIST, not by a sign test. Build the list, then read off the largest and the smallest.",
+        "lines_compact": [
+          "Compare the four values:  0,  1.9132,  1.2284,  3.1416",
+          "The largest is π, reached at x = π.",
+          "The smallest is 0, reached at x = 0.",
+          "Both extreme values occur at the ENDPOINTS,",
+          "not at either critical point.",
+          {
+            "text": "∴ absolute maximum = π at x = π,",
+            "style": "boxed"
+          },
+          {
+            "text": "and absolute minimum = 0 at x = 0",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

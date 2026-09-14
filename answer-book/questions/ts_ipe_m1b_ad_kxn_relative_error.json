@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.211, chapter 10 APPLICATIONS OF DERIVATIVES, the ERRORS AND APPROXIMATIONS sub-section, Very Short Answer question 9. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box, and the question numbering restarts in each, so the sub-section is named here; we ship the chapter as ONE unit, ordered by the syllabus. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks, printed over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The result was checked on four instances before it was written — (k, n, x, dx) = (3, 2, 10, 0.1), (5, −1, 4, 0.02), (2, ½, 9, 0.09) and (7, 3, 2, 0.004). In every one dy/y equals n·(dx/x) exactly, and the exact relative change agrees with it to three or more significant figures."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.211, chapter 10 APPLICATIONS OF DERIVATIVES, the ERRORS AND APPROXIMATIONS sub-section, Very Short Answer question 9. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box, and the question numbering restarts in each, so the sub-section is named here; we ship the chapter as ONE unit, ordered by the syllabus. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks, printed over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The result was checked on four instances before it was written — (k, n, x, dx) = (3, 2, 10, 0.1), (5, −1, 4, 0.02), (2, ½, 9, 0.09) and (7, 3, 2, 0.004). In every one dy/y equals n·(dx/x) exactly, and the exact relative change agrees with it to three or more significant figures. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — say what you differentiate, and what you divide by to reach the relative error.",
   "answer": {
@@ -53,8 +53,14 @@
             "style": "heading"
           },
           "Given y = f(x) = k xⁿ, where k and n are constants.",
+          "(power rule: d/dx of xⁿ is nxⁿ⁻¹;",
+          {
+            "text": "  the constant k stays as a factor)",
+            "style": "indent"
+          },
           "Differentiating with respect to x,",
           "dy/dx = k · n xⁿ⁻¹",
+          "(multiply both sides by dx)",
           "∴ dy = k n xⁿ⁻¹ · dx"
         ],
         "recall": {
@@ -95,7 +101,25 @@
         "memory_tip": "For any power law, the relative error is multiplied by the power. k never appears in the answer.",
         "lines": [
           "The relative error in y is dy/y.",
+          {
+            "text": "(divide the result of step 1 by y = kxⁿ;",
+            "added": true
+          },
+          {
+            "text": "  this needs y ≠ 0)",
+            "style": "indent",
+            "added": true
+          },
           "dy/y = (k n xⁿ⁻¹ · dx) / (k xⁿ)",
+          {
+            "text": "(xᵖ/xʳ = xᵖ⁻ʳ with p = n − 1 and r = n:",
+            "added": true
+          },
+          {
+            "text": "  (n − 1) − n = −1, and x⁻¹ = 1/x)",
+            "style": "indent",
+            "added": true
+          },
           "k cancels, and xⁿ⁻¹/xⁿ = 1/x, so",
           "dy/y = n · (dx/x)",
           {
@@ -133,6 +157,20 @@
         "common_mistakes": [
           "Stopping at dy = k n xⁿ⁻¹ dx and calling that the relative error.",
           "Keeping k in the final answer by dividing by xⁿ instead of by y = kxⁿ."
+        ],
+        "lines_compact": [
+          "The relative error in y is dy/y.",
+          "dy/y = (k n xⁿ⁻¹ · dx) / (k xⁿ)",
+          "k cancels, and xⁿ⁻¹/xⁿ = 1/x, so",
+          "dy/y = n · (dx/x)",
+          {
+            "text": "∴ dy/y = n · (dx/x): the relative error in y",
+            "style": "boxed"
+          },
+          {
+            "text": "is n times the relative error in x",
+            "style": "boxed"
+          }
         ]
       }
     ]

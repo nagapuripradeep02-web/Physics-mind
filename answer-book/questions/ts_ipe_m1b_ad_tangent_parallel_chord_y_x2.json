@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.231, chapter 10 APPLICATIONS OF DERIVATIVES, the ROLLE'S AND LAGRANGE'S THEOREM sub-section, Very Short Answer question 11. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box; we ship the chapter as ONE unit, so the sub-section is named above instead of a sub-chapter number. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.231, chapter 10 APPLICATIONS OF DERIVATIVES, the ROLLE'S AND LAGRANGE'S THEOREM sub-section, Very Short Answer question 11. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box; we ship the chapter as ONE unit, so the sub-section is named above instead of a sub-chapter number. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say what parallel means for two slopes, and which theorem says such a point exists.",
   "answer": {
@@ -54,7 +54,13 @@
           },
           "The chord joins A(0, 0) and B(1, 1), and both lie on y = x²",
           "since 0 = 0² and 1 = 1².",
+          "(the slope of the line through (x₁, y₁) and (x₂, y₂)",
+          {
+            "text": "  is (y₂ − y₁)/(x₂ − x₁))",
+            "style": "indent"
+          },
           "Slope of the chord AB = (1 − 0)/(1 − 0) = 1",
+          "(parallel lines have equal slopes)",
           "A tangent parallel to AB has the same slope,",
           "so we need dy/dx = 1."
         ],
@@ -97,9 +103,30 @@
         "margin_note": "Second mark. The question asks for a POINT, so give both coordinates. Stopping at x = 1/2 answers only half of it.",
         "memory_tip": "Solve for x from the derivative, then put that x back into the curve to get y.",
         "lines": [
+          {
+            "text": "(power rule: d/dx of x² is 2x)",
+            "added": true
+          },
           "y = x² ⇒ dy/dx = 2x",
+          {
+            "text": "(put dy/dx = 1, then divide by 2)",
+            "added": true
+          },
           "2x = 1 ⇒ x = 1/2",
+          {
+            "text": "(put 1/2 in place of x in y = x²)",
+            "added": true
+          },
           "At x = 1/2, y = (1/2)² = 1/4",
+          {
+            "text": "(Lagrange's theorem on [0, 1] gives such a point",
+            "added": true
+          },
+          {
+            "text": "  with x strictly between 0 and 1)",
+            "style": "indent",
+            "added": true
+          },
           "x = 1/2 lies between 0 and 1,",
           "as Lagrange's mean value theorem states it must.",
           {
@@ -134,6 +161,17 @@
         "common_mistakes": [
           "Giving y = 1/2 by substituting into y = x instead of y = x².",
           "Giving the answer as x = 1/2 alone when a point was asked for."
+        ],
+        "lines_compact": [
+          "y = x² ⇒ dy/dx = 2x",
+          "2x = 1 ⇒ x = 1/2",
+          "At x = 1/2, y = (1/2)² = 1/4",
+          "x = 1/2 lies between 0 and 1,",
+          "as Lagrange's mean value theorem states it must.",
+          {
+            "text": "∴ the required point is (1/2, 1/4)",
+            "style": "boxed"
+          }
         ]
       }
     ]

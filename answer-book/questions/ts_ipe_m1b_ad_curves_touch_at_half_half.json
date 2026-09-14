@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.218, chapter 10 APPLICATIONS OF DERIVATIVES, the TANGENTS AND NORMALS sub-section, Short Answer question 6. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4M over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question; the point is given in the stem, so the first mark goes to verifying it rather than to finding it. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.218, chapter 10 APPLICATIONS OF DERIVATIVES, the TANGENTS AND NORMALS sub-section, Short Answer question 6. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4M over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question; the point is given in the stem, so the first mark goes to verifying it rather than to finding it. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say what you check first about the given point, and say what touch each other means in terms of the slopes.",
   "answer": {
@@ -62,8 +62,14 @@
           "Given curves:  6x² − 5x + 2y = 0   …(i)",
           "and   4x² + 8y² = 3   …(ii)",
           "Put x = 1/2, y = 1/2 in (i):",
+          "(6(1/4) = 3/2, 5(1/2) = 5/2 and 2(1/2) = 1;",
+          {
+            "text": "  3/2 − 5/2 = −1, and −1 + 1 = 0)",
+            "style": "indent"
+          },
           "6(1/4) − 5(1/2) + 2(1/2) = 3/2 − 5/2 + 1 = 0  ✓",
           "Put x = 1/2, y = 1/2 in (ii):",
+          "(4(1/4) = 1 and 8(1/4) = 2)",
           "4(1/4) + 8(1/4) = 1 + 2 = 3  ✓",
           "∴ P(1/2, 1/2) lies on both curves, so it is a common point."
         ],
@@ -107,8 +113,25 @@
         "margin_note": "Second mark. In (i) the y-term is 2y, so its derivative is simply 2·dy/dx. The slope comes out in x alone, so only x = 1/2 is needed.",
         "lines": [
           "Differentiate (i) with respect to x:",
+          {
+            "text": "(d/dx of 6x² is 12x, of 5x is 5,",
+            "added": true
+          },
+          {
+            "text": "  and of 2y is 2 · dy/dx)",
+            "style": "indent",
+            "added": true
+          },
           "12x − 5 + 2 (dy/dx) = 0",
+          {
+            "text": "(move 12x − 5 across and divide both sides by 2)",
+            "added": true
+          },
           "dy/dx = (5 − 12x)/2",
+          {
+            "text": "(put 1/2 in place of x: 12(1/2) = 6)",
+            "added": true
+          },
           "At P(1/2, 1/2):  m₁ = (5 − 12(1/2))/2 = (5 − 6)/2",
           "∴ m₁ = −1/2"
         ],
@@ -141,7 +164,14 @@
           "Writing dy/dx = (12x − 5)/2 with the sign reversed.",
           "Differentiating 6x² as 6x."
         ],
-        "memory_tip": "Every y-term picks up dy/dx behind it; every pure x-term does not."
+        "memory_tip": "Every y-term picks up dy/dx behind it; every pure x-term does not.",
+        "lines_compact": [
+          "Differentiate (i) with respect to x:",
+          "12x − 5 + 2 (dy/dx) = 0",
+          "dy/dx = (5 − 12x)/2",
+          "At P(1/2, 1/2):  m₁ = (5 − 12(1/2))/2 = (5 − 6)/2",
+          "∴ m₁ = −1/2"
+        ]
       },
       {
         "id": "s3_slope_second",
@@ -152,8 +182,20 @@
         "margin_note": "Third mark. Here 8y² differentiates to 16y·dy/dx. Cancelling the 8 gives the compact form −x/(2y), which is fastest to evaluate.",
         "lines": [
           "Differentiate (ii) with respect to x:",
+          {
+            "text": "(d/dx of 4x² is 8x; d/dx of 8y² is 16y · dy/dx)",
+            "added": true
+          },
           "8x + 16y (dy/dx) = 0",
+          {
+            "text": "(move 8x across and divide by 16y; 8/16 = 1/2)",
+            "added": true
+          },
           "dy/dx = −8x/(16y) = −x/(2y)",
+          {
+            "text": "(put x = 1/2 and y = 1/2: 2 · 1/2 = 1)",
+            "added": true
+          },
           "At P(1/2, 1/2):  m₂ = −(1/2)/(2 · 1/2) = −(1/2)/1",
           "∴ m₂ = −1/2"
         ],
@@ -186,7 +228,14 @@
           "Forgetting that the derivative of the constant 3 is 0.",
           "Writing the slope as −2x/y by cancelling the wrong way."
         ],
-        "memory_tip": "For Ax² + By² = C the slope is −Ax/(By): here A = 4 and B = 8, so it is −4x/(8y) = −x/(2y)."
+        "memory_tip": "For Ax² + By² = C the slope is −Ax/(By): here A = 4 and B = 8, so it is −4x/(8y) = −x/(2y).",
+        "lines_compact": [
+          "Differentiate (ii) with respect to x:",
+          "8x + 16y (dy/dx) = 0",
+          "dy/dx = −8x/(16y) = −x/(2y)",
+          "At P(1/2, 1/2):  m₂ = −(1/2)/(2 · 1/2) = −(1/2)/1",
+          "∴ m₂ = −1/2"
+        ]
       },
       {
         "id": "s4_touch",
@@ -198,7 +247,20 @@
         "lines": [
           "Two curves touch each other at a common point",
           "when their slopes there are equal.",
+          {
+            "text": "(the slopes found in steps 2 and 3)",
+            "added": true
+          },
           "m₁ = −1/2  and  m₂ = −1/2, so  m₁ = m₂",
+          {
+            "text": "(the point-slope form with slope −1/2 at P; multiply",
+            "added": true
+          },
+          {
+            "text": "  by 4: 4y − 2 = −2x + 1, so 2x + 4y = 3)",
+            "style": "indent",
+            "added": true
+          },
           "The common tangent at P(1/2, 1/2) is",
           "y − 1/2 = −(1/2)(x − 1/2)  ⇒  2x + 4y = 3",
           {
@@ -243,7 +305,26 @@
           "Concluding from equal slopes alone without mentioning the common point.",
           "Putting the two slopes into the angle formula and reporting θ = 0 without saying what it means."
         ],
-        "memory_tip": "Same point and same slope means one tangent serves both curves — that single shared tangent is what touching means."
+        "memory_tip": "Same point and same slope means one tangent serves both curves — that single shared tangent is what touching means.",
+        "lines_compact": [
+          "Two curves touch each other at a common point",
+          "when their slopes there are equal.",
+          "m₁ = −1/2  and  m₂ = −1/2, so  m₁ = m₂",
+          "The common tangent at P(1/2, 1/2) is",
+          "y − 1/2 = −(1/2)(x − 1/2)  ⇒  2x + 4y = 3",
+          {
+            "text": "∴ P(1/2, 1/2) lies on both curves",
+            "style": "boxed"
+          },
+          {
+            "text": "and both have slope −1/2 there,",
+            "style": "boxed"
+          },
+          {
+            "text": "so the curves touch each other at (1/2, 1/2).",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

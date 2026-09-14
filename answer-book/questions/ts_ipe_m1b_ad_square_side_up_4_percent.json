@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.210, chapter 10 APPLICATIONS OF DERIVATIVES, the ERRORS AND APPROXIMATIONS sub-section, Very Short Answer question 3. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box, and the question numbering restarts in each, so the sub-section is named here; we ship the chapter as ONE unit, ordered by the syllabus. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks, printed over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer was checked before it was written: an exact 4% rise takes the side from a to 1.04a and the area from a² to 1.0816a², an increase of 8.16%, which the linear approximation reports as 8%."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.210, chapter 10 APPLICATIONS OF DERIVATIVES, the ERRORS AND APPROXIMATIONS sub-section, Very Short Answer question 3. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box, and the question numbering restarts in each, so the sub-section is named here; we ship the chapter as ONE unit, ordered by the syllabus. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks, printed over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer was checked before it was written: an exact 4% rise takes the side from a to 1.04a and the area from a² to 1.0816a², an increase of 8.16%, which the linear approximation reports as 8%. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say what you differentiate, and what you divide by to reach a percentage.",
   "answer": {
@@ -54,8 +54,10 @@
           },
           "Let x be the side of the square and A its area.",
           "A = x²",
+          "(d/dx of x² is 2x; multiply both sides by dx)",
           "dA/dx = 2x   ⇒   dA = 2x · dx",
           "Divide both sides by A = x²:",
+          "(2x/x² = 2/x)",
           "dA/A = 2x · dx / x² = 2 · (dx/x)"
         ],
         "recall": {
@@ -95,11 +97,23 @@
         "margin_note": "Second mark. Multiply the 4 by the power 2. The power multiplies the percentage; it does not square it.",
         "memory_tip": "Multiply the percentage by the power: 2 × 4 = 8. Squaring the 4 gives 16, which answers a different question.",
         "lines": [
+          {
+            "text": "(a 4% increase means dx/x = 4/100)",
+            "added": true
+          },
           "The side increases by 4%, so (dx/x) × 100 = 4.",
           "Percentage change in area = (dA/A) × 100",
           {
+            "text": "(dA/A = 2 · (dx/x), from step 1)",
+            "added": true
+          },
+          {
             "text": "  = 2 · (dx/x) × 100",
             "style": "indent"
+          },
+          {
+            "text": "((dx/x) × 100 = 4)",
+            "added": true
           },
           "= 2 × 4 = 8",
           {
@@ -133,6 +147,19 @@
         "common_mistakes": [
           "Squaring the 4 and writing 16%.",
           "Writing 4% by leaving out the factor 2."
+        ],
+        "lines_compact": [
+          "The side increases by 4%, so (dx/x) × 100 = 4.",
+          "Percentage change in area = (dA/A) × 100",
+          {
+            "text": "  = 2 · (dx/x) × 100",
+            "style": "indent"
+          },
+          "= 2 × 4 = 8",
+          {
+            "text": "∴ the area of the square increases by 8%",
+            "style": "boxed"
+          }
         ]
       }
     ]

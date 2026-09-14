@@ -34,7 +34,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.221, chapter 10 APPLICATIONS OF DERIVATIVES, the TANGENTS AND NORMALS sub-section, Short Answer question 11(i). Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4M over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.221, chapter 10 APPLICATIONS OF DERIVATIVES, the TANGENTS AND NORMALS sub-section, Short Answer question 11(i). Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4M over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say what you do to xy = 10 before differentiating, what slope you get at (2, 5), and how you turn that into the normal's slope.",
   "answer": {
@@ -58,8 +58,11 @@
           "Given curve:  xy = 10",
           "Check the point: at (2, 5),  xy = 2(5) = 10,",
           "so (2, 5) lies on the curve.",
+          "(divide both sides of xy = 10 by x)",
           "Write y in terms of x:   y = 10/x = 10x⁻¹",
+          "(power rule: d/dx of x⁻¹ is −x⁻²)",
           "dy/dx = 10(−1)x⁻² = −10/x²",
+          "(2² = 4, and −10/4 = −5/2)",
           "At x = 2:   m = −10/2² = −10/4",
           "∴ m = −5/2"
         ],
@@ -104,9 +107,25 @@
         "lines": [
           "Tangent at (x₁, y₁) with slope m:   y − y₁ = m(x − x₁)",
           "Here (x₁, y₁) = (2, 5) and m = −5/2:",
+          {
+            "text": "(put x₁ = 2, y₁ = 5 and m = −5/2)",
+            "added": true
+          },
           "y − 5 = (−5/2)(x − 2)",
+          {
+            "text": "(multiply both sides by 2)",
+            "added": true
+          },
           "2(y − 5) = −5(x − 2)",
+          {
+            "text": "(multiply out: −5 × x = −5x and −5 × (−2) = 10)",
+            "added": true
+          },
           "2y − 10 = −5x + 10",
+          {
+            "text": "(move −5x + 10 to the left: 5x + 2y − 10 − 10 = 0)",
+            "added": true
+          },
           "∴ 5x + 2y − 20 = 0"
         ],
         "recall": {
@@ -138,7 +157,15 @@
           "Expanding −5(x − 2) as −5x − 10 and getting the sign of the second term wrong.",
           "Using the point (5, 2) instead of (2, 5)."
         ],
-        "memory_tip": "Multiply through by the denominator of m before expanding. Two lines instead of four, and no fractions to carry."
+        "memory_tip": "Multiply through by the denominator of m before expanding. Two lines instead of four, and no fractions to carry.",
+        "lines_compact": [
+          "Tangent at (x₁, y₁) with slope m:   y − y₁ = m(x − x₁)",
+          "Here (x₁, y₁) = (2, 5) and m = −5/2:",
+          "y − 5 = (−5/2)(x − 2)",
+          "2(y − 5) = −5(x − 2)",
+          "2y − 10 = −5x + 10",
+          "∴ 5x + 2y − 20 = 0"
+        ]
       },
       {
         "id": "s3_normal",
@@ -148,12 +175,28 @@
         "mark_note": "Answer",
         "margin_note": "Fourth mark. m is negative, so the two minus signs in −1/m cancel and the normal's slope is +2/5. Substitute (2, 5) into both boxed lines as a check: 10 + 10 − 20 = 0 and 4 − 25 + 21 = 0.",
         "lines": [
+          {
+            "text": "(−1 ÷ (−5/2) = −1 × (−2/5) = 2/5)",
+            "added": true
+          },
           "The normal is perpendicular to the tangent",
           "at the same point,",
           "so its slope is −1/m = −1 ÷ (−5/2) = 2/5.",
+          {
+            "text": "(the point-slope form with slope 2/5 at (2, 5))",
+            "added": true
+          },
           "y − 5 = (2/5)(x − 2)",
+          {
+            "text": "(multiply both sides by 5)",
+            "added": true
+          },
           "5(y − 5) = 2(x − 2)",
           "5y − 25 = 2x − 4",
+          {
+            "text": "(move 5y − 25 to the right: 0 = 2x − 5y − 4 + 25)",
+            "added": true
+          },
           {
             "text": "∴ Tangent: 5x + 2y − 20 = 0",
             "style": "boxed"
@@ -192,7 +235,23 @@
           "Using 5/2 as the normal's slope by inverting without the sign change.",
           "Not substituting the point back into either final equation as a check."
         ],
-        "memory_tip": "A negative reciprocal of a fraction: turn it over, then change the sign. −5/2 becomes +2/5."
+        "memory_tip": "A negative reciprocal of a fraction: turn it over, then change the sign. −5/2 becomes +2/5.",
+        "lines_compact": [
+          "The normal is perpendicular to the tangent",
+          "at the same point,",
+          "so its slope is −1/m = −1 ÷ (−5/2) = 2/5.",
+          "y − 5 = (2/5)(x − 2)",
+          "5(y − 5) = 2(x − 2)",
+          "5y − 25 = 2x − 4",
+          {
+            "text": "∴ Tangent: 5x + 2y − 20 = 0",
+            "style": "boxed"
+          },
+          {
+            "text": "Normal: 2x − 5y + 21 = 0",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

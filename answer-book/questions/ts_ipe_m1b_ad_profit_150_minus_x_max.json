@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.227, chapter 10 APPLICATIONS OF DERIVATIVES, the MAXIMA AND MINIMA sub-section, Short Answer question 8. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4 Marks over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question, and it is cut four ways here because the question asks for TWO things — the number of items and the profit itself. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.227, chapter 10 APPLICATIONS OF DERIVATIVES, the MAXIMA AND MINIMA sub-section, Short Answer question 8. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4 Marks over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question, and it is cut four ways here because the question asks for TWO things — the number of items and the profit itself. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say what you do to the bracket before differentiating, and say the two things the question asks you to report.",
   "answer": {
@@ -61,9 +61,11 @@
           },
           "P(x) = (150 − x)x − 1600,  where x",
           "is the number of items sold per day.",
+          "((150 − x)x = 150x − x²)",
           "Expanding:  P(x) = 150x − x² − 1600",
           "The coefficient of x² is negative,",
           "so the graph of P is a downward parabola.",
+          "(d/dx of 150x is 150, of x² is 2x, and of 1600 is 0)",
           "P′(x) = 150 − 2x"
         ],
         "recall": {
@@ -105,6 +107,10 @@
         "margin_note": "Second mark. This answers the first half of the question — the number of items. x = 75 is a whole number, which suits a count of items.",
         "lines": [
           "For the stationary point, put P′(x) = 0.",
+          {
+            "text": "(move 2x across and divide by 2)",
+            "added": true
+          },
           "150 − 2x = 0   ⇒   2x = 150   ⇒   x = 75",
           "x = 75 is a whole number,",
           "which is what a count of items must be."
@@ -137,7 +143,13 @@
           "Solving 150 − 2x = 0 as x = 150.",
           "Reading 150 as the answer because it appears in the question."
         ],
-        "memory_tip": "For P = ax² + bx + c the stationary point is at x = −b/(2a). Here that is 150/2 = 75, which is a quick check on the algebra."
+        "memory_tip": "For P = ax² + bx + c the stationary point is at x = −b/(2a). Here that is 150/2 = 75, which is a quick check on the algebra.",
+        "lines_compact": [
+          "For the stationary point, put P′(x) = 0.",
+          "150 − 2x = 0   ⇒   2x = 150   ⇒   x = 75",
+          "x = 75 is a whole number,",
+          "which is what a count of items must be."
+        ]
       },
       {
         "id": "s3_confirm",
@@ -147,6 +159,10 @@
         "mark_note": "Method",
         "margin_note": "Third mark. Write P″ and state its sign. A stationary point is not a maximum until the test says so, even when the shape of the graph makes it obvious.",
         "lines": [
+          {
+            "text": "(differentiate P′(x) = 150 − 2x again)",
+            "added": true
+          },
           "P″(x) = −2",
           "P″(x) = −2 < 0 for every x.",
           "A negative second derivative means the stationary point",
@@ -181,7 +197,14 @@
           "Skipping the test because the answer looks obvious from the shape.",
           "Writing P″ = 2 and then claiming a maximum, which contradicts itself."
         ],
-        "memory_tip": "For any quadratic the second derivative is the constant 2a. Here a = −1, so P″ = −2 and the sign is settled in one line."
+        "memory_tip": "For any quadratic the second derivative is the constant 2a. Here a = −1, so P″ = −2 and the sign is settled in one line.",
+        "lines_compact": [
+          "P″(x) = −2",
+          "P″(x) = −2 < 0 for every x.",
+          "A negative second derivative means the stationary point",
+          "is a maximum.",
+          "So the profit is greatest when x = 75 items are sold per day."
+        ]
       },
       {
         "id": "s4_maximum_profit",
@@ -191,8 +214,20 @@
         "mark_note": "Answer",
         "margin_note": "Fourth mark. The question asks for TWO things, so the profit value must be computed as well. Substitute into the ORIGINAL P(x), not into the derivative.",
         "lines": [
+          {
+            "text": "(put 75 in place of x in P(x) = (150 − x)x − 1600)",
+            "added": true
+          },
           "Maximum profit = P(75) = (150 − 75)(75) − 1600",
+          {
+            "text": "(150 − 75 = 75, and 75 × 75 = 5625)",
+            "added": true
+          },
           "= 75 × 75 − 1600 = 5625 − 1600 = 4025",
+          {
+            "text": "(150 − 74 = 76 and 150 − 76 = 74)",
+            "added": true
+          },
           "Check: P(74) = 76 × 74 − 1600 = 5624 − 1600 = 4024",
           "and P(76) = 74 × 76 − 1600 = 4024, both smaller.",
           {
@@ -233,7 +268,21 @@
           "Substituting into P′(x), which gives 0 and not the profit.",
           "Forgetting to subtract the 1600 and writing 5625."
         ],
-        "memory_tip": "Substitute into the ORIGINAL function for the value, never into the derivative — the derivative is zero there, which is how the point was found."
+        "memory_tip": "Substitute into the ORIGINAL function for the value, never into the derivative — the derivative is zero there, which is how the point was found.",
+        "lines_compact": [
+          "Maximum profit = P(75) = (150 − 75)(75) − 1600",
+          "= 75 × 75 − 1600 = 5625 − 1600 = 4025",
+          "Check: P(74) = 76 × 74 − 1600 = 5624 − 1600 = 4024",
+          "and P(76) = 74 × 76 − 1600 = 4024, both smaller.",
+          {
+            "text": "∴ the company should sell 75 items per day,",
+            "style": "boxed"
+          },
+          {
+            "text": "and the maximum profit is 4025",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

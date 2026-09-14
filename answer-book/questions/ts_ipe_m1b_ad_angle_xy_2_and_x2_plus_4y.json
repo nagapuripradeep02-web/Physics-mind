@@ -34,7 +34,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.218, chapter 10 APPLICATIONS OF DERIVATIVES, the TANGENTS AND NORMALS sub-section, Short Answer question 7(i). Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4M over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question, weighted 2 on the point of intersection because a wrong point makes both later steps worthless. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.218, chapter 10 APPLICATIONS OF DERIVATIVES, the TANGENTS AND NORMALS sub-section, Short Answer question 7(i). Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4M over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question, weighted 2 on the point of intersection because a wrong point makes both later steps worthless. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say how you reduce the two equations to one, what cubic you get, and what formula gives the angle.",
   "answer": {
@@ -56,11 +56,24 @@
             "style": "heading"
           },
           "Given curves:  xy = 2   …(i)   and   x² + 4y = 0   …(ii)",
+          "(divide (i) by x; x ≠ 0, because xy = 2)",
           "From (i):  y = 2/x   (x ≠ 0)",
+          "(write 2/x in place of y in (ii))",
           "Put this in (ii):  x² + 4(2/x) = 0",
+          "(multiply each term by x: x² · x = x³",
+          {
+            "text": "  and 4(2/x) · x = 8)",
+            "style": "indent"
+          },
           "Multiply by x:  x³ + 8 = 0  ⇒  x³ = −8  ⇒  x = −2",
+          "(a³ + b³ = (a + b)(a² − ab + b²) with a = x, b = 2;",
+          {
+            "text": "  x² − 2x + 4 has discriminant 4 − 16 = −12 < 0)",
+            "style": "indent"
+          },
           "(x³ + 8 = (x + 2)(x² − 2x + 4),",
           "and x² − 2x + 4 has no real root.)",
+          "(put x = −2 in y = 2/x)",
           "x = −2  ⇒  y = 2/(−2) = −1",
           "∴ the curves meet only at P(−2, −1)."
         ],
@@ -105,9 +118,35 @@
         "margin_note": "Third mark. The first curve is a product, so differentiating xy needs the product rule. Both coordinates are negative here, so watch every sign.",
         "lines": [
           "From (i):  xy = 2. Differentiate using the product rule:",
+          {
+            "text": "(product rule: d/dx of xy is 1 · y + x · dy/dx;",
+            "added": true
+          },
+          {
+            "text": "  d/dx of 2 is 0)",
+            "style": "indent",
+            "added": true
+          },
           "y + x (dy/dx) = 0  ⇒  dy/dx = −y/x",
+          {
+            "text": "(put x = −2 and y = −1)",
+            "added": true
+          },
           "At P(−2, −1):  m₁ = −(−1)/(−2) = 1/(−2) = −1/2",
+          {
+            "text": "(differentiate (ii): d/dx of x² is 2x,",
+            "added": true
+          },
+          {
+            "text": "  and d/dx of 4y is 4 · dy/dx)",
+            "style": "indent",
+            "added": true
+          },
           "From (ii):  2x + 4 (dy/dx) = 0  ⇒  dy/dx = −x/2",
+          {
+            "text": "(put x = −2)",
+            "added": true
+          },
           "At P(−2, −1):  m₂ = −(−2)/2 = 1"
         ],
         "recall": {
@@ -140,7 +179,14 @@
           "Sign slip in −(−1)/(−2), giving +1/2 instead of −1/2.",
           "Differentiating 4y as 4 with no dy/dx factor."
         ],
-        "memory_tip": "For xy = c the slope is always −y/x, which is the product rule already done once."
+        "memory_tip": "For xy = c the slope is always −y/x, which is the product rule already done once.",
+        "lines_compact": [
+          "From (i):  xy = 2. Differentiate using the product rule:",
+          "y + x (dy/dx) = 0  ⇒  dy/dx = −y/x",
+          "At P(−2, −1):  m₁ = −(−1)/(−2) = 1/(−2) = −1/2",
+          "From (ii):  2x + 4 (dy/dx) = 0  ⇒  dy/dx = −x/2",
+          "At P(−2, −1):  m₂ = −(−2)/2 = 1"
+        ]
       },
       {
         "id": "s3_angle",
@@ -150,10 +196,45 @@
         "mark_note": "Answer",
         "margin_note": "Last mark. The denominator 1 + m₁m₂ works out to 1/2, so the fraction is (−3/2) ÷ (1/2) = −3, and the modulus makes it 3.",
         "lines": [
+          {
+            "text": "(the angle between two curves is the angle between",
+            "added": true
+          },
+          {
+            "text": "  their tangents at the common point)",
+            "style": "indent",
+            "added": true
+          },
           "If θ is the angle between the curves at P, then",
+          {
+            "text": "(the formula for the angle between two lines",
+            "added": true
+          },
+          {
+            "text": "  with slopes m₁ and m₂)",
+            "style": "indent",
+            "added": true
+          },
           "tanθ = |(m₁ − m₂)/(1 + m₁m₂)|",
+          {
+            "text": "(put m₁ = −1/2 and m₂ = 1)",
+            "added": true
+          },
           "= |(−1/2 − 1)/(1 + (−1/2)(1))|",
+          {
+            "text": "(−1/2 − 1 = −3/2; (−1/2)(1) = −1/2,",
+            "added": true
+          },
+          {
+            "text": "  so 1 − 1/2 = 1/2)",
+            "style": "indent",
+            "added": true
+          },
           "= |(−3/2)/(1/2)| = |−3| = 3",
+          {
+            "text": "(a calculator gives Tan⁻¹ 3 ≈ 71°34′)",
+            "added": true
+          },
           {
             "text": "∴ θ = Tan⁻¹(3) ≈ 71°34′",
             "style": "boxed"
@@ -188,7 +269,17 @@
           "Reporting Tan⁻¹(−3) without the modulus.",
           "Stopping at tanθ = 3 without stating the angle."
         ],
-        "memory_tip": "The difference of the slopes on top, one plus their product underneath, and the modulus of the fraction."
+        "memory_tip": "The difference of the slopes on top, one plus their product underneath, and the modulus of the fraction.",
+        "lines_compact": [
+          "If θ is the angle between the curves at P, then",
+          "tanθ = |(m₁ − m₂)/(1 + m₁m₂)|",
+          "= |(−1/2 − 1)/(1 + (−1/2)(1))|",
+          "= |(−3/2)/(1/2)| = |−3| = 3",
+          {
+            "text": "∴ θ = Tan⁻¹(3) ≈ 71°34′",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

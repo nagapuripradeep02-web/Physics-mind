@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.230, chapter 10 APPLICATIONS OF DERIVATIVES, the ROLLE'S AND LAGRANGE'S THEOREM sub-section, Very Short Answer question 8(i). **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box; we ship the chapter as ONE unit, so the sub-section is named above instead of a sub-chapter number. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.230, chapter 10 APPLICATIONS OF DERIVATIVES, the ROLLE'S AND LAGRANGE'S THEOREM sub-section, Very Short Answer question 8(i). **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box; we ship the chapter as ONE unit, so the sub-section is named above instead of a sub-chapter number. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say which two conditions you check first, and what equation you then solve for c.",
   "answer": {
@@ -59,7 +59,9 @@
           "Here f(x) = x² − 1, a = 2, b = 3",
           "f is a polynomial, so it is continuous on [2, 3]",
           "and differentiable on (2, 3). Both conditions hold.",
+          "(put 2 and 3 in place of x in x² − 1)",
           "f(2) = 2² − 1 = 3,   f(3) = 3² − 1 = 8",
+          "(the slope of the chord joining (2, 3) and (3, 8))",
           "(f(3) − f(2))/(3 − 2) = (8 − 3)/1 = 5"
         ],
         "recall": {
@@ -102,8 +104,16 @@
         "margin_note": "Second mark. Finish by saying c lies between 2 and 3. A value outside the interval would mean the working is wrong, so this line is a check, not a formality.",
         "memory_tip": "For any quadratic the point c is the midpoint of the interval. Here (2 + 3)/2 = 5/2, which matches.",
         "lines": [
+          {
+            "text": "(d/dx of x² − 1 is 2x)",
+            "added": true
+          },
           "f′(x) = 2x,   so f′(c) = 2c",
           "By the theorem there is c in (2, 3) with f′(c) = 5",
+          {
+            "text": "(divide both sides by 2)",
+            "added": true
+          },
           "2c = 5 ⇒ c = 5/2",
           "5/2 = 2.5, and 2 < 2.5 < 3, so c lies inside (2, 3)",
           {
@@ -138,6 +148,16 @@
         "common_mistakes": [
           "Giving c = 5 by solving f′(c) = 5 as though f′(x) = x.",
           "Stopping at c = 5/2 without saying it lies in (2, 3)."
+        ],
+        "lines_compact": [
+          "f′(x) = 2x,   so f′(c) = 2c",
+          "By the theorem there is c in (2, 3) with f′(c) = 5",
+          "2c = 5 ⇒ c = 5/2",
+          "5/2 = 2.5, and 2 < 2.5 < 3, so c lies inside (2, 3)",
+          {
+            "text": "∴ c = 5/2 ∈ (2, 3)",
+            "style": "boxed"
+          }
         ]
       }
     ]

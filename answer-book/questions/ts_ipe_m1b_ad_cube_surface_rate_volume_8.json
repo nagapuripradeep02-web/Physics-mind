@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.212, chapter 10 APPLICATIONS OF DERIVATIVES, the RATE MEASURE sub-section, Very Short Answer question 4. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.212, chapter 10 APPLICATIONS OF DERIVATIVES, the RATE MEASURE sub-section, Very Short Answer question 4. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — name the two formulas you would write, and say which rate you have to find on the way to the answer.",
   "answer": {
@@ -53,11 +53,19 @@
           },
           "Given: dV/dt = 8 cm³/sec.  Asked: dS/dt when a = 12 cm.",
           "Let a be the length of a side (edge) at time t. Then",
+          "(volume of a cube = a³; its surface is 6 squares,",
+          {
+            "text": "  each of area a²)",
+            "style": "indent"
+          },
           "V = a³   and   S = 6a²",
           "Differentiate V = a³ with respect to time t:",
+          "(chain rule: d/dt of a³ is 3a² · (da/dt))",
           "dV/dt = 3a²(da/dt)",
           "Put a = 12 and dV/dt = 8:",
+          "(12² = 144 and 3 × 144 = 432)",
           "8 = 3(12²)(da/dt) = 432(da/dt)",
+          "(divide both sides by 432; 8/432 = 1/54)",
           "∴ da/dt = 8/432 = 1/54 cm/sec"
         ],
         "recall": {
@@ -101,9 +109,21 @@
         "margin_note": "Second mark. dS/dt = 12a(da/dt). The 12 from the formula and the a = 12 from the question are two different 12s — write them out rather than cancelling in your head.",
         "lines": [
           "Differentiate S = 6a² with respect to time t:",
+          {
+            "text": "(chain rule: d/dt of 6a² is 6 · 2a · (da/dt) = 12a(da/dt))",
+            "added": true
+          },
           "dS/dt = 12a(da/dt)",
           "Put a = 12 and da/dt = 1/54:",
+          {
+            "text": "(12 × 12 = 144; 144/54 = (18 × 8)/(18 × 3) = 8/3)",
+            "added": true
+          },
           "dS/dt = 12(12)(1/54) = 144/54 = 8/3",
+          {
+            "text": "(8/3 = 2.666… ≈ 2.67)",
+            "added": true
+          },
           {
             "text": "∴ dS/dt = 8/3 cm²/sec ≈ 2.67 cm²/sec",
             "style": "boxed"
@@ -139,7 +159,17 @@
           "Leaving the answer as 144/54 without reducing it.",
           "Writing the unit as cm³/sec instead of cm²/sec."
         ],
-        "memory_tip": "A cube has six equal square faces, so S = 6a², and its derivative doubles the 6 into 12a."
+        "memory_tip": "A cube has six equal square faces, so S = 6a², and its derivative doubles the 6 into 12a.",
+        "lines_compact": [
+          "Differentiate S = 6a² with respect to time t:",
+          "dS/dt = 12a(da/dt)",
+          "Put a = 12 and da/dt = 1/54:",
+          "dS/dt = 12(12)(1/54) = 144/54 = 8/3",
+          {
+            "text": "∴ dS/dt = 8/3 cm²/sec ≈ 2.67 cm²/sec",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

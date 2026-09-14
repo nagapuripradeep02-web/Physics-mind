@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.212, chapter 10 APPLICATIONS OF DERIVATIVES, the RATE MEASURE sub-section, Very Short Answer question 1. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. SOURCE STEM DEFECT, RECORDED AND NOT SILENTLY CORRECTED: the book prints the fill rate as '2 cubic metre/mm'. 'mm' is not a unit of time, and the book's own working treats the figure as a rate per unit of time, so per MINUTE is what is intended. The stem above is authored as '2 cubic metres per minute' and the answer carries m/min. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.212, chapter 10 APPLICATIONS OF DERIVATIVES, the RATE MEASURE sub-section, Very Short Answer question 1. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. SOURCE STEM DEFECT, RECORDED AND NOT SILENTLY CORRECTED: the book prints the fill rate as '2 cubic metre/mm'. 'mm' is not a unit of time, and the book's own working treats the figure as a rate per unit of time, so per MINUTE is what is intended. The stem above is authored as '2 cubic metres per minute' and the answer carries m/min. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — name the formula you would write first, say what you do about the radius, and say what you differentiate with respect to.",
   "answer": {
@@ -54,9 +54,20 @@
           "Given: dV/dt = 2 m³/min.  Asked: dh/dt when h = 4 m.",
           "Let r be the radius and h the height",
           "of the water cone at time t.",
+          "(the formula for the volume of a cone)",
           "Volume of a cone:  V = (1/3)πr²h",
+          "(radius : height is the same for both cones,",
+          {
+            "text": "  and for the full cone it is 6 : 8)",
+            "style": "indent"
+          },
           "The water cone and the full cone are similar, so",
           "r/h = 6/8 = 3/4   ⇒   r = 3h/4",
+          "(write 3h/4 in place of r; (3h/4)² = 9h²/16;",
+          {
+            "text": "  (1/3)(9/16) = 9/48 = 3/16)",
+            "style": "indent"
+          },
           "∴ V = (1/3)π(3h/4)²h = (1/3)π(9h²/16)h = (3π/16)h³"
         ],
         "recall": {
@@ -100,12 +111,34 @@
         "margin_note": "Second mark. Differentiate with respect to TIME — that is what puts dh/dt on the right side. The value h = 4 goes in only after differentiating. Carry the unit m/min into the box.",
         "lines": [
           "Differentiate both sides with respect to time t:",
+          {
+            "text": "(chain rule: d/dt of h³ is 3h² · (dh/dt);",
+            "added": true
+          },
+          {
+            "text": "  then (3π/16) × 3 = 9π/16)",
+            "style": "indent",
+            "added": true
+          },
           "dV/dt = (3π/16)·3h²·(dh/dt) = (9π/16)h²(dh/dt)",
           "Put h = 4 and dV/dt = 2:",
+          {
+            "text": "(4² = 16, and (9π/16) × 16 = 9π)",
+            "added": true
+          },
           "2 = (9π/16)(4²)(dh/dt) = (9π/16)(16)(dh/dt)",
           {
             "text": "  = 9π(dh/dt)",
             "style": "indent"
+          },
+          {
+            "text": "(divide both sides by 9π; 9π ≈ 28.27",
+            "added": true
+          },
+          {
+            "text": "  and 2/28.27 ≈ 0.07)",
+            "style": "indent",
+            "added": true
           },
           {
             "text": "∴ dh/dt = 2/(9π) m/min ≈ 0.07 m/min",
@@ -142,7 +175,21 @@
           "Dropping the dh/dt factor that the chain rule produces.",
           "Writing the answer as 2/(9π) with no unit."
         ],
-        "memory_tip": "Differentiate first, substitute second — a number put in early has no derivative left to give."
+        "memory_tip": "Differentiate first, substitute second — a number put in early has no derivative left to give.",
+        "lines_compact": [
+          "Differentiate both sides with respect to time t:",
+          "dV/dt = (3π/16)·3h²·(dh/dt) = (9π/16)h²(dh/dt)",
+          "Put h = 4 and dV/dt = 2:",
+          "2 = (9π/16)(4²)(dh/dt) = (9π/16)(16)(dh/dt)",
+          {
+            "text": "  = 9π(dh/dt)",
+            "style": "indent"
+          },
+          {
+            "text": "∴ dh/dt = 2/(9π) m/min ≈ 0.07 m/min",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

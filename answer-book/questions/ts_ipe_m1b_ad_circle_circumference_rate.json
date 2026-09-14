@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.213, chapter 10 APPLICATIONS OF DERIVATIVES, the RATE MEASURE sub-section, Very Short Answer question 7. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.213, chapter 10 APPLICATIONS OF DERIVATIVES, the RATE MEASURE sub-section, Very Short Answer question 7. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — name the formula you would write, and say why the question gives you no radius.",
   "answer": {
@@ -52,8 +52,10 @@
             "style": "heading"
           },
           "Given: dr/dt = 0.7 cm/sec.  Asked: dC/dt.",
+          "(the formula for the circumference of a circle)",
           "Circumference of a circle of radius r:  C = 2πr",
           "Differentiate both sides with respect to time t:",
+          "(2π is a constant, and d/dt of r is dr/dt)",
           "dC/dt = 2π(dr/dt)"
         ],
         "recall": {
@@ -97,9 +99,17 @@
         "margin_note": "Second mark. 2π × 0.7 = 1.4π. State plainly that the answer holds for a circle of any radius — that observation is what the question is testing.",
         "lines": [
           "Put dr/dt = 0.7:",
+          {
+            "text": "(2 × 0.7 = 1.4)",
+            "added": true
+          },
           "dC/dt = 2π(0.7) = 1.4π",
           "This value contains no r, so the circumference increases",
           "at this same rate whatever the radius is.",
+          {
+            "text": "(1.4 × 3.1416 ≈ 4.398 ≈ 4.4)",
+            "added": true
+          },
           {
             "text": "∴ dC/dt = 1.4π cm/sec ≈ 4.4 cm/sec",
             "style": "boxed"
@@ -134,7 +144,17 @@
           "Giving the unit as cm²/sec, which belongs to an area rate.",
           "Adding a radius value that the question never supplied."
         ],
-        "memory_tip": "Doubling 0.7 gives 1.4, so the answer is simply 1.4π — the π stays because 2π was the constant in the formula."
+        "memory_tip": "Doubling 0.7 gives 1.4, so the answer is simply 1.4π — the π stays because 2π was the constant in the formula.",
+        "lines_compact": [
+          "Put dr/dt = 0.7:",
+          "dC/dt = 2π(0.7) = 1.4π",
+          "This value contains no r, so the circumference increases",
+          "at this same rate whatever the radius is.",
+          {
+            "text": "∴ dC/dt = 1.4π cm/sec ≈ 4.4 cm/sec",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },
