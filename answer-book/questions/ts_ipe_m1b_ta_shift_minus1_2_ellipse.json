@@ -185,10 +185,18 @@
         "margin_note": "Last mark. Expand, collect and read off the transformed equation in capital X and capital Y. The answer must be written in the NEW letters, never mixed with the old ones.",
         "memory_tip": "Write the answer in the NEW letters only — never mixed with the old ones.",
         "lines": [
-          "⇒ 2(X² − 2X + 1) + (Y² + 4Y + 4) − 4X + 4 + 4Y + 8 = 0",
+          "⇒ 2(X² − 2X + 1) + (Y² + 4Y + 4)",
+          {
+            "text": "  − 4X + 4 + 4Y + 8 = 0",
+            "style": "indent"
+          },
           "⇒ 2X² − 4X + 2 + Y² + 4Y + 4 − 4X + 4 + 4Y + 8 = 0",
           {
-            "text": "∴ Transformed equation is 2X² + Y² − 8X + 8Y + 18 = 0",
+            "text": "∴ Transformed equation is",
+            "style": "boxed"
+          },
+          {
+            "text": "2X² + Y² − 8X + 8Y + 18 = 0",
             "style": "boxed"
           }
         ],

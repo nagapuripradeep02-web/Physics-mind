@@ -95,7 +95,11 @@
           "⇒ x/9 + y/(−3) + z/(9/2) = 1",
           "which is in the intercept form  x/a + y/b + z/c = 1",
           {
-            "text": "Hence, x-intercept = 9,  y-intercept = −3,  z-intercept = 9/2",
+            "text": "Hence, x-intercept = 9,  y-intercept = −3,",
+            "style": "boxed"
+          },
+          {
+            "text": "z-intercept = 9/2",
             "style": "boxed"
           }
         ],

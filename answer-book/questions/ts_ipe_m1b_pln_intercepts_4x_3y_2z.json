@@ -104,7 +104,11 @@
           "⇒ x/(−1/2) + y/(−2/3) + z/1 = 1",
           "which is in the intercept form  x/a + y/b + z/c = 1",
           {
-            "text": "Hence, x-intercept = −1/2,  y-intercept = −2/3,  z-intercept = 1",
+            "text": "Hence, x-intercept = −1/2,  y-intercept = −2/3,",
+            "style": "boxed"
+          },
+          {
+            "text": "z-intercept = 1",
             "style": "boxed"
           }
         ],

@@ -131,7 +131,7 @@
             "original"
           ]
         },
-        "why": "Finding the original is the reverse journey, so the shift is subtracted rather than added. Using the forward formulas here is the single commonest error in the chapter.",
+        "why": "Finding the original equation reverses the change, so the shift is subtracted rather than added. Using the formulas for the other direction here is a common error.",
         "common_mistakes": [
           "Using x = X + h when the question asks for the ORIGINAL equation.",
           "Reversing only one of the two formulas."

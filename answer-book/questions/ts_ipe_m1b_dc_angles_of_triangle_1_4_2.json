@@ -247,7 +247,7 @@
             "add to one eighty"
           ]
         },
-        "why": "The three angles of any triangle add to 180°, so the sum is a real test of the working and not an extra line. Here it closes exactly, because cos C equals sin B and ∠A is a right angle.",
+        "why": "The three angles of any triangle add to 180°, so the sum is a real test of the working and not an extra line. Here the sum is exactly 180°, because cos C equals sin B and ∠A is a right angle.",
         "common_mistakes": [
           "Stopping after ∠C without checking that the three angles add to 180°.",
           "Losing the factor 2 when simplifying √532 to 2√133."

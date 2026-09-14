@@ -103,7 +103,7 @@
         "label": "Write the given condition",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. Move one distance across BEFORE squaring, so only one square root is ever squared at a time. The line is then arranged with the surviving root alone on one side.",
+        "margin_note": "First mark. Move one distance across BEFORE squaring, so only one square root is ever squared at a time. The line is then arranged with the remaining root alone on one side.",
         "memory_tip": "Move one distance across BEFORE squaring, so only one root is squared at a time.",
         "lines": [
           "Given condition: PA + PB = 8",
@@ -176,7 +176,7 @@
             "sixteen plus three y"
           ]
         },
-        "why": "PA² − PB² is a difference of two squares, so the y-terms collapse by (a+b)² − (a−b)² = 4ab and the whole line drops to the first degree.",
+        "why": "PA² − PB² is a difference of two squares, so the y-terms simplify by (a+b)² − (a−b)² = 4ab and the line becomes first degree.",
         "common_mistakes": [
           "Expanding both brackets in full and losing a sign instead of cancelling them.",
           "Using (a+b)² − (a−b)² = 2ab."
@@ -188,13 +188,17 @@
         "label": "Simplify to the locus",
         "marks": 2,
         "mark_note": "Solution",
-        "margin_note": "The last two marks. Square once more to clear the surviving root, then collect. The x² and y² coefficients come out DIFFERENT and both positive — what identifies the locus as an ellipse.",
-        "memory_tip": "Square again to clear the surviving root. Different but both positive coefficients — an ellipse.",
+        "margin_note": "The last two marks. Square once more to clear the remaining root, then collect. The x² and y² coefficients come out DIFFERENT and both positive — what identifies the locus as an ellipse.",
+        "memory_tip": "Square again to clear the remaining root. Different but both positive coefficients — an ellipse.",
         "lines": [
           "Squaring on both sides:  16 PB² = (16 + 3y)²",
           "⇒ 16[(x−2)² + (y+3)²] = 256 + 9y² + 96y",
           "⇒ 16[(x² − 4x + 4) + (y² + 6y + 9)] = 256 + 9y² + 96y",
-          "⇒ 16x² − 64x + 64 + 16y² + 96y + 144 = 256 + 9y² + 96y",
+          "⇒ 16x² − 64x + 64 + 16y² + 96y + 144",
+          {
+            "text": "  = 256 + 9y² + 96y",
+            "style": "indent"
+          },
           {
             "text": "∴ Locus of P is 16x² + 7y² − 64x − 48 = 0",
             "style": "boxed"
@@ -231,5 +235,5 @@
       }
     ]
   },
-  "insider_note": "Isolate PA before squaring or a PA·PB cross term survives. The two (x − 2)² brackets are identical and cancel, leaving 64 + 12y from the difference of squares, and the 96y cancels at the end."
+  "insider_note": "Isolate PA before squaring or a PA·PB cross term is left. The two (x − 2)² brackets are identical and cancel, leaving 64 + 12y from the difference of squares, and the 96y cancels at the end."
 }

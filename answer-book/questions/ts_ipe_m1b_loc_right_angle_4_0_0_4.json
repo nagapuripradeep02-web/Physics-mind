@@ -129,7 +129,7 @@
         "why": "A right angle at a point is almost never used as an angle in this chapter — it is used as Pythagoras. PA² + PB² = AB² turns the angle into distances, and distances are what coordinates can express.",
         "common_mistakes": [
           "Writing PA² + AB² = PB², which puts the right angle at the wrong vertex.",
-          "Writing the slope condition as m₁m₂ = 1 instead of −1; with the minus sign that route is correct and gives the same circle."
+          "Writing the slope condition as m₁m₂ = 1 instead of −1; with the minus sign that method is correct and gives the same circle."
         ]
       },
       {
@@ -141,7 +141,11 @@
         "margin_note": "Second mark. Every distance becomes the square of a coordinate difference, and because the condition is already squared there is no square root anywhere in this line.",
         "memory_tip": "Already squared, so no roots in this line.",
         "lines": [
-          "⇒ [(x−4)² + (y−0)²] + [(x−0)² + (y−4)²] = (4−0)² + (0−4)²"
+          "⇒ [(x−4)² + (y−0)²] + [(x−0)² + (y−4)²]",
+          {
+            "text": "  = (4−0)² + (0−4)²",
+            "style": "indent"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -177,7 +181,7 @@
         "label": "Simplify to the locus",
         "marks": 2,
         "mark_note": "Solution",
-        "margin_note": "The last two marks. Expand, cancel, and every x² and y² term survives with the SAME coefficient — that is what identifies the locus as a circle. Divide by that coefficient to finish.",
+        "margin_note": "The last two marks. Expand, cancel, and every x² and y² term has the SAME coefficient — that is what identifies the locus as a circle. Divide by that coefficient to finish.",
         "memory_tip": "Equal x² and y² coefficients means a circle — divide by that coefficient to finish.",
         "lines": [
           "⇒ (x² − 8x + 16) + y² + x² + (y² − 8y + 16) = 16 + 16",
@@ -220,5 +224,5 @@
       }
     ]
   },
-  "insider_note": "The right angle is at P, so AB² is the side that stands alone — the number 32, not an expression in x and y. The last mark is dividing the whole line by the common 2."
+  "insider_note": "The right angle is at P, so AB² is alone on one side — the number 32, not an expression in x and y. The last mark is dividing the whole line by the common 2."
 }

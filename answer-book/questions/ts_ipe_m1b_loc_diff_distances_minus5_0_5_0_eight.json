@@ -189,8 +189,8 @@
         "label": "Simplify to the locus",
         "marks": 2,
         "mark_note": "Solution",
-        "margin_note": "The last two marks. Squaring kills the ±, which is why a two-way condition still gives one curve. The x² and y² signs come out OPPOSITE — a hyperbola.",
-        "memory_tip": "Squaring kills the ±, which is why a two-way condition still gives ONE curve — a hyperbola.",
+        "margin_note": "The last two marks. Squaring removes the ±, which is why a two-way condition still gives one curve. The x² and y² signs come out OPPOSITE — a hyperbola.",
+        "memory_tip": "Squaring removes the ±, which is why a two-way condition still gives ONE curve — a hyperbola.",
         "lines": [
           "Squaring on both sides:  16 PB² = (16 − 5x)²",
           "⇒ 16[(x−5)² + y²] = 256 + 25x² − 160x",
@@ -232,5 +232,5 @@
       }
     ]
   },
-  "insider_note": "Isolate PA before squaring or a PA·PB cross term survives. The −160x appears on both sides and cancels; miss that and the x² coefficient comes out wrong. Opposite signs at the end mean a hyperbola, never an ellipse."
+  "insider_note": "Isolate PA before squaring or a PA·PB cross term is left. The −160x appears on both sides and cancels; miss that and the x² coefficient comes out wrong. Opposite signs at the end mean a hyperbola, never an ellipse."
 }

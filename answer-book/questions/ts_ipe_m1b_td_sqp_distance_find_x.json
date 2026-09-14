@@ -60,7 +60,8 @@
           "We take A(x₁,y₁,z₁) = (5,−1,7) and B(x₂,y₂,z₂) = (x,5,1)",
           "Given distance AB = 9",
           "⇒ √((x₂−x₁)² + (y₂−y₁)² + (z₂−z₁)²) = 9",
-          "⇒ √((x−5)² + (5+1)² + (1−7)²) = 9,  squaring on both sides, we get",
+          "⇒ √((x−5)² + (5+1)² + (1−7)²) = 9,",
+          "squaring on both sides, we get",
           "(x−5)² + 36 + 36 = 81"
         ],
         "recall": {

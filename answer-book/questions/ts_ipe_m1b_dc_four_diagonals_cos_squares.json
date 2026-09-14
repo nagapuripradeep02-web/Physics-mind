@@ -71,9 +71,11 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Let one of the vertices of the cube coincide with the origin O(0,0,0)",
+          "Let one of the vertices of the cube coincide",
+          "with the origin O(0,0,0)",
           "and edges coincide with the coordinate axes.",
-          "Let A, B, C be the vertices of the cube on the x-axis, y-axis, z-axis so that OA = OB = OC = a"
+          "Let A, B, C be the vertices of the cube on the x-axis,",
+          "y-axis, z-axis so that OA = OB = OC = a"
         ],
         "recall": {
           "credit": "say_it",
@@ -96,7 +98,7 @@
             "side a"
           ]
         },
-        "why": "Placing the cube on the axes is a free choice that costs nothing and makes every vertex a triple of 0's and a's. The answer is a pure number, so a must cancel — and it does.",
+        "why": "Placing the cube on the axes is allowed, since the angles do not depend on where the cube is placed, and makes every vertex a triple of 0's and a's. The answer is a pure number, so a must cancel — and it does.",
         "common_mistakes": [
           "Trying to work without coordinates.",
           "Using different edge lengths, which is not a cube."
@@ -111,9 +113,11 @@
         "margin_note": "Two marks. A cube has FOUR body diagonals, and the question needs all of them. Each joins a vertex to the one diagonally opposite through the body.",
         "memory_tip": "A cube has FOUR body diagonals and the question needs all of them.",
         "lines": [
-          "The vertices of the cube on xy-plane, yz-plane, zx-plane be L, M, N and P the remaining vertex in the space.",
+          "The vertices of the cube on xy-plane, yz-plane, zx-plane",
+          "be L, M, N and P the remaining vertex in the space.",
           "The 4 diagonals of the cube are  OP,  CL,  NB,  AM",
-          "The coordinates of the vertices are  A(a,0,0), B(0,a,0), C(0,0,a),",
+          "The coordinates of the vertices are",
+          "A(a,0,0), B(0,a,0), C(0,0,a),",
           "L(a,a,0), M(0,a,a), N(a,0,a) and P(a,a,a)",
           "The d.r's of OP = (a−0, a−0, a−0) = (a, a, a)",
           "The d.r's of CL = (a−0, a−0, 0−a) = (a, a, −a)",
@@ -144,7 +148,7 @@
             "signs"
           ]
         },
-        "why": "The four triples are (±a, a, ±a) in all four sign combinations — which is what makes the final sum collapse so neatly.",
+        "why": "The four triples are (±a, a, ±a) in all four sign combinations — which is what makes the final sum simplify.",
         "common_mistakes": [
           "Listing only two diagonals; this question needs all four.",
           "Including face diagonals among the four."
@@ -400,10 +404,11 @@
         "label": "Find cosα for the first diagonal",
         "marks": 2,
         "mark_note": "Method",
-        "margin_note": "Two marks. Let the ray have direction cosines (l, m, n), so l² + m² + n² = 1 — that identity is what makes the denominator collapse to √3·a.",
-        "memory_tip": "The ray's own l² + m² + n² = 1 is what collapses the denominator to √3·a.",
+        "margin_note": "Two marks. Let the ray have direction cosines (l, m, n), so l² + m² + n² = 1 — that identity is what makes the denominator √3·a.",
+        "memory_tip": "The ray's own l² + m² + n² = 1 is what makes the denominator √3·a.",
         "lines": [
-          "Let (l, m, n) be the d.c's of the given ray, then we have  l² + m² + n² = 1",
+          "Let (l, m, n) be the d.c's of the given ray,",
+          "then we have l² + m² + n² = 1",
           "The ray makes angles α, β, γ, δ with OP, CL, NB, AM",
           "∴ cosα = (al + am + an) / √((a²+a²+a²)(l²+m²+n²))",
           "= a(l + m + n) / √(3a²(1)) = a(l + m + n) / (√3 a)",
@@ -446,7 +451,8 @@
         "margin_note": "One mark. The other three diagonals differ only in signs, so their cosines are the same expression with signs changed — no new working is needed.",
         "memory_tip": "The other three differ only in SIGNS, so no new working is needed.",
         "lines": [
-          "Similarly,  cosβ = (l + m − n)/√3,   cosγ = (−l + m − n)/√3,   cosδ = (−l + m + n)/√3"
+          "Similarly,  cosβ = (l + m − n)/√3,",
+          "cosγ = (−l + m − n)/√3,   cosδ = (−l + m + n)/√3"
         ],
         "recall": {
           "credit": "say_it",
@@ -482,13 +488,17 @@
         "label": "Add the four squares",
         "marks": 2,
         "mark_note": "Solution",
-        "margin_note": "Two marks (the last two). Pair the four terms and use (a+b)² + (a−b)² = 2(a² + b²) twice — the cross terms cancel and only l² + m² + n² survives, which is 1.",
+        "margin_note": "Two marks (the last two). Pair the four terms and use (a+b)² + (a−b)² = 2(a² + b²) twice — the cross terms cancel and only l² + m² + n² is left, which is 1.",
         "memory_tip": "Pair the terms and use (a+b)² + (a−b)² = 2(a² + b²) twice — the cross terms cancel.",
         "lines": [
           "∴ cos²α + cos²β + cos²γ + cos²δ",
           "= ⅓[(l+m+n)² + (l+m−n)² + (−l+m−n)² + (−l+m+n)²]",
           "= ⅓[(l+m+n)² + (l+m−n)² + (l−m+n)² + (l−m−n)²]",
-          "= ⅓[2((l+m)² + n²) + 2((l−m)² + n²)]      [∵ (a+b)² + (a−b)² = 2(a² + b²)]",
+          "= ⅓[2((l+m)² + n²) + 2((l−m)² + n²)]",
+          {
+            "text": "  [∵ (a+b)² + (a−b)² = 2(a² + b²)]",
+            "style": "indent"
+          },
           "= ⅔[(l+m)² + (l−m)² + 2n²] = ⅔[2(l² + m²) + 2n²]",
           "= (4/3)(l² + m² + n²) = (4/3)(1)",
           {
@@ -526,5 +536,5 @@
       }
     ]
   },
-  "insider_note": "All four body diagonals are needed here, not one pair. Pair the squares as (l + m ± n) with (l − m ± n) so (a + b)² + (a − b)² = 2(a² + b²) applies twice, then l² + m² + n² = 1 closes it."
+  "insider_note": "All four body diagonals are needed here, not one pair. Pair the squares as (l + m ± n) with (l − m ± n) so (a + b)² + (a − b)² = 2(a² + b²) applies twice, then l² + m² + n² = 1 gives the answer."
 }

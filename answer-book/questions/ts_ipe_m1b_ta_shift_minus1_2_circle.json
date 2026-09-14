@@ -185,8 +185,16 @@
         "margin_note": "Last mark. Expand, collect and read off the transformed equation in capital X and capital Y. The answer must be written in the NEW letters, never mixed with the old ones.",
         "memory_tip": "The linear terms cancel completely here — the shift was to the circle's own centre.",
         "lines": [
-          "⇒ (X² − 2X + 1) + (Y² + 4Y + 4) + 2X − 2 − 4Y − 8 + 1 = 0",
-          "⇒ X² + Y² + (−2X + 2X) + (4Y − 4Y) + (1 + 4 − 2 − 8 + 1) = 0",
+          "⇒ (X² − 2X + 1) + (Y² + 4Y + 4)",
+          {
+            "text": "  + 2X − 2 − 4Y − 8 + 1 = 0",
+            "style": "indent"
+          },
+          "⇒ X² + Y² + (−2X + 2X) + (4Y − 4Y)",
+          {
+            "text": "  + (1 + 4 − 2 − 8 + 1) = 0",
+            "style": "indent"
+          },
           {
             "text": "∴ Transformed equation is X² + Y² − 4 = 0",
             "style": "boxed"

@@ -125,7 +125,7 @@
         "why": "Area is the one condition in this chapter that needs a determinant rather than a distance, and the half-determinant form is the one the board expects.",
         "common_mistakes": [
           "Forgetting the factor ½ in front of the determinant.",
-          "Dropping the modulus bars, which decides whether both branches survive."
+          "Dropping the modulus bars, which loses one of the two lines."
         ]
       },
       {
@@ -171,7 +171,7 @@
             "linear"
           ]
         },
-        "why": "Once the numbers are in, the determinant is a single 2×2 expansion and the whole condition collapses to one modulus of a linear expression.",
+        "why": "Once the numbers are in, the determinant is a single 2×2 expansion and the condition becomes one modulus of a linear expression.",
         "common_mistakes": [
           "Ordering the rows so the differences come out with the wrong sign.",
           "Expanding the determinant as a sum of diagonals instead of a difference."
@@ -224,5 +224,5 @@
       }
     ]
   },
-  "insider_note": "Double the 8.5 first so the determinant equals 17 and the ½ is cleared. The modulus then gives ±17, so TWO lines survive — the answer is their product, and reporting a single branch loses the last mark."
+  "insider_note": "Double the 8.5 first so the determinant equals 17 and the ½ is cleared. The modulus then gives ±17, so there are TWO lines — the answer is their product, and a single line loses the last mark."
 }

@@ -53,7 +53,8 @@
             "style": "heading"
           },
           "Here, (x₁, y₁, z₁) = (1, 2, −3) and a = 2, b = −3, c = 6",
-          "The equation of the plane passing through (x₁, y₁, z₁) and parallel to the plane",
+          "The equation of the plane passing through (x₁, y₁, z₁)",
+          "and parallel to the plane",
           "ax + by + cz + d = 0 is",
           "a(x − x₁) + b(y − y₁) + c(z − z₁) = 0"
         ],
@@ -79,7 +80,7 @@
             "only the constant changes"
           ]
         },
-        "why": "Two planes are parallel exactly when their normals point the same way, and the normal is carried by the coefficients — so keeping them is the whole condition.",
+        "why": "Two planes are parallel exactly when their normals point the same way, and the normal is given by the coefficients — so keeping them is the condition.",
         "common_mistakes": [
           "Changing a coefficient, which tilts the plane.",
           "Using the original constant d, which reproduces the SAME plane rather than a parallel one."

@@ -57,8 +57,10 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "The equation of the plane with intercepts a, b, c is  x/a + y/b + z/c = 1",
-          "∴ the required equation of the plane is  x/1 + y/2 + z/4 = 1"
+          "The equation of the plane with intercepts a, b, c",
+          "is  x/a + y/b + z/c = 1",
+          "∴ the required equation of the plane",
+          "is  x/1 + y/2 + z/4 = 1"
         ],
         "recall": {
           "credit": "say_it",

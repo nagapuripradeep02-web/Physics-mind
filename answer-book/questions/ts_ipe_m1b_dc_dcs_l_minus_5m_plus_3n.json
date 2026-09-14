@@ -117,7 +117,11 @@
           "⇒ 175m² + 63n² − 210mn + 5m² − 3n² = 0",
           "⇒ 180m² − 210mn + 60n² = 0",
           "⇒ 30(6m² − 7mn + 2n²) = 0   ⇒   6m² − 7mn + 2n² = 0",
-          "⇒ 6m² − 4mn − 3mn + 2n² = 0   ⇒   2m(3m − 2n) − n(3m − 2n) = 0",
+          "⇒ 6m² − 4mn − 3mn + 2n² = 0",
+          {
+            "text": "  ⇒   2m(3m − 2n) − n(3m − 2n) = 0",
+            "style": "indent"
+          },
           "⇒ (3m − 2n)(2m − n) = 0",
           "⇒ 3m − 2n = 0 ⇒ m = 2n/3  (or)  2m − n = 0 ⇒ m = n/2"
         ],
@@ -242,9 +246,11 @@
         "margin_note": "The last two marks. Direction ratios are enough to fix a direction, but the question asks for direction COSINES — so each triple is divided by the square root of the sum of its squares.",
         "memory_tip": "The question asks for direction COSINES, so divide each triple by the root of its sum of squares.",
         "lines": [
-          "On dividing (3) by √(1² + 2² + 3²) = √(1 + 4 + 9) = √14, we get",
+          "On dividing (3) by",
+          "√(1² + 2² + 3²) = √(1 + 4 + 9) = √14, we get",
           "d.c's of L₁ = (1/√14, 2/√14, 3/√14)",
-          "On dividing (4) by √((−1)² + 1² + 2²) = √(1 + 1 + 4) = √6, we get",
+          "On dividing (4) by",
+          "√((−1)² + 1² + 2²) = √(1 + 1 + 4) = √6, we get",
           {
             "text": "d.c's of L₂ = (−1/√6, 1/√6, 2/√6)",
             "style": "boxed"
@@ -272,7 +278,7 @@
             "normalise"
           ]
         },
-        "why": "Direction ratios give the direction; direction cosines are that same direction scaled so the squares add to 1. Dividing by √(a²+b²+c²) is the only step between them.",
+        "why": "Direction ratios give the direction; direction cosines are that same direction scaled so the squares add to 1. Dividing by √(a²+b²+c²) is the step between them.",
         "common_mistakes": [
           "Forgetting to divide one of the two triples.",
           "Dividing both triples by the same root instead of each by its own, √14 and √6."

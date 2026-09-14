@@ -56,10 +56,15 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "We take A = (2, 4, −1), B = (3, 6, −1), C = (4, 5, 1) and fourth vertex D = (a, b, c)",
+          "We take A = (2, 4, −1), B = (3, 6, −1), C = (4, 5, 1)",
+          "and fourth vertex D = (a, b, c)",
           "In the parallelogram ABCD,",
           "mid point of AC = mid point of BD",
-          "⇒ ((2+4)/2, (4+5)/2, (−1+1)/2) = ((3+a)/2, (6+b)/2, (−1+c)/2)"
+          "⇒ ((2+4)/2, (4+5)/2, (−1+1)/2)",
+          {
+            "text": "  = ((3+a)/2, (6+b)/2, (−1+c)/2)",
+            "style": "indent"
+          }
         ],
         "recall": {
           "credit": "say_it",

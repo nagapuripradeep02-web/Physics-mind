@@ -173,8 +173,8 @@
         "label": "Simplify to the locus",
         "marks": 2,
         "mark_note": "Solution",
-        "margin_note": "The last two marks. The x² cancels on both sides, so no x² survives — the locus is a parabola, y² = 4(x − 1), with vertex (1, 0). Check: (2, 2) is 2 units from A and 2 units from the y-axis, and satisfies this equation.",
-        "memory_tip": "The x² cancels across the equals sign, so y² survives alone — that is the parabola.",
+        "margin_note": "The last two marks. The x² cancels on both sides, so no x² is left — the locus is a parabola, y² = 4(x − 1), with vertex (1, 0). Check: (2, 2) is 2 units from A and 2 units from the y-axis, and satisfies this equation.",
+        "memory_tip": "The x² cancels across the equals sign, so only y² is left — that is the parabola.",
         "lines": [
           "⇒ y² − 4x + 4 = 0",
           "⇒ y² = 4(x − 1)",
@@ -205,7 +205,7 @@
             "parabola"
           ]
         },
-        "why": "Only one of the two squared terms survives, so the curve is a parabola. The form y² = 4(x − 1) reads off the vertex (1, 0) directly, which is the midpoint of A and its foot on the y-axis.",
+        "why": "Only one of the two squared terms is left, so the curve is a parabola. The form y² = 4(x − 1) reads off the vertex (1, 0) directly, which is the midpoint of A and its foot on the y-axis.",
         "common_mistakes": [
           "Cancelling the x² and also cancelling the −4x with it.",
           "Writing y² = 4(x + 1) by taking the 4 across with the wrong sign."

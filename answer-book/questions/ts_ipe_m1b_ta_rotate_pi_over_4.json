@@ -114,8 +114,16 @@
         "memory_tip": "Under a rotation each old coordinate mixes BOTH new ones: x = Xcosθ − Ysinθ, y = Ycosθ + Xsinθ.",
         "lines": [
           "Angle of rotation θ = π/4 = 45°, then",
-          "x = Xcos45° − Ysin45° = X(1/√2) − Y(1/√2)  ⇒  x = (X − Y)/√2",
-          "y = Ycos45° + Xsin45° = Y(1/√2) + X(1/√2)  ⇒  y = (X + Y)/√2"
+          "x = Xcos45° − Ysin45° = X(1/√2) − Y(1/√2)",
+          {
+            "text": "  ⇒  x = (X − Y)/√2",
+            "style": "indent"
+          },
+          "y = Ycos45° + Xsin45° = Y(1/√2) + X(1/√2)",
+          {
+            "text": "  ⇒  y = (X + Y)/√2",
+            "style": "indent"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -155,8 +163,16 @@
         "memory_tip": "Everything sits over the same denominator 2 — clear it once at the end.",
         "lines": [
           "From (1), transformed equation is",
-          "3((X − Y)/√2)² + 10((X − Y)/√2)((X + Y)/√2) + 3((X + Y)/√2)² = 9",
-          "⇒ 3(X² + Y² − 2XY)/2 + 10(X² − Y²)/2 + 3(X² + Y² + 2XY)/2 = 9"
+          "3((X − Y)/√2)² + 10((X − Y)/√2)((X + Y)/√2)",
+          {
+            "text": "  + 3((X + Y)/√2)² = 9",
+            "style": "indent"
+          },
+          "⇒ 3(X² + Y² − 2XY)/2 + 10(X² − Y²)/2",
+          {
+            "text": "  + 3(X² + Y² + 2XY)/2 = 9",
+            "style": "indent"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -191,10 +207,14 @@
         "label": "Simplify to the answer",
         "marks": 1,
         "mark_note": "Solution",
-        "margin_note": "Last mark. Expand and collect. The whole point of choosing this angle is that the XY terms cancel — if an XY term survives, an expansion went wrong.",
-        "memory_tip": "The angle was chosen so the XY terms CANCEL. A surviving XY term means an expansion went wrong.",
+        "margin_note": "Last mark. Expand and collect. The XY terms cancel here — if an XY term is left, an expansion went wrong.",
+        "memory_tip": "The XY terms CANCEL here. An XY term that is left means an expansion went wrong.",
         "lines": [
-          "⇒ [3X² + 3Y² − 6XY + 10X² − 10Y² + 3X² + 3Y² + 6XY] / 2 = 9",
+          "⇒ [3X² + 3Y² − 6XY + 10X² − 10Y²",
+          {
+            "text": "  + 3X² + 3Y² + 6XY] / 2 = 9",
+            "style": "indent"
+          },
           "⇒ (16X² − 4Y²)/2 = 9   ⇒   16X² − 4Y² = 18",
           {
             "text": "∴ Transformed equation is 8X² − 2Y² = 9",
@@ -223,7 +243,7 @@
             "transformed equation"
           ]
         },
-        "why": "These angles are chosen precisely so the cross term vanishes — a surviving XY term is the clearest sign that a bracket was expanded wrongly.",
+        "why": "For this angle the XY terms cancel, so an XY term that is left shows that a bracket was expanded wrongly.",
         "common_mistakes": [
           "Leaving an XY term in the answer.",
           "Forgetting to clear the common denominator at the end."
@@ -231,5 +251,5 @@
       }
     ]
   },
-  "insider_note": "The original equation is given, so substitute x = (X − Y)/√2 and y = (X + Y)/√2 — the minus sign belongs to x. The XY terms must cancel; if one survives, a sine term carried the wrong sign."
+  "insider_note": "The original equation is given, so substitute x = (X − Y)/√2 and y = (X + Y)/√2 — the minus sign belongs to x. The XY terms must cancel; if one is left, a sine term has the wrong sign."
 }

@@ -94,9 +94,12 @@
         "margin_note": "Second mark. Put that ratio into the section formula. A NEGATIVE ratio means the plane cuts the line EXTERNALLY, outside the segment — a real answer, not an error.",
         "memory_tip": "Put that ratio into the section formula. The negative ratio means an EXTERNAL division.",
         "lines": [
-          "∴ the point which divides A(2,4,5) and B(3,5,−4) in the ratio −2 : 3 is",
-          "P = ((mx₂ + nx₁)/(m+n), (my₂ + ny₁)/(m+n), (mz₂ + nz₁)/(m+n))",
-          "= ((−2×3 + 3×2)/(−2+3), (−2×5 + 3×4)/(−2+3), (−2×−4 + 3×5)/(−2+3))",
+          "∴ the point which divides A(2,4,5) and B(3,5,−4)",
+          "in the ratio −2 : 3 is",
+          "P = ((mx₂ + nx₁)/(m+n), (my₂ + ny₁)/(m+n),",
+          "(mz₂ + nz₁)/(m+n))",
+          "= ((−2×3 + 3×2)/(−2+3), (−2×5 + 3×4)/(−2+3),",
+          "(−2×−4 + 3×5)/(−2+3))",
           "= ((−6+6)/1, (−10+12)/1, (8+15)/1)",
           {
             "text": "∴ Point of intersection = (0, 2, 23)",
@@ -127,7 +130,7 @@
         "why": "A negative ratio marks EXTERNAL division: the cut lies outside the segment AB, not between A and B, which is why the point can come out far from both of them.",
         "common_mistakes": [
           "Swapping m and n in the section formula.",
-          "Treating a negative ratio as an error and flipping its sign."
+          "Treating a negative ratio as an error and changing its sign."
         ]
       }
     ]

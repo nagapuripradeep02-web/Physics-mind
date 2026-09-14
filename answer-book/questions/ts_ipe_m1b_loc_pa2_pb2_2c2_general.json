@@ -206,7 +206,7 @@
             "circle at the origin"
           ]
         },
-        "why": "The given range 0 < |a| < |c| is what makes c² − a² positive, so the radius √(c² − a²) is a real number and the locus is a genuine circle rather than an empty set.",
+        "why": "The given range 0 < |a| < |c| is what makes c² − a² positive, so the radius √(c² − a²) is a real number and the locus is a real circle, not an empty set.",
         "common_mistakes": [
           "Forgetting to divide the whole line by 2 and leaving 2a² and 2c².",
           "Writing the radius as c − a instead of √(c² − a²)."

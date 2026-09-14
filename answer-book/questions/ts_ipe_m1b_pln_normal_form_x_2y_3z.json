@@ -102,9 +102,14 @@
         "margin_note": "Second mark. Divide every term by √(a²+b²+c²). The three coefficients then square-and-add to 1, which is what makes them direction cosines of the normal.",
         "memory_tip": "Divide EVERY term by √(a²+b²+c²). The three coefficients then square-and-add to 1.",
         "lines": [
-          "Dividing the above equation by √(1² + 2² + (−3)²) = √(1 + 4 + 9) = √14, we have",
+          "Dividing the above equation by",
+          "√(1² + 2² + (−3)²) = √(1 + 4 + 9) = √14, we have",
           {
-            "text": "(1/√14)x + (2/√14)y + (−3/√14)z = 6/√14,  which is in the normal form",
+            "text": "(1/√14)x + (2/√14)y + (−3/√14)z = 6/√14,",
+            "style": "boxed"
+          },
+          {
+            "text": "which is in the normal form",
             "style": "boxed"
           }
         ],

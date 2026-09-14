@@ -95,7 +95,7 @@
         "kind": "diagram",
         "label": "Draw the right angle at P",
         "marks": 0,
-        "margin_note": "Worth no mark but worth drawing. The right angle sits at P, so AB is the HYPOTENUSE — that is the whole reason the condition becomes PA² + PB² = AB² with AB alone on the right.",
+        "margin_note": "Worth no mark but worth drawing. The right angle sits at P, so AB is the HYPOTENUSE — that is why the condition becomes PA² + PB² = AB² with AB alone on the right.",
         "memory_tip": "The right angle sits at P, so AB is the HYPOTENUSE — that is why AB alone is on the right.",
         "recall": {
           "credit": "name_it",
@@ -221,7 +221,7 @@
         "why": "A right angle at a point is almost never used as an angle in this chapter — it is used as Pythagoras. PA² + PB² = AB² turns the angle into distances, and distances are what coordinates can express.",
         "common_mistakes": [
           "Writing PA² + AB² = PB², which puts the right angle at the wrong vertex.",
-          "Writing the slope condition as m₁m₂ = 1 instead of −1; with the minus sign that route is correct and gives the same circle."
+          "Writing the slope condition as m₁m₂ = 1 instead of −1; with the minus sign that method is correct and gives the same circle."
         ]
       },
       {
@@ -269,10 +269,14 @@
         "label": "Simplify to the locus",
         "marks": 2,
         "mark_note": "Solution",
-        "margin_note": "The last two marks. Expand, cancel, and every x² and y² term survives with the SAME coefficient — that is what identifies the locus as a circle. Divide by that coefficient to finish.",
-        "memory_tip": "Every x² and y² survives with the SAME coefficient — that identifies a circle. Divide by it.",
+        "margin_note": "The last two marks. Expand, cancel, and every x² and y² term has the SAME coefficient — that is what identifies the locus as a circle. Divide by that coefficient to finish.",
+        "memory_tip": "Every x² and y² has the SAME coefficient — that identifies a circle. Divide by it.",
         "lines": [
-          "⇒ (x² − 4x + 4) + (y² − 6y + 9) + (x² + 2x + 1) + (y² − 10y + 25) = 9 + 4",
+          "⇒ (x² − 4x + 4) + (y² − 6y + 9)",
+          {
+            "text": "  + (x² + 2x + 1) + (y² − 10y + 25) = 9 + 4",
+            "style": "indent"
+          },
           "⇒ 2x² + 2y² − 2x − 16y + 39 = 13",
           "⇒ 2x² + 2y² − 2x − 16y + 26 = 0",
           "⇒ 2(x² + y² − x − 8y + 13) = 0",

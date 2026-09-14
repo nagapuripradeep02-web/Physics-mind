@@ -173,7 +173,7 @@
         "label": "Simplify to the locus",
         "marks": 2,
         "mark_note": "Solution",
-        "margin_note": "The last two marks. The x² and y² coefficients survive equal (both 3), so this locus is a circle. Check: (2, 4) is twice as far from the origin as from A, and it satisfies the final equation.",
+        "margin_note": "The last two marks. The x² and y² coefficients stay equal (both 3), so this locus is a circle. Check: (2, 4) is twice as far from the origin as from A, and it satisfies the final equation.",
         "memory_tip": "Both squared coefficients come out 3 — equal, so the locus is a circle.",
         "lines": [
           "⇒ 4x² − x² + 4y² − y² − 8x − 16y + 20 = 0",

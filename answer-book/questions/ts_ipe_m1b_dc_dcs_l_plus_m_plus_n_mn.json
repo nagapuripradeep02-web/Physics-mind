@@ -124,7 +124,11 @@
           "mn − 2n(−m − n) − 2m(−m − n) = 0",
           "⇒ mn + 2mn + 2n² + 2m² + 2mn = 0",
           "⇒ 2m² + 5mn + 2n² = 0",
-          "⇒ 2m² + 4mn + mn + 2n² = 0   ⇒   2m(m + 2n) + n(m + 2n) = 0",
+          "⇒ 2m² + 4mn + mn + 2n² = 0",
+          {
+            "text": "  ⇒   2m(m + 2n) + n(m + 2n) = 0",
+            "style": "indent"
+          },
           "⇒ (2m + n)(m + 2n) = 0",
           "⇒ 2m + n = 0  (or)  m + 2n = 0",
           "So, 2m + n = 0 ⇒ m = −n/2  (or)  m + 2n = 0 ⇒ m = −2n"
@@ -168,7 +172,11 @@
         "lines": [
           "Case (i): Put m = −n/2 in (1), then",
           "l = −(−n/2) − n = n/2 − n = −n/2   ∴ l = −n/2",
-          "Now, l : m : n = −n/2 : −n/2 : n = −1/2 : −1/2 : 1 = −1 : −1 : 2 = 1 : 1 : −2",
+          "Now, l : m : n = −n/2 : −n/2 : n = −1/2 : −1/2 : 1",
+          {
+            "text": "  = −1 : −1 : 2 = 1 : 1 : −2",
+            "style": "indent"
+          },
           "So, d.r's of L₁ = (a₁, b₁, c₁) = (1, 1, −2)  ……(3)"
         ],
         "recall": {
@@ -250,9 +258,11 @@
         "margin_note": "The last two marks. Direction ratios are enough to fix a direction, but the question asks for direction COSINES — so each triple is divided by the square root of the sum of its squares.",
         "memory_tip": "Direction RATIOS are not enough — divide each triple by the root of its sum of squares for cosines.",
         "lines": [
-          "On dividing (3) by √(1² + 1² + (−2)²) = √(1 + 1 + 4) = √6, we get",
+          "On dividing (3) by",
+          "√(1² + 1² + (−2)²) = √(1 + 1 + 4) = √6, we get",
           "d.c's of L₁ = (1/√6, 1/√6, −2/√6)",
-          "On dividing (4) by √(1² + (−2)² + 1²) = √(1 + 4 + 1) = √6, we get",
+          "On dividing (4) by",
+          "√(1² + (−2)² + 1²) = √(1 + 4 + 1) = √6, we get",
           {
             "text": "d.c's of L₂ = (1/√6, −2/√6, 1/√6)",
             "style": "boxed"
@@ -280,7 +290,7 @@
             "normalise"
           ]
         },
-        "why": "Direction ratios give the direction; direction cosines are that same direction scaled so the squares add to 1. Dividing by √(a²+b²+c²) is the only step between them.",
+        "why": "Direction ratios give the direction; direction cosines are that same direction scaled so the squares add to 1. Dividing by √(a²+b²+c²) is the step between them.",
         "common_mistakes": [
           "Forgetting to divide one of the two triples.",
           "Dividing by 6 instead of √6, so the squares do not add to 1."

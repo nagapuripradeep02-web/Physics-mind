@@ -168,7 +168,7 @@
             "nine plus two y"
           ]
         },
-        "why": "PA² − PB² is a difference of two squares, so the y-terms collapse by (a+b)² − (a−b)² = 4ab and the whole line drops to the first degree.",
+        "why": "PA² − PB² is a difference of two squares, so the y-terms simplify by (a+b)² − (a−b)² = 4ab and the line becomes first degree.",
         "common_mistakes": [
           "Expanding both y-brackets fully and slipping a sign instead of cancelling.",
           "Taking 4ab as 4(2)(y) but writing 8y² instead of 8y."
@@ -223,5 +223,5 @@
       }
     ]
   },
-  "insider_note": "Isolate PA before squaring or a cross term survives. Both fixed points sit on the y-axis, so the x² terms cancel and (a + b)² − (a − b)² = 4ab leaves 36 + 8y. The 36y then cancels on both sides."
+  "insider_note": "Isolate PA before squaring or a cross term is left. Both fixed points sit on the y-axis, so the x² terms cancel and (a + b)² − (a − b)² = 4ab leaves 36 + 8y. The 36y then cancels on both sides."
 }

@@ -93,7 +93,7 @@
         "marks": 1,
         "mark_note": "Solution",
         "margin_note": "Second mark. The point has a negative coordinate, so x − (−2) becomes x + 2. Expand all three brackets, then collect the constants and check the point satisfies the answer.",
-        "memory_tip": "x − (−2) becomes x + 2 — a negative coordinate flips the sign inside the bracket.",
+        "memory_tip": "x − (−2) becomes x + 2 — a negative coordinate changes the sign inside the bracket.",
         "lines": [
           "⇒ 3(x + 2) − 5(y − 1) + 4(z − 3) = 0",
           "⇒ 3x + 6 − 5y + 5 + 4z − 12 = 0",

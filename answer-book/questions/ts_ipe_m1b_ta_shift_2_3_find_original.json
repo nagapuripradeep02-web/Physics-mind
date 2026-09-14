@@ -138,7 +138,7 @@
             "original"
           ]
         },
-        "why": "Finding the original is the reverse journey, so the shift is subtracted rather than added. Using the forward formulas here is the single commonest error in the chapter.",
+        "why": "Finding the original equation reverses the change, so the shift is subtracted rather than added. Using the formulas for the other direction here is a common error.",
         "common_mistakes": [
           "Using x = X + h when the question asks for the ORIGINAL equation.",
           "Reversing only one of the two formulas."
@@ -154,7 +154,11 @@
         "memory_tip": "Every capital X and Y is replaced by its small-letter expression.",
         "lines": [
           "From (1), original equation is",
-          "(x−2)² + 3(x−2)(y−3) − 2(y−3)² + 17(x−2) − 7(y−3) − 11 = 0"
+          "(x−2)² + 3(x−2)(y−3) − 2(y−3)² + 17(x−2)",
+          {
+            "text": "  − 7(y−3) − 11 = 0",
+            "style": "indent"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -193,10 +197,22 @@
         "margin_note": "Last mark. Expand, collect and write the original equation in small x and small y. A capital letter left in the answer means a term was missed.",
         "memory_tip": "A capital letter left in the answer means a term was missed.",
         "lines": [
-          "⇒ (x² + 4 − 4x) + 3(xy − 3x − 2y + 6) − 2(y² + 9 − 6y) + 17x − 34 − 7y + 21 − 11 = 0",
-          "⇒ x² − 4x + 4 + 3xy − 9x − 6y + 18 − 2y² + 12y − 18 + 17x − 34 − 7y + 21 − 11 = 0",
+          "⇒ (x² + 4 − 4x) + 3(xy − 3x − 2y + 6) − 2(y² + 9 − 6y)",
           {
-            "text": "∴ Original equation is x² + 3xy − 2y² + 4x − y − 20 = 0",
+            "text": "  + 17x − 34 − 7y + 21 − 11 = 0",
+            "style": "indent"
+          },
+          "⇒ x² − 4x + 4 + 3xy − 9x − 6y + 18 − 2y² + 12y − 18",
+          {
+            "text": "  + 17x − 34 − 7y + 21 − 11 = 0",
+            "style": "indent"
+          },
+          {
+            "text": "∴ Original equation is",
+            "style": "boxed"
+          },
+          {
+            "text": "x² + 3xy − 2y² + 4x − y − 20 = 0",
             "style": "boxed"
           }
         ],

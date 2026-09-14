@@ -75,7 +75,8 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Consider a cube of side 'a' with vertices O, A, B, C, L, M, N, P where O = (0,0,0)",
+          "Consider a cube of side 'a' with vertices",
+          "O, A, B, C, L, M, N, P where O = (0,0,0)",
           "Take A, B, C on the X-axis, Y-axis, Z-axis, then",
           "A = (a,0,0),  B = (0,a,0),  C = (0,0,a)"
         ],
@@ -101,7 +102,7 @@
             "cube"
           ]
         },
-        "why": "Placing the cube on the axes is a free choice that costs nothing and makes every vertex a triple of 0's and a's. The answer is a pure number, so a must cancel — and it does.",
+        "why": "Placing the cube on the axes is allowed, since the angles do not depend on where the cube is placed, and makes every vertex a triple of 0's and a's. The answer is a pure number, so a must cancel — and it does.",
         "common_mistakes": [
           "Trying to answer without choosing coordinates at all.",
           "Placing the cube's CENTRE at the origin, which makes every coordinate a half."
@@ -432,7 +433,15 @@
           "= |a(a) + a(a) + a(−a)| / √((a²+a²+a²)(a²+a²+a²))",
           "= a² / √((3a²)(3a²)) = a²/(3a²) = 1/3",
           {
-            "text": "∴ cosθ = 1/3  ⇒  angle between the diagonals of a cube is Cos⁻¹(1/3)",
+            "text": "∴ cosθ = 1/3",
+            "style": "boxed"
+          },
+          {
+            "text": "⇒  angle between the diagonals of a cube",
+            "style": "boxed"
+          },
+          {
+            "text": "is Cos⁻¹(1/3)",
             "style": "boxed"
           }
         ],

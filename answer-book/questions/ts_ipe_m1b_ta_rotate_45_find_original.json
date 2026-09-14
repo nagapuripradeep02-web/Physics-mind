@@ -115,8 +115,16 @@
         "memory_tip": "Going BACK needs the reverse formulas: X = xcosθ + ysinθ and Y = ycosθ − xsinθ. The minus moves to Y.",
         "lines": [
           "Angle of rotation θ = 45°, then",
-          "X = xcosθ + ysinθ = xcos45° + ysin45°  ⇒  X = (x + y)/√2",
-          "Y = ycosθ − xsinθ = ycos45° − xsin45°  ⇒  Y = (y − x)/√2"
+          "X = xcosθ + ysinθ = xcos45° + ysin45°",
+          {
+            "text": "  ⇒  X = (x + y)/√2",
+            "style": "indent"
+          },
+          "Y = ycosθ − xsinθ = ycos45° − xsin45°",
+          {
+            "text": "  ⇒  Y = (y − x)/√2",
+            "style": "indent"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -156,8 +164,16 @@
         "memory_tip": "(x + y)(y − x) is a difference of two squares — spot that before expanding.",
         "lines": [
           "From (1), original equation is",
-          "17((x + y)/√2)² − 16((x + y)/√2)((y − x)/√2) + 17((y − x)/√2)² = 225",
-          "⇒ 17(x² + y² + 2xy)/2 − 16(y² − x²)/2 + 17(y² + x² − 2xy)/2 = 225",
+          "17((x + y)/√2)² − 16((x + y)/√2)((y − x)/√2)",
+          {
+            "text": "  + 17((y − x)/√2)² = 225",
+            "style": "indent"
+          },
+          "⇒ 17(x² + y² + 2xy)/2 − 16(y² − x²)/2",
+          {
+            "text": "  + 17(y² + x² − 2xy)/2 = 225",
+            "style": "indent"
+          },
           "  [∵ (x + y)(y − x) = y² − x²]"
         ],
         "recall": {
@@ -197,7 +213,11 @@
         "margin_note": "Last mark. The xy terms are equal and opposite and cancel; multiply both sides by 2 to clear the denominator, then divide the whole line by 2 to reach 25x² + 9y² = 225.",
         "memory_tip": "The xy terms are equal and opposite and cancel. Multiply by 2 to clear the /2, then divide the whole line by 2 to reach 25x² + 9y² = 225.",
         "lines": [
-          "⇒ [17x² + 17y² + 34xy − 16y² + 16x² + 17y² + 17x² − 34xy] / 2 = 225",
+          "⇒ [17x² + 17y² + 34xy − 16y² + 16x²",
+          {
+            "text": "  + 17y² + 17x² − 34xy] / 2 = 225",
+            "style": "indent"
+          },
           "⇒ (50x² + 18y²)/2 = 225   ⇒   50x² + 18y² = 450",
           {
             "text": "∴ Original equation is 25x² + 9y² = 225",

@@ -102,7 +102,11 @@
         "margin_note": "Second mark. The same formula as for two lines. The modulus keeps the answer to the acute angle between the planes.",
         "memory_tip": "Both roots are √6, so the denominator is 6 and cos θ = 1/2 — a familiar angle.",
         "lines": [
-          "∴ cosθ = |a₁a₂ + b₁b₂ + c₁c₂| / √((a₁²+b₁²+c₁²)(a₂²+b₂²+c₂²))",
+          "∴ cosθ = |a₁a₂ + b₁b₂ + c₁c₂|",
+          {
+            "text": "  / √((a₁²+b₁²+c₁²)(a₂²+b₂²+c₂²))",
+            "style": "indent"
+          },
           "= |2(1) − 1(1) + 1(2)| / √((2² + (−1)² + 1²)(1² + 1² + 2²))",
           "= |2 − 1 + 2| / √((4 + 1 + 1)(1 + 1 + 4))",
           "= 3/√(6 × 6) = 3/6 = 1/2 = cos60°",

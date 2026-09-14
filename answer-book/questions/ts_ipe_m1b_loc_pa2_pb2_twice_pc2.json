@@ -145,8 +145,16 @@
         "margin_note": "Second mark, also printed. Both sides get the distance formula in squared form; the 2 on the right multiplies the whole bracket, not just one term.",
         "memory_tip": "The 2 on the right multiplies the WHOLE bracket, not just one term.",
         "lines": [
-          "⇒ [(x−1)² + (y−2)²] + [(x−2)² + (y+3)²] = 2[(x+2)² + (y−3)²]",
-          "⇒ (x²+1−2x) + (y²+4−4y) + (x²+4−4x) + (y²+9+6y) = 2[(x²+4+4x) + (y²+9−6y)]"
+          "⇒ [(x−1)² + (y−2)²] + [(x−2)² + (y+3)²]",
+          {
+            "text": "  = 2[(x+2)² + (y−3)²]",
+            "style": "indent"
+          },
+          "⇒ (x²+1−2x) + (y²+4−4y) + (x²+4−4x) + (y²+9+6y)",
+          {
+            "text": "  = 2[(x²+4+4x) + (y²+9−6y)]",
+            "style": "indent"
+          }
         ],
         "recall": {
           "credit": "say_it",

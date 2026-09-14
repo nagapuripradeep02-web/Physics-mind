@@ -134,13 +134,17 @@
         "label": "Substitute the distances",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Second mark. The y² terms cancel because both fixed points sit on the x-axis, and the x-terms collapse by the difference of two squares. Squaring here also removes the ±.",
+        "margin_note": "Second mark. The y² terms cancel because both fixed points sit on the x-axis, and the x-terms simplify by the difference of two squares. Squaring here also removes the ±.",
         "memory_tip": "Both fixed points sit on the x-axis, so the y² terms cancel outright.",
         "lines": [
           "⇒ ±8 PB = 16 + [(x+4)² + (y−0)²] − [(x−4)² + (y−0)²]",
           "⇒ ±8 PB = 16 + (x+4)² − (x−4)²",
           "⇒ ±8 PB = 16 + 4(x)(4)      [∵ (a+b)² − (a−b)² = 4ab]",
-          "⇒ ±8 PB = 16 + 16x   ⇒   ±PB = 2(1 + x)   ⇒   PB² = 4(x + 1)²"
+          "⇒ ±8 PB = 16 + 16x",
+          {
+            "text": "  ⇒   ±PB = 2(1 + x)   ⇒   PB² = 4(x + 1)²",
+            "style": "indent"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -220,5 +224,5 @@
       }
     ]
   },
-  "insider_note": "Never square |PA − PB| = 4 directly; isolate PA first or a PA·PB cross term survives. PB is measured from B = (−4, 0), so PB² is the (x + 4)² bracket — swapping the two brackets flips the sign of the 16x."
+  "insider_note": "Never square |PA − PB| = 4 directly; isolate PA first or a PA·PB cross term is left. PB is measured from B = (−4, 0), so PB² is the (x + 4)² bracket — swapping the two brackets changes the sign of the 16x."
 }

@@ -123,7 +123,7 @@
         },
         "why": "A ratio of two distances squares cleanly in one step, so both square roots disappear together and no term is left outside.",
         "common_mistakes": [
-          "Writing 2PA = 3PB, which turns the ratio upside down.",
+          "Writing 2PA = 3PB, which inverts the ratio.",
           "Squaring to 3PA² = 2PB² and leaving the numbers unsquared."
         ]
       },
@@ -175,8 +175,8 @@
         "label": "Simplify to the locus",
         "marks": 2,
         "mark_note": "Solution",
-        "margin_note": "The last two marks. The x² and y² coefficients survive equal (both 5), so this locus is a circle. Check: the point (29/5, 0) divides the join of A and B in the ratio 2 : 3 and satisfies the final equation.",
-        "memory_tip": "The x² and y² coefficients survive equal, so the locus is a circle — never a straight line.",
+        "margin_note": "The last two marks. The x² and y² coefficients stay equal (both 5), so this locus is a circle. Check: the point (29/5, 0) divides the join of A and B in the ratio 2 : 3 and satisfies the final equation.",
+        "memory_tip": "The x² and y² coefficients stay equal, so the locus is a circle, not a straight line (a straight line comes only from the ratio 1 : 1).",
         "lines": [
           "⇒ 9x² + 9y² − 90x + 72y + 369",
           "      = 4x² + 4y² − 56x − 48y + 340",

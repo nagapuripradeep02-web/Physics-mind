@@ -71,9 +71,18 @@
           },
           "Given l + m + n = 0  ⇒  l = −(m + n)  ……(1);",
           "2mn + 3nl − 5lm = 0  ……(2)",
-          "Solving (1) & (2), we get  2mn − 3n(m + n) + 5m(m + n) = 0",
-          "⇒ 2mn − 3mn − 3n² + 5m² + 5mn = 0   ⇒   5m² + 4mn − 3n² = 0",
-          "⇒ 5m²/n² + 4mn/n² − 3n²/n² = 0   ⇒   5(m/n)² + 4(m/n) − 3 = 0"
+          "Solving (1) & (2), we get",
+          "2mn − 3n(m + n) + 5m(m + n) = 0",
+          "⇒ 2mn − 3mn − 3n² + 5m² + 5mn = 0",
+          {
+            "text": "  ⇒   5m² + 4mn − 3n² = 0",
+            "style": "indent"
+          },
+          "⇒ 5m²/n² + 4mn/n² − 3n²/n² = 0",
+          {
+            "text": "  ⇒   5(m/n)² + 4(m/n) − 3 = 0",
+            "style": "indent"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -99,7 +108,7 @@
         "why": "The perpendicularity test needs only l₁l₂ + m₁m₂ + n₁n₂, and each product is the PRODUCT OF THE ROOTS of one of these quadratics — so the individual lines never have to be found. That is what keeps an eight-mark question short.",
         "common_mistakes": [
           "Solving for the two lines explicitly, which is far more work than the question needs.",
-          "Substituting l = m + n and losing the minus sign, which flips both the 3nl and the 5lm term."
+          "Substituting l = m + n and losing the minus sign, which changes the signs of both the 3nl and the 5lm term."
         ]
       },
       {
@@ -111,7 +120,8 @@
         "margin_note": "One mark. For ax² + bx + c = 0 the product of the roots is c/a. The two roots here are m₁/n₁ and m₂/n₂, so their product gives m₁m₂ against n₁n₂.",
         "memory_tip": "For ax² + bx + c = 0 the product of roots is c/a, and the roots here are m₁/n₁ and m₂/n₂.",
         "lines": [
-          "This is a quadratic equation in m/n; its roots are taken as  m₁/n₁,  m₂/n₂",
+          "This is a quadratic equation in m/n;",
+          "its roots are taken as  m₁/n₁,  m₂/n₂",
           "Product of roots  (m₁/n₁)(m₂/n₂) = c/a = −3/5",
           "  [∵ Product of roots of ax² + bx + c = 0 is αβ = c/a]",
           "⇒ m₁m₂/(n₁n₂) = −3/5   ⇒   m₁m₂/3 = n₁n₂/(−5)  ……(3)"
@@ -154,10 +164,20 @@
         "memory_tip": "The same move with a different letter removed, giving roots l₁/m₁ and l₂/m₂.",
         "lines": [
           "From (1), n = −(l + m)",
-          "Substituting this value of n in (2), we get  −2m(l + m) − 3l(l + m) − 5lm = 0",
-          "⇒ −2lm − 2m² − 3l² − 3lm − 5lm = 0   ⇒   3l² + 10lm + 2m² = 0",
-          "⇒ 3l²/m² + 10lm/m² + 2m²/m² = 0   ⇒   3(l/m)² + 10(l/m) + 2 = 0",
-          "This is a quadratic equation in l/m; its roots are taken as  l₁/m₁,  l₂/m₂",
+          "Substituting this value of n in (2), we get",
+          "−2m(l + m) − 3l(l + m) − 5lm = 0",
+          "⇒ −2lm − 2m² − 3l² − 3lm − 5lm = 0",
+          {
+            "text": "  ⇒   3l² + 10lm + 2m² = 0",
+            "style": "indent"
+          },
+          "⇒ 3l²/m² + 10lm/m² + 2m²/m² = 0",
+          {
+            "text": "  ⇒   3(l/m)² + 10(l/m) + 2 = 0",
+            "style": "indent"
+          },
+          "This is a quadratic equation in l/m;",
+          "its roots are taken as  l₁/m₁,  l₂/m₂",
           "Product of roots  (l₁/m₁)(l₂/m₂) = c/a = 2/3",
           "⇒ l₁l₂/(m₁m₂) = 2/3   ⇒   l₁l₂/2 = m₁m₂/3  ……(4)"
         ],
@@ -198,7 +218,8 @@
         "margin_note": "The last two marks. Chain (3) and (4) into one string of equal fractions, call the common value k, and add. Two lines are perpendicular exactly when that sum is zero.",
         "memory_tip": "Chain the results into one string of equal fractions, call it k, and add. Zero means perpendicular.",
         "lines": [
-          "From (3) and (4), we get  l₁l₂/2 = m₁m₂/3 = n₁n₂/(−5) = k  (say)",
+          "From (3) and (4), we get",
+          "l₁l₂/2 = m₁m₂/3 = n₁n₂/(−5) = k  (say)",
           "⇒ l₁l₂ = 2k,  m₁m₂ = 3k,  n₁n₂ = −5k",
           "∴ l₁l₂ + m₁m₂ + n₁n₂ = 2k + 3k − 5k = 5k − 5k = 0",
           {
@@ -229,7 +250,7 @@
             "perpendicular"
           ]
         },
-        "why": "The three coefficients of the original second relation, 2, 3 and −5, ARE the three products up to the common factor k — and they were chosen to add to zero, which is the whole question.",
+        "why": "The three coefficients of the original second relation, 2, 3 and −5, ARE the three products up to the common factor k — and they add to zero, which is what the question needs.",
         "common_mistakes": [
           "Adding the coefficients of the wrong relation.",
           "Concluding perpendicular without showing the sum is zero."

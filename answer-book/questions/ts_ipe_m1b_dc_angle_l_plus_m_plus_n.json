@@ -246,7 +246,11 @@
         "lines": [
           "If θ is the angle between the lines then from (3), (4), we get",
           "cosθ = |a₁a₂ + b₁b₂ + c₁c₂| / √((a₁²+b₁²+c₁²)(a₂²+b₂²+c₂²))",
-          "= |(−1)(0) + (0)(−1) + (1)(1)| / √(((−1)²+0²+1²)(0²+(−1)²+1²))",
+          "= |(−1)(0) + (0)(−1) + (1)(1)|",
+          {
+            "text": "  / √(((−1)²+0²+1²)(0²+(−1)²+1²))",
+            "style": "indent"
+          },
           "= 1/√((2)(2)) = 1/√4 = 1/2 = cos60°",
           {
             "text": "∴ Hence angle between the lines is 60°",
