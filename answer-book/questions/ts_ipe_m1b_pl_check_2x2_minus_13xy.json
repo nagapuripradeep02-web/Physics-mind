@@ -104,7 +104,7 @@
         "kind": "equation",
         "label": "Test Δ = 0",
         "marks": 1,
-        "margin_note": "First mark. Δ = abc + 2fgh − af² − bg² − ch² is the master test — it is zero exactly when the equation factors into two lines.",
+        "margin_note": "First mark. Δ = abc + 2fgh − af² − bg² − ch² is the first test — it is zero exactly when the equation factors into two linear factors, which may not be real.",
         "lines": [
           {
             "text": "(the first of the four conditions for a pair of lines is Δ = 0)",
@@ -179,7 +179,7 @@
           "Arithmetic slip with the quarters that come from halved coefficients."
         ],
         "mark_note": "Method",
-        "memory_tip": "Δ = abc + 2fgh − af² − bg² − ch² is the master test: zero exactly when it factors into two lines.",
+        "memory_tip": "Δ = abc + 2fgh − af² − bg² − ch² is zero exactly when the equation factors into two linear factors (real or not).",
         "lines_compact": [
           "(i) Δ = abc + 2fgh − af² − bg² − ch²",
           "= 2(−7)(−6) + 2(23/2)(1/2)(−13/2) − 2(23/2)²",
@@ -197,7 +197,7 @@
         "kind": "equation",
         "label": "Test the three inequalities",
         "marks": 1,
-        "margin_note": "One mark. Δ = 0 alone is not enough — the three inequalities confirm the factors are REAL rather than complex. All four conditions together settle it.",
+        "margin_note": "One mark. Δ = 0 alone is not enough — the three inequalities confirm the factors are REAL rather than complex. All four conditions together prove it.",
         "lines": [
           {
             "text": "((−13/2)² = 169/4; −ab = −2(−7) = +14 = 56/4)",
@@ -467,9 +467,9 @@
             "cos inverse"
           ]
         },
-        "why": "h² − ab was already computed for the inequality test, so the angle costs almost nothing extra — which is why the question asks for all three parts together.",
+        "why": "h² − ab was already computed for the inequality test, so the angle needs almost no extra work.",
         "common_mistakes": [
-          "Using cosθ's formula with 2h when tanθ's formula wants h² − ab.",
+          "Writing h = −13 instead of −13/2 in h² − ab, which gives tanθ = 2√183/5 instead of 3.",
           "Dropping the modulus on |a + b|: here a + b = −5, so a negative tangent comes out."
         ],
         "mark_note": "Solution",
@@ -491,5 +491,5 @@
       }
     ]
   },
-  "insider_note": "h, g and f are all halves here, so work over a denominator of 4 rather than decimalising. Three things are marked: Δ = 0, the point of intersection, and the angle from tanθ = 2√(h² − ab)/|a + b|."
+  "insider_note": "h, g and f are all halves here, so work over a denominator of 4 rather than decimalising. Four things are marked: Δ = 0, the three inequalities, the point of intersection, and the angle from tanθ = 2√(h² − ab)/|a + b|."
 }

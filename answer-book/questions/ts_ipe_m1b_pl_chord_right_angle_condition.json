@@ -48,7 +48,7 @@
         "kind": "equation",
         "label": "Write the chord and the circle",
         "marks": 0,
-        "margin_note": "No mark of its own. The chord is already given as lx + my = 1 — exactly the '= 1' form homogenisation needs — so no clearing is required here, unlike a chord given as ax + by = c, which must first be divided by c.",
+        "margin_note": "No mark of its own. The chord is already given as lx + my = 1 — exactly the '= 1' form homogenisation needs — so no clearing is required here, unlike a chord such as 2x + 3y = 5, which must first be divided by 5.",
         "lines": [
           {
             "text": "Sol:",
@@ -83,7 +83,7 @@
         "why": "Homogenisation needs the line as (something) = 1, and this question already gives it that way, so no dividing-through step is needed before the homogenisation.",
         "common_mistakes": [
           "Rearranging the chord unnecessarily and introducing a sign error.",
-          "Leaving the circle as x² + y² = a² and forgetting to move a² across."
+          "Moving a² across as +a², which gives a²(l² + m²) = −2."
         ],
         "memory_tip": "The chord is already in the = 1 form that homogenisation needs."
       },
@@ -160,7 +160,7 @@
         "kind": "equation",
         "label": "Collect the coefficients",
         "marks": 1,
-        "margin_note": "One mark. Expand the square and group by x², y² and xy. Each coefficient carries an a² and the letters l and m, which is what the closing condition will compare.",
+        "margin_note": "One mark. Expand the square and group by x², y² and xy. Each coefficient carries an a², and these coefficients are what the closing condition will compare.",
         "lines": [
           {
             "text": "((lx + my)² = l²x² + 2lmxy + m²y²)",
@@ -217,18 +217,18 @@
         "kind": "boxed_final",
         "label": "Apply the right-angle condition",
         "marks": 2,
-        "margin_note": "The last two marks. 'Subtends a right angle at the origin' is a statement about the two lines from the origin — which is precisely the homogenised pair — so the condition is a + b = 0, the perpendicular condition for a pair of lines through the origin.",
+        "margin_note": "The last two marks. 'Subtends a right angle at the origin' is a statement about the two lines from the origin — which is precisely the homogenised pair — so the condition is coefficient of x² + coefficient of y² = 0, the perpendicular condition for a pair of lines through the origin.",
         "lines": [
           "The chord subtends a right angle AT THE ORIGIN,",
           "and the homogenised pair is exactly the pair of lines",
           "from the origin to the chord's ends —",
           "so that pair must be perpendicular:",
           {
-            "text": "(the pair ax² + 2hxy + by² = 0 is perpendicular",
+            "text": "(a pair of lines through the origin is perpendicular when",
             "added": true
           },
           {
-            "text": "  when a + b = 0)",
+            "text": "  the coefficient of x² plus the coefficient of y² is 0)",
             "style": "indent",
             "added": true
           },
@@ -279,13 +279,13 @@
             "equals two"
           ]
         },
-        "why": "One word changes the closing condition: coincident gives h² = ab, while a right angle gives a + b = 0. The homogenisation that comes before it is identical in both cases.",
+        "why": "One word changes the closing condition. Write A, B and 2H for the coefficients of x², y² and xy: coincident gives H² = AB, while a right angle gives A + B = 0. The homogenisation that comes before it is identical in both cases.",
         "common_mistakes": [
-          "Using h² = ab, which is the coincident-lines condition.",
+          "Using H² = AB, where 2H is the xy coefficient, which is the coincident-lines condition.",
           "Forgetting that the two 1's add to 2."
         ],
         "mark_note": "Solution",
-        "memory_tip": "A right angle at the ORIGIN is about the homogenised pair, so the condition is a + b = 0.",
+        "memory_tip": "A right angle at the ORIGIN is about the homogenised pair, so the condition is coefficient of x² + coefficient of y² = 0.",
         "lines_compact": [
           "The chord subtends a right angle AT THE ORIGIN,",
           "and the homogenised pair is exactly the pair of lines",
@@ -302,5 +302,5 @@
       }
     ]
   },
-  "insider_note": "The homogenising is the same whatever condition is asked for; only the closing line differs. A right angle at the origin means coeff x² + coeff y² = 0, giving a²(l² + m²) = 2; the coincident condition h² = ab would give a²(l² + m²) = 1 instead."
+  "insider_note": "The homogenising is the same whatever condition is asked for; only the closing line differs. A right angle at the origin means coeff x² + coeff y² = 0, giving a²(l² + m²) = 2; the coincident condition H² = AB (A, B, 2H the coefficients of x², y², xy) would give a²(l² + m²) = 1 instead."
 }

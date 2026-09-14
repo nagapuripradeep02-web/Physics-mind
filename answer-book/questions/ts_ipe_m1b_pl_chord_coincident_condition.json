@@ -58,7 +58,7 @@
         "kind": "equation",
         "label": "Write the chord and the circle",
         "marks": 0,
-        "margin_note": "No mark of its own. The chord is already given as lx + my = 1 — exactly the '= 1' form homogenisation needs — so no clearing is required here, unlike a chord given as ax + by = c, which must first be divided by c.",
+        "margin_note": "No mark of its own. The chord is already given as lx + my = 1 — exactly the '= 1' form homogenisation needs — so no clearing is required here, unlike a chord such as 2x + 3y = 5, which must first be divided by 5.",
         "lines": [
           {
             "text": "Sol:",
@@ -93,7 +93,7 @@
         "why": "Homogenisation needs the line as (something) = 1, and this question already gives it that way, so no dividing-through step is needed before the homogenisation.",
         "common_mistakes": [
           "Rearranging the chord unnecessarily and introducing a sign error.",
-          "Leaving the circle as x² + y² = a² and forgetting to move a² across."
+          "Moving a² across as +a², which gives a²(l² + m²) = −1."
         ],
         "memory_tip": "The chord already reads = 1, exactly the form homogenisation needs — no clearing required."
       },
@@ -170,7 +170,7 @@
         "kind": "equation",
         "label": "Collect the coefficients",
         "marks": 1,
-        "margin_note": "One mark. Expand the square and group by x², y² and xy. Each coefficient carries an a² and the letters l and m, which is what the closing condition will compare.",
+        "margin_note": "One mark. Expand the square and group by x², y² and xy. Each coefficient carries an a², and these three coefficients are what the closing condition will compare.",
         "lines": [
           {
             "text": "((lx + my)² = l²x² + 2lmxy + m²y²)",
@@ -216,7 +216,7 @@
           "Dropping a² from one of the three coefficients."
         ],
         "mark_note": "Method",
-        "memory_tip": "Expand and group by x², y² and xy. Each coefficient carries an a² and the letters l, m.",
+        "memory_tip": "Expand and group by x², y² and xy. Each coefficient carries an a².",
         "lines_compact": [
           "⇒ x² + y² − a²(l²x² + m²y² + 2lmxy) = 0",
           "⇒ x² + y² − a²l²x² − a²m²y² − 2a²lmxy = 0",
@@ -228,7 +228,7 @@
         "kind": "boxed_final",
         "label": "Apply the coincident condition",
         "marks": 2,
-        "margin_note": "The last two marks — one for stating h² = ab, one for carrying it through. Coincident means the two lines are the SAME line, which for a pair is exactly h² = ab.",
+        "margin_note": "The last two marks — one for stating H² = AB, one for carrying it through. Coincident means the two lines are the SAME line, which for a pair is exactly H² = AB.",
         "lines": [
           "Write the pair's coefficients as A, B, H,",
           "because the letter a is already the circle's radius here.",
@@ -299,13 +299,13 @@
             "equals one"
           ]
         },
-        "why": "h² − ab measures how far apart the two lines of the pair are: positive means two distinct lines, zero means they have merged into one. So coincident is exactly h² = ab.",
+        "why": "H² − AB decides whether the two lines of the pair are different: positive means two different lines, zero means the two lines are the same line. So coincident is exactly H² = AB.",
         "common_mistakes": [
-          "Using h² > ab, which is the condition for two DISTINCT lines.",
+          "Using H² > AB, which is the condition for two DISTINCT lines.",
           "Forgetting that both sides carry a⁴l²m², so it cancels."
         ],
         "mark_note": "Solution",
-        "memory_tip": "Coincident lines mean h² = ab — the equal-roots condition for the pair.",
+        "memory_tip": "Coincident lines mean H² = AB — the equal-roots condition for the pair.",
         "lines_compact": [
           "Write the pair's coefficients as A, B, H,",
           "because the letter a is already the circle's radius here.",
@@ -323,5 +323,5 @@
       }
     ]
   },
-  "insider_note": "Homogenise by replacing the constant a² with a²(lx + my)², then apply h² = ab, because coincident lines are the equal-root case. The a⁴l²m² cancels on both sides, leaving a²(l² + m²) = 1."
+  "insider_note": "Homogenise by replacing the constant a² with a²(lx + my)², then apply H² = AB to the new coefficients A, B, H, because coincident lines are the equal-root case. The a⁴l²m² cancels on both sides, leaving a²(l² + m²) = 1."
 }

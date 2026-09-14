@@ -60,13 +60,21 @@
         "kind": "equation",
         "label": "Split into two PARALLEL lines",
         "marks": 1,
-        "margin_note": "First mark, and the key step of the question. Parallel lines share their x and y coefficients and differ ONLY in the constant — so both factors get the same l and m.",
+        "margin_note": "First mark, and the key step of the question. Parallel lines can be written with the same x and y coefficients, differing ONLY in the constant — so both factors get the same l and m.",
         "lines": [
           {
             "text": "Sol:",
             "style": "heading"
           },
-          "(parallel lines have the same x and y coefficients)",
+          "(parallel lines can be written with the same x and y",
+          {
+            "text": "  coefficients; if a < 0, first multiply the equation by",
+            "style": "indent"
+          },
+          {
+            "text": "  −1, so that a = l² and b = m² are possible)",
+            "style": "indent"
+          },
           "Let ax² + 2hxy + by² + 2gx + 2fy + c",
           "≡ (lx + my + n₁)(lx + my + n₂)",
           "(multiply out and compare: x² gives l², y² gives m²,",
@@ -148,7 +156,7 @@
             "equals a b"
           ]
         },
-        "why": "h² = ab is the standard test for a pair of parallel lines, and here it falls straight out of the splitting — no algebra needed at all.",
+        "why": "For a pair of lines, h² = ab holds exactly when the lines are parallel or coincident, and here it follows directly from the splitting.",
         "common_mistakes": [
           "Squaring 2h rather than h.",
           "Concluding h² > ab, which describes two distinct intersecting lines."
@@ -346,5 +354,5 @@
       }
     ]
   },
-  "insider_note": "Parallel means the two factors share l and m and differ only in the constant; that one line makes all three parts fall out. The distance needs |n₁ − n₂| via (n₁+n₂)² − 4n₁n₂, and both forms are asked for."
+  "insider_note": "Parallel means the two factors share l and m and differ only in the constant; all three parts follow from that one line. The distance needs |n₁ − n₂| via (n₁+n₂)² − 4n₁n₂, and both forms are asked for."
 }

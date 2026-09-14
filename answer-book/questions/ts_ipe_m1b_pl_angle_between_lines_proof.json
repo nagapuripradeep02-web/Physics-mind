@@ -53,20 +53,20 @@
         "label": "Split the pair and match coefficients",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. A homogeneous second-degree equation is two lines through the origin, so each line is y = mx. Matching coefficients gives the sum and the product of the two slopes — never the slopes themselves.",
+        "margin_note": "First mark. The given pair is homogeneous, so both lines pass through the origin, and with b ≠ 0 each line is y = mx. Matching coefficients gives the sum and the product of the two slopes — never the slopes themselves.",
         "memory_tip": "Matching coefficients gives the SUM and the PRODUCT of the slopes, never the slopes one by one.",
         "lines": [
           {
             "text": "Sol:",
             "style": "heading"
           },
-          "(a homogeneous second-degree equation is a pair of lines",
+          "(the given pair passes through the origin because",
           {
-            "text": "  through the origin; b ≠ 0 lets both lines be",
+            "text": "  the equation is homogeneous;",
             "style": "indent"
           },
           {
-            "text": "  written as y = mx)",
+            "text": "  b ≠ 0 lets both lines be written as y = mx)",
             "style": "indent"
           },
           "Let the two lines be y = m₁x and y = m₂x, b ≠ 0.",
@@ -98,7 +98,7 @@
             "a over b"
           ]
         },
-        "why": "Every proof in this chapter starts by SPLITTING the pair into two lines with unknown slopes and matching coefficients. The link it gives between (a, h, b) and the two slopes is what every later step uses.",
+        "why": "This proof starts by SPLITTING the pair into two lines with unknown slopes and matching coefficients. The link it gives between (a, h, b) and the two slopes is what every later step uses.",
         "common_mistakes": [
           "Writing m₁ + m₂ = 2h/b without the minus sign.",
           "Dividing by a instead of b."
@@ -152,7 +152,7 @@
             "sum squared minus four"
           ]
         },
-        "why": "Only the sum and the product of the slopes are known, so any expression in the slopes must first be written through those two. The identity in the third line is what makes the difference of the slopes reachable.",
+        "why": "Only the sum and the product of the slopes are known, so any expression in the slopes must first be written through those two. The identity (m₁ − m₂)² = (m₁ + m₂)² − 4m₁m₂ is what lets the difference of the slopes be written through the sum and the product.",
         "common_mistakes": [
           "Writing (m₁ − m₂)² = (m₁ + m₂)² − 2m₁m₂.",
           "Writing tan θ = (m₁ − m₂)/(1 − m₁m₂)."
@@ -225,7 +225,7 @@
             "tan theta"
           ]
         },
-        "why": "The quantity h² − ab decides everything about the pair: it is positive for two separate lines, zero for two coincident lines and negative when there are no real lines at all.",
+        "why": "The quantity h² − ab decides whether the lines are real and different: it is positive for two separate lines, zero for two coincident lines and negative when there are no real lines at all.",
         "common_mistakes": [
           "Writing (−2h/b)² as −4h²/b².",
           "Cancelling only one of the two b factors."

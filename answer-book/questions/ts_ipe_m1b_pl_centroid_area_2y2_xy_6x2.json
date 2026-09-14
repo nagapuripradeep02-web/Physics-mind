@@ -102,7 +102,7 @@
             "factorise"
           ]
         },
-        "why": "A homogeneous second-degree equation is two lines through the origin, whichever variable is written first. Once it is factorised the question is an ordinary coordinate-geometry question about three known lines.",
+        "why": "A homogeneous second-degree equation with h² ≥ ab is two lines through the origin, whichever variable is written first. Once it is factorised the question is an ordinary coordinate-geometry question about three known lines.",
         "common_mistakes": [
           "Reading the xy coefficient as h instead of 2h, so h = −1 instead of −1/2.",
           "Taking a = 2 and b = −6 because y² is written first, when a is the x² coefficient."
@@ -114,7 +114,7 @@
         "label": "Find the two vertices",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "One mark. Both lines of the pair pass through the origin, so O is the third vertex, with no work needed. Here both other vertices carry fractions, so keep them as fractions and do not round.",
+        "margin_note": "One mark. Both lines of the pair pass through the origin, so O is the third vertex, with no work needed. Here vertex A carries fractions, so keep them as fractions and do not round.",
         "memory_tip": "Both lines of the pair pass through the ORIGIN, so O is the third vertex, with no work needed.",
         "lines": [
           {

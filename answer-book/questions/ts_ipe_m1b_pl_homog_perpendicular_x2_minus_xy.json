@@ -111,17 +111,17 @@
             "added": true
           },
           {
-            "text": "  of intersection, and a homogeneous equation is",
+            "text": "  of intersection, and a homogeneous second-degree",
             "style": "indent",
             "added": true
           },
           {
-            "text": "  a pair of lines through the origin,",
+            "text": "  equation with h² ≥ ab is a pair of lines through",
             "style": "indent",
             "added": true
           },
           {
-            "text": "  so it is the pair through those points)",
+            "text": "  the origin, so it is the pair through those points)",
             "style": "indent",
             "added": true
           },
@@ -265,7 +265,7 @@
         },
         "why": "The absence of a constant and a linear term is the CHECK that the homogenisation was done right, and it is also what guarantees both lines pass through the origin.",
         "common_mistakes": [
-          "Leaving a constant term, which means the squaring was missed.",
+          "Leaving a linear term, which means the constant was multiplied by the bracket only once instead of by its square.",
           "Sign slip when expanding a squared bracket."
         ],
         "mark_note": "Method",
@@ -292,7 +292,7 @@
       {
         "id": "s4_apply_the_condition",
         "kind": "boxed_final",
-        "label": "Add the squared coefficients",
+        "label": "Add the x² and y² coefficients",
         "marks": 2,
         "margin_note": "The last two marks. Perpendicular through the origin means the coefficient of x² plus the coefficient of y² is zero. Nothing else needs computing — the cross term is not used at all.",
         "lines": [
@@ -333,7 +333,7 @@
             "perpendicular"
           ]
         },
-        "why": "Two lines through the origin given by ax² + 2hxy + by² = 0 are perpendicular exactly when a + b = 0 — the cross term plays no part. That is why only the two squared coefficients are added.",
+        "why": "Two lines through the origin given by ax² + 2hxy + by² = 0 are perpendicular exactly when a + b = 0 — the cross term plays no part. That is why only the coefficients of x² and y² are added.",
         "common_mistakes": [
           "Including the xy coefficient in the sum.",
           "Concluding perpendicular from a + b = 1 or any value other than zero."

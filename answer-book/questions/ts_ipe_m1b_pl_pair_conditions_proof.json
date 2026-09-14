@@ -104,7 +104,7 @@
             "n one n two"
           ]
         },
-        "why": "Every proof in this chapter starts the same way: SPLIT the pair into its two separate lines with unknown coefficients, then match coefficients against the given equation. Those matched coefficients, linking (a, h, b) to the two lines, are what every later step uses.",
+        "why": "This proof starts by SPLITTING the pair into its two separate lines with unknown coefficients, then matching coefficients against the given equation. Those matched coefficients, linking (a, h, b) to the two lines, are what every later step uses.",
         "common_mistakes": [
           "Pairing the cross terms with the same subscript twice.",
           "Forgetting that h, g and f are each HALF the matched quantity."
@@ -256,7 +256,7 @@
             "delta equals zero"
           ]
         },
-        "why": "Δ = 0 is the master test for a pair of lines, and this derivation shows it is not an arbitrary determinant but exactly what the splitting forces.",
+        "why": "Δ = 0 is the first of the four conditions for a pair of lines, and this derivation shows it is not an arbitrary determinant but exactly what the splitting forces.",
         "common_mistakes": [
           "Forgetting to divide the whole line by 4 at the end.",
           "Sign slip when moving abc across."
@@ -361,5 +361,5 @@
       }
     ]
   },
-  "insider_note": "Multiply 2h, 2g and 2f together, not h, g and f — that 8 is what gets divided out at the end. Part (b) is short: h² − ab becomes (l₁m₂ − l₂m₁)²/4, so the inequality is ≥ and never strict."
+  "insider_note": "Multiply 2h, 2g and 2f together, not h, g and f — that gives 8fgh, and dividing both sides by 4 at the end leaves 2fgh. Part (b) is short: h² − ab becomes (l₁m₂ − l₂m₁)²/4, so h² ≥ ab, with equality when the lines are parallel or coincident."
 }

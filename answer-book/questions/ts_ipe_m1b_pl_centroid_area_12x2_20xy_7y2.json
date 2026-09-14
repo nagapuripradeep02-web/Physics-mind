@@ -106,7 +106,7 @@
             "factorise"
           ]
         },
-        "why": "A homogeneous second-degree equation is two lines through the origin. Once it is factorised the question is an ordinary coordinate-geometry question about three known lines.",
+        "why": "A homogeneous second-degree equation with h² ≥ ab is two lines through the origin. Once it is factorised the question is an ordinary coordinate-geometry question about three known lines.",
         "common_mistakes": [
           "Reading the xy coefficient as h instead of 2h, so h = −20 instead of −10.",
           "Splitting −20xy as −10xy − 10xy, whose product is not 84x²y²."

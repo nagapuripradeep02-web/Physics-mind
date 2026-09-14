@@ -105,9 +105,9 @@
             "equate coefficients"
           ]
         },
-        "why": "Every proof in this chapter starts the same way: SPLIT the pair into its two separate lines with unknown coefficients, then match coefficients against the given equation. Those matched coefficients, linking (a, h, b) to the two lines, are what every later step uses.",
+        "why": "This proof starts by SPLITTING the pair into its two separate lines with unknown coefficients, then matching coefficients against the given equation. Those matched coefficients, linking (a, h, b) to the two lines, are what every later step uses.",
         "common_mistakes": [
-          "Using the slope form, which cannot handle a line with no y-term.",
+          "Writing h = l₁m₂ + l₂m₁, forgetting that this sum is 2h.",
           "Writing 2h = l₁m₁ + l₂m₂ instead of the cross pairing."
         ],
         "mark_note": "Method",
@@ -121,11 +121,11 @@
         "margin_note": "One mark. Each line passes through the origin, so its equation has no constant — the perpendicular distance from (α, β) is just |l α + m β| over the root of the squares.",
         "lines": [
           {
-            "text": "(the perpendicular distance from (α, β) to px + qy = 0 is",
+            "text": "(the perpendicular distance from (α, β) to lx + my = 0 is",
             "added": true
           },
           {
-            "text": "  |pα + qβ|/√(p² + q²))",
+            "text": "  |lα + mβ|/√(l² + m²))",
             "style": "indent",
             "added": true
           },
@@ -180,7 +180,7 @@
           "is  p₁·p₂ = [|l₁α + m₁β| / √(l₁² + m₁²)]",
           "· [|l₂α + m₂β| / √(l₂² + m₂²)]",
           {
-            "text": "(|p| · |q| = |pq| and √P · √Q = √(PQ))",
+            "text": "(|u| · |v| = |uv| and √U · √V = √(UV))",
             "added": true
           },
           "= |(l₁α + m₁β)(l₂α + m₂β)| / √((l₁² + m₁²)(l₂² + m₂²))",
@@ -245,7 +245,7 @@
         "kind": "boxed_final",
         "label": "Convert to a, h, b",
         "marks": 1,
-        "margin_note": "The last mark. The numerator substitutes directly. The denominator needs one rearrangement: add and subtract 2l₁l₂m₁m₂ so it becomes a difference of squares plus a square.",
+        "margin_note": "The last mark. The numerator substitutes directly. The denominator needs one rearrangement: add and subtract 2l₁l₂m₁m₂ so it becomes the square of a difference plus the square of a sum.",
         "lines": [
           {
             "text": "(l₁l₂ = a, m₁m₂ = b, and l₁m₂ + l₂m₁ = 2h,",
@@ -317,7 +317,7 @@
           "Forgetting the modulus on the numerator."
         ],
         "mark_note": "Solution",
-        "memory_tip": "Add and subtract 2l₁l₂m₁m₂ in the denominator so it becomes a difference of squares plus a square.",
+        "memory_tip": "Add and subtract 2l₁l₂m₁m₂ in the denominator so it becomes the square of a difference plus the square of a sum.",
         "lines_compact": [
           "= |aα² + 2hαβ + bβ²|",
           {

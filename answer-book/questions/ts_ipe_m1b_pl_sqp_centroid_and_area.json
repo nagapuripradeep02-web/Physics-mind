@@ -88,7 +88,7 @@
         },
         "why": "A homogeneous second-degree equation represents a pair of lines through the ORIGIN (real lines when h² ≥ ab), so one vertex is free — that is what makes both the centroid and the area short to compute.",
         "common_mistakes": [
-          "Trying to factorise the pair before substituting, which is more work.",
+          "Rearranging (2) as y = 6 − 2x, which gives 15x² − 48x + 36 = 0 and the wrong vertices.",
           "Forgetting that the origin is a vertex."
         ],
         "memory_tip": "Both lines of the pair pass through the ORIGIN, so O is automatically the third vertex."
@@ -128,11 +128,11 @@
           "Put x = −6 in (3) ⇒ y = 2(−6) − 6 = −12 − 6 = −18",
           "⇒ the other point of intersection is B = (−6, −18)",
           {
-            "text": "((1) has no constant term, so both of its lines pass",
+            "text": "((1) has only second-degree terms,",
             "added": true
           },
           {
-            "text": "  through the origin)",
+            "text": "  so both of its lines pass through the origin)",
             "style": "indent",
             "added": true
           },
@@ -161,7 +161,7 @@
             "the origin"
           ]
         },
-        "why": "The x terms cancel almost entirely, leaving x² = 36 — the numbers in this question were chosen so the quadratic has no linear term.",
+        "why": "The two 24x terms cancel, leaving −x² + 36 = 0, so x² = 36 and the quadratic has no linear term.",
         "common_mistakes": [
           "Losing the +36 when expanding (2x − 6)².",
           "Taking only the positive root and finding one vertex."

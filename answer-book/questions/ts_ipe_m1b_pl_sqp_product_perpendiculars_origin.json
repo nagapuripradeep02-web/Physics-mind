@@ -103,7 +103,7 @@
             "match coefficients"
           ]
         },
-        "why": "n₁n₂ = c is the key entry: the perpendicular from the ORIGIN to a line is just its constant over the root, so the product of the two perpendiculars will carry n₁n₂ — which is c.",
+        "why": "n₁n₂ = c is the key entry: the perpendicular from the ORIGIN to a line is the modulus of its constant over the root, so the product of the two perpendiculars will carry |n₁n₂| — which is |c|.",
         "common_mistakes": [
           "Forgetting that the constants also have to be matched.",
           "Pairing the cross terms with the same subscript."
@@ -119,11 +119,11 @@
         "margin_note": "One mark. From the ORIGIN the distance formula is short: putting (0,0) into |l x + m y + n| leaves only |n|. Both numerators are therefore single constants.",
         "lines": [
           {
-            "text": "(the perpendicular distance from (0, 0) to px + qy + r = 0",
+            "text": "(the perpendicular distance from (0, 0) to lx + my + n = 0",
             "added": true
           },
           {
-            "text": "  is |r|/√(p² + q²))",
+            "text": "  is |n|/√(l² + m²))",
             "style": "indent",
             "added": true
           },
@@ -182,7 +182,7 @@
           "∴ The product of the perpendiculars is",
           "p₁·p₂ = [|n₁| / √(l₁² + m₁²)] · [|n₂| / √(l₂² + m₂²)]",
           {
-            "text": "(|n₁| · |n₂| = |n₁n₂| and √P · √Q = √(PQ))",
+            "text": "(|n₁| · |n₂| = |n₁n₂| and √U · √V = √(UV))",
             "added": true
           },
           "= |n₁n₂| / √((l₁² + m₁²)(l₂² + m₂²))",
@@ -233,7 +233,7 @@
         "kind": "boxed_final",
         "label": "Convert to a, h, b and c",
         "marks": 1,
-        "margin_note": "The last mark. Add and subtract 2l₁l₂m₁m₂ under the root so it regroups as a difference of squares plus a square — the same rearrangement the general-point version uses.",
+        "margin_note": "The last mark. Add and subtract 2l₁l₂m₁m₂ under the root so it regroups as the square of a difference plus the square of a sum — the same rearrangement the general-point version uses.",
         "lines": [
           {
             "text": "(add and subtract 2l₁l₂m₁m₂ to make two perfect squares)",
@@ -290,7 +290,7 @@
           "Writing 2h² instead of 4h²."
         ],
         "mark_note": "Solution",
-        "memory_tip": "Add and subtract 2l₁l₂m₁m₂ under the root so it regroups into a difference of squares plus a square.",
+        "memory_tip": "Add and subtract 2l₁l₂m₁m₂ under the root so it regroups into the square of a difference plus the square of a sum.",
         "lines_compact": [
           "= |c| / √((l₁l₂ − m₁m₂)² + 2l₁l₂m₁m₂",
           {
@@ -310,5 +310,5 @@
       }
     ]
   },
-  "insider_note": "The constants have to be matched as well: n₁n₂ = c is what makes the numerator equal to |c|. The denominator is the same (a − b)² + 4h² as the (α, β) version, so the two proofs differ only at the top."
+  "insider_note": "The constants have to be matched as well: n₁n₂ = c is what makes the numerator equal to |c|. The denominator is the same (a − b)² + 4h² as the (α, β) version, so the two proofs differ in the split, which carries constants here, and in the numerator."
 }

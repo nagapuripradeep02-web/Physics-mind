@@ -68,8 +68,12 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "(each line through the origin is m x − y = 0; b ≠ 0 here)",
-          "Let ax² + 2hxy + by² ≡ (m₁x − y)(m₂x − y)",
+          "(b ≠ 0, so neither line is vertical and the lines are",
+          {
+            "text": "  m₁x − y = 0 and m₂x − y = 0)",
+            "style": "indent"
+          },
+          "Let ax² + 2hxy + by² ≡ b(m₁x − y)(m₂x − y)",
           "(b(m₁x − y)(m₂x − y) matches ax² + 2hxy + by²: x² terms",
           {
             "text": "  bm₁m₂ = a, xy terms −b(m₁ + m₂) = 2h)",
@@ -100,7 +104,7 @@
             "a over b"
           ]
         },
-        "why": "Every proof in this chapter starts the same way: SPLIT the pair into its two separate lines with unknown coefficients, then match coefficients against the given equation. Those matched coefficients, linking (a, h, b) to the two lines, are what every later step uses.",
+        "why": "This proof starts by SPLITTING the pair into its two separate lines with unknown coefficients, then matching coefficients against the given equation. Those matched coefficients, linking (a, h, b) to the two lines, are what every later step uses.",
         "common_mistakes": [
           "Writing m₁ + m₂ = 2h/b without the minus sign.",
           "Dividing by a instead of b."
@@ -335,11 +339,11 @@
           },
           "Similarly, we get  B = (−n/(l + mm₂),  −nm₂/(l + mm₂))",
           {
-            "text": "(with one vertex at the origin the area determinant has",
+            "text": "(with one vertex at the origin,",
             "added": true
           },
           {
-            "text": "  only this one term left)",
+            "text": "  four of the six terms of the area formula are zero)",
             "style": "indent",
             "added": true
           },
@@ -392,7 +396,7 @@
             "area of the triangle"
           ]
         },
-        "why": "Putting one vertex at the origin removes two of the six terms in the general area determinant, which is why the pair-through-the-origin setting keeps this manageable.",
+        "why": "Putting one vertex at the origin removes four of the six terms in the general area formula, which is why the pair-through-the-origin setting keeps this manageable.",
         "common_mistakes": [
           "Using the full three-vertex determinant and mis-expanding it.",
           "Losing the n² when multiplying the two numerators."
@@ -417,7 +421,7 @@
         "kind": "boxed_final",
         "label": "Convert to a, h, b",
         "marks": 1,
-        "margin_note": "The last mark. m₂ − m₁ is not among the matched coefficients, but (m₁+m₂)² − 4m₁m₂ is — so square the difference first, then substitute (1) and clear the b's.",
+        "margin_note": "The last mark. m₂ − m₁ cannot be written from (1) directly, but (m₂ − m₁)² = (m₁+m₂)² − 4m₁m₂ can — so square the difference first, then substitute (1) and clear the b's.",
         "lines": [
           {
             "text": "(|m₂ − m₁| = √((m₁ + m₂)² − 4m₁m₂), see the line below)",
@@ -499,7 +503,7 @@
           "Forgetting that b appears in both numerator and denominator and cancels."
         ],
         "mark_note": "Solution",
-        "memory_tip": "m₂ − m₁ is not among the matched coefficients, but (m₁+m₂)² − 4m₁m₂ is — so SQUARE the difference first.",
+        "memory_tip": "m₂ − m₁ cannot be written from (1) directly, but (m₁+m₂)² − 4m₁m₂ can — so SQUARE the difference first.",
         "lines_compact": [
           "= ½ · n²√((m₁ + m₂)² − 4m₁m₂)",
           {

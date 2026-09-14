@@ -202,7 +202,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "One mark. L₁ and L₃ are parallel, and so are L₂ and L₄, so the four lines already make a parallelogram. The dot product of the two normals then makes it a rectangle.",
-        "memory_tip": "Two parallel pairs give a parallelogram; a zero dot product of the normals upgrades it to a rectangle.",
+        "memory_tip": "Two parallel pairs give a parallelogram; a zero dot product of the normals shows it is a rectangle.",
         "lines": [
           {
             "text": "(L₁ and L₃ have the same x and y coefficients,",
@@ -321,7 +321,7 @@
             "square"
           ]
         },
-        "why": "A square needs both facts together. A rhombus has equal sides without right angles and a rectangle has right angles without equal sides, so only the two together settle it.",
+        "why": "A square needs both facts together. A rhombus has equal sides but need not have right angles, and a rectangle has right angles but need not have equal sides, so only the two together prove it.",
         "common_mistakes": [
           "Using different denominators for the two distances when both are √10.",
           "Comparing L₁ with L₄, which are not parallel, so no distance formula applies."

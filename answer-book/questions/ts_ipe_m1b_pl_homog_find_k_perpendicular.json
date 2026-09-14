@@ -118,17 +118,17 @@
             "added": true
           },
           {
-            "text": "  of intersection, and a homogeneous equation is",
+            "text": "  of intersection, and a homogeneous second-degree",
             "style": "indent",
             "added": true
           },
           {
-            "text": "  a pair of lines through the origin,",
+            "text": "  equation with h² ≥ ab is a pair of lines through",
             "style": "indent",
             "added": true
           },
           {
-            "text": "  so it is the pair through those points)",
+            "text": "  the origin, so it is the pair through those points)",
             "style": "indent",
             "added": true
           },
@@ -267,7 +267,7 @@
         },
         "why": "The absence of a constant and a linear term is the CHECK that the homogenisation was done right, and it is also what guarantees both lines pass through the origin.",
         "common_mistakes": [
-          "Leaving a constant term, which means the squaring was missed.",
+          "Leaving a linear term, which means the constant was multiplied by the bracket only once instead of by its square.",
           "Sign slip when expanding a squared bracket."
         ],
         "mark_note": "Method",
@@ -295,7 +295,7 @@
         "kind": "boxed_final",
         "label": "Solve the perpendicular condition",
         "marks": 2,
-        "margin_note": "The last two marks. Adding the two squared coefficients cancels every k-term except the squares, which is why a messy expansion still ends in a two-line solve. The xy coefficient is never used.",
+        "margin_note": "The last two marks. Adding the x² and y² coefficients cancels the k-terms and leaves 5k² − 5, which is why a long expansion still ends in a two-line solve. The xy coefficient is never used.",
         "lines": [
           "If this pair of lines are perpendicular then",
           "Coeff. x² + Coeff. y² = 0",
@@ -351,7 +351,7 @@
           "Including the xy coefficient in the condition."
         ],
         "mark_note": "Solution",
-        "memory_tip": "Adding the two squared coefficients cancels every k-term except the squares. The xy coefficient is never used.",
+        "memory_tip": "Adding the x² and y² coefficients cancels the k-terms and leaves only k² and a number. The xy coefficient is never used.",
         "lines_compact": [
           "If this pair of lines are perpendicular then",
           "Coeff. x² + Coeff. y² = 0",

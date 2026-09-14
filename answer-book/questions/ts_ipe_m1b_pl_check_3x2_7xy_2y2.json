@@ -105,7 +105,7 @@
         "kind": "equation",
         "label": "Test Δ = 0",
         "marks": 1,
-        "margin_note": "First mark. Δ = abc + 2fgh − af² − bg² − ch² is the master test — it is zero exactly when the equation factors into two lines.",
+        "margin_note": "First mark. Δ = abc + 2fgh − af² − bg² − ch² is the first test — it is zero exactly when the equation factors into two linear factors, which may not be real.",
         "lines": [
           {
             "text": "(the first of the four conditions for a pair of lines is Δ = 0)",
@@ -165,7 +165,7 @@
           "Arithmetic slip with the quarters that come from halved coefficients."
         ],
         "mark_note": "Method",
-        "memory_tip": "Δ = abc + 2fgh − af² − bg² − ch² is zero exactly when the equation factors into two lines.",
+        "memory_tip": "Δ = abc + 2fgh − af² − bg² − ch² is zero exactly when the equation factors into two linear factors (real or not).",
         "lines_compact": [
           "(i) Δ = abc + 2fgh − af² − bg² − ch²",
           "= 3(2)(2) + 2(5/2)(5/2)(7/2)",
@@ -182,7 +182,7 @@
         "kind": "equation",
         "label": "Test the three inequalities",
         "marks": 1,
-        "margin_note": "One mark. Δ = 0 alone is not enough — the three inequalities confirm the factors are REAL rather than complex. All four conditions together settle it.",
+        "margin_note": "One mark. Δ = 0 alone is not enough — the three inequalities confirm the factors are REAL rather than complex. All four conditions together prove it.",
         "lines": [
           {
             "text": "((7/2)² = 49/4, 6 = 24/4)",
@@ -242,7 +242,7 @@
           "Testing only one of the three inequalities."
         ],
         "mark_note": "Method",
-        "memory_tip": "The three inequalities confirm the factors are real, not complex. All four conditions together settle it.",
+        "memory_tip": "The three inequalities confirm the factors are real, not complex. All four conditions together prove it.",
         "lines_compact": [
           "(ii) h² − ab = (7/2)² − 3(2) = 49/4 − 6",
           {
@@ -433,5 +433,5 @@
       }
     ]
   },
-  "insider_note": "The point of intersection carries two of the four marks, so the Δ test and the inequalities are one line each. Both coordinates share the denominator ab − h² = −25/4, so work it out once and use it twice."
+  "insider_note": "The point of intersection carries two of the four marks, and the Δ test and the inequalities carry one mark each. Both coordinates share the denominator ab − h² = −25/4, so work it out once and use it twice."
 }
