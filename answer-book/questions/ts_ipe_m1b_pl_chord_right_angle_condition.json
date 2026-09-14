@@ -174,7 +174,10 @@
         "marks": 2,
         "margin_note": "The last two marks. 'Subtends a right angle at the origin' is a statement about the two lines from the origin — which is precisely the homogenised pair — so the condition is a + b = 0, the perpendicular condition for a pair of lines through the origin.",
         "lines": [
-          "The chord subtends a right angle AT THE ORIGIN, and the homogenised pair is exactly the pair of lines from the origin to the chord's ends — so that pair must be perpendicular:",
+          "The chord subtends a right angle AT THE ORIGIN,",
+          "and the homogenised pair is exactly the pair of lines",
+          "from the origin to the chord's ends —",
+          "so that pair must be perpendicular:",
           "Coeff. x² + Coeff. y² = 0",
           "⇒ (1 − a²l²) + (1 − a²m²) = 0",
           "⇒ 2 − a²l² − a²m² = 0",

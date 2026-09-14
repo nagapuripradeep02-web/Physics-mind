@@ -102,7 +102,7 @@
         "label": "Find the angle between L and L₁",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "One mark. Measure the angle through the normals: the angle between two lines equals the angle between their normal vectors. Both cross terms in the dot product cancel, which is the whole point of the √3.",
+        "margin_note": "One mark. Measure the angle through the normals: the angle between two lines equals the angle between their normal vectors. Both cross terms in the dot product cancel because of the √3.",
         "memory_tip": "Measure through the NORMALS — the √3 terms in the dot product cancel each other.",
         "lines": [
           "Normals: L has (l, m);",

@@ -66,7 +66,8 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Let ax² + 2hxy + by² + 2gx + 2fy + c ≡ (l₁x + m₁y + n₁)(l₂x + m₂y + n₂)",
+          "Let ax² + 2hxy + by² + 2gx + 2fy + c",
+          "≡ (l₁x + m₁y + n₁)(l₂x + m₂y + n₂)",
           "On equating like term coeff., we get",
           "a = l₁l₂,  b = m₁m₂,  c = n₁n₂,",
           "2h = l₁m₂ + l₂m₁,  2g = l₁n₂ + l₂n₁,  2f = m₁n₂ + m₂n₁"
@@ -110,7 +111,11 @@
         "lines": [
           "(a) (2h)(2g)(2f) = (l₁m₂ + l₂m₁)(l₁n₂ + l₂n₁)(m₁n₂ + m₂n₁)",
           "On multiplying and regrouping, we get",
-          "8fgh = l₁l₂(m₁²n₂² + m₂²n₁²) + m₁m₂(l₁²n₂² + n₁²l₂²) + n₁n₂(l₁²m₂² + l₂²m₁²) + 2l₁l₂m₁m₂n₁n₂"
+          "8fgh = l₁l₂(m₁²n₂² + m₂²n₁²) + m₁m₂(l₁²n₂² + n₁²l₂²)",
+          {
+            "text": "  + n₁n₂(l₁²m₂² + l₂²m₁²) + 2l₁l₂m₁m₂n₁n₂",
+            "style": "indent"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -147,11 +152,19 @@
         "kind": "equation",
         "label": "Reduce it to the Δ condition",
         "marks": 1,
-        "margin_note": "One mark. Each bracket becomes (sum)² − 2(product), and every one of those is already among the matched coefficients — so the whole expression converts into a, b, c, f, g, h in one pass.",
+        "margin_note": "One mark. Each bracket becomes (sum)² − 2(product), and every one of those is already among the matched coefficients — so the expression can be written in a, b, c, f, g, h in one step.",
         "lines": [
-          "= l₁l₂[(m₁n₂ + m₂n₁)² − 2m₁m₂n₁n₂] + m₁m₂[(n₁l₂ + n₂l₁)² − 2n₁n₂l₁l₂]",
+          "= l₁l₂[(m₁n₂ + m₂n₁)² − 2m₁m₂n₁n₂]",
+          {
+            "text": "  + m₁m₂[(n₁l₂ + n₂l₁)² − 2n₁n₂l₁l₂]",
+            "style": "indent"
+          },
           "   + n₁n₂[(l₁m₂ + l₂m₁)² − 2l₁l₂m₁m₂] + 2l₁l₂m₁m₂n₁n₂",
-          "⇒ 8fgh = a[(2f)² − 2bc] + b[(2g)² − 2ac] + c[(2h)² − 2ab] + 2abc",
+          "⇒ 8fgh = a[(2f)² − 2bc] + b[(2g)² − 2ac]",
+          {
+            "text": "  + c[(2h)² − 2ab] + 2abc",
+            "style": "indent"
+          },
           "⇒ 8fgh = 4af² + 4bg² + 4ch² − 4abc",
           "⇒ 2fgh = af² + bg² + ch² − abc",
           {

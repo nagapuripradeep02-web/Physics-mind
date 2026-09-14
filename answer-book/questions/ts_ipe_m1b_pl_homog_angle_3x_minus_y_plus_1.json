@@ -103,7 +103,11 @@
           "Given curve is x² + 2xy + y² + 2x + 2y − 5 = 0  ……(2)",
           "Homogenising (1) & (2), we get",
           "x² + 2xy + y² + 2x(1) + 2y(1) − 5(1)² = 0",
-          "⇒ x² + 2xy + y² + 2x[(3x−y)/(−1)] + 2y[(3x−y)/(−1)] − 5[(3x−y)/(−1)]² = 0"
+          "⇒ x² + 2xy + y² + 2x[(3x−y)/(−1)] + 2y[(3x−y)/(−1)]",
+          {
+            "text": "  − 5[(3x−y)/(−1)]² = 0",
+            "style": "indent"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -127,7 +131,7 @@
             "linear terms"
           ]
         },
-        "why": "A second-degree equation in x and y with NO constant and NO linear term always represents two lines through the ORIGIN — which is exactly what the question asks about. Homogenising manufactures that equation from the curve and the chord.",
+        "why": "A second-degree equation in x and y with NO constant and NO linear term represents a pair of lines through the ORIGIN (real lines when h² ≥ ab) — which is exactly what the question asks about. Homogenising makes that equation from the curve and the chord.",
         "common_mistakes": [
           "Multiplying the constant by the bracket only once.",
           "Multiplying the second-degree terms as well, which raises them to degree four."
@@ -140,12 +144,28 @@
         "kind": "equation",
         "label": "Simplify to ax² + 2hxy + by² = 0",
         "marks": 1,
-        "margin_note": "One mark. Expand everything and collect. The result must have no constant and no linear term — if either survives, a term was homogenised wrongly.",
+        "margin_note": "One mark. Expand everything and collect. The result must have no constant and no linear term — if either is left, a term was homogenised wrongly.",
         "lines": [
-          "⇒ x² + 2xy + y² − 2x(3x − y) − 2y(3x − y) − 5(3x − y)² = 0",
-          "⇒ x² + 2xy + y² − 6x² + 2xy − 6xy + 2y² − 5(9x² + y² − 6xy) = 0",
-          "⇒ x² + 2xy + y² − 6x² + 2xy − 6xy + 2y² − 45x² − 5y² + 30xy = 0",
-          "⇒ −50x² − 2y² + 28xy = 0   ⇒   −2(25x² + y² − 14xy) = 0",
+          "⇒ x² + 2xy + y² − 2x(3x − y) − 2y(3x − y)",
+          {
+            "text": "  − 5(3x − y)² = 0",
+            "style": "indent"
+          },
+          "⇒ x² + 2xy + y² − 6x² + 2xy − 6xy + 2y²",
+          {
+            "text": "  − 5(9x² + y² − 6xy) = 0",
+            "style": "indent"
+          },
+          "⇒ x² + 2xy + y² − 6x² + 2xy − 6xy + 2y²",
+          {
+            "text": "  − 45x² − 5y² + 30xy = 0",
+            "style": "indent"
+          },
+          "⇒ −50x² − 2y² + 28xy = 0",
+          {
+            "text": "  ⇒   −2(25x² + y² − 14xy) = 0",
+            "style": "indent"
+          },
           "⇒ 25x² + y² − 14xy = 0"
         ],
         "recall": {
@@ -172,23 +192,29 @@
         },
         "why": "The absence of a constant and a linear term is the CHECK that the homogenisation was done right, and it is also what guarantees both lines pass through the origin.",
         "common_mistakes": [
-          "A constant term surviving, which means the squaring was missed.",
+          "Leaving a constant term, which means the squaring was missed.",
           "Sign slip when expanding a squared bracket."
         ],
         "mark_note": "Method",
-        "memory_tip": "The result must have NO constant and no linear term — if either survives, a term was raised wrongly."
+        "memory_tip": "The result must have NO constant and no linear term — if either is left, a term was homogenised wrongly."
       },
       {
         "id": "s4_apply_the_condition",
         "kind": "boxed_final",
         "label": "Apply the cosθ formula",
         "marks": 2,
-        "margin_note": "The last two marks — one for writing the cosθ formula, one for carrying it through to the angle. Note this formula uses 2h, not h — reading the wrong one is the commonest slip in the whole chapter.",
+        "margin_note": "The last two marks — one for writing the cosθ formula, one for carrying it through to the angle. Note this formula uses 2h, not h — reading the wrong one is a common slip.",
         "lines": [
-          "On comparing with ax² + 2hxy + by² = 0, we get a = 25, b = 1, 2h = −14",
-          "∴ cosθ = |a + b| / √((a − b)² + (2h)²), where θ is the angle between the required lines",
+          "On comparing with ax² + 2hxy + by² = 0, we get",
+          "a = 25, b = 1, 2h = −14",
+          "∴ cosθ = |a + b| / √((a − b)² + (2h)²),",
+          "where θ is the angle between the required lines",
           "= |25 + 1| / √((25 − 1)² + (−14)²)",
-          "= 26 / √(576 + 196) = 26/√772 = 26/√(4 × 193) = 26/(2√193) = 13/√193",
+          "= 26 / √(576 + 196) = 26/√772 = 26/√(4 × 193)",
+          {
+            "text": "  = 26/(2√193) = 13/√193",
+            "style": "indent"
+          },
           {
             "text": "∴ Angle between the lines is θ = Cos⁻¹(13/√193)",
             "style": "boxed"
@@ -227,5 +253,5 @@
       }
     ]
   },
-  "insider_note": "The line rearranges to 3x − y = −1, so the divisor is −1 and every substituted term flips sign; that is where this one is lost. Then use cosθ = |a + b|/√((a − b)² + (2h)²), not the tan form."
+  "insider_note": "The line rearranges to 3x − y = −1, so the divisor is −1 and every substituted term changes sign; a sign error there is common. Then use cosθ = |a + b|/√((a − b)² + (2h)²), not the tan form."
 }

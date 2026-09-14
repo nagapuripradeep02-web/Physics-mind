@@ -90,7 +90,7 @@
             "through the origin"
           ]
         },
-        "why": "The first pair is homogeneous, so both its lines pass through the origin and give the two directions the whole figure is built from.",
+        "why": "The first pair is homogeneous, so both its lines pass through the origin and give the two directions of the sides of the figure.",
         "common_mistakes": [
           "Reading the xy coefficient as h instead of 2h, so h = −5 instead of −5/2.",
           "Splitting −5xy as −2xy − 3xy, whose product is not −36x²y²."

@@ -66,9 +66,12 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Let the separate equations of ax² + 2hxy + by² + 2gx + 2fy + c = 0 be",
-          "l₁x + m₁y + n₁ = 0  ……(1)  and  l₂x + m₂y + n₂ = 0  ……(2)",
-          "∴ ax² + 2hxy + by² + 2gx + 2fy + c ≡ (l₁x + m₁y + n₁)(l₂x + m₂y + n₂)",
+          "Let the separate equations of",
+          "ax² + 2hxy + by² + 2gx + 2fy + c = 0 be",
+          "l₁x + m₁y + n₁ = 0  ……(1)",
+          "and  l₂x + m₂y + n₂ = 0  ……(2)",
+          "∴ ax² + 2hxy + by² + 2gx + 2fy + c",
+          "≡ (l₁x + m₁y + n₁)(l₂x + m₂y + n₂)",
           "Comparing both sides we get  l₁l₂ = a,  m₁m₂ = b,  n₁n₂ = c,",
           "l₁m₂ + l₂m₁ = 2h"
         ],
@@ -107,10 +110,12 @@
         "kind": "equation",
         "label": "Write both perpendicular distances",
         "marks": 1,
-        "margin_note": "One mark. From the ORIGIN the distance formula collapses: putting (0,0) into |l x + m y + n| leaves only |n|. Both numerators are therefore single constants.",
+        "margin_note": "One mark. From the ORIGIN the distance formula is short: putting (0,0) into |l x + m y + n| leaves only |n|. Both numerators are therefore single constants.",
         "lines": [
-          "The perpendicular distance from O(0,0) to line (1) is  p₁ = |n₁| / √(l₁² + m₁²)",
-          "The perpendicular distance from O(0,0) to line (2) is  p₂ = |n₂| / √(l₂² + m₂²)"
+          "The perpendicular distance from O(0,0) to line (1)",
+          "is  p₁ = |n₁| / √(l₁² + m₁²)",
+          "The perpendicular distance from O(0,0) to line (2)",
+          "is  p₂ = |n₂| / √(l₂² + m₂²)"
         ],
         "recall": {
           "credit": "say_it",
@@ -140,7 +145,7 @@
           "Forgetting the modulus signs."
         ],
         "mark_note": "Method",
-        "memory_tip": "From the ORIGIN the formula collapses: putting (0,0) in leaves only |n|."
+        "memory_tip": "From the ORIGIN the formula is short: putting (0,0) in leaves only |n|."
       },
       {
         "id": "s3_multiply",
@@ -191,10 +196,18 @@
         "marks": 1,
         "margin_note": "The last mark. Add and subtract 2l₁l₂m₁m₂ under the root so it regroups as a difference of squares plus a square — the same rearrangement the general-point version uses.",
         "lines": [
-          "= |c| / √((l₁l₂ − m₁m₂)² + 2l₁l₂m₁m₂ + (l₁m₂ + l₂m₁)² − 2l₁m₂l₂m₁)",
+          "= |c| / √((l₁l₂ − m₁m₂)² + 2l₁l₂m₁m₂",
+          {
+            "text": "  + (l₁m₂ + l₂m₁)² − 2l₁m₂l₂m₁)",
+            "style": "indent"
+          },
           "= |c| / √((l₁l₂ − m₁m₂)² + (l₁m₂ + l₂m₁)²)",
           {
-            "text": "∴ Product of perpendiculars = |c| / √((a − b)² + 4h²)",
+            "text": "∴ Product of perpendiculars",
+            "style": "boxed"
+          },
+          {
+            "text": "= |c| / √((a − b)² + 4h²)",
             "style": "boxed"
           }
         ],
@@ -230,5 +243,5 @@
       }
     ]
   },
-  "insider_note": "The constants have to be matched as well: n₁n₂ = c is what makes the numerator collapse to |c|. The denominator is the same (a − b)² + 4h² as the (α, β) version, so the two proofs differ only at the top."
+  "insider_note": "The constants have to be matched as well: n₁n₂ = c is what makes the numerator equal to |c|. The denominator is the same (a − b)² + 4h² as the (α, β) version, so the two proofs differ only at the top."
 }

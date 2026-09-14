@@ -105,8 +105,16 @@
         "margin_note": "One mark. A point on an angular bisector is EQUALLY far from both lines, so set the two perpendicular distances equal with a ±. The denominators are each √(sin² + cos²) = 1.",
         "lines": [
           "Equation of angular bisectors is",
-          "(x sinα − y cosα)/√(sin²α + cos²α) = ±(x sinβ − y cosβ)/√(sin²β + cos²β)",
-          "⇒ x sinα − y cosα = ±(x sinβ − y cosβ)      [∵ sin²θ + cos²θ = 1]"
+          "(x sinα − y cosα)/√(sin²α + cos²α)",
+          {
+            "text": "  = ±(x sinβ − y cosβ)/√(sin²β + cos²β)",
+            "style": "indent"
+          },
+          "⇒ x sinα − y cosα = ±(x sinβ − y cosβ)",
+          {
+            "text": "  [∵ sin²θ + cos²θ = 1]",
+            "style": "indent"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -143,14 +151,34 @@
         "kind": "equation",
         "label": "Square and collect",
         "marks": 1,
-        "margin_note": "One mark. Squaring removes the ±. Use sin2θ for the cross terms so the whole line collapses into differences of squares.",
+        "margin_note": "One mark. Squaring removes the ±. Use sin 2θ for the cross terms so the line becomes differences of squares.",
         "lines": [
           "⇒ (x sinα − y cosα)² = (x sinβ − y cosβ)²",
-          "⇒ x²sin²α + y²cos²α − 2xy sinα cosα = x²sin²β + y²cos²β − 2xy sinβ cosβ",
-          "⇒ x²sin²α + y²cos²α − xy sin2α = x²sin²β + y²cos²β − xy sin2β",
-          "⇒ x²(sin²α − sin²β) + y²(cos²α − cos²β) = xy(sin2α − sin2β)",
-          "⇒ x²(sin²α − sin²β) + y²[(1 − sin²α) − (1 − sin²β)] = xy(sin2α − sin2β)",
-          "⇒ x²(sin²α − sin²β) − y²(sin²α − sin²β) = xy(sin2α − sin2β)",
+          "⇒ x²sin²α + y²cos²α − 2xy sinα cosα",
+          {
+            "text": "  = x²sin²β + y²cos²β − 2xy sinβ cosβ",
+            "style": "indent"
+          },
+          "⇒ x²sin²α + y²cos²α − xy sin2α",
+          {
+            "text": "  = x²sin²β + y²cos²β − xy sin2β",
+            "style": "indent"
+          },
+          "⇒ x²(sin²α − sin²β) + y²(cos²α − cos²β)",
+          {
+            "text": "  = xy(sin2α − sin2β)",
+            "style": "indent"
+          },
+          "⇒ x²(sin²α − sin²β) + y²[(1 − sin²α) − (1 − sin²β)]",
+          {
+            "text": "  = xy(sin2α − sin2β)",
+            "style": "indent"
+          },
+          "⇒ x²(sin²α − sin²β) − y²(sin²α − sin²β)",
+          {
+            "text": "  = xy(sin2α − sin2β)",
+            "style": "indent"
+          },
           "⇒ (sin²α − sin²β)(x² − y²) = xy(sin2α − sin2β)"
         ],
         "recall": {
@@ -190,13 +218,22 @@
         "marks": 1,
         "margin_note": "The last mark. Turn both brackets into product form so that (1) can be used: sin²α − sin²β = sin(α+β)sin(α−β), and sin2α − sin2β = 2cos(α+β)sin(α−β). The common sin(α−β) then cancels.",
         "lines": [
-          "⇒ [sin(α + β) sin(α − β)](x² − y²) = 2cos(α + β) sin(α − β) xy",
-          "  [∵ sin²A − sin²B = sin(A+B)sin(A−B),  sin2A − sin2B = 2cos(A+B)sin(A−B)]",
+          "⇒ [sin(α + β) sin(α − β)](x² − y²)",
+          {
+            "text": "  = 2cos(α + β) sin(α − β) xy",
+            "style": "indent"
+          },
+          "  [∵ sin²A − sin²B = sin(A+B)sin(A−B),",
+          "sin2A − sin2B = 2cos(A+B)sin(A−B)]",
           "⇒ sin(α + β)(x² − y²) = 2cos(α + β) xy",
           "⇒ sin(α + β)(x² − y²) = 2(cosα cosβ − sinα sinβ) xy",
           "⇒ −2h(x² − y²) = 2(b − a) xy      [∵ From (1)]",
           {
-            "text": "∴ h(x² − y²) = (a − b) xy,  that is  h(x² − y²) − (a − b)xy = 0",
+            "text": "∴ h(x² − y²) = (a − b) xy,",
+            "style": "boxed"
+          },
+          {
+            "text": "that is  h(x² − y²) − (a − b)xy = 0",
             "style": "boxed"
           }
         ],

@@ -187,7 +187,7 @@
         "label": "Find the area",
         "marks": 1,
         "mark_note": "Solution",
-        "margin_note": "The last mark. With the side already known, the equilateral-triangle area formula finishes it. The same answer comes from ½ × base × height with base 2√3|a| and height 3|a|.",
+        "margin_note": "The last mark. With the side already known, the equilateral-triangle area formula gives the answer. The same answer comes from ½ × base × height with base 2√3|a| and height 3|a|.",
         "memory_tip": "Area of an equilateral triangle is (√3/4) × side squared, and here side squared is 12a².",
         "lines": [
           "Side s = 2√3 |a|, so s² = 12a²",

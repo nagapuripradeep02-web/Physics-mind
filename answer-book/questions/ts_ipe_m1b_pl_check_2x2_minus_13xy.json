@@ -59,8 +59,10 @@
             "style": "heading"
           },
           "Given equation is 2x² − 13xy − 7y² + x + 23y − 6 = 0",
-          "Comparing with ax² + 2hxy + by² + 2gx + 2fy + c = 0 we get",
-          "a = 2, 2h = −13 ⇒ h = −13/2, b = −7, 2g = 1 ⇒ g = 1/2, 2f = 23 ⇒ f = 23/2, c = −6"
+          "Comparing with ax² + 2hxy + by² + 2gx + 2fy + c = 0",
+          "we get",
+          "a = 2, 2h = −13 ⇒ h = −13/2, b = −7,",
+          "2g = 1 ⇒ g = 1/2, 2f = 23 ⇒ f = 23/2, c = −6"
         ],
         "recall": {
           "credit": "say_it",
@@ -85,7 +87,7 @@
             "six coefficients"
           ]
         },
-        "why": "The standard form writes the xy, x and y coefficients DOUBLED, so the numbers read straight off the question have to be halved to become h, g and f. Skipping that halving is the commonest error in the question type.",
+        "why": "The standard form writes the xy, x and y coefficients DOUBLED, so the numbers read straight off the question have to be halved to become h, g and f. Skipping that halving is a common error in this type of question.",
         "common_mistakes": [
           "Taking h as the whole xy coefficient instead of half of it.",
           "Getting the sign of a negative coefficient wrong."
@@ -100,7 +102,11 @@
         "margin_note": "First mark. Δ = abc + 2fgh − af² − bg² − ch² is the master test — it is zero exactly when the equation factors into two lines.",
         "lines": [
           "(i) Δ = abc + 2fgh − af² − bg² − ch²",
-          "= 2(−7)(−6) + 2(23/2)(1/2)(−13/2) − 2(23/2)² − (−7)(1/2)² − (−6)(−13/2)²",
+          "= 2(−7)(−6) + 2(23/2)(1/2)(−13/2) − 2(23/2)²",
+          {
+            "text": "  − (−7)(1/2)² − (−6)(−13/2)²",
+            "style": "indent"
+          },
           "= 84 − 299/4 − 529/2 + 7/4 + 507/2",
           "= 84 − 299/4 + 7/4 + (507 − 529)/2",
           "= 84 − 292/4 − 22/2 = 84 − 73 − 11 = 0"
@@ -142,10 +148,19 @@
         "marks": 1,
         "margin_note": "One mark. Δ = 0 alone is not enough — the three inequalities confirm the factors are REAL rather than complex. All four conditions together settle it.",
         "lines": [
-          "(ii) h² − ab = (−13/2)² − 2(−7) = 169/4 + 14 = (169 + 56)/4 = 225/4 > 0",
-          "(iii) f² − bc = (23/2)² − (−7)(−6) = 529/4 − 42 = (529 − 168)/4 = 361/4 > 0",
+          "(ii) h² − ab = (−13/2)² − 2(−7) = 169/4 + 14",
+          {
+            "text": "  = (169 + 56)/4 = 225/4 > 0",
+            "style": "indent"
+          },
+          "(iii) f² − bc = (23/2)² − (−7)(−6) = 529/4 − 42",
+          {
+            "text": "  = (529 − 168)/4 = 361/4 > 0",
+            "style": "indent"
+          },
           "(iv) g² − ac = (1/2)² − 2(−6) = 1/4 + 12 = 49/4 > 0",
-          "All the four conditions are satisfied. So, the given equation represents a pair of straight lines."
+          "All the four conditions are satisfied.",
+          "So, the given equation represents a pair of straight lines."
         ],
         "recall": {
           "credit": "say_it",
@@ -184,11 +199,24 @@
         "marks": 1,
         "margin_note": "One mark. The two lines meet at a point given directly by a formula in the same six coefficients — no factorising and no solving is needed.",
         "lines": [
-          "Point of intersection  P = ((hf − bg)/(ab − h²), (gh − af)/(ab − h²))",
-          "hf − bg = (−13/2)(23/2) − (−7)(1/2) = −299/4 + 14/4 = −285/4",
-          "ab − h² = 2(−7) − (−13/2)² = −14 − 169/4 = (−56 − 169)/4 = −225/4",
+          "Point of intersection",
+          "P = ((hf − bg)/(ab − h²), (gh − af)/(ab − h²))",
+          "hf − bg = (−13/2)(23/2) − (−7)(1/2) = −299/4 + 14/4",
+          {
+            "text": "  = −285/4",
+            "style": "indent"
+          },
+          "ab − h² = 2(−7) − (−13/2)² = −14 − 169/4",
+          {
+            "text": "  = (−56 − 169)/4 = −225/4",
+            "style": "indent"
+          },
           "⇒ x = (−285/4)/(−225/4) = 285/225 = 19/15",
-          "gh − af = (1/2)(−13/2) − 2(23/2) = −13/4 − 92/4 = −105/4",
+          "gh − af = (1/2)(−13/2) − 2(23/2) = −13/4 − 92/4",
+          {
+            "text": "  = −105/4",
+            "style": "indent"
+          },
           "⇒ y = (−105/4)/(−225/4) = 105/225 = 7/15",
           {
             "text": "∴ Point of intersection = (19/15, 7/15)",
@@ -232,9 +260,14 @@
         "marks": 1,
         "margin_note": "The last mark. The angle between the two lines of a pair comes from the same coefficients again — tanθ = 2√(h² − ab) / |a + b|, using the h² − ab already computed above.",
         "lines": [
-          "The angle between the pair is given by  tanθ = 2√(h² − ab) / |a + b|",
+          "The angle between the pair is given by",
+          "tanθ = 2√(h² − ab) / |a + b|",
           "= 2√(225/4) / |2 + (−7)| = 2(15/2)/5 = 15/5 = 3",
-          "⇒ tanθ = 3  ⇒  secθ = √(1 + tan²θ) = √10  ⇒  cosθ = 1/√10",
+          "⇒ tanθ = 3  ⇒  secθ = √(1 + tan²θ) = √10",
+          {
+            "text": "  ⇒  cosθ = 1/√10",
+            "style": "indent"
+          },
           {
             "text": "∴ Angle between them is θ = Cos⁻¹(1/√10)",
             "style": "boxed"

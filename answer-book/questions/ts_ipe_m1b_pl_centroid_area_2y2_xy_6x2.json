@@ -189,8 +189,8 @@
         "label": "Find the area",
         "marks": 1,
         "mark_note": "Solution",
-        "margin_note": "The last mark. With one vertex at the origin the area determinant collapses to ½|x₁y₂ − x₂y₁|. Cross-check with n²√(h² − ab)/|am² − 2hlm + bl²|, where h = −1/2 and h² − ab = 49/4: that also gives 56/3.",
-        "memory_tip": "With a vertex at the origin the determinant collapses to ½|x₁y₂ − x₂y₁| — only two points appear.",
+        "margin_note": "The last mark. With one vertex at the origin the area determinant becomes ½|x₁y₂ − x₂y₁|. Cross-check with n²√(h² − ab)/|am² − 2hlm + bl²|, where h = −1/2 and h² − ab = 49/4: that also gives 56/3.",
+        "memory_tip": "With a vertex at the origin the determinant becomes ½|x₁y₂ − x₂y₁| — only two points appear.",
         "lines": [
           "With O a vertex, Δ = ½|x₁y₂ − x₂y₁|",
           "= ½ |(−4/3)(−12) − 8(−8/3)|",
