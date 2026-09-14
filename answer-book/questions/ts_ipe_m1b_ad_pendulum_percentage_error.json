@@ -79,7 +79,7 @@
             "differentiate"
           ]
         },
-        "why": "The error is made in l only; g is a constant and contributes no error. Writing T = k√l says that on the page and reduces the whole question to differentiating a square root.",
+        "why": "The error is made in l only; g is a constant and contributes no error. Writing T = k√l says that on the page and reduces the question to differentiating a square root.",
         "common_mistakes": [
           "Treating g as a variable and differentiating it as well.",
           "Differentiating √(l/g) as 1/(2√(l/g)) and losing the 1/√g factor."

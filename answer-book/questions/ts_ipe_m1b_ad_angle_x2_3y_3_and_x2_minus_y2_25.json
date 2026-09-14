@@ -55,14 +55,17 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given curves:  x² + 3y = 3   …(i)   and   x² − y² + 25 = 0   …(ii)",
+          "Given curves:  x² + 3y = 3   …(i)",
+          "and   x² − y² + 25 = 0   …(ii)",
           "From (i):  x² = 3 − 3y",
           "Put this in (ii):  (3 − 3y) − y² + 25 = 0",
           "−y² − 3y + 28 = 0   ⇒   y² + 3y − 28 = 0",
           "(y + 7)(y − 4) = 0   ⇒   y = −7 or y = 4",
-          "If y = 4:  x² = 3 − 12 = −9, which is impossible. Reject y = 4.",
+          "If y = 4:  x² = 3 − 12 = −9, which is impossible.",
+          "Reject y = 4.",
           "If y = −7:  x² = 3 + 21 = 24  ⇒  x = ±2√6",
-          "∴ the curves meet at P(2√6, −7) and at (−2√6, −7). Work at P."
+          "∴ the curves meet at P(2√6, −7) and at (−2√6, −7).",
+          "Work at P."
         ],
         "recall": {
           "credit": "say_it",
@@ -102,7 +105,7 @@
         "label": "Find both slopes there",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Third mark. Keep the surd as 2√6 through the whole step. Turning it into a decimal here makes the cancelling in the last step impossible to see.",
+        "margin_note": "Third mark. Keep the surd as 2√6 all through this step. Turning it into a decimal here makes the cancelling in the last step impossible to see.",
         "lines": [
           "From (i):  2x + 3 (dy/dx) = 0  ⇒  dy/dx = −2x/3",
           "At P(2√6, −7):  m₁ = −2(2√6)/3 = −4√6/3",
@@ -138,7 +141,7 @@
           "Replacing 2√6 by 4.9 and then being unable to reach an exact answer.",
           "Differentiating 3y as 3 without the dy/dx factor."
         ],
-        "memory_tip": "For x² − y² = k the slope is x/y, and for x² + y² = k it is −x/y — the sign inside the curve is the sign that flips."
+        "memory_tip": "For x² − y² = k the slope is x/y, and for x² + y² = k it is −x/y — the sign between x² and y² decides the sign of the slope."
       },
       {
         "id": "s3_angle",
@@ -149,7 +152,11 @@
         "margin_note": "Last mark. Take the numerator over the common denominator 21 and write the denominator over 21 as well; the 21s then cancel and leave 22√6/69.",
         "lines": [
           "tanθ = |(m₁ − m₂)/(1 + m₁m₂)|",
-          "m₁ − m₂ = −4√6/3 + 2√6/7 = √6(−28 + 6)/21 = −22√6/21",
+          "m₁ − m₂ = −4√6/3 + 2√6/7 = √6(−28 + 6)/21",
+          {
+            "text": "  = −22√6/21",
+            "style": "indent"
+          },
           "m₁m₂ = (−4√6/3)(−2√6/7) = 8(6)/21 = 48/21",
           "1 + m₁m₂ = 1 + 48/21 = 69/21",
           "tanθ = |(−22√6/21)/(69/21)| = 22√6/69",

@@ -52,7 +52,8 @@
             "style": "heading"
           },
           "The balloon stays spherical, so let r be its radius at time t.",
-          "Given: dV/dt = 900 cm³/sec.  Asked: dr/dt when r = 15 cm.",
+          "Given: dV/dt = 900 cm³/sec.",
+          "Asked: dr/dt when r = 15 cm.",
           "Volume of a sphere:  V = (4/3)πr³",
           "Differentiate both sides with respect to time t:",
           "dV/dt = (4/3)π·3r²·(dr/dt) = 4πr²(dr/dt)"

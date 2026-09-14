@@ -45,7 +45,7 @@
         "label": "Choose the nearby exact point",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark, and the whole choice of method sits here: name x = 8, Δx = −0.2 and f′(8) = 1/12. An examiner reads this line to see whether the nearest perfect cube was found.",
+        "margin_note": "First mark, and the choice of method is made here: name x = 8, Δx = −0.2 and f′(8) = 1/12. An examiner reads this line to see whether the nearest perfect cube was found.",
         "lines": [
           {
             "text": "Sol:",

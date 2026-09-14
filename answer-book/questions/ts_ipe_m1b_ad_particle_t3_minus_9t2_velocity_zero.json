@@ -52,7 +52,8 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "This is a rectilinear motion question. Velocity v = dS/dt, and the question asks for",
+          "This is a rectilinear motion question.",
+          "Velocity v = dS/dt, and the question asks for",
           "the times and also the positions at those times.",
           "S = t³ − 9t² + 24t − 18",
           "v = dS/dt = 3t² − 18t + 24 = 3(t² − 6t + 8)",
@@ -93,13 +94,25 @@
         "label": "Find S at each time",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Second mark, and the mark most often lost: answering only 'when'. Put each time back into S. A negative S is a real position — it is 2 units on the negative side of the origin, not a mistake. The particle starts at S(0) = −18 and crosses S = 0 at t = 3 on the way back. The stem prints no units; seconds and metres are the standard reading.",
+        "margin_note": "Second mark: do not answer only 'when'. Put each time back into S. A negative S is a real position — it is 2 units on the negative side of the origin, not a mistake. The particle starts at S(0) = −18 and crosses S = 0 at t = 3 on the way back. The stem prints no units; seconds and metres are the standard reading.",
         "memory_tip": "Where means position, and position lives in S. Substitute back into the original formula, never into v.",
         "lines": [
-          "At t = 2:  S = (2)³ − 9(2)² + 24(2) − 18 = 8 − 36 + 48 − 18 = 2",
-          "At t = 4:  S = (4)³ − 9(4)² + 24(4) − 18 = 64 − 144 + 96 − 18 = −2",
+          "At t = 2:  S = (2)³ − 9(2)² + 24(2) − 18",
           {
-            "text": "∴ the velocity is zero at t = 2 sec, where S = 2 m, and at t = 4 sec, where S = −2 m",
+            "text": "  = 8 − 36 + 48 − 18 = 2",
+            "style": "indent"
+          },
+          "At t = 4:  S = (4)³ − 9(4)² + 24(4) − 18",
+          {
+            "text": "  = 64 − 144 + 96 − 18 = −2",
+            "style": "indent"
+          },
+          {
+            "text": "∴ the velocity is zero at t = 2 sec, where S = 2 m,",
+            "style": "boxed"
+          },
+          {
+            "text": "and at t = 4 sec, where S = −2 m",
             "style": "boxed"
           }
         ],

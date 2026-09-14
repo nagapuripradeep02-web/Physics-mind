@@ -45,7 +45,7 @@
         "label": "Find dy from the derivative",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. The derivative is negative, so dy is negative too. Keep the minus sign — dropping it is the commonest way this mark is lost.",
+        "margin_note": "First mark. The derivative is negative, so dy is negative too. Keep the minus sign — dropping it loses this mark.",
         "lines": [
           {
             "text": "Sol:",
@@ -82,7 +82,7 @@
         "why": "1/(x + 2) is (x + 2)⁻¹, and the power rule gives −(x + 2)⁻², so the derivative is negative everywhere the function is defined. That sign is part of the answer, not a slip.",
         "common_mistakes": [
           "Writing dy/dx = 1/(x + 2)² without the minus sign.",
-          "Squaring only x instead of the whole bracket (x + 2)."
+          "Squaring only x instead of the bracket (x + 2)."
         ],
         "memory_tip": "dy uses the derivative once. Δy uses the function twice. d for derivative, Δ for difference."
       },

@@ -49,17 +49,20 @@
         "label": "Differentiate",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. State that f is a polynomial and so is differentiable everywhere — that is what lets the sign of f′ decide the behaviour on the whole real line.",
+        "margin_note": "First mark. State that f is a polynomial and so is differentiable everywhere — that is what lets the sign of f′ decide the behaviour for every real x.",
         "lines": [
           {
             "text": "Sol:",
             "style": "heading"
           },
           "f(x) = x² − 3x + 8",
-          "f is a polynomial, so it is continuous and differentiable for every real x.",
+          "f is a polynomial, so it is continuous",
+          "and differentiable for every real x.",
           "f′(x) = 2x − 3",
-          "The sign of f′ decides where f increases and where it decreases:",
-          "f is increasing where f′(x) > 0, and decreasing where f′(x) < 0."
+          "The sign of f′ decides where f increases",
+          "and where it decreases:",
+          "f is increasing where f′(x) > 0, and decreasing",
+          "where f′(x) < 0."
         ],
         "recall": {
           "credit": "say_it",
@@ -84,7 +87,7 @@
             "decreasing"
           ]
         },
-        "why": "The first derivative measures the rate of change. Where it is positive the values rise as x rises, and where it is negative they fall, so its sign is the whole answer to this question.",
+        "why": "The first derivative measures the rate of change. Where it is positive the values rise as x rises, and where it is negative they fall, so the sign of f′ gives the answer to this question.",
         "common_mistakes": [
           "Differentiating −3x as −3x rather than −3.",
           "Carrying the constant 8 into the derivative."
@@ -103,7 +106,9 @@
           "2x − 3 > 0   ⇒   2x > 3   ⇒   x > 3/2",
           "Decreasing:  f′(x) < 0",
           "2x − 3 < 0   ⇒   2x < 3   ⇒   x < 3/2",
-          "At x = 3/2 the derivative is zero, so f is neither increasing nor decreasing at that single point."
+          "At x = 3/2 the derivative is zero,",
+          "so f is neither increasing nor decreasing",
+          "at that single point."
         ],
         "recall": {
           "credit": "say_it",
@@ -143,11 +148,19 @@
         "mark_note": "Answer",
         "margin_note": "Fourth mark. Write both intervals in interval notation and name which is which. No second derivative is needed anywhere in this question.",
         "lines": [
-          "The boundary value 3/2 belongs to neither open interval, since f′(3/2) = 0.",
-          "Check: f(1) = 1 − 3 + 8 = 6, f(3/2) = 9/4 − 9/2 + 8 = 23/4 = 5.75, f(2) = 4 − 6 + 8 = 6.",
-          "The values fall up to x = 3/2 and rise after it, which matches the intervals found.",
+          "The boundary value 3/2 belongs to neither open interval,",
+          "since f′(3/2) = 0.",
+          "Check: f(1) = 1 − 3 + 8 = 6,",
+          "f(3/2) = 9/4 − 9/2 + 8 = 23/4 = 5.75,",
+          "f(2) = 4 − 6 + 8 = 6.",
+          "The values fall up to x = 3/2 and rise after it,",
+          "which matches the intervals found.",
           {
-            "text": "∴ f is decreasing on (−∞, 3/2) and increasing on (3/2, ∞)",
+            "text": "∴ f is decreasing on (−∞, 3/2)",
+            "style": "boxed"
+          },
+          {
+            "text": "and increasing on (3/2, ∞)",
             "style": "boxed"
           }
         ],

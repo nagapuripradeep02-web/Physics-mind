@@ -45,14 +45,15 @@
         "label": "Choose the nearby exact point",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark, and the whole choice of method sits here: name x = 1000, Δx = −1 and f′(1000) = 1/300. An examiner reads this line to see whether the nearest perfect cube was found.",
+        "margin_note": "First mark, and the choice of method is made here: name x = 1000, Δx = −1 and f′(1000) = 1/300. An examiner reads this line to see whether the nearest perfect cube was found.",
         "lines": [
           {
             "text": "Sol:",
             "style": "heading"
           },
           "Let f(x) = ∛x. Then f(x + Δx) ≈ f(x) + f′(x)·Δx",
-          "1000 is the nearest perfect cube to 999, and ∛1000 = 10 exactly",
+          "1000 is the nearest perfect cube to 999,",
+          "and ∛1000 = 10 exactly",
           "∴ take x = 1000,  Δx = 999 − 1000 = −1",
           "f′(x) = 1/(3(∛x)²)",
           "f′(1000) = 1/(3(10)²) = 1/300"

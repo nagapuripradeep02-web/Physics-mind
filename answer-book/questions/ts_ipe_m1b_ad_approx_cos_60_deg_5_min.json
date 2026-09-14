@@ -45,7 +45,7 @@
         "label": "Choose 60° and convert 5′ to radians",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark, and the whole choice of method sits here: 60° is the nearby angle with an exact cosine, and Δx = 5′ must be turned into radians before it is used. The radian conversion is the step most answers leave out.",
+        "margin_note": "First mark, and the choice of method is made here: 60° is the nearby angle with an exact cosine, and Δx = 5′ must be turned into radians before it is used. Do not leave out the radian conversion.",
         "lines": [
           {
             "text": "Sol:",
@@ -56,7 +56,11 @@
           "∴ take x = 60°,  Δx = 5′",
           "5′ = (5/60)° = (1/12)°",
           "In radians, Δx = (1/12) × (π/180) = π/2160 ≈ 0.0014544",
-          "f′(x) = −sin x,  so f′(60°) = −sin 60° = −√3/2 = −0.8660"
+          "f′(x) = −sin x,  so f′(60°) = −sin 60° = −√3/2",
+          {
+            "text": "  = −0.8660",
+            "style": "indent"
+          }
         ],
         "recall": {
           "credit": "say_it",

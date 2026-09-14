@@ -55,7 +55,8 @@
           "f(x) = x² − 1 is a polynomial function, so",
           "(i) f is continuous on the closed interval [−1, 1]",
           "(ii) f is differentiable on the open interval (−1, 1)",
-          "(iii) f(−1) = (−1)² − 1 = 1 − 1 = 0  and  f(1) = 1² − 1 = 1 − 1 = 0",
+          "(iii) f(−1) = (−1)² − 1 = 1 − 1 = 0",
+          "and  f(1) = 1² − 1 = 1 − 1 = 0",
           "∴ f(−1) = f(1) = 0, so Rolle's theorem applies on [−1, 1]."
         ],
         "recall": {

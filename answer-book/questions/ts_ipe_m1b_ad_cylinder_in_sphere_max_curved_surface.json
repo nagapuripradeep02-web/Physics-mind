@@ -53,15 +53,18 @@
         "label": "Relate the cylinder to the sphere",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. The examiner looks for the right triangle with legs R and h/2 and hypotenuse r. Half the height, not the whole height.",
+        "margin_note": "First mark. The examiner looks for the right triangle with legs R and h/2 and hypotenuse r. Half the height, not the full height.",
         "lines": [
           {
             "text": "Sol:",
             "style": "heading"
           },
-          "Let R be the radius and h the height of the cylinder inscribed in the sphere of radius r.",
-          "The axis of the cylinder passes through the centre of the sphere, so the centre lies at the mid-point of the axis.",
-          "The sphere radius to a rim point, the half-height h/2 and the cylinder radius R form a right triangle:",
+          "Let R be the radius and h the height of the cylinder",
+          "inscribed in the sphere of radius r.",
+          "The axis of the cylinder passes through the centre",
+          "of the sphere, so the centre lies at the mid-point of the axis.",
+          "The sphere radius to a rim point, the half-height h/2",
+          "and the cylinder radius R form a right triangle:",
           "R² + (h/2)² = r²   ⇒   R² = r² − h²/4"
         ],
         "recall": {
@@ -104,7 +107,8 @@
         "lines": [
           "Curved surface area of the cylinder:  S = 2πRh",
           "S = 2πh√(r² − h²/4)",
-          "S is positive, so S is greatest exactly where S² is greatest. Work with S²:",
+          "S is positive, so S is greatest exactly where S² is greatest.",
+          "Work with S²:",
           "S² = 4π²h²(r² − h²/4) = π²(4r²h² − h⁴)",
           "Let f(h) = 4r²h² − h⁴,  where 0 < h < 2r"
         ],
@@ -149,7 +153,8 @@
           "f′(h) = 8r²h − 4h³ = 4h(2r² − h²)",
           "f′(h) = 0   ⇒   4h(2r² − h²) = 0",
           "h = 0 gives no cylinder, so it is discarded and  2r² − h² = 0",
-          "h² = 2r²   ⇒   h = √2 r      (h > 0, so the negative root is not taken)"
+          "h² = 2r²   ⇒   h = √2 r",
+          "(h > 0, so the negative root is not taken)"
         ],
         "recall": {
           "credit": "say_it",
@@ -191,10 +196,16 @@
         "lines": [
           "f″(h) = 8r² − 12h²",
           "At h² = 2r²:  f″ = 8r² − 12(2r²) = 8r² − 24r² = −16r² < 0",
-          "A negative second derivative means the stationary point is a maximum.",
-          "So f is maximum at h = √2 r, and therefore S is maximum at h = √2 r.",
+          "A negative second derivative means the stationary point",
+          "is a maximum.",
+          "So f is maximum at h = √2 r,",
+          "and therefore S is maximum at h = √2 r.",
           {
-            "text": "∴ the curved surface is maximum when the height of the cylinder is h = √2 r",
+            "text": "∴ the curved surface is maximum",
+            "style": "boxed"
+          },
+          {
+            "text": "when the height of the cylinder is h = √2 r",
             "style": "boxed"
           }
         ],

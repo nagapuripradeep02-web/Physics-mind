@@ -96,7 +96,8 @@
         "lines": [
           "dA = 2x · dx = 2(3)(0.01)",
           "= 0.06",
-          "Exact increase = (3.01)² − 3² = 9.0601 − 9 = 0.0601 cm², so 0.06 cm² is close to it.",
+          "Exact increase = (3.01)² − 3² = 9.0601 − 9 = 0.0601 cm²,",
+          "so 0.06 cm² is close to it.",
           {
             "text": "∴ the area increases by approximately 0.06 cm²",
             "style": "boxed"

@@ -55,14 +55,17 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given curves:  2y² − 9x = 0   …(i)   and   3x² + 4y = 0   …(ii)",
+          "Given curves:  2y² − 9x = 0   …(i)",
+          "and   3x² + 4y = 0   …(ii)",
           "From (i):  x = 2y²/9",
           "Put this in (ii):  3(2y²/9)² + 4y = 0",
           "3(4y⁴/81) + 4y = 0   ⇒   4y⁴/27 + 4y = 0",
           "Multiply by 27/4:  y⁴ + 27y = 0  ⇒  y(y³ + 27) = 0",
           "⇒ y = 0  or  y³ = −27, that is y = −3",
-          "y = 0 gives x = 0, the origin, which lies on the axes and not in any quadrant.",
-          "y = −3 gives x = 2(9)/9 = 2, so the point is (2, −3), where x > 0 and y < 0.",
+          "y = 0 gives x = 0, the origin, which lies on the axes",
+          "and not in any quadrant.",
+          "y = −3 gives x = 2(9)/9 = 2, so the point is (2, −3),",
+          "where x > 0 and y < 0.",
           "∴ the fourth-quadrant point of intersection is P(2, −3)."
         ],
         "recall": {
@@ -188,7 +191,7 @@
           "Taking the product of two negative slopes as negative.",
           "Reporting the answer as Tan⁻¹(13/9) with the fraction inverted."
         ],
-        "memory_tip": "Difference on top, one plus the product underneath, modulus around the whole fraction."
+        "memory_tip": "The difference of the slopes on top, one plus their product underneath, and the modulus of the fraction."
       }
     ]
   },

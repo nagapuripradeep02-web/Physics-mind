@@ -56,7 +56,11 @@
             "style": "heading"
           },
           "Let the sides of the rectangle be x and y, both positive.",
-          "Perimeter is fixed:  2(x + y) = 20   ⇒   x + y = 10   ⇒   y = 10 − x",
+          "Perimeter is fixed:  2(x + y) = 20   ⇒   x + y = 10",
+          {
+            "text": "  ⇒   y = 10 − x",
+            "style": "indent"
+          },
           "Both sides are positive, so the domain is 0 < x < 10.",
           "Area:  A(x) = xy = x(10 − x) = 10x − x²"
         ],
@@ -83,7 +87,7 @@
             "ten x minus x squared"
           ]
         },
-        "why": "The perimeter is the only link between x and y. Using it removes y, and the area becomes a function of one variable, which is the only form that can be differentiated here.",
+        "why": "The perimeter gives the link between x and y. Using it removes y, and the area becomes a function of one variable, which is the form that can be differentiated with respect to x here.",
         "common_mistakes": [
           "Using x + y = 20 and forgetting that the perimeter counts each side twice.",
           "Differentiating A = xy directly, which leaves an unknown dy/dx."
@@ -101,7 +105,8 @@
           "A′(x) = 10 − 2x",
           "A′(x) = 0   ⇒   10 − 2x = 0   ⇒   x = 5",
           "A″(x) = −2, which is negative for every x.",
-          "A negative second derivative means the stationary point is a maximum.",
+          "A negative second derivative means the stationary point",
+          "is a maximum.",
           "So the area is greatest at x = 5."
         ],
         "recall": {
@@ -145,9 +150,14 @@
           "x = 5   ⇒   y = 10 − 5 = 5",
           "So the rectangle of greatest area is a square of side 5.",
           "Maximum area = 5 × 5 = 25 square units",
-          "Check: sides 4 and 6 give 24 and sides 3 and 7 give 21, both less than 25.",
+          "Check: sides 4 and 6 give 24 and sides 3 and 7 give 21,",
+          "both less than 25.",
           {
-            "text": "∴ the maximum area is 25 square units, reached when the rectangle is a square of side 5",
+            "text": "∴ the maximum area is 25 square units,",
+            "style": "boxed"
+          },
+          {
+            "text": "reached when the rectangle is a square of side 5",
             "style": "boxed"
           }
         ],

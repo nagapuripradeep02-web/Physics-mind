@@ -133,7 +133,7 @@
           "Dividing by 1/2 instead of multiplying, which gives 8π.",
           "Giving the unit as cm²/sec instead of cm³/sec."
         ],
-        "memory_tip": "With r = 1 the r² factor is just 1, so the whole answer is 4π halved, which is 2π."
+        "memory_tip": "With r = 1 the factor r² is 1, so the answer is 4π × 1/2, which is 2π."
       }
     ]
   },

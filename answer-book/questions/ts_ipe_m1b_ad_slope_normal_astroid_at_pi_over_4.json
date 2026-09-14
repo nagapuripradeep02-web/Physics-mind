@@ -146,7 +146,8 @@
         "lines": [
           "At θ = π/4:   tan(π/4) = 1, so",
           "slope of the tangent  m = −tan(π/4) = −1",
-          "The normal is perpendicular to the tangent, so its slope is −1/m.",
+          "The normal is perpendicular to the tangent,",
+          "so its slope is −1/m.",
           "Slope of the normal = −1/(−1)",
           {
             "text": "∴ slope of the normal = 1",

@@ -49,7 +49,7 @@
         "label": "Find the point of intersection",
         "marks": 2,
         "mark_note": "Method",
-        "margin_note": "Two marks, and the two most often lost. Substitute y² = 4x into the circle so only x is left. The root x = −5 has to be rejected in writing, not silently — y² = 4x forces x ≥ 0.",
+        "margin_note": "Two marks. Substitute y² = 4x into the circle so only x is left. The root x = −5 has to be rejected in writing, not silently — y² = 4x needs x ≥ 0.",
         "lines": [
           {
             "text": "Sol:",
@@ -59,9 +59,11 @@
           "Put y² = 4x into (ii):",
           "x² + 4x = 5   ⇒   x² + 4x − 5 = 0",
           "(x + 5)(x − 1) = 0   ⇒   x = −5 or x = 1",
-          "From (i), y² = 4x ≥ 0, so x cannot be negative. Reject x = −5.",
+          "From (i), y² = 4x ≥ 0, so x cannot be negative.",
+          "Reject x = −5.",
           "x = 1  ⇒  y² = 4  ⇒  y = ±2",
-          "∴ the curves meet at P(1, 2) and at (1, −2). Work at P(1, 2)."
+          "∴ the curves meet at P(1, 2) and at (1, −2).",
+          "Work at P(1, 2)."
         ],
         "recall": {
           "credit": "say_it",

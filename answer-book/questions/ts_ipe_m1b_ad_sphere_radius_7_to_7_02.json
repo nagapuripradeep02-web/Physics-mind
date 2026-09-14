@@ -52,7 +52,8 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Let r be the radius and V = (4/3)πr³ the volume of the sphere.",
+          "Let r be the radius",
+          "and V = (4/3)πr³ the volume of the sphere.",
           "Here r = 7 cm and dr = 7.02 − 7 = 0.02 cm",
           "dV/dr = (4/3)π · 3r² = 4πr²",
           "∴ dV = 4πr² · dr"
@@ -79,7 +80,7 @@
             "r cubed"
           ]
         },
-        "why": "dV = (dV/dr)·dr is the approximation being used. The derivative of (4/3)πr³ is 4πr², so the whole question reduces to one substitution once this line is on the page.",
+        "why": "dV = (dV/dr)·dr is the approximation being used. The derivative of (4/3)πr³ is 4πr², so the question reduces to one substitution once this line is on the page.",
         "common_mistakes": [
           "Taking dr = 7.02 instead of the difference 0.02.",
           "Leaving the (4/3) in front and writing dV = (4/3)πr²·dr."
@@ -99,7 +100,11 @@
           "= 3.92π cm³",
           "Taking π ≈ 3.1416, dV ≈ 12.32 cm³",
           {
-            "text": "∴ the volume increases by approximately 3.92π cm³ ≈ 12.32 cm³",
+            "text": "∴ the volume increases by approximately 3.92π",
+            "style": "boxed"
+          },
+          {
+            "text": "cm³ ≈ 12.32 cm³",
             "style": "boxed"
           }
         ],

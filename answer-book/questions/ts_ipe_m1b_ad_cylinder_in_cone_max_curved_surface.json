@@ -60,9 +60,13 @@
             "style": "heading"
           },
           "Let the given cone have radius R and height H, both fixed.",
-          "Let the inscribed cylinder have radius x and height h, with 0 < x < R.",
-          "The top rim of the cylinder lies on the slant surface of the cone.",
-          "Cut the solid through the axis. The small triangle above the cylinder is similar to the whole cone's triangle, so",
+          "Let the inscribed cylinder have radius x and height h,",
+          "with 0 < x < R.",
+          "The top rim of the cylinder lies",
+          "on the slant surface of the cone.",
+          "Cut the solid through the axis.",
+          "The small triangle above the cylinder is similar",
+          "to the whole cone's triangle, so",
           "h/H = (R − x)/R   ⇒   h = H(R − x)/R"
         ],
         "recall": {
@@ -88,7 +92,7 @@
             "cross section"
           ]
         },
-        "why": "The cone is the constraint: choosing the cylinder's radius fixes its height. Similar triangles are the only link between x and h, and without it the curved surface holds two variables.",
+        "why": "The cone is the constraint: choosing the cylinder's radius fixes its height. Similar triangles give the link between x and h; without it the curved surface contains two variables.",
         "common_mistakes": [
           "Writing h/H = x/R, which makes the cylinder tallest when it is widest.",
           "Assuming the cylinder's height equals the cone's height."
@@ -105,8 +109,10 @@
         "lines": [
           "Curved surface area of the cylinder:  S = 2πxh",
           "Substitute h from step 1:",
-          "S(x) = 2πx · H(R − x)/R = (2πH/R)(Rx − x²),   where 0 < x < R",
-          "R and H are fixed by the given cone, so 2πH/R is a positive constant."
+          "S(x) = 2πx · H(R − x)/R = (2πH/R)(Rx − x²),",
+          "where 0 < x < R",
+          "R and H are fixed by the given cone,",
+          "so 2πH/R is a positive constant."
         ],
         "recall": {
           "credit": "say_it",
@@ -174,7 +180,7 @@
             "stationary point"
           ]
         },
-        "why": "The constant 2πH/R is positive and can never be zero, so the whole derivative is zero exactly where the bracket is zero. That reduces the work to one linear equation.",
+        "why": "The constant 2πH/R is positive and can never be zero, so the derivative is zero exactly where the bracket is zero. That reduces the work to one linear equation.",
         "common_mistakes": [
           "Setting the constant 2πH/R to zero as well.",
           "Differentiating Rx as R rather than as Rx with R constant, and losing the R."
@@ -191,11 +197,18 @@
         "lines": [
           "S″(x) = (2πH/R)(−2) = −4πH/R",
           "H and R are positive lengths, so S″(x) < 0 for every x.",
-          "A negative second derivative means the stationary point is a maximum.",
+          "A negative second derivative means the stationary point",
+          "is a maximum.",
           "So the curved surface is greatest at x = R/2.",
-          "Then h = H(R − R/2)/R = H/2, and the greatest curved surface is 2π(R/2)(H/2) = πRH/2.",
+          "Then h = H(R − R/2)/R = H/2,",
+          "and the greatest curved surface is",
+          "2π(R/2)(H/2) = πRH/2.",
           {
-            "text": "∴ the cylinder of greatest curved surface has radius R/2, that is, half the radius of the cone",
+            "text": "∴ the cylinder of greatest curved surface",
+            "style": "boxed"
+          },
+          {
+            "text": "has radius R/2, that is, half the radius of the cone",
             "style": "boxed"
           }
         ],

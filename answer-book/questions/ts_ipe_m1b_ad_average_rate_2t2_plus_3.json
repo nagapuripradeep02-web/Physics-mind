@@ -52,8 +52,10 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "This is an average rate of change question. Over an interval the average rate is the",
-          "change in s divided by the change in t, so no differentiation is used here.",
+          "This is an average rate of change question.",
+          "Over an interval the average rate is the",
+          "change in s divided by the change in t,",
+          "so no differentiation is used here.",
           "Average rate of change = [f(4) − f(2)] / (4 − 2)",
           "f(t) = 2t² + 3, so f(4) = 2(4)² + 3 = 32 + 3 = 35",
           "and f(2) = 2(2)² + 3 = 8 + 3 = 11"
@@ -100,7 +102,11 @@
           "Average rate of change = (35 − 11) / (4 − 2)",
           "= 24 / 2",
           {
-            "text": "∴ average rate of change = 12 units of s per unit of t",
+            "text": "∴ average rate of change",
+            "style": "boxed"
+          },
+          {
+            "text": "= 12 units of s per unit of t",
             "style": "boxed"
           }
         ],

@@ -45,14 +45,15 @@
         "label": "Choose the nearby exact point",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark, and the whole choice of method sits here: name x = 64, Δx = 1 and f′(64) = 1/16. An examiner reads this line to see whether the nearest perfect square was found.",
+        "margin_note": "First mark, and the choice of method is made here: name x = 64, Δx = 1 and f′(64) = 1/16. An examiner reads this line to see whether the nearest perfect square was found.",
         "lines": [
           {
             "text": "Sol:",
             "style": "heading"
           },
           "Let f(x) = √x. Then f(x + Δx) ≈ f(x) + f′(x)·Δx",
-          "64 is the nearest perfect square to 65, and √64 = 8 exactly",
+          "64 is the nearest perfect square to 65,",
+          "and √64 = 8 exactly",
           "∴ take x = 64,  Δx = 65 − 64 = 1",
           "f′(x) = 1/(2√x)",
           "f′(64) = 1/(2 × 8) = 1/16"

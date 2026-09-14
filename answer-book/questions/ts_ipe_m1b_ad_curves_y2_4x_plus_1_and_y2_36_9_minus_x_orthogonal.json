@@ -49,13 +49,14 @@
         "label": "Find the points of intersection",
         "marks": 2,
         "mark_note": "Method",
-        "margin_note": "Two marks, and the two that are most often lost. Both curves give y² in terms of x, so equating the two right sides removes y in one line. Orthogonality is a statement about a COMMON point, so the point must come first.",
+        "margin_note": "Two marks. Both curves give y² in terms of x, so equating the two right sides removes y in one line. Orthogonality is a statement about a COMMON point, so the point must come first.",
         "lines": [
           {
             "text": "Sol:",
             "style": "heading"
           },
-          "Given curves:  y² = 4(x + 1)   …(i)   and   y² = 36(9 − x)   …(ii)",
+          "Given curves:  y² = 4(x + 1)   …(i)",
+          "and   y² = 36(9 − x)   …(ii)",
           "At a common point both right sides are equal:",
           "4(x + 1) = 36(9 − x)",
           "4x + 4 = 324 − 36x",
@@ -86,7 +87,7 @@
             "point of intersection"
           ]
         },
-        "why": "Two curves are orthogonal at a point they share, so no slope means anything until the shared point is known. Both equations are already solved for y², which is why eliminating y is the shorter route.",
+        "why": "Two curves are orthogonal at a point they share, so the shared point must be found before the slopes. Both equations are already solved for y², which is why eliminating y is the shorter method.",
         "common_mistakes": [
           "Guessing or assuming a point of intersection instead of solving for it.",
           "Taking only y = 6 and never checking the second point y = −6.",
@@ -145,14 +146,24 @@
         "label": "Show the product of the slopes is −1",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Last mark. Orthogonal means the tangents are perpendicular, that is m₁m₂ = −1. Show it at both common points so the proof covers the whole intersection.",
+        "margin_note": "Last mark. Orthogonal means the tangents are perpendicular, that is m₁m₂ = −1. Show it at both common points so the proof covers every common point.",
         "lines": [
-          "Two curves cut orthogonally at a common point when m₁m₂ = −1 there.",
+          "Two curves cut orthogonally at a common point",
+          "when m₁m₂ = −1 there.",
           "At P(8, 6):   m₁m₂ = (1/3)(−3) = −1",
           "At Q(8, −6):  m₁m₂ = (−1/3)(3) = −1",
-          "In general, m₁m₂ = (2/y)(−18/y) = −36/y² = −36/36 = −1 (since y² = 36).",
+          "In general, m₁m₂ = (2/y)(−18/y) = −36/y² = −36/36 = −1",
+          "(since y² = 36).",
           {
-            "text": "∴ m₁m₂ = −1 at every common point, so the curves y² = 4(x + 1) and y² = 36(9 − x) intersect orthogonally.",
+            "text": "∴ m₁m₂ = −1 at every common point,",
+            "style": "boxed"
+          },
+          {
+            "text": "so the curves y² = 4(x + 1)",
+            "style": "boxed"
+          },
+          {
+            "text": "and y² = 36(9 − x) intersect orthogonally.",
             "style": "boxed"
           }
         ],

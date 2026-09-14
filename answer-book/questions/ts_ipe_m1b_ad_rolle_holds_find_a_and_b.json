@@ -133,7 +133,7 @@
             "root three"
           ]
         },
-        "why": "This is the second mark because it is the only step that uses the value of c that was given. Check the answer by putting it back: f(x) = x³ − 6x² + 11x has f(1) = f(3) = 6, and f′(x) = 3x² − 12x + 11 is zero at x = 2 ± 1/√3.",
+        "why": "This is the second mark because it is the step that uses the given value of c. Check the answer by putting it back: f(x) = x³ − 6x² + 11x has f(1) = f(3) = 6, and f′(x) = 3x² − 12x + 11 is zero at x = 2 ± 1/√3.",
         "common_mistakes": [
           "Squaring c wrongly and getting 3c² = 13 + 2√3 instead of 13 + 4√3.",
           "Solving f′(c) = 0 on its own, which is one equation in two unknowns.",

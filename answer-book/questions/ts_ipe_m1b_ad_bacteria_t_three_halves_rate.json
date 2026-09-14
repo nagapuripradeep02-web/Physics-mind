@@ -52,7 +52,8 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "This is a rate of growth question, so differentiate the count with respect to time.",
+          "This is a rate of growth question,",
+          "so differentiate the count with respect to time.",
           "Let N = t³⁄² be the number of bacteria at time t seconds.",
           "dN/dt = (3/2) t¹⁄²",
           "= (3/2)√t"
@@ -79,7 +80,7 @@
             "power rule"
           ]
         },
-        "why": "Rate of growth means the derivative of the population with respect to time, so the whole method is one use of the power rule on a fractional index.",
+        "why": "Rate of growth means the derivative of the population with respect to time, so the method is one use of the power rule with a fractional index.",
         "common_mistakes": [
           "Reducing the power but writing t³⁄² again in the derivative.",
           "Reading t³⁄² as (3/2)t and differentiating to 3/2.",
@@ -99,7 +100,11 @@
           "dN/dt = (3/2)√4",
           "= (3/2)(2)",
           {
-            "text": "∴ rate of growth at t = 4 sec is 3 bacteria per second",
+            "text": "∴ rate of growth at t = 4 sec",
+            "style": "boxed"
+          },
+          {
+            "text": "is 3 bacteria per second",
             "style": "boxed"
           }
         ],
@@ -134,5 +139,5 @@
       }
     ]
   },
-  "insider_note": "Differentiate t^(3/2) by the ordinary power rule to get (3/2)√t. Then substitute t = 4, giving 3."
+  "insider_note": "Differentiate t³⁄² by the ordinary power rule to get (3/2)√t. Then substitute t = 4, giving 3."
 }

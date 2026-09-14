@@ -89,13 +89,13 @@
             "differentiate"
           ]
         },
-        "why": "Both the tangent and the normal are built from the same derivative, so differentiating once is the whole starting move. A tangent can only be drawn at a point that lies on the curve, so the check at x = 0 is worth the one line it costs.",
+        "why": "Both the tangent and the normal are built from the same derivative, so the first move is to differentiate once. A tangent can only be drawn at a point that lies on the curve, so the check at x = 0 is worth the one line it costs.",
         "common_mistakes": [
           "Differentiating 13x² to 13x instead of 26x.",
           "Carrying the constant 5 into dy/dx instead of differentiating it to 0.",
           "Reading the slope as 5 from the point (0, 5) instead of from the derivative."
         ],
-        "memory_tip": "Differentiate the whole polynomial first, substitute second. A number put in early leaves nothing to differentiate."
+        "memory_tip": "Differentiate the polynomial first, substitute second. A number put in early leaves nothing to differentiate."
       },
       {
         "id": "s2_slope",
@@ -105,7 +105,8 @@
         "mark_note": "Method",
         "margin_note": "Second mark. Show the substitution line, not only the value. m = −10 must be a plain number before it can go into a line equation.",
         "lines": [
-          "The slope of the tangent is the value of dy/dx at the given point.",
+          "The slope of the tangent is the value of dy/dx",
+          "at the given point.",
           "At x = 0:",
           "m = 4(0)³ − 18(0)² + 26(0) − 10",
           "∴ m = −10"
@@ -178,7 +179,7 @@
             "point slope"
           ]
         },
-        "why": "The point-slope form is the shortest route from a point and a slope to an equation, and it needs no intercept. Moving every term to one side gives the standard form the board expects.",
+        "why": "The point-slope form gives the equation directly from a point and a slope, and it needs no intercept. Moving every term to one side gives the standard form the board expects.",
         "common_mistakes": [
           "Dropping the −5 when rearranging y − 5 = −10x.",
           "Using the normal's slope 1/10 here instead of m = −10.",
@@ -194,12 +195,17 @@
         "mark_note": "Answer",
         "margin_note": "Fourth mark. The most common loss on this question is the normal's slope: it is −1/m, so −10 becomes +1/10, not −1/10. Check the answer by putting (0, 5) back in: 0 − 50 + 50 = 0.",
         "lines": [
-          "The normal is perpendicular to the tangent at the same point,",
+          "The normal is perpendicular to the tangent",
+          "at the same point,",
           "so its slope is −1/m = −1/(−10) = 1/10.",
           "y − 5 = (1/10)(x − 0)",
           "10y − 50 = x",
           {
-            "text": "∴ Tangent: 10x + y − 5 = 0     Normal: x − 10y + 50 = 0",
+            "text": "∴ Tangent: 10x + y − 5 = 0",
+            "style": "boxed"
+          },
+          {
+            "text": "Normal: x − 10y + 50 = 0",
             "style": "boxed"
           }
         ],
@@ -233,7 +239,7 @@
           "Using −m = 10 as the normal's slope instead of −1/m.",
           "Writing the normal through a different point than (0, 5)."
         ],
-        "memory_tip": "Turn the tangent slope upside down, then change its sign. Both moves, every time."
+        "memory_tip": "Take the reciprocal of the tangent slope, then change its sign. Both moves, every time."
       }
     ]
   },

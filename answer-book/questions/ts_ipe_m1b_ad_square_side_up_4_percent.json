@@ -80,7 +80,7 @@
             "x squared"
           ]
         },
-        "why": "The relative error is dy/y, so the working must produce a ratio, not a length. Dividing dA = 2x·dx by A = x² cancels one x and leaves the pure ratio 2(dx/x), which is the only form a percentage can be read from.",
+        "why": "The relative error is dy/y, so the working must produce a ratio, not a length. Dividing dA = 2x·dx by A = x² cancels one x and leaves the pure ratio 2(dx/x), and a percentage is read from that ratio.",
         "common_mistakes": [
           "Stopping at dA = 2x · dx, which is a change in area and not a percentage.",
           "Dividing by x instead of by A = x², which leaves an x in the answer."
@@ -96,7 +96,11 @@
         "memory_tip": "Multiply the percentage by the power: 2 × 4 = 8. Squaring the 4 gives 16, which answers a different question.",
         "lines": [
           "The side increases by 4%, so (dx/x) × 100 = 4.",
-          "Percentage change in area = (dA/A) × 100 = 2 · (dx/x) × 100",
+          "Percentage change in area = (dA/A) × 100",
+          {
+            "text": "  = 2 · (dx/x) × 100",
+            "style": "indent"
+          },
           "= 2 × 4 = 8",
           {
             "text": "∴ the area of the square increases by 8%",

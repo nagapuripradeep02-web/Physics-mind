@@ -49,7 +49,7 @@
         "label": "Choose the nearby exact point",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark, and the whole choice of method sits here: name x = 81, Δx = 1 and f′(81) = 1/18. An examiner reads this line to see whether the nearest perfect square was found.",
+        "margin_note": "First mark, and the choice of method is made here: name x = 81, Δx = 1 and f′(81) = 1/18. An examiner reads this line to see whether the nearest perfect square was found.",
         "lines": [
           {
             "text": "Sol:",

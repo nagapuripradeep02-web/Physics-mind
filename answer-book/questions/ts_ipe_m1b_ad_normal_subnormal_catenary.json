@@ -60,7 +60,8 @@
             "style": "heading"
           },
           "Given curve:   y = (a/2)(eˣ⁄ᵃ + e⁻ˣ⁄ᵃ),   a > 0",
-          "Differentiate with respect to x. The exponents x/a and −x/a differentiate to 1/a and −1/a:",
+          "Differentiate with respect to x.",
+          "The exponents x/a and −x/a differentiate to 1/a and −1/a:",
           "dy/dx = (a/2)[(1/a)eˣ⁄ᵃ − (1/a)e⁻ˣ⁄ᵃ]",
           "= (a/2)(1/a)(eˣ⁄ᵃ − e⁻ˣ⁄ᵃ)",
           "∴ m = dy/dx = (1/2)(eˣ⁄ᵃ − e⁻ˣ⁄ᵃ)"
@@ -142,7 +143,7 @@
           "Forgetting to write 1 as 4/4 before adding, and losing the +2.",
           "Writing eˣ⁄ᵃ + e⁻ˣ⁄ᵃ = y/a instead of 2y/a."
         ],
-        "memory_tip": "The square of a difference has −2 in the middle; adding 1 changes it to +2, which is the square of the sum. That is the whole simplification."
+        "memory_tip": "The square of a difference has −2 in the middle; adding 1 changes it to +2, which is the square of the sum. That is the simplification used here."
       },
       {
         "id": "s3_normal_length",
@@ -203,7 +204,11 @@
           "= (a/4)(eˣ⁄ᵃ + e⁻ˣ⁄ᵃ)(eˣ⁄ᵃ − e⁻ˣ⁄ᵃ)",
           "= (a/4)(e²ˣ⁄ᵃ − e⁻²ˣ⁄ᵃ)",
           {
-            "text": "∴ Length of the normal = y²/a     Length of the subnormal = (a/4)(e²ˣ⁄ᵃ − e⁻²ˣ⁄ᵃ)",
+            "text": "∴ Length of the normal = y²/a     Length",
+            "style": "boxed"
+          },
+          {
+            "text": "of the subnormal = (a/4)(e²ˣ⁄ᵃ − e⁻²ˣ⁄ᵃ)",
             "style": "boxed"
           }
         ],

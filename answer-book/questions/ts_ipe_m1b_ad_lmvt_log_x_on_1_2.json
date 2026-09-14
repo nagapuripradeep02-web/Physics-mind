@@ -45,18 +45,23 @@
         "label": "Check the conditions and the chord slope",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. logₑ x is defined only for x > 0, and [1, 2] sits entirely inside x > 0 — say that, because it is the one condition that can genuinely fail for a logarithm.",
+        "margin_note": "First mark. logₑ x is defined only for x > 0, and [1, 2] lies inside x > 0 — say that, because for a logarithm this is the condition that can fail.",
         "memory_tip": "logₑ 1 = 0. That single value makes the chord slope here just logₑ 2.",
         "lines": [
           {
             "text": "Sol:",
             "style": "heading"
           },
-          "Lagrange's mean value theorem: if f is continuous on [a, b] and differentiable on (a, b), then there is at least one c in (a, b) with",
+          "Lagrange's mean value theorem:",
+          "if f is continuous on [a, b] and differentiable on (a, b),",
+          "then there is at least one c in (a, b) with",
           "f′(c) = (f(b) − f(a))/(b − a)",
           "Here f(x) = logₑ x, a = 1, b = 2",
-          "logₑ x is defined, continuous and differentiable for every x > 0, and [1, 2] lies inside x > 0.",
-          "So f is continuous on [1, 2] and differentiable on (1, 2). Both conditions hold.",
+          "logₑ x is defined, continuous",
+          "and differentiable for every x > 0,",
+          "and [1, 2] lies inside x > 0.",
+          "So f is continuous on [1, 2] and differentiable on (1, 2).",
+          "Both conditions hold.",
           "f(1) = logₑ 1 = 0,   f(2) = logₑ 2",
           "(f(2) − f(1))/(2 − 1) = (logₑ 2 − 0)/1 = logₑ 2"
         ],
@@ -140,5 +145,5 @@
       }
     ]
   },
-  "insider_note": "Verify BOTH conditions before finding c — Lagrange asks only for continuity on [1, 2] and differentiability on (1, 2); the third condition f(a) = f(b) belongs to Rolle — a verification question is marked on the conditions as much as the value. c = 1/log 2 lands in (1, 2), which must be stated."
+  "insider_note": "Verify BOTH conditions before finding c — Lagrange's theorem needs only continuity on [1, 2] and differentiability on (1, 2); the third condition f(a) = f(b) belongs to Rolle — a verification question is marked on the conditions as much as the value. c = 1/log 2 lies in (1, 2), which must be stated."
 }

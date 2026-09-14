@@ -56,7 +56,8 @@
             "style": "heading"
           },
           "Given curve:  xy = 10",
-          "Check the point: at (2, 5),  xy = 2(5) = 10, so (2, 5) lies on the curve.",
+          "Check the point: at (2, 5),  xy = 2(5) = 10,",
+          "so (2, 5) lies on the curve.",
           "Write y in terms of x:   y = 10/x = 10x⁻¹",
           "dy/dx = 10(−1)x⁻² = −10/x²",
           "At x = 2:   m = −10/2² = −10/4",
@@ -147,13 +148,18 @@
         "mark_note": "Answer",
         "margin_note": "Fourth mark. m is negative, so the two minus signs in −1/m cancel and the normal's slope is +2/5. Substitute (2, 5) into both boxed lines as a check: 10 + 10 − 20 = 0 and 4 − 25 + 21 = 0.",
         "lines": [
-          "The normal is perpendicular to the tangent at the same point,",
+          "The normal is perpendicular to the tangent",
+          "at the same point,",
           "so its slope is −1/m = −1 ÷ (−5/2) = 2/5.",
           "y − 5 = (2/5)(x − 2)",
           "5(y − 5) = 2(x − 2)",
           "5y − 25 = 2x − 4",
           {
-            "text": "∴ Tangent: 5x + 2y − 20 = 0     Normal: 2x − 5y + 21 = 0",
+            "text": "∴ Tangent: 5x + 2y − 20 = 0",
+            "style": "boxed"
+          },
+          {
+            "text": "Normal: 2x − 5y + 21 = 0",
             "style": "boxed"
           }
         ],

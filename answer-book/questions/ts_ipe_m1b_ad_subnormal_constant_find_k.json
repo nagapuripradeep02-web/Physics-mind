@@ -106,7 +106,8 @@
           "At any point (x, y) on the curve,",
           "Subnormal = y · (dy/dx) = (a¹⁻ᵏxᵏ)(k a¹⁻ᵏxᵏ⁻¹)",
           "= k · a¹⁻ᵏ · a¹⁻ᵏ · xᵏ · xᵏ⁻¹",
-          "Adding the indices:  (1 − k) + (1 − k) = 2 − 2k  and  k + (k − 1) = 2k − 1",
+          "Adding the indices:  (1 − k) + (1 − k) = 2 − 2k",
+          "and  k + (k − 1) = 2k − 1",
           "∴ Subnormal = k a²⁻²ᵏ x²ᵏ⁻¹"
         ],
         "recall": {
@@ -149,7 +150,9 @@
         "margin_note": "Third mark. Constant means the same at every point, so the expression must contain no x. Since k and a are already constants, the only way is for the power of x to be zero.",
         "lines": [
           "Subnormal = k a²⁻²ᵏ x²ᵏ⁻¹",
-          "The factor k a²⁻²ᵏ is a constant. The subnormal is constant at every point only if it does not depend on x.",
+          "The factor k a²⁻²ᵏ is a constant.",
+          "The subnormal is constant at every point",
+          "only if it does not depend on x.",
           "So the power of x must be zero:",
           "2k − 1 = 0",
           "∴ k = 1/2"
@@ -179,7 +182,7 @@
         },
         "why": "At any point means for every x, so a quantity that changes with x cannot be constant. With k ≠ 0, setting the index of x to zero is the only condition available, because k and a cannot depend on x. (k = 0 makes y constant and the subnormal zero, which the question excludes.)",
         "common_mistakes": [
-          "Setting the whole expression equal to zero instead of only the power of x.",
+          "Setting the subnormal itself equal to zero instead of the power of x.",
           "Setting 2k − 1 = 1 and getting k = 1.",
           "Setting the power of a to zero as well, which is not required."
         ],
@@ -197,10 +200,15 @@
           "2 − 2k = 2 − 1 = 1   and   2k − 1 = 1 − 1 = 0",
           "Subnormal = (1/2) a¹ x⁰ = (1/2)a = a/2",
           "This has no x in it, so it is the same at every point.",
-          "Check on the curve itself: k = 1/2 gives y = a¹⁄²x¹⁄², that is y² = ax,",
+          "Check on the curve itself: k = 1/2 gives y = a¹⁄²x¹⁄²,",
+          "that is y² = ax,",
           "a parabola, and its subnormal is a/2 at every point.",
           {
-            "text": "∴ k = 1/2, and the constant length of the subnormal is a/2.",
+            "text": "∴ k = 1/2,",
+            "style": "boxed"
+          },
+          {
+            "text": "and the constant length of the subnormal is a/2.",
             "style": "boxed"
           }
         ],

@@ -60,7 +60,8 @@
             "style": "heading"
           },
           "Given x + y = 60 with x > 0 and y > 0.",
-          "From the condition,  x = 60 − y,  and since x > 0 the domain is 0 < y < 60.",
+          "From the condition,  x = 60 − y,",
+          "and since x > 0 the domain is 0 < y < 60.",
           "Let f(y) = xy³ = (60 − y)y³",
           "f(y) = 60y³ − y⁴"
         ],
@@ -104,7 +105,8 @@
         "lines": [
           "f′(y) = 180y² − 4y³ = 4y²(45 − y)",
           "f′(y) = 0   ⇒   4y²(45 − y) = 0   ⇒   y = 0  or  y = 45",
-          "The question asks for positive integers, so y = 0 is discarded.",
+          "The question asks for positive integers,",
+          "so y = 0 is discarded.",
           "∴ y = 45"
         ],
         "recall": {
@@ -130,7 +132,7 @@
             "y equals zero"
           ]
         },
-        "why": "Factorising shows both roots at once. The root y = 0 is a genuine stationary point of the algebra but breaks the question's own condition, so it must be discarded in writing, not silently.",
+        "why": "Factorising shows both roots at once. The root y = 0 is a stationary point of f, but 0 is not a positive integer as the question requires, so it must be rejected in writing.",
         "common_mistakes": [
           "Differentiating (60 − y)y³ with the product rule and losing a term.",
           "Reporting y = 0 as an answer."
@@ -146,9 +148,14 @@
         "margin_note": "Third mark. This is the step students skip. Write f″, put y = 45 into it, and state the sign — a stationary point is not automatically a maximum.",
         "lines": [
           "f″(y) = 360y − 12y²",
-          "At y = 45:  f″(45) = 360(45) − 12(45²) = 16200 − 24300 = −8100",
+          "At y = 45:  f″(45) = 360(45) − 12(45²)",
+          {
+            "text": "  = 16200 − 24300 = −8100",
+            "style": "indent"
+          },
           "f″(45) = −8100 < 0",
-          "A negative second derivative means the stationary point is a maximum, so f is greatest at y = 45."
+          "A negative second derivative means the stationary point",
+          "is a maximum, so f is greatest at y = 45."
         ],
         "recall": {
           "credit": "say_it",
@@ -189,9 +196,12 @@
         "margin_note": "Fourth mark. Substitute back for x and say plainly that both values are positive integers — the question asked for integers, so that check belongs in the answer.",
         "lines": [
           "y = 45   ⇒   x = 60 − 45 = 15",
-          "Both 15 and 45 are positive integers, so the condition in the question is met.",
+          "Both 15 and 45 are positive integers,",
+          "so the condition in the question is met.",
           "Greatest value = xy³ = 15 × 45³ = 15 × 91125 = 1366875",
-          "Check: x = 16, y = 44 gives 16 × 85184 = 1362944, and x = 14, y = 46 gives 14 × 97336 = 1362704 — both smaller.",
+          "Check: x = 16, y = 44 gives 16 × 85184 = 1362944,",
+          "and x = 14, y = 46 gives 14 × 97336 = 1362704",
+          "— both smaller.",
           {
             "text": "∴ x = 15 and y = 45",
             "style": "boxed"

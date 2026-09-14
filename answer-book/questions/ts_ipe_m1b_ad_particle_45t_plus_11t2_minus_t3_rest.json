@@ -52,7 +52,8 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "This is a rectilinear motion question. The particle comes to rest when its velocity is zero,",
+          "This is a rectilinear motion question.",
+          "The particle comes to rest when its velocity is zero,",
           "so first find v = dS/dt.",
           "S = 45t + 11t² − t³",
           "v = dS/dt = 45 + 22t − 3t²",

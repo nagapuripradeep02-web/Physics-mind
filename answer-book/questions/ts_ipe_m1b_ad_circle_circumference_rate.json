@@ -98,7 +98,8 @@
         "lines": [
           "Put dr/dt = 0.7:",
           "dC/dt = 2π(0.7) = 1.4π",
-          "This value contains no r, so the circumference increases at this same rate whatever the radius is.",
+          "This value contains no r, so the circumference increases",
+          "at this same rate whatever the radius is.",
           {
             "text": "∴ dC/dt = 1.4π cm/sec ≈ 4.4 cm/sec",
             "style": "boxed"

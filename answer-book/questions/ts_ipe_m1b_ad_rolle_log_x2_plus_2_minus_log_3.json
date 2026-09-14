@@ -45,18 +45,21 @@
         "label": "Check the conditions on [−1, 1]",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. State that x² + 2 > 0 for every real x — that one line is what makes continuity and differentiability free here. The interval is read as the closed interval [−1, 1], since the endpoint values are needed.",
+        "margin_note": "First mark. State that x² + 2 > 0 for every real x — that line shows that f is continuous and differentiable for every real x. The interval is read as the closed interval [−1, 1], since the endpoint values are needed.",
         "memory_tip": "x² is never negative, so x² + 2 is never below 2 and the logarithm is defined for every real x.",
         "lines": [
           {
             "text": "Sol:",
             "style": "heading"
           },
-          "f(x) = log(x² + 2) − log 3, taken on the closed interval [−1, 1]",
-          "x² ≥ 0 for every real x, so x² + 2 ≥ 2 > 0 and the logarithm is defined for every real x",
+          "f(x) = log(x² + 2) − log 3, taken",
+          "on the closed interval [−1, 1]",
+          "x² ≥ 0 for every real x, so x² + 2 ≥ 2 > 0",
+          "and the logarithm is defined for every real x",
           "(i) f is continuous on the closed interval [−1, 1]",
           "(ii) f is differentiable on the open interval (−1, 1)",
-          "(iii) f(−1) = log((−1)² + 2) − log 3 = log 3 − log 3 = 0  and  f(1) = log(1 + 2) − log 3 = log 3 − log 3 = 0",
+          "(iii) f(−1) = log((−1)² + 2) − log 3 = log 3 − log 3 = 0",
+          "and  f(1) = log(1 + 2) − log 3 = log 3 − log 3 = 0",
           "∴ f(−1) = f(1) = 0, so Rolle's theorem applies."
         ],
         "recall": {
@@ -81,7 +84,7 @@
             "defined everywhere"
           ]
         },
-        "why": "A logarithm is continuous only where the expression inside it is positive, so that has to be settled first. Here x² + 2 is at least 2 for every real x, so there is no point to exclude and the first two conditions hold on the whole real line.",
+        "why": "A logarithm is continuous only where the expression inside it is positive, so that has to be settled first. Here x² + 2 is at least 2 for every real x, so there is no point to exclude and the first two conditions hold for every real x.",
         "common_mistakes": [
           "Excluding points where x² + 2 = 0, an equation with no real solution.",
           "Reading log(x² + 2) − log 3 as log(x² + 2 − 3) instead of a difference of two logarithms."
@@ -98,7 +101,8 @@
         "lines": [
           "f′(x) = 2x/(x² + 2) − 0 = 2x/(x² + 2)",
           "f′(c) = 0  ⇒  2c/(c² + 2) = 0",
-          "c² + 2 is never 0, so the fraction is 0 only when its numerator is 0",
+          "c² + 2 is never 0, so the fraction is 0 only",
+          "when its numerator is 0",
           "⇒ 2c = 0  ⇒  c = 0",
           "−1 < 0 < 1, so c = 0 lies in the open interval (−1, 1)",
           {
@@ -129,7 +133,7 @@
             "constant"
           ]
         },
-        "why": "A fraction is zero only where its numerator is zero and its denominator is not, so saying that c² + 2 can never vanish is what makes c = 0 the only root. Here log is the natural logarithm; with any other base the derivative only picks up a constant factor, so c = 0 either way.",
+        "why": "A fraction is zero only where its numerator is zero and its denominator is not, so saying that c² + 2 can never vanish is what makes c = 0 the only root. Here log is the natural logarithm; with any other base the derivative is multiplied by a constant factor, so c = 0 in either case.",
         "common_mistakes": [
           "Differentiating log(x² + 2) as 1/(x² + 2) and leaving out the factor 2x from the chain rule.",
           "Differentiating the constant log 3 to 1/3 instead of 0.",

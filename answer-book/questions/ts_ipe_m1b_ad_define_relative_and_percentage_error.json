@@ -52,10 +52,14 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Let y be a variable and let Δy be the error made in y. For a small error the differential dy is used in place of Δy.",
-          "Relative error in y = Δy/y  —  the error measured against the value of y itself.",
-          "Percentage error in y = (Δy/y) × 100  —  the same ratio written as a percentage.",
-          "Both are defined only when y ≠ 0, and both are pure numbers with no unit."
+          "Let y be a variable and let Δy be the error made in y.",
+          "For a small error the differential dy is used in place of Δy.",
+          "Relative error in y = Δy/y  —",
+          "the error measured against the value of y itself.",
+          "Percentage error in y = (Δy/y) × 100  —",
+          "the same ratio written as a percentage.",
+          "Both are defined only when y ≠ 0,",
+          "and both are pure numbers with no unit."
         ],
         "recall": {
           "credit": "say_it",
@@ -94,11 +98,17 @@
         "margin_note": "Second mark. One short numerical illustration shows the two definitions are different quantities, not two names for the same one.",
         "memory_tip": "The same error gives two answers: 0.01 as a ratio, 1 as a percentage. They differ only by the factor 100.",
         "lines": [
-          "For example, let y = 50 and let the error made be Δy = 0.5.",
+          "For example, let y = 50",
+          "and let the error made be Δy = 0.5.",
           "Relative error = Δy/y = 0.5/50 = 0.01",
-          "Percentage error = (Δy/y) × 100 = 0.01 × 100 = 1, that is, 1%",
+          "Percentage error = (Δy/y) × 100 = 0.01 × 100 = 1,",
+          "that is, 1%",
           {
-            "text": "∴ relative error = Δy/y  and  percentage error = (Δy/y) × 100",
+            "text": "∴ relative error = Δy/y",
+            "style": "boxed"
+          },
+          {
+            "text": "and  percentage error = (Δy/y) × 100",
             "style": "boxed"
           }
         ],

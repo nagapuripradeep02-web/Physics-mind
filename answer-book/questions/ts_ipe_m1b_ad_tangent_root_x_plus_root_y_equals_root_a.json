@@ -133,7 +133,7 @@
             "root a"
           ]
         },
-        "why": "The relation √x₁ + √y₁ = √a is the only place the letter a can enter the final answer, so it has to be written explicitly before the tangent is formed.",
+        "why": "The relation √x₁ + √y₁ = √a is where the letter a enters the final answer, so it has to be written explicitly before the tangent is formed.",
         "common_mistakes": [
           "Leaving the slope as −√y/√x with general x and y instead of the point.",
           "Never writing √x₁ + √y₁ = √a, which leaves no way to reach √a at the end.",
@@ -201,7 +201,11 @@
           "Divide both sides by √(x₁y₁) = √x₁·√y₁:",
           "x/√x₁ + y/√y₁ = √a",
           {
-            "text": "∴ x·x₁⁻¹⁄² + y·y₁⁻¹⁄² = a¹⁄², which is the required equation of the tangent.",
+            "text": "∴ x·x₁⁻¹⁄² + y·y₁⁻¹⁄² = a¹⁄²,",
+            "style": "boxed"
+          },
+          {
+            "text": "which is the required equation of the tangent.",
             "style": "boxed"
           }
         ],
@@ -235,7 +239,7 @@
           "Reading x₁⁻¹⁄² as −√x₁ instead of 1/√x₁.",
           "Stopping at √y₁ x + √x₁ y = √(x₁y₁)·√a without dividing, so the printed form is never reached."
         ],
-        "memory_tip": "A negative power turns the term upside down and a half power is a square root, so x₁⁻¹⁄² is simply 1/√x₁."
+        "memory_tip": "A negative power means the reciprocal and a power 1/2 means a square root, so x₁⁻¹⁄² is simply 1/√x₁."
       }
     ]
   },

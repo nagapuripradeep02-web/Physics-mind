@@ -52,7 +52,8 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "This is a rate of growth question. Here the rate is given and the time is asked,",
+          "This is a rate of growth question.",
+          "Here the rate is given and the time is asked,",
           "so the derivative is set equal to the given rate.",
           "Let N = t³ be the number of bacteria at time t seconds.",
           "dN/dt = 3t²",
@@ -101,7 +102,11 @@
           "t = ±10",
           "Time cannot be negative, so t = −10 is rejected.",
           {
-            "text": "∴ the rate of growth is 300 bacteria per second at t = 10 sec",
+            "text": "∴ the rate of growth is 300 bacteria",
+            "style": "boxed"
+          },
+          {
+            "text": "per second at t = 10 sec",
             "style": "boxed"
           }
         ],

@@ -56,7 +56,8 @@
           "V = a³   and   S = 6a²",
           "Differentiate V = a³ with respect to time t:",
           "dV/dt = 3a²(da/dt)",
-          "Put a = 12 and dV/dt = 8:   8 = 3(12²)(da/dt) = 432(da/dt)",
+          "Put a = 12 and dV/dt = 8:",
+          "8 = 3(12²)(da/dt) = 432(da/dt)",
           "∴ da/dt = 8/432 = 1/54 cm/sec"
         ],
         "recall": {
@@ -89,7 +90,7 @@
           "Differentiating a³ as 3a instead of 3a².",
           "Putting a = 12 into V = a³ before differentiating, which gives dV/dt = 0."
         ],
-        "memory_tip": "Two formulas, one shared letter. Whatever is given goes in the first formula, whatever is asked comes out of the second, and da/dt is the bridge between them."
+        "memory_tip": "Two formulas, one shared letter. Whatever is given goes in the first formula, whatever is asked comes out of the second, and da/dt connects the two."
       },
       {
         "id": "s2_surface_area_rate",

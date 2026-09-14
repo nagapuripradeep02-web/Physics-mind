@@ -59,9 +59,11 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "P(x) = (150 − x)x − 1600,  where x is the number of items sold per day.",
+          "P(x) = (150 − x)x − 1600,  where x",
+          "is the number of items sold per day.",
           "Expanding:  P(x) = 150x − x² − 1600",
-          "The coefficient of x² is negative, so the graph of P is a downward parabola.",
+          "The coefficient of x² is negative,",
+          "so the graph of P is a downward parabola.",
           "P′(x) = 150 − 2x"
         ],
         "recall": {
@@ -104,7 +106,8 @@
         "lines": [
           "For the stationary point, put P′(x) = 0.",
           "150 − 2x = 0   ⇒   2x = 150   ⇒   x = 75",
-          "x = 75 is a whole number, which is what a count of items must be."
+          "x = 75 is a whole number,",
+          "which is what a count of items must be."
         ],
         "recall": {
           "credit": "say_it",
@@ -146,7 +149,8 @@
         "lines": [
           "P″(x) = −2",
           "P″(x) = −2 < 0 for every x.",
-          "A negative second derivative means the stationary point is a maximum.",
+          "A negative second derivative means the stationary point",
+          "is a maximum.",
           "So the profit is greatest when x = 75 items are sold per day."
         ],
         "recall": {
@@ -189,9 +193,14 @@
         "lines": [
           "Maximum profit = P(75) = (150 − 75)(75) − 1600",
           "= 75 × 75 − 1600 = 5625 − 1600 = 4025",
-          "Check: P(74) = 76 × 74 − 1600 = 5624 − 1600 = 4024 and P(76) = 74 × 76 − 1600 = 4024, both smaller.",
+          "Check: P(74) = 76 × 74 − 1600 = 5624 − 1600 = 4024",
+          "and P(76) = 74 × 76 − 1600 = 4024, both smaller.",
           {
-            "text": "∴ the company should sell 75 items per day, and the maximum profit is 4025",
+            "text": "∴ the company should sell 75 items per day,",
+            "style": "boxed"
+          },
+          {
+            "text": "and the maximum profit is 4025",
             "style": "boxed"
           }
         ],

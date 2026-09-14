@@ -60,7 +60,9 @@
             "style": "heading"
           },
           "f(x) = x + sin 2x on the closed interval [0, π].",
-          "f is continuous on [0, π] and differentiable on (0, π), so an absolute maximum and an absolute minimum both exist on this interval.",
+          "f is continuous on [0, π] and differentiable on (0, π),",
+          "so an absolute maximum and an absolute minimum",
+          "both exist on this interval.",
           "f′(x) = 1 + 2cos 2x",
           "For critical points, put f′(x) = 0."
         ],
@@ -87,7 +89,7 @@
             "continuous"
           ]
         },
-        "why": "An absolute extremum on a closed interval sits either at a point where the derivative is zero or at an endpoint. Differentiating is how the first group is found.",
+        "why": "For a function that is differentiable inside the interval, an absolute extremum on a closed interval is either at a point where the derivative is zero or at an endpoint. Differentiating finds the points of the first kind.",
         "common_mistakes": [
           "Writing f′(x) = 1 + cos 2x and dropping the chain rule factor 2.",
           "Differentiating sin 2x as cos x."
@@ -106,7 +108,8 @@
           "x lies in [0, π], so 2x lies in [0, 2π].",
           "In [0, 2π] the equation cos 2x = −1/2 has the solutions",
           "2x = 2π/3   and   2x = 4π/3",
-          "∴ x = π/3  and  x = 2π/3 are the critical points, and both lie in [0, π]."
+          "∴ x = π/3  and  x = 2π/3 are the critical points,",
+          "and both lie in [0, π]."
         ],
         "recall": {
           "credit": "say_it",
@@ -136,7 +139,7 @@
           "Finding only 2x = 2π/3 and missing 2x = 4π/3.",
           "Solving cos x = −1/2 instead of cos 2x = −1/2, giving x = 2π/3 alone."
         ],
-        "memory_tip": "Solve for the whole angle 2x first, over its own doubled range, and divide by 2 only at the end."
+        "memory_tip": "Solve for the angle 2x first, over its range [0, 2π], and divide by 2 only at the end."
       },
       {
         "id": "s3_evaluate",
@@ -146,7 +149,8 @@
         "mark_note": "Method",
         "margin_note": "Third mark. Both endpoints must appear in the list. Leaving out f(0) and f(π) is the classic error on this type, and here it changes both answers.",
         "lines": [
-          "For an absolute extremum on a closed interval, evaluate f at every critical point AND at both endpoints.",
+          "For an absolute extremum on a closed interval,",
+          "evaluate f at every critical point AND at both endpoints.",
           "f(0) = 0 + sin 0 = 0",
           "f(π/3) = π/3 + sin(2π/3) = π/3 + √3/2 ≈ 1.9132",
           "f(2π/3) = 2π/3 + sin(4π/3) = 2π/3 − √3/2 ≈ 1.2284",
@@ -175,12 +179,12 @@
             "root three by two"
           ]
         },
-        "why": "An absolute extremum on a closed interval is not the same as a local one. The largest and smallest values can sit at an endpoint, where the derivative need not be zero at all, so the endpoints must be tested.",
+        "why": "An absolute extremum on a closed interval is not the same as a local one. The largest and smallest values can be at an endpoint, where the derivative need not be zero at all, so the endpoints must be tested.",
         "common_mistakes": [
           "Testing only the critical points and never the endpoints.",
           "Writing sin(4π/3) as +√3/2 instead of −√3/2."
         ],
-        "memory_tip": "On a closed interval the answer list always has two more entries than there are critical points — one for each endpoint."
+        "memory_tip": "On a closed interval the list has one entry for each critical point inside the interval and one entry for each endpoint."
       },
       {
         "id": "s4_compare",
@@ -193,9 +197,14 @@
           "Compare the four values:  0,  1.9132,  1.2284,  3.1416",
           "The largest is π, reached at x = π.",
           "The smallest is 0, reached at x = 0.",
-          "Both extreme values occur at the ENDPOINTS, not at either critical point.",
+          "Both extreme values occur at the ENDPOINTS,",
+          "not at either critical point.",
           {
-            "text": "∴ absolute maximum = π at x = π,  and absolute minimum = 0 at x = 0",
+            "text": "∴ absolute maximum = π at x = π,",
+            "style": "boxed"
+          },
+          {
+            "text": "and absolute minimum = 0 at x = 0",
             "style": "boxed"
           }
         ],
@@ -231,5 +240,5 @@
       }
     ]
   },
-  "insider_note": "Absolute extrema on a CLOSED interval need the endpoints tested as well as the stationary points — the largest may sit at x = π. Compare all the values at the end rather than using a second-derivative test."
+  "insider_note": "Absolute extrema on a CLOSED interval need the endpoints tested as well as the stationary points — the largest value may be at x = π. Compare all the values at the end rather than using a second-derivative test."
 }

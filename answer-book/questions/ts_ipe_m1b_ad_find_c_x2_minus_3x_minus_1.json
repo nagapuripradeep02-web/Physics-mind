@@ -53,11 +53,24 @@
             "style": "heading"
           },
           "f(x) = x² − 3x − 1,   a = −11/7,   b = 13/7",
-          "f is a polynomial, so it is continuous on [a, b] and differentiable on (a, b).",
-          "f(13/7) = 169/49 − 39/7 − 1 = 169/49 − 273/49 − 49/49 = −153/49",
-          "f(−11/7) = 121/49 + 33/7 − 1 = 121/49 + 231/49 − 49/49 = 303/49",
+          "f is a polynomial, so it is continuous on [a, b]",
+          "and differentiable on (a, b).",
+          "f(13/7) = 169/49 − 39/7 − 1",
+          {
+            "text": "  = 169/49 − 273/49 − 49/49 = −153/49",
+            "style": "indent"
+          },
+          "f(−11/7) = 121/49 + 33/7 − 1",
+          {
+            "text": "  = 121/49 + 231/49 − 49/49 = 303/49",
+            "style": "indent"
+          },
           "b − a = 13/7 − (−11/7) = 24/7",
-          "(f(b) − f(a))/(b − a) = (−153/49 − 303/49)/(24/7) = (−456/49)·(7/24) = −19/7"
+          "(f(b) − f(a))/(b − a) = (−153/49 − 303/49)/(24/7)",
+          {
+            "text": "  = (−456/49)·(7/24) = −19/7",
+            "style": "indent"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -132,7 +145,7 @@
             "inside the interval"
           ]
         },
-        "why": "Solving f′(c) = chord slope is the whole content of the mean value theorem. Saying c lies inside (a, b) at the end is the check that the arithmetic is right, since a value outside would contradict the theorem.",
+        "why": "Solving f′(c) = chord slope is how the mean value theorem is applied. Saying c lies inside (a, b) at the end is the check that the arithmetic is right, since a value outside would contradict the theorem.",
         "common_mistakes": [
           "Solving 2c = −19/7 and forgetting to move the −3 across.",
           "Giving c = 2/7 by not dividing by 2 at the last step."

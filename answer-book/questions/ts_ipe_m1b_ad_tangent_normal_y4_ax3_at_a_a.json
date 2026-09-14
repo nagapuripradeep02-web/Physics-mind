@@ -63,7 +63,8 @@
           "Check the point: at (a, a),",
           "LHS = a⁴   and   RHS = a(a³) = a⁴,",
           "so (a, a) lies on the curve for every value of a.",
-          "y is not given in terms of x, so differentiate both sides with respect to x.",
+          "y is not given in terms of x,",
+          "so differentiate both sides with respect to x.",
           "The chain rule attaches dy/dx to y⁴:",
           "4y³ (dy/dx) = 3ax²"
         ],
@@ -90,7 +91,7 @@
             "implicit"
           ]
         },
-        "why": "y is not written in terms of x, so implicit differentiation is the shortest route. Taking a fourth root first would give y = (ax³)¹⁄⁴ and a much longer differentiation for the same slope.",
+        "why": "y is not written in terms of x, so implicit differentiation is the shorter method. Taking a fourth root first would give y = (ax³)¹⁄⁴ and a much longer differentiation for the same slope.",
         "common_mistakes": [
           "Differentiating y⁴ to 4y³ and omitting the dy/dx factor.",
           "Treating a as a variable and using the product rule on ax³.",
@@ -181,7 +182,7 @@
             "clear the fraction"
           ]
         },
-        "why": "The slope no longer contains a, but the point does, so the line's constant term carries the a. Collecting −4a + 3a to a single +a is where the a survives.",
+        "why": "The slope no longer contains a, but the point does, so the line's constant term carries the a. Collecting −3a + 4a into a single +a keeps a in the equation.",
         "common_mistakes": [
           "Collecting −4a + 3a as −a and writing 3x − 4y − a = 0.",
           "Dropping a altogether because it cancelled in the slope.",
@@ -197,13 +198,18 @@
         "mark_note": "Answer",
         "margin_note": "Fourth mark. The normal's slope is −1/m = −4/3, so the reciprocal AND the sign both change. Check at (a, a): 4a + 3a − 7a = 0.",
         "lines": [
-          "The normal is perpendicular to the tangent at the same point,",
+          "The normal is perpendicular to the tangent",
+          "at the same point,",
           "so its slope is −1/m = −4/3.",
           "y − a = (−4/3)(x − a)",
           "3(y − a) = −4(x − a)",
           "3y − 3a = −4x + 4a",
           {
-            "text": "∴ Tangent: 3x − 4y + a = 0     Normal: 4x + 3y − 7a = 0",
+            "text": "∴ Tangent: 3x − 4y + a = 0",
+            "style": "boxed"
+          },
+          {
+            "text": "Normal: 4x + 3y − 7a = 0",
             "style": "boxed"
           }
         ],
@@ -230,13 +236,13 @@
             "perpendicular"
           ]
         },
-        "why": "The normal's slope is the negative reciprocal of 3/4. The constant term collects −3a and −4a into −7a, which is the arithmetic step most often slipped here.",
+        "why": "The normal's slope is the negative reciprocal of 3/4. The constant term collects −3a and −4a into −7a, so check that addition.",
         "common_mistakes": [
           "Writing the normal's slope as 4/3, inverting without the sign change.",
           "Collecting the a terms to −a instead of −7a.",
           "Using the tangent's slope 3/4 in the normal by copying the previous line."
         ],
-        "memory_tip": "Tangent slope 3/4 turns over to 4/3 and the sign changes to minus. The two lines then have slopes whose product is −1."
+        "memory_tip": "The reciprocal of the tangent slope 3/4 is 4/3, and the sign changes to minus. The two lines then have slopes whose product is −1."
       }
     ]
   },

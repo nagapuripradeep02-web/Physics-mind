@@ -59,12 +59,15 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "A square of side x is cut from each of the four corners and the flaps are turned up.",
-          "Each side of the sheet loses a square at BOTH ends, so each side loses 2x.",
+          "A square of side x is cut from each of the four corners",
+          "and the flaps are turned up.",
+          "Each side of the sheet loses a square at BOTH ends,",
+          "so each side loses 2x.",
           "Length = 80 − 2x,  breadth = 30 − 2x,  height = x",
           "V(x) = x(30 − 2x)(80 − 2x)",
           "= x(2400 − 220x + 4x²) = 4x³ − 220x² + 2400x",
-          "Every dimension must be positive: x > 0 and 30 − 2x > 0, so the domain is 0 < x < 15."
+          "Every dimension must be positive:",
+          "x > 0 and 30 − 2x > 0, so the domain is 0 < x < 15."
         ],
         "recall": {
           "credit": "say_it",
@@ -108,7 +111,11 @@
           "V′(x) = 12x² − 440x + 2400 = 4(3x² − 110x + 600)",
           "V′(x) = 0   ⇒   3x² − 110x + 600 = 0",
           "x = [110 ± √(110² − 4·3·600)] / (2·3)",
-          "= [110 ± √(12100 − 7200)] / 6 = [110 ± √4900] / 6 = (110 ± 70)/6",
+          "= [110 ± √(12100 − 7200)] / 6 = [110 ± √4900] / 6",
+          {
+            "text": "  = (110 ± 70)/6",
+            "style": "indent"
+          },
           "x = 180/6 = 30   or   x = 40/6 = 20/3"
         ],
         "recall": {
@@ -149,9 +156,12 @@
         "mark_note": "Method",
         "margin_note": "Third mark, and it is a real mark, not a formality. The examiner looks for the reason, not just the word rejected — say which dimension turns negative.",
         "lines": [
-          "The domain found in step 1 is 0 < x < 15, so test both roots against it.",
-          "If x = 30, then the breadth is 30 − 2(30) = −30 cm, a negative length. No box exists, so this root is rejected.",
-          "If x = 20/3 ≈ 6.67, then the breadth is 50/3 ≈ 16.67 cm and the length is 200/3 ≈ 66.67 cm, both positive.",
+          "The domain found in step 1 is 0 < x < 15,",
+          "so test both roots against it.",
+          "If x = 30, then the breadth is 30 − 2(30) = −30 cm,",
+          "a negative length. No box exists, so this root is rejected.",
+          "If x = 20/3 ≈ 6.67, then the breadth is 50/3 ≈ 16.67 cm",
+          "and the length is 200/3 ≈ 66.67 cm, both positive.",
           "∴ x = 20/3 is the only usable root."
         ],
         "recall": {
@@ -194,12 +204,26 @@
         "margin_note": "Fourth mark. The second derivative test is what makes this a maximum rather than a minimum. Put the number in and state the sign.",
         "lines": [
           "V″(x) = 24x − 440",
-          "At x = 20/3:  V″ = 24(20/3) − 440 = 160 − 440 = −280 < 0",
-          "A negative second derivative means the volume is maximum at this value.",
-          "Greatest volume = (20/3)(50/3)(200/3) = 200000/27 ≈ 7407.41 cm³",
-          "Check: x = 6 gives 7344 cm³ and x = 7 gives 7392 cm³, both less.",
+          "At x = 20/3:  V″ = 24(20/3) − 440 = 160 − 440",
           {
-            "text": "∴ x = 20/3 cm ≈ 6.67 cm gives the greatest volume",
+            "text": "  = −280 < 0",
+            "style": "indent"
+          },
+          "A negative second derivative means the volume",
+          "is maximum at this value.",
+          "Greatest volume = (20/3)(50/3)(200/3) = 200000/27",
+          {
+            "text": "  ≈ 7407.41 cm³",
+            "style": "indent"
+          },
+          "Check: x = 6 gives 7344 cm³",
+          "and x = 7 gives 7392 cm³, both less.",
+          {
+            "text": "∴ x = 20/3 cm ≈ 6.67 cm",
+            "style": "boxed"
+          },
+          {
+            "text": "gives the greatest volume",
             "style": "boxed"
           }
         ],

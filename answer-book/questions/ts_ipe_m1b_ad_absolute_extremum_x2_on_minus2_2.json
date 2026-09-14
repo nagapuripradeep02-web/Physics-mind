@@ -56,7 +56,9 @@
             "style": "heading"
           },
           "f(x) = x² on the closed interval [−2, 2].",
-          "f is continuous on [−2, 2] and differentiable on (−2, 2), so an absolute maximum and an absolute minimum both exist on this interval.",
+          "f is continuous on [−2, 2] and differentiable on (−2, 2),",
+          "so an absolute maximum and an absolute minimum",
+          "both exist on this interval.",
           "f′(x) = 2x",
           "f′(x) = 0   ⇒   2x = 0   ⇒   x = 0",
           "x = 0 lies inside [−2, 2], so it is a critical point to be tested."
@@ -84,7 +86,7 @@
             "inside the interval"
           ]
         },
-        "why": "An absolute extremum on a closed interval sits either where the derivative is zero or at an endpoint. Differentiating finds the first group, and there is only one such point here.",
+        "why": "For a differentiable function, an absolute extremum on a closed interval is either where the derivative is zero or at an endpoint. Differentiating finds the points of the first kind, and there is only one such point here.",
         "common_mistakes": [
           "Differentiating x² as x.",
           "Reporting x = ±2 as critical points, when they are endpoints rather than points where f′ = 0."
@@ -99,7 +101,8 @@
         "mark_note": "Method",
         "margin_note": "Two marks. BOTH endpoints must appear. Forgetting them is the classic error on this question type, and here it would remove the maximum from the list altogether.",
         "lines": [
-          "For an absolute extremum on a closed interval, evaluate f at every critical point AND at both endpoints.",
+          "For an absolute extremum on a closed interval,",
+          "evaluate f at every critical point AND at both endpoints.",
           "At the critical point:   f(0) = 0² = 0",
           "At the left endpoint:    f(−2) = (−2)² = 4",
           "At the right endpoint:   f(2) = 2² = 4"
@@ -132,7 +135,7 @@
           "Testing only x = 0 and reporting no maximum at all.",
           "Writing f(−2) = −4, by squaring only the 2 and keeping the minus sign."
         ],
-        "memory_tip": "Square the whole negative number, brackets included: (−2)² = 4, not −4. The bracket is what carries the sign into the square."
+        "memory_tip": "Square the negative number together with its bracket: (−2)² = 4, not −4. The bracket shows that the minus sign is squared too."
       },
       {
         "id": "s3_compare",
@@ -144,10 +147,20 @@
         "lines": [
           "Compare the list:  0,  4,  4",
           "The smallest value is 0, reached at the interior point x = 0.",
-          "The largest value is 4, and it is reached at BOTH endpoints, x = −2 and x = 2.",
-          "So the minimum comes from the critical point and the maximum comes from the endpoints.",
+          "The largest value is 4, and it is reached",
+          "at BOTH endpoints, x = −2 and x = 2.",
+          "So the minimum comes from the critical point",
+          "and the maximum comes from the endpoints.",
           {
-            "text": "∴ absolute minimum = 0 at x = 0,  and absolute maximum = 4 at x = −2 and at x = 2",
+            "text": "∴ absolute minimum = 0 at x = 0,",
+            "style": "boxed"
+          },
+          {
+            "text": "and absolute maximum = 4 at x = −2",
+            "style": "boxed"
+          },
+          {
+            "text": "and at x = 2",
             "style": "boxed"
           }
         ],

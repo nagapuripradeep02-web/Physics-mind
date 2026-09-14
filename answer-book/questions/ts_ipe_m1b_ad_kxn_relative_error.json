@@ -79,7 +79,7 @@
             "power rule"
           ]
         },
-        "why": "The relative error is dy/y, so dy has to be written first. The power rule is the only tool needed, and k is untouched by it because a constant multiplier passes straight through differentiation.",
+        "why": "The relative error is dy/y, so dy has to be written first. Only the power rule is needed, and k stays as it is, because a constant multiplier is kept outside when differentiating.",
         "common_mistakes": [
           "Differentiating k as well, and losing it from the answer.",
           "Writing xⁿ⁻¹ as xⁿ, so the x does not cancel at the next step."
@@ -99,7 +99,11 @@
           "k cancels, and xⁿ⁻¹/xⁿ = 1/x, so",
           "dy/y = n · (dx/x)",
           {
-            "text": "∴ dy/y = n · (dx/x): the relative error in y is n times the relative error in x",
+            "text": "∴ dy/y = n · (dx/x): the relative error in y",
+            "style": "boxed"
+          },
+          {
+            "text": "is n times the relative error in x",
             "style": "boxed"
           }
         ],

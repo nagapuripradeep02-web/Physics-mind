@@ -60,7 +60,8 @@
             "style": "heading"
           },
           "Given curve:   y = b eˣ⁄ᵃ",
-          "Differentiate with respect to x. The exponent x/a differentiates to 1/a:",
+          "Differentiate with respect to x.",
+          "The exponent x/a differentiates to 1/a:",
           "dy/dx = b · eˣ⁄ᵃ · (1/a) = (1/a)(b eˣ⁄ᵃ)",
           "But  b eˣ⁄ᵃ = y, so",
           "∴ m = dy/dx = y/a"
@@ -152,7 +153,8 @@
           "= y · (a/y)",
           "= a",
           "a is a fixed number, and no x or y is left in the result.",
-          "∴ the length of the subtangent is a, the same at every point of the curve."
+          "∴ the length of the subtangent is a,",
+          "the same at every point of the curve."
         ],
         "recall": {
           "credit": "say_it",
@@ -183,7 +185,7 @@
           "Getting 1/a by cancelling the a as well.",
           "Stopping at the value a without saying that it does not depend on the point."
         ],
-        "memory_tip": "Dividing by y/a is the same as multiplying by a/y. The two y's then cancel and a survives alone."
+        "memory_tip": "Dividing by y/a is the same as multiplying by a/y. The two y's then cancel and a is left."
       },
       {
         "id": "s4_subnormal",
@@ -197,7 +199,11 @@
           "= y · (y/a)",
           "= y²/a",
           {
-            "text": "∴ (i) subtangent = a, a constant     (ii) subnormal = y²/a",
+            "text": "∴ (i) subtangent = a, a constant",
+            "style": "boxed"
+          },
+          {
+            "text": "(ii) subnormal = y²/a",
             "style": "boxed"
           }
         ],

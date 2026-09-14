@@ -106,9 +106,17 @@
         "mark_note": "Method",
         "margin_note": "Second mark. Differentiate x and y separately with respect to θ, then divide. The factor 3a cancels, so the slope depends only on θ.",
         "lines": [
-          "x = a cos³θ  ⇒  dx/dθ = 3a cos²θ · (−sinθ) = −3a cos²θ sinθ",
+          "x = a cos³θ  ⇒  dx/dθ = 3a cos²θ · (−sinθ)",
+          {
+            "text": "  = −3a cos²θ sinθ",
+            "style": "indent"
+          },
           "y = a sin³θ  ⇒  dy/dθ = 3a sin²θ · cosθ",
-          "dy/dx = (dy/dθ)/(dx/dθ) = (3a sin²θ cosθ)/(−3a cos²θ sinθ)",
+          "dy/dx = (dy/dθ)/(dx/dθ)",
+          {
+            "text": "  = (3a sin²θ cosθ)/(−3a cos²θ sinθ)",
+            "style": "indent"
+          },
           "= −sinθ/cosθ",
           "∴ slope of the tangent  m = −tanθ"
         ],
@@ -137,7 +145,7 @@
         },
         "why": "For a curve given by a parameter, dy/dx is the ratio of the two θ-derivatives. Writing dy/dθ alone and calling it the slope is the most common error at this line.",
         "common_mistakes": [
-          "Dividing dx/dθ by dy/dθ, which turns the slope upside down.",
+          "Dividing dx/dθ by dy/dθ, which gives the reciprocal of the slope.",
           "Losing the minus sign that comes from differentiating cos³θ.",
           "Calling dy/dθ the slope of the tangent."
         ],
@@ -184,13 +192,13 @@
             "equals one"
           ]
         },
-        "why": "The identity cos²θ + sin²θ = 1 collapses the whole right side to a sinθ cosθ in one line, and dividing by it produces intercept form directly. Putting y = 0 and x = 0 into the unsimplified tangent gives the same two intercepts but takes twice the algebra.",
+        "why": "The identity cos²θ + sin²θ = 1 reduces the right side to a sinθ cosθ in one line, and dividing by it gives the intercept form directly. Putting y = 0 and x = 0 into the unsimplified tangent gives the same two intercepts but takes twice the algebra.",
         "common_mistakes": [
-          "Forgetting to multiply through by cosθ, so tanθ stays and the algebra does not close.",
+          "Not multiplying both sides by cosθ, so tanθ stays in the equation and it does not reach the intercept form.",
           "Reading the intercepts as a sinθ and a cosθ, with the two swapped.",
           "Dividing by a sinθ cosθ but leaving the right side as something other than 1."
         ],
-        "memory_tip": "Intercept form is x/A + y/B = 1, so whatever sits under x is the x-intercept and whatever sits under y is the y-intercept."
+        "memory_tip": "Intercept form is x/A + y/B = 1, so the number under x is the x-intercept and the number under y is the y-intercept."
       },
       {
         "id": "s4_length_ab",
@@ -205,7 +213,15 @@
           "= √(a²cos²θ + a²sin²θ)",
           "= √(a²(cos²θ + sin²θ)) = √(a²) = |a|",
           {
-            "text": "∴ AB = |a|, which contains no θ — the length AB is the same at every point of the curve, so it is a constant.",
+            "text": "∴ AB = |a|, which contains no θ —",
+            "style": "boxed"
+          },
+          {
+            "text": "the length AB is the same at every point",
+            "style": "boxed"
+          },
+          {
+            "text": "of the curve, so it is a constant.",
             "style": "boxed"
           }
         ],
@@ -243,5 +259,5 @@
       }
     ]
   },
-  "insider_note": "Use the parametric point (a cos³θ, a sin³θ) — the implicit form makes the intercepts far messier. AB then comes out as |a|, free of θ, which is the whole claim."
+  "insider_note": "Use the parametric point (a cos³θ, a sin³θ) — the implicit form makes the intercepts far messier. AB then comes out as |a|, free of θ, which proves the claim."
 }

@@ -95,7 +95,11 @@
         "margin_note": "Second mark. Δy needs the function evaluated at both 10.01 and 10. Both numbers must reach the final line — an answer that gives only dy has answered half the question.",
         "lines": [
           "Δy = f(x + Δx) − f(x) = f(10.01) − f(10)",
-          "f(10.01) = (10.01)² + 3(10.01) + 6 = 100.2001 + 30.03 + 6 = 136.2301",
+          "f(10.01) = (10.01)² + 3(10.01) + 6 = 100.2001 + 30.03 + 6",
+          {
+            "text": "  = 136.2301",
+            "style": "indent"
+          },
           "f(10) = 100 + 30 + 6 = 136",
           "Δy = 136.2301 − 136 = 0.2301",
           {

@@ -49,14 +49,18 @@
         "label": "Differentiate and find the slope at (−1, 3)",
         "marks": 2,
         "mark_note": "Method",
-        "margin_note": "Two marks: one for dy/dx = 3x² + 8x, one for its value at x = −1. Write the powers of −1 out in full — (−1)² is +1 and (−1)³ is −1, and mixing those two is the commonest slip in this question.",
+        "margin_note": "Two marks: one for dy/dx = 3x² + 8x, one for its value at x = −1. Write the powers of −1 out in full — (−1)² is +1 and (−1)³ is −1, and mixing those two up is a common slip.",
         "lines": [
           {
             "text": "Sol:",
             "style": "heading"
           },
           "Given curve:   y = x³ + 4x²",
-          "Check the point: at x = −1,  y = (−1)³ + 4(−1)² = −1 + 4 = 3,",
+          "Check the point: at x = −1,  y = (−1)³ + 4(−1)²",
+          {
+            "text": "  = −1 + 4 = 3,",
+            "style": "indent"
+          },
           "so (−1, 3) lies on the curve.",
           "Differentiate with respect to x:",
           "dy/dx = 3x² + 8x",
@@ -148,13 +152,18 @@
         "mark_note": "Answer",
         "margin_note": "Fourth mark. m = −5 is negative, so −1/m = +1/5. Check the boxed normal at (−1, 3): −1 − 15 + 16 = 0.",
         "lines": [
-          "The normal is perpendicular to the tangent at the same point,",
+          "The normal is perpendicular to the tangent",
+          "at the same point,",
           "so its slope is −1/m = −1/(−5) = 1/5.",
           "y − 3 = (1/5)(x + 1)",
           "5(y − 3) = x + 1",
           "5y − 15 = x + 1",
           {
-            "text": "∴ Tangent: 5x + y + 2 = 0     Normal: x − 5y + 16 = 0",
+            "text": "∴ Tangent: 5x + y + 2 = 0",
+            "style": "boxed"
+          },
+          {
+            "text": "Normal: x − 5y + 16 = 0",
             "style": "boxed"
           }
         ],

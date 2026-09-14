@@ -59,9 +59,11 @@
           "Put y² = 8x into (ii):",
           "4x² + 8x = 32   ⇒   x² + 2x − 8 = 0",
           "(x + 4)(x − 2) = 0   ⇒   x = −4 or x = 2",
-          "From (i), y² = 8x ≥ 0, so x cannot be negative. Reject x = −4.",
+          "From (i), y² = 8x ≥ 0, so x cannot be negative.",
+          "Reject x = −4.",
           "x = 2  ⇒  y² = 16  ⇒  y = ±4",
-          "∴ the curves meet at P(2, 4) and at (2, −4). Work at P(2, 4)."
+          "∴ the curves meet at P(2, 4) and at (2, −4).",
+          "Work at P(2, 4)."
         ],
         "recall": {
           "credit": "say_it",
@@ -186,9 +188,9 @@
           "Writing 1 − m₁m₂ in the denominator instead of 1 + m₁m₂.",
           "Writing the numerator as 1 + (−2) = −1 instead of 1 − (−2) = 3."
         ],
-        "memory_tip": "Difference on top, one plus the product underneath, modulus around the whole fraction."
+        "memory_tip": "The difference of the slopes on top, one plus their product underneath, and the modulus of the fraction."
       }
     ]
   },
-  "insider_note": "y² = 8x needs x ≥ 0, so x = −4 is discarded. The surviving x = 2 gives y = ±4, and the angle is the same at both by symmetry."
+  "insider_note": "y² = 8x needs x ≥ 0, so x = −4 is discarded. The remaining root x = 2 gives y = ±4, and the angle is the same at both by symmetry."
 }

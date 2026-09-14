@@ -103,8 +103,10 @@
         "mark_note": "Method",
         "margin_note": "Second mark. aˣ is a constant raised to a variable power, so the power rule does NOT apply. The standard derivative is aˣ logₑa.",
         "lines": [
-          "Here the base a is a constant and the index x is the variable,",
-          "so the power rule does not apply. The standard result is used:",
+          "Here the base a is a constant",
+          "and the index x is the variable,",
+          "so the power rule does not apply.",
+          "The standard result is used:",
           "d(aˣ)/dx = aˣ logₑa",
           "∴ dy/dx = aˣ logₑa"
         ],
@@ -192,10 +194,16 @@
           "Length of the subtangent = y/m",
           "= y ÷ (y logₑa)",
           "= 1/logₑa",
-          "logₑa is a fixed number once the base a is fixed, and no x or y is left.",
-          "So the subtangent has the same value at every point of the curve.",
+          "logₑa is a fixed number once the base a is fixed,",
+          "and no x or y is left.",
+          "So the subtangent has the same value",
+          "at every point of the curve.",
           {
-            "text": "∴ the length of the subtangent = 1/logₑa, a constant",
+            "text": "∴ the length of the subtangent = 1/logₑa,",
+            "style": "boxed"
+          },
+          {
+            "text": "a constant",
             "style": "boxed"
           }
         ],

@@ -52,9 +52,11 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "The chord joins A(0, 0) and B(1, 1), and both lie on y = x² since 0 = 0² and 1 = 1².",
+          "The chord joins A(0, 0) and B(1, 1), and both lie on y = x²",
+          "since 0 = 0² and 1 = 1².",
           "Slope of the chord AB = (1 − 0)/(1 − 0) = 1",
-          "A tangent parallel to AB has the same slope, so we need dy/dx = 1."
+          "A tangent parallel to AB has the same slope,",
+          "so we need dy/dx = 1."
         ],
         "recall": {
           "credit": "say_it",
@@ -98,7 +100,8 @@
           "y = x² ⇒ dy/dx = 2x",
           "2x = 1 ⇒ x = 1/2",
           "At x = 1/2, y = (1/2)² = 1/4",
-          "x = 1/2 lies between 0 and 1, as Lagrange's mean value theorem states it must.",
+          "x = 1/2 lies between 0 and 1,",
+          "as Lagrange's mean value theorem states it must.",
           {
             "text": "∴ the required point is (1/2, 1/4)",
             "style": "boxed"

@@ -52,7 +52,8 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "This is a rate measure question. Marginal cost is the rate of change of total cost,",
+          "This is a rate measure question.",
+          "Marginal cost is the rate of change of total cost,",
           "so marginal cost = dC/dx.",
           "C(x) = 0.005x³ − 0.02x² + 30x + 500",
           "dC/dx = 0.005(3x²) − 0.02(2x) + 30",
@@ -80,7 +81,7 @@
             "zero point zero one five"
           ]
         },
-        "why": "The question defines marginal cost for you as a rate of change, so the whole method is one differentiation. Writing dC/dx and differentiating earns the method mark even before any number is substituted.",
+        "why": "The question defines marginal cost for you as a rate of change, so the method is one differentiation. Writing dC/dx and differentiating earns the method mark even before any number is substituted.",
         "common_mistakes": [
           "Substituting x = 3 into C(x) itself, which gives the total cost 589.955 and not the rate.",
           "Dropping a decimal place, writing 0.015x² as 0.15x².",
@@ -101,7 +102,11 @@
           "= 0.015(9) − 0.12 + 30",
           "= 0.135 − 0.12 + 30",
           {
-            "text": "∴ marginal cost when 3 units are produced = 30.015 rupees per unit",
+            "text": "∴ marginal cost when 3 units",
+            "style": "boxed"
+          },
+          {
+            "text": "are produced = 30.015 rupees per unit",
             "style": "boxed"
           }
         ],

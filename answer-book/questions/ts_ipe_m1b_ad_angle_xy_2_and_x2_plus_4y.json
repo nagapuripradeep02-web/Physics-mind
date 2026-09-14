@@ -59,7 +59,8 @@
           "From (i):  y = 2/x   (x ≠ 0)",
           "Put this in (ii):  x² + 4(2/x) = 0",
           "Multiply by x:  x³ + 8 = 0  ⇒  x³ = −8  ⇒  x = −2",
-          "(x³ + 8 = (x + 2)(x² − 2x + 4), and x² − 2x + 4 has no real root.)",
+          "(x³ + 8 = (x + 2)(x² − 2x + 4),",
+          "and x² − 2x + 4 has no real root.)",
           "x = −2  ⇒  y = 2/(−2) = −1",
           "∴ the curves meet only at P(−2, −1)."
         ],
@@ -87,7 +88,7 @@
             "cubic"
           ]
         },
-        "why": "The angle between two curves is the angle between their tangents at a shared point, so the point comes first. Substituting y = 2/x is the shorter route here because y appears to the first power in the second curve.",
+        "why": "The angle between two curves is the angle between their tangents at a shared point, so the point comes first. Substituting y = 2/x is the shorter method here because y appears to the first power in the second curve.",
         "common_mistakes": [
           "Reading x³ = −8 as x = 2 and losing the sign.",
           "Taking three roots from the cubic without checking that two of them are not real.",
@@ -187,7 +188,7 @@
           "Reporting Tan⁻¹(−3) without the modulus.",
           "Stopping at tanθ = 3 without stating the angle."
         ],
-        "memory_tip": "Difference on top, one plus the product underneath, modulus around the whole fraction."
+        "memory_tip": "The difference of the slopes on top, one plus their product underneath, and the modulus of the fraction."
       }
     ]
   },

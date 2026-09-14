@@ -61,10 +61,15 @@
           },
           "x = a(t + sin t)  ⇒  dx/dt = a(1 + cos t) = 2a cos²(t/2)",
           "y = a(1 − cos t)  ⇒  dy/dt = a sin t = 2a sin(t/2)cos(t/2)",
-          "m = dy/dx = (dy/dt)/(dx/dt) = [2a sin(t/2)cos(t/2)]/[2a cos²(t/2)]",
+          "m = dy/dx = (dy/dt)/(dx/dt)",
+          {
+            "text": "  = [2a sin(t/2)cos(t/2)]/[2a cos²(t/2)]",
+            "style": "indent"
+          },
           "∴ m = tan(t/2)",
           "Also  y = a(1 − cos t) = 2a sin²(t/2)",
-          "Take 0 < t < π, so sin(t/2) > 0 and cos(t/2) > 0 and every length below is positive."
+          "Take 0 < t < π, so sin(t/2) > 0 and cos(t/2) > 0",
+          "and every length below is positive."
         ],
         "recall": {
           "credit": "say_it",
@@ -108,7 +113,8 @@
         "lines": [
           "At a point where the slope is m,",
           "subtangent = y/m,   subnormal = ym,",
-          "length of tangent = |y√(1 + m²)/m|,   length of normal = |y√(1 + m²)|",
+          "length of tangent = |y√(1 + m²)/m|,",
+          "length of normal = |y√(1 + m²)|",
           "Here m = tan(t/2), so",
           "1 + m² = 1 + tan²(t/2) = sec²(t/2)",
           "∴ √(1 + m²) = sec(t/2)"
@@ -137,7 +143,7 @@
             "sec t by two"
           ]
         },
-        "why": "Students most often lose marks here by mixing up subtangent and subnormal. Writing all four definitions down first, before any substitution, makes the mix-up impossible and earns the mark by itself.",
+        "why": "A common slip here is to mix up the subtangent and the subnormal. Writing all four definitions down first, before any substitution, prevents that mix-up and earns this mark.",
         "common_mistakes": [
           "Swapping subtangent and subnormal, so y/m and ym are used the wrong way round.",
           "Writing √(1 + m²) as 1 + m.",
@@ -190,7 +196,7 @@
           "Leaving the subtangent as 2a sin²(t/2)/tan(t/2) without simplifying to a sin t.",
           "Writing 2 sin(t/2)cos(t/2) as sin(t/2) rather than sin t."
         ],
-        "memory_tip": "Dividing by a tangent flips it to cos over sin, and one sine always cancels."
+        "memory_tip": "Dividing by tan(t/2) is multiplying by cos(t/2)/sin(t/2), and one sin(t/2) cancels."
       },
       {
         "id": "s4_lengths",
@@ -200,12 +206,32 @@
         "mark_note": "Answer",
         "margin_note": "Last mark. The length of the tangent comes to 2a sin(t/2), which equals √(2ay) — a quick check, since y = 2a sin²(t/2). Present all four answers together in the box.",
         "lines": [
-          "Length of tangent = |y√(1 + m²)/m| = 2a sin²(t/2)·sec(t/2)/tan(t/2)",
-          "= 2a sin²(t/2) · (1/cos(t/2)) · (cos(t/2)/sin(t/2)) = 2a sin(t/2)",
+          "Length of tangent = |y√(1 + m²)/m|",
+          {
+            "text": "  = 2a sin²(t/2)·sec(t/2)/tan(t/2)",
+            "style": "indent"
+          },
+          "= 2a sin²(t/2) · (1/cos(t/2)) · (cos(t/2)/sin(t/2))",
+          {
+            "text": "  = 2a sin(t/2)",
+            "style": "indent"
+          },
           "Length of normal = |y√(1 + m²)| = 2a sin²(t/2)·sec(t/2)",
           "= 2a sin²(t/2)/cos(t/2) = 2a sin(t/2)tan(t/2)",
           {
-            "text": "∴ length of tangent = 2a sin(t/2),  length of normal = 2a sin(t/2)tan(t/2),  subtangent = a sin t,  subnormal = 2a sin³(t/2)/cos(t/2)",
+            "text": "∴ length of tangent = 2a sin(t/2),",
+            "style": "boxed"
+          },
+          {
+            "text": "length of normal = 2a sin(t/2)tan(t/2),",
+            "style": "boxed"
+          },
+          {
+            "text": "subtangent = a sin t,",
+            "style": "boxed"
+          },
+          {
+            "text": "subnormal = 2a sin³(t/2)/cos(t/2)",
             "style": "boxed"
           }
         ],

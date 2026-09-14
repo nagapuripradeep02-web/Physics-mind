@@ -59,7 +59,8 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given curves:  6x² − 5x + 2y = 0   …(i)   and   4x² + 8y² = 3   …(ii)",
+          "Given curves:  6x² − 5x + 2y = 0   …(i)",
+          "and   4x² + 8y² = 3   …(ii)",
           "Put x = 1/2, y = 1/2 in (i):",
           "6(1/4) − 5(1/2) + 2(1/2) = 3/2 − 5/2 + 1 = 0  ✓",
           "Put x = 1/2, y = 1/2 in (ii):",
@@ -195,12 +196,21 @@
         "mark_note": "Answer",
         "margin_note": "Last mark. Touch each other means the curves share the point AND share the tangent, that is m₁ = m₂. State both halves of the conclusion.",
         "lines": [
-          "Two curves touch each other at a common point when their slopes there are equal.",
+          "Two curves touch each other at a common point",
+          "when their slopes there are equal.",
           "m₁ = −1/2  and  m₂ = −1/2, so  m₁ = m₂",
           "The common tangent at P(1/2, 1/2) is",
           "y − 1/2 = −(1/2)(x − 1/2)  ⇒  2x + 4y = 3",
           {
-            "text": "∴ P(1/2, 1/2) lies on both curves and both have slope −1/2 there, so the curves touch each other at (1/2, 1/2).",
+            "text": "∴ P(1/2, 1/2) lies on both curves",
+            "style": "boxed"
+          },
+          {
+            "text": "and both have slope −1/2 there,",
+            "style": "boxed"
+          },
+          {
+            "text": "so the curves touch each other at (1/2, 1/2).",
             "style": "boxed"
           }
         ],

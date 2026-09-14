@@ -52,7 +52,8 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "This is a rectilinear motion question. Velocity v = dS/dt and acceleration a = dv/dt.",
+          "This is a rectilinear motion question.",
+          "Velocity v = dS/dt and acceleration a = dv/dt.",
           "S = t³ + 2t + 3",
           "v = dS/dt = 3t² + 2",
           "a = dv/dt = 6t"
@@ -99,7 +100,11 @@
           "v = 3(4)² + 2 = 3(16) + 2 = 48 + 2 = 50",
           "a = 6(4) = 24",
           {
-            "text": "∴ at t = 4 sec, velocity = 50 m/sec and acceleration = 24 m/sec²",
+            "text": "∴ at t = 4 sec, velocity = 50 m/sec",
+            "style": "boxed"
+          },
+          {
+            "text": "and acceleration = 24 m/sec²",
             "style": "boxed"
           }
         ],

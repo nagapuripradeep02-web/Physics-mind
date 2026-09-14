@@ -56,7 +56,8 @@
             "style": "heading"
           },
           "Given curve:  y = 5x⁴",
-          "Check the point: at x = 1,  y = 5(1)⁴ = 5, so (1, 5) lies on the curve.",
+          "Check the point: at x = 1,  y = 5(1)⁴ = 5,",
+          "so (1, 5) lies on the curve.",
           "Differentiate with respect to x:",
           "dy/dx = 5(4x³)",
           "∴ dy/dx = 20x³"
@@ -146,13 +147,18 @@
         "mark_note": "Answer",
         "margin_note": "Fourth mark. The normal's slope is −1/m = −1/20, not −20. Multiply by 20 to clear the fraction, then check: 1 + 100 − 101 = 0 at (1, 5).",
         "lines": [
-          "The normal is perpendicular to the tangent at the same point,",
+          "The normal is perpendicular to the tangent",
+          "at the same point,",
           "so its slope is −1/m = −1/20.",
           "y − 5 = (−1/20)(x − 1)",
           "20(y − 5) = −(x − 1)",
           "20y − 100 = −x + 1",
           {
-            "text": "∴ Tangent: 20x − y − 15 = 0     Normal: x + 20y − 101 = 0",
+            "text": "∴ Tangent: 20x − y − 15 = 0",
+            "style": "boxed"
+          },
+          {
+            "text": "Normal: x + 20y − 101 = 0",
             "style": "boxed"
           }
         ],

@@ -58,7 +58,8 @@
           "Given curve:   y² = 4ax   (a parabola).",
           "At a point (x, y) on a curve, with m = dy/dx:",
           "length of the subnormal = y · m",
-          "So the whole question is about the value of the product y(dy/dx)."
+          "So the whole question is about the value",
+          "of the product y(dy/dx)."
         ],
         "recall": {
           "credit": "say_it",
@@ -99,7 +100,8 @@
         "mark_note": "Method",
         "margin_note": "Two marks: one for the implicit differentiation with the dy/dx factor, one for reading y(dy/dx) = 2a straight off it without making dy/dx the subject.",
         "lines": [
-          "y is not given in terms of x, so differentiate both sides with respect to x.",
+          "y is not given in terms of x,",
+          "so differentiate both sides with respect to x.",
           "The chain rule attaches dy/dx to y²:",
           "2y (dy/dx) = 4a",
           "Divide both sides by 2:",
@@ -135,7 +137,7 @@
           "Writing dy/dx = 2a/y and then forgetting to multiply back by y.",
           "Treating a as a variable and differentiating 4ax with the product rule."
         ],
-        "memory_tip": "Differentiating y² gives 2y·dy/dx, which already contains the product the subnormal needs. One division by 2 finishes it."
+        "memory_tip": "Differentiating y² gives 2y·dy/dx, which already contains the product the subnormal needs. Dividing by 2 then gives the subnormal."
       },
       {
         "id": "s3_conclude",
@@ -147,7 +149,8 @@
         "lines": [
           "Length of the subnormal = y · m = 2a",
           "2a contains no x and no y, and a is fixed by the curve.",
-          "So the subnormal has the same value at every point of the parabola.",
+          "So the subnormal has the same value",
+          "at every point of the parabola.",
           {
             "text": "∴ the length of the subnormal = 2a, a constant",
             "style": "boxed"

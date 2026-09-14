@@ -56,7 +56,8 @@
             "style": "heading"
           },
           "Given curve:   y = b sin(x/a)",
-          "Differentiate with respect to x. The angle x/a differentiates to 1/a:",
+          "Differentiate with respect to x.",
+          "The angle x/a differentiates to 1/a:",
           "dy/dx = b cos(x/a) · (1/a)",
           "∴ m = dy/dx = (b/a) cos(x/a)",
           "At a point (x, y) with m = dy/dx:",
@@ -137,7 +138,7 @@
           "Leaving the answer as b sin(x/a) ÷ (b/a)cos(x/a) without simplifying.",
           "Writing tan(x)/a, changing the angle from x/a to x."
         ],
-        "memory_tip": "Dividing by b/a is multiplying by a/b. The b's cancel and the a lands in front of the tangent."
+        "memory_tip": "Dividing by b/a is multiplying by a/b. The b's cancel and a is left in front of the tangent."
       },
       {
         "id": "s3_subnormal",
@@ -150,10 +151,15 @@
           "Length of the subnormal = y · m",
           "= b sin(x/a) · (b/a) cos(x/a)",
           "= (b²/a) sin(x/a) cos(x/a)",
-          "Use  2 sin A cos A = sin 2A  with  A = x/a,  so sin(x/a)cos(x/a) = (1/2)sin(2x/a):",
+          "Use  2 sin A cos A = sin 2A  with  A = x/a,",
+          "so sin(x/a)cos(x/a) = (1/2)sin(2x/a):",
           "= (b²/a) · (1/2) sin(2x/a)",
           {
-            "text": "∴ Subtangent = a tan(x/a)     Subnormal = (b²/2a) sin(2x/a)",
+            "text": "∴ Subtangent = a tan(x/a)",
+            "style": "boxed"
+          },
+          {
+            "text": "Subnormal = (b²/2a) sin(2x/a)",
             "style": "boxed"
           }
         ],
@@ -180,10 +186,10 @@
             "sin cos"
           ]
         },
-        "why": "Multiplying y by m keeps both the sine and the cosine, and the standard identity 2 sin A cos A = sin 2A folds them into a single term. The angle doubles from x/a to 2x/a, and the extra 2 goes into the denominator.",
+        "why": "Multiplying y by m keeps both the sine and the cosine, and the standard identity 2 sin A cos A = sin 2A writes them as a single term. The angle doubles from x/a to 2x/a, and the extra 2 goes into the denominator.",
         "common_mistakes": [
           "Writing sin(x/a)cos(x/a) = sin(2x/a) without the factor of one half.",
-          "Doubling the whole expression instead of the angle, giving sin(2x)/a.",
+          "Doubling x instead of the angle x/a, giving sin(2x) in place of sin(2x/a).",
           "Leaving the coefficient as b²/a instead of b²/2a after using the identity."
         ],
         "memory_tip": "sin A cos A is half of sin 2A. Whenever a sine and a cosine of the SAME angle multiply, that identity shortens the answer."

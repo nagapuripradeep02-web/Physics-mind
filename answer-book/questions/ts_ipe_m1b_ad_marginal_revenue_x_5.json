@@ -52,7 +52,8 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "This is a rate measure question. Marginal revenue is the rate of change of total revenue,",
+          "This is a rate measure question.",
+          "Marginal revenue is the rate of change of total revenue,",
           "so marginal revenue = dR/dx.",
           "R(x) = 3x² + 36x + 5",
           "dR/dx = 3(2x) + 36",

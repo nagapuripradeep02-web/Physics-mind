@@ -55,7 +55,11 @@
           "dy/dx = eˣ + 1",
           "dy = (dy/dx)·Δx = (eˣ + 1)Δx",
           "= (e⁵ + 1)(0.02) = 0.02e⁵ + 0.02",
-          "e⁵ = 148.4132, so dy = 0.02(148.4132) + 0.02 = 2.9683 + 0.02",
+          "e⁵ = 148.4132, so dy = 0.02(148.4132) + 0.02",
+          {
+            "text": "  = 2.9683 + 0.02",
+            "style": "indent"
+          },
           "∴ dy = 0.02(e⁵ + 1) ≈ 2.9883"
         ],
         "recall": {
@@ -93,10 +97,14 @@
         "label": "Find Δy from the exact change",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Second mark. The two x terms give a clean +0.02, so the whole difference sits in the exponential part. Here dy and Δy differ by about 0.03 — much wider than in the polynomial parts, because eˣ curves sharply at x = 5.",
+        "margin_note": "Second mark. The two x terms give +0.02, so the rest of Δy comes from the exponential part. Here dy and Δy differ by about 0.03 — much more than in the polynomial examples, because the slope of eˣ changes quickly near x = 5.",
         "lines": [
           "Δy = f(x + Δx) − f(x) = f(5.02) − f(5)",
-          "Δy = (e^(5.02) + 5.02) − (e⁵ + 5) = e^(5.02) − e⁵ + 0.02",
+          {
+            "text": "Δy = (e^{5.02} + 5.02) - (e^{5} + 5) = e^{5.02} - e^{5} + 0.02",
+            "render": "katex",
+            "style": "normal"
+          },
           "= 151.4113 − 148.4132 + 0.02",
           "= 2.9981 + 0.02",
           {

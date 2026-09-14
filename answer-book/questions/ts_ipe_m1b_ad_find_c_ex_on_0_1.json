@@ -45,7 +45,7 @@
         "label": "Work out the chord slope",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. e⁰ = 1, not 0. That single value is the whole of the arithmetic here, and it is the one students most often get wrong.",
+        "margin_note": "First mark. e⁰ = 1, not 0. This value is the main arithmetic in this step, so do not write e⁰ = 0.",
         "memory_tip": "Anything to the power 0 is 1, so f(0) = 1 and the chord slope is e − 1.",
         "lines": [
           {
@@ -53,7 +53,8 @@
             "style": "heading"
           },
           "f(x) = eˣ,   a = 0,   b = 1",
-          "eˣ is continuous and differentiable for every real x, so it is continuous on [0, 1] and differentiable on (0, 1).",
+          "eˣ is continuous and differentiable for every real x,",
+          "so it is continuous on [0, 1] and differentiable on (0, 1).",
           "f(0) = e⁰ = 1,   f(1) = e¹ = e",
           "(f(1) − f(0))/(1 − 0) = (e − 1)/1 = e − 1"
         ],
@@ -135,5 +136,5 @@
       }
     ]
   },
-  "insider_note": "This is the mean value theorem in disguise: set f′(c) equal to the average slope e − 1. Then e^c = e − 1 gives c = logₑ(e − 1), which does lie in (0, 1)."
+  "insider_note": "This is a use of the mean value theorem: set f′(c) equal to the average slope e − 1. Then eᶜ = e − 1 gives c = logₑ(e − 1), which does lie in (0, 1)."
 }

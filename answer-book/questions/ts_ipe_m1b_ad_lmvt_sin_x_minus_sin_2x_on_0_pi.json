@@ -52,10 +52,14 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Lagrange's mean value theorem: if f is continuous on [a, b] and differentiable on (a, b), then there is at least one c in (a, b) with",
+          "Lagrange's mean value theorem:",
+          "if f is continuous on [a, b] and differentiable on (a, b),",
+          "then there is at least one c in (a, b) with",
           "f′(c) = (f(b) − f(a))/(b − a)",
           "Here f(x) = sin x − sin 2x, a = 0, b = π",
-          "sin x and sin 2x are continuous and differentiable for every real x, so f is continuous on [0, π] and differentiable on (0, π). Both conditions hold.",
+          "sin x and sin 2x are continuous and differentiable",
+          "for every real x, so f is continuous on [0, π]",
+          "and differentiable on (0, π). Both conditions hold.",
           "f(0) = sin 0 − sin 0 = 0,   f(π) = sin π − sin 2π = 0 − 0 = 0",
           "(f(π) − f(0))/(π − 0) = 0/π = 0"
         ],
@@ -103,10 +107,15 @@
           "cos c − 2 cos 2c = 0.  Using cos 2c = 2cos²c − 1:",
           "cos c − 2(2cos²c − 1) = 0 ⇒ 4cos²c − cos c − 2 = 0",
           "cos c = (1 ± √(1 + 32))/8 = (1 ± √33)/8",
-          "(1 + √33)/8 ≈ 0.843 and (1 − √33)/8 ≈ −0.593, and both lie between −1 and 1",
+          "(1 + √33)/8 ≈ 0.843 and (1 − √33)/8 ≈ −0.593,",
+          "and both lie between −1 and 1",
           "So c ≈ 0.568 or c ≈ 2.206 radians, and both lie in (0, π)",
           {
-            "text": "∴ c = Cos⁻¹((1 ± √33)/8), both values lying in (0, π)",
+            "text": "∴ c = Cos⁻¹((1 ± √33)/8),",
+            "style": "boxed"
+          },
+          {
+            "text": "both values lying in (0, π)",
             "style": "boxed"
           }
         ],

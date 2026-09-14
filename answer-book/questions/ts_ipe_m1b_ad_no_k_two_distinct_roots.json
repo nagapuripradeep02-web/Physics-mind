@@ -53,10 +53,14 @@
             "style": "heading"
           },
           "Let f(x) = x² − 3x + k.",
-          "Suppose, if possible, that for some real k the equation f(x) = 0 has two distinct roots α and β in [0, 1], with α < β.",
-          "f is a polynomial, so it is continuous on [α, β] and differentiable on (α, β).",
+          "Suppose, if possible, that for some real k",
+          "the equation f(x) = 0 has two distinct roots",
+          "α and β in [0, 1], with α < β.",
+          "f is a polynomial, so it is continuous on [α, β]",
+          "and differentiable on (α, β).",
           "Also f(α) = 0 and f(β) = 0, so f(α) = f(β).",
-          "All three conditions of Rolle's theorem hold, so there is a c in (α, β) with f′(c) = 0."
+          "All three conditions of Rolle's theorem hold,",
+          "so there is a c in (α, β) with f′(c) = 0."
         ],
         "recall": {
           "credit": "say_it",
@@ -95,7 +99,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. The chain (α, β) ⊆ (0, 1) is the line the proof depends on — without it, c = 3/2 is just a number and contradicts nothing.",
-        "memory_tip": "f′(x) = 2x − 3 is zero only at x = 3/2, and 3/2 is outside [0, 1]. That single fact is the whole proof.",
+        "memory_tip": "f′(x) = 2x − 3 is zero only at x = 3/2, and 3/2 is outside [0, 1]. That fact, with Rolle's theorem, gives the proof.",
         "lines": [
           "f′(x) = 2x − 3",
           "f′(c) = 0 ⇒ 2c − 3 = 0 ⇒ c = 3/2",
@@ -103,7 +107,15 @@
           "This contradicts c = 3/2, since 3/2 > 1.",
           "So the assumption is false.",
           {
-            "text": "∴ there is no real number k for which x² − 3x + k = 0 has two distinct roots in [0, 1]",
+            "text": "∴ there is no real number k",
+            "style": "boxed"
+          },
+          {
+            "text": "for which x² − 3x + k = 0",
+            "style": "boxed"
+          },
+          {
+            "text": "has two distinct roots in [0, 1]",
             "style": "boxed"
           }
         ],

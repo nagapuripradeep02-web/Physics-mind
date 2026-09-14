@@ -148,7 +148,8 @@
         "mark_note": "Method",
         "margin_note": "Third mark. −1/m, so 4 becomes −1/4. This single line is where most marks are lost on normal questions.",
         "lines": [
-          "The normal is perpendicular to the tangent at the same point,",
+          "The normal is perpendicular to the tangent",
+          "at the same point,",
           "so the product of their slopes is −1.",
           "Slope of the normal = −1/m",
           "∴ slope of the normal = −1/4"
@@ -192,7 +193,8 @@
         "mark_note": "Answer",
         "margin_note": "Fourth mark. The question asks for the normal ONLY, so do not spend time writing the tangent as well — it earns nothing. Check the boxed line at (4, 2): 4 + 8 − 12 = 0.",
         "lines": [
-          "Normal at (x₁, y₁) with slope −1/m:   y − y₁ = (−1/m)(x − x₁)",
+          "Normal at (x₁, y₁) with slope −1/m:",
+          "y − y₁ = (−1/m)(x − x₁)",
           "Here (x₁, y₁) = (4, 2):",
           "y − 2 = (−1/4)(x − 4)",
           "4(y − 2) = −(x − 4)",

@@ -52,10 +52,12 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "f(x) = (x² − 1)(x − 2) = x³ − 2x² − x + 2, a polynomial function, so",
+          "f(x) = (x² − 1)(x − 2) = x³ − 2x² − x + 2,",
+          "a polynomial function, so",
           "(i) f is continuous on the closed interval [−1, 2]",
           "(ii) f is differentiable on the open interval (−1, 2)",
-          "(iii) f(−1) = ((−1)² − 1)(−1 − 2) = (0)(−3) = 0  and  f(2) = (2² − 1)(2 − 2) = (3)(0) = 0",
+          "(iii) f(−1) = ((−1)² − 1)(−1 − 2) = (0)(−3) = 0",
+          "and  f(2) = (2² − 1)(2 − 2) = (3)(0) = 0",
           "∴ f(−1) = f(2) = 0, so Rolle's theorem applies on [−1, 2]."
         ],
         "recall": {
@@ -97,11 +99,25 @@
         "lines": [
           "f′(x) = 3x² − 4x − 1",
           "f′(x) = 0  ⇒  3x² − 4x − 1 = 0",
-          "⇒ x = (4 ± √(16 + 12))/6 = (4 ± √28)/6 = (4 ± 2√7)/6 = (2 ± √7)/3",
-          "√7 ≈ 2.646, so the roots are (2 + √7)/3 ≈ 1.549 and (2 − √7)/3 ≈ −0.215",
-          "−1 < −0.215 < 2 and −1 < 1.549 < 2, so both roots lie in the open interval (−1, 2)",
+          "⇒ x = (4 ± √(16 + 12))/6 = (4 ± √28)/6 = (4 ± 2√7)/6",
           {
-            "text": "∴ Rolle's theorem is verified; the derivative vanishes at c = (2 ± √7)/3, both points lying in (−1, 2)",
+            "text": "  = (2 ± √7)/3",
+            "style": "indent"
+          },
+          "√7 ≈ 2.646, so the roots are (2 + √7)/3 ≈ 1.549",
+          "and (2 − √7)/3 ≈ −0.215",
+          "−1 < −0.215 < 2 and −1 < 1.549 < 2,",
+          "so both roots lie in the open interval (−1, 2)",
+          {
+            "text": "∴ Rolle's theorem is verified;",
+            "style": "boxed"
+          },
+          {
+            "text": "the derivative vanishes at c = (2 ± √7)/3,",
+            "style": "boxed"
+          },
+          {
+            "text": "both points lying in (−1, 2)",
             "style": "boxed"
           }
         ],

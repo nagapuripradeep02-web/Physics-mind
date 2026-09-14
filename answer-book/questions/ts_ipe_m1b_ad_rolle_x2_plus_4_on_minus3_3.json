@@ -55,8 +55,10 @@
           "f(x) = x² + 4 is a polynomial function, so",
           "(i) f is continuous on the closed interval [−3, 3]",
           "(ii) f is differentiable on the open interval (−3, 3)",
-          "(iii) f(−3) = (−3)² + 4 = 9 + 4 = 13  and  f(3) = 3² + 4 = 9 + 4 = 13",
-          "∴ f(−3) = f(3), so all three conditions of Rolle's theorem hold on [−3, 3]."
+          "(iii) f(−3) = (−3)² + 4 = 9 + 4 = 13",
+          "and  f(3) = 3² + 4 = 9 + 4 = 13",
+          "∴ f(−3) = f(3),",
+          "so all three conditions of Rolle's theorem hold on [−3, 3]."
         ],
         "recall": {
           "credit": "say_it",

@@ -59,7 +59,8 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Let P(x, y) be any point on the curve  by² = (x + a)³,  where a and b are constants.",
+          "Let P(x, y) be any point on the curve  by² = (x + a)³,",
+          "where a and b are constants.",
           "Differentiate both sides with respect to x:",
           "b · 2y (dy/dx) = 3(x + a)²",
           "∴ m = dy/dx = 3(x + a)²/(2by)"
@@ -101,9 +102,13 @@
         "label": "Find the subtangent",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Second mark. After writing y/m, substitute by² = (x + a)³ into the numerator. That substitution is what collapses the expression to a single bracket.",
+        "margin_note": "Second mark. After writing y/m, substitute by² = (x + a)³ into the numerator. That substitution reduces the expression to a single bracket.",
         "lines": [
-          "Subtangent = y/m = y · 2by/(3(x + a)²) = 2by²/(3(x + a)²)",
+          "Subtangent = y/m = y · 2by/(3(x + a)²)",
+          {
+            "text": "  = 2by²/(3(x + a)²)",
+            "style": "indent"
+          },
           "But by² = (x + a)³ from the curve itself, so",
           "Subtangent = 2(x + a)³/(3(x + a)²)",
           "∴ Subtangent = 2(x + a)/3"
@@ -192,11 +197,28 @@
         "lines": [
           "(Subtangent)² = (2(x + a)/3)² = 4(x + a)²/9",
           "Divide by the subnormal:",
-          "(Subtangent)²/Subnormal = [4(x + a)²/9] ÷ [3(x + a)²/(2b)]",
-          "= [4(x + a)²/9] × [2b/(3(x + a)²)] = 8b/27",
-          "This is free of x and y, so it is the same at every point of the curve.",
+          "(Subtangent)²/Subnormal",
           {
-            "text": "∴ (Subtangent)² = (8b/27) × Subnormal, a constant multiple — so the square of the subtangent varies as the subnormal.",
+            "text": "  = [4(x + a)²/9] ÷ [3(x + a)²/(2b)]",
+            "style": "indent"
+          },
+          "= [4(x + a)²/9] × [2b/(3(x + a)²)] = 8b/27",
+          "This is free of x and y, so it is the same",
+          "at every point of the curve.",
+          {
+            "text": "∴ (Subtangent)² = (8b/27) × Subnormal,",
+            "style": "boxed"
+          },
+          {
+            "text": "a constant multiple —",
+            "style": "boxed"
+          },
+          {
+            "text": "so the square of the subtangent",
+            "style": "boxed"
+          },
+          {
+            "text": "varies as the subnormal.",
             "style": "boxed"
           }
         ],
@@ -233,5 +255,5 @@
       }
     ]
   },
-  "insider_note": "Form both lengths, then square the subtangent and compare — the question asks for a VARIES relation, not an equality. The constants b and a survive as the factor."
+  "insider_note": "Form both lengths, then square the subtangent and compare — the question asks for a VARIES relation, not an equality. The constant b remains in the factor 8b/27; a cancels."
 }

@@ -51,7 +51,8 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given: dx/dt = 4 units/sec.  Asked: dy/dt at the point (2, 8).",
+          "Given: dx/dt = 4 units/sec.",
+          "Asked: dy/dt at the point (2, 8).",
           "P moves on the curve  y = 2x²",
           "Differentiate both sides with respect to time t:",
           "dy/dt = (dy/dx)(dx/dt)",
@@ -97,7 +98,8 @@
         "mark_note": "Answer",
         "margin_note": "Second mark. The point (2, 8) fixes x = 2; the y-value 8 is only a check that the point lies on the curve, since 2(2²) = 8. The unit units/sec is part of the answer.",
         "lines": [
-          "The point (2, 8) lies on the curve, since 2(2²) = 8, so x = 2 there.",
+          "The point (2, 8) lies on the curve, since 2(2²) = 8,",
+          "so x = 2 there.",
           "dy/dt = 4x(dx/dt) = 4(2)(4)",
           {
             "text": "∴ dy/dt = 32 units/sec",
