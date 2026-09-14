@@ -152,7 +152,7 @@
             "double angle"
           ]
         },
-        "why": "The sine rule is the only bridge between sides and angles here. Once every side is a sine, the double-angle formula does the rest.",
+        "why": "The sine rule writes every side as a sine. Then the double-angle formula combines each sine with its cosine.",
         "common_mistakes": [
           "Using a = R sinA without the 2.",
           "Forgetting to factor the R out."
@@ -288,7 +288,7 @@
             "multiply and divide"
           ]
         },
-        "why": "Δ = 2R² sinA sinB sinC is another standard result. Manufacturing the second R is the only way to reach it from 2R sinA sinB sinC.",
+        "why": "Δ = 2R² sinA sinB sinC is another standard result. Multiplying and dividing by R gives the R² that this formula needs.",
         "common_mistakes": [
           "Not introducing the second R and being unable to finish.",
           "Writing Δ = R² sinA sinB sinC without the 2."

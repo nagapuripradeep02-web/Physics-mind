@@ -53,7 +53,7 @@
         "kind": "equation",
         "label": "Square the given relation",
         "marks": 0,
-        "margin_note": "No separate mark at this length. sec and tan are the pair here, so the identity is sec²θ − tan²θ = 1 rather than the Pythagorean one.",
+        "margin_note": "No separate mark at this length. sec and tan are the pair here, so the identity is sec²θ − tan²θ = 1 rather than sin²θ + cos²θ = 1.",
         "lines": [
           {
             "text": "Sol:",
@@ -88,7 +88,7 @@
             "b minus c"
           ]
         },
-        "why": "sec and tan pair through sec² − tan² = 1, not through sin² + cos² = 1. Reaching for the wrong identity here is the commonest error in the family.",
+        "why": "sec and tan pair through sec² − tan² = 1, not through sin² + cos² = 1. Using the wrong identity here is a common error in these questions.",
         "common_mistakes": [
           "Using 1 − sec²θ.",
           "Trying to convert to sines and cosines first."
@@ -210,14 +210,17 @@
         "mark_note": "Conclusion",
         "margin_note": "The last mark. Same finish as the a = (b + c) cos θ question, but the answer carries sin(A/2) over b − c.",
         "lines": [
-          "∴ tan θ = √(4bc sin²(A/2)/(b−c)²)",
+          "∴ tan θ = ±(2√(bc)/|b − c|) sin(A/2)",
           {
-            "text": "(√(x²) = |x|; the result takes tan θ with the sign",
+            "text": "(sin(A/2) > 0; for θ between 0° and 180°, tan θ has",
             "added": true
           },
           {
-            "text": "  of b − c)",
-            "style": "indent",
+            "text": "  the same sign as sec θ = a/(b − c), which is the",
+            "added": true
+          },
+          {
+            "text": "  sign of b − c)",
             "added": true
           },
           {
@@ -252,9 +255,9 @@
           "Writing cos(A/2) by copying the a = (b + c) cos θ question.",
           "Writing b + c in the denominator."
         ],
-        "memory_tip": "Everything under the root is a perfect square. The answer carries sin(A/2) over b − c.",
+        "memory_tip": "Only sin²(A/2) and (b − c)² come out of the root exactly; √(4bc) = 2√(bc) stays. The answer has sin(A/2) over b − c.",
         "lines_compact": [
-          "∴ tan θ = √(4bc sin²(A/2)/(b−c)²)",
+          "∴ tan θ = ±(2√(bc)/|b − c|) sin(A/2)",
           {
             "text": "= (2√(bc)/(b−c)) sin(A/2)",
             "style": "boxed"

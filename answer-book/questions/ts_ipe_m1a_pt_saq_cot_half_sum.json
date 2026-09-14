@@ -101,8 +101,8 @@
         "label": "Add the brackets and conclude",
         "marks": 1,
         "mark_note": "Conclusion",
-        "margin_note": "The other half. (s−a) + (s−b) + (s−c) is 3s − (a+b+c), and a+b+c is 2s — so the brackets collapse to s.",
-        "memory_tip": "(s−a) + (s−b) + (s−c) = 3s − 2s = s, so the brackets collapse to a single s.",
+        "margin_note": "The other half. (s−a) + (s−b) + (s−c) is 3s − (a+b+c), and a+b+c is 2s — so the brackets add to s.",
+        "memory_tip": "(s−a) + (s−b) + (s−c) = 3s − 2s = s, so the brackets add to s.",
         "lines": [
           {
             "text": "((s−a) + (s−b) + (s−c) = 3s − (a + b + c))",
@@ -137,7 +137,7 @@
             "two s"
           ]
         },
-        "why": "a + b + c = 2s by definition of the semi-perimeter. Writing s instead of 2s is the single commonest error in this whole unit.",
+        "why": "a + b + c = 2s by definition of the semi-perimeter. Writing s instead of 2s is a common error here.",
         "common_mistakes": [
           "Writing a + b + c = s and getting 2s²/Δ.",
           "Cancelling the Δ wrongly."
@@ -154,5 +154,5 @@
       }
     ]
   },
-  "insider_note": "Write each cotangent as s(s−a)/Δ so that s/Δ factors out. Then (s−a) + (s−b) + (s−c) = 3s − 2s = s, and that single step is the whole proof."
+  "insider_note": "Write each cotangent as s(s−a)/Δ so that s/Δ factors out. Then (s−a) + (s−b) + (s−c) = 3s − 2s = s, and that step finishes the proof."
 }

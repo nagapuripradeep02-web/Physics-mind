@@ -49,7 +49,7 @@
         "kind": "equation",
         "label": "Square the given relation",
         "marks": 0,
-        "margin_note": "No separate mark at this length. The target has a sine and the condition a cosine, so the bridge is sin² = 1 − cos². Square the condition first so it can be substituted.",
+        "margin_note": "No separate mark at this length. The target has a sine and the condition a cosine, so use sin² = 1 − cos² to connect them. Square the condition first so it can be substituted.",
         "lines": [
           {
             "text": "Sol:",
@@ -86,12 +86,12 @@
             "sin squared"
           ]
         },
-        "why": "The answer is about sin θ but the condition gives cos θ. Squaring is the only route between them that stays exact.",
+        "why": "The answer is about sin θ but the condition gives cos θ. Squaring connects them and keeps every step exact.",
         "common_mistakes": [
           "Taking the square root too early.",
           "Writing 1 − a²/(b+c)² as (1 − a²)/(b+c)²."
         ],
-        "memory_tip": "The target is a sine and the condition a cosine, so the bridge is sin² = 1 − cos²."
+        "memory_tip": "The target is a sine and the condition a cosine, so use sin² = 1 − cos² to connect them."
       },
       {
         "id": "s2_expand_and_use_the_cosine_",
@@ -138,7 +138,7 @@
         "why": "There is no angle anywhere until the cosine rule is used. Spotting b² + c² − a² is what turns a side identity into an angle one.",
         "common_mistakes": [
           "Expanding but never grouping the b² + c² − a² together.",
-          "Writing the cosine rule upside down."
+          "Writing the cosine rule with the top and bottom swapped."
         ],
         "memory_tip": "Expand (b + c)², then spot b² + c² − a² inside — that is 2bc cos A and it brings the angle in.",
         "lines_compact": [
@@ -186,7 +186,7 @@
             "four b c"
           ]
         },
-        "why": "1 + cos A = 2cos²(A/2) is the identity the whole family turns on. Its partner, 1 − cos A = 2sin²(A/2), is what the a = (b − c) sec θ question uses instead.",
+        "why": "1 + cos A = 2cos²(A/2) is the key identity in this group of questions. Its partner, 1 − cos A = 2sin²(A/2), is what the a = (b − c) sec θ question uses instead.",
         "common_mistakes": [
           "Using 1 − cos A = 2sin²(A/2) here, which is the wrong half of the pair.",
           "Losing a factor of 2."
@@ -204,16 +204,19 @@
         "label": "Take the square root",
         "marks": 1,
         "mark_note": "Conclusion",
-        "margin_note": "The last mark. Everything under the root is a perfect square, so the root is exact — and sin θ is taken positive.",
+        "margin_note": "The last mark. cos²(A/2) and (b + c)² come out of the root exactly, √(4bc) = 2√(bc) — and sin θ is taken positive.",
         "lines": [
           "∴ sin θ = √(4bc cos²(A/2)/(b+c)²)",
           {
-            "text": "(√(x²) = |x|; b + c > 0 and cos(A/2) > 0, so this",
+            "text": "(sin θ = √(sin²θ) needs sin θ ≥ 0, true for θ between",
             "added": true
           },
           {
-            "text": "  takes sin θ ≥ 0, as for θ between 0° and 180°)",
-            "style": "indent",
+            "text": "  0° and 180°; b + c > 0 and cos(A/2) > 0, so no",
+            "added": true
+          },
+          {
+            "text": "  modulus sign is needed)",
             "added": true
           },
           {
@@ -248,7 +251,7 @@
           "Writing √(4bc) as 4√(bc).",
           "Leaving the answer squared."
         ],
-        "memory_tip": "Everything under the root is a perfect square, so the root is exact and sin θ is taken positive.",
+        "memory_tip": "cos²(A/2) and (b + c)² come out of the root exactly, √(4bc) = 2√(bc), and sin θ is taken positive.",
         "lines_compact": [
           "∴ sin θ = √(4bc cos²(A/2)/(b+c)²)",
           {
@@ -259,5 +262,5 @@
       }
     ]
   },
-  "insider_note": "The PLUS version: squaring leaves 2bc(1 + cos A), and 1 + cos A = 2cos²(A/2). That sign inside the bracket is the only difference from the (b − c) sec θ question."
+  "insider_note": "The PLUS version: squaring leaves 2bc(1 + cos A), and 1 + cos A = 2cos²(A/2). That sign inside the bracket is what separates this working from the (b − c) sec θ question."
 }

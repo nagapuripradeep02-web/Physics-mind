@@ -85,7 +85,7 @@
             "three s minus two s"
           ]
         },
-        "why": "(s−a) + (s−b) + (s−c) = 3s − 2s = s, because a + b + c is 2s. That collapse is what makes the numerator so simple.",
+        "why": "(s−a) + (s−b) + (s−c) = 3s − 2s = s, because a + b + c is 2s. That sum is what makes the numerator so simple.",
         "common_mistakes": [
           "Writing a + b + c as s rather than 2s.",
           "Using cot A instead of cot(A/2)."
@@ -98,7 +98,7 @@
         "label": "Simplify the denominator",
         "marks": 2,
         "mark_note": "Method",
-        "margin_note": "Two marks — the longer half. Use cot = cos/sin, then the cosine rule on each numerator and Δ = ½bc sinA on each denominator. Everything lands over 4Δ.",
+        "margin_note": "Two marks — the longer half. Use cot = cos/sin, then the cosine rule on each numerator and Δ = ½bc sinA on each denominator. Every term then has the denominator 4Δ.",
         "lines": [
           "In R.H.S, denominator = cotA + cotB + cotC",
           {
@@ -150,7 +150,7 @@
           "Forgetting that 2bc sinA is 4Δ, not 2Δ.",
           "Mis-cancelling the squared terms."
         ],
-        "memory_tip": "cot = cos/sin, then the cosine rule on top and Δ = ½bc sinA below. Everything lands over 4Δ.",
+        "memory_tip": "cot = cos/sin, then the cosine rule on top and Δ = ½bc sinA below. Every term then has the denominator 4Δ.",
         "lines_compact": [
           "In R.H.S, denominator = cotA + cotB + cotC",
           "= cosA/sinA + cosB/sinB + cosC/sinC",

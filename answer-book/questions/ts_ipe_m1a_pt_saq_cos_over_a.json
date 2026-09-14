@@ -89,7 +89,7 @@
             "substitute"
           ]
         },
-        "why": "a × 2bc = 2abc whichever term you take, so all three land on the same denominator without any extra work.",
+        "why": "a × 2bc = 2abc whichever term you take, so all three have the same denominator without any extra work.",
         "common_mistakes": [
           "Getting different denominators and trying to find an LCM.",
           "Using the sine rule instead."
@@ -101,8 +101,8 @@
         "label": "Add and conclude",
         "marks": 1,
         "mark_note": "Conclusion",
-        "margin_note": "The other half. The three numerators cancel in pairs — each squared term survives once.",
-        "memory_tip": "Over the common denominator each squared term survives exactly once.",
+        "margin_note": "The other half. The three numerators cancel in pairs — each squared term is left once.",
+        "memory_tip": "Over the common denominator each squared term is left exactly once.",
         "lines": [
           {
             "text": "(add the tops over 2abc)",
@@ -139,7 +139,7 @@
             "survives once"
           ]
         },
-        "why": "The numerator collects to a² + b² + c², the same numerator as the 4Δ version of this identity; only the denominator differs, 2abc here. Noticing that saves re-deriving it.",
+        "why": "The numerator collects to a² + b² + c² — the same numerator as in cot A + cot B + cot C = (a² + b² + c²)/(4Δ), a different identity whose denominator is 4Δ.",
         "common_mistakes": [
           "Cancelling the squares to zero.",
           "Writing the denominator as abc."

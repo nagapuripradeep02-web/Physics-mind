@@ -59,7 +59,8 @@
           "sinB − sinC = 2 cos((B+C)/2) sin((B−C)/2)",
           "(sin x + sin y = 2 sin((x+y)/2) cos((x−y)/2))",
           "sinB + sinC = 2 sin((B+C)/2) cos((B−C)/2)",
-          "(divide: the 2s cancel; cos/sin = cot and sin/cos = tan)",
+          "(divide: the factors 2 cancel;",
+          "  cos/sin = cot and sin/cos = tan)",
           "∴ (b−c)/(b+c) = cot((B+C)/2) tan((B−C)/2)"
         ],
         "recall": {
@@ -84,7 +85,7 @@
             "cot of B plus C by two"
           ]
         },
-        "why": "The result to be proved is written in half angles, so the sides must first become sines. The sum-to-product forms are the only step that produces half angles from B and C.",
+        "why": "The result to be proved is written in half angles, so the sides must first become sines. The sum-to-product forms produce the half angles (B+C)/2 and (B−C)/2 that the result needs.",
         "common_mistakes": [
           "Writing b = R sinB without the 2.",
           "Using the sum formula for the difference of sines."

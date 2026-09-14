@@ -68,7 +68,7 @@
           "Δ = ½ (base)(height) = ½ (BC)(p₁) = ½ a p₁",
           "(divide both sides by ½ a)",
           "⇒ p₁ = 2Δ/a.  Similarly p₂ = 2Δ/b, p₃ = 2Δ/c",
-          "(turn each fraction upside down)",
+          "(take the reciprocal of each)",
           "Hence 1/p₁ = a/(2Δ), 1/p₂ = b/(2Δ), 1/p₃ = c/(2Δ)"
         ],
         "recall": {
@@ -93,7 +93,7 @@
             "altitude"
           ]
         },
-        "why": "Taking the RECIPROCALS is what makes all three parts easy — 1/p is a simple multiple of the side, where p itself is a fraction.",
+        "why": "Taking the RECIPROCALS is what makes parts (i) and (ii) easy — 1/p is a simple multiple of the side; part (iii) multiplies the altitudes themselves.",
         "common_mistakes": [
           "Writing p₁ = Δ/a without the 2.",
           "Pairing p₁ with the wrong side."
@@ -260,7 +260,7 @@
         "why": "r = Δ/s, so 1/r = s/Δ. Recognising the answer as a reciprocal rather than deriving it fresh is what makes this two lines.",
         "common_mistakes": [
           "Forgetting that a + b + c = 2s.",
-          "Writing r = s/Δ upside down."
+          "Writing r = s/Δ instead of r = Δ/s."
         ],
         "memory_tip": "The three reciprocals share 1/(2Δ), and a + b + c = 2s, so the sum is s/Δ = 1/r.",
         "lines_compact": [

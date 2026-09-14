@@ -221,7 +221,7 @@
             "twenty"
           ]
         },
-        "why": "The subscript on the ex-radius tells you which side it belongs to: r₁ pairs with a, r₂ with b, r₃ with c. That pairing is the whole bookkeeping of the question.",
+        "why": "The subscript on the ex-radius tells you which side it belongs to: r₁ pairs with a, r₂ with b, r₃ with c. Keeping each radius with its own side is the main care needed in this question.",
         "common_mistakes": [
           "Pairing r₁ with b or c.",
           "Computing s − a and reporting it as a."

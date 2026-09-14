@@ -102,7 +102,7 @@
             "sigma"
           ]
         },
-        "why": "The whole identity lives in half angles, so converting everything at once is cheaper than converting piecemeal. The sigma is what stops the working tripling in length.",
+        "why": "Every quantity in the identity can be written with half angles, so write all of them that way in the first line. The sigma keeps the working to one term instead of three.",
         "common_mistakes": [
           "Writing r₁ with cos(A/2) instead of sin(A/2).",
           "Expanding all three terms in full and running out of space."
@@ -115,7 +115,7 @@
         "marks": 2,
         "mark_note": "Method",
         "margin_note": "Two more marks. The cos(B/2) and cos(C/2) cancel top and bottom, and what is left has sin(A/2) over 4R sin(B/2)sin(C/2) — which becomes sin²(A/2)/r.",
-        "memory_tip": "The cos(B/2) and cos(C/2) cancel; multiplying by sin(A/2) turns what is left into sin²(A/2)/r.",
+        "memory_tip": "The cos(B/2) and cos(C/2) cancel; multiplying top and bottom by sin(A/2) turns what is left into sin²(A/2)/r.",
         "lines": [
           {
             "text": "(cos(B/2) and cos(C/2) cancel, and 2 × 2 = 4)",
@@ -124,7 +124,7 @@
           "= Σ sin(A/2) / [4R sin(B/2)sin(C/2)]",
           "= Σ sin²(A/2) / [4R sin(A/2)sin(B/2)sin(C/2)]",
           {
-            "text": "[multiplying by sin(A/2)]",
+            "text": "[multiplying top and bottom by sin(A/2)]",
             "style": "indent"
           },
           "= Σ sin²(A/2)/r   [∵ r = 4R sin(A/2)sin(B/2)sin(C/2)]",
@@ -156,7 +156,7 @@
             "one over r"
           ]
         },
-        "why": "Multiplying by sin(A/2) top and bottom is deliberate — it manufactures the exact product that equals r, and nothing else in the expression would.",
+        "why": "Multiplying top and bottom by sin(A/2) makes the denominator 4R sin(A/2)sin(B/2)sin(C/2), which equals r.",
         "common_mistakes": [
           "Cancelling the sines rather than the cosines.",
           "Not spotting that the denominator is r."
@@ -165,7 +165,7 @@
           "= Σ sin(A/2) / [4R sin(B/2)sin(C/2)]",
           "= Σ sin²(A/2) / [4R sin(A/2)sin(B/2)sin(C/2)]",
           {
-            "text": "[multiplying by sin(A/2)]",
+            "text": "[multiplying top and bottom by sin(A/2)]",
             "style": "indent"
           },
           "= Σ sin²(A/2)/r   [∵ r = 4R sin(A/2)sin(B/2)sin(C/2)]",
@@ -294,5 +294,5 @@
       }
     ]
   },
-  "insider_note": "Convert everything to half angles and cancel, which turns the sum into Σsin²(A/2). The identity Σsin²(A/2) = 1 − 2sin(A/2)sin(B/2)sin(C/2) is what produces the 1/(2R)."
+  "insider_note": "Convert everything to half angles and cancel, which turns the sum into (1/r)Σsin²(A/2). The identity Σsin²(A/2) = 1 − 2sin(A/2)sin(B/2)sin(C/2) is what produces the 1/(2R)."
 }

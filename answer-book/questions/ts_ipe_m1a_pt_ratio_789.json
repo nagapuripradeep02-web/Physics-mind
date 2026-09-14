@@ -61,7 +61,7 @@
           },
           "Given a : b : c = 7 : 8 : 9",
           "(equal ratios: each side is the same multiple k)",
-          "⇒ a = 7k, b = 8k, c = 9k  (k ≠ 0)"
+          "⇒ a = 7k, b = 8k, c = 9k  (k > 0)"
         ],
         "recall": {
           "credit": "say_it",
@@ -204,7 +204,7 @@
             "cos C"
           ]
         },
-        "why": "The rule always subtracts the side OPPOSITE the angle being found. Keeping that straight is the whole bookkeeping of the step.",
+        "why": "The rule always subtracts the side OPPOSITE the angle being found. Getting that side right is the main care needed in this step.",
         "common_mistakes": [
           "Subtracting a² every time.",
           "Not cancelling the fractions."

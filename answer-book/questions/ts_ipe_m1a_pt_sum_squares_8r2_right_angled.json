@@ -103,7 +103,7 @@
         "label": "Pair two of the squares",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "One mark. Lower the two squares to cos 2A and cos 2B, combine them, then use A + B = 180° − C so cos(A+B) = −cos C.",
+        "margin_note": "One mark. Write the two squares in terms of cos 2A and cos 2B, add them, then use A + B = 180° − C so cos(A+B) = −cos C.",
         "memory_tip": "sin²θ = (1 − cos2θ)/2, then cos2A + cos2B = 2cos(A+B)cos(A−B), and cos(A+B) = −cos C.",
         "lines": [
           {
@@ -216,7 +216,7 @@
         "why": "Once the third square is added the two constants make the 2 that the condition already gives, so everything else must add to zero — and that leaves a single product equal to zero.",
         "common_mistakes": [
           "Writing sin²C = 1 + cos²C.",
-          "Cancelling cos C out of the product; cos C may itself be zero, which is the answer."
+          "Cancelling cos C out of the product; cos C may itself be zero, which is one of the cases that gives a right angle."
         ],
         "lines_compact": [
           "sin²C = 1 − cos²C, so (1) becomes",

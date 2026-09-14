@@ -81,7 +81,7 @@
             "cot half B"
           ]
         },
-        "why": "Multiplying the two roots cancels (s−b) and (s−c) completely and leaves s over the bracket of the angle that was not asked for. That is why the answer depends only on a.",
+        "why": "Multiplying the two roots cancels (s−b) and (s−c) completely and leaves s over the bracket of the angle that was not asked for. That is why only s and s − a are left, and the given b + c = 3a is enough to find them.",
         "common_mistakes": [
           "Writing cot(B/2) cot(C/2) = s/(s−b) or s/(s−c).",
           "Adding the two cotangents instead of multiplying them."

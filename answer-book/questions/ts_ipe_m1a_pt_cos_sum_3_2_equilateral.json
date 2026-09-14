@@ -155,7 +155,7 @@
             "real root"
           ]
         },
-        "why": "sin(C/2) is a real number, so the quadratic it satisfies must have a real root. That single requirement is what forces cos((A−B)/2) to its largest possible value.",
+        "why": "sin(C/2) is a real number, so the quadratic it satisfies must have a real root. That single requirement is what forces cos²((A−B)/2) to its largest possible value, 1.",
         "common_mistakes": [
           "Treating cos((A−B)/2) as the unknown instead of sin(C/2).",
           "Writing the discriminant as b² + 4ac."

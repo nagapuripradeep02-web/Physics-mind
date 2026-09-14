@@ -103,8 +103,8 @@
         "label": "Apply the compound formulas",
         "marks": 2,
         "mark_note": "Conclusion",
-        "margin_note": "The other half. The brackets become sin((A+B)/2) and cos((A+B)/2); the complementary angle turns both into C/2, and cos² − sin² gives cos C.",
-        "memory_tip": "(A+B)/2 = 90° − C/2 turns both brackets into C, and cos²(C/2) − sin²(C/2) is cos C.",
+        "margin_note": "The other half. The brackets become sin((A+B)/2) and cos((A+B)/2); the complementary angle turns them into cos(C/2) and sin(C/2), and cos² − sin² gives cos C.",
+        "memory_tip": "(A+B)/2 = 90° − C/2 turns the brackets into cos(C/2) and sin(C/2), and cos²(C/2) − sin²(C/2) is cos C.",
         "lines": [
           {
             "text": "(sinX cosY + cosX sinY = sin(X + Y) and",
@@ -153,7 +153,7 @@
             "four R cos C"
           ]
         },
-        "why": "Both brackets collapse onto the same pair of C half-angles, so what is left is cos²(C/2) − sin²(C/2) — and that is exactly cos C, the angle the question asked for.",
+        "why": "Both brackets become functions of C/2, so what is left is cos²(C/2) − sin²(C/2) — and that is exactly cos C, the angle the question asked for.",
         "common_mistakes": [
           "Adding the two squares instead of subtracting, which gives 4R.",
           "Writing (A+B)/2 = 90° − C and forgetting to halve C."

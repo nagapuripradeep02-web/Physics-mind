@@ -54,8 +54,8 @@
         "label": "Group into two pairs",
         "marks": 2,
         "mark_note": "Method",
-        "margin_note": "Half the marks. Group (r₃ + r₁) and (r − r₂), which share 4R cos(B/2) and 4R sin(B/2) — the B half-angle, since B is what the answer keeps.",
-        "memory_tip": "Group (r₃ + r₁) and (r − r₂) — they share the B half-angle, which is what the answer keeps.",
+        "margin_note": "Half the marks. Group (r₃ + r₁) and (r − r₂), which share 4R cos(B/2) and 4R sin(B/2) — the B half-angle, which leads straight to cos B.",
+        "memory_tip": "Group (r₃ + r₁) and (r − r₂) — they share the B half-angle, which leads to cos B.",
         "lines": [
           {
             "text": "Sol:",
@@ -103,9 +103,9 @@
             "sin half B"
           ]
         },
-        "why": "The answer keeps a cos B, so the grouping must leave B behind rather than cancel it — which is why the pairs are chosen around B and not C.",
+        "why": "The answer contains cos B, so grouping (r₃ + r₁) and (r − r₂) lets the B half-angles come out as factors and gives cos²(B/2) − sin²(B/2) directly.",
         "common_mistakes": [
-          "Grouping around C, as in the r₁ + r₂ + r₃ − r question, instead of around B.",
+          "Putting r₂ in the first group, so the minus sign is attached to the wrong radius.",
           "Losing the minus in front of the second group."
         ]
       },
@@ -115,8 +115,8 @@
         "label": "Apply the compound formulas",
         "marks": 2,
         "mark_note": "Conclusion",
-        "margin_note": "The other half. The brackets become sin((A+C)/2) and cos((A+C)/2); then (A+C)/2 = 90° − B/2 turns both into B, and cos²−sin² gives cos B.",
-        "memory_tip": "(A + C)/2 = 90° − B/2 turns both brackets into B, and cos² − sin² gives cos B.",
+        "margin_note": "The other half. The brackets become sin((A+C)/2) and cos((A+C)/2); then (A+C)/2 = 90° − B/2 turns them into cos(B/2) and sin(B/2), and cos²(B/2) − sin²(B/2) gives cos B.",
+        "memory_tip": "(A + C)/2 = 90° − B/2 turns the brackets into cos(B/2) and sin(B/2), and cos²(B/2) − sin²(B/2) gives cos B.",
         "lines": [
           {
             "text": "(the brackets are sin((A+C)/2) and cos((A+C)/2))",
@@ -157,7 +157,7 @@
             "cos B"
           ]
         },
-        "why": "cos²θ − sin²θ = cos 2θ, and here θ is B/2 — so the answer is cos B exactly. That is why the B half-angles had to be the ones factored out.",
+        "why": "cos²θ − sin²θ = cos 2θ, and here θ is B/2 — so the answer is cos B exactly. That is why factoring out the B half-angles leads straight to cos B.",
         "common_mistakes": [
           "Using cos²+sin² and getting 4R.",
           "Writing (A+C)/2 = 90° − B, without halving B."
@@ -175,5 +175,5 @@
       }
     ]
   },
-  "insider_note": "Group as (r₃ + r₁) and (r − r₂) so that cos(B/2) and sin(B/2) come out as factors. (A+C)/2 = 90° − B/2 is the substitution that makes both brackets collapse."
+  "insider_note": "Group as (r₃ + r₁) and (r − r₂) so that cos(B/2) and sin(B/2) come out as factors. (A+C)/2 = 90° − B/2 is the substitution that turns the brackets into cos(B/2) and sin(B/2)."
 }

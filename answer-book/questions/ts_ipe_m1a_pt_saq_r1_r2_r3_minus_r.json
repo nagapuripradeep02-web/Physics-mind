@@ -45,7 +45,7 @@
         "label": "Group into two pairs",
         "marks": 2,
         "mark_note": "Method",
-        "margin_note": "Half the marks, and the choice that makes it work. Group (r₁ + r₂) and (r₃ − r), so each pair shares a factor — 4R cos(C/2) for the first, 4R sin(C/2) for the second.",
+        "margin_note": "Half the marks. Group (r₁ + r₂) and (r₃ − r), so each pair shares a factor — 4R cos(C/2) for the first, 4R sin(C/2) for the second.",
         "memory_tip": "Group (r₁ + r₂) and (r₃ − r), so each pair shares a factor — cos(C/2) then sin(C/2).",
         "lines": [
           {
@@ -94,9 +94,9 @@
             "common factor"
           ]
         },
-        "why": "Grouping the OTHER way — (r₁ + r₃) and (r₂ − r) — leaves no common factor. Choosing the pairs so the half-angle of C is shared is the whole skill here.",
+        "why": "Pair each ex-radius sum with the difference that shares a half-angle: (r₁ + r₂) and (r₃ − r) both carry C/2. (r₁ + r₃) and (r₂ − r), around B/2, would work the same way.",
         "common_mistakes": [
-          "Grouping the wrong pairs.",
+          "Pairing terms that share no half-angle, such as r₁ with r, so no factor comes out.",
           "Writing r₁ with cos(A/2) instead of sin(A/2)."
         ]
       },
@@ -172,5 +172,5 @@
       }
     ]
   },
-  "insider_note": "Group as (r₁ + r₂) and (r₃ − r), not in the order written. The two brackets then combine into one sine of (A+B+C)/2 = 90°, so the answer is simply 4R."
+  "insider_note": "Group as (r₁ + r₂) and (r₃ − r). The two brackets then combine into one sine of (A+B+C)/2 = 90°, so the answer is simply 4R."
 }

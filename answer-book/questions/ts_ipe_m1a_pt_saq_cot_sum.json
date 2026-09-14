@@ -109,8 +109,8 @@
         "label": "Add and conclude",
         "marks": 1,
         "mark_note": "Conclusion",
-        "margin_note": "The other half. With a common denominator of 4Δ, the three numerators add — and every squared term survives exactly once.",
-        "memory_tip": "Over 4Δ the three numerators add, and every squared term survives exactly once.",
+        "margin_note": "The other half. With a common denominator of 4Δ, the three numerators add — and every squared term is left exactly once.",
+        "memory_tip": "Over 4Δ the three numerators add, and every squared term is left exactly once.",
         "lines": [
           {
             "text": "(each of the three denominators is 4Δ)",
@@ -144,7 +144,7 @@
             "survives once"
           ]
         },
-        "why": "Each squared term appears three times — twice positive, once negative — so exactly one of each survives. Tracking that is the whole of the last step.",
+        "why": "Each squared term appears three times — twice positive, once negative — so exactly one of each is left. Tracking that is the whole of the last step.",
         "common_mistakes": [
           "Cancelling all the squared terms to zero.",
           "Getting 2(a²+b²+c²) by miscounting."

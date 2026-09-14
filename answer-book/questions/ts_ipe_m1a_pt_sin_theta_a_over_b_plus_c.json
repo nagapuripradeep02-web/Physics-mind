@@ -139,7 +139,7 @@
             "expand"
           ]
         },
-        "why": "From this line on the working is word for word identical to the a = (b + c) cos θ question.",
+        "why": "From this line on, the right-hand working is the same as in the a = (b + c) cos θ question; only the left side is cos²θ instead of sin²θ.",
         "common_mistakes": [
           "Failing to group the three terms together.",
           "Sign slip on −a²."
@@ -191,7 +191,7 @@
             "four b c"
           ]
         },
-        "why": "A PLUS sign in front of cos A always means the cosine half-angle form. That single observation picks the right identity every time in this family.",
+        "why": "A PLUS sign in front of cos A always means the cosine half-angle form. Noticing that sign tells you which identity to use.",
         "common_mistakes": [
           "Reaching for the sine half-angle form.",
           "Dropping the 2bc."
@@ -212,7 +212,11 @@
         "lines": [
           "∴ cos θ = √(4bc cos²(A/2)/(b+c)²)",
           {
-            "text": "(√(x²) = |x|; this takes cos θ ≥ 0, that is θ acute)",
+            "text": "(take cos θ ≥ 0, that is θ acute; and",
+            "added": true
+          },
+          {
+            "text": "  √(cos²(A/2)) = cos(A/2), since 0° < A/2 < 90°)",
             "added": true
           },
           {
@@ -241,11 +245,11 @@
             "square root"
           ]
         },
-        "why": "This question and the a = (b + c) cos θ question land on the same right-hand side, because they start from the two halves of the same Pythagorean identity.",
+        "why": "This question and the a = (b + c) cos θ question reach the same right-hand side, because they start from the two halves of the same Pythagorean identity.",
         "common_mistakes": [
           "Writing √(4bc) as 4√(bc)."
         ],
-        "memory_tip": "The answer is identical to the cos θ question — worth noticing rather than doubting.",
+        "memory_tip": "The right-hand side is the same as in the a = (b + c) cos θ question, where it equals sin θ.",
         "lines_compact": [
           "∴ cos θ = √(4bc cos²(A/2)/(b+c)²)",
           {

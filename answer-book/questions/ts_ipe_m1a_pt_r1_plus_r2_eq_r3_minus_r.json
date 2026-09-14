@@ -91,7 +91,7 @@
         "why": "Every ex-radius carries the bracket of its own vertex underneath. Getting that pairing right is the whole risk in this question, so the four formulas are written out before anything is combined.",
         "common_mistakes": [
           "Writing r₁ = Δ/(s−b) — r₁ belongs with (s−a).",
-          "Writing r = s/Δ upside down."
+          "Writing r = s/Δ instead of r = Δ/s."
         ]
       },
       {

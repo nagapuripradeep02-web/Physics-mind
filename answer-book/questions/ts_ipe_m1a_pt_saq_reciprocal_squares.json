@@ -32,7 +32,7 @@
       "marks": 1
     },
     {
-      "label": "Expand and collapse",
+      "label": "Expand and cancel",
       "marks": 1
     }
   ],
@@ -62,7 +62,8 @@
             "style": "heading"
           },
           "L.H.S = 1/r² + 1/r₁² + 1/r₂² + 1/r₃²",
-          "(r = Δ/s, r₁ = Δ/(s−a), and so on; turn each upside down)",
+          "(r = Δ/s, r₁ = Δ/(s−a), and so on;",
+          "  take the reciprocal of each)",
           "= (s/Δ)² + ((s−a)/Δ)² + ((s−b)/Δ)² + ((s−c)/Δ)²",
           "(the same denominator Δ²)",
           "= [s² + (s−a)² + (s−b)² + (s−c)²]/Δ²"
@@ -89,7 +90,7 @@
             "invert"
           ]
         },
-        "why": "Inverting first and squaring second keeps the fractions simple. Squaring the radii and then inverting gives the same answer through much messier algebra.",
+        "why": "Inverting and squaring can be done in either order; both give 1/r² = s²/Δ² at once.",
         "common_mistakes": [
           "Writing 1/r = Δ/s.",
           "Forgetting to square the denominator."
@@ -98,7 +99,7 @@
       {
         "id": "s2_expand_and_collapse",
         "kind": "boxed_final",
-        "label": "Expand and collapse",
+        "label": "Expand and cancel",
         "marks": 1,
         "mark_note": "Conclusion",
         "margin_note": "The other half. Expand the three brackets; the s² terms give 4s², the cross terms give −2s(a+b+c) = −4s², and those cancel exactly.",

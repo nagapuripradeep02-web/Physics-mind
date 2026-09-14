@@ -135,7 +135,7 @@
             "ex radius"
           ]
         },
-        "why": "Each line is two steps: divide to get s − a, then subtract from s. Doing both in one line is where sign slips creep in.",
+        "why": "Each side takes two steps: divide to get s − a, then subtract that from s. Writing both steps down avoids a sign error.",
         "common_mistakes": [
           "Reporting s − a as the side.",
           "Pairing the wrong ex-radius with a side."
@@ -188,7 +188,7 @@
             "check"
           ]
         },
-        "why": "3-4-5 satisfies 3² + 4² = 5², so this is the right-angled triangle — a good sanity check that the arithmetic landed somewhere real.",
+        "why": "3² + 4² = 5², so this is a right-angled triangle; the check on the arithmetic is a + b + c = 2s.",
         "common_mistakes": [
           "Skipping the check.",
           "Giving the sides in the wrong order."
@@ -204,5 +204,5 @@
       }
     ]
   },
-  "insider_note": "r is given here, so Δ = √(r r₁ r₂ r₃) = 6 comes straight out and s = 6. Each side then follows from its own ex-radius, and 3 + 4 + 5 = 2s confirms it."
+  "insider_note": "r is given here, so Δ = √(r r₁ r₂ r₃) = 6 comes out at once and s = 6. Each side then follows from its own ex-radius, and 3 + 4 + 5 = 2s confirms it."
 }

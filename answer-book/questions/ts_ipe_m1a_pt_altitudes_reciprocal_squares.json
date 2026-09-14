@@ -254,7 +254,7 @@
             "delta"
           ]
         },
-        "why": "Adding the three numerators cancels the minus signs in pairs, so only a² + b² + c² survives. Dividing that by Δ produces exactly the sum found in line (1).",
+        "why": "Adding the three numerators cancels the minus signs in pairs, so only a² + b² + c² is left. Dividing that by Δ produces exactly the sum found in line (1).",
         "common_mistakes": [
           "Cancelling wrongly and losing one of a², b², c².",
           "Forgetting to divide by Δ, so the answer is short by one Δ."

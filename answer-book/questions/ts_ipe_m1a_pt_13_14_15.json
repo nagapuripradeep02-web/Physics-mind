@@ -263,9 +263,9 @@
             "in radius"
           ]
         },
-        "why": "r = Δ/s is the definition that all the others are built around — r₁ is the same with s−a in place of s.",
+        "why": "r = Δ/s is the formula that all the others are built around — r₁ is the same with s−a in place of s.",
         "common_mistakes": [
-          "Using s/Δ upside down.",
+          "Using s/Δ in place of Δ/s.",
           "Reusing R's formula."
         ],
         "memory_tip": "r = Δ/s, the in-radius and the simplest of the five.",
@@ -417,5 +417,5 @@
       }
     ]
   },
-  "insider_note": "Find s and then Δ before anything else — all five answers are built from those two. Heron's product 21 × 8 × 7 × 6 is a perfect square, so no surd survives."
+  "insider_note": "Find s and then Δ before anything else — all five answers are built from those two. Heron's product 21 × 8 × 7 × 6 is a perfect square, so no surd is left."
 }

@@ -168,7 +168,7 @@
         "label": "Simplify the sum of products",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "One mark. Over the common denominator each term keeps the bracket it is missing; those three add to s, and line (1) makes the Δ² cancel.",
+        "margin_note": "One mark. Over the common denominator each term gets the bracket it is missing on top; those three add to s, and line (1) makes the Δ² cancel.",
         "memory_tip": "The three brackets add to 3s − 2s = s, so the sum of the products is s².",
         "lines": [
           "r₁r₂ + r₂r₃ + r₃r₁",
@@ -264,7 +264,7 @@
             "right hand side"
           ]
         },
-        "why": "The half perimeter s is positive, so the square root is +s and not ±s. The numerator produced the same s, so the two cancel exactly and only the side a survives.",
+        "why": "The half perimeter s is positive, so the square root is +s and not ±s. The numerator produced the same s, so the two cancel exactly and only the side a is left.",
         "common_mistakes": [
           "Writing the square root as ±s — s is a half perimeter, so it is positive.",
           "Leaving the answer as as/s without cancelling."

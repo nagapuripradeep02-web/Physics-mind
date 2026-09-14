@@ -90,7 +90,7 @@
             "plus c"
           ]
         },
-        "why": "Writing b + c + a + c as (a+b+c) + c is the move that makes the cross-multiplication land on a recognisable expansion rather than a mess.",
+        "why": "Writing b + c + a + c as (a+b+c) + c is the step that makes the cross-multiplication give a standard expansion, (a+b+c)² + c(a+b+c).",
         "common_mistakes": [
           "Adding the fractions by adding numerators and denominators.",
           "Cross-multiplying before combining."

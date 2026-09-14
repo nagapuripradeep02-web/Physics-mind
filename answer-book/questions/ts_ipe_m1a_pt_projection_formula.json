@@ -45,7 +45,7 @@
         "label": "Write both cosines by the cosine rule",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Half the marks. cos C sits over 2ab and cos B over 2ca — the two sides that meet at that angle.",
+        "margin_note": "Half the marks. cos C has the denominator 2ab and cos B has 2ca — the two sides that meet at that angle.",
         "memory_tip": "The denominator of a cosine is twice the product of the two sides that meet at that angle: cos C over 2ab, cos B over 2ca.",
         "lines": [
           {
@@ -142,7 +142,7 @@
             "equals a"
           ]
         },
-        "why": "The b outside cancels the b in 2ab and the c cancels the c in 2ca, so both fractions land on the same denominator 2a. Then b² and c² cancel in pairs and only 2a² is left.",
+        "why": "The b outside cancels the b in 2ab and the c cancels the c in 2ca, so both fractions have the same denominator 2a. Then b² and c² cancel in pairs and only 2a² is left.",
         "common_mistakes": [
           "Cancelling the a instead of the b, leaving different denominators.",
           "Losing a sign so that b² and c² do not cancel."

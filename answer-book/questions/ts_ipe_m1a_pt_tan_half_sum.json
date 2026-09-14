@@ -85,7 +85,7 @@
             "Heron"
           ]
         },
-        "why": "Multiplying the top and the bottom of the half-angle root by (s−b)(s−c) makes the denominator Heron's product, which is Δ. All three tangents then share one denominator.",
+        "why": "Multiplying the top and the bottom inside the root by (s−b)(s−c) makes the denominator s(s−a)(s−b)(s−c) = Δ², whose root is Δ. All three tangents then share one denominator.",
         "common_mistakes": [
           "Writing tan(A/2) = s(s−a)/Δ, which is cot(A/2).",
           "Pairing (s−a) with the wrong angle."
@@ -191,7 +191,7 @@
             "delta"
           ]
         },
-        "why": "Each side appears in exactly two of the three products, so the terms in s add to 2s(a+b+c). Replacing a+b+c by 2s is what turns 3s² into −s².",
+        "why": "Each side appears in exactly two of the three products, so the terms in s add to −2s(a+b+c). Replacing a+b+c by 2s is what turns 3s² into −s².",
         "common_mistakes": [
           "Writing a + b + c = s instead of 2s.",
           "Getting 3s² − 2s² and finishing with +s²."

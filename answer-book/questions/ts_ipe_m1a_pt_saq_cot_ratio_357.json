@@ -62,7 +62,7 @@
           "⇒ s(s−a)/Δ : s(s−b)/Δ : s(s−c)/Δ = 3 : 5 : 7",
           "⇒ (s−a) : (s−b) : (s−c) = 3 : 5 : 7   [s/Δ cancels]",
           "(equal ratios: each is the same multiple k)",
-          "Take s − a = 3k, s − b = 5k, s − c = 7k  (k ≠ 0)"
+          "Take s − a = 3k, s − b = 5k, s − c = 7k  (k > 0)"
         ],
         "recall": {
           "credit": "say_it",

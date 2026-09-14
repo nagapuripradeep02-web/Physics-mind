@@ -80,7 +80,7 @@
             "tan half A"
           ]
         },
-        "why": "Multiplying the two roots cancels (s−a) and (s−c) completely, leaving only the bracket of the angle that was NOT given. That is why the product picks out b.",
+        "why": "Multiplying the two roots cancels (s−a) and (s−c) completely, leaving only the bracket of the angle that was NOT given. That is why only b is left in the product.",
         "common_mistakes": [
           "Writing tan(A/2) tan(C/2) = (s−a)/s or (s−c)/s.",
           "Adding the two tangents instead of multiplying them."
@@ -131,7 +131,7 @@
         },
         "why": "The two given numbers multiply to a single fraction, and that fraction is a statement about s and b alone. Clearing it gives one plain equation between the perimeter and b.",
         "common_mistakes": [
-          "Turning the second fraction upside down, so the product reads 25/12 instead of 1/3.",
+          "Using the reciprocal of the second fraction, so the product reads 25/12 instead of 1/3.",
           "Writing s − b = 1/3 instead of (s − b)/s = 1/3."
         ],
         "lines_compact": [
@@ -179,7 +179,7 @@
             "added": true
           },
           "These three fix a : b : c = 87 : 74 : 61,",
-          "and 87 + 61 = 2 × 74, which is an A.P."
+          "and 87 + 61 = 2 × 74, so 87, 74, 61 are in A.P."
         ],
         "recall": {
           "credit": "say_it",
@@ -218,7 +218,7 @@
           "⇒ tan(B/2)(5/6 + 2/5) = 1 − 1/3 = 2/3",
           "⇒ tan(B/2)(37/30) = 2/3 ⇒ tan(B/2) = 20/37",
           "These three fix a : b : c = 87 : 74 : 61,",
-          "and 87 + 61 = 2 × 74, which is an A.P."
+          "and 87 + 61 = 2 × 74, so 87, 74, 61 are in A.P."
         ]
       },
       {
