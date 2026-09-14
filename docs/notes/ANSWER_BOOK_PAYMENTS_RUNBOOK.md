@@ -175,3 +175,43 @@ The build half is DONE (2026-08-27). What is left is the founder half:
 Already done, for the record: `npm run build:answers:gated:mpc`,
 `npm run content:push:mpc`, `wrangler.answers.toml` → `./answer-book/dist-gated-mpc`,
 `npm run deploy:answers`.
+
+## 7. Founder access — the permanent grant (2026-09-09)
+
+The founder tests the LIVE gated book, so the lock and the ₹99 sheet were in his
+way on every open. He now holds a **permanent `all` pass**, granted as data — no
+code path, no bypass in `answerbook-content`, nothing that could leak to a
+student:
+
+```sql
+insert into ab_entitlements (device_id, unit_key, source, expires_at)
+select d.device_id, 'all', 'grant', null
+from ab_account_devices d join auth.users u on u.id = d.user_id
+where u.email in ('nagapuripradeep2000@gmail.com','nagapuripradeep02@gmail.com')
+on conflict (device_id, unit_key, source) do update set expires_at = null;
+```
+
+`expires_at = null` = never lapses (`live()` treats null as permanent), and
+`source = 'grant'` keeps it out of every `source = 'paid'` operator query in §4,
+so it can never be mistaken for revenue.
+
+**How it reaches a NEW device.** Entitlements stay device-keyed; the ACCOUNT is
+what unions them (`ab_link_device`). So a fresh browser opens everything **only
+after Google sign-in** with the granted account — signed out, a new device is a
+new device and the gate is right to lock it. Two consequences:
+
+- Testing signed-out or in a private window will look locked. That is correct
+  behaviour, not a regression.
+- The offline/full builds have no gate at all — `npm run build:answers:mpc &&
+  npm run serve:answers:mpc` (port 8100) is the zero-friction way to read or
+  check content without touching the live gate.
+
+To extend the pass to another device by hand:
+
+```sql
+insert into ab_entitlements (device_id, unit_key, source, expires_at)
+values ('<device-uuid>', 'all', 'grant', null)
+on conflict (device_id, unit_key, source) do update set expires_at = null;
+```
+
+To revoke: `delete from ab_entitlements where source = 'grant';`
