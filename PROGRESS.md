@@ -1,5 +1,44 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 📗 SESSION — Maths-1A completed: the remaining eight chapters written out in full, 342 cards (2026-09-14, `feat/answerbook-maths-1a-part-2`)
+
+**Review link (all ten chapters):** https://claude.ai/code/artifact/b84d56a4-e960-4c80-b0cf-69199fdd8095
+
+**Bottom line: after PR #206 (Trigonometry, Matrices), the founder said "do a PR first and start with the next chapters". Every remaining Maths-1A chapter is now written out at the Maths-2B level with Simplify on every mark, examined by sympy-backed examiners, and fixed. With #206, all 556 Maths-1A cards are done.**
+
+| chapter | cards | lines | buttons | pages short → full | base fixes | examiner findings fixed |
+|---|---|---|---|---|---|---|
+| Functions | 73 | 795 → 1,060 | 81 | 78 → 82 | 2 | 22 |
+| Products of Vectors | 72 | 1,126 → 1,557 | 160 | 88 → 100 | 2 | 39 |
+| Sets and Relations | 26 | 241 → 413 | 26 | 26 → 28 | reflow (22.8% wrapped) + 1 | 15 |
+| Addition of Vectors (vec + av) | 37 | 530 → 784 | 74 | 46 → 56 | idiom + 2 wide boxes | 49 |
+| Properties of Triangles | 38 | 505 → 790 | 77 | 42 → 52 | reflow (5.5%) + 1 wrong reason | 61 |
+| Sequences and Series | 25 | 228 → 376 | 25 | 25 → 26 | reflow (11%) + 1 wrong ratio | 28 |
+| Trigonometric Equations | 18 | 331 → 480 | 50 | 24 → 31 | wording + 1 wide box | 50 |
+| Inverse Trigonometric Functions | 19 | 269 → 400 | 41 | 20 → 24 | wording + reflow | 43 |
+| Hyperbolic Functions | 17 | 150 → 233 | 18 | 17 → 17 | wording + 2 ASCII powers | 26 |
+| Mathematical Induction | 17 | 371 → 542 | 66 | 25 → 34 | ASCII powers + wording | 38 |
+
+### Verified
+tsc 0 · `check_cards --prefix ts_ipe_m1a` 556/556 · measure_wrap 0.0% across all 556 Maths-1A cards (15,511 lines, after merging #206's branch in) · vitest 459/459 · `find_label_clashes`: no collisions · sweep_simplify every button pressed in every chapter, no straddle · sweep_typeset_width 0 problems.
+
+### What was new in this session
+- **Base first, per chapter, as its own commit.** Three chapters (Sets and Relations 22.8%, Sequences and Series 11%, Properties of Triangles 5.5%) had been authored before the width rule and wrapped; they were reflowed at word boundaries with a token-equality assert (no words changed) before any expansion. Every chapter also got an idiom/overclaim sweep of its notes before expanding, because the examiners flag the same classes every time: collapse, survives, lands on, trap, legal, route, twin, upside down, "the only …", "the commonest …", "the whole …".
+- **Generated cross products.** Products of Vectors expands every i, j, k determinant component by component from the card's own rows (and every 3×3 box product minor by minor), with the generated lines checked against the printed expansion.
+- **Range arguments added where proofs skipped them:** every "α + β = Sin⁻¹/Cos⁻¹/Tan⁻¹(…)" step in Inverse Trig; the right-angle cases of the circumcentre–orthocentre proofs; the rhombus's planarity; the sign choices in every √(x²) step of Properties of Triangles; the x > 0 choice in cosh x = 5/2.
+
+### What the examiners found, in one line each
+Every boxed answer survived except two, both fixed: `te_sum_x_y_sin_sum` listed only one of the two solution pairs, and `te_one_plus_sin_sq` wrote tanθ = 1/2 ⇒ θ = Tan⁻¹(1/2). `fn_fofof` / `fn_fofofof` also now exclude x = 0 (f(0) = −1 lies outside the stated domain). The rest were explanation fields: notes that called valid methods mistakes (AB × BC, pairing sinθ + sin5θ, the quadratic formula), rules missing a condition (non-zero vectors, xy > 1 needing ±π by sign, k > 0 for sides, base ≠ 1 for equal exponents), row numbering in determinants whose top row is i, j, k, notes one line away from the line they explain, and plain-language breaches. About 30 of the 371 findings were in lines written in this session.
+
+### Teacher-verification flags carried forward
+- `pv_sqp_parallelogram_diagonals` boxes the obtuse angle Cos⁻¹(−√3/√10); the notes now say its supplement is also correct — a teacher should say which one the board expects.
+- `pt_a_eq_b_minus_c_sec` now reads tan θ = ±(2√(bc)/|b − c|) sin(A/2) and explains the sign; textbooks print the unsigned form.
+- `te_infinite_exponent_series` has `8^(…)` in the question text itself (question headers are not edited).
+- From Maths-2B: DE order/degree (Degree = 1 vs 6), ellipse equal intercepts, hyperbola x + 2y = 0 asymptote, the 30° asymptote angle reading, the non-real circle in System of Circles.
+
+### Next session
+Maths-1A is complete once #206 and this PR merge. Maths-1B is the next paper.
+
 ## 📗 SESSION — Maths-1A opens: Trigonometry and Matrices written out in full, 214 cards (2026-09-14, `feat/answerbook-maths-1a-worked-in-full`)
 
 **Review link:** https://claude.ai/code/artifact/b84d56a4-e960-4c80-b0cf-69199fdd8095
