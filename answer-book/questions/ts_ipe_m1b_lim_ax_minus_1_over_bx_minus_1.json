@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.184, chapter 8 LIMITS, Short & Very Short Answer question 4. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.184, chapter 8 LIMITS, Short & Very Short Answer question 4. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say what you divide by and what the standard limit lim(x → 0) (aˣ − 1)/x equals.",
   "answer": {
@@ -51,9 +51,15 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "(a⁰ = 1 and b⁰ = 1)",
           "At x = 0, aˣ − 1 = 0 and bˣ − 1 = 0,",
           "so the expression is of the indeterminate form 0/0.",
           "For x ≠ 0 divide the numerator and the denominator by x.",
+          "(dividing the top and the bottom by x ≠ 0 does not",
+          {
+            "text": "  change the fraction)",
+            "style": "indent"
+          },
           "lim(x → 0) (aˣ − 1)/(bˣ − 1)",
           {
             "text": "  =  lim(x → 0) [(aˣ − 1)/x] / [(bˣ − 1)/x]",
@@ -99,8 +105,16 @@
         "mark_note": "Answer",
         "margin_note": "Second mark. b ≠ 1 is what makes logₑb ≠ 0, so the quotient rule for limits may be used. The answer is also written as the logarithm of a to the base b, by the change-of-base rule.",
         "lines": [
+          {
+            "text": "(b > 0 and b ≠ 1 give logₑb ≠ 0)",
+            "added": true
+          },
           "Since b ≠ 1, logₑb ≠ 0, so the limit of the quotient",
           "is the quotient of the limits.",
+          {
+            "text": "(put logₑa above and logₑb below)",
+            "added": true
+          },
           "= logₑa / logₑb",
           {
             "text": "∴ lim(x → 0) (aˣ − 1)/(bˣ − 1) = logₑa / logₑb",
@@ -134,7 +148,16 @@
           "Writing logₑ(a/b) instead of logₑa / logₑb.",
           "Leaving out the condition b ≠ 1 that keeps the denominator non-zero."
         ],
-        "memory_tip": "A ratio of two natural logarithms is a change of base: logₑa / logₑb is the logarithm of a to the base b. That is the compact form of the answer."
+        "memory_tip": "A ratio of two natural logarithms is a change of base: logₑa / logₑb is the logarithm of a to the base b. That is the compact form of the answer.",
+        "lines_compact": [
+          "Since b ≠ 1, logₑb ≠ 0, so the limit of the quotient",
+          "is the quotient of the limits.",
+          "= logₑa / logₑb",
+          {
+            "text": "∴ lim(x → 0) (aˣ − 1)/(bˣ − 1) = logₑa / logₑb",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

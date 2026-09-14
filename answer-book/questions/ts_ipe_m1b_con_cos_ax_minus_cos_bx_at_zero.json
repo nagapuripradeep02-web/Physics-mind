@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.189, chapter 8 LIMITS AND CONTINUITY, the CONTINUITY sub-section, Short Answer question 1. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4 Marks over this CONTINUITY sub-section) but no per-step allocation on any answer. The 1+1+1+1 shape follows the shape this bank uses for a Maths-1B Section B question — state the test, work the limit in its two named moves, compare with the given value. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.189, chapter 8 LIMITS AND CONTINUITY, the CONTINUITY sub-section, Short Answer question 1. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4 Marks over this CONTINUITY sub-section) but no per-step allocation on any answer. The 1+1+1+1 shape follows the shape this bank uses for a Maths-1B Section B question — state the test, work the limit in its two named moves, compare with the given value. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say what continuity at 0 asks you to check, and name the identity and the standard limit you would use to get the limit.",
   "answer": {
@@ -62,9 +62,15 @@
           },
           "Given f(x) = (cos ax − cos bx)/x²   for x ≠ 0,",
           "and f(0) = ½(b² − a²)",
+          "(the definition of continuity at a point: the limit exists",
+          {
+            "text": "  and equals the value)",
+            "style": "indent"
+          },
           "f is continuous at x = 0 if   lim(x → 0) f(x) = f(0)",
           "One single formula covers both sides of 0,",
           "so one two-sided limit is enough.",
+          "(cos 0 − cos 0 = 1 − 1 = 0 and 0² = 0)",
           "Putting x = 0 in (cos ax − cos bx)/x² gives 0/0,",
           "an indeterminate form, so the limit must be worked out."
         ],
@@ -106,10 +112,32 @@
         "memory_tip": "Two cosines subtracted give two sines multiplied, and the second sine takes the second angle first: (D − C)/2.",
         "lines": [
           "For x ≠ 0,   f(x) = (cos ax − cos bx)/x²",
+          {
+            "text": "(the usual form is cos C − cos D",
+            "added": true
+          },
+          {
+            "text": "  = −2 sin((C + D)/2) sin((C − D)/2);",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  −sin((C − D)/2) = sin((D − C)/2))",
+            "style": "indent",
+            "added": true
+          },
           "Use the identity",
           "cos C − cos D = 2 sin((C + D)/2) · sin((D − C)/2)",
+          {
+            "text": "((ax + bx)/2 = (a + b)x/2 and (bx − ax)/2 = (b − a)x/2)",
+            "added": true
+          },
           "Take C = ax and D = bx. Then",
           "cos ax − cos bx = 2 sin((a + b)x/2) · sin((b − a)x/2)",
+          {
+            "text": "(divide both sides by x²)",
+            "added": true
+          },
           "∴ f(x) = 2 sin((a + b)x/2) · sin((b − a)x/2) / x²"
         ],
         "recall": {
@@ -138,6 +166,14 @@
         "common_mistakes": [
           "Writing cos C − cos D = 2 sin((C + D)/2) sin((C − D)/2), which reverses the sign of the answer.",
           "Using the sum formula for cos C + cos D instead of the difference formula."
+        ],
+        "lines_compact": [
+          "For x ≠ 0,   f(x) = (cos ax − cos bx)/x²",
+          "Use the identity",
+          "cos C − cos D = 2 sin((C + D)/2) · sin((D − C)/2)",
+          "Take C = ax and D = bx. Then",
+          "cos ax − cos bx = 2 sin((a + b)x/2) · sin((b − a)x/2)",
+          "∴ f(x) = 2 sin((a + b)x/2) · sin((b − a)x/2) / x²"
         ]
       },
       {
@@ -149,16 +185,60 @@
         "margin_note": "Third mark. Each bracket is forced into the exact form sin(angle)/(same angle) before the standard limit is quoted. The constants taken outside are what build (b² − a²)/2.",
         "memory_tip": "sin(kx)/x tends to k, not to 1 — the constant multiplying x comes outside.",
         "lines": [
+          {
+            "text": "(write x² = x · x and give one x to each sine)",
+            "added": true
+          },
           "lim(x → 0) f(x) = lim(x → 0) 2 · [sin((a + b)x/2) / x]",
           "· [sin((b − a)x/2) / x]",
+          {
+            "text": "(sin((a + b)x/2)/x = ((a + b)/2)",
+            "added": true
+          },
+          {
+            "text": "  · sin((a + b)x/2)/((a + b)x/2),",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  and the same for b − a; if a + b = 0 or b − a = 0,",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  both sides are 0)",
+            "style": "indent",
+            "added": true
+          },
           "Multiply and divide the first bracket by (a + b)/2",
           "and the second by (b − a)/2:",
+          {
+            "text": "(the constants 2, (a + b)/2 and (b − a)/2 come",
+            "added": true
+          },
+          {
+            "text": "  outside the limit)",
+            "style": "indent",
+            "added": true
+          },
           "= 2 · ((a + b)/2) · ((b − a)/2) · lim(x → 0)",
           "[sin((a + b)x/2) / ((a + b)x/2)]",
           "· [sin((b − a)x/2) / ((b − a)x/2)]",
+          {
+            "text": "((a + b)x/2 → 0 and (b − a)x/2 → 0 as x → 0)",
+            "added": true
+          },
           "Standard limit:   lim(θ → 0) (sin θ)/θ = 1,",
           "so each bracket tends to 1",
+          {
+            "text": "(2 · (a + b)/2 · (b − a)/2 = (a + b)(b − a)/2)",
+            "added": true
+          },
           "= 2 · ((a + b)/2) · ((b − a)/2) = (a + b)(b − a)/2",
+          {
+            "text": "((a + b)(b − a) = b² − a²)",
+            "added": true
+          },
           {
             "text": "  = (b² − a²)/2",
             "style": "indent"
@@ -190,6 +270,22 @@
         "common_mistakes": [
           "Quoting sin θ/θ = 1 without first making the denominator match the angle.",
           "Losing the factor 2 that came out of the cosine identity."
+        ],
+        "lines_compact": [
+          "lim(x → 0) f(x) = lim(x → 0) 2 · [sin((a + b)x/2) / x]",
+          "· [sin((b − a)x/2) / x]",
+          "Multiply and divide the first bracket by (a + b)/2",
+          "and the second by (b − a)/2:",
+          "= 2 · ((a + b)/2) · ((b − a)/2) · lim(x → 0)",
+          "[sin((a + b)x/2) / ((a + b)x/2)]",
+          "· [sin((b − a)x/2) / ((b − a)x/2)]",
+          "Standard limit:   lim(θ → 0) (sin θ)/θ = 1,",
+          "so each bracket tends to 1",
+          "= 2 · ((a + b)/2) · ((b − a)/2) = (a + b)(b − a)/2",
+          {
+            "text": "  = (b² − a²)/2",
+            "style": "indent"
+          }
         ]
       },
       {
@@ -202,7 +298,15 @@
         "memory_tip": "The final line of every continuity proof is the same sentence: limit equals value, so f is continuous there.",
         "lines": [
           "From above,   lim(x → 0) f(x) = (b² − a²)/2",
+          {
+            "text": "(½(b² − a²) = (b² − a²)/2)",
+            "added": true
+          },
           "It is given that   f(0) = ½(b² − a²) = (b² − a²)/2",
+          {
+            "text": "(both are (b² − a²)/2)",
+            "added": true
+          },
           "∴ lim(x → 0) f(x) = f(0)",
           {
             "text": "∴ f is continuous at x = 0",
@@ -235,6 +339,15 @@
         "common_mistakes": [
           "Stopping at the limit and never writing the comparison with f(0).",
           "Reading ½(b² − a²) as ½b² − a²."
+        ],
+        "lines_compact": [
+          "From above,   lim(x → 0) f(x) = (b² − a²)/2",
+          "It is given that   f(0) = ½(b² − a²) = (b² − a²)/2",
+          "∴ lim(x → 0) f(x) = f(0)",
+          {
+            "text": "∴ f is continuous at x = 0",
+            "style": "boxed"
+          }
         ]
       }
     ]

@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.186, chapter 8 LIMITS, Short & Very Short Answer question 18. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer 5 was checked numerically before it was written: the expression reads 4.999875 at x = 10⁻⁴ and 5.000125 at x = −10⁻⁴, closing on 5 from both sides. As everywhere in this chapter, log means the natural logarithm logₑ; the standard limit is false for base 10."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.186, chapter 8 LIMITS, Short & Very Short Answer question 18. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer 5 was checked numerically before it was written: the expression reads 4.999875 at x = 10⁻⁴ and 5.000125 at x = −10⁻⁴, closing on 5 from both sides. As everywhere in this chapter, log means the natural logarithm logₑ; the standard limit is false for base 10. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say what you multiply and divide by, and which standard limit finishes it.",
   "answer": {
@@ -53,9 +53,12 @@
             "style": "heading"
           },
           "Here log means the natural logarithm logₑ.",
+          "(log 1 = 0)",
           "Putting x = 0 gives log 1 / 0 = 0/0,",
           "so the expression is rewritten first.",
+          "(5 · 1/(5x) = 1/x, so the value is unchanged)",
           "log(1 + 5x)/x = 5 · log(1 + 5x)/(5x)",
+          "(the constant 5 comes outside the limit)",
           "∴ lim(x → 0) log(1 + 5x)/x",
           {
             "text": "  = 5 · lim(x → 0) log(1 + 5x)/(5x)",
@@ -100,7 +103,15 @@
         "memory_tip": "For log(1 + kx)/x the answer is just k. Here k is 5.",
         "lines": [
           "Put t = 5x. As x → 0, t → 0.",
+          {
+            "text": "(the standard limit lim(t → 0) log(1 + t)/t = 1)",
+            "added": true
+          },
           "lim(x → 0) log(1 + 5x)/(5x) = lim(t → 0) log(1 + t)/t = 1",
+          {
+            "text": "(5 times the limit 1)",
+            "added": true
+          },
           "= 5 · 1",
           {
             "text": "∴ lim(x → 0) log(1 + 5x)/x = 5",
@@ -133,6 +144,15 @@
         "common_mistakes": [
           "Giving 1 as the answer by forgetting the 5 taken outside.",
           "Using base 10 for the logarithm, for which the standard limit is not 1."
+        ],
+        "lines_compact": [
+          "Put t = 5x. As x → 0, t → 0.",
+          "lim(x → 0) log(1 + 5x)/(5x) = lim(t → 0) log(1 + t)/t = 1",
+          "= 5 · 1",
+          {
+            "text": "∴ lim(x → 0) log(1 + 5x)/x = 5",
+            "style": "boxed"
+          }
         ]
       }
     ]

@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.186, chapter 8 LIMITS, Short & Very Short Answer question 20. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. ⚠ SOURCE STEM CORRECTED, NOT SILENTLY: the book prints the limit point as x → 2. This card authors it at x → 4. At x → 2 there is no indeterminate form — the numerator is 2(4) − 14 − 4 = −10 and the denominator is 3(√2 − 2) ≈ −1.7574, so plain substitution already gives the finite value −10/(3(√2 − 2)) ≈ 5.6904 and no limit method is being tested at all. The algebra of the printed expression points at 4: the numerator factors as 2x² − 7x − 4 = (2x + 1)(x − 4), and the denominator's factor √x − 2 is zero exactly at x = 4, so the two pair as x − 4 = (√x − 2)(√x + 2). At x → 4 the expression is the 0/0 form that cancellation resolves, with the clean value 36/7. Verified numerically before authoring: the expression reads 5.142857 at both x = 4.00001 and x = 3.99999, against 36/7 = 5.1428571, and the x = 2 substitution above was evaluated as the negative control. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split — and the corrected limit point — stay unverified until a Telangana IPE teacher confirms them."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.186, chapter 8 LIMITS, Short & Very Short Answer question 20. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. ⚠ SOURCE STEM CORRECTED, NOT SILENTLY: the book prints the limit point as x → 2. This card authors it at x → 4. At x → 2 there is no indeterminate form — the numerator is 2(4) − 14 − 4 = −10 and the denominator is 3(√2 − 2) ≈ −1.7574, so plain substitution already gives the finite value −10/(3(√2 − 2)) ≈ 5.6904 and no limit method is being tested at all. The algebra of the printed expression points at 4: the numerator factors as 2x² − 7x − 4 = (2x + 1)(x − 4), and the denominator's factor √x − 2 is zero exactly at x = 4, so the two pair as x − 4 = (√x − 2)(√x + 2). At x → 4 the expression is the 0/0 form that cancellation resolves, with the clean value 36/7. Verified numerically before authoring: the expression reads 5.142857 at both x = 4.00001 and x = 3.99999, against 36/7 = 5.1428571, and the x = 2 substitution above was evaluated as the negative control. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split — and the corrected limit point — stay unverified until a Telangana IPE teacher confirms them. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say what the numerator factorises into and how you make √x − 2 appear in it.",
   "answer": {
@@ -52,14 +52,22 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "(2(4)² = 32, 7(4) = 28; 2(4) − 1 = 7 and √4 − 2 = 0)",
           "Putting x = 4 gives (32 − 28 − 4)/(7 · 0) = 0/0,",
           "so the expression is factorised first.",
+          "(split −7x as −8x + x, since (−8)(1) = −8 = 2 × (−4))",
           "2x² − 7x − 4 = 2x² − 8x + x − 4 = 2x(x − 4) + 1(x − 4)",
           {
             "text": "  = (2x + 1)(x − 4)",
             "style": "indent"
           },
+          "(x − 4 is a difference of squares when x is",
+          {
+            "text": "  written as (√x)²)",
+            "style": "indent"
+          },
           "For x > 0,  x − 4 = (√x)² − 2² = (√x − 2)(√x + 2)",
+          "(put (√x − 2)(√x + 2) in place of x − 4)",
           "∴ 2x² − 7x − 4 = (2x + 1)(√x − 2)(√x + 2)"
         ],
         "recall": {
@@ -101,9 +109,30 @@
         "lines": [
           "As x → 4 we have x ≠ 4, so √x − 2 ≠ 0",
           "and it may be cancelled:",
+          {
+            "text": "(put the factorised top over the given bottom)",
+            "added": true
+          },
           "lim(x → 4) (2x + 1)(√x − 2)(√x + 2) / [(2x − 1)(√x − 2)]",
+          {
+            "text": "(cancel √x − 2 from the top and the bottom)",
+            "added": true
+          },
           "= lim(x → 4) (2x + 1)(√x + 2)/(2x − 1)",
+          {
+            "text": "(the expression left is defined at x = 4;",
+            "added": true
+          },
+          {
+            "text": "  2(4) = 8 and √4 = 2)",
+            "style": "indent",
+            "added": true
+          },
           "= (8 + 1)(2 + 2)/(8 − 1) = (9)(4)/7",
+          {
+            "text": "((9)(4) = 36)",
+            "added": true
+          },
           {
             "text": "∴ lim(x → 4) (2x² − 7x − 4)/((2x − 1)(√x − 2))",
             "style": "boxed"
@@ -139,6 +168,21 @@
         "common_mistakes": [
           "Cancelling (2x − 1) as well, which is not a common factor.",
           "Substituting √4 = 2 into (2x + 1) and writing 5 instead of 9."
+        ],
+        "lines_compact": [
+          "As x → 4 we have x ≠ 4, so √x − 2 ≠ 0",
+          "and it may be cancelled:",
+          "lim(x → 4) (2x + 1)(√x − 2)(√x + 2) / [(2x − 1)(√x − 2)]",
+          "= lim(x → 4) (2x + 1)(√x + 2)/(2x − 1)",
+          "= (8 + 1)(2 + 2)/(8 − 1) = (9)(4)/7",
+          {
+            "text": "∴ lim(x → 4) (2x² − 7x − 4)/((2x − 1)(√x − 2))",
+            "style": "boxed"
+          },
+          {
+            "text": "= 36/7",
+            "style": "boxed"
+          }
         ]
       }
     ]

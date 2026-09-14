@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.187, chapter 8 LIMITS, Short & Very Short Answer question 21. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer 1/12 was checked numerically before it was written: the expression reads 0.0833292 at x = 2.0001 and 0.0833375 at x = 1.9999, against 1/12 = 0.0833333."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.187, chapter 8 LIMITS, Short & Very Short Answer question 21. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer 1/12 was checked numerically before it was written: the expression reads 0.0833292 at x = 2.0001 and 0.0833375 at x = 1.9999, against 1/12 = 0.0833333. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — name the identity you use on the denominator and what cancels.",
   "answer": {
@@ -52,11 +52,14 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "(2³ = 8)",
           "Putting x = 2 gives 0/(8 − 8) = 0/0,",
           "so the denominator is factorised.",
           "We know a³ − b³ = (a − b)(a² + ab + b²)",
+          "(a² + ab + b² = x² + 2x + 2² = x² + 2x + 4)",
           "Put a = x, b = 2, then",
           "x³ − 8 = x³ − 2³ = (x − 2)(x² + 2x + 4)",
+          "(put the factorised denominator into the limit)",
           "∴ lim(x → 2) (x − 2)/(x³ − 8)",
           {
             "text": "  = lim(x → 2) (x − 2)/[(x − 2)(x² + 2x + 4)]",
@@ -101,8 +104,20 @@
         "memory_tip": "Cancelling a whole numerator leaves 1 above, never 0.",
         "lines": [
           "As x → 2 we have x ≠ 2, so (x − 2) may be cancelled:",
+          {
+            "text": "(cancel x − 2 from the top and the bottom)",
+            "added": true
+          },
           "= lim(x → 2) 1/(x² + 2x + 4)",
+          {
+            "text": "(1/(x² + 2x + 4) is defined at x = 2, so put x = 2)",
+            "added": true
+          },
           "= 1/(2² + 2(2) + 4) = 1/(4 + 4 + 4)",
+          {
+            "text": "(4 + 4 + 4 = 12)",
+            "added": true
+          },
           {
             "text": "∴ lim(x → 2) (x − 2)/(x³ − 8) = 1/12",
             "style": "boxed"
@@ -134,6 +149,15 @@
         "common_mistakes": [
           "Writing 0 above after cancelling and giving the answer as 0.",
           "Adding 4 + 2 + 4 = 10 by forgetting to double the 2 in 2x."
+        ],
+        "lines_compact": [
+          "As x → 2 we have x ≠ 2, so (x − 2) may be cancelled:",
+          "= lim(x → 2) 1/(x² + 2x + 4)",
+          "= 1/(2² + 2(2) + 4) = 1/(4 + 4 + 4)",
+          {
+            "text": "∴ lim(x → 2) (x − 2)/(x³ − 8) = 1/12",
+            "style": "boxed"
+          }
         ]
       }
     ]

@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.190, chapter 8 LIMITS AND CONTINUITY, the CONTINUITY sub-section, Short Answer question 4. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4 Marks over this CONTINUITY sub-section) but no per-step allocation on any answer. The 1+1+1+1 shape follows the shape this bank uses for a Maths-1B Section B question, one mark for each of the four things a two-sided test needs — the statement, the left limit, the right limit and the comparison. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE ON THE ANSWER: worked from the printed stem, f is NOT continuous at 2. The left limit and the value are both 0, but the right limit is 2 − 8(2)⁻³ = 2 − 1 = 1, so the two one-sided limits differ and lim(x → 2) f(x) does not exist. Verified numerically from both sides before the card was written (x = 1.99999 gives −0.00002 on the left; x = 2.00001 gives 1.000015 on the right). The card says so plainly, and also records that f is continuous from the left at 2, which is the half-result a student is likely to stop at."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.190, chapter 8 LIMITS AND CONTINUITY, the CONTINUITY sub-section, Short Answer question 4. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4 Marks over this CONTINUITY sub-section) but no per-step allocation on any answer. The 1+1+1+1 shape follows the shape this bank uses for a Maths-1B Section B question, one mark for each of the four things a two-sided test needs — the statement, the left limit, the right limit and the comparison. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE ON THE ANSWER: worked from the printed stem, f is NOT continuous at 2. The left limit and the value are both 0, but the right limit is 2 − 8(2)⁻³ = 2 − 1 = 1, so the two one-sided limits differ and lim(x → 2) f(x) does not exist. Verified numerically from both sides before the card was written (x = 1.99999 gives −0.00002 on the left; x = 2.00001 gives 1.000015 on the right). The card says so plainly, and also records that f is continuous from the left at 2, which is the half-result a student is likely to stop at. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say how many limits you need at x = 2 and why, and say what your verdict is.",
   "answer": {
@@ -65,6 +65,11 @@
           "f(x) = 2 − 8x⁻³   for x > 2",
           "The formula on the left of 2 is different from the formula",
           "on the right, so both one-sided limits are needed.",
+          "(the definition of continuity at x = 2,",
+          {
+            "text": "  written with the two one-sided limits)",
+            "style": "indent"
+          },
           "f is continuous at x = 2 if   lim(x → 2⁻) f(x) = f(2)",
           {
             "text": "  = lim(x → 2⁺) f(x)",
@@ -109,8 +114,16 @@
         "memory_tip": "A polynomial has no indeterminate form anywhere — its limit at a point is always just the value at that point.",
         "lines": [
           "For 0 < x < 2,   f(x) = (x² − 4)/2, a polynomial in x",
+          {
+            "text": "(a polynomial is continuous, so put x = 2)",
+            "added": true
+          },
           "lim(x → 2⁻) f(x) = (2² − 4)/2 = (4 − 4)/2 = 0/2 = 0",
           "Given value:   f(2) = 0",
+          {
+            "text": "(both are 0)",
+            "added": true
+          },
           "∴ lim(x → 2⁻) f(x) = f(2) = 0,",
           "so f is continuous from the left at x = 2."
         ],
@@ -140,6 +153,13 @@
         "common_mistakes": [
           "Using the x > 2 formula for the left limit.",
           "Writing (x² − 4)/2 as x² − 2 and getting 2 instead of 0."
+        ],
+        "lines_compact": [
+          "For 0 < x < 2,   f(x) = (x² − 4)/2, a polynomial in x",
+          "lim(x → 2⁻) f(x) = (2² − 4)/2 = (4 − 4)/2 = 0/2 = 0",
+          "Given value:   f(2) = 0",
+          "∴ lim(x → 2⁻) f(x) = f(2) = 0,",
+          "so f is continuous from the left at x = 2."
         ]
       },
       {
@@ -151,8 +171,20 @@
         "margin_note": "Third mark. Read x⁻³ as 1/x³. Since x³ is not 0 near x = 2, the value can be substituted directly. This is the number that decides the answer.",
         "memory_tip": "x⁻³ is 1/x³, so 8x⁻³ at x = 2 is 8/8 = 1 — the two 8s cancel exactly.",
         "lines": [
+          {
+            "text": "(x⁻³ = 1/x³)",
+            "added": true
+          },
           "For x > 2,   f(x) = 2 − 8x⁻³ = 2 − 8/x³",
+          {
+            "text": "(2³ = 8 ≠ 0, so 2 − 8/x³ is continuous at x = 2)",
+            "added": true
+          },
           "x³ ≠ 0 near x = 2, so the value can be substituted:",
+          {
+            "text": "(8/8 = 1)",
+            "added": true
+          },
           "lim(x → 2⁺) f(x) = 2 − 8/2³ = 2 − 8/8 = 2 − 1 = 1"
         ],
         "recall": {
@@ -181,6 +213,11 @@
         "common_mistakes": [
           "Reading 8x⁻³ as −8x³ and getting 2 − 64.",
           "Writing 8/2³ as 8/6 by multiplying 2 by 3 instead of cubing it."
+        ],
+        "lines_compact": [
+          "For x > 2,   f(x) = 2 − 8x⁻³ = 2 − 8/x³",
+          "x³ ≠ 0 near x = 2, so the value can be substituted:",
+          "lim(x → 2⁺) f(x) = 2 − 8/2³ = 2 − 8/8 = 2 − 1 = 1"
         ]
       },
       {
@@ -192,12 +229,20 @@
         "margin_note": "Last mark. The left side agrees with the value and the right side does not, so the verdict is not continuous. Saying that f is continuous from the left is worth writing — it names exactly how much of the test passed.",
         "memory_tip": "When the two one-sided limits differ, the two-sided limit does not exist at all, and that is a jump discontinuity.",
         "lines": [
+          {
+            "text": "(the three numbers from steps 2 and 3)",
+            "added": true
+          },
           "lim(x → 2⁻) f(x) = 0,   f(2) = 0,   lim(x → 2⁺) f(x) = 1",
           "0 ≠ 1, so the left limit and the right limit are different",
           "and lim(x → 2) f(x) does not exist.",
           "f is continuous from the left at x = 2,",
           "but continuity at a point needs both sides",
           "to agree with the value.",
+          {
+            "text": "(the right limit 1 is not equal to f(2) = 0)",
+            "added": true
+          },
           {
             "text": "∴ f is not continuous at x = 2",
             "style": "boxed"
@@ -229,6 +274,18 @@
         "common_mistakes": [
           "Concluding continuity from the left limit alone, because it does equal f(2).",
           "Calling this a removable discontinuity — that name needs the two-sided limit to exist."
+        ],
+        "lines_compact": [
+          "lim(x → 2⁻) f(x) = 0,   f(2) = 0,   lim(x → 2⁺) f(x) = 1",
+          "0 ≠ 1, so the left limit and the right limit are different",
+          "and lim(x → 2) f(x) does not exist.",
+          "f is continuous from the left at x = 2,",
+          "but continuity at a point needs both sides",
+          "to agree with the value.",
+          {
+            "text": "∴ f is not continuous at x = 2",
+            "style": "boxed"
+          }
         ]
       }
     ]

@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.188, chapter 8 LIMITS, Very Short Answer question 33. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.188, chapter 8 LIMITS, Very Short Answer question 33. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say what you multiply by, and what the numerator becomes.",
   "answer": {
@@ -53,6 +53,11 @@
           },
           "As x → ∞ both √(x + 1) and √x increase without bound,",
           "so the form is ∞ − ∞.",
+          "(multiplying and dividing by √(x + 1) + √x,",
+          {
+            "text": "  which is not 0)",
+            "style": "indent"
+          },
           "Multiply and divide by the conjugate √(x + 1) + √x :",
           "√(x + 1) − √x",
           {
@@ -61,6 +66,11 @@
           },
           {
             "text": "  /(√(x + 1) + √x)",
+            "style": "indent"
+          },
+          "((p − q)(p + q) = p² − q², with p = √(x + 1) and q = √x;",
+          {
+            "text": "  (x + 1) − x = 1)",
             "style": "indent"
           },
           "= [(x + 1) − x]/(√(x + 1) + √x) = 1/(√(x + 1) + √x)"
@@ -104,6 +114,15 @@
         "lines": [
           "As x → ∞,  √(x + 1) → ∞  and  √x → ∞,",
           "so  √(x + 1) + √x → ∞",
+          {
+            "text": "(1 divided by a number that grows without",
+            "added": true
+          },
+          {
+            "text": "  bound goes to 0)",
+            "style": "indent",
+            "added": true
+          },
           "∴ 1/(√(x + 1) + √x) → 0",
           {
             "text": "∴ lim(x → ∞) (√(x + 1) − √x) = 0",
@@ -137,7 +156,16 @@
           "Giving 1, the numerator, without dividing by the denominator.",
           "Inverting the rationalised form to √(x + 1) + √x and giving ∞."
         ],
-        "memory_tip": "1 divided by a quantity that increases without bound approaches 0."
+        "memory_tip": "1 divided by a quantity that increases without bound approaches 0.",
+        "lines_compact": [
+          "As x → ∞,  √(x + 1) → ∞  and  √x → ∞,",
+          "so  √(x + 1) + √x → ∞",
+          "∴ 1/(√(x + 1) + √x) → 0",
+          {
+            "text": "∴ lim(x → ∞) (√(x + 1) − √x) = 0",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

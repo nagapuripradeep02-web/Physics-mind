@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.188, chapter 8 LIMITS, Very Short Answer question 34. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.188, chapter 8 LIMITS, Very Short Answer question 34. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — name the standard limit you use and say what value of n goes into it.",
   "answer": {
@@ -51,12 +51,23 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "(∛1 = 1)",
           "At x = 0 the numerator is 1 − 1 = 0",
           "and the denominator is 0, so the form is 0/0.",
           "Add and subtract 1 in the numerator:",
+          "(−∛(1 − x) = −1 + (1 − ∛(1 − x)),",
+          {
+            "text": "  so adding and subtracting 1 changes nothing)",
+            "style": "indent"
+          },
           "(∛(1 + x) − ∛(1 − x))/x = (∛(1 + x) − 1)/x",
           {
             "text": "  + (1 − ∛(1 − x))/x",
+            "style": "indent"
+          },
+          "(x = −t, so 1 − x = 1 + t and (1 − ∛(1 + t))/(−t)",
+          {
+            "text": "  = (∛(1 + t) − 1)/t)",
             "style": "indent"
           },
           "In the second part put t = −x;",
@@ -100,8 +111,20 @@
         "margin_note": "Second mark. Box 2/3. Checked numerically: at x = 0.001 the expression is 0.66667.",
         "lines": [
           "The standard limit is  lim(x → 0) ((1 + x)ⁿ − 1)/x = n.",
+          {
+            "text": "(∛(1 + x) = (1 + x)¹ᐟ³)",
+            "added": true
+          },
           "Here n = 1/3.",
+          {
+            "text": "(each part tends to n = 1/3)",
+            "added": true
+          },
           "∴ limit = 1/3 + 1/3",
+          {
+            "text": "(1/3 + 1/3 = 2/3)",
+            "added": true
+          },
           {
             "text": "∴ lim(x → 0) (∛(1 + x) − ∛(1 − x))/x = 2/3",
             "style": "boxed"
@@ -134,7 +157,16 @@
           "Giving 1/3, by using the standard limit only once.",
           "Using n = 3 instead of n = 1/3; a cube root is the power one third."
         ],
-        "memory_tip": "Both halves give the exponent 1/3, so the answer is 2 × 1/3."
+        "memory_tip": "Both halves give the exponent 1/3, so the answer is 2 × 1/3.",
+        "lines_compact": [
+          "The standard limit is  lim(x → 0) ((1 + x)ⁿ − 1)/x = n.",
+          "Here n = 1/3.",
+          "∴ limit = 1/3 + 1/3",
+          {
+            "text": "∴ lim(x → 0) (∛(1 + x) − ∛(1 − x))/x = 2/3",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.186, chapter 8 LIMITS, Short & Very Short Answer question 16. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer 7 was checked numerically before it was written: the expression reads 7.000245 at x = 10⁻⁵ and 6.999755 at x = −10⁻⁵, closing on 7 from both sides."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.186, chapter 8 LIMITS, Short & Very Short Answer question 16. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer 7 was checked numerically before it was written: the expression reads 7.000245 at x = 10⁻⁵ and 6.999755 at x = −10⁻⁵, closing on 7 from both sides. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say what you multiply and divide by, and which standard limit finishes it.",
   "answer": {
@@ -52,9 +52,12 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "(e⁰ − 1 = 1 − 1 = 0)",
           "Putting x = 0 gives 0/0, so the expression is rewritten first.",
           "The power is 7x, so the denominator is made 7x:",
+          "(7 · 1/(7x) = 1/x, so the value is unchanged)",
           "(e⁷ˣ − 1)/x = 7 · (e⁷ˣ − 1)/(7x)",
+          "(the constant 7 comes outside the limit)",
           "∴ lim(x → 0) (e⁷ˣ − 1)/x = 7 · lim(x → 0) (e⁷ˣ − 1)/(7x)"
         ],
         "recall": {
@@ -95,7 +98,15 @@
         "memory_tip": "For (eᵏˣ − 1)/x the answer is just k. Here k is 7.",
         "lines": [
           "Put t = 7x. As x → 0, t → 0.",
+          {
+            "text": "(the standard limit lim(t → 0) (eᵗ − 1)/t = 1)",
+            "added": true
+          },
           "lim(x → 0) (e⁷ˣ − 1)/(7x) = lim(t → 0) (eᵗ − 1)/t = 1",
+          {
+            "text": "(7 times the limit 1)",
+            "added": true
+          },
           "= 7 · 1",
           {
             "text": "∴ lim(x → 0) (e⁷ˣ − 1)/x = 7",
@@ -128,6 +139,15 @@
         "common_mistakes": [
           "Giving 1 as the answer by forgetting the 7 taken outside.",
           "Writing e⁷ as the answer by substituting x = 1 instead of taking a limit."
+        ],
+        "lines_compact": [
+          "Put t = 7x. As x → 0, t → 0.",
+          "lim(x → 0) (e⁷ˣ − 1)/(7x) = lim(t → 0) (eᵗ − 1)/t = 1",
+          "= 7 · 1",
+          {
+            "text": "∴ lim(x → 0) (e⁷ˣ − 1)/x = 7",
+            "style": "boxed"
+          }
         ]
       }
     ]

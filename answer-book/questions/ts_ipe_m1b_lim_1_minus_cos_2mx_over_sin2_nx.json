@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.186, chapter 8 LIMITS, Short & Very Short Answer question 13. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer 2m²/n² was checked numerically before it was written: with m = 3, n = 2 the expression reads 4.49999 at x = 10⁻⁴ against 2m²/n² = 4.5, and it was checked again at m = 1, n = 5 and at m = 2.5, n = −4 from the left."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.186, chapter 8 LIMITS, Short & Very Short Answer question 13. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer 2m²/n² was checked numerically before it was written: with m = 3, n = 2 the expression reads 4.49999 at x = 10⁻⁴ against 2m²/n² = 4.5, and it was checked again at m = 1, n = 5 and at m = 2.5, n = −4 from the left. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — name the identity you use on the numerator and the standard limit that finishes it.",
   "answer": {
@@ -53,10 +53,13 @@
             "style": "heading"
           },
           "Here n ≠ 0, else sin² nx is zero for all x.",
+          "(1 − cos 0 = 0 and sin² 0 = 0)",
           "Putting x = 0 gives 0/0,",
           "so the expression must be rewritten first.",
+          "(the double angle formula cos 2θ = 1 − 2sin²θ)",
           "We know 1 − cos 2θ = 2sin²θ",
           "Put θ = mx, then 1 − cos 2mx = 2sin²(mx)",
+          "(put 2sin²(mx) in place of 1 − cos 2mx)",
           "∴ lim(x → 0) (1 − cos 2mx)/sin² nx",
           {
             "text": "  = lim(x → 0) 2sin²(mx)/sin²(nx)",
@@ -101,13 +104,44 @@
         "memory_tip": "sin(kx)/x → k, so a squared sine over x² gives k². Two sines, two squares: 2m² over n².",
         "lines": [
           "Divide the numerator and the denominator by x²:",
+          {
+            "text": "(dividing the top and the bottom by x² does not change",
+            "added": true
+          },
+          {
+            "text": "  the fraction; sin²(mx)/x² = [sin(mx)/x]²)",
+            "style": "indent",
+            "added": true
+          },
           "= 2 · lim(x → 0) [sin(mx)/x]² / [sin(nx)/x]²",
+          {
+            "text": "(sin(mx)/x = m · sin(mx)/(mx), and the same with n)",
+            "added": true
+          },
           "= 2 · [m · lim(x → 0) sin(mx)/(mx)]²",
           {
             "text": "  / [n · lim(x → 0) sin(nx)/(nx)]²",
             "style": "indent"
           },
+          {
+            "text": "(mx → 0 and nx → 0 as x → 0, so each bracket → 1;",
+            "added": true
+          },
+          {
+            "text": "  this needs m ≠ 0, and for m = 0 the top is 0",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  and the answer 2m²/n² = 0 still holds)",
+            "style": "indent",
+            "added": true
+          },
           "= 2 · (m · 1)² / (n · 1)²",
+          {
+            "text": "(2 · m²/n² = 2m²/n²)",
+            "added": true
+          },
           {
             "text": "∴ lim(x → 0) (1 − cos 2mx)/sin² nx = 2m²/n²",
             "style": "boxed"
@@ -139,6 +173,20 @@
         "common_mistakes": [
           "Cancelling the sines directly and writing the answer as 2m/n.",
           "Forgetting the squares and leaving 2m/n after dividing by x."
+        ],
+        "lines_compact": [
+          "Divide the numerator and the denominator by x²:",
+          "= 2 · lim(x → 0) [sin(mx)/x]² / [sin(nx)/x]²",
+          "= 2 · [m · lim(x → 0) sin(mx)/(mx)]²",
+          {
+            "text": "  / [n · lim(x → 0) sin(nx)/(nx)]²",
+            "style": "indent"
+          },
+          "= 2 · (m · 1)² / (n · 1)²",
+          {
+            "text": "∴ lim(x → 0) (1 − cos 2mx)/sin² nx = 2m²/n²",
+            "style": "boxed"
+          }
         ]
       }
     ]

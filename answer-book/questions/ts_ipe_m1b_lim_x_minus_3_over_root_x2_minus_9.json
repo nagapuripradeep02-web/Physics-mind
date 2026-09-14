@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.187, chapter 8 LIMITS, Short & Very Short Answer question 22. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. This is a 'show that' question, so the value 0 is given and the marks are for the method that reaches it, not for producing a number; the split puts one mark on the root split and one on the cancellation and substitution. The split follows the shape this bank uses for a Maths-1B Section A question. NOTE ON DOMAIN, recorded rather than resolved silently: √(x² − 9) is real only when x ≥ 3 or x ≤ −3, so near 3 the expression exists only for x > 3 and the limit is necessarily the right-hand one. The card says so in plain words; a Telangana teacher may prefer the bare two-line working without that sentence. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Checked numerically before authoring: the expression reads 0.00408 at x = 3.0001 and 0.000408 at x = 3.000001, decreasing towards 0, and is not defined for x < 3."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.187, chapter 8 LIMITS, Short & Very Short Answer question 22. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. This is a 'show that' question, so the value 0 is given and the marks are for the method that reaches it, not for producing a number; the split puts one mark on the root split and one on the cancellation and substitution. The split follows the shape this bank uses for a Maths-1B Section A question. NOTE ON DOMAIN, recorded rather than resolved silently: √(x² − 9) is real only when x ≥ 3 or x ≤ −3, so near 3 the expression exists only for x > 3 and the limit is necessarily the right-hand one. The card says so in plain words; a Telangana teacher may prefer the bare two-line working without that sentence. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Checked numerically before authoring: the expression reads 0.00408 at x = 3.0001 and 0.000408 at x = 3.000001, decreasing towards 0, and is not defined for x < 3. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would show this — say how you split the square root and what is left after cancelling.",
   "answer": {
@@ -52,10 +52,17 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "(3 − 3 = 0 and 3² − 9 = 0)",
           "Putting x = 3 gives 0/√0 = 0/0,",
           "so the expression is rewritten first.",
+          "(x² − 9 ≥ 0 means x² ≥ 9, that is x ≥ 3 or x ≤ −3)",
           "√(x² − 9) is real only when x ≥ 3 or x ≤ −3,",
           "so near 3 we take x > 3.",
+          "(x² − 9 = (x − 3)(x + 3), and √(pq) = √p · √q for",
+          {
+            "text": "  p ≥ 0 and q ≥ 0)",
+            "style": "indent"
+          },
           "Then x − 3 > 0 and x + 3 > 0, so",
           "√(x² − 9) = √[(x − 3)(x + 3)] = √(x − 3) · √(x + 3)"
         ],
@@ -96,6 +103,10 @@
         "margin_note": "Second mark. x − 3 = √(x − 3) · √(x − 3), so one root cancels and one root is left above. The √(x − 3) that is left is what goes to 0.",
         "memory_tip": "x − 3 is √(x − 3) squared. Cancel one copy and one copy stays on top.",
         "lines": [
+          {
+            "text": "(p = √p · √p for p ≥ 0)",
+            "added": true
+          },
           "For x > 3,  x − 3 = √(x − 3) · √(x − 3),",
           "and as x → 3 we have x ≠ 3, so √(x − 3) ≠ 0",
           "and may be cancelled:",
@@ -108,8 +119,20 @@
             "text": "  / [√(x − 3) · √(x + 3)]",
             "style": "indent"
           },
+          {
+            "text": "(cancel one √(x − 3) from the top and the bottom)",
+            "added": true
+          },
           "= lim(x → 3) √(x − 3)/√(x + 3)",
+          {
+            "text": "(√(x − 3)/√(x + 3) is defined at x = 3, so put x = 3)",
+            "added": true
+          },
           "= √(3 − 3)/√(3 + 3) = 0/√6",
+          {
+            "text": "(0 divided by √6 is 0)",
+            "added": true
+          },
           {
             "text": "∴ lim(x → 3) (x − 3)/√(x² − 9) = 0",
             "style": "boxed"
@@ -141,6 +164,26 @@
         "common_mistakes": [
           "Cancelling both roots and writing the answer as 1.",
           "Stopping at 0/0 and claiming the value is 0 without cancelling first."
+        ],
+        "lines_compact": [
+          "For x > 3,  x − 3 = √(x − 3) · √(x − 3),",
+          "and as x → 3 we have x ≠ 3, so √(x − 3) ≠ 0",
+          "and may be cancelled:",
+          "lim(x → 3) (x − 3)/√(x² − 9)",
+          {
+            "text": "  = lim(x → 3) [√(x − 3) · √(x − 3)]",
+            "style": "indent"
+          },
+          {
+            "text": "  / [√(x − 3) · √(x + 3)]",
+            "style": "indent"
+          },
+          "= lim(x → 3) √(x − 3)/√(x + 3)",
+          "= √(3 − 3)/√(3 + 3) = 0/√6",
+          {
+            "text": "∴ lim(x → 3) (x − 3)/√(x² − 9) = 0",
+            "style": "boxed"
+          }
         ]
       }
     ]

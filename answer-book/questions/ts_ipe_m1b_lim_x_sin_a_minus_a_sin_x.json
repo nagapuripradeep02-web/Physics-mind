@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.185, chapter 8 LIMITS, Short & Very Short Answer question 8. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.185, chapter 8 LIMITS, Short & Very Short Answer question 8. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say what you add and subtract in the numerator and what the two pieces then become.",
   "answer": {
@@ -54,7 +54,13 @@
           "At x = a the numerator is a sin a − a sin a = 0",
           "and x − a = 0, so the form is 0/0.",
           "Add and subtract a sin a in the numerator.",
+          "(− a sin a + a sin a = 0, so the value is unchanged)",
           "x sin a − a sin x = (x sin a − a sin a) + (a sin a − a sin x)",
+          "(take out sin a from the first bracket and −a",
+          {
+            "text": "  from the second)",
+            "style": "indent"
+          },
           "= sin a (x − a) − a (sin x − sin a)"
         ],
         "recall": {
@@ -95,17 +101,48 @@
         "margin_note": "Second mark. The first piece cancels to the constant sin a; the second piece becomes cos a by the sum-to-product formula for sin x − sin a. Keep the minus sign in front of it.",
         "lines": [
           "Divide both pieces by (x − a):",
+          {
+            "text": "(sin a (x − a)/(x − a) = sin a,",
+            "added": true
+          },
+          {
+            "text": "  and −a(sin x − sin a)/(x − a))",
+            "style": "indent",
+            "added": true
+          },
           "(x sin a − a sin x)/(x − a)",
           {
             "text": "  = sin a − a · [(sin x − sin a)/(x − a)]",
             "style": "indent"
           },
+          {
+            "text": "(sin C − sin D = 2 cos((C + D)/2) sin((C − D)/2),",
+            "added": true
+          },
+          {
+            "text": "  with C = x and D = a)",
+            "style": "indent",
+            "added": true
+          },
           "Now  sin x − sin a = 2 cos((x + a)/2) · sin((x − a)/2),",
           "so dividing by (x − a) gives",
           "cos((x + a)/2) · sin((x − a)/2)/((x − a)/2).",
+          {
+            "text": "(cos is continuous, so cos((x + a)/2) → cos((a + a)/2)",
+            "added": true
+          },
+          {
+            "text": "  = cos a; the standard limit with θ = (x − a)/2)",
+            "style": "indent",
+            "added": true
+          },
           "As x → a the angle (x − a)/2 → 0,",
           "so this tends to cos a · 1 = cos a",
           "(it is also the derivative of sin x at x = a).",
+          {
+            "text": "(put cos a into sin a − a · [ ])",
+            "added": true
+          },
           "∴ the limit = sin a − a cos a",
           {
             "text": "∴ lim(x → a) (x sin a − a sin x)/(x − a)",
@@ -143,7 +180,30 @@
           "Giving a cos a − sin a, the correct terms with the signs reversed.",
           "Writing the second limit as sin a instead of cos a."
         ],
-        "memory_tip": "Read the answer off the question: sin a comes from the sin a term, and a cos a from the a sin x term with the minus it already carries."
+        "memory_tip": "Read the answer off the question: sin a comes from the sin a term, and a cos a from the a sin x term with the minus it already carries.",
+        "lines_compact": [
+          "Divide both pieces by (x − a):",
+          "(x sin a − a sin x)/(x − a)",
+          {
+            "text": "  = sin a − a · [(sin x − sin a)/(x − a)]",
+            "style": "indent"
+          },
+          "Now  sin x − sin a = 2 cos((x + a)/2) · sin((x − a)/2),",
+          "so dividing by (x − a) gives",
+          "cos((x + a)/2) · sin((x − a)/2)/((x − a)/2).",
+          "As x → a the angle (x − a)/2 → 0,",
+          "so this tends to cos a · 1 = cos a",
+          "(it is also the derivative of sin x at x = a).",
+          "∴ the limit = sin a − a cos a",
+          {
+            "text": "∴ lim(x → a) (x sin a − a sin x)/(x − a)",
+            "style": "boxed"
+          },
+          {
+            "text": "= sin a − a cos a",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

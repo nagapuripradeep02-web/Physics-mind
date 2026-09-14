@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.191, chapter 8 LIMITS AND CONTINUITY, the CONTINUITY sub-section, Short Answer question 6. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4 Marks over this CONTINUITY sub-section) but no per-step allocation on any answer. The 1+1+1+1 shape follows the shape this bank uses for a Maths-1B Section B question. The question asks about the WHOLE real line, so the split gives the open intervals a mark of their own rather than folding them into the junction test: a student who checks only x = 1 has answered a narrower question than the one that was set. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE ON THE ANSWER: f IS continuous on ℝ — the left limit, f(1) and the right limit at the join are all 1. Verified numerically from both sides before the card was written."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.191, chapter 8 LIMITS AND CONTINUITY, the CONTINUITY sub-section, Short Answer question 6. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4 Marks over this CONTINUITY sub-section) but no per-step allocation on any answer. The 1+1+1+1 shape follows the shape this bank uses for a Maths-1B Section B question. The question asks about the WHOLE real line, so the split gives the open intervals a mark of their own rather than folding them into the junction test: a student who checks only x = 1 has answered a narrower question than the one that was set. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE ON THE ANSWER: f IS continuous on ℝ — the left limit, f(1) and the right limit at the join are all 1. Verified numerically from both sides before the card was written. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say which single point you would check, and say why checking that one point settles the whole real line.",
   "answer": {
@@ -61,6 +61,7 @@
             "style": "heading"
           },
           "Given f(x) = x²   for x ≤ 1,   and f(x) = x   for x > 1",
+          "(a polynomial is continuous at every point)",
           "For x < 1:  f(x) = x² is a polynomial,",
           "so f is continuous on (−∞, 1).",
           "For x > 1:  f(x) = x is a polynomial,",
@@ -106,7 +107,15 @@
         "memory_tip": "The piece whose inequality includes the equals sign gives the value at the join.",
         "lines": [
           "At x = 1:",
+          {
+            "text": "(for x < 1, f(x) = x², a polynomial, so put x = 1)",
+            "added": true
+          },
           "lim(x → 1⁻) f(x) = lim(x → 1⁻) x² = 1² = 1",
+          {
+            "text": "(f(1) uses the formula for x ≤ 1)",
+            "added": true
+          },
           "f(1) = 1² = 1",
           "(x = 1 satisfies x ≤ 1, so the value comes from the x² piece)"
         ],
@@ -136,6 +145,12 @@
         "common_mistakes": [
           "Taking f(1) = 1 from the piece x > 1, which does not include 1.",
           "Writing 1² as 2 by treating the square as a doubling."
+        ],
+        "lines_compact": [
+          "At x = 1:",
+          "lim(x → 1⁻) f(x) = lim(x → 1⁻) x² = 1² = 1",
+          "f(1) = 1² = 1",
+          "(x = 1 satisfies x ≤ 1, so the value comes from the x² piece)"
         ]
       },
       {
@@ -147,7 +162,15 @@
         "margin_note": "Third mark. The right limit uses the x piece. All three numbers come out as 1, which is why this function is continuous at the join.",
         "memory_tip": "x² and x are equal at exactly two places, x = 0 and x = 1, and the join here is at one of them — that is why the pieces fit.",
         "lines": [
+          {
+            "text": "(for x > 1, f(x) = x, so put x = 1)",
+            "added": true
+          },
           "lim(x → 1⁺) f(x) = lim(x → 1⁺) x = 1",
+          {
+            "text": "(all three numbers are 1)",
+            "added": true
+          },
           "∴ lim(x → 1⁻) f(x) = f(1) = lim(x → 1⁺) f(x) = 1",
           "The two formulas take the same value at x = 1,",
           "since 1² = 1, so f is continuous at x = 1."
@@ -178,6 +201,12 @@
         "common_mistakes": [
           "Using x² for the right limit as well, which happens to give 1 and hides the real check.",
           "Concluding a break exists because the formulas are different, without comparing their values at 1."
+        ],
+        "lines_compact": [
+          "lim(x → 1⁺) f(x) = lim(x → 1⁺) x = 1",
+          "∴ lim(x → 1⁻) f(x) = f(1) = lim(x → 1⁺) f(x) = 1",
+          "The two formulas take the same value at x = 1,",
+          "since 1² = 1, so f is continuous at x = 1."
         ]
       },
       {
@@ -189,10 +218,18 @@
         "margin_note": "Last mark. Say why checking one point is enough for R: the two open intervals and the single point x = 1 together are every real number, so nothing is left untested.",
         "memory_tip": "(−∞, 1) together with {1} and (1, ∞) is all of R — three sets, no gaps, so three checks finish the question.",
         "lines": [
+          {
+            "text": "(from steps 1 and 3)",
+            "added": true
+          },
           "f is continuous on (−∞, 1), continuous at x = 1,",
           "and continuous on (1, ∞).",
           "These three sets together are the whole real line,",
           "so no real number is left unchecked.",
+          {
+            "text": "(f is continuous at every real number)",
+            "added": true
+          },
           {
             "text": "∴ Yes, f is continuous on R",
             "style": "boxed"
@@ -224,6 +261,16 @@
         "common_mistakes": [
           "Answering yes on the strength of the x = 1 check alone.",
           "Leaving out the point x = 1 itself when listing what has been covered, so the union is not the whole line."
+        ],
+        "lines_compact": [
+          "f is continuous on (−∞, 1), continuous at x = 1,",
+          "and continuous on (1, ∞).",
+          "These three sets together are the whole real line,",
+          "so no real number is left unchecked.",
+          {
+            "text": "∴ Yes, f is continuous on R",
+            "style": "boxed"
+          }
         ]
       }
     ]

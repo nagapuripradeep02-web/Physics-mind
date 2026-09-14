@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.190, chapter 8 LIMITS AND CONTINUITY, the CONTINUITY sub-section, Short Answer question 3 (the SECOND question printed under that number). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4 Marks over this CONTINUITY sub-section) but no per-step allocation on any answer. The 1+1+1+1 shape follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. ⚠ A PRINTED NUMBERING DEFECT, RECORDED NOT CORRECTED: the book prints the number 3 TWICE in this CONTINUITY sub-section — once on p.189 for the (x² − 9)/(x² − 2x − 3) question (card ts_ipe_m1b_con_x2_minus_9_over_x2_minus_2x_minus_3_at_3) and again on p.190 for this one. The sub-section therefore holds SEVEN questions under the printed numbers 1 to 6. Every card in this slice cites the printed number it carries, so two cards cite question 3; this one is the p.190 occurrence. No renumbering has been invented, because a made-up number 7 would not match anything a student can find in the book."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.190, chapter 8 LIMITS AND CONTINUITY, the CONTINUITY sub-section, Short Answer question 3 (the SECOND question printed under that number). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4 Marks over this CONTINUITY sub-section) but no per-step allocation on any answer. The 1+1+1+1 shape follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. ⚠ A PRINTED NUMBERING DEFECT, RECORDED NOT CORRECTED: the book prints the number 3 TWICE in this CONTINUITY sub-section — once on p.189 for the (x² − 9)/(x² − 2x − 3) question (card ts_ipe_m1b_con_x2_minus_9_over_x2_minus_2x_minus_3_at_3) and again on p.190 for this one. The sub-section therefore holds SEVEN questions under the printed numbers 1 to 6. Every card in this slice cites the printed number it carries, so two cards cite question 3; this one is the p.190 occurrence. No renumbering has been invented, because a made-up number 7 would not match anything a student can find in the book. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say which single point decides it, and what equation in k you would end up solving.",
   "answer": {
@@ -61,12 +61,19 @@
             "style": "heading"
           },
           "Given f(x) = k²x − k   for x ≥ 1,   and f(x) = 2   for x < 1",
+          "(a constant function is continuous at every point)",
           "For x < 1, f is the constant 2,",
           "which is continuous for every value of k.",
+          "(a polynomial is continuous at every point)",
           "For x > 1, f is the polynomial k²x − k,",
           "which is continuous for every value of k.",
           "So f can fail to be continuous only",
           "where the two pieces meet, at x = 1.",
+          "(continuous on R means continuous at every real number,",
+          {
+            "text": "  x = 1 included)",
+            "style": "indent"
+          },
           "f is continuous on R ⇒ f is continuous at x = 1."
         ],
         "recall": {
@@ -106,9 +113,17 @@
         "margin_note": "Second mark. Note which piece x = 1 belongs to: the condition is x ≥ 1, so f(1) comes from k²x − k, not from the constant 2. Getting that wrong gives a different equation.",
         "memory_tip": "The piece whose inequality carries the equals sign is the piece that gives the value at the join.",
         "lines": [
+          {
+            "text": "(for x < 1, f(x) = 2)",
+            "added": true
+          },
           "Left limit:   lim(x → 1⁻) f(x) = lim(x → 1⁻) 2 = 2",
           "Value at 1:   x = 1 satisfies x ≥ 1,",
           "so f(1) = k²(1) − k = k² − k",
+          {
+            "text": "(for x > 1, f(x) = k²x − k, a polynomial, so put x = 1)",
+            "added": true
+          },
           "Right limit:   lim(x → 1⁺) f(x) = lim(x → 1⁺) (k²x − k)",
           {
             "text": "  = k²(1) − k = k² − k",
@@ -142,6 +157,16 @@
           "Taking f(1) = 2 from the piece x < 1, when that piece does not include 1.",
           "Equating the two one-sided limits to each other but forgetting that both must also equal f(1).",
           "Reading the left limit from k²x − k instead of from the constant piece x < 1."
+        ],
+        "lines_compact": [
+          "Left limit:   lim(x → 1⁻) f(x) = lim(x → 1⁻) 2 = 2",
+          "Value at 1:   x = 1 satisfies x ≥ 1,",
+          "so f(1) = k²(1) − k = k² − k",
+          "Right limit:   lim(x → 1⁺) f(x) = lim(x → 1⁺) (k²x − k)",
+          {
+            "text": "  = k²(1) − k = k² − k",
+            "style": "indent"
+          }
         ]
       },
       {
@@ -153,14 +178,26 @@
         "margin_note": "Third mark. The right limit already equals f(1), so the three-part condition becomes one equation. Say that, rather than leaving two identical expressions on the page.",
         "memory_tip": "Continuity at a join is one equation: left limit = right limit = value. When the value comes from the right piece, only the left limit is a new condition.",
         "lines": [
+          {
+            "text": "(the definition of continuity at x = 1)",
+            "added": true
+          },
           "f is continuous at x = 1  ⇒  lim(x → 1⁻) f(x) = f(1)",
           {
             "text": "  = lim(x → 1⁺) f(x)",
             "style": "indent"
           },
+          {
+            "text": "(put the left limit 2 and f(1) = k² − k)",
+            "added": true
+          },
           "The right limit is already equal to f(1),",
           "so the only new condition is",
           "2 = k² − k",
+          {
+            "text": "(take 2 to the right side)",
+            "added": true
+          },
           "⇒ k² − k − 2 = 0"
         ],
         "recall": {
@@ -189,6 +226,17 @@
         "common_mistakes": [
           "Writing k² − k = 0 by forgetting to bring the 2 across.",
           "Setting the derivative of the two pieces equal instead of the values — that is differentiability, not continuity."
+        ],
+        "lines_compact": [
+          "f is continuous at x = 1  ⇒  lim(x → 1⁻) f(x) = f(1)",
+          {
+            "text": "  = lim(x → 1⁺) f(x)",
+            "style": "indent"
+          },
+          "The right limit is already equal to f(1),",
+          "so the only new condition is",
+          "2 = k² − k",
+          "⇒ k² − k − 2 = 0"
         ]
       },
       {
@@ -200,10 +248,35 @@
         "margin_note": "Last mark. There are TWO answers and both are valid — no condition in the question rules either out. Checking each one back in f(1) takes one line and proves both.",
         "memory_tip": "A quadratic condition usually means two answers; report both unless the question gives a reason to drop one.",
         "lines": [
+          {
+            "text": "(split −k as −2k + k, since (−2)(1) = −2)",
+            "added": true
+          },
           "k² − k − 2 = 0   ⇒   k² − 2k + k − 2 = 0",
+          {
+            "text": "(take out k, then 1, then the common factor k − 2)",
+            "added": true
+          },
           "⇒ k(k − 2) + 1(k − 2) = 0   ⇒   (k − 2)(k + 1) = 0",
+          {
+            "text": "(put k = 2: 2²(1) − 2 = 2)",
+            "added": true
+          },
+          {
+            "text": "(put k = −1: (−1)²(1) − (−1) = 1 + 1)",
+            "added": true
+          },
           "Check: k = 2 gives f(1) = 4 − 2 = 2;",
           "k = −1 gives f(1) = 1 + 1 = 2. Both match the left limit 2.",
+          {
+            "text": "(a product is 0 only when a factor is 0:",
+            "added": true
+          },
+          {
+            "text": "  k − 2 = 0 or k + 1 = 0)",
+            "style": "indent",
+            "added": true
+          },
           {
             "text": "∴ k = 2  or  k = −1",
             "style": "boxed"
@@ -235,6 +308,16 @@
         "common_mistakes": [
           "Giving only k = 2 and dropping the negative root.",
           "Factorising k² − k − 2 as (k + 2)(k − 1), which multiplies out to k² + k − 2."
+        ],
+        "lines_compact": [
+          "k² − k − 2 = 0   ⇒   k² − 2k + k − 2 = 0",
+          "⇒ k(k − 2) + 1(k − 2) = 0   ⇒   (k − 2)(k + 1) = 0",
+          "Check: k = 2 gives f(1) = 4 − 2 = 2;",
+          "k = −1 gives f(1) = 1 + 1 = 2. Both match the left limit 2.",
+          {
+            "text": "∴ k = 2  or  k = −1",
+            "style": "boxed"
+          }
         ]
       }
     ]

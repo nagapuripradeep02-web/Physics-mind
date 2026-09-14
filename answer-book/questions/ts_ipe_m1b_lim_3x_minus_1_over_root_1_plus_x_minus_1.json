@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.184, chapter 8 LIMITS, Short & Very Short Answer question 2. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.184, chapter 8 LIMITS, Short & Very Short Answer question 2. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say what you divide by and which two standard limits you then use.",
   "answer": {
@@ -51,12 +51,23 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "(3⁰ = 1 and √1 = 1)",
           "At x = 0, 3ˣ − 1 = 0 and √(1 + x) − 1 = 0,",
           "so the expression is of the indeterminate form 0/0.",
           "For x ≠ 0 divide the numerator and the denominator by x.",
+          "(dividing the top and the bottom by x ≠ 0 does not",
+          {
+            "text": "  change the fraction)",
+            "style": "indent"
+          },
           "lim(x → 0) (3ˣ − 1)/(√(1 + x) − 1)",
           {
             "text": "  =  lim(x → 0) [(3ˣ − 1)/x] / [(√(1 + x) − 1)/x]",
+            "style": "indent"
+          },
+          "((√(1 + x) − 1)/x = x/[x(√(1 + x) + 1)]",
+          {
+            "text": "  = 1/(√(1 + x) + 1) → 1/2)",
             "style": "indent"
           },
           "The two standard limits are",
@@ -102,8 +113,20 @@
         "lines": [
           "Both limits exist and the denominator limit 1/2 is not 0,",
           "so the limit of the quotient is the quotient of the limits.",
+          {
+            "text": "(put a = 3 in logₑa, and 1/2 below)",
+            "added": true
+          },
           "= logₑ3 / (1/2)",
+          {
+            "text": "(dividing by 1/2 is multiplying by 2)",
+            "added": true
+          },
           "= 2 logₑ3",
+          {
+            "text": "(2 logₑ3 = logₑ3² = logₑ9)",
+            "added": true
+          },
           {
             "text": "∴ lim(x → 0) (3ˣ − 1)/(√(1 + x) − 1)",
             "style": "boxed"
@@ -140,7 +163,21 @@
           "Multiplying by 1/2 instead of dividing by it, giving (logₑ3)/2.",
           "Writing logₑ9 as 2 without noticing that logₑ9 = 2 logₑ3 is already the exact answer."
         ],
-        "memory_tip": "Dividing by 1/2 doubles the number. So the answer is twice logₑ3, and 2 logₑ3 = logₑ9 by the power rule for logarithms."
+        "memory_tip": "Dividing by 1/2 doubles the number. So the answer is twice logₑ3, and 2 logₑ3 = logₑ9 by the power rule for logarithms.",
+        "lines_compact": [
+          "Both limits exist and the denominator limit 1/2 is not 0,",
+          "so the limit of the quotient is the quotient of the limits.",
+          "= logₑ3 / (1/2)",
+          "= 2 logₑ3",
+          {
+            "text": "∴ lim(x → 0) (3ˣ − 1)/(√(1 + x) − 1)",
+            "style": "boxed"
+          },
+          {
+            "text": "= 2 logₑ3 = logₑ9",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

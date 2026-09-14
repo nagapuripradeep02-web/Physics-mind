@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.187, chapter 8 LIMITS, Short & Very Short Answer question 24. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. This is a 'show that' question, so the value −1 is given and the marks are for the method that reaches it, not for producing a number; the split puts one mark on removing the modulus with the correct sign for x < 2 and one on the cancellation. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Checked numerically before authoring: the expression is exactly −1 at x = 1.99, 1.999, 1.9999, 1.99999 and 1.999999, and exactly +1 at the mirror points above 2 — the contrast that makes this a one-sided question."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.187, chapter 8 LIMITS, Short & Very Short Answer question 24. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. This is a 'show that' question, so the value −1 is given and the marks are for the method that reaches it, not for producing a number; the split puts one mark on removing the modulus with the correct sign for x < 2 and one on the cancellation. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Checked numerically before authoring: the expression is exactly −1 at x = 1.99, 1.999, 1.9999, 1.99999 and 1.999999, and exactly +1 at the mirror points above 2 — the contrast that makes this a one-sided question. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would show this — say what |x − 2| becomes for x < 2 and why that sign is the one to use.",
   "answer": {
@@ -54,6 +54,7 @@
           },
           "By definition, |t| = t when t ≥ 0 and |t| = −t when t < 0.",
           "x → 2⁻ means x approaches 2 through values with x < 2.",
+          "(put t = x − 2, which is negative, so |t| = −t)",
           "For x < 2 we have x − 2 < 0, so |x − 2| = −(x − 2)"
         ],
         "recall": {
@@ -95,9 +96,17 @@
         "lines": [
           "For x < 2 we also have x ≠ 2, so (x − 2) ≠ 0",
           "and may be cancelled:",
+          {
+            "text": "(put −(x − 2) in place of |x − 2|, then cancel x − 2)",
+            "added": true
+          },
           "|x − 2|/(x − 2) = −(x − 2)/(x − 2) = −1",
           "This holds for every x < 2,",
           "so the value stays −1 as x approaches 2 from the left.",
+          {
+            "text": "(the limit of the constant −1 is −1)",
+            "added": true
+          },
           {
             "text": "∴ lim(x → 2⁻) |x − 2|/(x − 2) = −1",
             "style": "boxed"
@@ -129,6 +138,17 @@
         "common_mistakes": [
           "Cancelling to +1 by dropping the minus sign taken out of the modulus.",
           "Saying the limit does not exist — that is true at x = 2 two-sided, but the question asks only for the left-hand limit."
+        ],
+        "lines_compact": [
+          "For x < 2 we also have x ≠ 2, so (x − 2) ≠ 0",
+          "and may be cancelled:",
+          "|x − 2|/(x − 2) = −(x − 2)/(x − 2) = −1",
+          "This holds for every x < 2,",
+          "so the value stays −1 as x approaches 2 from the left.",
+          {
+            "text": "∴ lim(x → 2⁻) |x − 2|/(x − 2) = −1",
+            "style": "boxed"
+          }
         ]
       }
     ]

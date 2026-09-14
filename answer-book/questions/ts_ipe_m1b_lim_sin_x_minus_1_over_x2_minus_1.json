@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.185, chapter 8 LIMITS, Short & Very Short Answer question 9. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.185, chapter 8 LIMITS, Short & Very Short Answer question 9. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say how you factor the denominator and which factor pairs with the sine.",
   "answer": {
@@ -53,7 +53,9 @@
           },
           "At x = 1, sin(x − 1) = sin 0 = 0 and x² − 1 = 0,",
           "so the form is 0/0.",
+          "(a² − b² = (a − b)(a + b) with a = x and b = 1)",
           "Factor the denominator:  x² − 1 = (x − 1)(x + 1).",
+          "(1/[(x − 1)(x + 1)] = [1/(x − 1)] · [1/(x + 1)])",
           "sin(x − 1)/(x² − 1) = [sin(x − 1)/(x − 1)] · [1/(x + 1)]"
         ],
         "recall": {
@@ -93,10 +95,18 @@
         "mark_note": "Answer",
         "margin_note": "Second mark. As x → 1 the angle x − 1 → 0, so the first bracket tends to 1; the second bracket is continuous at x = 1 and is substituted.",
         "lines": [
+          {
+            "text": "(the standard limit with θ = x − 1)",
+            "added": true
+          },
           "As x → 1, the angle (x − 1) → 0,",
           "so lim(x → 1) sin(x − 1)/(x − 1) = 1.",
           "The factor 1/(x + 1) is defined at x = 1,",
           "so substitute x = 1: 1/(1 + 1) = 1/2.",
+          {
+            "text": "(multiply the two limits)",
+            "added": true
+          },
           "= 1 · 1/2",
           {
             "text": "∴ lim(x → 1) sin(x − 1)/(x² − 1) = 1/2",
@@ -130,7 +140,18 @@
           "Answering 1 by forgetting the 1/(x + 1) factor.",
           "Substituting x = 1 into x + 1 and writing 1 instead of 2."
         ],
-        "memory_tip": "Once sin(x − 1)/(x − 1) is split off and goes to 1, what is left is the leftover factor at the point. Here that is 1/(x + 1) at x = 1, so the answer is 1/2. The angle inside the sine must match the factor cancelled, or the two do not pair off."
+        "memory_tip": "Once sin(x − 1)/(x − 1) is split off and goes to 1, what is left is the leftover factor at the point. Here that is 1/(x + 1) at x = 1, so the answer is 1/2. The angle inside the sine must match the factor cancelled, or the two do not pair off.",
+        "lines_compact": [
+          "As x → 1, the angle (x − 1) → 0,",
+          "so lim(x → 1) sin(x − 1)/(x − 1) = 1.",
+          "The factor 1/(x + 1) is defined at x = 1,",
+          "so substitute x = 1: 1/(1 + 1) = 1/2.",
+          "= 1 · 1/2",
+          {
+            "text": "∴ lim(x → 1) sin(x − 1)/(x² − 1) = 1/2",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

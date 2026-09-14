@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.186, chapter 8 LIMITS, Short & Very Short Answer question 14. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer 0 was checked numerically before it was written: the expression reads 5.0003 × 10⁻⁵ at x = 10⁻⁴ and −5.00 × 10⁻⁵ at x = −10⁻⁴, approaching 0 from both sides."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.186, chapter 8 LIMITS, Short & Very Short Answer question 14. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer 0 was checked numerically before it was written: the expression reads 5.0003 × 10⁻⁵ at x = 10⁻⁴ and −5.00 × 10⁻⁵ at x = −10⁻⁴, approaching 0 from both sides. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say how you break the numerator up and which two standard limits you use.",
   "answer": {
@@ -52,9 +52,12 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "(e⁰ − sin 0 − 1 = 1 − 0 − 1 = 0)",
           "Putting x = 0 gives 0/0,",
           "so the numerator is regrouped first.",
+          "(group eˣ with −1)",
           "eˣ − sin x − 1 = (eˣ − 1) − sin x",
+          "(divide each part by x)",
           "∴ lim(x → 0) (eˣ − sin x − 1)/x = lim(x → 0) (eˣ − 1)/x",
           {
             "text": "  − lim(x → 0) (sin x)/x",
@@ -102,7 +105,15 @@
         "lines": [
           "We know lim(x → 0) (eˣ − 1)/x = 1",
           "and  lim(x → 0) (sin x)/x = 1",
+          {
+            "text": "(put 1 for each limit)",
+            "added": true
+          },
           "= 1 − 1",
+          {
+            "text": "(1 − 1 = 0)",
+            "added": true
+          },
           {
             "text": "∴ lim(x → 0) (eˣ − sin x − 1)/x = 0",
             "style": "boxed"
@@ -134,6 +145,15 @@
         "common_mistakes": [
           "Writing 1 + 1 = 2 by missing the minus sign in front of sin x.",
           "Giving the answer as 0 with no working, so the method mark is lost."
+        ],
+        "lines_compact": [
+          "We know lim(x → 0) (eˣ − 1)/x = 1",
+          "and  lim(x → 0) (sin x)/x = 1",
+          "= 1 − 1",
+          {
+            "text": "∴ lim(x → 0) (eˣ − sin x − 1)/x = 0",
+            "style": "boxed"
+          }
         ]
       }
     ]
