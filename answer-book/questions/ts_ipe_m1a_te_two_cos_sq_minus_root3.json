@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.69 — SAQ chapter 11 Trigonometric Equations, answer 71.1. Printed appearances: the printed tag is 'Board Paper' with no year, so appearances[] is left empty. One of the two solutions is REJECTED — sinθ = −√3 is impossible because a sine can never exceed 1 in size. Saying so is part of the answer, not an aside. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter (its pages are set two questions to a page in two columns, which takes the margin those tags would occupy). It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used across this unit are the book's own. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q15 is the Trigonometric Equations slot. NOTE: Trigonometric Equations is an SAQ-ONLY unit — the paper gives it no Section-A and no Section-C slot, and this book has no Trigonometric Equations LAQ chapter (its LAQ chapters are 1-6) and no VSAQ chapter (its VSAQ chapters are 14-19). It is the mirror of Unit 2, which is LAQ-only. Verified by walking to p.72, where SAQ chapter 12 Inverse Trig Functions begins."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.69 — SAQ chapter 11 Trigonometric Equations, answer 71.1. Printed appearances: the printed tag is 'Board Paper' with no year, so appearances[] is left empty. One of the two solutions is REJECTED — sinθ = −√3 is impossible because a sine can never exceed 1 in size. Saying so is part of the answer, not an aside. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter (its pages are set two questions to a page in two columns, which takes the margin those tags would occupy). It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used across this unit are the book's own. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q15 is the Trigonometric Equations slot. NOTE: Trigonometric Equations is an SAQ-ONLY unit — the paper gives it no Section-A and no Section-C slot, and this book has no Trigonometric Equations LAQ chapter (its LAQ chapters are 1-6) and no VSAQ chapter (its VSAQ chapters are 14-19). It is the mirror of Unit 2, which is LAQ-only. Verified by walking to p.72, where SAQ chapter 12 Inverse Trig Functions begins. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — name each move in order, and say which general solution formula you would use.",
   "answer": {
@@ -61,9 +61,12 @@
             "style": "heading"
           },
           "Given 2cos²θ − √3 sinθ + 1 = 0",
+          "(write cos²θ as 1 − sin²θ)",
           "⇒ 2(1 − sin²θ) − √3 sinθ + 1 = 0",
           "  [∵ sin²θ + cos²θ = 1]",
+          "(open the bracket)",
           "⇒ 2 − 2sin²θ − √3 sinθ + 1 = 0",
+          "(multiply by −1 and reorder)",
           "⇒ 2sin²θ + √3 sinθ − 3 = 0"
         ],
         "recall": {
@@ -102,7 +105,20 @@
         "margin_note": "Second mark. Split the middle term: 2√3 sinθ − √3 sinθ gives √3 sinθ, and the pairs then share a bracket.",
         "memory_tip": "Split the middle term as 2√3 − √3; the pairs then share the bracket (sinθ + √3).",
         "lines": [
+          {
+            "text": "(split √3 sinθ as 2√3 sinθ − √3 sinθ, since",
+            "added": true
+          },
+          {
+            "text": "  2 × (−3) = −6 = (2√3)(−√3))",
+            "style": "indent",
+            "added": true
+          },
           "⇒ 2sin²θ + 2√3 sinθ − √3 sinθ − (√3)² = 0",
+          {
+            "text": "(take out 2sinθ and −√3)",
+            "added": true
+          },
           "⇒ 2sinθ(sinθ + √3) − √3(sinθ + √3) = 0",
           "⇒ (2sinθ − √3)(sinθ + √3) = 0"
         ],
@@ -132,6 +148,11 @@
         "common_mistakes": [
           "Reaching for the quadratic formula and producing surds.",
           "Splitting the middle term wrongly."
+        ],
+        "lines_compact": [
+          "⇒ 2sin²θ + 2√3 sinθ − √3 sinθ − (√3)² = 0",
+          "⇒ 2sinθ(sinθ + √3) − √3(sinθ + √3) = 0",
+          "⇒ (2sinθ − √3)(sinθ + √3) = 0"
         ]
       },
       {
@@ -143,6 +164,10 @@
         "margin_note": "Third mark, and the part most often skipped. sinθ = −√3 is about −1.73, and a sine can never leave [−1, 1] — so that branch is discarded, with the reason written down.",
         "memory_tip": "sinθ = −√3 is about −1.73, and a sine never leaves [−1, 1]. Discard it IN WRITING.",
         "lines": [
+          {
+            "text": "(a product is 0 only when one factor is 0)",
+            "added": true
+          },
           "⇒ 2sinθ − √3 = 0  (or)  sinθ + √3 = 0",
           "⇒ sinθ = √3/2  (or)  sinθ = −√3",
           "But |sinθ| ≤ 1 always, and √3 > 1,",
@@ -175,6 +200,12 @@
         "common_mistakes": [
           "Carrying sinθ = −√3 forward and inventing an angle for it.",
           "Discarding it silently with no reason given."
+        ],
+        "lines_compact": [
+          "⇒ 2sinθ − √3 = 0  (or)  sinθ + √3 = 0",
+          "⇒ sinθ = √3/2  (or)  sinθ = −√3",
+          "But |sinθ| ≤ 1 always, and √3 > 1,",
+          "so sinθ = −√3 has NO solution."
         ]
       },
       {
@@ -189,6 +220,10 @@
           "Now sinθ = √3/2 = sin(π/3)",
           "Here the principal value is α = π/3",
           "For sinθ = sinα, θ = nπ + (−1)ⁿ α",
+          {
+            "text": "(the sine general solution with α = π/3)",
+            "added": true
+          },
           {
             "text": "∴ θ = nπ + (−1)ⁿ (π/3),  n ∈ Z",
             "style": "boxed"
@@ -220,6 +255,15 @@
         "common_mistakes": [
           "Giving only θ = π/3 and no general solution.",
           "Using the cosine general solution."
+        ],
+        "lines_compact": [
+          "Now sinθ = √3/2 = sin(π/3)",
+          "Here the principal value is α = π/3",
+          "For sinθ = sinα, θ = nπ + (−1)ⁿ α",
+          {
+            "text": "∴ θ = nπ + (−1)ⁿ (π/3),  n ∈ Z",
+            "style": "boxed"
+          }
         ]
       }
     ]

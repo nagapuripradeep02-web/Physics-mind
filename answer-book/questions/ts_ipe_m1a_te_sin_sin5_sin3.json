@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.70 — SAQ chapter 11 Trigonometric Equations, answer 72.2. Printed appearances: none — this answer carries no year tag. The twin of 72.1, with one crucial addition: an INTERVAL. The general solution is not the answer here — the specific values inside 0 < θ < π are, so the last step lists them. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter (its pages are set two questions to a page in two columns, which takes the margin those tags would occupy). It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used across this unit are the book's own. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q15 is the Trigonometric Equations slot. NOTE: Trigonometric Equations is an SAQ-ONLY unit — the paper gives it no Section-A and no Section-C slot, and this book has no Trigonometric Equations LAQ chapter (its LAQ chapters are 1-6) and no VSAQ chapter (its VSAQ chapters are 14-19). It is the mirror of Unit 2, which is LAQ-only. Verified by walking to p.72, where SAQ chapter 12 Inverse Trig Functions begins."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.70 — SAQ chapter 11 Trigonometric Equations, answer 72.2. Printed appearances: none — this answer carries no year tag. The twin of 72.1, with one crucial addition: an INTERVAL. The general solution is not the answer here — the specific values inside 0 < θ < π are, so the last step lists them. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter (its pages are set two questions to a page in two columns, which takes the margin those tags would occupy). It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used across this unit are the book's own. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q15 is the Trigonometric Equations slot. NOTE: Trigonometric Equations is an SAQ-ONLY unit — the paper gives it no Section-A and no Section-C slot, and this book has no Trigonometric Equations LAQ chapter (its LAQ chapters are 1-6) and no VSAQ chapter (its VSAQ chapters are 14-19). It is the mirror of Unit 2, which is LAQ-only. Verified by walking to p.72, where SAQ chapter 12 Inverse Trig Functions begins. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — name each move in order, and say which general solution formula you would use.",
   "answer": {
@@ -61,9 +61,13 @@
             "style": "heading"
           },
           "Given sinθ + sin5θ = sin3θ",
+          "(group sin5θ − sin3θ)",
           "⇒ sinθ + (sin5θ − sin3θ) = 0",
+          "(sin x − sin y = 2 cos((x+y)/2) sin((x−y)/2))",
           "⇒ sinθ + 2cos((5θ+3θ)/2) sin((5θ−3θ)/2) = 0",
+          "((5θ + 3θ)/2 = 4θ and (5θ − 3θ)/2 = θ)",
           "⇒ sinθ + 2cos4θ sinθ = 0",
+          "(take out the common factor sinθ)",
           "⇒ sinθ (1 + 2cos4θ) = 0"
         ],
         "recall": {
@@ -103,6 +107,10 @@
         "margin_note": "Second mark. sinθ = 0 gives θ = nπ — but every one of those is 0 or π or beyond, and the interval is OPEN, so this branch contributes nothing. Say so rather than leaving it out.",
         "memory_tip": "sinθ = 0 gives θ = nπ, and the interval is OPEN, so none qualifies. Say that rather than omitting the branch.",
         "lines": [
+          {
+            "text": "(a product is 0 only when one factor is 0)",
+            "added": true
+          },
           "⇒ sinθ = 0  (or)  1 + 2cos4θ = 0",
           "(i) If sinθ = 0 then θ = nπ,  n ∈ Z",
           "  But 0 < θ < π is open, and every nπ is",
@@ -135,6 +143,13 @@
         "common_mistakes": [
           "Including θ = 0 or θ = π in the answer.",
           "Omitting this branch entirely and never saying why."
+        ],
+        "lines_compact": [
+          "⇒ sinθ = 0  (or)  1 + 2cos4θ = 0",
+          "(i) If sinθ = 0 then θ = nπ,  n ∈ Z",
+          "  But 0 < θ < π is open, and every nπ is",
+          "  0, ±π, ±2π, … — none lies strictly inside.",
+          "  So this branch gives no solution here."
         ]
       },
       {
@@ -146,9 +161,17 @@
         "margin_note": "Third mark. cos4θ = −1/2 = cos(2π/3), so the cosine general solution applies — then divide by 4.",
         "memory_tip": "cos 4θ = −1/2 = cos(2π/3), not π/3. Then divide every term by 4.",
         "lines": [
+          {
+            "text": "(take 1 across and divide by 2)",
+            "added": true
+          },
           "(ii) 1 + 2cos4θ = 0 ⇒ cos4θ = −1/2 = cos(2π/3)",
           "  Here α = 2π/3, and θ = 2nπ ± α gives",
           "  4θ = 2nπ ± 2π/3",
+          {
+            "text": "(divide both terms by 4)",
+            "added": true
+          },
           "  ⇒ θ = nπ/2 ± π/6,  n ∈ Z   …(1)"
         ],
         "recall": {
@@ -177,6 +200,12 @@
         "common_mistakes": [
           "Taking the principal value as π/3 and losing the sign.",
           "Dividing only one term by 4."
+        ],
+        "lines_compact": [
+          "(ii) 1 + 2cos4θ = 0 ⇒ cos4θ = −1/2 = cos(2π/3)",
+          "  Here α = 2π/3, and θ = 2nπ ± α gives",
+          "  4θ = 2nπ ± 2π/3",
+          "  ⇒ θ = nπ/2 ± π/6,  n ∈ Z   …(1)"
         ]
       },
       {
@@ -192,6 +221,10 @@
           "n = 0: θ = ±π/6 → π/6",
           "n = 1: θ = π/2 ± π/6 → π/3, 2π/3",
           "n = 2: θ = π ± π/6 → 5π/6",
+          {
+            "text": "(n = 3 gives 3π/2 ± π/6, which is more than π)",
+            "added": true
+          },
           {
             "text": "∴ θ = π/6, π/3, 2π/3, 5π/6",
             "style": "boxed"
@@ -225,6 +258,16 @@
           "Leaving the general solution as the final answer.",
           "Including 7π/6, which is outside the interval.",
           "Missing one of the four values."
+        ],
+        "lines_compact": [
+          "But 0 < θ < π. Putting n = 0, 1, 2 in (1):",
+          "n = 0: θ = ±π/6 → π/6",
+          "n = 1: θ = π/2 ± π/6 → π/3, 2π/3",
+          "n = 2: θ = π ± π/6 → 5π/6",
+          {
+            "text": "∴ θ = π/6, π/3, 2π/3, 5π/6",
+            "style": "boxed"
+          }
         ]
       }
     ]

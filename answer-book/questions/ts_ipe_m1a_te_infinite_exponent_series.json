@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.108, chapter 9 TRIGONOMETRIC EQUATIONS, Short Answer question 3. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 shape puts a full mark on the SERIES, because the trigonometry in this question is easy and the marks are really lost at the sum: a student who writes 1/(1 − cos x) without stating |cos x| < 1 has assumed the series converges. The convergence condition is written into the LINES the student reads, not parked here — it is what excludes x = 0 and it is the reason the stem says x ≠ 0. Inside (−π, π) the only value with |cos x| = 1 is x = 0 (x = ±π are not in the open interval), so x = 0 is the only exclusion, and the two answers x = ±π/3 both have |cos x| = 1/2 < 1. Nothing is squared and no denominator is cleared after that point, so no extraneous root can enter. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Trigonometric Equations supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.108, chapter 9 TRIGONOMETRIC EQUATIONS, Short Answer question 3. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 shape puts a full mark on the SERIES, because the trigonometry in this question is easy and the marks are really lost at the sum: a student who writes 1/(1 − cos x) without stating |cos x| < 1 has assumed the series converges. The convergence condition is written into the LINES the student reads, not parked here — it is what excludes x = 0 and it is the reason the stem says x ≠ 0. Inside (−π, π) the only value with |cos x| = 1 is x = 0 (x = ±π are not in the open interval), so x = 0 is the only exclusion, and the two answers x = ±π/3 both have |cos x| = 1/2 < 1. Nothing is squared and no denominator is cleared after that point, so no extraneous root can enter. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Trigonometric Equations supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — name each move in order, and say what condition the infinite series needs before it can be summed.",
   "answer": {
@@ -63,6 +63,8 @@
           "The exponent 1 + cos x + cos²x + … is a",
           "geometric series with first term a = 1 and",
           "common ratio r = cos x.",
+          "(each term is cos x times the one before it)",
+          "(a G.P. has a sum to infinity only when |r| < 1)",
           "It has a sum only if |cos x| < 1.",
           "In (−π, π) that rules out x = 0 alone, and",
           "the question already excludes x = 0.",
@@ -106,9 +108,23 @@
         "margin_note": "Second mark. 4³ is 64 and 8² is also 64, so both sides can be written to the base 8. Equal bases mean equal powers.",
         "memory_tip": "4³ = 64 = 8², so put both sides to base 8. Equal bases, equal powers.",
         "lines": [
-          "Given 8^S = 4³",
+          {
+            "text": "\\text{Given }\\ 8^{S} = 4^{3}",
+            "render": "katex",
+            "style": "normal",
+            "added": true
+          },
           "Now 4³ = 64 and 8² = 64",
-          "⇒ 8^S = 8²",
+          {
+            "text": "\\Rightarrow 8^{S} = 8^{2}",
+            "render": "katex",
+            "style": "normal",
+            "added": true
+          },
+          {
+            "text": "(equal powers of 8 have equal exponents)",
+            "added": true
+          },
           "⇒ S = 2"
         ],
         "recall": {
@@ -137,6 +153,12 @@
         "common_mistakes": [
           "Reading 4³ as 12.",
           "Equating the powers while the bases are still 8 and 4."
+        ],
+        "lines_compact": [
+          "Given 8^S = 4³",
+          "Now 4³ = 64 and 8² = 64",
+          "⇒ 8^S = 8²",
+          "⇒ S = 2"
         ]
       },
       {
@@ -148,9 +170,17 @@
         "margin_note": "Third mark. Put the sum equal to 2 and solve the small fraction equation. Cross-multiplying is safe here because 1 − cos x is not zero.",
         "memory_tip": "1/(1 − cos x) = 2 means 1 − cos x = 1/2, so cos x = 1/2.",
         "lines": [
+          {
+            "text": "(put S = 1/(1 − cos x))",
+            "added": true
+          },
           "⇒ 1/(1 − cos x) = 2",
           "Here 1 − cos x ≠ 0, so cross-multiply:",
           "⇒ 1 = 2(1 − cos x)",
+          {
+            "text": "(2 − 2cos x = 1, so 2cos x = 1)",
+            "added": true
+          },
           "⇒ 2cos x = 1",
           "⇒ cos x = 1/2"
         ],
@@ -180,6 +210,13 @@
         "common_mistakes": [
           "Writing 1 − cos x = 2 instead of 1/2.",
           "Sign slip giving cos x = −1/2."
+        ],
+        "lines_compact": [
+          "⇒ 1/(1 − cos x) = 2",
+          "Here 1 − cos x ≠ 0, so cross-multiply:",
+          "⇒ 1 = 2(1 − cos x)",
+          "⇒ 2cos x = 1",
+          "⇒ cos x = 1/2"
         ]
       },
       {
@@ -194,6 +231,15 @@
           "Now cos x = 1/2 = cos(π/3), so α = π/3",
           "For cos x = cosα, x = 2nπ ± α",
           "⇒ x = 2nπ ± π/3,  n ∈ Z",
+          {
+            "text": "(n = 1 gives 2π ± π/3 and n = −1 gives −2π ± π/3,",
+            "added": true
+          },
+          {
+            "text": "  all outside (−π, π))",
+            "style": "indent",
+            "added": true
+          },
           "In (−π, π) only n = 0 gives values in range:",
           "x = π/3 and x = −π/3.",
           "For both, |cos x| = 1/2 < 1, so the series",
@@ -230,6 +276,19 @@
           "Leaving x = 2nπ ± π/3 as the final answer.",
           "Giving only x = π/3 and dropping the negative value.",
           "Including x = 5π/3, which is outside (−π, π)."
+        ],
+        "lines_compact": [
+          "Now cos x = 1/2 = cos(π/3), so α = π/3",
+          "For cos x = cosα, x = 2nπ ± α",
+          "⇒ x = 2nπ ± π/3,  n ∈ Z",
+          "In (−π, π) only n = 0 gives values in range:",
+          "x = π/3 and x = −π/3.",
+          "For both, |cos x| = 1/2 < 1, so the series",
+          "does have a sum and both are accepted.",
+          {
+            "text": "∴ x = π/3, −π/3",
+            "style": "boxed"
+          }
         ]
       }
     ]

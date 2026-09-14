@@ -47,7 +47,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.69 — SAQ chapter 11 Trigonometric Equations, answer 71.2. Printed appearances: AP,TS 17. The twin of 71.1, but the reduction is to TANGENT rather than sine — because dividing by cos²θ is what removes the mixed sinθcosθ term. Both roots survive here, so the answer has two families. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter (its pages are set two questions to a page in two columns, which takes the margin those tags would occupy). It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used across this unit are the book's own. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q15 is the Trigonometric Equations slot. NOTE: Trigonometric Equations is an SAQ-ONLY unit — the paper gives it no Section-A and no Section-C slot, and this book has no Trigonometric Equations LAQ chapter (its LAQ chapters are 1-6) and no VSAQ chapter (its VSAQ chapters are 14-19). It is the mirror of Unit 2, which is LAQ-only. Verified by walking to p.72, where SAQ chapter 12 Inverse Trig Functions begins."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.69 — SAQ chapter 11 Trigonometric Equations, answer 71.2. Printed appearances: AP,TS 17. The twin of 71.1, but the reduction is to TANGENT rather than sine — because dividing by cos²θ is what removes the mixed sinθcosθ term. Both roots survive here, so the answer has two families. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter (its pages are set two questions to a page in two columns, which takes the margin those tags would occupy). It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used across this unit are the book's own. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q15 is the Trigonometric Equations slot. NOTE: Trigonometric Equations is an SAQ-ONLY unit — the paper gives it no Section-A and no Section-C slot, and this book has no Trigonometric Equations LAQ chapter (its LAQ chapters are 1-6) and no VSAQ chapter (its VSAQ chapters are 14-19). It is the mirror of Unit 2, which is LAQ-only. Verified by walking to p.72, where SAQ chapter 12 Inverse Trig Functions begins. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — name each move in order, and say which general solution formula you would use.",
   "answer": {
@@ -70,8 +70,14 @@
             "style": "heading"
           },
           "Given 1 + sin²θ = 3 sinθ cosθ",
+          "(cosθ = 0 is not a solution: then sin²θ = 1 and",
+          {
+            "text": "  1 + 1 ≠ 0; so dividing by cos²θ loses nothing)",
+            "style": "indent"
+          },
           "Divide throughout by cos²θ:",
           "⇒ 1/cos²θ + sin²θ/cos²θ = 3 sinθcosθ/cos²θ",
+          "(1/cos²θ = sec²θ and sinθ/cosθ = tanθ)",
           "⇒ sec²θ + tan²θ = 3 tanθ"
         ],
         "recall": {
@@ -111,9 +117,21 @@
         "margin_note": "Second mark. sec²θ = 1 + tan²θ turns it into a quadratic in tanθ, which then factorises.",
         "memory_tip": "sec²θ = 1 + tan²θ, a PLUS. Then the two tan² terms collect into a quadratic that factorises.",
         "lines": [
+          {
+            "text": "(sec²θ = 1 + tan²θ)",
+            "added": true
+          },
           "⇒ (1 + tan²θ) + tan²θ = 3 tanθ",
           "  [∵ sec²θ − tan²θ = 1]",
+          {
+            "text": "(collect the tan²θ terms and move 3tanθ across)",
+            "added": true
+          },
           "⇒ 2tan²θ − 3tanθ + 1 = 0",
+          {
+            "text": "(two numbers with product 2 and sum −3 are −2 and −1)",
+            "added": true
+          },
           "⇒ (2tanθ − 1)(tanθ − 1) = 0"
         ],
         "recall": {
@@ -142,6 +160,12 @@
         "common_mistakes": [
           "Writing sec²θ = 1 − tan²θ.",
           "Failing to collect the two tan² terms."
+        ],
+        "lines_compact": [
+          "⇒ (1 + tan²θ) + tan²θ = 3 tanθ",
+          "  [∵ sec²θ − tan²θ = 1]",
+          "⇒ 2tan²θ − 3tanθ + 1 = 0",
+          "⇒ (2tanθ − 1)(tanθ − 1) = 0"
         ]
       },
       {
@@ -153,6 +177,10 @@
         "margin_note": "Third mark. tanθ = 1 is tan(π/4). For a TANGENT equation the general solution is nπ + α — no ± and no (−1)ⁿ.",
         "memory_tip": "For a TANGENT equation the general solution is nπ + α — no ±, no (−1)ⁿ.",
         "lines": [
+          {
+            "text": "(a product is 0 only when one factor is 0)",
+            "added": true
+          },
           "⇒ tanθ = 1  (or)  tanθ = 1/2",
           "Now tanθ = 1 = tan(π/4), so α = π/4",
           "For tanθ = tanα, θ = nπ + α",
@@ -183,6 +211,12 @@
         "common_mistakes": [
           "Using 2nπ ± α for a tangent equation.",
           "Adding a (−1)ⁿ that does not belong."
+        ],
+        "lines_compact": [
+          "⇒ tanθ = 1  (or)  tanθ = 1/2",
+          "Now tanθ = 1 = tan(π/4), so α = π/4",
+          "For tanθ = tanα, θ = nπ + α",
+          "∴ θ = nπ + π/4,  n ∈ Z"
         ]
       },
       {
@@ -195,7 +229,15 @@
         "memory_tip": "tan θ = 1/2 is not a standard angle, so the principal value stays as Tan⁻¹(1/2). That is the exact answer.",
         "lines": [
           "Also tanθ = 1/2 ⇒ θ = Tan⁻¹(1/2)",
+          {
+            "text": "(Tan⁻¹(1/2) is not a standard angle, so it is left as it is)",
+            "added": true
+          },
           "Here the principal value is α = Tan⁻¹(1/2)",
+          {
+            "text": "(the tangent general solution nπ + α for each root)",
+            "added": true
+          },
           {
             "text": "∴ θ = nπ + π/4  or",
             "style": "boxed"
@@ -231,6 +273,18 @@
         "common_mistakes": [
           "Reporting only the π/4 family.",
           "Trying to force 1/2 into a standard angle."
+        ],
+        "lines_compact": [
+          "Also tanθ = 1/2 ⇒ θ = Tan⁻¹(1/2)",
+          "Here the principal value is α = Tan⁻¹(1/2)",
+          {
+            "text": "∴ θ = nπ + π/4  or",
+            "style": "boxed"
+          },
+          {
+            "text": "θ = nπ + Tan⁻¹(1/2),  n ∈ Z",
+            "style": "boxed"
+          }
         ]
       }
     ]
