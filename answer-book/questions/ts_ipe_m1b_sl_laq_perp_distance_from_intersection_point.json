@@ -130,13 +130,13 @@
             "point P"
           ]
         },
-        "why": "Every later mark rests on this point, so a one-line check here protects the whole second half of the answer.",
+        "why": "Every later mark rests on this point, so a one-line check here catches a slip before it affects the rest of the answer.",
         "common_mistakes": [
           "Reading x = 2 by dropping the minus sign.",
           "Skipping the check and carrying an arithmetic slip into the formula."
         ],
         "mark_note": "Method",
-        "memory_tip": "Put the point back into one of the given lines — a one-line check protects every mark after it."
+        "memory_tip": "Put the point back into one of the given lines — a one-line check catches a slip before the later marks."
       },
       {
         "id": "s3_distance_formula",

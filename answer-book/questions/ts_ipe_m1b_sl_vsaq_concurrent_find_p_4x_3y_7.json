@@ -83,7 +83,7 @@
             "point of intersection"
           ]
         },
-        "why": "A pair containing p would leave two unknowns and no way forward, so the p-free pair is the only pair worth solving; their meeting point is the single point the third line is forced through.",
+        "why": "A pair containing p would leave two unknowns and no way forward, so the pair free of p is the pair to solve; their meeting point is the point the third line must pass through.",
         "common_mistakes": [
           "Writing 4x − 3y = 7 as 4x − 3y + 7 = 0 and carrying a sign error.",
           "Trying to solve a pair that still contains p."
@@ -132,7 +132,7 @@
             "concurrent"
           ]
         },
-        "why": "Concurrency is the only extra information the question gives, and this substitution is the only place it can be used.",
+        "why": "Concurrency is the extra information the question gives, and this substitution is where it is used.",
         "common_mistakes": [
           "Reading p(−1) as +p and getting p = −4.",
           "Substituting into one of the first two lines, which gives no equation in p."

@@ -131,7 +131,7 @@
             "x over a"
           ]
         },
-        "why": "Intercept form must have 1 on the right-hand side — that is the whole definition, and dividing by the constant is the only way to arrange it.",
+        "why": "Intercept form must have 1 on the right-hand side — that is the definition, and dividing by the constant arranges it.",
         "common_mistakes": [
           "Leaving a number other than 1 on the right.",
           "Forgetting to divide one of the two terms."

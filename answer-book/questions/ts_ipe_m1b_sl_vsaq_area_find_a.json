@@ -49,7 +49,7 @@
         "kind": "equation",
         "label": "Read off the coefficients",
         "marks": 1,
-        "margin_note": "First mark. The triangle a line makes with BOTH axes has a formula of its own — Δ = r²/(2|pq|) — so the only setting-up needed is to compare with px + qy + r = 0.",
+        "margin_note": "First mark. The triangle a line makes with BOTH axes has a formula of its own — Δ = r²/(2|pq|) — so the setting-up needed is to compare with px + qy + r = 0.",
         "memory_tip": "The triangle a line makes with BOTH axes has its own formula, Δ = r²/(2|pq|) — just compare coefficients.",
         "lines": [
           {
@@ -128,7 +128,7 @@
             "solve"
           ]
         },
-        "why": "a appears squared in the formula, so both a positive and a negative value give the same area — both are genuine answers.",
+        "why": "a appears squared in the formula, so both a positive and a negative value give the same area — both are correct answers.",
         "common_mistakes": [
           "Reporting only the positive value of a.",
           "Forgetting to square r before dividing."

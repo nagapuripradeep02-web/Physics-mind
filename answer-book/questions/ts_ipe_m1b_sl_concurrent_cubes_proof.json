@@ -55,7 +55,8 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given lines  ax + by + c = 0 ……(1),  bx + cy + a = 0 ……(2)",
+          "Given lines  ax + by + c = 0 ……(1),",
+          "bx + cy + a = 0 ……(2)",
           "Solving (1) and (2), we get P,",
           "x / (ba − (c)(c)) = y / (cb − (a)(a)) = 1 / (ac − (b)(b))",
           "⇒ x/(ab − c²) = y/(bc − a²) = 1/(ca − b²)"
@@ -82,7 +83,7 @@
             "solve"
           ]
         },
-        "why": "A proof and a numerical question use the same machinery here — only the arithmetic is replaced by algebra.",
+        "why": "A proof and a numerical question use the same method here — only the arithmetic is replaced by algebra.",
         "common_mistakes": [
           "Mismatching which coefficient pairs with which in the cross-multiplication.",
           "Losing a sign in one of the three denominators."
@@ -98,7 +99,8 @@
         "margin_note": "Read off the point. Both coordinates share the denominator ca − b², which will clear when the point is substituted.",
         "lines": [
           "⇒ x = (ab − c²)/(ca − b²)  and  y = (bc − a²)/(ca − b²)",
-          "∴ Point of intersection  P = ((ab − c²)/(ca − b²), (bc − a²)/(ca − b²))"
+          "∴ Point of intersection",
+          "P = ((ab − c²)/(ca − b²), (bc − a²)/(ca − b²))"
         ],
         "recall": {
           "credit": "say_it",
@@ -161,7 +163,7 @@
             "equals zero"
           ]
         },
-        "why": "The whole proof is one substitution — concurrency is the only hypothesis, and this is where it is used.",
+        "why": "The main step of the proof is this substitution — concurrency is the hypothesis, and this is where it is used.",
         "common_mistakes": [
           "Substituting into (1) or (2), which gives 0 = 0 and proves nothing.",
           "Forgetting to multiply the standalone b by the denominator."
@@ -214,5 +216,5 @@
       }
     ]
   },
-  "insider_note": "Do not simplify the point of intersection: the common denominator ca − b² cancels the moment it goes into the third line. What survives is 3abc − (a³ + b³ + c³) = 0, which is already the result."
+  "insider_note": "Do not simplify the point of intersection: the common denominator ca − b² clears as soon as the point is put into the third line. What is left is 3abc − (a³ + b³ + c³) = 0, which gives the result."
 }

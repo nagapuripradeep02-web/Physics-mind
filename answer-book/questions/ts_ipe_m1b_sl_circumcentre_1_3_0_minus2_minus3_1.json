@@ -63,8 +63,8 @@
         "kind": "text",
         "label": "Set up the equal-distance condition",
         "marks": 1,
-        "margin_note": "First mark. The circumcentre is the one point equally far from all three vertices, so the whole answer is the single line SA = SB = SC turned into algebra.",
-        "memory_tip": "The circumcentre is the one point equally far from all three vertices: SA = SB = SC turned into algebra.",
+        "margin_note": "First mark. The circumcentre is the one point equally far from all three vertices, so the method is to write SA = SB = SC as equations.",
+        "memory_tip": "The circumcentre is the one point equally far from all three vertices: SA = SB = SC written as equations.",
         "lines": [
           {
             "text": "Sol:",
@@ -96,7 +96,7 @@
             "all three vertices"
           ]
         },
-        "why": "The circumcentre is DEFINED by being equidistant from the vertices, so that definition is the equation. Two of the three equalities are enough to pin one point.",
+        "why": "The circumcentre is DEFINED by being equidistant from the vertices, so that definition is the equation. Two of the three equalities are enough to fix one point.",
         "common_mistakes": [
           "Confusing the circumcentre with the centroid and averaging the coordinates.",
           "Using only one equality, which leaves a whole line of possible points."
@@ -268,8 +268,8 @@
         "kind": "equation",
         "label": "First equation from SA = SB",
         "marks": 2,
-        "margin_note": "Two marks. Square both sides at once — the square roots vanish and, better, the x² and y² terms cancel across the equals sign, so a SECOND-degree statement collapses to a FIRST-degree line. That collapse is the whole reason this method works.",
-        "memory_tip": "Square both sides: the x² and y² terms CANCEL, so a second-degree statement collapses to a line.",
+        "margin_note": "Two marks. Square both sides at once — the square roots go, and the x² and y² terms cancel from the two sides, so the second-degree equation becomes a FIRST-degree equation, which is a straight line.",
+        "memory_tip": "Square both sides: the x² and y² terms CANCEL, so the equation becomes first degree, a straight line.",
         "lines": [
           "Step-1: Take SA = SB",
           "⇒ √((x−1)² + (y−3)²) = √((x−0)² + (y+2)²)",
@@ -302,7 +302,7 @@
             "linear"
           ]
         },
-        "why": "Both sides carry x² + y², so subtracting removes them. What survives is the perpendicular bisector of AB — a line, which is far easier to work with than a circle.",
+        "why": "Both sides contain x² + y², so these terms cancel. What is left is the equation of the perpendicular bisector of AB, which is a straight line.",
         "common_mistakes": [
           "Squaring only one side of the equality.",
           "Forgetting to cancel and carrying x² terms into the next step."
@@ -404,5 +404,5 @@
       }
     ]
   },
-  "insider_note": "Square both sides straight away — the x² and y² terms cancel every time, so no root ever survives. Two linear equations are left, and subtracting them here removes x in a single step."
+  "insider_note": "Square both sides straight away — the square roots go and the x² and y² terms cancel, so two linear equations are left, and subtracting them here removes x in a single step."
 }

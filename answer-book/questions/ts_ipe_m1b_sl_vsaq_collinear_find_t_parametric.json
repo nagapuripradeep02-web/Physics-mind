@@ -129,7 +129,7 @@
             "factorise"
           ]
         },
-        "why": "At t = 2 the three points are genuinely different and lie on a line of slope 4. At t = 0 the first two points are the same point, and any three points of which two coincide lie on a line, so t = 0 also satisfies the condition as printed.",
+        "why": "At t = 2 the three points are all different and lie on a line of slope 4. At t = 0 the first two points are the same point, and any three points of which two coincide lie on a line, so t = 0 also satisfies the condition as printed.",
         "common_mistakes": [
           "Cancelling t and reporting only t = 2.",
           "Making a sign slip in 3(2t − 6t) and getting a wrong quadratic."

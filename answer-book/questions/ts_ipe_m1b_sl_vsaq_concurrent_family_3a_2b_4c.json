@@ -46,7 +46,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. In ax + by + c = 0 the constant c has coefficient 1, so the given condition must be divided by 4 to look the same.",
-        "memory_tip": "Make the c terms match first: divide the whole condition by the number in front of c.",
+        "memory_tip": "Make the c terms match first: divide the condition by the number in front of c.",
         "lines": [
           {
             "text": "Sol:",
@@ -81,7 +81,7 @@
             "coefficient of c"
           ]
         },
-        "why": "Two expressions can only be compared term by term when they are written the same way, and the family's constant term is plain c; dividing the condition by 4 is the only step needed to make the comparison legal.",
+        "why": "Two expressions can only be compared term by term when they are written the same way, and the family's constant term is plain c; dividing the condition by 4 makes the two match term by term.",
         "common_mistakes": [
           "Dividing by 3 or by 2 instead of by the coefficient of c.",
           "Reading the point straight off as (3, 2) with no division at all."
@@ -134,7 +134,7 @@
         "why": "A point that satisfies ax + by + c = 0 for every allowed a, b and c lies on every line of the family, so all the lines pass through it. That single statement both proves concurrency and names the point.",
         "common_mistakes": [
           "Writing the point as (1/2, 3/4), with the coordinates swapped.",
-          "Proving concurrency for two chosen lines only, instead of for the whole family."
+          "Proving concurrency for two chosen lines only, instead of for every line of the family."
         ]
       }
     ]

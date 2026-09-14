@@ -103,7 +103,7 @@
         "label": "Write the 45° condition",
         "marks": 2,
         "mark_note": "Method",
-        "margin_note": "Two marks. Write the angle formula in full, then put tan 45° = 1 so the whole modulus equals 1.",
+        "margin_note": "Two marks. Write the angle formula in full, then put tan 45° = 1 so the modulus equals 1.",
         "lines": [
           "The angle between the two lines is 45°, so",
           "tan 45° = |(m − m₁)/(1 + m m₁)|",

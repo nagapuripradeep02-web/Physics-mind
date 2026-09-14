@@ -93,7 +93,7 @@
         "why": "Everything in this proof follows from PQ being perpendicular to the line, so both slopes have to be on the page before that fact can be used.",
         "common_mistakes": [
           "Reading the line's slope as −b/a.",
-          "Writing the slope of PQ upside down."
+          "Writing the slope of PQ as (h − x₁)/(k − y₁), the reciprocal."
         ],
         "mark_note": "Method"
       },
@@ -102,7 +102,7 @@
         "kind": "diagram",
         "label": "Draw P, the line and the image",
         "marks": 0,
-        "margin_note": "Worth no mark but worth drawing, and it is the picture that explains the factor 2. Q is the mirror point, so the line cuts PQ in HALF — the two tick marks are equal, and it is the MIDPOINT R that lies on the line, not Q.",
+        "margin_note": "Worth no mark but worth drawing, and it is the picture that explains the factor 2. Q is the reflection of P, so the line cuts PQ in HALF — the two tick marks are equal, and it is the MIDPOINT R that lies on the line, not Q.",
         "memory_tip": "The picture explains the factor 2: the line cuts PQ in HALF, so it is the MIDPOINT that lies on it.",
         "recall": {
           "credit": "name_it",
@@ -127,7 +127,7 @@
             "R on the line"
           ]
         },
-        "why": "An image is the mirror point, so the line is the perpendicular BISECTOR of PQ. Q itself is NOT on the line — its midpoint with P is, and halving inside the equation is what doubles the answer.",
+        "why": "The image Q is the reflection of P in the line, so the line is the perpendicular BISECTOR of PQ. Q itself is NOT on the line — the midpoint of PQ is, and the halves in the midpoint are what produce the factor 2 in the answer.",
         "common_mistakes": [
           "Drawing Q on the line, which makes it the foot of the perpendicular instead.",
           "Drawing PR and RQ unequal, which loses the bisection the proof depends on."
@@ -223,7 +223,11 @@
         "memory_tip": "m₁m₂ = −1 makes the two ratios equal; call the common value r.",
         "lines": [
           "Two lines are perpendicular ⇒ m₁m₂ = −1",
-          "⇒ [(k − y₁)/(h − x₁)] · (−a/b) = −1   ⇒   [(k − y₁)/(h − x₁)](a/b) = 1",
+          "⇒ [(k − y₁)/(h − x₁)] · (−a/b) = −1",
+          {
+            "text": "  ⇒   [(k − y₁)/(h − x₁)](a/b) = 1",
+            "style": "indent"
+          },
           "⇒ (k − y₁)/(h − x₁) = b/a   ⇒   (h − x₁)/a = (k − y₁)/b",
           "We take  (h − x₁)/a = (k − y₁)/b = r  ……(1)"
         ],
@@ -249,7 +253,7 @@
             "common value"
           ]
         },
-        "why": "Naming the common ratio r converts two unknowns h and k into ONE unknown, which is the move that makes a two-variable problem solvable in a line.",
+        "why": "Naming the common ratio r writes both h and k using ONE unknown, so a single condition on Q is enough to find it.",
         "common_mistakes": [
           "Setting m₁m₂ = 1 instead of −1.",
           "Keeping h and k separate and ending with two unknowns and one equation."
@@ -261,7 +265,7 @@
         "kind": "equation",
         "label": "Write h and k through r",
         "marks": 2,
-        "margin_note": "Two marks. Read (1) both ways round: each of h and k is now its P-coordinate plus a multiple of r. The point Q is pinned by the single number r.",
+        "margin_note": "Two marks. Read (1) both ways round: each of h and k is now its P-coordinate plus a multiple of r. The point Q is fixed by the single number r.",
         "memory_tip": "h and k are each P's coordinate plus a multiple of r.",
         "lines": [
           "∴ (h − x₁)/a = r  ⇒  h − x₁ = ar  ⇒  h = x₁ + ar",
@@ -288,7 +292,7 @@
             "in terms of r"
           ]
         },
-        "why": "With h and k both written through r, any single condition on Q becomes a single equation in r — and that condition is the only place the two proofs differ.",
+        "why": "With h and k both written through r, any single condition on Q becomes a single equation in r — and that condition is where the foot and image proofs differ.",
         "common_mistakes": [
           "Writing h = x₁ + br and k = y₁ + ar, with a and b swapped.",
           "Dropping the x₁ or y₁ when rearranging."
@@ -300,8 +304,8 @@
         "kind": "boxed_final",
         "label": "Find r from the condition",
         "marks": 3,
-        "margin_note": "The last three marks, and the ONLY place this proof differs from its neighbour. The IMAGE is the mirror point, so the line bisects PQ — it is the MIDPOINT R that lies on the line, not Q itself. That midpoint is where the factor 2 in the answer comes from.",
-        "memory_tip": "The IMAGE is a mirror point, so the MIDPOINT lies on the line, not Q — and that is where the 2 comes from.",
+        "margin_note": "The last three marks, and the step where this proof differs from the foot-of-perpendicular proof. The IMAGE is the reflection of P, so the line bisects PQ — it is the MIDPOINT R that lies on the line, not Q itself. That midpoint is where the factor 2 in the answer comes from.",
+        "memory_tip": "The IMAGE is the reflection of P, so the MIDPOINT of PQ lies on the line, not Q — and that is where the 2 comes from.",
         "lines": [
           "Now P = (x₁, y₁), Q = (h, k) ⇒ Mid point of PQ is",
           "R = ((x₁ + h)/2, (y₁ + k)/2)",
@@ -314,7 +318,11 @@
           "⇒ r = −2(ax₁ + by₁ + c)/(a² + b²)  ……(2)",
           "From (1) & (2),",
           {
-            "text": "∴ (h − x₁)/a = (k − y₁)/b = −2(ax₁ + by₁ + c)/(a² + b²)",
+            "text": "∴ (h − x₁)/a = (k − y₁)/b",
+            "style": "boxed"
+          },
+          {
+            "text": "= −2(ax₁ + by₁ + c)/(a² + b²)",
             "style": "boxed"
           }
         ],
@@ -340,7 +348,7 @@
             "lies on the line"
           ]
         },
-        "why": "An image is the mirror point, so the line is the perpendicular BISECTOR of PQ — Q itself is not on the line, its midpoint with P is. Halving inside the equation is what doubles the final numerator.",
+        "why": "The image Q is the reflection of P, so the line is the perpendicular BISECTOR of PQ — Q itself is not on the line, but the midpoint of PQ is. Clearing the halves in the midpoint gives the factor 2 in the final numerator.",
         "common_mistakes": [
           "Putting Q on the line, which gives the foot-of-perpendicular answer with no factor 2.",
           "Forgetting to multiply the constant c by 2 when clearing the halves."

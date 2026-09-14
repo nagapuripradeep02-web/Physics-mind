@@ -93,7 +93,7 @@
         "why": "Everything in this proof follows from PQ being perpendicular to the line, so both slopes have to be on the page before that fact can be used.",
         "common_mistakes": [
           "Reading the line's slope as −b/a.",
-          "Writing the slope of PQ upside down."
+          "Writing the slope of PQ as (h − x₁)/(k − y₁), the reciprocal."
         ],
         "mark_note": "Method"
       },
@@ -102,8 +102,8 @@
         "kind": "diagram",
         "label": "Draw P, the line and the foot",
         "marks": 0,
-        "margin_note": "Worth no mark but worth drawing. The picture carries the one fact the second half turns on: Q sits ON the line, so its coordinates satisfy the line's equation.",
-        "memory_tip": "The picture carries the fact the second half turns on: Q sits ON the line.",
+        "margin_note": "Worth no mark but worth drawing. The picture shows the fact the second half uses: Q lies ON the line, so its coordinates satisfy the line's equation.",
+        "memory_tip": "The picture shows the fact the second half uses: Q lies ON the line.",
         "recall": {
           "credit": "name_it",
           "must_convey": "That P, the line and the foot Q are sketched, with Q lying on the line. Naming the drawing is full credit — it cannot be spoken.",
@@ -127,10 +127,10 @@
             "right angle"
           ]
         },
-        "why": "The foot of a perpendicular lies ON the line by definition — the drawing is what makes that obvious, and it is the only thing separating this proof from its neighbour.",
+        "why": "The foot of a perpendicular lies ON the line by definition — the drawing shows that, and it is the fact that separates this proof from the image-of-a-point proof.",
         "common_mistakes": [
           "Drawing Q off the line, which is the image rather than the foot.",
-          "Omitting the right-angle mark, which is the whole reason PQ is perpendicular."
+          "Omitting the right-angle mark, which shows that PQ is perpendicular to the line."
         ],
         "figure": {
           "id": "foot_of_perpendicular",
@@ -202,7 +202,11 @@
         "memory_tip": "m₁m₂ = −1 rearranges to say the two ratios are EQUAL — naming that common value r shortens everything.",
         "lines": [
           "Two lines are perpendicular ⇒ m₁m₂ = −1",
-          "⇒ [(k − y₁)/(h − x₁)] · (−a/b) = −1   ⇒   [(k − y₁)/(h − x₁)](a/b) = 1",
+          "⇒ [(k − y₁)/(h − x₁)] · (−a/b) = −1",
+          {
+            "text": "  ⇒   [(k − y₁)/(h − x₁)](a/b) = 1",
+            "style": "indent"
+          },
           "⇒ (k − y₁)/(h − x₁) = b/a   ⇒   (h − x₁)/a = (k − y₁)/b",
           "We take  (h − x₁)/a = (k − y₁)/b = r  ……(1)"
         ],
@@ -228,7 +232,7 @@
             "common value"
           ]
         },
-        "why": "Naming the common ratio r converts two unknowns h and k into ONE unknown, which is the move that makes a two-variable problem solvable in a line.",
+        "why": "Naming the common ratio r writes both h and k using ONE unknown, so a single condition on Q is enough to find it.",
         "common_mistakes": [
           "Setting m₁m₂ = 1 instead of −1.",
           "Keeping h and k separate and ending with two unknowns and one equation."
@@ -240,8 +244,8 @@
         "kind": "equation",
         "label": "Write h and k through r",
         "marks": 2,
-        "margin_note": "Two marks. Read (1) both ways round: each of h and k is now its P-coordinate plus a multiple of r. The point Q is pinned by the single number r.",
-        "memory_tip": "Each of h and k is its P-coordinate plus a multiple of r, so Q is pinned by one number.",
+        "margin_note": "Two marks. Read (1) both ways round: each of h and k is now its P-coordinate plus a multiple of r. The point Q is fixed by the single number r.",
+        "memory_tip": "Each of h and k is its P-coordinate plus a multiple of r, so Q is fixed by one number.",
         "lines": [
           "∴ (h − x₁)/a = r  ⇒  h − x₁ = ar  ⇒  h = x₁ + ar",
           "   (k − y₁)/b = r  ⇒  k − y₁ = br  ⇒  k = y₁ + br"
@@ -267,7 +271,7 @@
             "in terms of r"
           ]
         },
-        "why": "With h and k both written through r, any single condition on Q becomes a single equation in r — and that condition is the only place the two proofs differ.",
+        "why": "With h and k both written through r, any single condition on Q becomes a single equation in r — and that condition is where the foot and image proofs differ.",
         "common_mistakes": [
           "Writing h = x₁ + br and k = y₁ + ar, with a and b swapped.",
           "Dropping the x₁ or y₁ when rearranging."
@@ -279,7 +283,7 @@
         "kind": "boxed_final",
         "label": "Find r from the condition",
         "marks": 3,
-        "margin_note": "The last three marks, and the ONLY place this proof differs from its neighbour. The FOOT of the perpendicular lies ON the line, so its coordinates satisfy the line's equation — substitute and solve for r.",
+        "margin_note": "The last three marks, and the step where this proof differs from the image proof. The FOOT of the perpendicular lies ON the line, so its coordinates satisfy the line's equation — substitute and solve for r.",
         "memory_tip": "The FOOT lies ON the line, so Q's own coordinates satisfy the equation. Substitute and solve for r.",
         "lines": [
           "But Q(h, k) lies on ax + by + c = 0",
@@ -290,7 +294,11 @@
           "⇒ r = −(ax₁ + by₁ + c)/(a² + b²)  ……(2)",
           "From (1) & (2),",
           {
-            "text": "∴ (h − x₁)/a = (k − y₁)/b = −(ax₁ + by₁ + c)/(a² + b²)",
+            "text": "∴ (h − x₁)/a = (k − y₁)/b",
+            "style": "boxed"
+          },
+          {
+            "text": "= −(ax₁ + by₁ + c)/(a² + b²)",
             "style": "boxed"
           }
         ],
@@ -316,7 +324,7 @@
             "a squared plus b squared"
           ]
         },
-        "why": "The foot of a perpendicular is by definition the point where the perpendicular MEETS the line, so it lies on the line — that single fact is the whole of the second half.",
+        "why": "The foot of a perpendicular is by definition the point where the perpendicular MEETS the line, so it lies on the line — the second half uses that fact.",
         "common_mistakes": [
           "Using the midpoint condition, which belongs to the image proof and gives a factor of 2.",
           "Forgetting to take (a² + b²) common before dividing."
@@ -325,5 +333,5 @@
       }
     ]
   },
-  "insider_note": "The whole proof turns on naming the common ratio r, which gives h = x₁ + ar and k = y₁ + br. Q lies ON the line, so substituting those produces r directly — no distance formula is needed anywhere."
+  "insider_note": "The key step of the proof is naming the common ratio r, which gives h = x₁ + ar and k = y₁ + br. Q lies ON the line, so substituting those produces r directly — no distance formula is needed anywhere."
 }

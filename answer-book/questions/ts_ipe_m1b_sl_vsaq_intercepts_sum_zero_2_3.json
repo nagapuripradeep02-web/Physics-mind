@@ -79,7 +79,7 @@
             "intercepts"
           ]
         },
-        "why": "Any condition stated about intercepts is cheapest to use in the intercept form — the condition collapses two unknowns to one before any point is substituted.",
+        "why": "A condition stated about intercepts is easiest to use in the intercept form — the condition reduces two unknowns to one before any point is substituted.",
         "common_mistakes": [
           "Using the slope-intercept form, which hides the intercepts.",
           "Introducing two separate unknowns when the condition ties them together."
@@ -133,5 +133,5 @@
       }
     ]
   },
-  "insider_note": "Sum zero means the intercepts are a and −a, so the form collapses to x − y = a. The point gives a = −1, and the answer is x − y + 1 = 0 — write the line, not just the value of a."
+  "insider_note": "Sum zero means the intercepts are a and −a, so the form becomes x − y = a. The point gives a = −1, and the answer is x − y + 1 = 0 — write the line, not just the value of a."
 }

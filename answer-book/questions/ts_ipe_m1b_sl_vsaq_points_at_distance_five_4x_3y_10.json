@@ -92,8 +92,8 @@
         "kind": "equation",
         "label": "Write the parametric point",
         "marks": 0,
-        "margin_note": "The two points sit at distance 5 on EITHER side of (1, −2), so the ± is written into the parametric form from the start.",
-        "memory_tip": "The two points sit on EITHER side, so write the ± into the parametric form from the start.",
+        "margin_note": "The two points lie at distance 5 on EITHER side of (1, −2), so the ± is written into the parametric form from the start.",
+        "memory_tip": "The two points lie on EITHER side, so write the ± into the parametric form from the start.",
         "lines": [
           "Given distance |r| = 5",
           "Given point (x₁, y₁) = (1, −2)",

@@ -129,7 +129,7 @@
             "distance r"
           ]
         },
-        "why": "One unknown r replaces two unknown coordinates, which is the whole advantage of the parametric form over the ordinary one.",
+        "why": "One unknown r replaces two unknown coordinates, which is the advantage of the parametric form over the ordinary one.",
         "common_mistakes": [
           "Swapping cosθ and sinθ between the two coordinates.",
           "Leaving r out of one of the two coordinates."
@@ -171,7 +171,7 @@
             "equation in r"
           ]
         },
-        "why": "Everything before this was setting up; this is the step that actually uses the line P sits on.",
+        "why": "Everything before this was setting up; this is the step that uses the line P lies on.",
         "common_mistakes": [
           "Substituting into the wrong line.",
           "Forgetting to distribute a coefficient across both parts of a coordinate."

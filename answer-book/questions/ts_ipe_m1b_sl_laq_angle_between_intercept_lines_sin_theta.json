@@ -56,7 +56,7 @@
         "kind": "equation",
         "label": "Write both lines in standard form",
         "marks": 1,
-        "margin_note": "First mark. The slope of Ax + By + C = 0 is −A/B, so clear the denominators first — here a and b are the INTERCEPTS, not the coefficients. Take a > b > 0: the stem gives a > b, and a and b must both be positive for a² − b² to be positive, which the boxed answer needs.",
+        "margin_note": "First mark. The slope of Ax + By + C = 0 is −A/B, so clear the denominators first — here a and b are the INTERCEPTS, not the coefficients. Take a > b > 0: the stem gives a > b, and taking a and b both positive, as intercept lengths, makes a² − b² positive, which the boxed answer needs.",
         "lines": [
           {
             "text": "Sol:",
@@ -143,7 +143,7 @@
         "kind": "equation",
         "label": "Write the angle formula",
         "marks": 2,
-        "margin_note": "The next two marks. Quote tan θ = |(m₁ − m₂)/(1 + m₁m₂)| and work out the numerator and the denominator separately — the denominator collapses to 2.",
+        "margin_note": "The next two marks. Quote tan θ = |(m₁ − m₂)/(1 + m₁m₂)| and work out the numerator and the denominator separately — the denominator simplifies to 2.",
         "lines": [
           "tan θ = |(m₁ − m₂)/(1 + m₁m₂)|",
           "m₁ − m₂ = −b/a + a/b = (a² − b²)/(ab)",
@@ -257,7 +257,7 @@
             "sin theta"
           ]
         },
-        "why": "(a² − b²)² + 4a²b² = (a² + b²)², so the hypotenuse is exact and no surd survives. The same answer follows in one line from sin θ = |a₁b₂ − a₂b₁| / (√(a₁² + b₁²)√(a₂² + b₂²)).",
+        "why": "(a² − b²)² + 4a²b² = (a² + b²)², so the hypotenuse is a² + b² exactly, with no square root left. The same answer follows in one line from sin θ = |a₁b₂ − a₂b₁| / (√(a₁² + b₁²)√(a₂² + b₂²)).",
         "common_mistakes": [
           "Writing the hypotenuse as a² − b² + 2ab.",
           "Reading sin θ as adjacent over hypotenuse."

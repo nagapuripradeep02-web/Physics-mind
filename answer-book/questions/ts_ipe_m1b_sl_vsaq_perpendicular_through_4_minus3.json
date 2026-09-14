@@ -52,8 +52,8 @@
         "kind": "equation",
         "label": "Find the required slope",
         "marks": 1,
-        "margin_note": "First mark. Read the given line's slope off its coefficients as −a/b, then flip and negate it, because perpendicular slopes multiply to −1.",
-        "memory_tip": "Read the slope off as −a/b, then FLIP AND NEGATE — perpendicular slopes multiply to −1.",
+        "margin_note": "First mark. Read the given line's slope off its coefficients as −a/b, then take its negative reciprocal, because perpendicular slopes multiply to −1.",
+        "memory_tip": "Read the slope off as −a/b, then take the NEGATIVE RECIPROCAL — perpendicular slopes multiply to −1.",
         "lines": [
           {
             "text": "Sol:",
@@ -96,10 +96,11 @@
         "kind": "boxed_final",
         "label": "Write the line through the point",
         "marks": 1,
-        "margin_note": "Second mark. Point-slope form, then clear the fraction and collect. There is also a one-line shortcut for this shape, given below.",
+        "margin_note": "Second mark. Point-slope form, then clear the fraction and collect. A shorter one-line method for this type is given below.",
         "memory_tip": "Point-slope form through the given point, then clear and collect.",
         "lines": [
-          "Perpendicular through (4, −3) with slope −3/5 is  y − y₁ = (−1/m)(x − x₁)",
+          "Perpendicular through (4, −3) with slope −3/5 is",
+          "y − y₁ = (−1/m)(x − x₁)",
           "⇒ y + 3 = (−3/5)(x − 4)",
           "⇒ 5(y + 3) = −3(x − 4)",
           "⇒ 5y + 15 = −3x + 12",
@@ -111,7 +112,8 @@
             "text": "Easy Solution:",
             "style": "heading"
           },
-          "The perpendicular line is given by  b(x − x₁) − a(y − y₁) = 0",
+          "The perpendicular line is given by",
+          "b(x − x₁) − a(y − y₁) = 0",
           "⇒ −3(x − 4) − 5(y + 3) = 0",
           "⇒ −3x + 12 − 5y − 15 = 0  ⇒  3x + 5y + 3 = 0"
         ],
@@ -136,7 +138,7 @@
             "required line"
           ]
         },
-        "why": "The shortcut works because a perpendicular line keeps the same coefficients swapped with one sign changed, so only the constant has to be recomputed.",
+        "why": "The shorter method works because a perpendicular line keeps the same coefficients swapped with one sign changed, so only the constant has to be recomputed.",
         "common_mistakes": [
           "Sign slip when the point has a negative coordinate.",
           "Leaving the answer with a fraction in it."
@@ -145,5 +147,5 @@
       }
     ]
   },
-  "insider_note": "The short route is b(x − x₁) − a(y − y₁) = 0, which swaps the coefficients and flips one sign — no reciprocal needed. The point's y is −3, so that bracket is (y + 3)."
+  "insider_note": "A shorter method is b(x − x₁) − a(y − y₁) = 0, which swaps the coefficients and changes one sign — no reciprocal needed. The point's y is −3, so that bracket is (y + 3)."
 }

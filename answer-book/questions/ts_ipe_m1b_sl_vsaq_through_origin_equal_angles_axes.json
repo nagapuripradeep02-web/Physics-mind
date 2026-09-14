@@ -80,7 +80,7 @@
             "inclination"
           ]
         },
-        "why": "A line drawn at 135° leans the other way, but the angle it makes with each axis is still measured as the acute angle, and that angle is again 45°. That is why the question asks for lines and not one line.",
+        "why": "A line at 135° also makes an angle of 45° with each axis, because the angle between a line and an axis is taken as the acute angle. That is why the question asks for lines and not one line.",
         "common_mistakes": [
           "Stopping at 45° and giving only one line.",
           "Taking the angle with the Y-axis as θ as well, which gives no equation."
@@ -127,7 +127,7 @@
             "slope minus one"
           ]
         },
-        "why": "tan 135° = −tan 45° = −1, so the second line has the same steepness with the opposite lean. Both pass through the origin because the constant term is zero.",
+        "why": "tan 135° = −tan 45° = −1, so the second line has a slope of the same size with the opposite sign. Both pass through the origin because the constant term is zero.",
         "common_mistakes": [
           "Writing tan 135° as 1 and losing the second line.",
           "Adding a constant term to a line that must pass through the origin."

@@ -171,7 +171,7 @@
             "equation in r"
           ]
         },
-        "why": "Everything before this was setting up; this is the step that uses the line P sits on.",
+        "why": "Everything before this was setting up; this is the step that uses the line P lies on.",
         "common_mistakes": [
           "Substituting into the wrong line.",
           "Dropping the −7 while collecting the constants."
@@ -224,7 +224,7 @@
         "kind": "boxed_final",
         "label": "Name P and state PQ",
         "marks": 1,
-        "margin_note": "Last mark. Putting r back gives P, and substituting P into the given line checks the whole answer in one line.",
+        "margin_note": "Last mark. Putting r back gives P, and substituting P into the given line checks the answer in one line.",
         "lines": [
           "P = (2 + √2/√2, 3 + √2/√2) = (3, 4)",
           "Check: 3 + 4 − 7 = 0, so P is on the line.",

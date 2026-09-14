@@ -107,8 +107,8 @@
         "kind": "diagram",
         "label": "Draw the triangle",
         "marks": 0,
-        "margin_note": "Worth no mark but worth drawing. Two altitudes are enough to fix O — the third passes through the same point on its own. The right-angle mark is the whole definition of an altitude.",
-        "memory_tip": "Two altitudes fix O; the right-angle mark IS the definition of an altitude.",
+        "margin_note": "Worth no mark but worth drawing. Two altitudes are enough to fix O — the third passes through the same point on its own. The right-angle mark shows that each altitude is perpendicular to the opposite side.",
+        "memory_tip": "Two altitudes fix O; the right-angle mark shows each altitude is perpendicular to the opposite side.",
         "recall": {
           "credit": "name_it",
           "must_convey": "That a triangle ABC is sketched with two altitudes drawn and their meeting point marked O. Naming the drawing is full credit — it cannot be spoken.",
@@ -241,8 +241,8 @@
         "kind": "equation",
         "label": "First altitude through A",
         "marks": 2,
-        "margin_note": "Two marks. Three moves in order: slope of the OPPOSITE side, flip-and-negate it for the perpendicular, then the point-slope form through the vertex.",
-        "memory_tip": "Opposite side's slope, flip and negate, then point-slope through the vertex.",
+        "margin_note": "Two marks. Three moves in order: slope of the OPPOSITE side, take its negative reciprocal for the perpendicular, then the point-slope form through the vertex.",
+        "memory_tip": "Opposite side's slope, then its negative reciprocal, then point-slope through the vertex.",
         "lines": [
           "Step-1: Finding altitude through A(−2, −1):",
           "Slope of BC is m = (5 + 1)/(2 − 6) = 6/(−4) = −3/2",
@@ -273,7 +273,7 @@
             "altitude through A"
           ]
         },
-        "why": "The altitude from A is perpendicular to BC, so its slope is −1/m where m is BC's slope. Getting the opposite side right is the step most often rushed.",
+        "why": "The altitude from A is perpendicular to BC, so its slope is −1/m where m is BC's slope. Make sure the side used is the one opposite A.",
         "common_mistakes": [
           "Using the slope of AB or AC instead of the opposite side BC.",
           "Taking the perpendicular slope as −m rather than −1/m."

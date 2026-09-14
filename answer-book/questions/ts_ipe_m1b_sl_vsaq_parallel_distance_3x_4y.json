@@ -49,7 +49,7 @@
         "kind": "equation",
         "label": "Match the coefficients",
         "marks": 1,
-        "margin_note": "First mark, and the step that decides the whole answer. The distance formula only works when BOTH lines carry the SAME a and b, so rescale one of them first.",
+        "margin_note": "First mark, and the step the answer depends on. The distance formula only works when BOTH lines carry the SAME a and b, so rescale one of them first.",
         "memory_tip": "The formula only works when BOTH lines carry the SAME a and b — rescale one first.",
         "lines": [
           {
@@ -82,7 +82,7 @@
             "match"
           ]
         },
-        "why": "Using the formula on mismatched coefficients gives a number that is wrong by exactly the scale factor — this is the single commonest error in the question type.",
+        "why": "Using the formula on mismatched coefficients gives a number that is wrong by exactly the scale factor — this is a common error in this type of question.",
         "common_mistakes": [
           "Applying the formula without rescaling.",
           "Rescaling the x and y terms but forgetting the constant."

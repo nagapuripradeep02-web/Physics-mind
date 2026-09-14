@@ -88,7 +88,7 @@
         },
         "why": "Both riders depend on the same number, the slope of AB, so it is worth computing carefully once; parallel lines are exactly the lines with that same slope.",
         "common_mistakes": [
-          "Computing the slope as (x₂ − x₁)/(y₂ − y₁), upside down.",
+          "Computing the slope as (x₂ − x₁)/(y₂ − y₁), the reciprocal of the slope.",
           "Sign slip in 1 − (−5), giving −4 instead of 6."
         ]
       },
@@ -98,8 +98,8 @@
         "label": "Part (2) the perpendicular line",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Second mark. Flip the slope and change its sign, then check m₁m₂ = −1 before writing the line — that check is what catches a swap with no sign change.",
-        "memory_tip": "Perpendicular: flip the slope and change the sign. Then check m₁m₂ = −1 before you write the line.",
+        "margin_note": "Second mark. Take the reciprocal of the slope and change its sign, then check m₁m₂ = −1 before writing the line — that check is what catches a swap with no sign change.",
+        "memory_tip": "Perpendicular: take the reciprocal of the slope and change the sign. Then check m₁m₂ = −1 before you write the line.",
         "lines": [
           "(2) The perpendicular slope is",
           "m₂ = −1/m = −1/(−2/3) = 3/2",

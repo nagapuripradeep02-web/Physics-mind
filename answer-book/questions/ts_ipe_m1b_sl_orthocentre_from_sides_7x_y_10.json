@@ -52,17 +52,22 @@
         "kind": "equation",
         "label": "Find vertex A",
         "marks": 1,
-        "margin_note": "First mark. The triangle is handed over as three SIDES, not three corners, so a vertex has to be manufactured first: two sides meeting is one vertex.",
-        "memory_tip": "Sides are given, not corners, so manufacture a vertex first: two sides meeting is one vertex.",
+        "margin_note": "First mark. The triangle is given as three SIDES, not three vertices, so a vertex has to be found first: two sides meet at one vertex.",
+        "memory_tip": "Sides are given, not vertices, so find a vertex first: two sides meet at one vertex.",
         "lines": [
           {
             "text": "Sol:",
             "style": "heading"
           },
-          "Given lines are  7x + y − 10 = 0 ……(1),  x − 2y + 5 = 0 ……(2),  x + y + 2 = 0 ……(3)",
+          "Given lines are  7x + y − 10 = 0 ……(1),",
+          "x − 2y + 5 = 0 ……(2),  x + y + 2 = 0 ……(3)",
           "Step-1: Finding altitude through A:",
           "Solving (1) and (2), we get A;",
-          "x / [1(5) − (−2)(−10)] = y / [(−10)(1) − 5(7)] = 1 / [7(−2) − 1(1)]",
+          "x / [1(5) − (−2)(−10)] = y / [(−10)(1) − 5(7)]",
+          {
+            "text": "  = 1 / [7(−2) − 1(1)]",
+            "style": "indent"
+          },
           "⇒ x/(5 − 20) = y/(−10 − 35) = 1/(−14 − 1)",
           "⇒ x/(−15) = y/(−45) = 1/(−15)",
           "⇒ x = −15/−15 = 1,  y = −45/−15 = 3   ∴ A = (1, 3)"
@@ -89,7 +94,7 @@
             "point of intersection"
           ]
         },
-        "why": "When sides are given rather than vertices, every method needs the vertices first — that extra stage is the only difference from a triangle whose corners are given outright.",
+        "why": "When sides are given rather than vertices, every method needs the vertices first — that extra stage is the difference from a triangle whose vertices are given.",
         "common_mistakes": [
           "Trying to use the line coefficients as if they were coordinates.",
           "Solving the wrong pair for the vertex the altitude will pass through."
@@ -285,14 +290,27 @@
         "lines": [
           "Step-2: Finding altitude through B:",
           "Solving (1) and (3), we get B;",
-          "x / [1(2) − 1(−10)] = y / [(−10)(1) − 2(7)] = 1 / [7(1) − 1(1)]",
+          "x / [1(2) − 1(−10)] = y / [(−10)(1) − 2(7)]",
+          {
+            "text": "  = 1 / [7(1) − 1(1)]",
+            "style": "indent"
+          },
           "⇒ x/(2 + 10) = y/(−10 − 14) = 1/(7 − 1)",
-          "⇒ x/12 = y/(−24) = 1/6   ⇒   x = 12/6 = 2,  y = −24/6 = −4",
+          "⇒ x/12 = y/(−24) = 1/6",
+          {
+            "text": "  ⇒   x = 12/6 = 2,  y = −24/6 = −4",
+            "style": "indent"
+          },
           "∴ B = (2, −4)",
-          "From (2), slope of x − 2y + 5 = 0 is m = −a/b = −1/(−2) = 1/2",
+          "From (2), slope of x − 2y + 5 = 0 is",
+          "m = −a/b = −1/(−2) = 1/2",
           "Its perpendicular slope is −1/m = −1/(1/2) = −2",
           "Eq. of line through B(2, −4) with slope −2 is",
-          "y + 4 = −2(x − 2)   ⇒   y + 4 = −2x + 4   ⇒   2x + y = 0  ……(5)"
+          "y + 4 = −2(x − 2)   ⇒   y + 4 = −2x + 4",
+          {
+            "text": "  ⇒   2x + y = 0  ……(5)",
+            "style": "indent"
+          }
         ],
         "recall": {
           "credit": "say_it",

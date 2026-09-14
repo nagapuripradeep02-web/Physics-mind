@@ -94,7 +94,7 @@
         "label": "Use equal intercepts and finish",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Second mark. Equal intercepts collapses the intercept form to x + y = a, and the point then fixes the single unknown a.",
+        "margin_note": "Second mark. Equal intercepts reduce the intercept form to x + y = a, and the point then fixes the single unknown a.",
         "memory_tip": "Equal intercepts means x + y = a. The word non-zero is what throws out a = 0.",
         "lines": [
           "Intercepts are equal and non-zero, so take",
@@ -131,7 +131,7 @@
             "intercept form"
           ]
         },
-        "why": "A condition stated about intercepts is cheapest in the intercept form, because it removes one unknown before the point is used. The stem says non-zero to rule out x + y = 0, whose two intercepts are equal but both zero; here the point gives a = −32, so that case does not arise.",
+        "why": "A condition stated about intercepts is easiest to use in the intercept form, because it removes one unknown before the point is used. The stem says non-zero to rule out x + y = 0, whose two intercepts are equal but both zero; here the point gives a = −32, so that case does not arise.",
         "common_mistakes": [
           "Writing x − y = a, which is the equal in size but opposite in sign case.",
           "Stopping at a = −32 without writing the equation of the line."

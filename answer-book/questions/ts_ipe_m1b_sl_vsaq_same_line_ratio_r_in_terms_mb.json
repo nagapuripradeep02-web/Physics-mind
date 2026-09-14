@@ -80,7 +80,7 @@
             "proportional"
           ]
         },
-        "why": "Multiplying an equation by a non-zero number does not change the line it describes, and that is the only way two equations can describe the same line, so every coefficient is scaled by the one same factor.",
+        "why": "Multiplying an equation by a non-zero number does not change the line it describes, and two equations describe the same line exactly when one is a non-zero multiple of the other, so every coefficient is scaled by the one same factor.",
         "common_mistakes": [
           "Equating only two of the three ratios and stopping there.",
           "Pairing l with b and m with a instead of matching like with like."
@@ -129,7 +129,7 @@
         },
         "why": "The question already names two of the three equal ratios as r, so the third is r as well; nothing has to be solved.",
         "common_mistakes": [
-          "Writing r = b/m, with the ratio upside down.",
+          "Writing r = b/m, the reciprocal of the correct ratio.",
           "Answering with l/a again instead of the ratio the question asks for."
         ]
       }

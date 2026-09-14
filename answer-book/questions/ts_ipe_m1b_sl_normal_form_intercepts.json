@@ -127,7 +127,7 @@
             "coefficients"
           ]
         },
-        "why": "cos²α + sin²α = 1 forces this exact divisor — no other choice puts the equation into normal form.",
+        "why": "cos²α + sin²α = 1 is what requires this divisor, √(a² + b²).",
         "common_mistakes": [
           "Dividing by a + b instead of √(a² + b²).",
           "Dividing only the left side."
@@ -140,10 +140,11 @@
         "kind": "equation",
         "label": "Read off cosα, sinα and p",
         "marks": 2,
-        "margin_note": "Two more marks. Compare with xcosα + ysinα = p term by term. Note that cosα takes b and sinα takes a — the letters cross over, because the x-intercept is a but the x-coefficient is b. Normal form needs p > 0, so this takes a and b positive; otherwise p = |ab|/√(a²+b²), since p is a distance.",
+        "margin_note": "Two more marks. Compare with xcosα + ysinα = p term by term. Note that cosα has b and sinα has a, because the x-intercept is a but the x-coefficient is b. Normal form needs p > 0, so this takes a and b positive; otherwise p = |ab|/√(a²+b²), since p is a distance.",
         "lines": [
           "This is in the normal form  xcosα + ysinα = p,  where",
-          "cosα = b/√(a²+b²),   sinα = a/√(a²+b²)   and   p = ab/√(a²+b²)"
+          "cosα = b/√(a²+b²),   sinα = a/√(a²+b²)",
+          "and   p = ab/√(a²+b²)"
         ],
         "recall": {
           "credit": "say_it",
@@ -173,7 +174,7 @@
           "Forgetting to state p separately."
         ],
         "mark_note": "Method",
-        "memory_tip": "The letters CROSS OVER: cos α takes b and sin α takes a, because the x-intercept is a but the x-coefficient is b."
+        "memory_tip": "cos α goes with b and sin α goes with a, because the x-intercept is a but the x-coefficient is b."
       },
       {
         "id": "s4_deduce",

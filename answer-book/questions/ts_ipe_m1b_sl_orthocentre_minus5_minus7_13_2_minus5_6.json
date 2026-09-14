@@ -96,7 +96,7 @@
         "kind": "diagram",
         "label": "Draw the triangle",
         "marks": 0,
-        "margin_note": "Worth no mark but worth drawing. Two altitudes are enough to fix O — the third passes through the same point on its own. The right-angle mark is the whole definition of an altitude.",
+        "margin_note": "Worth no mark but worth drawing. Two altitudes are enough to fix O — the third passes through the same point on its own. The right-angle mark shows that each altitude is perpendicular to the opposite side.",
         "memory_tip": "Two altitudes are enough — the third is automatic.",
         "recall": {
           "credit": "name_it",
@@ -230,8 +230,8 @@
         "kind": "equation",
         "label": "First altitude through A",
         "marks": 2,
-        "margin_note": "Two marks. Three moves in order: slope of the OPPOSITE side, flip-and-negate it for the perpendicular, then the point-slope form through the vertex.",
-        "memory_tip": "Slope of the OPPOSITE side first, then flip and negate, then point-slope.",
+        "margin_note": "Two marks. Three moves in order: slope of the OPPOSITE side, take its negative reciprocal for the perpendicular, then the point-slope form through the vertex.",
+        "memory_tip": "Slope of the OPPOSITE side first, then its negative reciprocal, then point-slope.",
         "lines": [
           "Step-1: Finding altitude through A(−5, −7):",
           "Slope of BC is m = (6 − 2)/(−5 − 13) = 4/(−18) = −2/9",
@@ -262,7 +262,7 @@
             "altitude through A"
           ]
         },
-        "why": "The altitude from A is perpendicular to BC, so its slope is −1/m where m is BC's slope. Getting the opposite side right is the step most often rushed.",
+        "why": "The altitude from A is perpendicular to BC, so its slope is −1/m where m is BC's slope. Make sure the side used is the one opposite A.",
         "common_mistakes": [
           "Using the slope of AB or AC instead of the opposite side BC.",
           "Taking the perpendicular slope as −m rather than −1/m."
@@ -278,8 +278,10 @@
         "memory_tip": "A vertical side has a horizontal altitude: write y = the vertex's y-coordinate and use no slope formula.",
         "lines": [
           "Step-2: Finding altitude through B(13, 2):",
-          "A(−5, −7) and C(−5, 6) share x = −5, so AC is a VERTICAL line",
-          "A vertical side has an altitude that is HORIZONTAL, so its slope is 0",
+          "A(−5, −7) and C(−5, 6) share x = −5,",
+          "so AC is a VERTICAL line",
+          "A vertical side has an altitude that is HORIZONTAL,",
+          "so its slope is 0",
           "Eq. of horizontal line through B(13, 2) is",
           "⇒ y = 2  ……(2)"
         ],

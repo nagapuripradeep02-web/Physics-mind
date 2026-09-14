@@ -79,7 +79,7 @@
             "common difference"
           ]
         },
-        "why": "The given line has a, b, c as its coefficients, so a relation among a, b, c is the only usable information, and it must be written in the same shape as the line before it can be compared.",
+        "why": "The given line has a, b, c as its coefficients, so a relation among a, b, c is the information to use, and it must be written in the same shape as the line before it can be compared.",
         "common_mistakes": [
           "Writing 2b = a − c instead of 2b = a + c.",
           "Using b/a = c/b, which is the geometric progression condition."

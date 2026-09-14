@@ -56,7 +56,7 @@
         "kind": "equation",
         "label": "Find the inclination",
         "marks": 1,
-        "margin_note": "First mark. Parallel lines have the same slope, so the given line hands over tan θ directly. The parametric form needs θ itself, not the slope.",
+        "margin_note": "First mark. Parallel lines have the same slope, so the given line gives tan θ directly. The parametric form needs θ itself, not the slope.",
         "lines": [
           {
             "text": "Sol:",
@@ -92,10 +92,10 @@
         "why": "The parametric form needs an ANGLE, and a parallel line supplies it through its slope, so converting tan θ = √3 into θ = 60° is the first move.",
         "common_mistakes": [
           "Using √3 in place of cos θ or sin θ.",
-          "Taking θ as 30° by reading the slope upside down."
+          "Taking θ as 30° by using 1/√3, the reciprocal of the slope."
         ],
         "mark_note": "Method",
-        "memory_tip": "Parallel means the SAME slope, so the given line hands over tan θ straight away."
+        "memory_tip": "Parallel means the SAME slope, so the given line gives tan θ at once."
       },
       {
         "id": "s2_parametric_point",
@@ -172,7 +172,7 @@
             "collect the r terms"
           ]
         },
-        "why": "This is the only place the second line is used, so the substitution is what actually locates P.",
+        "why": "This is the step that uses the second line, and the substitution is what locates P.",
         "common_mistakes": [
           "Multiplying 4 into only one part of the second coordinate.",
           "Losing the √3 while collecting the r terms."
@@ -211,7 +211,7 @@
             "two root three plus one"
           ]
         },
-        "why": "The equation is linear in r even though it carries a surd, so one division finishes it — no quadratic and no second root.",
+        "why": "The equation is linear in r even though it carries a surd, so one division gives r — no quadratic and no second root.",
         "common_mistakes": [
           "Squaring the equation, which is not needed and creates a false second root.",
           "Dividing only one term by (2√3 + 1)."

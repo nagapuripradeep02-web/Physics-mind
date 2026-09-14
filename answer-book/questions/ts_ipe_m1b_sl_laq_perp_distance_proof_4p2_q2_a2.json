@@ -136,12 +136,12 @@
             "a sin alpha cos alpha"
           ]
         },
-        "why": "Turning the two squared reciprocals into one fraction is what makes the square root come out exactly, and that is the only real difficulty in the whole proof.",
+        "why": "Turning the two squared reciprocals into one fraction is what makes the square root come out exactly, and that is the main difficulty in the proof.",
         "common_mistakes": [
           "Writing sec²α + cosec²α = 1/(sin²α + cos²α), adding the denominators.",
           "Taking √(1/(sin²α cos²α)) as 1/(sin α cos α), losing the modulus bars."
         ],
-        "memory_tip": "sec² + cosec² adds to ONE over sin² cos². The top collapses to 1 because sin²α + cos²α = 1."
+        "memory_tip": "sec²α + cosec²α = 1/(sin²α cos²α). The top becomes 1 because sin²α + cos²α = 1."
       },
       {
         "id": "s3_four_p_squared",
@@ -177,7 +177,7 @@
             "two p"
           ]
         },
-        "why": "The second line carries cos 2α, so the first one has to be pushed into a double angle as well before the two can be added.",
+        "why": "The second line carries cos 2α, so the first one has to be written with the double angle as well before the two can be added.",
         "common_mistakes": [
           "Writing 2p = a sin 2α and then 4p² = 2a² sin²2α.",
           "Forgetting to double p before squaring, and writing p² = a² sin²2α."
@@ -266,12 +266,12 @@
             "equals one"
           ]
         },
-        "why": "Both results were pushed to the same angle 2α on purpose, so that sin²2α + cos²2α = 1 closes the proof in one line.",
+        "why": "Both results were written with the same angle 2α, so that sin²2α + cos²2α = 1 finishes the proof in one line.",
         "common_mistakes": [
           "Adding sin²2α + cos²2α and writing 2 instead of 1.",
           "Leaving the answer as a²(sin²2α + cos²2α) without finishing."
         ],
-        "memory_tip": "Both pieces were written at the SAME angle 2α on purpose. Add them and sin² + cos² = 1 does the rest."
+        "memory_tip": "Both pieces were written with the SAME angle 2α. Add them and use sin²2α + cos²2α = 1."
       }
     ]
   }

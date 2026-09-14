@@ -59,7 +59,8 @@
             "style": "heading"
           },
           "Slope of the line 3x + 7y − 1 = 0 is  m₁ = −a/b = −3/7",
-          "Slope of the line 7x − py + 3 = 0 is  m₂ = −a/b = −(7/(−p)) = 7/p"
+          "Slope of the line 7x − py + 3 = 0 is",
+          "m₂ = −a/b = −(7/(−p)) = 7/p"
         ],
         "recall": {
           "credit": "say_it",

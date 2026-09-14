@@ -80,7 +80,7 @@
         },
         "why": "The sign of each value says which side of the line that point is on, and the ratio of the two values is what the section formula reduces to.",
         "common_mistakes": [
-          "Using the right-hand side instead of the whole expression set to zero.",
+          "Using only part of the expression instead of the full left side L.",
           "Substituting the coordinates the wrong way round."
         ],
         "mark_note": "Method"
@@ -95,7 +95,15 @@
         "lines": [
           "Required ratio is  −L₁₁ : L₂₂",
           {
-            "text": "∴ Required ratio = −L₁₁ : L₂₂ = −[(−5)] : (−6) = 5 : −6, that is −5 : 6",
+            "text": "∴ Required ratio = −L₁₁ : L₂₂",
+            "style": "boxed"
+          },
+          {
+            "text": "= −[(−5)] : (−6) = 5 : −6,",
+            "style": "boxed"
+          },
+          {
+            "text": "that is −5 : 6",
             "style": "boxed"
           }
         ],
@@ -123,7 +131,7 @@
         "why": "A negative ratio is the standard signal for EXTERNAL division — the point lies outside the segment rather than between its ends.",
         "common_mistakes": [
           "Dropping the minus sign in front of L₁₁.",
-          "Reporting a negative ratio as if it were an error and flipping its sign."
+          "Reporting a negative ratio as if it were an error and changing its sign."
         ],
         "mark_note": "Solution"
       }

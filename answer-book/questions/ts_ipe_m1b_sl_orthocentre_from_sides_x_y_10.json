@@ -52,14 +52,15 @@
         "kind": "equation",
         "label": "Find vertex A",
         "marks": 1,
-        "margin_note": "First mark. The triangle is handed over as three SIDES, not three corners, so a vertex has to be manufactured first: two sides meeting is one vertex.",
-        "memory_tip": "Three sides given, so a vertex has to be built: solve two of the lines together.",
+        "margin_note": "First mark. The triangle is given as three SIDES, not three vertices, so a vertex has to be found first: two sides meet at one vertex.",
+        "memory_tip": "Three sides given, so a vertex has to be found: solve two of the lines together.",
         "lines": [
           {
             "text": "Sol:",
             "style": "heading"
           },
-          "Given lines are  x + y + 10 = 0 ……(1),  x − y − 2 = 0 ……(2),  2x + y − 7 = 0 ……(3)",
+          "Given lines are  x + y + 10 = 0 ……(1),",
+          "x − y − 2 = 0 ……(2),  2x + y − 7 = 0 ……(3)",
           "Step-1: Finding altitude through A:",
           "Solving (1) and (2), we get A;",
           "(1) + (2) ⇒ 2x + 8 = 0   ⇒   x = −4",
@@ -87,7 +88,7 @@
             "point of intersection"
           ]
         },
-        "why": "When sides are given rather than vertices, every method needs the vertices first — that extra stage is the only difference from a triangle whose corners are given outright.",
+        "why": "When sides are given rather than vertices, every method needs the vertices first — that extra stage is the difference from a triangle whose vertices are given.",
         "common_mistakes": [
           "Trying to use the line coefficients as if they were coordinates.",
           "Solving the wrong pair for the vertex the altitude will pass through."

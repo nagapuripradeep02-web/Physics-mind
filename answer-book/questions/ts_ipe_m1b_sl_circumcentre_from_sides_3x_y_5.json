@@ -52,20 +52,27 @@
         "kind": "equation",
         "label": "Find the three vertices",
         "marks": 2,
-        "margin_note": "Two marks. Sides are given, so all three corners must be manufactured first — each vertex is where two of the three lines meet, so there are three pairs to solve.",
-        "memory_tip": "SIDES are given, so the corners must be manufactured: each vertex is where two of the lines meet.",
+        "margin_note": "Two marks. Sides are given, so all three vertices must be found first — each vertex is where two of the three lines meet, so there are three pairs to solve.",
+        "memory_tip": "SIDES are given, so the vertices must be found first: each vertex is where two of the lines meet.",
         "lines": [
           {
             "text": "Sol:",
             "style": "heading"
           },
-          "Given lines  3x − y − 5 = 0 ……(1),  x + 2y − 4 = 0 ……(2),  5x + 3y + 1 = 0 ……(3)",
+          "Given lines  3x − y − 5 = 0 ……(1),",
+          "x + 2y − 4 = 0 ……(2),  5x + 3y + 1 = 0 ……(3)",
           "Step-1: Solving (1) & (2), we get A;   (1) ⇒ y = 3x − 5",
-          "(2) ⇒ x + 2(3x − 5) − 4 = 0 ⇒ 7x = 14 ⇒ x = 2, y = 1   ∴ A = (2, 1)",
-          "Step-2: Solving (1) & (3), we get B;   (3) ⇒ 5x + 3(3x − 5) + 1 = 0",
+          "(2) ⇒ x + 2(3x − 5) − 4 = 0 ⇒ 7x = 14 ⇒ x = 2, y = 1",
+          "∴ A = (2, 1)",
+          "Step-2: Solving (1) & (3), we get B;",
+          "(3) ⇒ 5x + 3(3x − 5) + 1 = 0",
           "⇒ 14x = 14 ⇒ x = 1, y = −2   ∴ B = (1, −2)",
           "Step-3: Solving (2) & (3), we get C;   (2) ⇒ x = 4 − 2y",
-          "(3) ⇒ 5(4 − 2y) + 3y + 1 = 0 ⇒ −7y + 21 = 0 ⇒ y = 3, x = −2   ∴ C = (−2, 3)"
+          "(3) ⇒ 5(4 − 2y) + 3y + 1 = 0 ⇒ −7y + 21 = 0",
+          {
+            "text": "  ⇒ y = 3, x = −2   ∴ C = (−2, 3)",
+            "style": "indent"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -265,8 +272,16 @@
         "memory_tip": "From here it is identical to the vertices-given version: square SA = SB and watch the squares cancel.",
         "lines": [
           "S(x, y) as circumcentre",
-          "Step-4: SA = SB ⇒ √((x−2)² + (y−1)²) = √((x−1)² + (y+2)²)",
-          "⇒ (x² − 4x + 4) + (y² − 2y + 1) = (x² − 2x + 1) + (y² + 4y + 4)",
+          "Step-4: SA = SB ⇒ √((x−2)² + (y−1)²)",
+          {
+            "text": "  = √((x−1)² + (y+2)²)",
+            "style": "indent"
+          },
+          "⇒ (x² − 4x + 4) + (y² − 2y + 1) = (x² − 2x + 1)",
+          {
+            "text": "  + (y² + 4y + 4)",
+            "style": "indent"
+          },
           "⇒ −4x − 2y + 5 = −2x + 4y + 5   ⇒   −2x − 6y = 0",
           "⇒ x + 3y = 0  ……(4)"
         ],
@@ -307,8 +322,16 @@
         "margin_note": "Two marks. The same move on the second pair, giving the second perpendicular bisector.",
         "memory_tip": "The same move on the second pair gives the second bisector.",
         "lines": [
-          "Step-5: SB = SC ⇒ √((x−1)² + (y+2)²) = √((x+2)² + (y−3)²)",
-          "⇒ (x² − 2x + 1) + (y² + 4y + 4) = (x² + 4x + 4) + (y² − 6y + 9)",
+          "Step-5: SB = SC ⇒ √((x−1)² + (y+2)²)",
+          {
+            "text": "  = √((x+2)² + (y−3)²)",
+            "style": "indent"
+          },
+          "⇒ (x² − 2x + 1) + (y² + 4y + 4) = (x² + 4x + 4)",
+          {
+            "text": "  + (y² − 6y + 9)",
+            "style": "indent"
+          },
           "⇒ −2x + 4y + 5 = 4x − 6y + 13   ⇒   −6x + 10y − 8 = 0",
           "⇒ 3x − 5y + 4 = 0  ……(5)"
         ],
@@ -349,7 +372,11 @@
         "memory_tip": "Two linear equations, one point.",
         "lines": [
           "Step-6: Solving (4) & (5) we get S;   (4) ⇒ x = −3y",
-          "(5) ⇒ 3(−3y) − 5y + 4 = 0   ⇒   −14y + 4 = 0   ⇒   y = 2/7",
+          "(5) ⇒ 3(−3y) − 5y + 4 = 0   ⇒   −14y + 4 = 0",
+          {
+            "text": "  ⇒   y = 2/7",
+            "style": "indent"
+          },
           "⇒ x = −3(2/7) = −6/7",
           {
             "text": "∴ Circumcentre S = (−6/7, 2/7)",

@@ -56,7 +56,7 @@
         "kind": "equation",
         "label": "Find the required slope",
         "marks": 2,
-        "margin_note": "The first two marks. The new line is perpendicular to a given line, so its slope is fixed before any point is known. Read the given slope as −a/b, then flip and negate it.",
+        "margin_note": "The first two marks. The new line is perpendicular to a given line, so its slope is fixed before any point is known. Read the given slope as −a/b, then take its negative reciprocal.",
         "lines": [
           {
             "text": "Sol:",
@@ -94,7 +94,7 @@
           "Reading the slope as −b/a."
         ],
         "mark_note": "Method",
-        "memory_tip": "PERPENDICULAR means flip and negate the given slope, before any point is known."
+        "memory_tip": "PERPENDICULAR means take the negative reciprocal of the given slope, before any point is known."
       },
       {
         "id": "s2_solve_the_pair",

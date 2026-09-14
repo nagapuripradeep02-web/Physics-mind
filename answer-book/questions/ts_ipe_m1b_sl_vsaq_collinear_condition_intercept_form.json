@@ -45,7 +45,7 @@
         "label": "Write the line through the two axis points",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. (a, 0) sits on the X-axis and (0, b) on the Y-axis, so the intercepts are already given and the intercept form can be written with no work.",
+        "margin_note": "First mark. (a, 0) lies on the X-axis and (0, b) on the Y-axis, so the intercepts are already given and the intercept form can be written with no work.",
         "memory_tip": "An axis point IS an intercept: (a, 0) gives the x-intercept a, (0, b) gives the y-intercept b.",
         "lines": [
           {

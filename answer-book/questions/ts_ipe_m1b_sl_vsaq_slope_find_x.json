@@ -56,7 +56,11 @@
             "style": "heading"
           },
           "We take A = (2, 5), B = (x, 3); then",
-          "Slope of AB is  m₁ = (y₂ − y₁)/(x₂ − x₁) = (3 − 5)/(x − 2) = −2/(x − 2)"
+          "Slope of AB is  m₁ = (y₂ − y₁)/(x₂ − x₁)",
+          {
+            "text": "  = (3 − 5)/(x − 2) = −2/(x − 2)",
+            "style": "indent"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -79,10 +83,10 @@
             "minus two over x minus two"
           ]
         },
-        "why": "Both differences must be taken in the same order — B minus A on top and B minus A underneath — or the sign of the slope flips.",
+        "why": "Both differences must be taken in the same order — B minus A on top and B minus A underneath — or the sign of the slope changes.",
         "common_mistakes": [
           "Taking (5 − 3) on top but (x − 2) underneath.",
-          "Writing the differences upside down."
+          "Writing the x-difference on top and the y-difference underneath."
         ],
         "mark_note": "Method"
       },
@@ -123,7 +127,7 @@
             "solve"
           ]
         },
-        "why": "The unknown sits in the denominator, so multiply both sides by (x − 2) first: −2 = 2(x − 2). Dividing by 2 then gives x − 2 = −2/2 = −1, which is the line printed here.",
+        "why": "The unknown is in the denominator, so multiply both sides by (x − 2) first: −2 = 2(x − 2). Dividing by 2 then gives x − 2 = −2/2 = −1, which is the line printed here.",
         "common_mistakes": [
           "Solving −2/(x − 2) = 2 as x − 2 = −1/2.",
           "Forgetting to add the 2 back at the end."
@@ -132,5 +136,5 @@
       }
     ]
   },
-  "insider_note": "The unknown sits in the DENOMINATOR: −2/(x − 2) = 2 gives x − 2 = −1, not −4. Cross-multiplying the wrong way round is what turns the answer from 1 into 3."
+  "insider_note": "The unknown is in the DENOMINATOR: −2/(x − 2) = 2 gives x − 2 = −1, not −4. Cross-multiplying the wrong way round is what turns the answer from 1 into 3."
 }

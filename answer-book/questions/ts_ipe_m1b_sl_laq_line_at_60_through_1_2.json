@@ -186,7 +186,7 @@
         "label": "Solve both branches",
         "marks": 2,
         "mark_note": "Method",
-        "margin_note": "Two marks. Multiply out the √3 bracket first — √3 × √3 m is 3m — then collect. m = 0 is a genuine answer, not an error.",
+        "margin_note": "Two marks. Multiply out the √3 bracket first — √3 × √3 m is 3m — then collect. m = 0 is a correct answer, not an error.",
         "lines": [
           "Taking +:  m + √3 = √3 − 3m",
           "⇒ 4m = 0  ⇒  m = 0",
@@ -215,7 +215,7 @@
             "horizontal"
           ]
         },
-        "why": "Note that √3 × √3 m = 3m, which is what makes both branches collapse to simple linear equations with no surd left in m.",
+        "why": "Note that √3 × √3 m = 3m, which makes both branches simple linear equations with no surd left in m.",
         "common_mistakes": [
           "Writing √3 × √3 m as √3 m and never clearing the surd.",
           "Rejecting m = 0 as impossible; it is the horizontal line y = 2."

@@ -45,8 +45,8 @@
         "label": "Use the image formula",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. A perpendicular bisector is exactly the mirror line of the two endpoints, so (α, β) is the image of (3, −4). Naming that is the whole method.",
-        "memory_tip": "Perpendicular bisector means mirror line, so the second point is the image of the first.",
+        "margin_note": "First mark. Reflecting in the perpendicular bisector takes one endpoint to the other, so (α, β) is the image of (3, −4). Naming that gives the method.",
+        "memory_tip": "The line is the perpendicular bisector, so the second point is the image (reflection) of the first in it.",
         "lines": [
           {
             "text": "Sol:",
@@ -93,7 +93,7 @@
         "label": "Find α, β and add",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Second mark. Here ax₁ + by₁ + c and a² + b² are both 13, so r is a clean −2 and the two coordinates fall out at once.",
+        "margin_note": "Second mark. Here ax₁ + by₁ + c and a² + b² are both 13, so r = −2 and the two coordinates follow at once.",
         "memory_tip": "Work out the numerator and a² + b² separately, then divide once. Only one division is needed.",
         "lines": [
           "ax₁ + by₁ + c = 2(3) − 3(−4) − 5",

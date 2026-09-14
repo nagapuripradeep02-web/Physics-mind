@@ -89,7 +89,7 @@
             "minus ten"
           ]
         },
-        "why": "Slope-intercept form shows the slope and the y-intercept directly, so the only work is to make y the subject.",
+        "why": "Slope-intercept form shows the slope and the y-intercept directly, so the work is to make y the subject.",
         "common_mistakes": [
           "Writing m as √3 instead of −√3.",
           "Reading c as 10."
@@ -133,7 +133,7 @@
             "equals one"
           ]
         },
-        "why": "Intercept form must have 1 on the right-hand side, and dividing by the constant is the only way to arrange that.",
+        "why": "Intercept form must have 1 on the right-hand side, and dividing by the constant arranges that.",
         "common_mistakes": [
           "Leaving the x term as √3x/(−10) instead of x over a single number.",
           "Writing a as −10 and b as −10/√3, swapping the two."
@@ -146,7 +146,7 @@
         "label": "Make the right side positive",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "One mark. Normal form carries the condition p > 0. Move the constant across and, if it lands negative, change every sign.",
+        "margin_note": "One mark. Normal form carries the condition p > 0. Move the constant across and, if it is negative, change every sign.",
         "lines": [
           "(c) Normal form is  x cos α + y sin α = p,",
           "where p > 0.",
@@ -180,7 +180,7 @@
           "Dividing by 2 while the right side is still negative.",
           "Changing the sign of only the constant term."
         ],
-        "memory_tip": "p is a distance, so p > 0. If the constant lands negative, change every sign at once."
+        "memory_tip": "p is a distance, so p > 0. If the constant is negative, change every sign at once."
       },
       {
         "id": "s4_divide",

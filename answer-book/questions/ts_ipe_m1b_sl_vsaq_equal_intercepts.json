@@ -96,7 +96,7 @@
             "intercepts"
           ]
         },
-        "why": "Any condition stated about intercepts is cheapest to use in the intercept form — the condition collapses two unknowns to one before any point is substituted.",
+        "why": "A condition stated about intercepts is easiest to use in the intercept form — the condition reduces two unknowns to one before any point is substituted.",
         "common_mistakes": [
           "Using the slope-intercept form, which hides the intercepts.",
           "Introducing two separate unknowns when the condition ties them together."
@@ -150,5 +150,5 @@
       }
     ]
   },
-  "insider_note": "Equal intercepts means ONE unknown, a and a, so the intercept form collapses to x + y = a in a single step. The point gives a = 1; stopping at the value without writing the line loses the mark."
+  "insider_note": "Equal intercepts means ONE unknown, a and a, so the intercept form becomes x + y = a in a single step. The point gives a = 1; stopping at the value without writing the line loses the mark."
 }

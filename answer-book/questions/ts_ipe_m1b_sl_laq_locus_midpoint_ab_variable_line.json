@@ -144,7 +144,7 @@
         "kind": "equation",
         "label": "Write the midpoint and the intercepts",
         "marks": 1,
-        "margin_note": "One mark. Name the midpoint (h, k) and turn it round: the two intercepts are 2h and 2k, so every α and β below can be replaced.",
+        "margin_note": "One mark. Name the midpoint (h, k) and rearrange: the two intercepts are 2h and 2k, so every α and β below can be replaced.",
         "lines": [
           "Let M(h, k) be the midpoint of AB",
           "h = (α + 0)/2,  k = (0 + β)/2",
@@ -214,7 +214,7 @@
             "relation in h and k"
           ]
         },
-        "why": "Passing through P is the ONLY thing every position of the variable line has in common, so it is the condition that produces the locus.",
+        "why": "Every position of the variable line passes through P, so that is the condition that gives the locus.",
         "common_mistakes": [
           "Substituting the midpoint into the line instead of the fixed point.",
           "Adding the two fractions with denominator hk instead of 2hk."
@@ -230,9 +230,9 @@
         "margin_note": "The last two marks. Cross-multiply, then replace (h, k) by (x, y) because the midpoint is the point whose path is asked for. The check below uses real numbers.",
         "lines": [
           "⇒ ab(h + k) = 2hk(a + b)",
-          "Replacing (h, k) by (x, y):",
           "Check a = 2, b = 3, line x/2 + y/3 = 1:",
           "M(1, 3/2) and 10(1)(3/2) = 15 = 6(1 + 3/2)",
+          "Replacing (h, k) by (x, y):",
           {
             "text": "∴ Locus is 2(a + b)xy = ab(x + y)",
             "style": "boxed"

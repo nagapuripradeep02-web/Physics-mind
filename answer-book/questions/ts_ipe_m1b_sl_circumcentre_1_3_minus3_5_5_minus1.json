@@ -60,8 +60,8 @@
         "kind": "text",
         "label": "Set up the equal-distance condition",
         "marks": 1,
-        "margin_note": "First mark. The circumcentre is the one point equally far from all three vertices, so the whole answer is the single line SA = SB = SC turned into algebra.",
-        "memory_tip": "Equally far from all three vertices — the whole answer is SA = SB = SC in algebra.",
+        "margin_note": "First mark. The circumcentre is the one point equally far from all three vertices, so the method is to write SA = SB = SC as equations.",
+        "memory_tip": "Equally far from all three vertices: write SA = SB = SC as equations.",
         "lines": [
           {
             "text": "Sol:",
@@ -93,7 +93,7 @@
             "all three vertices"
           ]
         },
-        "why": "The circumcentre is DEFINED by being equidistant from the vertices, so that definition is the equation. Two of the three equalities are enough to pin one point.",
+        "why": "The circumcentre is DEFINED by being equidistant from the vertices, so that definition is the equation. Two of the three equalities are enough to fix one point.",
         "common_mistakes": [
           "Confusing the circumcentre with the centroid and averaging the coordinates.",
           "Using only one equality, which leaves a whole line of possible points."
@@ -265,14 +265,18 @@
         "kind": "equation",
         "label": "First equation from SA = SB",
         "marks": 2,
-        "margin_note": "Two marks. Square both sides at once — the square roots vanish and, better, the x² and y² terms cancel across the equals sign, so a SECOND-degree statement collapses to a FIRST-degree line. That collapse is the whole reason this method works.",
+        "margin_note": "Two marks. Square both sides at once — the square roots go, and the x² and y² terms cancel from the two sides, so the second-degree equation becomes a FIRST-degree equation, which is a straight line.",
         "memory_tip": "Squaring makes the x² and y² terms cancel, leaving a first-degree line.",
         "lines": [
           "Step-1: Take SA = SB",
           "⇒ √((x−1)² + (y−3)²) = √((x+3)² + (y−5)²)",
           "Squaring on both sides, we get",
           "(x−1)² + (y−3)² = (x+3)² + (y−5)²",
-          "⇒ (x² + 1 − 2x) + (y² + 9 − 6y) = (x² + 9 + 6x) + (y² + 25 − 10y)",
+          "⇒ (x² + 1 − 2x) + (y² + 9 − 6y) = (x² + 9 + 6x)",
+          {
+            "text": "  + (y² + 25 − 10y)",
+            "style": "indent"
+          },
           "⇒ −2x − 6y + 10 = 6x − 10y + 34",
           "⇒ 8x − 4y + 24 = 0   ⇒   4(2x − y + 6) = 0",
           "⇒ 2x − y + 6 = 0  ……(1)"
@@ -299,7 +303,7 @@
             "linear"
           ]
         },
-        "why": "Both sides carry x² + y², so subtracting removes them. What survives is the perpendicular bisector of AB — a line, which is far easier to work with than a circle.",
+        "why": "Both sides contain x² + y², so these terms cancel. What is left is the equation of the perpendicular bisector of AB, which is a straight line.",
         "common_mistakes": [
           "Squaring only one side of the equality.",
           "Forgetting to cancel and carrying x² terms into the next step."
@@ -318,7 +322,11 @@
           "⇒ √((x+3)² + (y−5)²) = √((x−5)² + (y+1)²)",
           "Squaring on both sides, we get",
           "(x+3)² + (y−5)² = (x−5)² + (y+1)²",
-          "⇒ (x² + 9 + 6x) + (y² + 25 − 10y) = (x² + 25 − 10x) + (y² + 1 + 2y)",
+          "⇒ (x² + 9 + 6x) + (y² + 25 − 10y) = (x² + 25 − 10x)",
+          {
+            "text": "  + (y² + 1 + 2y)",
+            "style": "indent"
+          },
           "⇒ 6x − 10y + 34 = −10x + 2y + 26",
           "⇒ 16x − 12y + 8 = 0   ⇒   4(4x − 3y + 2) = 0",
           "⇒ 4x − 3y + 2 = 0  ……(2)"
@@ -362,7 +370,11 @@
         "lines": [
           "Step-3: Solving (1) and (2), we get S;",
           "(1) ⇒ 2x − y + 6 = 0;   (2) ⇒ 4x − 3y + 2 = 0",
-          "x / [(−1)(2) − (−3)(6)] = y / [6(4) − 2(2)] = 1 / [2(−3) − 4(−1)]",
+          "x / [(−1)(2) − (−3)(6)] = y / [6(4) − 2(2)]",
+          {
+            "text": "  = 1 / [2(−3) − 4(−1)]",
+            "style": "indent"
+          },
           "⇒ x / (−2 + 18) = y / (24 − 4) = 1 / (−6 + 4)",
           "⇒ x/16 = y/20 = 1/(−2)",
           "⇒ x = −16/2 = −8,  y = −20/2 = −10",
@@ -393,7 +405,7 @@
             "the point"
           ]
         },
-        "why": "The circumcentre can sit outside the triangle when the triangle is obtuse, so an answer far from the vertices is not automatically wrong.",
+        "why": "The circumcentre can lie outside the triangle when the triangle is obtuse, so an answer far from the vertices is not automatically wrong.",
         "common_mistakes": [
           "Arithmetic slip in the cross-multiplication denominators.",
           "Writing the coordinates the wrong way round."
@@ -402,5 +414,5 @@
       }
     ]
   },
-  "insider_note": "The answer (−8, −10) sits well outside the triangle, which is correct for an obtuse one — a distant answer is not a sign of error. Check it by confirming SA² = SB² = SC² = 250 rather than by redoing the algebra."
+  "insider_note": "The answer (−8, −10) lies well outside the triangle, which is correct for an obtuse one — a distant answer is not a sign of error. Check it by confirming SA² = SB² = SC² = 250 rather than by redoing the algebra."
 }

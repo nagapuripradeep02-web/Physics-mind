@@ -178,7 +178,7 @@
             "equals two"
           ]
         },
-        "why": "The distance condition is the only equation in the question, and writing it with the modulus kept is what turns a geometry statement into algebra.",
+        "why": "The distance condition gives the equation for m, and writing it with the modulus kept turns the geometry statement into algebra.",
         "common_mistakes": [
           "Putting the coordinates of P into the distance formula instead of (2, −1).",
           "Cancelling the 2 on the right without dividing the left side as well."
@@ -221,7 +221,7 @@
             "common factor"
           ]
         },
-        "why": "Squaring removes the modulus and both roots are kept, because the two lines through P at distance 2 are genuinely two different lines.",
+        "why": "Squaring removes the modulus and both roots are kept, because the two lines through P at distance 2 from (2, −1) are two different lines.",
         "common_mistakes": [
           "Dividing by m and losing the root m = 0.",
           "Writing 4m² + 4m + 1 = m² + 1 as 3m² + 4m + 2 = 0."

@@ -102,7 +102,7 @@
         "kind": "equation",
         "label": "Find the three vertices",
         "marks": 1,
-        "margin_note": "One mark. Each vertex is where two of the sides meet, so solve the three pairs. The vertices say WHICH angle sits at which corner, and give an independent check at the end.",
+        "margin_note": "One mark. Each vertex is where two of the sides meet, so solve the three pairs. The vertices say WHICH angle is at which vertex, and give an independent check at the end.",
         "lines": [
           "A = (1) ∩ (2):  subtract ⇒ x = 2, then y = 2",
           "∴ A = (2, 2)",
@@ -154,8 +154,8 @@
           "= |(−1/3)/(13/3)| = 1/13",
           "(3) & (1):  tan γ = |(−1 + 5/3)/(1 + 5/3)|",
           "= |(2/3)/(8/3)| = 1/4",
-          "α = Tan⁻¹(1/3) = 18°26′",
-          "β = Tan⁻¹(1/13) = 4°24′,  γ = Tan⁻¹(1/4) = 14°2′"
+          "α = Tan⁻¹(1/3) ≈ 18°26′",
+          "β = Tan⁻¹(1/13) ≈ 4°24′,  γ = Tan⁻¹(1/4) ≈ 14°2′"
         ],
         "recall": {
           "credit": "say_it",
@@ -179,7 +179,7 @@
             "each pair"
           ]
         },
-        "why": "The formula is about two lines, not about a triangle, so it cannot know which side of the crossing the triangle sits on — that is why the next step is needed.",
+        "why": "The formula is about two lines, not about a triangle, so it cannot know on which side of the crossing point the triangle lies — that is why the next step is needed.",
         "common_mistakes": [
           "Pairing the same two lines twice and missing a third angle.",
           "Dropping the modulus and reporting a negative tangent."
@@ -268,10 +268,10 @@
             "then I get it"
           ]
         },
-        "why": "The sum reaching 180° is the proof that the correct angle was made obtuse, and the cosine rule on the three vertices confirms the same values by a completely separate route.",
+        "why": "The sum reaching 180° is the proof that the correct angle was made obtuse, and the cosine rule on the three vertices gives the same values by a separate method.",
         "common_mistakes": [
           "Writing the answer without saying which angle is obtuse.",
-          "Skipping the sum check, which is the only test that the correction was right."
+          "Skipping the sum check, which tests that the correct angle was made obtuse."
         ],
         "mark_note": "Method",
         "memory_tip": "The sum reaching 180° exactly is the check that you made the CORRECT angle obtuse."

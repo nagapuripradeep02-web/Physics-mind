@@ -91,7 +91,7 @@
             "equilateral"
           ]
         },
-        "why": "Every angle of an equilateral triangle is 60°, so both remaining sides make 60° with the base — that is the only fact the question gives.",
+        "why": "Every angle of an equilateral triangle is 60°, so both remaining sides make 60° with the base, and that angle condition gives their slopes.",
         "common_mistakes": [
           "Reading the slope of x + y − 2 = 0 as 1.",
           "Using 30° instead of 60° for the angle at the base."
@@ -133,7 +133,7 @@
             "m plus one"
           ]
         },
-        "why": "The side lengths are not given, so the only way into the question is the angle between two lines written through their slopes.",
+        "why": "The side lengths are not given, so the question is solved with the angle between two lines, written through their slopes.",
         "common_mistakes": [
           "Using sin 60° or cos 60° in place of tan 60°.",
           "Writing the denominator as 1 − m m₁."

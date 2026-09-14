@@ -88,7 +88,7 @@
             "intercepts"
           ]
         },
-        "why": "Any condition stated about intercepts is cheapest to use in the intercept form — the condition collapses two unknowns to one before any point is substituted.",
+        "why": "A condition stated about intercepts is easiest to use in the intercept form — the condition reduces two unknowns to one before any point is substituted.",
         "common_mistakes": [
           "Using the slope-intercept form, which hides the intercepts.",
           "Introducing two separate unknowns when the condition ties them together."
@@ -142,5 +142,5 @@
       }
     ]
   },
-  "insider_note": "Intercepts of a and −a always give the line x − y = a. Here the point gives a = −6, so the line is x − y + 6 = 0, and the sign flip on moving a across is where it is lost."
+  "insider_note": "Intercepts of a and −a always give the line x − y = a. Here the point gives a = −6, so the line is x − y + 6 = 0, and take care with the sign of a when writing the line."
 }

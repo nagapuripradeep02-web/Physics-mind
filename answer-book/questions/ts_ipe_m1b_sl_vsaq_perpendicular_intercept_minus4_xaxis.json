@@ -81,7 +81,7 @@
             "perpendicular"
           ]
         },
-        "why": "Swapping the coefficients without changing a sign gives 4x + 3y + k = 0, which is a real line and can still be made to have the right intercept, so the error survives every later check. Computing m₁m₂ and seeing −1 is what rules it out.",
+        "why": "Swapping the coefficients without changing a sign gives 4x + 3y + k = 0, which is a real line and can still be made to have the right intercept, so the error is not caught by the later steps. Computing m₁m₂ and seeing −1 is what rules it out.",
         "common_mistakes": [
           "Writing 4x + 3y + k = 0, which swaps the coefficients but changes no sign.",
           "Keeping 3x + 4y + k = 0, which is parallel to the given line, not perpendicular."

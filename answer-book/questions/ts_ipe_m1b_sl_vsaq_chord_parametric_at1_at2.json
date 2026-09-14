@@ -45,7 +45,7 @@
         "label": "Find the slope",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. The denominator is a difference of two squares, so a(t₂ − t₁) cancels with the numerator and the slope collapses to 2/(t₁ + t₂).",
+        "margin_note": "First mark. The denominator is a difference of two squares, so a(t₂ − t₁) cancels with the numerator and the slope simplifies to 2/(t₁ + t₂).",
         "memory_tip": "t₂² − t₁² factors as (t₂ − t₁)(t₂ + t₁). That factor is what cancels with the numerator.",
         "lines": [
           {
@@ -92,7 +92,7 @@
         "label": "Write the equation",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Second mark. Point-slope form at A, then clear the fraction. The term 2at₁² appears on both sides and cancels, which is why only t₁t₂ survives.",
+        "margin_note": "Second mark. Point-slope form at A, then clear the fraction. The term 2at₁² appears on both sides and cancels, which is why only the t₁t₂ term is left.",
         "memory_tip": "Clear the fraction first, expand second. The 2at₁² terms then cancel on their own.",
         "lines": [
           "Point-slope form at A(at₁², 2at₁):",

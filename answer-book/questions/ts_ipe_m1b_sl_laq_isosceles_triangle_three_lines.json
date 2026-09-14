@@ -135,7 +135,7 @@
             "lines one and two"
           ]
         },
-        "why": "The angle at a vertex is the angle between the two lines that meet there, and that is the only quantity in this question that can be compared directly.",
+        "why": "The angle at a vertex is the angle between the two lines that meet there, so the formula gives the angles that are compared in step 4.",
         "common_mistakes": [
           "Using the wrong pair of lines for the angle at A.",
           "Writing the denominator as 1 − m₁m₂."
@@ -191,13 +191,14 @@
         "label": "Compare the two angles",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "One mark. Say why equal tangents give equal angles here: the modulus in the angle formula returns the acute angle at each vertex, so ∠A and ∠B are both acute and equal tangents force them equal.",
+        "margin_note": "One mark. Say why equal tangents give equal angles here: each interior angle is θ or 180° − θ with tan θ = 1/2, two angles of a triangle cannot add to 180°, and at most one can be obtuse, so ∠A = ∠B.",
         "lines": [
           "tan A = tan B = 1/2",
-          "A and B are angles of a triangle, and both",
-          "tangents are positive, so both are acute.",
-          "Two acute angles with the same tangent are",
-          "equal, so ∠A = ∠B."
+          "The formula gives the acute angle θ, tan θ = 1/2.",
+          "Each of ∠A and ∠B is θ or 180° − θ.",
+          "Two angles of a triangle cannot add to 180°,",
+          "and at most one angle can be obtuse,",
+          "so ∠A = ∠B = θ."
         ],
         "recall": {
           "credit": "say_it",
@@ -221,12 +222,12 @@
             "same angle"
           ]
         },
-        "why": "Equal tangents alone do not force equal angles, so the range has to be pinned down first. The modulus in the angle formula returns the acute angle at each vertex, and only one acute angle has tangent 1/2.",
+        "why": "The angle formula gives the acute angle θ between two lines, and the interior angle at a vertex is either θ or 180° − θ. Two angles of one triangle cannot add to 180° and cannot both be obtuse, so ∠A and ∠B are both θ.",
         "common_mistakes": [
-          "Writing ∠A = ∠B from tan A = tan B without saying both are acute.",
+          "Writing ∠A = ∠B from tan A = tan B without saying why neither angle is 180° − θ.",
           "Claiming the triangle is equilateral because two angles agree."
         ],
-        "memory_tip": "Equal tangents give equal angles only once the range is fixed. The modulus makes each angle the acute one, and that fixes it."
+        "memory_tip": "Each interior angle is θ or 180° − θ. Two angles of a triangle cannot add to 180°, so equal acute angles here mean ∠A = ∠B."
       },
       {
         "id": "s5_conclude",
@@ -234,7 +235,7 @@
         "label": "Conclude and check",
         "marks": 2,
         "mark_note": "Solution",
-        "margin_note": "The last two marks. Name the two equal sides, then confirm by finding the vertices and measuring — two routes to the same conclusion.",
+        "margin_note": "The last two marks. Name the two equal sides, then confirm by finding the vertices and measuring — two methods that give the same conclusion.",
         "lines": [
           "In a triangle the sides opposite equal angles",
           "are equal, so CA = CB.",
@@ -269,7 +270,7 @@
             "equal sides"
           ]
         },
-        "why": "The angle argument alone proves the result, and the side lengths are added as an independent check so the two routes can be seen to agree.",
+        "why": "The angle argument alone proves the result, and the side lengths are added as an independent check so the two methods can be seen to agree.",
         "common_mistakes": [
           "Stopping at ∠A = ∠B without naming the two equal sides.",
           "Naming AB as one of the equal sides."

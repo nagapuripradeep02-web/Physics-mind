@@ -80,7 +80,7 @@
             "ratio two is to three"
           ]
         },
-        "why": "The intercept form is the only standard form that shows both intercepts directly, so a condition on the intercepts can be written into it at once.",
+        "why": "The intercept form shows both intercepts directly, so a condition on the intercepts can be written into it at once.",
         "common_mistakes": [
           "Taking the intercepts as 2 and 3 instead of 2k and 3k.",
           "Writing the intercept form as ax + by = 1."

@@ -80,7 +80,7 @@
             "intercept"
           ]
         },
-        "why": "The triangle has its right angle at the origin, and its two perpendicular sides are exactly these two intercepts, so finding them is the whole set-up.",
+        "why": "The triangle has its right angle at the origin, and its two perpendicular sides are exactly these two intercepts, so finding them is the set-up.",
         "common_mistakes": [
           "Writing the x-intercept as p cos α instead of p/cos α.",
           "Swapping the two intercepts."
@@ -92,8 +92,8 @@
         "label": "Compute the area",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Second mark. Half the product of the intercepts, in modulus, then 2 sin α cos α = sin 2α closes it.",
-        "memory_tip": "2 sin α cos α = sin 2α. The 2 from that identity meets the 2 in one half and clears the fraction.",
+        "margin_note": "Second mark. Half the product of the intercepts, in modulus, then use 2 sin α cos α = sin 2α.",
+        "memory_tip": "2 sin α cos α = sin 2α. The 2 in that identity cancels the 2 from the one half.",
         "lines": [
           "Δ = ½ |x-intercept × y-intercept|",
           "= ½ |p sec α · p cosec α|",

@@ -81,7 +81,7 @@
             "collect the k terms"
           ]
         },
-        "why": "In the form L₁ + λL₂ = 0 the changing quantity sits only in λ, so any point that satisfies both L₁ = 0 and L₂ = 0 satisfies the whole equation whatever λ is.",
+        "why": "In the form L₁ + λL₂ = 0 the changing quantity appears only in λ, so any point that satisfies both L₁ = 0 and L₂ = 0 satisfies the whole equation whatever λ is.",
         "common_mistakes": [
           "Forgetting to multiply −3 into both terms of (1 + 2k)y.",
           "Leaving the k inside the bracket instead of taking it outside as the multiplier."
@@ -93,7 +93,7 @@
         "label": "Solve L₁ and L₂",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Second mark. The fixed point is where L₁ and L₂ meet, because only there do both brackets vanish at once. Doubling (1) matches the y terms and lets them subtract away.",
+        "margin_note": "Second mark. The fixed point is where L₁ and L₂ meet, because only there do both brackets vanish at once. Doubling (1) matches the y terms so subtracting removes them.",
         "memory_tip": "Both brackets must be zero at once, so the fixed point is where L₁ and L₂ cross.",
         "lines": [
           "The point where L₁ = 0 and L₂ = 0 makes",

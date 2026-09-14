@@ -59,7 +59,11 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "The given equation is in the form y = mx + c  ⇒  slope m = √3",
+          "The given equation is in the form y = mx + c",
+          {
+            "text": "  ⇒  slope m = √3",
+            "style": "indent"
+          },
           "⇒ tanθ = √3 = tan60°",
           "⇒ Angle made by the line with the X-axis is θ = 60°"
         ],
@@ -139,5 +143,5 @@
       }
     ]
   },
-  "insider_note": "The slope gives the angle with the X-axis, 60°, which is not what was asked. Subtract from 90°, not 180°: the answer is 30°, and stopping at 60° is the standard way this second mark goes."
+  "insider_note": "The slope gives the angle with the X-axis, 60°, which is not what was asked. Subtract from 90°, not 180°: the answer is 30°, and stopping at 60° loses this second mark."
 }

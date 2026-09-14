@@ -135,7 +135,7 @@
             "y equals two"
           ]
         },
-        "why": "The point has to satisfy two things at once — on the given line and equidistant from A and B — and each is one linear equation, so the pair pins exactly one point.",
+        "why": "The point has to satisfy two things at once — on the given line and equidistant from A and B — and each is one linear equation, so the pair fixes exactly one point.",
         "common_mistakes": [
           "Reporting the midpoint (−1, 4), which is not on the given line.",
           "Finding x and forgetting to substitute back for y."

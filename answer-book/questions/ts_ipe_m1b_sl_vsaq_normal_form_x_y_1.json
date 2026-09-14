@@ -103,7 +103,11 @@
           "On dividing by √((−1)² + (−1)²) = √2, we get",
           "−(1/√2)x − (1/√2)y = 1/√2",
           "which is  x(−1/√2) + y(−1/√2) = 1/√2",
-          "Here cosα = −1/√2 and sinα = −1/√2, both negative ⇒ α is in the third quadrant",
+          "Here cosα = −1/√2 and sinα = −1/√2, both negative",
+          {
+            "text": "  ⇒ α is in the third quadrant",
+            "style": "indent"
+          },
           "⇒ α = 225°",
           {
             "text": "⇒ x cos225° + y sin225° = 1/√2",

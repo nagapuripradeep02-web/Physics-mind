@@ -139,7 +139,7 @@
             "b equals"
           ]
         },
-        "why": "B is the mirror image of A in the given line, so the same answer also comes from the reflection formula; solving the two conditions is the version that needs no formula to be remembered.",
+        "why": "B is the reflection of A in the given line, so the same answer also comes from the reflection formula; solving the two conditions is the version that needs no formula to be remembered.",
         "common_mistakes": [
           "Sign slip when moving the constant across, writing 10h = 16 instead of 10h = −16.",
           "Solving for h and stopping there, without also solving for k."
