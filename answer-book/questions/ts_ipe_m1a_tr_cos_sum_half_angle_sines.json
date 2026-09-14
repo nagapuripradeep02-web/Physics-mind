@@ -231,7 +231,7 @@
         "memory_tip": "Applying cos p − cos q with p = (A−B)/2 and q = (A+B)/2 gives exactly 2 sin(A/2) sin(B/2).",
         "lines": [
           "= 1 + 2 sin(C/2) (2 sin(A/2) sin(B/2))",
-          "  [∵ cosC − cosD = 2 sin((C+D)/2) sin((D−C)/2)]",
+          "  [∵ cos x − cos y = 2 sin((x+y)/2) sin((y−x)/2)]",
           {
             "text": "= 1 + 4 sin(A/2) sin(B/2) sin(C/2) = R.H.S",
             "style": "boxed"
