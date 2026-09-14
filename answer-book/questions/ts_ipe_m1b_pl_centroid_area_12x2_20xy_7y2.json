@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 4 PAIR OF STRAIGHT LINES, Short Answer question 14(i), book p.169. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split is 1+1+1+1 because the question asks for two separate results and each needs two separate pieces of work first: the pair has to be factorised, the two vertices have to be found from it, and only then can the centroid and the area each be written. Four equal actions, four equal marks. The area was cross-checked against the standard formula n²√(h² − ab) / |am² − 2hlm + bl²| with a = 12, h = −10, b = 7, l = 2, m = −3, n = 4: that gives 16(4)/|108 − 120 + 28| = 64/16 = 4, matching the coordinate calculation. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 4 PAIR OF STRAIGHT LINES, Short Answer question 14(i), book p.169. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split is 1+1+1+1 because the question asks for two separate results and each needs two separate pieces of work first: the pair has to be factorised, the two vertices have to be found from it, and only then can the centroid and the area each be written. Four equal actions, four equal marks. The area was cross-checked against the standard formula n²√(h² − ab) / |am² − 2hlm + bl²| with a = 12, h = −10, b = 7, l = 2, m = −3, n = 4: that gives 16(4)/|108 − 120 + 28| = 64/16 = 4, matching the coordinate calculation. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say where the third vertex is, and how that shortens the area formula.",
   "answer": {
@@ -62,9 +62,25 @@
           },
           "12x² − 20xy + 7y² = 0   ……(1)",
           "2x − 3y + 4 = 0   ……(2)",
+          "(split −20xy as −14xy − 6xy,",
+          {
+            "text": "  since (−14)(−6) = 84 = 12 × 7)",
+            "style": "indent"
+          },
           "(1) ⇒ 12x² − 14xy − 6xy + 7y² = 0",
+          "(take out 2x from the first two terms and −y",
+          {
+            "text": "  from the last two)",
+            "style": "indent"
+          },
           "⇒ 2x(6x − 7y) − y(6x − 7y) = 0",
+          "(take out the common factor 6x − 7y)",
           "⇒ (2x − y)(6x − 7y) = 0",
+          "(2x · 6x = 12x², 2x(−7y) + (−y)(6x) = −20xy,",
+          {
+            "text": "  (−y)(−7y) = 7y²)",
+            "style": "indent"
+          },
           "Multiplying back: (2x − y)(6x − 7y)",
           "   = 12x² − 20xy + 7y², which is (1)."
         ],
@@ -105,12 +121,36 @@
         "margin_note": "One mark. Both lines of the pair pass through the origin, so O is the third vertex, with no work needed. The other two come from solving each line of the pair with (2).",
         "memory_tip": "Both lines of the pair pass through the ORIGIN, so O is the third vertex, with no work needed.",
         "lines": [
+          {
+            "text": "(both factors have no constant term)",
+            "added": true
+          },
           "Both lines of (1) pass through O(0, 0).",
+          {
+            "text": "(put y = 2x in 2x − 3y + 4 = 0)",
+            "added": true
+          },
           "2x − y = 0 ⇒ y = 2x. Put in (2):",
+          {
+            "text": "(−3(2x) = −6x; −4x + 4 = 0)",
+            "added": true
+          },
           "2x − 6x + 4 = 0 ⇒ x = 1, y = 2",
           "∴ A = (1, 2)",
+          {
+            "text": "(put y = 6x/7 in 2x − 3y + 4 = 0)",
+            "added": true
+          },
           "6x − 7y = 0 ⇒ y = 6x/7. Put in (2):",
+          {
+            "text": "(3 · 6x/7 = 18x/7; 2x − 18x/7 = 14x/7 − 18x/7 = −4x/7)",
+            "added": true
+          },
           "2x − 18x/7 + 4 = 0 ⇒ −4x/7 = −4 ⇒ x = 7",
+          {
+            "text": "(y = 6(7)/7 = 6)",
+            "added": true
+          },
           "⇒ y = 6, so B = (7, 6)"
         ],
         "recall": {
@@ -139,6 +179,15 @@
         "common_mistakes": [
           "Solving the given line against itself instead of against a factor.",
           "Finding only one vertex and taking the triangle as done."
+        ],
+        "lines_compact": [
+          "Both lines of (1) pass through O(0, 0).",
+          "2x − y = 0 ⇒ y = 2x. Put in (2):",
+          "2x − 6x + 4 = 0 ⇒ x = 1, y = 2",
+          "∴ A = (1, 2)",
+          "6x − 7y = 0 ⇒ y = 6x/7. Put in (2):",
+          "2x − 18x/7 + 4 = 0 ⇒ −4x/7 = −4 ⇒ x = 7",
+          "⇒ y = 6, so B = (7, 6)"
         ]
       },
       {
@@ -151,8 +200,20 @@
         "memory_tip": "The centroid is the plain average of all THREE vertices — the origin counts as one of them.",
         "lines": [
           "The vertices are O(0,0), A(1, 2), B(7, 6).",
+          {
+            "text": "(the centroid formula)",
+            "added": true
+          },
           "G = ((x₁+x₂+x₃)/3, (y₁+y₂+y₃)/3)",
+          {
+            "text": "(put the three vertices)",
+            "added": true
+          },
           "= ((0 + 1 + 7)/3, (0 + 2 + 6)/3)",
+          {
+            "text": "(8/3 each)",
+            "added": true
+          },
           "= (8/3, 8/3)"
         ],
         "recall": {
@@ -181,6 +242,12 @@
         "common_mistakes": [
           "Averaging only the two vertices found by solving.",
           "Dividing by 2 instead of 3."
+        ],
+        "lines_compact": [
+          "The vertices are O(0,0), A(1, 2), B(7, 6).",
+          "G = ((x₁+x₂+x₃)/3, (y₁+y₂+y₃)/3)",
+          "= ((0 + 1 + 7)/3, (0 + 2 + 6)/3)",
+          "= (8/3, 8/3)"
         ]
       },
       {
@@ -192,8 +259,20 @@
         "margin_note": "The last mark. With one vertex at the origin the area determinant becomes ½|x₁y₂ − x₂y₁|. Cross-check with n²√(h² − ab)/|am² − 2hlm + bl²|: here h = −10, so h² − ab = 16 and the formula also gives 4.",
         "memory_tip": "With a vertex at the origin the determinant becomes ½|x₁y₂ − x₂y₁| — only two points appear.",
         "lines": [
+          {
+            "text": "(the area formula with one vertex at the origin)",
+            "added": true
+          },
           "With O a vertex, Δ = ½|x₁y₂ − x₂y₁|",
+          {
+            "text": "(x₁ = 1, y₁ = 2 and x₂ = 7, y₂ = 6)",
+            "added": true
+          },
           "= ½ |1(6) − 7(2)| = ½ |6 − 14|",
+          {
+            "text": "(|−8| = 8)",
+            "added": true
+          },
           "= ½ (8) = 4",
           {
             "text": "∴ G = (8/3, 8/3), area = 4 sq.units",
@@ -226,6 +305,15 @@
         "common_mistakes": [
           "Reporting the area as −4 by dropping the modulus.",
           "Reading h as −20 instead of −10 when checking with the standard formula."
+        ],
+        "lines_compact": [
+          "With O a vertex, Δ = ½|x₁y₂ − x₂y₁|",
+          "= ½ |1(6) − 7(2)| = ½ |6 − 14|",
+          "= ½ (8) = 4",
+          {
+            "text": "∴ G = (8/3, 8/3), area = 4 sq.units",
+            "style": "boxed"
+          }
         ]
       }
     ]

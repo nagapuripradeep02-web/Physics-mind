@@ -53,7 +53,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.21 — LAQ chapter 2 Pair of Straight Lines, answer 8, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP J 17 · TS 18,22 · AP 19. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. The chapter's only printed splits are on its two homogenisation answers (12 and 15), whose shape does not transfer to a general proof. This split follows the answer's own printed structure instead: the book sets every proof in this chapter out as a chain of starred bullet lines, and the cut here groups them at the points where the argument turns. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: Pair of Straight Lines holds TWO Section-C slots — the book's chapter header reads '7+7=14 Marks' and the IPE Blue Print (book p.3) gives it 14 marks, all in Section C and none in Section A or B, so it is an LAQ-ONLY unit and the only 1B unit besides Matrices-on-1A to carry two long slots. The chapter runs book pp.19-26 and its boundary was walked: p.27 opens LAQ chapter 3, D.C's & D.R's. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Convert to a, h, b. RE-CUT 2026-08-31: this card was filed as LAQ at 8 marks and is now SAQ at 4 marks. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition) files this chapter under the printed banner \"2 x 4M = 8 M\" followed by \"Short Answer Questions\", lists every one of its questions there, and prints no long-answer block for this chapter at all. A chapter with no 8-mark block cannot hold an 8-mark question. The standing boundary for that book — \"Only the question was taken\" — holds here, and this card takes even less: what was read from it is the chapter’s printed section banner and nothing else. The solution, the step order and the mark split are this answer book’s own work, see docs/ORIGINALITY_MATHS.md. The mathematics and the steps are unchanged; only the mark scheme moved: the four steps now carry 1+1+1+1 instead of 1+2+2+3. Paper position now: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. Still unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.21 — LAQ chapter 2 Pair of Straight Lines, answer 8, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP J 17 · TS 18,22 · AP 19. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. The chapter's only printed splits are on its two homogenisation answers (12 and 15), whose shape does not transfer to a general proof. This split follows the answer's own printed structure instead: the book sets every proof in this chapter out as a chain of starred bullet lines, and the cut here groups them at the points where the argument turns. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: Pair of Straight Lines holds TWO Section-C slots — the book's chapter header reads '7+7=14 Marks' and the IPE Blue Print (book p.3) gives it 14 marks, all in Section C and none in Section A or B, so it is an LAQ-ONLY unit and the only 1B unit besides Matrices-on-1A to carry two long slots. The chapter runs book pp.19-26 and its boundary was walked: p.27 opens LAQ chapter 3, D.C's & D.R's. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Convert to a, h, b. RE-CUT 2026-08-31: this card was filed as LAQ at 8 marks and is now SAQ at 4 marks. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition) files this chapter under the printed banner \"2 x 4M = 8 M\" followed by \"Short Answer Questions\", lists every one of its questions there, and prints no long-answer block for this chapter at all. A chapter with no 8-mark block cannot hold an 8-mark question. The standing boundary for that book — \"Only the question was taken\" — holds here, and this card takes even less: what was read from it is the chapter’s printed section banner and nothing else. The solution, the step order and the mark split are this answer book’s own work, see docs/ORIGINALITY_MATHS.md. The mathematics and the steps are unchanged; only the mark scheme moved: the four steps now carry 1+1+1+1 instead of 1+2+2+3. Paper position now: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. Still unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — say what form you split the pair into, and what the numerator turns into.",
   "answer": {
@@ -73,7 +73,13 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "(a pair of lines through the origin is a product of two",
+          {
+            "text": "  factors with no constant term)",
+            "style": "indent"
+          },
           "Let ax² + 2hxy + by² ≡ (l₁x + m₁y)(l₂x + m₂y)",
+          "(multiply out and compare the x², y² and xy coefficients)",
           "On equating like term coeff., we get",
           "a = l₁l₂,   b = m₁m₂,   2h = l₁m₂ + l₂m₁"
         ],
@@ -114,6 +120,15 @@
         "marks": 1,
         "margin_note": "One mark. Each line passes through the origin, so its equation has no constant — the perpendicular distance from (α, β) is just |l α + m β| over the root of the squares.",
         "lines": [
+          {
+            "text": "(the perpendicular distance from (α, β) to px + qy = 0 is",
+            "added": true
+          },
+          {
+            "text": "  |pα + qβ|/√(p² + q²))",
+            "style": "indent",
+            "added": true
+          },
           "Perpendicular distance from (α, β) to l₁x + m₁y = 0",
           "is  p₁ = |l₁α + m₁β| / √(l₁² + m₁²)",
           "Perpendicular distance from (α, β) to l₂x + m₂y = 0",
@@ -146,7 +161,13 @@
           "Putting α and β into the denominator."
         ],
         "mark_note": "Method",
-        "memory_tip": "Each line passes through the origin, so there is no constant: the distance is |lα + mβ| over the root."
+        "memory_tip": "Each line passes through the origin, so there is no constant: the distance is |lα + mβ| over the root.",
+        "lines_compact": [
+          "Perpendicular distance from (α, β) to l₁x + m₁y = 0",
+          "is  p₁ = |l₁α + m₁β| / √(l₁² + m₁²)",
+          "Perpendicular distance from (α, β) to l₂x + m₂y = 0",
+          "is  p₂ = |l₂α + m₂β| / √(l₂² + m₂²)"
+        ]
       },
       {
         "id": "s3_multiply",
@@ -158,7 +179,20 @@
           "∴ Product of perpendiculars",
           "is  p₁·p₂ = [|l₁α + m₁β| / √(l₁² + m₁²)]",
           "· [|l₂α + m₂β| / √(l₂² + m₂²)]",
+          {
+            "text": "(|p| · |q| = |pq| and √P · √Q = √(PQ))",
+            "added": true
+          },
           "= |(l₁α + m₁β)(l₂α + m₂β)| / √((l₁² + m₁²)(l₂² + m₂²))",
+          {
+            "text": "(multiply out (l₁α + m₁β)(l₂α + m₂β)",
+            "added": true
+          },
+          {
+            "text": "  and (l₁² + m₁²)(l₂² + m₂²))",
+            "style": "indent",
+            "added": true
+          },
           "= |l₁l₂α² + l₁m₂αβ + l₂m₁αβ + m₁m₂β²|",
           {
             "text": "  / √(l₁²l₂² + l₁²m₂² + l₂²m₁² + m₁²m₂²)",
@@ -193,7 +227,18 @@
           "Forgetting that the two middle terms combine into the 2h group."
         ],
         "mark_note": "Method",
-        "memory_tip": "Multiply the two fractions and expand both parts into the products that the matched coefficients name."
+        "memory_tip": "Multiply the two fractions and expand both parts into the products that the matched coefficients name.",
+        "lines_compact": [
+          "∴ Product of perpendiculars",
+          "is  p₁·p₂ = [|l₁α + m₁β| / √(l₁² + m₁²)]",
+          "· [|l₂α + m₂β| / √(l₂² + m₂²)]",
+          "= |(l₁α + m₁β)(l₂α + m₂β)| / √((l₁² + m₁²)(l₂² + m₂²))",
+          "= |l₁l₂α² + l₁m₂αβ + l₂m₁αβ + m₁m₂β²|",
+          {
+            "text": "  / √(l₁²l₂² + l₁²m₂² + l₂²m₁² + m₁²m₂²)",
+            "style": "indent"
+          }
+        ]
       },
       {
         "id": "s4_convert",
@@ -202,6 +247,25 @@
         "marks": 1,
         "margin_note": "The last mark. The numerator substitutes directly. The denominator needs one rearrangement: add and subtract 2l₁l₂m₁m₂ so it becomes a difference of squares plus a square.",
         "lines": [
+          {
+            "text": "(l₁l₂ = a, m₁m₂ = b, and l₁m₂ + l₂m₁ = 2h,",
+            "added": true
+          },
+          {
+            "text": "  so l₁m₂αβ + l₂m₁αβ = 2hαβ;",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  below, add and subtract 2l₁l₂m₁m₂ to make two",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  perfect squares)",
+            "style": "indent",
+            "added": true
+          },
           "= |aα² + 2hαβ + bβ²|",
           {
             "text": "  / √((l₁l₂ − m₁m₂)² + 2l₁l₂m₁m₂",
@@ -211,7 +275,15 @@
             "text": "  + (l₁m₂ + l₂m₁)² − 2l₁m₂l₂m₁)",
             "style": "indent"
           },
+          {
+            "text": "(2l₁l₂m₁m₂ − 2l₁m₂l₂m₁ = 0)",
+            "added": true
+          },
           "= |aα² + 2hαβ + bβ²| / √((l₁l₂ − m₁m₂)² + (l₁m₂ + l₂m₁)²)",
+          {
+            "text": "(l₁l₂ − m₁m₂ = a − b and l₁m₂ + l₂m₁ = 2h, so (2h)² = 4h²)",
+            "added": true
+          },
           {
             "text": "∴ p₁·p₂ = |aα² + 2hαβ + bβ²| / √((a − b)² + 4h²)",
             "style": "boxed"
@@ -245,7 +317,23 @@
           "Forgetting the modulus on the numerator."
         ],
         "mark_note": "Solution",
-        "memory_tip": "Add and subtract 2l₁l₂m₁m₂ in the denominator so it becomes a difference of squares plus a square."
+        "memory_tip": "Add and subtract 2l₁l₂m₁m₂ in the denominator so it becomes a difference of squares plus a square.",
+        "lines_compact": [
+          "= |aα² + 2hαβ + bβ²|",
+          {
+            "text": "  / √((l₁l₂ − m₁m₂)² + 2l₁l₂m₁m₂",
+            "style": "indent"
+          },
+          {
+            "text": "  + (l₁m₂ + l₂m₁)² − 2l₁m₂l₂m₁)",
+            "style": "indent"
+          },
+          "= |aα² + 2hαβ + bβ²| / √((l₁l₂ − m₁m₂)² + (l₁m₂ + l₂m₁)²)",
+          {
+            "text": "∴ p₁·p₂ = |aα² + 2hαβ + bβ²| / √((a − b)² + 4h²)",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

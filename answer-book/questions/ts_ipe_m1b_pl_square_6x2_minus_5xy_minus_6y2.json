@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 4 PAIR OF STRAIGHT LINES, Short Answer question 17(i), book p.172. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split is 1+1+1+1 because a square needs BOTH facts and each fact needs its own pair split first: one mark for each factorisation, one for the right angle, one for the equal distances. Neither of the last two marks can be earned without the other having been made possible. A rhombus has equal sides without right angles and a rectangle has right angles without equal sides, so a proof that stops after either one is incomplete. Both factorisations were checked by multiplying the factors back out. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 4 PAIR OF STRAIGHT LINES, Short Answer question 17(i), book p.172. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split is 1+1+1+1 because a square needs BOTH facts and each fact needs its own pair split first: one mark for each factorisation, one for the right angle, one for the equal distances. Neither of the last two marks can be earned without the other having been made possible. A rhombus has equal sides without right angles and a rectangle has right angles without equal sides, so a proof that stops after either one is incomplete. Both factorisations were checked by multiplying the factors back out. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — say what two facts a square needs, and how you get each one from the four lines.",
   "answer": {
@@ -62,8 +62,15 @@
           },
           "6x² − 5xy − 6y² = 0   ……(1)",
           "6x² − 5xy − 6y² + x + 5y − 1 = 0   ……(2)",
+          "(split −5xy as 4xy − 9xy, since (4)(−9) = −36 = 6 × (−6))",
           "(1) ⇒ 6x² + 4xy − 9xy − 6y² = 0",
+          "(take out 2x from the first two terms and −3y",
+          {
+            "text": "  from the last two)",
+            "style": "indent"
+          },
           "⇒ 2x(3x + 2y) − 3y(3x + 2y) = 0",
+          "(take out the common factor 3x + 2y)",
           "⇒ (2x − 3y)(3x + 2y) = 0",
           "So (1) gives L₁: 2x − 3y = 0",
           "and L₂: 3x + 2y = 0"
@@ -105,10 +112,46 @@
         "margin_note": "One mark. The second pair has the same second-degree part, so its factors are the same two brackets with constants added. Read the constants off the x and y coefficients, then check them against the constant term.",
         "memory_tip": "Same second-degree part means the same two brackets, each with a constant added.",
         "lines": [
+          {
+            "text": "(the degree-2 part of (2) is the same as (1),",
+            "added": true
+          },
+          {
+            "text": "  so its factors differ from L₁ and L₂ only in",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  their constants)",
+            "style": "indent",
+            "added": true
+          },
           "(2) has the same second degree terms, so",
           "let (2) ≡ (2x − 3y + c)(3x + 2y + d)",
+          {
+            "text": "(x terms: 2x · d + c · 3x = (2d + 3c)x;",
+            "added": true
+          },
+          {
+            "text": "  y terms: −3y · d + c · 2y = (2c − 3d)y)",
+            "style": "indent",
+            "added": true
+          },
           "x term: 2d + 3c = 1;  y term: 2c − 3d = 5",
+          {
+            "text": "(from the first, d = (1 − 3c)/2;",
+            "added": true
+          },
+          {
+            "text": "  then 2c − 3(1 − 3c)/2 = 5 gives 13c = 13)",
+            "style": "indent",
+            "added": true
+          },
           "Solving these two, c = 1 and d = −1.",
+          {
+            "text": "(the constant term of (2) is −1)",
+            "added": true
+          },
           "Constant: cd = (1)(−1) = −1, as in (2).",
           "Multiplying back: (2x − 3y + 1)(3x + 2y − 1)",
           "   = 6x² − 5xy − 6y² + x + 5y − 1 = (2)",
@@ -140,6 +183,16 @@
         "common_mistakes": [
           "Putting the constants in the wrong brackets, giving c = −1 and d = 1.",
           "Skipping the check cd = −1 against the constant term of (2)."
+        ],
+        "lines_compact": [
+          "(2) has the same second degree terms, so",
+          "let (2) ≡ (2x − 3y + c)(3x + 2y + d)",
+          "x term: 2d + 3c = 1;  y term: 2c − 3d = 5",
+          "Solving these two, c = 1 and d = −1.",
+          "Constant: cd = (1)(−1) = −1, as in (2).",
+          "Multiplying back: (2x − 3y + 1)(3x + 2y − 1)",
+          "   = 6x² − 5xy − 6y² + x + 5y − 1 = (2)",
+          "So L₃: 2x − 3y + 1 = 0, L₄: 3x + 2y − 1 = 0"
         ]
       },
       {
@@ -151,9 +204,26 @@
         "margin_note": "One mark. L₁ and L₃ are parallel, and so are L₂ and L₄, so the four lines already make a parallelogram. The dot product of the two normals then makes it a rectangle.",
         "memory_tip": "Two parallel pairs give a parallelogram; a zero dot product of the normals upgrades it to a rectangle.",
         "lines": [
+          {
+            "text": "(L₁ and L₃ have the same x and y coefficients,",
+            "added": true
+          },
+          {
+            "text": "  and so do L₂ and L₄)",
+            "style": "indent",
+            "added": true
+          },
           "L₁ ∥ L₃ and L₂ ∥ L₄, so the four lines",
           "form a parallelogram.",
+          {
+            "text": "(a normal of ax + by + c = 0 is (a, b))",
+            "added": true
+          },
           "Normal of L₁ is (2, −3); of L₂ is (3, 2).",
+          {
+            "text": "(normals are perpendicular when their dot product is 0)",
+            "added": true
+          },
           "(2)(3) + (−3)(2) = 6 − 6 = 0",
           "∴ L₁ ⊥ L₂, so the figure is a rectangle."
         ],
@@ -183,6 +253,13 @@
         "common_mistakes": [
           "Testing L₁ against L₃, which are parallel, instead of against L₂.",
           "Concluding a square from the right angle alone."
+        ],
+        "lines_compact": [
+          "L₁ ∥ L₃ and L₂ ∥ L₄, so the four lines",
+          "form a parallelogram.",
+          "Normal of L₁ is (2, −3); of L₂ is (3, 2).",
+          "(2)(3) + (−3)(2) = 6 − 6 = 0",
+          "∴ L₁ ⊥ L₂, so the figure is a rectangle."
         ]
       },
       {
@@ -194,9 +271,31 @@
         "margin_note": "The last mark. The distance between one pair of parallel lines IS the length of the side lying along the other pair, because the sides meet at right angles. Both come out 1/√13, so adjacent sides are equal.",
         "memory_tip": "The gap between one parallel pair is the side length along the other pair, since they meet at right angles.",
         "lines": [
+          {
+            "text": "(the distance between parallel lines ax + by + c₁ = 0",
+            "added": true
+          },
+          {
+            "text": "  and ax + by + c₂ = 0 is |c₁ − c₂|/√(a² + b²))",
+            "style": "indent",
+            "added": true
+          },
           "Distance between L₁ and L₃",
+          {
+            "text": "(L₁: 2x − 3y + 0 = 0 and L₃: 2x − 3y + 1 = 0;",
+            "added": true
+          },
+          {
+            "text": "  2² + (−3)² = 13)",
+            "style": "indent",
+            "added": true
+          },
           "   = |0 − 1| / √(4 + 9) = 1/√13",
           "Distance between L₂ and L₄",
+          {
+            "text": "(L₂: 3x + 2y + 0 = 0 and L₄: 3x + 2y − 1 = 0; 3² + 2² = 13)",
+            "added": true
+          },
           "   = |0 − (−1)| / √(9 + 4) = 1/√13",
           "Each side equals the distance between the",
           "other pair, so adjacent sides are equal.",
@@ -231,6 +330,18 @@
         "common_mistakes": [
           "Using different denominators for the two distances when both are √13.",
           "Comparing L₁ with L₄, which are not parallel, so no distance formula applies."
+        ],
+        "lines_compact": [
+          "Distance between L₁ and L₃",
+          "   = |0 − 1| / √(4 + 9) = 1/√13",
+          "Distance between L₂ and L₄",
+          "   = |0 − (−1)| / √(9 + 4) = 1/√13",
+          "Each side equals the distance between the",
+          "other pair, so adjacent sides are equal.",
+          {
+            "text": "∴ The four lines form a square.",
+            "style": "boxed"
+          }
         ]
       }
     ]

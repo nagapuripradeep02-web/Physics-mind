@@ -46,7 +46,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.22 — LAQ chapter 2 Pair of Straight Lines, answer 10. Printed appearances: AP M-16 · TS M-16. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. The chapter's only printed splits are on its two homogenisation answers (12 and 15), whose shape does not transfer to a general proof. This split follows the answer's own printed structure instead: the book sets every proof in this chapter out as a chain of starred bullet lines, and the cut here groups them at the points where the argument turns. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: Pair of Straight Lines holds TWO Section-C slots — the book's chapter header reads '7+7=14 Marks' and the IPE Blue Print (book p.3) gives it 14 marks, all in Section C and none in Section A or B, so it is an LAQ-ONLY unit and the only 1B unit besides Matrices-on-1A to carry two long slots. The chapter runs book pp.19-26 and its boundary was walked: p.27 opens LAQ chapter 3, D.C's & D.R's. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Prove the inequalities. RE-CUT 2026-08-31: this card was filed as LAQ at 8 marks and is now SAQ at 4 marks. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition) files this chapter under the printed banner \"2 x 4M = 8 M\" followed by \"Short Answer Questions\", lists every one of its questions there, and prints no long-answer block for this chapter at all. A chapter with no 8-mark block cannot hold an 8-mark question. The standing boundary for that book — \"Only the question was taken\" — holds here, and this card takes even less: what was read from it is the chapter’s printed section banner and nothing else. The solution, the step order and the mark split are this answer book’s own work, see docs/ORIGINALITY_MATHS.md. The mathematics and the steps are unchanged; only the mark scheme moved: the four steps now carry 1+1+1+1 instead of 1+2+2+3. Paper position now: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. Still unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.22 — LAQ chapter 2 Pair of Straight Lines, answer 10. Printed appearances: AP M-16 · TS M-16. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. The chapter's only printed splits are on its two homogenisation answers (12 and 15), whose shape does not transfer to a general proof. This split follows the answer's own printed structure instead: the book sets every proof in this chapter out as a chain of starred bullet lines, and the cut here groups them at the points where the argument turns. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: Pair of Straight Lines holds TWO Section-C slots — the book's chapter header reads '7+7=14 Marks' and the IPE Blue Print (book p.3) gives it 14 marks, all in Section C and none in Section A or B, so it is an LAQ-ONLY unit and the only 1B unit besides Matrices-on-1A to carry two long slots. The chapter runs book pp.19-26 and its boundary was walked: p.27 opens LAQ chapter 3, D.C's & D.R's. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Prove the inequalities. RE-CUT 2026-08-31: this card was filed as LAQ at 8 marks and is now SAQ at 4 marks. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition) files this chapter under the printed banner \"2 x 4M = 8 M\" followed by \"Short Answer Questions\", lists every one of its questions there, and prints no long-answer block for this chapter at all. A chapter with no 8-mark block cannot hold an 8-mark question. The standing boundary for that book — \"Only the question was taken\" — holds here, and this card takes even less: what was read from it is the chapter’s printed section banner and nothing else. The solution, the step order and the mark split are this answer book’s own work, see docs/ORIGINALITY_MATHS.md. The mathematics and the steps are unchanged; only the mark scheme moved: the four steps now carry 1+1+1+1 instead of 1+2+2+3. Paper position now: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. Still unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — say what you multiply together for part (a), and what makes the inequalities in (b) true.",
   "answer": {
@@ -66,8 +66,18 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "(a pair of lines is a product of two linear factors)",
           "Let ax² + 2hxy + by² + 2gx + 2fy + c",
           "≡ (l₁x + m₁y + n₁)(l₂x + m₂y + n₂)",
+          "(multiply out the right side and compare the coefficients",
+          {
+            "text": "  of x², y², constant, xy, x and y;",
+            "style": "indent"
+          },
+          {
+            "text": "  the xy, x and y coefficients are 2h, 2g and 2f)",
+            "style": "indent"
+          },
           "On equating like term coeff., we get",
           "a = l₁l₂,  b = m₁m₂,  c = n₁n₂,",
           "2h = l₁m₂ + l₂m₁,  2g = l₁n₂ + l₂n₁,  2f = m₁n₂ + m₂n₁"
@@ -109,7 +119,20 @@
         "marks": 1,
         "margin_note": "One mark. Multiply the three doubled coefficients together. Every term of the expansion is a product of six letters, and regrouping is what turns it into something recognisable.",
         "lines": [
+          {
+            "text": "(multiply the three expressions for 2h, 2g and 2f)",
+            "added": true
+          },
           "(a) (2h)(2g)(2f) = (l₁m₂ + l₂m₁)(l₁n₂ + l₂n₁)(m₁n₂ + m₂n₁)",
+          {
+            "text": "(the eight products of three brackets,",
+            "added": true
+          },
+          {
+            "text": "  grouped by the pair l₁l₂, m₁m₂ or n₁n₂ in each)",
+            "style": "indent",
+            "added": true
+          },
           "On multiplying and regrouping, we get",
           "8fgh = l₁l₂(m₁²n₂² + m₂²n₁²) + m₁m₂(l₁²n₂² + n₁²l₂²)",
           {
@@ -145,7 +168,16 @@
           "Losing the final term 2l₁l₂m₁m₂n₁n₂."
         ],
         "mark_note": "Method",
-        "memory_tip": "Multiply the three doubled coefficients. Every term is a product of six letters; regrouping is the work."
+        "memory_tip": "Multiply the three doubled coefficients. Every term is a product of six letters; regrouping is the work.",
+        "lines_compact": [
+          "(a) (2h)(2g)(2f) = (l₁m₂ + l₂m₁)(l₁n₂ + l₂n₁)(m₁n₂ + m₂n₁)",
+          "On multiplying and regrouping, we get",
+          "8fgh = l₁l₂(m₁²n₂² + m₂²n₁²) + m₁m₂(l₁²n₂² + n₁²l₂²)",
+          {
+            "text": "  + n₁n₂(l₁²m₂² + l₂²m₁²) + 2l₁l₂m₁m₂n₁n₂",
+            "style": "indent"
+          }
+        ]
       },
       {
         "id": "s3_reduce",
@@ -154,19 +186,49 @@
         "marks": 1,
         "margin_note": "One mark. Each bracket becomes (sum)² − 2(product), and every one of those is already among the matched coefficients — so the expression can be written in a, b, c, f, g, h in one step.",
         "lines": [
+          {
+            "text": "(p² + q² = (p + q)² − 2pq in each bracket)",
+            "added": true
+          },
           "= l₁l₂[(m₁n₂ + m₂n₁)² − 2m₁m₂n₁n₂]",
           {
             "text": "  + m₁m₂[(n₁l₂ + n₂l₁)² − 2n₁n₂l₁l₂]",
             "style": "indent"
           },
           "   + n₁n₂[(l₁m₂ + l₂m₁)² − 2l₁l₂m₁m₂] + 2l₁l₂m₁m₂n₁n₂",
+          {
+            "text": "(m₁n₂ + m₂n₁ = 2f, n₁l₂ + n₂l₁ = 2g, l₁m₂ + l₂m₁ = 2h;",
+            "added": true
+          },
+          {
+            "text": "  l₁l₂ = a, m₁m₂ = b, n₁n₂ = c)",
+            "style": "indent",
+            "added": true
+          },
           "⇒ 8fgh = a[(2f)² − 2bc] + b[(2g)² − 2ac]",
           {
             "text": "  + c[(2h)² − 2ab] + 2abc",
             "style": "indent"
           },
+          {
+            "text": "(a(4f² − 2bc) + b(4g² − 2ac) + c(4h² − 2ab) + 2abc",
+            "added": true
+          },
+          {
+            "text": "  = 4af² + 4bg² + 4ch² − 6abc + 2abc)",
+            "style": "indent",
+            "added": true
+          },
           "⇒ 8fgh = 4af² + 4bg² + 4ch² − 4abc",
+          {
+            "text": "(divide both sides by 4)",
+            "added": true
+          },
           "⇒ 2fgh = af² + bg² + ch² − abc",
+          {
+            "text": "(move af² + bg² + ch² to the left side)",
+            "added": true
+          },
           {
             "text": "∴ abc + 2fgh − af² − bg² − ch² = 0",
             "style": "boxed"
@@ -200,7 +262,26 @@
           "Sign slip when moving abc across."
         ],
         "mark_note": "Method",
-        "memory_tip": "Each bracket becomes (sum)² − 2(product), and every one of those is already among the matched coefficients."
+        "memory_tip": "Each bracket becomes (sum)² − 2(product), and every one of those is already among the matched coefficients.",
+        "lines_compact": [
+          "= l₁l₂[(m₁n₂ + m₂n₁)² − 2m₁m₂n₁n₂]",
+          {
+            "text": "  + m₁m₂[(n₁l₂ + n₂l₁)² − 2n₁n₂l₁l₂]",
+            "style": "indent"
+          },
+          "   + n₁n₂[(l₁m₂ + l₂m₁)² − 2l₁l₂m₁m₂] + 2l₁l₂m₁m₂n₁n₂",
+          "⇒ 8fgh = a[(2f)² − 2bc] + b[(2g)² − 2ac]",
+          {
+            "text": "  + c[(2h)² − 2ab] + 2abc",
+            "style": "indent"
+          },
+          "⇒ 8fgh = 4af² + 4bg² + 4ch² − 4abc",
+          "⇒ 2fgh = af² + bg² + ch² − abc",
+          {
+            "text": "∴ abc + 2fgh − af² − bg² − ch² = 0",
+            "style": "boxed"
+          }
+        ]
       },
       {
         "id": "s4_inequalities",
@@ -209,10 +290,30 @@
         "marks": 1,
         "margin_note": "The last mark. h² − ab turns out to be a perfect square divided by 4 — and a square is never negative, which is the entire argument.",
         "lines": [
+          {
+            "text": "(h = (l₁m₂ + l₂m₁)/2 and ab = l₁l₂m₁m₂)",
+            "added": true
+          },
           "(b) h² − ab = [(l₁m₂ + l₂m₁)/2]² − l₁l₂m₁m₂",
+          {
+            "text": "(write both terms over 4)",
+            "added": true
+          },
           "= [(l₁m₂ + l₂m₁)² − 4l₁l₂m₁m₂]/4",
+          {
+            "text": "((p + q)² − 4pq = (p − q)²)",
+            "added": true
+          },
           "= (l₁m₂ − l₂m₁)²/4  ≥ 0",
+          {
+            "text": "(a square is never negative)",
+            "added": true
+          },
           "∴ h² − ab ≥ 0  ⇒  h² ≥ ab",
+          {
+            "text": "(the same working with the pairs (g, a, c) and (f, b, c))",
+            "added": true
+          },
           {
             "text": "Similarly, g² ≥ ac and f² ≥ bc",
             "style": "boxed"
@@ -246,7 +347,17 @@
           "Forgetting the division by 4 when writing h from 2h."
         ],
         "mark_note": "Solution",
-        "memory_tip": "h² − ab is a perfect square over 4 — and a square is never negative. That IS the argument."
+        "memory_tip": "h² − ab is a perfect square over 4 — and a square is never negative. That IS the argument.",
+        "lines_compact": [
+          "(b) h² − ab = [(l₁m₂ + l₂m₁)/2]² − l₁l₂m₁m₂",
+          "= [(l₁m₂ + l₂m₁)² − 4l₁l₂m₁m₂]/4",
+          "= (l₁m₂ − l₂m₁)²/4  ≥ 0",
+          "∴ h² − ab ≥ 0  ⇒  h² ≥ ab",
+          {
+            "text": "Similarly, g² ≥ ac and f² ≥ bc",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

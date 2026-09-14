@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.23 — LAQ chapter 2 Pair of Straight Lines, answer 11 PQ. No appearance years are printed against this practice question. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. The chapter's only printed splits are on its two homogenisation answers (12 and 15), whose shape does not transfer. This split follows the answer's own printed lettering instead: the book sets it out as part (a) with four numbered checks (i)-(iv) and part (b) for the point of intersection, and the cut here gives the four checks four marks between them and part (b) the rest. ⚠ THIS IS THE BOOK'S PRACTICE QUESTION ('PQ'), posed with ONLY ITS FINAL ANSWER PRINTED and no worked solution. THE WORKING BELOW IS OURS, checked against the book's own printed answer. Precedent: Maths-1A Unit 2 laq8. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: Pair of Straight Lines holds TWO Section-C slots — the book's chapter header reads '7+7=14 Marks' and the IPE Blue Print (book p.3) gives it 14 marks, all in Section C and none in Section A or B, so it is an LAQ-ONLY unit and the only 1B unit besides Matrices-on-1A to carry two long slots. The chapter runs book pp.19-26 and its boundary was walked: p.27 opens LAQ chapter 3, D.C's & D.R's. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Test the three inequalities. RE-CUT 2026-08-31: this card was filed as LAQ at 8 marks and is now SAQ at 4 marks. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition) files this chapter under the printed banner \"2 x 4M = 8 M\" followed by \"Short Answer Questions\", lists every one of its questions there, and prints no long-answer block for this chapter at all. A chapter with no 8-mark block cannot hold an 8-mark question. The standing boundary for that book — \"Only the question was taken\" — holds here, and this card takes even less: what was read from it is the chapter’s printed section banner and nothing else. The solution, the step order and the mark split are this answer book’s own work, see docs/ORIGINALITY_MATHS.md. The mathematics and the steps are unchanged; only the mark scheme moved: the steps now carry 0+1+1+1+1 instead of 1+2+2+2+1 — reading the six coefficients off the given equation earns no mark of its own at 4 marks. Paper position now: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. Still unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.23 — LAQ chapter 2 Pair of Straight Lines, answer 11 PQ. No appearance years are printed against this practice question. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. The chapter's only printed splits are on its two homogenisation answers (12 and 15), whose shape does not transfer. This split follows the answer's own printed lettering instead: the book sets it out as part (a) with four numbered checks (i)-(iv) and part (b) for the point of intersection, and the cut here gives the four checks four marks between them and part (b) the rest. ⚠ THIS IS THE BOOK'S PRACTICE QUESTION ('PQ'), posed with ONLY ITS FINAL ANSWER PRINTED and no worked solution. THE WORKING BELOW IS OURS, checked against the book's own printed answer. Precedent: Maths-1A Unit 2 laq8. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: Pair of Straight Lines holds TWO Section-C slots — the book's chapter header reads '7+7=14 Marks' and the IPE Blue Print (book p.3) gives it 14 marks, all in Section C and none in Section A or B, so it is an LAQ-ONLY unit and the only 1B unit besides Matrices-on-1A to carry two long slots. The chapter runs book pp.19-26 and its boundary was walked: p.27 opens LAQ chapter 3, D.C's & D.R's. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Test the three inequalities. RE-CUT 2026-08-31: this card was filed as LAQ at 8 marks and is now SAQ at 4 marks. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition) files this chapter under the printed banner \"2 x 4M = 8 M\" followed by \"Short Answer Questions\", lists every one of its questions there, and prints no long-answer block for this chapter at all. A chapter with no 8-mark block cannot hold an 8-mark question. The standing boundary for that book — \"Only the question was taken\" — holds here, and this card takes even less: what was read from it is the chapter’s printed section banner and nothing else. The solution, the step order and the mark split are this answer book’s own work, see docs/ORIGINALITY_MATHS.md. The mathematics and the steps are unchanged; only the mark scheme moved: the steps now carry 0+1+1+1+1 instead of 1+2+2+2+1 — reading the six coefficients off the given equation earns no mark of its own at 4 marks. Paper position now: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. Still unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — name the four conditions, and say which quantity you can reuse for the angle.",
   "answer": {
@@ -59,6 +59,11 @@
             "style": "heading"
           },
           "Given equation is 2x² − 13xy − 7y² + x + 23y − 6 = 0",
+          "(the xy, x and y coefficients in the standard form are 2h,",
+          {
+            "text": "  2g and 2f, so halve them)",
+            "style": "indent"
+          },
           "Comparing with ax² + 2hxy + by² + 2gx + 2fy + c = 0",
           "we get",
           "a = 2, 2h = −13 ⇒ h = −13/2, b = −7,",
@@ -101,14 +106,49 @@
         "marks": 1,
         "margin_note": "First mark. Δ = abc + 2fgh − af² − bg² − ch² is the master test — it is zero exactly when the equation factors into two lines.",
         "lines": [
+          {
+            "text": "(the first of the four conditions for a pair of lines is Δ = 0)",
+            "added": true
+          },
           "(i) Δ = abc + 2fgh − af² − bg² − ch²",
+          {
+            "text": "(put a = 2, b = −7, c = −6, f = 23/2, g = 1/2, h = −13/2)",
+            "added": true
+          },
           "= 2(−7)(−6) + 2(23/2)(1/2)(−13/2) − 2(23/2)²",
           {
             "text": "  − (−7)(1/2)² − (−6)(−13/2)²",
             "style": "indent"
           },
+          {
+            "text": "(2(−7)(−6) = 84; 2(23/2)(1/2)(−13/2) = −299/4;",
+            "added": true
+          },
+          {
+            "text": "  2(529/4) = 529/2; (−7)(1/4) = −7/4;",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  (−6)(169/4) = −507/2, and the minus signs in",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  front change their signs)",
+            "style": "indent",
+            "added": true
+          },
           "= 84 − 299/4 − 529/2 + 7/4 + 507/2",
+          {
+            "text": "(group the halves: −529/2 + 507/2 = −22/2)",
+            "added": true
+          },
           "= 84 − 299/4 + 7/4 + (507 − 529)/2",
+          {
+            "text": "(−299/4 + 7/4 = −292/4 = −73; −22/2 = −11)",
+            "added": true
+          },
           "= 84 − 292/4 − 22/2 = 84 − 73 − 11 = 0"
         ],
         "recall": {
@@ -139,7 +179,18 @@
           "Arithmetic slip with the quarters that come from halved coefficients."
         ],
         "mark_note": "Method",
-        "memory_tip": "Δ = abc + 2fgh − af² − bg² − ch² is the master test: zero exactly when it factors into two lines."
+        "memory_tip": "Δ = abc + 2fgh − af² − bg² − ch² is the master test: zero exactly when it factors into two lines.",
+        "lines_compact": [
+          "(i) Δ = abc + 2fgh − af² − bg² − ch²",
+          "= 2(−7)(−6) + 2(23/2)(1/2)(−13/2) − 2(23/2)²",
+          {
+            "text": "  − (−7)(1/2)² − (−6)(−13/2)²",
+            "style": "indent"
+          },
+          "= 84 − 299/4 − 529/2 + 7/4 + 507/2",
+          "= 84 − 299/4 + 7/4 + (507 − 529)/2",
+          "= 84 − 292/4 − 22/2 = 84 − 73 − 11 = 0"
+        ]
       },
       {
         "id": "s3_inequalities",
@@ -148,15 +199,32 @@
         "marks": 1,
         "margin_note": "One mark. Δ = 0 alone is not enough — the three inequalities confirm the factors are REAL rather than complex. All four conditions together settle it.",
         "lines": [
+          {
+            "text": "((−13/2)² = 169/4; −ab = −2(−7) = +14 = 56/4)",
+            "added": true
+          },
           "(ii) h² − ab = (−13/2)² − 2(−7) = 169/4 + 14",
           {
             "text": "  = (169 + 56)/4 = 225/4 > 0",
             "style": "indent"
           },
+          {
+            "text": "((23/2)² = 529/4; bc = (−7)(−6) = 42 = 168/4)",
+            "added": true
+          },
           "(iii) f² − bc = (23/2)² − (−7)(−6) = 529/4 − 42",
           {
             "text": "  = (529 − 168)/4 = 361/4 > 0",
             "style": "indent"
+          },
+          {
+            "text": "((1/2)² = 1/4; −ac = −2(−6) = 12 = 48/4,",
+            "added": true
+          },
+          {
+            "text": "  and 1/4 + 48/4 = 49/4)",
+            "style": "indent",
+            "added": true
           },
           "(iv) g² − ac = (1/2)² − 2(−6) = 1/4 + 12 = 49/4 > 0",
           "All the four conditions are satisfied.",
@@ -190,7 +258,22 @@
           "Testing only one of the three inequalities."
         ],
         "mark_note": "Method",
-        "memory_tip": "Δ = 0 alone is not enough — the three inequalities confirm the factors are REAL."
+        "memory_tip": "Δ = 0 alone is not enough — the three inequalities confirm the factors are REAL.",
+        "lines_compact": [
+          "(ii) h² − ab = (−13/2)² − 2(−7) = 169/4 + 14",
+          {
+            "text": "  = (169 + 56)/4 = 225/4 > 0",
+            "style": "indent"
+          },
+          "(iii) f² − bc = (23/2)² − (−7)(−6) = 529/4 − 42",
+          {
+            "text": "  = (529 − 168)/4 = 361/4 > 0",
+            "style": "indent"
+          },
+          "(iv) g² − ac = (1/2)² − 2(−6) = 1/4 + 12 = 49/4 > 0",
+          "All the four conditions are satisfied.",
+          "So, the given equation represents a pair of straight lines."
+        ]
       },
       {
         "id": "s4_point",
@@ -199,25 +282,68 @@
         "marks": 1,
         "margin_note": "One mark. The two lines meet at a point given directly by a formula in the same six coefficients — no factorising and no solving is needed.",
         "lines": [
+          {
+            "text": "(the point of intersection of the pair of lines)",
+            "added": true
+          },
           "Point of intersection",
           "P = ((hf − bg)/(ab − h²), (gh − af)/(ab − h²))",
+          {
+            "text": "((−13/2)(23/2) = −299/4, and −(−7)(1/2)",
+            "added": true
+          },
+          {
+            "text": "  = +7/2 = 14/4)",
+            "style": "indent",
+            "added": true
+          },
           "hf − bg = (−13/2)(23/2) − (−7)(1/2) = −299/4 + 14/4",
           {
             "text": "  = −285/4",
             "style": "indent"
+          },
+          {
+            "text": "(2(−7) = −14 = −56/4)",
+            "added": true
           },
           "ab − h² = 2(−7) − (−13/2)² = −14 − 169/4",
           {
             "text": "  = (−56 − 169)/4 = −225/4",
             "style": "indent"
           },
+          {
+            "text": "(the 4s cancel; 285/225 = 19/15, dividing by 15)",
+            "added": true
+          },
           "⇒ x = (−285/4)/(−225/4) = 285/225 = 19/15",
+          {
+            "text": "((1/2)(−13/2) = −13/4 and 2(23/2) = 23 = 92/4)",
+            "added": true
+          },
           "gh − af = (1/2)(−13/2) − 2(23/2) = −13/4 − 92/4",
           {
             "text": "  = −105/4",
             "style": "indent"
           },
+          {
+            "text": "(105/225 = 7/15, dividing by 15)",
+            "added": true
+          },
           "⇒ y = (−105/4)/(−225/4) = 105/225 = 7/15",
+          {
+            "text": "(check: the equation factorises as (2x + y − 3)(x − 7y + 2),",
+            "added": true
+          },
+          {
+            "text": "  and (19/15, 7/15) satisfies 2x + y = 3",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  and x − 7y = −2)",
+            "style": "indent",
+            "added": true
+          },
           {
             "text": "∴ Point of intersection = (19/15, 7/15)",
             "style": "boxed"
@@ -251,7 +377,32 @@
           "Using ab + h² in the denominator."
         ],
         "mark_note": "Solution",
-        "memory_tip": "A formula in the same six coefficients gives the meeting point — no factorising, no solving."
+        "memory_tip": "A formula in the same six coefficients gives the meeting point — no factorising, no solving.",
+        "lines_compact": [
+          "Point of intersection",
+          "P = ((hf − bg)/(ab − h²), (gh − af)/(ab − h²))",
+          "hf − bg = (−13/2)(23/2) − (−7)(1/2) = −299/4 + 14/4",
+          {
+            "text": "  = −285/4",
+            "style": "indent"
+          },
+          "ab − h² = 2(−7) − (−13/2)² = −14 − 169/4",
+          {
+            "text": "  = (−56 − 169)/4 = −225/4",
+            "style": "indent"
+          },
+          "⇒ x = (−285/4)/(−225/4) = 285/225 = 19/15",
+          "gh − af = (1/2)(−13/2) − 2(23/2) = −13/4 − 92/4",
+          {
+            "text": "  = −105/4",
+            "style": "indent"
+          },
+          "⇒ y = (−105/4)/(−225/4) = 105/225 = 7/15",
+          {
+            "text": "∴ Point of intersection = (19/15, 7/15)",
+            "style": "boxed"
+          }
+        ]
       },
       {
         "id": "s5_angle_between_them",
@@ -260,10 +411,31 @@
         "marks": 1,
         "margin_note": "The last mark. The angle between the two lines of a pair comes from the same coefficients again — tanθ = 2√(h² − ab) / |a + b|, using the h² − ab already computed above.",
         "lines": [
+          {
+            "text": "(the acute angle between the lines",
+            "added": true
+          },
+          {
+            "text": "  of ax² + 2hxy + by² + … = 0)",
+            "style": "indent",
+            "added": true
+          },
           "The angle between the pair is given by",
           "tanθ = 2√(h² − ab) / |a + b|",
+          {
+            "text": "(√(225/4) = 15/2; |2 − 7| = 5)",
+            "added": true
+          },
           "= 2√(225/4) / |2 + (−7)| = 2(15/2)/5 = 15/5 = 3",
+          {
+            "text": "(1 + tan²θ = sec²θ: 1 + 9 = 10)",
+            "added": true
+          },
           "⇒ tanθ = 3  ⇒  secθ = √(1 + tan²θ) = √10",
+          {
+            "text": "(cos θ = 1/sec θ)",
+            "added": true
+          },
           {
             "text": "  ⇒  cosθ = 1/√10",
             "style": "indent"
@@ -301,7 +473,21 @@
           "Dropping the modulus on |a + b|: here a + b = −5, so a negative tangent comes out."
         ],
         "mark_note": "Solution",
-        "memory_tip": "tan θ = 2√(h² − ab)/|a + b|, reusing the h² − ab already computed."
+        "memory_tip": "tan θ = 2√(h² − ab)/|a + b|, reusing the h² − ab already computed.",
+        "lines_compact": [
+          "The angle between the pair is given by",
+          "tanθ = 2√(h² − ab) / |a + b|",
+          "= 2√(225/4) / |2 + (−7)| = 2(15/2)/5 = 15/5 = 3",
+          "⇒ tanθ = 3  ⇒  secθ = √(1 + tan²θ) = √10",
+          {
+            "text": "  ⇒  cosθ = 1/√10",
+            "style": "indent"
+          },
+          {
+            "text": "∴ Angle between them is θ = Cos⁻¹(1/√10)",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

@@ -42,7 +42,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.24 — LAQ chapter 2 Pair of Straight Lines (the HOMOGENISATION run, book pp.24-26), answer 12, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 18 · AP M,J-16. THE MARK SPLIT IS THE BOOK'S: this answer carries printed margin tags. It is one of only TWO answers in the whole chapter that do — answer 12 on book p.24 (printed 1+1+2+1+2) and answer 15 on book p.26 (printed 1+1+1+1+1+2). Both are HOMOGENISATION answers, and both total 7. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: Pair of Straight Lines holds TWO Section-C slots — the book's chapter header reads '7+7=14 Marks' and the IPE Blue Print (book p.3) gives it 14 marks, all in Section C and none in Section A or B, so it is an LAQ-ONLY unit and the only 1B unit besides Matrices-on-1A to carry two long slots. The chapter runs book pp.19-26 and its boundary was walked: p.27 opens LAQ chapter 3, D.C's & D.R's. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Apply the cosθ formula. RE-CUT 2026-08-31: this card was filed as LAQ at 8 marks and is now SAQ at 4 marks. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition) files this chapter under the printed banner \"2 x 4M = 8 M\" followed by \"Short Answer Questions\", lists every one of its questions there, and prints no long-answer block for this chapter at all. A chapter with no 8-mark block cannot hold an 8-mark question. The standing boundary for that book — \"Only the question was taken\" — holds here, and this card takes even less: what was read from it is the chapter’s printed section banner and nothing else. The solution, the step order and the mark split are this answer book’s own work, see docs/ORIGINALITY_MATHS.md. The mathematics and the steps are unchanged; only the mark scheme moved: the steps now carry 0+1+1+2 instead of 1+1+2+4 — rewriting the given line as (something)/(constant) = 1 earns no mark of its own at 4 marks. Paper position now: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. Still unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.24 — LAQ chapter 2 Pair of Straight Lines (the HOMOGENISATION run, book pp.24-26), answer 12, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 18 · AP M,J-16. THE MARK SPLIT IS THE BOOK'S: this answer carries printed margin tags. It is one of only TWO answers in the whole chapter that do — answer 12 on book p.24 (printed 1+1+2+1+2) and answer 15 on book p.26 (printed 1+1+1+1+1+2). Both are HOMOGENISATION answers, and both total 7. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: Pair of Straight Lines holds TWO Section-C slots — the book's chapter header reads '7+7=14 Marks' and the IPE Blue Print (book p.3) gives it 14 marks, all in Section C and none in Section A or B, so it is an LAQ-ONLY unit and the only 1B unit besides Matrices-on-1A to carry two long slots. The chapter runs book pp.19-26 and its boundary was walked: p.27 opens LAQ chapter 3, D.C's & D.R's. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Apply the cosθ formula. RE-CUT 2026-08-31: this card was filed as LAQ at 8 marks and is now SAQ at 4 marks. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition) files this chapter under the printed banner \"2 x 4M = 8 M\" followed by \"Short Answer Questions\", lists every one of its questions there, and prints no long-answer block for this chapter at all. A chapter with no 8-mark block cannot hold an 8-mark question. The standing boundary for that book — \"Only the question was taken\" — holds here, and this card takes even less: what was read from it is the chapter’s printed section banner and nothing else. The solution, the step order and the mark split are this answer book’s own work, see docs/ORIGINALITY_MATHS.md. The mathematics and the steps are unchanged; only the mark scheme moved: the steps now carry 0+1+1+2 instead of 1+1+2+4 — rewriting the given line as (something)/(constant) = 1 earns no mark of its own at 4 marks. Paper position now: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. Still unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say what you do to the line first, and what formula finishes it.",
   "answer": {
@@ -62,7 +62,9 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "(move 1 to the right side)",
           "Given line is 3x − y + 1 = 0  ⇒  3x − y = −1",
+          "(divide both sides by −1)",
           "⇒ (3x − y)/(−1) = 1  ……(1)"
         ],
         "recall": {
@@ -101,8 +103,40 @@
         "margin_note": "First mark. Raise every term of the curve to degree two: the linear terms are multiplied by that 1 once, and the constant term by it TWICE. The second-degree terms are left alone.",
         "lines": [
           "Given curve is x² + 2xy + y² + 2x + 2y − 5 = 0  ……(2)",
+          {
+            "text": "(the homogenised equation holds at both points",
+            "added": true
+          },
+          {
+            "text": "  of intersection, and a homogeneous equation is",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  a pair of lines through the origin,",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  so it is the pair through those points)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "(multiply the degree-1 terms by 1 and the constant by 1²,",
+            "added": true
+          },
+          {
+            "text": "  then put 1 = the left side of (1))",
+            "style": "indent",
+            "added": true
+          },
           "Homogenising (1) & (2), we get",
           "x² + 2xy + y² + 2x(1) + 2y(1) − 5(1)² = 0",
+          {
+            "text": "(put 1 = (3x − y)/(−1))",
+            "added": true
+          },
           "⇒ x² + 2xy + y² + 2x[(3x−y)/(−1)] + 2y[(3x−y)/(−1)]",
           {
             "text": "  − 5[(3x−y)/(−1)]² = 0",
@@ -137,7 +171,17 @@
           "Multiplying the second-degree terms as well, which raises them to degree four."
         ],
         "mark_note": "Method",
-        "memory_tip": "Raise every term to degree two: linear terms times that 1 ONCE, the constant TWICE."
+        "memory_tip": "Raise every term to degree two: linear terms times that 1 ONCE, the constant TWICE.",
+        "lines_compact": [
+          "Given curve is x² + 2xy + y² + 2x + 2y − 5 = 0  ……(2)",
+          "Homogenising (1) & (2), we get",
+          "x² + 2xy + y² + 2x(1) + 2y(1) − 5(1)² = 0",
+          "⇒ x² + 2xy + y² + 2x[(3x−y)/(−1)] + 2y[(3x−y)/(−1)]",
+          {
+            "text": "  − 5[(3x−y)/(−1)]² = 0",
+            "style": "indent"
+          }
+        ]
       },
       {
         "id": "s3_simplify",
@@ -146,25 +190,60 @@
         "marks": 1,
         "margin_note": "One mark. Expand everything and collect. The result must have no constant and no linear term — if either is left, a term was homogenised wrongly.",
         "lines": [
+          {
+            "text": "(dividing by −1 changes the sign;",
+            "added": true
+          },
+          {
+            "text": "  [(3x − y)/(−1)]² = (3x − y)²)",
+            "style": "indent",
+            "added": true
+          },
           "⇒ x² + 2xy + y² − 2x(3x − y) − 2y(3x − y)",
           {
             "text": "  − 5(3x − y)² = 0",
             "style": "indent"
+          },
+          {
+            "text": "(−2x(3x − y) = −6x² + 2xy; −2y(3x − y) = −6xy + 2y²;",
+            "added": true
+          },
+          {
+            "text": "  (3x − y)² = 9x² − 6xy + y²)",
+            "style": "indent",
+            "added": true
           },
           "⇒ x² + 2xy + y² − 6x² + 2xy − 6xy + 2y²",
           {
             "text": "  − 5(9x² + y² − 6xy) = 0",
             "style": "indent"
           },
+          {
+            "text": "(−5 × 9x² = −45x², −5 × y² = −5y², −5 × (−6xy) = +30xy)",
+            "added": true
+          },
           "⇒ x² + 2xy + y² − 6x² + 2xy − 6xy + 2y²",
           {
             "text": "  − 45x² − 5y² + 30xy = 0",
             "style": "indent"
           },
+          {
+            "text": "(x²: 1 − 6 − 45 = −50; y²: 1 + 2 − 5 = −2;",
+            "added": true
+          },
+          {
+            "text": "  xy: 2 + 2 − 6 + 30 = 28)",
+            "style": "indent",
+            "added": true
+          },
           "⇒ −50x² − 2y² + 28xy = 0",
           {
             "text": "  ⇒   −2(25x² + y² − 14xy) = 0",
             "style": "indent"
+          },
+          {
+            "text": "(divide both sides by −2)",
+            "added": true
           },
           "⇒ 25x² + y² − 14xy = 0"
         ],
@@ -196,7 +275,30 @@
           "Sign slip when expanding a squared bracket."
         ],
         "mark_note": "Method",
-        "memory_tip": "The result must have NO constant and no linear term — if either is left, a term was homogenised wrongly."
+        "memory_tip": "The result must have NO constant and no linear term — if either is left, a term was homogenised wrongly.",
+        "lines_compact": [
+          "⇒ x² + 2xy + y² − 2x(3x − y) − 2y(3x − y)",
+          {
+            "text": "  − 5(3x − y)² = 0",
+            "style": "indent"
+          },
+          "⇒ x² + 2xy + y² − 6x² + 2xy − 6xy + 2y²",
+          {
+            "text": "  − 5(9x² + y² − 6xy) = 0",
+            "style": "indent"
+          },
+          "⇒ x² + 2xy + y² − 6x² + 2xy − 6xy + 2y²",
+          {
+            "text": "  − 45x² − 5y² + 30xy = 0",
+            "style": "indent"
+          },
+          "⇒ −50x² − 2y² + 28xy = 0",
+          {
+            "text": "  ⇒   −2(25x² + y² − 14xy) = 0",
+            "style": "indent"
+          },
+          "⇒ 25x² + y² − 14xy = 0"
+        ]
       },
       {
         "id": "s4_apply_the_condition",
@@ -207,10 +309,26 @@
         "lines": [
           "On comparing with ax² + 2hxy + by² = 0, we get",
           "a = 25, b = 1, 2h = −14",
+          {
+            "text": "(the angle θ between the lines of ax² + 2hxy + by² = 0)",
+            "added": true
+          },
           "∴ cosθ = |a + b| / √((a − b)² + (2h)²),",
           "where θ is the angle between the required lines",
+          {
+            "text": "(put a = 25, b = 1, 2h = −14)",
+            "added": true
+          },
           "= |25 + 1| / √((25 − 1)² + (−14)²)",
+          {
+            "text": "(24² = 576 and (−14)² = 196; 772 = 4 × 193)",
+            "added": true
+          },
           "= 26 / √(576 + 196) = 26/√772 = 26/√(4 × 193)",
+          {
+            "text": "(√4 = 2, and 26/2 = 13)",
+            "added": true
+          },
           {
             "text": "  = 26/(2√193) = 13/√193",
             "style": "indent"
@@ -249,7 +367,23 @@
           "Forgetting the modulus and producing a negative cosine."
         ],
         "mark_note": "Solution",
-        "memory_tip": "Write the cos θ formula out before substituting; the formula itself carries a mark."
+        "memory_tip": "Write the cos θ formula out before substituting; the formula itself carries a mark.",
+        "lines_compact": [
+          "On comparing with ax² + 2hxy + by² = 0, we get",
+          "a = 25, b = 1, 2h = −14",
+          "∴ cosθ = |a + b| / √((a − b)² + (2h)²),",
+          "where θ is the angle between the required lines",
+          "= |25 + 1| / √((25 − 1)² + (−14)²)",
+          "= 26 / √(576 + 196) = 26/√772 = 26/√(4 × 193)",
+          {
+            "text": "  = 26/(2√193) = 13/√193",
+            "style": "indent"
+          },
+          {
+            "text": "∴ Angle between the lines is θ = Cos⁻¹(13/√193)",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

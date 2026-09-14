@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 4 PAIR OF STRAIGHT LINES, Short Answer question 2, book p.163. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split is 1+1+1+1 because this proof turns four times and each turn is a separate piece of knowledge: splitting the pair into slopes, the angle formula in slopes, the identity that converts the difference of the slopes into the sum and the product, and the conversion from tan to cos. A student who stops after any one of them has still shown one complete idea. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 4 PAIR OF STRAIGHT LINES, Short Answer question 2, book p.163. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split is 1+1+1+1 because this proof turns four times and each turn is a separate piece of knowledge: splitting the pair into slopes, the angle formula in slopes, the identity that converts the difference of the slopes into the sum and the product, and the conversion from tan to cos. A student who stops after any one of them has still shown one complete idea. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — say what you know about the two slopes, and how you get from tan θ to cos θ.",
   "answer": {
@@ -60,8 +60,19 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "(a homogeneous second-degree equation is a pair of lines",
+          {
+            "text": "  through the origin; b ≠ 0 lets both lines be",
+            "style": "indent"
+          },
+          {
+            "text": "  written as y = mx)",
+            "style": "indent"
+          },
           "Let the two lines be y = m₁x and y = m₂x, b ≠ 0.",
+          "(b(y − m₁x)(y − m₂x) = by² − b(m₁ + m₂)xy + bm₁m₂x²)",
           "Then ax² + 2hxy + by² ≡ b(y − m₁x)(y − m₂x)",
+          "(x² terms: a = bm₁m₂; xy terms: 2h = −b(m₁ + m₂))",
           "On equating like term coeff., we get",
           "m₁ + m₂ = −2h/b,   m₁m₂ = a/b   ……(1)"
         ],
@@ -102,8 +113,21 @@
         "margin_note": "One mark. Two lines meeting at a point make two angles, θ and 180° − θ, whose tangents are opposite in sign — that is where the ± comes from, and it stays to the end.",
         "memory_tip": "Two lines make two angles, θ and 180° − θ, so the ± is there from the start.",
         "lines": [
+          {
+            "text": "(the angle between lines with slopes m₁ and m₂)",
+            "added": true
+          },
           "θ is the angle between the two lines, so",
           "tan θ = ±(m₁ − m₂) / (1 + m₁m₂)",
+          {
+            "text": "((m₁ + m₂)² = m₁² + 2m₁m₂ + m₂²,",
+            "added": true
+          },
+          {
+            "text": "  and (m₁ − m₂)² = m₁² − 2m₁m₂ + m₂²)",
+            "style": "indent",
+            "added": true
+          },
           "(m₁ − m₂)² = (m₁ + m₂)² − 4m₁m₂"
         ],
         "recall": {
@@ -132,6 +156,11 @@
         "common_mistakes": [
           "Writing (m₁ − m₂)² = (m₁ + m₂)² − 2m₁m₂.",
           "Writing tan θ = (m₁ − m₂)/(1 − m₁m₂)."
+        ],
+        "lines_compact": [
+          "θ is the angle between the two lines, so",
+          "tan θ = ±(m₁ − m₂) / (1 + m₁m₂)",
+          "(m₁ − m₂)² = (m₁ + m₂)² − 4m₁m₂"
         ]
       },
       {
@@ -143,9 +172,35 @@
         "margin_note": "One mark. Both the numerator and the denominator carry a factor 1/b, so those two factors cancel and the result is in a, h and b only.",
         "memory_tip": "Numerator and denominator each carry a factor 1/b, so those two factors cancel.",
         "lines": [
+          {
+            "text": "(put m₁ + m₂ = −2h/b and m₁m₂ = a/b from (1);",
+            "added": true
+          },
+          {
+            "text": "  (−2h/b)² = 4h²/b²)",
+            "style": "indent",
+            "added": true
+          },
           "= (−2h/b)² − 4(a/b) = (4h² − 4ab)/b²",
+          {
+            "text": "(take the square root: √(4(h² − ab)/b²) = 2√(h² − ab)/|b|,",
+            "added": true
+          },
+          {
+            "text": "  and the ± covers the sign)",
+            "style": "indent",
+            "added": true
+          },
           "⇒ m₁ − m₂ = ±2√(h² − ab) / b",
+          {
+            "text": "(put m₁m₂ = a/b; 1 = b/b)",
+            "added": true
+          },
           "1 + m₁m₂ = 1 + a/b = (a + b)/b",
+          {
+            "text": "(divide ±2√(h² − ab)/b by (a + b)/b; the b's cancel)",
+            "added": true
+          },
           "∴ tan θ = ±2√(h² − ab) / (a + b)"
         ],
         "recall": {
@@ -174,6 +229,12 @@
         "common_mistakes": [
           "Writing (−2h/b)² as −4h²/b².",
           "Cancelling only one of the two b factors."
+        ],
+        "lines_compact": [
+          "= (−2h/b)² − 4(a/b) = (4h² − 4ab)/b²",
+          "⇒ m₁ − m₂ = ±2√(h² − ab) / b",
+          "1 + m₁m₂ = 1 + a/b = (a + b)/b",
+          "∴ tan θ = ±2√(h² − ab) / (a + b)"
         ]
       },
       {
@@ -185,10 +246,41 @@
         "margin_note": "The last mark. Read tan θ as opposite over adjacent, so the hypotenuse is √(p² + q²) and cos θ is adjacent over hypotenuse. The 4h² and the −4ab combine with (a + b)² to give (a − b)² + 4h².",
         "memory_tip": "tan θ = p/q gives cos θ = q/√(p² + q²) — read the fraction as opposite over adjacent.",
         "lines": [
+          {
+            "text": "(a right triangle with opposite side p and adjacent side q",
+            "added": true
+          },
+          {
+            "text": "  has hypotenuse √(p² + q²))",
+            "style": "indent",
+            "added": true
+          },
           "If tan θ = p/q then cos θ = q/√(p² + q²)",
           "Here p = 2√(h² − ab) and q = a + b",
+          {
+            "text": "((2√(h² − ab))² = 4(h² − ab) and (a + b)²",
+            "added": true
+          },
+          {
+            "text": "  = a² + 2ab + b²)",
+            "style": "indent",
+            "added": true
+          },
           "p² + q² = 4h² − 4ab + a² + 2ab + b²",
+          {
+            "text": "(−4ab + 2ab = −2ab, and a² − 2ab + b² = (a − b)²)",
+            "added": true
+          },
           "        = (a − b)² + 4h²",
+          {
+            "text": "(put q = a + b and √(p² + q²) = √((a − b)² + 4h²);",
+            "added": true
+          },
+          {
+            "text": "  the ± covers an obtuse θ)",
+            "style": "indent",
+            "added": true
+          },
           {
             "text": "∴ cos θ = ±(a + b)/√((a − b)² + 4h²)",
             "style": "boxed"
@@ -220,6 +312,16 @@
         "common_mistakes": [
           "Writing cos θ = p/√(p² + q²), which is sin θ.",
           "Leaving (a + b)² under the root instead of (a − b)²."
+        ],
+        "lines_compact": [
+          "If tan θ = p/q then cos θ = q/√(p² + q²)",
+          "Here p = 2√(h² − ab) and q = a + b",
+          "p² + q² = 4h² − 4ab + a² + 2ab + b²",
+          "        = (a − b)² + 4h²",
+          {
+            "text": "∴ cos θ = ±(a + b)/√((a − b)² + 4h²)",
+            "style": "boxed"
+          }
         ]
       }
     ]

@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 4 PAIR OF STRAIGHT LINES, Short Answer question 15(ii), book p.171. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split is 1+1+1+1 because this question is answered by direct coordinates rather than by angles: split the pair, find the two vertices on x = a, compare the three side lengths, then compute the area. Each of the four is a separate result on the page. This card proves the shape by SIDE LENGTHS, not by angles, which is a different route from its companion question 15(i) and is the shorter one when the vertices are this easy to write down. The area was cross-checked a second way, as ½ × base × height with base BC = 2√3|a| and height 3|a|, which also gives 3√3a². Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 4 PAIR OF STRAIGHT LINES, Short Answer question 15(ii), book p.171. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split is 1+1+1+1 because this question is answered by direct coordinates rather than by angles: split the pair, find the two vertices on x = a, compare the three side lengths, then compute the area. Each of the four is a separate result on the page. This card proves the shape by SIDE LENGTHS, not by angles, which is a different route from its companion question 15(i) and is the shorter one when the vertices are this easy to write down. The area was cross-checked a second way, as ½ × base × height with base BC = 2√3|a| and height 3|a|, which also gives 3√3a². Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say where the pair of lines meet, and how you show the three sides are equal.",
   "answer": {
@@ -62,10 +62,13 @@
           },
           "(x + 2a)² − 3y² = 0   ……(1)",
           "x = a   ……(2)",
+          "(p² − q² = (p − q)(p + q) with p = x + 2a and q = √3y)",
           "(1) is a difference of two squares:",
           "(1) ⇒ (x + 2a − √3y)(x + 2a + √3y) = 0",
+          "((√3y)² = 3y²)",
           "Multiplying back: (x + 2a)² − (√3y)²",
           "   = (x + 2a)² − 3y², which is (1).",
+          "(put y = 0 in either factor: x + 2a = 0 gives x = −2a)",
           "Both lines pass through A = (−2a, 0)."
         ],
         "recall": {
@@ -106,8 +109,16 @@
         "memory_tip": "x = a makes x + 2a equal 3a in both lines, so only the sign of the y term changes.",
         "lines": [
           "L₁: x + 2a − √3y = 0. Put x = a:",
+          {
+            "text": "(a + 2a = 3a, so 3a − √3y = 0; divide by √3: 3/√3 = √3)",
+            "added": true
+          },
           "3a = √3 y ⇒ y = √3 a, so B = (a, √3a)",
           "L₂: x + 2a + √3y = 0. Put x = a:",
+          {
+            "text": "(3a + √3y = 0 gives y = −3a/√3 = −√3a)",
+            "added": true
+          },
           "3a = −√3 y ⇒ y = −√3a, so C = (a, −√3a)"
         ],
         "recall": {
@@ -136,6 +147,12 @@
         "common_mistakes": [
           "Simplifying 3a/√3 to 3a instead of √3a.",
           "Taking x = a as y = a and looking for a horizontal line."
+        ],
+        "lines_compact": [
+          "L₁: x + 2a − √3y = 0. Put x = a:",
+          "3a = √3 y ⇒ y = √3 a, so B = (a, √3a)",
+          "L₂: x + 2a + √3y = 0. Put x = a:",
+          "3a = −√3 y ⇒ y = −√3a, so C = (a, −√3a)"
         ]
       },
       {
@@ -147,9 +164,35 @@
         "margin_note": "One mark. BC is vertical, so its length is just the gap between the two y values. AB and AC are equal by the symmetry about the x-axis, so only one of them needs the distance formula.",
         "memory_tip": "BC is vertical, so its length is just the gap between the two y values.",
         "lines": [
+          {
+            "text": "(B and C have the same x, so BC is the difference",
+            "added": true
+          },
+          {
+            "text": "  of their y values)",
+            "style": "indent",
+            "added": true
+          },
           "BC = |√3a − (−√3a)| = 2√3 |a|",
+          {
+            "text": "(the distance formula from A(−2a, 0) to B(a, √3a))",
+            "added": true
+          },
           "AB² = (a + 2a)² + (√3a − 0)²",
+          {
+            "text": "((3a)² = 9a² and (√3a)² = 3a²;",
+            "added": true
+          },
+          {
+            "text": "  √(12a²) = √12 · |a| = 2√3|a|)",
+            "style": "indent",
+            "added": true
+          },
           "   = 9a² + 3a² = 12a² ⇒ AB = 2√3 |a|",
+          {
+            "text": "((a + 2a)² + (−√3a − 0)² = 12a² again)",
+            "added": true
+          },
           "In the same way AC = 2√3 |a|.",
           "∴ AB = BC = CA, so △ABC is equilateral."
         ],
@@ -179,6 +222,13 @@
         "common_mistakes": [
           "Writing √(12a²) as 12|a| instead of 2√3|a|.",
           "Measuring BC as √3a, which is only the distance from B to the x-axis."
+        ],
+        "lines_compact": [
+          "BC = |√3a − (−√3a)| = 2√3 |a|",
+          "AB² = (a + 2a)² + (√3a − 0)²",
+          "   = 9a² + 3a² = 12a² ⇒ AB = 2√3 |a|",
+          "In the same way AC = 2√3 |a|.",
+          "∴ AB = BC = CA, so △ABC is equilateral."
         ]
       },
       {
@@ -190,8 +240,20 @@
         "margin_note": "The last mark. With the side already known, the equilateral-triangle area formula gives the answer. The same answer comes from ½ × base × height with base 2√3|a| and height 3|a|.",
         "memory_tip": "Area of an equilateral triangle is (√3/4) × side squared, and here side squared is 12a².",
         "lines": [
+          {
+            "text": "((2√3)² = 4 × 3 = 12)",
+            "added": true
+          },
           "Side s = 2√3 |a|, so s² = 12a²",
+          {
+            "text": "(the area of an equilateral triangle of side s)",
+            "added": true
+          },
           "Area = (√3/4)s² = (√3/4)(12a²)",
+          {
+            "text": "((√3/4)(12a²) = 3√3a²)",
+            "added": true
+          },
           "= 3√3 a²",
           {
             "text": "∴ Area = 3√3 a² sq.units",
@@ -224,6 +286,15 @@
         "common_mistakes": [
           "Squaring 2√3|a| as 4·3·a = 12a instead of 12a².",
           "Writing the area of an equilateral triangle as ½s² instead of (√3/4)s²."
+        ],
+        "lines_compact": [
+          "Side s = 2√3 |a|, so s² = 12a²",
+          "Area = (√3/4)s² = (√3/4)(12a²)",
+          "= 3√3 a²",
+          {
+            "text": "∴ Area = 3√3 a² sq.units",
+            "style": "boxed"
+          }
         ]
       }
     ]

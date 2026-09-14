@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 4 PAIR OF STRAIGHT LINES, Short Answer question 15(i), book p.170. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split is 1+1+1+1 because the question asks for two things — that the triangle is equilateral, and its area — and each half needs two steps: the pair must be split before an angle can be measured, and the angles must be settled before the height can be turned into a side. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 4 PAIR OF STRAIGHT LINES, Short Answer question 15(i), book p.170. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split is 1+1+1+1 because the question asks for two things — that the triangle is equilateral, and its area — and each half needs two steps: the pair must be split before an angle can be measured, and the angles must be settled before the height can be turned into a side. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — say how you get the two lines out of the pair, and what you measure to show the triangle is equilateral.",
   "answer": {
@@ -62,10 +62,22 @@
           },
           "(lx + my)² − 3(mx − ly)² = 0   ……(1)",
           "Given line L: lx + my + n = 0   ……(2)",
+          "(p² − q² = (p − q)(p + q))",
           "(1) is a difference of two squares:",
+          "(3(mx − ly)² = [√3(mx − ly)]²,",
+          {
+            "text": "  so p = lx + my and q = √3(mx − ly))",
+            "style": "indent"
+          },
           "(1) ⇒ [(lx+my) − √3(mx−ly)] ×",
           "       [(lx+my) + √3(mx−ly)] = 0",
+          "(collect x and y: lx − √3mx = (l − √3m)x and my",
+          {
+            "text": "  + √3ly = (m + √3l)y)",
+            "style": "indent"
+          },
           "L₁: (l − √3m)x + (m + √3l)y = 0",
+          "(the same with + √3 in place of − √3)",
           "L₂: (l + √3m)x + (m − √3l)y = 0"
         ],
         "recall": {
@@ -105,12 +117,51 @@
         "margin_note": "One mark. Measure the angle through the normals: the angle between two lines equals the angle between their normal vectors. Both cross terms in the dot product cancel because of the √3.",
         "memory_tip": "Measure through the NORMALS — the √3 terms in the dot product cancel each other.",
         "lines": [
+          {
+            "text": "(a normal of ax + by + c = 0 is (a, b);",
+            "added": true
+          },
+          {
+            "text": "  the angle between two lines is the angle",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  between their normals)",
+            "style": "indent",
+            "added": true
+          },
           "Normals: L has (l, m);",
           "L₁ has (l − √3m, m + √3l)",
+          {
+            "text": "(dot product: l(l − √3m) + m(m + √3l))",
+            "added": true
+          },
           "Dot product = l² − √3lm + m² + √3lm = l² + m²",
+          {
+            "text": "(l² − 2√3lm + 3m² + m² + 2√3lm + 3l² = 4l² + 4m²)",
+            "added": true
+          },
           "(l−√3m)² + (m+√3l)² = 4l² + 4m²",
+          {
+            "text": "(√(4(l² + m²)) = 2√(l² + m²))",
+            "added": true
+          },
           "So the length of L₁'s normal is 2√(l² + m²)",
+          {
+            "text": "(cos θ = dot product ÷ product of the lengths;",
+            "added": true
+          },
+          {
+            "text": "  √(l² + m²) · √(l² + m²) = l² + m²)",
+            "style": "indent",
+            "added": true
+          },
           "cos θ₁ = (l²+m²) / [√(l²+m²) · 2√(l²+m²)] = ½",
+          {
+            "text": "(cos 60° = ½)",
+            "added": true
+          },
           "∴ θ₁ = 60°"
         ],
         "recall": {
@@ -139,6 +190,15 @@
         "common_mistakes": [
           "Taking (l, m) as a direction vector of L instead of its normal.",
           "Expanding (l − √3m)² as l² − √3lm + 3m² and losing the factor 2."
+        ],
+        "lines_compact": [
+          "Normals: L has (l, m);",
+          "L₁ has (l − √3m, m + √3l)",
+          "Dot product = l² − √3lm + m² + √3lm = l² + m²",
+          "(l−√3m)² + (m+√3l)² = 4l² + 4m²",
+          "So the length of L₁'s normal is 2√(l² + m²)",
+          "cos θ₁ = (l²+m²) / [√(l²+m²) · 2√(l²+m²)] = ½",
+          "∴ θ₁ = 60°"
         ]
       },
       {
@@ -150,11 +210,31 @@
         "margin_note": "One mark. The second line gives the same working with the sign of √3 reversed, so the same cancellation happens. Two angles of 60° force the third to be 60° as well.",
         "memory_tip": "Two angles of 60° force the third one, because the three angles add to 180°.",
         "lines": [
+          {
+            "text": "(the normals of L and L₂)",
+            "added": true
+          },
           "For L and L₂ the normals are (l, m)",
           "and (l + √3m, m − √3l).",
+          {
+            "text": "(dot product: l(l + √3m) + m(m − √3l))",
+            "added": true
+          },
           "Dot product = l² + √3lm + m² − √3lm = l² + m²",
+          {
+            "text": "(l² + 2√3lm + 3m² + m² − 2√3lm + 3l² = 4l² + 4m²)",
+            "added": true
+          },
           "(l+√3m)² + (m−√3l)² = 4l² + 4m² again",
+          {
+            "text": "(the same working as step 2 gives cos θ₂ = ½)",
+            "added": true
+          },
           "∴ cos θ₂ = ½, so θ₂ = 60°",
+          {
+            "text": "(the angles of a triangle add to 180°)",
+            "added": true
+          },
           "Third angle = 180° − 60° − 60° = 60°",
           "All three angles are 60°, so the triangle",
           "is equilateral."
@@ -185,6 +265,16 @@
         "common_mistakes": [
           "Showing only one angle is 60° and calling the triangle equilateral.",
           "Taking the third angle as 60° by assumption instead of from the angle sum."
+        ],
+        "lines_compact": [
+          "For L and L₂ the normals are (l, m)",
+          "and (l + √3m, m − √3l).",
+          "Dot product = l² + √3lm + m² − √3lm = l² + m²",
+          "(l+√3m)² + (m−√3l)² = 4l² + 4m² again",
+          "∴ cos θ₂ = ½, so θ₂ = 60°",
+          "Third angle = 180° − 60° − 60° = 60°",
+          "All three angles are 60°, so the triangle",
+          "is equilateral."
         ]
       },
       {
@@ -196,11 +286,35 @@
         "margin_note": "The last mark. The height from the origin to the given line is the perpendicular distance |n|/√(l² + m²). In an equilateral triangle the height is (√3/2) times the side, so the side follows from the height.",
         "memory_tip": "Height of an equilateral triangle is (√3/2) × side, so side = 2 × height ÷ √3.",
         "lines": [
+          {
+            "text": "(L₁ and L₂ both have no constant term)",
+            "added": true
+          },
+          {
+            "text": "(the perpendicular distance from (0, 0) to lx + my + n = 0)",
+            "added": true
+          },
           "L₁ and L₂ meet at O(0, 0), so the height",
           "from O to L is d = |n| / √(l² + m²)",
+          {
+            "text": "(the height of an equilateral triangle of side s is (√3/2)s)",
+            "added": true
+          },
+          {
+            "text": "(multiply both sides by 2/√3)",
+            "added": true
+          },
           "For an equilateral triangle of side s,",
           "d = (√3/2)s ⇒ s = 2d/√3",
+          {
+            "text": "(s² = 4d²/3; (√3/4)(4/3) = √3/3 = 1/√3)",
+            "added": true
+          },
           "Area = (√3/4)s² = (√3/4)(4d²/3) = d²/√3",
+          {
+            "text": "(put d² = n²/(l² + m²))",
+            "added": true
+          },
           "= n² / [√3(l² + m²)]",
           {
             "text": "∴ Area = n² / (√3(l² + m²)) sq.units",
@@ -233,6 +347,18 @@
         "common_mistakes": [
           "Using d as the side length instead of the height.",
           "Writing the area of an equilateral triangle as ½s² instead of (√3/4)s²."
+        ],
+        "lines_compact": [
+          "L₁ and L₂ meet at O(0, 0), so the height",
+          "from O to L is d = |n| / √(l² + m²)",
+          "For an equilateral triangle of side s,",
+          "d = (√3/2)s ⇒ s = 2d/√3",
+          "Area = (√3/4)s² = (√3/4)(4d²/3) = d²/√3",
+          "= n² / [√3(l² + m²)]",
+          {
+            "text": "∴ Area = n² / (√3(l² + m²)) sq.units",
+            "style": "boxed"
+          }
         ]
       }
     ]
