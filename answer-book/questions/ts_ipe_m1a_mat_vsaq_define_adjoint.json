@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.36, chapter 5 MATRICES, Very Short Answer question 22. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards the stated definition and a worked example separately, which is how a two-mark definition question is answered in full. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Related cards in the same unit: ts_ipe_m1a_mat_vsaq_adj_inverse_2x2 and ts_ipe_m1a_mat_saq_adj_inverse_1_3_3 compute an adjoint; this question asks only for the definition, so they are not duplicates."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.36, chapter 5 MATRICES, Very Short Answer question 22. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards the stated definition and a worked example separately, which is how a two-mark definition question is answered in full. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Related cards in the same unit: ts_ipe_m1a_mat_vsaq_adj_inverse_2x2 and ts_ipe_m1a_mat_saq_adj_inverse_1_3_3 compute an adjoint; this question asks only for the definition, so they are not duplicates. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say the definition of the adjoint, and give the 2×2 rule.",
   "answer": {
@@ -57,6 +57,7 @@
           },
           "Let A = [aᵢⱼ] be a square matrix, and let Aᵢⱼ be",
           "the cofactor of the entry aᵢⱼ.",
+          "(Aᵢⱼ = (−1)ⁱ⁺ʲ × the minor of aᵢⱼ)",
           "The matrix [Aᵢⱼ] is called the cofactor matrix.",
           "The TRANSPOSE of the cofactor matrix is called",
           "the adjoint of A, and is written Adj A."
@@ -104,6 +105,15 @@
             "render": "katex",
             "style": "eq"
           },
+          {
+            "text": "(the cofactors of a, b, c, d are d, −c, −b, a;",
+            "added": true
+          },
+          {
+            "text": "  the transpose puts −b top-right, −c bottom-left)",
+            "style": "indent",
+            "added": true
+          },
           "Swap the two diagonal entries, and change the",
           "sign of the other two.",
           "For any square A, A(Adj A) = (Adj A)A = |A| I.",
@@ -139,7 +149,22 @@
           "Changing the sign of all four entries.",
           "Writing A(Adj A) = I and leaving out the determinant."
         ],
-        "memory_tip": "For 2×2: swap the diagonal pair, flip the sign of the other pair."
+        "memory_tip": "For 2×2: swap the diagonal pair, flip the sign of the other pair.",
+        "lines_compact": [
+          "For a 2×2 matrix the rule is short:",
+          {
+            "text": "A = \\begin{bmatrix} a & b \\\\ c & d \\end{bmatrix} \\;\\Rightarrow\\; \\text{Adj } A = \\begin{bmatrix} d & -b \\\\ -c & a \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "Swap the two diagonal entries, and change the",
+          "sign of the other two.",
+          "For any square A, A(Adj A) = (Adj A)A = |A| I.",
+          {
+            "text": "∴ Adj A = the transpose of [Aᵢⱼ]",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   }

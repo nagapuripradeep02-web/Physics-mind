@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 25, book p.87. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1 + 1 gives one mark to the two cosines, where the acute condition decides the sign of the square root, and one to the addition formulas — including the cos(α + β) check, without which 3π/4 is not ruled out. Paper position: Maths-1A Section A prints ten very short answers of 2 marks each and the student writes all ten, under the 2026-27 pattern; Trigonometric Ratios and Transformations supplies two of those ten slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 25, book p.87. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1 + 1 gives one mark to the two cosines, where the acute condition decides the sign of the square root, and one to the addition formulas — including the cos(α + β) check, without which 3π/4 is not ruled out. Paper position: Maths-1A Section A prints ten very short answers of 2 marks each and the student writes all ten, under the 2026-27 pattern; Trigonometric Ratios and Transformations supplies two of those ten slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would show this — name what you find first, and how you decide between π/4 and 3π/4.",
   "answer": {
@@ -53,8 +53,11 @@
             "style": "heading"
           },
           "α and β are acute, so cos α > 0, cos β > 0",
+          "(cos θ = +√(1 − sin²θ) when cos θ > 0)",
           "cos α = √(1 − 1/10) = √(9/10) = 3/√10",
-          "cos β = √(1 − 1/5) = √(4/5) = 2/√5"
+          "(sin²α = 1/10, and √9 = 3)",
+          "cos β = √(1 − 1/5) = √(4/5) = 2/√5",
+          "(sin²β = 1/5, and √4 = 2)"
         ],
         "recall": {
           "credit": "say_it",
@@ -96,10 +99,22 @@
         "lines": [
           "sin(α + β) = sinα cosβ + cosα sinβ",
           "= (1/√10)(2/√5) + (3/√10)(1/√5)",
+          {
+            "text": "(√10 × √5 = √50, and √50 = √(25 × 2) = 5√2)",
+            "added": true
+          },
           "= 2/√50 + 3/√50 = 5/(5√2) = 1/√2",
           "cos(α + β) = cosα cosβ − sinα sinβ",
+          {
+            "text": "(3/√10 × 2/√5 = 6/√50 and 1/√10 × 1/√5 = 1/√50)",
+            "added": true
+          },
           "= 6/√50 − 1/√50 = 5/(5√2) = 1/√2 > 0",
           "Both α and β are acute, so 0 < α + β < π,",
+          {
+            "text": "(in this range sin = 1/√2 at π/4 and at 3π/4)",
+            "added": true
+          },
           "and cos(α + β) > 0 rules out 3π/4.",
           {
             "text": "∴ α + β = π/4",
@@ -134,6 +149,19 @@
         "common_mistakes": [
           "Stopping at sin(α + β) = 1/√2 and writing π/4 without ruling out 3π/4.",
           "A sign slip in cos(α + β) = cosα cosβ − sinα sinβ."
+        ],
+        "lines_compact": [
+          "sin(α + β) = sinα cosβ + cosα sinβ",
+          "= (1/√10)(2/√5) + (3/√10)(1/√5)",
+          "= 2/√50 + 3/√50 = 5/(5√2) = 1/√2",
+          "cos(α + β) = cosα cosβ − sinα sinβ",
+          "= 6/√50 − 1/√50 = 5/(5√2) = 1/√2 > 0",
+          "Both α and β are acute, so 0 < α + β < π,",
+          "and cos(α + β) > 0 rules out 3π/4.",
+          {
+            "text": "∴ α + β = π/4",
+            "style": "boxed"
+          }
         ]
       }
     ]

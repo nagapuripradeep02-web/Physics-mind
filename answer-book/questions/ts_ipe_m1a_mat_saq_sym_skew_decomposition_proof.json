@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.46, chapter 5 MATRICES, Short Answer question 19(ii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 shape gives HALF the marks to uniqueness, which is the half most answers leave out: the word \"uniquely\" is in the stem, and constructing one such sum proves existence only. Steps 3 and 4 are the uniqueness argument split into its two moves, taking the transpose and then solving the pair, because each is a separate thing to remember. APPEARANCE TAG NOT PROMOTED: the source prints a year tag reading Mar-03 beside this question. appearances[] is left empty — March 2003 predates the formation of Telangana and its board, so the tag cannot be a ts_ipe appearance, and this book gives no board name against it. Recorded here as a source claim, not carried into the card. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Matrices supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.46, chapter 5 MATRICES, Short Answer question 19(ii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 shape gives HALF the marks to uniqueness, which is the half most answers leave out: the word \"uniquely\" is in the stem, and constructing one such sum proves existence only. Steps 3 and 4 are the uniqueness argument split into its two moves, taking the transpose and then solving the pair, because each is a separate thing to remember. APPEARANCE TAG NOT PROMOTED: the source prints a year tag reading Mar-03 beside this question. appearances[] is left empty — March 2003 predates the formation of Telangana and its board, so the tag cannot be a ts_ipe appearance, and this book gives no board name against it. Recorded here as a source claim, not carried into the card. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Matrices supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — say what two matrices you build, why each has the property claimed, and how you show there is no other pair.",
   "answer": {
@@ -63,6 +63,7 @@
           "Let A be a square matrix. Write",
           "S = ½(A + Aᵀ) and K = ½(A − Aᵀ).",
           "Then S + K = ½(A + Aᵀ + A − Aᵀ)",
+          "(Aᵀ − Aᵀ = O)",
           "= ½(2A) = A."
         ],
         "recall": {
@@ -103,7 +104,15 @@
         "memory_tip": "Transposing swaps the two terms: the sum comes back unchanged, the difference comes back with its sign flipped.",
         "lines": [
           "Use (P + Q)ᵀ = Pᵀ + Qᵀ and (Aᵀ)ᵀ = A.",
+          {
+            "text": "(Sᵀ = (½(A + Aᵀ))ᵀ = ½(Aᵀ + (Aᵀ)ᵀ))",
+            "added": true
+          },
           "Sᵀ = ½(Aᵀ + A) = S, so S is symmetric.",
+          {
+            "text": "(Kᵀ = ½(Aᵀ − (Aᵀ)ᵀ) = ½(Aᵀ − A))",
+            "added": true
+          },
           "Kᵀ = ½(Aᵀ − A) = −K, so K is skew-symmetric.",
           "So A = S + K is one such sum."
         ],
@@ -134,6 +143,12 @@
         "common_mistakes": [
           "Asserting that S is symmetric without transposing it.",
           "Concluding Kᵀ = K, which would make K symmetric instead of skew-symmetric."
+        ],
+        "lines_compact": [
+          "Use (P + Q)ᵀ = Pᵀ + Qᵀ and (Aᵀ)ᵀ = A.",
+          "Sᵀ = ½(Aᵀ + A) = S, so S is symmetric.",
+          "Kᵀ = ½(Aᵀ − A) = −K, so K is skew-symmetric.",
+          "So A = S + K is one such sum."
         ]
       },
       {
@@ -148,6 +163,10 @@
           "For uniqueness, suppose A = P + Q as well,",
           "with Pᵀ = P and Qᵀ = −Q.",
           "Take the transpose of both sides:",
+          {
+            "text": "(Pᵀ = P and Qᵀ = −Q)",
+            "added": true
+          },
           "Aᵀ = Pᵀ + Qᵀ = P − Q."
         ],
         "recall": {
@@ -177,6 +196,12 @@
         "common_mistakes": [
           "Skipping uniqueness entirely, although the stem says \"uniquely\".",
           "Writing Aᵀ = P + Q, which drops the sign change on Q under transposing."
+        ],
+        "lines_compact": [
+          "For uniqueness, suppose A = P + Q as well,",
+          "with Pᵀ = P and Qᵀ = −Q.",
+          "Take the transpose of both sides:",
+          "Aᵀ = Pᵀ + Qᵀ = P − Q."
         ]
       },
       {
@@ -189,7 +214,15 @@
         "memory_tip": "Add the two equations to get P, subtract them to get Q — the same trick as solving two linear equations.",
         "lines": [
           "Add A = P + Q and Aᵀ = P − Q:",
+          {
+            "text": "(Q cancels: (P + Q) + (P − Q) = 2P)",
+            "added": true
+          },
           "A + Aᵀ = 2P, so P = ½(A + Aᵀ) = S.",
+          {
+            "text": "(P cancels: (P + Q) − (P − Q) = 2Q)",
+            "added": true
+          },
           "Subtract them: A − Aᵀ = 2Q, so",
           "Q = ½(A − Aᵀ) = K.",
           "P and Q are forced, so the sum is unique.",
@@ -225,6 +258,17 @@
         "common_mistakes": [
           "Stopping at existence and never showing the pair is forced.",
           "Adding the equations and writing P instead of 2P on the right."
+        ],
+        "lines_compact": [
+          "Add A = P + Q and Aᵀ = P − Q:",
+          "A + Aᵀ = 2P, so P = ½(A + Aᵀ) = S.",
+          "Subtract them: A − Aᵀ = 2Q, so",
+          "Q = ½(A − Aᵀ) = K.",
+          "P and Q are forced, so the sum is unique.",
+          {
+            "text": "∴ A = ½(A + Aᵀ) + ½(A − Aᵀ), uniquely",
+            "style": "boxed"
+          }
         ]
       }
     ]

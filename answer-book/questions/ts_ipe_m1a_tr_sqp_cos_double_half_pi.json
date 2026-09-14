@@ -51,7 +51,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.107 — from the book's separate \"STAR QUESTIONS PLUS\" bank, answer 168. That bank (book pp.98-111, answers 142-180) sits AFTER all the numbered chapters and is organised by chapter rather than forming part of any chapter's own inventory; it is authored into this unit because that is where the question belongs on the paper (founder decision 2026-08-22). SECTION: classed LAQ on its length and shape — a transformation identity on a triangle, the exact shape of Unit 6's own LAQ chapter. The bank prints no mark cut, so this classification is OURS. Printed appearances: AP 20 · TS 19. The condition here is π/2, NOT π. Every substitution has to use the right one — reaching for A + B + C = 180° out of habit breaks the proof. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — the bank prints no [N Marks] tags anywhere. The shapes used follow the splits the book DOES print elsewhere: 1+1 for a 2-mark VSAQ (answers 100, 101 on book p.82), 1+1+1+1 or 1+2+1 for a 4-mark SAQ (answers 58, 59 on p.63 and 61 on p.64), and the granular split for a 7-mark LAQ (answer 32 on p.44). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Expand cos 2C."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.107 — from the book's separate \"STAR QUESTIONS PLUS\" bank, answer 168. That bank (book pp.98-111, answers 142-180) sits AFTER all the numbered chapters and is organised by chapter rather than forming part of any chapter's own inventory; it is authored into this unit because that is where the question belongs on the paper (founder decision 2026-08-22). SECTION: classed LAQ on its length and shape — a transformation identity on a triangle, the exact shape of Unit 6's own LAQ chapter. The bank prints no mark cut, so this classification is OURS. Printed appearances: AP 20 · TS 19. The condition here is π/2, NOT π. Every substitution has to use the right one — reaching for A + B + C = 180° out of habit breaks the proof. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — the bank prints no [N Marks] tags anywhere. The shapes used follow the splits the book DOES print elsewhere: 1+1 for a 2-mark VSAQ (answers 100, 101 on book p.82), 1+1+1+1 or 1+2+1 for a 4-mark SAQ (answers 58, 59 on p.63 and 61 on p.64), and the granular split for a 7-mark LAQ (answer 32 on p.44). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Expand cos 2C. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — name each move in order.",
   "answer": {
@@ -74,8 +74,15 @@
             "style": "heading"
           },
           "Given A + B + C = π/2.",
+          "(There is no triangle; only this sum is used.)",
           "L.H.S = (cos 2A + cos 2B) + cos 2C",
+          "Pair the first two with the sum formula:",
+          {
+            "text": "  cos p + cos q = 2 cos((p+q)/2) cos((p−q)/2)",
+            "style": "indent"
+          },
           "= 2 cos((2A + 2B)/2) cos((2A − 2B)/2) + cos 2C",
+          "((2A + 2B)/2 = A + B and (2A − 2B)/2 = A − B)",
           "= 2 cos(A + B) cos(A − B) + cos 2C"
         ],
         "recall": {
@@ -101,7 +108,7 @@
         },
         "why": "The 2s inside cancel against the halves in the formula, so the messy 2A and 2B become plain A + B and A − B.",
         "common_mistakes": [
-          "Grouping cos 2B + cos 2C, which does not lead anywhere useful.",
+          "Grouping the first two and then using A + B = π − C, the triangle condition.",
           "Forgetting to halve the sum and difference."
         ]
       },
@@ -114,8 +121,16 @@
         "margin_note": "Third mark. From A + B + C = π/2, A + B = π/2 − C, and cos(π/2 − C) = sin C.",
         "memory_tip": "A + B = π/2 − C, and cos(π/2 − C) = sin C.",
         "lines": [
+          {
+            "text": "Change cos(A + B) using the given sum:",
+            "added": true
+          },
           "A + B = π/2 − C",
           "⇒ cos(A + B) = cos(π/2 − C) = sin C",
+          {
+            "text": "(cos(π/2 − θ) = sin θ)",
+            "added": true
+          },
           "L.H.S = 2 sin C cos(A − B) + cos 2C"
         ],
         "recall": {
@@ -143,6 +158,11 @@
         "common_mistakes": [
           "Using A + B = π − C.",
           "Writing cos(π/2 − C) = cos C."
+        ],
+        "lines_compact": [
+          "A + B = π/2 − C",
+          "⇒ cos(A + B) = cos(π/2 − C) = sin C",
+          "L.H.S = 2 sin C cos(A − B) + cos 2C"
         ]
       },
       {
@@ -154,9 +174,21 @@
         "margin_note": "Two marks (fourth and fifth). cos 2θ = 1 − 2 sin²θ. This choice, out of the three forms of cos 2θ, is what produces the 1 on the right-hand side.",
         "memory_tip": "Choose cos2C = 1 − 2sin²C out of the three forms — it is the one that produces the 1 on the right.",
         "lines": [
+          {
+            "text": "Write cos 2C so that a 1 and a sin²C appear:",
+            "added": true
+          },
           "cos 2C = 1 − 2 sin²C",
           "L.H.S = 2 sin C cos(A − B) + 1 − 2 sin²C",
-          "= 1 + 2 sin C [cos(A − B) − sin C]"
+          {
+            "text": "Write 1 first and take out 2 sin C:",
+            "added": true
+          },
+          "= 1 + 2 sin C [cos(A − B) − sin C]",
+          {
+            "text": "(check: 2 sin C × (−sin C) = −2 sin²C)",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -184,6 +216,11 @@
         "common_mistakes": [
           "Using cos 2C = 2 cos²C − 1.",
           "Forgetting to keep the 1 outside the bracket."
+        ],
+        "lines_compact": [
+          "cos 2C = 1 − 2 sin²C",
+          "L.H.S = 2 sin C cos(A − B) + 1 − 2 sin²C",
+          "= 1 + 2 sin C [cos(A − B) − sin C]"
         ]
       },
       {
@@ -195,7 +232,15 @@
         "margin_note": "Two marks. Inside the bracket, write sin C as cos(A+B) — the reverse of step 2 — so both terms become cosines.",
         "memory_tip": "Inside the bracket write sin C back as cos(A+B) — the reverse of step 2 — so both terms are cosines.",
         "lines": [
+          {
+            "text": "Use the given sum again, inside the bracket:",
+            "added": true
+          },
           "Inside the bracket, sin C = cos(π/2 − C) = cos(A + B)",
+          {
+            "text": "(π/2 − C = A + B)",
+            "added": true
+          },
           "Bracket = cos(A − B) − cos(A + B)"
         ],
         "recall": {
@@ -223,6 +268,10 @@
         "common_mistakes": [
           "Converting both sin C terms.",
           "Writing sin C = cos(A − B)."
+        ],
+        "lines_compact": [
+          "Inside the bracket, sin C = cos(π/2 − C) = cos(A + B)",
+          "Bracket = cos(A − B) − cos(A + B)"
         ]
       },
       {
@@ -235,9 +284,17 @@
         "memory_tip": "cos(X−Y) − cos(X+Y) = 2 sinX sinY with X = A, Y = B.",
         "lines": [
           "cos(A − B) − cos(A + B) = 2 sin A sin B",
+          {
+            "text": "(expand both; the cos A cos B terms cancel)",
+            "added": true
+          },
           "L.H.S = 1 + 2 sin C · 2 sin A sin B",
           {
-            "text": "∴ cos 2A + cos 2B + cos 2C = 1 + 4 sin A sin B sin C",
+            "text": "Multiply 2 × 2 = 4 and reorder:",
+            "added": true
+          },
+          {
+            "text": "= 1 + 4 sin A sin B sin C = R.H.S",
             "style": "boxed"
           }
         ],
@@ -266,6 +323,14 @@
         "common_mistakes": [
           "Writing the bracket as 2 cos A cos B.",
           "Losing the 1 while closing."
+        ],
+        "lines_compact": [
+          "cos(A − B) − cos(A + B) = 2 sin A sin B",
+          "L.H.S = 1 + 2 sin C · 2 sin A sin B",
+          {
+            "text": "= 1 + 4 sin A sin B sin C = R.H.S",
+            "style": "boxed"
+          }
         ]
       }
     ]

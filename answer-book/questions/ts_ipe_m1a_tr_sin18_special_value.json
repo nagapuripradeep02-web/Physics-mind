@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.95, chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 44(i). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to setting up sin2θ = cos3θ from 5θ = 90° and one to solving the quadratic and choosing the root the quadrant allows. Paper position: Maths-1A Section A prints ten very short answers of 2 marks each and the student writes all ten; Trigonometric Ratios and Transformations supplies two of those slots on almost every paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.95, chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 44(i). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to setting up sin2θ = cos3θ from 5θ = 90° and one to solving the quadratic and choosing the root the quadrant allows. Paper position: Maths-1A Section A prints ten very short answers of 2 marks each and the student writes all ten; Trigonometric Ratios and Transformations supplies two of those slots on almost every paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — name each move in order.",
   "answer": {
@@ -53,8 +53,12 @@
             "style": "heading"
           },
           "Let θ = 18°. Then 5θ = 90°",
+          "(5 × 18° = 90°)",
           "⇒ 2θ = 90° − 3θ",
+          "Take sin of both sides:",
           "⇒ sin2θ = sin(90° − 3θ) = cos3θ",
+          "(sin(90° − x) = cos x)",
+          "Use the double- and triple-angle formulas:",
           "⇒ 2 sinθ cosθ = 4cos³θ − 3cosθ"
         ],
         "recall": {
@@ -96,9 +100,39 @@
         "lines": [
           "cosθ ≠ 0 at θ = 18°, so divide by cosθ:",
           "2 sinθ = 4cos²θ − 3 = 4(1 − sin²θ) − 3",
+          {
+            "text": "(cos²θ = 1 − sin²θ, so only sinθ is left)",
+            "added": true
+          },
+          {
+            "text": "Bring every term to one side:",
+            "added": true
+          },
+          {
+            "text": "  2 sinθ = 4 − 4sin²θ − 3 = 1 − 4sin²θ",
+            "style": "indent",
+            "added": true
+          },
           "⇒ 4sin²θ + 2 sinθ − 1 = 0",
+          {
+            "text": "Use the quadratic formula (numbers 4, 2, −1):",
+            "added": true
+          },
+          {
+            "text": "  2² − 4(4)(−1) = 4 + 16 = 20",
+            "style": "indent",
+            "added": true
+          },
           "⇒ sinθ = (−2 ± √20)/8 = (−1 ± √5)/4",
+          {
+            "text": "(√20 = 2√5; dividing top and bottom by 2)",
+            "added": true
+          },
           "18° is acute, so sin18° > 0",
+          {
+            "text": "((−1 − √5)/4 is negative, so it is rejected)",
+            "added": true
+          },
           {
             "text": "∴ sin18° = (√5 − 1)/4",
             "style": "boxed"
@@ -130,6 +164,17 @@
         "common_mistakes": [
           "Keeping the negative root −(√5 + 1)/4.",
           "Dividing by cosθ without saying it is not zero."
+        ],
+        "lines_compact": [
+          "cosθ ≠ 0 at θ = 18°, so divide by cosθ:",
+          "2 sinθ = 4cos²θ − 3 = 4(1 − sin²θ) − 3",
+          "⇒ 4sin²θ + 2 sinθ − 1 = 0",
+          "⇒ sinθ = (−2 ± √20)/8 = (−1 ± √5)/4",
+          "18° is acute, so sin18° > 0",
+          {
+            "text": "∴ sin18° = (√5 − 1)/4",
+            "style": "boxed"
+          }
         ]
       }
     ]

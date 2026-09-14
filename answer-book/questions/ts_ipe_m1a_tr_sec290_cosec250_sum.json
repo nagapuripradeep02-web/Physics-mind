@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.93, chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 42(ii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to reducing both angles to ratios of 20° with the correct signs and one to combining the two fractions and cancelling. Paper position: Maths-1A Section A prints ten very short answers of 2 marks each and the student writes all ten; Trigonometric Ratios and Transformations supplies two of those slots on almost every paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.93, chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 42(ii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to reducing both angles to ratios of 20° with the correct signs and one to combining the two fractions and cancelling. Paper position: Maths-1A Section A prints ten very short answers of 2 marks each and the student writes all ten; Trigonometric Ratios and Transformations supplies two of those slots on almost every paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — name each move in order.",
   "answer": {
@@ -52,8 +52,11 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "Bring both angles to 20°:",
           "cos290° = cos(360° − 70°) = cos70° = sin20°",
+          "(cos(360° − θ) = cos θ, and cos70° = sin20°)",
           "sin250° = sin(180° + 70°) = −sin70°",
+          "(sin(180° + θ) = −sin θ, and sin70° = cos20°)",
           "= −cos20°",
           "∴ L.H.S = 1/sin20° − 1/(√3 cos20°)"
         ],
@@ -94,12 +97,33 @@
         "margin_note": "Second mark. Take out a 2 from the numerator to see sin(60° − 20°), and use 2 sin20° cos20° = sin40° in the denominator, so sin40° cancels.",
         "memory_tip": "√3 cos20° − sin20° = 2 sin(60° − 20°) = 2 sin40°, and the bottom carries sin40° too.",
         "lines": [
+          {
+            "text": "Use the common denominator √3 sin20° cos20°:",
+            "added": true
+          },
           "= (√3 cos20° − sin20°)/(√3 sin20° cos20°)",
+          {
+            "text": "Take out 2 from the top: √3/2 = sin60°",
+            "added": true
+          },
+          {
+            "text": "  and 1/2 = cos60°:",
+            "style": "indent",
+            "added": true
+          },
           "Numerator = 2(sin60° cos20° − cos60° sin20°)",
           "= 2 sin(60° − 20°) = 2 sin40°",
+          {
+            "text": "Write the bottom so that 2 sin20° cos20° appears:",
+            "added": true
+          },
           "Denominator = (√3/2)(2 sin20° cos20°)",
           "= (√3/2) sin40°",
           "L.H.S = 2 sin40° ÷ [(√3/2) sin40°]",
+          {
+            "text": "(sin40° cancels, and 2 ÷ (√3/2) = 4/√3)",
+            "added": true
+          },
           {
             "text": "∴ L.H.S = 4/√3 = R.H.S",
             "style": "boxed"
@@ -131,6 +155,18 @@
         "common_mistakes": [
           "Cancelling sin40° before writing the 2 and the √3/2.",
           "Forgetting the 2 in 2 sin20° cos20° = sin40°."
+        ],
+        "lines_compact": [
+          "= (√3 cos20° − sin20°)/(√3 sin20° cos20°)",
+          "Numerator = 2(sin60° cos20° − cos60° sin20°)",
+          "= 2 sin(60° − 20°) = 2 sin40°",
+          "Denominator = (√3/2)(2 sin20° cos20°)",
+          "= (√3/2) sin40°",
+          "L.H.S = 2 sin40° ÷ [(√3/2) sin40°]",
+          {
+            "text": "∴ L.H.S = 4/√3 = R.H.S",
+            "style": "boxed"
+          }
         ]
       }
     ]

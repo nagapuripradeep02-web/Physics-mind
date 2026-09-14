@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.44, chapter 5 MATRICES, Short Answer question 15(iii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 shape gives the determinant step a full mark because it carries the condition a ≠ 0, b ≠ 0, c ≠ 0 — the answer 1/a, 1/b, 1/c is meaningless without it — and gives the closing check a full mark because a letter answer cannot be tested by inspection the way a numerical one can. Independently checked before authoring: A·A⁻¹ was multiplied out and gives the 3×3 identity matrix exactly. The stem as printed states no condition on a, b and c; the condition is authored into the answer where the student reads it, not added to the question. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Matrices supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.44, chapter 5 MATRICES, Short Answer question 15(iii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 shape gives the determinant step a full mark because it carries the condition a ≠ 0, b ≠ 0, c ≠ 0 — the answer 1/a, 1/b, 1/c is meaningless without it — and gives the closing check a full mark because a letter answer cannot be tested by inspection the way a numerical one can. Independently checked before authoring: A·A⁻¹ was multiplied out and gives the 3×3 identity matrix exactly. The stem as printed states no condition on a, b and c; the condition is authored into the answer where the student reads it, not added to the question. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Matrices supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find this inverse — say what the determinant is, what condition it forces, what the adjoint looks like, and how you check the answer.",
   "answer": {
@@ -67,6 +67,7 @@
           },
           "A is diagonal, so det A is the product of",
           "the diagonal entries: det A = abc.",
+          "(expand along R₁: a × (bc − 0) − 0 + 0 = abc)",
           "A⁻¹ exists only when abc ≠ 0, that is when",
           "a ≠ 0, b ≠ 0 and c ≠ 0. Take this to be so."
         ],
@@ -109,6 +110,10 @@
         "memory_tip": "Every off-diagonal minor here has a row of zeros, so the cofactor matrix stays diagonal.",
         "lines": [
           "Cofactor of a is the 2×2 determinant bc.",
+          {
+            "text": "(delete row 1 and column 1: (b)(c) − (0)(0))",
+            "added": true
+          },
           "Cofactor of b is ca, cofactor of c is ab.",
           "Every off-diagonal minor has a row of zeros,",
           "so those cofactors are 0. The cofactor matrix",
@@ -146,6 +151,18 @@
         "common_mistakes": [
           "Writing the diagonal cofactors as a, b, c instead of bc, ca, ab.",
           "Pairing the cofactor ca with the wrong diagonal position."
+        ],
+        "lines_compact": [
+          "Cofactor of a is the 2×2 determinant bc.",
+          "Cofactor of b is ca, cofactor of c is ab.",
+          "Every off-diagonal minor has a row of zeros,",
+          "so those cofactors are 0. The cofactor matrix",
+          "is diagonal, and equals its own transpose.",
+          {
+            "text": "\\text{Adj } A = \\begin{bmatrix} bc & 0 & 0 \\\\ 0 & ca & 0 \\\\ 0 & 0 & ab \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -163,6 +180,10 @@
             "style": "eq"
           },
           "Cancel abc in each diagonal entry:",
+          {
+            "text": "(bc/abc = 1/a, ca/abc = 1/b, ab/abc = 1/c)",
+            "added": true
+          },
           {
             "text": "A^{-1} = \\begin{bmatrix} 1/a & 0 & 0 \\\\ 0 & 1/b & 0 \\\\ 0 & 0 & 1/c \\end{bmatrix}",
             "render": "katex",
@@ -196,6 +217,19 @@
         "common_mistakes": [
           "Dividing only the first entry by abc and leaving the others.",
           "Writing abc/bc instead of bc/abc, which turns the answer upside down."
+        ],
+        "lines_compact": [
+          {
+            "text": "A^{-1} = \\frac{1}{\\det A}\\,\\text{Adj } A = \\frac{1}{abc}\\begin{bmatrix} bc & 0 & 0 \\\\ 0 & ca & 0 \\\\ 0 & 0 & ab \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "Cancel abc in each diagonal entry:",
+          {
+            "text": "A^{-1} = \\begin{bmatrix} 1/a & 0 & 0 \\\\ 0 & 1/b & 0 \\\\ 0 & 0 & 1/c \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
         ]
       },
       {

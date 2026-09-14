@@ -55,7 +55,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.51 — SAQ chapter 7 Matrices, answer 40, the chapter's opening question and on a ★★★ SSP (Super Scoring Page). The mark split is PRINTED in that book's margin as [1 Mark] against each of four working lines — a sourced 1+1+1+1. FOUR printed appearance tags (TS 18 · AP 16,17,19) make it the most-asked matrices SAQ in the book, and it is the only PROOF in the SAQ chapter — every other question there computes with numbers. It is also the theorem the four 'find the inverse' SAQs and the three matrix-inversion LAQs in this unit all use, which is why it is worth learning first rather than last. ONE PRESENTATION CHANGE, made deliberately: the book prints the full 3×3 product A·(Adj A) with entries such as a₁A₁+b₁B₁+c₁C₁ written out in all nine positions. That matrix is several times wider than this page's body, so the pattern is stated in words and the RESULT shown instead. Same mathematics, same four marked steps, one fewer unreadable line — the same choice made for LAQ answer 13 on book p.23. Star rank is the CHAPTER's ★★★. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q11 is the Matrices slot."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.51 — SAQ chapter 7 Matrices, answer 40, the chapter's opening question and on a ★★★ SSP (Super Scoring Page). The mark split is PRINTED in that book's margin as [1 Mark] against each of four working lines — a sourced 1+1+1+1. FOUR printed appearance tags (TS 18 · AP 16,17,19) make it the most-asked matrices SAQ in the book, and it is the only PROOF in the SAQ chapter — every other question there computes with numbers. It is also the theorem the four 'find the inverse' SAQs and the three matrix-inversion LAQs in this unit all use, which is why it is worth learning first rather than last. ONE PRESENTATION CHANGE, made deliberately: the book prints the full 3×3 product A·(Adj A) with entries such as a₁A₁+b₁B₁+c₁C₁ written out in all nine positions. That matrix is several times wider than this page's body, so the pattern is stated in words and the RESULT shown instead. Same mathematics, same four marked steps, one fewer unreadable line — the same choice made for LAQ answer 13 on book p.23. Star rank is the CHAPTER's ★★★. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q11 is the Matrices slot. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this formula — say what product you form, what that product turns out to be, and how the formula follows from it.",
   "answer": {
@@ -125,6 +125,10 @@
         "lines": [
           "Adj A is the transpose of the cofactor matrix:",
           {
+            "text": "(the cofactors of row 1 become column 1)",
+            "added": true
+          },
+          {
             "text": "\\text{Adj } A = \\begin{bmatrix} A_1 & B_1 & C_1 \\\\ A_2 & B_2 & C_2 \\\\ A_3 & B_3 & C_3 \\end{bmatrix}^{T} = \\begin{bmatrix} A_1 & A_2 & A_3 \\\\ B_1 & B_2 & B_3 \\\\ C_1 & C_2 & C_3 \\end{bmatrix}",
             "render": "katex",
             "style": "eq"
@@ -157,6 +161,14 @@
         "common_mistakes": [
           "Calling the cofactor matrix itself the adjoint.",
           "Transposing A instead of the cofactor matrix."
+        ],
+        "lines_compact": [
+          "Adj A is the transpose of the cofactor matrix:",
+          {
+            "text": "\\text{Adj } A = \\begin{bmatrix} A_1 & B_1 & C_1 \\\\ A_2 & B_2 & C_2 \\\\ A_3 & B_3 & C_3 \\end{bmatrix}^{T} = \\begin{bmatrix} A_1 & A_2 & A_3 \\\\ B_1 & B_2 & B_3 \\\\ C_1 & C_2 & C_3 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -171,6 +183,15 @@
           "Multiplying row by column, the entry in row i,",
           "column j of A·(Adj A) is",
           "aᵢAⱼ + bᵢBⱼ + cᵢCⱼ",
+          {
+            "text": "(row i of A is (aᵢ, bᵢ, cᵢ); column j of Adj A",
+            "added": true
+          },
+          {
+            "text": "  is (Aⱼ, Bⱼ, Cⱼ))",
+            "style": "indent",
+            "added": true
+          },
           "So the diagonal entries pair each row of A with",
           "its OWN cofactors; the others pair a row with a",
           "DIFFERENT row's cofactors."
@@ -203,6 +224,14 @@
           "Multiplying entry by entry instead of row by column.",
           "Forming (Adj A)·A and treating it as a different problem; it gives the same result.",
           "Losing track of which subscript is the row and which the column."
+        ],
+        "lines_compact": [
+          "Multiplying row by column, the entry in row i,",
+          "column j of A·(Adj A) is",
+          "aᵢAⱼ + bᵢBⱼ + cᵢCⱼ",
+          "So the diagonal entries pair each row of A with",
+          "its OWN cofactors; the others pair a row with a",
+          "DIFFERENT row's cofactors."
         ]
       },
       {
@@ -215,7 +244,20 @@
         "memory_tip": "A row with its own cofactors IS det A; a row with another row's cofactors is 0. That is the whole proof.",
         "lines": [
           "a₁A₁ + b₁B₁ + c₁C₁ = det A   (expansion of det A)",
+          {
+            "text": "(the expansion of det A along row 1)",
+            "added": true
+          },
           "a₁A₂ + b₁B₂ + c₁C₂ = 0   (two identical rows)",
+          {
+            "text": "(the expansion of a determinant whose row 2",
+            "added": true
+          },
+          {
+            "text": "  is replaced by row 1 — two equal rows)",
+            "style": "indent",
+            "added": true
+          },
           "So every diagonal entry is det A and every",
           "other entry is 0:",
           {
@@ -253,6 +295,17 @@
           "Stating the diagonal result and never explaining why the other entries vanish.",
           "Saying the off-diagonal entries are zero 'by definition'; they are zero by a property of determinants.",
           "Writing the product as I instead of (det A)I."
+        ],
+        "lines_compact": [
+          "a₁A₁ + b₁B₁ + c₁C₁ = det A   (expansion of det A)",
+          "a₁A₂ + b₁B₂ + c₁C₂ = 0   (two identical rows)",
+          "So every diagonal entry is det A and every",
+          "other entry is 0:",
+          {
+            "text": "A \\cdot (\\text{Adj } A) = \\begin{bmatrix} \\det A & 0 & 0 \\\\ 0 & \\det A & 0 \\\\ 0 & 0 & \\det A \\end{bmatrix} = (\\det A) I",
+            "render": "katex",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -265,6 +318,15 @@
         "memory_tip": "Divide by det A — legal precisely because A is non-singular — and the bracket must BE the inverse.",
         "lines": [
           "A·(Adj A) = (det A)I. Since det A ≠ 0, divide by it:",
+          {
+            "text": "(dividing a matrix by the number det A divides",
+            "added": true
+          },
+          {
+            "text": "  every entry)",
+            "style": "indent",
+            "added": true
+          },
           {
             "text": "A\\left(\\frac{\\text{Adj } A}{\\det A}\\right) = I",
             "render": "katex",
@@ -304,6 +366,19 @@
           "Dividing by det A without saying why that is allowed.",
           "Stopping at A·(Adj A) = (det A)I, which is a true statement but not the thing asked for.",
           "Writing A⁻¹ = det A / Adj A, which is upside down and meaningless for matrices."
+        ],
+        "lines_compact": [
+          "A·(Adj A) = (det A)I. Since det A ≠ 0, divide by it:",
+          {
+            "text": "A\\left(\\frac{\\text{Adj } A}{\\det A}\\right) = I",
+            "render": "katex",
+            "style": "eq"
+          },
+          "If AB = I then B = A⁻¹, so",
+          {
+            "text": "A⁻¹ = (Adj A)/(det A)",
+            "style": "boxed"
+          }
         ]
       }
     ]

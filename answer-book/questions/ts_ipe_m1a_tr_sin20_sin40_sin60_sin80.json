@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 39(iii), book p.92. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The two marks sit on applying the product identity and on the closing multiplication; spotting the 60° ± 20° pattern stays on the page as unmarked working. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, all compulsory, and Trigonometric Ratios and Transformations holds two of those ten slots. NUMERIC CHECK before authoring: the product was evaluated to 12 decimal places as 0.187500000000, which is exactly 3/16. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 39(iii), book p.92. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The two marks sit on applying the product identity and on the closing multiplication; spotting the 60° ± 20° pattern stays on the page as unmarked working. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, all compulsory, and Trigonometric Ratios and Transformations holds two of those ten slots. NUMERIC CHECK before authoring: the product was evaluated to 12 decimal places as 0.187500000000, which is exactly 3/16. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this one — name the formula you use and how you finish.",
   "answer": {
@@ -50,7 +50,9 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "Look at the angles 20°, 40° and 80°:",
           "40° = 60° − 20° and 80° = 60° + 20°",
+          "Keep sin 60° aside and group the other three:",
           "L.H.S = sin 60°",
           "  · [sin 20° sin(60° − 20°) sin(60° + 20°)]"
         ],
@@ -91,8 +93,21 @@
         "mark_note": "Formula",
         "margin_note": "First mark. Quote the identity, then put A = 20° so that 3A = 60°. Three unknown sines become one known sine.",
         "lines": [
+          {
+            "text": "Use the triple-product identity:",
+            "added": true
+          },
           "sin A sin(60° − A) sin(60° + A)",
           "  = (1/4) sin 3A",
+          {
+            "text": "(it is proved as a separate question in",
+            "added": true
+          },
+          {
+            "text": "  this chapter)",
+            "style": "indent",
+            "added": true
+          },
           "With A = 20°, 3A = 60°:",
           "sin 20° sin 40° sin 80° = (1/4) sin 60°"
         ],
@@ -124,7 +139,13 @@
           "Using (1/4) sin A instead of (1/4) sin 3A.",
           "Taking 3A as 20° rather than 60°."
         ],
-        "memory_tip": "The three angles A, 60° − A, 60° + A give a quarter of sin 3A."
+        "memory_tip": "The three angles A, 60° − A, 60° + A give a quarter of sin 3A.",
+        "lines_compact": [
+          "sin A sin(60° − A) sin(60° + A)",
+          "  = (1/4) sin 3A",
+          "With A = 20°, 3A = 60°:",
+          "sin 20° sin 40° sin 80° = (1/4) sin 60°"
+        ]
       },
       {
         "id": "s3_multiply_by_sin_sixty",
@@ -135,8 +156,20 @@
         "margin_note": "Last mark. Bring back the sin 60° set aside at the start. Two copies of √3/2 give 3/4, and a quarter of 3/4 is 3/16.",
         "lines": [
           "sin 60° = √3/2",
+          {
+            "text": "Put this back into the L.H.S:",
+            "added": true
+          },
           "L.H.S = sin 60° · (1/4) sin 60°",
+          {
+            "text": "(√3/2 × √3/2 = 3/4)",
+            "added": true
+          },
           "= (1/4)(√3/2)(√3/2) = (1/4)(3/4)",
+          {
+            "text": "(1/4 × 3/4 = 3/16)",
+            "added": true
+          },
           {
             "text": "= 3/16 = R.H.S",
             "style": "boxed"
@@ -170,7 +203,16 @@
           "Using sin 60° only once and getting √3/8.",
           "Taking (√3/2)² as √3/4."
         ],
-        "memory_tip": "√3/2 appears twice, and squaring it gives 3/4. A quarter of 3/4 is 3/16."
+        "memory_tip": "√3/2 appears twice, and squaring it gives 3/4. A quarter of 3/4 is 3/16.",
+        "lines_compact": [
+          "sin 60° = √3/2",
+          "L.H.S = sin 60° · (1/4) sin 60°",
+          "= (1/4)(√3/2)(√3/2) = (1/4)(3/4)",
+          {
+            "text": "= 3/16 = R.H.S",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   }

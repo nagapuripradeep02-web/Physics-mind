@@ -42,7 +42,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.108 — from the book's separate \"STAR QUESTIONS PLUS\" bank, answer 171. That bank (book pp.98-111, answers 142-180) sits AFTER all the numbered chapters and is organised by chapter rather than forming part of any chapter's own inventory; it is authored into this unit because that is where the question belongs on the paper (founder decision 2026-08-22). SECTION: classed LAQ on its length and shape — a transformation identity on a triangle, the exact shape of Unit 6's own LAQ chapter. The bank prints no mark cut, so this classification is OURS. Printed appearances: none — this answer carries no year tag. The MINUS in front of sin C is what puts sines rather than cosines on the right-hand side. The same question with a plus would end in cosines. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — the bank prints no [N Marks] tags anywhere. The shapes used follow the splits the book DOES print elsewhere: 1+1 for a 2-mark VSAQ (answers 100, 101 on book p.82), 1+1+1+1 or 1+2+1 for a 4-mark SAQ (answers 58, 59 on p.63 and 61 on p.64), and the granular split for a 7-mark LAQ (answer 32 on p.44). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Replace sin(C/2) inside."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.108 — from the book's separate \"STAR QUESTIONS PLUS\" bank, answer 171. That bank (book pp.98-111, answers 142-180) sits AFTER all the numbered chapters and is organised by chapter rather than forming part of any chapter's own inventory; it is authored into this unit because that is where the question belongs on the paper (founder decision 2026-08-22). SECTION: classed LAQ on its length and shape — a transformation identity on a triangle, the exact shape of Unit 6's own LAQ chapter. The bank prints no mark cut, so this classification is OURS. Printed appearances: none — this answer carries no year tag. The MINUS in front of sin C is what puts sines rather than cosines on the right-hand side. The same question with a plus would end in cosines. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — the bank prints no [N Marks] tags anywhere. The shapes used follow the splits the book DOES print elsewhere: 1+1 for a 2-mark VSAQ (answers 100, 101 on book p.82), 1+1+1+1 or 1+2+1 for a 4-mark SAQ (answers 58, 59 on p.63 and 61 on p.64), and the granular split for a 7-mark LAQ (answer 32 on p.44). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Replace sin(C/2) inside. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — name each move in order.",
   "answer": {
@@ -65,7 +65,14 @@
             "style": "heading"
           },
           "Given A + B + C = 180° ⇒ (A + B + C)/2 = 90°",
+          "(A, B, C are the angles of a triangle.)",
           "L.H.S = (sin A + sin B) − sin C",
+          "Pair the first two with the sum formula:",
+          {
+            "text": "  sin p + sin q = 2 sin((p+q)/2) cos((p−q)/2)",
+            "style": "indent"
+          },
+          "(here p = A and q = B)",
           "= 2 sin((A+B)/2) cos((A−B)/2) − sin C"
         ],
         "recall": {
@@ -91,7 +98,7 @@
         },
         "why": "Halving the angle sum gives 90°, which is the fact every later substitution uses. Writing it at the start saves repeating it.",
         "common_mistakes": [
-          "Grouping sin B − sin C.",
+          "Using the sine sum formula on sin A − sin C, which is a difference.",
           "Forgetting to halve the angles."
         ]
       },
@@ -104,8 +111,16 @@
         "margin_note": "Third mark. (A+B)/2 = 90° − C/2, and sin(90° − θ) = cos θ.",
         "memory_tip": "(A+B)/2 = 90° − C/2, and sin(90° − θ) = cos θ.",
         "lines": [
+          {
+            "text": "Move C/2 across in the halved sum:",
+            "added": true
+          },
           "(A + B)/2 = 90° − C/2",
           "⇒ sin((A+B)/2) = sin(90° − C/2) = cos(C/2)",
+          {
+            "text": "(sin(90° − θ) = cos θ)",
+            "added": true
+          },
           "L.H.S = 2 cos(C/2) cos((A−B)/2) − sin C"
         ],
         "recall": {
@@ -133,6 +148,11 @@
         "common_mistakes": [
           "Writing sin(90° − C/2) = sin(C/2).",
           "Using (A+B)/2 = 180° − C/2."
+        ],
+        "lines_compact": [
+          "(A + B)/2 = 90° − C/2",
+          "⇒ sin((A+B)/2) = sin(90° − C/2) = cos(C/2)",
+          "L.H.S = 2 cos(C/2) cos((A−B)/2) − sin C"
         ]
       },
       {
@@ -144,9 +164,22 @@
         "margin_note": "Two marks. sin C = 2 sin(C/2) cos(C/2), so both terms carry 2 cos(C/2) — take it out.",
         "memory_tip": "sin C = 2 sin(C/2) cos(C/2), so both terms carry 2 cos(C/2) — take it out.",
         "lines": [
+          {
+            "text": "Write sin C with half-angles (θ = C/2), so it",
+            "added": true
+          },
+          {
+            "text": "  shares cos(C/2) with the first term:",
+            "style": "indent",
+            "added": true
+          },
           "sin C = 2 sin(C/2) cos(C/2)",
           "L.H.S = 2 cos(C/2) cos((A−B)/2)",
           "      − 2 sin(C/2) cos(C/2)",
+          {
+            "text": "Both terms have 2 cos(C/2); take it out:",
+            "added": true
+          },
           "= 2 cos(C/2) [cos((A−B)/2) − sin(C/2)]"
         ],
         "recall": {
@@ -175,6 +208,12 @@
         "common_mistakes": [
           "Writing sin C = sin(C/2) cos(C/2) without the 2.",
           "Factoring 2 sin(C/2) instead."
+        ],
+        "lines_compact": [
+          "sin C = 2 sin(C/2) cos(C/2)",
+          "L.H.S = 2 cos(C/2) cos((A−B)/2)",
+          "      − 2 sin(C/2) cos(C/2)",
+          "= 2 cos(C/2) [cos((A−B)/2) − sin(C/2)]"
         ]
       },
       {
@@ -186,6 +225,10 @@
         "margin_note": "Two marks (sixth and seventh). Inside the bracket, sin(C/2) = sin(90° − (A+B)/2) = cos((A+B)/2) — so both terms are cosines.",
         "memory_tip": "Inside the bracket sin(C/2) = cos((A+B)/2), so both terms become cosines.",
         "lines": [
+          {
+            "text": "Use the halved sum again, inside the bracket:",
+            "added": true
+          },
           "Inside the bracket, C/2 = 90° − (A+B)/2, so",
           "sin(C/2) = sin(90° − (A+B)/2) = cos((A+B)/2)",
           "Bracket = cos((A−B)/2) − cos((A+B)/2)"
@@ -215,6 +258,11 @@
         "common_mistakes": [
           "Converting the cos(C/2) outside as well.",
           "Writing sin(C/2) = cos(C/2)."
+        ],
+        "lines_compact": [
+          "Inside the bracket, C/2 = 90° − (A+B)/2, so",
+          "sin(C/2) = sin(90° − (A+B)/2) = cos((A+B)/2)",
+          "Bracket = cos((A−B)/2) − cos((A+B)/2)"
         ]
       },
       {
@@ -226,10 +274,23 @@
         "margin_note": "Last mark. cos X − cos Y with X = (A−B)/2, Y = (A+B)/2 gives 2 sin(A/2) sin(B/2).",
         "memory_tip": "cos X − cos Y with X = (A−B)/2, Y = (A+B)/2 gives 2 sin(A/2) sin(B/2).",
         "lines": [
+          {
+            "text": "Use cos(x−y) − cos(x+y) = 2 sin x sin y",
+            "added": true
+          },
+          {
+            "text": "  with x = A/2 and y = B/2:",
+            "style": "indent",
+            "added": true
+          },
           "cos((A−B)/2) − cos((A+B)/2) = 2 sin(A/2) sin(B/2)",
           "L.H.S = 2 cos(C/2) · 2 sin(A/2) sin(B/2)",
           {
-            "text": "∴ sin A + sin B − sin C = 4 sin(A/2) sin(B/2) cos(C/2)",
+            "text": "Multiply 2 × 2 = 4 and reorder:",
+            "added": true
+          },
+          {
+            "text": "= 4 sin(A/2) sin(B/2) cos(C/2) = R.H.S",
             "style": "boxed"
           }
         ],
@@ -258,6 +319,14 @@
         "common_mistakes": [
           "Writing 2 cos(A/2) cos(B/2).",
           "Getting the bracket order backwards and losing a sign."
+        ],
+        "lines_compact": [
+          "cos((A−B)/2) − cos((A+B)/2) = 2 sin(A/2) sin(B/2)",
+          "L.H.S = 2 cos(C/2) · 2 sin(A/2) sin(B/2)",
+          {
+            "text": "= 4 sin(A/2) sin(B/2) cos(C/2) = R.H.S",
+            "style": "boxed"
+          }
         ]
       }
     ]

@@ -34,7 +34,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.42, chapter 5 MATRICES, Short Answer question 10(ii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+2+1 shape puts half the marks on the inductive multiplication because that is where the two compound-angle formulas are used and where every entry has to be recognised as cos or sin of (k+1)θ; the base case and the appeal to the principle of induction are short but each is a whole mark, since an answer missing either is not a proof. Independently checked before authoring: the claimed form was multiplied out at n = 1, 2 and 3, giving rows (cos θ, sin θ)/(−sin θ, cos θ), (cos 2θ, sin 2θ)/(−sin 2θ, cos 2θ) and (cos 3θ, sin 3θ)/(−sin 3θ, cos 3θ) — the formula exactly, with no leftover terms. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Matrices supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.42, chapter 5 MATRICES, Short Answer question 10(ii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+2+1 shape puts half the marks on the inductive multiplication because that is where the two compound-angle formulas are used and where every entry has to be recognised as cos or sin of (k+1)θ; the base case and the appeal to the principle of induction are short but each is a whole mark, since an answer missing either is not a proof. Independently checked before authoring: the claimed form was multiplied out at n = 1, 2 and 3, giving rows (cos θ, sin θ)/(−sin θ, cos θ), (cos 2θ, sin 2θ)/(−sin 2θ, cos 2θ) and (cos 3θ, sin 3θ)/(−sin 3θ, cos 3θ) — the formula exactly, with no leftover terms. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Matrices supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — say what you check first, what you assume, what two trigonometry formulas the multiplication needs, and how you finish.",
   "answer": {
@@ -145,19 +145,47 @@
         "marks": 2,
         "mark_note": "Inductive step",
         "margin_note": "Half the marks. Each of the four entries is a compound angle: cos kθ cos θ − sin kθ sin θ is cos(kθ + θ), and sin kθ cos θ + cos kθ sin θ is sin(kθ + θ). Then kθ + θ = (k+1)θ.",
-        "memory_tip": "Every entry is a compound angle: cos A cos B − sin A sin B is cos(A + B), and kθ + θ is (k+1)θ.",
+        "memory_tip": "Every entry is a compound angle: cos α cos β − sin α sin β is cos(α + β), and kθ + θ is (k+1)θ.",
         "lines": [
           {
             "text": "A^{k+1} = A^{k} \\cdot A = \\begin{bmatrix} \\cos k\\theta & \\sin k\\theta \\\\ -\\sin k\\theta & \\cos k\\theta \\end{bmatrix}\\begin{bmatrix} \\cos\\theta & \\sin\\theta \\\\ -\\sin\\theta & \\cos\\theta \\end{bmatrix}",
             "render": "katex",
             "style": "eq"
           },
-          "Use cos A cos B − sin A sin B = cos(A + B)",
-          "and sin A cos B + cos A sin B = sin(A + B).",
+          "Use cos α cos β − sin α sin β = cos(α + β)",
+          "and sin α cos β + cos α sin β = sin(α + β).",
+          {
+            "text": "(here α = kθ and β = θ)",
+            "added": true
+          },
+          {
+            "text": "  (1,1): cos kθ cos θ − sin kθ sin θ",
+            "style": "indent",
+            "added": true
+          },
           "Row 1 × column 1 = cos(kθ + θ) = cos(k+1)θ",
+          {
+            "text": "  (1,2): cos kθ sin θ + sin kθ cos θ",
+            "style": "indent",
+            "added": true
+          },
           "Row 1 × column 2 = sin(kθ + θ) = sin(k+1)θ",
+          {
+            "text": "  (2,1): −sin kθ cos θ − cos kθ sin θ",
+            "style": "indent",
+            "added": true
+          },
           "Row 2 × column 1 = −sin(kθ + θ)",
+          {
+            "text": "  (2,2): −sin kθ sin θ + cos kθ cos θ",
+            "style": "indent",
+            "added": true
+          },
           "Row 2 × column 2 = cos(kθ + θ)",
+          {
+            "text": "(kθ + θ = (k+1)θ)",
+            "added": true
+          },
           {
             "text": "A^{k+1} = \\begin{bmatrix} \\cos (k+1)\\theta & \\sin (k+1)\\theta \\\\ -\\sin (k+1)\\theta & \\cos (k+1)\\theta \\end{bmatrix}",
             "render": "katex",
@@ -193,6 +221,25 @@
           "Writing cos kθ cos θ + sin kθ sin θ, which is cos(kθ − θ), not cos(kθ + θ).",
           "Leaving the entries as products and never reaching (k+1)θ.",
           "Losing the minus sign in the bottom-left entry."
+        ],
+        "lines_compact": [
+          {
+            "text": "A^{k+1} = A^{k} \\cdot A = \\begin{bmatrix} \\cos k\\theta & \\sin k\\theta \\\\ -\\sin k\\theta & \\cos k\\theta \\end{bmatrix}\\begin{bmatrix} \\cos\\theta & \\sin\\theta \\\\ -\\sin\\theta & \\cos\\theta \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "Use cos α cos β − sin α sin β = cos(α + β)",
+          "and sin α cos β + cos α sin β = sin(α + β).",
+          "Row 1 × column 1 = cos(kθ + θ) = cos(k+1)θ",
+          "Row 1 × column 2 = sin(kθ + θ) = sin(k+1)θ",
+          "Row 2 × column 1 = −sin(kθ + θ)",
+          "Row 2 × column 2 = cos(kθ + θ)",
+          {
+            "text": "A^{k+1} = \\begin{bmatrix} \\cos (k+1)\\theta & \\sin (k+1)\\theta \\\\ -\\sin (k+1)\\theta & \\cos (k+1)\\theta \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "That is P(k+1). So P(k) ⇒ P(k+1)."
         ]
       },
       {

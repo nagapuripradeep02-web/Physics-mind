@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.85, chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 19. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to finding sinθ with the correct sign from the quadrant and one to the double angle formula and the final value. Paper position: Maths-1A Section A prints ten very short answers of 2 marks each and the student writes all ten; Trigonometric Ratios and Transformations supplies two of those slots on almost every paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.85, chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 19. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to finding sinθ with the correct sign from the quadrant and one to the double angle formula and the final value. Paper position: Maths-1A Section A prints ten very short answers of 2 marks each and the student writes all ten; Trigonometric Ratios and Transformations supplies two of those slots on almost every paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — name the formula you use and how you finish.",
   "answer": {
@@ -54,7 +54,9 @@
           },
           "π/2 < θ < π, so θ is in the second quadrant.",
           "In the second quadrant sinθ is positive.",
+          "(sin²θ + cos²θ = 1, and the sign is +)",
           "sinθ = +√(1 − cos²θ) = √(1 − 25/169)",
+          "((−5/13)² = 25/169, and 169 − 25 = 144)",
           "= √(144/169) = 12/13"
         ],
         "recall": {
@@ -94,8 +96,21 @@
         "margin_note": "Second mark. sin2θ = 2 sinθ cosθ = 2(12/13)(−5/13) = −120/169.",
         "memory_tip": "sin2θ = 2 sinθ cosθ. One factor is negative, so the answer is negative.",
         "lines": [
+          {
+            "text": "Use the double-angle formula:",
+            "added": true
+          },
           "sin2θ = 2 sinθ cosθ",
           "= 2 × (12/13) × (−5/13)",
+          {
+            "text": "(2 × 12 × 5 = 120 and 13 × 13 = 169; one",
+            "added": true
+          },
+          {
+            "text": "  factor is negative)",
+            "style": "indent",
+            "added": true
+          },
           "= −120/169",
           {
             "text": "∴ sin2θ = −120/169",
@@ -128,6 +143,15 @@
         "common_mistakes": [
           "Writing sin2θ = 2 sinθ only.",
           "Dropping the minus sign that comes from cosθ."
+        ],
+        "lines_compact": [
+          "sin2θ = 2 sinθ cosθ",
+          "= 2 × (12/13) × (−5/13)",
+          "= −120/169",
+          {
+            "text": "∴ sin2θ = −120/169",
+            "style": "boxed"
+          }
         ]
       }
     ]

@@ -39,7 +39,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.92 — VSAQ chapter 18 T-Ratios upto Transformations, answer 126.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 16,22. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four or six questions to a page in two columns. It is not a bare guess on two counts: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, and THIS chapter's own header note reads \"Writing Formula itself gets you 1 Mark in these Questions\" — which is why the first step of every answer here IS the formula or the set-up. The book's chapter header carries ★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because T-Ratios holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q8 and Q9 are the two T-Ratios slots."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.92 — VSAQ chapter 18 T-Ratios upto Transformations, answer 126.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 16,22. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four or six questions to a page in two columns. It is not a bare guess on two counts: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, and THIS chapter's own header note reads \"Writing Formula itself gets you 1 Mark in these Questions\" — which is why the first step of every answer here IS the formula or the set-up. The book's chapter header carries ★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because T-Ratios holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q8 and Q9 are the two T-Ratios slots. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — name the formula you use and how you finish.",
   "answer": {
@@ -62,7 +62,13 @@
             "style": "heading"
           },
           "Let sin kx be the required sine function.",
+          "(take k > 0)",
           "Period of sin kx = 2π/k",
+          "(sin repeats every 2π, so sin kx repeats when",
+          {
+            "text": "  x grows by 2π/k)",
+            "style": "indent"
+          },
           "∴ 2π/k = 2/3"
         ],
         "recall": {
@@ -102,10 +108,27 @@
         "margin_note": "Second mark. Cross-multiplying gives 2k = 6π, so k = 3π.",
         "memory_tip": "Cross-multiplying gives 2k = 6π, so k = 3π and the function is sin(3πx).",
         "lines": [
+          {
+            "text": "Cross-multiply 2π/k = 2/3:",
+            "added": true
+          },
           "⇒ 2k = 6π  ⇒  k = 3π",
+          {
+            "text": "(2k = 3 × 2π = 6π, then divide by 2)",
+            "added": true
+          },
           {
             "text": "∴ sin(3πx) is the required sine function",
             "style": "boxed"
+          },
+          {
+            "text": "Check: sin(3π(x + 2/3)) = sin(3πx + 2π)",
+            "added": true
+          },
+          {
+            "text": "  = sin(3πx), so 2/3 is a period.",
+            "style": "indent",
+            "added": true
           }
         ],
         "recall": {
@@ -134,6 +157,13 @@
         "common_mistakes": [
           "Getting k = π/3 by dividing the wrong way.",
           "Giving k instead of the function."
+        ],
+        "lines_compact": [
+          "⇒ 2k = 6π  ⇒  k = 3π",
+          {
+            "text": "∴ sin(3πx) is the required sine function",
+            "style": "boxed"
+          }
         ]
       }
     ]

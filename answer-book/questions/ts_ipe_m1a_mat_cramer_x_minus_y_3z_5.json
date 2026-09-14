@@ -51,7 +51,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.28 — LAQ chapter 3 Matrices, answer 18.4. Printed appearances: AP 22. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S. Book pp.27-28 set the Cramer questions two to a page in two columns, which leaves no margin for the [N Marks] tags the chapter uses elsewhere, so no split is printed for any of the four Cramer answers. The 1+1+1+1+1+2 above follows the only split this book states for a solving-a-system question — the note on book p.30 reading 'Just finding A⁻¹ gives u 4 Marks. For remaining steps u get 3 Marks', which weights the bulk computation against the finish. Here that bulk is four determinants, so each carries one mark and the rule plus the answer carry two. A teacher may weight Δ higher, since a zero Δ would make Cramer's rule inapplicable. The SAME split and the SAME step ids are used on all four Cramer answers in this unit, deliberately: the four questions are one method over different numbers. Star rank is the CHAPTER's ★★★, not this question's. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to the \"Apply Cramer's rule and state the solution\" step."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.28 — LAQ chapter 3 Matrices, answer 18.4. Printed appearances: AP 22. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S. Book pp.27-28 set the Cramer questions two to a page in two columns, which leaves no margin for the [N Marks] tags the chapter uses elsewhere, so no split is printed for any of the four Cramer answers. The 1+1+1+1+1+2 above follows the only split this book states for a solving-a-system question — the note on book p.30 reading 'Just finding A⁻¹ gives u 4 Marks. For remaining steps u get 3 Marks', which weights the bulk computation against the finish. Here that bulk is four determinants, so each carries one mark and the rule plus the answer carry two. A teacher may weight Δ higher, since a zero Δ would make Cramer's rule inapplicable. The SAME split and the SAME step ids are used on all four Cramer answers in this unit, deliberately: the four questions are one method over different numbers. Star rank is the CHAPTER's ★★★, not this question's. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to the \"Apply Cramer's rule and state the solution\" step. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this by Cramer's rule — say what four determinants you need, how you build each one, and how you get x, y and z at the end.",
   "answer": {
@@ -78,6 +78,11 @@
             "text": "A = \\begin{bmatrix} 1 & -1 & 3 \\\\ 4 & 2 & -1 \\\\ 1 & 3 & 1 \\end{bmatrix}, \\ X = \\begin{bmatrix} x \\\\ y \\\\ z \\end{bmatrix}, \\ D = \\begin{bmatrix} 5 \\\\ 0 \\\\ 5 \\end{bmatrix}",
             "render": "katex",
             "style": "eq"
+          },
+          "(A holds the coefficients of x, y, z, row by row;",
+          {
+            "text": "  D holds the constants on the right)",
+            "style": "indent"
           }
         ],
         "recall": {
@@ -123,9 +128,42 @@
             "render": "katex",
             "style": "eq"
           },
+          {
+            "text": "Expand along R₁: each entry times the 2×2",
+            "added": true
+          },
+          {
+            "text": "  determinant left when its row and column",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  are deleted, with signs + − +:",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  + (1) × [(2)(1) − (−1)(3)]",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  − (−1) × [(4)(1) − (−1)(1)]",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  + (3) × [(4)(3) − (2)(1)]",
+            "style": "indent",
+            "added": true
+          },
           "= 1(2+3) + 1(4+1) + 3(12−2)",
           "= 5 + 5 + 30 = 40",
-          "Δ = 40 ≠ 0, so Cramer's rule applies."
+          "Δ = 40 ≠ 0, so Cramer's rule applies.",
+          {
+            "text": "(Cramer's rule divides by Δ, so Δ must not be 0)",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -154,6 +192,16 @@
           "Computing Δ but never writing that it is non-zero.",
           "Getting the sign pattern wrong when expanding: it is plus, minus, plus along the top row.",
           "Using the constants column somewhere inside Δ."
+        ],
+        "lines_compact": [
+          {
+            "text": "\\Delta = \\det A = \\begin{vmatrix} 1 & -1 & 3 \\\\ 4 & 2 & -1 \\\\ 1 & 3 & 1 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= 1(2+3) + 1(4+1) + 3(12−2)",
+          "= 5 + 5 + 30 = 40",
+          "Δ = 40 ≠ 0, so Cramer's rule applies."
         ]
       },
       {
@@ -167,9 +215,33 @@
         "lines": [
           "Replace C₁ of Δ by the constants:",
           {
+            "text": "(the constants 5, 0, 5 take the place of the",
+            "added": true
+          },
+          {
+            "text": "  coefficients of x in column 1)",
+            "style": "indent",
+            "added": true
+          },
+          {
             "text": "\\Delta_1 = \\begin{vmatrix} 5 & -1 & 3 \\\\ 0 & 2 & -1 \\\\ 5 & 3 & 1 \\end{vmatrix}",
             "render": "katex",
             "style": "eq"
+          },
+          {
+            "text": "  + (5) × [(2)(1) − (−1)(3)]",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  − (−1) × [(0)(1) − (−1)(5)]",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  + (3) × [(0)(3) − (2)(5)]",
+            "style": "indent",
+            "added": true
           },
           "= 5(2+3) + 1(0+5) + 3(0−10)",
           "= 25 + 5 − 30 = 0"
@@ -200,6 +272,16 @@
           "Replacing a row instead of a column.",
           "Replacing the second column and later dividing it into x.",
           "Adding a fourth column instead of replacing one."
+        ],
+        "lines_compact": [
+          "Replace C₁ of Δ by the constants:",
+          {
+            "text": "\\Delta_1 = \\begin{vmatrix} 5 & -1 & 3 \\\\ 0 & 2 & -1 \\\\ 5 & 3 & 1 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= 5(2+3) + 1(0+5) + 3(0−10)",
+          "= 25 + 5 − 30 = 0"
         ]
       },
       {
@@ -213,9 +295,33 @@
         "lines": [
           "Replace C₂ of Δ by the constants:",
           {
+            "text": "(the constants 5, 0, 5 take the place of the",
+            "added": true
+          },
+          {
+            "text": "  coefficients of y in column 2)",
+            "style": "indent",
+            "added": true
+          },
+          {
             "text": "\\Delta_2 = \\begin{vmatrix} 1 & 5 & 3 \\\\ 4 & 0 & -1 \\\\ 1 & 5 & 1 \\end{vmatrix}",
             "render": "katex",
             "style": "eq"
+          },
+          {
+            "text": "  + (1) × [(0)(1) − (−1)(5)]",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  − (5) × [(4)(1) − (−1)(1)]",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  + (3) × [(4)(5) − (0)(1)]",
+            "style": "indent",
+            "added": true
           },
           "= 1(0+5) − 5(4+1) + 3(20−0)",
           "= 5 − 25 + 60 = 40"
@@ -245,6 +351,16 @@
         "common_mistakes": [
           "Leaving the constants in column one from the previous step, so two columns are wrong at once.",
           "Forgetting the minus in front of the middle term when expanding along the top row."
+        ],
+        "lines_compact": [
+          "Replace C₂ of Δ by the constants:",
+          {
+            "text": "\\Delta_2 = \\begin{vmatrix} 1 & 5 & 3 \\\\ 4 & 0 & -1 \\\\ 1 & 5 & 1 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= 1(0+5) − 5(4+1) + 3(20−0)",
+          "= 5 − 25 + 60 = 40"
         ]
       },
       {
@@ -258,9 +374,33 @@
         "lines": [
           "Replace C₃ of Δ by the constants:",
           {
+            "text": "(the constants 5, 0, 5 take the place of the",
+            "added": true
+          },
+          {
+            "text": "  coefficients of z in column 3)",
+            "style": "indent",
+            "added": true
+          },
+          {
             "text": "\\Delta_3 = \\begin{vmatrix} 1 & -1 & 5 \\\\ 4 & 2 & 0 \\\\ 1 & 3 & 5 \\end{vmatrix}",
             "render": "katex",
             "style": "eq"
+          },
+          {
+            "text": "  + (1) × [(2)(5) − (0)(3)]",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  − (−1) × [(4)(5) − (0)(1)]",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  + (5) × [(4)(3) − (2)(1)]",
+            "style": "indent",
+            "added": true
           },
           "= 1(10−0) + 1(20−0) + 5(12−2)",
           "= 10 + 20 + 50 = 80"
@@ -290,6 +430,16 @@
         "common_mistakes": [
           "Stopping after Δ₂ and trying to find z by substitution.",
           "Leaving an earlier replacement in place."
+        ],
+        "lines_compact": [
+          "Replace C₃ of Δ by the constants:",
+          {
+            "text": "\\Delta_3 = \\begin{vmatrix} 1 & -1 & 5 \\\\ 4 & 2 & 0 \\\\ 1 & 3 & 5 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= 1(10−0) + 1(20−0) + 5(12−2)",
+          "= 10 + 20 + 50 = 80"
         ]
       },
       {
@@ -302,9 +452,32 @@
         "memory_tip": "Δ₁ = 0 gives x = 0 — a real answer. It is Δ, not Δ₁, that must be non-zero.",
         "lines": [
           "By Cramer's rule:",
+          {
+            "text": "(each unknown is its own Δ divided by Δ)",
+            "added": true
+          },
           "x = Δ₁/Δ = 0/40 = 0",
           "y = Δ₂/Δ = 40/40 = 1",
           "z = Δ₃/Δ = 80/40 = 2",
+          {
+            "text": "Check in the three equations:",
+            "added": true
+          },
+          {
+            "text": "  (1)(0) + (−1)(1) + (3)(2) = 5 ✓",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  (4)(0) + (2)(1) + (−1)(2) = 0 ✓",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  (1)(0) + (3)(1) + (1)(2) = 5 ✓",
+            "style": "indent",
+            "added": true
+          },
           {
             "text": "∴ x = 0, y = 1, z = 2",
             "style": "boxed"
@@ -333,11 +506,21 @@
             "z equals"
           ]
         },
-        "why": "The whole method exists so that each unknown can be found on its own, without eliminating anything. That is also why an error in one determinant spoils only one unknown.",
+        "why": "The whole method exists so that each unknown can be found on its own, without eliminating anything. That is also why an error in Δ₁, Δ₂ or Δ₃ spoils only one unknown (an error in Δ spoils all three).",
         "common_mistakes": [
           "Dividing Δ by Δ₁ instead of Δ₁ by Δ.",
           "Losing a sign when Δ or a numerator is negative.",
           "Never substituting back to check — putting x=0, y=1, z=2 into the first equation gives 0−1+6 = 5."
+        ],
+        "lines_compact": [
+          "By Cramer's rule:",
+          "x = Δ₁/Δ = 0/40 = 0",
+          "y = Δ₂/Δ = 40/40 = 1",
+          "z = Δ₃/Δ = 80/40 = 2",
+          {
+            "text": "∴ x = 0, y = 1, z = 2",
+            "style": "boxed"
+          }
         ]
       }
     ]

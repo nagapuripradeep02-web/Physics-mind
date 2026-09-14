@@ -46,7 +46,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 5 MATRICES, Long Answer question 10(i), rank-test route. The work order carries no printed page for question 10 (question 9(vii) is printed on book p.57), so no page number is asserted here rather than guessed. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+2+1+1+1+2 split pays two marks for the echelon reduction that both ranks are read from, one mark for each rank, and two for the parameter that turns \"infinitely many\" into a written solution set. WHY THIS CARD EXISTS ALONGSIDE ts_ipe_m1a_mat_gauss_infinite_solutions: that card solves the SAME three equations (x + y + z = 3, 2x + 2y − z = 3, x + y − z = 1) and reaches the same solution set, but it answers a different ask — \"solve by the Gauss-Jordan method\", which the book sets separately as question 9(vi). This question asks the student to EXAMINE CONSISTENCY, and the examiner's expected work is the rank test: reduce [A D] to echelon form, read Rank(A), read Rank[A D], compare them with each other and with the number of unknowns, and only then produce the solution. The two cards therefore differ in what earns the marks — the Gauss-Jordan card pays for the row reduction and the parameter, this one pays for the two ranks and the comparison — so both are kept. ts_ipe_m1a_mat_sqp_rank_test is the same TECHNIQUE on a different system (x + y + z = 6, x − y + z = 2, 2x − y + 3z = 9) and at SAQ length; this is the LAQ form. Working checked: det A = 0 was confirmed by expanding along R₁ and again along C₁, and the solution x = k, y = 2 − k, z = 1 was substituted back into all three original equations, where it holds for every real k (3 = 3, 3 = 3, 1 = 1). Paper position: Maths-1A Section C prints 3 long answers at 8 marks each and the student answers any 2; Matrices is one of the units that can fill a Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 5 MATRICES, Long Answer question 10(i), rank-test route. The work order carries no printed page for question 10 (question 9(vii) is printed on book p.57), so no page number is asserted here rather than guessed. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+2+1+1+1+2 split pays two marks for the echelon reduction that both ranks are read from, one mark for each rank, and two for the parameter that turns \"infinitely many\" into a written solution set. WHY THIS CARD EXISTS ALONGSIDE ts_ipe_m1a_mat_gauss_infinite_solutions: that card solves the SAME three equations (x + y + z = 3, 2x + 2y − z = 3, x + y − z = 1) and reaches the same solution set, but it answers a different ask — \"solve by the Gauss-Jordan method\", which the book sets separately as question 9(vi). This question asks the student to EXAMINE CONSISTENCY, and the examiner's expected work is the rank test: reduce [A D] to echelon form, read Rank(A), read Rank[A D], compare them with each other and with the number of unknowns, and only then produce the solution. The two cards therefore differ in what earns the marks — the Gauss-Jordan card pays for the row reduction and the parameter, this one pays for the two ranks and the comparison — so both are kept. ts_ipe_m1a_mat_sqp_rank_test is the same TECHNIQUE on a different system (x + y + z = 6, x − y + z = 2, 2x − y + 3z = 9) and at SAQ length; this is the LAQ form. Working checked: det A = 0 was confirmed by expanding along R₁ and again along C₁, and the solution x = k, y = 2 − k, z = 1 was substituted back into all three original equations, where it holds for every real k (3 = 3, 3 = 3, 1 = 1). Paper position: Maths-1A Section C prints 3 long answers at 8 marks each and the student answers any 2; Matrices is one of the units that can fill a Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would examine this system by the rank test — say what you reduce, which two ranks you compare, what the comparison tells you, and how the complete solution is written.",
   "answer": {
@@ -79,7 +79,8 @@
             "text": "\\left[\\begin{array}{ccc|c} 1 & 1 & 1 & 3 \\\\ 2 & 2 & -1 & 3 \\\\ 1 & 1 & -1 & 1 \\end{array}\\right]",
             "render": "katex",
             "style": "eq"
-          }
+          },
+          "(the constants are written as a fourth column)"
         ],
         "recall": {
           "credit": "say_it",
@@ -119,13 +120,88 @@
         "margin_note": "Two marks. Columns 1 and 2 of A are identical, so clearing column 1 clears column 2 with it. Rows 2 and 3 are then proportional and one of them cancels to a row of zeros.",
         "memory_tip": "Columns 1 and 2 of A are identical, so clearing column 1 clears column 2 with it.",
         "lines": [
+          {
+            "text": "Each row operation below is worked out",
+            "added": true
+          },
+          {
+            "text": "  entry by entry:",
+            "style": "indent",
+            "added": true
+          },
           "R₂ → R₂ − 2R₁,  R₃ → R₃ − R₁:",
+          {
+            "text": "R₂ − 2R₁:",
+            "added": true
+          },
+          {
+            "text": "  (2, 2, −1 | 3)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  − 2(1, 1, 1 | 3)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  = (0, 0, −3 | −3)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "R₃ − R₁:",
+            "added": true
+          },
+          {
+            "text": "  (1, 1, −1 | 1)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  − (1, 1, 1 | 3)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  = (0, 0, −2 | −2)",
+            "style": "indent",
+            "added": true
+          },
           {
             "text": "\\left[\\begin{array}{ccc|c} 1 & 1 & 1 & 3 \\\\ 0 & 0 & -3 & -3 \\\\ 0 & 0 & -2 & -2 \\end{array}\\right]",
             "render": "katex",
             "style": "eq"
           },
           "R₂ → (−⅓)R₂, then R₃ → R₃ + 2R₂:",
+          {
+            "text": "(−⅓)R₂: (0, 0, −3 | −3)",
+            "added": true
+          },
+          {
+            "text": "  → (0, 0, 1 | 1)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "R₃ + 2R₂:",
+            "added": true
+          },
+          {
+            "text": "  (0, 0, −2 | −2)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  + 2(0, 0, 1 | 1)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  = (0, 0, 0 | 0)",
+            "style": "indent",
+            "added": true
+          },
           {
             "text": "\\left[\\begin{array}{ccc|c} 1 & 1 & 1 & 3 \\\\ 0 & 0 & 1 & 1 \\\\ 0 & 0 & 0 & 0 \\end{array}\\right]",
             "render": "katex",
@@ -160,6 +236,21 @@
           "Assuming the rank is 3 because the matrix is 3×3, without testing a minor.",
           "Treating the row of zeros as an arithmetic error and starting again.",
           "Applying an operation to part of a row and not to the constant."
+        ],
+        "lines_compact": [
+          "R₂ → R₂ − 2R₁,  R₃ → R₃ − R₁:",
+          {
+            "text": "\\left[\\begin{array}{ccc|c} 1 & 1 & 1 & 3 \\\\ 0 & 0 & -3 & -3 \\\\ 0 & 0 & -2 & -2 \\end{array}\\right]",
+            "render": "katex",
+            "style": "eq"
+          },
+          "R₂ → (−⅓)R₂, then R₃ → R₃ + 2R₂:",
+          {
+            "text": "\\left[\\begin{array}{ccc|c} 1 & 1 & 1 & 3 \\\\ 0 & 0 & 1 & 1 \\\\ 0 & 0 & 0 & 0 \\end{array}\\right]",
+            "render": "katex",
+            "style": "eq"
+          },
+          "Call this reduced matrix (1)."
         ]
       },
       {
@@ -178,6 +269,10 @@
             "style": "eq"
           },
           "Its determinant is 0, so Rank(A) < 3.",
+          {
+            "text": "(a 3×3 determinant with a row of zeros is 0)",
+            "added": true
+          },
           "Take rows 1, 2 and columns 1, 3 of it:",
           {
             "text": "\\begin{vmatrix} 1 & 1 \\\\ 0 & 1 \\end{vmatrix} = 1 \\neq 0",
@@ -215,6 +310,23 @@
           "Stopping at det A = 0, which only shows the rank is below 3.",
           "Counting the columns instead of the order of the largest non-zero minor.",
           "Counting the rows instead of finding the order of the largest non-zero minor."
+        ],
+        "lines_compact": [
+          "In (1) the coefficient part is",
+          {
+            "text": "\\begin{bmatrix} 1 & 1 & 1 \\\\ 0 & 0 & 1 \\\\ 0 & 0 & 0 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "Its determinant is 0, so Rank(A) < 3.",
+          "Take rows 1, 2 and columns 1, 3 of it:",
+          {
+            "text": "\\begin{vmatrix} 1 & 1 \\\\ 0 & 1 \\end{vmatrix} = 1 \\neq 0",
+            "render": "katex",
+            "style": "eq"
+          },
+          "This minor of order 2 is not zero,",
+          "so Rank(A) = 2."
         ]
       },
       {
@@ -228,6 +340,15 @@
         "lines": [
           "In (1) the augmented matrix also has just two",
           "non-zero rows, so Rank[A D] = 2 as well.",
+          {
+            "text": "(a zero row adds nothing; the two non-zero rows",
+            "added": true
+          },
+          {
+            "text": "  give a non-zero 2×2 minor)",
+            "style": "indent",
+            "added": true
+          },
           "∴ Rank(A) = Rank[A D] = 2,",
           "so the system is CONSISTENT.",
           "But 2 < 3, the number of unknowns, so the",
@@ -261,6 +382,14 @@
           "Concluding consistency without writing both ranks.",
           "Forgetting to compare the common rank with the number of unknowns.",
           "Calling the system inconsistent because the ranks are less than 3."
+        ],
+        "lines_compact": [
+          "In (1) the augmented matrix also has just two",
+          "non-zero rows, so Rank[A D] = 2 as well.",
+          "∴ Rank(A) = Rank[A D] = 2,",
+          "so the system is CONSISTENT.",
+          "But 2 < 3, the number of unknowns, so the",
+          "solution is not unique."
         ]
       },
       {
@@ -317,6 +446,10 @@
         "lines": [
           "3 unknowns − rank 2 = 1 free unknown.",
           "Let x = k, where k ∈ R. Then y = 2 − k.",
+          {
+            "text": "(every value of k gives one solution)",
+            "added": true
+          },
           "Check in the three original equations:",
           "k + (2 − k) + 1 = 3  ✓",
           "2k + 2(2 − k) − 1 = 3  ✓",
@@ -355,6 +488,18 @@
           "Writing 'infinitely many solutions' and stopping, with no solution set given.",
           "Forgetting to state that k is a real number.",
           "Giving one particular solution such as (0, 2, 1) as if it were the whole answer."
+        ],
+        "lines_compact": [
+          "3 unknowns − rank 2 = 1 free unknown.",
+          "Let x = k, where k ∈ R. Then y = 2 − k.",
+          "Check in the three original equations:",
+          "k + (2 − k) + 1 = 3  ✓",
+          "2k + 2(2 − k) − 1 = 3  ✓",
+          "k + (2 − k) − 1 = 1  ✓",
+          {
+            "text": "∴ x = k, y = 2 − k, z = 1, k ∈ R",
+            "style": "boxed"
+          }
         ]
       }
     ]

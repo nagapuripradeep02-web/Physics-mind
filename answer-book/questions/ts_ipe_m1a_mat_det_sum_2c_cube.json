@@ -59,7 +59,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.24 — LAQ chapter 3 Matrices, answer 14, on a ★★★ SSP (Super Scoring Page), and the book's self-declared 'No.2 in Dets'. The four printed appearance tags (TS 16,19 · AP 16,18) make it the most-asked determinant in the chapter. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S. This page carries a 'Tick Boxes' widget in the margin where the [N Marks] tags would normally sit, so no split is printed for this question. The 2+1+2+1+1 above is inferred from the split the same book DOES print for answer 17 on book p.26 — a structurally identical proof (sum a row or column, take the common factor out, two row operations, expand) which is printed as 1+1+1+2+1+1. The two marks on the opening column operation reflect that spotting C₁+C₂+C₃ is the whole question; a teacher may well weight it differently. Star rank is the CHAPTER's ★★★, not this question's. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to the \"Column operation C₁ → C₁+C₂+C₃\" step."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.24 — LAQ chapter 3 Matrices, answer 14, on a ★★★ SSP (Super Scoring Page), and the book's self-declared 'No.2 in Dets'. The four printed appearance tags (TS 16,19 · AP 16,18) make it the most-asked determinant in the chapter. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S. This page carries a 'Tick Boxes' widget in the margin where the [N Marks] tags would normally sit, so no split is printed for this question. The 2+1+2+1+1 above is inferred from the split the same book DOES print for answer 17 on book p.26 — a structurally identical proof (sum a row or column, take the common factor out, two row operations, expand) which is printed as 1+1+1+2+1+1. The two marks on the opening column operation reflect that spotting C₁+C₂+C₃ is the whole question; a teacher may well weight it differently. Star rank is the CHAPTER's ★★★, not this question's. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to the \"Column operation C₁ → C₁+C₂+C₃\" step. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — say which rows or columns you add together first, what comes out common, and how the determinant finishes.",
   "answer": {
@@ -84,7 +84,8 @@
             "text": "\\Delta = \\begin{vmatrix} a+b+2c & a & b \\\\ c & b+c+2a & b \\\\ c & a & c+a+2b \\end{vmatrix}",
             "render": "katex",
             "style": "eq"
-          }
+          },
+          "(Each row adds up to 2a + 2b + 2c.)"
         ],
         "recall": {
           "credit": "name_it",
@@ -124,6 +125,18 @@
           "C₁ → C₁ + C₂ + C₃",
           "Each row of C₁ becomes 2a + 2b + 2c:",
           {
+            "text": "Row 1: (a+b+2c) + a + b = 2a + 2b + 2c",
+            "added": true
+          },
+          {
+            "text": "Row 2: c + (b+c+2a) + b = 2a + 2b + 2c",
+            "added": true
+          },
+          {
+            "text": "Row 3: c + a + (c+a+2b) = 2a + 2b + 2c",
+            "added": true
+          },
+          {
             "text": "\\Delta = \\begin{vmatrix} 2a{+}2b{+}2c & a & b \\\\ 2a{+}2b{+}2c & b+c+2a & b \\\\ 2a{+}2b{+}2c & a & c+a+2b \\end{vmatrix}",
             "render": "katex",
             "style": "eq"
@@ -153,9 +166,18 @@
         },
         "why": "Adding other columns into one column never changes a determinant's value. It is worth doing when it makes a whole column identical — because an identical column can be taken out as a common factor.",
         "common_mistakes": [
-          "Adding rows instead of columns; here the columns are what sum to the same value.",
+          "Adding rows instead of columns; here each row sums to 2(a+b+c), which is why the columns are added.",
           "Adding into C₂ or C₃ instead of C₁, which works but makes the next step harder to see.",
           "Writing a+b+c instead of 2a+2b+2c — check the sum, every row has a 2 in it."
+        ],
+        "lines_compact": [
+          "C₁ → C₁ + C₂ + C₃",
+          "Each row of C₁ becomes 2a + 2b + 2c:",
+          {
+            "text": "\\Delta = \\begin{vmatrix} 2a{+}2b{+}2c & a & b \\\\ 2a{+}2b{+}2c & b+c+2a & b \\\\ 2a{+}2b{+}2c & a & c+a+2b \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -168,6 +190,10 @@
         "memory_tip": "2(a+b+c) comes out of column 1, leaving it as 1, 1, 1.",
         "lines": [
           "Taking 2(a+b+c) common from C₁:",
+          {
+            "text": "(2a + 2b + 2c = 2(a+b+c))",
+            "added": true
+          },
           {
             "text": "\\Delta = 2(a{+}b{+}c) \\begin{vmatrix} 1 & a & b \\\\ 1 & b+c+2a & b \\\\ 1 & a & c+a+2b \\end{vmatrix}",
             "render": "katex",
@@ -201,6 +227,14 @@
           "Taking only (a+b+c) out and leaving the 2 behind.",
           "Taking the factor out of a row instead of the column.",
           "Cubing the factor here; it comes out once."
+        ],
+        "lines_compact": [
+          "Taking 2(a+b+c) common from C₁:",
+          {
+            "text": "\\Delta = 2(a{+}b{+}c) \\begin{vmatrix} 1 & a & b \\\\ 1 & b+c+2a & b \\\\ 1 & a & c+a+2b \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -213,6 +247,24 @@
         "memory_tip": "Column 1 is all 1s, so subtracting row 1 clears it, leaving a TRIANGULAR determinant.",
         "lines": [
           "R₂ → R₂ − R₁ and R₃ → R₃ − R₁:",
+          {
+            "text": "Row 2 − Row 1: (1−1, b+c+2a−a, b−b)",
+            "added": true
+          },
+          {
+            "text": "  = (0, a+b+c, 0)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "Row 3 − Row 1: (1−1, a−a, c+a+2b−b)",
+            "added": true
+          },
+          {
+            "text": "  = (0, 0, a+b+c)",
+            "style": "indent",
+            "added": true
+          },
           {
             "text": "\\Delta = 2(a{+}b{+}c) \\begin{vmatrix} 1 & a & b \\\\ 0 & a+b+c & 0 \\\\ 0 & 0 & a+b+c \\end{vmatrix}",
             "render": "katex",
@@ -247,6 +299,14 @@
           "Subtracting in the wrong order and picking up minus signs on the diagonal.",
           "Missing that the off-diagonal entries cancel to zero and carrying them along.",
           "Changing row 1 as well."
+        ],
+        "lines_compact": [
+          "R₂ → R₂ − R₁ and R₃ → R₃ − R₁:",
+          {
+            "text": "\\Delta = 2(a{+}b{+}c) \\begin{vmatrix} 1 & a & b \\\\ 0 & a+b+c & 0 \\\\ 0 & 0 & a+b+c \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -259,7 +319,15 @@
         "memory_tip": "Column 1 is 1, 0, 0, so one term survives and its minor has zeros off the diagonal.",
         "lines": [
           "Expanding along C₁:",
+          {
+            "text": "(C₁ is 1, 0, 0, so only the 1 gives a term)",
+            "added": true
+          },
           "Δ = 2(a+b+c)[(a+b+c)(a+b+c) − 0]",
+          {
+            "text": "(the minor is a diagonal 2×2)",
+            "added": true
+          },
           "Δ = 2(a+b+c)·(a+b+c)²"
         ],
         "recall": {
@@ -288,6 +356,11 @@
         "common_mistakes": [
           "Expanding along a row instead of the column of zeros and doing three times the work.",
           "Forgetting the 2(a+b+c) already standing outside."
+        ],
+        "lines_compact": [
+          "Expanding along C₁:",
+          "Δ = 2(a+b+c)[(a+b+c)(a+b+c) − 0]",
+          "Δ = 2(a+b+c)·(a+b+c)²"
         ]
       },
       {

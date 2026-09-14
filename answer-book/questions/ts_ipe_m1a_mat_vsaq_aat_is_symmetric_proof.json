@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.34, chapter 5 MATRICES, Very Short Answer question 18. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards naming the reversal law (XY)ᵀ = YᵀXᵀ separately from applying it, because the law is the whole method and a proof that uses it silently shows no reason for the order swap. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Note on the statement: the result holds for ANY matrix A, square or not, because AAᵀ is square in every case. The card proves it as asked, for a square A, and says nothing wider."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.34, chapter 5 MATRICES, Very Short Answer question 18. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards naming the reversal law (XY)ᵀ = YᵀXᵀ separately from applying it, because the law is the whole method and a proof that uses it silently shows no reason for the order swap. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Note on the statement: the result holds for ANY matrix A, square or not, because AAᵀ is square in every case. The card proves it as asked, for a square A, and says nothing wider. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say what has to be shown, name the law you use, and give the two lines of the proof.",
   "answer": {
@@ -54,7 +54,8 @@
           "A matrix B is symmetric when Bᵀ = B.",
           "Take B = AAᵀ. To find Bᵀ, use the reversal",
           "law for the transpose of a product:",
-          "(XY)ᵀ = YᵀXᵀ"
+          "(XY)ᵀ = YᵀXᵀ",
+          "(the order of the factors is reversed)"
         ],
         "recall": {
           "credit": "say_it",
@@ -94,7 +95,15 @@
         "margin_note": "Second mark. Apply the law, then use (Aᵀ)ᵀ = A. Bᵀ comes back as B, which is exactly the definition of symmetric.",
         "lines": [
           "Bᵀ = (AAᵀ)ᵀ = (Aᵀ)ᵀ Aᵀ",
+          {
+            "text": "(here X = A and Y = Aᵀ)",
+            "added": true
+          },
           "Now (Aᵀ)ᵀ = A, so",
+          {
+            "text": "(transposing twice gives back the matrix)",
+            "added": true
+          },
           "Bᵀ = A Aᵀ = B",
           "B equals its own transpose.",
           {
@@ -129,7 +138,17 @@
           "Writing (AAᵀ)ᵀ = AᵀA, which is a different matrix.",
           "Stopping at Bᵀ = AAᵀ without saying that this is B."
         ],
-        "memory_tip": "Transposing twice returns the original: (Aᵀ)ᵀ = A."
+        "memory_tip": "Transposing twice returns the original: (Aᵀ)ᵀ = A.",
+        "lines_compact": [
+          "Bᵀ = (AAᵀ)ᵀ = (Aᵀ)ᵀ Aᵀ",
+          "Now (Aᵀ)ᵀ = A, so",
+          "Bᵀ = A Aᵀ = B",
+          "B equals its own transpose.",
+          {
+            "text": "∴ AAᵀ is a symmetric matrix.",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   }

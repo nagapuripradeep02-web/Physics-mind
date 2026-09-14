@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 31(ii), book p.88. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The book prints the two lettered parts under one condition, so they stay in one card and the 1 + 1 gives one mark to each part. Part (a) needs tan A and tan B to exist and part (b) needs cot A and cot B to exist; the two conditions are different and each is written into its own step. Paper position: Maths-1A Section A prints ten very short answers of 2 marks each and the student writes all ten, under the 2026-27 pattern; Trigonometric Ratios and Transformations supplies two of those ten slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 31(ii), book p.88. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The book prints the two lettered parts under one condition, so they stay in one card and the 1 + 1 gives one mark to each part. Part (a) needs tan A and tan B to exist and part (b) needs cot A and cot B to exist; the two conditions are different and each is written into its own step. Paper position: Maths-1A Section A prints ten very short answers of 2 marks each and the student writes all ten, under the 2026-27 pattern; Trigonometric Ratios and Transformations supplies two of those ten slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove both parts — name the formula each part starts from.",
   "answer": {
@@ -56,8 +56,15 @@
           "A nor B is an odd multiple of π/2.",
           "tan(A + B) = tan(π/4) = 1",
           "⇒ (tan A + tan B)/(1 − tan A tan B) = 1",
+          "(multiply by 1 − tan A tan B, then move",
+          {
+            "text": "  −tan A tan B to the left)",
+            "style": "indent"
+          },
           "⇒ tan A + tan B + tan A tan B = 1",
+          "Open the brackets of the product:",
           "(1 + tan A)(1 + tan B)",
+          "(1 + tan A + tan B + tan A tan B)",
           "= 1 + (tan A + tan B + tan A tan B)",
           {
             "text": "= 1 + 1 = 2",
@@ -105,10 +112,31 @@
           "(b) For cot A and cot B to exist, neither",
           "A nor B is a multiple of π.",
           "cot(A + B) = cot(π/4) = 1",
+          {
+            "text": "(cot(A + B) = (cot A cot B − 1)/(cot A + cot B))",
+            "added": true
+          },
           "⇒ (cot A cot B − 1)/(cot A + cot B) = 1",
+          {
+            "text": "(multiply by cot A + cot B, move cot A + cot B",
+            "added": true
+          },
+          {
+            "text": "  to the left and −1 to the right)",
+            "style": "indent",
+            "added": true
+          },
           "⇒ cot A cot B − cot A − cot B = 1",
+          {
+            "text": "Open the brackets of the product:",
+            "added": true
+          },
           "(cot A − 1)(cot B − 1)",
           "= cot A cot B − cot A − cot B + 1",
+          {
+            "text": "(the first three terms make 1, from above)",
+            "added": true
+          },
           {
             "text": "= 1 + 1 = 2",
             "style": "boxed"
@@ -141,6 +169,19 @@
         "common_mistakes": [
           "Writing cot(A + B) = (cot A cot B + 1)/(cot A + cot B).",
           "Expanding (cot A − 1)(cot B − 1) without the +1 term."
+        ],
+        "lines_compact": [
+          "(b) For cot A and cot B to exist, neither",
+          "A nor B is a multiple of π.",
+          "cot(A + B) = cot(π/4) = 1",
+          "⇒ (cot A cot B − 1)/(cot A + cot B) = 1",
+          "⇒ cot A cot B − cot A − cot B = 1",
+          "(cot A − 1)(cot B − 1)",
+          "= cot A cot B − cot A − cot B + 1",
+          {
+            "text": "= 1 + 1 = 2",
+            "style": "boxed"
+          }
         ]
       }
     ]

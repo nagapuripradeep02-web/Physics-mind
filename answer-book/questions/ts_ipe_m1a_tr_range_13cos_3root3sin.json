@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.83, chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 5. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to the squaring and the root √196 = 14 and one to writing the shifted interval. Paper position: Maths-1A Section A prints ten very short answers of 2 marks each and the student writes all ten; Trigonometric Ratios and Transformations supplies two of those slots on almost every paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.83, chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 5. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to the squaring and the root √196 = 14 and one to writing the shifted interval. Paper position: Maths-1A Section A prints ten very short answers of 2 marks each and the student writes all ten; Trigonometric Ratios and Transformations supplies two of those slots on almost every paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — name the formula you use and how you finish.",
   "answer": {
@@ -56,6 +56,7 @@
           "Compare with a cos x + b sin x + c:",
           "a = 13, b = 3√3, c = −4",
           "(3√3)² = 9 × 3 = 27",
+          "(13² = 169)",
           "√(a² + b²) = √(169 + 27) = √196 = 14"
         ],
         "recall": {
@@ -95,6 +96,28 @@
         "margin_note": "Second mark. The −4 moves both ends of the interval: the low end to −18 and the high end to 10. Write it as an interval, smaller number first.",
         "memory_tip": "Both ends move by the constant: −4 − 14 = −18 and −4 + 14 = 10, so the range is [−18, 10].",
         "lines": [
+          {
+            "text": "a cos θ + b sin θ always lies between",
+            "added": true
+          },
+          {
+            "text": "  −√(a² + b²) and +√(a² + b²), and reaches both",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "(it can be written √(a² + b²) cos(θ − α), and",
+            "added": true
+          },
+          {
+            "text": "  cos(θ − α) lies between −1 and 1)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "Add c = −4 to both ends:",
+            "added": true
+          },
           "Range = [c − √(a² + b²), c + √(a² + b²)]",
           "= [−4 − 14, −4 + 14]",
           {
@@ -129,6 +152,14 @@
         "common_mistakes": [
           "Writing the range as [−14, 14] and ignoring the −4.",
           "Writing the interval backwards as [10, −18]."
+        ],
+        "lines_compact": [
+          "Range = [c − √(a² + b²), c + √(a² + b²)]",
+          "= [−4 − 14, −4 + 14]",
+          {
+            "text": "∴ Range = [−18, 10]",
+            "style": "boxed"
+          }
         ]
       }
     ]

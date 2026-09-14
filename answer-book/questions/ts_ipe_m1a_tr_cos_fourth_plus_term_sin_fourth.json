@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 30, book p.88. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards clearing the sec α out of the bracket first and the matching factorisation of the two sides second. Paper position: Maths-1A Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern; Trigonometric Ratios and Transformations holds two of those ten slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Checked numerically at α = 37°, 100° and 215°: the two sides agree to ten decimal places (0.8688246899, 0.0593981342 and 0.8917656271). Note on the condition: the reduced identity cos⁴α + 2cos²α sin²α = 1 − sin⁴α holds for every α, but the printed left side contains sec α, so the statement as printed needs cos α ≠ 0. That condition is written on the page in the student's own lines, not left here."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 30, book p.88. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards clearing the sec α out of the bracket first and the matching factorisation of the two sides second. Paper position: Maths-1A Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern; Trigonometric Ratios and Transformations holds two of those ten slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Checked numerically at α = 37°, 100° and 215°: the two sides agree to ten decimal places (0.8688246899, 0.0593981342 and 0.8917656271). Note on the condition: the reduced identity cos⁴α + 2cos²α sin²α = 1 − sin⁴α holds for every α, but the printed left side contains sec α, so the statement as printed needs cos α ≠ 0. That condition is written on the page in the student's own lines, not left here. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say what you would do with the sec α bracket, and say what both sides reduce to.",
   "answer": {
@@ -54,7 +54,9 @@
           },
           "sec α is written, so cos α ≠ 0.",
           "1/sec²α = cos²α, so",
+          "(sec α = 1/cos α)",
           "1 − 1/sec²α = 1 − cos²α = sin²α",
+          "(sin²α + cos²α = 1)",
           "LHS = cos⁴α + 2cos²α sin²α"
         ],
         "recall": {
@@ -94,10 +96,30 @@
         "margin_note": "Second mark. Take cos²α out on the left and use the difference of two squares on the right. Both sides land on cos²α(1 + sin²α).",
         "memory_tip": "Both sides collapse to cos²α(1 + sin²α). On the right use 1 − sin⁴α = (1 − sin²α)(1 + sin²α).",
         "lines": [
+          {
+            "text": "Take out the common factor cos²α:",
+            "added": true
+          },
           "LHS = cos²α(cos²α + 2 sin²α)",
+          {
+            "text": "Split 2 sin²α into sin²α + sin²α:",
+            "added": true
+          },
           "= cos²α(cos²α + sin²α + sin²α)",
+          {
+            "text": "(cos²α + sin²α = 1)",
+            "added": true
+          },
           "= cos²α(1 + sin²α)",
+          {
+            "text": "Now the right side, as a difference of squares:",
+            "added": true
+          },
           "RHS = 1 − sin⁴α = (1 − sin²α)(1 + sin²α)",
+          {
+            "text": "(1 − sin²α = cos²α)",
+            "added": true
+          },
           "= cos²α(1 + sin²α) = LHS",
           {
             "text": "∴ LHS = RHS = cos²α(1 + sin²α)",
@@ -130,6 +152,17 @@
         "common_mistakes": [
           "Treating 1 − sin⁴α as (1 − sin²α)².",
           "Stopping at cos⁴α + 2cos²α sin²α without factoring."
+        ],
+        "lines_compact": [
+          "LHS = cos²α(cos²α + 2 sin²α)",
+          "= cos²α(cos²α + sin²α + sin²α)",
+          "= cos²α(1 + sin²α)",
+          "RHS = 1 − sin⁴α = (1 − sin²α)(1 + sin²α)",
+          "= cos²α(1 + sin²α) = LHS",
+          {
+            "text": "∴ LHS = RHS = cos²α(1 + sin²α)",
+            "style": "boxed"
+          }
         ]
       }
     ]

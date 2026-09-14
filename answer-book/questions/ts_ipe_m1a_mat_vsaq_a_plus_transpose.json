@@ -39,7 +39,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.84 — VSAQ chapter 15 Matrices, answer 106. Printed appearances: AP 18,19. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess, though: the same chapter DOES print 1+1 against answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark matrices VSAQ, applied here to the two steps of this question. CORRECTION TO AN EARLIER NOTE, recorded rather than quietly fixed: docs/IPE_MATHS_1A_SOURCE.md stated after Unit 1 that this book 'prints a per-step mark split on its LAQ and SAQ pages but NOT on its VSAQ pages'. That held for the Functions VSAQ pages (book pp.79-81) but is FALSE here — the Matrices VSAQ chapter prints [1 mark] tags on p.82. The doc has been corrected. The book's VSAQ chapter header carries ★★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because Matrices holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q3 and Q4 are the two Matrices slots."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.84 — VSAQ chapter 15 Matrices, answer 106. Printed appearances: AP 18,19. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess, though: the same chapter DOES print 1+1 against answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark matrices VSAQ, applied here to the two steps of this question. CORRECTION TO AN EARLIER NOTE, recorded rather than quietly fixed: docs/IPE_MATHS_1A_SOURCE.md stated after Unit 1 that this book 'prints a per-step mark split on its LAQ and SAQ pages but NOT on its VSAQ pages'. That held for the Functions VSAQ pages (book pp.79-81) but is FALSE here — the Matrices VSAQ chapter prints [1 mark] tags on p.82. The doc has been corrected. The book's VSAQ chapter header carries ★★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because Matrices holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q3 and Q4 are the two Matrices slots. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find both of these — say what A dash is first.",
   "answer": {
@@ -61,6 +61,7 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "(A′ turns the rows of A into columns)",
           {
             "text": "A = \\begin{bmatrix} 2 & -4 \\\\ -5 & 3 \\end{bmatrix}, \\quad A' = \\begin{bmatrix} 2 & -5 \\\\ -4 & 3 \\end{bmatrix}",
             "render": "katex",
@@ -70,7 +71,8 @@
             "text": "A + A' = \\begin{bmatrix} 4 & -9 \\\\ -9 & 6 \\end{bmatrix}",
             "render": "katex",
             "style": "eq"
-          }
+          },
+          "(add in each position: 2 + 2 = 4, −4 + (−5) = −9)"
         ],
         "recall": {
           "credit": "say_it",
@@ -109,6 +111,30 @@
         "memory_tip": "A different operation from the first: row against COLUMN, not entry by entry.",
         "lines": [
           {
+            "text": "Multiply row by column:",
+            "added": true
+          },
+          {
+            "text": "  (1,1): (2)(2) + (−4)(−4) = 20",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  (1,2): (2)(−5) + (−4)(3) = −22",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  (2,1): (−5)(2) + (3)(−4) = −22",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  (2,2): (−5)(−5) + (3)(3) = 34",
+            "style": "indent",
+            "added": true
+          },
+          {
             "text": "AA' = \\begin{bmatrix} 2 & -4 \\\\ -5 & 3 \\end{bmatrix}\\begin{bmatrix} 2 & -5 \\\\ -4 & 3 \\end{bmatrix} = \\begin{bmatrix} 20 & -22 \\\\ -22 & 34 \\end{bmatrix}",
             "render": "katex",
             "style": "eq"
@@ -144,6 +170,17 @@
         "common_mistakes": [
           "Adding A and A′ again instead of multiplying.",
           "Multiplying entry by entry."
+        ],
+        "lines_compact": [
+          {
+            "text": "AA' = \\begin{bmatrix} 2 & -4 \\\\ -5 & 3 \\end{bmatrix}\\begin{bmatrix} 2 & -5 \\\\ -4 & 3 \\end{bmatrix} = \\begin{bmatrix} 20 & -22 \\\\ -22 & 34 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "∴ A + A′ and AA′ are as above",
+            "style": "boxed"
+          }
         ]
       }
     ]

@@ -55,7 +55,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.41 — LAQ chapter 5 T-Ratios upto Transformations, answer 29, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 18,19 · AP 17. A MIXED question: the left side is in whole angles and the right side in half angles, so the proof has to cross between them. The bridge is cos θ = 1 − 2sin²(θ/2). ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter (its pages are set two questions to a page in two columns, which takes the margin those tags would occupy). The 1+2+2+1+1 above follows the shape of the split the same book DOES print for LAQ answer 23 on book p.37, weighting the two substantial transformations against the set-up and the finish. The SAME split and the SAME step ids are used on all eight answers in this chapter, deliberately: they are ONE method over different identities — pair two terms, use the angle condition, factor, finish with a product formula. A student who learns that arc once can attempt any of them. The book's chapter header carries ★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Q23 is the Transformations slot and is ALWAYS a question of this kind. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Pair two terms with a sum-to-product formula."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.41 — LAQ chapter 5 T-Ratios upto Transformations, answer 29, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 18,19 · AP 17. A MIXED question: the left side is in whole angles and the right side in half angles, so the proof has to cross between them. The bridge is cos θ = 1 − 2sin²(θ/2). ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter (its pages are set two questions to a page in two columns, which takes the margin those tags would occupy). The 1+2+2+1+1 above follows the shape of the split the same book DOES print for LAQ answer 23 on book p.37, weighting the two substantial transformations against the set-up and the finish. The SAME split and the SAME step ids are used on all eight answers in this chapter, deliberately: they are ONE method over different identities — pair two terms, use the angle condition, factor, finish with a product formula. A student who learns that arc once can attempt any of them. The book's chapter header carries ★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Q23 is the Transformations slot and is ALWAYS a question of this kind. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Pair two terms with a sum-to-product formula. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this identity — say the four moves in order, and where the angle condition gets used.",
   "answer": {
@@ -78,7 +78,8 @@
             "style": "heading"
           },
           "Given",
-          "A + B + C = 180°  ⇒  (A+B)/2 = 90° − C/2"
+          "A + B + C = 180°  ⇒  (A+B)/2 = 90° − C/2",
+          "(A + B = 180° − C; halve both sides.)"
         ],
         "recall": {
           "credit": "say_it",
@@ -114,12 +115,24 @@
         "marks": 3,
         "mark_note": "Sum to product",
         "margin_note": "Three of the eight marks. Three terms will not factorise as they stand, so two of them are combined into a product first. Quote the formula in brackets — the formulas are what the examiner marks.",
-        "memory_tip": "Pair cos A with cos B — not cos B with −cos C. And cos(90° − C/2) is sin(C/2), not cos(C/2).",
+        "memory_tip": "Pair cos A with cos B: their half-sum (A+B)/2 turns into C/2 under the condition. And cos(90° − C/2) is sin(C/2), not cos(C/2).",
         "lines": [
           "L.H.S = (cosA + cosB) − cosC",
+          {
+            "text": "Pair the first two with p = A, q = B:",
+            "added": true
+          },
           "= 2 cos((A+B)/2) cos((A−B)/2) − cosC",
-          "  [∵ cosC + cosD formula]",
+          "  [∵ cos p + cos q = 2 cos((p+q)/2) cos((p−q)/2)]",
+          {
+            "text": "Use the given condition in the first factor:",
+            "added": true
+          },
           "= 2 cos(90° − C/2) cos((A−B)/2) − cosC",
+          {
+            "text": "(cos(90° − θ) = sin θ)",
+            "added": true
+          },
           "= 2 sin(C/2) cos((A−B)/2) − cosC"
         ],
         "recall": {
@@ -146,8 +159,15 @@
         },
         "why": "Pairing the two whole-angle cosines is what produces a half-angle term, which is the form the answer needs.",
         "common_mistakes": [
-          "Pairing cos B with −cos C instead.",
+          "Using the sum formula on cos B − cos C, which is a difference.",
           "Writing cos(90° − C/2) = cos(C/2)."
+        ],
+        "lines_compact": [
+          "L.H.S = (cosA + cosB) − cosC",
+          "= 2 cos((A+B)/2) cos((A−B)/2) − cosC",
+          "  [∵ cos p + cos q = 2 cos((p+q)/2) cos((p−q)/2)]",
+          "= 2 cos(90° − C/2) cos((A−B)/2) − cosC",
+          "= 2 sin(C/2) cos((A−B)/2) − cosC"
         ]
       },
       {
@@ -156,11 +176,29 @@
         "label": "Use the condition",
         "marks": 2,
         "mark_note": "Substitution",
-        "margin_note": "Two more marks. This is where the angle condition is used: it converts an expression in A and B into one in C, so that every term shares a factor.",
+        "margin_note": "Two more marks. cos C is written as 1 − 2sin²(C/2); the minus in front turns it into −1 + 2sin²(C/2).",
         "memory_tip": "Use cos C = 1 − 2sin²(C/2) so the sign comes out right, and distribute the minus across the bracket.",
         "lines": [
+          {
+            "text": "Write cosC with half-angles, so a 1 and a",
+            "added": true
+          },
+          {
+            "text": "  sin²(C/2) appear:",
+            "style": "indent",
+            "added": true
+          },
           "= 2 sin(C/2) cos((A−B)/2) − (1 − 2sin²(C/2))",
           "  [∵ cosθ = 1 − 2sin²(θ/2)]",
+          {
+            "text": "Open the bracket; the minus sign in front",
+            "added": true
+          },
+          {
+            "text": "  changes both signs inside it:",
+            "style": "indent",
+            "added": true
+          },
           "= −1 + 2 sin(C/2) cos((A−B)/2) + 2sin²(C/2)"
         ],
         "recall": {
@@ -189,6 +227,11 @@
         "common_mistakes": [
           "Using cos C = 2cos²(C/2) − 1, which gives +1 and the wrong sign.",
           "Forgetting to distribute the minus across the bracket."
+        ],
+        "lines_compact": [
+          "= 2 sin(C/2) cos((A−B)/2) − (1 − 2sin²(C/2))",
+          "  [∵ cosθ = 1 − 2sin²(θ/2)]",
+          "= −1 + 2 sin(C/2) cos((A−B)/2) + 2sin²(C/2)"
         ]
       },
       {
@@ -200,9 +243,25 @@
         "margin_note": "Seventh mark. The common factor comes out, and the condition is used a SECOND time inside the bracket so that both bracket terms are the same kind of function.",
         "memory_tip": "Keep the −1 outside the bracket and make sure the bracket stays a SUM, not a difference.",
         "lines": [
+          {
+            "text": "Take out 2 sin(C/2) from the last two terms:",
+            "added": true
+          },
           "= −1 + 2 sin(C/2) [cos((A−B)/2) + sin(C/2)]",
+          {
+            "text": "(check: 2 sin(C/2) × sin(C/2) = 2sin²(C/2))",
+            "added": true
+          },
+          {
+            "text": "Use the condition again, inside the bracket:",
+            "added": true
+          },
           "= −1 + 2 sin(C/2) [cos((A−B)/2) + cos((A+B)/2)]",
-          "  [∵ sin(C/2) = cos((A+B)/2)]"
+          "  [∵ sin(C/2) = cos((A+B)/2)]",
+          {
+            "text": "(cos((A+B)/2) = cos(90° − C/2) = sin(C/2))",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -229,6 +288,11 @@
         "common_mistakes": [
           "Getting a difference and finishing with sines.",
           "Losing the −1."
+        ],
+        "lines_compact": [
+          "= −1 + 2 sin(C/2) [cos((A−B)/2) + sin(C/2)]",
+          "= −1 + 2 sin(C/2) [cos((A−B)/2) + cos((A+B)/2)]",
+          "  [∵ sin(C/2) = cos((A+B)/2)]"
         ]
       },
       {
@@ -240,8 +304,21 @@
         "margin_note": "Last mark. One more sum-or-difference formula turns the bracket into a product, and the identity is complete. Write \"= R.H.S\" so the examiner can see the proof finished.",
         "memory_tip": "The coefficient is 4, not 2, and the −1 must survive to the last line.",
         "lines": [
+          {
+            "text": "The bracket is cos(x+y) + cos(x−y) with",
+            "added": true
+          },
+          {
+            "text": "  x = A/2 and y = B/2:",
+            "style": "indent",
+            "added": true
+          },
           "= −1 + 2 sin(C/2) (2 cos(A/2) cos(B/2))",
-          "  [∵ cos(A+B) + cos(A−B) = 2 cosA cosB]",
+          "  [∵ cos(x+y) + cos(x−y) = 2 cos x cos y]",
+          {
+            "text": "Multiply 2 × 2 = 4 and reorder:",
+            "added": true
+          },
           {
             "text": "= −1 + 4 cos(A/2) cos(B/2) sin(C/2) = R.H.S",
             "style": "boxed"
@@ -273,9 +350,17 @@
         "common_mistakes": [
           "Finishing with 2 instead of 4.",
           "Dropping the −1 at the last line."
+        ],
+        "lines_compact": [
+          "= −1 + 2 sin(C/2) (2 cos(A/2) cos(B/2))",
+          "  [∵ cos(x+y) + cos(x−y) = 2 cos x cos y]",
+          {
+            "text": "= −1 + 4 cos(A/2) cos(B/2) sin(C/2) = R.H.S",
+            "style": "boxed"
+          }
         ]
       }
     ]
   },
-  "insider_note": "The MINUS on cosC changes which half-angle form is needed: use cosθ = 1 − 2sin²(θ/2). The bracket then becomes a SUM of cosines, which yields cos(A/2)cos(B/2)."
+  "insider_note": "The MINUS on cos C, with cos C = 1 − 2sin²(C/2), gives the −1 and turns the bracket into a SUM of cosines, which yields cos(A/2)cos(B/2)."
 }

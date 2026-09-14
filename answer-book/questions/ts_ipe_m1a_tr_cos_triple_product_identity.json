@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 39(ii), book p.92. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The two marks sit on the difference-of-squares step and on recognising cos 3A; grouping the last two factors stays on the page as unmarked working. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, all compulsory, and Trigonometric Ratios and Transformations holds two of those ten slots. NUMERIC CHECK before authoring: both sides were evaluated at A = 0.3, 0.7, 1.1 and 37°; they agreed to 12 decimal places at every value. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 39(ii), book p.92. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The two marks sit on the difference-of-squares step and on recognising cos 3A; grouping the last two factors stays on the page as unmarked working. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, all compulsory, and Trigonometric Ratios and Transformations holds two of those ten slots. NUMERIC CHECK before authoring: both sides were evaluated at A = 0.3, 0.7, 1.1 and 37°; they agreed to 12 decimal places at every value. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — name each move in order.",
   "answer": {
@@ -51,6 +51,7 @@
             "style": "heading"
           },
           "L.H.S = cos A · [cos(π/3 + A) cos(π/3 − A)]",
+          "The bracket has the form cos(X + Y) cos(X − Y):",
           "cos(X + Y) cos(X − Y) = cos²X − sin²Y"
         ],
         "recall": {
@@ -93,8 +94,20 @@
           "With X = π/3 and Y = A:",
           "cos(π/3 + A) cos(π/3 − A)",
           "  = cos²(π/3) − sin²A = 1/4 − sin²A",
+          {
+            "text": "(cos(π/3) = 1/2, so cos²(π/3) = 1/4)",
+            "added": true
+          },
+          {
+            "text": "Write sin²A with cos, so only cos A is left:",
+            "added": true
+          },
           "sin²A = 1 − cos²A",
           "  ⇒ 1/4 − sin²A = cos²A − 3/4",
+          {
+            "text": "(1/4 − 1 + cos²A = cos²A − 3/4)",
+            "added": true
+          },
           "L.H.S = cos A (cos²A − 3/4)"
         ],
         "recall": {
@@ -125,7 +138,15 @@
           "Taking cos²(π/3) as 1/2 instead of 1/4.",
           "Leaving sin²A in place, which cannot give cos 3A."
         ],
-        "memory_tip": "cos(π/3) = 1/2, and squaring gives 1/4. Then 1/4 − 1 = −3/4."
+        "memory_tip": "cos(π/3) = 1/2, and squaring gives 1/4. Then 1/4 − 1 = −3/4.",
+        "lines_compact": [
+          "With X = π/3 and Y = A:",
+          "cos(π/3 + A) cos(π/3 − A)",
+          "  = cos²(π/3) − sin²A = 1/4 − sin²A",
+          "sin²A = 1 − cos²A",
+          "  ⇒ 1/4 − sin²A = cos²A − 3/4",
+          "L.H.S = cos A (cos²A − 3/4)"
+        ]
       },
       {
         "id": "s3_recognise_cos_three_a",
@@ -135,7 +156,20 @@
         "mark_note": "Result",
         "margin_note": "Last mark. Multiply cos A in, then take 1/4 out of both terms. What is left is the standard expansion of cos 3A.",
         "lines": [
+          {
+            "text": "Multiply out and put everything over 4:",
+            "added": true
+          },
+          {
+            "text": "  cos³A − (3/4)cos A = (4cos³A − 3cos A)/4",
+            "style": "indent",
+            "added": true
+          },
           "= (4 cos³A − 3 cos A)/4",
+          {
+            "text": "The top is the triple-angle formula:",
+            "added": true
+          },
           "cos 3A = 4 cos³A − 3 cos A",
           {
             "text": "∴ L.H.S = (1/4) cos 3A = R.H.S",
@@ -170,7 +204,15 @@
           "Taking 1/4 out of only one term.",
           "Writing cos 3A as 3 cos A − 4 cos³A, which is the sine pattern."
         ],
-        "memory_tip": "cos 3A = 4 cos³A − 3 cos A: cosine starts with 4, sine starts with 3."
+        "memory_tip": "cos 3A = 4 cos³A − 3 cos A: cosine starts with 4, sine starts with 3.",
+        "lines_compact": [
+          "= (4 cos³A − 3 cos A)/4",
+          "cos 3A = 4 cos³A − 3 cos A",
+          {
+            "text": "∴ L.H.S = (1/4) cos 3A = R.H.S",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   }

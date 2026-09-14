@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.86 — VSAQ chapter 15 Matrices, answer 111.1. Printed appearances: none — this answer carries no year tag. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess, though: the same chapter DOES print 1+1 against answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark matrices VSAQ, applied here to the two steps of this question. CORRECTION TO AN EARLIER NOTE, recorded rather than quietly fixed: docs/IPE_MATHS_1A_SOURCE.md stated after Unit 1 that this book 'prints a per-step mark split on its LAQ and SAQ pages but NOT on its VSAQ pages'. That held for the Functions VSAQ pages (book pp.79-81) but is FALSE here — the Matrices VSAQ chapter prints [1 mark] tags on p.82. The doc has been corrected. The book's VSAQ chapter header carries ★★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because Matrices holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q3 and Q4 are the two Matrices slots."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.86 — VSAQ chapter 15 Matrices, answer 111.1. Printed appearances: none — this answer carries no year tag. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess, though: the same chapter DOES print 1+1 against answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark matrices VSAQ, applied here to the two steps of this question. CORRECTION TO AN EARLIER NOTE, recorded rather than quietly fixed: docs/IPE_MATHS_1A_SOURCE.md stated after Unit 1 that this book 'prints a per-step mark split on its LAQ and SAQ pages but NOT on its VSAQ pages'. That held for the Functions VSAQ pages (book pp.79-81) but is FALSE here — the Matrices VSAQ chapter prints [1 mark] tags on p.82. The doc has been corrected. The book's VSAQ chapter header carries ★★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because Matrices holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q3 and Q4 are the two Matrices slots. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find the adjoint and inverse of a two by two matrix.",
   "answer": {
@@ -45,16 +45,18 @@
         "label": "Find |A| and Adj A",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. For a 2×2 there is a shortcut worth learning: swap the two diagonal entries, and change the sign of the other two. No nine cofactors needed.",
-        "memory_tip": "The 2×2 shortcut: SWAP the diagonal entries and change the sign of the other two. No nine cofactors.",
+        "margin_note": "First mark. For a 2×2 there is a shortcut worth learning: swap the two diagonal entries, and change the sign of the other two. No need to work out the four cofactors separately.",
+        "memory_tip": "The 2×2 shortcut: SWAP the diagonal entries and change the sign of the other two. No need to work out the four cofactors separately.",
         "lines": [
           {
             "text": "Sol:",
             "style": "heading"
           },
+          "(|A| = ad − bc for rows (a, b) and (c, d))",
           "|A| = 2(6) − 4(−3) = 12 + 12 = 24 ≠ 0",
           "For a 2×2: swap the diagonal, flip the signs",
           "of the other two:",
+          "(2 and 6 change places; −3 and 4 change sign)",
           {
             "text": "\\text{Adj } A = \\begin{bmatrix} 6 & 3 \\\\ -4 & 2 \\end{bmatrix}",
             "render": "katex",
@@ -100,14 +102,26 @@
         "memory_tip": "Divide every entry by 24 and simplify each fraction separately.",
         "lines": [
           {
+            "text": "A⁻¹ = (Adj A) ÷ |A|:",
+            "added": true
+          },
+          {
             "text": "A^{-1} = \\frac{1}{24}\\begin{bmatrix} 6 & 3 \\\\ -4 & 2 \\end{bmatrix}",
             "render": "katex",
             "style": "eq"
           },
           {
+            "text": "(6/24 = 1/4, 3/24 = 1/8, −4/24 = −1/6, 2/24 = 1/12)",
+            "added": true
+          },
+          {
             "text": "= \\begin{bmatrix} 1/4 & 1/8 \\\\ -1/6 & 1/12 \\end{bmatrix}",
             "render": "katex",
             "style": "boxed"
+          },
+          {
+            "text": "Check: (2)(1/4) + (−3)(−1/6) = 1/2 + 1/2 = 1",
+            "added": true
           }
         ],
         "recall": {
@@ -136,6 +150,18 @@
         "common_mistakes": [
           "Leaving the fractions unsimplified.",
           "Dividing only one row by 24."
+        ],
+        "lines_compact": [
+          {
+            "text": "A^{-1} = \\frac{1}{24}\\begin{bmatrix} 6 & 3 \\\\ -4 & 2 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "= \\begin{bmatrix} 1/4 & 1/8 \\\\ -1/6 & 1/12 \\end{bmatrix}",
+            "render": "katex",
+            "style": "boxed"
+          }
         ]
       }
     ]

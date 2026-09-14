@@ -47,7 +47,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.54 — SAQ chapter 7 Matrices, answer 43.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 16,17 · TS 17. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer (the only SAQ in the chapter that carries them is answer 40 on book p.51, printed 1+1+1+1). The 2+1+1 above puts half the marks on A², which is the only real work in the question — nine row-by-column products — and one mark each on the two easy matrices and the final subtraction. The book's SAQ chapter header carries ★★★ and reads \"4 Marks\"; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q11 is the Matrices slot."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.54 — SAQ chapter 7 Matrices, answer 43.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 16,17 · TS 17. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer (the only SAQ in the chapter that carries them is answer 40 on book p.51, printed 1+1+1+1). The 2+1+1 above puts half the marks on A², which is the only real work in the question — nine row-by-column products — and one mark each on the two easy matrices and the final subtraction. The book's SAQ chapter header carries ★★★ and reads \"4 Marks\"; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q11 is the Matrices slot. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would show this — say what you have to work out first and what you do with it.",
   "answer": {
@@ -74,8 +74,42 @@
             "render": "katex",
             "style": "eq"
           },
+          "(entry (i, j) = row i times column j: multiply",
+          {
+            "text": "  in pairs and add)",
+            "style": "indent"
+          },
           "Row 1 × column 1:  1+4+4 = 9",
           "Row 1 × column 2:  2+2+4 = 8",
+          "The other seven entries:",
+          {
+            "text": "  (1,3): (1)(2) + (2)(2) + (2)(1) = 8",
+            "style": "indent"
+          },
+          {
+            "text": "  (2,1): (2)(1) + (1)(2) + (2)(2) = 8",
+            "style": "indent"
+          },
+          {
+            "text": "  (2,2): (2)(2) + (1)(1) + (2)(2) = 9",
+            "style": "indent"
+          },
+          {
+            "text": "  (2,3): (2)(2) + (1)(2) + (2)(1) = 8",
+            "style": "indent"
+          },
+          {
+            "text": "  (3,1): (2)(1) + (2)(2) + (1)(2) = 8",
+            "style": "indent"
+          },
+          {
+            "text": "  (3,2): (2)(2) + (2)(1) + (1)(2) = 8",
+            "style": "indent"
+          },
+          {
+            "text": "  (3,3): (2)(2) + (2)(2) + (1)(1) = 9",
+            "style": "indent"
+          },
           {
             "text": "A^2 = \\begin{bmatrix} 9 & 8 & 8 \\\\ 8 & 9 & 8 \\\\ 8 & 8 & 9 \\end{bmatrix}",
             "render": "katex",
@@ -125,6 +159,10 @@
             "text": "4A = \\begin{bmatrix} 4 & 8 & 8 \\\\ 8 & 4 & 8 \\\\ 8 & 8 & 4 \\end{bmatrix}, \\quad 5I = \\begin{bmatrix} 5 & 0 & 0 \\\\ 0 & 5 & 0 \\\\ 0 & 0 & 5 \\end{bmatrix}",
             "render": "katex",
             "style": "eq"
+          },
+          {
+            "text": "(4A: every entry × 4; 5I: 5 on the diagonal, 0 elsewhere)",
+            "added": true
           }
         ],
         "recall": {
@@ -155,6 +193,13 @@
           "Writing 5I as a matrix full of 5s.",
           "Multiplying only the diagonal of A by 4.",
           "Treating I as the matrix of all ones."
+        ],
+        "lines_compact": [
+          {
+            "text": "4A = \\begin{bmatrix} 4 & 8 & 8 \\\\ 8 & 4 & 8 \\\\ 8 & 8 & 4 \\end{bmatrix}, \\quad 5I = \\begin{bmatrix} 5 & 0 & 0 \\\\ 0 & 5 & 0 \\\\ 0 & 0 & 5 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -167,7 +212,15 @@
         "memory_tip": "The diagonal gives 9 − 4 − 5 = 0 and every other entry 8 − 8 − 0 = 0.",
         "lines": [
           "Subtracting entry by entry:",
+          {
+            "text": "(on the diagonal A² has 9, 4A has 4, 5I has 5)",
+            "added": true
+          },
           "Diagonal:  9 − 4 − 5 = 0",
+          {
+            "text": "(off the diagonal A² has 8, 4A has 8, 5I has 0)",
+            "added": true
+          },
           "Off-diagonal:  8 − 8 − 0 = 0",
           {
             "text": "A^2 - 4A - 5I = \\begin{bmatrix} 0 & 0 & 0 \\\\ 0 & 0 & 0 \\\\ 0 & 0 & 0 \\end{bmatrix} = O",
@@ -207,6 +260,20 @@
           "Writing \"= 0\" instead of \"= O\" — the answer is a matrix.",
           "Subtracting only the diagonal and assuming the rest.",
           "Dropping the 5I because its off-diagonal entries are zero."
+        ],
+        "lines_compact": [
+          "Subtracting entry by entry:",
+          "Diagonal:  9 − 4 − 5 = 0",
+          "Off-diagonal:  8 − 8 − 0 = 0",
+          {
+            "text": "A^2 - 4A - 5I = \\begin{bmatrix} 0 & 0 & 0 \\\\ 0 & 0 & 0 \\\\ 0 & 0 & 0 \\end{bmatrix} = O",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "∴ A² − 4A − 5I = O",
+            "style": "boxed"
+          }
         ]
       }
     ]

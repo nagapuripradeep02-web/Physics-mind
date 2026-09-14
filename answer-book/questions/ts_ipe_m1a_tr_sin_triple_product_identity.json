@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 39(i), book p.92. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The two marks sit on the difference-of-squares step and on recognising sin 3A; grouping the last two factors stays on the page as unmarked working. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, all compulsory, and Trigonometric Ratios and Transformations holds two of those ten slots. NUMERIC CHECK before authoring: both sides were evaluated at A = 0.3, 0.7, 1.1 and 37°; they agreed to 12 decimal places at every value. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 39(i), book p.92. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The two marks sit on the difference-of-squares step and on recognising sin 3A; grouping the last two factors stays on the page as unmarked working. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, all compulsory, and Trigonometric Ratios and Transformations holds two of those ten slots. NUMERIC CHECK before authoring: both sides were evaluated at A = 0.3, 0.7, 1.1 and 37°; they agreed to 12 decimal places at every value. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — name each move in order.",
   "answer": {
@@ -51,6 +51,7 @@
             "style": "heading"
           },
           "L.H.S = sin A · [sin(π/3 + A) sin(π/3 − A)]",
+          "The bracket has the form sin(X + Y) sin(X − Y):",
           "sin(X + Y) sin(X − Y) = sin²X − sin²Y"
         ],
         "recall": {
@@ -93,6 +94,14 @@
           "With X = π/3 and Y = A:",
           "sin(π/3 + A) sin(π/3 − A)",
           "  = sin²(π/3) − sin²A = 3/4 − sin²A",
+          {
+            "text": "(sin(π/3) = √3/2, so sin²(π/3) = 3/4)",
+            "added": true
+          },
+          {
+            "text": "Put this back beside sin A:",
+            "added": true
+          },
           "L.H.S = sin A (3/4 − sin²A)"
         ],
         "recall": {
@@ -123,7 +132,13 @@
           "Taking sin²(π/3) as √3/2 instead of 3/4.",
           "Writing the result as sin²A − 3/4, with the terms the wrong way round."
         ],
-        "memory_tip": "sin(π/3) = √3/2, and squaring it gives 3/4."
+        "memory_tip": "sin(π/3) = √3/2, and squaring it gives 3/4.",
+        "lines_compact": [
+          "With X = π/3 and Y = A:",
+          "sin(π/3 + A) sin(π/3 − A)",
+          "  = sin²(π/3) − sin²A = 3/4 − sin²A",
+          "L.H.S = sin A (3/4 − sin²A)"
+        ]
       },
       {
         "id": "s3_recognise_sin_three_a",
@@ -133,7 +148,20 @@
         "mark_note": "Result",
         "margin_note": "Last mark. Multiply sin A in, then take 1/4 out of both terms. What is left is the standard expansion of sin 3A.",
         "lines": [
+          {
+            "text": "Multiply out and put everything over 4:",
+            "added": true
+          },
+          {
+            "text": "  (3/4)sin A − sin³A = (3 sin A − 4 sin³A)/4",
+            "style": "indent",
+            "added": true
+          },
           "= (3 sin A − 4 sin³A)/4",
+          {
+            "text": "The top is the triple-angle formula:",
+            "added": true
+          },
           "sin 3A = 3 sin A − 4 sin³A",
           {
             "text": "∴ L.H.S = (1/4) sin 3A = R.H.S",
@@ -168,7 +196,15 @@
           "Taking 1/4 out of only the first term.",
           "Writing sin 3A as 4 sin³A − 3 sin A, which is the cosine pattern."
         ],
-        "memory_tip": "sin 3A = 3 sin A − 4 sin³A: sine starts with 3, cosine starts with 4."
+        "memory_tip": "sin 3A = 3 sin A − 4 sin³A: sine starts with 3, cosine starts with 4.",
+        "lines_compact": [
+          "= (3 sin A − 4 sin³A)/4",
+          "sin 3A = 3 sin A − 4 sin³A",
+          {
+            "text": "∴ L.H.S = (1/4) sin 3A = R.H.S",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   }

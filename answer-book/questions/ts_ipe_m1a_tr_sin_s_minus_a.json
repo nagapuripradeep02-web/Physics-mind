@@ -47,7 +47,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.42 — LAQ chapter 5 T-Ratios upto Transformations, answer 30.1. Printed appearances: TS 16. The S-family. The condition is A + B + C = 2S, so (A+B) + C = 2S and (S−A) + (S−B) = 2S − (A+B) = C — the substitution every step below turns on. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter (its pages are set two questions to a page in two columns, which takes the margin those tags would occupy). The 1+2+2+1+1 above follows the shape of the split the same book DOES print for LAQ answer 23 on book p.37, weighting the two substantial transformations against the set-up and the finish. The SAME split and the SAME step ids are used on all eight answers in this chapter, deliberately: they are ONE method over different identities — pair two terms, use the angle condition, factor, finish with a product formula. A student who learns that arc once can attempt any of them. The book's chapter header carries ★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Q23 is the Transformations slot and is ALWAYS a question of this kind. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Pair two terms with a sum-to-product formula."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.42 — LAQ chapter 5 T-Ratios upto Transformations, answer 30.1. Printed appearances: TS 16. The S-family. The condition is A + B + C = 2S, so (A+B) + C = 2S and (S−A) + (S−B) = 2S − (A+B) = C — the substitution every step below turns on. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter (its pages are set two questions to a page in two columns, which takes the margin those tags would occupy). The 1+2+2+1+1 above follows the shape of the split the same book DOES print for LAQ answer 23 on book p.37, weighting the two substantial transformations against the set-up and the finish. The SAME split and the SAME step ids are used on all eight answers in this chapter, deliberately: they are ONE method over different identities — pair two terms, use the angle condition, factor, finish with a product formula. A student who learns that arc once can attempt any of them. The book's chapter header carries ★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Q23 is the Transformations slot and is ALWAYS a question of this kind. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Pair two terms with a sum-to-product formula. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this identity — say the four moves in order, and where the angle condition gets used.",
   "answer": {
@@ -70,7 +70,8 @@
             "style": "heading"
           },
           "Given",
-          "A + B + C = 2S  ⇒  (S−A) + (S−B) = 2S − (A+B) = C"
+          "A + B + C = 2S  ⇒  (S−A) + (S−B) = 2S − (A+B) = C",
+          "(2S − (A+B) = (A+B+C) − (A+B) = C)"
         ],
         "recall": {
           "credit": "say_it",
@@ -109,8 +110,16 @@
         "memory_tip": "Pair the two S-terms together, not one of them with sin C. The half-difference is (B−A)/2.",
         "lines": [
           "L.H.S = sin(S−A) + sin(S−B) + sinC",
+          {
+            "text": "Pair the first two with p = S−A and q = S−B:",
+            "added": true
+          },
           "= 2 sin(((S−A)+(S−B))/2) cos(((S−A)−(S−B))/2) + sinC",
-          "  [∵ sinC + sinD formula]",
+          "  [∵ sin p + sin q = 2 sin((p+q)/2) cos((p−q)/2)]",
+          {
+            "text": "(p + q = 2S − A − B and p − q = B − A)",
+            "added": true
+          },
           "= 2 sin((2S−(A+B))/2) cos((B−A)/2) + sinC"
         ],
         "recall": {
@@ -138,7 +147,13 @@
         "why": "The two S-terms differ only in which of A and B is subtracted, so their sum and difference are both simple — which is exactly what the formula needs.",
         "common_mistakes": [
           "Pairing one S-term with sin C instead.",
-          "Getting the half-difference as (A−B)/2 and picking up a sign."
+          "Getting the half-difference as (A+B)/2 instead of (B−A)/2."
+        ],
+        "lines_compact": [
+          "L.H.S = sin(S−A) + sin(S−B) + sinC",
+          "= 2 sin(((S−A)+(S−B))/2) cos(((S−A)−(S−B))/2) + sinC",
+          "  [∵ sin p + sin q = 2 sin((p+q)/2) cos((p−q)/2)]",
+          "= 2 sin((2S−(A+B))/2) cos((B−A)/2) + sinC"
         ]
       },
       {
@@ -150,6 +165,24 @@
         "margin_note": "Two more marks. This is where the angle condition is used: it converts an expression in A and B into one in C, so that every term shares a factor.",
         "memory_tip": "Expand sin C too, and note 2S − (A+B) is exactly C.",
         "lines": [
+          {
+            "text": "Use the condition: 2S − (A+B) = C, so",
+            "added": true
+          },
+          {
+            "text": "  (2S−(A+B))/2 = C/2.",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "Write sinC with half-angles (θ = C/2):",
+            "added": true
+          },
+          {
+            "text": "  sinC = 2 sin(C/2) cos(C/2)",
+            "style": "indent",
+            "added": true
+          },
           "= 2 sin(C/2) cos((B−A)/2) + 2 sin(C/2) cos(C/2)",
           "  [∵ 2S − (A+B) = C, and sin2θ = 2 sinθ cosθ]"
         ],
@@ -179,6 +212,10 @@
         "common_mistakes": [
           "Leaving sin C unexpanded.",
           "Substituting 2S − (A+B) as something other than C."
+        ],
+        "lines_compact": [
+          "= 2 sin(C/2) cos((B−A)/2) + 2 sin(C/2) cos(C/2)",
+          "  [∵ 2S − (A+B) = C, and sin2θ = 2 sinθ cosθ]"
         ]
       },
       {
@@ -187,10 +224,23 @@
         "label": "Take the common factor out",
         "marks": 1,
         "mark_note": "Factorise",
-        "margin_note": "Seventh mark. The common factor comes out, and the condition is used a SECOND time inside the bracket so that both bracket terms are the same kind of function.",
+        "margin_note": "Seventh mark. The common factor comes out, and C = (S−A) + (S−B) is written inside the bracket, so the product comes out in (S−A)/2 and (S−B)/2.",
         "memory_tip": "The common factor comes out, and the condition is used again inside the bracket.",
         "lines": [
+          {
+            "text": "Both terms have 2 sin(C/2); take it out:",
+            "added": true
+          },
           "= 2 sin(C/2) [cos((B−A)/2) + cos(C/2)]",
+          {
+            "text": "Inside the bracket, write C through the",
+            "added": true
+          },
+          {
+            "text": "  condition: C = (S−A) + (S−B)",
+            "style": "indent",
+            "added": true
+          },
           "= 2 sin(C/2) [cos((B−A)/2) + cos(((S−A)+(S−B))/2)]",
           "  [∵ C = (S−A) + (S−B)]"
         ],
@@ -218,8 +268,13 @@
         },
         "why": "The condition is used a second time, in reverse — C back into (S−A) + (S−B) — because the answer is stated in those shifted angles, not in C.",
         "common_mistakes": [
-          "Leaving the bracket in terms of C and B − A, which cannot combine.",
+          "Combining the bracket in terms of C and never rewriting the angles as (S−A)/2 and (S−B)/2.",
           "Losing the factor of 2."
+        ],
+        "lines_compact": [
+          "= 2 sin(C/2) [cos((B−A)/2) + cos(C/2)]",
+          "= 2 sin(C/2) [cos((B−A)/2) + cos(((S−A)+(S−B))/2)]",
+          "  [∵ C = (S−A) + (S−B)]"
         ]
       },
       {
@@ -231,8 +286,29 @@
         "margin_note": "Last mark. One more sum-or-difference formula turns the bracket into a product, and the identity is complete. Write \"= R.H.S\" so the examiner can see the proof finished.",
         "memory_tip": "One more formula turns the bracket into a product, giving the 4 in the answer.",
         "lines": [
+          {
+            "text": "Use the sum formula on the bracket with",
+            "added": true
+          },
+          {
+            "text": "  p = ((S−A)+(S−B))/2 and q = (B−A)/2:",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "p + q = S − A, so (p+q)/2 = (S−A)/2",
+            "added": true
+          },
+          {
+            "text": "p − q = S − B, so (p−q)/2 = (S−B)/2",
+            "added": true
+          },
           "= 2 sin(C/2) (2 cos((S−A)/2) cos((S−B)/2))",
-          "  [∵ cosC + cosD = 2 cos((C+D)/2) cos((C−D)/2)]",
+          "  [∵ cos p + cos q = 2 cos((p+q)/2) cos((p−q)/2)]",
+          {
+            "text": "Multiply 2 × 2 = 4 and reorder:",
+            "added": true
+          },
           {
             "text": "= 4 cos((S−A)/2) cos((S−B)/2) sin(C/2) = R.H.S",
             "style": "boxed"
@@ -264,6 +340,14 @@
         "common_mistakes": [
           "Finishing with 2 instead of 4.",
           "Getting the arguments of the two cosines swapped."
+        ],
+        "lines_compact": [
+          "= 2 sin(C/2) (2 cos((S−A)/2) cos((S−B)/2))",
+          "  [∵ cos p + cos q = 2 cos((p+q)/2) cos((p−q)/2)]",
+          {
+            "text": "= 4 cos((S−A)/2) cos((S−B)/2) sin(C/2) = R.H.S",
+            "style": "boxed"
+          }
         ]
       }
     ]
