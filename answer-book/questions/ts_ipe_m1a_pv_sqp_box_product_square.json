@@ -118,7 +118,11 @@
           },
           "(c×a) × (a×b) = [(c×a)·b] a − [(c×a)·a] b",
           {
-            "text": "((c × a)·b = [c a b] and (c × a)·a = [c a a])",
+            "text": "((c × a)·b = b·(c × a) = [b c a] = [c a b] by a",
+            "added": true
+          },
+          {
+            "text": "  cyclic shift; in the same way (c × a)·a = [c a a])",
             "added": true
           },
           "= [c a b] a − [c a a] b"
@@ -233,7 +237,7 @@
           },
           "= [c a b] · [(b×c)·a]   [scalar comes out]",
           {
-            "text": "((b × c)·a = [b c a])",
+            "text": "((b × c)·a = a·(b × c) = [a b c] = [b c a])",
             "added": true
           },
           "= [c a b] [b c a]"
@@ -260,7 +264,7 @@
             "two box products"
           ]
         },
-        "why": "A scalar multiplying a vector inside a dot product can always be pulled outside. What is left, (b×c)·a, is a box product by the same definition used in step 1.",
+        "why": "A scalar multiplying a vector inside a dot product can always be pulled outside. What is left, (b×c)·a = a·(b×c), is the box product [a b c] by the definition in step 1, and [a b c] = [b c a] by a cyclic shift.",
         "common_mistakes": [
           "Leaving the scalar inside the dot.",
           "Writing (b×c)·a as [a b c] without noting the order."

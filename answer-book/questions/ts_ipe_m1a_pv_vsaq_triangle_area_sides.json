@@ -108,7 +108,7 @@
         "label": "Halve the magnitude",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Second mark. Triangle, so halve. |41k| is just 41 — a vector along one axis has magnitude equal to its coefficient.",
+        "margin_note": "Second mark. Triangle, so halve. |41k| is just 41 — a vector along one axis has magnitude equal to the modulus of its coefficient.",
         "memory_tip": "Triangle, so halve. |41k| is just 41 — a vector along one axis has that magnitude.",
         "lines": [
           {

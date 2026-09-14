@@ -102,7 +102,7 @@
         "label": "Expand |a + b|²",
         "marks": 1,
         "mark_note": "Expansion",
-        "margin_note": "Second mark. The minus sign disappears on squaring, because |−v|² = |v|². Substitute the three given lengths at once.",
+        "margin_note": "Second mark. Expand |a + b|² as (a + b)·(a + b); the cross terms give 2(a·b). Substitute the three given lengths at once.",
         "memory_tip": "|a + b|² = |a|² + |b|² + 2(a·b) — the same shape as (x + y)².",
         "lines": [
           {

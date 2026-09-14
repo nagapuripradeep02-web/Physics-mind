@@ -121,8 +121,8 @@
         "label": "Find a×(b×c)",
         "marks": 2,
         "mark_note": "The product",
-        "margin_note": "Half the marks. a on the first row, the bracket result on the second. The zero in the second row makes one product zero in the j term and one in the k term.",
-        "memory_tip": "a on the first row, the bracket result on the second. The zero makes one product zero in the j term and one in the k term.",
+        "margin_note": "Half the marks. i, j, k on top, a on the second row, the bracket result on the third. The zero in the third row makes one product zero in the j term and one in the k term.",
+        "memory_tip": "i, j, k on top, a on the second row, the bracket result on the third. The zero makes one product zero in the j term and one in the k term.",
         "lines": [
           {
             "text": "a \\times (b \\times c) = \\begin{vmatrix} i & j & k \\\\ 2 & 3 & 4 \\\\ 0 & -2 & -2 \\end{vmatrix}",
@@ -194,11 +194,11 @@
         "label": "Verify perpendicular",
         "marks": 1,
         "mark_note": "Verification",
-        "margin_note": "Last mark, and it needs real working. Two vectors are perpendicular exactly when their dot product is zero — so compute the dot product and show it vanishes.",
-        "memory_tip": "Perpendicular means the DOT product is zero, so compute it and show it vanishes.",
+        "margin_note": "Last mark, and it needs real working. Two non-zero vectors are perpendicular exactly when their dot product is zero — so compute the dot product and show it vanishes.",
+        "memory_tip": "For non-zero vectors, perpendicular means the DOT product is zero, so compute it and show it vanishes.",
         "lines": [
-          "Two vectors are perpendicular when their dot",
-          "product is zero.",
+          "Two non-zero vectors are perpendicular when their",
+          "dot product is zero.",
           "(a×(b×c))·a = (2i + 4j − 4k)·(2i + 3j + 4k)",
           "= 4 + 12 − 16 = 0",
           {

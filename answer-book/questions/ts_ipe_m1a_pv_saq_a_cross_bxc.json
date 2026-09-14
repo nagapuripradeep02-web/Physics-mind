@@ -114,8 +114,8 @@
         "label": "Cross a into the result",
         "marks": 2,
         "mark_note": "Answer",
-        "margin_note": "The other half. Put a on the first row and the bracket result on the second — the order in the question is a×(…), so a comes first.",
-        "memory_tip": "a on the first row and the bracket result on the second, matching the order in the question.",
+        "margin_note": "The other half. Put a on the second row, under i, j, k, and the bracket result on the third — the order in the question is a×(…), so a comes first.",
+        "memory_tip": "i, j, k on top, a on the second row and the bracket result on the third, matching the order in the question.",
         "lines": [
           {
             "text": "a \\times (b \\times c) = \\begin{vmatrix} i & j & k \\\\ 1 & -1 & -6 \\\\ 11 & 5 & 1 \\end{vmatrix}",
@@ -171,7 +171,7 @@
         },
         "why": "Cross multiplication is not commutative, so the row order matters: swapping the rows would give exactly the negative of this answer.",
         "common_mistakes": [
-          "Putting the bracket result on the first row, which negates everything.",
+          "Putting the bracket result above a, which negates everything.",
           "Dropping the minus that sits in front of the j term."
         ],
         "lines_compact": [

@@ -86,7 +86,7 @@
             "magnitude"
           ]
         },
-        "why": "The cross product measures the area of the parallelogram on the two vectors, and that area depends on the perpendicular height, which is the sine of the angle.",
+        "why": "The cross product measures the area of the parallelogram on the two vectors, and that area is base × perpendicular height, and the height is |q| sin θ.",
         "common_mistakes": [
           "Using cos θ, which belongs to the dot product.",
           "Writing p × q as a number when only its magnitude is a number."

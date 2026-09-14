@@ -84,10 +84,10 @@
             "edge vectors"
           ]
         },
-        "why": "A cross product needs vectors, and the question gives points. Both edges must start at the SAME point, or they will not span the plane.",
+        "why": "A cross product needs vectors, and the question gives points. Any two non-parallel vectors in the plane will do; PQ and PR, both from P, are the simplest pair.",
         "common_mistakes": [
           "Crossing the position vectors OP and OQ directly.",
-          "Building PQ from P and QR from Q, which do not share a starting point."
+          "Using two vectors along the same line, such as PQ and QP, whose cross product is 0."
         ]
       },
       {
@@ -214,9 +214,9 @@
             "divide"
           ]
         },
-        "why": "A plane has two sides, so there are two unit normals pointing opposite ways. Dropping the ± reports only one of two correct answers.",
+        "why": "A plane has two sides, so there are two unit normals pointing opposite ways. The question asks for a unit vector, so either sign is a full answer; writing ± gives both.",
         "common_mistakes": [
-          "Omitting the ±.",
+          "Leaving the common factor 4 uncancelled in the final answer.",
           "Dividing by |PQ| instead of |PQ × PR|."
         ],
         "lines_compact": [
@@ -231,5 +231,5 @@
       }
     ]
   },
-  "insider_note": "Both edge vectors must start at P. The cross product carries a common factor 4, which cancels against |PQ × PR| = 4√6 and leaves a clean answer."
+  "insider_note": "Taking both edge vectors from P is the simplest choice. The cross product carries a common factor 4, which cancels against |PQ × PR| = 4√6 and leaves a clean answer."
 }

@@ -147,7 +147,7 @@
         "label": "Find b × c",
         "marks": 2,
         "mark_note": "Normal",
-        "margin_note": "Two marks. b on the top row, c below. The j term is −(−5 − 12), so it comes out positive and large.",
+        "margin_note": "Two marks. i, j, k on top, then b on the second row and c on the third. The j term is −(−5 − 12), so it comes out positive and large.",
         "memory_tip": "The j bracket is −(−5 − 12) = +17, the largest number in the answer.",
         "lines": [
           {
@@ -202,7 +202,7 @@
         "why": "The j term carries two minus signs, one from the expansion and one from the arithmetic, so it turns positive. That is the single place this determinant goes wrong.",
         "common_mistakes": [
           "Writing the j term as −17 by keeping only one of the two minus signs.",
-          "Putting c on the top row, which reverses the whole normal."
+          "Putting c above b, which reverses the whole normal."
         ],
         "lines_compact": [
           {

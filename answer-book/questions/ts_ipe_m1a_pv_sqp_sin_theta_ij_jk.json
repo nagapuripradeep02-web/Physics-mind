@@ -150,7 +150,7 @@
             "divide"
           ]
         },
-        "why": "sin θ = √3/2 corresponds to θ = 60°, the angle between two face diagonals of a cube that share an edge.",
+        "why": "sin θ = √3/2 allows 60° or 120°. Since a·b = 1 > 0, θ is acute, so θ = 60°. It is the angle between two face diagonals of a cube that start at the same corner.",
         "common_mistakes": [
           "Using the dot product and reporting cos θ.",
           "Writing √2·√2 as 2√2."

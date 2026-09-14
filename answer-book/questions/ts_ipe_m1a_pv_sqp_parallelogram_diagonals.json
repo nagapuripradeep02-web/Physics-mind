@@ -127,7 +127,7 @@
         "why": "The two vectors given are SIDES, and the answer is about diagonals. The picture is what turns the lettering into the two additions that follow — AC runs A to C across the figure, BD runs B to D the other way — so the signs in AC = AB + AD and BD = AD − AB are read, not guessed.",
         "common_mistakes": [
           "Taking the angle between the given sides AB and AD instead of between the diagonals.",
-          "Writing BD as AB − AD, which reverses the diagonal and flips the sign of the cosine."
+          "Writing BD as AB − AD, which is DB, the reverse of BD; it flips the sign of the cosine."
         ],
         "figure": {
           "id": "parallelogram_abcd_diagonals",
@@ -281,8 +281,8 @@
         "label": "Apply the cos formula",
         "marks": 2,
         "mark_note": "Angle",
-        "margin_note": "Half the marks. cos θ = (AC·BD)/(|AC||BD|). The dot product is negative, so the answer is an obtuse angle — that is correct, not a slip.",
-        "memory_tip": "The dot product is negative, so the angle is obtuse — that is correct, not a slip.",
+        "margin_note": "Half the marks. cos θ = (AC·BD)/(|AC||BD|). The dot product is negative, so the angle between AC and BD is obtuse. The other angle where the diagonals cross is its supplement, Cos⁻¹(√3/√10).",
+        "memory_tip": "The dot product is negative, so this angle is obtuse. The diagonals also meet at the acute angle Cos⁻¹(√3/√10), and both are correct.",
         "lines": [
           "AC·BD = 4(−2) + (−2)(2) + 0(−4) = −8 − 4 = −12",
           "|AC| = √(16 + 4) = √20 = 2√5",
@@ -327,7 +327,7 @@
         },
         "why": "A negative cosine means the angle between the two diagonals as written is obtuse. The acute angle between the same two lines is its supplement.",
         "common_mistakes": [
-          "Dropping the minus sign to make the answer look tidier.",
+          "Dropping the minus sign but still calling the result the angle between AC and BD.",
           "Forgetting the zero k component of AC in the dot product."
         ],
         "lines_compact": [
@@ -344,5 +344,5 @@
       }
     ]
   },
-  "insider_note": "Build the diagonals from the sides first: AC = AB + AD and BD = AD − AB. The dot product is negative, so the angle is obtuse, and that minus sign belongs in the answer."
+  "insider_note": "Build the diagonals from the sides first: AC = AB + AD and BD = AD − AB. The dot product is negative, so the angle between AC and BD is obtuse. Its supplement, the acute angle between the diagonals, is also a correct answer."
 }

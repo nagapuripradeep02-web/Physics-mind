@@ -154,7 +154,7 @@
         "label": "Cross them",
         "marks": 2,
         "mark_note": "Normal",
-        "margin_note": "Two marks. The cross product of two vectors that lie in the plane is at right angles to the whole plane. AB goes on the top row, AC below.",
+        "margin_note": "Two marks. The cross product of two vectors that lie in the plane is at right angles to the whole plane. i, j, k on top, AB on the second row, AC on the third.",
         "memory_tip": "The cross of two vectors IN the plane is at right angles to the plane.",
         "lines": [
           {
@@ -324,7 +324,7 @@
         "marks": 2,
         "mark_note": "Cartesian equation",
         "margin_note": "The last two marks. Substitute r = xi + yj + zk, then move the −25 across. Checking all three points costs three short lines and catches any earlier slip.",
-        "memory_tip": "Check all three points, not just one. A wrong normal can still fit a single point.",
+        "memory_tip": "Check B and C too. A was used to find the constant, so it fits even a wrong normal.",
         "lines": [
           "Put r = xi + yj + zk :",
           {
@@ -362,7 +362,7 @@
             "check"
           ]
         },
-        "why": "One point will fit almost any wrong normal, but all three fitting at once is a real check. It is the cheapest verification available in this question.",
+        "why": "A was used to find the constant, so A fits even a wrong normal; B and C also fitting is the real check. It is the cheapest verification available in this question.",
         "common_mistakes": [
           "Checking only the point already used to find the constant.",
           "Moving the −25 across without changing its sign."

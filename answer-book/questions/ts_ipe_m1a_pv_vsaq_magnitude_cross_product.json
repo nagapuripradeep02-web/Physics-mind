@@ -95,7 +95,7 @@
             "determinant"
           ]
         },
-        "why": "The magnitude cannot be found without the vector first — there is no shortcut from the components of a and b directly.",
+        "why": "The usual route is to find a × b first. Another is |a × b|² = |a|²|b|² − (a·b)² = 6 × 35 − 0 = 210.",
         "common_mistakes": [
           "Sign slip on a product of two negatives.",
           "Forgetting the minus in front of the j term."
@@ -159,5 +159,5 @@
       }
     ]
   },
-  "insider_note": "Only the magnitude is asked for, but the full cross product has to be computed first. Watch the middle term: the j entry carries a minus sign built into the expansion."
+  "insider_note": "Only the magnitude is asked for; the usual route still finds the full cross product first. Watch the middle term: the j entry carries a minus sign built into the expansion."
 }

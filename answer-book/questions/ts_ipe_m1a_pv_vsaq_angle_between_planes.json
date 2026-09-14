@@ -115,8 +115,8 @@
         "label": "Apply the formula",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Second mark. The dot product is 6 − 6 + 2 = 2 — the first two terms cancel, which is easy to miss. Neither magnitude is a whole number, so the answer stays as an inverse cosine.",
-        "memory_tip": "The dot is 6 − 6 + 2 = 2 — the first two cancel. Neither magnitude is whole, so leave an inverse cosine.",
+        "margin_note": "Second mark. The dot product is 6 − 6 + 2 = 2 — the first two terms cancel, which is easy to miss. |n₂| = √46 is not a whole number and 2/(3√46) is not a standard cosine, so the answer stays as an inverse cosine.",
+        "memory_tip": "The dot is 6 − 6 + 2 = 2 — the first two cancel. |n₂| = √46 is not whole and 2/(3√46) is not a standard cosine, so leave an inverse cosine.",
         "lines": [
           {
             "text": "(multiply matching components and add)",

@@ -335,12 +335,15 @@
         "lines": [
           "Now a − b = BA, so c·BA = 0, that is",
           {
-            "text": "(a dot product of 0 between non-zero vectors means",
+            "text": "(if c = 0 then O = C, which is already on the",
             "added": true
           },
           {
-            "text": "  they are perpendicular)",
-            "style": "indent",
+            "text": "  altitude through C; otherwise c ≠ 0 and BA ≠ 0,",
+            "added": true
+          },
+          {
+            "text": "  and a dot product of 0 means they are perpendicular)",
             "added": true
           },
           "OC ⊥ AB.",

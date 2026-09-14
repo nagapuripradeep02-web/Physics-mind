@@ -155,7 +155,7 @@
         "label": "Write the three cosines",
         "marks": 1,
         "mark_note": "The values",
-        "margin_note": "Third mark. Divide each component by 7, keeping its sign. cos β is negative, which is correct: the vector points along the negative y direction.",
+        "margin_note": "Third mark. Divide each component by 7, keeping its sign. cos β is negative, which is correct: the y component of the vector is negative, so it makes an obtuse angle with the positive y axis.",
         "memory_tip": "Divide each component by 7 and KEEP its sign.",
         "lines": [
           "Unit vector along v = v/|v|",

@@ -246,8 +246,8 @@
         "label": "Cross the two results",
         "marks": 3,
         "mark_note": "Combine",
-        "margin_note": "Three marks. Now cross the two results — a third determinant, with (1) on the first row and (2) on the second. Taking 5 out at the end makes the magnitude easy.",
-        "memory_tip": "A third determinant, with (1) on the first row and (2) on the second. Take the 5 out at the end.",
+        "margin_note": "Three marks. Now cross the two results — a third determinant, with i, j, k on top, (1) on the second row and (2) on the third. Taking 5 out at the end makes the magnitude easy.",
+        "memory_tip": "A third determinant, with i, j, k on top, (1) on the second row and (2) on the third. Take the 5 out at the end.",
         "lines": [
           "From (1) and (2),",
           {

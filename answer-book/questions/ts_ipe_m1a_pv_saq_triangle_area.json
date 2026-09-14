@@ -53,8 +53,8 @@
         "label": "Find AB and AC",
         "marks": 1,
         "mark_note": "Side vectors",
-        "margin_note": "First mark. Both vectors must start at the SAME vertex — A here. Two sides from one corner is what spans the triangle.",
-        "memory_tip": "Both vectors must start at the SAME vertex — two sides from one corner span the triangle.",
+        "margin_note": "First mark. Take two sides from one vertex — A here. Any two sides give the same area, but one corner keeps the working tidy.",
+        "memory_tip": "Take two sides from one vertex — the tidiest choice. AB × BC gives the same vector as AB × AC.",
         "lines": [
           {
             "text": "Sol:",
@@ -88,9 +88,9 @@
             "OA"
           ]
         },
-        "why": "The cross product of two vectors gives the area of the PARALLELOGRAM they span. Both must start at one point for that parallelogram to sit on the triangle.",
+        "why": "The cross product of two vectors gives the area of the PARALLELOGRAM they span, and the triangle is half of it. Two sides from one corner are the tidiest choice; AB × BC gives the same vector as AB × AC.",
         "common_mistakes": [
-          "Using AB and BC, which do not share a start point.",
+          "Crossing the position vectors OA and OB instead of two sides.",
           "Subtracting the wrong way round."
         ]
       },

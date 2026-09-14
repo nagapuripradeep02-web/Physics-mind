@@ -103,7 +103,7 @@
         "marks": 1,
         "mark_note": "b × c",
         "margin_note": "Second mark. The bracket is worked first, so b × c comes before a is used at all. Write the j term with its sign already absorbed.",
-        "memory_tip": "The bracket first: b × c, with b on the top row. Absorb the j sign now.",
+        "memory_tip": "The bracket first: b × c, with b on the second row under i, j, k. Absorb the j sign now.",
         "lines": [
           {
             "text": "b \\times c = \\begin{vmatrix} i & j & k \\\\ b_1 & b_2 & b_3 \\\\ c_1 & c_2 & c_3 \\end{vmatrix}",
@@ -144,7 +144,7 @@
             "components"
           ]
         },
-        "why": "This vector goes into the SECOND row of the next determinant, with a in the first. Getting that order right is the difference between this identity and the other grouping.",
+        "why": "This vector is the right factor of a × (b × c), so it plays the part of v in a × v in the next step. Getting that order right is the difference between this identity and the other grouping.",
         "common_mistakes": [
           "Losing the minus on the j term rather than absorbing it into the bracket.",
           "Crossing a with b first, which is a different identity."

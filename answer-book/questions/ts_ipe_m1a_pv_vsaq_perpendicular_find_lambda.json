@@ -143,7 +143,7 @@
             "two lambda"
           ]
         },
-        "why": "The dot product is linear in λ here, so there is exactly one answer. When λ sits in both vectors the equation becomes quadratic and there are two.",
+        "why": "The dot product is linear in λ here, so there is exactly one answer. If λ multiplies λ in the same component, the equation becomes quadratic and can have two roots.",
         "common_mistakes": [
           "Sign slip on the k term: (−1)(2) = −2.",
           "Getting λ = −3."

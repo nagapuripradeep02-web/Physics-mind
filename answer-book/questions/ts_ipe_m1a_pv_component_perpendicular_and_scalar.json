@@ -99,12 +99,13 @@
         "label": "Component of b on a",
         "marks": 1,
         "mark_note": "Scalar component",
-        "margin_note": "Second mark. The COMPONENT of b on a is a number, not a vector: it is the length of b's shadow on a. Its formula divides by |a|, one power only.",
+        "margin_note": "Second mark. The COMPONENT of b on a is a number, not a vector: it is the signed length of b's shadow on a. Its formula divides by |a|, one power only.",
         "memory_tip": "Component means a NUMBER: divide by |a|, one power only.",
         "lines": [
           "The component of b on a is a number:",
-          "it is the length of the shadow of b",
-          "on the direction of a.",
+          "it is the signed length of the shadow of b",
+          "on the direction of a (negative when the",
+          "angle between them is obtuse).",
           "Component of b on a = (a·b)/|a|",
           {
             "text": "(multiply top and bottom by √3)",
@@ -139,15 +140,16 @@
             "scalar"
           ]
         },
-        "why": "Dividing by |a| once turns a into a unit vector, and a dot product with a unit vector is exactly the length of the shadow. A second division would shrink it wrongly.",
+        "why": "Dividing by |a| once turns a into a unit vector, and a dot product with a unit vector is exactly the signed length of the shadow. A second division would shrink it wrongly.",
         "common_mistakes": [
           "Dividing by |a|² and getting 2, which is the scale factor, not the component.",
           "Giving a vector when a number was asked for."
         ],
         "lines_compact": [
           "The component of b on a is a number:",
-          "it is the length of the shadow of b",
-          "on the direction of a.",
+          "it is the signed length of the shadow of b",
+          "on the direction of a (negative when the",
+          "angle between them is obtuse).",
           "Component of b on a = (a·b)/|a|",
           "  = 6/√3 = 6√3/3",
           "  = 2√3"

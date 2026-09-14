@@ -163,7 +163,7 @@
         },
         "why": "The middle term carries a minus sign in front — that is part of the expansion, not part of the numbers, and it is where most sign errors enter.",
         "common_mistakes": [
-          "Writing b on the first row and a on the second, which reverses the answer.",
+          "Writing b on the second row and a on the third, which reverses the answer.",
           "Forgetting the minus in front of the j term."
         ],
         "lines_compact": [
@@ -340,7 +340,7 @@
             "negative"
           ]
         },
-        "why": "A scalar triple-style product like this is just a number, and the sign of that number carries meaning — so it must be reported, not dropped.",
+        "why": "A dot product of two cross products is a single number, and its sign carries meaning — so it must be reported, not dropped.",
         "common_mistakes": [
           "Reporting 54 without the sign.",
           "Leaving the answer as three unadded terms."

@@ -154,9 +154,9 @@
             "two normals"
           ]
         },
-        "why": "Reversing a perpendicular leaves it perpendicular, so both signs are correct answers. Dropping the ± reports only one of them.",
+        "why": "Reversing a perpendicular leaves it perpendicular, so both signs are correct answers. The question asks for a unit vector, so either sign alone is a full answer; writing ± gives both.",
         "common_mistakes": [
-          "Omitting the ± sign.",
+          "Dividing by |a||b| instead of |a × b|.",
           "Failing to cancel the 5 into the 35."
         ],
         "lines_compact": [

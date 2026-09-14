@@ -167,7 +167,7 @@
             "minus i"
           ]
         },
-        "why": "Reversing a cross product reverses its sign, so a must stay on the upper row. The result is perpendicular to a, and dotting it with a to get 0 catches a sign error in two lines.",
+        "why": "Reversing a cross product reverses its sign, so a must stay above the bracket result. Dotting the result with a to get 0 catches a slip in one component, but not a change of every sign, such as swapped rows.",
         "common_mistakes": [
           "Putting the bracket result above a, which negates the answer.",
           "Sign slip in the j term of the second determinant."

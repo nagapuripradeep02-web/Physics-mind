@@ -58,8 +58,8 @@
         "label": "Find the three edges",
         "marks": 1,
         "mark_note": "Edge vectors",
-        "margin_note": "First mark. Four vertices, but only THREE edges are needed — all from the same corner A. That is what turns vertices into the form the formula wants.",
-        "memory_tip": "Four vertices but only THREE edges are needed, all from the same corner A.",
+        "margin_note": "First mark. Four vertices, but only THREE edges are needed — the simplest choice is all three from corner A. That is what turns vertices into the form the formula wants.",
+        "memory_tip": "Four vertices but only THREE edges are needed. Take all three from corner A.",
         "lines": [
           {
             "text": "Sol:",
@@ -95,9 +95,9 @@
             "subtract OA"
           ]
         },
-        "why": "A tetrahedron has six edges, but three from one corner already determine it. Any other three would not span the solid.",
+        "why": "Three edges from one corner are the simplest choice. Three edges that lie in one face, such as AB, BC and CA, would give a flat box with no volume.",
         "common_mistakes": [
-          "Building edges from different corners.",
+          "Using three edges that lie in one face, such as AB, BC and CA, which gives 0.",
           "Missing a zero component — AB has no j term and AD has no k term."
         ]
       },
@@ -175,7 +175,7 @@
         "why": "A negative triple product just means the three edges are ordered the other way round. The modulus in the formula removes that, which is why a volume is still positive.",
         "common_mistakes": [
           "Assuming the negative determinant is a mistake and re-doing correct arithmetic.",
-          "Forgetting the middle term is multiplied by 0 and still writing it out."
+          "Forgetting the minus sign in front of the middle term of the expansion."
         ],
         "lines_compact": [
           {

@@ -153,7 +153,7 @@
             "components"
           ]
         },
-        "why": "This vector is the left-hand side of the outer cross product, so its components become the first row of the next determinant.",
+        "why": "This vector is the left factor of the outer cross product, so it plays the part of u in u × c in the next step.",
         "common_mistakes": [
           "Losing the minus on the j term rather than absorbing it into the bracket.",
           "Swapping the order of the subscripts inside a bracket."

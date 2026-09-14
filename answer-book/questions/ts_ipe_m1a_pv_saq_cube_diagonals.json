@@ -301,7 +301,7 @@
             "diagonal"
           ]
         },
-        "why": "Every space diagonal of a unit cube has components ±1, ±1, ±1. Two different diagonals differ in exactly one sign, and that single sign is what produces the 1/3.",
+        "why": "Every space diagonal of a unit cube is ±(±i ± j ± k). Reversing one diagonal if needed, any two different diagonals differ in exactly one sign, so their dot product is ±1 and the smaller angle has cos θ = 1/3.",
         "common_mistakes": [
           "Giving both diagonals as i + j + k, which are the same line.",
           "Losing the minus on the k component."

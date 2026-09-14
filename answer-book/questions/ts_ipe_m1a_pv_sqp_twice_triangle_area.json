@@ -83,7 +83,7 @@
             "sides"
           ]
         },
-        "why": "Both sides must start at the SAME vertex for the cross product to give that triangle's area. Starting one at A and one at B would give a different figure.",
+        "why": "Taking both sides from A is the neatest choice. AB × BC gives the same vector, because AB × AB = 0.",
         "common_mistakes": [
           "Using a and b directly as the sides.",
           "Writing AB as a − b."

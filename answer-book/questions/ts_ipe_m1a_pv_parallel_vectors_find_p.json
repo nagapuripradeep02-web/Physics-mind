@@ -99,7 +99,7 @@
         "label": "Equate the ratios of like components",
         "marks": 1,
         "mark_note": "Ratios",
-        "margin_note": "Second mark. Write all three ratios before solving. The middle one simplifies to p/3, the same as the third, so it decides nothing on its own.",
+        "margin_note": "Second mark. Write all three ratios before solving. The middle one simplifies to p/3, the same as the third, so it gives the same equation and adds nothing new.",
         "memory_tip": "Write all three ratios first — here the middle one repeats the third, so it adds no new equation.",
         "lines": [
           "4/1 = (2p/3)/2 = p/3",
@@ -175,7 +175,7 @@
             "p equals twelve"
           ]
         },
-        "why": "The first and third ratios contain only numbers and p, so they give the value directly. The middle ratio is then used as a check, not as a second equation.",
+        "why": "The first and third ratios give the value most simply. The middle ratio reduces to the same p/3, so it holds automatically, and substituting p = 12 into it only checks the arithmetic.",
         "common_mistakes": [
           "Solving 4/1 = 2p/3 and getting p = 6.",
           "Dividing instead of cross multiplying, giving p = 4/3."
@@ -227,7 +227,7 @@
             "substitute back"
           ]
         },
-        "why": "Substituting the value back shows the first vector is exactly 4 times the second, so they really are parallel. A cross product of the zero vector is the same statement in another form, and it also checks the middle component.",
+        "why": "Substituting the value back shows the first vector is exactly 4 times the second, so they really are parallel. A cross product of the zero vector is the same statement in another form.",
         "common_mistakes": [
           "Stopping at p = 12 without testing the middle component.",
           "Saying the two vectors are equal rather than parallel."

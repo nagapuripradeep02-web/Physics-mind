@@ -94,9 +94,9 @@
             "render": "katex",
             "style": "eq"
           },
-          "(the top is the projection of a − c on the common",
+          "(the whole fraction is the length of the projection",
           {
-            "text": "  normal b × d)",
+            "text": "  of a − c on the common normal b × d)",
             "style": "indent"
           }
         ],

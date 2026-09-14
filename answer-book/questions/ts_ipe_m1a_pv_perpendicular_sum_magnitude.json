@@ -146,7 +146,7 @@
         },
         "why": "The expansion of |a + b + c|² needs exactly the quantity a·b + b·c + c·a, and adding the three given conditions is the shortest way to show that quantity is zero.",
         "common_mistakes": [
-          "Jumping from the sum of the three pairwise dot products being zero to each one separately being zero — the addition alone does not give that.",
+          "Adding only two of the three conditions, which leaves a product behind.",
           "Forgetting the factor 2 when collecting the pairs."
         ],
         "lines_compact": [
