@@ -53,7 +53,12 @@
         "margin_note": "One of the two marks is for the condition alone. Write it before any factorising.",
         "memory_tip": "Root under a denominator, so strictly > 0: (x − a)(x + a) > 0.",
         "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
           "f(x) is defined when x² − a² > 0",
+          "(take a > 0)",
           "⇒ (x − a)(x + a) > 0"
         ],
         "recall": {
@@ -95,7 +100,10 @@
         "memory_tip": "A product > 0 is OUTSIDE the roots, with round brackets: (−∞, −a) ∪ (a, ∞).",
         "lines": [
           "⇒ x ∈ (−∞, −a) ∪ (a, ∞)",
-          "∴ Domain = (−∞, −a) ∪ (a, ∞)"
+          {
+            "text": "∴ Domain = (−∞, −a) ∪ (a, ∞)",
+            "style": "boxed"
+          }
         ],
         "recall": {
           "credit": "say_it",

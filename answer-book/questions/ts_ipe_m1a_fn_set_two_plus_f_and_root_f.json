@@ -48,6 +48,10 @@
         "margin_note": "One mark. These operations act on the SECOND coordinate only — the inputs never change.",
         "memory_tip": "These operations act on the SECOND coordinate only — the inputs never change.",
         "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
           "f = {(1,2), (2,−3), (3,−1)}",
           "(i) 2 + f = {(1, 2+2), (2, 2−3), (3, 2−1)}",
           "= {(1,4), (2,−1), (3,1)}"
@@ -92,7 +96,10 @@
         "lines": [
           "(ii) Roots of the images: √2 at 1, √−3 at 2, √−1 at 3",
           "√−3 and √−1 are not real",
-          "∴ √f = {(1, √2)}"
+          {
+            "text": "∴ √f = {(1, √2)}",
+            "style": "boxed"
+          }
         ],
         "recall": {
           "credit": "say_it",

@@ -57,6 +57,10 @@
         "margin_note": "One of the two marks is for the condition alone. Write it before any factorising.",
         "memory_tip": "≥ 0 for a plain root. Rearrange to x² − 4x ≤ 0 and take x common: x(x − 4) ≤ 0.",
         "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
           "f(x) is defined when 4x − x² ≥ 0",
           "⇒ x² − 4x ≤ 0",
           "⇒ x(x − 4) ≤ 0"
@@ -100,7 +104,10 @@
         "memory_tip": "Between the roots 0 and 4, ends included: [0, 4].",
         "lines": [
           "⇒ x ∈ [0, 4]",
-          "∴ Domain = [0, 4]"
+          {
+            "text": "∴ Domain = [0, 4]",
+            "style": "boxed"
+          }
         ],
         "recall": {
           "credit": "say_it",

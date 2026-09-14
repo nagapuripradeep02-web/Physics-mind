@@ -75,7 +75,7 @@
           },
           "Domain of f = {4, 5, 6},  Domain of g = {4, 6, 8}",
           "For f ± g and fg, the domain is",
-          "A ∩ B = {4, 6}",
+          "{4, 5, 6} ∩ {4, 6, 8} = {4, 6}",
           "So only the two preimages 4 and 6 are used",
           "for parts (i) to (iv)."
         ],
@@ -197,9 +197,10 @@
         "margin_note": "The last three marks. These involve f ALONE, so the domain is f's own {4,5,6} — not the intersection. And √f drops 6, because √(−4) is not a real number.",
         "memory_tip": "These use f ALONE, so the domain is f's own {4, 5, 6}. And √f drops 6, since √(−4) is not real.",
         "lines": [
-          "These use f alone, so the domain is {4, 5, 6}.",
-          "(v) √f = {(4,√5), (5,√6), (6,√(−4))}",
-          "  = {(4,√5), (5,√6)}   [√(−4) is not defined]",
+          "These use f alone. f² and |f| have domain {4, 5, 6};",
+          "√f needs f(x) ≥ 0, so it leaves out 6.",
+          "(v) f(6) = −4 < 0, so √f(6) is not defined:",
+          "  √f = {(4,√5), (5,√6)}",
           "(vi) f² = {(4,25), (5,36), (6,16)}",
           "(vii) |f| = {(4,5), (5,6), (6,4)}",
           {

@@ -53,6 +53,10 @@
         "margin_note": "One mark. The unknown is in the exponent, so a logarithm is the only way to bring it down.",
         "memory_tip": "The unknown sits in the EXPONENT, so take logarithms to bring it down.",
         "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
           "Take f(x) = y ⇒ x = f⁻¹(y)",
           "5ˣ = y ⇒ log 5ˣ = log y",
           "⇒ x log 5 = log y",
@@ -97,7 +101,10 @@
         "memory_tip": "Rename the variable back to x: f⁻¹(x) = log₅x.",
         "lines": [
           "⇒ f⁻¹(y) = log₅ y",
-          "∴ f⁻¹(x) = log₅ x"
+          {
+            "text": "∴ f⁻¹(x) = log₅ x",
+            "style": "boxed"
+          }
         ],
         "recall": {
           "credit": "say_it",

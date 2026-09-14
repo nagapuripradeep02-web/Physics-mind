@@ -228,7 +228,10 @@
         "memory_tip": "The question asked for bijective, so the last line must say bijective, naming both halves.",
         "lines": [
           "gof: A→C is one one and onto.",
-          "∴ gof: A→C is a bijective function."
+          {
+            "text": "∴ gof: A→C is a bijective function.",
+            "style": "boxed"
+          }
         ],
         "recall": {
           "credit": "say_it",

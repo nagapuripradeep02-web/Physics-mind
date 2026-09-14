@@ -218,7 +218,10 @@
         "memory_tip": "The last line must be the equality the question asked for.",
         "lines": [
           "Same domain and same value everywhere.",
-          "∴ (gof)⁻¹ = f⁻¹og⁻¹"
+          {
+            "text": "∴ (gof)⁻¹ = f⁻¹og⁻¹",
+            "style": "boxed"
+          }
         ],
         "recall": {
           "credit": "say_it",

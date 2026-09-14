@@ -57,6 +57,10 @@
         "margin_note": "One of the two marks is for the condition alone. Write it before any factorising.",
         "memory_tip": "Already the right way round: x² − 25 ≥ 0, so (x − 5)(x + 5) ≥ 0.",
         "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
           "f(x) is defined when x² − 25 ≥ 0",
           "⇒ (x − 5)(x + 5) ≥ 0"
         ],
@@ -99,7 +103,10 @@
         "memory_tip": "A product ≥ 0 is OUTSIDE the roots, ends included: (−∞, −5] ∪ [5, ∞).",
         "lines": [
           "⇒ x ∈ (−∞, −5] ∪ [5, ∞)",
-          "∴ Domain = (−∞, −5] ∪ [5, ∞)"
+          {
+            "text": "∴ Domain = (−∞, −5] ∪ [5, ∞)",
+            "style": "boxed"
+          }
         ],
         "recall": {
           "credit": "say_it",

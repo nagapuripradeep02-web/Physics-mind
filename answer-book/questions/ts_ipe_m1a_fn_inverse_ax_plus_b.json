@@ -53,6 +53,10 @@
         "margin_note": "One mark. Identical method to the numeric case, with letters. The condition a ≠ 0 is what lets you divide.",
         "memory_tip": "Same method as the numeric case, with letters. The condition a ≠ 0 is what lets you divide.",
         "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
           "Take f(x) = y ⇒ x = f⁻¹(y)",
           "ax + b = y ⇒ ax = y − b",
           "⇒ x = (y − b)/a   (a ≠ 0)"
@@ -95,7 +99,10 @@
         "memory_tip": "Rename the variable back to x: f⁻¹(x) = (x − b)/a.",
         "lines": [
           "⇒ f⁻¹(y) = (y − b)/a",
-          "∴ f⁻¹(x) = (x − b)/a"
+          {
+            "text": "∴ f⁻¹(x) = (x − b)/a",
+            "style": "boxed"
+          }
         ],
         "recall": {
           "credit": "say_it",

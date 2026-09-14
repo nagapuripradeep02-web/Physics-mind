@@ -48,9 +48,13 @@
         "margin_note": "One mark. Undo a logarithm by writing it in exponent form — the definition of a log is all you need.",
         "memory_tip": "Undo a logarithm by writing it in EXPONENT form — the definition of a log is all that is needed.",
         "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
           "Take f(x) = y ⇒ x = f⁻¹(y)",
           "log₂x = y ⇒ x = 2ʸ",
-          "[∵ log_b a = c ⇒ a = b^c]"
+          "[∵ log₂ x = y means x = 2ʸ]"
         ],
         "recall": {
           "credit": "say_it",
@@ -90,7 +94,10 @@
         "memory_tip": "Rename back to x: f⁻¹(x) = 2ˣ. A log and a power are each other's inverse.",
         "lines": [
           "⇒ f⁻¹(y) = 2ʸ",
-          "∴ f⁻¹(x) = 2ˣ"
+          {
+            "text": "∴ f⁻¹(x) = 2ˣ",
+            "style": "boxed"
+          }
         ],
         "recall": {
           "credit": "say_it",
