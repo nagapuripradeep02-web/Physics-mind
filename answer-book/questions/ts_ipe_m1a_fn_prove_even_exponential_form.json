@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.15, chapter 2 FUNCTIONS, Very Short Answer question 25. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape gives one mark to replacing x by −x and clearing e⁻ˣ, and one to the algebra that turns the result back into f(x), because those are two separate pieces of work and a student who stops after the first has done half. The domain condition x ≠ 0, and the fact that R − {0} contains −x whenever it contains x, are carried in the written lines where the student reads them, not only in this note. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.15, chapter 2 FUNCTIONS, Very Short Answer question 25. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape gives one mark to replacing x by −x and clearing e⁻ˣ, and one to the algebra that turns the result back into f(x), because those are two separate pieces of work and a student who stops after the first has done half. The domain condition x ≠ 0, and the fact that R − {0} contains −x whenever it contains x, are carried in the written lines where the student reads them, not only in this note. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — what you write first, how you clear e to the minus x, and what you compare at the end.",
   "answer": {
@@ -55,9 +55,12 @@
           "f(x) = x/(eˣ − 1) + x/2 + 1, x ≠ 0",
           "x ∈ R − {0} ⇒ −x ∈ R − {0},",
           "so f(−x) is defined for every such x.",
+          "(put −x in place of every x)",
           "f(−x) = −x/(e⁻ˣ − 1) − x/2 + 1",
           "e⁻ˣ − 1 = 1/eˣ − 1 = (1 − eˣ)/eˣ",
+          "(dividing by (1 − eˣ)/eˣ is multiplying by eˣ/(1 − eˣ))",
           "⇒ −x/(e⁻ˣ − 1) = −x·eˣ/(1 − eˣ)",
+          "(−1/(1 − eˣ) = 1/(eˣ − 1))",
           "= xeˣ/(eˣ − 1)",
           "∴ f(−x) = xeˣ/(eˣ − 1) − x/2 + 1"
         ],
@@ -100,7 +103,15 @@
         "margin_note": "The second mark is the comparison. Split eˣ as (eˣ − 1) + 1 so the extra x appears, then cancel it against −x/2 to get +x/2.",
         "memory_tip": "Write eˣ as (eˣ − 1) + 1. The first piece cancels the denominator and leaves a plain x, and x − x/2 is x/2.",
         "lines": [
+          {
+            "text": "Write eˣ on top as (eˣ − 1) + 1:",
+            "added": true
+          },
           "xeˣ/(eˣ − 1) = x(eˣ − 1 + 1)/(eˣ − 1)",
+          {
+            "text": "(x(eˣ − 1)/(eˣ − 1) = x)",
+            "added": true
+          },
           "= x + x/(eˣ − 1)",
           "∴ f(−x) = x + x/(eˣ − 1) − x/2 + 1",
           "= x/(eˣ − 1) + x/2 + 1   [∵ x − x/2 = x/2]",
@@ -137,6 +148,17 @@
           "Writing x − x/2 as −x/2, which breaks the match with f(x); the correct value is x/2.",
           "Stopping at f(−x) = xeˣ/(eˣ − 1) − x/2 + 1 and asserting it equals f(x) with no algebra.",
           "Concluding odd because a minus sign appeared during the working."
+        ],
+        "lines_compact": [
+          "xeˣ/(eˣ − 1) = x(eˣ − 1 + 1)/(eˣ − 1)",
+          "= x + x/(eˣ − 1)",
+          "∴ f(−x) = x + x/(eˣ − 1) − x/2 + 1",
+          "= x/(eˣ − 1) + x/2 + 1   [∵ x − x/2 = x/2]",
+          "= f(x) for every x ∈ R − {0}",
+          {
+            "text": "∴ f is an even function on R − {0}.",
+            "style": "boxed"
+          }
         ]
       }
     ]

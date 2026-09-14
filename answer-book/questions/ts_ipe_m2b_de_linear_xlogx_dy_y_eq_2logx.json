@@ -43,9 +43,9 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.75 — SAQ chapter 11 Differential Equations, answer 102, the last answer in the chapter. Not on an SSP page (this book's SAQ SSP pages for this chapter are only 72 and 73). Printed appearance tag: AP 20. The mark split is OURS: this answer carries no printed margin marks. It is patterned on answer 99's shape (also linear in y, finishing with a power-rule integration), extended by one checkpoint for the logx substitution this equation needs: rewrite and identify P, find the I.F. (using the ∫f'/f = log f rule), set up the integral and substitute t = logx, then integrate and finish. Star rank: the Differential Equations SAQ chapter is ★★ on the SAQ chapter table (book p.49); every entry takes stars 2, a chapter-level rank. This question does not appear in the Bullet Model Paper's Q17 set (book p.110), so this card is chapter practice for the same linear-D.E. skill. The book's working was re-derived line by line and is correct throughout, including the integrating factor simplifying all the way down to the plain logx. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book's five Guess Papers (pp.118-127) are the only stand-in. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.75 — SAQ chapter 11 Differential Equations, answer 102, the last answer in the chapter. Not on an SSP page (this book's SAQ SSP pages for this chapter are only 72 and 73). Printed appearance tag: AP 20. The mark split is OURS: this answer carries no printed margin marks. It is patterned on answer 99's shape (also linear in y, finishing with a power-rule integration), extended by one checkpoint for the logx substitution this equation needs: rewrite and identify P, find the I.F. (using the ∫f'/f = log f rule), set up the integral and substitute t = logx, then integrate and finish. Star rank: the Differential Equations SAQ chapter is ★★ on the SAQ chapter table (book p.49); every entry takes stars 2, a chapter-level rank. This question does not appear in the Bullet Model Paper's Q17 set (book p.110), so this card is chapter practice for the same linear-D.E. skill. The book's working was re-derived line by line and is correct throughout, including the integrating factor simplifying all the way down to the plain logx. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book's five Guess Papers (pp.118-127) are the only stand-in. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
-  "insider_note": "The equation is linear in y with P = 1/(xlogx); recognising ∫1/(xlogx)dx as the standard ∫f'(x)/f(x)dx form with f(x) = logx is what lets the integrating factor collapse all the way down to the plain logx instead of staying as e^(log(logx)).",
+  "insider_note": "The equation is linear in y with P = 1/(xlogx); recognising ∫1/(xlogx)dx as the standard ∫f'(x)/f(x)dx form with f(x) = logx is what lets the integrating factor collapse all the way down to the plain logx instead of staying as e to the power log(logx).",
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",
@@ -66,7 +66,9 @@
             "style": "heading"
           },
           "Given D.E is x·logx·dy/dx + y = 2logx",
+          "Divide every term by x·logx:",
           "⇒ dy/dx + y·(1/(x·logx)) = 2logx/(x·logx)",
+          "logx cancels on the right:",
           "= 2/x [dividing throughout by x·logx]",
           "This is in the form dy/dx + yP(x) = Q(x).",
           "Here P = 1/(x·logx) and Q = 2/x"
@@ -83,19 +85,42 @@
         "label": "Find the integrating factor",
         "marks": 1,
         "mark_note": "I.F.",
-        "margin_note": "One mark. I.F. = e^(∫P dx); recognise ∫1/(xlogx)dx as the f'/f form with f(x) = logx.",
+        "margin_note": "One mark. I.F. = e to the power ∫P dx; recognise ∫1/(xlogx)dx as the f'/f form with f(x) = logx.",
         "memory_tip": "∫f'(x)/f(x) dx = log f(x) is the fastest route whenever the numerator is exactly the derivative of the denominator's inner function.",
         "lines": [
           "Here P = 1/(x·logx)",
+          {
+            "text": "Write 1/(x·logx) as (1/x)/logx:",
+            "added": true
+          },
           "⇒ ∫P dx = ∫1/(x·logx) dx = log(logx),",
           "since ∫f'(x)/f(x) dx = log f(x)",
           "with f(x) = logx, f'(x) = 1/x",
-          "∴ I.F. = e^(∫P dx) = e^(log(logx)) = logx"
+          {
+            "text": "e to the power log A is A:",
+            "added": true
+          },
+          {
+            "text": "\\therefore \\text{ I.F. }\\ = e^{\\int P dx} = e^{\\log (\\log x)} = \\log x",
+            "render": "katex",
+            "style": "normal"
+          }
         ],
         "why": "The integrand 1/(xlogx) is exactly f'(x)/f(x) with f(x) = logx, so it integrates directly to log(logx) by the standard log-derivative rule; e raised to a log then cancels back to the plain expression.",
         "common_mistakes": [
           "Trying to integrate 1/(xlogx) as a plain 1/x integral and missing the extra logx factor.",
-          "Leaving the I.F. as log(logx) instead of simplifying e^(log(logx)) back to logx."
+          "Leaving the I.F. as log(logx) instead of simplifying e to the power log(logx) back to logx."
+        ],
+        "lines_compact": [
+          "Here P = 1/(x·logx)",
+          "⇒ ∫P dx = ∫1/(x·logx) dx = log(logx),",
+          "since ∫f'(x)/f(x) dx = log f(x)",
+          "with f(x) = logx, f'(x) = 1/x",
+          {
+            "text": "\\therefore \\text{ I.F. }\\ = e^{\\int P dx} = e^{\\log (\\log x)} = \\log x",
+            "render": "katex",
+            "style": "normal"
+          }
         ]
       },
       {
@@ -109,6 +134,10 @@
         "lines": [
           "Hence the solution is y·(I.F.) = ∫(I.F.)Q dx",
           "⇒ y·logx = ∫logx·(2/x) dx = 2∫(logx/x) dx",
+          {
+            "text": "d/dx(logx) = 1/x, so:",
+            "added": true
+          },
           "Put logx = t ⇒ (1/x)dx = dt,",
           "so the integral becomes 2∫t dt"
         ],
@@ -116,6 +145,12 @@
         "common_mistakes": [
           "Forgetting the factor of 2 carried from Q = 2/x.",
           "Missing that dt = dx/x is already present in the integral, and attempting a different substitution."
+        ],
+        "lines_compact": [
+          "Hence the solution is y·(I.F.) = ∫(I.F.)Q dx",
+          "⇒ y·logx = ∫logx·(2/x) dx = 2∫(logx/x) dx",
+          "Put logx = t ⇒ (1/x)dx = dt,",
+          "so the integral becomes 2∫t dt"
         ]
       },
       {
@@ -127,6 +162,10 @@
         "margin_note": "The last mark. 2∫tdt = t² + c, then substitute t = logx back in.",
         "memory_tip": "2∫t dt = t² directly — the 2 and the 1/2 from the power rule cancel exactly.",
         "lines": [
+          {
+            "text": "∫t dt = t²/2:",
+            "added": true
+          },
           "2∫t dt = 2(t²/2) + c = t² + c",
           "So y·logx = t² + c, and putting t = logx back in:",
           {
@@ -138,6 +177,14 @@
         "common_mistakes": [
           "Forgetting to substitute logx back in and leaving the answer in terms of t.",
           "Missing the factor of 2 cancelling against the 1/2 from integrating t, and writing an extra 2 in the final answer."
+        ],
+        "lines_compact": [
+          "2∫t dt = 2(t²/2) + c = t² + c",
+          "So y·logx = t² + c, and putting t = logx back in:",
+          {
+            "text": "y·logx = (logx)² + c",
+            "style": "boxed"
+          }
         ]
       }
     ]

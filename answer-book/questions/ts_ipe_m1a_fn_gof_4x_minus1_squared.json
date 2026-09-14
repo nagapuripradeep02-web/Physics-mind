@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.10, chapter 2 FUNCTIONS, Very Short Answer question 12(i). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape gives one mark to substituting f(x) into g in the right order and one to the expansion, because the order of composition and the squaring of a bracket are the two separate skills being tested. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.10, chapter 2 FUNCTIONS, Very Short Answer question 12(i). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape gives one mark to substituting f(x) into g in the right order and one to the expansion, because the order of composition and the squaring of a bracket are the two separate skills being tested. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find (gof)(x) — which function acts first, and how you expand what is left.",
   "answer": {
@@ -96,6 +96,10 @@
         "memory_tip": "(4x − 1)² = 16x² − 2(4x)(1) + 1. The middle term −8x is the one students drop.",
         "lines": [
           "(4x − 1)² = 16x² − 8x + 1",
+          {
+            "text": "((4x)² − 2·4x·1 + 1² = 16x² − 8x + 1)",
+            "added": true
+          },
           "So (gof)(x) = 16x² − 8x + 1 + 2",
           {
             "text": "∴ (gof)(x) = 16x² − 8x + 3",
@@ -128,6 +132,14 @@
         "common_mistakes": [
           "Writing (4x − 1)² as 16x² − 1 or as 16x² + 1, losing the middle term.",
           "Adding the 2 inside the square and writing (4x + 1)²."
+        ],
+        "lines_compact": [
+          "(4x − 1)² = 16x² − 8x + 1",
+          "So (gof)(x) = 16x² − 8x + 1 + 2",
+          {
+            "text": "∴ (gof)(x) = 16x² − 8x + 3",
+            "style": "boxed"
+          }
         ]
       }
     ]

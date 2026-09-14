@@ -42,7 +42,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Sr. Maths-2B (Sri Publishers, Machilipatnam), book p.54 — SAQ chapter 7 System of Circles, answer 54.2, on a ★★★ Super Scoring Page (SSP 54). Chapter star rank ★★★, per the SAQ section table (book p.49). Printed appearance tag: TS 18. ⚠ THE MARK SPLIT IS OURS, same 1+1+1+1 reasoning as the twin answer 54.1 (justified in full in that card's note against Circle SAQ answer 48, book p.51). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Neither the two-book union check nor a board back-test was possible for this subject: there is no TSBIE second-year Maths-2B BLM on hand, and answer-book/papers/ holds first-year physics only — the book's own five Guess Papers (pp.118-127) stand in as the back-test instead. Boundary walked both ways: book p.53 ends the Circle SAQ chapter at answer 52, and book p.57 opens SAQ chapter 8 Ellipse. Paper position: Maths-2B Section B runs Q1-Q7 at 4 marks each (Q3 = System of Circles, per the QF sheet pp.3-4), answer any 5 of 7 (ABC_75). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, Sr. Maths-2B (Sri Publishers, Machilipatnam), book p.54 — SAQ chapter 7 System of Circles, answer 54.2, on a ★★★ Super Scoring Page (SSP 54). Chapter star rank ★★★, per the SAQ section table (book p.49). Printed appearance tag: TS 18. ⚠ THE MARK SPLIT IS OURS, same 1+1+1+1 reasoning as the twin answer 54.1 (justified in full in that card's note against Circle SAQ answer 48, book p.51). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Neither the two-book union check nor a board back-test was possible for this subject: there is no TSBIE second-year Maths-2B BLM on hand, and answer-book/papers/ holds first-year physics only — the book's own five Guess Papers (pp.118-127) stand in as the back-test instead. Boundary walked both ways: book p.53 ends the Circle SAQ chapter at answer 52, and book p.57 opens SAQ chapter 8 Ellipse. Paper position: Maths-2B Section B runs Q1-Q7 at 4 marks each (Q3 = System of Circles, per the QF sheet pp.3-4), answer any 5 of 7 (ABC_75). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "insider_note": "Both circles here have half-integer centres, so the radius is the surd 3/√2 and the perpendicular distance 1/√2. Keep both over a common denominator: r² − p² is then 9/2 − 1/2 = 4 exactly, and the chord length comes out as the whole number 4.",
   "answer": {
@@ -66,7 +66,10 @@
           "S ≡ x² + y² + 3x + 5y + 4 = 0",
           "S′ ≡ x² + y² + 5x + 3y + 4 = 0",
           "Equation of the common chord is S − S′ = 0",
+          "(both have x² + y² with coefficient 1)",
+          "x: 3x − 5x = −2x, y: 5y − 3y = 2y, 4 − 4 = 0",
           "⇒ −2x + 2y = 0",
+          "Divide every term by −2:",
           "⇒ x − y = 0"
         ],
         "why": "S − S′ = 0 cancels the x² and y² terms of two circles, leaving the straight line through their two points of intersection — the common chord.",
@@ -84,8 +87,29 @@
         "mark_note": "Method",
         "margin_note": "Second mark. Use S here, and keep using S (not S′) in every step that follows.",
         "lines": [
+          {
+            "text": "For the half-chord right triangle we need",
+            "added": true
+          },
+          {
+            "text": "  the centre and radius of S.",
+            "style": "indent",
+            "added": true
+          },
           "For the circle S ≡ x² + y² + 3x + 5y + 4 = 0",
+          {
+            "text": "2g = 3 ⇒ g = 3/2; 2f = 5 ⇒ f = 5/2; c = 4",
+            "added": true
+          },
+          {
+            "text": "The centre is (−g, −f):",
+            "added": true
+          },
           "centre C(−3/2, −5/2)",
+          {
+            "text": "g² + f² − c = 9/4 + 25/4 − 16/4 = 18/4 = 9/2",
+            "added": true
+          },
           "radius r = √(9/4 + 25/4 − 4) = √(9/2) = 3/√2"
         ],
         "why": "Centre and radius come from writing the circle as x² + y² + 2gx + 2fy + c = 0 and reading off centre (−g, −f) and radius √(g² + f² − c).",
@@ -93,7 +117,12 @@
           "Writing the centre as (3/2, 5/2) instead of (−3/2, −5/2).",
           "Forgetting to subtract 4 (the value of c) inside the square root for the radius."
         ],
-        "memory_tip": "g = 3/2, f = 5/2 here — halve each coefficient, then negate for the centre."
+        "memory_tip": "g = 3/2, f = 5/2 here — halve each coefficient, then negate for the centre.",
+        "lines_compact": [
+          "For the circle S ≡ x² + y² + 3x + 5y + 4 = 0",
+          "centre C(−3/2, −5/2)",
+          "radius r = √(9/4 + 25/4 − 4) = √(9/2) = 3/√2"
+        ]
       },
       {
         "id": "s3_perpendicular_distance",
@@ -103,17 +132,40 @@
         "mark_note": "Method",
         "margin_note": "Third mark, for the distance from C(−3/2, −5/2) to the chord x − y = 0.",
         "lines": [
+          {
+            "text": "Distance from (x₁, y₁) to ax + by + c = 0 is",
+            "added": true
+          },
+          {
+            "text": "  |ax₁ + by₁ + c| / √(a² + b²)",
+            "style": "indent",
+            "added": true
+          },
           "Length of the perpendicular from C(−3/2,",
           "−5/2)",
           "to the line x − y = 0 is",
-          "p = |−3/2 − (−5/2)| / √(1 + 1) = 1/√2"
+          {
+            "text": "Here a = 1, b = −1 and c = 0:",
+            "added": true
+          },
+          "p = |−3/2 − (−5/2)| / √(1 + 1) = 1/√2",
+          {
+            "text": "(−3/2 + 5/2 = 2/2 = 1)",
+            "added": true
+          }
         ],
         "why": "The perpendicular from the centre to the chord bisects it, so this distance combines with the radius to give half the chord length.",
         "common_mistakes": [
           "Substituting the wrong sign for −5/2 and getting a different numerator.",
           "Forgetting the absolute value bars and reporting a signed distance."
         ],
-        "memory_tip": "The line x − y = 0 makes the distance formula especially short: just the difference of the coordinates over √2."
+        "memory_tip": "The line x − y = 0 makes the distance formula especially short: just the difference of the coordinates over √2.",
+        "lines_compact": [
+          "Length of the perpendicular from C(−3/2,",
+          "−5/2)",
+          "to the line x − y = 0 is",
+          "p = |−3/2 − (−5/2)| / √(1 + 1) = 1/√2"
+        ]
       },
       {
         "id": "s4_length_of_chord",
@@ -123,6 +175,23 @@
         "mark_note": "Solution",
         "margin_note": "Fourth mark, for the final chord length.",
         "lines": [
+          {
+            "text": "Half the chord is √(r² − p²), by Pythagoras,",
+            "added": true
+          },
+          {
+            "text": "  so the whole chord is 2√(r² − p²).",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "r² = 9/2 and p² = 1/2",
+            "added": true
+          },
+          {
+            "text": "9/2 − 1/2 = 8/2 = 4, and 2√4 = 2 × 2 = 4",
+            "added": true
+          },
           "Length of the common chord",
           {
             "text": "= 2√(r² − p²) = 2√(9/2 − 1/2) = 4 units",
@@ -134,7 +203,14 @@
           "Forgetting to square r = 3/√2 correctly (it is 9/2, not 3/2).",
           "Leaving the final answer as 2√4 instead of simplifying to the whole number 4."
         ],
-        "memory_tip": "√(9/2 − 1/2) = √4 = 2 is a clean number — a sign that the earlier centre and distance were computed correctly."
+        "memory_tip": "√(9/2 − 1/2) = √4 = 2 is a clean number — a sign that the earlier centre and distance were computed correctly.",
+        "lines_compact": [
+          "Length of the common chord",
+          {
+            "text": "= 2√(r² − p²) = 2√(9/2 − 1/2) = 4 units",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   }

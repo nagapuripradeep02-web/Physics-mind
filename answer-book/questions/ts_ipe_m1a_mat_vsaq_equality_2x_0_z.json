@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 5 MATRICES, Very Short Answer question 2(ii), book p.31. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split gives one mark to turning the matrix equation into separate element equations and one to solving them, because a student who only equates the positions has done the matrix half of the question. This matrix carries a built-in consistency check that the answer uses: position (1,1) gives x − 1 = 1 − x and position (2,1) gives 2x = 2, and both give x = 1. Related card in the same unit: ts_ipe_m1a_mat_vsaq_equality_3x3 is a different 3×3 equality question from another source book, so the two are not duplicates. Paper position: Maths-1A Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 5 MATRICES, Very Short Answer question 2(ii), book p.31. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split gives one mark to turning the matrix equation into separate element equations and one to solving them, because a student who only equates the positions has done the matrix half of the question. This matrix carries a built-in consistency check that the answer uses: position (1,1) gives x − 1 = 1 − x and position (2,1) gives 2x = 2, and both give x = 1. Related card in the same unit: ts_ipe_m1a_mat_vsaq_equality_3x3 is a different 3×3 equality question from another source book, so the two are not duplicates. Paper position: Maths-1A Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find x, y, z and a from this matrix equation.",
   "answer": {
@@ -98,8 +98,16 @@
         "memory_tip": "Two different positions give x, and both give x = 1. If they disagreed, the equality could not hold.",
         "lines": [
           "x − 1 = 1 − x ⇒ 2x = 2 ⇒ x = 1",
+          {
+            "text": "(add x + 1 to both sides)",
+            "added": true
+          },
           "The entry 2x = 2 gives x = 1 as well.",
           "y − 5 = −y ⇒ 2y = 5 ⇒ y = 5/2",
+          {
+            "text": "(add y + 5 to both sides)",
+            "added": true
+          },
           "z = 2, and 1 + a = 1 ⇒ a = 0",
           {
             "text": "∴ x = 1, y = 5/2, z = 2, a = 0",
@@ -131,6 +139,16 @@
         "common_mistakes": [
           "Writing y = 5 by reading y − 5 = −y as y − 5 = 0.",
           "Writing a = 1 instead of a = 0 from 1 + a = 1."
+        ],
+        "lines_compact": [
+          "x − 1 = 1 − x ⇒ 2x = 2 ⇒ x = 1",
+          "The entry 2x = 2 gives x = 1 as well.",
+          "y − 5 = −y ⇒ 2y = 5 ⇒ y = 5/2",
+          "z = 2, and 1 + a = 1 ⇒ a = 0",
+          {
+            "text": "∴ x = 1, y = 5/2, z = 2, a = 0",
+            "style": "boxed"
+          }
         ]
       }
     ]

@@ -1,0 +1,89 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_hrs_menstrual_cycle",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Human Reproduction (Zoology-II)"
+  },
+  "chapter": "Human Reproductive System",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is menstrual cycle? Which hormones regulate menstrual cycle?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What the cycle is",
+      "marks": 1
+    },
+    {
+      "label": "The four hormones",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.54, VSAQ 106. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Human Reproductive System · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What the cycle is",
+        "marks": 1,
+        "mark_note": "The cycle",
+        "why": "The lining is rebuilt each month for a possible pregnancy, and shed when there is none, which is what makes it a cycle.",
+        "common_mistakes": [
+          "Calling it the oestrous cycle. That is in other mammals.",
+          "Leaving out the length of the cycle."
+        ],
+        "memory_tip": "One ovum, one lining built and shed, about every 28 days.",
+        "margin_note": "Definition with the length, then the hormones.",
+        "lines": [
+          "The menstrual cycle is the reproductive",
+          "cycle of human and other primate females.",
+          "One ovum is released in the middle of each",
+          "cycle. The endometrium of the uterus builds",
+          "up and then breaks down.",
+          "These cyclic changes occur about every 28",
+          "or 29 days."
+        ]
+      },
+      {
+        "id": "s2_hormones",
+        "kind": "boxed_final",
+        "label": "The four hormones",
+        "marks": 1,
+        "mark_note": "Four hormones",
+        "why": "Two hormones from the pituitary drive the ovary, and two from the ovary act back on the uterus.",
+        "common_mistakes": [
+          "Naming only FSH and LH. Oestrogen and progesterone are also asked.",
+          "Giving the wrong source for each pair."
+        ],
+        "memory_tip": "FSH and LH from the pituitary; oestrogen and progesterone from the ovary.",
+        "margin_note": "Name the source beside each pair.",
+        "lines": [
+          "The cycle is regulated by four hormones:",
+          "FSH and LH from the pituitary,",
+          {
+            "text": "and oestrogen and progesterone from the ovary",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Four hormones are asked for, from two glands. Group them: FSH and LH from the pituitary, oestrogen and progesterone from the ovary."
+}

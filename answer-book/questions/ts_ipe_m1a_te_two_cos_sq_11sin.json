@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.107, chapter 9 TRIGONOMETRIC EQUATIONS, Short Answer question 1(iv). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 shape gives a separate mark to the range check, because sinθ = 5 is the whole point of this question — a student who factorises correctly and then writes an angle for sinθ = 5 has lost the question, not a detail. Nothing is squared and no denominator is cleared here, so sinθ = 5 is a genuine out-of-range root, not an extraneous one, and the card says which of the two it is. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Trigonometric Equations supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.107, chapter 9 TRIGONOMETRIC EQUATIONS, Short Answer question 1(iv). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 shape gives a separate mark to the range check, because sinθ = 5 is the whole point of this question — a student who factorises correctly and then writes an angle for sinθ = 5 has lost the question, not a detail. Nothing is squared and no denominator is cleared here, so sinθ = 5 is a genuine out-of-range root, not an extraneous one, and the card says which of the two it is. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Trigonometric Equations supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — name each move in order, and say which general solution formula you would use.",
   "answer": {
@@ -61,9 +61,12 @@
             "style": "heading"
           },
           "Given 2cos²θ + 11 sinθ = 7",
+          "(write cos²θ as 1 − sin²θ)",
           "⇒ 2(1 − sin²θ) + 11 sinθ = 7",
           "  [∵ sin²θ + cos²θ = 1]",
+          "(open the bracket and take 7 to the left)",
           "⇒ 2 − 2sin²θ + 11 sinθ − 7 = 0",
+          "(multiply by −1 and reorder)",
           "⇒ 2sin²θ − 11 sinθ + 5 = 0"
         ],
         "recall": {
@@ -87,7 +90,7 @@
             "quadratic in sine"
           ]
         },
-        "why": "An equation holding two different ratios cannot be factorised. Reducing it to sine alone turns it into a quadratic that any student can handle.",
+        "why": "This equation holds cos²θ and sinθ together and does not factorise as written. Reducing it to sine alone turns it into a quadratic that can be factorised.",
         "common_mistakes": [
           "Replacing sin²θ instead and leaving a cosine behind.",
           "Sign slip when multiplying out the −2."
@@ -102,7 +105,15 @@
         "margin_note": "Second mark. The product is 2 × 5 = 10 and the sum is −11, so split the middle term as −10 sinθ − sinθ.",
         "memory_tip": "Product 10, sum −11: split the middle term as −10 sinθ − sinθ, and the bracket (sinθ − 5) is shared.",
         "lines": [
+          {
+            "text": "(split −11sinθ as −10sinθ − sinθ, since 2 × 5 = 10)",
+            "added": true
+          },
           "⇒ 2sin²θ − 10 sinθ − sinθ + 5 = 0",
+          {
+            "text": "(take out 2sinθ and −1)",
+            "added": true
+          },
           "⇒ 2sinθ(sinθ − 5) − 1(sinθ − 5) = 0",
           "⇒ (2sinθ − 1)(sinθ − 5) = 0"
         ],
@@ -132,6 +143,11 @@
         "common_mistakes": [
           "Looking for factors of 11 instead of factors of 2 × 5 = 10.",
           "Splitting the middle term as −5 sinθ − 6 sinθ, whose product is 30, not 10."
+        ],
+        "lines_compact": [
+          "⇒ 2sin²θ − 10 sinθ − sinθ + 5 = 0",
+          "⇒ 2sinθ(sinθ − 5) − 1(sinθ − 5) = 0",
+          "⇒ (2sinθ − 1)(sinθ − 5) = 0"
         ]
       },
       {
@@ -143,6 +159,10 @@
         "margin_note": "Third mark. sinθ = 5 lies outside [−1, 1], so that branch has no angle at all. Write the reason on the page — the mark is for the reason, not for crossing the root out.",
         "memory_tip": "sinθ = 5 is outside [−1, 1], so it has no angle. Write the reason, do not just cross it out.",
         "lines": [
+          {
+            "text": "(a product is 0 only when one factor is 0)",
+            "added": true
+          },
           "⇒ 2sinθ − 1 = 0  (or)  sinθ − 5 = 0",
           "⇒ sinθ = 1/2  (or)  sinθ = 5",
           "But |sinθ| ≤ 1 always, and 5 > 1,",
@@ -170,10 +190,16 @@
             "mod sin theta less than one"
           ]
         },
-        "why": "A quadratic always gives two roots, but a trigonometric equation only accepts values a sine can actually take. Checking the range is part of solving, not a formality.",
+        "why": "A quadratic can give two roots, but a trigonometric equation only accepts values a sine can actually take. Checking the range is part of solving, not a formality.",
         "common_mistakes": [
           "Carrying sinθ = 5 forward and inventing an angle for it.",
           "Discarding it with no reason given."
+        ],
+        "lines_compact": [
+          "⇒ 2sinθ − 1 = 0  (or)  sinθ − 5 = 0",
+          "⇒ sinθ = 1/2  (or)  sinθ = 5",
+          "But |sinθ| ≤ 1 always, and 5 > 1,",
+          "so sinθ = 5 has no solution."
         ]
       },
       {
@@ -188,6 +214,10 @@
           "Now sinθ = 1/2 = sin(π/6)",
           "Here the principal value is α = π/6",
           "For sinθ = sinα, θ = nπ + (−1)ⁿ α",
+          {
+            "text": "(the sine general solution with α = π/6)",
+            "added": true
+          },
           {
             "text": "∴ θ = nπ + (−1)ⁿ (π/6),  n ∈ Z",
             "style": "boxed"
@@ -215,10 +245,19 @@
             "minus one to the n"
           ]
         },
-        "why": "Only one branch survived, so there is one family of solutions — but it is still an infinite family, which is why n ∈ Z has to appear.",
+        "why": "Only one branch is left, so there is one family of solutions — but it is still an infinite family, which is why n ∈ Z has to appear.",
         "common_mistakes": [
           "Giving only θ = π/6 and no general solution.",
           "Using the cosine general solution 2nπ ± α."
+        ],
+        "lines_compact": [
+          "Now sinθ = 1/2 = sin(π/6)",
+          "Here the principal value is α = π/6",
+          "For sinθ = sinα, θ = nπ + (−1)ⁿ α",
+          {
+            "text": "∴ θ = nπ + (−1)ⁿ (π/6),  n ∈ Z",
+            "style": "boxed"
+          }
         ]
       }
     ]

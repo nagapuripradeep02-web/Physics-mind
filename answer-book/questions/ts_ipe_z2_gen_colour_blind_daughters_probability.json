@@ -1,0 +1,440 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_gen_colour_blind_daughters_probability",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Genetics (Zoology-II)"
+  },
+  "chapter": "Genetics",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "A colour-blind man married a woman who is the daughter of a colour-blind father and mother homozygous normal vision. What is the probability of their daughters being colour-blind?",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The woman must be a carrier",
+      "marks": 1
+    },
+    {
+      "label": "The two genotypes",
+      "marks": 1
+    },
+    {
+      "label": "The cross",
+      "marks": 1
+    },
+    {
+      "label": "The answer for the daughters",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.67, SAQ 175 (Star Questions Plus). The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Figure revision (figure audit, 2026-09-05): four of the eight gamete lines were re-routed so each child now receives exactly the alleles its printed genotype needs, and the stacked child and parent labels were re-spaced so the rendered text no longer overlaps."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Genetics · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_mother",
+        "kind": "text",
+        "label": "The woman is a carrier",
+        "marks": 1,
+        "mark_note": "Why she is a carrier",
+        "why": "A daughter takes one X from each parent, so a colour-blind father can only give her an X carrying the gene.",
+        "common_mistakes": [
+          "Making the woman colour blind. She has normal vision because her mother's X is normal.",
+          "Making her homozygous normal. Her father's X must carry the gene."
+        ],
+        "memory_tip": "Her father gave her his only X, and his X was the faulty one.",
+        "margin_note": "Reason it out in words before writing any genotype.",
+        "lines": [
+          "The woman's father is colour blind, so the",
+          "X chromosome she gets from him carries the",
+          "recessive gene.",
+          "Her mother is homozygous for normal vision,",
+          "so the X she gets from her mother is normal.",
+          "So the woman has normal vision but is a",
+          "carrier."
+        ]
+      },
+      {
+        "id": "s2_genotypes",
+        "kind": "equation",
+        "label": "The two genotypes",
+        "marks": 1,
+        "mark_note": "Genotypes",
+        "why": "Writing both genotypes down is what turns the word problem into a cross that can be worked.",
+        "common_mistakes": [
+          "Writing XᶜᵇXᶜᵇ for the woman. That would be a colour-blind woman.",
+          "Giving the man two X chromosomes."
+        ],
+        "memory_tip": "The man has one X and it is faulty; the woman has two and one is faulty.",
+        "margin_note": "Two lines, one genotype each.",
+        "lines": [
+          {
+            "text": "Colour blind man = XᶜᵇY",
+            "style": "eq"
+          },
+          {
+            "text": "Carrier woman = XᶜXᶜᵇ",
+            "style": "eq"
+          }
+        ]
+      },
+      {
+        "id": "s3_cross",
+        "kind": "diagram",
+        "label": "The cross",
+        "marks": 1,
+        "mark_note": "The cross",
+        "why": "Each parent gives one sex chromosome, so four combinations are possible and the diagram shows all of them at once.",
+        "common_mistakes": [
+          "Giving the man only one kind of gamete. He makes Xᶜᵇ and Y.",
+          "Forgetting the sons. The question asks only about daughters, but the cross must be complete."
+        ],
+        "memory_tip": "Two kinds of sperm times two kinds of ovum gives four children.",
+        "margin_note": "Draw the full cross even though only the daughters are asked about.",
+        "figure": {
+          "id": "gen_colour_blind_cross",
+          "width": 520,
+          "height": 404,
+          "elements": [
+            {
+              "type": "pause",
+              "id": "p1",
+              "caption": "Step 1 — the two parents and their genotypes"
+            },
+            {
+              "type": "stroke",
+              "id": "father_symbol",
+              "d": "M 128 48 A 14 14 0 1 0 156 48 A 14 14 0 1 0 128 48 M 152 38 L 168 22 M 168 22 L 156 22 M 168 22 L 168 34",
+              "ms": 1920
+            },
+            {
+              "type": "stroke",
+              "id": "mother_symbol",
+              "d": "M 348 48 A 14 14 0 1 0 376 48 A 14 14 0 1 0 348 48 M 362 62 L 362 86 M 352 76 L 372 76",
+              "ms": 1880
+            },
+            {
+              "type": "label",
+              "id": "lb_father",
+              "x": 84,
+              "y": 116,
+              "text": "Father  XᶜᵇY",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lb_father2",
+              "x": 84,
+              "y": 144,
+              "text": "colour blind",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lb_mother",
+              "x": 322,
+              "y": 116,
+              "text": "Mother  XᶜXᶜᵇ",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lb_mother2",
+              "x": 322,
+              "y": 144,
+              "text": "carrier",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "pause",
+              "id": "p2",
+              "caption": "Step 2 — the gametes each parent makes"
+            },
+            {
+              "type": "stroke",
+              "id": "gamete_box_f",
+              "d": "M 96 158 L 96 186 L 200 186 L 200 158 Z M 148 158 L 148 186",
+              "ms": 4170
+            },
+            {
+              "type": "stroke",
+              "id": "gamete_box_m",
+              "d": "M 316 158 L 316 186 L 420 186 L 420 158 Z M 368 158 L 368 186",
+              "ms": 4170
+            },
+            {
+              "type": "label",
+              "id": "lb_g_f1",
+              "x": 110,
+              "y": 180,
+              "text": "Xᶜᵇ",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lb_g_f2",
+              "x": 168,
+              "y": 180,
+              "text": "Y",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lb_g_m1",
+              "x": 332,
+              "y": 180,
+              "text": "Xᶜ",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lb_g_m2",
+              "x": 382,
+              "y": 180,
+              "text": "Xᶜᵇ",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "pause",
+              "id": "p3",
+              "caption": "Step 3 — every sperm meets every ovum"
+            },
+            {
+              "type": "stroke",
+              "id": "cross_a",
+              "d": "M 122 190 L 150 250",
+              "ms": 950
+            },
+            {
+              "type": "stroke",
+              "id": "cross_b",
+              "d": "M 122 190 L 224 250",
+              "ms": 1690
+            },
+            {
+              "type": "stroke",
+              "id": "cross_c",
+              "d": "M 174 190 L 300 250",
+              "ms": 1990
+            },
+            {
+              "type": "stroke",
+              "id": "cross_d",
+              "d": "M 174 190 L 374 250",
+              "ms": 2980
+            },
+            {
+              "type": "stroke",
+              "id": "cross_e",
+              "d": "M 342 190 L 160 250",
+              "ms": 2740
+            },
+            {
+              "type": "stroke",
+              "id": "cross_f",
+              "d": "M 342 190 L 308 250",
+              "ms": 990
+            },
+            {
+              "type": "stroke",
+              "id": "cross_g",
+              "d": "M 394 190 L 232 250",
+              "ms": 2470
+            },
+            {
+              "type": "stroke",
+              "id": "cross_h",
+              "d": "M 394 190 L 382 250",
+              "ms": 870
+            },
+            {
+              "type": "pause",
+              "id": "p4",
+              "caption": "Step 4 — the four children"
+            },
+            {
+              "type": "label",
+              "id": "lb_c1",
+              "x": 104,
+              "y": 274,
+              "text": "XᶜXᶜᵇ",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lb_c1b",
+              "x": 96,
+              "y": 304,
+              "text": "daughter,",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lb_c1c",
+              "x": 96,
+              "y": 332,
+              "text": "carrier",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lb_c2",
+              "x": 190,
+              "y": 274,
+              "text": "XᶜᵇXᶜᵇ",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lb_c2b",
+              "x": 182,
+              "y": 304,
+              "text": "daughter,",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lb_c2c",
+              "x": 182,
+              "y": 332,
+              "text": "colour blind",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lb_c3",
+              "x": 288,
+              "y": 274,
+              "text": "XᶜY",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lb_c3b",
+              "x": 276,
+              "y": 304,
+              "text": "son,",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lb_c3c",
+              "x": 276,
+              "y": 332,
+              "text": "normal",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lb_c4",
+              "x": 360,
+              "y": 274,
+              "text": "XᶜᵇY",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lb_c4b",
+              "x": 356,
+              "y": 304,
+              "text": "son,",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lb_c4c",
+              "x": 356,
+              "y": 332,
+              "text": "colour blind",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "pause",
+              "id": "p5",
+              "caption": "Step 5 — reading off the daughters"
+            },
+            {
+              "type": "stroke",
+              "id": "daughter_brace",
+              "d": "M 96 344 L 96 356 L 262 356 L 262 344",
+              "ms": 2710
+            },
+            {
+              "type": "label",
+              "id": "lb_answer",
+              "x": 96,
+              "y": 384,
+              "text": "Half the daughters are colour blind",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        }
+      },
+      {
+        "id": "s4_answer",
+        "kind": "boxed_final",
+        "label": "The answer",
+        "marks": 1,
+        "mark_note": "The probability",
+        "why": "Of the two possible daughters one gets a faulty X from each parent and the other gets a normal X from her mother, so the split is even.",
+        "common_mistakes": [
+          "Answering 25%. That is the share of ALL children; the question asks about daughters only.",
+          "Answering for the sons instead."
+        ],
+        "memory_tip": "Read the question again: of the DAUGHTERS, not of all the children.",
+        "margin_note": "State the probability for the daughters explicitly.",
+        "lines": [
+          "The daughters are of two kinds:",
+          "XᶜᵇXᶜᵇ — colour blind.",
+          "XᶜXᶜᵇ — normal vision, but carriers.",
+          {
+            "text": "So 50% of their daughters will be colour blind",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Work out the MOTHER's genotype first — that is the whole problem. Her father was colour blind, so the X she got from him carries the gene, and she must be a carrier whatever her mother was."
+}

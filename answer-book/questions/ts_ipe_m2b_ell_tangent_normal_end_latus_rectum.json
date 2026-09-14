@@ -39,7 +39,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.62 — SAQ chapter 8 Ellipse, answer 71. NOT on an SSP page. Printed appearance: AP 15 only — no TS tag. Book p.62 prints no margin mark tags, so the 1+1+2 split here is OURS — the normal derivation carries a rationalising step (multiplying by √7) that the tangent derivation does not, so it is given the larger share. This same ellipse (9x²+16y²=144) is also the subject of Q58 and Q63 in this chapter; only the point L and the tangent/normal at it are new here. A FIGURE is authored for this card — the ellipse, the latus rectum through the near focus, and the tangent and normal lines at its upper end — because the question names a specific point by its geometric description ('the end of the latus rectum in the first quadrant') rather than by coordinates, and seeing where that point sits makes the algebra easier to follow. The question does not say 'draw', so the diagram step carries no marks. Ellipse is an SAQ-ONLY unit on the book's IPE Blue Print (book p.5). No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE BLM on hand; the book's five Guess Papers pp.118-127 are the orchestrator's back-test stand-in). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.62 — SAQ chapter 8 Ellipse, answer 71. NOT on an SSP page. Printed appearance: AP 15 only — no TS tag. Book p.62 prints no margin mark tags, so the 1+1+2 split here is OURS — the normal derivation carries a rationalising step (multiplying by √7) that the tangent derivation does not, so it is given the larger share. This same ellipse (9x²+16y²=144) is also the subject of Q58 and Q63 in this chapter; only the point L and the tangent/normal at it are new here. A FIGURE is authored for this card — the ellipse, the latus rectum through the near focus, and the tangent and normal lines at its upper end — because the question names a specific point by its geometric description ('the end of the latus rectum in the first quadrant') rather than by coordinates, and seeing where that point sits makes the algebra easier to follow. The question does not say 'draw', so the diagram step carries no marks. Ellipse is an SAQ-ONLY unit on the book's IPE Blue Print (book p.5). No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE BLM on hand; the book's five Guess Papers pp.118-127 are the orchestrator's back-test stand-in). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "insider_note": "Rationalising the normal's equation by multiplying through by √7 at the end is what turns an untidy fraction into the clean form an examiner expects to see boxed.",
   "answer": {
@@ -62,10 +62,18 @@
             "style": "heading"
           },
           "9x² + 16y² = 144 ⇒ x²/16 + y²/9 = 1",
+          "(divide every term by 144)",
           "⇒ a² = 16, b² = 9, a = 4, b = 3",
           "e = √(a² − b²)/a = √(16−9)/4 = √7/4",
+          "The latus rectum passes through the focus",
+          {
+            "text": "  (ae, 0), perpendicular to the x-axis.",
+            "style": "indent"
+          },
+          "Put x = ae in the ellipse: y = ±b²/a.",
           "Positive end of latus rectum:",
           "L = (ae, b²/a) = (4·√7/4, 9/4)",
+          "(ae = 4 · √7/4 = √7 and b²/a = 9/4)",
           {
             "text": "L = (√7, 9/4)",
             "style": "boxed"
@@ -84,11 +92,23 @@
         "marks": 1,
         "mark_note": "Tangent",
         "margin_note": "Second mark. Use the S₁ = 0 rule with x₁ = √7, y₁ = 9/4.",
-        "memory_tip": "S₁ = 0: replace x² by x·x₁/a² and y² by y·y₁/b².",
+        "memory_tip": "S₁ = 0: replace x² by x·x₁ and y² by y·y₁, so x²/a² becomes xx₁/a² and y²/b² becomes yy₁/b².",
         "lines": [
           "Equation of the tangent at L is S₁ = 0:",
           "xx₁/a² + yy₁/b² = 1",
+          {
+            "text": "Put x₁ = √7, y₁ = 9/4, a² = 16, b² = 9:",
+            "added": true
+          },
           "⇒ x√7/16 + y(9/4)/9 = 1 ⇒ x√7/16 + y/4 = 1",
+          {
+            "text": "((9/4) ÷ 9 = 1/4)",
+            "added": true
+          },
+          {
+            "text": "Multiply every term by 16:",
+            "added": true
+          },
           {
             "text": "√7x + 4y = 16",
             "style": "boxed"
@@ -98,6 +118,15 @@
         "common_mistakes": [
           "Forgetting that y(9/4)/9 simplifies to y/4, and leaving an unsimplified fraction.",
           "Multiplying through by the wrong number when clearing the denominators 16 and 4."
+        ],
+        "lines_compact": [
+          "Equation of the tangent at L is S₁ = 0:",
+          "xx₁/a² + yy₁/b² = 1",
+          "⇒ x√7/16 + y(9/4)/9 = 1 ⇒ x√7/16 + y/4 = 1",
+          {
+            "text": "√7x + 4y = 16",
+            "style": "boxed"
+          }
         ]
       },
       {
@@ -106,9 +135,38 @@
         "label": "Equation of the normal at L",
         "marks": 2,
         "mark_note": "Normal",
-        "margin_note": "Last two marks. The normal formula a²x/x₁ − b²y/y₁ = a² − b² needs its own derivation, not the tangent's slope.",
+        "margin_note": "Last two marks. The normal formula a²x/x₁ − b²y/y₁ = a² − b² gives the normal directly; the negative reciprocal of the tangent's slope gives the same line.",
         "memory_tip": "The normal's formula is a²x/x₁ − b²y/y₁ = a² − b² — different from the tangent's S₁ = 0.",
         "lines": [
+          "Equation of the normal at L:",
+          "a²x/x₁ − b²y/y₁ = a² − b²",
+          {
+            "text": "Put x₁ = √7, y₁ = 9/4:",
+            "added": true
+          },
+          "⇒ 16x/√7 − 9y/(9/4) = 16 − 9",
+          {
+            "text": "(9y ÷ (9/4) = 9y × 4/9 = 4y)",
+            "added": true
+          },
+          "⇒ 16x/√7 − 4y = 7",
+          "Multiply by √7 to clear the fraction:",
+          "16x − 4√7y = 7√7",
+          {
+            "text": "16x − 4√7y = 7√7",
+            "style": "boxed"
+          },
+          {
+            "text": "Check at L: 16√7 − 4√7(9/4) = 16√7 − 9√7 = 7√7",
+            "added": true
+          }
+        ],
+        "why": "The normal is the line through L perpendicular to the tangent. Using the normal formula directly gives the same line with less rationalising along the way.",
+        "common_mistakes": [
+          "Trying to find the normal from the tangent's slope by inspection, which is much harder here than using the normal formula directly.",
+          "Leaving √7 in the denominator instead of rationalising by multiplying through by √7 at the end."
+        ],
+        "lines_compact": [
           "Equation of the normal at L:",
           "a²x/x₁ − b²y/y₁ = a² − b²",
           "⇒ 16x/√7 − 9y/(9/4) = 16 − 9",
@@ -119,11 +177,6 @@
             "text": "16x − 4√7y = 7√7",
             "style": "boxed"
           }
-        ],
-        "why": "The normal is not simply perpendicular-slope-through-the-point here because the tangent's slope is irrational; using the standard normal formula directly avoids extra rationalising steps until the very end.",
-        "common_mistakes": [
-          "Trying to find the normal from the tangent's slope by inspection, which is much harder here than using the normal formula directly.",
-          "Leaving √7 in the denominator instead of rationalising by multiplying through by √7 at the end."
         ]
       },
       {

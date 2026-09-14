@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.228, chapter 10 APPLICATIONS OF DERIVATIVES, the ROLLE'S AND LAGRANGE'S THEOREM sub-section, Very Short Answer question 1. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question — one mark per theorem, since the question names two. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and we ship it as ONE unit, so the sub-section is named above. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.228, chapter 10 APPLICATIONS OF DERIVATIVES, the ROLLE'S AND LAGRANGE'S THEOREM sub-section, Very Short Answer question 1. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question — one mark per theorem, since the question names two. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and we ship it as ONE unit, so the sub-section is named above. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would answer this — state the conditions each theorem needs and what each one concludes.",
   "answer": {
@@ -52,12 +52,19 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Rolle's theorem: Let f : [a, b] → ℝ be a function such that",
+          "Rolle's theorem: Let f : [a, b] → R be a function such that",
           "(i) f is continuous on the closed interval [a, b]",
           "(ii) f is differentiable on the open interval (a, b)",
           "(iii) f(a) = f(b)",
           "Then there exists at least one c ∈ (a, b) such that f′(c) = 0.",
-          "Geometrically: between two points of the curve at the same height there is at least one point where the tangent is horizontal."
+          "(f(a) = f(b) means the two end points of the graph",
+          {
+            "text": "  are at the same height)",
+            "style": "indent"
+          },
+          "Geometrically: between two points of the curve",
+          "at the same height there is at least one point",
+          "where the tangent is horizontal."
         ],
         "recall": {
           "credit": "say_it",
@@ -98,13 +105,38 @@
         "margin_note": "Second mark. (f(b) − f(a))/(b − a) is the slope of the chord and f′(c) is the slope of the tangent, so equal slopes means the two lines are parallel.",
         "memory_tip": "Lagrange has two conditions, Rolle has three. Take f(a) = f(b) away from Rolle and the 0 on the right becomes the chord slope.",
         "lines": [
-          "Lagrange's mean value theorem: Let f : [a, b] → ℝ be a function such that",
+          "Lagrange's mean value theorem:",
+          "Let f : [a, b] → R be a function such that",
           "(i) f is continuous on the closed interval [a, b]",
           "(ii) f is differentiable on the open interval (a, b)",
-          "Then there exists at least one c ∈ (a, b) such that f′(c) = (f(b) − f(a))/(b − a).",
-          "Geometrically: there is at least one point at which the tangent is parallel to the chord joining (a, f(a)) and (b, f(b)).",
+          "Then there exists at least one c ∈ (a, b)",
+          "such that f′(c) = (f(b) − f(a))/(b − a).",
           {
-            "text": "∴ Rolle's theorem is the special case f(a) = f(b) of Lagrange's theorem, where the right side becomes 0",
+            "text": "((f(b) − f(a))/(b − a) is the slope of the chord",
+            "added": true
+          },
+          {
+            "text": "  joining the two end points)",
+            "style": "indent",
+            "added": true
+          },
+          "Geometrically: there is at least one point",
+          "at which the tangent is parallel to the chord",
+          "joining (a, f(a)) and (b, f(b)).",
+          {
+            "text": "(when f(a) = f(b), the chord slope is 0, so f′(c) = 0)",
+            "added": true
+          },
+          {
+            "text": "∴ Rolle's theorem is the special case",
+            "style": "boxed"
+          },
+          {
+            "text": "f(a) = f(b) of Lagrange's theorem,",
+            "style": "boxed"
+          },
+          {
+            "text": "where the right side becomes 0",
             "style": "boxed"
           }
         ],
@@ -131,14 +163,37 @@
             "b minus a"
           ]
         },
-        "why": "Lagrange's theorem drops only the third condition of Rolle's theorem and replaces the conclusion f′(c) = 0 by the chord slope. Naming that link shows the two results are one theorem, and it is the line an examiner looks for when both are asked together.",
+        "why": "Lagrange's theorem drops only the third condition of Rolle's theorem and replaces the conclusion f′(c) = 0 by the chord slope. Naming that link shows that Rolle's theorem is the special case f(a) = f(b) of Lagrange's theorem.",
         "common_mistakes": [
-          "Writing the quotient upside down as (b − a)/(f(b) − f(a)).",
+          "Writing the reciprocal (b − a)/(f(b) − f(a)) instead of the quotient.",
           "Keeping f(a) = f(b) as a condition of Lagrange's theorem, which turns it back into Rolle's theorem.",
           "Saying the tangent is parallel to the x-axis, which is true for Rolle's theorem but not for Lagrange's."
+        ],
+        "lines_compact": [
+          "Lagrange's mean value theorem:",
+          "Let f : [a, b] → R be a function such that",
+          "(i) f is continuous on the closed interval [a, b]",
+          "(ii) f is differentiable on the open interval (a, b)",
+          "Then there exists at least one c ∈ (a, b)",
+          "such that f′(c) = (f(b) − f(a))/(b − a).",
+          "Geometrically: there is at least one point",
+          "at which the tangent is parallel to the chord",
+          "joining (a, f(a)) and (b, f(b)).",
+          {
+            "text": "∴ Rolle's theorem is the special case",
+            "style": "boxed"
+          },
+          {
+            "text": "f(a) = f(b) of Lagrange's theorem,",
+            "style": "boxed"
+          },
+          {
+            "text": "where the right side becomes 0",
+            "style": "boxed"
+          }
         ]
       }
     ]
   },
-  "insider_note": "Two statements, and the three conditions are the marked content in each. The only difference is Rolle's extra requirement f(a) = f(b), which turns the slope into 0."
+  "insider_note": "Two statements, and the conditions (three for Rolle, two for Lagrange) are the marked content. The difference is Rolle's extra condition f(a) = f(b), which makes the chord slope (f(b) − f(a))/(b − a) equal to 0."
 }

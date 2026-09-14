@@ -1,0 +1,89 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_abio_outcross_vs_crossbreed",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Applied Biology (Zoology-II)"
+  },
+  "chapter": "Applied Biology",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Distinguish between out-cross and cross-breed.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Out-cross",
+      "marks": 1
+    },
+    {
+      "label": "Cross-breed",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.58, VSAQ 125. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Applied Biology · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1",
+        "kind": "text",
+        "label": "Out-cross",
+        "marks": 1,
+        "mark_note": "Out-cross",
+        "why": "Both animals are of one breed, so the breed is kept while the close relationship is avoided.",
+        "common_mistakes": [
+          "Saying an out-cross uses two breeds. It uses one.",
+          "Leaving out the four to six generation rule."
+        ],
+        "memory_tip": "Out-cross: same breed, no shared ancestor.",
+        "margin_note": "Write it as two rows.",
+        "lines": [
+          "Outcross is the mating of animals of the",
+          "same breed but having no common ancestor on",
+          "either side of the pedigree for 4 to 6",
+          "generations.",
+          "The offspring of such a cross is an",
+          "outcross."
+        ]
+      },
+      {
+        "id": "s2",
+        "kind": "boxed_final",
+        "label": "Cross-breed",
+        "marks": 1,
+        "mark_note": "Cross-breed",
+        "why": "Here two different breeds are combined so that the good qualities of both appear in the offspring.",
+        "common_mistakes": [
+          "Saying a cross-breed uses one breed. It uses two.",
+          "Leaving out that superior animals are chosen."
+        ],
+        "memory_tip": "Cross-breed: two different breeds.",
+        "margin_note": "Mirror the wording of the first row.",
+        "lines": [
+          "In cross breeding, superior males of one",
+          "breed are mated with superior females of",
+          "another breed.",
+          {
+            "text": "The offspring of such a mating is a cross breed",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "The difference is whether the two animals belong to the SAME breed. Say that in both halves."
+}

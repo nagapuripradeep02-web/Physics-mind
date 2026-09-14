@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.200, chapter 9 DIFFERENTIATION, Short Answer question 3. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The mathematics was checked independently before writing: y was found numerically from y = xʸ at x = 1.2 (y = 1.25773454) and x = 1.1 (y = 1.11178201), and BOTH printed forms of dy/dx agree with a central difference quotient there (1.71048079 and 1.25687377). The question offers the answer in two forms, so the equivalence is authored as a scoring step rather than a remark."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.200, chapter 9 DIFFERENTIATION, Short Answer question 3. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The mathematics was checked independently before writing: y was found numerically from y = xʸ at x = 1.2 (y = 1.25773454) and x = 1.1 (y = 1.11178201), and BOTH printed forms of dy/dx agree with a central difference quotient there (1.71048079 and 1.25687377). The question offers the answer in two forms, so the equivalence is authored as a scoring step rather than a remark. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say what you do first, and how the two printed forms of the answer are connected.",
   "answer": {
@@ -62,6 +62,7 @@
           "Given y = xʸ",
           "Take logarithms on both sides (log means logₑ throughout):",
           "log y = log(xʸ)",
+          "(log(xʸ) = y log x)",
           "∴ log y = y log x"
         ],
         "recall": {
@@ -92,7 +93,7 @@
           "Writing log(xʸ) as (log x)ʸ instead of y log x.",
           "Treating xʸ as a power of x and writing y·xʸ⁻¹, which is only valid when the index is a constant."
         ],
-        "memory_tip": "One line, two uses: log y = y log x opens the question and closes it. It also connects the two printed forms of the answer."
+        "memory_tip": "log y = y log x is used twice: at the start and at the end. It also connects the two printed forms of the answer."
       },
       {
         "id": "s2_differentiate",
@@ -102,7 +103,19 @@
         "mark_note": "Method",
         "margin_note": "Second mark. Two dy/dx terms must appear — one from the left side by the chain rule, one from the right side by the product rule. Missing either one loses this mark.",
         "lines": [
-          "Differentiate with respect to x. The left side needs the chain rule and the right side the product rule, because y is a function of x.",
+          "Differentiate with respect to x.",
+          "The left side needs the chain rule",
+          "and the right side the product rule,",
+          "because y is a function of x.",
+          {
+            "text": "(d/dx(log y) = (1/y)(dy/dx); the product rule on y · log x:",
+            "added": true
+          },
+          {
+            "text": "  d/dx(y) = dy/dx and d/dx(log x) = 1/x)",
+            "style": "indent",
+            "added": true
+          },
           "(1/y)(dy/dx) = (dy/dx)(log x) + y(1/x)"
         ],
         "recall": {
@@ -133,7 +146,14 @@
           "Differentiating log y as 1/y and leaving out the factor dy/dx.",
           "Treating y as a constant in y log x, which gives only (y/x) and loses the second dy/dx term."
         ],
-        "memory_tip": "Every time y is differentiated, a dy/dx comes with it. Count the dy/dx terms in this line: there must be exactly two."
+        "memory_tip": "Every time y is differentiated, a dy/dx comes with it. Count the dy/dx terms in this line: there must be exactly two.",
+        "lines_compact": [
+          "Differentiate with respect to x.",
+          "The left side needs the chain rule",
+          "and the right side the product rule,",
+          "because y is a function of x.",
+          "(1/y)(dy/dx) = (dy/dx)(log x) + y(1/x)"
+        ]
       },
       {
         "id": "s3_collect",
@@ -144,9 +164,30 @@
         "margin_note": "Third mark. The bracket (1/y − log x) is combined over the denominator y before dividing. Doing that in one written line is what makes the y² appear in the numerator.",
         "lines": [
           "Bring the dy/dx terms to one side:",
+          {
+            "text": "(subtract (dy/dx)(log x) from both sides)",
+            "added": true
+          },
           "(1/y)(dy/dx) − (log x)(dy/dx) = y/x",
+          {
+            "text": "(take out the common factor dy/dx)",
+            "added": true
+          },
           "⇒ (dy/dx)(1/y − log x) = y/x",
+          {
+            "text": "(1/y − log x = 1/y − (y log x)/y = (1 − y log x)/y)",
+            "added": true
+          },
           "⇒ (dy/dx)·(1 − y log x)/y = y/x",
+          {
+            "text": "(multiply both sides by y/(1 − y log x):",
+            "added": true
+          },
+          {
+            "text": "  (y/x) · (y/(1 − y log x)) = y²/(x(1 − y log x)))",
+            "style": "indent",
+            "added": true
+          },
           "∴ dy/dx = y²/(x(1 − y log x))"
         ],
         "recall": {
@@ -175,9 +216,16 @@
         "why": "Both dy/dx terms must sit on the same side before dy/dx can be taken out as a common factor. Writing 1/y − log x as the single fraction (1 − y log x)/y is what turns the y on the right into y² after dividing.",
         "common_mistakes": [
           "Leaving the answer as (y/x)/(1/y − log x) without clearing the inner fraction.",
-          "Getting y instead of y² in the numerator by dividing rather than multiplying by y."
+          "Getting y instead of y² in the numerator by dividing by (1 − y log x) only, and forgetting the y under it in (1 − y log x)/y."
         ],
-        "memory_tip": "The y² is not an extra square — it is the y from y/x multiplied by the y released when 1/y − log x is written as one fraction."
+        "memory_tip": "The y² is not an extra square — it is the y from y/x multiplied by the y released when 1/y − log x is written as one fraction.",
+        "lines_compact": [
+          "Bring the dy/dx terms to one side:",
+          "(1/y)(dy/dx) − (log x)(dy/dx) = y/x",
+          "⇒ (dy/dx)(1/y − log x) = y/x",
+          "⇒ (dy/dx)·(1 − y log x)/y = y/x",
+          "∴ dy/dx = y²/(x(1 − y log x))"
+        ]
       },
       {
         "id": "s4_two_forms",
@@ -188,6 +236,10 @@
         "margin_note": "Last mark. The question prints the answer twice, so the examiner expects the link between the two brackets to be written down, not assumed. It is a single substitution from step 1.",
         "lines": [
           "From step 1, log y = y log x",
+          {
+            "text": "(so in the bracket, y log x can be replaced by log y)",
+            "added": true
+          },
           "So the bracket 1 − y log x can be written as 1 − log y",
           {
             "text": "∴ dy/dx = y²/(x(1 − y log x)) = y²/(x(1 − log y))",
@@ -217,12 +269,20 @@
             "both forms"
           ]
         },
-        "why": "The two printed answers are not two results. They are one result written with the bracket in two ways, and the relation taken in step 1 is exactly what converts one into the other, so the equivalence costs one line.",
+        "why": "The two printed answers are not two results. They are one result written with the bracket in two ways, and the relation taken in step 1 is exactly what converts one into the other, so the equivalence takes one line.",
         "common_mistakes": [
           "Giving only one of the two forms when the question asks for both.",
           "Trying to prove the equivalence from the original relation y = xʸ again instead of using the logarithm line already written."
         ],
-        "memory_tip": "Go back to the line log y = y log x to finish this step: wherever y log x appears, log y may be written instead."
+        "memory_tip": "Go back to the line log y = y log x to finish this step: wherever y log x appears, log y may be written instead.",
+        "lines_compact": [
+          "From step 1, log y = y log x",
+          "So the bracket 1 − y log x can be written as 1 − log y",
+          {
+            "text": "∴ dy/dx = y²/(x(1 − y log x)) = y²/(x(1 − log y))",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

@@ -166,6 +166,13 @@ export const PAPER_PATTERNS: Record<string, PaperPattern> = {
     // book prints a Botany practical sheet but no mark value for it, and copying the
     // first-year 15 would be inventing a figure.
     botany_2: { label: 'Botany-II', total: 60, sections: ABC_60, wef: '2026-27' },
+    // Senior Inter Zoology Paper-II (2026-08-29). Same ABC_60 shape, read off the
+    // book's own Model Paper-1 (p.75): Section A 'Answer ALL' 10 x 2 = 20, Section B
+    // 'any SIX' of the eight printed x 4 = 24, Section C 'any TWO' of the three
+    // printed x 8 = 16, total 60. `internal` is deliberately omitted for the same
+    // reason as the three rows above: the book prints a practical sheet but no mark
+    // value for it, and copying the first-year 15 would be inventing a figure.
+    zoology_2: { label: 'Zoology-II', total: 60, sections: ABC_60, wef: '2026-27' },
 
     // Senior Inter Maths-2B (2026-08-29). The OLD 75-mark shape — see
     // ABC_75_MATHS_PRE_REFORM above. `internal` is deliberately omitted: second year
@@ -300,6 +307,14 @@ const lineSchema = z.union([
          * a small break in that illusion (docs/patterns/answer_book.md).
          */
         render: z.enum(['plain', 'katex']).optional(),
+        /**
+         * This line is working the EXPANSION added — it is not in `lines_compact`.
+         * Set by answer-book/tools/mark_expansion.py, never by hand: it is the
+         * anchored diff between the short answer and the full one. The page draws
+         * a flagged line in the second pen so a student can see what unfolded.
+         * Meaningless on a step with no `lines_compact`, and ignored there.
+         */
+        added: z.literal(true).optional(),
     }),
 ]);
 
@@ -342,6 +357,18 @@ const stepSchema = z
         /** Rail-side guidance (never rendered on the notebook page). Future chatbot grounding. */
         margin_note: z.string().optional(),
         lines: z.array(lineSchema).optional(),
+        /**
+         * The SHORT answer for this step — the lines as they read before the step
+         * was written out in full. `lines` stays the full working and is what the
+         * page shows by default on a card without this key, so a card that has
+         * never been expanded is unaffected.
+         *
+         * Present only where the expansion actually changed the step: an untouched
+         * step falls back to `lines`, so the same lines are never stored twice.
+         * Derived from git by answer-book/tools/mark_expansion.py — the short answer
+         * IS the version that shipped, not a re-compression written by hand.
+         */
+        lines_compact: z.array(lineSchema).optional(),
         figure: figureSchema.optional(),
         /** Voice-recall rubric. All steps carry one, or none do (enforced question-level). */
         recall: stepRecallSchema.optional(),
@@ -375,6 +402,26 @@ const stepSchema = z
         }
         if (step.marks === 0 && step.mark_note) {
             ctx.addIssue({ code: 'custom', message: `step "${step.id}": mark_note is set but marks is 0 — an unmarked step gets no red mark` });
+        }
+        if (step.lines_compact) {
+            if (step.kind === 'diagram') {
+                ctx.addIssue({ code: 'custom', message: `step "${step.id}": a diagram step has no lines, so it cannot carry lines_compact` });
+            }
+            if (step.lines_compact.length === 0) {
+                ctx.addIssue({ code: 'custom', message: `step "${step.id}": lines_compact is empty — omit the key instead, and the short answer falls back to lines[]` });
+            }
+            // The short answer is SHORTER. A compact copy at least as long as the
+            // full working means the two were swapped, which would make Simplify
+            // hide working rather than reveal it.
+            if (step.lines && step.lines_compact.length >= step.lines.length) {
+                ctx.addIssue({ code: 'custom', message: `step "${step.id}": lines_compact (${step.lines_compact.length}) is not shorter than lines (${step.lines.length}) — the short answer and the full working look swapped` });
+            }
+            // A flagged line that is not new working makes the second pen lie.
+            if (step.lines && !step.lines.some((l) => typeof l !== 'string' && l.added)) {
+                ctx.addIssue({ code: 'custom', message: `step "${step.id}": lines_compact is set but no line is marked added — re-run answer-book/tools/mark_expansion.py` });
+            }
+        } else if (step.lines && step.lines.some((l) => typeof l !== 'string' && l.added)) {
+            ctx.addIssue({ code: 'custom', message: `step "${step.id}": a line is marked added but the step has no lines_compact — there is no short answer for it to be added to` });
         }
     });
 
@@ -454,7 +501,7 @@ export const answerBookQuestionSchema = z
         // notebook.js LEGACY_PHYSICS_KEYS remaps exact `physics-N` keys for the
         // 2026-27 first-year renumbering, so second-year chapters filed under
         // `physics` would be silently remapped onto first-year units.
-        subject: z.enum(['physics', 'chemistry', 'mathematics', 'mathematics_1b', 'botany', 'zoology', 'physics_2', 'chemistry_2', 'botany_2', 'mathematics_2a', 'mathematics_2b']),
+        subject: z.enum(['physics', 'chemistry', 'mathematics', 'mathematics_1b', 'botany', 'zoology', 'physics_2', 'chemistry_2', 'botany_2', 'mathematics_2a', 'mathematics_2b', 'zoology_2']),
         year_cycle: z.enum(['first_year', 'second_year']),
         class_label: z.string().min(1),
         unit: z.object({ number: z.number().int().positive(), name: z.string().min(1) }),

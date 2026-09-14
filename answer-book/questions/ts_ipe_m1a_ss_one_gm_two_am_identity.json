@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.23, chapter 3 SEQUENCES & SERIES, Very Short Answer question 23. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sequences and Series is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.23, chapter 3 SEQUENCES & SERIES, Very Short Answer question 23. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sequences and Series is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say which progression a, p, q, b are in, and what g² equals.",
   "answer": {
@@ -55,7 +55,9 @@
           "Let the two numbers be a and b",
           "g is the geometric mean between a and b, so g² = ab",
           "p and q are two arithmetic means, so a, p, q, b are in A.P.",
-          "Let d be the common difference. Then p = a + d,  q = a + 2d,  b = a + 3d"
+          "Let d be the common difference. Then",
+          "(each term is d more than the one before)",
+          "p = a + d,  q = a + 2d,  b = a + 3d"
         ],
         "recall": {
           "credit": "say_it",
@@ -94,8 +96,20 @@
         "margin_note": "Second mark. Both simplifications and the closing line ab = g². Show the d terms cancelling — that is the working the examiner reads.",
         "memory_tip": "2p − q gives back the first number and 2q − p gives back the second.",
         "lines": [
+          {
+            "text": "(put p = a + d and q = a + 2d)",
+            "added": true
+          },
           "2p − q = 2(a + d) − (a + 2d) = 2a + 2d − a − 2d = a",
-          "2q − p = 2(a + 2d) − (a + d) = 2a + 4d − a − d = a + 3d = b",
+          "2q − p = 2(a + 2d) − (a + d)",
+          {
+            "text": "= 2a + 4d − a − d = a + 3d = b",
+            "style": "indent"
+          },
+          {
+            "text": "(multiply the two results: a × b = ab)",
+            "added": true
+          },
           "So (2p − q)(2q − p) = ab = g²",
           {
             "text": "∴ g² = (2p − q)(2q − p)",
@@ -128,6 +142,19 @@
         "common_mistakes": [
           "Dropping the bracket and writing 2a + 2d − a + 2d, which leaves a stray 4d.",
           "Stopping at ab without the closing line that ab = g²."
+        ],
+        "lines_compact": [
+          "2p − q = 2(a + d) − (a + 2d) = 2a + 2d − a − 2d = a",
+          "2q − p = 2(a + 2d) − (a + d)",
+          {
+            "text": "= 2a + 4d − a − d = a + 3d = b",
+            "style": "indent"
+          },
+          "So (2p − q)(2q − p) = ab = g²",
+          {
+            "text": "∴ g² = (2p − q)(2q − p)",
+            "style": "boxed"
+          }
         ]
       }
     ]

@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.192, chapter 9 DIFFERENTIATION, Very Short Answer question 4. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer sec x was checked numerically before it was written: the central difference quotient reads 1.0467516 at x = 0.3 against sec(0.3) = 1.0467516, and 1.8508157 at x = 1 against sec(1) = 1.8508157."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.192, chapter 9 DIFFERENTIATION, Very Short Answer question 4. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer sec x was checked numerically before it was written: the central difference quotient reads 1.0467516 at x = 0.3 against sec(0.3) = 1.0467516, and 1.8508157 at x = 1 against sec(1) = 1.8508157. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say what you differentiate first and what cancels at the end.",
   "answer": {
@@ -54,8 +54,11 @@
           },
           "y = log(sec x + tan x),  where log is the natural logarithm.",
           "Here sec x + tan x > 0, so cos x > 0.",
+          "(the chain rule for the logarithm)",
           "For u = sec x + tan x,  d/dx(log u) = (1/u) · du/dx",
+          "(d/dx(sec x) = sec x tan x and d/dx(tan x) = sec²x)",
           "du/dx = d/dx(sec x) + d/dx(tan x) = sec x tan x + sec²x",
+          "(put u = sec x + tan x and du/dx = sec x tan x + sec²x)",
           "∴ dy/dx = (sec x tan x + sec²x)/(sec x + tan x)"
         ],
         "recall": {
@@ -96,8 +99,20 @@
         "memory_tip": "This is a standard result worth knowing on sight: log(sec x + tan x) differentiates to sec x, with nothing left over.",
         "lines": [
           "Take sec x common in the numerator:",
+          {
+            "text": "(sec x tan x + sec x · sec x = sec x(tan x + sec x))",
+            "added": true
+          },
           "sec x tan x + sec²x = sec x(tan x + sec x)",
+          {
+            "text": "(put sec x(tan x + sec x) as the numerator)",
+            "added": true
+          },
           "∴ dy/dx = sec x(sec x + tan x)/(sec x + tan x)",
+          {
+            "text": "(cancel sec x + tan x, which is not 0 because it is positive)",
+            "added": true
+          },
           {
             "text": "∴ dy/dx = sec x",
             "style": "boxed"
@@ -129,9 +144,18 @@
         "common_mistakes": [
           "Stopping at the unsimplified fraction and not taking sec x common.",
           "Cancelling sec x with sec x in the denominator instead of cancelling the whole bracket."
+        ],
+        "lines_compact": [
+          "Take sec x common in the numerator:",
+          "sec x tan x + sec²x = sec x(tan x + sec x)",
+          "∴ dy/dx = sec x(sec x + tan x)/(sec x + tan x)",
+          {
+            "text": "∴ dy/dx = sec x",
+            "style": "boxed"
+          }
         ]
       }
     ]
   },
-  "insider_note": "The numerator factorises as sec x(sec x + tan x), which cancels the whole denominator. The answer is just sec x — a surprisingly clean result that is easy to distrust."
+  "insider_note": "The numerator factorises as sec x(sec x + tan x), which cancels the whole denominator. The answer is sec x."
 }

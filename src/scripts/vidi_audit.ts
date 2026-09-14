@@ -27,7 +27,8 @@ import {
     inventedMarks, summedMarks, idiomsIn, romanisedTeluguIn, markdownIn,
     stepIdsIn, answeredOutOfBank, bareMarkOnlyClaims,
     leakedInternalVocabulary, overWordBudget, WORD_BUDGET, looksTruncated,
-    IDEAL_GAS_PROBE, NERNST_PROBE, HENDERSON_PROBE, INTEGRATION_BY_PARTS_PROBE, SIMPSONS_RULE_PROBE, type OutOfBankProbe,
+    IDEAL_GAS_PROBE, NERNST_PROBE, HENDERSON_PROBE, INTEGRATION_BY_PARTS_PROBE, SIMPSONS_RULE_PROBE,
+    MITOSIS_PHASES_PROBE, COCKROACH_DIGESTION_PROBE, CALVIN_CYCLE_PROBE, MENSTRUAL_CYCLE_PROBE, type OutOfBankProbe,
 } from '../lib/answerBook/vidiChecks';
 
 const ROOT = process.cwd();
@@ -69,6 +70,10 @@ function subjectOf(id: string): string {
     if (id.startsWith('ts_ipe_m2a_')) return 'mathematics_2a';
     if (id.startsWith('ts_ipe_m2b_')) return 'mathematics_2b';
     if (id.startsWith('ts_ipe_p2_')) return 'physics_2';
+    if (id.startsWith('ts_ipe_b1_')) return 'botany';
+    if (id.startsWith('ts_ipe_b2_')) return 'botany_2';
+    if (id.startsWith('ts_ipe_z1_')) return 'zoology';
+    if (id.startsWith('ts_ipe_z2_')) return 'zoology_2';
     return 'physics';
 }
 
@@ -171,6 +176,39 @@ const SUBJECTS: Record<string, SubjectCfg> = {
         // M is not a matrix name in 2B, but "2M" still reads as a mark claim to a
         // student writing "let the tangent be y = 2M x" — keep the human bucket.
         bareMarkAmbiguous: true,
+    },
+    // The four biology papers (2026-09-04). Until now none had an entry, so a botany
+    // or zoology run fell through to the physics config: the ideal-gas bait, "explain
+    // the physics", and "Physics-I" printed over the results. Baits are chosen by the
+    // grep method documented on each probe in vidiChecks.ts — a topic with ZERO hits
+    // in the paper under test and a real home in another paper of the bank.
+    botany: {
+        label: 'Botany-I',
+        whyAsk: 'but WHY does this happen in the plant? explain the biology behind it, not just the steps',
+        outOfBankAsk: 'can you give me the answer for the calvin cycle? it is in my exam tomorrow',
+        probe: CALVIN_CYCLE_PROBE,
+        bareMarkAmbiguous: false,
+    },
+    botany_2: {
+        label: 'Botany-II',
+        whyAsk: 'but WHY does this happen in the plant? explain the biology behind it, not just the steps',
+        outOfBankAsk: 'can you give me the answer for the stages of mitosis? it is in my exam tomorrow',
+        probe: MITOSIS_PHASES_PROBE,
+        bareMarkAmbiguous: false,
+    },
+    zoology: {
+        label: 'Zoology-I',
+        whyAsk: 'but WHY does this happen in the body? explain the biology behind it, not just the steps',
+        outOfBankAsk: 'can you give me the answer for the menstrual cycle? it is in my exam tomorrow',
+        probe: MENSTRUAL_CYCLE_PROBE,
+        bareMarkAmbiguous: false,
+    },
+    zoology_2: {
+        label: 'Zoology-II',
+        whyAsk: 'but WHY does this happen in the body? explain the biology behind it, not just the steps',
+        outOfBankAsk: 'can you give me the answer for the digestive system of cockroach? it is in my exam tomorrow',
+        probe: COCKROACH_DIGESTION_PROBE,
+        bareMarkAmbiguous: false,
     },
 };
 

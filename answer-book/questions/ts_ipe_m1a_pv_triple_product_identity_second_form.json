@@ -42,7 +42,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.80, chapter 7 PRODUCT OF VECTORS, Long Answer question 12(ii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+2+3+1 split weights the right-hand side most heavily, because it carries two scalar products, six terms in each component and the cancellation that leaves four. This is the grouping with the bracket on the RIGHT. The bank also carries the other grouping, (a × b) × c = (c·a)b − (c·b)a, as a separate card; the two identities give different vectors and neither proves the other. Paper position: Maths-1A Section C prints 3 long answers at 8 marks each and the student answers any 2; Product of Vectors is one of the units that can fill a Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.80, chapter 7 PRODUCT OF VECTORS, Long Answer question 12(ii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+2+3+1 split weights the right-hand side most heavily, because it carries two scalar products, six terms in each component and the cancellation that leaves four. This is the grouping with the bracket on the RIGHT. The bank also carries the other grouping, (a × b) × c = (c·a)b − (c·b)a, as a separate card; the two identities give different vectors and neither proves the other. Paper position: Maths-1A Section C prints 3 long answers at 8 marks each and the student answers any 2; Product of Vectors is one of the units that can fill a Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this identity — say what you do to each side and how the two meet.",
   "answer": {
@@ -103,12 +103,21 @@
         "marks": 1,
         "mark_note": "b × c",
         "margin_note": "Second mark. The bracket is worked first, so b × c comes before a is used at all. Write the j term with its sign already absorbed.",
-        "memory_tip": "The bracket first: b × c, with b on the top row. Absorb the j sign now.",
+        "memory_tip": "The bracket first: b × c, with b on the second row under i, j, k. Absorb the j sign now.",
         "lines": [
           {
             "text": "b \\times c = \\begin{vmatrix} i & j & k \\\\ b_1 & b_2 & b_3 \\\\ c_1 & c_2 & c_3 \\end{vmatrix}",
             "render": "katex",
             "style": "eq"
+          },
+          {
+            "text": "(expand along i, j, k with signs + − +; the j term",
+            "added": true
+          },
+          {
+            "text": "  −(b₁c₃ − b₃c₁) is written as +(b₃c₁ − b₁c₃))",
+            "style": "indent",
+            "added": true
           },
           "= i(b₂c₃ − b₃c₂) + j(b₃c₁ − b₁c₃)",
           "   + k(b₁c₂ − b₂c₁)"
@@ -135,10 +144,19 @@
             "components"
           ]
         },
-        "why": "This vector goes into the SECOND row of the next determinant, with a in the first. Getting that order right is the difference between this identity and the other grouping.",
+        "why": "This vector is the right factor of a × (b × c), so it plays the part of v in a × v in the next step. Getting that order right is the difference between this identity and the other grouping.",
         "common_mistakes": [
           "Losing the minus on the j term rather than absorbing it into the bracket.",
           "Crossing a with b first, which is a different identity."
+        ],
+        "lines_compact": [
+          {
+            "text": "b \\times c = \\begin{vmatrix} i & j & k \\\\ b_1 & b_2 & b_3 \\\\ c_1 & c_2 & c_3 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= i(b₂c₃ − b₃c₂) + j(b₃c₁ − b₁c₃)",
+          "   + k(b₁c₂ − b₂c₁)"
         ]
       },
       {
@@ -150,6 +168,15 @@
         "margin_note": "Two marks. Cross a with that result. Only the i component is written out below — j and k follow the same pattern with the letters rotated.",
         "memory_tip": "Write only the i component in full; j and k follow with the letters rotated.",
         "lines": [
+          {
+            "text": "(for a × v the i component is a₂v₃ − a₃v₂; here",
+            "added": true
+          },
+          {
+            "text": "  v₃ = b₁c₂ − b₂c₁ and v₂ = b₃c₁ − b₁c₃)",
+            "style": "indent",
+            "added": true
+          },
           "Now cross a with this. The i component",
           "of a × (b × c) is",
           "a₂(b₁c₂ − b₂c₁) − a₃(b₃c₁ − b₁c₃)",
@@ -184,6 +211,14 @@
         "common_mistakes": [
           "Dropping a term when multiplying out.",
           "Expanding all three components in full and running out of time and space."
+        ],
+        "lines_compact": [
+          "Now cross a with this. The i component",
+          "of a × (b × c) is",
+          "a₂(b₁c₂ − b₂c₁) − a₃(b₃c₁ − b₁c₃)",
+          "= a₂b₁c₂ − a₂b₂c₁ − a₃b₃c₁ + a₃b₁c₃",
+          "The j and k components follow the",
+          "same pattern, letters rotated.   …(1)"
         ]
       },
       {

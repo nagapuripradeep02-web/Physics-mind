@@ -35,7 +35,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.91 — VSAQ chapter 17 Product of Vectors, answer 122.1. Printed appearances: TS 17. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four questions to a page in two columns. It is not a bare guess: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark VSAQ, applied here to the two steps of this question. The book's chapter header carries ★★★ and reads '2 Marks'. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q7 is the Product of Vectors slot."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.91 — VSAQ chapter 17 Product of Vectors, answer 122.1. Printed appearances: TS 17. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four questions to a page in two columns. It is not a bare guess: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark VSAQ, applied here to the two steps of this question. The book's chapter header carries ★★★ and reads '2 Marks'. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q7 is the Product of Vectors slot. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find a unit vector perpendicular to two given vectors.",
   "answer": {
@@ -62,8 +62,23 @@
             "render": "katex",
             "style": "eq"
           },
+          "Expand along the top row, i, j, k (signs + − +):",
+          {
+            "text": "  i: (3)(−3) − (−1)(−6) = −15",
+            "style": "indent"
+          },
+          {
+            "text": "  j: (4)(−3) − (−1)(2) = −10, with a minus in front",
+            "style": "indent"
+          },
+          {
+            "text": "  k: (4)(−6) − (3)(2) = −30",
+            "style": "indent"
+          },
           "= i(−9 − 6) − j(−12 + 2) + k(−24 − 6)",
+          "(−15, 10 and −30 all have the factor 5)",
           "= −15i + 10j − 30k = 5(−3i + 2j − 6k)",
+          "(|5v| = 5|v|)",
           "|a × b| = 5√(9 + 4 + 36) = 5√49 = 35"
         ],
         "recall": {
@@ -105,6 +120,10 @@
         "memory_tip": "The 5 cancels into the 35, leaving 7 below. Keep the ± — there are two unit normals.",
         "lines": [
           "Required unit vector = ± (a × b)/|a × b|",
+          {
+            "text": "(35 = 5 × 7, so the 5 cancels)",
+            "added": true
+          },
           "= ± 5(−3i + 2j − 6k)/35 = ± (−3i + 2j − 6k)/7",
           "Both signs are allowed, so this is the same",
           "answer written more simply:",
@@ -135,10 +154,20 @@
             "two normals"
           ]
         },
-        "why": "Reversing a perpendicular leaves it perpendicular, so both signs are correct answers. Dropping the ± reports only one of them.",
+        "why": "Reversing a perpendicular leaves it perpendicular, so both signs are correct answers. The question asks for a unit vector, so either sign alone is a full answer; writing ± gives both.",
         "common_mistakes": [
-          "Omitting the ± sign.",
+          "Dividing by |a||b| instead of |a × b|.",
           "Failing to cancel the 5 into the 35."
+        ],
+        "lines_compact": [
+          "Required unit vector = ± (a × b)/|a × b|",
+          "= ± 5(−3i + 2j − 6k)/35 = ± (−3i + 2j − 6k)/7",
+          "Both signs are allowed, so this is the same",
+          "answer written more simply:",
+          {
+            "text": "∴ Unit vector = ± (3i − 2j + 6k)/7",
+            "style": "boxed"
+          }
         ]
       }
     ]

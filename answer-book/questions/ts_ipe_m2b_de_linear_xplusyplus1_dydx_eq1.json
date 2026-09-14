@@ -43,7 +43,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.75 — SAQ chapter 11 Differential Equations, answer 101, the first answer on the page. Not on an SSP page (this book's SAQ SSP pages for this chapter are only 72 and 73). Printed appearance tag: TS 17. The mark split is OURS: this answer carries no printed margin marks. It is patterned on answer 100's shape (also linear in x, also finishing with an integration by parts), since this equation shares the same four checkpoints: rewrite as linear in x, find the I.F., set up the integral, then integrate by parts and finish — though here no t-substitution is needed first since Q is already a first-degree polynomial in y. Star rank: the Differential Equations SAQ chapter is ★★ on the SAQ chapter table (book p.49); every entry takes stars 2, a chapter-level rank. This question does not appear in the Bullet Model Paper's Q17 set (book p.110), so this card is chapter practice for the same linear-in-x skill as answer 100. The book's working was re-derived line by line and is correct throughout, including the by-parts result x + y + 2 = ce^y. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book's five Guess Papers (pp.118-127) are the only stand-in. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.75 — SAQ chapter 11 Differential Equations, answer 101, the first answer on the page. Not on an SSP page (this book's SAQ SSP pages for this chapter are only 72 and 73). Printed appearance tag: TS 17. The mark split is OURS: this answer carries no printed margin marks. It is patterned on answer 100's shape (also linear in x, also finishing with an integration by parts), since this equation shares the same four checkpoints: rewrite as linear in x, find the I.F., set up the integral, then integrate by parts and finish — though here no t-substitution is needed first since Q is already a first-degree polynomial in y. Star rank: the Differential Equations SAQ chapter is ★★ on the SAQ chapter table (book p.49); every entry takes stars 2, a chapter-level rank. This question does not appear in the Bullet Model Paper's Q17 set (book p.110), so this card is chapter practice for the same linear-in-x skill as answer 100. The book's working was re-derived line by line and is correct throughout, including the by-parts result x + y + 2 = ce^y. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book's five Guess Papers (pp.118-127) are the only stand-in. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "insider_note": "The unknown x sits without a derivative next to the dy term, which is the signal to treat this as linear IN x rather than forcing it into the usual dy/dx form; since Q turns out to be the first-degree polynomial y+1, a single integration by parts finishes the job.",
   "answer": {
@@ -66,15 +66,17 @@
             "style": "heading"
           },
           "Given D.E is (x + y + 1)dy/dx = 1",
+          "Turn it over, since dx/dy = 1/(dy/dx):",
           "⇒ dx/dy = x + y + 1 ⇒ dx/dy − x = y + 1",
           "This is in the form dx/dy + xP(y) = Q(y),",
           "which is linear D.E in x. Here P = −1",
+          "and Q = y + 1",
           "⇒ ∫P dy = ∫−1 dy = −y"
         ],
         "why": "Taking the reciprocal dx/dy = 1/(dy/dx) turns the equation the right way up; x sits alone (without a derivative) next to a dy term, which is the signal for linear-in-x rather than linear-in-y.",
         "common_mistakes": [
           "Trying to separate the variables directly, missing that this equation is linear once inverted.",
-          "Losing the −x term when moving it across, writing the standard form as dx/dy = x + y + 1 instead of dx/dy − x = y + 1."
+          "Losing the minus sign when moving x across, writing dx/dy + x = y + 1 (P = +1) instead of dx/dy − x = y + 1."
         ]
       },
       {
@@ -83,15 +85,30 @@
         "label": "Find the integrating factor",
         "marks": 1,
         "mark_note": "I.F.",
-        "margin_note": "One mark. I.F. = e^(∫P dy) always; here ∫P dy = −y.",
+        "margin_note": "One mark. I.F. = e to the power ∫P dy always; here ∫P dy = −y.",
         "memory_tip": "A constant P integrates to a straight line — ∫(−1)dy = −y, nothing more to it.",
         "lines": [
-          "∴ I.F. = e^(∫P dy) = e^(−y)"
+          {
+            "text": "The integrating factor is e to the power ∫P dy:",
+            "added": true
+          },
+          {
+            "text": "\\therefore \\text{ I.F. }\\ = e^{\\int P dy} = e^{-y}",
+            "render": "katex",
+            "style": "normal"
+          }
         ],
-        "why": "The integrating-factor formula e^(∫P dy) applies exactly the same way whether the equation is linear in x or in y; here P = −1 gives ∫P dy = −y directly.",
+        "why": "The integrating-factor formula e to the power ∫P dy applies exactly the same way whether the equation is linear in x or in y; here P = −1 gives ∫P dy = −y directly.",
         "common_mistakes": [
-          "Writing the I.F. as e^y by dropping the minus sign on P.",
+          "Writing the I.F. as eʸ by dropping the minus sign on P.",
           "Confusing this P = −1 with a P(x) case and integrating with respect to x instead of y."
+        ],
+        "lines_compact": [
+          {
+            "text": "\\therefore \\text{ I.F. }\\ = e^{\\int P dy} = e^{-y}",
+            "render": "katex",
+            "style": "normal"
+          }
         ]
       },
       {
@@ -104,12 +121,29 @@
         "memory_tip": "A polynomial times an exponential always calls for integration by parts, never a plain substitution.",
         "lines": [
           "Hence the solution is x·(I.F.) = ∫(I.F.)Q dy",
-          "⇒ x·e^(−y) = ∫e^(−y)·(y + 1) dy"
+          {
+            "text": "Here I.F. = e⁻ʸ and Q = y + 1:",
+            "added": true
+          },
+          "⇒ x·e⁻ʸ = ∫e⁻ʸ·(y + 1) dy",
+          {
+            "text": "A polynomial times an exponential needs",
+            "added": true
+          },
+          {
+            "text": "  integration by parts.",
+            "style": "indent",
+            "added": true
+          }
         ],
-        "why": "Multiplying Q = y + 1 by the integrating factor e^(−y) gives the integral that must be evaluated; since it is a product of a polynomial and an exponential, integration by parts is the natural next step.",
+        "why": "Multiplying Q = y + 1 by the integrating factor e⁻ʸ gives the integral that must be evaluated; since it is a product of a polynomial and an exponential, integration by parts is the natural next step.",
         "common_mistakes": [
           "Forgetting to multiply Q by the integrating factor before integrating.",
           "Attempting a substitution here instead of recognising that this integral needs integration by parts."
+        ],
+        "lines_compact": [
+          "Hence the solution is x·(I.F.) = ∫(I.F.)Q dy",
+          "⇒ x·e⁻ʸ = ∫e⁻ʸ·(y + 1) dy"
         ]
       },
       {
@@ -118,24 +152,48 @@
         "label": "Integrate by parts and finish",
         "marks": 1,
         "mark_note": "Result",
-        "margin_note": "The last mark. ∫e^(−y)(y+1)dy = −(y+2)e^(−y) + c by parts; divide through by e^(−y) to isolate x + y + 2.",
-        "memory_tip": "∫(linear)·e^(−y) dy by parts always leaves one extra e^(−y) term beyond the direct product — check for it before finishing.",
+        "margin_note": "The last mark. ∫e⁻ʸ(y+1)dy = −(y+2)e⁻ʸ + c by parts; divide through by e⁻ʸ to isolate x + y + 2.",
+        "memory_tip": "∫(linear)·e⁻ʸ dy by parts always leaves one extra e⁻ʸ term beyond the direct product — check for it before finishing.",
         "lines": [
-          "∫e^(−y)(y + 1) dy = −(y + 1)e^(−y) − ∫(−e^(−y))dy",
-          "= −(y + 1)e^(−y) + ∫e^(−y)dy",
-          "= −(y + 1)e^(−y) − e^(−y) + c = −(y + 2)e^(−y) + c",
-          "So x·e^(−y) = −(y + 2)e^(−y) + c",
-          "⇒ x·e^(−y) + (y + 2)e^(−y) = c",
-          "⇒ (x + y + 2)e^(−y) = c",
           {
-            "text": "The solution is x + y + 2 = ce^y",
+            "text": "By parts with u = y + 1, dv = e⁻ʸ dy, v = −e⁻ʸ:",
+            "added": true
+          },
+          "∫e⁻ʸ(y + 1) dy = −(y + 1)e⁻ʸ − ∫(−e⁻ʸ)dy",
+          "= −(y + 1)e⁻ʸ + ∫e⁻ʸdy",
+          {
+            "text": "and ∫e⁻ʸ dy = −e⁻ʸ:",
+            "added": true
+          },
+          "= −(y + 1)e⁻ʸ − e⁻ʸ + c = −(y + 2)e⁻ʸ + c",
+          "So x·e⁻ʸ = −(y + 2)e⁻ʸ + c",
+          "⇒ x·e⁻ʸ + (y + 2)e⁻ʸ = c",
+          "⇒ (x + y + 2)e⁻ʸ = c",
+          {
+            "text": "Multiply both sides by eʸ:",
+            "added": true
+          },
+          {
+            "text": "The solution is x + y + 2 = ceʸ",
             "style": "boxed"
           }
         ],
-        "why": "Integrating by parts with u = y+1 and dv = e^(−y)dy gives −(y+2)e^(−y) after combining terms; moving the exponential across to the right side turns it into the standard multiplying factor ce^y.",
+        "why": "Integrating by parts with u = y+1 and dv = e⁻ʸdy gives −(y+2)e⁻ʸ after combining terms; moving the exponential across to the right side turns it into the standard multiplying factor ceʸ.",
         "common_mistakes": [
-          "Choosing dv = (y + 1)dy instead of dv = e^(−y)dy, which does not simplify the integral.",
-          "Forgetting the extra −e^(−y) term that comes from ∫e^(−y)dy inside the by-parts formula, and stopping at −(y + 1)e^(−y) + c."
+          "Choosing dv = (y + 1)dy instead of dv = e⁻ʸdy, which does not simplify the integral.",
+          "Forgetting the extra −e⁻ʸ term that comes from ∫e⁻ʸdy inside the by-parts formula, and stopping at −(y + 1)e⁻ʸ + c."
+        ],
+        "lines_compact": [
+          "∫e⁻ʸ(y + 1) dy = −(y + 1)e⁻ʸ − ∫(−e⁻ʸ)dy",
+          "= −(y + 1)e⁻ʸ + ∫e⁻ʸdy",
+          "= −(y + 1)e⁻ʸ − e⁻ʸ + c = −(y + 2)e⁻ʸ + c",
+          "So x·e⁻ʸ = −(y + 2)e⁻ʸ + c",
+          "⇒ x·e⁻ʸ + (y + 2)e⁻ʸ = c",
+          "⇒ (x + y + 2)e⁻ʸ = c",
+          {
+            "text": "The solution is x + y + 2 = ceʸ",
+            "style": "boxed"
+          }
         ]
       }
     ]

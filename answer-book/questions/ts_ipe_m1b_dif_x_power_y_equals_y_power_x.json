@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.205, chapter 9 DIFFERENTIATION, Long Answer question 5. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section C question: two marks for the logarithm move, two for the implicit differentiation, two for collecting dy/dx, two for reaching the printed form. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section C runs Q19 to Q21 at 8 marks each, answer any 2 of 3, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The mathematics was checked independently before writing, and the working lands on the printed target exactly. It was also checked numerically at two points of the curve xʸ = yˣ: at (2, 4) the printed formula gives −3.177398899, and at (1.5, 7.408765) it gives −14.465422816; both agree to nine decimal places with the implicit-derivative value obtained from the curve itself."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.205, chapter 9 DIFFERENTIATION, Long Answer question 5. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section C question: two marks for the logarithm move, two for the implicit differentiation, two for collecting dy/dx, two for reaching the printed form. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section C runs Q19 to Q21 at 8 marks each, answer any 2 of 3, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The mathematics was checked independently before writing, and the working lands on the printed target exactly. It was also checked numerically at two points of the curve xʸ = yˣ: at (2, 4) the printed formula gives −3.177398899, and at (1.5, 7.408765) it gives −14.465422816; both agree to nine decimal places with the implicit-derivative value obtained from the curve itself. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — say what you do to both sides first, and what happens to dy/dx after that.",
   "answer": {
@@ -61,8 +61,12 @@
             "style": "heading"
           },
           "Given  xʸ = yˣ",
-          "Here x and y each stand in a base and in a power, so neither the power rule nor the exponential rule applies. Take logarithms of both sides.",
+          "Here x and y each stand in a base and in a power,",
+          "so neither the power rule nor the exponential rule applies.",
+          "Take logarithms of both sides.",
+          "(take log of both sides of xʸ = yˣ)",
           "log(xʸ) = log(yˣ)",
+          "(log(pᵐ) = m log p on each side)",
           "∴ y log x = x log y      …(1)",
           "This needs x > 0 and y > 0, so that log x and log y exist."
         ],
@@ -104,8 +108,32 @@
         "margin_note": "Two marks. Each side is a product of two factors, and y is a function of x, so every derivative of y carries a dy/dx with it. Four terms should appear, two on each side.",
         "memory_tip": "y is not a constant. Every time y is differentiated, a dy/dx is written beside it.",
         "lines": [
-          "Differentiating (1) with respect to x, using the product rule on each side,",
+          {
+            "text": "(left: y · d/dx(log x) + log x · d/dx(y)",
+            "added": true
+          },
+          {
+            "text": "  = y · (1/x) + log x · (dy/dx);",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  right: x · d/dx(log y) + log y · d/dx(x)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  = x · (1/y)(dy/dx) + log y · 1)",
+            "style": "indent",
+            "added": true
+          },
+          "Differentiating (1) with respect to x,",
+          "using the product rule on each side,",
           "y · (1/x) + log x · (dy/dx) = x · (1/y)(dy/dx) + log y · 1",
+          {
+            "text": "(y · (1/x) = y/x and x · (1/y) = x/y)",
+            "added": true
+          },
           "∴ (y/x) + log x · (dy/dx) = (x/y)(dy/dx) + log y      …(2)"
         ],
         "recall": {
@@ -136,6 +164,12 @@
         "common_mistakes": [
           "Treating y as a constant, so that (dy/dx) never appears on the right side.",
           "Differentiating log y as 1/y and leaving out the dy/dx factor."
+        ],
+        "lines_compact": [
+          "Differentiating (1) with respect to x,",
+          "using the product rule on each side,",
+          "y · (1/x) + log x · (dy/dx) = x · (1/y)(dy/dx) + log y · 1",
+          "∴ (y/x) + log x · (dy/dx) = (x/y)(dy/dx) + log y      …(2)"
         ]
       },
       {
@@ -147,8 +181,22 @@
         "margin_note": "Two marks. Move both dy/dx terms to the left and both plain terms to the right, then take dy/dx outside a bracket. Nothing is cancelled here, only rearranged.",
         "memory_tip": "All the dy/dx terms go to one side and everything else to the other, exactly as with an ordinary linear equation in one unknown.",
         "lines": [
-          "From (2), bringing the dy/dx terms to the left and the rest to the right,",
+          {
+            "text": "(subtract (x/y)(dy/dx) from both sides,",
+            "added": true
+          },
+          {
+            "text": "  and subtract y/x from both sides)",
+            "style": "indent",
+            "added": true
+          },
+          "From (2), bringing the dy/dx terms to the left",
+          "and the rest to the right,",
           "log x · (dy/dx) − (x/y)(dy/dx) = log y − (y/x)",
+          {
+            "text": "(take out the common factor dy/dx)",
+            "added": true
+          },
           "∴ (dy/dx)[log x − (x/y)] = log y − (y/x)      …(3)"
         ],
         "recall": {
@@ -175,10 +223,16 @@
             "dy by dx"
           ]
         },
-        "why": "The equation is linear in dy/dx, so gathering its two terms and factoring it out is the only move needed to make it the subject.",
+        "why": "The equation is linear in dy/dx, so gathering its two terms and factoring it out is the step that makes it the subject.",
         "common_mistakes": [
           "Changing a sign while shifting a term across the equals sign.",
           "Taking dy/dx outside but leaving one of its terms behind on the right."
+        ],
+        "lines_compact": [
+          "From (2), bringing the dy/dx terms to the left",
+          "and the rest to the right,",
+          "log x · (dy/dx) − (x/y)(dy/dx) = log y − (y/x)",
+          "∴ (dy/dx)[log x − (x/y)] = log y − (y/x)      …(3)"
         ]
       },
       {
@@ -190,10 +244,37 @@
         "margin_note": "The last two marks. Write each side over a single denominator first: the left bracket over y, the right side over x. Dividing then gives the printed form directly.",
         "memory_tip": "The y that was under the bracket on the left ends up on top of the answer, and the x that was under the right side ends up on the bottom.",
         "lines": [
+          {
+            "text": "(log x − x/y = (y log x)/y − x/y)",
+            "added": true
+          },
+          {
+            "text": "(log y − y/x = (x log y)/x − y/x)",
+            "added": true
+          },
           "Writing each side over a single denominator,",
-          "log x − (x/y) = (y log x − x)/y     and     log y − (y/x) = (x log y − y)/x",
+          "log x − (x/y) = (y log x − x)/y",
+          "and     log y − (y/x) = (x log y − y)/x",
           "So (3) becomes  (dy/dx) · (y log x − x)/y = (x log y − y)/x",
+          {
+            "text": "(multiply both sides by y/(y log x − x),",
+            "added": true
+          },
+          {
+            "text": "  which needs y log x − x ≠ 0)",
+            "style": "indent",
+            "added": true
+          },
           "∴ dy/dx = [(x log y − y)/x] · [y/(y log x − x)]",
+          {
+            "text": "(multiply the two fractions: numerator y(x log y − y),",
+            "added": true
+          },
+          {
+            "text": "  denominator x(y log x − x))",
+            "style": "indent",
+            "added": true
+          },
           {
             "text": "∴ dy/dx = y(x log y − y) / (x(y log x − x))",
             "style": "boxed"
@@ -223,10 +304,21 @@
             "final form"
           ]
         },
-        "why": "The question states the answer, so the marks are for landing on that exact form. Clearing the small fractions x/y and y/x is what turns the rearranged equation into the printed expression, with y on top and x on the bottom.",
+        "why": "The question states the answer, so the marks are for reaching that exact form. Clearing the small fractions x/y and y/x is what turns the rearranged equation into the printed expression, with y on top and x on the bottom.",
         "common_mistakes": [
           "Leaving the answer as (log y − y/x)/(log x − x/y), which is correct but is not the form asked for.",
-          "Exchanging x and y in the final line, which reverses the whole fraction."
+          "Exchanging x and y in the final line, which gives a different fraction."
+        ],
+        "lines_compact": [
+          "Writing each side over a single denominator,",
+          "log x − (x/y) = (y log x − x)/y",
+          "and     log y − (y/x) = (x log y − y)/x",
+          "So (3) becomes  (dy/dx) · (y log x − x)/y = (x log y − y)/x",
+          "∴ dy/dx = [(x log y − y)/x] · [y/(y log x − x)]",
+          {
+            "text": "∴ dy/dx = y(x log y − y) / (x(y log x − x))",
+            "style": "boxed"
+          }
         ]
       }
     ]

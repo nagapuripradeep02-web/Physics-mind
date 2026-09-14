@@ -1,0 +1,108 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_exc_columns_of_bertin",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "Human Anatomy and Physiology-II (Zoology-II)"
+  },
+  "chapter": "Excretory Products and their Elimination",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are the columns of Bertin?",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What they are",
+      "marks": 1
+    },
+    {
+      "label": "What they do",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.49, VSAQ 68. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Text revision (examiner audit, 2026-09-05): the first step's margin note no longer says one sentence carries both marks, since the second mark is earned by the boxed step on what the columns do."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Excretory Products and their Elimination · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What they are",
+        "marks": 1,
+        "mark_note": "What they are",
+        "why": "The cortex does not stop at the edge of the medulla: it dips inward between the pyramids, and those dips are the columns.",
+        "common_mistakes": [
+          "Calling them part of the medulla. They are cortex tissue.",
+          "Confusing them with renal pyramids. The columns lie between the pyramids."
+        ],
+        "memory_tip": "Cortex reaching down between the pyramids.",
+        "margin_note": "One sentence carries this mark if it names both the cortex and the medulla.",
+        "lines": [
+          "The columns of Bertin, also called renal",
+          "columns, are the projections of the cortex",
+          "into the medulla of the human kidney."
+        ]
+      },
+      {
+        "id": "s2_function",
+        "kind": "boxed_final",
+        "label": "What they do",
+        "marks": 1,
+        "mark_note": "What they do",
+        "why": "By running down between the cones of medulla they keep each pyramid a separate drainage unit.",
+        "common_mistakes": [
+          "Leaving out the pyramids. Separating them is the point.",
+          "Writing that they filter blood. They do not."
+        ],
+        "memory_tip": "They are the walls that keep the pyramids apart.",
+        "margin_note": "One line on what they separate.",
+        "lines": [
+          {
+            "text": "They separate the renal pyramids from each other",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "This question is asked more often than any other two-mark question in the chapter. The marking words are 'projections of the cortex into the medulla'."
+}

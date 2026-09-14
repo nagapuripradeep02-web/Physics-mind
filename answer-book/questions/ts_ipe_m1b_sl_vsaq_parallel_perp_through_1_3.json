@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Very Short Answer question 38, book p.147. The stem is kept as ONE object: a single setup with two riders under one instruction, as printed; the printed enumerators (1) and (2) are set inline and read awkwardly, and are reproduced here as parts. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split is one mark per rider, because each rider is a complete answer on its own; the shared slope of the join is done inside part (1), where it is first needed. Perpendicularity was confirmed numerically, not assumed: m₁m₂ = (−2/3)(3/2) = −1, and the normals (2, 3) and (3, −2) have dot product 6 − 6 = 0. This book prints almost no exam-appearance years, so appearances[] is empty. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Very Short Answer question 38, book p.147. The stem is kept as ONE object: a single setup with two riders under one instruction, as printed; the printed enumerators (1) and (2) are set inline and read awkwardly, and are reproduced here as parts. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split is one mark per rider, because each rider is a complete answer on its own; the shared slope of the join is done inside part (1), where it is first needed. Perpendicularity was confirmed numerically, not assumed: m₁m₂ = (−2/3)(3/2) = −1, and the normals (2, 3) and (3, −2) have dot product 6 − 6 = 0. This book prints almost no exam-appearance years, so appearances[] is empty. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say what you compute once and use twice, and how the two required slopes come from it.",
   "answer": {
@@ -54,11 +54,15 @@
           },
           "Let A = (3, −5), B = (−6, 1)",
           "Slope of AB  m = (y₂ − y₁)/(x₂ − x₁)",
+          "(1 − (−5) = 6 and −6 − 3 = −9; 6/(−9) = −2/3)",
           "= (1 + 5)/(−6 − 3) = 6/(−9) = −2/3",
           "(1) The parallel line has the same slope",
           "−2/3 and passes through (1, 3):",
+          "(the point-slope form at (1, 3))",
           "y − 3 = (−2/3)(x − 1)",
+          "(multiply both sides by 3: −2(x − 1) = −2x + 2)",
           "⇒ 3y − 9 = −2x + 2",
+          "(take −2x + 2 to the left: 2x + 3y − 9 − 2 = 0)",
           {
             "text": "⇒ 2x + 3y − 11 = 0",
             "style": "boxed"
@@ -86,9 +90,9 @@
             "parallel"
           ]
         },
-        "why": "Both riders depend on the same number, the slope of AB, so it is worth computing carefully once; parallel lines are exactly the lines with that same slope.",
+        "why": "Both parts depend on the same number, the slope of AB, so it is worth computing carefully once; parallel lines are exactly the lines with that same slope.",
         "common_mistakes": [
-          "Computing the slope as (x₂ − x₁)/(y₂ − y₁), upside down.",
+          "Computing the slope as (x₂ − x₁)/(y₂ − y₁), the reciprocal of the slope.",
           "Sign slip in 1 − (−5), giving −4 instead of 6."
         ]
       },
@@ -98,14 +102,26 @@
         "label": "Part (2) the perpendicular line",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Second mark. Flip the slope and change its sign, then check m₁m₂ = −1 before writing the line — that check is what catches a swap with no sign change.",
-        "memory_tip": "Perpendicular: flip the slope and change the sign. Then check m₁m₂ = −1 before you write the line.",
+        "margin_note": "Second mark. Take the reciprocal of the slope and change its sign, then check m₁m₂ = −1 before writing the line — that check is what catches a swap with no sign change.",
+        "memory_tip": "Perpendicular: take the reciprocal of the slope and change the sign. Then check m₁m₂ = −1 before you write the line.",
         "lines": [
+          {
+            "text": "(perpendicular slopes multiply to −1: −1 ÷ (−2/3) = 3/2)",
+            "added": true
+          },
           "(2) The perpendicular slope is",
           "m₂ = −1/m = −1/(−2/3) = 3/2",
           "Check: m·m₂ = (−2/3)(3/2) = −1",
           "Through (1, 3):  y − 3 = (3/2)(x − 1)",
+          {
+            "text": "(multiply both sides by 2: 3(x − 1) = 3x − 3)",
+            "added": true
+          },
           "⇒ 2y − 6 = 3x − 3",
+          {
+            "text": "(take 2y − 6 to the right: 0 = 3x − 2y − 3 + 6)",
+            "added": true
+          },
           {
             "text": "⇒ 3x − 2y + 3 = 0",
             "style": "boxed"
@@ -140,6 +156,20 @@
         "common_mistakes": [
           "Writing 3x + 2y + k = 0, which swaps the coefficients but changes no sign.",
           "Using the same slope −2/3 for both parts."
+        ],
+        "lines_compact": [
+          "(2) The perpendicular slope is",
+          "m₂ = −1/m = −1/(−2/3) = 3/2",
+          "Check: m·m₂ = (−2/3)(3/2) = −1",
+          "Through (1, 3):  y − 3 = (3/2)(x − 1)",
+          "⇒ 2y − 6 = 3x − 3",
+          {
+            "text": "⇒ 3x − 2y + 3 = 0",
+            "style": "boxed"
+          },
+          "Check: 2(1) + 3(3) − 11 = 0 and",
+          "3(1) − 2(3) + 3 = 0, so both lines do pass",
+          "through (1, 3)."
         ]
       }
     ]

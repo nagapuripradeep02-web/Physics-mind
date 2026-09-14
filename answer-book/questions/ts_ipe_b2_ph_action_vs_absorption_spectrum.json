@@ -72,7 +72,7 @@
         "margin_note": "Mirror the first half, then one line on why the two curves are compared.",
         "lines": [
           {
-            "text": "Rate of photosynthesis against light absorbed",
+            "text": "Both against wavelength; the y-axis differs",
             "style": "boxed"
           },
           "The ABSORPTION spectrum is the graph showing the",

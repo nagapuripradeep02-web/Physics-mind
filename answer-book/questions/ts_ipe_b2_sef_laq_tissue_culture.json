@@ -95,7 +95,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.18, printed question 6. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. The MOST REPEATED question in the book: eleven printed appearances across both boards, and it is set in all five of the book's guess papers."
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.18, printed question 6. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. The MOST REPEATED question in the book: eleven printed appearances across both boards, and it is set in all five of the book's guess papers. Revised 2026-09-05 after the examiner audit: the s1_what and s2_medium mistakes lines no longer condemn a correct grouping of the stages or a correct alternative carbon source, the s5_organogenesis why now matches the printed line on how each path starts, and the phase-1 figure caption now names the boxes that phase actually draws."
   },
   "insider_note": "Two questions in one, and the second half is worth two marks. Budget the time: six steps for six marks, then at least five advantages for the last two. An answer that describes the technique beautifully and stops has thrown away a quarter of the marks.",
   "answer": {
@@ -128,7 +128,7 @@
         "common_mistakes": [
           "Leaving out totipotency. It is the principle the technique rests on.",
           "Saying tissue culture works only on seeds. ANY living plant part can be used.",
-          "Naming fewer than six steps. Six is what the book gives and six is what the marks follow."
+          "Leaving stages out. Cover all six — medium, sterilisation, explant, inoculation, incubation, acclimatisation — however you group them."
         ],
         "memory_tip": "Any living cell can rebuild the whole plant: that is totipotency."
       },
@@ -154,7 +154,7 @@
         "why": "The medium is a perfect food for bacteria and fungi as well as for the plant tissue, so anything not sterilised will be overgrown before the explant can start.",
         "common_mistakes": [
           "Leaving out the autoclave figures. 15 minutes, 121°C and 15 lb are the numbers asked for.",
-          "Saying the medium contains glucose. The carbon source given is SUCROSE.",
+          "Leaving out the carbon source. Sucrose is the one to name here — write SUCROSE.",
           "Forgetting the growth regulators. Auxins and cytokinins are part of the medium."
         ],
         "memory_tip": "Rich food feeds the contaminants too, so sterilise everything."
@@ -230,7 +230,7 @@
           "Somatic embryos can be coated to make ARTIFICIAL",
           "SEEDS."
         ],
-        "why": "Which path the callus takes depends only on the balance of hormones in the medium, so one callus can be steered either way.",
+        "why": "Organogenesis is induced by the auxins and cytokinins added to the medium; embryogenesis starts when the explant develops an embryonic callus. Both paths end in plantlets.",
         "common_mistakes": [
           "Confusing the two paths. ORGANOGENESIS gives organs; EMBRYOGENESIS gives embryoids.",
           "Saying somatic embryos come from gametes. They come from SOMATIC tissue — that is what the name means.",
@@ -276,7 +276,7 @@
             {
               "type": "pause",
               "id": "tc_p1",
-              "caption": "Step 1 — medium, explant, inoculation, callus"
+              "caption": "Step 1 — medium, sterilisation, explant, inoculation"
             },
             {
               "type": "stroke",

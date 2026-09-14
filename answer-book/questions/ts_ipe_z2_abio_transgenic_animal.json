@@ -1,0 +1,84 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_abio_transgenic_animal",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Applied Biology (Zoology-II)"
+  },
+  "chapter": "Applied Biology",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define the term transgenic animal.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.59, VSAQ 135. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Applied Biology · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1",
+        "kind": "text",
+        "label": "What it is",
+        "marks": 1,
+        "mark_note": "Definition",
+        "why": "A gene from another species is added, so the animal makes a protein it could never make on its own.",
+        "common_mistakes": [
+          "Saying the animal's own genes are removed. A gene is ADDED.",
+          "Confusing transgenic with cloned."
+        ],
+        "memory_tip": "Trans means across: a gene carried across from another species.",
+        "margin_note": "Definition, then an example.",
+        "lines": [
+          "Transgenic animals are animals that have had",
+          "their DNA manipulated to possess and express",
+          "an extra gene in addition to their own",
+          "genome."
+        ]
+      },
+      {
+        "id": "s2",
+        "kind": "boxed_final",
+        "label": "An example",
+        "marks": 1,
+        "mark_note": "Example",
+        "why": "The human protein made by such an animal can be collected and used as a medicine.",
+        "common_mistakes": [
+          "Giving no example.",
+          "Naming a naturally occurring animal."
+        ],
+        "memory_tip": "α-1 antitrypsin from a transgenic animal treats emphysema.",
+        "margin_note": "One example closes the answer.",
+        "lines": [
+          {
+            "text": "Example: a transgenic sheep with human AAT",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "The marked words are 'extra gene in addition to their own genome'. An example makes the second mark safe."
+}

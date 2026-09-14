@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.65, chapter 6 ADDITION OF VECTORS, Short Answer question 9. Only the question was taken — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. The answer is 2a + 2b − c, from t = 1, x = 0, y = 1. It was derived twice: once from the line's equation with t = 1, and once independently from the plane's equation with x = 0 and y = 1, which returns the same vector. The a, b and c coefficients are collected in three separate columns on purpose — a sign slip in one column here produces a wrong point that still looks plausible, which is the recorded error cluster for this chapter. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 split rewards each of the two collections, the comparison that fixes the parameters, and the substitution that turns them back into a point. This book prints almost no exam-appearance years, so appearances[] is empty. Paper position: Maths-1A Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern; Addition of Vectors has no Section C slot on the paper, so the unit is SAQ and VSAQ only. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.65, chapter 6 ADDITION OF VECTORS, Short Answer question 9. Only the question was taken — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. The answer is 2a + 2b − c, from t = 1, x = 0, y = 1. It was derived twice: once from the line's equation with t = 1, and once independently from the plane's equation with x = 0 and y = 1, which returns the same vector. The a, b and c coefficients are collected in three separate columns on purpose — a sign slip in one column here produces a wrong point that still looks plausible, which is the recorded error cluster for this chapter. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 split rewards each of the two collections, the comparison that fixes the parameters, and the substitution that turns them back into a point. This book prints almost no exam-appearance years, so appearances[] is empty. Paper position: Maths-1A Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern; Addition of Vectors has no Section C slot on the paper, so the unit is SAQ and VSAQ only. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find where a line meets a plane in vector form — say what you must do to both equations before comparing them.",
   "answer": {
@@ -62,6 +62,7 @@
           },
           "On the line,",
           "r = 2a + b + t(b − c)",
+          "(open the bracket: t(b − c) = tb − tc; a has no t)",
           "  = 2a + (1+t)b + (−t)c   ……(1)"
         ],
         "recall": {
@@ -104,6 +105,10 @@
         "lines": [
           "On the plane,",
           "r = a + x(b + c) + y(a + 2b − c)",
+          {
+            "text": "(x(b + c) = xb + xc and y(a + 2b − c) = ya + 2yb − yc)",
+            "added": true
+          },
           "  = (1+y)a + (x+2y)b + (x−y)c   ……(2)"
         ],
         "recall": {
@@ -133,6 +138,11 @@
         "common_mistakes": [
           "Forgetting the standalone a, so the a coefficient reads y instead of 1 + y.",
           "Writing the c coefficient as x + y instead of x − y."
+        ],
+        "lines_compact": [
+          "On the plane,",
+          "r = a + x(b + c) + y(a + 2b − c)",
+          "  = (1+y)a + (x+2y)b + (x−y)c   ……(2)"
         ]
       },
       {
@@ -148,10 +158,26 @@
           "a, b, c are non-coplanar, so compare the",
           "three coefficients separately:",
           "a:  2 = 1 + y        ⇒  y = 1",
+          {
+            "text": "(put y = 1: 1 + t = x + 2)",
+            "added": true
+          },
           "b:  1 + t = x + 2y   ⇒  x = t − 1",
+          {
+            "text": "(put y = 1: −t = x − 1)",
+            "added": true
+          },
           "c:  −t = x − y       ⇒  x = 1 − t",
+          {
+            "text": "(both lines give x, so the two values are equal)",
+            "added": true
+          },
           "So t − 1 = 1 − t ⇒ 2t = 2 ⇒ t = 1,",
-          "and then x = 0, y = 1."
+          "and then x = 0, y = 1.",
+          {
+            "text": "(x = t − 1 = 0)",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -176,11 +202,21 @@
             "x equals zero"
           ]
         },
-        "why": "Independence is the whole reason the comparison is legal: if a, b, c were coplanar, one could be written using the other two and no column would stand on its own. Three columns give three equations, which is exactly enough for the three unknowns t, x and y.",
+        "why": "Independence is the whole reason the comparison is allowed: if a, b, c were coplanar, one could be written using the other two, and the three columns would no longer be separate. Three columns give three equations, which is exactly enough for the three unknowns t, x and y.",
         "common_mistakes": [
           "Comparing only two columns, which leaves t undetermined.",
           "Substituting y before finishing the b column, then losing the 2y term.",
           "A sign slip in the c column, which changes t and gives a plausible but wrong point."
+        ],
+        "lines_compact": [
+          "At the common point (1) = (2).",
+          "a, b, c are non-coplanar, so compare the",
+          "three coefficients separately:",
+          "a:  2 = 1 + y        ⇒  y = 1",
+          "b:  1 + t = x + 2y   ⇒  x = t − 1",
+          "c:  −t = x − y       ⇒  x = 1 − t",
+          "So t − 1 = 1 − t ⇒ 2t = 2 ⇒ t = 1,",
+          "and then x = 0, y = 1."
         ]
       },
       {
@@ -197,6 +233,10 @@
           "Check in (2) with x = 0, y = 1:",
           "r = (1+1)a + (0+2)b + (0−1)c",
           "  = 2a + 2b − c",
+          {
+            "text": "(both give the same point, so the values are right)",
+            "added": true
+          },
           {
             "text": "∴ Point of intersection = 2a + 2b − c",
             "style": "boxed"
@@ -228,6 +268,17 @@
         "common_mistakes": [
           "Stopping at t = 1 and calling it the answer.",
           "Substituting x and y into the line, or t into the plane."
+        ],
+        "lines_compact": [
+          "Put t = 1 in (1):",
+          "r = 2a + (1+1)b + (−1)c = 2a + 2b − c",
+          "Check in (2) with x = 0, y = 1:",
+          "r = (1+1)a + (0+2)b + (0−1)c",
+          "  = 2a + 2b − c",
+          {
+            "text": "∴ Point of intersection = 2a + 2b − c",
+            "style": "boxed"
+          }
         ]
       }
     ]

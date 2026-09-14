@@ -15,7 +15,7 @@
   "marks_total": 2,
   "paper_section": "Section A",
   "expected_time_min": 4,
-  "question_text": "Evaluate ∫₀^a dx/(x² + a²).",
+  "question_text": "Evaluate ∫₀ᵃ dx/(x² + a²).",
   "appearances": [
     {
       "year": 2015,
@@ -38,9 +38,9 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book printed p.91 — VSAQ chapter 17 'Definite Integrals', answer 171, the first item on this page (not marked as a Super Scoring Page). Printed appearance: AP 15, TS 19. Chapter star rank ★★★ applies. No margin mark tags are printed, so the 1+1 split is OURS, patterned on the split used throughout this chapter. This integral is re-answered as a Q8&9 item on the Bullet Model Paper, book p.105 — same value, so no separate card is authored for that appearance. Boundary reading: printed p.89 confirms the Integration VSAQ chapter ends at answer 164 (∫cos√x dx); printed p.93 confirms the Differential Equations VSAQ chapter begins at answer 181 — so this chapter's answers 165–180.2 are the complete VSAQ Definite Integrals set. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book printed p.91 — VSAQ chapter 17 'Definite Integrals', answer 171, the first item on this page (not marked as a Super Scoring Page). Printed appearance: AP 15, TS 19. Chapter star rank ★★★ applies. No margin mark tags are printed, so the 1+1 split is OURS, patterned on the split used throughout this chapter. This integral is re-answered as a Q8&9 item on the Bullet Model Paper, book p.105 — same value, so no separate card is authored for that appearance. Boundary reading: printed p.89 confirms the Integration VSAQ chapter ends at answer 164 (∫cos√x dx); printed p.93 confirms the Differential Equations VSAQ chapter begins at answer 181 — so this chapter's answers 165–180.2 are the complete VSAQ Definite Integrals set. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
-  "insider_note": "This is the general-a version of the earlier x²+16 style question; the answer stays in terms of a because the limits themselves depend on a.",
+  "insider_note": "This is a standard Tan⁻¹ form; the answer stays in terms of a because the limits themselves depend on a.",
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",
@@ -54,16 +54,17 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. ∫dx/(x²+a²) = (1/a)Tan⁻¹(x/a) + c — one of the standard integration formulas.",
-        "memory_tip": "x²+a² (a sum) always gives a Tan⁻¹ antiderivative; a²−x² (a difference) gives a Sin⁻¹ antiderivative.",
+        "memory_tip": "1/(x² + a²) gives (1/a)Tan⁻¹(x/a); 1/√(a² − x²), a difference under a square root, gives Sin⁻¹(x/a).",
         "lines": [
           {
             "text": "Sol:",
             "style": "heading"
           },
-          "I = ∫₀^a dx/(x² + a²)",
+          "I = ∫₀ᵃ dx/(x² + a²)",
+          "The denominator is a sum of two squares:",
           "∫dx/(x²+a²) = (1/a)Tan⁻¹(x/a) + c",
           "[standard formula]",
-          "∴ I = [(1/a)Tan⁻¹(x/a)]₀^a"
+          "∴ I = [(1/a)Tan⁻¹(x/a)]₀ᵃ"
         ],
         "why": "The integral of 1/(x²+a²) is a standard form with antiderivative (1/a)Tan⁻¹(x/a), which is worth memorising directly rather than re-deriving each time.",
         "common_mistakes": [
@@ -80,6 +81,14 @@
         "margin_note": "Second mark. Tan⁻¹1 = π/4 — the same standard value used throughout this chapter.",
         "memory_tip": "x/a at the upper limit x=a is always 1, giving Tan⁻¹1=π/4 regardless of the value of a.",
         "lines": [
+          {
+            "text": "At x = a, x/a = 1; at x = 0, x/a = 0.",
+            "added": true
+          },
+          {
+            "text": "Tan⁻¹(1) = π/4 and Tan⁻¹(0) = 0:",
+            "added": true
+          },
           "= (1/a)[Tan⁻¹(1) − Tan⁻¹(0)] = (1/a)[π/4 − 0]",
           {
             "text": "∴ I = π/(4a)",
@@ -90,6 +99,13 @@
         "common_mistakes": [
           "Using Tan⁻¹(1) = π/2 instead of the correct value π/4.",
           "Forgetting the outer factor 1/a in the final answer."
+        ],
+        "lines_compact": [
+          "= (1/a)[Tan⁻¹(1) − Tan⁻¹(0)] = (1/a)[π/4 − 0]",
+          {
+            "text": "∴ I = π/(4a)",
+            "style": "boxed"
+          }
         ]
       }
     ]

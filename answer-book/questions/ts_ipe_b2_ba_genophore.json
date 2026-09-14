@@ -39,7 +39,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.41, printed question 77. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.41, printed question 77. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. Revision (examiner audit, 2026-09-05): the s2_naked `why` and `memory_tip` said the genophore is not called a chromosome, which contradicted the card's own printed line naming it the bacterial chromosome; both now say it differs from a EUKARYOTIC chromosome."
   },
   "insider_note": "The second half is the mark most answers miss: say NAKED, meaning no histone proteins.",
   "answer": {
@@ -88,12 +88,12 @@
           "A eukaryotic chromosome has histones and lies",
           "inside a nucleus."
         ],
-        "why": "Bacteria have no nucleus and no histones, so their genetic material has to be described differently from a true chromosome.",
+        "why": "Bacteria have no nucleus and no histones, so the genophore is built differently from a eukaryotic chromosome, even though it is called the bacterial chromosome.",
         "common_mistakes": [
           "Saying the genophore has histones. It is NAKED DNA.",
           "Saying it lies in a nucleus. Bacteria have no nuclear membrane."
         ],
-        "memory_tip": "No histones and no nucleus: that is why it is not called a chromosome."
+        "memory_tip": "No histones and no nuclear membrane: that is how it differs from a eukaryotic chromosome."
       }
     ]
   }

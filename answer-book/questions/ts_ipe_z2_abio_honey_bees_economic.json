@@ -1,0 +1,143 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_abio_honey_bees_economic",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Applied Biology (Zoology-II)"
+  },
+  "chapter": "Applied Biology",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Honey bees are economically important - justify.",
+  "appearances": [
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Honey and beeswax",
+      "marks": 1
+    },
+    {
+      "label": "Propolis and venom",
+      "marks": 1
+    },
+    {
+      "label": "Pollination",
+      "marks": 1
+    },
+    {
+      "label": "The conclusion",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.42, SAQ 42. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Applied Biology · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_honey_wax",
+        "kind": "text",
+        "label": "Honey and beeswax",
+        "marks": 1,
+        "mark_note": "Honey and wax",
+        "why": "Both are made by the bee for its own use, and both can be taken without harming the colony.",
+        "common_mistakes": [
+          "Naming only honey. Four products are listed.",
+          "Leaving out what each product is used for."
+        ],
+        "memory_tip": "Honey, wax, propolis, venom — four products, then pollination.",
+        "margin_note": "Name the four products first, then take them in turn.",
+        "lines": [
+          "Honey bees produce honey, beeswax,",
+          "propolis and venom. They are also the best",
+          "pollinators.",
+          "Honey is a rich source of fructose,",
+          "glucose, vitamins, minerals and water.",
+          "Beeswax is used in the preparation of",
+          "cosmetics, polishes and candles."
+        ]
+      },
+      {
+        "id": "s2_propolis_venom",
+        "kind": "text",
+        "label": "Propolis and venom",
+        "marks": 1,
+        "mark_note": "Propolis and venom",
+        "why": "Even the bee's sting has a medical use, which strengthens the case that the insect is economically valuable.",
+        "common_mistakes": [
+          "Confusing propolis with beeswax.",
+          "Leaving out the medical uses."
+        ],
+        "memory_tip": "Propolis heals wounds; venom treats arthritis.",
+        "margin_note": "One line each.",
+        "lines": [
+          "Propolis is used in the treatment of wounds",
+          "and burns.",
+          "Bee venom is used in the treatment of",
+          "arthritis."
+        ]
+      },
+      {
+        "id": "s3_pollination",
+        "kind": "text",
+        "label": "Pollination",
+        "marks": 1,
+        "mark_note": "Pollination",
+        "why": "Many crops set little or no seed without insect pollination, so the bee's value goes far beyond the hive.",
+        "common_mistakes": [
+          "Giving no named crop.",
+          "Treating pollination as a minor point."
+        ],
+        "memory_tip": "The bee is worth more in the field than in the hive.",
+        "margin_note": "Name two or three crops.",
+        "lines": [
+          "Bees are the pollinators of crop plants",
+          "such as sunflower, Brassica, apple and",
+          "pear."
+        ]
+      },
+      {
+        "id": "s4_conclusion",
+        "kind": "boxed_final",
+        "label": "The conclusion",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "why": "A justify question asks for a verdict, so the answer must end by stating it.",
+        "common_mistakes": [
+          "Ending without a conclusion. The question says justify.",
+          "Repeating the list instead of concluding."
+        ],
+        "memory_tip": "A justify question needs a closing sentence.",
+        "margin_note": "One line states the verdict.",
+        "lines": [
+          {
+            "text": "So honey bees are economically important",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Pollination is worth more than all the products together. Give it its own line and name a crop or two."
+}

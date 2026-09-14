@@ -1,0 +1,89 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_hrs_compaction",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Human Reproduction (Zoology-II)"
+  },
+  "chapter": "Human Reproductive System",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is compaction in the human development?",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What it is",
+      "marks": 1
+    },
+    {
+      "label": "What the blastomeres do",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.55, VSAQ 110. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Human Reproductive System · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What it is",
+        "marks": 1,
+        "mark_note": "What it is",
+        "why": "Until the cells bind tightly the embryo is only a loose ball; compaction is what turns it into one body.",
+        "common_mistakes": [
+          "Placing compaction at the blastocyst stage. It happens at the morula.",
+          "Leaving out the word morula."
+        ],
+        "memory_tip": "Compaction packs the morula's cells tightly together.",
+        "margin_note": "Name the stage in the first line.",
+        "lines": [
+          "Compaction is the firm binding between the",
+          "cells at the morula stage."
+        ]
+      },
+      {
+        "id": "s2_blastomeres",
+        "kind": "boxed_final",
+        "label": "What the blastomeres do",
+        "marks": 1,
+        "mark_note": "Blastomeres",
+        "why": "The cells flatten against each other, which is what makes the ball compact rather than loose.",
+        "common_mistakes": [
+          "Writing that the cells divide during compaction. They change shape and align.",
+          "Leaving out the blastomeres."
+        ],
+        "memory_tip": "The blastomeres flatten and press together.",
+        "margin_note": "Say what the cells themselves do.",
+        "lines": [
+          "The blastomeres change their shape and",
+          "line up tightly against each other.",
+          {
+            "text": "Together they form the compact morula",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Name the stage: compaction happens at the morula. Without that word the answer describes cells sticking together and nothing more."
+}

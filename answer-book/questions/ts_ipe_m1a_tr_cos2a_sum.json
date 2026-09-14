@@ -51,7 +51,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.39 — LAQ chapter 5 T-Ratios upto Transformations, answer 26.2. Printed appearances: AP 17 · TS 16. The twin of 26.1 on the same page. The −1 on the right comes from the double-angle form cos 2C = 2cos²C − 1, and it is the one thing that makes this proof differ from its partner. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter (its pages are set two questions to a page in two columns, which takes the margin those tags would occupy). The 1+2+2+1+1 above follows the shape of the split the same book DOES print for LAQ answer 23 on book p.37, weighting the two substantial transformations against the set-up and the finish. The SAME split and the SAME step ids are used on all eight answers in this chapter, deliberately: they are ONE method over different identities — pair two terms, use the angle condition, factor, finish with a product formula. A student who learns that arc once can attempt any of them. The book's chapter header carries ★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Q23 is the Transformations slot and is ALWAYS a question of this kind. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Pair two terms with a sum-to-product formula."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.39 — LAQ chapter 5 T-Ratios upto Transformations, answer 26.2. Printed appearances: AP 17 · TS 16. The twin of 26.1 on the same page. The −1 on the right comes from the double-angle form cos 2C = 2cos²C − 1, and it is the one thing that makes this proof differ from its partner. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter (its pages are set two questions to a page in two columns, which takes the margin those tags would occupy). The 1+2+2+1+1 above follows the shape of the split the same book DOES print for LAQ answer 23 on book p.37, weighting the two substantial transformations against the set-up and the finish. The SAME split and the SAME step ids are used on all eight answers in this chapter, deliberately: they are ONE method over different identities — pair two terms, use the angle condition, factor, finish with a product formula. A student who learns that arc once can attempt any of them. The book's chapter header carries ★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Q23 is the Transformations slot and is ALWAYS a question of this kind. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Pair two terms with a sum-to-product formula. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this identity — say the four moves in order, and where the angle condition gets used.",
   "answer": {
@@ -74,7 +74,12 @@
             "style": "heading"
           },
           "Given",
-          "A + B + C = 180°  ⇒  A + B = 180° − C"
+          "A + B + C = 180°  ⇒  A + B = 180° − C",
+          "(A, B, C are the angles of a triangle, so they",
+          {
+            "text": "  add up to 180°. This is used twice below.)",
+            "style": "indent"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -113,8 +118,25 @@
         "memory_tip": "Pair cos2A with cos2B, and expand cos2C as 2cos²C − 1 so the −1 appears cleanly.",
         "lines": [
           "L.H.S = cos2A + cos2B + cos2C",
+          {
+            "text": "Pair the first two terms with the sum formula,",
+            "added": true
+          },
+          {
+            "text": "  taking p = 2A and q = 2B:",
+            "style": "indent",
+            "added": true
+          },
           "= 2 cos((2A+2B)/2) cos((2A−2B)/2) + cos2C",
-          "  [∵ cosC + cosD = 2 cos((C+D)/2) cos((C−D)/2)]",
+          "  [∵ cos p + cos q = 2 cos((p+q)/2) cos((p−q)/2)]",
+          {
+            "text": "((2A+2B)/2 = A + B and (2A−2B)/2 = A − B)",
+            "added": true
+          },
+          {
+            "text": "Write cos2C with the double-angle formula:",
+            "added": true
+          },
           "= 2 cos(A+B) cos(A−B) + (2cos²C − 1)",
           "  [∵ cos2θ = 2cos²θ − 1]"
         ],
@@ -143,7 +165,14 @@
         "why": "Choosing 2cos²C − 1 rather than 1 − 2sin²C is deliberate: it is the form that produces the −1 the right-hand side needs.",
         "common_mistakes": [
           "Using cos 2C = 1 − 2sin²C, which cannot produce the −1 cleanly.",
-          "Pairing the wrong two terms."
+          "Forgetting to halve the sum and the difference of 2A and 2B."
+        ],
+        "lines_compact": [
+          "L.H.S = cos2A + cos2B + cos2C",
+          "= 2 cos((2A+2B)/2) cos((2A−2B)/2) + cos2C",
+          "  [∵ cos p + cos q = 2 cos((p+q)/2) cos((p−q)/2)]",
+          "= 2 cos(A+B) cos(A−B) + (2cos²C − 1)",
+          "  [∵ cos2θ = 2cos²θ − 1]"
         ]
       },
       {
@@ -155,6 +184,10 @@
         "margin_note": "Two more marks. This is where the angle condition is used: it converts an expression in A and B into one in C, so that every term shares a factor.",
         "memory_tip": "cos(180° − C) = −cos C, with the MINUS. That sign is the whole difference here.",
         "lines": [
+          {
+            "text": "Use the condition: A + B = 180° − C.",
+            "added": true
+          },
           "= 2 cos(180° − C) cos(A−B) + 2cos²C − 1",
           "  [∵ (A+B) + C = 180°]",
           "= −2 cosC cos(A−B) + 2cos²C − 1",
@@ -186,6 +219,12 @@
         "common_mistakes": [
           "Writing cos(180° − C) = +cos C.",
           "Forgetting the condition entirely."
+        ],
+        "lines_compact": [
+          "= 2 cos(180° − C) cos(A−B) + 2cos²C − 1",
+          "  [∵ (A+B) + C = 180°]",
+          "= −2 cosC cos(A−B) + 2cos²C − 1",
+          "  [∵ cos(180° − θ) = −cosθ]"
         ]
       },
       {
@@ -194,12 +233,33 @@
         "label": "Take the common factor out",
         "marks": 1,
         "mark_note": "Factorise",
-        "margin_note": "Seventh mark. The common factor comes out, and the condition is used a SECOND time inside the bracket so that both bracket terms are the same kind of function.",
+        "margin_note": "Seventh mark. The common factor comes out, and the condition is used a SECOND time inside the bracket: cos C = −cos(A+B), so the bracket becomes cos(A−B) + cos(A+B).",
         "memory_tip": "Take the common factor out and leave the −1 outside; a sign slip turns the bracket into a difference.",
         "lines": [
+          {
+            "text": "Write −1 first and take out −2 cosC from the",
+            "added": true
+          },
+          {
+            "text": "  two cosC terms:",
+            "style": "indent",
+            "added": true
+          },
           "= −1 − 2 cosC [cos(A−B) − cosC]",
+          {
+            "text": "(check: −2 cosC × (−cosC) = +2cos²C)",
+            "added": true
+          },
+          {
+            "text": "Inside the bracket, use the condition again:",
+            "added": true
+          },
           "= −1 − 2 cosC [cos(A−B) + cos(A+B)]",
-          "  [∵ cosC = cos(180° − (A+B)) = −cos(A+B)]"
+          "  [∵ cosC = cos(180° − (A+B)) = −cos(A+B)]",
+          {
+            "text": "(so −cosC = +cos(A+B))",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -228,6 +288,11 @@
         "common_mistakes": [
           "Trying to factor the −1 into the bracket.",
           "Getting the sign wrong so the bracket becomes a difference."
+        ],
+        "lines_compact": [
+          "= −1 − 2 cosC [cos(A−B) − cosC]",
+          "= −1 − 2 cosC [cos(A−B) + cos(A+B)]",
+          "  [∵ cosC = cos(180° − (A+B)) = −cos(A+B)]"
         ]
       },
       {
@@ -239,8 +304,20 @@
         "margin_note": "Last mark. One more sum-or-difference formula turns the bracket into a product, and the identity is complete. Write \"= R.H.S\" so the examiner can see the proof finished.",
         "memory_tip": "Use the SUM formula to get cosines. Losing the −1 at the last line is the usual slip.",
         "lines": [
+          {
+            "text": "The bracket is cos(A+B) + cos(A−B):",
+            "added": true
+          },
           "= −1 − 2 cosC (2 cosA cosB)",
           "  [∵ cos(A+B) + cos(A−B) = 2 cosA cosB]",
+          {
+            "text": "(expand both; the sinA sinB terms cancel)",
+            "added": true
+          },
+          {
+            "text": "Multiply: 2 cosC × 2 cosA cosB = 4 cosA cosB cosC",
+            "added": true
+          },
           {
             "text": "= −1 − 4 cosA cosB cosC = R.H.S",
             "style": "boxed"
@@ -272,6 +349,14 @@
         "common_mistakes": [
           "Using the difference formula and getting sines.",
           "Losing the −1 at the very end."
+        ],
+        "lines_compact": [
+          "= −1 − 2 cosC (2 cosA cosB)",
+          "  [∵ cos(A+B) + cos(A−B) = 2 cosA cosB]",
+          {
+            "text": "= −1 − 4 cosA cosB cosC = R.H.S",
+            "style": "boxed"
+          }
         ]
       }
     ]

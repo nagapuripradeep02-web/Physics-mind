@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.127, chapter 12 PROPERTIES OF TRIANGLES, Short Answer question 5. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to each of the four moves the answer is marked on — pairing cos A with cos B, opening cos C in the half angle, turning the bracket into a product, and reading that product as r/R. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks; Properties of Triangles is one of the units that fills that section. Verified numerically before authoring: for a = 4, b = 5, c = 6 the left side is 1.437500 and 1 + r/R is 1.437500; for a = 2, b = 3, c = 4 both come to 1.312500. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.127, chapter 12 PROPERTIES OF TRIANGLES, Short Answer question 5. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to each of the four moves the answer is marked on — pairing cos A with cos B, opening cos C in the half angle, turning the bracket into a product, and reading that product as r/R. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks; Properties of Triangles is one of the units that fills that section. Verified numerically before authoring: for a = 4, b = 5, c = 6 the left side is 1.437500 and 1 + r/R is 1.437500; for a = 2, b = 3, c = 4 both come to 1.312500. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — name each standard result you use and the order you use them in.",
   "answer": {
@@ -61,8 +61,10 @@
             "style": "heading"
           },
           "L.H.S = cos A + cos B + cos C",
+          "(cos x + cos y = 2 cos((x+y)/2) cos((x−y)/2))",
           "cos A + cos B",
           "= 2 cos((A+B)/2) cos((A−B)/2)",
+          "(cos(90° − x) = sin x)",
           "= 2 sin(C/2) cos((A−B)/2)",
           "   [∵ (A+B)/2 = 90° − C/2]"
         ],
@@ -103,9 +105,17 @@
         "margin_note": "One mark. cos C = 1 − 2 sin²(C/2) is the form that shares sin(C/2) with the pair above, so 2 sin(C/2) comes out of a bracket.",
         "memory_tip": "Choose cos C = 1 − 2 sin²(C/2), not 2 cos²(C/2) − 1 — the sin(C/2) is the factor shared with the pair.",
         "lines": [
+          {
+            "text": "(cos 2θ = 1 − 2 sin²θ with θ = C/2)",
+            "added": true
+          },
           "cos C = 1 − 2 sin²(C/2)",
           "∴ L.H.S = 1 + 2 sin(C/2) cos((A−B)/2)",
           "   − 2 sin²(C/2)",
+          {
+            "text": "(take out the common factor 2 sin(C/2))",
+            "added": true
+          },
           "= 1 + 2 sin(C/2)[cos((A−B)/2)",
           "   − sin(C/2)]"
         ],
@@ -135,6 +145,13 @@
         "common_mistakes": [
           "Using cos C = 2 cos²(C/2) − 1, which shares no factor with the pair above.",
           "Dropping the 1 that the double-angle form leaves behind."
+        ],
+        "lines_compact": [
+          "cos C = 1 − 2 sin²(C/2)",
+          "∴ L.H.S = 1 + 2 sin(C/2) cos((A−B)/2)",
+          "   − 2 sin²(C/2)",
+          "= 1 + 2 sin(C/2)[cos((A−B)/2)",
+          "   − sin(C/2)]"
         ]
       },
       {
@@ -146,9 +163,21 @@
         "margin_note": "One mark. Read sin(C/2) back as cos((A+B)/2) so the bracket is a difference of two cosines; it becomes 2 sin(A/2) sin(B/2).",
         "memory_tip": "Turn sin(C/2) back into cos((A+B)/2), so the bracket is cos((A−B)/2) − cos((A+B)/2) = 2 sin(A/2) sin(B/2).",
         "lines": [
+          {
+            "text": "(since (A+B)/2 = 90° − C/2)",
+            "added": true
+          },
           "sin(C/2) = cos((A+B)/2), so the bracket is",
           "cos((A−B)/2) − cos((A+B)/2)",
+          {
+            "text": "(cos x − cos y = 2 sin((x+y)/2) sin((y−x)/2))",
+            "added": true
+          },
           "= 2 sin(A/2) sin(B/2)",
+          {
+            "text": "(2 sin(C/2) × 2 sin(A/2) sin(B/2))",
+            "added": true
+          },
           "∴ L.H.S = 1 + 4 sin(A/2)sin(B/2)sin(C/2)"
         ],
         "recall": {
@@ -177,6 +206,12 @@
         "common_mistakes": [
           "Getting the sign wrong in cos X − cos Y = 2 sin((X+Y)/2) sin((Y−X)/2).",
           "Leaving the bracket as it is and stopping there."
+        ],
+        "lines_compact": [
+          "sin(C/2) = cos((A+B)/2), so the bracket is",
+          "cos((A−B)/2) − cos((A+B)/2)",
+          "= 2 sin(A/2) sin(B/2)",
+          "∴ L.H.S = 1 + 4 sin(A/2)sin(B/2)sin(C/2)"
         ]
       },
       {
@@ -188,7 +223,15 @@
         "margin_note": "The last mark. r = 4R sin(A/2)sin(B/2)sin(C/2) is the in-radius formula; dividing it by R turns the product into r/R.",
         "memory_tip": "r = 4R sin(A/2) sin(B/2) sin(C/2) — all three SINES for the in-radius. Divide by R to read off r/R.",
         "lines": [
+          {
+            "text": "(a known formula for the inradius)",
+            "added": true
+          },
           "Now r = 4R sin(A/2) sin(B/2) sin(C/2)",
+          {
+            "text": "(divide both sides by R)",
+            "added": true
+          },
           "⇒ 4 sin(A/2) sin(B/2) sin(C/2) = r/R",
           {
             "text": "∴ cos A + cos B + cos C = 1 + r/R",
@@ -221,6 +264,14 @@
         "common_mistakes": [
           "Using r = 4R cos(A/2)cos(B/2)cos(C/2), which is not the in-radius.",
           "Writing R/r instead of r/R."
+        ],
+        "lines_compact": [
+          "Now r = 4R sin(A/2) sin(B/2) sin(C/2)",
+          "⇒ 4 sin(A/2) sin(B/2) sin(C/2) = r/R",
+          {
+            "text": "∴ cos A + cos B + cos C = 1 + r/R",
+            "style": "boxed"
+          }
         ]
       }
     ]

@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.5, chapter 1 SETS & RELATIONS, Very Short Answer question 2. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sets and Relations is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.5, chapter 1 SETS & RELATIONS, Very Short Answer question 2. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sets and Relations is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say how many subsets you expect and how you would list them without missing any.",
   "answer": {
@@ -52,6 +52,7 @@
             "style": "heading"
           },
           "A = {−3, 0, 3}, so n(A) = 3.",
+          "(the elements are −3, 0 and 3; 0 counts as an element)",
           "The power set P(A) is the set of all subsets of A.",
           "n(P(A)) = 2³ = 8, so eight subsets must be listed."
         ],
@@ -92,12 +93,24 @@
         "mark_note": "Answer",
         "margin_note": "Second mark. Members of P(A) are sets, so each one is written inside its own braces.",
         "lines": [
+          {
+            "text": "(list the subsets by size, so none is missed)",
+            "added": true
+          },
           "No element: ∅",
           "One element: {−3}, {0}, {3}",
           "Two elements: {−3, 0}, {−3, 3}, {0, 3}",
           "Three elements: {−3, 0, 3}",
           {
-            "text": "∴ P(A) = {∅, {−3}, {0}, {3}, {−3, 0}, {−3, 3}, {0, 3}, {−3, 0, 3}}",
+            "text": "(1 + 3 + 3 + 1 = 8, which matches n(P(A)))",
+            "added": true
+          },
+          {
+            "text": "∴ P(A) = {∅, {−3}, {0}, {3}, {−3, 0},",
+            "style": "boxed"
+          },
+          {
+            "text": "{−3, 3}, {0, 3}, {−3, 0, 3}}",
             "style": "boxed"
           }
         ],
@@ -130,7 +143,21 @@
           "Leaving out A itself, which is also a subset of A.",
           "Writing the members −3, 0, 3 instead of the one-element sets {−3}, {0}, {3}."
         ],
-        "memory_tip": "List by size — none, one, two, three — and the group counts read 1, 3, 3, 1."
+        "memory_tip": "List by size — none, one, two, three — and the group counts read 1, 3, 3, 1.",
+        "lines_compact": [
+          "No element: ∅",
+          "One element: {−3}, {0}, {3}",
+          "Two elements: {−3, 0}, {−3, 3}, {0, 3}",
+          "Three elements: {−3, 0, 3}",
+          {
+            "text": "∴ P(A) = {∅, {−3}, {0}, {3}, {−3, 0},",
+            "style": "boxed"
+          },
+          {
+            "text": "{−3, 3}, {0, 3}, {−3, 0, 3}}",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   }

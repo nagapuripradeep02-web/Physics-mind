@@ -39,7 +39,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.64 — SAQ chapter 9 Product of Vectors, answer 60. Printed appearances: AP 16. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: this same chapter DOES print splits for answers 58 and 59 on book p.63 (1+1+1+1) and for answer 61 on p.64 (1+2+1), so the shape used here is the chapter's own. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q13 is the Product of Vectors slot."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.64 — SAQ chapter 9 Product of Vectors, answer 60. Printed appearances: AP 16. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: this same chapter DOES print splits for answers 58 and 59 on book p.63 (1+1+1+1) and for answer 61 on p.64 (1+2+1), so the shape used here is the chapter's own. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q13 is the Product of Vectors slot. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find the volume of a tetrahedron from its three edges.",
   "answer": {
@@ -112,6 +112,35 @@
             "render": "katex",
             "style": "eq"
           },
+          {
+            "text": "Expand along R₁: each entry times the 2×2",
+            "added": true
+          },
+          {
+            "text": "  determinant left when its row and column",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  are deleted, with signs + − +:",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  + (1) × [(−1)(1) − (0)(2)]",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  − (1) × [(1)(1) − (0)(1)]",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  + (1) × [(1)(2) − (−1)(1)]",
+            "style": "indent",
+            "added": true
+          },
           "= 1(−1 − 0) − 1(1 − 0) + 1(2 + 1)",
           "= −1 − 1 + 3 = 1"
         ],
@@ -141,6 +170,15 @@
         "common_mistakes": [
           "Missing the zero k component of b.",
           "Getting the plus-minus-plus sign pattern wrong."
+        ],
+        "lines_compact": [
+          {
+            "text": "[a\\ b\\ c] = \\begin{vmatrix} 1 & 1 & 1 \\\\ 1 & -1 & 0 \\\\ 1 & 2 & 1 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= 1(−1 − 0) − 1(1 − 0) + 1(2 + 1)",
+          "= −1 − 1 + 3 = 1"
         ]
       },
       {
@@ -152,6 +190,10 @@
         "margin_note": "Last mark. One sixth of 1. A volume is reported in cubic units — say so.",
         "memory_tip": "One sixth of the triple product, reported in CUBIC units.",
         "lines": [
+          {
+            "text": "(put [a b c] = 1)",
+            "added": true
+          },
           "V = ⅙ |1|",
           {
             "text": "= 1/6 cubic units",
@@ -183,6 +225,13 @@
         "common_mistakes": [
           "Reporting 1 instead of 1/6.",
           "Writing square units instead of cubic."
+        ],
+        "lines_compact": [
+          "V = ⅙ |1|",
+          {
+            "text": "= 1/6 cubic units",
+            "style": "boxed"
+          }
         ]
       }
     ]

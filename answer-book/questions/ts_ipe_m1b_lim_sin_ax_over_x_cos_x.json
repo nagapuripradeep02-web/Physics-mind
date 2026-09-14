@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.186, chapter 8 LIMITS, Short & Very Short Answer question 12. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.186, chapter 8 LIMITS, Short & Very Short Answer question 12. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say how you split the expression and what each factor tends to.",
   "answer": {
@@ -51,10 +51,19 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "(sin 0 = 0 and 0 · cos 0 = 0)",
           "At x = 0, sin ax = 0 and x cos x = 0, so the form is 0/0.",
-          "Split the expression into the indeterminate part and the ordinary part.",
+          "Split the expression into the indeterminate part",
+          "and the ordinary part.",
+          "(1/(x cos x) = (1/x) · (1/cos x))",
           "sin(ax)/(x cos x) = [sin(ax)/x] · [1/cos x]",
-          "Multiply and divide the first factor by a so the angle ax appears below the sine.",
+          "Multiply and divide the first factor by a",
+          "so the angle ax appears below the sine.",
+          "(sin(ax)/x = a · sin(ax)/(ax), which needs a ≠ 0;",
+          {
+            "text": "  for a = 0, sin(ax)/x is 0 and the answer a is also 0)",
+            "style": "indent"
+          },
           "= a · [sin(ax)/(ax)] · [1/cos x]"
         ],
         "recall": {
@@ -92,10 +101,22 @@
         "label": "Apply lim sin θ / θ = 1",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Second mark. As x → 0 the angle ax → 0, so the sine bracket is 1, and cos 0 = 1. Only the coefficient a survives.",
+        "margin_note": "Second mark. As x → 0 the angle ax → 0, so the sine bracket is 1, and cos 0 = 1. The coefficient a is left.",
         "lines": [
+          {
+            "text": "(the standard limit lim(θ → 0) (sin θ)/θ = 1)",
+            "added": true
+          },
           "As x → 0, ax → 0, so lim(x → 0) sin(ax)/(ax) = 1.",
+          {
+            "text": "(cos is continuous and cos 0 = 1)",
+            "added": true
+          },
           "Also cos x → cos 0 = 1, so 1/cos x → 1.",
+          {
+            "text": "(put 1 for each limit)",
+            "added": true
+          },
           "= a · 1 · 1",
           {
             "text": "∴ lim(x → 0) (sin ax)/(x cos x) = a",
@@ -129,7 +150,16 @@
           "Answering 1 by ignoring the coefficient a.",
           "Treating cos x as 0 at x = 0 and concluding that the limit does not exist."
         ],
-        "memory_tip": "Read the answer straight off the question: whatever multiplies x inside the sine is the answer, since cos 0 = 1 leaves it unchanged."
+        "memory_tip": "Read the answer straight off the question: whatever multiplies x inside the sine is the answer, since cos 0 = 1 leaves it unchanged.",
+        "lines_compact": [
+          "As x → 0, ax → 0, so lim(x → 0) sin(ax)/(ax) = 1.",
+          "Also cos x → cos 0 = 1, so 1/cos x → 1.",
+          "= a · 1 · 1",
+          {
+            "text": "∴ lim(x → 0) (sin ax)/(x cos x) = a",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

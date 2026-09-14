@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.21, chapter 3 SEQUENCES & SERIES, Very Short Answer question 11. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sequences and Series is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.21, chapter 3 SEQUENCES & SERIES, Very Short Answer question 11. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sequences and Series is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this — say what you find first and how many common differences you use.",
   "answer": {
@@ -53,8 +53,11 @@
             "style": "heading"
           },
           "Given  d = 3  and  a₁₅ = 37",
+          "(put n = 15 and d = 3)",
           "aₙ = a + (n − 1)d,  so  a + 14(3) = 37",
+          "(14 × 3 = 42)",
           "a + 42 = 37",
+          "(take 42 from both sides)",
           "a = 37 − 42 = −5"
         ],
         "recall": {
@@ -79,7 +82,7 @@
             "first term"
           ]
         },
-        "why": "The second term needs the first term, and the only route to it is the given 15th term. Fourteen common differences are subtracted, not fifteen.",
+        "why": "This method finds the first term from the given 15th term and then adds one common difference. Fourteen common differences are subtracted, not fifteen.",
         "common_mistakes": [
           "Using 15d = 45 instead of 14d = 42, which gives a = −8.",
           "Writing a = 37 + 42 = 79 by moving 42 across with the wrong sign."
@@ -94,6 +97,10 @@
         "margin_note": "Second mark. −5 + 3 = −2. Check it: −2 + 13(3) = −2 + 39 = 37, which is the given 15th term.",
         "memory_tip": "Second term = first term + one common difference.",
         "lines": [
+          {
+            "text": "(the 2nd term is a + (2 − 1)d)",
+            "added": true
+          },
           "a₂ = a + d",
           "= −5 + 3",
           {
@@ -126,6 +133,14 @@
         "common_mistakes": [
           "Writing a₂ = a + 2d by using n instead of n − 1.",
           "Getting −8 by subtracting the common difference instead of adding it."
+        ],
+        "lines_compact": [
+          "a₂ = a + d",
+          "= −5 + 3",
+          {
+            "text": "∴ a₂ = −2",
+            "style": "boxed"
+          }
         ]
       }
     ]

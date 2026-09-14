@@ -51,7 +51,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.34, printed question 44. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. BOOK NOTE: the guide says a nucleosome holds \"a DNA segment of about 150 base pairs\". NCERT gives 146 bp wrapped on the histone core, within a repeat of about 200 bp per nucleosome. The card gives 146 bp wrapped and notes the repeat, and records the guide's figure."
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.34, printed question 44. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. BOOK NOTE: the guide says a nucleosome holds \"a DNA segment of about 150 base pairs\". NCERT gives 146 bp wrapped on the histone core, within a repeat of about 200 bp per nucleosome. The card prints 146 bp wrapped and gives the about-200 bp repeat in the s2_octamer why, and records the guide's figure. Figure revision (figure audit, 2026-09-05): the DNA is redrawn as one continuous spiral of about 1.7 turns around the octamer, which the old drawing showed as a single loop, and H1 now sits just outside the coil where the DNA enters and leaves. Text revision (examiner audit, 2026-09-05): the s1_what why called the nucleosome the largest step of DNA packing, which the higher-order coiling named in s4 contradicts, and the about-200 bp repeat the note already claimed was on the card appeared nowhere; the why now says first step only, and the repeat was added to the s2_octamer why rather than to the printed lines."
   },
   "insider_note": "Two numbers carry this answer: EIGHT histones and 146 base pairs. Write both in the first two lines.",
   "answer": {
@@ -76,7 +76,7 @@
           "is packed into a nucleus a few micrometres",
           "across."
         ],
-        "why": "Two metres of DNA has to fit inside a nucleus, and the nucleosome is the first and largest step of that packing.",
+        "why": "Two metres of DNA has to fit inside a nucleus a few micrometres across, and the nucleosome is the first step of that packing; the further coiling of the chromatin does the rest.",
         "common_mistakes": [
           "Calling a nucleosome a chromosome. It is the repeating UNIT of chromatin, far smaller.",
           "Saying it is made only of DNA. It is DNA plus HISTONE PROTEIN."
@@ -99,7 +99,7 @@
           "One more histone, H1, sits where the DNA enters",
           "and leaves the bead."
         ],
-        "why": "Two copies each of four histones is what makes eight, so the name octamer is the composition stated in one word.",
+        "why": "Two copies each of four histones is what makes eight, so the name octamer is the composition stated in one word. The 146 base pairs are the length wound on the octamer itself; counting the linker DNA that joins one bead to the next, the whole repeating unit is about 200 base pairs.",
         "common_mistakes": [
           "Saying the octamer includes H1. H1 is OUTSIDE the octamer, at the entry and exit point.",
           "Giving the wrong count. It is EIGHT histones, two each of four kinds."
@@ -181,7 +181,8 @@
               "type": "stroke",
               "id": "nu_oct",
               "d": "M 198 170 A 52 52 0 1 0 302 170 A 52 52 0 1 0 198 170",
-              "ms": 4500
+              "ms": 4500,
+              "w": 2.6
             },
             {
               "type": "pause",
@@ -191,14 +192,20 @@
             {
               "type": "stroke",
               "id": "nu_wrap1",
-              "d": "M 198 208 A 68 68 0 1 1 302 208",
-              "ms": 4410
+              "d": "M 179.6 219.3 A 84.8 84.8 0 0 1 180.7 123.3 A 82.3 82.3 0 0 1 268.2 91 A 79.9 79.9 0 0 1 327.9 159.1",
+              "ms": 4250
             },
             {
               "type": "stroke",
               "id": "nu_wrap2",
-              "d": "M 186 194 A 78 78 0 0 1 250 92",
-              "ms": 1970
+              "d": "M 327.9 159.1 A 77.4 77.4 0 0 1 286.9 236.7 A 75 75 0 0 1 202.6 226.5 A 72.5 72.5 0 0 1 182.6 146.8",
+              "ms": 3870
+            },
+            {
+              "type": "stroke",
+              "id": "nu_wrap3",
+              "d": "M 182.6 146.8 A 70.1 70.1 0 0 1 247.2 101.2 A 67.7 67.7 0 0 1 310.8 143.3 A 65.2 65.2 0 0 1 295.3 215.3",
+              "ms": 3480
             },
             {
               "type": "pause",
@@ -208,15 +215,15 @@
             {
               "type": "stroke",
               "id": "nu_link_l",
-              "d": "M 186 194 C 160 216 132 232 104 244",
-              "ms": 1380,
+              "d": "M 179.6 219.3 C 156 232 130 238 104 244",
+              "ms": 1140,
               "w": 1.8
             },
             {
               "type": "stroke",
               "id": "nu_link_r",
-              "d": "M 302 208 C 328 224 352 236 380 246",
-              "ms": 1240,
+              "d": "M 295.3 215.3 C 296 236 314 250 346 258",
+              "ms": 1020,
               "w": 1.8
             },
             {
@@ -227,7 +234,7 @@
             {
               "type": "stroke",
               "id": "nu_h1",
-              "d": "M 230 222 A 20 9 0 1 0 270 222 A 20 9 0 1 0 230 222",
+              "d": "M 230 256 A 20 9 0 1 0 270 256 A 20 9 0 1 0 230 256",
               "ms": 1350
             },
             {
@@ -238,36 +245,36 @@
             {
               "type": "stroke",
               "id": "nl_dna",
-              "d": "M 136 120 L 198 124",
-              "ms": 890,
+              "d": "M 136 120 L 187 115",
+              "ms": 730,
               "w": 1.4
             },
             {
               "type": "stroke",
               "id": "nl_oct",
-              "d": "M 326 142 L 292 158",
-              "ms": 540,
+              "d": "M 342 136 L 292 158",
+              "ms": 780,
               "w": 1.4
             },
             {
               "type": "stroke",
               "id": "nl_bp",
-              "d": "M 326 198 L 308 197",
-              "ms": 300,
+              "d": "M 346 203 L 323 197",
+              "ms": 340,
               "w": 1.4
             },
             {
               "type": "stroke",
               "id": "nl_h1",
-              "d": "M 292 252 L 270 226",
-              "ms": 490,
+              "d": "M 294 282 L 268 261",
+              "ms": 480,
               "w": 1.4
             },
             {
               "type": "stroke",
               "id": "nl_link",
-              "d": "M 108 256 L 126 240",
-              "ms": 340,
+              "d": "M 114 262 L 128 238",
+              "ms": 400,
               "w": 1.4
             },
             {
@@ -282,8 +289,8 @@
             {
               "type": "label",
               "id": "nb_oct",
-              "x": 330,
-              "y": 140,
+              "x": 346,
+              "y": 132,
               "text": "Histone octamer",
               "ms": 450,
               "sm": true
@@ -291,8 +298,8 @@
             {
               "type": "label",
               "id": "nb_bp",
-              "x": 330,
-              "y": 196,
+              "x": 350,
+              "y": 200,
               "text": "146 bp of DNA",
               "ms": 450,
               "sm": true
@@ -300,8 +307,8 @@
             {
               "type": "label",
               "id": "nb_h1",
-              "x": 296,
-              "y": 256,
+              "x": 300,
+              "y": 290,
               "text": "H1 histone",
               "ms": 450,
               "sm": true

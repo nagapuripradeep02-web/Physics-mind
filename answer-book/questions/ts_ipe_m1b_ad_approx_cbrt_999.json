@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.209, chapter 10 APPLICATIONS OF DERIVATIVES, Very Short Answer question 2(i), in the ERRORS AND APPROXIMATIONS sub-section. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and the book restarts its question numbering in each sub-section, so \"question 2(i)\" is that sub-section's number and not the chapter's; we ship the five sub-sections as ONE unit, ordered by the syllabus. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks) over this sub-section but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question — one mark for choosing the nearby exact point and its derivative, one for applying the formula and reading the number. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.209, chapter 10 APPLICATIONS OF DERIVATIVES, Very Short Answer question 2(i), in the ERRORS AND APPROXIMATIONS sub-section. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and the book restarts its question numbering in each sub-section, so \"question 2(i)\" is that sub-section's number and not the chapter's; we ship the five sub-sections as ONE unit, ordered by the syllabus. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks) over this sub-section but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question — one mark for choosing the nearby exact point and its derivative, one for applying the formula and reading the number. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say which nearby value you start from, and the formula you then apply.",
   "answer": {
@@ -45,16 +45,25 @@
         "label": "Choose the nearby exact point",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark, and the whole choice of method sits here: name x = 1000, Δx = −1 and f′(1000) = 1/300. An examiner reads this line to see whether the nearest perfect cube was found.",
+        "margin_note": "First mark, and the choice of method is made here: name x = 1000, Δx = −1 and f′(1000) = 1/300. An examiner reads this line to see whether the nearest perfect cube was found.",
         "lines": [
           {
             "text": "Sol:",
             "style": "heading"
           },
+          "(this approximation is used when Δx is small)",
           "Let f(x) = ∛x. Then f(x + Δx) ≈ f(x) + f′(x)·Δx",
-          "1000 is the nearest perfect cube to 999, and ∛1000 = 10 exactly",
+          "1000 is the nearest perfect cube to 999,",
+          "and ∛1000 = 10 exactly",
+          "(Δx = the given number − the chosen x)",
           "∴ take x = 1000,  Δx = 999 − 1000 = −1",
+          "(∛x = x¹⁄³, and by the power rule its derivative",
+          {
+            "text": "  is (1/3)x⁻²⁄³ = 1/(3x²⁄³))",
+            "style": "indent"
+          },
           "f′(x) = 1/(3(∛x)²)",
+          "(∛1000 = 10, so (∛1000)² = 100 and 3 × 100 = 300)",
           "f′(1000) = 1/(3(10)²) = 1/300"
         ],
         "recall": {
@@ -84,7 +93,7 @@
           "Choosing x = 999 itself, which leaves the cube root still unknown.",
           "Writing Δx = 1 instead of −1, since 999 is below 1000."
         ],
-        "memory_tip": "For a cube root, find the nearest whole number whose cube you know; for a square root, the nearest perfect square. Δx carries whatever is left over."
+        "memory_tip": "For a cube root, find the nearest whole number whose cube you know; for a square root, the nearest perfect square. Δx is the difference between the given number and that number."
       },
       {
         "id": "s2_apply",
@@ -94,10 +103,30 @@
         "mark_note": "Answer",
         "margin_note": "Second mark. The correction is 1/300 multiplied by −1, so it is subtracted from 10, not added. A student who writes 10.0033 has used the wrong sign of Δx.",
         "lines": [
+          {
+            "text": "(put x = 1000 and Δx = −1 in the approximation)",
+            "added": true
+          },
           "∛999 = f(1000 + (−1)) ≈ f(1000) + f′(1000)·(−1)",
+          {
+            "text": "(f(1000) = ∛1000 = 10 and f′(1000) = 1/300)",
+            "added": true
+          },
           "= 10 + (1/300)(−1)",
+          {
+            "text": "(1/300 = 0.003333…)",
+            "added": true
+          },
           "= 10 − 0.003333…",
+          {
+            "text": "(10 − 0.003333 = 9.996667)",
+            "added": true
+          },
           "= 9.996667",
+          {
+            "text": "(rounded to four decimal places)",
+            "added": true
+          },
           {
             "text": "∴ ∛999 ≈ 9.9967",
             "style": "boxed"
@@ -130,7 +159,17 @@
           "Adding the correction instead of subtracting it, giving 10.0033.",
           "Reading 1/300 as 0.0333 instead of 0.003333."
         ],
-        "memory_tip": "New value ≈ old value + slope × step. The step keeps its sign, so a downward move subtracts."
+        "memory_tip": "New value ≈ old value + slope × step. The step keeps its sign, so a downward move subtracts.",
+        "lines_compact": [
+          "∛999 = f(1000 + (−1)) ≈ f(1000) + f′(1000)·(−1)",
+          "= 10 + (1/300)(−1)",
+          "= 10 − 0.003333…",
+          "= 9.996667",
+          {
+            "text": "∴ ∛999 ≈ 9.9967",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

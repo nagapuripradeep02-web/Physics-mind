@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.192, chapter 9 DIFFERENTIATION, Very Short Answer question 7. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer was checked numerically before it was written: the central difference quotient reads 2.9239764 at x = 0.4 against eˣ(x + 1)² = 2.9239764, and 66.501505 at x = 2 against 66.501505."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.192, chapter 9 DIFFERENTIATION, Very Short Answer question 7. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer was checked numerically before it was written: the central difference quotient reads 2.9239764 at x = 0.4 against eˣ(x + 1)² = 2.9239764, and 66.501505 at x = 2 against 66.501505. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say which rule applies and what the final expression tidies to.",
   "answer": {
@@ -52,9 +52,13 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Let y = eˣ(x² + 1). This is a product, so take u = eˣ and v = x² + 1",
+          "Let y = eˣ(x² + 1). This is a product, so take u = eˣ",
+          "and v = x² + 1",
+          "(the product rule)",
           "d/dx(uv) = u · dv/dx + v · du/dx",
+          "(d/dx(eˣ) = eˣ; d/dx(x² + 1) = 2x + 0 = 2x)",
           "du/dx = eˣ  and  dv/dx = 2x",
+          "(put u = eˣ, dv/dx = 2x, v = x² + 1 and du/dx = eˣ)",
           "∴ dy/dx = eˣ(2x) + (x² + 1)eˣ"
         ],
         "recall": {
@@ -95,8 +99,20 @@
         "memory_tip": "x² + 2x + 1 is (x + 1)². Spotting the perfect square turns a three-term bracket into a short final line.",
         "lines": [
           "Take eˣ common:",
+          {
+            "text": "(eˣ(2x) + (x² + 1)eˣ = eˣ[2x + (x² + 1)])",
+            "added": true
+          },
           "dy/dx = eˣ(2x + x² + 1) = eˣ(x² + 2x + 1)",
+          {
+            "text": "((x + 1)² = x² + 2 · x · 1 + 1² = x² + 2x + 1)",
+            "added": true
+          },
           "x² + 2x + 1 = (x + 1)²",
+          {
+            "text": "(put (x + 1)² in place of x² + 2x + 1)",
+            "added": true
+          },
           {
             "text": "∴ d/dx[eˣ(x² + 1)] = eˣ(x + 1)²",
             "style": "boxed"
@@ -128,6 +144,15 @@
         "common_mistakes": [
           "Adding the terms as eˣ(2x + x²) and dropping the 1.",
           "Writing (x + 1)² as x² + 1 when expanding back to check."
+        ],
+        "lines_compact": [
+          "Take eˣ common:",
+          "dy/dx = eˣ(2x + x² + 1) = eˣ(x² + 2x + 1)",
+          "x² + 2x + 1 = (x + 1)²",
+          {
+            "text": "∴ d/dx[eˣ(x² + 1)] = eˣ(x + 1)²",
+            "style": "boxed"
+          }
         ]
       }
     ]

@@ -37,10 +37,21 @@ for (const f of readdirSync(QDIR).filter((x) => x.startsWith(prefix) && x.endsWi
         rows.push({ qid: q.question_id, sid, where, style: spec.style || 'normal', text: spec.text });
     };
     for (const s of q.answer.steps) {
-        const dflt = s.kind === 'equation' ? 'eq' : 'normal';
+        // The page's default, NOT the step's kind. notebook.js lineSpec resolves a
+        // line that names no style to 'normal' whatever the step kind is, so an
+        // 'eq' default here measured plain strings on an equation step against
+        // 568px when the page actually gives them 624 — three lines of Maths-2B
+        // were reported as wrapping that do not wrap on the page (2026-09-09).
+        const dflt = 'normal';
         for (const raw of s.lines || []) {
             const spec = typeof raw === 'string' ? { text: raw, style: dflt } : { style: dflt, ...raw };
             push(s.id, spec, 'steps');
+        }
+        // The short answer is on the page too, whenever a student has not pressed
+        // Simplify — so it is measured on the same terms as the full working.
+        for (const raw of s.lines_compact || []) {
+            const spec = typeof raw === 'string' ? { text: raw, style: dflt } : { style: dflt, ...raw };
+            push(s.id, spec, 'compact');
         }
     }
     for (const c of q.cuts || []) {
@@ -48,7 +59,8 @@ for (const f of readdirSync(QDIR).filter((x) => x.startsWith(prefix) && x.endsWi
         // cards with cuts; zoology has none, which is why this never fired).
         const kindOf = new Map(q.answer.steps.map((s) => [s.id, s.kind]));
         for (const [sid, s] of Object.entries(c.steps || {})) {
-            const dflt = kindOf.get(sid) === 'equation' ? 'eq' : 'normal';
+            const dflt = 'normal';                     // see the note above
+            void kindOf;
             for (const raw of s.lines || []) {
                 const spec = typeof raw === 'string' ? { text: raw, style: dflt } : { style: dflt, ...raw };
                 push(sid, spec, 'cut:' + c.key);

@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.49, chapter 5 MATRICES, Long Answer question 8, determinant-identity route. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 3+2+2+1 split gives three marks to the pair of row subtractions, because they are the whole idea and the longest arithmetic, two to the common factors, two to the expansion and one to the stated result. The opening line carries no mark because it only copies the question down. Working checked: the identity was tested on a = 2, where the determinant of (8, 5, 1), (5, 4, 1), (3, 3, 1) is 1 = (2 − 1)³, and on a = 3, where the determinant of (15, 7, 1), (7, 5, 1), (3, 3, 1) is 8 = (3 − 1)³. Paper position: Maths-1A Section C prints 3 long answers at 8 marks each and the student answers any 2; Matrices is one of the units that can fill a Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.49, chapter 5 MATRICES, Long Answer question 8, determinant-identity route. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 3+2+2+1 split gives three marks to the pair of row subtractions, because they are the whole idea and the longest arithmetic, two to the common factors, two to the expansion and one to the stated result. The opening line carries no mark because it only copies the question down. Working checked: the identity was tested on a = 2, where the determinant of (8, 5, 1), (5, 4, 1), (3, 3, 1) is 1 = (2 − 1)³, and on a = 3, where the determinant of (15, 7, 1), (7, 5, 1), (3, 3, 1) is 8 = (3 − 1)³. Paper position: Maths-1A Section C prints 3 long answers at 8 marks each and the student answers any 2; Matrices is one of the units that can fill a Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — say which rows you subtract, what comes out common, which line you expand along, and how the cube appears.",
   "answer": {
@@ -103,6 +103,10 @@
         "memory_tip": "Both subtractions use the row BELOW, and row 3 is left untouched.",
         "lines": [
           "R₁ → R₁ − R₂,  R₂ → R₂ − R₃",
+          {
+            "text": "(subtracting rows does not change the value)",
+            "added": true
+          },
           "New R₁:  a²+2a − (2a+1) = a² − 1,",
           "2a+1 − (a+2) = a − 1,  1 − 1 = 0",
           "New R₂:  2a+1 − 3 = 2a − 2,",
@@ -141,6 +145,18 @@
           "Writing R₁ → R₂ − R₁ instead of R₁ → R₁ − R₂, which flips the sign of the determinant.",
           "Changing row 3 as well, so there is no row of plain numbers left.",
           "Working out a²+2a − (2a+1) as a²+1 by dropping the bracket."
+        ],
+        "lines_compact": [
+          "R₁ → R₁ − R₂,  R₂ → R₂ − R₃",
+          "New R₁:  a²+2a − (2a+1) = a² − 1,",
+          "2a+1 − (a+2) = a − 1,  1 − 1 = 0",
+          "New R₂:  2a+1 − 3 = 2a − 2,",
+          "a+2 − 3 = a − 1,  1 − 1 = 0",
+          {
+            "text": "\\Delta = \\begin{vmatrix} a^2-1 & a-1 & 0 \\\\ 2a-2 & a-1 & 0 \\\\ 3 & 3 & 1 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -154,6 +170,15 @@
         "lines": [
           "a² − 1 = (a−1)(a+1) and 2a − 2 = 2(a−1),",
           "so (a−1) comes out of R₁ and out of R₂:",
+          {
+            "text": "(R₁ becomes (a−1)(a+1, 1, 0) and R₂ becomes",
+            "added": true
+          },
+          {
+            "text": "  (a−1)(2, 1, 0))",
+            "style": "indent",
+            "added": true
+          },
           {
             "text": "\\Delta = (a-1)^2 \\begin{vmatrix} a+1 & 1 & 0 \\\\ 2 & 1 & 0 \\\\ 3 & 3 & 1 \\end{vmatrix}",
             "render": "katex",
@@ -187,6 +212,15 @@
           "Taking 2(a−1) out of R₂ and still writing that row as 1, 1, 0; taking (a−1) out leaves the row as 2, 1, 0.",
           "Forgetting that the second entry a − 1 also has to be divided, leaving a − 1 inside.",
           "Taking the factor out of a column instead of a row."
+        ],
+        "lines_compact": [
+          "a² − 1 = (a−1)(a+1) and 2a − 2 = 2(a−1),",
+          "so (a−1) comes out of R₁ and out of R₂:",
+          {
+            "text": "\\Delta = (a-1)^2 \\begin{vmatrix} a+1 & 1 & 0 \\\\ 2 & 1 & 0 \\\\ 3 & 3 & 1 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -200,8 +234,16 @@
         "lines": [
           "Column 3 is 0, 0, 1, so only the bottom entry",
           "contributes. Its cofactor sign is plus:",
+          {
+            "text": "(its minor deletes row 3 and column 3)",
+            "added": true
+          },
           "Δ = (a−1)² · 1 · [(a+1)(1) − 1(2)]",
           "= (a−1)²(a + 1 − 2)",
+          {
+            "text": "(1 − 2 = −1)",
+            "added": true
+          },
           "= (a−1)²(a − 1)"
         ],
         "recall": {
@@ -232,6 +274,13 @@
           "Expanding along the first row, which needs three 2×2 determinants.",
           "Giving the surviving term a minus sign; position (3, 3) is plus.",
           "Forgetting the (a−1)² already standing outside."
+        ],
+        "lines_compact": [
+          "Column 3 is 0, 0, 1, so only the bottom entry",
+          "contributes. Its cofactor sign is plus:",
+          "Δ = (a−1)² · 1 · [(a+1)(1) − 1(2)]",
+          "= (a−1)²(a + 1 − 2)",
+          "= (a−1)²(a − 1)"
         ]
       },
       {
@@ -245,6 +294,10 @@
         "lines": [
           "Two factors came out of the rows and one came",
           "from the 2×2 determinant — three in all:",
+          {
+            "text": "((a−1)² × (a−1) = (a−1)³)",
+            "added": true
+          },
           {
             "text": "Δ = (a − 1)³ = R.H.S",
             "style": "boxed"
@@ -275,6 +328,14 @@
         "common_mistakes": [
           "Writing (a−1)² by forgetting one of the row factors.",
           "Leaving a stray 2 in front from the 2a − 2 row."
+        ],
+        "lines_compact": [
+          "Two factors came out of the rows and one came",
+          "from the 2×2 determinant — three in all:",
+          {
+            "text": "Δ = (a − 1)³ = R.H.S",
+            "style": "boxed"
+          }
         ]
       }
     ]

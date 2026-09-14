@@ -1,0 +1,160 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_gen_genic_balance_theory",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Genetics (Zoology-II)"
+  },
+  "chapter": "Genetics",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Describe the Genic Balance Theory of sex determination.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Who proposed it and what he found",
+      "marks": 1
+    },
+    {
+      "label": "The sex index",
+      "marks": 1
+    },
+    {
+      "label": "The experiment",
+      "marks": 1
+    },
+    {
+      "label": "The ratios and their phenotypes",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.39, SAQ 35. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Revised 2026-09-05 after the examiner audit: the WHY on the ratios step had the intersex and the metaforms the wrong way round and now matches the printed table."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Genetics · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_bridges",
+        "kind": "text",
+        "label": "Who proposed it",
+        "marks": 1,
+        "mark_note": "Bridges",
+        "why": "Bridges found flies that were male without a Y chromosome, which showed the Y cannot be what makes a male.",
+        "common_mistakes": [
+          "Crediting Morgan. C.B. Bridges proposed this theory.",
+          "Saying the Y chromosome determines sex in Drosophila. It does not."
+        ],
+        "memory_tip": "Bridges: in Drosophila the Y is not what makes a male.",
+        "margin_note": "Name the scientist and the animal.",
+        "lines": [
+          "The genic balance mechanism of sex",
+          "determination was first observed and",
+          "studied by C.B. Bridges.",
+          "He found that in Drosophila the Y",
+          "chromosome is not necessary for the male",
+          "character."
+        ]
+      },
+      {
+        "id": "s2_sex_index",
+        "kind": "equation",
+        "label": "The sex index",
+        "marks": 1,
+        "mark_note": "Sex index",
+        "why": "Sex is decided by a balance between two sets of chromosomes, so it is expressed as a ratio rather than a single chromosome.",
+        "common_mistakes": [
+          "Putting autosomes over X chromosomes. X is on top.",
+          "Counting all autosomes instead of haploid sets."
+        ],
+        "memory_tip": "X over A: X chromosomes divided by sets of autosomes.",
+        "margin_note": "Write the fraction on its own line.",
+        "lines": [
+          "The ratio between the number of X",
+          "chromosomes and the number of haploid sets",
+          "of autosomes determines the sex.",
+          {
+            "text": "Sex index = X chromosomes / sets of autosomes",
+            "style": "eq"
+          },
+          {
+            "text": "= X / A",
+            "style": "eq"
+          }
+        ]
+      },
+      {
+        "id": "s3_experiment",
+        "kind": "text",
+        "label": "The experiment",
+        "marks": 1,
+        "mark_note": "The cross",
+        "why": "Crossing a triploid female to a normal male produced offspring with many different X to A ratios, which is what let the rule be read off.",
+        "common_mistakes": [
+          "Using a normal female. Bridges used a triploid female.",
+          "Leaving the cross out altogether."
+        ],
+        "memory_tip": "Triploid female AAA XXX crossed with a normal male AAXY.",
+        "margin_note": "One line for the cross.",
+        "lines": [
+          "Bridges crossed a triploid female",
+          "(AAA XXX) to a normal male (AAXY) and",
+          "observed many different karyotypes in the",
+          "offspring."
+        ]
+      },
+      {
+        "id": "s4_ratios",
+        "kind": "boxed_final",
+        "label": "The ratios",
+        "marks": 1,
+        "mark_note": "The ratios",
+        "why": "A ratio of 1.0 gives a female and 0.5 a male. A ratio between 0.5 and 1.0 gives an intersex, a ratio above 1.0 a metafemale, and a ratio below 0.5 a metamale.",
+        "common_mistakes": [
+          "Giving AAXY a ratio of 1.0. It is 0.5.",
+          "Naming intersex for a ratio above 1.0. Above 1.0 is metafemale."
+        ],
+        "memory_tip": "1.0 female, 0.5 male, above 1.0 metafemale, below 0.5 metamale.",
+        "margin_note": "Give the ratio and the phenotype for each karyotype.",
+        "lines": [
+          "AAXX (2X/2A) = 1.0 — female",
+          "AAXY = 0.5 — male",
+          "AAXO = 0.5 — male",
+          "AAXXY = 1.0 — female",
+          "AAXXX = 1.5 — metafemale",
+          "AAAXX = 0.67 — intersex",
+          {
+            "text": "AAAXO = 0.33 — metamale",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Write the sex index as a fraction and give at least four rows of the table. The theory is a set of numbers, and numbers are what earn the marks here."
+}

@@ -48,7 +48,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.20 — LAQ chapter 2 Pair of Straight Lines, answer 7. Printed appearances: TS 19 · AP,TS M 17 · TS J-16. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. The chapter's only printed splits are on its two homogenisation answers (12 and 15), whose shape does not transfer to a general proof. This split follows the answer's own printed structure instead: the book sets every proof in this chapter out as a chain of starred bullet lines, and the cut here groups them at the points where the argument turns. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: Pair of Straight Lines holds TWO Section-C slots — the book's chapter header reads '7+7=14 Marks' and the IPE Blue Print (book p.3) gives it 14 marks, all in Section C and none in Section A or B, so it is an LAQ-ONLY unit and the only 1B unit besides Matrices-on-1A to carry two long slots. The chapter runs book pp.19-26 and its boundary was walked: p.27 opens LAQ chapter 3, D.C's & D.R's. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Convert to a, h, b. RE-CUT 2026-08-31: this card was filed as LAQ at 8 marks and is now SAQ at 4 marks. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition) files this chapter under the printed banner \"2 x 4M = 8 M\" followed by \"Short Answer Questions\", lists every one of its questions there, and prints no long-answer block for this chapter at all. A chapter with no 8-mark block cannot hold an 8-mark question. The standing boundary for that book — \"Only the question was taken\" — holds here, and this card takes even less: what was read from it is the chapter’s printed section banner and nothing else. The solution, the step order and the mark split are this answer book’s own work, see docs/ORIGINALITY_MATHS.md. The mathematics and the steps are unchanged; only the mark scheme moved: the four marked steps now carry 1+1+1+1 instead of 1+2+2+3, and the figure step stays at 0. Paper position now: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. Still unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.20 — LAQ chapter 2 Pair of Straight Lines, answer 7. Printed appearances: TS 19 · AP,TS M 17 · TS J-16. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. The chapter's only printed splits are on its two homogenisation answers (12 and 15), whose shape does not transfer to a general proof. This split follows the answer's own printed structure instead: the book sets every proof in this chapter out as a chain of starred bullet lines, and the cut here groups them at the points where the argument turns. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: Pair of Straight Lines holds TWO Section-C slots — the book's chapter header reads '7+7=14 Marks' and the IPE Blue Print (book p.3) gives it 14 marks, all in Section C and none in Section A or B, so it is an LAQ-ONLY unit and the only 1B unit besides Matrices-on-1A to carry two long slots. The chapter runs book pp.19-26 and its boundary was walked: p.27 opens LAQ chapter 3, D.C's & D.R's. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Convert to a, h, b. RE-CUT 2026-08-31: this card was filed as LAQ at 8 marks and is now SAQ at 4 marks. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition) files this chapter under the printed banner \"2 x 4M = 8 M\" followed by \"Short Answer Questions\", lists every one of its questions there, and prints no long-answer block for this chapter at all. A chapter with no 8-mark block cannot hold an 8-mark question. The standing boundary for that book — \"Only the question was taken\" — holds here, and this card takes even less: what was read from it is the chapter’s printed section banner and nothing else. The solution, the step order and the mark split are this answer book’s own work, see docs/ORIGINALITY_MATHS.md. The mathematics and the steps are unchanged; only the mark scheme moved: the four marked steps now carry 1+1+1+1 instead of 1+2+2+3, and the figure step stays at 0. Paper position now: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. Still unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — say where the third vertex is, and how you handle the difference of the two slopes.",
   "answer": {
@@ -68,7 +68,17 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Let ax² + 2hxy + by² ≡ (m₁x − y)(m₂x − y)",
+          "(b ≠ 0, so neither line is vertical and the lines are",
+          {
+            "text": "  m₁x − y = 0 and m₂x − y = 0)",
+            "style": "indent"
+          },
+          "Let ax² + 2hxy + by² ≡ b(m₁x − y)(m₂x − y)",
+          "(b(m₁x − y)(m₂x − y) matches ax² + 2hxy + by²: x² terms",
+          {
+            "text": "  bm₁m₂ = a, xy terms −b(m₁ + m₂) = 2h)",
+            "style": "indent"
+          },
           "On equating like term coeff., we get",
           "m₁ + m₂ = −2h/b,   m₁m₂ = a/b  ……(1)"
         ],
@@ -94,7 +104,7 @@
             "a over b"
           ]
         },
-        "why": "Every proof in this chapter starts the same way: SPLIT the pair into its two separate lines with unknown coefficients, then match coefficients against the given equation. Those matched coefficients, linking (a, h, b) to the two lines, are what every later step uses.",
+        "why": "This proof starts by SPLITTING the pair into its two separate lines with unknown coefficients, then matching coefficients against the given equation. Those matched coefficients, linking (a, h, b) to the two lines, are what every later step uses.",
         "common_mistakes": [
           "Writing m₁ + m₂ = 2h/b without the minus sign.",
           "Dividing by a instead of b."
@@ -130,10 +140,10 @@
             "cutting line"
           ]
         },
-        "why": "A homogeneous second-degree equation always represents two lines through the ORIGIN, so the third vertex is free — which is what shortens the area formula to ½|x₁y₂ − x₂y₁|.",
+        "why": "A homogeneous second-degree equation represents a pair of lines through the ORIGIN (real lines when h² ≥ ab), so the third vertex is free — which is what shortens the area formula to ½|x₁y₂ − x₂y₁|.",
         "common_mistakes": [
           "Drawing the pair away from the origin, which a homogeneous equation cannot represent.",
-          "Drawing the cutting line through the origin too, which would collapse the triangle."
+          "Drawing the cutting line through the origin too, which would give no triangle."
         ],
         "figure": {
           "id": "pair_and_cutting_line",
@@ -244,8 +254,34 @@
           "By solving lx + my + n = 0 and m₁x − y = 0 we get A",
           "lx + my + n = 0",
           "m₁x − y + 0 = 0",
-          "⇒ x / [m(0) − (−1)(n)] = y / [n(m₁) − l(0)] = 1 / [l(−1) − mm₁]",
+          {
+            "text": "(the cross-multiplication rule with a₁ = l, b₁ = m,",
+            "added": true
+          },
+          {
+            "text": "  c₁ = n and a₂ = m₁, b₂ = −1, c₂ = 0)",
+            "style": "indent",
+            "added": true
+          },
+          "⇒ x / [m(0) − (−1)(n)] = y / [n(m₁) − l(0)]",
+          {
+            "text": "  = 1 / [l(−1) − mm₁]",
+            "style": "indent"
+          },
+          {
+            "text": "(m(0) + n = n; nm₁ − 0 = nm₁; −l − mm₁)",
+            "added": true
+          },
           "⇒ x/n = y/(nm₁) = 1/(−l − mm₁)",
+          {
+            "text": "(x = n/(−l − mm₁) = −n/(l + mm₁),",
+            "added": true
+          },
+          {
+            "text": "  and y = nm₁/(−l − mm₁))",
+            "style": "indent",
+            "added": true
+          },
           "⇒ A = (−n/(l + mm₁),  −nm₁/(l + mm₁))"
         ],
         "recall": {
@@ -276,7 +312,19 @@
           "Sign slip in one of the three cross-multiplication denominators."
         ],
         "mark_note": "Method",
-        "memory_tip": "Solve the given line against the first of the pair by cross-multiplication, keeping everything in letters."
+        "memory_tip": "Solve the given line against the first of the pair by cross-multiplication, keeping everything in letters.",
+        "lines_compact": [
+          "By solving lx + my + n = 0 and m₁x − y = 0 we get A",
+          "lx + my + n = 0",
+          "m₁x − y + 0 = 0",
+          "⇒ x / [m(0) − (−1)(n)] = y / [n(m₁) − l(0)]",
+          {
+            "text": "  = 1 / [l(−1) − mm₁]",
+            "style": "indent"
+          },
+          "⇒ x/n = y/(nm₁) = 1/(−l − mm₁)",
+          "⇒ A = (−n/(l + mm₁),  −nm₁/(l + mm₁))"
+        ]
       },
       {
         "id": "s3_vertex_b_and_area",
@@ -285,10 +333,45 @@
         "marks": 1,
         "margin_note": "One mark. B comes from the same working with m₂ in place of m₁. With O at the origin, the area reduces to ½|x₁y₂ − x₂y₁| — no third coordinate needed.",
         "lines": [
+          {
+            "text": "(the same working with m₂ in place of m₁)",
+            "added": true
+          },
           "Similarly, we get  B = (−n/(l + mm₂),  −nm₂/(l + mm₂))",
-          "The area of the triangle with vertices O(0,0), A(x₁,y₁), B(x₂,y₂) is  Δ = ½|x₁y₂ − x₂y₁|",
-          "∴ Area of △OAB = ½ |[−n/(l+mm₁)][−nm₂/(l+mm₂)] − [−n/(l+mm₂)][−nm₁/(l+mm₁)]|",
+          {
+            "text": "(with one vertex at the origin,",
+            "added": true
+          },
+          {
+            "text": "  four of the six terms of the area formula are zero)",
+            "style": "indent",
+            "added": true
+          },
+          "The area of the triangle with vertices O(0,0),",
+          "A(x₁,y₁), B(x₂,y₂) is  Δ = ½|x₁y₂ − x₂y₁|",
+          {
+            "text": "(put x₁, y₁ from A and x₂, y₂ from B)",
+            "added": true
+          },
+          "∴ Area of △OAB = ½ |[−n/(l+mm₁)][−nm₂/(l+mm₂)]",
+          {
+            "text": "  − [−n/(l+mm₂)][−nm₁/(l+mm₁)]|",
+            "style": "indent"
+          },
+          {
+            "text": "((−n)(−nm₂) = n²m₂ and (−n)(−nm₁) = n²m₁,",
+            "added": true
+          },
+          {
+            "text": "  over the common denominator)",
+            "style": "indent",
+            "added": true
+          },
           "= ½ |(n²m₂ − n²m₁) / [(l + mm₁)(l + mm₂)]|",
+          {
+            "text": "((l + mm₁)(l + mm₂) = l² + lmm₂ + lmm₁ + m²m₁m₂)",
+            "added": true
+          },
           "= ½ |n²(m₂ − m₁) / [l² + lmm₂ + lmm₁ + m²m₁m₂]|"
         ],
         "recall": {
@@ -313,28 +396,82 @@
             "area of the triangle"
           ]
         },
-        "why": "Putting one vertex at the origin removes two of the six terms in the general area determinant, which is why the pair-through-the-origin setting keeps this manageable.",
+        "why": "Putting one vertex at the origin removes four of the six terms in the general area formula, which is why the pair-through-the-origin setting keeps this manageable.",
         "common_mistakes": [
           "Using the full three-vertex determinant and mis-expanding it.",
           "Losing the n² when multiplying the two numerators."
         ],
         "mark_note": "Method",
-        "memory_tip": "With O at the origin the area collapses to ½|x₁y₂ − x₂y₁| — no third coordinate needed."
+        "memory_tip": "With O at the origin the area formula becomes ½|x₁y₂ − x₂y₁| — no third coordinate needed.",
+        "lines_compact": [
+          "Similarly, we get  B = (−n/(l + mm₂),  −nm₂/(l + mm₂))",
+          "The area of the triangle with vertices O(0,0),",
+          "A(x₁,y₁), B(x₂,y₂) is  Δ = ½|x₁y₂ − x₂y₁|",
+          "∴ Area of △OAB = ½ |[−n/(l+mm₁)][−nm₂/(l+mm₂)]",
+          {
+            "text": "  − [−n/(l+mm₂)][−nm₁/(l+mm₁)]|",
+            "style": "indent"
+          },
+          "= ½ |(n²m₂ − n²m₁) / [(l + mm₁)(l + mm₂)]|",
+          "= ½ |n²(m₂ − m₁) / [l² + lmm₂ + lmm₁ + m²m₁m₂]|"
+        ]
       },
       {
         "id": "s4_convert",
         "kind": "boxed_final",
         "label": "Convert to a, h, b",
         "marks": 1,
-        "margin_note": "The last mark. m₂ − m₁ is not among the matched coefficients, but (m₁+m₂)² − 4m₁m₂ is — so square the difference first, then substitute (1) and clear the b's.",
+        "margin_note": "The last mark. m₂ − m₁ cannot be written from (1) directly, but (m₂ − m₁)² = (m₁+m₂)² − 4m₁m₂ can — so square the difference first, then substitute (1) and clear the b's.",
         "lines": [
-          "= ½ · n²√((m₁ + m₂)² − 4m₁m₂) / |l² + lm(m₁ + m₂) + m²(m₁m₂)|",
+          {
+            "text": "(|m₂ − m₁| = √((m₁ + m₂)² − 4m₁m₂), see the line below)",
+            "added": true
+          },
+          "= ½ · n²√((m₁ + m₂)² − 4m₁m₂)",
+          {
+            "text": "  / |l² + lm(m₁ + m₂) + m²(m₁m₂)|",
+            "style": "indent"
+          },
           "  [∵ |p − q| = √((p + q)² − 4pq), applied to p = m₁, q = m₂]",
-          "= ½ · n²√((−2h/b)² − 4(a/b)) / |l² + lm(−2h/b) + m²(a/b)|",
+          {
+            "text": "(put m₁ + m₂ = −2h/b and m₁m₂ = a/b from (1))",
+            "added": true
+          },
+          "= ½ · n²√((−2h/b)² − 4(a/b))",
+          {
+            "text": "  / |l² + lm(−2h/b) + m²(a/b)|",
+            "style": "indent"
+          },
+          {
+            "text": "(4h²/b² − 4a/b = (4h² − 4ab)/b²;",
+            "added": true
+          },
+          {
+            "text": "  multiply the denominator's terms by b/b)",
+            "style": "indent",
+            "added": true
+          },
           "= ½ · n²√((4h² − 4ab)/b²) / |(bl² − 2hlm + am²)/b|",
+          {
+            "text": "(√((4h² − 4ab)/b²) = 2√(h² − ab)/|b|)",
+            "added": true
+          },
           "= ½ · n²(2√(h² − ab)/|b|) / (|bl² − 2hlm + am²|/|b|)",
           {
-            "text": "∴ Area = n²√(h² − ab) / |am² − 2hlm + bl²|  sq.units",
+            "text": "(½ · 2 = 1 and the |b|'s cancel;",
+            "added": true
+          },
+          {
+            "text": "  bl² − 2hlm + am² = am² − 2hlm + bl²)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "∴ Area = n²√(h² − ab) / |am² − 2hlm + bl²|",
+            "style": "boxed"
+          },
+          {
+            "text": "sq.units",
             "style": "boxed"
           }
         ],
@@ -366,7 +503,30 @@
           "Forgetting that b appears in both numerator and denominator and cancels."
         ],
         "mark_note": "Solution",
-        "memory_tip": "m₂ − m₁ is not among the matched coefficients, but (m₁+m₂)² − 4m₁m₂ is — so SQUARE the difference first."
+        "memory_tip": "m₂ − m₁ cannot be written from (1) directly, but (m₁+m₂)² − 4m₁m₂ can — so SQUARE the difference first.",
+        "lines_compact": [
+          "= ½ · n²√((m₁ + m₂)² − 4m₁m₂)",
+          {
+            "text": "  / |l² + lm(m₁ + m₂) + m²(m₁m₂)|",
+            "style": "indent"
+          },
+          "  [∵ |p − q| = √((p + q)² − 4pq), applied to p = m₁, q = m₂]",
+          "= ½ · n²√((−2h/b)² − 4(a/b))",
+          {
+            "text": "  / |l² + lm(−2h/b) + m²(a/b)|",
+            "style": "indent"
+          },
+          "= ½ · n²√((4h² − 4ab)/b²) / |(bl² − 2hlm + am²)/b|",
+          "= ½ · n²(2√(h² − ab)/|b|) / (|bl² − 2hlm + am²|/|b|)",
+          {
+            "text": "∴ Area = n²√(h² − ab) / |am² − 2hlm + bl²|",
+            "style": "boxed"
+          },
+          {
+            "text": "sq.units",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

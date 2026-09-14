@@ -34,7 +34,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.71, chapter 7 PRODUCT OF VECTORS, Short Answer question 21(iii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+2+1 split gives the first mark to reading which pair of vectors the stem supplies, half the marks to the determinant, and the last to the magnitude — the first mark is separated deliberately because the stem says ADJACENT SIDES, so the area is |a × b| with no factor of ½; the ½ belongs to the diagonal form ½|d₁ × d₂|, and a student who mixes the two halves the answer. STEM READ EXACTLY: the two vectors are named as adjacent sides, so no ½ is applied. CROSS PRODUCT VERIFIED: a × b = 3i + 2j + 9k dotted with a = (2, −3, 0) gives 6 − 6 + 0 = 0 and dotted with b = (3, 0, −1) gives 9 + 0 − 9 = 0, so the result is perpendicular to both sides; its squared length is 9 + 4 + 81 = 94, and 94 = 2 × 47 has no square factor, so √94 is the final surd form. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Product of Vectors supplies at least one of those eight on almost every paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.71, chapter 7 PRODUCT OF VECTORS, Short Answer question 21(iii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+2+1 split gives the first mark to reading which pair of vectors the stem supplies, half the marks to the determinant, and the last to the magnitude — the first mark is separated deliberately because the stem says ADJACENT SIDES, so the area is |a × b| with no factor of ½; the ½ belongs to the diagonal form ½|d₁ × d₂|, and a student who mixes the two halves the answer. STEM READ EXACTLY: the two vectors are named as adjacent sides, so no ½ is applied. CROSS PRODUCT VERIFIED: a × b = 3i + 2j + 9k dotted with a = (2, −3, 0) gives 6 − 6 + 0 = 0 and dotted with b = (3, 0, −1) gives 9 + 0 − 9 = 0, so the result is perpendicular to both sides; its squared length is 9 + 4 + 81 = 94, and 94 = 2 × 47 has no square factor, so √94 is the final surd form. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Product of Vectors supplies at least one of those eight on almost every paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find this area — say first whether the given vectors are sides or diagonals.",
   "answer": {
@@ -105,6 +105,25 @@
             "render": "katex",
             "style": "eq"
           },
+          {
+            "text": "Expand along the top row, i, j, k (signs + − +):",
+            "added": true
+          },
+          {
+            "text": "  i: (−3)(−1) − (0)(0) = 3",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  j: (2)(−1) − (0)(3) = −2, with a minus in front",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  k: (2)(0) − (−3)(3) = 9",
+            "style": "indent",
+            "added": true
+          },
           "= i(3 − 0) − j(−2 − 0) + k(0 + 9)",
           "= 3i + 2j + 9k"
         ],
@@ -134,6 +153,16 @@
         "common_mistakes": [
           "Leaving out the zero components of 2i − 3j and 3i − k.",
           "Dropping the minus that stands in front of the j term."
+        ],
+        "lines_compact": [
+          "a = (2, −3, 0) and b = (3, 0, −1).",
+          {
+            "text": "a \\times b = \\begin{vmatrix} i & j & k \\\\ 2 & -3 & 0 \\\\ 3 & 0 & -1 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= i(3 − 0) − j(−2 − 0) + k(0 + 9)",
+          "= 3i + 2j + 9k"
         ]
       },
       {
@@ -147,6 +176,10 @@
         "lines": [
           "Check: (3i + 2j + 9k)·a = 6 − 6 + 0 = 0",
           "and (3i + 2j + 9k)·b = 9 + 0 − 9 = 0",
+          {
+            "text": "(a × b is at right angles to both a and b)",
+            "added": true
+          },
           "|a × b| = √(9 + 4 + 81) = √94",
           {
             "text": "∴ Area = √94 sq. units",
@@ -179,6 +212,15 @@
         "common_mistakes": [
           "Replacing √94 with a rounded decimal.",
           "Leaving off the words sq. units."
+        ],
+        "lines_compact": [
+          "Check: (3i + 2j + 9k)·a = 6 − 6 + 0 = 0",
+          "and (3i + 2j + 9k)·b = 9 + 0 − 9 = 0",
+          "|a × b| = √(9 + 4 + 81) = √94",
+          {
+            "text": "∴ Area = √94 sq. units",
+            "style": "boxed"
+          }
         ]
       }
     ]

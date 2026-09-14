@@ -30,9 +30,9 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.45, printed question 113. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.45, printed question 113. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. Revised 2026-09-05: the insider note demanded one exact wording and claimed examiners know that phrase, so it now asks for the direction condition itself, which is what NCERT requires."
   },
-  "insider_note": "The definition must say 'in the same 5' to 3' direction' — without it, the sentence is not quite true and examiners know the phrase.",
+  "insider_note": "The definition needs the direction condition — say the two strands are read in the SAME direction, 5' to 3'. Without it, 'reads the same on both strands' is not true. Then give the EcoRI example with both strands written out.",
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

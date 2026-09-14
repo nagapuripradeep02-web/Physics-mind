@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.63 — SAQ chapter 9 Product of Vectors, answer 58. Printed appearances: the single tag 'IPE 14' — a PRE-BIFURCATION paper, before the 2014 TS/AP split. appearances[].board has no value for that era, so the year is recorded here in prose and appearances[] is left empty rather than guessing a board. THE MARK SPLIT IS PRINTED in that book's margin as [1 Mark] against each of four working lines — a sourced 1+1+1+1 — a sourced split, not an inference. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q13 is the Product of Vectors slot."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.63 — SAQ chapter 9 Product of Vectors, answer 58. Printed appearances: the single tag 'IPE 14' — a PRE-BIFURCATION paper, before the 2014 TS/AP split. appearances[].board has no value for that era, so the year is recorded here in prose and appearances[] is left empty rather than guessing a board. THE MARK SPLIT IS PRINTED in that book's margin as [1 Mark] against each of four working lines — a sourced 1+1+1+1 — a sourced split, not an inference. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q13 is the Product of Vectors slot. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find the area of a triangle from three points.",
   "answer": {
@@ -53,14 +53,15 @@
         "label": "Find AB and AC",
         "marks": 1,
         "mark_note": "Side vectors",
-        "margin_note": "First mark. Both vectors must start at the SAME vertex — A here. Two sides from one corner is what spans the triangle.",
-        "memory_tip": "Both vectors must start at the SAME vertex — two sides from one corner span the triangle.",
+        "margin_note": "First mark. Take two sides from one vertex — A here. Any two sides give the same area, but one corner keeps the working tidy.",
+        "memory_tip": "Take two sides from one vertex — the tidiest choice. AB × BC gives the same vector as AB × AC.",
         "lines": [
           {
             "text": "Sol:",
             "style": "heading"
           },
           "OA = i + 2j + 3k, OB = 2i + 3j + k, OC = 3i + j + 2k",
+          "(each side vector is end point minus start point)",
           "AB = OB − OA = i + j − 2k",
           "AC = OC − OA = 2i − j − k"
         ],
@@ -87,9 +88,9 @@
             "OA"
           ]
         },
-        "why": "The cross product of two vectors gives the area of the PARALLELOGRAM they span. Both must start at one point for that parallelogram to sit on the triangle.",
+        "why": "The cross product of two vectors gives the area of the PARALLELOGRAM they span, and the triangle is half of it. Two sides from one corner are the tidiest choice; AB × BC gives the same vector as AB × AC.",
         "common_mistakes": [
-          "Using AB and BC, which do not share a start point.",
+          "Crossing the position vectors OA and OB instead of two sides.",
           "Subtracting the wrong way round."
         ]
       },
@@ -106,6 +107,25 @@
             "text": "AB \\times AC = \\begin{vmatrix} i & j & k \\\\ 1 & 1 & -2 \\\\ 2 & -1 & -1 \\end{vmatrix}",
             "render": "katex",
             "style": "eq"
+          },
+          {
+            "text": "Expand along the top row, i, j, k (signs + − +):",
+            "added": true
+          },
+          {
+            "text": "  i: (1)(−1) − (−2)(−1) = −3",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  j: (1)(−1) − (−2)(2) = 3, with a minus in front",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  k: (1)(−1) − (1)(2) = −3",
+            "style": "indent",
+            "added": true
           },
           "= i(−1 − 2) − j(−1 + 4) + k(−1 − 2)",
           "= −3i − 3j − 3k"
@@ -135,6 +155,15 @@
         "common_mistakes": [
           "Taking a dot product instead.",
           "Reversing the order, which flips the sign but not the magnitude."
+        ],
+        "lines_compact": [
+          {
+            "text": "AB \\times AC = \\begin{vmatrix} i & j & k \\\\ 1 & 1 & -2 \\\\ 2 & -1 & -1 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= i(−1 − 2) − j(−1 + 4) + k(−1 − 2)",
+          "= −3i − 3j − 3k"
         ]
       },
       {
@@ -146,6 +175,10 @@
         "margin_note": "Third mark. √27 is not final — 27 = 9 × 3, so it simplifies to 3√3. Leaving a surd unsimplified costs marks.",
         "memory_tip": "√27 is not final: 27 = 9 × 3, so it simplifies to 3√3.",
         "lines": [
+          {
+            "text": "(square each component, add, then take the square root)",
+            "added": true
+          },
           "|AB × AC| = √((−3)² + (−3)² + (−3)²)",
           "= √(9 + 9 + 9) = √27 = 3√3"
         ],
@@ -175,6 +208,10 @@
         "common_mistakes": [
           "Leaving the answer as √27.",
           "Forgetting to square the negatives, giving a negative sum."
+        ],
+        "lines_compact": [
+          "|AB × AC| = √((−3)² + (−3)² + (−3)²)",
+          "= √(9 + 9 + 9) = √27 = 3√3"
         ]
       },
       {
@@ -186,6 +223,10 @@
         "margin_note": "Last mark. The cross product gives the parallelogram; the triangle is half of it. And the answer is an AREA, so say square units.",
         "memory_tip": "The cross product gives the PARALLELOGRAM, so halve it. And say square units.",
         "lines": [
+          {
+            "text": "(the triangle is half the parallelogram on AB and AC)",
+            "added": true
+          },
           "Area of △ABC = ½ |AB × AC|",
           {
             "text": "= 3√3⁄2 sq. units",
@@ -218,6 +259,13 @@
         "common_mistakes": [
           "Forgetting the half and giving the parallelogram area.",
           "Omitting the units."
+        ],
+        "lines_compact": [
+          "Area of △ABC = ½ |AB × AC|",
+          {
+            "text": "= 3√3⁄2 sq. units",
+            "style": "boxed"
+          }
         ]
       }
     ]

@@ -1,0 +1,770 @@
+{
+  "comment": "Every 'Ans-Page Index' citation printed by the five Model Guess Papers of 'My Baby Bullet-Q — Senior Inter Zoology' (book pp.75-79), transcribed from the scans. `q` is the book's GLOBAL answer number, which is what units.json uses as `number`. backtest_zoology2.ts asserts every citation resolves to an authored card.",
+  "papers": [
+    {
+      "id": "MP-1",
+      "page": 75,
+      "refs": [
+        {
+          "section": "VSAQ",
+          "n": 1,
+          "page": 46,
+          "q": 49,
+          "text": "dental formula"
+        },
+        {
+          "section": "VSAQ",
+          "n": 2,
+          "page": 48,
+          "q": 61,
+          "text": "valves of the AV apertures"
+        },
+        {
+          "section": "VSAQ",
+          "n": 3,
+          "page": 50,
+          "q": 75,
+          "text": "triad system"
+        },
+        {
+          "section": "VSAQ",
+          "n": 4,
+          "page": 51,
+          "q": 88,
+          "text": "organ of Corti"
+        },
+        {
+          "section": "VSAQ",
+          "n": 5,
+          "page": 52,
+          "q": 91,
+          "text": "diabetes insipidus vs mellitus"
+        },
+        {
+          "section": "VSAQ",
+          "n": 6,
+          "page": 53,
+          "q": 99,
+          "text": "colostrum"
+        },
+        {
+          "section": "VSAQ",
+          "n": 7,
+          "page": 54,
+          "q": 103,
+          "text": "yellow mass of cells in the empty follicle after ovulation"
+        },
+        {
+          "section": "VSAQ",
+          "n": 8,
+          "page": 57,
+          "q": 120,
+          "text": "atavism"
+        },
+        {
+          "section": "VSAQ",
+          "n": 9,
+          "page": 58,
+          "q": 126,
+          "text": "layer and broiler"
+        },
+        {
+          "section": "VSAQ",
+          "n": 10,
+          "page": 59,
+          "q": 132,
+          "text": "fish by-products"
+        },
+        {
+          "section": "SAQ",
+          "n": 11,
+          "page": 29,
+          "q": 14,
+          "text": "functions of liver"
+        },
+        {
+          "section": "SAQ",
+          "n": 12,
+          "page": 30,
+          "q": 15,
+          "text": "inspiration and expiration"
+        },
+        {
+          "section": "SAQ",
+          "n": 13,
+          "page": 32,
+          "q": 19,
+          "text": "synovial joint"
+        },
+        {
+          "section": "SAQ",
+          "n": 14,
+          "page": 34,
+          "q": 23,
+          "text": "hypo/hyperthyroidism"
+        },
+        {
+          "section": "SAQ",
+          "n": 15,
+          "page": 38,
+          "q": 33,
+          "text": "erythroblastosis foetalis"
+        },
+        {
+          "section": "SAQ",
+          "n": 16,
+          "page": 40,
+          "q": 36,
+          "text": "homologous vs analogous"
+        },
+        {
+          "section": "SAQ",
+          "n": 17,
+          "page": 41,
+          "q": 38,
+          "text": "natural selection, melanism"
+        },
+        {
+          "section": "SAQ",
+          "n": 18,
+          "page": 42,
+          "q": 42,
+          "text": "honey bees"
+        },
+        {
+          "section": "LAQ",
+          "n": 19,
+          "page": 12,
+          "q": 2,
+          "text": "working of the heart"
+        },
+        {
+          "section": "LAQ",
+          "n": 20,
+          "page": 16,
+          "q": 4,
+          "text": "female reproductive system"
+        },
+        {
+          "section": "LAQ",
+          "n": 21,
+          "page": 23,
+          "q": 8,
+          "text": "crisscross inheritance"
+        }
+      ]
+    },
+    {
+      "id": "MP-2",
+      "page": 76,
+      "refs": [
+        {
+          "section": "VSAQ",
+          "n": 1,
+          "page": 46,
+          "q": 52,
+          "text": "tongue papillae"
+        },
+        {
+          "section": "VSAQ",
+          "n": 2,
+          "page": 49,
+          "q": 72,
+          "text": "renin vs rennin"
+        },
+        {
+          "section": "VSAQ",
+          "n": 3,
+          "page": 50,
+          "q": 79,
+          "text": "ear ossicles"
+        },
+        {
+          "section": "VSAQ",
+          "n": 4,
+          "page": 51,
+          "q": 83,
+          "text": "corpus callosum"
+        },
+        {
+          "section": "VSAQ",
+          "n": 5,
+          "page": 52,
+          "q": 89,
+          "text": "acromegaly"
+        },
+        {
+          "section": "VSAQ",
+          "n": 6,
+          "page": 53,
+          "q": 96,
+          "text": "immunity and immune system"
+        },
+        {
+          "section": "VSAQ",
+          "n": 7,
+          "page": 56,
+          "q": 113,
+          "text": "population explosion"
+        },
+        {
+          "section": "VSAQ",
+          "n": 8,
+          "page": 55,
+          "q": 109,
+          "text": "capacitation"
+        },
+        {
+          "section": "VSAQ",
+          "n": 9,
+          "page": 58,
+          "q": 127,
+          "text": "apiculture"
+        },
+        {
+          "section": "VSAQ",
+          "n": 10,
+          "page": 60,
+          "q": 139,
+          "text": "MRI harmless"
+        },
+        {
+          "section": "SAQ",
+          "n": 11,
+          "page": 28,
+          "q": 11,
+          "text": "L.S. of a tooth"
+        },
+        {
+          "section": "SAQ",
+          "n": 12,
+          "page": 31,
+          "q": 17,
+          "text": "respiratory disorders"
+        },
+        {
+          "section": "SAQ",
+          "n": 13,
+          "page": 33,
+          "q": 21,
+          "text": "synaptic transmission"
+        },
+        {
+          "section": "SAQ",
+          "n": 14,
+          "page": 35,
+          "q": 27,
+          "text": "pituitary secretions"
+        },
+        {
+          "section": "SAQ",
+          "n": 15,
+          "page": 38,
+          "q": 32,
+          "text": "sex determination in humans"
+        },
+        {
+          "section": "SAQ",
+          "n": 16,
+          "page": 41,
+          "q": 40,
+          "text": "genetic drift"
+        },
+        {
+          "section": "SAQ",
+          "n": 17,
+          "page": 40,
+          "q": 37,
+          "text": "theory of mutations"
+        },
+        {
+          "section": "SAQ",
+          "n": 18,
+          "page": 43,
+          "q": 45,
+          "text": "types of cancers"
+        },
+        {
+          "section": "LAQ",
+          "n": 19,
+          "page": 10,
+          "q": 1,
+          "text": "structure of the heart"
+        },
+        {
+          "section": "LAQ",
+          "n": 20,
+          "page": 18,
+          "q": 5,
+          "text": "male reproductive system"
+        },
+        {
+          "section": "LAQ",
+          "n": 21,
+          "page": 20,
+          "q": 6,
+          "text": "multiple alleles, ABO"
+        }
+      ]
+    },
+    {
+      "id": "MP-3",
+      "page": 77,
+      "refs": [
+        {
+          "section": "VSAQ",
+          "n": 1,
+          "page": 46,
+          "q": 50,
+          "text": "bile has no enzymes"
+        },
+        {
+          "section": "VSAQ",
+          "n": 2,
+          "page": 49,
+          "q": 68,
+          "text": "columns of Bertin"
+        },
+        {
+          "section": "VSAQ",
+          "n": 3,
+          "page": 50,
+          "q": 76,
+          "text": "actin vs myosin"
+        },
+        {
+          "section": "VSAQ",
+          "n": 4,
+          "page": 51,
+          "q": 84,
+          "text": "thoraco-lumbar division"
+        },
+        {
+          "section": "VSAQ",
+          "n": 5,
+          "page": 52,
+          "q": 94,
+          "text": "fight and flight hormone"
+        },
+        {
+          "section": "VSAQ",
+          "n": 6,
+          "page": 53,
+          "q": 100,
+          "text": "perforins vs granzymes"
+        },
+        {
+          "section": "VSAQ",
+          "n": 7,
+          "page": 57,
+          "q": 117,
+          "text": "panspermia"
+        },
+        {
+          "section": "VSAQ",
+          "n": 8,
+          "page": 54,
+          "q": 102,
+          "text": "Sertoli and Leydig cells"
+        },
+        {
+          "section": "VSAQ",
+          "n": 9,
+          "page": 60,
+          "q": 138,
+          "text": "tomogram"
+        },
+        {
+          "section": "VSAQ",
+          "n": 10,
+          "page": 59,
+          "q": 131,
+          "text": "Indian and exotic carps"
+        },
+        {
+          "section": "SAQ",
+          "n": 11,
+          "page": 29,
+          "q": 13,
+          "text": "butter, digestion and absorption"
+        },
+        {
+          "section": "SAQ",
+          "n": 12,
+          "page": 30,
+          "q": 16,
+          "text": "CO2 transport"
+        },
+        {
+          "section": "SAQ",
+          "n": 13,
+          "page": 33,
+          "q": 22,
+          "text": "the retina"
+        },
+        {
+          "section": "SAQ",
+          "n": 14,
+          "page": 34,
+          "q": 24,
+          "text": "Addison's and Cushing's"
+        },
+        {
+          "section": "SAQ",
+          "n": 15,
+          "page": 39,
+          "q": 35,
+          "text": "genic balance theory"
+        },
+        {
+          "section": "SAQ",
+          "n": 16,
+          "page": 40,
+          "q": 36,
+          "text": "homologous vs analogous"
+        },
+        {
+          "section": "SAQ",
+          "n": 17,
+          "page": 41,
+          "q": 39,
+          "text": "Neo-Darwinism"
+        },
+        {
+          "section": "SAQ",
+          "n": 18,
+          "page": 44,
+          "q": 47,
+          "text": "ECG waves and intervals"
+        },
+        {
+          "section": "LAQ",
+          "n": 19,
+          "page": 14,
+          "q": 3,
+          "text": "excretory system and nephron"
+        },
+        {
+          "section": "LAQ",
+          "n": 20,
+          "page": 16,
+          "q": 4,
+          "text": "female reproductive system"
+        },
+        {
+          "section": "LAQ",
+          "n": 21,
+          "page": 21,
+          "q": 7,
+          "text": "chromosomal theory of sex determination"
+        }
+      ]
+    },
+    {
+      "id": "MP-4",
+      "page": 78,
+      "refs": [
+        {
+          "section": "VSAQ",
+          "n": 1,
+          "page": 47,
+          "q": 58,
+          "text": "chloride shift"
+        },
+        {
+          "section": "VSAQ",
+          "n": 2,
+          "page": 49,
+          "q": 71,
+          "text": "juxtaglomerular apparatus"
+        },
+        {
+          "section": "VSAQ",
+          "n": 3,
+          "page": 50,
+          "q": 80,
+          "text": "cranial sutures"
+        },
+        {
+          "section": "VSAQ",
+          "n": 4,
+          "page": 51,
+          "q": 82,
+          "text": "cranial meninges"
+        },
+        {
+          "section": "VSAQ",
+          "n": 5,
+          "page": 52,
+          "q": 93,
+          "text": "insulin shock"
+        },
+        {
+          "section": "VSAQ",
+          "n": 6,
+          "page": 53,
+          "q": 98,
+          "text": "complement proteins"
+        },
+        {
+          "section": "VSAQ",
+          "n": 7,
+          "page": 56,
+          "q": 112,
+          "text": "preventing STDs"
+        },
+        {
+          "section": "VSAQ",
+          "n": 8,
+          "page": 55,
+          "q": 107,
+          "text": "spermiogenesis and spermiation"
+        },
+        {
+          "section": "VSAQ",
+          "n": 9,
+          "page": 59,
+          "q": 136,
+          "text": "guardian angel of the genome"
+        },
+        {
+          "section": "VSAQ",
+          "n": 10,
+          "page": 59,
+          "q": 137,
+          "text": "features of cancer cells"
+        },
+        {
+          "section": "SAQ",
+          "n": 11,
+          "page": 28,
+          "q": 12,
+          "text": "protein digestion in the stomach"
+        },
+        {
+          "section": "SAQ",
+          "n": 12,
+          "page": 37,
+          "q": 31,
+          "text": "innate immunity barriers"
+        },
+        {
+          "section": "SAQ",
+          "n": 13,
+          "page": 32,
+          "q": 19,
+          "text": "synovial joint"
+        },
+        {
+          "section": "SAQ",
+          "n": 14,
+          "page": 36,
+          "q": 28,
+          "text": "B-cells"
+        },
+        {
+          "section": "SAQ",
+          "n": 15,
+          "page": 39,
+          "q": 34,
+          "text": "genetic basis of ABO"
+        },
+        {
+          "section": "SAQ",
+          "n": 16,
+          "page": 40,
+          "q": 37,
+          "text": "theory of mutations"
+        },
+        {
+          "section": "SAQ",
+          "n": 17,
+          "page": 41,
+          "q": 40,
+          "text": "genetic drift"
+        },
+        {
+          "section": "SAQ",
+          "n": 18,
+          "page": 43,
+          "q": 46,
+          "text": "MRI procedure"
+        },
+        {
+          "section": "LAQ",
+          "n": 19,
+          "page": 14,
+          "q": 3,
+          "text": "excretory system and nephron"
+        },
+        {
+          "section": "LAQ",
+          "n": 20,
+          "page": 16,
+          "q": 4,
+          "text": "female reproductive system"
+        },
+        {
+          "section": "LAQ",
+          "n": 21,
+          "page": 21,
+          "q": 7,
+          "text": "chromosomal theory of sex determination"
+        }
+      ]
+    },
+    {
+      "id": "MP-5",
+      "page": 79,
+      "refs": [
+        {
+          "section": "VSAQ",
+          "n": 1,
+          "page": 46,
+          "q": 51,
+          "text": "chyme"
+        },
+        {
+          "section": "VSAQ",
+          "n": 2,
+          "page": 48,
+          "q": 65,
+          "text": "cardiac cycle and output"
+        },
+        {
+          "section": "VSAQ",
+          "n": 3,
+          "page": 50,
+          "q": 81,
+          "text": "keystone bone"
+        },
+        {
+          "section": "VSAQ",
+          "n": 4,
+          "page": 51,
+          "q": 87,
+          "text": "blind spot vs yellow spot"
+        },
+        {
+          "section": "VSAQ",
+          "n": 5,
+          "page": 52,
+          "q": 90,
+          "text": "anti-diuretic hormone"
+        },
+        {
+          "section": "VSAQ",
+          "n": 6,
+          "page": 53,
+          "q": 99,
+          "text": "colostrum"
+        },
+        {
+          "section": "VSAQ",
+          "n": 7,
+          "page": 56,
+          "q": 115,
+          "text": "amniocentesis"
+        },
+        {
+          "section": "VSAQ",
+          "n": 8,
+          "page": 57,
+          "q": 119,
+          "text": "biogenetic law"
+        },
+        {
+          "section": "VSAQ",
+          "n": 9,
+          "page": 59,
+          "q": 130,
+          "text": "hypophysation"
+        },
+        {
+          "section": "VSAQ",
+          "n": 10,
+          "page": 60,
+          "q": 140,
+          "text": "electrocardiography"
+        },
+        {
+          "section": "SAQ",
+          "n": 11,
+          "page": 28,
+          "q": 11,
+          "text": "L.S. of a tooth"
+        },
+        {
+          "section": "SAQ",
+          "n": 12,
+          "page": 31,
+          "q": 17,
+          "text": "respiratory disorders"
+        },
+        {
+          "section": "SAQ",
+          "n": 13,
+          "page": 65,
+          "q": 172,
+          "text": "T.S. of the spinal cord"
+        },
+        {
+          "section": "SAQ",
+          "n": 14,
+          "page": 37,
+          "q": 30,
+          "text": "HIV multiplies, AIDS"
+        },
+        {
+          "section": "SAQ",
+          "n": 15,
+          "page": 67,
+          "q": 175,
+          "text": "colour-blind daughters probability"
+        },
+        {
+          "section": "SAQ",
+          "n": 16,
+          "page": 41,
+          "q": 38,
+          "text": "natural selection, melanism"
+        },
+        {
+          "section": "SAQ",
+          "n": 17,
+          "page": 40,
+          "q": 36,
+          "text": "homologous vs analogous"
+        },
+        {
+          "section": "SAQ",
+          "n": 18,
+          "page": 44,
+          "q": 47,
+          "text": "ECG waves and intervals"
+        },
+        {
+          "section": "LAQ",
+          "n": 19,
+          "page": 10,
+          "q": 1,
+          "text": "structure of the heart"
+        },
+        {
+          "section": "LAQ",
+          "n": 20,
+          "page": 16,
+          "q": 4,
+          "text": "female reproductive system"
+        },
+        {
+          "section": "LAQ",
+          "n": 21,
+          "page": 24,
+          "q": 9,
+          "text": "common genetic disorders"
+        }
+      ]
+    }
+  ]
+}

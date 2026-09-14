@@ -1,0 +1,82 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_abio_prolonged_pr_interval",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Applied Biology (Zoology-II)"
+  },
+  "chapter": "Applied Biology",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What does prolonged P-R interval indicate?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Normal value",
+      "marks": 1
+    },
+    {
+      "label": "What it indicates",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.60, VSAQ 141. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Applied Biology · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1",
+        "kind": "text",
+        "label": "The normal value",
+        "marks": 1,
+        "mark_note": "Normal value",
+        "why": "The P-R interval measures how long the signal takes to travel from the atria to the ventricles.",
+        "common_mistakes": [
+          "Giving no normal figure.",
+          "Quoting the QT duration instead."
+        ],
+        "memory_tip": "Normal P-R is 0.12 to 0.2 seconds.",
+        "margin_note": "Normal first, then what a long one means.",
+        "lines": [
+          "The normal P-R interval is 0.12 to 0.2",
+          "seconds."
+        ]
+      },
+      {
+        "id": "s2",
+        "kind": "boxed_final",
+        "label": "What a long one means",
+        "marks": 1,
+        "mark_note": "What it indicates",
+        "why": "A longer interval means the impulse is being held up somewhere between the two nodes.",
+        "common_mistakes": [
+          "Saying it indicates a faster heart.",
+          "Naming the wrong nodes."
+        ],
+        "memory_tip": "A long P-R means the signal is delayed from SAN to AVN.",
+        "margin_note": "Name both nodes.",
+        "lines": [
+          {
+            "text": "A long P-R means delay from SA node to AV node",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Give the normal value first. Without it there is nothing for 'prolonged' to be measured against."
+}

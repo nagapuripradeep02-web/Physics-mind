@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Sr. Maths-2B (Sri Publishers, Machilipatnam), book p.80 — VSAQ chapter 13 System of Circles, answer 117.1, on a ★★★ Super Scoring Page (SSP 80). Chapter star rank ★★, per the VSAQ section table (book p.76). No appearance year is printed against this answer. ⚠ THE MARK SPLIT IS OURS, same 1+1 reasoning as the twin answer 116.1 (one mark for reading g, f, c correctly, one for the check itself), adapted here to a 'show that' proof rather than a 'find k' equation — the marking logic is identical either way. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Neither the two-book union check nor a board back-test was possible for this subject: there is no TSBIE second-year Maths-2B BLM on hand, and answer-book/papers/ holds first-year physics only — the book's own five Guess Papers (pp.118-127) stand in as the back-test instead. Boundary walked both ways: book p.79 ends the Circle VSAQ chapter at answer 115, and book p.82 opens VSAQ chapter 14 Parabola. Paper position: Maths-2B Section A runs Q1-Q10 at 2 marks each (Q3 = System of Circles, per the QF sheet pp.3-4), answer all 10 (ABC_75). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, Sr. Maths-2B (Sri Publishers, Machilipatnam), book p.80 — VSAQ chapter 13 System of Circles, answer 117.1, on a ★★★ Super Scoring Page (SSP 80). Chapter star rank ★★, per the VSAQ section table (book p.76). No appearance year is printed against this answer. ⚠ THE MARK SPLIT IS OURS, same 1+1 reasoning as the twin answer 116.1 (one mark for reading g, f, c correctly, one for the check itself), adapted here to a 'show that' proof rather than a 'find k' equation — the marking logic is identical either way. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Neither the two-book union check nor a board back-test was possible for this subject: there is no TSBIE second-year Maths-2B BLM on hand, and answer-book/papers/ holds first-year physics only — the book's own five Guess Papers (pp.118-127) stand in as the back-test instead. Boundary walked both ways: book p.79 ends the Circle VSAQ chapter at answer 115, and book p.82 opens VSAQ chapter 14 Parabola. Paper position: Maths-2B Section A runs Q1-Q10 at 2 marks each (Q3 = System of Circles, per the QF sheet pp.3-4), answer all 10 (ABC_75). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "insider_note": "A 'show that' orthogonality question is graded on evaluating BOTH sides separately and writing L.H.S = R.H.S at the end — stopping at a single combined equation loses the proof-style mark even if the numbers are right.",
   "answer": {
@@ -51,7 +51,11 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "Compare each with x² + y² + 2gx + 2fy + c = 0.",
+          "The second has 3x² + 3y², so divide it by 3:",
+          "x² + y² − (8/3)x + (29/3)y = 0",
           "Here, g = −1, f = −1, c = −7 and",
+          "(2g′ = −8/3 and 2f′ = 29/3)",
           "g′ = −4/3, f′ = 29/6, c′ = 0"
         ],
         "why": "Dividing the second circle by its leading coefficient 3 first puts it in standard form, so its g′, f′, c′ can be read off correctly before checking orthogonality.",
@@ -69,9 +73,21 @@
         "mark_note": "Solution",
         "margin_note": "Second mark, for evaluating both sides and concluding L.H.S = R.H.S.",
         "lines": [
+          {
+            "text": "Two circles cut orthogonally exactly when",
+            "added": true
+          },
           "Orthogonal condition: 2gg′ + 2ff′ = c + c′",
           "L.H.S = 2gg′ + 2ff′",
+          {
+            "text": "2(−1)(−4/3) = 8/3 and 2(−1)(29/6) = −29/3",
+            "added": true
+          },
           "= 2(−1)(−4/3) + 2(−1)(29/6) = 8/3 − 29/3 = −7",
+          {
+            "text": "(8/3 − 29/3 = −21/3 = −7)",
+            "added": true
+          },
           "R.H.S = c + c′ = −7 + 0 = −7",
           {
             "text": "∴ L.H.S = R.H.S ⇒ circles are orthogonal.",
@@ -83,7 +99,17 @@
           "Combining both sides into one equation and solving for an unknown, when there is no unknown here to solve for.",
           "Not writing the final concluding sentence ('the circles cut orthogonally'), leaving the numeric equality unexplained."
         ],
-        "memory_tip": "For a 'show that' orthogonality question, compute L.H.S and R.H.S SEPARATELY and end with the words 'L.H.S = R.H.S' — that sentence is itself worth marks."
+        "memory_tip": "For a 'show that' orthogonality question, compute L.H.S and R.H.S SEPARATELY and end with the words 'L.H.S = R.H.S' — that sentence is itself worth marks.",
+        "lines_compact": [
+          "Orthogonal condition: 2gg′ + 2ff′ = c + c′",
+          "L.H.S = 2gg′ + 2ff′",
+          "= 2(−1)(−4/3) + 2(−1)(29/6) = 8/3 − 29/3 = −7",
+          "R.H.S = c + c′ = −7 + 0 = −7",
+          {
+            "text": "∴ L.H.S = R.H.S ⇒ circles are orthogonal.",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   }

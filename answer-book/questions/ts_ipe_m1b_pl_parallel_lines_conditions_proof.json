@@ -46,7 +46,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.21 — LAQ chapter 2 Pair of Straight Lines, answer 9, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 20 · AP 19. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. The chapter's only printed splits are on its two homogenisation answers (12 and 15), whose shape does not transfer to a general proof. This split follows the answer's own printed structure instead: the book sets every proof in this chapter out as a chain of starred bullet lines, and the cut here groups them at the points where the argument turns. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: Pair of Straight Lines holds TWO Section-C slots — the book's chapter header reads '7+7=14 Marks' and the IPE Blue Print (book p.3) gives it 14 marks, all in Section C and none in Section A or B, so it is an LAQ-ONLY unit and the only 1B unit besides Matrices-on-1A to carry two long slots. The chapter runs book pp.19-26 and its boundary was walked: p.27 opens LAQ chapter 3, D.C's & D.R's. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Derive the distance. RE-CUT 2026-08-31: this card was filed as LAQ at 8 marks and is now SAQ at 4 marks. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition) files this chapter under the printed banner \"2 x 4M = 8 M\" followed by \"Short Answer Questions\", lists every one of its questions there, and prints no long-answer block for this chapter at all. A chapter with no 8-mark block cannot hold an 8-mark question. The standing boundary for that book — \"Only the question was taken\" — holds here, and this card takes even less: what was read from it is the chapter’s printed section banner and nothing else. The solution, the step order and the mark split are this answer book’s own work, see docs/ORIGINALITY_MATHS.md. The mathematics and the steps are unchanged; only the mark scheme moved: the four steps now carry 1+1+1+1 instead of 1+2+2+3. Paper position now: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. Still unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.21 — LAQ chapter 2 Pair of Straight Lines, answer 9, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 20 · AP 19. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. The chapter's only printed splits are on its two homogenisation answers (12 and 15), whose shape does not transfer to a general proof. This split follows the answer's own printed structure instead: the book sets every proof in this chapter out as a chain of starred bullet lines, and the cut here groups them at the points where the argument turns. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: Pair of Straight Lines holds TWO Section-C slots — the book's chapter header reads '7+7=14 Marks' and the IPE Blue Print (book p.3) gives it 14 marks, all in Section C and none in Section A or B, so it is an LAQ-ONLY unit and the only 1B unit besides Matrices-on-1A to carry two long slots. The chapter runs book pp.19-26 and its boundary was walked: p.27 opens LAQ chapter 3, D.C's & D.R's. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Derive the distance. RE-CUT 2026-08-31: this card was filed as LAQ at 8 marks and is now SAQ at 4 marks. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition) files this chapter under the printed banner \"2 x 4M = 8 M\" followed by \"Short Answer Questions\", lists every one of its questions there, and prints no long-answer block for this chapter at all. A chapter with no 8-mark block cannot hold an 8-mark question. The standing boundary for that book — \"Only the question was taken\" — holds here, and this card takes even less: what was read from it is the chapter’s printed section banner and nothing else. The solution, the step order and the mark split are this answer book’s own work, see docs/ORIGINALITY_MATHS.md. The mathematics and the steps are unchanged; only the mark scheme moved: the four steps now carry 1+1+1+1 instead of 1+2+2+3. Paper position now: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. Still unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — say what is special about how you split a PARALLEL pair, and how you get the distance.",
   "answer": {
@@ -60,15 +60,35 @@
         "kind": "equation",
         "label": "Split into two PARALLEL lines",
         "marks": 1,
-        "margin_note": "First mark, and the move that makes the whole question work. Parallel lines share their x and y coefficients and differ ONLY in the constant — so both factors get the same l and m.",
+        "margin_note": "First mark, and the key step of the question. Parallel lines can be written with the same x and y coefficients, differing ONLY in the constant — so both factors get the same l and m.",
         "lines": [
           {
             "text": "Sol:",
             "style": "heading"
           },
-          "Let ax² + 2hxy + by² + 2gx + 2fy + c ≡ (lx + my + n₁)(lx + my + n₂)",
+          "(parallel lines can be written with the same x and y",
+          {
+            "text": "  coefficients; if a < 0, first multiply the equation by",
+            "style": "indent"
+          },
+          {
+            "text": "  −1, so that a = l² and b = m² are possible)",
+            "style": "indent"
+          },
+          "Let ax² + 2hxy + by² + 2gx + 2fy + c",
+          "≡ (lx + my + n₁)(lx + my + n₂)",
+          "(multiply out and compare: x² gives l², y² gives m²,",
+          {
+            "text": "  xy gives 2lm = 2h, x gives l(n₁ + n₂) = 2g,",
+            "style": "indent"
+          },
+          {
+            "text": "  y gives m(n₁ + n₂) = 2f, constant n₁n₂ = c)",
+            "style": "indent"
+          },
           "On equating like term coeff., we get",
-          "a = l²,  b = m²,  h = lm,  2g = l(n₁ + n₂),  2f = m(n₁ + n₂),  c = n₁n₂"
+          "a = l²,  b = m²,  h = lm,  2g = l(n₁ + n₂),",
+          "2f = m(n₁ + n₂),  c = n₁n₂"
         ],
         "recall": {
           "credit": "say_it",
@@ -108,6 +128,10 @@
         "marks": 1,
         "margin_note": "One mark. The first result is immediate from the matched coefficients: h is lm, and a and b are l² and m².",
         "lines": [
+          {
+            "text": "(square h = lm, then put l² = a and m² = b)",
+            "added": true
+          },
           "(i) h² = (lm)² = l²m² = ab",
           "⇒ h² = ab"
         ],
@@ -132,13 +156,17 @@
             "equals a b"
           ]
         },
-        "why": "h² = ab is the standard test for a pair of parallel lines, and here it falls straight out of the splitting — no algebra needed at all.",
+        "why": "For a pair of lines, h² = ab holds exactly when the lines are parallel or coincident, and here it follows directly from the splitting.",
         "common_mistakes": [
           "Squaring 2h rather than h.",
           "Concluding h² > ab, which describes two distinct intersecting lines."
         ],
         "mark_note": "Method",
-        "memory_tip": "Straight from the matched coefficients: h is lm, and a and b are l² and m²."
+        "memory_tip": "Straight from the matched coefficients: h is lm, and a and b are l² and m².",
+        "lines_compact": [
+          "(i) h² = (lm)² = l²m² = ab",
+          "⇒ h² = ab"
+        ]
       },
       {
         "id": "s3_prove_af2_bg2",
@@ -147,9 +175,25 @@
         "marks": 1,
         "margin_note": "One mark. Both f and g carry the same factor (n₁ + n₂), so squaring each and multiplying by the other's coefficient produces the same expression twice.",
         "lines": [
+          {
+            "text": "(a = l² and f = m(n₁ + n₂)/2)",
+            "added": true
+          },
           "(ii) af² = l²[m(n₁ + n₂)/2]²",
+          {
+            "text": "((m(n₁ + n₂)/2)² = m²(n₁ + n₂)²/4)",
+            "added": true
+          },
           "= l²m²(n₁ + n₂)²/4",
+          {
+            "text": "(l²m² = m²l²)",
+            "added": true
+          },
           "= m²l²(n₁ + n₂)²/4",
+          {
+            "text": "(g = l(n₁ + n₂)/2 and b = m²)",
+            "added": true
+          },
           "= m²[l(n₁ + n₂)/2]² = bg²",
           "⇒ af² = bg²"
         ],
@@ -181,7 +225,14 @@
           "Pairing a with g² instead of f²."
         ],
         "mark_note": "Method",
-        "memory_tip": "Both f and g carry the same (n₁ + n₂), so each side produces the same expression."
+        "memory_tip": "Both f and g carry the same (n₁ + n₂), so each side produces the same expression.",
+        "lines_compact": [
+          "(ii) af² = l²[m(n₁ + n₂)/2]²",
+          "= l²m²(n₁ + n₂)²/4",
+          "= m²l²(n₁ + n₂)²/4",
+          "= m²[l(n₁ + n₂)/2]² = bg²",
+          "⇒ af² = bg²"
+        ]
       },
       {
         "id": "s4_distance",
@@ -190,13 +241,60 @@
         "marks": 1,
         "margin_note": "The last mark. The two lines share l and m, so the distance is |n₁ − n₂| over √(l² + m²) — and |n₁ − n₂| is found from its square, since only the sum and product of the n's are known.",
         "lines": [
-          "(iii) Distance between lx + my + n₁ = 0 and lx + my + n₂ = 0 is  |n₁ − n₂| / √(l² + m²)",
+          {
+            "text": "(the distance between parallel lines lx + my + n₁ = 0",
+            "added": true
+          },
+          {
+            "text": "  and lx + my + n₂ = 0)",
+            "style": "indent",
+            "added": true
+          },
+          "(iii) Distance between lx + my + n₁ = 0",
+          "and lx + my + n₂ = 0 is  |n₁ − n₂| / √(l² + m²)",
+          {
+            "text": "((n₁ − n₂)² = (n₁ + n₂)² − 4n₁n₂, and l² + m² = a + b)",
+            "added": true
+          },
           "= √((n₁ + n₂)² − 4n₁n₂) / √(a + b)",
+          {
+            "text": "(n₁ + n₂ = 2g/l and n₁n₂ = c)",
+            "added": true
+          },
           "= √((2g/l)² − 4c) / √(a + b) = √(4g²/l² − 4c) / √(a + b)",
-          "= √(4g²/a − 4c) / √(a + b) = √((4g² − 4ac)/a) / √(a + b)",
+          {
+            "text": "(l² = a)",
+            "added": true
+          },
+          "= √(4g²/a − 4c) / √(a + b)",
+          {
+            "text": "(4g²/a − 4c = (4g² − 4ac)/a)",
+            "added": true
+          },
+          {
+            "text": "  = √((4g² − 4ac)/a) / √(a + b)",
+            "style": "indent"
+          },
+          {
+            "text": "(√(4(g² − ac)/a) = 2√((g² − ac)/a),",
+            "added": true
+          },
+          {
+            "text": "  and dividing by √(a + b) puts a + b under the root)",
+            "style": "indent",
+            "added": true
+          },
           "= 2√((g² − ac)/(a(a + b)))",
           {
-            "text": "∴ Distance = 2√((g² − ac)/(a(a + b)))  or, taking n₁ + n₂ = 2f/m,  2√((f² − bc)/(b(a + b)))",
+            "text": "∴ Distance = 2√((g² − ac)/(a(a + b)))",
+            "style": "boxed"
+          },
+          {
+            "text": "or, taking n₁ + n₂ = 2f/m,",
+            "style": "boxed"
+          },
+          {
+            "text": "2√((f² − bc)/(b(a + b)))",
             "style": "boxed"
           }
         ],
@@ -228,9 +326,33 @@
           "Giving only one of the two equivalent forms."
         ],
         "mark_note": "Solution",
-        "memory_tip": "The distance is |n₁ − n₂| over √(l² + m²), and |n₁ − n₂| comes from its SQUARE."
+        "memory_tip": "The distance is |n₁ − n₂| over √(l² + m²), and |n₁ − n₂| comes from its SQUARE.",
+        "lines_compact": [
+          "(iii) Distance between lx + my + n₁ = 0",
+          "and lx + my + n₂ = 0 is  |n₁ − n₂| / √(l² + m²)",
+          "= √((n₁ + n₂)² − 4n₁n₂) / √(a + b)",
+          "= √((2g/l)² − 4c) / √(a + b) = √(4g²/l² − 4c) / √(a + b)",
+          "= √(4g²/a − 4c) / √(a + b)",
+          {
+            "text": "  = √((4g² − 4ac)/a) / √(a + b)",
+            "style": "indent"
+          },
+          "= 2√((g² − ac)/(a(a + b)))",
+          {
+            "text": "∴ Distance = 2√((g² − ac)/(a(a + b)))",
+            "style": "boxed"
+          },
+          {
+            "text": "or, taking n₁ + n₂ = 2f/m,",
+            "style": "boxed"
+          },
+          {
+            "text": "2√((f² − bc)/(b(a + b)))",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },
-  "insider_note": "Parallel means the two factors share l and m and differ only in the constant; that one line makes all three parts fall out. The distance needs |n₁ − n₂| via (n₁+n₂)² − 4n₁n₂, and both forms are asked for."
+  "insider_note": "Parallel means the two factors share l and m and differ only in the constant; all three parts follow from that one line. The distance needs |n₁ − n₂| via (n₁+n₂)² − 4n₁n₂, and both forms are asked for."
 }

@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.35, chapter 5 MATRICES, Very Short Answer question 20(iii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape puts one mark on the row reduction and one on counting the non-zero rows. Paper position: Maths-1A Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern; Matrices fills one of those Section A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.35, chapter 5 MATRICES, Very Short Answer question 20(iii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape puts one mark on the row reduction and one on counting the non-zero rows. Paper position: Maths-1A Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern; Matrices fills one of those Section A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find the rank of this 3 × 4 matrix.",
   "answer": {
@@ -59,12 +59,51 @@
             "style": "eq"
           },
           "R₂ → R₂ − 3R₁,  R₃ → R₃ + 2R₁:",
+          "R₂ − 3R₁:",
+          {
+            "text": "  (3, 4, 1, 2)",
+            "style": "indent"
+          },
+          {
+            "text": "  − 3(1, 2, 0, −1)",
+            "style": "indent"
+          },
+          {
+            "text": "  = (0, −2, 1, 5)",
+            "style": "indent"
+          },
+          "R₃ + 2R₁:",
+          {
+            "text": "  (−2, 3, 2, 5)",
+            "style": "indent"
+          },
+          {
+            "text": "  + 2(1, 2, 0, −1)",
+            "style": "indent"
+          },
+          {
+            "text": "  = (0, 7, 2, 3)",
+            "style": "indent"
+          },
           {
             "text": "\\sim \\begin{bmatrix} 1 & 2 & 0 & -1 \\\\ 0 & -2 & 1 & 5 \\\\ 0 & 7 & 2 & 3 \\end{bmatrix}",
             "render": "katex",
             "style": "eq"
           },
           "R₃ → 2R₃ + 7R₂:",
+          "2R₃ + 7R₂:",
+          {
+            "text": "  2(0, 7, 2, 3)",
+            "style": "indent"
+          },
+          {
+            "text": "  + 7(0, −2, 1, 5)",
+            "style": "indent"
+          },
+          {
+            "text": "  = (0, 0, 11, 41)",
+            "style": "indent"
+          },
           {
             "text": "\\sim \\begin{bmatrix} 1 & 2 & 0 & -1 \\\\ 0 & -2 & 1 & 5 \\\\ 0 & 0 & 11 & 41 \\end{bmatrix}",
             "render": "katex",
@@ -110,6 +149,21 @@
           "The echelon form has 3 non-zero rows.",
           "Columns 1, 2, 3 give a non-zero minor:",
           {
+            "text": "  + (1) × [(4)(2) − (1)(3)]",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  − (2) × [(3)(2) − (1)(−2)]",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  + (0) × [(3)(3) − (4)(−2)]",
+            "style": "indent",
+            "added": true
+          },
+          {
             "text": "\\begin{vmatrix} 1 & 2 & 0 \\\\ 3 & 4 & 1 \\\\ -2 & 3 & 2 \\end{vmatrix} = -11 \\neq 0",
             "render": "katex",
             "style": "eq"
@@ -144,6 +198,19 @@
         "common_mistakes": [
           "Counting the rows of the original matrix instead of the echelon form.",
           "Stopping the reduction before the shape is triangular."
+        ],
+        "lines_compact": [
+          "The echelon form has 3 non-zero rows.",
+          "Columns 1, 2, 3 give a non-zero minor:",
+          {
+            "text": "\\begin{vmatrix} 1 & 2 & 0 \\\\ 3 & 4 & 1 \\\\ -2 & 3 & 2 \\end{vmatrix} = -11 \\neq 0",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "∴ Rank A = 3",
+            "style": "boxed"
+          }
         ]
       }
     ]

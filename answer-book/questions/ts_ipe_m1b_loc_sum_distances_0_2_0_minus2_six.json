@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.55 — SAQ chapter 7 Locus, answer 45.2, on a ★★★ SSP (Super Scoring Page). Printed appearance: TS 16. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer, because it is set two-to-a-page in two columns and the columns take the margin those tags would occupy. It is not a bare guess: the SAME CHAPTER prints 1+1+2 on answers 44 (book p.54) and 46 (book p.55), both times against these exact three moves — write the given condition, substitute the coordinates, simplify to the locus. This answer takes the same three moves, so the shape is the book's own. The chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7. NOTE: Locus is an SAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 4 marks in Section B and nothing in Section A or Section C, and the book has no Locus LAQ chapter (its LAQ chapters are 1-6) and no Locus VSAQ chapter (its VSAQ chapters are 14-20). It is the 1B counterpart of 1A's Units 7 and 8. Chapter scoped by BOUNDARY WALK, not from the TOP 35 SAQ hit list: that list names only 6 of this chapter's 12 questions. Verified by reading book p.57, where SAQ chapter 8 Transformation of Axes begins."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.55 — SAQ chapter 7 Locus, answer 45.2, on a ★★★ SSP (Super Scoring Page). Printed appearance: TS 16. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer, because it is set two-to-a-page in two columns and the columns take the margin those tags would occupy. It is not a bare guess: the SAME CHAPTER prints 1+1+2 on answers 44 (book p.54) and 46 (book p.55), both times against these exact three moves — write the given condition, substitute the coordinates, simplify to the locus. This answer takes the same three moves, so the shape is the book's own. The chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7. NOTE: Locus is an SAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 4 marks in Section B and nothing in Section A or Section C, and the book has no Locus LAQ chapter (its LAQ chapters are 1-6) and no Locus VSAQ chapter (its VSAQ chapters are 14-20). It is the 1B counterpart of 1A's Units 7 and 8. Chapter scoped by BOUNDARY WALK, not from the TOP 35 SAQ hit list: that list names only 6 of this chapter's 12 questions. Verified by reading book p.57, where SAQ chapter 8 Transformation of Axes begins. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say what you would do before squaring, and name the shape the locus turns out to be.",
   "answer": {
@@ -59,6 +59,7 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "(a locus is the set of all points P that satisfy the condition)",
           "Let P = (x, y) be a point on the locus.",
           "Given points A = (0, 2), B = (0, −2)"
         ],
@@ -95,12 +96,24 @@
         "label": "Write the given condition",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. Isolate one distance, then square — never square a sum of two roots directly.",
-        "memory_tip": "ISOLATE one distance before squaring — never square a sum of two roots directly.",
+        "margin_note": "First mark. Isolate one distance, then square — squaring the sum of two roots directly leaves a cross term and needs a longer second squaring.",
+        "memory_tip": "ISOLATE one distance before squaring, so that only one root is left after the first squaring.",
         "lines": [
           "Given condition: PA + PB = 6",
+          {
+            "text": "(move PB to the right side)",
+            "added": true
+          },
           "⇒ PA = 6 − PB",
+          {
+            "text": "(square both sides: (6 − PB)² = 36 − 12PB + PB²)",
+            "added": true
+          },
           "⇒ PA² = (6 − PB)² = 36 + PB² − 12 PB",
+          {
+            "text": "(move PA² to the right and −12PB to the left)",
+            "added": true
+          },
           "⇒ 12 PB = 36 + PB² − PA²"
         ],
         "recall": {
@@ -125,10 +138,16 @@
             "isolate"
           ]
         },
-        "why": "A sum of two distances cannot be squared directly — squaring PA + PB gives a cross term. Isolating one distance first is what keeps the algebra finite.",
+        "why": "Squaring PA + PB directly leaves a 2·PA·PB cross term. Isolating one distance first leaves only one square root, which the second squaring removes.",
         "common_mistakes": [
           "Squaring PA + PB = 6 directly and being left with a cross term.",
           "Writing (6 − PB)² as 36 − PB²."
+        ],
+        "lines_compact": [
+          "Given condition: PA + PB = 6",
+          "⇒ PA = 6 − PB",
+          "⇒ PA² = (6 − PB)² = 36 + PB² − 12 PB",
+          "⇒ 12 PB = 36 + PB² − PA²"
         ]
       },
       {
@@ -140,9 +159,25 @@
         "margin_note": "Second mark. Both fixed points have x = 0, so the x² terms are identical and cancel, and a difference of two squares in y finishes the line.",
         "memory_tip": "Both have x = 0, so the x² terms are identical and cancel, leaving squares in y.",
         "lines": [
+          {
+            "text": "(PB² = x² + (y + 2)² and PA² = x² + (y − 2)²)",
+            "added": true
+          },
           "⇒ 12 PB = 36 + [x² + (y+2)²] − [x² + (y−2)²]",
+          {
+            "text": "(the x² terms cancel)",
+            "added": true
+          },
           "⇒ 12 PB = 36 + (y+2)² − (y−2)²",
+          {
+            "text": "(a = y and b = 2; 4 · y · 2 = 8y)",
+            "added": true
+          },
           "⇒ 12 PB = 36 + 4(2)y      [∵ (a+b)² − (a−b)² = 4ab]",
+          {
+            "text": "(take out 4, then divide both sides by 4)",
+            "added": true
+          },
           "⇒ 12 PB = 4(9 + 2y)   ⇒   3 PB = 9 + 2y"
         ],
         "recall": {
@@ -168,10 +203,16 @@
             "nine plus two y"
           ]
         },
-        "why": "PA² − PB² is a difference of two squares, so the y-terms collapse by (a+b)² − (a−b)² = 4ab and the whole line drops to the first degree.",
+        "why": "PB² − PA² is a difference of two squares, so the y-terms simplify by (a+b)² − (a−b)² = 4ab and the line becomes first degree.",
         "common_mistakes": [
           "Expanding both y-brackets fully and slipping a sign instead of cancelling.",
           "Taking 4ab as 4(2)(y) but writing 8y² instead of 8y."
+        ],
+        "lines_compact": [
+          "⇒ 12 PB = 36 + [x² + (y+2)²] − [x² + (y−2)²]",
+          "⇒ 12 PB = 36 + (y+2)² − (y−2)²",
+          "⇒ 12 PB = 36 + 4(2)y      [∵ (a+b)² − (a−b)² = 4ab]",
+          "⇒ 12 PB = 4(9 + 2y)   ⇒   3 PB = 9 + 2y"
         ]
       },
       {
@@ -183,10 +224,35 @@
         "margin_note": "The last two marks. The 36y cancels across, 9y² − 4y² leaves 5y², and the constants give 45. Unequal positive coefficients again — an ellipse.",
         "memory_tip": "Unequal but both POSITIVE coefficients — an ellipse.",
         "lines": [
+          {
+            "text": "(square both sides)",
+            "added": true
+          },
           "Squaring on both sides:  9 PB² = (9 + 2y)²",
+          {
+            "text": "(put PB² = x² + (y + 2)²; (9 + 2y)² = 81 + 36y + 4y²)",
+            "added": true
+          },
           "⇒ 9[(x−0)² + (y+2)²] = 81 + 4y² + 36y",
+          {
+            "text": "((y + 2)² = y² + 4y + 4)",
+            "added": true
+          },
           "⇒ 9[x² + y² + 4y + 4] = 81 + 4y² + 36y",
+          {
+            "text": "(multiply the bracket by 9)",
+            "added": true
+          },
           "⇒ 9x² + 9y² + 36y + 36 = 81 + 4y² + 36y",
+          {
+            "text": "(36y is on both sides and cancels;",
+            "added": true
+          },
+          {
+            "text": "  9y² − 4y² = 5y², and 81 − 36 = 45)",
+            "style": "indent",
+            "added": true
+          },
           {
             "text": "∴ Locus of P is 9x² + 5y² = 45",
             "style": "boxed"
@@ -215,13 +281,23 @@
             "ellipse"
           ]
         },
-        "why": "The locus of a point whose distances to two fixed points add to a constant is an ellipse with those points as foci, so unequal positive coefficients on x² and y² are the expected finish.",
+        "why": "The locus of a point whose distances to two fixed points add to a constant greater than the distance between those points is an ellipse with those points as foci, so unequal positive coefficients on x² and y² are the expected finish.",
         "common_mistakes": [
           "Forgetting that 36y appears on both sides and cancels.",
           "Multiplying only x² by 9 and leaving the y-bracket alone."
+        ],
+        "lines_compact": [
+          "Squaring on both sides:  9 PB² = (9 + 2y)²",
+          "⇒ 9[(x−0)² + (y+2)²] = 81 + 4y² + 36y",
+          "⇒ 9[x² + y² + 4y + 4] = 81 + 4y² + 36y",
+          "⇒ 9x² + 9y² + 36y + 36 = 81 + 4y² + 36y",
+          {
+            "text": "∴ Locus of P is 9x² + 5y² = 45",
+            "style": "boxed"
+          }
         ]
       }
     ]
   },
-  "insider_note": "Isolate PA before squaring or a cross term survives. Both fixed points sit on the y-axis, so the x² terms cancel and (a + b)² − (a − b)² = 4ab leaves 36 + 8y. The 36y then cancels on both sides."
+  "insider_note": "Isolate PA before squaring or a cross term is left. Both fixed points sit on the y-axis, so the x² terms cancel and (a + b)² − (a − b)² = 4ab leaves 36 + 8y. The 36y then cancels on both sides."
 }

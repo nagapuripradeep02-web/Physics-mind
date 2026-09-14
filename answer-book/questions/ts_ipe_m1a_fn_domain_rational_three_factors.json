@@ -35,7 +35,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.81 — VSAQ chapter 14 Functions, question 98.2, on ★★★ SSP 81 (the book calls it 'the most dominating domain page'). Appearance years are printed board-split. UNLIKE the LAQ and SAQ pages, the book prints NO internal mark split on its VSAQ pages: the 1+1 across the two steps is our division of the 2 marks, not the source's. Publisher's claims until a Telangana IPE teacher confirms them."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.81 — VSAQ chapter 14 Functions, question 98.2, on ★★★ SSP 81 (the book calls it 'the most dominating domain page'). Appearance years are printed board-split. UNLIKE the LAQ and SAQ pages, the book prints NO internal mark split on its VSAQ pages: the 1+1 across the two steps is our division of the 2 marks, not the source's. Publisher's claims until a Telangana IPE teacher confirms them. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find this domain — the condition the formula forces, and the answer.",
   "answer": {
@@ -53,9 +53,19 @@
         "margin_note": "One of the two marks is for the condition alone. Here the denominator is already factorised, so no factorising step is needed.",
         "memory_tip": "No root here — only the denominator matters. Find where it is ZERO: x = 1, 2, 3.",
         "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "A fraction is undefined only where its denominator",
+          {
+            "text": "  is 0; the top, 2x² − 5x + 7, does not matter.",
+            "style": "indent"
+          },
           "f(x) is not defined when",
           "(x − 1)(x − 2)(x − 3) = 0",
-          "⇒ x = 1, 2, 3"
+          "⇒ x = 1, 2, 3",
+          "(a product is 0 when one of its factors is 0)"
         ],
         "recall": {
           "credit": "say_it",
@@ -95,7 +105,14 @@
         "margin_note": "The second mark is the answer set. Write it as R minus the excluded points — this one is not an interval.",
         "memory_tip": "Remove those three points from R. The numerator plays no part.",
         "lines": [
-          "∴ Domain = R − {1, 2, 3}"
+          {
+            "text": "Remove these three numbers from R:",
+            "added": true
+          },
+          {
+            "text": "∴ Domain = R − {1, 2, 3}",
+            "style": "boxed"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -129,6 +146,12 @@
         "common_mistakes": [
           "Reporting {1, 2, 3} as the domain instead of what is removed from it.",
           "Missing one factor and excluding only two points."
+        ],
+        "lines_compact": [
+          {
+            "text": "∴ Domain = R − {1, 2, 3}",
+            "style": "boxed"
+          }
         ]
       }
     ]

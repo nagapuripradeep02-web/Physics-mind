@@ -1,0 +1,47 @@
+# Cloudflare Worker (static assets) for the BiPC SECOND-YEAR answer book —
+# a SEPARATE preview deployment, not the live student site.
+#
+# Why this exists (founder decision, 2026-09-05): Botany-II and Zoology-II
+# finished their examiner + chatbot audit and are on master, but they cannot yet
+# join answers.viditra.co. That site serves ONE artifact built from
+# `--stream=mpc,mpc_2`, and BiPC's second year shares physics_2 and chemistry_2
+# with mpc_2 — which `build_answer_book.ts` refuses ("streams X and Y both claim
+# subject Z") until the shared-subject case is made explicit. Rather than hold
+# the audited content back, this config ships the BiPC-II book on its own worker
+# so it can be read and checked, leaving the live MPC site untouched.
+#
+# THIS IS THE INTERIM. The intended end state is ONE site where the door's
+# BiPC → second year cell opens Botany-II, Zoology-II, Physics-II and
+# Chemistry-II, reading the SAME physics_2/chemistry_2 cards the MPC cell reads
+# — no second copy. The player already supports that (`PM_STREAM_SUBJECTS` is a
+# per-stream map and notebook.js lenses the catalog per door cell at click
+# time); what is missing is relaxing the two-streams guard for deliberately
+# shared subjects and making PM_STREAM per-cell instead of STREAM_KEYS[0].
+# When that lands, delete this file and this worker.
+#
+# NO CUSTOM DOMAIN on purpose. This deploys to <name>.<subdomain>.workers.dev,
+# so it needs no DNS decision and cannot take traffic from answers.viditra.co.
+# Add a `routes` block only when it is meant to be a customer-facing URL.
+#
+# UNGATED on purpose too: built with --hosted but NOT --gated, so there is no
+# payment wall and no `ab_content` rows are needed. That is right for an
+# unlisted preview and WRONG for a public launch — the live MPC book is gated
+# (₹99 founding / ₹199), and shipping BiPC free at a findable URL would give
+# away what MPC students pay for. Gate it before it is advertised anywhere.
+#
+# Vidi chat WILL FAIL CLOSED here until this worker's origin is added to the
+# Edge Function's AB_ALLOWED_ORIGINS secret (it currently allows only
+# answers.viditra.co, viditra.co, www.viditra.co and localhost:8100). The
+# deterministic answer book — every card, every figure, the marks, the rail —
+# works regardless; only the free-text chat panel goes quiet.
+#
+# Build then deploy, in that order, always:
+#   npx tsx src/scripts/build_answer_book.ts --hosted --stream=bipc_2
+#   npx wrangler deploy -c wrangler.answers-bipc.toml
+# Pointing this file at a directory some other script builds is how a deploy
+# silently ships a stale artifact — the same rule wrangler.answers.toml carries.
+name = "viditra-answers-bipc"
+compatibility_date = "2026-06-01"
+
+[assets]
+directory = "./answer-book/dist-bipc_2"

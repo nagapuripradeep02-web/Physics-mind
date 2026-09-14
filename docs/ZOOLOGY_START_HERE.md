@@ -222,3 +222,24 @@ hold chondroblasts (they hold chondrocytes) · glandular epithelium called a cov
 the secretory part · ostia count (book 12 pairs, other texts 13) · which spiracles open during
 inspiration. Where the book prints only a labelled figure and no written answer (SAQ 50/51/52),
 the prose is authored from the book's own LAQ facts and its printed labels — stated on each card.
+
+## 11. Zoology-II (`zoology_2`) — the 2026-09-04/05 examiner + chatbot audit
+
+Zoology-II's own facts (source book, unit map, back-test) live in the PROGRESS.md session entries
+for 2026-08-28/29, not here — this file is Zoology-I's. This section records only the audit.
+
+All 147 Zoology-II cards were examiner-audited against NCERT and driven through Vidi's 10-ask
+battery. Full detail: `docs/reports/bipc2_audit/` (`Z2-01..15`, `FIG-Z2.md`, `VIDI-Z2-01..06`,
+`SUMMARY.md`). **13 HARMFUL findings, all repaired** (commits `c46edaf9` text, `690547f3` figures).
+This was the worse of the two papers on figures: **13 of 14 had a defect**, including a heart whose
+great vessels sprang from the atria instead of the ventricles and a kidney still drawn as a
+crescent with no hilum — the exact defect class this file's own render-and-look discipline (§7-8 of
+`BOTANY_2_START_HERE.md`, same doctrine) exists to catch, reintroduced here. A genetics figure drew
+a genetically impossible cross: four of eight gamete lines routed to the wrong child, a Y-bearing
+sperm reaching a labelled daughter. All fixed and re-rendered; two figures (heart, spinal cord grey
+matter) needed a second and third render pass before the geometry actually read correctly. Text
+HARMFUL findings were the usual shape — a card contradicting itself: asthma called COPD one line
+after the same card defines COPD as chronic bronchitis and emphysema alone; anti-D given "when she
+is pregnant" instead of right after the first delivery, against the card's own sensitisation
+account; a nephron's two parts given as Bowman's capsule and the tubule, dropping the glomerulus.
+Vidi scored **9.73/10** (1,470 replies) — inside the fleet's band, zero critical flags.

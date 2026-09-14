@@ -1,0 +1,92 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_end_insulin_shock",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Human Anatomy and Physiology-IV (Zoology-II)"
+  },
+  "chapter": "Endocrine System",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is 'insulin shock'?",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What causes it",
+      "marks": 1
+    },
+    {
+      "label": "What it shows",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.52, VSAQ 93. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Endocrine System · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_cause",
+        "kind": "text",
+        "label": "What causes it",
+        "marks": 1,
+        "mark_note": "Cause",
+        "why": "Insulin drives sugar out of the blood, so an excess of it empties the blood of the sugar the brain needs.",
+        "common_mistakes": [
+          "Blaming too little insulin. That is diabetes mellitus.",
+          "Leaving out the over-dosage route."
+        ],
+        "memory_tip": "Too much insulin drives the blood sugar too low.",
+        "margin_note": "Give both causes: the gland and the injection.",
+        "lines": [
+          "Insulin shock is a condition due to",
+          "hypersecretion of insulin, or to an",
+          "overdose of insulin in a diabetic patient."
+        ]
+      },
+      {
+        "id": "s2_hypoglycaemia",
+        "kind": "boxed_final",
+        "label": "What it shows",
+        "marks": 1,
+        "mark_note": "Hypoglycaemia",
+        "why": "The brain has no store of sugar, so a sudden fall in blood glucose affects it first.",
+        "common_mistakes": [
+          "Giving high blood glucose. It is low.",
+          "Leaving out the word hypoglycaemia."
+        ],
+        "memory_tip": "Hypoglycaemia: hypo is low, glycaemia is blood sugar.",
+        "margin_note": "One line names the state.",
+        "lines": [
+          {
+            "text": "It shows hypoglycaemia, low blood glucose",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "It is the opposite of diabetes: too much insulin, not too little. Say hypersecretion or over-dosage in the first line."
+}

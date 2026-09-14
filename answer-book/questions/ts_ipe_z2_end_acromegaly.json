@@ -1,0 +1,94 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_end_acromegaly",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Human Anatomy and Physiology-IV (Zoology-II)"
+  },
+  "chapter": "Endocrine System",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is acromegaly? Name the hormone responsible for this disorder.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What it is and its hormone",
+      "marks": 1
+    },
+    {
+      "label": "Its signs",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.52, VSAQ 89. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Endocrine System · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What it is",
+        "marks": 1,
+        "mark_note": "Disorder and hormone",
+        "why": "After the growth plates close the long bones can no longer lengthen, so extra growth hormone thickens the bones instead.",
+        "common_mistakes": [
+          "Naming gigantism. That is the same excess before adulthood.",
+          "Naming thyroxine. The hormone is growth hormone."
+        ],
+        "memory_tip": "Acro means extremities: the hands, feet and jaw thicken.",
+        "margin_note": "Name the hormone in the first line.",
+        "lines": [
+          "Acromegaly is a hormonal disorder caused",
+          "by hypersecretion of somatotropin, the",
+          "growth hormone, in adults."
+        ]
+      },
+      {
+        "id": "s2_signs",
+        "kind": "boxed_final",
+        "label": "Its signs",
+        "marks": 1,
+        "mark_note": "Signs",
+        "why": "Only the parts that can still thicken change, which is why the jaw, hands and feet are affected and the height is not.",
+        "common_mistakes": [
+          "Saying the person grows taller. In adults the height does not change.",
+          "Giving no signs at all."
+        ],
+        "memory_tip": "Jaw, hands and feet enlarge; the height stays the same.",
+        "margin_note": "Two or three named signs are enough.",
+        "lines": [
+          "The bones of the jaw, hands and feet",
+          "enlarge. The nose, lips and eyelids thicken",
+          {
+            "text": "and the finger tips become wide",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Two things are asked: the disorder and the hormone. Name growth hormone explicitly, and say 'in adults' — the same excess in a child gives gigantism instead."
+}

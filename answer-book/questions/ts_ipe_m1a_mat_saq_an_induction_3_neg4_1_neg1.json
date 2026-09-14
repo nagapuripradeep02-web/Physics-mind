@@ -34,7 +34,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.42, chapter 5 MATRICES, Short Answer question 10(i). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+2+1 shape puts half the marks on the inductive multiplication, because that is the only step where the arithmetic can go wrong and the only step that actually proves anything; the base case and the closing appeal to the principle of induction are each short but each is a whole mark, since an answer missing either is not a proof. Independently checked before authoring: the claimed form was multiplied out at n = 1, 2 and 3 and gave rows (3, −4)/(1, −1), (5, −8)/(2, −3) and (7, −12)/(3, −5), which match the formula exactly. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Matrices supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.42, chapter 5 MATRICES, Short Answer question 10(i). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+2+1 shape puts half the marks on the inductive multiplication, because that is the only step where the arithmetic can go wrong and the only step that actually proves anything; the base case and the closing appeal to the principle of induction are each short but each is a whole mark, since an answer missing either is not a proof. Independently checked before authoring: the claimed form was multiplied out at n = 1, 2 and 3 and gave rows (3, −4)/(1, −1), (5, −8)/(2, −3) and (7, −12)/(3, −5), which match the formula exactly. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Matrices supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — say what you check first, what you assume, what you multiply, and how you finish.",
   "answer": {
@@ -68,6 +68,7 @@
             "render": "katex",
             "style": "eq"
           },
+          "(1 + 2 = 3, −4, 1 and 1 − 2 = −1)",
           "Both agree, so P(1) is true."
         ],
         "recall": {
@@ -148,7 +149,7 @@
         "label": "Multiply Aᵏ by A",
         "marks": 2,
         "mark_note": "Inductive step",
-        "margin_note": "Half the marks. Use A^(k+1) = Aᵏ·A. Then rewrite each entry so that k + 1 is visible: 2k + 3 is 1 + 2(k+1), and −2k − 1 is 1 − 2(k+1).",
+        "margin_note": "Half the marks. Use Aᵏ⁺¹ = Aᵏ·A. Then rewrite each entry so that k + 1 is visible: 2k + 3 is 1 + 2(k+1), and −2k − 1 is 1 − 2(k+1).",
         "memory_tip": "After multiplying, rewrite every entry so k + 1 shows: 2k + 3 is 1 + 2(k+1).",
         "lines": [
           {
@@ -156,12 +157,32 @@
             "render": "katex",
             "style": "eq"
           },
+          {
+            "text": "Multiply row by column:",
+            "added": true
+          },
           "Row 1 × column 1: 3(1+2k) − 4k = 2k + 3",
+          {
+            "text": "(3 + 6k − 4k = 2k + 3)",
+            "added": true
+          },
           "Row 1 × column 2: −4(1+2k) + 4k = −4k − 4",
+          {
+            "text": "(−4 − 8k + 4k = −4k − 4)",
+            "added": true
+          },
           "Row 2 × column 1: 3k + (1 − 2k) = k + 1",
           "Row 2 × column 2: −4k − (1 − 2k) = −2k − 1",
+          {
+            "text": "(−4k − 1 + 2k = −2k − 1)",
+            "added": true
+          },
           "Now 2k + 3 = 1 + 2(k+1), −4k − 4 = −4(k+1),",
           "and −2k − 1 = 1 − 2(k+1). So",
+          {
+            "text": "(1 + 2(k+1) = 2k + 3 and 1 − 2(k+1) = −2k − 1)",
+            "added": true
+          },
           {
             "text": "A^{k+1} = \\begin{bmatrix} 1+2(k+1) & -4(k+1) \\\\ k+1 & 1-2(k+1) \\end{bmatrix}",
             "render": "katex",
@@ -197,6 +218,25 @@
           "Stopping at 2k + 3 without showing it equals 1 + 2(k+1).",
           "Dropping a minus sign when multiplying −4k by −1.",
           "Stopping at the product without rewriting each entry so that k + 1 is visible."
+        ],
+        "lines_compact": [
+          {
+            "text": "A^{k+1} = A^{k} \\cdot A = \\begin{bmatrix} 1+2k & -4k \\\\ k & 1-2k \\end{bmatrix}\\begin{bmatrix} 3 & -4 \\\\ 1 & -1 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "Row 1 × column 1: 3(1+2k) − 4k = 2k + 3",
+          "Row 1 × column 2: −4(1+2k) + 4k = −4k − 4",
+          "Row 2 × column 1: 3k + (1 − 2k) = k + 1",
+          "Row 2 × column 2: −4k − (1 − 2k) = −2k − 1",
+          "Now 2k + 3 = 1 + 2(k+1), −4k − 4 = −4(k+1),",
+          "and −2k − 1 = 1 − 2(k+1). So",
+          {
+            "text": "A^{k+1} = \\begin{bmatrix} 1+2(k+1) & -4(k+1) \\\\ k+1 & 1-2(k+1) \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "That is P(k+1). So P(k) ⇒ P(k+1)."
         ]
       },
       {

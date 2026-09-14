@@ -34,7 +34,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.202, chapter 9 DIFFERENTIATION, Short Answer question 13. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8 under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.202, chapter 9 DIFFERENTIATION, Short Answer question 13. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8 under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say which rule the second term needs and what happens when you add y at the end.",
   "answer": {
@@ -49,7 +49,7 @@
         "label": "Differentiate once",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. (b + 2x) sin x is a product of two functions of x, so the product rule is compulsory here — it is where most of the marks are lost.",
+        "margin_note": "First mark. (b + 2x) sin x is a product of two functions of x, so the product rule is compulsory here.",
         "lines": [
           {
             "text": "Sol:",
@@ -57,6 +57,15 @@
           },
           "y = a cos x + (b + 2x) sin x",
           "The second term is a product, so use the product rule:",
+          "(d/dx(a cos x) = −a sin x; for (b + 2x) sin x",
+          {
+            "text": "  take u = b + 2x and v = sin x:",
+            "style": "indent"
+          },
+          {
+            "text": "  u′v + uv′ = 2 · sin x + (b + 2x) · cos x)",
+            "style": "indent"
+          },
           "y′ = −a sin x + [2 sin x + (b + 2x) cos x]"
         ],
         "recall": {
@@ -96,7 +105,25 @@
         "mark_note": "Solution",
         "margin_note": "Two marks — the longest step. The product rule is used a second time on (b + 2x) cos x, and that is where the second 2 cos x comes from.",
         "lines": [
+          {
+            "text": "(d/dx(−a sin x) = −a cos x and d/dx(2 sin x) = 2 cos x;",
+            "added": true
+          },
+          {
+            "text": "  the product rule on (b + 2x) cos x gives",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  2 cos x + (b + 2x)(−sin x))",
+            "style": "indent",
+            "added": true
+          },
           "y″ = −a cos x + 2 cos x + [2 cos x − (b + 2x) sin x]",
+          {
+            "text": "(2 cos x + 2 cos x = 4 cos x)",
+            "added": true
+          },
           "y″ = −a cos x + 4 cos x − (b + 2x) sin x"
         ],
         "recall": {
@@ -126,7 +153,11 @@
           "Getting 2 cos x instead of 4 cos x by using the product rule only once.",
           "Writing the last term as +(b + 2x) sin x, forgetting that cos x differentiates to −sin x."
         ],
-        "memory_tip": "The 4 in the answer is 2 + 2 — one 2 from each of the two places a 2 appears."
+        "memory_tip": "The 4 in the answer is 2 + 2 — one 2 from each of the two places a 2 appears.",
+        "lines_compact": [
+          "y″ = −a cos x + 2 cos x + [2 cos x − (b + 2x) sin x]",
+          "y″ = −a cos x + 4 cos x − (b + 2x) sin x"
+        ]
       },
       {
         "id": "s3_add_y",
@@ -136,8 +167,21 @@
         "mark_note": "Answer",
         "margin_note": "Last mark. Write the two lines side by side before cancelling — the a cos x pair and the (b + 2x) sin x pair each cancel, and 4 cos x is all that is left.",
         "lines": [
-          "y″ + y = [−a cos x + 4 cos x − (b + 2x) sin x] + [a cos x + (b + 2x) sin x]",
-          "The −a cos x and a cos x cancel, and the two (b + 2x) sin x terms cancel",
+          {
+            "text": "(add y = a cos x + (b + 2x) sin x to y″ from step 2)",
+            "added": true
+          },
+          "y″ + y = [−a cos x + 4 cos x − (b + 2x) sin x]",
+          {
+            "text": "  + [a cos x + (b + 2x) sin x]",
+            "style": "indent"
+          },
+          "The −a cos x and a cos x cancel,",
+          "and the two (b + 2x) sin x terms cancel",
+          {
+            "text": "(after the cancelling, 4 cos x is left)",
+            "added": true
+          },
           {
             "text": "∴ y″ + y = 4 cos x",
             "style": "boxed"
@@ -165,12 +209,25 @@
             "a cos x"
           ]
         },
-        "why": "The constants a and b must vanish, because the required answer 4 cos x contains neither. Their cancelling is the check that the two derivatives are right.",
+        "why": "The constants a and b must vanish, because the required answer 4 cos x contains neither. Their cancelling is one check on the two derivatives, but it does not check the 4: a and b also cancel when a 2 cos x is missed.",
         "common_mistakes": [
           "Subtracting y instead of adding it.",
           "Leaving a or b in the final line, which means an earlier sign is wrong."
         ],
-        "memory_tip": "The result has no a and no b, so if either survives the cancelling, go back to y″."
+        "memory_tip": "The result has no a and no b, so if either is still there after cancelling, check y″ again.",
+        "lines_compact": [
+          "y″ + y = [−a cos x + 4 cos x − (b + 2x) sin x]",
+          {
+            "text": "  + [a cos x + (b + 2x) sin x]",
+            "style": "indent"
+          },
+          "The −a cos x and a cos x cancel,",
+          "and the two (b + 2x) sin x terms cancel",
+          {
+            "text": "∴ y″ + y = 4 cos x",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

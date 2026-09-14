@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B, book printed p.32 (PDF page 31) — LAQ chapter 3 ‘Integration’, answer 25, no SSP banner and no printed appearance tags on this page (the facing ‘4 STEP TIPS’ box lists the method's own outline — write Nr in terms of Dr, compare coefficients, substitute, integrate the last term — which this card's four steps follow). Chapter star rank ★★★ still applies. no printed margin mark tags or tick-box splits appear anywhere in the Integration LAQ chapter — this card's mark split is OURS, patterned on the 7-mark shapes printed elsewhere in the book (e.g. 2+2+2+1, 1+1+2+2+1). This card's final answer was re-derived independently and matches the book's printed line exactly — no error found here. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B, book printed p.32 (PDF page 31) — LAQ chapter 3 ‘Integration’, answer 25, no SSP banner and no printed appearance tags on this page (the facing ‘4 STEP TIPS’ box lists the method's own outline — write Nr in terms of Dr, compare coefficients, substitute, integrate the last term — which this card's four steps follow). Chapter star rank ★★★ still applies. no printed margin mark tags or tick-box splits appear anywhere in the Integration LAQ chapter — this card's mark split is OURS, patterned on the 7-mark shapes printed elsewhere in the book (e.g. 2+2+2+1, 1+1+2+2+1). This card's final answer was re-derived independently and matches the book's printed line exactly — no error found here. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "insider_note": "With a constant term in both the numerator and the denominator, three unknowns A, B, C are needed instead of two — the third equation comes from matching the constant terms on both sides, not from a trig coefficient.",
   "answer": {
@@ -59,13 +59,31 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "The numerator carries a constant as well, so",
+          {
+            "text": "  it needs three parts: A times the",
+            "style": "indent"
+          },
+          {
+            "text": "  denominator, B times its derivative,",
+            "style": "indent"
+          },
+          {
+            "text": "  and a constant C.",
+            "style": "indent"
+          },
           "Let 2sinx+3cosx+4",
           "= A(3sinx+4cosx+5) + B(3cosx−4sinx) + C",
+          "Compare the coefficients on both sides:",
           "Coeff of sinx: 3A−4B=2, coeff of cosx:",
           "4A+3B=3, constant: 5A+C=4",
+          "(1)×3: 9A−12B=6 and (2)×4: 16A+12B=12",
+          "Adding: 25A=18 ⇒ A=18/25",
+          "Then 3B=3−72/25=3/25 ⇒ B=1/25",
+          "and C=4−5(18/25)=4−18/5=2/5",
           "Solving: A=18/25, B=1/25, C=2/5"
         ],
-        "why": "A constant term in the denominator needs a THIRD free constant C on the right, since Dr and Dr′ alone (both built from sinx and cosx) can never reproduce a bare number on their own.",
+        "why": "A constant term in the denominator needs a THIRD free constant C. A·Dr does produce a constant, 5A, but A is already fixed by the sinx and cosx equations (A = 18/25, so 5A = 18/5), and 18/5 is not the 4 the numerator needs — C makes up the difference.",
         "common_mistakes": [
           "Using only two unknowns A, B and forgetting C, which cannot balance the constant term 4 on the left.",
           "Matching the constant equation as 5A=4 instead of 5A+C=4."
@@ -81,6 +99,10 @@
         "margin_note": "Method",
         "lines": [
           "I = A∫1 dx + B∫[Dr′/Dr]dx + C∫dx/Dr",
+          {
+            "text": "The first gives x, the second log|Dr|:",
+            "added": true
+          },
           "= (18/25)x + (1/25)log|3sinx+4cosx+5| +",
           "(2/5)∫dx/(3sinx+4cosx+5)"
         ],
@@ -89,7 +111,12 @@
           "Trying to integrate C∫dx/Dr the same way as the log term — it is NOT an f′/f form and needs the tan(x/2) substitution instead.",
           "Mixing up which coefficient (A or B) belongs with which piece."
         ],
-        "memory_tip": "A goes with plain x, B goes with the log, C is the leftover piece that still needs its own substitution."
+        "memory_tip": "A goes with plain x, B goes with the log, C is the leftover piece that still needs its own substitution.",
+        "lines_compact": [
+          "I = A∫1 dx + B∫[Dr′/Dr]dx + C∫dx/Dr",
+          "= (18/25)x + (1/25)log|3sinx+4cosx+5| +",
+          "(2/5)∫dx/(3sinx+4cosx+5)"
+        ]
       },
       {
         "id": "s3_weierstrass",
@@ -100,10 +127,27 @@
         "margin_note": "Method",
         "lines": [
           "Put tan(x/2)=t: 3sinx+4cosx+5",
+          {
+            "text": "Then sinx = 2t/(1+t²), cosx = (1−t²)/(1+t²)",
+            "added": true
+          },
+          {
+            "text": "  and dx = 2dt/(1+t²)",
+            "style": "indent",
+            "added": true
+          },
           "= [6t+4(1−t²)+5(1+t²)]/(1+t²)",
+          {
+            "text": "The t² terms give −4t²+5t² = t²:",
+            "added": true
+          },
           "= (t²+6t+9)/(1+t²) = (t+3)²/(1+t²)",
           "∫dx/(3sinx+4cosx+5)",
           "= ∫[2dt/(1+t²)]÷[(t+3)²/(1+t²)]",
+          {
+            "text": "The (1+t²) cancels:",
+            "added": true
+          },
           "= ∫2dt/(t+3)² = −2/(t+3) + c"
         ],
         "why": "This particular denominator happens to be a PERFECT square in t, (t+3)², which turns the leftover integral into a simple power-rule antiderivative rather than another log or Tan⁻¹.",
@@ -111,7 +155,15 @@
           "Not spotting that t²+6t+9 factors as a perfect square, and instead trying to complete the square as a sum or difference.",
           "Believing that d/dt[−1/(t+3)] = −1/(t+3)². It is actually +1/(t+3)², which is exactly why ∫2dt/(t+3)² comes out as −2/(t+3)+c and not +2/(t+3)+c."
         ],
-        "memory_tip": "t²+6t+9 = (t+3)² exactly — recognise the perfect square before reaching for the log or Tan⁻¹ formula."
+        "memory_tip": "t²+6t+9 = (t+3)² exactly — recognise the perfect square before reaching for the log or Tan⁻¹ formula.",
+        "lines_compact": [
+          "Put tan(x/2)=t: 3sinx+4cosx+5",
+          "= [6t+4(1−t²)+5(1+t²)]/(1+t²)",
+          "= (t²+6t+9)/(1+t²) = (t+3)²/(1+t²)",
+          "∫dx/(3sinx+4cosx+5)",
+          "= ∫[2dt/(1+t²)]÷[(t+3)²/(1+t²)]",
+          "= ∫2dt/(t+3)² = −2/(t+3) + c"
+        ]
       },
       {
         "id": "s4_final",
@@ -121,6 +173,18 @@
         "mark_note": "Method",
         "margin_note": "Solution",
         "lines": [
+          {
+            "text": "The third part is (2/5) of that integral:",
+            "added": true
+          },
+          {
+            "text": "(2/5)·(−2/(t+3)) = −(4/5)/(t+3)",
+            "added": true
+          },
+          {
+            "text": "Put t = tan(x/2) back:",
+            "added": true
+          },
           "∴ I = (18/25)x + (1/25)log|3sinx+4cosx+5|",
           {
             "text": "− (4/5)/(tan(x/2)+3) + c",
@@ -132,7 +196,14 @@
           "Forgetting to multiply C=2/5 into the −2/(t+3) result before adding it to the other two terms.",
           "Leaving the final term in terms of t instead of tan(x/2)."
         ],
-        "memory_tip": "(2/5)×(−2/(t+3)) = −4/(5(t+3)) — carry C through the substitution's result, don't just tack it on unmultiplied."
+        "memory_tip": "(2/5)×(−2/(t+3)) = −4/(5(t+3)) — carry C through the substitution's result, don't just tack it on unmultiplied.",
+        "lines_compact": [
+          "∴ I = (18/25)x + (1/25)log|3sinx+4cosx+5|",
+          {
+            "text": "− (4/5)/(tan(x/2)+3) + c",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   }

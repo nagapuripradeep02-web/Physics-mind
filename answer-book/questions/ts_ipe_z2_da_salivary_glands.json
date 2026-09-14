@@ -1,0 +1,92 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_da_salivary_glands",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Human Anatomy and Physiology-I (Zoology-II)"
+  },
+  "chapter": "Digestion and Absorption",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Name the different types of salivary glands of man and their locations in the human body.",
+  "appearances": [
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The three pairs",
+      "marks": 1
+    },
+    {
+      "label": "Their locations",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.46, VSAQ 53. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Revised 2026-09-05: s1_pairs' why said the glands are named by where their ducts open, which is not so — each is named for where the gland lies — and its margin note no longer claims the word pairs is checked."
+  },
+  "insider_note": "Say three PAIRS, not three glands, and give a location for each.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Digestion and Absorption · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_pairs",
+        "kind": "text",
+        "label": "The three pairs",
+        "marks": 1,
+        "mark_note": "The three names",
+        "why": "Each gland is named after the place where the gland itself lies — beside the ear, under the lower jaw, under the tongue — so the name and the location belong together.",
+        "common_mistakes": [
+          "Writing three glands instead of three pairs. They are paired.",
+          "Naming the pancreas. It is not a salivary gland."
+        ],
+        "memory_tip": "Near the ear, under the jaw, under the tongue.",
+        "margin_note": "Say pairs, not glands. There are three pairs, six glands in all.",
+        "lines": [
+          "There are 3 pairs of salivary glands in man:",
+          "1. Parotid glands",
+          "2. Submaxillary or submandibular glands",
+          "3. Sublingual glands"
+        ]
+      },
+      {
+        "id": "s2_locations",
+        "kind": "boxed_final",
+        "label": "Their locations",
+        "marks": 1,
+        "mark_note": "Locations",
+        "why": "Saliva has to reach the food while it is being chewed, so all three open into the mouth cavity from close by.",
+        "common_mistakes": [
+          "Placing the parotid under the tongue. It lies below the ear lobe.",
+          "Giving no location for one of the three."
+        ],
+        "memory_tip": "Par-otid sits by the ear, sub-lingual under the tongue.",
+        "margin_note": "One line each, in the same order.",
+        "lines": [
+          "Parotid — below the pinnae, the ear lobes.",
+          "Submaxillary — in the corner of the lower",
+          "jaw.",
+          {
+            "text": "Sublingual — below the tongue",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  }
+}

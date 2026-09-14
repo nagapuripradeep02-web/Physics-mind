@@ -1,0 +1,87 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_end_androgens",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Human Anatomy and Physiology-IV (Zoology-II)"
+  },
+  "chapter": "Endocrine System",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are androgens? Which cells secrete them?",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What they are",
+      "marks": 1
+    },
+    {
+      "label": "Which cells make them",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.52, VSAQ 95. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Endocrine System · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What they are",
+        "marks": 1,
+        "mark_note": "What they are",
+        "why": "Androgens drive the male secondary sexual characters, which is why they are grouped together under one name.",
+        "common_mistakes": [
+          "Naming oestrogen. That is a female sex hormone.",
+          "Giving no example."
+        ],
+        "memory_tip": "Andro means male: androgens are the male sex hormones.",
+        "margin_note": "Definition with one example.",
+        "lines": [
+          "Androgens are the male sex hormones.",
+          "Example: testosterone."
+        ]
+      },
+      {
+        "id": "s2_cells",
+        "kind": "boxed_final",
+        "label": "Which cells make them",
+        "marks": 1,
+        "mark_note": "The cells",
+        "why": "The Leydig cells sit between the sperm-making tubules, so the hormone is made right beside the cells it supports.",
+        "common_mistakes": [
+          "Naming Sertoli cells. Those nourish the sperm.",
+          "Answering only 'the testis'."
+        ],
+        "memory_tip": "Leydig cells lie between the tubules and make testosterone.",
+        "margin_note": "Name the cells and where they are.",
+        "lines": [
+          {
+            "text": "Leydig cells of the testes secrete them",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Name the cells, not just the testis. Leydig cells is the marked answer."
+}

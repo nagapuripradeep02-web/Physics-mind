@@ -51,7 +51,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.58 — SAQ chapter 8 Addition of Vectors, answer 49.2. Printed appearances: AP 20 · TS 15,20. This is the coplanarity test run BACKWARDS — the same determinant, but set equal to zero and solved rather than evaluated, which is why it carries a solving step where the other four carry a concluding one. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter. It follows the split the same book prints for the one 4-mark answer that does carry tags, Matrices answer 40 on book p.51. The book's chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q12 is the Addition of Vectors slot. NOTE: Addition of Vectors has NO Section-C slot on the paper and no LAQ chapter in this book — the unit is SAQ and VSAQ only."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.58 — SAQ chapter 8 Addition of Vectors, answer 49.2. Printed appearances: AP 20 · TS 15,20. This is the coplanarity test run BACKWARDS — the same determinant, but set equal to zero and solved rather than evaluated, which is why it carries a solving step where the other four carry a concluding one. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter. It follows the split the same book prints for the one 4-mark answer that does carry tags, Matrices answer 40 on book p.51. The book's chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q12 is the Addition of Vectors slot. NOTE: Addition of Vectors has NO Section-C slot on the paper and no LAQ chapter in this book — the unit is SAQ and VSAQ only. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find lambda here — say what is different from an ordinary coplanarity question.",
   "answer": {
@@ -66,8 +66,8 @@
         "label": "Write the position vectors",
         "marks": 1,
         "mark_note": "Position vectors",
-        "margin_note": "First mark. Same opening as any coplanarity question — but note that λ rides along inside OS and must be carried as a letter all the way to the last line.",
-        "memory_tip": "Same opening as any coplanarity question, but λ rides inside OS and must be carried as a letter.",
+        "margin_note": "First mark. Same opening as any coplanarity question — but note that λ is part of OS and must be kept as a letter until the last line.",
+        "memory_tip": "Same opening as any coplanarity question, but λ is part of OS and must be kept as a letter.",
         "lines": [
           {
             "text": "Sol:",
@@ -76,7 +76,8 @@
           "We take",
           "OP = 3i − 2j − k,  OQ = 2i + 3j − 4k,",
           "OR = −i + j + 2k,  OS = 4i + 5j + λk,",
-          "where 'O' is the origin."
+          "where 'O' is the origin.",
+          "(the four points lie in one plane when PQ, PR, PS do)"
         ],
         "recall": {
           "credit": "say_it",
@@ -100,7 +101,7 @@
             "origin"
           ]
         },
-        "why": "λ is unknown, so it cannot be evaluated — it has to survive every line until the equation that pins it down.",
+        "why": "λ is unknown, so it cannot be evaluated — it has to stay in every line until the equation that fixes its value.",
         "common_mistakes": [
           "Guessing a value for λ and checking it.",
           "Dropping λ when copying OS."
@@ -115,11 +116,27 @@
         "margin_note": "Second mark. All three from P. Only PS carries λ, and it becomes (λ+1) because −(−1) = +1 — a sign slip here changes the final answer.",
         "memory_tip": "Only PS carries λ, and it becomes (λ + 1) because −(−1) = +1. A sign slip here changes the answer.",
         "lines": [
+          {
+            "text": "(end point minus start point, component by component)",
+            "added": true
+          },
           "∴ PQ = OQ − OP = (2i + 3j − 4k) − (3i − 2j − k)",
+          {
+            "text": "(2 − 3 = −1, 3 − (−2) = 5, −4 − (−1) = −3)",
+            "added": true
+          },
           "  = −i + 5j − 3k",
           "PR = OR − OP = (−i + j + 2k) − (3i − 2j − k)",
+          {
+            "text": "(−1 − 3 = −4, 1 − (−2) = 3, 2 − (−1) = 3)",
+            "added": true
+          },
           "  = −4i + 3j + 3k",
           "PS = OS − OP = (4i + 5j + λk) − (3i − 2j − k)",
+          {
+            "text": "(4 − 3 = 1, 5 − (−2) = 7, λ − (−1) = λ + 1)",
+            "added": true
+          },
           "  = i + 7j + (λ + 1)k"
         ],
         "recall": {
@@ -149,6 +166,14 @@
         "common_mistakes": [
           "Writing (λ − 1)k by subtracting instead of adding.",
           "Subtracting the wrong way round."
+        ],
+        "lines_compact": [
+          "∴ PQ = OQ − OP = (2i + 3j − 4k) − (3i − 2j − k)",
+          "  = −i + 5j − 3k",
+          "PR = OR − OP = (−i + j + 2k) − (3i − 2j − k)",
+          "  = −4i + 3j + 3k",
+          "PS = OS − OP = (4i + 5j + λk) − (3i − 2j − k)",
+          "  = i + 7j + (λ + 1)k"
         ]
       },
       {
@@ -160,6 +185,10 @@
         "margin_note": "Third mark, and the whole idea. The points are GIVEN coplanar, so the scalar triple product is known to be zero — that known zero is the equation that determines λ.",
         "memory_tip": "The points are GIVEN coplanar, so the triple product is known to be 0 — that is the equation for λ.",
         "lines": [
+          {
+            "text": "(the rows hold the i, j, k components of PQ, PR, PS)",
+            "added": true
+          },
           "The points are coplanar, so [PQ PR PS] = 0:",
           {
             "text": "\\begin{vmatrix} -1 & 5 & -3 \\\\ -4 & 3 & 3 \\\\ 1 & 7 & \\lambda+1 \\end{vmatrix} = 0",
@@ -189,10 +218,18 @@
             "equation"
           ]
         },
-        "why": "Every other question in this chapter computes the determinant and finds it is zero. This one is told it is zero and works out what λ must be for that to happen.",
+        "why": "A \"show coplanar\" question computes the determinant and finds it is zero. This one is told it is zero and works out what λ must be for that to happen.",
         "common_mistakes": [
           "Evaluating the determinant without setting it to zero.",
           "Trying to show it is zero for every λ, which it is not."
+        ],
+        "lines_compact": [
+          "The points are coplanar, so [PQ PR PS] = 0:",
+          {
+            "text": "\\begin{vmatrix} -1 & 5 & -3 \\\\ -4 & 3 & 3 \\\\ 1 & 7 & \\lambda+1 \\end{vmatrix} = 0",
+            "render": "katex",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -205,10 +242,38 @@
         "memory_tip": "Collect the λ terms: −3λ + 20λ = 17λ, which is where the 17 in the answer comes from.",
         "lines": [
           "Expanding along R₁:",
+          {
+            "text": "(minor of −1: (3)(λ + 1) − (3)(7) = 3λ − 18)",
+            "added": true
+          },
+          {
+            "text": "(minor of 5: (−4)(λ + 1) − (3)(1) = −4λ − 7)",
+            "added": true
+          },
+          {
+            "text": "(minor of −3: (−4)(7) − (3)(1) = −31)",
+            "added": true
+          },
           "−1[3(λ+1) − 21] − 5[−4(λ+1) − 3] − 3[−28 − 3] = 0",
+          {
+            "text": "(−3 × (−31) = 93)",
+            "added": true
+          },
           "−1(3λ − 18) − 5(−4λ − 7) + 93 = 0",
+          {
+            "text": "(open the brackets)",
+            "added": true
+          },
           "−3λ + 18 + 20λ + 35 + 93 = 0",
+          {
+            "text": "(−3λ + 20λ = 17λ and 18 + 35 + 93 = 146)",
+            "added": true
+          },
           "17λ + 146 = 0",
+          {
+            "text": "(take 146 across and divide by 17)",
+            "added": true
+          },
           {
             "text": "∴ λ = −146/17",
             "style": "boxed"
@@ -241,6 +306,17 @@
           "Collecting the λ terms as 23λ by losing the minus.",
           "Forgetting to distribute the −5 across both terms of its bracket.",
           "Leaving the answer as 17λ = −146 without dividing."
+        ],
+        "lines_compact": [
+          "Expanding along R₁:",
+          "−1[3(λ+1) − 21] − 5[−4(λ+1) − 3] − 3[−28 − 3] = 0",
+          "−1(3λ − 18) − 5(−4λ − 7) + 93 = 0",
+          "−3λ + 18 + 20λ + 35 + 93 = 0",
+          "17λ + 146 = 0",
+          {
+            "text": "∴ λ = −146/17",
+            "style": "boxed"
+          }
         ]
       }
     ]

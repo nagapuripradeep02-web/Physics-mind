@@ -1,0 +1,149 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_gen_abo_genetic_basis",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Genetics (Zoology-II)"
+  },
+  "chapter": "Genetics",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Describe the genetic basis of ABO blood grouping.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The gene and its three alleles",
+      "marks": 1
+    },
+    {
+      "label": "What each allele makes",
+      "marks": 1
+    },
+    {
+      "label": "The six genotypes",
+      "marks": 1
+    },
+    {
+      "label": "The four phenotypes",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.39, SAQ 34. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Genetics · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_gene",
+        "kind": "text",
+        "label": "The gene and its alleles",
+        "marks": 1,
+        "mark_note": "The gene",
+        "why": "One gene with three alleles is what makes the ABO system the standard example of multiple alleles.",
+        "common_mistakes": [
+          "Naming three genes. There is one gene with three alleles.",
+          "Getting the chromosome wrong. It is chromosome 9."
+        ],
+        "memory_tip": "Gene I, chromosome 9, three alleles.",
+        "margin_note": "Name both scientists. Both are marked.",
+        "lines": [
+          "Karl Landsteiner proposed the ABO system",
+          "of blood groups.",
+          "The genetic basis depends on three alleles",
+          "of the gene I on chromosome 9, discovered",
+          "by Bernstein.",
+          {
+            "text": "The alleles are Iᴬ, Iᴮ and Iᴼ (or i)",
+            "style": "eq"
+          }
+        ]
+      },
+      {
+        "id": "s2_what_each",
+        "kind": "text",
+        "label": "What each allele makes",
+        "marks": 1,
+        "mark_note": "The antigens",
+        "why": "The Iᴼ allele makes no antigen at all, which is why group O red cells carry nothing on their surface.",
+        "common_mistakes": [
+          "Saying Iᴼ makes an antigen. It makes none.",
+          "Calling Iᴬ dominant over Iᴮ."
+        ],
+        "memory_tip": "Iᴬ makes A, Iᴮ makes B, Iᴼ makes nothing.",
+        "margin_note": "Three short lines cover this mark.",
+        "lines": [
+          "Iᴬ produces antigen A and Iᴮ produces",
+          "antigen B.",
+          "Iᴼ does not produce any antigen.",
+          "Iᴬ and Iᴮ are dominant over Iᴼ, but they",
+          "are codominant to each other."
+        ]
+      },
+      {
+        "id": "s3_genotypes",
+        "kind": "text",
+        "label": "The six genotypes",
+        "marks": 1,
+        "mark_note": "Genotypes",
+        "why": "Each parent contributes one allele, so every possible pair of the three alleles is a possible genotype.",
+        "common_mistakes": [
+          "Listing only four genotypes.",
+          "Writing IᴼIᴬ and IᴬIᴼ as two different genotypes."
+        ],
+        "memory_tip": "Three same-pairs and three mixed pairs make six.",
+        "margin_note": "Write all six on one line.",
+        "lines": [
+          "A child receives one of the three alleles",
+          "from each parent, giving six possible",
+          "genotypes and four possible blood types.",
+          {
+            "text": "IᴬIᴬ, IᴬIᴼ, IᴮIᴮ, IᴮIᴼ, IᴬIᴮ, IᴼIᴼ",
+            "style": "eq"
+          }
+        ]
+      },
+      {
+        "id": "s4_phenotypes",
+        "kind": "boxed_final",
+        "label": "The four phenotypes",
+        "marks": 1,
+        "mark_note": "Phenotypes",
+        "why": "Because Iᴼ is recessive, a person carrying it with Iᴬ or Iᴮ looks exactly like one carrying two of the dominant allele.",
+        "common_mistakes": [
+          "Giving IᴬIᴮ the A group. It is AB, because the two are codominant.",
+          "Giving six phenotypes."
+        ],
+        "memory_tip": "Six genotypes collapse into four groups.",
+        "margin_note": "Group the genotypes under the four blood types.",
+        "lines": [
+          "IᴬIᴬ and IᴬIᴼ are A group blood.",
+          "IᴮIᴮ and IᴮIᴼ are B group blood.",
+          "IᴬIᴮ is AB group blood.",
+          {
+            "text": "IᴼIᴼ is O group blood",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "This is the middle half of the 8-mark question. Write the six genotypes as a single line — the examiner counts them."
+}

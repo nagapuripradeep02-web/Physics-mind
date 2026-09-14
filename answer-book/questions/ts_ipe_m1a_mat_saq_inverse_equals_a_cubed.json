@@ -34,7 +34,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.56 — SAQ chapter 7 Matrices, answer 46. Printed appearances: none — this answer carries no year tag. AUTHORED LATE, and why is worth recording: the first pass over this unit scoped the Matrices SAQ chapter as answers 40-45 (pp.51-55) from the book's \"TOP 40 SAQ\" hit list. That list is a SELECTION, not an inventory — the chapter actually runs to answer 47 on p.56, and this question and its neighbour were missed. Found on 2026-08-21 while walking to the Addition of Vectors chapter boundary for Unit 4. The LAQ pass had read every page pp.22-34 and was complete; only the SAQ pass trusted the hit list. The book opens it with an \"RTP\" (Required To Prove) line, and that restatement is the whole method: A⁻¹ = A³ is hard to attack directly, A⁴ = I is not. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It follows the split the same book DOES print for Matrices answer 40 on book p.51, the only tagged 4-mark answer in the chapter. The book's SAQ chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q11 is the Matrices slot."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.56 — SAQ chapter 7 Matrices, answer 46. Printed appearances: none — this answer carries no year tag. AUTHORED LATE, and why is worth recording: the first pass over this unit scoped the Matrices SAQ chapter as answers 40-45 (pp.51-55) from the book's \"TOP 40 SAQ\" hit list. That list is a SELECTION, not an inventory — the chapter actually runs to answer 47 on p.56, and this question and its neighbour were missed. Found on 2026-08-21 while walking to the Addition of Vectors chapter boundary for Unit 4. The LAQ pass had read every page pp.22-34 and was complete; only the SAQ pass trusted the hit list. The book opens it with an \"RTP\" (Required To Prove) line, and that restatement is the whole method: A⁻¹ = A³ is hard to attack directly, A⁴ = I is not. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It follows the split the same book DOES print for Matrices answer 40 on book p.51, the only tagged 4-mark answer in the chapter. The book's SAQ chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q11 is the Matrices slot. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would show that the inverse of A equals A cubed — say what you would prove instead.",
   "answer": {
@@ -58,6 +58,7 @@
           },
           "Required To Prove (RTP):",
           "A⁻¹ = A³  ⇔  AA⁻¹ = AA³  ⇔  I = A⁴",
+          "(multiply A⁻¹ = A³ on the left by A)",
           "So it is enough to show A⁴ = I."
         ],
         "recall": {
@@ -95,16 +96,64 @@
         "label": "Find A²",
         "marks": 2,
         "mark_note": "A squared",
-        "margin_note": "Half the marks. Nine row-by-column products. The middle row of A has a 0 in it, which shortens three of them — but every entry still has to be written out.",
-        "memory_tip": "Nine row-by-column products. The 0 in the middle row shortens three of them.",
+        "margin_note": "Half the marks. Nine row-by-column products. The bottom row of A has a 0 in it, which shortens three of them — but every entry still has to be written out.",
+        "memory_tip": "Nine row-by-column products. The 0 in the bottom row shortens three of them.",
         "lines": [
           {
             "text": "A^2 = A\\!\\cdot\\!A = \\begin{bmatrix} 3 & -3 & 4 \\\\ 2 & -3 & 4 \\\\ 0 & -1 & 1 \\end{bmatrix}\\begin{bmatrix} 3 & -3 & 4 \\\\ 2 & -3 & 4 \\\\ 0 & -1 & 1 \\end{bmatrix}",
             "render": "katex",
             "style": "eq"
           },
+          {
+            "text": "(entry (i, j) = row i times column j: multiply",
+            "added": true
+          },
+          {
+            "text": "  in pairs and add)",
+            "style": "indent",
+            "added": true
+          },
           "Row 1 × column 1:  9 − 6 + 0 = 3",
           "Row 1 × column 2:  −9 + 9 − 4 = −4",
+          {
+            "text": "The other seven entries:",
+            "added": true
+          },
+          {
+            "text": "  (1,3): (3)(4) + (−3)(4) + (4)(1) = 4",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  (2,1): (2)(3) + (−3)(2) + (4)(0) = 0",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  (2,2): (2)(−3) + (−3)(−3) + (4)(−1) = −1",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  (2,3): (2)(4) + (−3)(4) + (4)(1) = 0",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  (3,1): (0)(3) + (−1)(2) + (1)(0) = −2",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  (3,2): (0)(−3) + (−1)(−3) + (1)(−1) = 2",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  (3,3): (0)(4) + (−1)(4) + (1)(1) = −3",
+            "style": "indent",
+            "added": true
+          },
           {
             "text": "A^2 = \\begin{bmatrix} 3 & -4 & 4 \\\\ 0 & -1 & 0 \\\\ -2 & 2 & -3 \\end{bmatrix}",
             "render": "katex",
@@ -138,6 +187,20 @@
           "Squaring each entry instead of multiplying the matrices.",
           "Sign slips where two negatives meet.",
           "Computing A³ instead, which does not square as cleanly."
+        ],
+        "lines_compact": [
+          {
+            "text": "A^2 = A\\!\\cdot\\!A = \\begin{bmatrix} 3 & -3 & 4 \\\\ 2 & -3 & 4 \\\\ 0 & -1 & 1 \\end{bmatrix}\\begin{bmatrix} 3 & -3 & 4 \\\\ 2 & -3 & 4 \\\\ 0 & -1 & 1 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "Row 1 × column 1:  9 − 6 + 0 = 3",
+          "Row 1 × column 2:  −9 + 9 − 4 = −4",
+          {
+            "text": "A^2 = \\begin{bmatrix} 3 & -4 & 4 \\\\ 0 & -1 & 0 \\\\ -2 & 2 & -3 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -149,6 +212,55 @@
         "margin_note": "Last mark. A⁴ = (A²)(A²) — square the matrix just found. It comes out as the identity, which is exactly what was required.",
         "memory_tip": "A⁴ = (A²)(A²) — square the matrix just found rather than multiplying by A twice more.",
         "lines": [
+          {
+            "text": "Multiply A² by itself, row by column:",
+            "added": true
+          },
+          {
+            "text": "  (1,1): (3)(3) + (−4)(0) + (4)(−2) = 1",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  (1,2): (3)(−4) + (−4)(−1) + (4)(2) = 0",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  (1,3): (3)(4) + (−4)(0) + (4)(−3) = 0",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  (2,1): (0)(3) + (−1)(0) + (0)(−2) = 0",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  (2,2): (0)(−4) + (−1)(−1) + (0)(2) = 1",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  (2,3): (0)(4) + (−1)(0) + (0)(−3) = 0",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  (3,1): (−2)(3) + (2)(0) + (−3)(−2) = 0",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  (3,2): (−2)(−4) + (2)(−1) + (−3)(2) = 0",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  (3,3): (−2)(4) + (2)(0) + (−3)(−3) = 1",
+            "style": "indent",
+            "added": true
+          },
           {
             "text": "A^4 = (A^2)(A^2) = \\begin{bmatrix} 1 & 0 & 0 \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 1 \\end{bmatrix} = I",
             "render": "katex",
@@ -187,6 +299,18 @@
         "common_mistakes": [
           "Reaching A⁴ = I and stopping, without returning to A⁻¹ = A³.",
           "Writing \"= 1\" instead of \"= I\"."
+        ],
+        "lines_compact": [
+          {
+            "text": "A^4 = (A^2)(A^2) = \\begin{bmatrix} 1 & 0 & 0 \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 1 \\end{bmatrix} = I",
+            "render": "katex",
+            "style": "eq"
+          },
+          "Since A⁴ = I, multiplying by A⁻¹ gives A³ = A⁻¹.",
+          {
+            "text": "∴ A⁻¹ = A³",
+            "style": "boxed"
+          }
         ]
       }
     ]

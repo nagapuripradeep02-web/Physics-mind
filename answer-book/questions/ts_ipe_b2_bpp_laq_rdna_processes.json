@@ -83,9 +83,9 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.14, printed question 3. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. Three slips corrected on this card: the guide writes \"cellulose\" for the enzyme CELLULASE (cellulose is what the enzyme digests), \"powered detergents\" for POWDERED, and \"resoluting enzyme digestion\" for RESTRICTION enzyme digestion."
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.14, printed question 3. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. Three slips corrected on this card: the guide writes \"cellulose\" for the enzyme CELLULASE (cellulose is what the enzyme digests), \"powered detergents\" for POWDERED, and \"resoluting enzyme digestion\" for RESTRICTION enzyme digestion. Revised 2026-09-05 after the examiner audit: the insider note claimed two or three lines under each heading and named a mark the card does not hold, and the figure's four captions were numbered Step 1 to Step 4, clashing with the eight numbered written steps, so they are now Phase 1 to Phase 4, and the diagram margin note maps phase 3 onto written step 5 and phase 4 onto written steps 6 and 7, since a 64 character cap keeps that mapping out of the captions."
   },
-  "insider_note": "Eight steps, eight marks — one mark per step, so the safest structure is eight numbered headings with two or three lines under each. Never merge two steps to save time; you lose a whole mark to save four lines.",
+  "insider_note": "Eight steps, eight marks — one mark per step, so the safest structure is eight numbered headings with a few lines under each. Do not merge two steps under one heading: each step is a separate part of the answer.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",
@@ -301,7 +301,7 @@
         "kind": "diagram",
         "label": "Diagram — recombinant DNA technology",
         "marks": 0,
-        "margin_note": "No diagram mark — the question says 'explain'. It is worth sketching in the margin: the picture is what makes the same-enzyme point impossible to forget.",
+        "margin_note": "No diagram mark — the question says 'explain'. It is worth sketching in the margin: the picture is what makes the same-enzyme point impossible to forget. The drawing has four phases, not eight: phase 3 is written step 5, and phase 4 is written steps 6 and 7.",
         "figure": {
           "id": "b2_bpp_rdna_steps",
           "width": 560,
@@ -310,7 +310,7 @@
             {
               "type": "pause",
               "id": "r_p1",
-              "caption": "Step 1 — the vector and the source DNA"
+              "caption": "Phase 1 — the vector and the source DNA"
             },
             {
               "type": "stroke",
@@ -395,7 +395,7 @@
             {
               "type": "pause",
               "id": "r_p2",
-              "caption": "Step 2 — cut BOTH with the same restriction enzyme"
+              "caption": "Phase 2 — cut BOTH with the same restriction enzyme"
             },
             {
               "type": "label",
@@ -483,7 +483,7 @@
             {
               "type": "pause",
               "id": "r_p3",
-              "caption": "Step 3 — DNA ligase joins the gene into the vector"
+              "caption": "Phase 3 — DNA ligase joins the gene into the vector"
             },
             {
               "type": "label",
@@ -545,7 +545,7 @@
             {
               "type": "pause",
               "id": "r_p4",
-              "caption": "Step 4 — transformation, and the host copies the gene"
+              "caption": "Phase 4 — transformation, and the host copies the gene"
             },
             {
               "type": "label",

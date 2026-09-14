@@ -49,7 +49,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.28 — LAQ chapter 3 D.C's & D.R's, answer 17.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 15,17. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter. It is not a bare guess: the book prints 7-mark splits on three answers elsewhere in the book — LAQ answers 12 (p.24, 1+1+2+1+2), 15 (p.26, 1+1+1+1+1+2) and 21 (p.32, seven 1-mark tags) — so both an even 1-per-move cut and a weighted cut are the book's own shapes at this length. This answer is cut on the moves its own printed working takes, weighted so the two long eliminations carry the most. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: D.C's & D.R's is an LAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 7 marks in Section C and nothing in Section A or Section B, and the book has no D.C's SAQ chapter (its SAQ chapters are 7-13) and no VSAQ chapter (its VSAQ chapters are 14-20). The book's own LAQ chapter table calls it the EASIEST chapter of the six. Chapter scoped by BOUNDARY WALK: book p.32 opens LAQ chapter 4, Differentiation. The STAR QUESTIONS PLUS bank (pp.104-108) contributes NOTHING to this unit — it holds no D.C's or D.R's question. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Eliminate and factorise."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.28 — LAQ chapter 3 D.C's & D.R's, answer 17.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 15,17. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter. It is not a bare guess: the book prints 7-mark splits on three answers elsewhere in the book — LAQ answers 12 (p.24, 1+1+2+1+2), 15 (p.26, 1+1+1+1+1+2) and 21 (p.32, seven 1-mark tags) — so both an even 1-per-move cut and a weighted cut are the book's own shapes at this length. This answer is cut on the moves its own printed working takes, weighted so the two long eliminations carry the most. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: D.C's & D.R's is an LAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 7 marks in Section C and nothing in Section A or Section B, and the book has no D.C's SAQ chapter (its SAQ chapters are 7-13) and no VSAQ chapter (its VSAQ chapters are 14-20). The book's own LAQ chapter table calls it the EASIEST chapter of the six. Chapter scoped by BOUNDARY WALK: book p.32 opens LAQ chapter 4, Differentiation. The STAR QUESTIONS PLUS bank (pp.104-108) contributes NOTHING to this unit — it holds no D.C's or D.R's question. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Eliminate and factorise. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say what separates direction ratios from direction cosines.",
   "answer": {
@@ -71,6 +71,7 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "(make l the subject of the linear relation)",
           "Given l − 5m + 3n = 0  ⇒  l = 5m − 3n  ……(1),",
           "7l² + 5m² − 3n² = 0  ……(2)"
         ],
@@ -108,17 +109,62 @@
         "label": "Eliminate and factorise",
         "marks": 3,
         "mark_note": "Method",
-        "margin_note": "Three marks. Substituting leaves one homogeneous quadratic in two letters. It always factors, and each factor is one of the two lines.",
+        "margin_note": "Three marks. Substituting leaves one homogeneous quadratic in two letters. Here it factors, and each factor gives one of the two lines.",
         "memory_tip": "One homogeneous quadratic comes out, and it factors into the two lines.",
         "lines": [
+          {
+            "text": "(put l = 5m − 3n into (2))",
+            "added": true
+          },
           "Solving (1) & (2), we get",
           "7(5m − 3n)² + 5m² − 3n² = 0",
+          {
+            "text": "((5m − 3n)² = 25m² + 9n² − 30mn)",
+            "added": true
+          },
           "⇒ 7(25m² + 9n² − 30mn) + 5m² − 3n² = 0",
+          {
+            "text": "(multiply the bracket by 7)",
+            "added": true
+          },
           "⇒ 175m² + 63n² − 210mn + 5m² − 3n² = 0",
+          {
+            "text": "(175 + 5 = 180; 63 − 3 = 60)",
+            "added": true
+          },
           "⇒ 180m² − 210mn + 60n² = 0",
+          {
+            "text": "(take out 30, then divide both sides by 30)",
+            "added": true
+          },
           "⇒ 30(6m² − 7mn + 2n²) = 0   ⇒   6m² − 7mn + 2n² = 0",
-          "⇒ 6m² − 4mn − 3mn + 2n² = 0   ⇒   2m(3m − 2n) − n(3m − 2n) = 0",
+          {
+            "text": "(split −7mn as −4mn − 3mn, since (−4)(−3) = 12 = 6 × 2)",
+            "added": true
+          },
+          "⇒ 6m² − 4mn − 3mn + 2n² = 0",
+          {
+            "text": "(take out 2m from the first two terms and −n",
+            "added": true
+          },
+          {
+            "text": "  from the last two)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  ⇒   2m(3m − 2n) − n(3m − 2n) = 0",
+            "style": "indent"
+          },
+          {
+            "text": "(take out the common factor 3m − 2n)",
+            "added": true
+          },
           "⇒ (3m − 2n)(2m − n) = 0",
+          {
+            "text": "(a product is 0 when one of its factors is 0)",
+            "added": true
+          },
           "⇒ 3m − 2n = 0 ⇒ m = 2n/3  (or)  2m − n = 0 ⇒ m = n/2"
         ],
         "recall": {
@@ -143,10 +189,25 @@
             "two cases"
           ]
         },
-        "why": "The quadratic is homogeneous, so it factors into two linear pieces — which is exactly why there are TWO lines rather than one. The problem is a pair from the start.",
+        "why": "The quadratic gives two values of the ratio m/n, and here it factors into two linear factors — one factor for each of the TWO lines.",
         "common_mistakes": [
           "Trying to solve for numerical values of l, m, n rather than a ratio.",
           "Missing one of the two factors and finding only one line."
+        ],
+        "lines_compact": [
+          "Solving (1) & (2), we get",
+          "7(5m − 3n)² + 5m² − 3n² = 0",
+          "⇒ 7(25m² + 9n² − 30mn) + 5m² − 3n² = 0",
+          "⇒ 175m² + 63n² − 210mn + 5m² − 3n² = 0",
+          "⇒ 180m² − 210mn + 60n² = 0",
+          "⇒ 30(6m² − 7mn + 2n²) = 0   ⇒   6m² − 7mn + 2n² = 0",
+          "⇒ 6m² − 4mn − 3mn + 2n² = 0",
+          {
+            "text": "  ⇒   2m(3m − 2n) − n(3m − 2n) = 0",
+            "style": "indent"
+          },
+          "⇒ (3m − 2n)(2m − n) = 0",
+          "⇒ 3m − 2n = 0 ⇒ m = 2n/3  (or)  2m − n = 0 ⇒ m = n/2"
         ]
       },
       {
@@ -155,11 +216,19 @@
         "label": "Case (i): the first line",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "One mark. Take the first factor, feed it back into the linear relation, and read off the ratio l : m : n. Clearing the common letter leaves whole numbers.",
-        "memory_tip": "Feed the first factor back and read off the ratio l : m : n.",
+        "margin_note": "One mark. Put the first factor into the linear relation, and read off the ratio l : m : n. Clearing the common letter leaves whole numbers.",
+        "memory_tip": "Put the first factor into the linear relation and read off the ratio l : m : n.",
         "lines": [
+          {
+            "text": "(put m = 2n/3; 3n = 9n/3)",
+            "added": true
+          },
           "Case (i): Put m = 2n/3 in (1), then",
           "l = 5(2n/3) − 3n = (10n − 9n)/3 = n/3   ∴ l = n/3",
+          {
+            "text": "(divide by n and multiply by 3)",
+            "added": true
+          },
           "Now, l : m : n = n/3 : 2n/3 : n = 1/3 : 2/3 : 1 = 1 : 2 : 3",
           "So, d.r's of L₁ = (a₁, b₁, c₁) = (1, 2, 3)  ……(3)"
         ],
@@ -185,10 +254,16 @@
             "cancel"
           ]
         },
-        "why": "Only the RATIO matters, so any common factor may be cancelled — which is what turns fractions into the small whole numbers the answer carries.",
+        "why": "Only the RATIO matters, so any common factor that is not zero may be cancelled — which is how the ratio is written in small whole numbers.",
         "common_mistakes": [
           "Keeping the common letter and carrying fractions forward.",
           "Reading the ratio in the wrong order."
+        ],
+        "lines_compact": [
+          "Case (i): Put m = 2n/3 in (1), then",
+          "l = 5(2n/3) − 3n = (10n − 9n)/3 = n/3   ∴ l = n/3",
+          "Now, l : m : n = n/3 : 2n/3 : n = 1/3 : 2/3 : 1 = 1 : 2 : 3",
+          "So, d.r's of L₁ = (a₁, b₁, c₁) = (1, 2, 3)  ……(3)"
         ]
       },
       {
@@ -200,8 +275,16 @@
         "margin_note": "One mark. The same work on the second factor. The two lines the question asks about are these two.",
         "memory_tip": "The same on the second factor.",
         "lines": [
+          {
+            "text": "(put m = n/2; 3n = 6n/2)",
+            "added": true
+          },
           "Case (ii): Put m = n/2 in (1), then",
           "l = 5(n/2) − 3n = (5n − 6n)/2 = −n/2   ∴ l = −n/2",
+          {
+            "text": "(divide by n and multiply by 2)",
+            "added": true
+          },
           "Now, l : m : n = −n/2 : n/2 : n = −1/2 : 1/2 : 1 = −1 : 1 : 2",
           "So, d.r's of L₂ = (a₂, b₂, c₂) = (−1, 1, 2)  ……(4)"
         ],
@@ -231,6 +314,12 @@
         "common_mistakes": [
           "Reusing the first factor by mistake.",
           "Sign slip that makes the second line identical to the first."
+        ],
+        "lines_compact": [
+          "Case (ii): Put m = n/2 in (1), then",
+          "l = 5(n/2) − 3n = (5n − 6n)/2 = −n/2   ∴ l = −n/2",
+          "Now, l : m : n = −n/2 : n/2 : n = −1/2 : 1/2 : 1 = −1 : 1 : 2",
+          "So, d.r's of L₂ = (a₂, b₂, c₂) = (−1, 1, 2)  ……(4)"
         ]
       },
       {
@@ -242,9 +331,20 @@
         "margin_note": "The last two marks. Direction ratios are enough to fix a direction, but the question asks for direction COSINES — so each triple is divided by the square root of the sum of its squares.",
         "memory_tip": "The question asks for direction COSINES, so divide each triple by the root of its sum of squares.",
         "lines": [
-          "On dividing (3) by √(1² + 2² + 3²) = √(1 + 4 + 9) = √14, we get",
+          {
+            "text": "(divide each d.r by the square root of the sum of their",
+            "added": true
+          },
+          {
+            "text": "  squares, so that l² + m² + n² = 1)",
+            "style": "indent",
+            "added": true
+          },
+          "On dividing (3) by",
+          "√(1² + 2² + 3²) = √(1 + 4 + 9) = √14, we get",
           "d.c's of L₁ = (1/√14, 2/√14, 3/√14)",
-          "On dividing (4) by √((−1)² + 1² + 2²) = √(1 + 1 + 4) = √6, we get",
+          "On dividing (4) by",
+          "√((−1)² + 1² + 2²) = √(1 + 1 + 4) = √6, we get",
           {
             "text": "d.c's of L₂ = (−1/√6, 1/√6, 2/√6)",
             "style": "boxed"
@@ -272,10 +372,21 @@
             "normalise"
           ]
         },
-        "why": "Direction ratios give the direction; direction cosines are that same direction scaled so the squares add to 1. Dividing by √(a²+b²+c²) is the only step between them.",
+        "why": "Direction ratios give the direction; direction cosines are that same direction scaled so the squares add to 1. Dividing by √(a²+b²+c²) is the step between them.",
         "common_mistakes": [
           "Forgetting to divide one of the two triples.",
           "Dividing both triples by the same root instead of each by its own, √14 and √6."
+        ],
+        "lines_compact": [
+          "On dividing (3) by",
+          "√(1² + 2² + 3²) = √(1 + 4 + 9) = √14, we get",
+          "d.c's of L₁ = (1/√14, 2/√14, 3/√14)",
+          "On dividing (4) by",
+          "√((−1)² + 1² + 2²) = √(1 + 1 + 4) = √6, we get",
+          {
+            "text": "d.c's of L₂ = (−1/√6, 1/√6, 2/√6)",
+            "style": "boxed"
+          }
         ]
       }
     ]

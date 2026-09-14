@@ -55,7 +55,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.26 — LAQ chapter 3 Matrices, answer 17, the last determinant proof before the chapter turns to solving systems. The mark split is PRINTED in that book's margin as 1+1+1+2+1+1 across the six working lines — a sourced split, and the one this answer book uses as the model for the two questions on book p.24 where no split is printed. The book's own margin note reads 'I was asked TWICE', matching the two printed appearances (AP 15,16). Star rank is the CHAPTER's ★★★, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to the \"Take −1 from R₂ and R₃ to finish\" step."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.26 — LAQ chapter 3 Matrices, answer 17, the last determinant proof before the chapter turns to solving systems. The mark split is PRINTED in that book's margin as 1+1+1+2+1+1 across the six working lines — a sourced split, and the one this answer book uses as the model for the two questions on book p.24 where no split is printed. The book's own margin note reads 'I was asked TWICE', matching the two printed appearances (AP 15,16). Star rank is the CHAPTER's ★★★, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to the \"Take −1 from R₂ and R₃ to finish\" step. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — this one uses the same row-adding move twice, so say where each one goes and what happens in between.",
   "answer": {
@@ -80,6 +80,11 @@
             "text": "\\Delta = \\begin{vmatrix} b+c & c+a & a+b \\\\ c+a & a+b & b+c \\\\ a+b & b+c & c+a \\end{vmatrix}",
             "render": "katex",
             "style": "eq"
+          },
+          "(Adding all three rows gives the same sum in",
+          {
+            "text": "  every column.)",
+            "style": "indent"
           }
         ],
         "recall": {
@@ -119,6 +124,10 @@
         "lines": [
           "R₁ → R₁ + R₂ + R₃",
           "Column 1:  (b+c) + (c+a) + (a+b) = 2(a+b+c)",
+          {
+            "text": "(each of a, b, c appears twice: 2a + 2b + 2c)",
+            "added": true
+          },
           "Every column gives the same:",
           {
             "text": "\\Delta = \\begin{vmatrix} 2(a{+}b{+}c) & 2(a{+}b{+}c) & 2(a{+}b{+}c) \\\\ c+a & a+b & b+c \\\\ a+b & b+c & c+a \\end{vmatrix}",
@@ -153,6 +162,16 @@
           "Writing a+b+c instead of 2(a+b+c) — count again, each letter appears twice.",
           "Adding columns instead of rows.",
           "Changing rows 2 and 3 as well; only row 1 is replaced."
+        ],
+        "lines_compact": [
+          "R₁ → R₁ + R₂ + R₃",
+          "Column 1:  (b+c) + (c+a) + (a+b) = 2(a+b+c)",
+          "Every column gives the same:",
+          {
+            "text": "\\Delta = \\begin{vmatrix} 2(a{+}b{+}c) & 2(a{+}b{+}c) & 2(a{+}b{+}c) \\\\ c+a & a+b & b+c \\\\ a+b & b+c & c+a \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -165,6 +184,10 @@
         "memory_tip": "Only the 2 comes out here, NOT the (a+b+c) — the rows below still need it.",
         "lines": [
           "Taking 2 common from R₁:",
+          {
+            "text": "(each entry of R₁ is 2 × (a+b+c))",
+            "added": true
+          },
           {
             "text": "\\Delta = 2\\begin{vmatrix} a{+}b{+}c & a{+}b{+}c & a{+}b{+}c \\\\ c+a & a+b & b+c \\\\ a+b & b+c & c+a \\end{vmatrix}",
             "render": "katex",
@@ -197,6 +220,14 @@
         "common_mistakes": [
           "Taking 2(a+b+c) out and being left with a row of 1s that cannot recover the letters.",
           "Forgetting the 2 entirely and finishing with the right determinant but no factor."
+        ],
+        "lines_compact": [
+          "Taking 2 common from R₁:",
+          {
+            "text": "\\Delta = 2\\begin{vmatrix} a{+}b{+}c & a{+}b{+}c & a{+}b{+}c \\\\ c+a & a+b & b+c \\\\ a+b & b+c & c+a \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -210,6 +241,24 @@
         "lines": [
           "R₂ → R₂ − R₁ and R₃ → R₃ − R₁:",
           "(c+a) − (a+b+c) = −b, and so on for each entry:",
+          {
+            "text": "Row 2: (c+a) − (a+b+c) = −b,",
+            "added": true
+          },
+          {
+            "text": "  (a+b) − (a+b+c) = −c, (b+c) − (a+b+c) = −a",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "Row 3: (a+b) − (a+b+c) = −c,",
+            "added": true
+          },
+          {
+            "text": "  (b+c) − (a+b+c) = −a, (c+a) − (a+b+c) = −b",
+            "style": "indent",
+            "added": true
+          },
           {
             "text": "\\Delta = 2\\begin{vmatrix} a{+}b{+}c & a{+}b{+}c & a{+}b{+}c \\\\ -b & -c & -a \\\\ -c & -a & -b \\end{vmatrix}",
             "render": "katex",
@@ -244,6 +293,15 @@
           "Doing R₁ − R₂ and getting the letters positive but the top row destroyed.",
           "Working out one entry and assuming the pattern rather than checking each.",
           "Losing the 2 that is standing outside."
+        ],
+        "lines_compact": [
+          "R₂ → R₂ − R₁ and R₃ → R₃ − R₁:",
+          "(c+a) − (a+b+c) = −b, and so on for each entry:",
+          {
+            "text": "\\Delta = 2\\begin{vmatrix} a{+}b{+}c & a{+}b{+}c & a{+}b{+}c \\\\ -b & -c & -a \\\\ -c & -a & -b \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -256,7 +314,15 @@
         "memory_tip": "The same operation a SECOND time — unexpected, but it is what rebuilds the target rows.",
         "lines": [
           "R₁ → R₁ + R₂ + R₃ once more:",
+          {
+            "text": "(R₂ and R₃ are (−b, −c, −a) and (−c, −a, −b))",
+            "added": true
+          },
           "(a+b+c) − b − c = a,  and likewise b and c:",
+          {
+            "text": "(a+b+c) − c − a = b and (a+b+c) − a − b = c",
+            "added": true
+          },
           {
             "text": "\\Delta = 2\\begin{vmatrix} a & b & c \\\\ -b & -c & -a \\\\ -c & -a & -b \\end{vmatrix}",
             "render": "katex",
@@ -290,6 +356,15 @@
           "Assuming an operation can only be used once and getting stuck here.",
           "Adding only one row instead of both.",
           "Getting the cancellation backwards and leaving −a on top."
+        ],
+        "lines_compact": [
+          "R₁ → R₁ + R₂ + R₃ once more:",
+          "(a+b+c) − b − c = a,  and likewise b and c:",
+          {
+            "text": "\\Delta = 2\\begin{vmatrix} a & b & c \\\\ -b & -c & -a \\\\ -c & -a & -b \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -303,6 +378,15 @@
         "lines": [
           "Taking −1 common from R₂ and from R₃:",
           "(−1)(−1) = 1, so the signs cancel:",
+          {
+            "text": "(taking −1 out of a row changes the sign of",
+            "added": true
+          },
+          {
+            "text": "  every entry in that row)",
+            "style": "indent",
+            "added": true
+          },
           {
             "text": "\\Delta = 2\\begin{vmatrix} a & b & c \\\\ b & c & a \\\\ c & a & b \\end{vmatrix} = \\text{R.H.S}",
             "render": "katex",
@@ -337,6 +421,15 @@
           "Taking −1 out of only one row and finishing with a negative answer.",
           "Taking −1 out of the whole determinant instead of row by row.",
           "Losing the 2 at the very last line."
+        ],
+        "lines_compact": [
+          "Taking −1 common from R₂ and from R₃:",
+          "(−1)(−1) = 1, so the signs cancel:",
+          {
+            "text": "\\Delta = 2\\begin{vmatrix} a & b & c \\\\ b & c & a \\\\ c & a & b \\end{vmatrix} = \\text{R.H.S}",
+            "render": "katex",
+            "style": "boxed"
+          }
         ]
       }
     ]

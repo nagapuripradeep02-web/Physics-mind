@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.81 — VSAQ chapter 14 Straight Lines, answer 92.2. Printed appearances: TS 15 · AP 16. ⚠ THE MARK SPLIT 1+1 IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on this chapter's pages, which are set two and three answers to a page in columns, taking the margin those tags would occupy. It is not a bare guess: the very next VSAQ chapter prints 1+1 on answer 98 (book p.83, 3-D Coordinates), and 1A's own VSAQ pages print 1-mark tags in the same style. The chapter header reads '2+2=4 Marks', meaning the paper asks TWO of these, each worth 2 — so one question is 2 marks, cut here as one for the method and one for the answer. Paper position: Maths-1B Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; The Straight Line holds two of those ten slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.81 — VSAQ chapter 14 Straight Lines, answer 92.2. Printed appearances: TS 15 · AP 16. ⚠ THE MARK SPLIT 1+1 IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on this chapter's pages, which are set two and three answers to a page in columns, taking the margin those tags would occupy. It is not a bare guess: the very next VSAQ chapter prints 1+1 on answer 98 (book p.83, 3-D Coordinates), and 1A's own VSAQ pages print 1-mark tags in the same style. The chapter header reads '2+2=4 Marks', meaning the paper asks TWO of these, each worth 2 — so one question is 2 marks, cut here as one for the method and one for the answer. Paper position: Maths-1B Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; The Straight Line holds two of those ten slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say what the slope must be, and which form you would use.",
   "answer": {
@@ -52,15 +52,17 @@
         "kind": "equation",
         "label": "Find the required slope",
         "marks": 1,
-        "margin_note": "First mark. Read the given line's slope off its coefficients as −a/b, then flip and negate it, because perpendicular slopes multiply to −1.",
-        "memory_tip": "Read the slope off as −a/b, then FLIP AND NEGATE — perpendicular slopes multiply to −1.",
+        "margin_note": "First mark. Read the given line's slope off its coefficients as −a/b, then take its negative reciprocal, because perpendicular slopes multiply to −1.",
+        "memory_tip": "Read the slope off as −a/b, then take the NEGATIVE RECIPROCAL — perpendicular slopes multiply to −1.",
         "lines": [
           {
             "text": "Sol:",
             "style": "heading"
           },
           "Given line is 5x − 3y + 1 = 0",
+          "(the slope of ax + by + c = 0 is −a/b; here a = 5, b = −3)",
           "Its slope  m = −a/b = −5/(−3) = 5/3",
+          "(perpendicular slopes multiply to −1: −1 ÷ (5/3) = −3/5)",
           "⇒ Slope of its perpendicular is −1/m = −3/5"
         ],
         "recall": {
@@ -96,13 +98,39 @@
         "kind": "boxed_final",
         "label": "Write the line through the point",
         "marks": 1,
-        "margin_note": "Second mark. Point-slope form, then clear the fraction and collect. There is also a one-line shortcut for this shape, given below.",
+        "margin_note": "Second mark. Point-slope form, then clear the fraction and collect. A shorter one-line method for this type is given below.",
         "memory_tip": "Point-slope form through the given point, then clear and collect.",
         "lines": [
-          "Perpendicular through (4, −3) with slope −3/5 is  y − y₁ = (−1/m)(x − x₁)",
+          {
+            "text": "(the point-slope form, with (x₁, y₁) = (4, −3)",
+            "added": true
+          },
+          {
+            "text": "  and m = −3/5)",
+            "style": "indent",
+            "added": true
+          },
+          "Perpendicular through (4, −3) with slope −3/5 is",
+          "y − y₁ = (−1/m)(x − x₁)",
+          {
+            "text": "(y − (−3) = y + 3)",
+            "added": true
+          },
           "⇒ y + 3 = (−3/5)(x − 4)",
+          {
+            "text": "(multiply both sides by 5)",
+            "added": true
+          },
           "⇒ 5(y + 3) = −3(x − 4)",
+          {
+            "text": "(multiply out both sides)",
+            "added": true
+          },
           "⇒ 5y + 15 = −3x + 12",
+          {
+            "text": "(take −3x + 12 to the left: 3x + 5y + 15 − 12 = 0)",
+            "added": true
+          },
           {
             "text": "⇒ 3x + 5y + 3 = 0",
             "style": "boxed"
@@ -111,8 +139,31 @@
             "text": "Easy Solution:",
             "style": "heading"
           },
-          "The perpendicular line is given by  b(x − x₁) − a(y − y₁) = 0",
+          {
+            "text": "(swap a and b and change one sign; the slope b/a is",
+            "added": true
+          },
+          {
+            "text": "  the negative reciprocal of −a/b)",
+            "style": "indent",
+            "added": true
+          },
+          "The perpendicular line is given by",
+          "b(x − x₁) − a(y − y₁) = 0",
+          {
+            "text": "(put a = 5, b = −3 and (x₁, y₁) = (4, −3))",
+            "added": true
+          },
           "⇒ −3(x − 4) − 5(y + 3) = 0",
+          {
+            "text": "(−3(x − 4) = −3x + 12 and −5(y + 3) = −5y − 15;",
+            "added": true
+          },
+          {
+            "text": "  then multiply every term by −1)",
+            "style": "indent",
+            "added": true
+          },
           "⇒ −3x + 12 − 5y − 15 = 0  ⇒  3x + 5y + 3 = 0"
         ],
         "recall": {
@@ -136,14 +187,33 @@
             "required line"
           ]
         },
-        "why": "The shortcut works because a perpendicular line keeps the same coefficients swapped with one sign changed, so only the constant has to be recomputed.",
+        "why": "The shorter method works because a perpendicular line keeps the same coefficients swapped with one sign changed, so only the constant has to be recomputed.",
         "common_mistakes": [
           "Sign slip when the point has a negative coordinate.",
           "Leaving the answer with a fraction in it."
         ],
-        "mark_note": "Solution"
+        "mark_note": "Solution",
+        "lines_compact": [
+          "Perpendicular through (4, −3) with slope −3/5 is",
+          "y − y₁ = (−1/m)(x − x₁)",
+          "⇒ y + 3 = (−3/5)(x − 4)",
+          "⇒ 5(y + 3) = −3(x − 4)",
+          "⇒ 5y + 15 = −3x + 12",
+          {
+            "text": "⇒ 3x + 5y + 3 = 0",
+            "style": "boxed"
+          },
+          {
+            "text": "Easy Solution:",
+            "style": "heading"
+          },
+          "The perpendicular line is given by",
+          "b(x − x₁) − a(y − y₁) = 0",
+          "⇒ −3(x − 4) − 5(y + 3) = 0",
+          "⇒ −3x + 12 − 5y − 15 = 0  ⇒  3x + 5y + 3 = 0"
+        ]
       }
     ]
   },
-  "insider_note": "The short route is b(x − x₁) − a(y − y₁) = 0, which swaps the coefficients and flips one sign — no reciprocal needed. The point's y is −3, so that bracket is (y + 3)."
+  "insider_note": "A shorter method is b(x − x₁) − a(y − y₁) = 0, which swaps the coefficients and changes one sign — no reciprocal needed. The point's y is −3, so that bracket is (y + 3)."
 }

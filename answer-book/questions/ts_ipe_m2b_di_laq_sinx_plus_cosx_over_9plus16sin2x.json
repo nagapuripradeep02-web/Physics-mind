@@ -15,7 +15,7 @@
   "marks_total": 7,
   "paper_section": "Section C",
   "expected_time_min": 15,
-  "question_text": "Evaluate ∫₀^(π/4) (sinx + cosx)/(9 + 16 sin2x) dx.",
+  "question_text": "Evaluate ∫ (sinx + cosx)/(9 + 16 sin2x) dx from 0 to π/4.",
   "appearances": [
     {
       "year": 2015,
@@ -50,7 +50,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book printed p.43 (PDF page 42) — LAQ chapter 4 'Definite Integrals', answer 38, the second and last item on this page, directly following answer 37. Printed appearance: AP 15, 17 and TS 15. Chapter star rank ★★★ applies. No margin mark tags are printed here, so the 2+2+2+1 split is OURS, patterned the same way as the neighbouring answer 37 on this page and on book p.22 answer 9's printed 2+2+2+1 shape. Note: PDF page 42 was read for printed p.43, and PDF page 43 is a duplicate scan of the same page (confirmed identical). Boundary reading: printed p.37 (PDF 36) and printed p.44 (PDF 44) confirm the chapter span. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). This integral is re-answered as the fourth Q23 item on the Bullet Model Paper, book p.116 — same value, so no separate card is authored for that appearance. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book printed p.43 (PDF page 42) — LAQ chapter 4 'Definite Integrals', answer 38, the second and last item on this page, directly following answer 37. Printed appearance: AP 15, 17 and TS 15. Chapter star rank ★★★ applies. No margin mark tags are printed here, so the 2+2+2+1 split is OURS, patterned the same way as the neighbouring answer 37 on this page and on book p.22 answer 9's printed 2+2+2+1 shape. Note: PDF page 42 was read for printed p.43, and PDF page 43 is a duplicate scan of the same page (confirmed identical). Boundary reading: printed p.37 (PDF 36) and printed p.44 (PDF 44) confirm the chapter span. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). This integral is re-answered as the fourth Q23 item on the Bullet Model Paper, book p.116 — same value, so no separate card is authored for that appearance. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "insider_note": "The whole question turns on spotting that d(sinx − cosx) = (cosx + sinx) dx — the numerator is a disguised derivative of the substitution variable, which is what makes an otherwise messy denominator solvable.",
   "answer": {
@@ -72,7 +72,13 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "The top, sinx + cosx, is the derivative of",
+          {
+            "text": "  sinx − cosx, so substitute for sinx − cosx.",
+            "style": "indent"
+          },
           "Let sinx − cosx = t. Then (cosx + sinx) dx = dt",
+          "Change the limits:",
           "x = 0 ⇒ t = sin0 − cos0 = 0 − 1 = −1",
           "x = π/4",
           "⇒ t = sin(π/4) − cos(π/4) = 1/√2 − 1/√2 = 0"
@@ -92,16 +98,35 @@
         "margin_note": "Two more marks. Squaring the substitution is the trick that reveals sin2x hiding inside 9 + 16sin2x.",
         "memory_tip": "(sinx − cosx)² = 1 − sin2x always — squaring the substitution variable is how sin2x is reached.",
         "lines": [
+          {
+            "text": "sin2x must also be written in t. Square t:",
+            "added": true
+          },
           "(sinx − cosx)² = t²",
           "⇒ sin²x + cos²x − 2sinx cosx = t²",
+          {
+            "text": "sin²x + cos²x = 1 and 2sinx cosx = sin2x:",
+            "added": true
+          },
           "⇒ 1 − sin2x = t²",
           "⇒ sin2x = 1 − t²",
-          "∴ 9 + 16sin2x = 9 + 16(1 − t²) = 25 − 16t²"
+          "∴ 9 + 16sin2x = 9 + 16(1 − t²) = 25 − 16t²",
+          {
+            "text": "since 9 + 16 = 25",
+            "added": true
+          }
         ],
         "why": "Squaring t = sinx − cosx produces the term −2sinx cosx = −sin2x, which is exactly the quantity needed to rewrite the whole denominator purely in terms of t.",
         "common_mistakes": [
           "Expanding (sinx − cosx)² with the wrong sign on the cross term, giving 1 + sin2x instead of 1 − sin2x.",
           "Substituting sin2x = 1 − t² only partially, leaving a mixed x-and-t expression."
+        ],
+        "lines_compact": [
+          "(sinx − cosx)² = t²",
+          "⇒ sin²x + cos²x − 2sinx cosx = t²",
+          "⇒ 1 − sin2x = t²",
+          "⇒ sin2x = 1 − t²",
+          "∴ 9 + 16sin2x = 9 + 16(1 − t²) = 25 − 16t²"
         ]
       },
       {
@@ -113,16 +138,35 @@
         "margin_note": "Two marks for matching the integral to the standard a² − x² log formula, with a = 5 and the variable 4t.",
         "memory_tip": "∫dx/(a² − x²) = 1/(2a) log|(a+x)/(a−x)| + c — here a = 5 and the variable is 4t, so an extra factor of 1/4 appears from d(4t) = 4dt.",
         "lines": [
-          "∴ I = ∫₋₁^0 dt/(25 − 16t²)",
-          "= ∫₋₁^0 dt/(5² − (4t)²)",
-          "= (1/4)·(1/(2·5)) [log|(5 + 4t)/(5 − 4t)|]₋₁^0",
+          "∴ I = ∫₋₁⁰ dt/(25 − 16t²)",
+          {
+            "text": "25 = 5² and 16t² = (4t)²:",
+            "added": true
+          },
+          "= ∫₋₁⁰ dt/(5² − (4t)²)",
+          {
+            "text": "Put u = 4t, so dt = du/4, and a = 5:",
+            "added": true
+          },
+          "= (1/4)·(1/(2·5)) [log|(5 + 4t)/(5 − 4t)|]₋₁⁰",
           "[∵ ∫dx/(a² − x²) = 1/(2a) log|(a+x)/(a−x)| + c]",
-          "= (1/40) [log|(5 + 4t)/(5 − 4t)|]₋₁^0"
+          {
+            "text": "(1/4)·(1/10) = 1/40:",
+            "added": true
+          },
+          "= (1/40) [log|(5 + 4t)/(5 − 4t)|]₋₁⁰"
         ],
         "why": "25 − 16t² matches the standard a² − x² form with a = 5 and x replaced by 4t; the extra 1/4 factor accounts for the fact that d(4t) = 4 dt, not dt.",
         "common_mistakes": [
           "Forgetting the extra 1/4 factor that comes from treating 4t as the variable of the standard formula.",
           "Writing the log formula with a Tan⁻¹ form instead of the correct log form (a²−x² takes a log, not a²+x² which takes a Tan⁻¹)."
+        ],
+        "lines_compact": [
+          "∴ I = ∫₋₁⁰ dt/(25 − 16t²)",
+          "= ∫₋₁⁰ dt/(5² − (4t)²)",
+          "= (1/4)·(1/(2·5)) [log|(5 + 4t)/(5 − 4t)|]₋₁⁰",
+          "[∵ ∫dx/(a² − x²) = 1/(2a) log|(a+x)/(a−x)| + c]",
+          "= (1/40) [log|(5 + 4t)/(5 − 4t)|]₋₁⁰"
         ]
       },
       {
@@ -131,10 +175,22 @@
         "label": "Evaluate the limits",
         "marks": 1,
         "mark_note": "Solution",
-        "margin_note": "The last mark. log9 = log3², so the 2 in the numerator cancels one of the two 2's hiding in 40.",
+        "margin_note": "The last mark. log9 = log3² = 2 log3, and (2 log3)/40 = (log3)/20.",
         "memory_tip": "log1 = 0, so only the t = −1 term survives with a minus sign in front.",
         "lines": [
+          {
+            "text": "At t = 0: (5 + 0)/(5 − 0) = 5/5 = 1",
+            "added": true
+          },
+          {
+            "text": "At t = −1: (5 − 4)/(5 + 4) = 1/9",
+            "added": true
+          },
           "= (1/40)[log(5/5) − log(1/9)]",
+          {
+            "text": "log1 = 0 and −log(1/9) = log9:",
+            "added": true
+          },
           "= (1/40)[0 − log(1/9)] = (1/40) log9",
           "= (1/40) log3² = (2 log3)/40",
           {
@@ -146,6 +202,15 @@
         "common_mistakes": [
           "Writing log(1/9) as +log9 instead of −log9, flipping the final sign.",
           "Leaving the answer as (2log3)/40 instead of simplifying to (log3)/20."
+        ],
+        "lines_compact": [
+          "= (1/40)[log(5/5) − log(1/9)]",
+          "= (1/40)[0 − log(1/9)] = (1/40) log9",
+          "= (1/40) log3² = (2 log3)/40",
+          {
+            "text": "∴ I = (log3)/20",
+            "style": "boxed"
+          }
         ]
       }
     ]

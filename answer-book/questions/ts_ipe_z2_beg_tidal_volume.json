@@ -1,0 +1,94 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_beg_tidal_volume",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Human Anatomy and Physiology-I (Zoology-II)"
+  },
+  "chapter": "Breathing and Exchange of Gases",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is tidal volume? Find out the tidal volume (approximate value) in a healthy human in an hour.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "The value in an hour",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.47, VSAQ 57. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Revised 2026-09-05: the insider note no longer says the second mark is lost; it now sets out the working from 500 mL a breath to 360–480 litres an hour."
+  },
+  "insider_note": "The question asks for an hour, not a minute. Write the working in full: 500 mL × 12–16 breaths a minute = 6000–8000 mL a minute, then × 60 = 360–480 litres an hour.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Breathing and Exchange of Gases · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_def",
+        "kind": "text",
+        "label": "Definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "why": "Tidal volume is the quiet breath, the one taken without effort, so it is measured during normal breathing only.",
+        "common_mistakes": [
+          "Defining it as the deepest breath. That is vital capacity.",
+          "Giving no value. About 500 mL is expected."
+        ],
+        "memory_tip": "The tide that comes in and out with every quiet breath.",
+        "margin_note": "Definition plus the 500 mL figure earns the first mark.",
+        "lines": [
+          "Tidal volume is the volume of air inspired",
+          "or expired during a normal inspiration or",
+          "expiration.",
+          "It is about 500 mL in a healthy human."
+        ]
+      },
+      {
+        "id": "s2_hour",
+        "kind": "boxed_final",
+        "label": "The value in an hour",
+        "marks": 1,
+        "mark_note": "Value in an hour",
+        "why": "The hourly figure is just the quiet breath multiplied by the breathing rate, so the working is worth showing.",
+        "common_mistakes": [
+          "Stopping at the value per minute. The question asks for an hour.",
+          "Forgetting to multiply by 60."
+        ],
+        "memory_tip": "500 mL a breath, 12 to 16 breaths a minute, then times 60.",
+        "margin_note": "Show the multiplication. The examiner follows the working.",
+        "lines": [
+          "A healthy human breathes 12 to 16 times a",
+          "minute.",
+          {
+            "text": "500 mL × 12–16 = 6000–8000 mL per minute",
+            "style": "eq"
+          },
+          {
+            "text": "× 60 = 3,60,000–4,80,000 mL in an hour",
+            "style": "eq"
+          },
+          {
+            "text": "That is about 360 to 480 litres in an hour",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_imm_perforins_vs_granzymes",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Human Anatomy and Physiology-IV (Zoology-II)"
+  },
+  "chapter": "Immune System",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Differentiate between perforins and granzymes.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Perforins",
+      "marks": 1
+    },
+    {
+      "label": "Granzymes",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.53, VSAQ 100. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Immune System · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_perforins",
+        "kind": "text",
+        "label": "Perforins",
+        "marks": 1,
+        "mark_note": "Perforins",
+        "why": "The name says it: they perforate the membrane of the infected cell.",
+        "common_mistakes": [
+          "Saying perforins destroy proteins. Granzymes do that.",
+          "Placing perforins inside the cell. They act on the membrane."
+        ],
+        "memory_tip": "Perforins perforate: they make the pores.",
+        "margin_note": "Two rows, in the order they act.",
+        "lines": [
+          "Perforins form pores in the cell membrane",
+          "of infected cells.",
+          "They make the cell burst by letting fluid",
+          "enter."
+        ]
+      },
+      {
+        "id": "s2_granzymes",
+        "kind": "boxed_final",
+        "label": "Granzymes",
+        "marks": 1,
+        "mark_note": "Granzymes",
+        "why": "Once a pore exists the enzymes can reach inside and switch on the cell's own self-destruction.",
+        "common_mistakes": [
+          "Giving granzymes the pore-making job.",
+          "Leaving out that they enter through the pores."
+        ],
+        "memory_tip": "Granzymes are enzymes that go in through the pores.",
+        "margin_note": "Say they enter through the pores perforins made.",
+        "lines": [
+          "Granzymes enter the infected cell through",
+          "those pores.",
+          {
+            "text": "They activate proteins that destroy the cell",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "They work in order: perforins make the hole, granzymes go through it. Say so, and the difference is clear."
+}

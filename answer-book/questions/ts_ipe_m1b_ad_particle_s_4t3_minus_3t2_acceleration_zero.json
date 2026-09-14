@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.214, chapter 10 APPLICATIONS OF DERIVATIVES, the RATE MEASURE sub-section, Very Short Answer question 12. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; this bank ships the whole chapter as ONE unit. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks) over this sub-section but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.214, chapter 10 APPLICATIONS OF DERIVATIVES, the RATE MEASURE sub-section, Very Short Answer question 12. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; this bank ships the whole chapter as ONE unit. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks) over this sub-section but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say how velocity and acceleration come from S, and what you set to zero at the end.",
   "answer": {
@@ -52,9 +52,16 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "This is a rectilinear motion question. Velocity v = dS/dt and acceleration a = dv/dt.",
+          "This is a rectilinear motion question.",
+          "Velocity v = dS/dt and acceleration a = dv/dt.",
           "S = 4t³ − 3t² + 5t − 1",
+          "(d/dt of 4t³ is 12t², of 3t² is 6t, of 5t is 5,",
+          {
+            "text": "  and of 1 is 0)",
+            "style": "indent"
+          },
           "v = dS/dt = 12t² − 6t + 5",
+          "(d/dt of 12t² is 24t, of 6t is 6, and of 5 is 0)",
           "a = dv/dt = 24t − 6"
         ],
         "recall": {
@@ -96,11 +103,27 @@
         "memory_tip": "The words 'acceleration is zero' point at a, so a is the expression that goes equal to zero.",
         "lines": [
           "Acceleration is zero when a = 0.",
+          {
+            "text": "(a = 24t − 6 from step 1)",
+            "added": true
+          },
           "24t − 6 = 0",
+          {
+            "text": "(add 6 to both sides)",
+            "added": true
+          },
           "24t = 6",
+          {
+            "text": "(divide both sides by 24; 6/24 = 1/4)",
+            "added": true
+          },
           "t = 6/24 = 1/4",
           {
-            "text": "∴ v = 12t² − 6t + 5 m/sec,  a = 24t − 6 m/sec²,  and a = 0 at t = 1/4 sec",
+            "text": "∴ v = 12t² − 6t + 5 m/sec,  a = 24t − 6 m/sec²,",
+            "style": "boxed"
+          },
+          {
+            "text": "and a = 0 at t = 1/4 sec",
             "style": "boxed"
           }
         ],
@@ -131,6 +154,20 @@
           "Setting the velocity to zero instead of the acceleration.",
           "Writing t = 4 by inverting 6/24.",
           "Giving the three answers with no units."
+        ],
+        "lines_compact": [
+          "Acceleration is zero when a = 0.",
+          "24t − 6 = 0",
+          "24t = 6",
+          "t = 6/24 = 1/4",
+          {
+            "text": "∴ v = 12t² − 6t + 5 m/sec,  a = 24t − 6 m/sec²,",
+            "style": "boxed"
+          },
+          {
+            "text": "and a = 0 at t = 1/4 sec",
+            "style": "boxed"
+          }
         ]
       }
     ]

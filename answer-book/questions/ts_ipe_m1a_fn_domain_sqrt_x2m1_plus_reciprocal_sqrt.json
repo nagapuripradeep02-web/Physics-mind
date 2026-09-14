@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.12, chapter 2 FUNCTIONS, Very Short Answer question 19 part (a-ii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape rewards the conditions the expression forces and the final interval as two separate pieces of work, which is how a domain question is marked. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.12, chapter 2 FUNCTIONS, Very Short Answer question 19 part (a-ii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape rewards the conditions the expression forces and the final interval as two separate pieces of work, which is how a domain question is marked. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find this domain — the conditions the formula forces, and the answer.",
   "answer": {
@@ -54,8 +54,10 @@
           },
           "The first root needs x² − 1 ≥ 0",
           "⇒ (x − 1)(x + 1) ≥ 0",
+          "(both factors ≥ 0, or both ≤ 0)",
           "⇒ x ∈ (−∞, −1] ∪ [1, ∞)   … (1)",
           "The second root is in a denominator, so",
+          "(strictly positive: a zero denominator is not allowed)",
           "x² − 3x + 2 > 0",
           "⇒ (x − 1)(x − 2) > 0",
           "⇒ x ∈ (−∞, 1) ∪ (2, ∞)   … (2)"
@@ -104,6 +106,15 @@
           "The domain is the intersection of (1) and (2).",
           "(−∞, −1] ∩ (−∞, 1) = (−∞, −1]",
           "[1, ∞) ∩ (2, ∞) = (2, ∞)",
+          {
+            "text": "((−∞, −1] ∩ (2, ∞) is empty, since −1 < 2;",
+            "added": true
+          },
+          {
+            "text": "  [1, ∞) ∩ (−∞, 1) is empty, since 1 is not less than 1)",
+            "style": "indent",
+            "added": true
+          },
           "The other two overlaps are empty.",
           {
             "text": "∴ Domain = (−∞, −1] ∪ (2, ∞)",
@@ -145,6 +156,16 @@
         "common_mistakes": [
           "Taking the union of the two sets, which lets in values where one term is undefined.",
           "Including [1, 2], where the second denominator is zero or negative."
+        ],
+        "lines_compact": [
+          "The domain is the intersection of (1) and (2).",
+          "(−∞, −1] ∩ (−∞, 1) = (−∞, −1]",
+          "[1, ∞) ∩ (2, ∞) = (2, ∞)",
+          "The other two overlaps are empty.",
+          {
+            "text": "∴ Domain = (−∞, −1] ∪ (2, ∞)",
+            "style": "boxed"
+          }
         ]
       }
     ]

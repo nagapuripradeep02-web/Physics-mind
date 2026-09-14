@@ -1,0 +1,157 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_gen_sex_determination_humans",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Genetics (Zoology-II)"
+  },
+  "chapter": "Genetics",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "How is sex determined in human beings?",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The XX-XY mechanism",
+      "marks": 1
+    },
+    {
+      "label": "The two karyotypes",
+      "marks": 1
+    },
+    {
+      "label": "The gametes",
+      "marks": 1
+    },
+    {
+      "label": "Which sperm gives which child",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.38, SAQ 32. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Revised 2026-09-05 after the examiner audit: the two common-mistake entries no longer call the all-chromosome notations 46,XX and 23,X errors, because both are correct ways of writing the same karyotype."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Genetics · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_mechanism",
+        "kind": "text",
+        "label": "The XX-XY mechanism",
+        "marks": 1,
+        "mark_note": "The mechanism",
+        "why": "Only one of the 23 pairs differs between the sexes, so that single pair carries the whole decision.",
+        "common_mistakes": [
+          "Saying all 23 pairs differ. Only one pair does.",
+          "Naming the wrong mechanism type."
+        ],
+        "memory_tip": "22 pairs the same, one pair different.",
+        "margin_note": "Name the type, then the numbers.",
+        "lines": [
+          "The sex determining mechanism in humans is",
+          "the XX-XY type.",
+          "Of the 23 pairs of chromosomes, 22 pairs",
+          "are exactly the same in both males and",
+          "females."
+        ]
+      },
+      {
+        "id": "s2_karyotypes",
+        "kind": "text",
+        "label": "The two karyotypes",
+        "marks": 1,
+        "mark_note": "Karyotypes",
+        "why": "Writing the karyotype as 44 plus the sex pair makes clear that only the last pair differs.",
+        "common_mistakes": [
+          "Mixing the two notations in one answer. Write 44XX, which means 44 autosomes plus XX. The notation 46,XX counts all 46 chromosomes and means the same thing.",
+          "Swapping the two karyotypes."
+        ],
+        "memory_tip": "44XX is female, 44XY is male.",
+        "margin_note": "Write both karyotypes on one line each.",
+        "lines": [
+          {
+            "text": "The female's karyotype is 44XX",
+            "style": "eq"
+          },
+          {
+            "text": "The male's karyotype is 44XY",
+            "style": "eq"
+          }
+        ]
+      },
+      {
+        "id": "s3_gametes",
+        "kind": "text",
+        "label": "The gametes",
+        "marks": 1,
+        "mark_note": "Gametes",
+        "why": "The mother can only ever give an X, so she cannot influence the sex of the child at all.",
+        "common_mistakes": [
+          "Giving the female two kinds of gamete. She makes one kind.",
+          "Dropping the autosomes and writing only X. Write 22X, which means 22 autosomes plus one X. The notation 23,X counts all 23 chromosomes of the gamete and means the same thing."
+        ],
+        "memory_tip": "Ova are all 22X; sperm are 22X or 22Y.",
+        "margin_note": "One line for each parent.",
+        "lines": [
+          "The female produces the same type of",
+          "gametes. The male produces two types.",
+          "Gametes produced by the female are 22X.",
+          "Gametes produced by the male are 22X and",
+          "22Y."
+        ]
+      },
+      {
+        "id": "s4_outcome",
+        "kind": "boxed_final",
+        "label": "Which sperm gives which child",
+        "marks": 1,
+        "mark_note": "The outcome",
+        "why": "Since the two kinds of sperm are made in equal numbers, each pregnancy has the same chance either way.",
+        "common_mistakes": [
+          "Blaming the mother for the sex of the child.",
+          "Leaving out the 50 percent probability."
+        ],
+        "memory_tip": "The sperm decides, and it is fifty-fifty every time.",
+        "margin_note": "Close with the probability line.",
+        "lines": [
+          "When a 22X sperm fertilises a 22X ovum the",
+          "result is a female child, 44XX.",
+          "When a 22Y sperm fertilises a 22X ovum the",
+          "result is a male child, 44XY.",
+          "So the genetic makeup of the sperm decides",
+          "the sex of the child.",
+          {
+            "text": "Each pregnancy is a 50 percent chance either way",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "End with the 50 percent line. It answers the question behind the question and is a marked point in its own right."
+}

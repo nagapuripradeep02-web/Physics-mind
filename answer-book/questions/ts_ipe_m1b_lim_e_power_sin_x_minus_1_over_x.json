@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.186, chapter 8 LIMITS, Short & Very Short Answer question 15. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer 1 was checked numerically before it was written: the expression reads 1.00005 at x = 10⁻⁴ and 0.99995 at x = −10⁻⁴, closing on 1 from both sides."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.186, chapter 8 LIMITS, Short & Very Short Answer question 15. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer 1 was checked numerically before it was written: the expression reads 1.00005 at x = 10⁻⁴ and 0.99995 at x = −10⁻⁴, closing on 1 from both sides. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say what you multiply and divide by, and why that is allowed here.",
   "answer": {
@@ -46,16 +46,29 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. The standard limit is (eᵗ − 1)/t, so the denominator must be made to match the power. Here the power is sin x, so sin x is the quantity that must appear underneath.",
-        "memory_tip": "Whatever sits in the power of e must also sit in the denominator. Supply it, and pay for it with a second fraction.",
+        "memory_tip": "Whatever is in the power of e must also be in the denominator. Multiply and divide by it; this gives a second fraction, (sin x)/x.",
         "lines": [
           {
             "text": "Sol:",
             "style": "heading"
           },
+          "(sin 0 = 0 and e⁰ − 1 = 0)",
           "Putting x = 0 gives 0/0, so the expression is rewritten first.",
-          "For x close to 0 with x ≠ 0 we have sin x ≠ 0, so we may multiply and divide by sin x.",
-          "(e^(sin x) − 1)/x = [(e^(sin x) − 1)/sin x] · [(sin x)/x]",
-          "∴ lim(x → 0) (e^(sin x) − 1)/x = lim(x → 0) (e^(sin x) − 1)/sin x · lim(x → 0) (sin x)/x"
+          "For x close to 0 with x ≠ 0 we have sin x ≠ 0,",
+          "so we may multiply and divide by sin x.",
+          "(multiplying and dividing by sin x ≠ 0 does not",
+          {
+            "text": "  change the value)",
+            "style": "indent"
+          },
+          "(eˢⁱⁿˣ − 1)/x = [(eˢⁱⁿˣ − 1)/sin x] · [(sin x)/x]",
+          "(both limits exist, so the limit of the product is",
+          {
+            "text": "  the product of the limits)",
+            "style": "indent"
+          },
+          "∴ lim(x → 0) (eˢⁱⁿˣ − 1)/x = lim(x → 0) (eˢⁱⁿˣ − 1)/sin x",
+          "· lim(x → 0) (sin x)/x"
         ],
         "recall": {
           "credit": "say_it",
@@ -79,10 +92,10 @@
             "power of e"
           ]
         },
-        "why": "The standard limit is (eᵗ − 1)/t → 1, so the denominator has to carry the same quantity as the power. A limit at 0 only looks at values with x ≠ 0, and for those x near 0 the value sin x is not zero, so dividing by sin x is legal there. This is the reason the multiply-and-divide is allowed and not a division by zero.",
+        "why": "The standard limit is (eᵗ − 1)/t → 1, so the denominator has to carry the same quantity as the power. A limit at 0 only looks at values with x ≠ 0, and for those x near 0 the value sin x is not zero, so dividing by sin x is allowed there. This is the reason the multiply-and-divide is allowed and not a division by zero.",
         "common_mistakes": [
           "Multiplying and dividing by x instead of sin x, which leaves the power and the denominator unmatched.",
-          "Writing (e^(sin x) − 1)/x = (eˣ − 1)/x by dropping the sine from the power."
+          "Writing (eˢⁱⁿˣ − 1)/x = (eˣ − 1)/x by dropping the sine from the power."
         ]
       },
       {
@@ -92,14 +105,27 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Say that sin x → 0 as x → 0, so the first factor is the standard limit with t = sin x. Both factors are 1, so the product is 1.",
-        "memory_tip": "Both factors are worth 1, so the answer is 1 × 1.",
+        "memory_tip": "Both factors approach 1, so the answer is 1 × 1 = 1.",
         "lines": [
           "As x → 0, sin x → 0. Put t = sin x, then t → 0.",
-          "lim(x → 0) (e^(sin x) − 1)/sin x = lim(t → 0) (eᵗ − 1)/t = 1",
+          {
+            "text": "(put t = sin x; the standard limits lim(t → 0) (eᵗ − 1)/t = 1",
+            "added": true
+          },
+          {
+            "text": "  and lim(x → 0) (sin x)/x = 1)",
+            "style": "indent",
+            "added": true
+          },
+          "lim(x → 0) (eˢⁱⁿˣ − 1)/sin x = lim(t → 0) (eᵗ − 1)/t = 1",
           "and  lim(x → 0) (sin x)/x = 1",
+          {
+            "text": "(multiply the two limits)",
+            "added": true
+          },
           "= 1 · 1",
           {
-            "text": "∴ lim(x → 0) (e^(sin x) − 1)/x = 1",
+            "text": "∴ lim(x → 0) (eˢⁱⁿˣ − 1)/x = 1",
             "style": "boxed"
           }
         ],
@@ -129,9 +155,19 @@
         "common_mistakes": [
           "Writing the first factor as 1 without saying that sin x → 0.",
           "Adding the two limits and giving 2, when the two factors are multiplied and 1 × 1 = 1."
+        ],
+        "lines_compact": [
+          "As x → 0, sin x → 0. Put t = sin x, then t → 0.",
+          "lim(x → 0) (eˢⁱⁿˣ − 1)/sin x = lim(t → 0) (eᵗ − 1)/t = 1",
+          "and  lim(x → 0) (sin x)/x = 1",
+          "= 1 · 1",
+          {
+            "text": "∴ lim(x → 0) (eˢⁱⁿˣ − 1)/x = 1",
+            "style": "boxed"
+          }
         ]
       }
     ]
   },
-  "insider_note": "Multiply and divide by sin x so it splits into (e^t − 1)/t and (sin x)/x, both of which go to 1. Expanding the exponential as a series is not on this syllabus — the multiply-and-divide route is the one the examiner expects."
+  "insider_note": "Multiply and divide by sin x so it splits into (eᵗ − 1)/t and (sin x)/x, both of which go to 1. Expanding the exponential as a series is not on this syllabus — the multiply-and-divide method is the one the examiner expects."
 }

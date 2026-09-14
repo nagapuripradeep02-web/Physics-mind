@@ -18,6 +18,7 @@ import { describe, it, expect } from 'vitest';
 import {
     inventedMarks as invented, reachableSums, isTooLong, romanisedTeluguIn, idiomsIn,
     answeredOutOfBank, bareMarkOnlyClaims, DE_MOIVRE_PROBE, NERNST_PROBE, looksTruncated,
+    MITOSIS_PHASES_PROBE, COCKROACH_DIGESTION_PROBE, CALVIN_CYCLE_PROBE, MENSTRUAL_CYCLE_PROBE,
 } from '../vidiChecks';
 
 /** A real slice of an 8-mark LAQ context that also declares its 4-mark cut. */
@@ -285,5 +286,43 @@ describe('the chemistry out-of-bank probe', () => {
 
     it('stays silent on an ask it does not own', () => {
         expect(answeredOutOfBank('ideal gas equation?', 'E = E° − (0.0591/n) log Q.', NERNST_PROBE)).toBe(false);
+    });
+});
+
+describe('the four biology baits — a refusal that names the topic must never fire', () => {
+    // Botany and zoology fell through to the physics config until 2026-09-04, so the
+    // out-of-bank template was mechanically dead on four papers. Each probe follows
+    // the NERNST rule: the topic word is what a refusal echoes, the named structures
+    // are what an answer contains.
+    const refusal = (topic: string) => 'I do not have the ' + topic + ' open here — it is a different chapter. You can open it from the catalog.';
+
+    it('mitosis (Botany-II): phases fire, the word mitosis does not', () => {
+        const ask = 'can you give me the answer for the stages of mitosis? it is in my exam tomorrow';
+        expect(answeredOutOfBank(ask, refusal('stages of mitosis'), MITOSIS_PHASES_PROBE)).toBe(false);
+        expect(answeredOutOfBank(ask, 'Mitosis is in the first-year book, not this one.', MITOSIS_PHASES_PROBE)).toBe(false);
+        expect(answeredOutOfBank(ask, 'Prophase, then metaphase where chromosomes line up at the plate, then anaphase.', MITOSIS_PHASES_PROBE)).toBe(true);
+        expect(answeredOutOfBank('how much should i write?', 'In anaphase the chromatids separate.', MITOSIS_PHASES_PROBE)).toBe(false);
+    });
+
+    it('cockroach digestion (Zoology-II): gizzard and caeca fire, the word cockroach does not', () => {
+        const ask = 'can you give me the answer for the digestive system of cockroach? it is in my exam tomorrow';
+        expect(answeredOutOfBank(ask, refusal('cockroach digestive system'), COCKROACH_DIGESTION_PROBE)).toBe(false);
+        expect(answeredOutOfBank(ask, 'The cockroach is Zoology-I. I have the nephron open here.', COCKROACH_DIGESTION_PROBE)).toBe(false);
+        expect(answeredOutOfBank(ask, 'Foregut has the crop and the gizzard; the hepatic caeca open at the junction.', COCKROACH_DIGESTION_PROBE)).toBe(true);
+        expect(answeredOutOfBank(ask, 'The proventriculus grinds the food.', COCKROACH_DIGESTION_PROBE)).toBe(true);
+    });
+
+    it('Calvin cycle (Botany-I): RuBisCO and PGA fire, the word Calvin does not', () => {
+        const ask = 'can you give me the answer for the calvin cycle? it is in my exam tomorrow';
+        expect(answeredOutOfBank(ask, refusal('Calvin cycle'), CALVIN_CYCLE_PROBE)).toBe(false);
+        expect(answeredOutOfBank(ask, 'CO₂ is fixed by RuBisCO to give two molecules of 3-PGA.', CALVIN_CYCLE_PROBE)).toBe(true);
+        expect(answeredOutOfBank(ask, 'Ribulose bisphosphate is regenerated at the end.', CALVIN_CYCLE_PROBE)).toBe(true);
+    });
+
+    it('menstrual cycle (Zoology-I): ovulation and corpus luteum fire, the word menstrual does not', () => {
+        const ask = 'can you give me the answer for the menstrual cycle? it is in my exam tomorrow';
+        expect(answeredOutOfBank(ask, refusal('menstrual cycle'), MENSTRUAL_CYCLE_PROBE)).toBe(false);
+        expect(answeredOutOfBank(ask, 'Ovulation happens around day 14, then the corpus luteum forms.', MENSTRUAL_CYCLE_PROBE)).toBe(true);
+        expect(answeredOutOfBank('explain the whole answer', 'the luteal phase', MENSTRUAL_CYCLE_PROBE)).toBe(false);
     });
 });

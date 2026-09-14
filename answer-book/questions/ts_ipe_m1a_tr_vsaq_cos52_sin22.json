@@ -35,7 +35,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.95 — VSAQ chapter 18 T-Ratios upto Transformations, answer 135.2. Printed appearances: AP 19. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four or six questions to a page in two columns. It is not a bare guess on two counts: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, and THIS chapter's own header note reads \"Writing Formula itself gets you 1 Mark in these Questions\" — which is why the first step of every answer here IS the formula or the set-up. The book's chapter header carries ★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because T-Ratios holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q8 and Q9 are the two T-Ratios slots."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.95 — VSAQ chapter 18 T-Ratios upto Transformations, answer 135.2. Printed appearances: AP 19. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four or six questions to a page in two columns. It is not a bare guess on two counts: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, and THIS chapter's own header note reads \"Writing Formula itself gets you 1 Mark in these Questions\" — which is why the first step of every answer here IS the formula or the set-up. The book's chapter header carries ★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because T-Ratios holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q8 and Q9 are the two T-Ratios slots. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — name the formula you use and how you finish.",
   "answer": {
@@ -58,8 +58,10 @@
             "style": "heading"
           },
           "L.H.S = cos²52½° − sin²22½°",
+          "This is cos²A − sin²B with A = 52½°, B = 22½°:",
           "= cos(52½° + 22½°) cos(52½° − 22½°)",
           "  [∵ cos²A − sin²B = cos(A+B) cos(A−B)]",
+          "(52½° + 22½° = 75° and 52½° − 22½° = 30°)",
           "= cos75° cos30°"
         ],
         "recall": {
@@ -99,8 +101,21 @@
         "margin_note": "Second mark. cos75° = (√3 − 1)/(2√2) and cos30° = √3/2. Multiply and simplify.",
         "memory_tip": "cos75° = (√3 − 1)/(2√2) and cos30° = √3/2. Multiply and simplify.",
         "lines": [
+          {
+            "text": "(cos75° = cos(45° + 30°)",
+            "added": true
+          },
+          {
+            "text": "  = (1/√2)(√3/2) − (1/√2)(1/2) = (√3 − 1)/(2√2))",
+            "style": "indent",
+            "added": true
+          },
           "cos75° = (√3 − 1)/(2√2),  cos30° = √3/2",
           "= [(√3 − 1)/(2√2)] × [√3/2]",
+          {
+            "text": "(√3(√3 − 1) = 3 − √3, and 2√2 × 2 = 4√2)",
+            "added": true
+          },
           "= (3 − √3)/(4√2)",
           {
             "text": "∴ Value = (3 − √3)/(4√2)",
@@ -133,6 +148,15 @@
         "common_mistakes": [
           "Writing √3 × √3 as √9 and leaving it.",
           "Rationalising unnecessarily and making an error."
+        ],
+        "lines_compact": [
+          "cos75° = (√3 − 1)/(2√2),  cos30° = √3/2",
+          "= [(√3 − 1)/(2√2)] × [√3/2]",
+          "= (3 − √3)/(4√2)",
+          {
+            "text": "∴ Value = (3 − √3)/(4√2)",
+            "style": "boxed"
+          }
         ]
       }
     ]

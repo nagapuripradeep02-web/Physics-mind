@@ -1,0 +1,82 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_msk_motor_unit",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Human Anatomy and Physiology-III (Zoology-II)"
+  },
+  "chapter": "Musculo-Skeletal System",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is a 'motor unit' with reference to muscle and nerve?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The neuron",
+      "marks": 1
+    },
+    {
+      "label": "The fibres it supplies",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.50, VSAQ 78. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Text revision (examiner audit, 2026-09-05): step 2's why and margin note now state that one motor neuron supplies many fibres, so they match the step's mark label and its listed mistake; the printed line was left as it stands because it is correct."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Musculo-Skeletal System · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_neuron",
+        "kind": "text",
+        "label": "The neuron",
+        "marks": 1,
+        "mark_note": "The neuron",
+        "why": "One motor neuron carries one command, so everything it reaches must contract together.",
+        "common_mistakes": [
+          "Naming a sensory neuron. A motor unit uses a motor neuron.",
+          "Naming the muscle alone."
+        ],
+        "memory_tip": "One nerve cell plus everything it commands.",
+        "margin_note": "Definition in one sentence, but say both halves.",
+        "lines": [
+          "A motor unit is a motor neuron together",
+          "with the muscle fibres it supplies."
+        ]
+      },
+      {
+        "id": "s2_fibres",
+        "kind": "boxed_final",
+        "label": "The fibres it supplies",
+        "marks": 1,
+        "mark_note": "The fibres",
+        "why": "One motor neuron supplies many muscle fibres, because the fine branches of its axon, the telodendrites, end on all of them at once, so a single signal moves them together.",
+        "common_mistakes": [
+          "Writing that one neuron supplies one fibre. It supplies many.",
+          "Leaving out the telodendrites."
+        ],
+        "memory_tip": "The axon's fine endings are the telodendrites.",
+        "margin_note": "Name the telodendrites and say they reach many fibres.",
+        "lines": [
+          {
+            "text": "Its telodendrites reach all those fibres",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "The answer needs both halves — the nerve cell AND the muscle fibres it reaches. Naming only the neuron is half an answer."
+}

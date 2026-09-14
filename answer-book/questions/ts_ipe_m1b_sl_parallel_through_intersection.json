@@ -34,7 +34,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.62 — SAQ chapter 9 The Straight Line, answer 56.1. Printed appearance: TS 16. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: the SAME CHAPTER prints 1+1+2 on answer 59 (book p.63), and this answer is cut to the same shape — the two setting-up moves at one mark each and the closing work at two. Where an answer's own shape is four equal moves instead, 1+1+1+1 is used and this note says so. Paper position: Maths-1B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3. RE-CUT 2026-08-31: this card was filed as SAQ at 4 marks and is now VSAQ at 2 marks. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya FAST TRACK IPE Mathematics-IB 2026-27 edition files this chapter under the banner 8M + 2 × 2M = 12M, asks this question as Very Short Answer Question 37, and prints no short-answer block for it at all. Only the question was taken; the working, the mark split and every note here are ours (docs/ORIGINALITY_MATHS.md). The mathematics and the steps are unchanged; only the mark scheme moved — the four marks become two, at 0 + 1 + 0 + 1: the mark for method sits on solving the pair for the point, which is the only real algebra here, and the mark for the answer on the finished line. Reading the parallel slope off the coefficients and quoting the point-slope form are carried unmarked as setup. Still unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.62 — SAQ chapter 9 The Straight Line, answer 56.1. Printed appearance: TS 16. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: the SAME CHAPTER prints 1+1+2 on answer 59 (book p.63), and this answer is cut to the same shape — the two setting-up moves at one mark each and the closing work at two. Where an answer's own shape is four equal moves instead, 1+1+1+1 is used and this note says so. Paper position: Maths-1B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3. RE-CUT 2026-08-31: this card was filed as SAQ at 4 marks and is now VSAQ at 2 marks. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya FAST TRACK IPE Mathematics-IB 2026-27 edition files this chapter under the banner 8M + 2 × 2M = 12M, asks this question as Very Short Answer Question 37, and prints no short-answer block for it at all. Only the question was taken; the working, the mark split and every note here are ours (docs/ORIGINALITY_MATHS.md). The mathematics and the steps are unchanged; only the mark scheme moved — the four marks become two, at 0 + 1 + 0 + 1: the mark for method sits on solving the pair for the point, which is the only real algebra here, and the mark for the answer on the finished line. Reading the parallel slope off the coefficients and quoting the point-slope form are carried unmarked as setup. Still unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say how you get the slope, and how you get a point on the line.",
   "answer": {
@@ -55,8 +55,11 @@
             "style": "heading"
           },
           "Given line is 3x + 4y = 7",
+          "(the slope of ax + by + c = 0 is −a/b; here a = 3, b = 4)",
           "Its slope  m = −a/b = −3/4",
-          "A parallel line has the SAME slope, so the required slope is −3/4"
+          "(parallel lines have equal slopes)",
+          "A parallel line has the SAME slope,",
+          "so the required slope is −3/4"
         ],
         "recall": {
           "credit": "say_it",
@@ -96,8 +99,53 @@
         "lines": [
           "Given  x − 2y − 3 = 0 ……(1),  x + 3y − 6 = 0 ……(2)",
           "Solving (1) & (2) we get P",
-          "x / [(−2)(−6) − 3(−3)] = y / [(−3)(1) − (−6)(1)] = 1 / [1(3) − 1(−2)]",
+          {
+            "text": "(the cross-multiplication rule: for a₁x + b₁y + c₁ = 0",
+            "added": true
+          },
+          {
+            "text": "  and a₂x + b₂y + c₂ = 0,",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  x/(b₁c₂ − b₂c₁) = y/(c₁a₂ − c₂a₁)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  = 1/(a₁b₂ − a₂b₁))",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "(here a₁ = 1, b₁ = −2, c₁ = −3",
+            "added": true
+          },
+          {
+            "text": "  and a₂ = 1, b₂ = 3, c₂ = −6)",
+            "style": "indent",
+            "added": true
+          },
+          "x / [(−2)(−6) − 3(−3)] = y / [(−3)(1) − (−6)(1)]",
+          {
+            "text": "  = 1 / [1(3) − 1(−2)]",
+            "style": "indent"
+          },
+          {
+            "text": "((−2)(−6) = 12, 3(−3) = −9; (−3)(1) = −3, (−6)(1) = −6;",
+            "added": true
+          },
+          {
+            "text": "  1(3) = 3, 1(−2) = −2)",
+            "style": "indent",
+            "added": true
+          },
           "⇒ x/(12 + 9) = y/(−3 + 6) = 1/(3 + 2)",
+          {
+            "text": "(12 + 9 = 21, −3 + 6 = 3 and 3 + 2 = 5)",
+            "added": true
+          },
           "⇒ x/21 = y/3 = 1/5   ⇒   x = 21/5,  y = 3/5"
         ],
         "recall": {
@@ -127,7 +175,18 @@
           "Slip in the cross-multiplication denominators."
         ],
         "mark_note": "Method",
-        "memory_tip": "Solve the OTHER pair of lines for the point. This half is independent of the slope work."
+        "memory_tip": "Solve the OTHER pair of lines for the point. This half is independent of the slope work.",
+        "lines_compact": [
+          "Given  x − 2y − 3 = 0 ……(1),  x + 3y − 6 = 0 ……(2)",
+          "Solving (1) & (2) we get P",
+          "x / [(−2)(−6) − 3(−3)] = y / [(−3)(1) − (−6)(1)]",
+          {
+            "text": "  = 1 / [1(3) − 1(−2)]",
+            "style": "indent"
+          },
+          "⇒ x/(12 + 9) = y/(−3 + 6) = 1/(3 + 2)",
+          "⇒ x/21 = y/3 = 1/5   ⇒   x = 21/5,  y = 3/5"
+        ]
       },
       {
         "id": "s3_point_slope",
@@ -136,12 +195,56 @@
         "marks": 0,
         "margin_note": "With a point and a slope, the point-slope form y − y₁ = m(x − x₁) writes the line in one line.",
         "lines": [
+          {
+            "text": "(check in (1): 21/5 − 6/5 − 15/5 = 0)",
+            "added": true
+          },
           "∴ Point of intersection is P(21/5, 3/5)",
+          {
+            "text": "(the point-slope form with (x₁, y₁) = (21/5, 3/5),",
+            "added": true
+          },
+          {
+            "text": "  m = −3/4)",
+            "style": "indent",
+            "added": true
+          },
           "∴ Line through P(21/5, 3/5) with slope −3/4 is",
           "y − y₁ = m(x − x₁)  ⇒  y − 3/5 = (−3/4)(x − 21/5)",
+          {
+            "text": "(y − 3/5 = (5y − 3)/5 and x − 21/5 = (5x − 21)/5)",
+            "added": true
+          },
           "⇒ (5y − 3)/5 = (−3/4)·(5x − 21)/5",
+          {
+            "text": "(multiply both sides by 20: the 5s cancel,",
+            "added": true
+          },
+          {
+            "text": "  4 and −3 remain)",
+            "style": "indent",
+            "added": true
+          },
           "⇒ 4(5y − 3) = −3(5x − 21)",
+          {
+            "text": "(4 × 5y = 20y, 4 × 3 = 12; −3 × 5x = −15x,",
+            "added": true
+          },
+          {
+            "text": "  −3 × (−21) = 63)",
+            "style": "indent",
+            "added": true
+          },
           "⇒ 20y − 12 = −15x + 63   ⇒   15x + 20y − 75 = 0",
+          {
+            "text": "(take −15x + 63 to the left: 15x + 20y − 12 − 63 = 0;",
+            "added": true
+          },
+          {
+            "text": "  15, 20 and 75 have the common factor 5)",
+            "style": "indent",
+            "added": true
+          },
           "⇒ 5(3x + 4y − 15) = 0"
         ],
         "recall": {
@@ -167,10 +270,19 @@
         },
         "why": "A point and a slope determine a line uniquely, which is why the two independent halves are enough between them.",
         "common_mistakes": [
-          "Using the slope-intercept form and having to find c separately.",
+          "Writing x − 21/5 as x + 21/5 by losing the sign of x₁.",
           "Swapping x₁ and y₁ in the formula."
         ],
-        "memory_tip": "With a point and a slope, y − y₁ = m(x − x₁) writes the line in one line."
+        "memory_tip": "With a point and a slope, y − y₁ = m(x − x₁) writes the line in one line.",
+        "lines_compact": [
+          "∴ Point of intersection is P(21/5, 3/5)",
+          "∴ Line through P(21/5, 3/5) with slope −3/4 is",
+          "y − y₁ = m(x − x₁)  ⇒  y − 3/5 = (−3/4)(x − 21/5)",
+          "⇒ (5y − 3)/5 = (−3/4)·(5x − 21)/5",
+          "⇒ 4(5y − 3) = −3(5x − 21)",
+          "⇒ 20y − 12 = −15x + 63   ⇒   15x + 20y − 75 = 0",
+          "⇒ 5(3x + 4y − 15) = 0"
+        ]
       },
       {
         "id": "s4_simplify",
@@ -179,6 +291,10 @@
         "marks": 1,
         "margin_note": "Last mark. Clear the fractions and collect into ax + by + c = 0 form.",
         "lines": [
+          {
+            "text": "(divide both sides by 5)",
+            "added": true
+          },
           {
             "text": "∴ Required line is 3x + 4y − 15 = 0",
             "style": "boxed"
@@ -212,7 +328,13 @@
           "Sign slip when multiplying through by a denominator."
         ],
         "mark_note": "Solution",
-        "memory_tip": "Clear the fractions and collect into ax + by + c = 0."
+        "memory_tip": "Clear the fractions and collect into ax + by + c = 0.",
+        "lines_compact": [
+          {
+            "text": "∴ Required line is 3x + 4y − 15 = 0",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

@@ -1,0 +1,154 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_abio_mri_procedure",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Applied Biology (Zoology-II)"
+  },
+  "chapter": "Applied Biology",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Write about the procedure involved in MRI.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What MRI is and why it is safe",
+      "marks": 1
+    },
+    {
+      "label": "The scanner and the patient",
+      "marks": 1
+    },
+    {
+      "label": "How the protons are used",
+      "marks": 1
+    },
+    {
+      "label": "How the image is made",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.43, SAQ 46. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Applied Biology · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What MRI is",
+        "marks": 1,
+        "mark_note": "What it is",
+        "why": "It uses a magnetic field rather than X-rays, which is why it can be repeated without the risk that radiation carries.",
+        "common_mistakes": [
+          "Saying MRI uses X-rays. It does not.",
+          "Leaving out the full form."
+        ],
+        "memory_tip": "Magnetic Resonance Imaging: magnets, not radiation.",
+        "margin_note": "Full form, then why it is safe.",
+        "lines": [
+          "MRI stands for Magnetic Resonance Imaging.",
+          "It is a diagnostic radiology technique.",
+          "MRI does not use ionizing radiation as in",
+          "X-rays, so it is a very safe procedure.",
+          "It produces detailed pictures of organs,",
+          "soft tissues, bones and other structures."
+        ]
+      },
+      {
+        "id": "s2_scanner",
+        "kind": "text",
+        "label": "The scanner",
+        "marks": 1,
+        "mark_note": "The scanner",
+        "why": "The patient must lie inside the magnet, so the machine is built as a tube with a moving bed.",
+        "common_mistakes": [
+          "Describing the scanner as an open plate.",
+          "Leaving out the movable bed."
+        ],
+        "memory_tip": "A giant circular magnetic tube with a sliding bed.",
+        "margin_note": "Two short lines are enough.",
+        "lines": [
+          "The MRI scanner is a giant circular",
+          "magnetic tube.",
+          "The patient is placed on a movable bed",
+          "that moves into the magnetic ring."
+        ]
+      },
+      {
+        "id": "s3_protons",
+        "kind": "text",
+        "label": "How the protons are used",
+        "marks": 1,
+        "mark_note": "The protons",
+        "why": "The body is mostly water, and the hydrogen in water gives the protons the magnet can line up.",
+        "common_mistakes": [
+          "Saying the magnet detects the organs directly.",
+          "Leaving out the radio frequency field."
+        ],
+        "memory_tip": "Line the protons up with a magnet, then knock them with radio waves.",
+        "margin_note": "Two steps: align, then disturb.",
+        "lines": [
+          "The human body is mainly composed of",
+          "water, which contains protons.",
+          "The magnet creates a strong magnetic field.",
+          "Body protons align with the direction of",
+          "that field.",
+          "A second radio frequency field is then",
+          "turned on for a brief period."
+        ]
+      },
+      {
+        "id": "s4_image",
+        "kind": "boxed_final",
+        "label": "How the image is made",
+        "marks": 1,
+        "mark_note": "The image",
+        "why": "Tissues differ in water content, so their protons release different amounts of energy and the picture shows contrast.",
+        "common_mistakes": [
+          "Leaving out that the contrast comes from water content.",
+          "Forgetting the contrast agent."
+        ],
+        "memory_tip": "Different water content gives different signal, and that is the contrast.",
+        "margin_note": "End with gadolinium. It is a good closing detail.",
+        "lines": [
+          "The protons of different parts of the body",
+          "release different energy, which the MRI",
+          "scanner detects.",
+          "There is therefore a contrast between",
+          "images of different tissues, based on their",
+          "water content, and an image is generated.",
+          "A computer processes the information and",
+          "the images are transferred to film.",
+          {
+            "text": "Contrast agents like gadolinium raise accuracy",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "The whole method rests on the protons in the body's water. Say so early — an answer that only describes the machine misses the physics the question is asking about."
+}

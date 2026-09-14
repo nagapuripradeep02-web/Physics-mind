@@ -1,0 +1,88 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_bfc_av_valves",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "Human Anatomy and Physiology-II (Zoology-II)"
+  },
+  "chapter": "Body Fluids and Circulation",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Name the valves that guard the left and right atrioventricular apertures in man.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Left aperture",
+      "marks": 1
+    },
+    {
+      "label": "Right aperture",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.48, VSAQ 63. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Text revision (examiner audit, 2026-09-05): both step reasons dropped the claim that ventricular pressure decides the number of cusps, which no textbook makes and which inverted between the two steps, and now state the cusp counts and the one job of the valves."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Body Fluids and Circulation · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_left",
+        "kind": "text",
+        "label": "Left aperture",
+        "marks": 1,
+        "mark_note": "Left valve",
+        "why": "The left atrioventricular valve has two cusps and the right has three. Both close when the ventricle contracts, so blood is driven into the artery instead of back into the atrium.",
+        "common_mistakes": [
+          "Putting the tricuspid on the left. Bicuspid is the left valve.",
+          "Naming semilunar valves. Those guard the arteries, not the apertures."
+        ],
+        "memory_tip": "LAB RAT — Left Atrium Bicuspid, Right Atrium Tricuspid.",
+        "margin_note": "Two lines, one for each side.",
+        "lines": [
+          "The left atrioventricular aperture is",
+          "guarded by the bicuspid valve, also called",
+          "the mitral valve."
+        ]
+      },
+      {
+        "id": "s2_right",
+        "kind": "boxed_final",
+        "label": "Right aperture",
+        "marks": 1,
+        "mark_note": "Right valve",
+        "why": "The three cusps of the tricuspid valve close the right atrioventricular aperture when the right ventricle contracts, so blood goes into the pulmonary artery and not back into the right atrium.",
+        "common_mistakes": [
+          "Naming only one valve when two are asked.",
+          "Writing bicuspid for both sides."
+        ],
+        "memory_tip": "Tri- for three flaps on the right.",
+        "margin_note": "One line finishes the answer.",
+        "lines": [
+          {
+            "text": "The right aperture is guarded by the tricuspid",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "One mark each, so both sides must be named. Writing 'mitral valve' for the bicuspid is accepted, but name the side it guards."
+}

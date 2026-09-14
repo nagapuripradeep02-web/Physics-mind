@@ -1,0 +1,425 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_msk_pelvic_girdle_diagram",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Human Anatomy and Physiology-III (Zoology-II)"
+  },
+  "chapter": "Musculo-Skeletal System",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Draw a neat labelled diagram of pelvic girdle.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The two hip bones",
+      "marks": 1
+    },
+    {
+      "label": "Sacrum and coccyx",
+      "marks": 1
+    },
+    {
+      "label": "Acetabulum and obturator foramen",
+      "marks": 1
+    },
+    {
+      "label": "Labels",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.32, SAQ 20. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Figure revision (figure audit, 2026-09-05): the ilium is now labelled by name, the break between each iliac blade and its acetabulum is closed, and the pubis leader lands on the pubis. Text revision (examiner audit, 2026-09-05): the insider note's claim about how an examiner reads a lopsided drawing was replaced with what the drawing must show."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Musculo-Skeletal System · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_parts",
+        "kind": "text",
+        "label": "What the girdle is made of",
+        "marks": 0,
+        "why": "Each half of the girdle is one bone in the adult, formed from three that fuse at the socket, which is why the socket is where all three meet.",
+        "common_mistakes": [
+          "Writing that the girdle has three bones in all. Each half has three fused parts.",
+          "Leaving the sacrum out. The girdle joins the vertebral column at the sacrum."
+        ],
+        "memory_tip": "Ilium above, ischium below, pubis in front — all three meet at the socket.",
+        "margin_note": "One short note. The marks are all in the figure.",
+        "lines": [
+          "The pelvic girdle has two hip bones, one",
+          "on each side.",
+          "Each hip bone is formed of three fused",
+          "bones: ilium, ischium and pubis.",
+          "They meet at the socket called the",
+          "acetabulum, which holds the femur.",
+          "Behind, the girdle joins the sacrum of the",
+          "vertebral column."
+        ]
+      },
+      {
+        "id": "s2_figure",
+        "kind": "diagram",
+        "label": "Diagram — pelvic girdle",
+        "marks": 4,
+        "mark_note": "Neat labelled figure",
+        "why": "The anterior view shows both hip bones, the sacrum between them and the pubic symphysis in front, which is what the question is testing.",
+        "common_mistakes": [
+          "Drawing one hip bone only. The girdle is both halves plus the sacrum.",
+          "Leaving out the obturator foramen. It is the large opening in each half.",
+          "Drawing it small. Use about a third of the page."
+        ],
+        "memory_tip": "Sacrum in the middle, a wing each side, a ring below each wing.",
+        "margin_note": "Anterior view. Label at least eight parts.",
+        "figure": {
+          "id": "msk_pelvic_girdle",
+          "width": 520,
+          "height": 404,
+          "elements": [
+            {
+              "type": "pause",
+              "id": "p1",
+              "caption": "Step 1 — the sacrum and the coccyx"
+            },
+            {
+              "type": "stroke",
+              "id": "sacrum",
+              "d": "M 234 92 L 278 92 L 272 194 L 256 208 L 240 194 Z",
+              "ms": 4160
+            },
+            {
+              "type": "stroke",
+              "id": "sacrum_lines",
+              "d": "M 240 118 L 272 118 M 242 142 L 270 142 M 244 166 L 268 166",
+              "ms": 1200
+            },
+            {
+              "type": "stroke",
+              "id": "coccyx",
+              "d": "M 248 210 L 264 210 L 259 240 L 253 240 Z",
+              "ms": 1180
+            },
+            {
+              "type": "pause",
+              "id": "p2",
+              "caption": "Step 2 — the two hip bones"
+            },
+            {
+              "type": "stroke",
+              "id": "ilium_l",
+              "d": "M 232 98 C 200 74 156 72 140 94 C 126 114 132 158 150 190",
+              "ms": 2880
+            },
+            {
+              "type": "stroke",
+              "id": "ilium_l2",
+              "d": "M 150 190 C 160 210 174 218 190 214",
+              "ms": 730
+            },
+            {
+              "type": "stroke",
+              "id": "ilium_r",
+              "d": "M 280 98 C 312 74 356 72 372 94 C 386 114 380 158 362 190",
+              "ms": 2880
+            },
+            {
+              "type": "stroke",
+              "id": "ilium_r2",
+              "d": "M 362 190 C 352 210 338 218 322 214",
+              "ms": 730
+            },
+            {
+              "type": "pause",
+              "id": "p3",
+              "caption": "Step 3 — the acetabulum on each side"
+            },
+            {
+              "type": "stroke",
+              "id": "acetabulum_l",
+              "d": "M 190 214 C 170 216 158 230 164 246 C 170 260 186 260 196 250",
+              "ms": 1240
+            },
+            {
+              "type": "stroke",
+              "id": "acetabulum_r",
+              "d": "M 322 214 C 342 216 354 230 348 246 C 342 260 326 260 316 250",
+              "ms": 1240
+            },
+            {
+              "type": "pause",
+              "id": "p4",
+              "caption": "Step 4 — the obturator foramen, pubis and ischium"
+            },
+            {
+              "type": "stroke",
+              "id": "hip_join_l",
+              "d": "M 166 248 C 160 258 166 266 176 268",
+              "ms": 390
+            },
+            {
+              "type": "stroke",
+              "id": "hip_join_r",
+              "d": "M 346 248 C 352 258 346 266 336 268",
+              "ms": 390
+            },
+            {
+              "type": "stroke",
+              "id": "foramen_l",
+              "d": "M 176 268 C 158 280 158 312 178 324 C 198 334 218 322 220 302 C 222 280 200 262 176 268",
+              "ms": 2670
+            },
+            {
+              "type": "stroke",
+              "id": "foramen_r",
+              "d": "M 336 268 C 354 280 354 312 334 324 C 314 334 294 322 292 302 C 290 280 312 262 336 268",
+              "ms": 2670
+            },
+            {
+              "type": "stroke",
+              "id": "pubis_l",
+              "d": "M 218 284 C 234 290 246 294 250 298",
+              "ms": 500
+            },
+            {
+              "type": "stroke",
+              "id": "pubis_r",
+              "d": "M 294 284 C 278 290 266 294 262 298",
+              "ms": 500
+            },
+            {
+              "type": "stroke",
+              "id": "ischium_l",
+              "d": "M 178 324 C 190 342 212 342 224 328",
+              "ms": 770
+            },
+            {
+              "type": "stroke",
+              "id": "ischium_r",
+              "d": "M 334 324 C 322 342 300 342 288 328",
+              "ms": 770
+            },
+            {
+              "type": "stroke",
+              "id": "symphysis",
+              "d": "M 250 294 L 250 316 M 262 294 L 262 316",
+              "ms": 630
+            },
+            {
+              "type": "stroke",
+              "id": "pubic_arch",
+              "d": "M 224 332 C 238 318 274 318 288 332",
+              "ms": 990
+            },
+            {
+              "type": "stroke",
+              "id": "pelvic_brim",
+              "d": "M 148 206 C 190 246 322 246 364 206",
+              "ms": 3270,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "pause",
+              "id": "p5",
+              "caption": "Step 5 — the labels"
+            },
+            {
+              "type": "label",
+              "id": "lb_sacrum",
+              "x": 6,
+              "y": 130,
+              "text": "sacrum",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_sacrum",
+              "d": "M 60 124 L 234 130",
+              "ms": 2490,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_brim",
+              "x": 6,
+              "y": 200,
+              "text": "pelvic brim",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_brim",
+              "d": "M 96 194 L 156 212",
+              "ms": 890,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_coccyx",
+              "x": 6,
+              "y": 244,
+              "text": "coccyx",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_coccyx",
+              "d": "M 60 238 L 248 226",
+              "ms": 2690,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_symphysis",
+              "x": 6,
+              "y": 300,
+              "text": "pubic symphysis",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_symphysis",
+              "d": "M 128 294 L 248 304",
+              "ms": 1720,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_arch",
+              "x": 6,
+              "y": 352,
+              "text": "pubic arch",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_arch",
+              "d": "M 92 346 L 250 332",
+              "ms": 2270,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_crest",
+              "x": 380,
+              "y": 86,
+              "text": "iliac crest",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_crest",
+              "d": "M 378 80 L 348 82",
+              "ms": 430,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_fossa",
+              "x": 380,
+              "y": 130,
+              "text": "ilium",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_fossa",
+              "d": "M 378 124 L 336 128",
+              "ms": 600,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_acetabulum",
+              "x": 380,
+              "y": 200,
+              "text": "acetabulum",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_acetabulum",
+              "d": "M 378 194 L 346 228",
+              "ms": 670,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_pubis",
+              "x": 380,
+              "y": 254,
+              "text": "pubis",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_pubis",
+              "d": "M 378 248 L 279 290",
+              "ms": 1350,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_foramen",
+              "x": 380,
+              "y": 306,
+              "text": "obturator foramen",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_foramen",
+              "d": "M 378 300 L 340 300",
+              "ms": 540,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_ischium",
+              "x": 380,
+              "y": 356,
+              "text": "ischium",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_ischium",
+              "d": "M 378 350 L 320 334",
+              "ms": 860,
+              "w": 1.4
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "insider_note": "All four marks are in the drawing. Draw the two halves the same size and shape, with the sacrum between them, and label at least eight parts."
+}

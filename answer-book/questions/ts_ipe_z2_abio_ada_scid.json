@@ -1,0 +1,83 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_abio_ada_scid",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Applied Biology (Zoology-II)"
+  },
+  "chapter": "Applied Biology",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What does ADA stand for? Deficiency of ADA causes which disease?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Full form",
+      "marks": 1
+    },
+    {
+      "label": "The disease",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.59, VSAQ 134. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Revision (examiner audit, 2026-09-05): the margin note asks for the short form SCID, which no printed line carried, so the abbreviation was added to the step's WHY; the printed line itself is correct and was left alone."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Applied Biology · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1",
+        "kind": "text",
+        "label": "What ADA stands for",
+        "marks": 1,
+        "mark_note": "Full form",
+        "why": "The enzyme clears a waste product that would otherwise poison the cells of the immune system.",
+        "common_mistakes": [
+          "Guessing a different expansion.",
+          "Leaving out what the enzyme does."
+        ],
+        "memory_tip": "ADA is Adenosine Deaminase.",
+        "margin_note": "Full form first, then the disease.",
+        "lines": [
+          "ADA stands for Adenosine Deaminase.",
+          "This enzyme is very important for the immune",
+          "system to function."
+        ]
+      },
+      {
+        "id": "s2",
+        "kind": "boxed_final",
+        "label": "The disease",
+        "marks": 1,
+        "mark_note": "The disease",
+        "why": "The full name Severe Combined Immuno Deficiency is shortened to SCID. Without the enzyme both kinds of lymphocyte fail, so the child has almost no immune defence at all.",
+        "common_mistakes": [
+          "Naming AIDS. SCID is inherited, AIDS is caused by a virus.",
+          "Giving the short form without the full name."
+        ],
+        "memory_tip": "SCID: Severe Combined Immuno Deficiency.",
+        "margin_note": "Give the full name and the abbreviation.",
+        "lines": [
+          {
+            "text": "It causes Severe Combined Immuno Deficiency",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Two questions, two marks: expand the abbreviation, then name the disease in full with its short form."
+}

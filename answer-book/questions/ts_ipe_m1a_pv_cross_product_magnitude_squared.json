@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 7 PRODUCT OF VECTORS, Short Answer question 19, book p.71. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. Computed twice. Direct: |p × q| = |p||q| sin θ = 2 × 3 × sin(π/6) = 6 × (1/2) = 3, so |p × q|² = 9. By the identity |p × q|² = |p|²|q|² − (p·q)²: p·q = 2 × 3 × cos(π/6) = 6 × (√3/2) = 3√3, so (p·q)² = 27 and |p|²|q|² − (p·q)² = 36 − 27 = 9. The two routes agree, and the second route is put on the page as the fourth step because a four-mark question on a one-line substitution needs the identity to be worth its marks. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 split rewards the four separate acts: stating the magnitude formula, substituting and squaring, computing the dot product, and confirming through the identity. Paper position: Maths-1A Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern; Product of Vectors carries a Section B slot on the paper and also appears in Section C. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 7 PRODUCT OF VECTORS, Short Answer question 19, book p.71. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. Computed twice. Direct: |p × q| = |p||q| sin θ = 2 × 3 × sin(π/6) = 6 × (1/2) = 3, so |p × q|² = 9. By the identity |p × q|² = |p|²|q|² − (p·q)²: p·q = 2 × 3 × cos(π/6) = 6 × (√3/2) = 3√3, so (p·q)² = 27 and |p|²|q|² − (p·q)² = 36 − 27 = 9. The two routes agree, and the second route is put on the page as the fourth step because a four-mark question on a one-line substitution needs the identity to be worth its marks. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 split rewards the four separate acts: stating the magnitude formula, substituting and squaring, computing the dot product, and confirming through the identity. Paper position: Maths-1A Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern; Product of Vectors carries a Section B slot on the paper and also appears in Section C. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find the square of the cross-product magnitude from the two lengths and the angle — name each move in order.",
   "answer": {
@@ -61,6 +61,7 @@
             "style": "heading"
           },
           "Given |p| = 2, |q| = 3, θ = π/6.",
+          "(θ is the angle between p and q)",
           "|p × q| = |p||q| sin θ"
         ],
         "recall": {
@@ -85,7 +86,7 @@
             "magnitude"
           ]
         },
-        "why": "The cross product measures the area of the parallelogram on the two vectors, and that area depends on the perpendicular height, which is the sine of the angle.",
+        "why": "The cross product measures the area of the parallelogram on the two vectors, and that area is base × perpendicular height, and the height is |q| sin θ.",
         "common_mistakes": [
           "Using cos θ, which belongs to the dot product.",
           "Writing p × q as a number when only its magnitude is a number."
@@ -100,6 +101,10 @@
         "margin_note": "Second mark. sin(π/6) = 1/2 is a standard value. The question asks for the SQUARE, so squaring is part of this step, not an afterthought.",
         "memory_tip": "π/6 is 30°, and sin 30° = 1/2.",
         "lines": [
+          {
+            "text": "(π/6 = 30°, and sin 30° = 1/2)",
+            "added": true
+          },
           "sin(π/6) = 1/2",
           "|p × q| = 2 × 3 × (1/2) = 3",
           "∴ |p × q|² = 3² = 9"
@@ -130,6 +135,11 @@
         "common_mistakes": [
           "Stopping at |p × q| = 3 and never squaring.",
           "Using sin(π/6) = √3/2, which is sin 60°, not sin 30°."
+        ],
+        "lines_compact": [
+          "sin(π/6) = 1/2",
+          "|p × q| = 2 × 3 × (1/2) = 3",
+          "∴ |p × q|² = 3² = 9"
         ]
       },
       {
@@ -141,10 +151,18 @@
         "margin_note": "Third mark. The check needs the dot product, so compute it from the same two lengths and the same angle, this time with cos.",
         "memory_tip": "Same lengths, same angle, but cos this time: cos(π/6) = √3/2.",
         "lines": [
+          {
+            "text": "(cos 30° = √3/2)",
+            "added": true
+          },
           "cos(π/6) = √3/2",
           "p·q = |p||q| cos θ",
           "    = 2 × 3 × (√3/2)",
           "    = 3√3",
+          {
+            "text": "((3√3)² = 3² × (√3)²)",
+            "added": true
+          },
           "∴ (p·q)² = (3√3)² = 9 × 3 = 27"
         ],
         "recall": {
@@ -173,6 +191,13 @@
         "common_mistakes": [
           "Squaring 3√3 as 3 × 3 = 9 and forgetting the √3.",
           "Using sin(π/6) here, which belongs to the previous step."
+        ],
+        "lines_compact": [
+          "cos(π/6) = √3/2",
+          "p·q = |p||q| cos θ",
+          "    = 2 × 3 × (√3/2)",
+          "    = 3√3",
+          "∴ (p·q)² = (3√3)² = 9 × 3 = 27"
         ]
       },
       {
@@ -184,7 +209,20 @@
         "margin_note": "Last mark. The identity |p × q|² = |p|²|q|² − (p·q)² follows from sin²θ + cos²θ = 1, and it reproduces the same 9 from completely different arithmetic.",
         "memory_tip": "|p × q|² + (p·q)² = |p|²|q|², because sin²θ + cos²θ = 1.",
         "lines": [
+          {
+            "text": "(|p × q|² + (p·q)² = |p|²|q|²(sin²θ + cos²θ),",
+            "added": true
+          },
+          {
+            "text": "  and sin²θ + cos²θ = 1)",
+            "style": "indent",
+            "added": true
+          },
           "|p × q|² = |p|²|q|² − (p·q)²",
+          {
+            "text": "(|p|² = 2² and |q|² = 3²)",
+            "added": true
+          },
           "  = (2²)(3²) − 27",
           "  = 36 − 27",
           "  = 9",
@@ -219,6 +257,16 @@
         "common_mistakes": [
           "Adding (p·q)² instead of subtracting it.",
           "Working out |p|²|q|² as 6 instead of 36 — it is 4 × 9, not 2 × 3."
+        ],
+        "lines_compact": [
+          "|p × q|² = |p|²|q|² − (p·q)²",
+          "  = (2²)(3²) − 27",
+          "  = 36 − 27",
+          "  = 9",
+          {
+            "text": "∴ |p × q|² = 9",
+            "style": "boxed"
+          }
         ]
       }
     ]

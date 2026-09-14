@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.211, chapter 10 APPLICATIONS OF DERIVATIVES, the ERRORS AND APPROXIMATIONS sub-section, Very Short Answer question 8. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box, and the question numbering restarts in each, so the sub-section is named here; we ship the chapter as ONE unit, ordered by the syllabus. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks, printed over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. This is a definition question, so there is no exam answer to check against a calculation. The illustration in the second step was computed for this card: y = 50 with Δy = 0.5 gives a relative error of 0.5/50 = 0.01 and a percentage error of 1%."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.211, chapter 10 APPLICATIONS OF DERIVATIVES, the ERRORS AND APPROXIMATIONS sub-section, Very Short Answer question 8. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box, and the question numbering restarts in each, so the sub-section is named here; we ship the chapter as ONE unit, ordered by the syllabus. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks, printed over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. This is a definition question, so there is no exam answer to check against a calculation. The illustration in the second step was computed for this card: y = 50 with Δy = 0.5 gives a relative error of 0.5/50 = 0.01 and a percentage error of 1%. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would answer this — say both definitions in full, and say what each one is divided by.",
   "answer": {
@@ -52,10 +52,24 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Let y be a variable and let Δy be the error made in y. For a small error the differential dy is used in place of Δy.",
-          "Relative error in y = Δy/y  —  the error measured against the value of y itself.",
-          "Percentage error in y = (Δy/y) × 100  —  the same ratio written as a percentage.",
-          "Both are defined only when y ≠ 0, and both are pure numbers with no unit."
+          "Let y be a variable and let Δy be the error made in y.",
+          "(Δy is the actual change in y; dy = f′(x)Δx",
+          {
+            "text": "  is its approximation)",
+            "style": "indent"
+          },
+          "For a small error the differential dy is used in place of Δy.",
+          "Relative error in y = Δy/y  —",
+          "the error measured against the value of y itself.",
+          "Percentage error in y = (Δy/y) × 100  —",
+          "the same ratio written as a percentage.",
+          "(dividing by y needs y ≠ 0; a ratio of two quantities",
+          {
+            "text": "  in the same unit has no unit)",
+            "style": "indent"
+          },
+          "Both are defined only when y ≠ 0,",
+          "and both are pure numbers with no unit."
         ],
         "recall": {
           "credit": "say_it",
@@ -94,11 +108,29 @@
         "margin_note": "Second mark. One short numerical illustration shows the two definitions are different quantities, not two names for the same one.",
         "memory_tip": "The same error gives two answers: 0.01 as a ratio, 1 as a percentage. They differ only by the factor 100.",
         "lines": [
-          "For example, let y = 50 and let the error made be Δy = 0.5.",
-          "Relative error = Δy/y = 0.5/50 = 0.01",
-          "Percentage error = (Δy/y) × 100 = 0.01 × 100 = 1, that is, 1%",
+          "For example, let y = 50",
+          "and let the error made be Δy = 0.5.",
           {
-            "text": "∴ relative error = Δy/y  and  percentage error = (Δy/y) × 100",
+            "text": "(0.5/50 = 5/500 = 1/100 = 0.01)",
+            "added": true
+          },
+          "Relative error = Δy/y = 0.5/50 = 0.01",
+          {
+            "text": "(0.01 × 100 = 1)",
+            "added": true
+          },
+          "Percentage error = (Δy/y) × 100 = 0.01 × 100 = 1,",
+          "that is, 1%",
+          {
+            "text": "(the two definitions from step 1)",
+            "added": true
+          },
+          {
+            "text": "∴ relative error = Δy/y",
+            "style": "boxed"
+          },
+          {
+            "text": "and  percentage error = (Δy/y) × 100",
             "style": "boxed"
           }
         ],
@@ -128,9 +160,24 @@
         "common_mistakes": [
           "Giving 0.5% by dividing 0.5 by 100 instead of by y.",
           "Reporting the relative error as 1 and the percentage error as 100."
+        ],
+        "lines_compact": [
+          "For example, let y = 50",
+          "and let the error made be Δy = 0.5.",
+          "Relative error = Δy/y = 0.5/50 = 0.01",
+          "Percentage error = (Δy/y) × 100 = 0.01 × 100 = 1,",
+          "that is, 1%",
+          {
+            "text": "∴ relative error = Δy/y",
+            "style": "boxed"
+          },
+          {
+            "text": "and  percentage error = (Δy/y) × 100",
+            "style": "boxed"
+          }
         ]
       }
     ]
   },
-  "insider_note": "Two definitions, one mark each, and they differ only by the factor 100. Relative error is Δy/y — dividing by the value itself is what makes it relative."
+  "insider_note": "Both definitions carry the first mark and a numerical example the second, and they differ only by the factor 100. Relative error is Δy/y — dividing by the value itself is what makes it relative."
 }

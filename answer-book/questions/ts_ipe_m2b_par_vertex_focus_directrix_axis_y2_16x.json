@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Maths-2B, book p.83 — VSAQ chapter 14 Parabola, answer 127, printed alone below the twin pair (126.1/126.2). No appearance tag is printed. THE MARK SPLIT IS OURS, same page-format reasoning as the rest of this chapter. No two-book union check was possible for Maths-2B (no second-year TSBIE Basic Learning Material is on hand), and no board back-test beyond diffing against this book's own five Guess Papers. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, Senior Maths-2B, book p.83 — VSAQ chapter 14 Parabola, answer 127, printed alone below the twin pair (126.1/126.2). No appearance tag is printed. THE MARK SPLIT IS OURS, same page-format reasoning as the rest of this chapter. No two-book union check was possible for Maths-2B (no second-year TSBIE Basic Learning Material is on hand), and no board back-test beyond diffing against this book's own five Guess Papers. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "answer": {
     "page_header": [
@@ -50,7 +50,8 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given parabola y² = 16x ⇒ 4a = 16 ⇒ a = 4"
+          "Given parabola y² = 16x ⇒ 4a = 16 ⇒ a = 4",
+          "(compare with y² = 4ax, which opens to the right)"
         ],
         "why": "Comparing the given equation to the standard form y² = 4ax is the one step needed before every one of the four quantities asked for can be read off.",
         "common_mistakes": [
@@ -67,8 +68,26 @@
         "margin_note": "Second mark, for all four answers together — losing any one of the four costs part of this mark.",
         "lines": [
           "(i) Vertex A = (0, 0)",
+          {
+            "text": "For y² = 4ax the focus is a units to the right",
+            "added": true
+          },
+          {
+            "text": "  of the vertex and the directrix is a units",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  to the left.",
+            "style": "indent",
+            "added": true
+          },
           "(ii) Focus S = (a, 0) = (4, 0)",
           "(iii) Equation of the directrix: x = −a ⇒ x + 4 = 0",
+          {
+            "text": "The axis is the line through (0, 0) and (4, 0):",
+            "added": true
+          },
           {
             "text": "(iv) Axis of the parabola: y = 0",
             "style": "boxed"
@@ -79,7 +98,16 @@
           "Writing the directrix as x = a instead of x = −a.",
           "Giving the axis as x = 0 instead of y = 0."
         ],
-        "memory_tip": "For y² = 4ax: vertex at the origin, focus at (a,0), directrix at x = −a, axis is the x-axis itself (y = 0)."
+        "memory_tip": "For y² = 4ax: vertex at the origin, focus at (a,0), directrix at x = −a, axis is the x-axis itself (y = 0).",
+        "lines_compact": [
+          "(i) Vertex A = (0, 0)",
+          "(ii) Focus S = (a, 0) = (4, 0)",
+          "(iii) Equation of the directrix: x = −a ⇒ x + 4 = 0",
+          {
+            "text": "(iv) Axis of the parabola: y = 0",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 36(iii), book p.91. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The two marks sit on the step that manufactures the sine and on the closing reduction; naming the doubling chain stays on the page as unmarked working. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, all compulsory, and Trigonometric Ratios and Transformations holds two of those ten slots. NUMERIC CHECK before authoring: the product was evaluated to 12 decimal places as 0.125000000000, which is exactly 1/8. Three cosines give 2³ = 8, and the count of doublings was checked against that. PRINTED DEFECT recorded, not repaired: the stem prints a colon between the second and third factors where a product dot belongs; it is a typesetting slip and the question is read as a product, which is the only reading that makes the printed value 1/8 correct. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 36(iii), book p.91. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The two marks sit on the step that manufactures the sine and on the closing reduction; naming the doubling chain stays on the page as unmarked working. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, all compulsory, and Trigonometric Ratios and Transformations holds two of those ten slots. NUMERIC CHECK before authoring: the product was evaluated to 12 decimal places as 0.125000000000, which is exactly 1/8. Three cosines give 2³ = 8, and the count of doublings was checked against that. PRINTED DEFECT recorded, not repaired: the stem prints a colon between the second and third factors where a product dot belongs; it is a typesetting slip and the question is read as a product, which is the only reading that makes the printed value 1/8 correct. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this one — name each move in order.",
   "answer": {
@@ -50,6 +50,7 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "Each angle is double the one before.",
           "Put θ = 2π/7.",
           "Then 4π/7 = 2θ and 8π/7 = 4θ",
           "L.H.S = cos θ · cos 2θ · cos 4θ"
@@ -93,8 +94,21 @@
         "margin_note": "First mark. Count the cosines: three, so introduce 2³ sin θ. Each 2 pairs with the sine just made and the next cosine, doubling the angle once.",
         "lines": [
           "Multiply and divide by 2³ sin θ:",
+          {
+            "text": "(sin θ ≠ 0, because 0 < 2π/7 < π; and 2³ = 8)",
+            "added": true
+          },
           "= (1/(8 sin θ)) (2 sin θ cos θ)",
           "  · (2 cos 2θ)(2 cos 4θ)",
+          {
+            "text": "(2 sin θ cos θ = sin 2θ; 2 sin 2θ cos 2θ = sin 4θ;",
+            "added": true
+          },
+          {
+            "text": "  2 sin 4θ cos 4θ = sin 8θ)",
+            "style": "indent",
+            "added": true
+          },
           "= (1/(8 sin θ)) sin 8θ",
           "  [sin 2θ = 2 sin θ cos θ, used three times]"
         ],
@@ -126,7 +140,14 @@
           "Multiplying by sin θ without also dividing by it.",
           "Using two 2s instead of three and getting 1/4."
         ],
-        "memory_tip": "One 2 per cosine. Three cosines means 2³ = 8, and the last angle reached is 8θ."
+        "memory_tip": "One 2 per cosine. Three cosines means 2³ = 8, and the last angle reached is 8θ.",
+        "lines_compact": [
+          "Multiply and divide by 2³ sin θ:",
+          "= (1/(8 sin θ)) (2 sin θ cos θ)",
+          "  · (2 cos 2θ)(2 cos 4θ)",
+          "= (1/(8 sin θ)) sin 8θ",
+          "  [sin 2θ = 2 sin θ cos θ, used three times]"
+        ]
       },
       {
         "id": "s3_reduce_and_finish",
@@ -136,9 +157,25 @@
         "mark_note": "Result",
         "margin_note": "Last mark. 16π/7 is one full turn of 2π = 14π/7 plus 2π/7, so sin 8θ is sin θ again and the two sines cancel.",
         "lines": [
+          {
+            "text": "Reduce sin 8θ to sin θ:",
+            "added": true
+          },
           "8θ = 16π/7 = 2π + 2π/7",
+          {
+            "text": "(14π/7 = 2π)",
+            "added": true
+          },
           "sin(16π/7) = sin(2π/7) = sin θ",
+          {
+            "text": "(sin(2π + x) = sin x)",
+            "added": true
+          },
           "L.H.S = sin θ / (8 sin θ)",
+          {
+            "text": "sin θ cancels (it is not 0):",
+            "added": true
+          },
           {
             "text": "= 1/8 = R.H.S",
             "style": "boxed"
@@ -172,7 +209,16 @@
           "Cancelling sin θ before reducing sin(16π/7).",
           "Taking sin(16π/7) as −sin(2π/7)."
         ],
-        "memory_tip": "16π/7 is just over one full turn. Take out 2π and the leftover is the starting angle."
+        "memory_tip": "16π/7 is just over one full turn. Take out 2π and the leftover is the starting angle.",
+        "lines_compact": [
+          "8θ = 16π/7 = 2π + 2π/7",
+          "sin(16π/7) = sin(2π/7) = sin θ",
+          "L.H.S = sin θ / (8 sin θ)",
+          {
+            "text": "= 1/8 = R.H.S",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   }

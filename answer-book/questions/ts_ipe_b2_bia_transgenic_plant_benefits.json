@@ -55,9 +55,9 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.35, printed question 45. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.35, printed question 45. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. Revised 2026-09-05: the insider note said a benefit without a named plant is half a point, which asserts a mark outcome this card does not hold and devalues NCERT's own unnamed benefits such as increased efficiency of mineral usage, so it now asks for the named crops without claiming a mark."
   },
-  "insider_note": "Five headings, and each needs a NAMED crop. A benefit without a named plant is half a point; Bt cotton, Flavr Savr and golden rice are the three that must appear.",
+  "insider_note": "Five headings, each with a named crop. Bt cotton, Flavr Savr and golden rice are the three names to be sure of — naming the crop for each heading makes the answer complete.",
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

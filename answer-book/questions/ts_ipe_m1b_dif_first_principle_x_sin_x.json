@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.197, chapter 9 DIFFERENTIATION, Short Answer question 1(vii). **Only the question was taken. The solution, the step order and the mark split are this answer book’s own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK’S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. The book sets ONE shared instruction over nine sub-parts, so the stem here is that instruction written out for this sub-part alone; nothing in it was altered, and the question now reads on its own. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8 under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.197, chapter 9 DIFFERENTIATION, Short Answer question 1(vii). **Only the question was taken. The solution, the step order and the mark split are this answer book’s own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK’S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. The book sets ONE shared instruction over nine sub-parts, so the stem here is that instruction written out for this sub-part alone; nothing in it was altered, and the question now reads on its own. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8 under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say how you break the numerator into two parts and what each part gives.",
   "answer": {
@@ -60,8 +60,10 @@
             "style": "heading"
           },
           "Let f(x) = x sin x",
+          "(the definition of the derivative from the first principle)",
           "By the first principle,",
           "f′(x) = lim(h → 0) [f(x + h) − f(x)]/h",
+          "(f(x + h) = (x + h) sin(x + h))",
           "= lim(h → 0) [(x+h) sin(x+h) − x sin x]/h"
         ],
         "recall": {
@@ -100,9 +102,26 @@
         "mark_note": "Method",
         "margin_note": "Second mark. Expanding (x + h) sin(x + h) is what separates the two pieces. In the second piece the h cancels the h below at once, so it needs no identity at all.",
         "lines": [
+          {
+            "text": "(multiply out (x + h) sin(x + h))",
+            "added": true
+          },
           "(x + h) sin(x + h) = x sin(x + h) + h sin(x + h)",
+          {
+            "text": "(subtract x sin x: x sin(x + h) − x sin x",
+            "added": true
+          },
+          {
+            "text": "  = x[sin(x + h) − sin x])",
+            "style": "indent",
+            "added": true
+          },
           "so the numerator is",
           "x[sin(x + h) − sin x] + h sin(x + h)",
+          {
+            "text": "(divide both parts by h; h sin(x + h)/h = sin(x + h))",
+            "added": true
+          },
           "f′(x) = lim(h → 0) x[sin(x+h) − sin x]/h",
           "+ lim(h → 0) sin(x + h)"
         ],
@@ -133,7 +152,14 @@
           "Splitting as x sin x + h sin h, which is not what (x + h) sin(x + h) expands to.",
           "Writing the second piece as sin x instead of sin(x + h)."
         ],
-        "memory_tip": "Expand the bracket, then group the two x terms together and leave the h term on its own."
+        "memory_tip": "Expand the bracket, then group the two x terms together and leave the h term on its own.",
+        "lines_compact": [
+          "(x + h) sin(x + h) = x sin(x + h) + h sin(x + h)",
+          "so the numerator is",
+          "x[sin(x + h) − sin x] + h sin(x + h)",
+          "f′(x) = lim(h → 0) x[sin(x+h) − sin x]/h",
+          "+ lim(h → 0) sin(x + h)"
+        ]
       },
       {
         "id": "s3_sum_to_product",
@@ -143,9 +169,22 @@
         "mark_note": "Method",
         "margin_note": "Third mark. The 2 in front of the identity is exactly what turns (sin(h/2))/h into (sin(h/2))/(h/2), so the standard limit applies with nothing left over.",
         "lines": [
+          {
+            "text": "(sin C − sin D = 2 cos((C + D)/2) sin((C − D)/2),",
+            "added": true
+          },
+          {
+            "text": "  with C = x + h and D = x)",
+            "style": "indent",
+            "added": true
+          },
           "sin(x + h) − sin x = 2 cos(x + h/2) sin(h/2)",
           "so the first part is",
           "x · 2 cos(x + h/2) · (sin(h/2))/h",
+          {
+            "text": "(2/h = 1/(h/2))",
+            "added": true
+          },
           "= x cos(x + h/2) · (sin(h/2))/(h/2)"
         ],
         "recall": {
@@ -175,7 +214,13 @@
           "Using lim (sin(h/2))/h = 1, which is 1/2, not 1.",
           "Halving the first angle too and writing cos(x/2 + h/2)."
         ],
-        "memory_tip": "The 2 from sin C − sin D pairs with the h/2 inside the sine. Together they make the standard limit exact."
+        "memory_tip": "The 2 from sin C − sin D pairs with the h/2 inside the sine. Together they make the standard limit exact.",
+        "lines_compact": [
+          "sin(x + h) − sin x = 2 cos(x + h/2) sin(h/2)",
+          "so the first part is",
+          "x · 2 cos(x + h/2) · (sin(h/2))/h",
+          "= x cos(x + h/2) · (sin(h/2))/(h/2)"
+        ]
       },
       {
         "id": "s4_answer",
@@ -185,8 +230,16 @@
         "mark_note": "Answer",
         "margin_note": "Last mark. Both pieces contribute: x cos x from the sine difference and sin x from the leftover term. Dropping the second is the usual loss here.",
         "lines": [
+          {
+            "text": "(cos and sin are continuous, and h/2 → 0 as h → 0)",
+            "added": true
+          },
           "As h → 0, cos(x + h/2) → cos x and",
           "(sin(h/2))/(h/2) → 1, while sin(x + h) → sin x",
+          {
+            "text": "(x · cos x · 1 + sin x)",
+            "added": true
+          },
           "f′(x) = x cos x + sin x",
           {
             "text": "∴ d/dx (x sin x) = sin x + x cos x",
@@ -219,7 +272,16 @@
           "Giving x cos x only and losing the sin x term.",
           "Giving cos x + x sin x, with the two functions swapped."
         ],
-        "memory_tip": "Two pieces, two terms: sin x from the leftover part, x cos x from the sine difference."
+        "memory_tip": "Two pieces, two terms: sin x from the leftover part, x cos x from the sine difference.",
+        "lines_compact": [
+          "As h → 0, cos(x + h/2) → cos x and",
+          "(sin(h/2))/(h/2) → 1, while sin(x + h) → sin x",
+          "f′(x) = x cos x + sin x",
+          {
+            "text": "∴ d/dx (x sin x) = sin x + x cos x",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

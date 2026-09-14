@@ -168,18 +168,29 @@ async function handle(raw: string, res: import('http').ServerResponse): Promise<
                 : qid.startsWith('ts_ipe_p2_') ? 'physics_2'
                     : qid.startsWith('ts_ipe_c2_') ? 'chemistry_2'
                         : qid.startsWith('ts_ipe_m2a_') ? 'mathematics_2a'
-                            : qid.startsWith('ts_ipe_m2b_') ? 'mathematics_2b' : 'physics';
+                            : qid.startsWith('ts_ipe_m2b_') ? 'mathematics_2b'
+                                // Botany and zoology — both years — fell through to PHYSICS until
+                                // 2026-09-04: a Botany-II student asking in Telugu was handed the
+                                // physics term list, and the situation line told the model nothing
+                                // about the subject at all. Four papers, four rungs, no fall-through.
+                                : qid.startsWith('ts_ipe_b1_') ? 'botany'
+                                    : qid.startsWith('ts_ipe_b2_') ? 'botany_2'
+                                        : qid.startsWith('ts_ipe_z1_') ? 'zoology'
+                                            : qid.startsWith('ts_ipe_z2_') ? 'zoology_2' : 'physics';
     const SUBJECT_WORD: Record<string, string> = {
         physics: 'physics', chemistry: 'chemistry', chemistry_2: 'chemistry',
         mathematics: 'mathematics', mathematics_1b: 'mathematics', mathematics_2a: 'mathematics',
         mathematics_2b: 'mathematics',
         physics_2: 'physics',
+        botany: 'botany', botany_2: 'botany', zoology: 'zoology', zoology_2: 'zoology',
     };
     const SUBJECT_LABEL: Record<string, string> = {
         physics: 'Physics', chemistry: 'Chemistry', chemistry_2: 'Chemistry-II',
         mathematics: 'Maths-1A', mathematics_1b: 'Maths-1B', mathematics_2a: 'Maths-2A',
         mathematics_2b: 'Maths-2B',
         physics_2: 'Physics II',
+        // The settled catalog convention: the first-year paper keeps the bare name.
+        botany: 'Botany', botany_2: 'Botany-II', zoology: 'Zoology', zoology_2: 'Zoology-II',
     };
     const SUBJECT_TERMS: Record<string, string> = {
         physics: 'velocity, speed, force, energy, mass, acceleration, momentum, friction, work, power, gravitational',
@@ -190,6 +201,12 @@ async function handle(raw: string, res: import('http').ServerResponse): Promise<
         mathematics_2b: 'circle, centre, radius, chord, tangent, normal, radical axis, parabola, focus, directrix, ellipse, hyperbola, eccentricity, latus rectum, integral, integration, reduction formula, definite integral, area, differential equation, order, degree, homogeneous, integrating factor',
         physics_2: 'wavelength, frequency, refraction, lens, interference, charge, potential, capacitance, current, resistance, magnetic field, induction, photon, nucleus, semiconductor, diode, transistor',
         mathematics_2a: 'complex number, modulus, argument, conjugate, cis, cube roots of unity, quadratic expression, discriminant, roots, permutation, combination, binomial coefficient, general term, partial fraction, mean deviation, variance, probability, conditional probability, random variable, binomial distribution, Poisson distribution',
+        // Biology term lists follow each paper's own unit names (units.json), the way the
+        // physics_2 and chemistry_2 lists follow theirs.
+        botany: 'species, genus, taxonomy, algae, fungi, bryophyte, pteridophyte, gymnosperm, angiosperm, root, stem, leaf, inflorescence, flower, fruit, seed, pollination, fertilisation, cell, nucleus, chromosome, mitosis, meiosis, tissue, xylem, phloem, ecosystem',
+        botany_2: 'diffusion, osmosis, transpiration, xylem, phloem, mineral, nitrogen fixation, enzyme, substrate, photosynthesis, chlorophyll, Calvin cycle, respiration, glycolysis, Krebs cycle, ATP, auxin, gibberellin, cytokinin, bacteria, virus, plasmid, gene, allele, dominant, recessive, chromosome, DNA, RNA, replication, transcription, translation, restriction enzyme, PCR, vector, Bt cotton, biofertiliser, antibiotic',
+        zoology: 'phylum, class, species, symmetry, coelom, tissue, epithelium, connective tissue, cockroach, earthworm, frog, locomotion, reproduction, parasite, malaria, ecosystem, pollution, adaptation',
+        zoology_2: 'digestion, enzyme, absorption, breathing, haemoglobin, blood, heart, cardiac cycle, kidney, nephron, urine, muscle, bone, joint, neuron, nerve, brain, hormone, gland, antibody, antigen, immunity, vaccine, testis, ovary, menstrual cycle, fertilisation, gene, allele, chromosome, mutation, evolution, natural selection, fossil, poultry, dairy',
     };
     const subjectWord = SUBJECT_WORD[subjectKey];
     const subjectTerms = SUBJECT_TERMS[subjectKey];

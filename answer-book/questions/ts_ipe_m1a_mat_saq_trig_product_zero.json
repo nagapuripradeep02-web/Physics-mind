@@ -43,7 +43,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.55 — SAQ chapter 7 Matrices, answer 45. Printed appearances: TS 17 · AP 18. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer (the only SAQ in the chapter that carries them is answer 40 on book p.51, printed 1+1+1+1). The 1+1+2 above puts half the marks on the multiplication itself and one mark each on the two trigonometric conversions that make it possible. The book calls this question \"What a mixup! Trigonometry in Algebra\", and the trigonometry really is where it is won or lost. The book's SAQ chapter header carries ★★★ and reads \"4 Marks\"; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q11 is the Matrices slot."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.55 — SAQ chapter 7 Matrices, answer 45. Printed appearances: TS 17 · AP 18. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer (the only SAQ in the chapter that carries them is answer 40 on book p.51, printed 1+1+1+1). The 1+1+2 above puts half the marks on the multiplication itself and one mark each on the two trigonometric conversions that make it possible. The book calls this question \"What a mixup! Trigonometry in Algebra\", and the trigonometry really is where it is won or lost. The book's SAQ chapter header carries ★★★ and reads \"4 Marks\"; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q11 is the Matrices slot. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would show this product is zero — say what you do with the given angle condition before multiplying anything.",
   "answer": {
@@ -58,14 +58,15 @@
         "label": "Convert θ into φ",
         "marks": 1,
         "mark_note": "Angle condition",
-        "margin_note": "First mark, and the idea of the whole question. Two different angles cannot be multiplied together usefully — so use the given condition to write everything in ONE angle before touching the matrices.",
-        "memory_tip": "Two DIFFERENT angles cannot be multiplied usefully — use the condition to write both in one angle.",
+        "margin_note": "First mark, and the idea of this method: use the given condition to write everything in ONE angle before touching the matrices. (Multiplying first and using cos(θ − φ) = 0 is another route.)",
+        "memory_tip": "Use the condition to write both matrices in one angle, φ; then every entry can be compared directly.",
         "lines": [
           {
             "text": "Sol:",
             "style": "heading"
           },
           "Given θ − φ = π/2, so θ = π/2 + φ.",
+          "(cos(π/2 + φ) = −sin φ and sin(π/2 + φ) = cos φ)",
           "cos θ = cos(π/2 + φ) = −sin φ",
           "sin θ = sin(π/2 + φ) = cos φ"
         ],
@@ -92,11 +93,11 @@
             "ninety degrees"
           ]
         },
-        "why": "The two matrices are in different angles, and nothing cancels while that is true. Turning θ into φ is what makes every entry comparable — the algebra afterwards is routine.",
+        "why": "Turning θ into φ puts both matrices in one angle, so the entries of the product can be compared and seen to cancel; the algebra afterwards is routine.",
         "common_mistakes": [
           "Writing cos(π/2 + φ) = sin φ and losing the minus sign, which makes the product non-zero.",
           "Using θ = π/2 − φ instead of π/2 + φ.",
-          "Multiplying the matrices first and hoping the condition helps later."
+          "Multiplying the matrices first and not noticing that every entry has the factor cos θ cos φ + sin θ sin φ = cos(θ − φ)."
         ]
       },
       {
@@ -109,6 +110,10 @@
         "memory_tip": "cos²θ becomes sin²φ, and the off-diagonal becomes (−sinφ)(cosφ) — that single minus does the work.",
         "lines": [
           "cos²θ = sin²φ,  sin²θ = cos²φ,",
+          {
+            "text": "(squaring removes the minus sign)",
+            "added": true
+          },
           "cos θ sin θ = (−sin φ)(cos φ) = −sin φ cos φ",
           {
             "text": "\\begin{bmatrix} \\cos^2\\theta & \\cos\\theta\\sin\\theta \\\\ \\cos\\theta\\sin\\theta & \\sin^2\\theta \\end{bmatrix}",
@@ -148,6 +153,20 @@
           "Substituting into the diagonal but leaving the off-diagonal entries in θ.",
           "Losing the minus sign on the off-diagonal entries.",
           "Substituting into the SECOND matrix, which is already in φ and must be left alone."
+        ],
+        "lines_compact": [
+          "cos²θ = sin²φ,  sin²θ = cos²φ,",
+          "cos θ sin θ = (−sin φ)(cos φ) = −sin φ cos φ",
+          {
+            "text": "\\begin{bmatrix} \\cos^2\\theta & \\cos\\theta\\sin\\theta \\\\ \\cos\\theta\\sin\\theta & \\sin^2\\theta \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "= \\begin{bmatrix} \\sin^2\\phi & -\\sin\\phi\\cos\\phi \\\\ -\\sin\\phi\\cos\\phi & \\cos^2\\phi \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -160,9 +179,34 @@
         "memory_tip": "Each entry is a difference of two identical products, so each cancels to zero.",
         "lines": [
           "Multiplying row by column:",
+          {
+            "text": "(the second matrix has rows (cos²φ, cosφ sinφ)",
+            "added": true
+          },
+          {
+            "text": "  and (cosφ sinφ, sin²φ))",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "(1,1): sin²φ · cos²φ + (−sinφ cosφ)(cosφ sinφ)",
+            "added": true
+          },
           "Entry (1,1):  sin²φ cos²φ − sin²φ cos²φ = 0",
+          {
+            "text": "(1,2): sin²φ · cosφ sinφ + (−sinφ cosφ) sin²φ",
+            "added": true
+          },
           "Entry (1,2):  sin³φ cos φ − sin³φ cos φ = 0",
+          {
+            "text": "(2,1): (−sinφ cosφ) cos²φ + cos²φ · cosφ sinφ",
+            "added": true
+          },
           "Entry (2,1):  −sin φ cos³φ + sin φ cos³φ = 0",
+          {
+            "text": "(2,2): (−sinφ cosφ)(cosφ sinφ) + cos²φ sin²φ",
+            "added": true
+          },
           "Entry (2,2):  −sin²φ cos²φ + sin²φ cos²φ = 0",
           {
             "text": "∴ The product is the zero matrix O.",
@@ -198,9 +242,20 @@
           "Writing \"= 0\" instead of \"= O\" — the answer is a matrix.",
           "Showing one entry is zero and asserting the other three.",
           "Multiplying entry by entry instead of row by column."
+        ],
+        "lines_compact": [
+          "Multiplying row by column:",
+          "Entry (1,1):  sin²φ cos²φ − sin²φ cos²φ = 0",
+          "Entry (1,2):  sin³φ cos φ − sin³φ cos φ = 0",
+          "Entry (2,1):  −sin φ cos³φ + sin φ cos³φ = 0",
+          "Entry (2,2):  −sin²φ cos²φ + sin²φ cos²φ = 0",
+          {
+            "text": "∴ The product is the zero matrix O.",
+            "style": "boxed"
+          }
         ]
       }
     ]
   },
-  "insider_note": "Use θ = π/2 + φ to rewrite the FIRST matrix entirely in φ — comparing two different angles directly gets nowhere. cos θ = −sin φ, and that minus sign is what cancels everything."
+  "insider_note": "Use θ = π/2 + φ to rewrite the FIRST matrix entirely in φ; cos θ = −sin φ, and that minus sign is what cancels everything. (Multiplying first also works: every entry carries the factor cos(θ − φ) = cos(π/2) = 0.)"
 }

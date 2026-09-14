@@ -56,7 +56,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.197, chapter 9 DIFFERENTIATION, Short Answer question 1(i). **Only the question was taken. The solution, the step order and the mark split are this answer book’s own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK’S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. The book sets ONE shared instruction over nine sub-parts, so the stem here is that instruction written out for this sub-part alone; nothing in it was altered, and the question now reads on its own. The book prints exam-appearance years against this sub-part — Mar-2018(AP), 2015(TS), 2016, 2010, 2002 — one of only three questions in the whole 98-page volume that carries any. They are recorded in appearances[] exactly as printed: 2018 tagged ap_ipe, 2015 tagged ts_ipe, and 2016, 2010 and 2002 left without a board, because the book names no board for those three. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8 under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.197, chapter 9 DIFFERENTIATION, Short Answer question 1(i). **Only the question was taken. The solution, the step order and the mark split are this answer book’s own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK’S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. The book sets ONE shared instruction over nine sub-parts, so the stem here is that instruction written out for this sub-part alone; nothing in it was altered, and the question now reads on its own. The book prints exam-appearance years against this sub-part — Mar-2018(AP), 2015(TS), 2016, 2010, 2002 — one of only three questions in the whole 98-page volume that carries any. They are recorded in appearances[] exactly as printed: 2018 tagged ap_ipe, 2015 tagged ts_ipe, and 2016, 2010 and 2002 left without a board, because the book names no board for those three. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8 under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — name the definition you start from and the identity you use on the numerator.",
   "answer": {
@@ -78,8 +78,10 @@
             "style": "heading"
           },
           "Let f(x) = sin 2x",
+          "(the definition of the derivative from the first principle)",
           "By the first principle,",
           "f′(x) = lim(h → 0) [f(x + h) − f(x)]/h",
+          "(f(x + h) = sin 2(x + h) = sin(2x + 2h))",
           "= lim(h → 0) [sin(2x + 2h) − sin 2x]/h"
         ],
         "recall": {
@@ -119,9 +121,26 @@
         "mark_note": "Method",
         "margin_note": "Second mark. Choosing the sum-to-product form is the decision the examiner looks for: it turns a difference of two sines into a product that has sin h in it.",
         "lines": [
+          {
+            "text": "(the formula for sin C − sin D)",
+            "added": true
+          },
           "sin C − sin D = 2 cos((C+D)/2) sin((C−D)/2)",
+          {
+            "text": "(C + D = 4x + 2h, half of it is 2x + h;",
+            "added": true
+          },
+          {
+            "text": "  C − D = 2h, half of it is h)",
+            "style": "indent",
+            "added": true
+          },
           "Here C = 2x + 2h and D = 2x, so",
           "(C+D)/2 = 2x + h  and  (C−D)/2 = h",
+          {
+            "text": "(put these into the formula)",
+            "added": true
+          },
           "f′(x) = lim(h → 0) [2 cos(2x + h) sin h]/h"
         ],
         "recall": {
@@ -146,12 +165,18 @@
             "sin h"
           ]
         },
-        "why": "The numerator is a difference of two sines. Sum-to-product turns it into a product, and only a product can be separated into a factor with an ordinary limit and a factor of the form sin h over h.",
+        "why": "The numerator is a difference of two sines. Sum-to-product turns it into a product, which separates into a factor with an ordinary limit and a factor of the form sin h over h.",
         "common_mistakes": [
           "Using sin C + sin D = 2 sin((C+D)/2) cos((C−D)/2), which is the wrong member of the pair.",
           "Halving only one of the two angles."
         ],
-        "memory_tip": "sin minus sin puts the cosine outside and the sine inside: 2 cos(half sum) sin(half difference)."
+        "memory_tip": "sin minus sin puts the cosine outside and the sine inside: 2 cos(half sum) sin(half difference).",
+        "lines_compact": [
+          "sin C − sin D = 2 cos((C+D)/2) sin((C−D)/2)",
+          "Here C = 2x + 2h and D = 2x, so",
+          "(C+D)/2 = 2x + h  and  (C−D)/2 = h",
+          "f′(x) = lim(h → 0) [2 cos(2x + h) sin h]/h"
+        ]
       },
       {
         "id": "s3_standard_limit",
@@ -159,8 +184,12 @@
         "label": "Arrange sin h over h",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Third mark. The standard limit applies only when the angle inside the sine equals the whole denominator. Here it already does, so no adjusting factor is needed.",
+        "margin_note": "Third mark. The standard limit lim sin t/t = 1 is used when the angle inside the sine equals the denominator. Here it already does, so no adjusting factor is needed.",
         "lines": [
+          {
+            "text": "(write [2 cos(2x + h) sin h]/h as 2 cos(2x + h) · (sin h)/h)",
+            "added": true
+          },
           "= lim(h → 0) 2 cos(2x + h) · (sin h)/h",
           "The angle in sin h matches the h below it, so",
           "the standard limit (sin h)/h → 1 applies"
@@ -192,7 +221,12 @@
           "Cancelling sin h against h as though they were equal.",
           "Multiplying by an extra 2 to make the angles match, when they already match."
         ],
-        "memory_tip": "The standard limit needs the same angle above and below. Check the two agree before using it."
+        "memory_tip": "The standard limit needs the same angle above and below. Check the two agree before using it.",
+        "lines_compact": [
+          "= lim(h → 0) 2 cos(2x + h) · (sin h)/h",
+          "The angle in sin h matches the h below it, so",
+          "the standard limit (sin h)/h → 1 applies"
+        ]
       },
       {
         "id": "s4_answer",
@@ -202,6 +236,10 @@
         "mark_note": "Answer",
         "margin_note": "Last mark. The 2 in front is the derivative of the inside angle 2x. It comes out of the sum-to-product step, not from anywhere else.",
         "lines": [
+          {
+            "text": "(cos is continuous, so cos(2x + h) → cos 2x)",
+            "added": true
+          },
           "As h → 0, cos(2x + h) → cos 2x and (sin h)/h → 1",
           "f′(x) = 2 · cos 2x · 1",
           {
@@ -235,7 +273,15 @@
           "Giving cos 2x and losing the factor 2.",
           "Letting h → 0 inside sin h but not inside cos(2x + h)."
         ],
-        "memory_tip": "The number multiplying x inside the sine comes out in front: sin 2x gives 2 cos 2x."
+        "memory_tip": "The number multiplying x inside the sine comes out in front: sin 2x gives 2 cos 2x.",
+        "lines_compact": [
+          "As h → 0, cos(2x + h) → cos 2x and (sin h)/h → 1",
+          "f′(x) = 2 · cos 2x · 1",
+          {
+            "text": "∴ d/dx (sin 2x) = 2 cos 2x",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.211, chapter 10 APPLICATIONS OF DERIVATIVES, the ERRORS AND APPROXIMATIONS sub-section, Very Short Answer question 6. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box, and the question numbering restarts in each, so the sub-section is named here; we ship the chapter as ONE unit, ordered by the syllabus. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks, printed over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answers were checked before they were written: the exact volume change is (4/3)π[(20.01)³ − 20³] = 16.008π cm³ against the approximation 16π cm³, and the exact surface-area change is 4π[(20.01)² − 20²] = 1.6004π cm² against 1.6π cm²."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.211, chapter 10 APPLICATIONS OF DERIVATIVES, the ERRORS AND APPROXIMATIONS sub-section, Very Short Answer question 6. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box, and the question numbering restarts in each, so the sub-section is named here; we ship the chapter as ONE unit, ordered by the syllabus. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks, printed over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answers were checked before they were written: the exact volume change is (4/3)π[(20.01)³ − 20³] = 16.008π cm³ against the approximation 16π cm³, and the exact surface-area change is 4π[(20.01)² − 20²] = 1.6004π cm² against 1.6π cm². LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say what the given 0.02 cm is an error in, and what you must do to it first.",
   "answer": {
@@ -45,7 +45,7 @@
         "label": "Halve the diameter and its error",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. The DIAMETER is measured, not the radius. Both the 40 and the 0.02 are halved before either formula is used. Marks are lost here more often than in the substitution.",
+        "margin_note": "First mark. The DIAMETER is measured, not the radius. Both the 40 and the 0.02 are halved before either formula is used. Marks are often lost here.",
         "memory_tip": "Diameter given, radius needed: halve the value AND halve the error. 40 to 20, and 0.02 to 0.01.",
         "lines": [
           {
@@ -53,10 +53,15 @@
             "style": "heading"
           },
           "Let r be the radius of the sphere, so the diameter is 2r.",
+          "(divide both sides by 2)",
           "2r = 40   ⇒   r = 20 cm",
-          "The error is made in the DIAMETER, so the error in 2r is 0.02 cm.",
+          "The error is made in the DIAMETER,",
+          "so the error in 2r is 0.02 cm.",
+          "(the error in 2r is 2 times the error in r)",
           "2 · dr = 0.02   ⇒   dr = 0.01 cm",
+          "(d/dr of (4/3)πr³ is (4/3)π · 3r² = 4πr²)",
           "V = (4/3)πr³   ⇒   dV = 4πr² · dr",
+          "(d/dr of 4πr² is 8πr)",
           "S = 4πr²   ⇒   dS = 8πr · dr"
         ],
         "recall": {
@@ -96,12 +101,32 @@
         "margin_note": "Second mark. Two answers are wanted, so both must be written. Leaving them in terms of π is accepted; the decimals are added here for the reader.",
         "memory_tip": "dV uses the surface area 4πr², and dS uses 8πr. Volume error is in cm³, surface-area error in cm².",
         "lines": [
+          {
+            "text": "(put r = 20 and dr = 0.01; 20² = 400)",
+            "added": true
+          },
           "dV = 4πr² · dr = 4π(20)²(0.01) = 4π(400)(0.01)",
+          {
+            "text": "(400 × 0.01 = 4, and 4π × 4 = 16π ≈ 50.27)",
+            "added": true
+          },
           "= 16π cm³ ≈ 50.27 cm³",
+          {
+            "text": "(8 × 20 × 0.01 = 1.6)",
+            "added": true
+          },
           "dS = 8πr · dr = 8π(20)(0.01)",
+          {
+            "text": "(1.6π ≈ 1.6 × 3.1416 ≈ 5.03)",
+            "added": true
+          },
           "= 1.6π cm² ≈ 5.03 cm²",
           {
-            "text": "∴ error in volume ≈ 16π cm³  and  error in surface area ≈ 1.6π cm²",
+            "text": "∴ error in volume ≈ 16π cm³",
+            "style": "boxed"
+          },
+          {
+            "text": "and  error in surface area ≈ 1.6π cm²",
             "style": "boxed"
           }
         ],
@@ -127,10 +152,24 @@
             "square centimetres"
           ]
         },
-        "why": "dV/dr = 4πr² is the surface area itself, which is the reason a thin shell of thickness dr has volume 4πr²·dr. Both answers here are absolute errors and carry units. A percentage question would instead want the relative errors: since V is r³ and S is r², dV/V = 3(dr/r) and dS/S = 2(dr/r) — the exponent multiplies the relative error.",
+        "why": "dV/dr = 4πr² is the surface area itself, so a thin shell of thickness dr has volume approximately 4πr²·dr. Both answers here are absolute errors and carry units. A percentage question would instead want the relative errors: since V is a constant times r³ and S is a constant times r², dV/V = 3(dr/r) and dS/S = 2(dr/r) — the exponent multiplies the relative error.",
         "common_mistakes": [
           "Answering only for the volume and leaving the surface area out.",
           "Writing the volume error in cm² and the surface-area error in cm³."
+        ],
+        "lines_compact": [
+          "dV = 4πr² · dr = 4π(20)²(0.01) = 4π(400)(0.01)",
+          "= 16π cm³ ≈ 50.27 cm³",
+          "dS = 8πr · dr = 8π(20)(0.01)",
+          "= 1.6π cm² ≈ 5.03 cm²",
+          {
+            "text": "∴ error in volume ≈ 16π cm³",
+            "style": "boxed"
+          },
+          {
+            "text": "and  error in surface area ≈ 1.6π cm²",
+            "style": "boxed"
+          }
         ]
       }
     ]

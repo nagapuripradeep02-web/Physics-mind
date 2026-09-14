@@ -1,0 +1,87 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_hrs_spermiogenesis_spermiation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Human Reproduction (Zoology-II)"
+  },
+  "chapter": "Human Reproductive System",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define spermiogenesis and spermiation.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Spermiogenesis",
+      "marks": 1
+    },
+    {
+      "label": "Spermiation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.55, VSAQ 107. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Content revision (examiner audit, 2026-09-05): the insider note no longer says the two words differ by three letters, which is false; it now names the shared prefix and the two meanings."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Human Reproductive System · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_spermiogenesis",
+        "kind": "text",
+        "label": "Spermiogenesis",
+        "marks": 1,
+        "mark_note": "Spermiogenesis",
+        "why": "A round spermatid cannot swim, so it must first be rebuilt into a streamlined cell with a tail.",
+        "common_mistakes": [
+          "Confusing it with spermatogenesis, the whole process of sperm formation.",
+          "Making it the release step. That is spermiation."
+        ],
+        "memory_tip": "Spermiogenesis makes the shape; spermiation sets it free.",
+        "margin_note": "Two definitions, one line each.",
+        "lines": [
+          "Spermiogenesis is the process in which",
+          "spermatids change into spermatozoa."
+        ]
+      },
+      {
+        "id": "s2_spermiation",
+        "kind": "boxed_final",
+        "label": "Spermiation",
+        "marks": 1,
+        "mark_note": "Spermiation",
+        "why": "The sperm are held by the Sertoli cells until they are ready, and spermiation is the moment they are let go.",
+        "common_mistakes": [
+          "Saying the sperm are released into the epididymis. They are released from the tubule.",
+          "Giving only one of the two definitions."
+        ],
+        "memory_tip": "Spermiation is release from the seminiferous tubule.",
+        "margin_note": "Keep the contrast in the same words.",
+        "lines": [
+          {
+            "text": "Spermiation is their release from the tubules",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Both words begin with 'spermi' and then differ. Spermiogenesis is the change of shape, spermatid into spermatozoon. Spermiation is the release of those sperm from the seminiferous tubules, one step later."
+}

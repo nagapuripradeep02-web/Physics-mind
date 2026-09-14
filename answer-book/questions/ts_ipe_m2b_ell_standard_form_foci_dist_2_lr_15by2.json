@@ -49,7 +49,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.60 — SAQ chapter 8 Ellipse, answer 64, on a ★★★ SSP page (book p.49 chapter table). Printed appearances: AP 18 · TS 15,22. This same question also appears in the Bullet Model Paper's Q13 & 14: Ellipse section (book p.108), a verbatim repeat — no extra card is authored for it. Book p.60 prints NO margin mark tags or tick boxes at all for answers 64-66 (a plain single-derivation layout, unlike the multi-part answers 58-63), so the 1+1+1+1 split here is OURS, patterned on the four natural stages of the derivation. The book's working factors 4a² − 15a − 4 = 0 as (a − 4)(4a + 1) = 0 and correctly rejects the negative root; this card re-derives the same factorisation and keeps the same final equation. Ellipse is an SAQ-ONLY unit on the book's IPE Blue Print (book p.5). No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE BLM on hand; the book's five Guess Papers pp.118-127 are the orchestrator's back-test stand-in). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.60 — SAQ chapter 8 Ellipse, answer 64, on a ★★★ SSP page (book p.49 chapter table). Printed appearances: AP 18 · TS 15,22. This same question also appears in the Bullet Model Paper's Q13 & 14: Ellipse section (book p.108), a verbatim repeat — no extra card is authored for it. Book p.60 prints NO margin mark tags or tick boxes at all for answers 64-66 (a plain single-derivation layout, unlike the multi-part answers 58-63), so the 1+1+1+1 split here is OURS, patterned on the four natural stages of the derivation. The book's working factors 4a² − 15a − 4 = 0 as (a − 4)(4a + 1) = 0 and correctly rejects the negative root; this card re-derives the same factorisation and keeps the same final equation. Ellipse is an SAQ-ONLY unit on the book's IPE Blue Print (book p.5). No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE BLM on hand; the book's five Guess Papers pp.118-127 are the orchestrator's back-test stand-in). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "insider_note": "Reject the negative root for a without comment loss — a length can never be negative, and writing that one line is often the exact phrase an examiner is checking for.",
   "answer": {
@@ -73,6 +73,8 @@
           },
           "Let the ellipse be x²/a² + y²/b² = 1,",
           "with foci S(ae, 0), S′(−ae, 0)",
+          "(a > b, and b² = a²(1 − e²))",
+          "SS′ = ae − (−ae) = 2ae.",
           "Distance between foci S, S′ is 2 ⇒ 2ae = 2",
           "⇒ ae = 1 …(1)"
         ],
@@ -91,13 +93,25 @@
         "margin_note": "Second mark. This gives b² in terms of a — keep it as an expression, not a number yet.",
         "memory_tip": "Latus rectum = 2b²/a — rearrange it to isolate b² when a is still unknown.",
         "lines": [
+          {
+            "text": "The latus rectum has length 2b²/a.",
+            "added": true
+          },
           "Length of latus rectum is 15/2",
-          "⇒ 2b²/a = 15/2 ⇒ b² = 15a/4 …(2)"
+          "⇒ 2b²/a = 15/2 ⇒ b² = 15a/4 …(2)",
+          {
+            "text": "(multiply both sides by a/2)",
+            "added": true
+          }
         ],
         "why": "With two unknowns (a and b) and two given conditions, each condition is turned into one equation, to be combined afterwards using b² = a²(1 − e²).",
         "common_mistakes": [
           "Solving for b² as a plain number instead of leaving it in terms of a, which is needed for the next step.",
-          "Multiplying instead of dividing by a when rearranging 2b²/a = 15/2."
+          "Dividing by a instead of multiplying by a when rearranging 2b²/a = 15/2, which gives b² = 15/(4a) instead of 15a/4."
+        ],
+        "lines_compact": [
+          "Length of latus rectum is 15/2",
+          "⇒ 2b²/a = 15/2 ⇒ b² = 15a/4 …(2)"
         ]
       },
       {
@@ -109,6 +123,49 @@
         "margin_note": "Third mark. b² = a² − (ae)² connects the two conditions, since ae = 1 is already known.",
         "memory_tip": "b² = a²(1 − e²) = a² − (ae)² is the bridge formula linking a, b and the foci distance.",
         "lines": [
+          {
+            "text": "Link a and b through b² = a²(1 − e²):",
+            "added": true
+          },
+          "b² = a²(1 − e²) = a² − (ae)² = a² − 1 …(3)",
+          "[since ae = 1]",
+          {
+            "text": "(a²(1 − e²) = a² − a²e², and a²e² = (ae)² = 1)",
+            "added": true
+          },
+          "From (2) and (3):",
+          "15a/4 = a² − 1 ⇒ 4a² − 15a − 4 = 0",
+          {
+            "text": "(multiply by 4: 15a = 4a² − 4, then move 15a)",
+            "added": true
+          },
+          {
+            "text": "Factorise: two numbers with product",
+            "added": true
+          },
+          {
+            "text": "  4 × (−4) = −16 and sum −15 are −16 and 1:",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "4a² − 16a + a − 4 = 4a(a − 4) + 1(a − 4)",
+            "added": true
+          },
+          "⇒ (a − 4)(4a + 1) = 0 ⇒ a = 4 or a = −1/4",
+          "a cannot be negative, so a = 4",
+          {
+            "text": "(a is half the length of the major axis)",
+            "added": true
+          },
+          "⇒ b² = a² − 1 = 16 − 1 = 15"
+        ],
+        "why": "b² = a²(1 − e²) rewrites as a² − (ae)², and since ae = 1 is already known from step 1, this turns the latus-rectum equation into a single quadratic in a alone.",
+        "common_mistakes": [
+          "Keeping the negative root a = −1/4, which gives no valid ellipse.",
+          "Forgetting to substitute b² = 15a/4 from step 2 and instead guessing a value for a."
+        ],
+        "lines_compact": [
           "b² = a²(1 − e²) = a² − (ae)² = a² − 1 …(3)",
           "[since ae = 1]",
           "From (2) and (3):",
@@ -116,11 +173,6 @@
           "⇒ (a − 4)(4a + 1) = 0 ⇒ a = 4 or a = −1/4",
           "a cannot be negative, so a = 4",
           "⇒ b² = a² − 1 = 16 − 1 = 15"
-        ],
-        "why": "b² = a²(1 − e²) rewrites as a² − (ae)², and since ae = 1 is already known from step 1, this turns the latus-rectum equation into a single quadratic in a alone.",
-        "common_mistakes": [
-          "Keeping the negative root a = −1/4, which gives no valid ellipse.",
-          "Forgetting to substitute b² = 15a/4 from step 2 and instead guessing a value for a."
         ]
       },
       {
@@ -134,14 +186,34 @@
         "lines": [
           "a² = 16, b² = 15",
           {
+            "text": "Put these in x²/a² + y²/b² = 1:",
+            "added": true
+          },
+          {
             "text": "Equation of the ellipse: x²/16 + y²/15 = 1",
             "style": "boxed"
+          },
+          {
+            "text": "Check: 2b²/a = 30/4 = 15/2, and",
+            "added": true
+          },
+          {
+            "text": "  ae = √(a² − b²) = √1 = 1.",
+            "style": "indent",
+            "added": true
           }
         ],
         "why": "Once a² and b² are both known numbers, the standard form x²/a² + y²/b² = 1 is complete.",
         "common_mistakes": [
           "Swapping a² and b² in the final equation.",
           "Writing a instead of a² in the denominator."
+        ],
+        "lines_compact": [
+          "a² = 16, b² = 15",
+          {
+            "text": "Equation of the ellipse: x²/16 + y²/15 = 1",
+            "style": "boxed"
+          }
         ]
       }
     ]

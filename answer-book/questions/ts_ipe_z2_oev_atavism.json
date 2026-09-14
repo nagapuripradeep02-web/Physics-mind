@@ -1,0 +1,96 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_oev_atavism",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Organic Evolution (Zoology-II)"
+  },
+  "chapter": "Organic Evolution",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define atavism with an example.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "An example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.57, VSAQ 120. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Organic Evolution · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_def",
+        "kind": "text",
+        "label": "Definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "why": "The gene for the ancestral organ is still present, so it can occasionally be expressed again.",
+        "common_mistakes": [
+          "Defining atavism as any birth defect. It is the return of a vestigial organ.",
+          "Leaving out 'better developed condition'."
+        ],
+        "memory_tip": "An old ancestral feature reappearing well developed.",
+        "margin_note": "The word vestigial carries the mark.",
+        "lines": [
+          "Atavism is the sudden reappearance of some",
+          "vestigial organs in a better developed",
+          "condition."
+        ]
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "An example",
+        "marks": 1,
+        "mark_note": "Example",
+        "why": "The human tail bone is a vestige, and very rarely a baby is born with the tail itself.",
+        "common_mistakes": [
+          "Giving a vestigial organ as the example. The example must be one that REAPPEARED.",
+          "Leaving the example out."
+        ],
+        "memory_tip": "A baby born with a tail is the standard example.",
+        "margin_note": "One line for the example.",
+        "lines": [
+          {
+            "text": "Example: a human baby born with a tail",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "The word 'vestigial' must appear. Atavism is a vestigial organ coming back, not just any unusual feature."
+}

@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_end_fight_flight_hormone",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Human Anatomy and Physiology-IV (Zoology-II)"
+  },
+  "chapter": "Endocrine System",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Which hormone is commonly known as fight and flight hormone?",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The hormones",
+      "marks": 1
+    },
+    {
+      "label": "Where they come from",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.52, VSAQ 94. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Endocrine System · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_hormones",
+        "kind": "text",
+        "label": "The hormones",
+        "marks": 1,
+        "mark_note": "The hormones",
+        "why": "They prepare the body for sudden effort, which is either to fight or to run away.",
+        "common_mistakes": [
+          "Naming cortisol. That is the stress hormone of the cortex, not the emergency one.",
+          "Giving only one of the two names."
+        ],
+        "memory_tip": "Adrenaline and noradrenaline, also called epinephrine and norepinephrine.",
+        "margin_note": "Both names, then the gland.",
+        "lines": [
+          "Epinephrine and norepinephrine are called",
+          "the fight and flight hormones."
+        ]
+      },
+      {
+        "id": "s2_source",
+        "kind": "boxed_final",
+        "label": "Where they come from",
+        "marks": 1,
+        "mark_note": "Source",
+        "why": "The medulla is nerve tissue, so it can pour out its hormones the instant a nerve signal arrives.",
+        "common_mistakes": [
+          "Naming the adrenal cortex. These come from the medulla.",
+          "Leaving out the source."
+        ],
+        "memory_tip": "Medulla is the inner part of the adrenal gland.",
+        "margin_note": "Name the exact part of the gland.",
+        "lines": [
+          {
+            "text": "They are secreted by the adrenal medulla",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Two hormones are named, not one. Give both, and name the adrenal medulla as their source."
+}

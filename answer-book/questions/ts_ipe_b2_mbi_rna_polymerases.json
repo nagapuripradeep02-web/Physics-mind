@@ -43,9 +43,9 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.33, printed question 40. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.33, printed question 40. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. Examiner audit revision (2026-09-05): the insider note said three enzymes, three products, which primes the one-product-each error that two of the card's own mistake lines exist to correct, since pol I and pol III have three products each; it now says each enzyme has its own set of products."
   },
-  "insider_note": "Three enzymes, three products. Write them as a three-row table if you can — it is faster and impossible to misread.",
+  "insider_note": "Three enzymes, each with its own set of products. Write them as a three-row table if you can — it is faster and easier to read. Pol I and pol III have three products each, so do not stop at one.",
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

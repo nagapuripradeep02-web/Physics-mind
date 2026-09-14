@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.92 — VSAQ chapter 18 T-Ratios upto Transformations, answer 124.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: none — this answer carries no year tag. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four or six questions to a page in two columns. It is not a bare guess on two counts: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, and THIS chapter's own header note reads \"Writing Formula itself gets you 1 Mark in these Questions\" — which is why the first step of every answer here IS the formula or the set-up. The book's chapter header carries ★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because T-Ratios holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q8 and Q9 are the two T-Ratios slots."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.92 — VSAQ chapter 18 T-Ratios upto Transformations, answer 124.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: none — this answer carries no year tag. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four or six questions to a page in two columns. It is not a bare guess on two counts: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, and THIS chapter's own header note reads \"Writing Formula itself gets you 1 Mark in these Questions\" — which is why the first step of every answer here IS the formula or the set-up. The book's chapter header carries ★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because T-Ratios holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q8 and Q9 are the two T-Ratios slots. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — name the formula you use and how you finish.",
   "answer": {
@@ -52,6 +52,7 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "Split the fraction, to see k:",
           "f(x) = cos((4x + 9)/5) = cos((4/5)x + 9/5)",
           "Period of cos(kx + l) = 2π/|k|"
         ],
@@ -93,7 +94,15 @@
         "memory_tip": "Dividing by a fraction means multiplying by its reciprocal: 2π ÷ (4/5) = 2π × 5/4.",
         "lines": [
           "Here k = 4/5",
+          {
+            "text": "(dividing by 4/5 is multiplying by 5/4)",
+            "added": true
+          },
           "Period = 2π/(4/5) = 2π × 5/4 = 10π/4",
+          {
+            "text": "(10π/4: divide top and bottom by 2)",
+            "added": true
+          },
           {
             "text": "= 5π/2",
             "style": "boxed"
@@ -125,6 +134,14 @@
         "common_mistakes": [
           "Multiplying by 4/5 instead of dividing.",
           "Leaving 10π/4 uncancelled."
+        ],
+        "lines_compact": [
+          "Here k = 4/5",
+          "Period = 2π/(4/5) = 2π × 5/4 = 10π/4",
+          {
+            "text": "= 5π/2",
+            "style": "boxed"
+          }
         ]
       }
     ]

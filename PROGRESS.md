@@ -41,6 +41,383 @@ Product numbers computed from the runs (§22): routed single solver ≈ $2.5–3
 **Done 2026-09-11 on the app desk (`feat/eapcet-app`, local commit):** the `ep_solve_cache`/`ep_solve_reports` migration, the `ep-solve` function and the Solutions-tab photo flow are built to generator doc §9, curl-proved (lock, three official keys matched, cache hit, report, the 20/day cap) and deployed to the preview worker — details in the app desk's `PROGRESS.md` and memory `project_eapcet_solver_v1_deployed`. Two lessons: the intake transcript of the same photo differs between reads (the cache is trigram similarity + every number equal), and Gemini 3.x rejects `thinkingBudget: 0`.
 
 Next, measure the intake classifier: `has_figure` + subject accuracy of a Flash-Lite structured call on the 238 labelled probe photos already on disk (148 figure, 90 text) — needs nothing from the founder and is gate (a) of the generator doc §8. Then, on the app desk `physics-mind-eapcet-app`, the `ep_solve_cache` migration and the `ep-solve` function from the `ep-photo-read` skeleton, in the order of generator doc §9. The reviewer measurement (Run 14) starts the day the handwriting photos arrive.
+## 📗 SESSION — Maths-1B complete: all ten chapters written out in full, 375 cards (2026-09-14, `feat/answerbook-maths-1b-worked-in-full`)
+
+**Bottom line: every Maths-1B card is written out at the Maths-1A level, with a Simplify button on every mark. Each chapter was examined by sympy-backed Opus examiners and every verified finding was fixed. The founder said "no need for my approval just do the chapters as you did for maths 1A, 2A and 2B", so there was no sample card. Each chapter is three commits: base fix, expansion, examiner fixes.**
+
+| chapter | cards | lines | Simplify buttons | base fixes | examiner findings fixed |
+|---|---|---|---|---|---|
+| Applications of Derivatives | 89 | 1,567 → 2,488 | 146 | reflow (253 lines), ASCII, wording | 134 |
+| The Straight Line | 86 | 1,413 → 2,528 | 182 | reflow (68 lines) + 2 corrected arguments | 90 |
+| Differentiation | 72 | 1,222 → 2,020 | 154 | wording, Unicode powers, reflow | 114 |
+| Limits + Continuity | 36 + 7 | 624 → 971 | 56 | wording, Unicode, reflow | 71 |
+| Pair of Straight Lines | 22 | 516 → 943 | 67 | wording, reflow | 91 |
+| Locus | 17 | 223 → 428 | 49 | wording, reflow | 77 (with Plane) |
+| The Plane | 16 | 159 → 253 | 16 | wording, reflow | (with Locus) |
+| Three Dimensional Coordinates | 13 | 143 → 245 | 13 | wording, reflow | 91 (with TA + DC) |
+| Transformation of Axes | 9 | 139 → 229 | 27 | wording, reflow | (with 3D) |
+| Direction Cosines and Ratios | 8 | 227 → 361 | 29 | wording, reflow | (with 3D) |
+
+### Verified
+`check_cards --prefix ts_ipe_m1b_` 375/375 · measure_wrap 0 of 14,301 lines · `ascii_fields`: 0 outside the question headers (below) · sweep_simplify: every button pressed in every chapter, no defects beyond the CORS font console errors · sweep_typeset_width 0 problems · `find_label_clashes`: no collisions. tsc and vitest were not run, because this branch changes only card JSON.
+
+### Base lines the examiners showed were false (every boxed answer was correct)
+- **Pair of Lines.** `pl_angular_bisectors_proof`: the split now carries a constant k. Without it the identity forces |a|, |b| ≤ 1. `pl_area_triangle_proof`: the split was missing the factor b.
+- **Locus.** `loc_area_*` (two cards): the ½-determinant area formula now carries its modulus on every line. Without it the condition gives one line, not the two in the answer.
+- **Plane.** `pln_dcs_of_normal`: "the d.c's of the plane" now reads "the d.c's of the normal to the plane".
+- **3D.** `td_yz_plane_ratio` now reads "the ratio in which".
+- **Differentiation.**
+  - Sin⁻¹x − Sin⁻¹y = 2 Cot⁻¹a holds only for a > 0, so the constant is now c.
+  - Boxed answers now carry their ranges: 1/2 < x < 1, and x > −1/2.
+  - k ∈ Z; cosec in lower case.
+- **Limits.** x → 2⁻ now reads "so we may take 1 < x < 2", and (aˣ − 1)/x → logₑa carries a > 0.
+- **Straight Line.** 1/2h is written as 1/(2h).
+
+### What the examiners found, in one line
+The same classes as in 1A and 2B:
+- valid methods called mistakes;
+- common mistakes whose slip does not give the stated result;
+- rules missing their conditions: h² ≥ ab for a homogeneous pair, a constant difference less than AB for a hyperbola, a nonzero constant for intercept form, proportional rather than equal coefficients for parallel planes;
+- letter clashes: a as a circle's radius and as a coefficient; p, q next to the distances p₁, p₂;
+- overclaims ("always factors", "the check") and idioms (settle, handed, feed back, lean apart).
+
+### Teacher-verification flags
+- `loc_right_angle_hypotenuse_0_6_6_0` now notes that A and B satisfy the equation but are not on the locus. The boxed equation is unchanged; a teacher should say whether the board expects the exclusion written.
+- `pl_angular_bisectors_proof` now uses k in the split; textbooks print the proof without it.
+- Question headers are not edited. 14 still carry ASCII powers:
+  - `ad_normal_subnormal_catenary`, `ad_rolle_x_x_plus_3_e_minus_x_over_2`, `ad_subtangent_constant_subnormal_y2_over_a`, `ad_tangent_normal_2e_minus_x_over_3_y_axis`
+  - `dif_ax_n_plus_1_plus_bx_minus_n`, `dif_cos_inverse_a_cos_x_plus_b`, `dif_log_diff_fractional_powers`, `dif_sin_x_power_x_plus_x_power_sin_x`, `dif_x_power_log_y_equals_log_x`, `dif_x_power_tan_x_plus_sin_x_power_cos_x`, `dif_x_power_y_plus_y_power_x_equals_ab`, `dif_xy_equals_e_x_minus_y`
+  - `lim_e_power_sin_x_minus_1_over_x`, `lim_e_x_plus_3_minus_e3_over_x`
+- 2 headers write ℝ: `con_k_squared_x_minus_k_find_k`, `con_x2_and_x_on_r`.
+
+### Next session
+Maths-1B is ready for a PR; the founder merges. With 2A, 2B and 1A merged, all four IPE mathematics papers are written out in full once this merges.
+
+## 📗 SESSION — Maths-1A completed: the remaining eight chapters written out in full, 342 cards (2026-09-14, `feat/answerbook-maths-1a-part-2`)
+
+**Review link (all ten chapters):** https://claude.ai/code/artifact/b84d56a4-e960-4c80-b0cf-69199fdd8095
+
+**Bottom line: after PR #206 (Trigonometry, Matrices), the founder said "do a PR first and start with the next chapters". Every remaining Maths-1A chapter is now written out at the Maths-2B level with Simplify on every mark, examined by sympy-backed examiners, and fixed. With #206, all 556 Maths-1A cards are done.**
+
+| chapter | cards | lines | buttons | pages short → full | base fixes | examiner findings fixed |
+|---|---|---|---|---|---|---|
+| Functions | 73 | 795 → 1,060 | 81 | 78 → 82 | 2 | 22 |
+| Products of Vectors | 72 | 1,126 → 1,557 | 160 | 88 → 100 | 2 | 39 |
+| Sets and Relations | 26 | 241 → 413 | 26 | 26 → 28 | reflow (22.8% wrapped) + 1 | 15 |
+| Addition of Vectors (vec + av) | 37 | 530 → 784 | 74 | 46 → 56 | idiom + 2 wide boxes | 49 |
+| Properties of Triangles | 38 | 505 → 790 | 77 | 42 → 52 | reflow (5.5%) + 1 wrong reason | 61 |
+| Sequences and Series | 25 | 228 → 376 | 25 | 25 → 26 | reflow (11%) + 1 wrong ratio | 28 |
+| Trigonometric Equations | 18 | 331 → 480 | 50 | 24 → 31 | wording + 1 wide box | 50 |
+| Inverse Trigonometric Functions | 19 | 269 → 400 | 41 | 20 → 24 | wording + reflow | 43 |
+| Hyperbolic Functions | 17 | 150 → 233 | 18 | 17 → 17 | wording + 2 ASCII powers | 26 |
+| Mathematical Induction | 17 | 371 → 542 | 66 | 25 → 34 | ASCII powers + wording | 38 |
+
+### Verified
+tsc 0 · `check_cards --prefix ts_ipe_m1a` 556/556 · measure_wrap 0.0% across all 556 Maths-1A cards (15,511 lines, after merging #206's branch in) · vitest 459/459 · `find_label_clashes`: no collisions · sweep_simplify every button pressed in every chapter, no straddle · sweep_typeset_width 0 problems.
+
+### What was new in this session
+- **Base first, per chapter, as its own commit.** Three chapters (Sets and Relations 22.8%, Sequences and Series 11%, Properties of Triangles 5.5%) had been authored before the width rule and wrapped; they were reflowed at word boundaries with a token-equality assert (no words changed) before any expansion. Every chapter also got an idiom/overclaim sweep of its notes before expanding, because the examiners flag the same classes every time: collapse, survives, lands on, trap, legal, route, twin, upside down, "the only …", "the commonest …", "the whole …".
+- **Generated cross products.** Products of Vectors expands every i, j, k determinant component by component from the card's own rows (and every 3×3 box product minor by minor), with the generated lines checked against the printed expansion.
+- **Range arguments added where proofs skipped them:** every "α + β = Sin⁻¹/Cos⁻¹/Tan⁻¹(…)" step in Inverse Trig; the right-angle cases of the circumcentre–orthocentre proofs; the rhombus's planarity; the sign choices in every √(x²) step of Properties of Triangles; the x > 0 choice in cosh x = 5/2.
+
+### What the examiners found, in one line each
+Every boxed answer survived except two, both fixed: `te_sum_x_y_sin_sum` listed only one of the two solution pairs, and `te_one_plus_sin_sq` wrote tanθ = 1/2 ⇒ θ = Tan⁻¹(1/2). `fn_fofof` / `fn_fofofof` also now exclude x = 0 (f(0) = −1 lies outside the stated domain). The rest were explanation fields: notes that called valid methods mistakes (AB × BC, pairing sinθ + sin5θ, the quadratic formula), rules missing a condition (non-zero vectors, xy > 1 needing ±π by sign, k > 0 for sides, base ≠ 1 for equal exponents), row numbering in determinants whose top row is i, j, k, notes one line away from the line they explain, and plain-language breaches. About 30 of the 371 findings were in lines written in this session.
+
+### Teacher-verification flags carried forward
+- `pv_sqp_parallelogram_diagonals` boxes the obtuse angle Cos⁻¹(−√3/√10); the notes now say its supplement is also correct — a teacher should say which one the board expects.
+- `pt_a_eq_b_minus_c_sec` now reads tan θ = ±(2√(bc)/|b − c|) sin(A/2) and explains the sign; textbooks print the unsigned form.
+- `te_infinite_exponent_series` has `8^(…)` in the question text itself (question headers are not edited).
+- From Maths-2B: DE order/degree (Degree = 1 vs 6), ellipse equal intercepts, hyperbola x + 2y = 0 asymptote, the 30° asymptote angle reading, the non-real circle in System of Circles.
+
+### Next session
+**Both merged 2026-09-14** — #206 (`ef94d943`) then #207 retargeted to master (`e9069196`). Maths-1A is complete on master: 556 cards.
+
+Maths-1B is the next and last maths paper — **read `MATHS_1B_HANDOFF.md`** (repo root of the main checkout). In short:
+- Desk `feat/answerbook-maths-1b-worked-in-full` is open at `e9069196`, with the helper kit in `.expansion_kit/` (untracked).
+- 375 cards in 10 units. 16.4% of its lines (863) already wrap, most of them equation or boxed lines, so every chapter needs a hand-assisted reflow in its base commit.
+- 40 working lines and 14 question headers have ASCII carets. Ask the founder whether headers may be fixed.
+- The `mpc` build is already 14.3 MB against the 16 MB artifact limit.
+- First step: base-fix Applications of Derivatives, expand one sample card, show the founder, wait.
+
+## 📗 SESSION — Maths-1A opens: Trigonometry and Matrices written out in full, 214 cards (2026-09-14, `feat/answerbook-maths-1a-worked-in-full`)
+
+**Review link:** https://claude.ai/code/artifact/b84d56a4-e960-4c80-b0cf-69199fdd8095
+
+**Bottom line: the founder approved a Trigonometry LAQ sample (cos_half_squares) and said "do the chapter", then "start matrices", then "do a PR first and start with the next chapters". The two largest Maths-1A chapters are written out at the Maths-2B level with Simplify on every mark, examined, and fixed. 342 of 556 Maths-1A cards remain, on a separate branch.**
+
+| chapter | cards | lines | buttons | pages short → full | examiner defects fixed |
+|---|---|---|---|---|---|
+| Trigonometric Ratios and Transformations | 110 | 1,373 → 2,362 | 221 | 117 → 142 | 45 |
+| Matrices | 104 | 1,500 → 2,768 | 236 | 154 → 198 | 41 |
+
+### Verified
+tsc 0 · `check_cards --prefix ts_ipe_m1a` 556/556 · measure_wrap 0.0% in both chapters (3,218 + 3,155 lines) · vitest 459/459 · `find_label_clashes`: no collisions · sweep_simplify 221/221 and 236/236 pressed, no straddle · sweep_typeset_width (Matrices) 731 lines, 0 problems.
+
+### What was new in this session
+- **Generated explanation lines for numeric work, asserted against the card.** Matrices is 3×3 arithmetic, so determinant expansions, all nine cofactors, every row operation, every product entry and every inverse check were generated from the card's own matrices, and each generator asserts its result equals the card's next printed matrix. That independently recomputed all 13 cofactor matrices and every Gauss-Jordan and rank reduction in the chapter before a word was written. The helpers are scratchpad scripts (`matx.py`, `mat_sys.py`); the pattern is worth keeping for Maths-1B and any other arithmetic-heavy chapter.
+- **Base fixes before expanding, per chapter:** formula reasons that reused the triangle's own letters (cos C − cos D inside a proof about angle C) → x, y / p, q; 13 lines that already wrapped; an ASCII power; a zero-row argument that skipped the consistency condition.
+
+### What the examiners found, in one line each
+Every number and boxed answer in both chapters survived. Defects were in explanation fields (common_mistakes naming a valid route as a mistake on symmetric identities; rules stated as always true — "only the π/2 condition gives cosines", "rank is invisible until reduced", "clearing upwards reintroduces fractions"; miscounts), two working lines that concluded more than they showed ("So A·A⁻¹ = I" after checking one row), one letter clash (A as a matrix and an angle), and 3 of my own lines (a triangle assumed where only an angle sum was given ×2, a mislabelled generated check).
+
+### Next session
+Functions (73), Products of Vectors (72), then the six smaller chapters, on a branch cut from master (`feat/answerbook-maths-1a-worked-in-full-2`), so this PR can merge without waiting.
+
+## 📗 SESSION — MATHS-2B IS COMPLETE: all eight chapters written out in full, 271 cards, Simplify on every mark (2026-09-13/14, `feat/answerbook-maths-2b-worked-in-full`)
+
+**Review link:** https://claude.ai/code/artifact/b9d7229b-5463-4c5f-b6d8-03209cef63df
+
+**Bottom line: the founder approved samples for Circle and Integration, then said "do the rest of the chapters… don't be miser when you are expanding a solution". The whole of Maths-2B now reads at the Maths-2A level, and every mark carries the Simplify button: 271 cards, 3,451 written lines → 6,053, 527 Simplify buttons. Steps, marks, mark splits and labels never changed during expansion (one step label was corrected by an examiner finding, below). One PR for the paper, stacked on #203.**
+
+| chapter | cards | lines | buttons | pages short → full | examiner defects fixed |
+|---|---|---|---|---|---|
+| Circle | 57 | 833 → 1,495 | 109 | 79 → 95 | 6 |
+| Integration | 51 | 514 → 934 | 94 | 63 → 72 | 53 |
+| Definite Integrals | 47 | 575 → 877 | 76 | 55 → 64 | 17 |
+| Differential Equations | 36 | 466 → 728 | 84 | 44 → 50 | 29 |
+| System of Circles | 23 | 294 → 552 | 43 | 25 → 35 | 15 |
+| Ellipse | 21 | 309 → 631 | 57 | 29 → 38 | 18 + 1 figure |
+| Parabola | 20 | 270 → 482 | 33 | 26 → 30 | 14 + 1 figure |
+| Hyperbola | 16 | 190 → 354 | 31 | 19 → 22 | 14 + 1 figure |
+
+### How it was done
+Per chapter: a base commit fixing anything the short (Simplify) view would show wrongly (carets → Unicode or KaTeX; lines an old wrap pass had broken at their first "="; one −144xy that should be −48xy) → the expansion written in `lines[]` → `mark_expansion.py --base <that commit>` → `check_cards` → `measure_wrap` → build `--stream=mpc_2` → `sweep_simplify` (and `sweep_typeset_width` where KaTeX lines exist) → commit → one or two Opus examiners with sympy → every finding verified, then fixed in its own commit. Chapter bases: Circle b3a05f93 · Integration 4373382d · Definite Integrals 93e1f07f · Differential Equations 62b170ee · System of Circles ae47f4c5 · Ellipse, Parabola, Hyperbola eb955fd4.
+
+### Verified (paper level)
+tsc 0 · `check_cards --prefix ts_ipe_m2b` 271/271 (225 KaTeX lines) · `measure_wrap` 7,681 lines, 0 wrapping · vitest 459/459 · `find_label_clashes`: no collisions in the book · paper-wide `sweep_simplify` and `sweep_typeset_width`: sweep_simplify 271 cards, 527 buttons, 527 pressed, 340 → 407 pages, no structural defect; sweep_typeset_width 70 cards, 447 typeset lines (both lengths), 0 problems.
+
+### What the examiners found, in one line each
+Every boxed answer survived re-derivation except one: Differential Equations' y² − x² = c²(x² + y²)² lost solutions and is now c(x² + y²)². The defects were almost all in the explanation fields written before this session (common_mistakes describing a slip that does not give the stated result; memory tips and insider notes that turn a special case into a false rule: "equal intercepts always means slope ±1", "not an asymptote slope, so real tangents", "the ± gives the two tangents through P", "an extra 1/2 makes 16a") and in three figures (tangents that did not touch; an axis arrow pointing the wrong way).
+
+### Flags for a teacher
+- `de_orderdegree_d2y_dy3_pow65` gives Degree = 1; some IPE keys give 6.
+- `ell_tangents_equal_intercepts_9x2_16y2_144` keeps the book's y = ±x ± 5; strictly equal intercepts (same sign) give only x + y ± 5 = 0. The card now says which lines have intercepts equal only in length.
+- `hyp_tangents_parallel_perp_line_x_plus2y_x2_minus4y2_4` keeps the book's boxed x + 2y = 0, which is the asymptote, not a tangent; both lengths now say so.
+- `hyp_eccentricity_given_asymptote_angle_30deg` takes 30° as the angle containing the transverse axis (e = √6 − √2); the 150° reading gives √6 + √2.
+- `sc_orthogonal_find_k_two`: the book's x² + y² + 4x + 8 = 0 is not a real circle; the card keeps k = −8 and says so.
+
+### What the next session would otherwise rediscover
+- `npx tsx` hangs — use `~/.npm/_npx/*/node_modules/.bin/tsx`. There is no `timeout` command on this Mac.
+- `mark_expansion.py` is idempotent, but a hand-edit to `lines_compact` (a base defect fixed after marking) is lost if the card is re-marked against the old base. Re-mark only against a base that already carries the fix.
+- The first step of every card is inked (not flagged), so an anchor check must skip s1: every unflagged line in a later step must equal `lines_compact`.
+- A new line added only to `lines_compact` breaks that invariant — add it to `lines[]` unflagged as well.
+- Examiners find the old explanation fields, not the new working. Brief them to read `why`, `common_mistakes`, `memory_tip`, `margin_note`, `insider_note` and figures, and to flag rules that overgeneralise.
+
+## 📗 SESSION — MATHS-2A IS COMPLETE: all ten chapters written out in full, 257 cards (2026-09-08, `feat/answerbook-binomial-worked-in-full`)
+
+**Bottom line: the founder said "no need to show the samples… go ahead, most cards to least cards", and the remaining seven chapters were authored in one run. The whole paper now reads at the level he set: 257 cards, 3,400 written lines → 5,158. Steps, marks and mark splits never changed.**
+
+| chapter | cards | lines |
+|---|---|---|
+| Permutations and Combinations | 49 | 353 → 774 |
+| Complex Numbers | 38 | 332 → 626 |
+| Binomial Theorem | 34 | 296 → 750 |
+| Quadratic Expressions | 24 | 264 → 452 |
+| Theory of Equations | 24 | 356 → 606 |
+| Probability | 23 | 306 → 502 |
+| De Moivre's Theorem | 22 | 250 → 414 |
+| Partial Fractions | 15 | 205 → 369 |
+| Random Variables | 14 | 223 → 330 |
+| Measures of Dispersion | 14 | 216 → 337 |
+
+### Verified
+tsc 0 · `check:cards` 257/257 (65 KaTeX lines) · `measure:wrap` 5158/5158 lines on ONE ruled row (0.0%) · vitest 85/85 · both builds green · a walk of ALL 257 cards: every one completes on full marks, zero console errors · `find_label_clashes` fleet-wide: 117 figures, no collisions (the pre-existing e2e figure failure is fixed and the sweep PASSES fleet-wide — 43.8 min, confirmed in a full smoke run).
+
+### Examination
+**Eight independent Opus examiners across the session re-derived all 257 cards.** Partial fractions recombined with sympy; every root substituted back; every transformed equation rebuilt from its roots; ranges re-derived from critical points rather than the card's algebra; probabilities as exact Fractions; ω powers numerically with exp(2πi/3); dispersion tables recomputed cell by cell from raw data; word ranks brute-forced against sorted permutations.
+
+**Real defects found and fixed: 9 across 257 cards.** Four malformed radicands (`√(1 + 3 = √4)`), one locus that included the point where it is undefined, one over-claiming validity condition, one rank card that never justified its own count, one mistake-note whose arithmetic contradicted itself, one deviation list described in the wrong order.
+
+### The lesson that repeated
+**A generated batch needs the same sweep applied to EVERY card the generator touched.** The `√(… = …)` bug was caught by eye on two cards, fixed there, and left on four others until an examiner found them. Later in the session a regex sweep of my own work over all 257 cards caught six ASCII exponents (`2^(1/2)`) BEFORE any examiner ran — that is the discipline, and it should be run after every generated batch, not after a defect is reported.
+
+## 📗 SESSION — Complex Numbers written out in full, and the figure sweep is green again (2026-09-08, `feat/answerbook-binomial-worked-in-full`)
+
+**Bottom line: the third chapter, 38 cards, 332 written lines → 626. Three chapters and 121 cards now sit on one branch and one PR (#202). The pre-existing figure-label collision that had been failing the e2e sweep on master is also fixed here.**
+
+### What this chapter adds
+i² = −1 applied on its OWN line with the term written before and after, never as a "(since i² = −1)" aside · every conjugate multiplication names (a + ib)(a − ib) = a² + b² and evaluates numerator and denominator separately · the both-parts-must-match rule stated before any comparison · modulus-amplitude cards give the form and both formulas, then the quadrant, then BUILD the amplitude from the acute angle (θ = −π + π/4) instead of asserting it · the half-angle and Pythagorean identities cited where used, with the fraction split before tan(θ/2) appears · the Argand cards say what the shape REQUIRES before measuring (rhombus = equal sides + UNEQUAL diagonals; square = both equal).
+
+### The figure fix
+`ts_ipe_m2a_cn_argand_equilateral_triangle` — the y-axis label and "C(−2√3, 2√3)" overlapped by ~6px each way. **Measured in the browser, not guessed**: a script printing every `<text>` rect showed y at x 167.7–176.1 / y −8–19 and C at x 8–173.6 / y 13–53. Moving C's label from (8, 40) to (6, 66) gives 20px of clearance. `find_label_clashes` over the built book: 117 figures, no collisions anywhere.
+
+### Verified
+tsc 0 · `check:cards` 38/38 · `measure:wrap` 626/626 on one ruled row · both builds green · walk of all 38 cards on full marks, no console errors.
+
+**Two Opus examiners, 5 real defects found and fixed:**
+- FOUR modulus lines read `√(1 + 3 = √4)` — my generator interpolated "1 + 3 = √4" as one string, so the page literally asserted 4 = 2. **The same template bug had produced `√(49 + 576 = √625)` on the two square-root cards, which I caught by eye and rewrote — without checking whether other cards built from that template had inherited it.** They had. A regex sweep for `√(… = …)` now covers the whole paper.
+- ONE locus (`(z − i)/(z − 1)` purely imaginary) boxed x² + y² − x − y = 0 while (1, 0) is on that circle and makes the denominator 0. Its sibling card excludes z = −i correctly; this one now excludes z ≠ 1 and says why.
+
+### Lesson worth keeping
+A generated batch needs the SAME sweep applied to every card the generator touched, not just the one whose output happened to look wrong. Fixing the visible instance and moving on is what let four bad lines reach an examiner.
+
+## 📗 SESSION — Permutations and Combinations written out in full: the second chapter, 49 cards (2026-09-08, `feat/answerbook-binomial-worked-in-full`)
+
+**Bottom line: the founder approved the level on a sample and said "do it". All 49 cards of Maths-2A Unit 5 now read at the same level as the Binomial chapter — 353 written lines → 774. Two chapters, 83 cards, on one branch and one PR (#202).**
+
+### The finding that shaped the plan
+**Permutations and Combinations has NO long answers.** In Maths-2A only six units carry Section C (bt, dm, md, pb, rv, te); this unit is 12 SAQ at 4 marks and 37 VSAQ at 2. So the founder's "take a LAQ" was answered with the chapter's richest 4-mark card (sum of all four-digit numbers from 0, 2, 4, 7, 8 — the one whose old lines hid `⁴P₃ = 24`, `504 · 1111` and the leading-zero logic behind single lines), and the 2-mark cards took the same treatment at their own size.
+
+### What the pass adds, beyond the Binomial rules
+- every ⁿCᵣ and ⁿPᵣ evaluated on the page from its product form — `⁶C₃ = (6·5·4)/(1·2·3) = 120/6 = 20`, never a bare `= 20`;
+- WHY the count is a permutation or a combination, stated before the symbol is written;
+- case lists DERIVED ("at least 4 bowlers and only 6 exist, so bowlers are 4, 5 or 6"), plus why adding them is right;
+- the three word-rank cards walk prefix by prefix, naming the free letters at each step and the reason for the ÷2! when a letter repeats;
+- the telescoping Pascal sums expand r = 0..4, reorder, and name the identity's requirement before each collapse;
+- every large division carried out — `12!/(4!·4!·4!)` shows `24·24·24 = 13824` then `479001600/13824`.
+
+### Verified
+tsc 0 · `check:cards` 49/49 · `measure:wrap` 774/774 lines on one ruled row (0.0%) · both builds green · headless walk of all 49 cards: each completes on full marks, no console errors.
+
+**Two independent Opus examiners re-derived every card: 0 defects.** The SAQ one brute-forced all three word ranks against sorted permutations (133 / 257 / 438) and both digit-sums by enumeration (5,45,958 / 6,66,600); the VSAQ one recomputed every value, re-substituted every root, brute-forced D₄, and checked the four identities exhaustively for n ≤ 40. Two fixes came out of their non-defect observations: EAMCET's rank never said WHY no word starting with E precedes EA, and the derangement card's mistake-note described an error whose arithmetic did not match its own wording.
+
+### Next
+Founder verdict at the review link. Cost is now measured across two chapters: roughly 2.2× the written lines, about 15 lines of working per mark, ~0 defects when two examiners are run per chapter.
+
+## 📗 SESSION — the Binomial Theorem chapter written out in full: 34 cards at the founder's own level (2026-09-08, `feat/answerbook-binomial-worked-in-full`)
+
+**Bottom line: the founder rejected the rail-card explanation layer built on 2026-09-04 ("this is not the way I wanted to do this") and instead HANDWROTE the answer he wanted, to `ts_ipe_m2a_bt_vsaq_7th_term_4_by_x3`. The detail belongs INSIDE the written answer on the page. One LAQ was expanded to that level for his approval, he approved it, and the whole chapter followed: 34 cards, 296 written lines → 750. Steps, marks and mark splits never changed.**
+
+### The level, taken from his page
+r and n named on their own lines before any substitution · the general term substituted symbolically first and with the real entries second · every index law, ratio and substitution on its own line with the arithmetic shown BEFORE it is evaluated (3·8 before 24, (2²)⁸ before 2¹⁶, x¹²⁻²⁴ before x⁻¹²) · identities the source book merely cited (ⁿCᵣ/ⁿCᵣ₋₁, ((n+1)/(r+1))ⁿCᵣ = ⁿ⁺¹Cᵣ₊₁) derived from the factorial formula on the page · every infinite series' denominators split into 3ᵏ·k! explicitly before the standard expansion is matched, and the match checks the third numerator before moving on · a numeric evaluation wherever the book stopped at a product.
+
+### Verified
+tsc 0 · `check:cards` 34/34 (45 KaTeX lines typeset) · `measure:wrap` 750/750 lines on one rule each, after reflowing two · the e2e typeset measurement replayed over all 45 typeset lines: 0 clipped, 0 raw TeX · a headless walk of all 34 cards: every card completes on full marks, no console errors · full build 22.6 MB and `--stream=mpc_2` 8.1 MB both green.
+
+**Two independent examiners (Opus, one per section) re-derived every card line by line — the LAQ one summed each infinite series to 30 digits against its boxed value. 34 cards, 0 mathematical defects.** Three fixes came out of reading the built pages rather than any gate: nine series cards had "(negative power: invert)" glued inside the KaTeX line, both validity cards claimed |y| < 1 is needed "for any n" (false for a positive integer n), and one line transcribed a power in ASCII.
+
+### Next
+Founder verdict on the chapter at the review link. The same treatment is now a known, measured cost per chapter (about 15 lines of working per mark) if he wants it rolled out to the rest of Maths-2A.
+
+## 🔬 SESSION — BiPC second year gets the MPC treatment: 314 cards examiner-audited, 3,140 chatbot calls, 24 harmful + 230 of 244 wrong findings repaired (2026-09-04/05, `feat/ipe-answerbook-zoology-2`, PR #173 + platform PR #200)
+
+**Bottom line: Botany-II and Zoology-II — the two BiPC second-year papers where only the answer
+book had been authored, never rigorously checked — now match the MPC papers' standard.** Every one
+of 314 cards was re-derived from NCERT and read for self-contradiction; every one was driven
+through the Vidi chatbot's 10-ask battery; every HARMFUL finding from both instruments is fixed,
+and every WRONG finding was worked too — not just recorded — with 230 of 244 repaired and the rest
+correctly referred to a teacher. Full reports: `docs/reports/bipc2_audit/SUMMARY.md`.
+
+### The gap this closed
+
+Botany-II (167 cards) and Zoology-II (147 cards) had never been examiner-audited or Vidi-audited —
+the only prior work was authoring itself. Worse, a platform bug meant neither paper's chatbot
+questions would even have been graded correctly: the Vidi subject ladder (Edge Function + mirror +
+`vidi_audit.ts`) had no rung for botany or zoology, so all four biology papers fell through to
+`physics` — a student's Telugu reply was steered by the physics term whitelist, and a biology audit
+would have run the ideal-gas out-of-bank bait. Fixed first, as its own platform PR (#200, merged
+into this desk before the audit ran), per Rule 40.
+
+### What was found, examiner pass (314 cards, both papers)
+
+| Paper | Cards | HARMFUL | WRONG | WEAK | Figures defective |
+|---|---|---|---|---|---|
+| Botany-II | 167 | 11 | 120 | 254 | 8 of 17 |
+| Zoology-II | 147 | 13 | 124 | 182 | 13 of 14 |
+
+Zoology-II's figures were the worst measured on either audited fleet: a heart whose great vessels
+sprang from the atria instead of the ventricles, contradicting the card's own text; a kidney still
+drawn as a crescent with no hilum notch — the exact defect class the original Zoology-I handover
+recorded as caught once already; a genetics cross drawing a Y-bearing sperm reaching a labelled
+daughter, a genetically impossible diagram.
+
+Every HARMFUL finding shares one shape: a card contradicting itself, or a leader line pointing at
+the wrong structure. Water potential said "always positive" and gave the ascent of sap — the
+textbook case of *negative* pressure potential — as its example. Gibberellins were credited with
+"promoting fruit ripening" four lines above the same card's own "gibberellins DELAY senescence."
+Asthma was called a form of COPD one line after the same card defines COPD as chronic bronchitis
+and emphysema alone. A boxed cry-gene answer used one token, "Ab," to mean two different genes on
+either side of a semicolon. Anti-D was given "when she is pregnant" instead of right after the
+first delivery, against the card's own sensitisation account two steps earlier.
+
+### The chatbot audit (3,140 calls, ₹128, both papers)
+
+| Paper | Replies | Mean/3 | Out of 10 |
+|---|---|---|---|
+| Botany-II | 1,670 | 2.908 | 9.69 |
+| Zoology-II | 1,470 | 2.918 | 9.73 |
+
+Inside the fleet's 9.6–9.9 band. Zero WRONG-STEP replies, zero out-of-bank questions actually
+answered, one invented mark across the whole battery — and the automated `MARK_SUM` gate missed
+that one, flagging an unrelated correct card instead. Six grading defects independently
+**confirmed** examiner HARMFUL findings by measuring the model's real replies rather than reading
+the card in isolation — cross-instrument confirmation, the strongest evidence a finding can get.
+
+### Repair, verified
+
+18 text fixes applied directly (`c46edaf9`); 20 figure defects repaired by two dispatched agents
+(`690547f3`), each visually re-rendered rather than trusted on coordinate math alone — two needed a
+full geometry rebuild (the nucleosome's wrap angle, TMV's aspect ratio and RNA placement), five more
+needed a second or third render pass once the first "fix" turned out to still be wrong on screen
+(most notably the heart, where fixing the vessel roots first exposed the interatrial septum sitting
+on the pulmonary trunk, then a second render found two pulmonary-vein lines striking through the
+"Left atrium" label that the read-only audit had missed entirely).
+
+Whole-book gates after the HARMFUL repair, all green: `tsc` 0 · `vitest` 459/459 · `check_cards`
+167+147 · `check_figure_pace --strict` on all seven prefixes · both back-tests · `check:papers`/
+`xrefs`/`originality` · `build:answers` 3,290 cards · `find_label_clashes` whole-book 4→1 (the
+remainder a pre-existing Maths-2A card outside this audit) · `measure_wrap` zero regressions.
+
+### Then the 244 WRONG findings — same discipline, fifteen dispatch batches
+
+Not stopping at HARMFUL: every WRONG-level finding (incorrect but not exam-costing) from both
+examiner audits was worked the same way — re-derive from NCERT, check the report's proposed fix
+against the card before applying it (about one proposal in eight needed rewording or a different
+fix, matching the rate the MPC audits measured), sweep sibling fields for the same repeated claim,
+decline anything that is a genuine teacher-gate convention rather than a repair. Dispatched as 15
+disjoint repair batches (8 Botany-II, 7 Zoology-II, each owning 2-3 examiner groups), verified with
+`check_cards` after every batch, committed in five waves (`30a984a7`, `12226ec4`, `d6daa6da`,
+`6540f7b4`, `b4556c84`).
+
+| Paper | WRONG found | Applied | Referred to a teacher |
+|---|---|---|---|
+| Botany-II | 120 | 117 | 6 |
+| Zoology-II | 124 | 113 | 10 |
+
+The dominant shape, both papers: an insider note asserting a mark-scoring rule the card's own split
+does not support ("loses two marks straight away," "the mark is halved," "each is a separate
+tick") — removed and replaced with what the complete answer contains. Second most common: a flat
+prohibition banning a real, NCERT-supported exception (chlorosis IS a potassium symptom, a vaccine
+DOES exist for hepatitis-B, the pulmonary artery DOES carry deoxygenated blood). One real defect
+surfaced only by a repair agent re-deriving a figure from scratch — not by either examiner audit or
+the chatbot: the urinary-system figure gave each kidney only one renal vessel instead of both,
+fixed and re-rendered in the session's last commit.
+
+Rate limits hit twice during this pass (once mid-examiner-audit on 2026-09-04, once mid-repair on
+2026-09-05); both times the affected batches were simply re-dispatched with a note about which
+edits, if any, had already landed, and picked up cleanly — the report files and card lists are the
+same source of truth regardless of which run applies a given fix.
+
+Whole-book gates after the WRONG repair, all green again: `tsc` 0 · `vitest` 459/459 · `check_cards`
+167+147 · `check_figure_pace --strict` (both papers) · both back-tests · `check:xrefs`/`originality`/
+`papers` · `build:answers` 3,290 cards · `find_label_clashes` whole-book still 1 (same pre-existing
+Maths-2A card) · `measure_wrap` zero regressions on either paper. One xrefs regression was
+introduced and caught within the same session: a repair's reworded insider note tripped the
+self-description-shaped-like-a-pointer pattern; reworded again, gate passes.
+
+### One correction the chatbot grading kept raising, verified as NOT a bug
+
+Botany-II's `stars: 0` on all 167 cards looked suspicious to six independent grading passes (a card
+asked six times still reads "not frequently asked"). Checked directly against `units.json`: this is
+the book's own limitation — it ranks importance only at chapter level, never per question, unlike
+the Zoology books. **Do not populate `stars` for Botany-II.** Recorded in `BOTANY_2_START_HERE.md`
+§11 so a future session doesn't spend an authoring pass inventing ranks the source book never gave.
+
+### Also landed
+
+`bipc_2` stream in `build_answer_book.ts` — `--stream=bipc_2` now builds a standalone Senior Inter
+BiPC artifact. A combined door build (`mpc,mpc_2,bipc_2`) needs a founder decision: physics_2 and
+chemistry_2 would be claimed by two streams in one artifact, which the build's own guard correctly
+refuses today — flagged, not solved.
+
+### Not done, deliberately
+
+No deploy of any kind (Edge Function redeploy, `content:push`, `deploy:answers`) — founder's gate.
+No teacher has verified any of the 314 cards; the ~90 teacher-gate questions from the examiner
+reports plus the 16 more surfaced during repair are the concrete list for whoever does. WEAK-level
+findings (436 across both papers — register, duplicated prose, Rule 41 wording) are recorded but
+not repaired; they cost no marks. No `recall` rubrics (blocked bank-wide on the grader endpoint,
+same as Chemistry-II/Maths-2B). The combined-door stream engine change.
 
 ## 📗 SESSION — Wave B complete: five chapters, 149 new cards, five audits, 151 findings (2026-09-02/03, `feat/ipe-firstyear-2027`)
 
@@ -16169,6 +16546,44 @@ the live `engine_bug_queue` table (file-only discipline held). State recorded in
 
 ---
 
+## 2026-08-28/29 — **Zoology-II opens and completes: subject `zoology_2`, 8 units, 145 cards, 14 phased figures**
+
+**A second zoology PAPER, not more of the first.** Senior Inter Zoology (Class 12) is a different paper from the Junior Inter `zoology` book already in the catalog, and unit numbers namespace per subject, so it takes its own subject value `zoology_2` with its own units 1–8 and ids `ts_ipe_z2_*` — the same reasoning that gave Maths-1B `mathematics_1b`. Registered at the four sites that hardcode the subject list: the `subject` z.enum in `src/schemas/answerBook.ts`, `SUBJECTS` in `src/scripts/build_answer_book.ts`, and notebook.js's two label maps. The catalog chips now read **Zoology-I / Zoology-II** rather than a bare "Zoology" beside "Zoology-II", which named the first year by omission.
+
+**Desk:** `feat/ipe-answerbook-zoology-2`, branched off **`origin/feat/ipe-answerbook-zoology`, not master** — the phased "watch it drawn" figure engine (`pause` elements, `pace_figures.ts`, `check_figure_pace.ts`, the 70 u/s gate) exists only on that branch. Master's figures still run at 200–770 u/s. Branching off master would have silently lost the engine.
+
+**Source:** *My Baby Bullet-Q — Senior Inter Zoology* (Star-Q Pass Track Series, Sri Publishers, 2022), 81 scanned pages, **no OCR text layer** — the pages are DCTDecode JPEGs and poppler is not installed on this Mac, so they were extracted with a short Python loop over the PDF's image objects and read as images. Scan page = book page + 1.
+
+**`ref` is the book's own global answer numbering** (LAQ 1–10, SAQ 11–48, VSAQ 49–145), which is why a unit's refs are not contiguous: the book is ordered by section, the catalog by unit. **`stars` is derived from the exam years the book PRINTS beside each question** — 5+ appearances = 3 stars, 2–4 = 2, one = 1, none printed = 0 — not from its per-chapter star rating, which is a chapter-importance claim rather than a per-question one. The same evidence is carried per card in `appearances[]` with its board.
+
+| Unit | Chapter(s) | Cards |
+|---|---|---|
+| 1 | Digestion and Absorption · Breathing and Exchange of Gases | 20 |
+| 2 | Body Fluids and Circulation · Excretory Products | 17 |
+| 3 | Musculo-Skeletal System · Neural Control and Coordination | 18 |
+| 4 | Endocrine System · Immune System | 21 |
+| 5 | Human Reproductive System · Reproductive Health | 18 |
+| 6 | Genetics | 9 |
+| 7 | Organic Evolution | 11 |
+| 8 | Applied Biology | 31 |
+
+All 145 cards carry `memory_tip`, `margin_note` and `insider_note` at **100%**, matching the z1 fleet.
+
+**Fourteen phased figures**, every one built as the schematic a student can copy rather than a shaded anatomical plate: L.S. of a tooth · internal structure of the heart · the urinary system · a nephron · a synovial joint · the pelvic girdle · an antibody · female and male reproductive systems · a sperm · the human XX-XY cross · the normal ECG trace.
+
+**The render gallery earned its keep.** `answer-book/tools/render_figures.py` + `shot_gallery.mjs` caught what every automated gate passed: the tooth read first as a capsule and then as a lollipop before the crown was given near-vertical sides and two cusps; the heart read as an egg until the top was notched between the two atria; the kidneys read as crescents until the hilum notch was made shallower; the pelvic girdle's pubis and ischium read as a separate object below the hip bones until a strut joined each acetabulum to its obturator ring; the uterus was drawn far too narrow and read as a keyhole; and the male figure's "Bulbourethral gland" label ran off the 520-unit canvas. **Author, render, LOOK — the gates cannot see shape.**
+
+**One reusable scar, worth knowing before authoring any new figure:** `paceMs` (`src/lib/answerBook/pathLength.ts`) clamps a single stroke to **4500 ms**, so any stroke longer than about **315 units draws faster than the 160 u/s gate ceiling no matter what speed is authored**. The heart outline was one 788-unit path and came out at 175 u/s. The fix is to split the path into several pen strokes — which is also how a hand draws it. Nothing warns you at authoring time; the gate catches it after `pace_figures.ts --write` has already run.
+
+**A process failure to record.** `npm run check:figure-pace` was run inside a pipeline (`… | tail -1`), so its non-zero exit was masked by `tail` and unit 2 was committed and auto-pushed with the gate failing. Caught on the next run and fixed forward in `4e1471e4`; the commit message that made the false claim is corrected there in writing. **Never gate a commit on a command whose exit status a pipe has swallowed.** A second, smaller instance: unit 4's commit message claimed a verification note that had not been written; corrected in `1d50137a`.
+
+**Honesty of the content.** Every card's `verification.note` records that Zoology-II holds **one** source book in the corpus, so the two-book union check is structurally impossible and "not checked" does not mean "checked and clean"; the mark split is our reading and a claim until a TS IPE teacher confirms it. Two deliberate departures from the source are flagged rather than absorbed: the lipid-soluble hormone mechanism (the book's answer stops where its page ends; the closing step is authored here), and Lamarck's disproof (the book's "it has been a practise in India"; the card says "in many communities" — same fact, no country).
+
+**Also fixed:** `answer-book/tools/zoology_wip/valcheck_ad1.ts`, a leftover from the z1 desk, imported the schema by an absolute Windows path (`C:/Tutor/…`) and was the **only** `tsc --noEmit` error on this branch. Now relative. `check:figure-pace` runs strict on `ts_ipe_z` so it covers both zoology papers.
+
+**Verified at every unit commit:** `tsc --noEmit` 0 errors · `npm run build:answers` PASS · `npm run check:figure-pace` PASS for `ts_ipe_z` · `npx vitest run src/lib/answerBook` 42/42. Built page: 8.1 MB, all 145 z2 ids embedded, both Zoology chips present.
+
+**Next session's first task: the PR — but NOT before the botany-2 desk's.** Both desks edit `answer-book/units.json`, `src/schemas/answerBook.ts`, `src/scripts/build_answer_book.ts` and `answer-book/notebook.js`, and will conflict. **Merge ONE PR to master, then in the other desk `git merge origin/master`, resolve those four files additively (keep BOTH new subject values in the enum, the array and the maps), re-run `build:answers`, and only then open its PR.** Do not open both at once. **Blockers:** none for the content; the merge order is the only coordination needed.
 # Session — 2026-08-28/29 · Botany-II opens, and closes: the whole 167-question book
 
 **Desk:** `feat/ipe-answerbook-botany-2`, worktree `Physics-mind-ipe-answerbook-botany-2`.
@@ -16271,3 +16686,35 @@ and read at every phase.
 **Next session's first task:** the founder's call on the PR base (item 3), then Checkpoint-C style
 review of a sample of cards against the scan. Nothing is deployed — `PILOT_CONCEPTS` and
 `deploy:answers` are untouched (Rule 17).
+
+---
+
+## 2026-08-29 — Zoology-II synced to the nine-paper master, and the model-paper back-test finds two missing cards
+
+**The queue cleared.** PRs #167 (Senior Physics), #169 (Senior Chemistry), #170 (Junior Zoology + the phased-figure engine) and #171 (Senior Botany) all merged while this desk waited. Master is now nine papers; this desk makes it ten.
+
+**Sync, in two steps and deliberately in that order.** First merged **PR #170's branch** rather than `origin/master`: #170 is this desk's own base plus one master-sync commit, so the merge-base is our base commit and the Junior Zoology content arrives on a shared lineage. Merging master directly would have produced a second, parallel copy of it. Then merged `origin/master` for the rest. `units.json` was rebuilt from master's array **verbatim** (asserted byte-identical in the resolution) plus this desk's eight units, rather than hand-resolving eight conflict hunks in an 18k-line file.
+
+**Two registration sites this desk predated, both of which would have failed the build:**
+- **`PAPER_PATTERNS`** (PR #168) — the schema now REJECTS any question whose marks disagree with its paper's pattern, so without a row all 145 cards fail. `zoology_2` is registered as `ABC_60`, read off the book's own **Model Paper-1 (p.75)**: Section A "Answer ALL" 10 × 2 = 20, Section B "any SIX" of eight printed × 4 = 24, Section C "any TWO" of three printed × 8 = 16, total 60. Verified against the book, not copied from Botany.
+- **`STREAMS`** in `build_answer_book.ts`, which now carries a guard failing the build if a stream names an unknown subject. Deliberately **not** touched: adding a second-year paper there would make a second-year book a buildable artifact, which is a product decision.
+
+**Two corrections to earlier calls in this desk:**
+1. **The `Zoology-I` rename is reverted.** The settled convention keeps the first-year label and adds only the second (`botany: 'Botany'` beside `botany_2: 'Botany-II'`). It reads **Zoology / Zoology-II**.
+2. **`internal` is omitted from the zoology_2 row.** The first attempt asserted a 15-mark practical by following the first-year papers; `physics_2`, `chemistry_2` and `botany_2` all omit it because the books print a practical sheet with no mark value and copying the first-year 15 would be inventing a figure. Sr. Zoology is in the same position, so it now says nothing rather than guessing.
+
+### The back-test earned its keep: the paper was NOT complete
+
+`backtest:botany2` exists because the two-book union check and a real board back-test are structurally impossible for a one-source paper. Zoology-II had no equivalent — so `src/scripts/backtest_zoology2.ts` + `answer-book/tools/zoology2_wip/backtest_refs.json` now transcribe every "Ans-Page Index" citation the book's **five Model Guess Papers** print (105 citations, 89 distinct questions) and assert each resolves to an authored card.
+
+It immediately found **two questions the book sets and we did not answer**, both cited into the **Star Questions Plus** section (book pp.61-68) that the first authoring pass skipped entirely:
+- **global 172** — "Draw a labelled diagram of the T.S. of the spinal cord of man" [TS 19, 22] → `ts_ipe_z2_ncc_spinal_cord_ts_diagram`, Unit 3, with a 34-element 5-phase figure.
+- **global 175** — the colour-blind-daughters probability problem [TS MAY-17] → `ts_ipe_z2_gen_colour_blind_daughters_probability`, Unit 6, with a full four-child cross.
+
+**Resolving is not enough, and the first version of the gate was too weak.** The book miscites the AV-valves question as global 61 (its answer section, p.48, numbers it **63**; 61 there is the open/closed circulation question on the same page). A back-test that only asked "does this number exist?" passed — because 61 resolves, just to the wrong card. The gate now also requires the cited question's wording to agree with the card it lands on, and carries a `KNOWN_MISCITES` table that adjudicates this one openly rather than silencing it. Verified by construction: the strengthened gate reports the miscitation and still passes.
+
+**Correction to the previous session log:** it recorded "14 phased figures" when there were **12**. With the two new cards there are now genuinely 14. Card total is **147**, not 145.
+
+**Verified:** build:answers PASS · tsc 0 errors · check:figure-pace PASS for `ts_ipe_z1,ts_ipe_b2,ts_ipe_z2` · backtest:zoology2 PASS · backtest:botany2 PASS (unaffected) · check:papers PASS · vitest src/lib/answerBook 69/69. Ten papers, 117 units, 2103 authored cards.
+
+**Next: open the PR.** The queue that blocked it is clear.

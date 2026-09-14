@@ -36,7 +36,7 @@
       "marks": 1
     },
     {
-      "label": "Collapse to one function",
+      "label": "Combine into one function",
       "marks": 1
     },
     {
@@ -47,7 +47,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.68 — SAQ chapter 11 Trigonometric Equations, answer 70.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 17 · TS 20. The book pairs it with 70.2 and notes \"First 2 same. Next 2 same. The next 2 are also same. Last 2 are also same.\" — the whole chapter is four matched pairs. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter (its pages are set two questions to a page in two columns, which takes the margin those tags would occupy). It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used across this unit are the book's own. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q15 is the Trigonometric Equations slot. NOTE: Trigonometric Equations is an SAQ-ONLY unit — the paper gives it no Section-A and no Section-C slot, and this book has no Trigonometric Equations LAQ chapter (its LAQ chapters are 1-6) and no VSAQ chapter (its VSAQ chapters are 14-19). It is the mirror of Unit 2, which is LAQ-only. Verified by walking to p.72, where SAQ chapter 12 Inverse Trig Functions begins."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.68 — SAQ chapter 11 Trigonometric Equations, answer 70.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 17 · TS 20. The book pairs it with 70.2 and notes \"First 2 same. Next 2 same. The next 2 are also same. Last 2 are also same.\" — the whole chapter is four matched pairs. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter (its pages are set two questions to a page in two columns, which takes the margin those tags would occupy). It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used across this unit are the book's own. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q15 is the Trigonometric Equations slot. NOTE: Trigonometric Equations is an SAQ-ONLY unit — the paper gives it no Section-A and no Section-C slot, and this book has no Trigonometric Equations LAQ chapter (its LAQ chapters are 1-6) and no VSAQ chapter (its VSAQ chapters are 14-19). It is the mirror of Unit 2, which is LAQ-only. Verified by walking to p.72, where SAQ chapter 12 Inverse Trig Functions begins. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — name each move in order, and say which general solution formula you would use.",
   "answer": {
@@ -62,15 +62,17 @@
         "label": "Divide by √(a²+b²)",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark, and the move that makes the whole family work. Dividing by √(a²+b²) forces the two coefficients to become a cosine and a sine of the same angle, so the left side collapses to ONE trig function.",
-        "memory_tip": "Divide by √(a² + b²) = 2. That forces both coefficients to become a sine and a cosine of one angle.",
+        "margin_note": "First mark, and the step the whole method depends on. Dividing by √(a²+b²) makes the two coefficients a cosine and a sine of the same angle, so the left side becomes ONE trig function.",
+        "memory_tip": "Divide by √(a² + b²) = 2. That makes both coefficients a sine and a cosine of one angle.",
         "lines": [
           {
             "text": "Sol:",
             "style": "heading"
           },
           "Given equation is √3 sinθ − cosθ = √2",
+          "(a = √3 and b = −1)",
           "Divide by √((√3)² + (−1)²) = √(3+1) = √4 = 2:",
+          "(divide each term by 2; √2/2 = 1/√2)",
           "(√3/2) sinθ − (1/2) cosθ = √2/2 = 1/√2"
         ],
         "recall": {
@@ -94,7 +96,7 @@
             "root three over two"
           ]
         },
-        "why": "a sinθ + b cosθ can never be solved directly, but divided by √(a²+b²) its coefficients always become the cosine and sine of some angle — and then one compound-angle formula finishes it.",
+        "why": "Divided by √(a²+b²), the coefficients of a sinθ + b cosθ become the cosine and sine of one angle, so one compound-angle formula turns the left side into a single sine.",
         "common_mistakes": [
           "Dividing by a + b instead of √(a²+b²).",
           "Dividing only the left side."
@@ -107,9 +109,17 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Second mark. √3/2 is cos30° and 1/2 is sin30°, so the left side is exactly the sin(A−B) pattern. The right side, 1/√2, is sin45°.",
-        "memory_tip": "√3/2 is cos 30° and 1/2 is sin 30° — that way round. The right side 1/√2 is sin 45°.",
+        "memory_tip": "√3/2 is cos 30° and 1/2 is sin 30° , in that order. The right side 1/√2 is sin 45°.",
         "lines": [
+          {
+            "text": "(√3/2 = cos30°, 1/2 = sin30° and 1/√2 = sin45°)",
+            "added": true
+          },
           "⇒ sinθ cos30° − cosθ sin30° = sin45°",
+          {
+            "text": "(30° = π/6 and 45° = π/4)",
+            "added": true
+          },
           "⇒ sinθ cos(π/6) − cosθ sin(π/6) = sin(π/4)"
         ],
         "recall": {
@@ -136,14 +146,18 @@
         },
         "why": "The two coefficients always square-and-add to 1 after the division, which is exactly the condition for them to be a cosine and a sine of one angle.",
         "common_mistakes": [
-          "Matching √3/2 to sin30° instead of cos30°.",
+          "Reading √3/2 as cos60° instead of cos30°.",
           "Writing 1/√2 as cos45° and then using the wrong formula."
+        ],
+        "lines_compact": [
+          "⇒ sinθ cos30° − cosθ sin30° = sin45°",
+          "⇒ sinθ cos(π/6) − cosθ sin(π/6) = sin(π/4)"
         ]
       },
       {
         "id": "s3_collapse_to_one_function",
         "kind": "equation",
-        "label": "Collapse to one function",
+        "label": "Combine into one function",
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Third mark. sinA cosB − cosA sinB is sin(A−B), so the equation becomes a single sine equal to a single sine. The principal value is then read off directly.",
@@ -151,7 +165,16 @@
         "lines": [
           "⇒ sin(θ − π/6) = sin(π/4)",
           "  [∵ sinA cosB − cosA sinB = sin(A−B)]",
-          "Here the principal value is α = π/4"
+          "Here the principal value is α = π/4",
+          {
+            "text": "(π/4 lies between −π/2 and π/2, the range of a",
+            "added": true
+          },
+          {
+            "text": "  principal value of sine)",
+            "style": "indent",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -175,10 +198,15 @@
             "sin A minus B"
           ]
         },
-        "why": "Once the equation reads sin(something) = sin(α), the general solution formula applies mechanically. Getting to that form is the whole difficulty.",
+        "why": "Once the equation reads sin(something) = sin(α), the general solution formula applies mechanically. Getting to that form is the main difficulty; the sine general solution is still needed in the next step.",
         "common_mistakes": [
           "Using sin(A+B) and getting θ + π/6.",
           "Taking the principal value as π/6."
+        ],
+        "lines_compact": [
+          "⇒ sin(θ − π/6) = sin(π/4)",
+          "  [∵ sinA cosB − cosA sinB = sin(A−B)]",
+          "Here the principal value is α = π/4"
         ]
       },
       {
@@ -192,7 +220,15 @@
         "lines": [
           "For sinθ = sinα, the general solution is",
           "θ = nπ + (−1)ⁿ α,  n ∈ Z",
+          {
+            "text": "(here the angle is θ − π/6 and α = π/4)",
+            "added": true
+          },
           "⇒ θ − π/6 = nπ + (−1)ⁿ (π/4)",
+          {
+            "text": "(add π/6 to both sides)",
+            "added": true
+          },
           {
             "text": "∴ θ = nπ + (−1)ⁿ (π/4) + π/6,  n ∈ Z",
             "style": "boxed"
@@ -221,14 +257,23 @@
             "pi by six"
           ]
         },
-        "why": "Sine, cosine and tangent each have their own general solution formula, and using the wrong one is the commonest error in the chapter. Sine gets nπ + (−1)ⁿα.",
+        "why": "Sine, cosine and tangent each have their own general solution formula, and using the wrong one is a common error. Sine gets nπ + (−1)ⁿα.",
         "common_mistakes": [
           "Using the cosine form 2nπ ± α for a sine equation.",
           "Forgetting to add π/6 back.",
           "Omitting n ∈ Z."
+        ],
+        "lines_compact": [
+          "For sinθ = sinα, the general solution is",
+          "θ = nπ + (−1)ⁿ α,  n ∈ Z",
+          "⇒ θ − π/6 = nπ + (−1)ⁿ (π/4)",
+          {
+            "text": "∴ θ = nπ + (−1)ⁿ (π/4) + π/6,  n ∈ Z",
+            "style": "boxed"
+          }
         ]
       }
     ]
   },
-  "insider_note": "The minus sign makes this a sin(A − B), so it collapses to sin(θ − π/6) = sin(π/4). The sine general solution is nπ + (−1)ⁿα, which is NOT the same form as the cosine one."
+  "insider_note": "The minus sign makes this a sin(A − B), so it becomes sin(θ − π/6) = sin(π/4). The sine general solution is nπ + (−1)ⁿα, which is NOT the same form as the cosine one."
 }

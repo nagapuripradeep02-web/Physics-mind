@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.124, chapter 12 PROPERTIES OF TRIANGLES, Very Short Answer question 14. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to forming the quadratic and taking its discriminant and one to reading the three angles off; the opening combination step is kept in full at zero marks. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory; Properties of Triangles supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.124, chapter 12 PROPERTIES OF TRIANGLES, Very Short Answer question 14. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to forming the quadratic and taking its discriminant and one to reading the three angles off; the opening combination step is kept in full at zero marks. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory; Properties of Triangles supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — name each standard result you use and the order you use them in.",
   "answer": {
@@ -51,9 +51,12 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "(the sum-to-product formula)",
           "cos A + cos B = 2 cos((A+B)/2) cos((A−B)/2)",
           "(A+B)/2 = 90° − C/2",
+          "(cos(90° − x) = sin x)",
           "⇒ cos((A+B)/2) = sin(C/2)",
+          "(cos 2θ = 1 − 2 sin²θ)",
           "cos C = 1 − 2 sin²(C/2)",
           "∴ 2 sin(C/2) cos((A−B)/2) + 1 − 2 sin²(C/2)",
           {
@@ -99,13 +102,35 @@
         "memory_tip": "Treat sin(C/2) as the unknown. A real root needs b² − 4ac ≥ 0, which here is 16cos²((A−B)/2) − 16 ≥ 0.",
         "lines": [
           "Multiply by 2 and rearrange:",
+          {
+            "text": "(× 2: 4 sin(C/2) cos((A−B)/2) + 2 − 4 sin²(C/2) = 3;",
+            "added": true
+          },
+          {
+            "text": "  then take every term to one side)",
+            "style": "indent",
+            "added": true
+          },
           "4 sin²(C/2) − 4 cos((A−B)/2) sin(C/2) + 1 = 0",
           "This is a quadratic in sin(C/2), and sin(C/2)",
           {
             "text": "is a real number, so its discriminant ≥ 0",
             "style": "indent"
           },
+          {
+            "text": "(for px² + qx + 1 = 0 the discriminant is q² − 4p;",
+            "added": true
+          },
+          {
+            "text": "  here p = 4 and q = −4 cos((A−B)/2))",
+            "style": "indent",
+            "added": true
+          },
           "16 cos²((A−B)/2) − 16 ≥ 0",
+          {
+            "text": "(divide by 16)",
+            "added": true
+          },
           "⇒ cos²((A−B)/2) ≥ 1"
         ],
         "recall": {
@@ -130,10 +155,21 @@
             "real root"
           ]
         },
-        "why": "sin(C/2) is a real number, so the quadratic it satisfies must have a real root. That single requirement is what forces cos((A−B)/2) to its largest possible value.",
+        "why": "sin(C/2) is a real number, so the quadratic it satisfies must have a real root. That single requirement is what forces cos²((A−B)/2) to its largest possible value, 1.",
         "common_mistakes": [
           "Treating cos((A−B)/2) as the unknown instead of sin(C/2).",
           "Writing the discriminant as b² + 4ac."
+        ],
+        "lines_compact": [
+          "Multiply by 2 and rearrange:",
+          "4 sin²(C/2) − 4 cos((A−B)/2) sin(C/2) + 1 = 0",
+          "This is a quadratic in sin(C/2), and sin(C/2)",
+          {
+            "text": "is a real number, so its discriminant ≥ 0",
+            "style": "indent"
+          },
+          "16 cos²((A−B)/2) − 16 ≥ 0",
+          "⇒ cos²((A−B)/2) ≥ 1"
         ]
       },
       {
@@ -151,8 +187,20 @@
             "text": "is positive: cos((A−B)/2) = 1 ⇒ A = B",
             "style": "indent"
           },
+          {
+            "text": "(put cos((A−B)/2) = 1 into the quadratic)",
+            "added": true
+          },
           "Then 4 sin²(C/2) − 4 sin(C/2) + 1 = 0",
+          {
+            "text": "(4x² − 4x + 1 = (2x − 1)²)",
+            "added": true
+          },
           "⇒ (2 sin(C/2) − 1)² = 0 ⇒ sin(C/2) = 1/2",
+          {
+            "text": "(C/2 lies between 0° and 90°)",
+            "added": true
+          },
           "⇒ C/2 = 30° ⇒ C = 60°, so A = B = 60°",
           {
             "text": "∴ A = B = C = 60°, so it is equilateral",
@@ -185,6 +233,21 @@
         "common_mistakes": [
           "Stopping at A = B and calling the triangle isosceles.",
           "Taking cos((A−B)/2) = −1, which no angle of a triangle allows."
+        ],
+        "lines_compact": [
+          "But cos²θ ≤ 1 for every θ, so cos²((A−B)/2) = 1",
+          "(A−B)/2 lies between −90° and 90°, so its cosine",
+          {
+            "text": "is positive: cos((A−B)/2) = 1 ⇒ A = B",
+            "style": "indent"
+          },
+          "Then 4 sin²(C/2) − 4 sin(C/2) + 1 = 0",
+          "⇒ (2 sin(C/2) − 1)² = 0 ⇒ sin(C/2) = 1/2",
+          "⇒ C/2 = 30° ⇒ C = 60°, so A = B = 60°",
+          {
+            "text": "∴ A = B = C = 60°, so it is equilateral",
+            "style": "boxed"
+          }
         ]
       }
     ]

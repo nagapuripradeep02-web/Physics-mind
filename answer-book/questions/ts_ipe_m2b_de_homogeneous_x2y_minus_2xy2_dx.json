@@ -47,7 +47,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.46 — LAQ chapter 5 Differential Equations, answer 41.1. Not on an SSP page (this chapter carries no Super Scoring Pages at all). Printed appearance tag: AP 18 — no TS tag. The mark split is OURS: this chapter prints no margin mark tags. It follows the same five-checkpoint shape as answer 39.1 — recognise the homogeneous form and substitute y = vx, separate v from x, integrate, undo the substitution, state the final relation. Star rank: the Differential Equations LAQ chapter is ★★ on the LAQ chapter table (book p.13); every entry takes stars 2, a chapter-level rank. The same question is re-answered in the Bullet Model Paper (book p.117, Q24), so it is authored once, here. The book's working was re-derived line by line and is correct throughout, including the final rearrangement into an equation for the constant c rather than a bare polynomial relation — this book leaves the answer as c = (x²/y³)e^(−x/y) rather than clearing the exponential, which is the marked form and is kept here. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book's five Guess Papers (pp.118-127) are the only stand-in. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.46 — LAQ chapter 5 Differential Equations, answer 41.1. Not on an SSP page (this chapter carries no Super Scoring Pages at all). Printed appearance tag: AP 18 — no TS tag. The mark split is OURS: this chapter prints no margin mark tags. It follows the same five-checkpoint shape as answer 39.1 — recognise the homogeneous form and substitute y = vx, separate v from x, integrate, undo the substitution, state the final relation. Star rank: the Differential Equations LAQ chapter is ★★ on the LAQ chapter table (book p.13); every entry takes stars 2, a chapter-level rank. The same question is re-answered in the Bullet Model Paper (book p.117, Q24), so it is authored once, here. The book's working was re-derived line by line and is correct throughout, including the final rearrangement into an equation for the constant c rather than a bare polynomial relation — this book leaves the answer as c = (x²/y³)e^(−x/y) rather than clearing the exponential, which is the marked form and is kept here. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book's five Guess Papers (pp.118-127) are the only stand-in. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "insider_note": "This equation's final integral splits into a 1/v² term and a 1/v term, not one clean log — write both antiderivatives separately (−1/v and −3 log v) before combining, rather than trying to force one combined log form too early.",
   "answer": {
@@ -70,11 +70,17 @@
             "style": "heading"
           },
           "Given D.E is (x²y − 2xy²)dx = (x³ − 3x²y)dy",
+          "Divide both sides by (x³ − 3x²y)dx:",
           "⇒ dy/dx = (x²y − 2xy²)/(x³ − 3x²y) … (1)",
-          "(1) is a homogeneous D.E",
+          "Every term top and bottom has degree 3, so",
+          {
+            "text": "  (1) is a homogeneous D.E.",
+            "style": "indent"
+          },
           "Put y = vx ⇒ dy/dx = v + x·dv/dx",
           "(1) ⇒ v + x·dv/dx",
           "= (vx³ − 2v²x³)/(x³ − 3vx³)",
+          "x³ cancels above and below:",
           "= (v − 2v²)/(1 − 3v)"
         ],
         "why": "Every term of both the numerator and denominator has total degree 3 in x and y, so dividing every term by x³ after substituting y = vx leaves a function of v alone, confirming the homogeneous form.",
@@ -92,14 +98,31 @@
         "margin_note": "One mark. Subtract v as a fraction with denominator (1 − 3v) before combining.",
         "memory_tip": "v(1 − 3v) = v − 3v² is the piece that cancels part of the numerator, leaving v² behind.",
         "lines": [
+          {
+            "text": "Take v to the right side:",
+            "added": true
+          },
           "x·dv/dx = (v − 2v²)/(1 − 3v) − v",
           "= [v − 2v² − v(1 − 3v)]/(1 − 3v) = v²/(1 − 3v)",
+          {
+            "text": "since v − 2v² − v + 3v² = v²",
+            "added": true
+          },
+          {
+            "text": "Separate v and x:",
+            "added": true
+          },
           "⇒ (1 − 3v)/v² dv = dx/x"
         ],
         "why": "Writing v as v(1 − 3v)/(1 − 3v) puts both terms over the same denominator, and expanding v − 2v² − v + 3v² leaves exactly v², which is what makes the equation separable.",
         "common_mistakes": [
           "Losing the −v term when expanding v(1 − 3v) = v − 3v².",
           "Sign error turning v² into −v² in the final numerator."
+        ],
+        "lines_compact": [
+          "x·dv/dx = (v − 2v²)/(1 − 3v) − v",
+          "= [v − 2v² − v(1 − 3v)]/(1 − 3v) = v²/(1 − 3v)",
+          "⇒ (1 − 3v)/v² dv = dx/x"
         ]
       },
       {
@@ -111,13 +134,25 @@
         "margin_note": "Two marks. Split (1 − 3v)/v² into 1/v² − 3/v before integrating each piece separately.",
         "memory_tip": "1/v² integrates to −1/v; 1/v integrates to log v — two different rules, so split first.",
         "lines": [
+          {
+            "text": "Split (1 − 3v)/v² = 1/v² − 3/v:",
+            "added": true
+          },
           "∫ (1/v² − 3/v) dv = ∫ dx/x",
+          {
+            "text": "∫dv/v² = −1/v and ∫dv/v = log v:",
+            "added": true
+          },
           "⇒ −1/v − 3 log v = log x + log c"
         ],
         "why": "The fraction (1 − 3v)/v² splits into two separate standard integrals, ∫v⁻²dv = −1/v and −3∫(1/v)dv = −3 log v, which together match the right side's ∫dx/x = log x.",
         "common_mistakes": [
           "Integrating 1/v² as log v² instead of −1/v.",
           "Losing the factor of 3 in front of log v."
+        ],
+        "lines_compact": [
+          "∫ (1/v² − 3/v) dv = ∫ dx/x",
+          "⇒ −1/v − 3 log v = log x + log c"
         ]
       },
       {
@@ -129,15 +164,33 @@
         "margin_note": "One mark. Combine log x + 3 log v + log c into a single log before substituting v = y/x.",
         "memory_tip": "3 log v = log v³, so the whole right side is log(cxv³).",
         "lines": [
+          {
+            "text": "Collect the logs on one side:",
+            "added": true
+          },
           "⇒ log x + log c + 3 log v = −1/v",
+          {
+            "text": "3 log v = log v³, and the logs combine:",
+            "added": true
+          },
           "⇒ log(cxv³) = −1/v",
           "Put v = y/x:",
-          "log(cx·y³/x³) = −x/y ⇒ log(cy³/x²) = −x/y"
+          "log(cx·y³/x³) = −x/y ⇒ log(cy³/x²) = −x/y",
+          {
+            "text": "(1/v = x/y, and x/x³ = 1/x²)",
+            "added": true
+          }
         ],
         "why": "Combining all the log terms into log(cxv³) before substituting keeps the working compact, and replacing v by y/x turns the whole relation back into the original variables.",
         "common_mistakes": [
           "Substituting v = y/x before combining the logs, leading to a fraction inside a fraction.",
           "Writing x/v³ instead of xv³ when combining the log terms."
+        ],
+        "lines_compact": [
+          "⇒ log x + log c + 3 log v = −1/v",
+          "⇒ log(cxv³) = −1/v",
+          "Put v = y/x:",
+          "log(cx·y³/x³) = −x/y ⇒ log(cy³/x²) = −x/y"
         ]
       },
       {
@@ -147,18 +200,43 @@
         "marks": 1,
         "mark_note": "Result",
         "margin_note": "The last mark. Remove the log by exponentiating both sides, then isolate c.",
-        "memory_tip": "log(A) = B means A = e^B — apply that once to remove the log entirely.",
+        "memory_tip": "log A = B means A = e to the power B — apply that once to remove the log entirely.",
         "lines": [
-          "⇒ cy³/x² = e^(−x/y)",
           {
-            "text": "c = (x²/y³)·e^(−x/y)",
+            "text": "log A = B means A = e to the power B:",
+            "added": true
+          },
+          {
+            "text": "\\Rightarrow cy^{3}/x^{2} = e^{-x/y}",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "Multiply both sides by x²/y³:",
+            "added": true
+          },
+          {
+            "text": "c = (x^{2}/y^{3})\\cdot e^{-x/y}",
+            "render": "katex",
             "style": "boxed"
           }
         ],
         "why": "Exponentiating both sides of log(cy³/x²) = −x/y removes the log, and rearranging for c gives the family of solutions in the exact form the book marks — the relation between x, y and the arbitrary constant.",
         "common_mistakes": [
           "Forgetting to exponentiate BOTH sides, leaving a log on one side only.",
-          "Inverting the fraction and writing c = (y³/x²)·e^(−x/y) instead of (x²/y³)·e^(−x/y)."
+          "Inverting the fraction and writing c = (y³/x²)·e to the power (−x/y) instead of (x²/y³)·e to the power (−x/y)."
+        ],
+        "lines_compact": [
+          {
+            "text": "\\Rightarrow cy^{3}/x^{2} = e^{-x/y}",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "c = (x^{2}/y^{3})\\cdot e^{-x/y}",
+            "render": "katex",
+            "style": "boxed"
+          }
         ]
       }
     ]

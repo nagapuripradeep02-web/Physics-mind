@@ -297,3 +297,24 @@ them and **none is invented**.
 - **The two impossible checks stay impossible** until a second source or a real board paper arrives.
 - **Global 168 (Calvin cycle) is flagged for founder review** — see §4.
 - **Nothing is deployed.** `PILOT_CONCEPTS` and `deploy:answers` are untouched.
+
+## 11. The 2026-09-04/05 examiner + chatbot audit
+
+All 167 cards were examiner-audited against NCERT and driven through Vidi's 10-ask battery.
+Full detail: `docs/reports/bipc2_audit/` (`B2-01..22`, `FIG-B2.md`, `VIDI-B2-01..07`, `SUMMARY.md`).
+**11 HARMFUL findings, all repaired** (commits `c46edaf9` text, `690547f3` figures) — every one was
+a card contradicting itself (pressure potential's "always positive," gibberellins "ripening" fruit,
+IBA called synthetic, the law of dominance's three-vs-four statements, a boxed cry-gene answer where
+one token named two different genes) or a figure whose own printed text disagreed with what was
+drawn (five tail pins under a card that says six, a lac-operon caption calling four genes six).
+8 of 17 figures had a defect; both full geometry rebuilds (the nucleosome's wrap angle, TMV's
+aspect ratio and RNA placement) were re-rendered and visually confirmed, not just coordinate-patched.
+Vidi scored **9.69/10** (1,670 replies) — inside the fleet's band, zero critical flags.
+
+**Correction to a widely-repeatable mistake: `stars: 0` on every card is CORRECT, not a bug.**
+Six different chatbot-grading passes flagged it as suspicious (a card asked six times still reads
+"not frequently asked"). Verified directly against `units.json`: this book genuinely ranks
+importance only at chapter level (§9 above), never per question — unlike the Zoology books, whose
+`stars` derives from `appearances[]`. **Do not populate `stars` here.** The real defect, if anyone
+wants to fix it, is in the Vidi persona's `[important]` template wording, which should read
+`appearances[]` for this paper instead of asserting a star rank that was never meant to exist.

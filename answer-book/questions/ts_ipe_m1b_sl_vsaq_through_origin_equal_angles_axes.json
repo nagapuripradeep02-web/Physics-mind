@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Very Short Answer question 9, book p.141. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The 1+1 split gives the first mark for the angle work that produces 45°, and the second for both equations — the question says lines, plural, so a candidate who writes only y = x has answered half of it. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Answer checked: both x − y = 0 and x + y = 0 satisfy the point (0, 0), and each has slope of modulus 1, so each makes 45° with the X-axis and 45° with the Y-axis."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Very Short Answer question 9, book p.141. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The 1+1 split gives the first mark for the angle work that produces 45°, and the second for both equations — the question says lines, plural, so a candidate who writes only y = x has answered half of it. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Answer checked: both x − y = 0 and x + y = 0 satisfy the point (0, 0), and each has slope of modulus 1, so each makes 45° with the X-axis and 45° with the Y-axis. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say what angle each line makes with the X-axis, and why there are two answers.",
   "answer": {
@@ -53,9 +53,16 @@
             "style": "heading"
           },
           "Let the line make an angle θ with the X-axis.",
+          "(the axes are perpendicular, so the two angles add to 90°)",
           "Then it makes 90° − θ with the Y-axis.",
           "Equal angles ⇒ θ = 90° − θ",
+          "(add θ to both sides, then divide by 2)",
           "⇒ 2θ = 90°  ⇒  θ = 45°",
+          "(the acute angle between the line at 135°",
+          {
+            "text": "  and each axis is 45°)",
+            "style": "indent"
+          },
           "A line at 135° also makes 45° with each axis."
         ],
         "recall": {
@@ -80,7 +87,7 @@
             "inclination"
           ]
         },
-        "why": "A line drawn at 135° leans the other way, but the angle it makes with each axis is still measured as the acute angle, and that angle is again 45°. That is why the question asks for lines and not one line.",
+        "why": "A line at 135° also makes an angle of 45° with each axis, because the angle between a line and an axis is taken as the acute angle. That is why the question asks for lines and not one line.",
         "common_mistakes": [
           "Stopping at 45° and giving only one line.",
           "Taking the angle with the Y-axis as θ as well, which gives no equation."
@@ -95,11 +102,27 @@
         "margin_note": "Second mark. A line through the origin has no constant term, so y = mx is enough; only the slope has to be filled in.",
         "memory_tip": "Through the origin the constant term is zero, so the line is just y = mx.",
         "lines": [
+          {
+            "text": "(the slope is the tangent of the inclination)",
+            "added": true
+          },
           "Slope m = tan θ",
           "θ = 45° ⇒ m = tan 45° = 1",
+          {
+            "text": "(tan 135° = tan(180° − 45°) = −tan 45° = −1)",
+            "added": true
+          },
           "θ = 135° ⇒ m = tan 135° = −1",
+          {
+            "text": "(a line through the origin has no constant term)",
+            "added": true
+          },
           "A line through the origin is y = mx",
           "m = 1 ⇒ y = x;   m = −1 ⇒ y = −x",
+          {
+            "text": "(move y to the right side in each equation)",
+            "added": true
+          },
           {
             "text": "∴ x − y = 0 and x + y = 0",
             "style": "boxed"
@@ -127,10 +150,21 @@
             "slope minus one"
           ]
         },
-        "why": "tan 135° = −tan 45° = −1, so the second line has the same steepness with the opposite lean. Both pass through the origin because the constant term is zero.",
+        "why": "tan 135° = −tan 45° = −1, so the second line has a slope of the same size with the opposite sign. Both pass through the origin because the constant term is zero.",
         "common_mistakes": [
           "Writing tan 135° as 1 and losing the second line.",
           "Adding a constant term to a line that must pass through the origin."
+        ],
+        "lines_compact": [
+          "Slope m = tan θ",
+          "θ = 45° ⇒ m = tan 45° = 1",
+          "θ = 135° ⇒ m = tan 135° = −1",
+          "A line through the origin is y = mx",
+          "m = 1 ⇒ y = x;   m = −1 ⇒ y = −x",
+          {
+            "text": "∴ x − y = 0 and x + y = 0",
+            "style": "boxed"
+          }
         ]
       }
     ]

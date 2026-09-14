@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.43, printed question 94. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. BOOK ERROR, corrected on this card. The guide answers (b) with 3'-UUACGUCGAUAAUCC-5', which is simply part (a) with U for T — that is the TEMPLATE strand, not the message. The mRNA has the SAME sequence as the CODING strand, with uracil in place of thymine: 5'-AAUGCAGCUAUUAGG-3'. Part (a) as printed is correct."
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.43, printed question 94. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. BOOK ERROR, corrected on this card. The guide answers (b) with 3'-UUACGUCGAUAAUCC-5', which is simply part (a) with U for T — that is the TEMPLATE strand, not the message. The mRNA has the SAME sequence as the CODING strand, with uracil in place of thymine: 5'-AAUGCAGCUAUUAGG-3'. Part (a) as printed is correct. Revised 2026-09-05 after the examiner audit: s1 no longer treats a complement written 5' to 3' as an error, since the reversed form 5'-CCTAATAGCTGCATT-3' is the same strand and is correct."
   },
   "insider_note": "Part (b) is the trap and the guide falls into it. The mRNA copies the CODING strand, not the template. Write the coding strand out and change every T to U.",
   "answer": {
@@ -54,9 +54,9 @@
           "Complementary (template) strand:",
           "3'-T T A C G T C G A T A A T C C-5'"
         ],
-        "why": "The two strands are antiparallel, so the complement is written 3' to 5' when the coding strand is written 5' to 3'.",
+        "why": "The two strands are antiparallel, so written under a coding strand that runs 5' to 3', the complement runs 3' to 5'.",
         "common_mistakes": [
-          "Writing the complement 5' to 3'. The two strands run in OPPOSITE directions.",
+          "Labelling T T A C G T C G A T A A T C C as 5' to 3'. Written under the coding strand it runs 3' to 5'. To write it 5' to 3', reverse it: 5'-CCTAATAGCTGCATT-3'.",
           "Pairing A with G. A pairs with T, and G pairs with C."
         ],
         "memory_tip": "Swap each base for its partner, and flip the direction."

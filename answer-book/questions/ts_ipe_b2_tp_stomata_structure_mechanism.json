@@ -43,9 +43,9 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.22, printed question 12. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.22, printed question 12. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. Revised 2026-09-05 after the examiner audit: the insider note no longer calls a correct answer that gives the ion sequence without the theory name guesswork."
   },
-  "insider_note": "Name the theory. \"Levitt's potassium ion pump theory\" is worth writing in the first line, and an answer that describes the ion movement without naming the theory reads as guesswork.",
+  "insider_note": "Name the theory in the first line — \"Levitt's potassium ion pump theory\" — and then give the ion sequence. The name is quick to write and sets up the rest of the answer.",
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Very Short Answer question 39, book p.147. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split gives one mark for dividing the condition by the coefficient of c so that it lines up with ax + by + c = 0, and one for reading the fixed point off and saying why that proves concurrency. The point (3/4, 1/2) was checked on three separate members of the family, including the two degenerate ones a = 0 and b = 0. This book prints almost no exam-appearance years, so appearances[] is empty. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Very Short Answer question 39, book p.147. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split gives one mark for dividing the condition by the coefficient of c so that it lines up with ax + by + c = 0, and one for reading the fixed point off and saying why that proves concurrency. The point (3/4, 1/2) was checked on three separate members of the family, including the two degenerate ones a = 0 and b = 0. This book prints almost no exam-appearance years, so appearances[] is empty. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say what you divide the given condition by, and what the numbers left in front of a and b then mean.",
   "answer": {
@@ -46,7 +46,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. In ax + by + c = 0 the constant c has coefficient 1, so the given condition must be divided by 4 to look the same.",
-        "memory_tip": "Make the c terms match first: divide the whole condition by the number in front of c.",
+        "memory_tip": "Make the c terms match first: divide the condition by the number in front of c.",
         "lines": [
           {
             "text": "Sol:",
@@ -56,7 +56,9 @@
           "Given family  ax + by + c = 0  ……(2)",
           "In (2) the constant c has coefficient 1,",
           "so divide (1) by 4:",
+          "(3a/4 = (3/4)a, 2b/4 = (2/4)b and 4c/4 = c)",
           "⇒ (3/4)a + (2/4)b + c = 0",
+          "(2/4 = 1/2)",
           "⇒ a(3/4) + b(1/2) + c = 0  ……(3)"
         ],
         "recall": {
@@ -81,7 +83,7 @@
             "coefficient of c"
           ]
         },
-        "why": "Two expressions can only be compared term by term when they are written the same way, and the family's constant term is plain c; dividing the condition by 4 is the only step needed to make the comparison legal.",
+        "why": "Two expressions can only be compared term by term when they are written the same way, and the family's constant term is plain c; dividing the condition by 4 makes the two match term by term.",
         "common_mistakes": [
           "Dividing by 3 or by 2 instead of by the coefficient of c.",
           "Reading the point straight off as (3, 2) with no division at all."
@@ -97,6 +99,15 @@
         "memory_tip": "After the division, the number multiplying a is x and the number multiplying b is y.",
         "lines": [
           "Compare (3) with ax + by + c = 0.",
+          {
+            "text": "(x = 3/4 and y = 1/2 turn ax + by + c into",
+            "added": true
+          },
+          {
+            "text": "  (3/4)a + (1/2)b + c, which is 0 by (3))",
+            "style": "indent",
+            "added": true
+          },
           "(3) says that x = 3/4, y = 1/2 satisfies",
           "ax + by + c = 0 for every a, b, c obeying (1).",
           "So every line of the family passes through",
@@ -134,7 +145,21 @@
         "why": "A point that satisfies ax + by + c = 0 for every allowed a, b and c lies on every line of the family, so all the lines pass through it. That single statement both proves concurrency and names the point.",
         "common_mistakes": [
           "Writing the point as (1/2, 3/4), with the coordinates swapped.",
-          "Proving concurrency for two chosen lines only, instead of for the whole family."
+          "Proving concurrency for two chosen lines only, instead of for every line of the family."
+        ],
+        "lines_compact": [
+          "Compare (3) with ax + by + c = 0.",
+          "(3) says that x = 3/4, y = 1/2 satisfies",
+          "ax + by + c = 0 for every a, b, c obeying (1).",
+          "So every line of the family passes through",
+          "that one point, and the family is concurrent.",
+          {
+            "text": "∴ Point of concurrency is (3/4, 1/2)",
+            "style": "boxed"
+          },
+          "Check: a = 4, b = 0 gives c = −3 and the line",
+          "4x − 3 = 0, that is x = 3/4;  a = 0, b = 2",
+          "gives c = −1 and 2y − 1 = 0, that is y = 1/2."
         ]
       }
     ]

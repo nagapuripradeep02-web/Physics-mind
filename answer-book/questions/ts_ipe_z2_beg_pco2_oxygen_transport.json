@@ -1,0 +1,86 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_beg_pco2_oxygen_transport",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Human Anatomy and Physiology-I (Zoology-II)"
+  },
+  "chapter": "Breathing and Exchange of Gases",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the effect of pCO₂ on oxygen transport?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "A rise in pCO₂",
+      "marks": 1
+    },
+    {
+      "label": "A fall in pCO₂",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.47, VSAQ 55. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Both directions are asked. Answer the rise and the fall in separate lines.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Breathing and Exchange of Gases · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_rise",
+        "kind": "text",
+        "label": "A rise in pCO₂",
+        "marks": 1,
+        "mark_note": "Rise in pCO₂",
+        "why": "Tissues that are working hard make more carbon dioxide, and that is exactly where the blood should let go of its oxygen.",
+        "common_mistakes": [
+          "Writing that a rise in pCO₂ increases the affinity. It decreases it.",
+          "Answering only one half. Both directions are asked."
+        ],
+        "memory_tip": "More carbon dioxide means oxygen is released at the tissues.",
+        "margin_note": "One line each way. Keep the contrast clear.",
+        "lines": [
+          "A rise in pCO₂ decreases the affinity of",
+          "haemoglobin for oxygen, so oxygen is",
+          "released at the tissues."
+        ]
+      },
+      {
+        "id": "s2_fall",
+        "kind": "boxed_final",
+        "label": "A fall in pCO₂",
+        "marks": 1,
+        "mark_note": "Fall in pCO₂",
+        "why": "At the alveoli the carbon dioxide leaves the blood, so the same rule run backwards makes the blood pick oxygen up.",
+        "common_mistakes": [
+          "Writing the same effect for both directions.",
+          "Leaving out where each change happens."
+        ],
+        "memory_tip": "Less carbon dioxide at the lungs means oxygen is picked up.",
+        "margin_note": "Say where it happens: the alveoli.",
+        "lines": [
+          "A fall in pCO₂ increases the affinity of",
+          "haemoglobin for oxygen, so oxygen is taken",
+          "up at the alveoli.",
+          {
+            "text": "This shift is the basis of oxygen transport",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  }
+}

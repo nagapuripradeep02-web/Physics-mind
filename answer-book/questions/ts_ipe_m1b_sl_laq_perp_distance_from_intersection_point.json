@@ -42,7 +42,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Long Answer question 25, book p.162. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split puts three marks on solving the pair, which is the longest piece of algebra on the page, one on naming and checking the point, one on quoting the distance formula, two on substituting into it and one on the arithmetic that finishes it. The formula itself takes one mark because writing it down is one line. This book prints almost no exam-appearance years, so appearances[] is empty. Paper position: Maths-1B Section C runs Q19 to Q21 at 8 marks each, answer any 2 of 3, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The printed folio is hidden or clipped on this scan, so p.162 is inferred from the strictly consecutive neighbours."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Long Answer question 25, book p.162. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split puts three marks on solving the pair, which is the longest piece of algebra on the page, one on naming and checking the point, one on quoting the distance formula, two on substituting into it and one on the arithmetic that finishes it. The formula itself takes one mark because writing it down is one line. This book prints almost no exam-appearance years, so appearances[] is empty. Paper position: Maths-1B Section C runs Q19 to Q21 at 8 marks each, answer any 2 of 3, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The printed folio is hidden or clipped on this scan, so p.162 is inferred from the strictly consecutive neighbours. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say how you get the point, and which formula gives the distance.",
   "answer": {
@@ -63,10 +63,34 @@
             "style": "heading"
           },
           "3x + 2y + 4 = 0 ……(1),  2x + 5y − 1 = 0 ……(2)",
+          "(the cross-multiplication rule: for a₁x + b₁y + c₁ = 0",
+          {
+            "text": "  and a₂x + b₂y + c₂ = 0,",
+            "style": "indent"
+          },
+          {
+            "text": "  x/(b₁c₂ − b₂c₁) = y/(c₁a₂ − c₂a₁)",
+            "style": "indent"
+          },
+          {
+            "text": "  = 1/(a₁b₂ − a₂b₁))",
+            "style": "indent"
+          },
+          "(here a₁ = 3, b₁ = 2, c₁ = 4",
+          {
+            "text": "  and a₂ = 2, b₂ = 5, c₂ = −1)",
+            "style": "indent"
+          },
           "Solving (1) & (2) by cross-multiplication,",
           "x / [2(−1) − 5(4)] = y / [4(2) − (−1)(3)]",
           "= 1 / [3(5) − 2(2)]",
+          "(2(−1) = −2, 5(4) = 20; 4(2) = 8, (−1)(3) = −3;",
+          {
+            "text": "  3(5) = 15, 2(2) = 4)",
+            "style": "indent"
+          },
           "⇒ x/(−2 − 20) = y/(8 + 3) = 1/(15 − 4)",
+          "(−2 − 20 = −22, 8 + 3 = 11 and 15 − 4 = 11)",
           "⇒ x/(−22) = y/11 = 1/11"
         ],
         "recall": {
@@ -105,8 +129,21 @@
         "marks": 1,
         "margin_note": "One mark. Read x and y off the three equal ratios, then put the point back into the second line — a one-line test that the cross-multiplication was right.",
         "lines": [
+          {
+            "text": "(x/(−22) = 1/11 gives x = −22/11;",
+            "added": true
+          },
+          {
+            "text": "  y/11 = 1/11 gives y = 11/11)",
+            "style": "indent",
+            "added": true
+          },
           "⇒ x = −22/11 = −2 and y = 11/11 = 1",
           "∴ P = (−2, 1)",
+          {
+            "text": "(2(−2) = −4 and 5(1) = 5; −4 + 5 − 1 = 0)",
+            "added": true
+          },
           "Check in (2):  2(−2) + 5(1) − 1 = 0, correct."
         ],
         "recall": {
@@ -130,13 +167,18 @@
             "point P"
           ]
         },
-        "why": "Every later mark rests on this point, so a one-line check here protects the whole second half of the answer.",
+        "why": "Every later mark rests on this point, so a one-line check here catches a slip before it affects the rest of the answer.",
         "common_mistakes": [
           "Reading x = 2 by dropping the minus sign.",
           "Skipping the check and carrying an arithmetic slip into the formula."
         ],
         "mark_note": "Method",
-        "memory_tip": "Put the point back into one of the given lines — a one-line check protects every mark after it."
+        "memory_tip": "Put the point back into one of the given lines — a one-line check catches a slip before the later marks.",
+        "lines_compact": [
+          "⇒ x = −22/11 = −2 and y = 11/11 = 1",
+          "∴ P = (−2, 1)",
+          "Check in (2):  2(−2) + 5(1) − 1 = 0, correct."
+        ]
       },
       {
         "id": "s3_distance_formula",
@@ -145,6 +187,10 @@
         "marks": 1,
         "margin_note": "One mark. Quote the formula before substituting anything. The denominator uses the coefficients of the LINE, never the coordinates of the point.",
         "lines": [
+          {
+            "text": "(the formula for the perpendicular distance)",
+            "added": true
+          },
           "Perpendicular distance from (x₁, y₁) to",
           "ax + by + c = 0 is |ax₁ + by₁ + c| / √(a² + b²)"
         ],
@@ -175,7 +221,11 @@
           "Dropping the modulus and reporting a negative distance."
         ],
         "mark_note": "Method",
-        "memory_tip": "The numerator carries the POINT, the denominator carries only the LINE."
+        "memory_tip": "The numerator carries the POINT, the denominator carries only the LINE.",
+        "lines_compact": [
+          "Perpendicular distance from (x₁, y₁) to",
+          "ax + by + c = 0 is |ax₁ + by₁ + c| / √(a² + b²)"
+        ]
       },
       {
         "id": "s4_substitute",
@@ -186,7 +236,15 @@
         "lines": [
           "Here (x₁, y₁) = (−2, 1) and the line is",
           "7x + 24y − 15 = 0, so a = 7, b = 24, c = −15",
+          {
+            "text": "(put x₁ = −2, y₁ = 1, a = 7, b = 24 and c = −15)",
+            "added": true
+          },
           "d = |7(−2) + 24(1) − 15| / √(7² + 24²)",
+          {
+            "text": "(7(−2) = −14 and 24(1) = 24; 7² = 49 and 24² = 576)",
+            "added": true
+          },
           "= |−14 + 24 − 15| / √(49 + 576)"
         ],
         "recall": {
@@ -217,7 +275,13 @@
           "Squaring only 24 and not 7 under the root."
         ],
         "mark_note": "Method",
-        "memory_tip": "Read a, b and c off the line EXACTLY as printed — the sign of c changes the answer."
+        "memory_tip": "Read a, b and c off the line EXACTLY as printed — the sign of c changes the answer.",
+        "lines_compact": [
+          "Here (x₁, y₁) = (−2, 1) and the line is",
+          "7x + 24y − 15 = 0, so a = 7, b = 24, c = −15",
+          "d = |7(−2) + 24(1) − 15| / √(7² + 24²)",
+          "= |−14 + 24 − 15| / √(49 + 576)"
+        ]
       },
       {
         "id": "s5_simplify",
@@ -226,7 +290,15 @@
         "marks": 1,
         "margin_note": "Last mark. √625 = 25 exactly, so the answer is a clean fraction. Keep the units.",
         "lines": [
+          {
+            "text": "(−14 + 24 − 15 = −5; 49 + 576 = 625 and √625 = 25)",
+            "added": true
+          },
           "= |−5| / √625 = 5/25",
+          {
+            "text": "(5/25 = 1/5)",
+            "added": true
+          },
           {
             "text": "∴ Length of the perpendicular = 1/5 units",
             "style": "boxed"
@@ -259,7 +331,14 @@
           "Leaving the answer as 5/25 without reducing it."
         ],
         "mark_note": "Method",
-        "memory_tip": "√(7² + 24²) = 25 exactly, so the answer reduces to a clean fraction."
+        "memory_tip": "√(7² + 24²) = 25 exactly, so the answer reduces to a clean fraction.",
+        "lines_compact": [
+          "= |−5| / √625 = 5/25",
+          {
+            "text": "∴ Length of the perpendicular = 1/5 units",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   }

@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.71, chapter 7 PRODUCT OF VECTORS, Short Answer question 20. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 split rewards the condition, the ratio statement, the value of p, and the substitution back — the last mark is deliberate because the middle ratio (2p/3)/2 simplifies to p/3 and therefore adds no new information, and a student who never checks it cannot know that. ANSWER IS DETERMINATE: p = 12. VERIFIED by substitution — with p = 12 the vector is 4i + 8j + 12k = 4(i + 2j + 3k), an exact scalar multiple, and the cross product test gives (4, 8, 12) × (1, 2, 3) = i(24 − 24) − j(12 − 12) + k(8 − 8) = 0, the zero vector, which is the parallel condition written the other way. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Product of Vectors supplies at least one of those eight on almost every paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.71, chapter 7 PRODUCT OF VECTORS, Short Answer question 20. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 split rewards the condition, the ratio statement, the value of p, and the substitution back — the last mark is deliberate because the middle ratio (2p/3)/2 simplifies to p/3 and therefore adds no new information, and a student who never checks it cannot know that. ANSWER IS DETERMINATE: p = 12. VERIFIED by substitution — with p = 12 the vector is 4i + 8j + 12k = 4(i + 2j + 3k), an exact scalar multiple, and the cross product test gives (4, 8, 12) × (1, 2, 3) = i(24 − 24) − j(12 − 12) + k(8 − 8) = 0, the zero vector, which is the parallel condition written the other way. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Product of Vectors supplies at least one of those eight on almost every paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find p — say what being parallel tells you about the components.",
   "answer": {
@@ -99,7 +99,7 @@
         "label": "Equate the ratios of like components",
         "marks": 1,
         "mark_note": "Ratios",
-        "margin_note": "Second mark. Write all three ratios before solving. The middle one simplifies to p/3, the same as the third, so it decides nothing on its own.",
+        "margin_note": "Second mark. Write all three ratios before solving. The middle one simplifies to p/3, the same as the third, so it gives the same equation and adds nothing new.",
         "memory_tip": "Write all three ratios first — here the middle one repeats the third, so it adds no new equation.",
         "lines": [
           "4/1 = (2p/3)/2 = p/3",
@@ -146,6 +146,10 @@
         "lines": [
           "From the first and third ratios,",
           "4/1 = p/3",
+          {
+            "text": "(cross-multiply: p = 4 × 3)",
+            "added": true
+          },
           "⇒ p = 12",
           "Then 2p/3 = 8, and 8/2 = 4 as needed."
         ],
@@ -171,10 +175,16 @@
             "p equals twelve"
           ]
         },
-        "why": "The first and third ratios contain only numbers and p, so they give the value directly. The middle ratio is then used as a check, not as a second equation.",
+        "why": "The first and third ratios give the value most simply. The middle ratio reduces to the same p/3, so it holds automatically, and substituting p = 12 into it only checks the arithmetic.",
         "common_mistakes": [
           "Solving 4/1 = 2p/3 and getting p = 6.",
           "Dividing instead of cross multiplying, giving p = 4/3."
+        ],
+        "lines_compact": [
+          "From the first and third ratios,",
+          "4/1 = p/3",
+          "⇒ p = 12",
+          "Then 2p/3 = 8, and 8/2 = 4 as needed."
         ]
       },
       {
@@ -217,7 +227,7 @@
             "substitute back"
           ]
         },
-        "why": "Substituting the value back shows the first vector is exactly 4 times the second, so they really are parallel. A cross product of the zero vector is the same statement in another form, and it also checks the middle component.",
+        "why": "Substituting the value back shows the first vector is exactly 4 times the second, so they really are parallel. A cross product of the zero vector is the same statement in another form.",
         "common_mistakes": [
           "Stopping at p = 12 without testing the middle component.",
           "Saying the two vectors are equal rather than parallel."

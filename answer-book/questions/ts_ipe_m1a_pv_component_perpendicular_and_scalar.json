@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 7 PRODUCT OF VECTORS, Short Answer question 35(ii), book p.74. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. READING OF THE STEM: the question asks two different things about the same pair, and they use the two different forms of the projection. 'The component of b on a' is the SCALAR (a·b)/|a| = 6/√3 = 2√3 ≈ 3.464; 'the vector component of b perpendicular to a' is the VECTOR b − ((a·b)/|a|²)a. Part (i) of the same book question asked for the projection vector and is authored separately as ts_ipe_m1a_pv_projection_vector_ijk_2i3jk, so this card recomputes the along-a part rather than pointing at the other card, and states in words which form is which. Computed twice. Symbolically: a·b = 6, |a|² = 3, along-a part = 2(i + j + k), perpendicular part = b − 2(i + j + k) = (2−2)i + (3−2)j + (1−2)k = j − k. By direct check: (j − k)·(i + j + k) = 0 + 1 − 1 = 0, so the perpendicular part really is perpendicular; and 2(i + j + k) + (j − k) = 2i + 3j + k = b, so the two parts reassemble b. The scalar 2√3 also equals |2i + 2j + 2k| = √12 = 2√3, as it must. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 split rewards the four separate acts: the two ingredients, the scalar component, the vector along a, and the subtraction. Paper position: Maths-1A Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern; Product of Vectors carries a Section B slot on the paper and also appears in Section C. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 7 PRODUCT OF VECTORS, Short Answer question 35(ii), book p.74. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. READING OF THE STEM: the question asks two different things about the same pair, and they use the two different forms of the projection. 'The component of b on a' is the SCALAR (a·b)/|a| = 6/√3 = 2√3 ≈ 3.464; 'the vector component of b perpendicular to a' is the VECTOR b − ((a·b)/|a|²)a. Part (i) of the same book question asked for the projection vector and is authored separately as ts_ipe_m1a_pv_projection_vector_ijk_2i3jk, so this card recomputes the along-a part rather than pointing at the other card, and states in words which form is which. Computed twice. Symbolically: a·b = 6, |a|² = 3, along-a part = 2(i + j + k), perpendicular part = b − 2(i + j + k) = (2−2)i + (3−2)j + (1−2)k = j − k. By direct check: (j − k)·(i + j + k) = 0 + 1 − 1 = 0, so the perpendicular part really is perpendicular; and 2(i + j + k) + (j − k) = 2i + 3j + k = b, so the two parts reassemble b. The scalar 2√3 also equals |2i + 2j + 2k| = √12 = 2√3, as it must. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 split rewards the four separate acts: the two ingredients, the scalar component, the vector along a, and the subtraction. Paper position: Maths-1A Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern; Product of Vectors carries a Section B slot on the paper and also appears in Section C. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would split b into a part along a and a part perpendicular to a — name each move in order.",
   "answer": {
@@ -99,14 +99,23 @@
         "label": "Component of b on a",
         "marks": 1,
         "mark_note": "Scalar component",
-        "margin_note": "Second mark. The COMPONENT of b on a is a number, not a vector: it is the length of b's shadow on a. Its formula divides by |a|, one power only.",
+        "margin_note": "Second mark. The COMPONENT of b on a is a number, not a vector: it is the signed length of b's shadow on a. Its formula divides by |a|, one power only.",
         "memory_tip": "Component means a NUMBER: divide by |a|, one power only.",
         "lines": [
           "The component of b on a is a number:",
-          "it is the length of the shadow of b",
-          "on the direction of a.",
+          "it is the signed length of the shadow of b",
+          "on the direction of a (negative when the",
+          "angle between them is obtuse).",
           "Component of b on a = (a·b)/|a|",
+          {
+            "text": "(multiply top and bottom by √3)",
+            "added": true
+          },
           "  = 6/√3 = 6√3/3",
+          {
+            "text": "(6 ÷ 3 = 2)",
+            "added": true
+          },
           "  = 2√3"
         ],
         "recall": {
@@ -131,10 +140,19 @@
             "scalar"
           ]
         },
-        "why": "Dividing by |a| once turns a into a unit vector, and a dot product with a unit vector is exactly the length of the shadow. A second division would shrink it wrongly.",
+        "why": "Dividing by |a| once turns a into a unit vector, and a dot product with a unit vector is exactly the signed length of the shadow. A second division would shrink it wrongly.",
         "common_mistakes": [
           "Dividing by |a|² and getting 2, which is the scale factor, not the component.",
           "Giving a vector when a number was asked for."
+        ],
+        "lines_compact": [
+          "The component of b on a is a number:",
+          "it is the signed length of the shadow of b",
+          "on the direction of a (negative when the",
+          "angle between them is obtuse).",
+          "Component of b on a = (a·b)/|a|",
+          "  = 6/√3 = 6√3/3",
+          "  = 2√3"
         ]
       },
       {
@@ -189,9 +207,22 @@
         "margin_note": "Last mark. Subtract the along-a part from b itself. The check costs one line and catches any slip: the result must dot to zero with a.",
         "memory_tip": "Perpendicular part = b minus the part along a.",
         "lines": [
+          {
+            "text": "(the perpendicular part is what is left of b after",
+            "added": true
+          },
+          {
+            "text": "  its part along a is taken away)",
+            "style": "indent",
+            "added": true
+          },
           "Perpendicular part = b − 2(i + j + k)",
           "  = (2−2)i + (3−2)j + (1−2)k",
           "  = j − k",
+          {
+            "text": "(a dot product of 0 means the two are perpendicular)",
+            "added": true
+          },
           "Check: (j − k)·(i + j + k)",
           "  = 0 + 1 − 1 = 0",
           {
@@ -229,6 +260,21 @@
         "common_mistakes": [
           "Subtracting b from the along-a part, which reverses every sign.",
           "Reporting only one of the two things the question asks for."
+        ],
+        "lines_compact": [
+          "Perpendicular part = b − 2(i + j + k)",
+          "  = (2−2)i + (3−2)j + (1−2)k",
+          "  = j − k",
+          "Check: (j − k)·(i + j + k)",
+          "  = 0 + 1 − 1 = 0",
+          {
+            "text": "∴ Perpendicular part = j − k,",
+            "style": "boxed"
+          },
+          {
+            "text": "component of b on a = 2√3",
+            "style": "boxed"
+          }
         ]
       }
     ]

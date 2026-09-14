@@ -1,0 +1,441 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_da_tooth_ls_diagram",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Human Anatomy and Physiology-I (Zoology-II)"
+  },
+  "chapter": "Digestion and Absorption",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Draw a neat labelled diagram of L.S. of a tooth.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Crown, neck and root outline",
+      "marks": 1
+    },
+    {
+      "label": "Enamel, dentine, pulp cavity",
+      "marks": 1
+    },
+    {
+      "label": "Blood vessels and nerve",
+      "marks": 1
+    },
+    {
+      "label": "Gum, jaw bone and labels",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.28, SAQ 11. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Figure revision (figure audit, 2026-09-05): the crown is widened and the neck pinched so crown, neck and root are distinguishable, the periodontal membrane is separated from the root outline, and the cement is labelled (the margin note now says nine parts)."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Digestion and Absorption · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_regions",
+        "kind": "text",
+        "label": "The three regions",
+        "marks": 0,
+        "why": "Naming the three regions first fixes where each layer has to be drawn, so the outline comes out in proportion.",
+        "common_mistakes": [
+          "Drawing the root as short as the crown. The root is about twice as long.",
+          "Leaving out the neck. It is the narrow part held by the gum."
+        ],
+        "memory_tip": "Crown above the gum, neck at the gum, root below it.",
+        "margin_note": "A one-line orientation. The marks are in the figure below.",
+        "lines": [
+          "A tooth has three regions:",
+          "1. Crown — the part above the gum.",
+          "2. Neck — the narrow part at the gum line.",
+          "3. Root — the part fixed in the jaw bone."
+        ]
+      },
+      {
+        "id": "s2_figure",
+        "kind": "diagram",
+        "label": "Diagram — L.S. of a tooth",
+        "marks": 4,
+        "mark_note": "Neat labelled figure",
+        "why": "A longitudinal section is the only view that shows enamel, dentine and pulp as three nested layers, which is what the question is testing.",
+        "common_mistakes": [
+          "Enamel drawn over the root. Enamel covers the crown only.",
+          "Pulp cavity drawn solid. It is a hollow space holding vessels and nerve.",
+          "No labels. An unlabelled diagram earns almost nothing here."
+        ],
+        "memory_tip": "Draw outside in: enamel, then dentine, then the hollow pulp.",
+        "margin_note": "Draw it large, one third of the page. Label all nine parts.",
+        "figure": {
+          "id": "da_tooth_ls",
+          "width": 520,
+          "height": 384,
+          "elements": [
+            {
+              "type": "pause",
+              "id": "p1",
+              "caption": "Step 1 — outline of crown and root"
+            },
+            {
+              "type": "stroke",
+              "id": "enamel_outer",
+              "d": "M 328 172 C 322 156 311 142 310 124 C 308 100 322 82 338 72 C 348 80 354 86 360 86 C 366 86 372 80 382 72 C 398 82 412 100 410 124 C 409 142 398 156 392 172",
+              "ms": 4010
+            },
+            {
+              "type": "stroke",
+              "id": "root_outer_l",
+              "d": "M 328 172 C 330 208 334 258 340 296 C 344 312 350 322 358 326",
+              "ms": 2320
+            },
+            {
+              "type": "stroke",
+              "id": "root_outer_r",
+              "d": "M 392 172 C 390 208 386 258 380 296 C 376 312 370 322 362 326",
+              "ms": 2320
+            },
+            {
+              "type": "stroke",
+              "id": "root_tip",
+              "d": "M 358 326 C 359 329 361 329 362 326",
+              "ms": 300
+            },
+            {
+              "type": "pause",
+              "id": "p2",
+              "caption": "Step 2 — dentine inside the enamel"
+            },
+            {
+              "type": "stroke",
+              "id": "dentine_crown",
+              "d": "M 334 172 C 328 156 322 142 322 126 C 321 106 332 92 346 86 C 352 92 356 96 360 96 C 364 96 368 92 374 86 C 388 92 399 106 398 126 C 398 142 392 156 386 172",
+              "ms": 3290
+            },
+            {
+              "type": "stroke",
+              "id": "dentine_root_l",
+              "d": "M 334 172 C 336 210 342 256 349 292 C 352 306 356 314 360 318",
+              "ms": 2140
+            },
+            {
+              "type": "stroke",
+              "id": "dentine_root_r",
+              "d": "M 386 172 C 384 210 378 256 371 292 C 368 306 364 314 360 318",
+              "ms": 2140
+            },
+            {
+              "type": "pause",
+              "id": "p3",
+              "caption": "Step 3 — the pulp cavity and its canal"
+            },
+            {
+              "type": "stroke",
+              "id": "pulp_crown",
+              "d": "M 344 172 L 343 136 C 342 120 345 110 351 104 C 355 110 357 114 360 114 C 363 114 365 110 369 104 C 375 110 378 120 377 136 L 376 172",
+              "ms": 2400
+            },
+            {
+              "type": "stroke",
+              "id": "pulp_canal",
+              "d": "M 344 172 C 346 212 351 260 356 296 L 360 312 L 364 296 C 369 260 374 212 376 172",
+              "ms": 4030
+            },
+            {
+              "type": "pause",
+              "id": "p4",
+              "caption": "Step 4 — blood vessels and nerve"
+            },
+            {
+              "type": "stroke",
+              "id": "blood_vessel",
+              "d": "M 358 308 C 357 272 356 234 356 196 C 356 172 356 152 357 132",
+              "ms": 2510
+            },
+            {
+              "type": "stroke",
+              "id": "nerve",
+              "d": "M 363 308 C 364 272 365 234 365 196 C 365 172 365 152 364 132",
+              "ms": 2510
+            },
+            {
+              "type": "pause",
+              "id": "p5",
+              "caption": "Step 5 — gum, jaw bone, periodontal membrane"
+            },
+            {
+              "type": "stroke",
+              "id": "gum_l",
+              "d": "M 327 168 C 310 172 294 182 286 204",
+              "ms": 750
+            },
+            {
+              "type": "stroke",
+              "id": "gum_r",
+              "d": "M 393 168 C 410 172 426 182 434 204",
+              "ms": 750
+            },
+            {
+              "type": "stroke",
+              "id": "bone_top",
+              "d": "M 258 204 L 320 204 M 400 204 L 456 204",
+              "ms": 1690
+            },
+            {
+              "type": "stroke",
+              "id": "bone_hatch_l",
+              "d": "M 258 236 L 320 236 M 258 268 L 326 268 M 258 300 L 330 300",
+              "ms": 2890
+            },
+            {
+              "type": "stroke",
+              "id": "bone_hatch_r",
+              "d": "M 402 236 L 456 236 M 396 268 L 456 268 M 392 300 L 456 300",
+              "ms": 2540
+            },
+            {
+              "type": "stroke",
+              "id": "bone_base",
+              "d": "M 258 344 L 456 344",
+              "ms": 2830
+            },
+            {
+              "type": "stroke",
+              "id": "perio_l",
+              "d": "M 321 176 C 323 212 327 258 333 296 C 338 314 346 326 356 331",
+              "ms": 2280,
+              "pen": "pencil",
+              "wipe": "y"
+            },
+            {
+              "type": "stroke",
+              "id": "perio_r",
+              "d": "M 399 176 C 397 212 393 258 387 296 C 382 314 374 326 364 331",
+              "ms": 2280,
+              "pen": "pencil",
+              "wipe": "y"
+            },
+            {
+              "type": "pause",
+              "id": "p6",
+              "caption": "Step 6 — the three regions and the labels"
+            },
+            {
+              "type": "stroke",
+              "id": "bracket_crown",
+              "d": "M 462 72 L 468 72 L 468 168 L 462 168",
+              "ms": 1540
+            },
+            {
+              "type": "stroke",
+              "id": "bracket_neck",
+              "d": "M 462 172 L 468 172 L 468 200 L 462 200",
+              "ms": 570
+            },
+            {
+              "type": "stroke",
+              "id": "bracket_root",
+              "d": "M 462 204 L 468 204 L 468 330 L 462 330",
+              "ms": 1970
+            },
+            {
+              "type": "label",
+              "id": "lb_crown",
+              "x": 472,
+              "y": 124,
+              "text": "Crown",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lb_neck",
+              "x": 472,
+              "y": 190,
+              "text": "Neck",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lb_root",
+              "x": 472,
+              "y": 270,
+              "text": "Root",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lb_enamel",
+              "x": 6,
+              "y": 66,
+              "text": "Enamel",
+              "ms": 450
+            },
+            {
+              "type": "stroke",
+              "id": "ld_enamel",
+              "d": "M 82 62 L 320 106",
+              "ms": 3460
+            },
+            {
+              "type": "label",
+              "id": "lb_dentine",
+              "x": 6,
+              "y": 106,
+              "text": "Dentine",
+              "ms": 450
+            },
+            {
+              "type": "stroke",
+              "id": "ld_dentine",
+              "d": "M 88 102 L 332 116",
+              "ms": 3490
+            },
+            {
+              "type": "label",
+              "id": "lb_pulp",
+              "x": 6,
+              "y": 146,
+              "text": "Pulp cavity",
+              "ms": 450
+            },
+            {
+              "type": "stroke",
+              "id": "ld_pulp",
+              "d": "M 122 142 L 343 146",
+              "ms": 3160
+            },
+            {
+              "type": "label",
+              "id": "lb_gum",
+              "x": 6,
+              "y": 186,
+              "text": "Gum",
+              "ms": 450
+            },
+            {
+              "type": "stroke",
+              "id": "ld_gum",
+              "d": "M 50 182 L 290 192",
+              "ms": 3430
+            },
+            {
+              "type": "label",
+              "id": "lb_vessels",
+              "x": 6,
+              "y": 236,
+              "text": "Blood vessels",
+              "ms": 450
+            },
+            {
+              "type": "stroke",
+              "id": "ld_vessels",
+              "d": "M 148 232 L 354 240",
+              "ms": 2950
+            },
+            {
+              "type": "label",
+              "id": "lb_nerve",
+              "x": 6,
+              "y": 276,
+              "text": "Nerve",
+              "ms": 450
+            },
+            {
+              "type": "stroke",
+              "id": "ld_nerve",
+              "d": "M 70 272 L 364 268",
+              "ms": 4200
+            },
+            {
+              "type": "label",
+              "id": "lb_jaw",
+              "x": 6,
+              "y": 316,
+              "text": "Jaw bone",
+              "ms": 450
+            },
+            {
+              "type": "stroke",
+              "id": "ld_jaw",
+              "d": "M 104 312 L 300 300",
+              "ms": 2810
+            },
+            {
+              "type": "label",
+              "id": "lb_perio",
+              "x": 6,
+              "y": 356,
+              "text": "Periodontal membrane",
+              "ms": 450
+            },
+            {
+              "type": "stroke",
+              "id": "ld_perio",
+              "d": "M 236 352 L 344 320",
+              "ms": 1610
+            },
+            {
+              "type": "label",
+              "id": "lb_cement",
+              "x": 384,
+              "y": 330,
+              "text": "Cement",
+              "ms": 450
+            },
+            {
+              "type": "stroke",
+              "id": "ld_cement",
+              "d": "M 382 326 L 374 312",
+              "ms": 300
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "insider_note": "The whole four marks are in the drawing. Students lose them by labelling only the outside — enamel, dentine and pulp must be three separate layers, not one outline."
+}

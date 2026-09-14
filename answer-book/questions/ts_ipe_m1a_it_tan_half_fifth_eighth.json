@@ -55,7 +55,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.73 — SAQ chapter 12 Inverse Trig Functions, answer 76.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 18 · AP 15,17,19,20 — five printed tags, the most-asked question in this unit. THREE terms, so the addition formula is applied TWICE — combine two, then combine the result with the third. There is no three-term formula to reach for. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: this same chapter DOES print 1+1+1+1 against answer 77 on book p.73, so the shape is the chapter's own, and the weightings here follow it. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. ONE PRESENTATION CHOICE, made deliberately: the book draws a small right triangle beside each answer that needs a second ratio (for example sinα = 4/5 giving cosα = 3/5). Those are authored here as the one-line algebraic step instead, with the triangle route named in the margin note — it keeps the nine answers consistent and avoids three near-identical figures where the algebra is a single line. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q16 is the Inverse Trig Functions slot. NOTE: Inverse Trigonometric Functions is an SAQ-ONLY unit — the paper gives it no Section-A and no Section-C slot, and this book has no Inverse Trig LAQ chapter (LAQ chapters are 1-6) and no VSAQ chapter (VSAQ chapters are 14-19). The same shape as Unit 7. Verified by walking to p.75, where SAQ chapter 13 Properties of Triangles begins."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.73 — SAQ chapter 12 Inverse Trig Functions, answer 76.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 18 · AP 15,17,19,20 — five printed tags, the most-asked question in this unit. THREE terms, so the addition formula is applied TWICE — combine two, then combine the result with the third. There is no three-term formula to reach for. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: this same chapter DOES print 1+1+1+1 against answer 77 on book p.73, so the shape is the chapter's own, and the weightings here follow it. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. ONE PRESENTATION CHOICE, made deliberately: the book draws a small right triangle beside each answer that needs a second ratio (for example sinα = 4/5 giving cosα = 3/5). Those are authored here as the one-line algebraic step instead, with the triangle route named in the margin note — it keeps the nine answers consistent and avoids three near-identical figures where the algebra is a single line. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q16 is the Inverse Trig Functions slot. NOTE: Inverse Trigonometric Functions is an SAQ-ONLY unit — the paper gives it no Section-A and no Section-C slot, and this book has no Inverse Trig LAQ chapter (LAQ chapters are 1-6) and no VSAQ chapter (VSAQ chapters are 14-19). The same shape as Unit 7. Verified by walking to p.75, where SAQ chapter 13 Properties of Triangles begins. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — name each move in order, and say which formula you reach for and why.",
   "answer": {
@@ -70,16 +70,18 @@
         "label": "Combine the first two",
         "marks": 2,
         "mark_note": "Method",
-        "margin_note": "Half the marks. State the formula before using it. Tan⁻¹x + Tan⁻¹y = Tan⁻¹((x+y)/(1−xy)) — both the numerator and the denominator land over 10, and the 10s cancel.",
-        "memory_tip": "Take two at a time, never all three at once. Both parts land over 10 and the 10s cancel.",
+        "margin_note": "Half the marks. State the formula before using it. Tan⁻¹x + Tan⁻¹y = Tan⁻¹((x+y)/(1−xy)) — the numerator and the denominator both have the denominator 10, and the 10s cancel.",
+        "memory_tip": "Take two at a time, never all three at once. Both parts have the denominator 10, and the 10s cancel.",
         "lines": [
           {
             "text": "Sol:",
             "style": "heading"
           },
           "We know Tan⁻¹x + Tan⁻¹y = Tan⁻¹((x+y)/(1−xy))",
+          "(it needs xy < 1; here xy = 1/10)",
           "∴ Tan⁻¹(1/2) + Tan⁻¹(1/5)",
           "= Tan⁻¹((1/2 + 1/5)/(1 − (1/2)(1/5)))",
+          "(1/2 + 1/5 = 7/10 and 1 − 1/10 = 9/10)",
           "= Tan⁻¹((7/10)/(9/10)) = Tan⁻¹(7/9)"
         ],
         "recall": {
@@ -116,11 +118,19 @@
         "label": "Combine with the third",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Third mark. Same formula again, now with 7/9 and 1/8. Both parts land over 72, and 65/72 over 65/72 is exactly 1.",
-        "memory_tip": "Same formula again with 7/9 and 1/8. Both parts land over 72, and 65/72 over 65/72 is exactly 1.",
+        "margin_note": "Third mark. Same formula again, now with 7/9 and 1/8. Both parts have the denominator 72, and 65/72 over 65/72 is exactly 1.",
+        "memory_tip": "Same formula again with 7/9 and 1/8. Both parts have the denominator 72, and 65/72 over 65/72 is exactly 1.",
         "lines": [
+          {
+            "text": "(here xy = (7/9)(1/8) = 7/72 < 1)",
+            "added": true
+          },
           "∴ L.H.S = Tan⁻¹(7/9) + Tan⁻¹(1/8)",
           "= Tan⁻¹((7/9 + 1/8)/(1 − (7/9)(1/8)))",
+          {
+            "text": "(7/9 + 1/8 = 56/72 + 9/72 = 65/72; 1 − 7/72 = 65/72)",
+            "added": true
+          },
           "= Tan⁻¹((65/72)/(65/72))",
           "= Tan⁻¹(1)"
         ],
@@ -150,6 +160,12 @@
         "common_mistakes": [
           "Cancelling before combining and losing the exact match.",
           "Restarting from the original three terms."
+        ],
+        "lines_compact": [
+          "∴ L.H.S = Tan⁻¹(7/9) + Tan⁻¹(1/8)",
+          "= Tan⁻¹((7/9 + 1/8)/(1 − (7/9)(1/8)))",
+          "= Tan⁻¹((65/72)/(65/72))",
+          "= Tan⁻¹(1)"
         ]
       },
       {
@@ -161,6 +177,10 @@
         "margin_note": "Last mark. Tan⁻¹(1) is π/4, since tan(π/4) = 1. Name the standard value rather than leaving it as an inverse.",
         "memory_tip": "Tan⁻¹(1) = π/4, since tan(π/4) = 1. Name the standard value.",
         "lines": [
+          {
+            "text": "(π/4 is the angle in (−π/2, π/2) whose tangent is 1)",
+            "added": true
+          },
           "Tan⁻¹(1) = π/4   [∵ tan(π/4) = 1]",
           {
             "text": "∴ Tan⁻¹(1/2) + Tan⁻¹(1/5) + Tan⁻¹(1/8) = π/4",
@@ -192,6 +212,13 @@
         "common_mistakes": [
           "Leaving the answer as Tan⁻¹(1).",
           "Writing π/2."
+        ],
+        "lines_compact": [
+          "Tan⁻¹(1) = π/4   [∵ tan(π/4) = 1]",
+          {
+            "text": "∴ Tan⁻¹(1/2) + Tan⁻¹(1/5) + Tan⁻¹(1/8) = π/4",
+            "style": "boxed"
+          }
         ]
       }
     ]

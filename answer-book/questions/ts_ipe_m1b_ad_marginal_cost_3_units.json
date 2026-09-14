@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.213, chapter 10 APPLICATIONS OF DERIVATIVES, the RATE MEASURE sub-section, Very Short Answer question 10(i). Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; this bank ships the whole chapter as ONE unit. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks) over this sub-section but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.213, chapter 10 APPLICATIONS OF DERIVATIVES, the RATE MEASURE sub-section, Very Short Answer question 10(i). Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; this bank ships the whole chapter as ONE unit. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks) over this sub-section but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say what the word marginal tells you to do, and what you substitute at the end.",
   "answer": {
@@ -52,10 +52,17 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "This is a rate measure question. Marginal cost is the rate of change of total cost,",
+          "This is a rate measure question.",
+          "Marginal cost is the rate of change of total cost,",
           "so marginal cost = dC/dx.",
           "C(x) = 0.005x³ − 0.02x² + 30x + 500",
+          "(power rule on each term: d/dx of x³ is 3x²,",
+          {
+            "text": "  of x² is 2x, of 30x is 30, and of 500 is 0)",
+            "style": "indent"
+          },
           "dC/dx = 0.005(3x²) − 0.02(2x) + 30",
+          "(0.005 × 3 = 0.015 and 0.02 × 2 = 0.04)",
           "= 0.015x² − 0.04x + 30"
         ],
         "recall": {
@@ -80,7 +87,7 @@
             "zero point zero one five"
           ]
         },
-        "why": "The question defines marginal cost for you as a rate of change, so the whole method is one differentiation. Writing dC/dx and differentiating earns the method mark even before any number is substituted.",
+        "why": "The question defines marginal cost for you as a rate of change, so the method is one differentiation. Writing dC/dx and differentiating earns the method mark even before any number is substituted.",
         "common_mistakes": [
           "Substituting x = 3 into C(x) itself, which gives the total cost 589.955 and not the rate.",
           "Dropping a decimal place, writing 0.015x² as 0.15x².",
@@ -96,12 +103,32 @@
         "margin_note": "Second mark. 0.135 − 0.12 = 0.015, so the answer is 30.015 and not 30. Write the unit: rupees per unit.",
         "memory_tip": "Check the size before writing: the 30x term alone contributes 30 and the two small terms almost cancel, so the answer must sit just above 30.",
         "lines": [
+          {
+            "text": "(put 3 in place of x)",
+            "added": true
+          },
           "At x = 3,",
           "dC/dx = 0.015(3)² − 0.04(3) + 30",
+          {
+            "text": "(3² = 9, and 0.04 × 3 = 0.12)",
+            "added": true
+          },
           "= 0.015(9) − 0.12 + 30",
+          {
+            "text": "(0.015 × 9 = 0.135)",
+            "added": true
+          },
           "= 0.135 − 0.12 + 30",
           {
-            "text": "∴ marginal cost when 3 units are produced = 30.015 rupees per unit",
+            "text": "(0.135 − 0.12 = 0.015, and 0.015 + 30 = 30.015)",
+            "added": true
+          },
+          {
+            "text": "∴ marginal cost when 3 units",
+            "style": "boxed"
+          },
+          {
+            "text": "are produced = 30.015 rupees per unit",
             "style": "boxed"
           }
         ],
@@ -132,6 +159,20 @@
           "Writing 30 and losing the 0.015.",
           "Rounding to 30.02. The value 30.015 is exact and terminating, so there is nothing to round.",
           "Leaving the answer with no unit."
+        ],
+        "lines_compact": [
+          "At x = 3,",
+          "dC/dx = 0.015(3)² − 0.04(3) + 30",
+          "= 0.015(9) − 0.12 + 30",
+          "= 0.135 − 0.12 + 30",
+          {
+            "text": "∴ marginal cost when 3 units",
+            "style": "boxed"
+          },
+          {
+            "text": "are produced = 30.015 rupees per unit",
+            "style": "boxed"
+          }
         ]
       }
     ]

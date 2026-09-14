@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.20, chapter 3 SEQUENCES & SERIES, Very Short Answer question 6. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sequences and Series is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.20, chapter 3 SEQUENCES & SERIES, Very Short Answer question 6. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sequences and Series is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would start this one — say what you multiply and divide by, and what G.P. appears.",
   "answer": {
@@ -53,8 +53,11 @@
             "style": "heading"
           },
           "Sₙ = 8 + 88 + 888 + … to n terms",
+          "(take out the common factor 8)",
           "= 8(1 + 11 + 111 + … to n terms)",
+          "(multiply and divide by 9: 9 × 1 = 9, 9 × 11 = 99, …)",
           "= (8/9)(9 + 99 + 999 + … to n terms)",
+          "(9 = 10 − 1, 99 = 10² − 1, …)",
           "= (8/9)[(10 − 1) + (10² − 1) + (10³ − 1) + … + (10ⁿ − 1)]"
         ],
         "recall": {
@@ -92,12 +95,28 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Check with n = 1: (8/81)(100 − 9 − 10) = (8/81)(81) = 8, which is the first term.",
-        "memory_tip": "One G.P. of tens, then take away n ones, then multiply by 8/81.",
+        "memory_tip": "Sum the G.P. of powers of 10, take away n, then multiply by 8/9.",
         "lines": [
+          {
+            "text": "(the n copies of −1 add to −n)",
+            "added": true
+          },
           "= (8/9)[(10 + 10² + … + 10ⁿ) − n]",
+          {
+            "text": "(the sum of n terms of a G.P. is a(rⁿ − 1)/(r − 1))",
+            "added": true
+          },
           "The powers of 10 form a G.P. with a = 10, r = 10, n terms:",
           "10 + 10² + … + 10ⁿ = 10(10ⁿ − 1)/9",
+          {
+            "text": "(put the sum back and take out 1/9)",
+            "added": true
+          },
           "Sₙ = (8/9)[10(10ⁿ − 1)/9 − n] = (8/81)[10(10ⁿ − 1) − 9n]",
+          {
+            "text": "(10(10ⁿ − 1) − 9n = 10ⁿ⁺¹ − 10 − 9n)",
+            "added": true
+          },
           {
             "text": "∴ Sₙ = (8/81)(10ⁿ⁺¹ − 9n − 10)",
             "style": "boxed"
@@ -125,10 +144,20 @@
             "minus nine n"
           ]
         },
-        "why": "The bracket splits into a G.P. of powers of 10 and n copies of −1. Both are standard sums, so the answer closes in one line.",
+        "why": "The bracket splits into a G.P. of powers of 10 and n copies of −1. Both are standard sums, so each can be written down straight away.",
         "common_mistakes": [
           "Subtracting 1 instead of n, forgetting that there are n terms each carrying a −1.",
           "Using a = 1 for the G.P. of powers of 10, which actually starts at 10."
+        ],
+        "lines_compact": [
+          "= (8/9)[(10 + 10² + … + 10ⁿ) − n]",
+          "The powers of 10 form a G.P. with a = 10, r = 10, n terms:",
+          "10 + 10² + … + 10ⁿ = 10(10ⁿ − 1)/9",
+          "Sₙ = (8/9)[10(10ⁿ − 1)/9 − n] = (8/81)[10(10ⁿ − 1) − 9n]",
+          {
+            "text": "∴ Sₙ = (8/81)(10ⁿ⁺¹ − 9n − 10)",
+            "style": "boxed"
+          }
         ]
       }
     ]

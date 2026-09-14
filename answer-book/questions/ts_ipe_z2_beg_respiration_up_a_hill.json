@@ -1,0 +1,86 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_beg_respiration_up_a_hill",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Human Anatomy and Physiology-I (Zoology-II)"
+  },
+  "chapter": "Breathing and Exchange of Gases",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What happens to the respiratory process in a man going up a hill?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Less oxygen at height",
+      "marks": 1
+    },
+    {
+      "label": "The body's response",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.47, VSAQ 56. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "The heart rate rises as well as the breathing rate. Most answers give only the breathing.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Breathing and Exchange of Gases · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_po2",
+        "kind": "text",
+        "label": "Less oxygen at height",
+        "marks": 1,
+        "mark_note": "Fall in pO₂",
+        "why": "The share of oxygen in air does not change with height; it is the total air pressure that falls, so each breath holds fewer molecules.",
+        "common_mistakes": [
+          "Writing that the air has less oxygen by percentage. The pressure is what falls.",
+          "Saying breathing becomes easier at height."
+        ],
+        "memory_tip": "Higher up, thinner air, less oxygen in every breath.",
+        "margin_note": "Two lines on the cause before the response.",
+        "lines": [
+          "As altitude increases, the pO₂ of the",
+          "atmosphere decreases.",
+          "So a man going up a hill gets less oxygen",
+          "with every breath."
+        ]
+      },
+      {
+        "id": "s2_response",
+        "kind": "boxed_final",
+        "label": "The body's response",
+        "marks": 1,
+        "mark_note": "Response",
+        "why": "Two rates rise together: breathing brings more air in and the faster heart carries it round more often.",
+        "common_mistakes": [
+          "Giving only the breathing rate. The heart rate rises too.",
+          "Writing that the rates fall."
+        ],
+        "memory_tip": "Breathe faster and beat faster to make up the oxygen.",
+        "margin_note": "Both rates are marked. Name them separately.",
+        "lines": [
+          "The rate of respiration increases in",
+          "response to the fall of oxygen in the blood.",
+          {
+            "text": "The heart rate also rises to supply oxygen",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  }
+}

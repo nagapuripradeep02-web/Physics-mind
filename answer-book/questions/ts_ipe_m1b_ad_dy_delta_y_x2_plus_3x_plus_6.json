@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.209, chapter 10 APPLICATIONS OF DERIVATIVES, Very Short Answer question 1(i), in the ERRORS AND APPROXIMATIONS sub-section. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and the book restarts its question numbering in each sub-section, so \"question 1(i)\" is that sub-section's number and not the chapter's; we ship the five sub-sections as ONE unit, ordered by the syllabus. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks) over this sub-section but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question — one mark for dy and one for Δy, because the question asks for two different numbers. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.209, chapter 10 APPLICATIONS OF DERIVATIVES, Very Short Answer question 1(i), in the ERRORS AND APPROXIMATIONS sub-section. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and the book restarts its question numbering in each sub-section, so \"question 1(i)\" is that sub-section's number and not the chapter's; we ship the five sub-sections as ONE unit, ordered by the syllabus. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks) over this sub-section but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question — one mark for dy and one for Δy, because the question asks for two different numbers. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say how you get dy, and say what makes Δy a different number.",
   "answer": {
@@ -52,9 +52,13 @@
             "style": "heading"
           },
           "y = x² + 3x + 6,  x = 10,  Δx = 0.01",
+          "(d/dx of x² is 2x, of 3x is 3, and of 6 is 0)",
           "dy/dx = 2x + 3",
+          "(the differential: dy = (dy/dx) · Δx)",
           "dy = (dy/dx)·Δx = (2x + 3)Δx",
+          "(put 10 in place of x: 2(10) + 3 = 23)",
           "= (2(10) + 3)(0.01) = 23 × 0.01",
+          "(23 × 0.01 = 0.23)",
           "∴ dy = 0.23"
         ],
         "recall": {
@@ -94,9 +98,38 @@
         "mark_note": "Answer",
         "margin_note": "Second mark. Δy needs the function evaluated at both 10.01 and 10. Both numbers must reach the final line — an answer that gives only dy has answered half the question.",
         "lines": [
+          {
+            "text": "(Δy is the actual change in y)",
+            "added": true
+          },
           "Δy = f(x + Δx) − f(x) = f(10.01) − f(10)",
-          "f(10.01) = (10.01)² + 3(10.01) + 6 = 100.2001 + 30.03 + 6 = 136.2301",
+          {
+            "text": "((10.01)² = 100 + 2(10)(0.01) + (0.01)² = 100.2001;",
+            "added": true
+          },
+          {
+            "text": "  3 × 10.01 = 30.03)",
+            "style": "indent",
+            "added": true
+          },
+          "f(10.01) = (10.01)² + 3(10.01) + 6 = 100.2001 + 30.03 + 6",
+          {
+            "text": "(100.2001 + 30.03 + 6 = 136.2301)",
+            "added": true
+          },
+          {
+            "text": "  = 136.2301",
+            "style": "indent"
+          },
+          {
+            "text": "(put 10 in place of x: 10² = 100 and 3(10) = 30)",
+            "added": true
+          },
           "f(10) = 100 + 30 + 6 = 136",
+          {
+            "text": "(136.2301 − 136 = 0.2301)",
+            "added": true
+          },
           "Δy = 136.2301 − 136 = 0.2301",
           {
             "text": "∴ dy = 0.23  and  Δy = 0.2301",
@@ -130,7 +163,21 @@
           "Stopping at dy when the question asks for both numbers.",
           "Writing (10.01)² as 100.01 instead of 100.2001."
         ],
-        "memory_tip": "Δy is the after value minus the before value, in that order — a negative Δy is allowed and simply means y went down."
+        "memory_tip": "Δy is the after value minus the before value, in that order — a negative Δy is allowed and simply means y went down.",
+        "lines_compact": [
+          "Δy = f(x + Δx) − f(x) = f(10.01) − f(10)",
+          "f(10.01) = (10.01)² + 3(10.01) + 6 = 100.2001 + 30.03 + 6",
+          {
+            "text": "  = 136.2301",
+            "style": "indent"
+          },
+          "f(10) = 100 + 30 + 6 = 136",
+          "Δy = 136.2301 − 136 = 0.2301",
+          {
+            "text": "∴ dy = 0.23  and  Δy = 0.2301",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

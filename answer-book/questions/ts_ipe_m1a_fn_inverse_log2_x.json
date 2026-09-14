@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.80 — VSAQ chapter 14 Functions, question 92.2. The book prints NO internal mark split on its VSAQ pages (unlike its LAQ/SAQ pages): the 1+1 across the two steps is our division of the 2 marks, not the source's. Appearance years are the book's, board-split. Publisher's claims until a Telangana IPE teacher confirms them."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.80 — VSAQ chapter 14 Functions, question 92.2. The book prints NO internal mark split on its VSAQ pages (unlike its LAQ/SAQ pages): the 1+1 across the two steps is our division of the 2 marks, not the source's. Appearance years are the book's, board-split. Publisher's claims until a Telangana IPE teacher confirms them. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would invert log base two of x — the rewrite you use, and the answer.",
   "answer": {
@@ -48,9 +48,14 @@
         "margin_note": "One mark. Undo a logarithm by writing it in exponent form — the definition of a log is all you need.",
         "memory_tip": "Undo a logarithm by writing it in EXPONENT form — the definition of a log is all that is needed.",
         "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "(f: (0, ∞) → R is one one and onto, so f⁻¹ exists)",
           "Take f(x) = y ⇒ x = f⁻¹(y)",
           "log₂x = y ⇒ x = 2ʸ",
-          "[∵ log_b a = c ⇒ a = b^c]"
+          "[∵ log₂ x = y means x = 2ʸ]"
         ],
         "recall": {
           "credit": "say_it",
@@ -90,7 +95,18 @@
         "memory_tip": "Rename back to x: f⁻¹(x) = 2ˣ. A log and a power are each other's inverse.",
         "lines": [
           "⇒ f⁻¹(y) = 2ʸ",
-          "∴ f⁻¹(x) = 2ˣ"
+          {
+            "text": "Rename y as x:",
+            "added": true
+          },
+          {
+            "text": "∴ f⁻¹(x) = 2ˣ",
+            "style": "boxed"
+          },
+          {
+            "text": "Check: log₂(2ˣ) = x",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -118,6 +134,13 @@
         "common_mistakes": [
           "Writing x² instead of 2ˣ.",
           "Changing the base to e or 10."
+        ],
+        "lines_compact": [
+          "⇒ f⁻¹(y) = 2ʸ",
+          {
+            "text": "∴ f⁻¹(x) = 2ˣ",
+            "style": "boxed"
+          }
         ]
       }
     ]

@@ -35,7 +35,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.80 — VSAQ chapter 14 Functions, question 91.2. The book prints NO internal mark split on its VSAQ pages (unlike its LAQ/SAQ pages): the 1+1 across the two steps is our division of the 2 marks, not the source's. Appearance years are the book's, board-split. Publisher's claims until a Telangana IPE teacher confirms them."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.80 — VSAQ chapter 14 Functions, question 91.2. The book prints NO internal mark split on its VSAQ pages (unlike its LAQ/SAQ pages): the 1+1 across the two steps is our division of the 2 marks, not the source's. Appearance years are the book's, board-split. Publisher's claims until a Telangana IPE teacher confirms them. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would invert a general linear function, and where a ≠ 0 is used.",
   "answer": {
@@ -53,8 +53,14 @@
         "margin_note": "One mark. Identical method to the numeric case, with letters. The condition a ≠ 0 is what lets you divide.",
         "memory_tip": "Same method as the numeric case, with letters. The condition a ≠ 0 is what lets you divide.",
         "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
           "Take f(x) = y ⇒ x = f⁻¹(y)",
+          "(take away b)",
           "ax + b = y ⇒ ax = y − b",
+          "(divide by a, which is allowed because a ≠ 0)",
           "⇒ x = (y − b)/a   (a ≠ 0)"
         ],
         "recall": {
@@ -95,7 +101,18 @@
         "memory_tip": "Rename the variable back to x: f⁻¹(x) = (x − b)/a.",
         "lines": [
           "⇒ f⁻¹(y) = (y − b)/a",
-          "∴ f⁻¹(x) = (x − b)/a"
+          {
+            "text": "Rename y as x:",
+            "added": true
+          },
+          {
+            "text": "∴ f⁻¹(x) = (x − b)/a",
+            "style": "boxed"
+          },
+          {
+            "text": "Check: f((x − b)/a) = a × (x − b)/a + b = x",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -123,6 +140,13 @@
         "common_mistakes": [
           "Leaving the answer in y.",
           "Writing (x + b)/a."
+        ],
+        "lines_compact": [
+          "⇒ f⁻¹(y) = (y − b)/a",
+          {
+            "text": "∴ f⁻¹(x) = (x − b)/a",
+            "style": "boxed"
+          }
         ]
       }
     ]

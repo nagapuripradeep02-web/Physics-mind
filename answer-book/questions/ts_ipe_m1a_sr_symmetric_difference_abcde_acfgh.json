@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.7, chapter 1 SETS & RELATIONS, Very Short Answer question 17. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sets and Relations is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.7, chapter 1 SETS & RELATIONS, Very Short Answer question 17. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sets and Relations is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would work this out — say what you find first, and how you know the answer has the right number of elements.",
   "answer": {
@@ -52,6 +52,7 @@
             "style": "heading"
           },
           "A = {a, b, c, d, e},   B = {a, c, f, g, h}",
+          "(compare the two lists letter by letter)",
           "The letters in both sets are  A ∩ B = {a, c}",
           "A − B = {b, d, e}    (a and c removed from A)",
           "B − A = {f, g, h}    (a and c removed from B)"
@@ -80,7 +81,7 @@
           ]
         },
         "why": "Both differences are needed and each is built by removing the same two shared letters, so writing the intersection once prevents the same slip being made twice.",
-        "memory_tip": "Find what the two sets share first; the symmetric difference is everything else.",
+        "memory_tip": "Find what the two sets share first; the symmetric difference is everything else in A ∪ B.",
         "common_mistakes": [
           "Writing A − B = {b, d, e, f, g, h}, which mixes in letters that belong to B.",
           "Removing a and c from A but forgetting to remove them from B."
@@ -94,9 +95,18 @@
         "mark_note": "Answer",
         "margin_note": "Second mark. The two differences share nothing, so the union is the two lists joined. Six letters, each written once.",
         "lines": [
+          {
+            "text": "(A Δ B keeps the letters that are in exactly one set)",
+            "added": true
+          },
           "A Δ B = (A − B) ∪ (B − A)",
           "= {b, d, e} ∪ {f, g, h}",
-          "Check: A ∪ B has 8 letters and A ∩ B has 2, and 8 − 2 = 6.",
+          {
+            "text": "(A ∪ B = {a, b, c, d, e, f, g, h})",
+            "added": true
+          },
+          "Check: A ∪ B has 8 letters and A ∩ B has 2,",
+          "and 8 − 2 = 6.",
           {
             "text": "∴ A Δ B = {b, d, e, f, g, h}",
             "style": "boxed"
@@ -130,6 +140,16 @@
           "Including a and c, which turns the answer into A ∪ B.",
           "Writing a letter twice because it was copied from both differences.",
           "Giving only A − B = {b, d, e} and stopping."
+        ],
+        "lines_compact": [
+          "A Δ B = (A − B) ∪ (B − A)",
+          "= {b, d, e} ∪ {f, g, h}",
+          "Check: A ∪ B has 8 letters and A ∩ B has 2,",
+          "and 8 − 2 = 6.",
+          {
+            "text": "∴ A Δ B = {b, d, e, f, g, h}",
+            "style": "boxed"
+          }
         ]
       }
     ]

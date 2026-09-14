@@ -34,7 +34,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.73, chapter 7 PRODUCT OF VECTORS, Short Answer question 31. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives half the marks to the six-term dot expansion, which is where the work is, and single marks to opening the cross product and to the cyclic rule that finishes it. Checked numerically twice. On a, b, c = i, j, k the left side is the determinant of (0,1,1), (1,0,1), (1,1,0), which is 2, while [a b c] = 1. On a, b, c = (1,2,3), (0,1,4), (2,0,1) the left side is 22 and [a b c] = 11. Both confirm the factor 2. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Product of Vectors supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.73, chapter 7 PRODUCT OF VECTORS, Short Answer question 31. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives half the marks to the six-term dot expansion, which is where the work is, and single marks to opening the cross product and to the cyclic rule that finishes it. Checked numerically twice. On a, b, c = i, j, k the left side is the determinant of (0,1,1), (1,0,1), (1,1,0), which is 2, while [a b c] = 1. On a, b, c = (1,2,3), (0,1,4), (2,0,1) the left side is 22 and [a b c] = 11. Both confirm the factor 2. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Product of Vectors supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — how you open the cross product, which terms die, and the rule that finishes it.",
   "answer": {
@@ -58,6 +58,7 @@
           },
           "[b + c  c + a  a + b]",
           "= (b + c)·((c + a) × (a + b))",
+          "(the cross product distributes over addition)",
           "(c + a) × (a + b)",
           "= c×a + c×b + a×a + a×b",
           "a×a = 0, so this is c×a + c×b + a×b."
@@ -102,6 +103,10 @@
           "Dot with (b + c):",
           "b·(c×a) + b·(c×b) + b·(a×b)",
           "+ c·(c×a) + c·(c×b) + c·(a×b)",
+          {
+            "text": "(b·(c × b) = [b c b], which has a repeated vector)",
+            "added": true
+          },
           "A box product with a repeated vector is 0,",
           "so only two terms survive:",
           "= [b c a] + [c a b]"
@@ -132,6 +137,14 @@
         "common_mistakes": [
           "Keeping terms such as b·(c×b), which are zero.",
           "Producing only three terms by dotting with one part of the sum."
+        ],
+        "lines_compact": [
+          "Dot with (b + c):",
+          "b·(c×a) + b·(c×b) + b·(a×b)",
+          "+ c·(c×a) + c·(c×b) + c·(a×b)",
+          "A box product with a repeated vector is 0,",
+          "so only two terms survive:",
+          "= [b c a] + [c a b]"
         ]
       },
       {
@@ -146,6 +159,10 @@
           "Cyclic order leaves a box product unchanged:",
           "[b c a] = [a b c] and [c a b] = [a b c].",
           "So the sum is [a b c] + [a b c].",
+          {
+            "text": "([a b c] + [a b c] = 2[a b c])",
+            "added": true
+          },
           {
             "text": "∴ [b + c  c + a  a + b] = 2[a b c]",
             "style": "boxed"
@@ -177,6 +194,15 @@
         "common_mistakes": [
           "Treating [b c a] as −[a b c]; that is a swap, not a cyclic move.",
           "Stopping at [b c a] + [c a b] without naming them."
+        ],
+        "lines_compact": [
+          "Cyclic order leaves a box product unchanged:",
+          "[b c a] = [a b c] and [c a b] = [a b c].",
+          "So the sum is [a b c] + [a b c].",
+          {
+            "text": "∴ [b + c  c + a  a + b] = 2[a b c]",
+            "style": "boxed"
+          }
         ]
       }
     ]

@@ -35,9 +35,9 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.39, printed question 56. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.39, printed question 56. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. Revised 2026-09-05 after the examiner audit: three mistakes lines were rewritten — the root is no longer flatly denied as a source (NCERT has stored root food becoming the source in early spring, which this card's own s2 line already implies), and the two lines demanding examples the printed question never asks for were replaced; the insider note was softened to match."
   },
-  "insider_note": "Each half needs a definition AND an example. The examples are short, so there is no reason to leave them out.",
+  "insider_note": "Give a definition for each half, then add an example after it. The examples are short, so there is no reason to leave them out.",
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",
@@ -58,8 +58,8 @@
         ],
         "why": "Food is made where photosynthesis happens, so the leaf is the source by definition rather than by convention.",
         "common_mistakes": [
-          "Calling the root the source. The root usually stores food, so it is a sink.",
-          "Leaving out the example. The example is part of the mark."
+          "Calling the root the source in a plant that is photosynthesising. Food is prepared in the leaf, so the leaf is the source. A storage root is normally the sink, though in early spring it becomes the source and the buds are the sink.",
+          "Defining the source as 'the leaf' and nothing more. The source is the place where food material is PREPARED — the leaf is the example, not the definition."
         ],
         "memory_tip": "Source makes it, sink keeps it."
       },
@@ -83,7 +83,7 @@
         ],
         "why": "A part can be a source in one season and a sink in another, which is why phloem transport is not fixed to one direction the way xylem transport is.",
         "common_mistakes": [
-          "Naming only one example. The question uses the plural.",
+          "Naming the sink as one fixed part of the plant. Any part that stores or uses food is a sink — fruits, buds, roots — and the same part can be the source in another season.",
           "Saying phloem always moves food downward. It moves toward whichever part is the sink."
         ],
         "memory_tip": "Whichever end is storing today is the sink today."

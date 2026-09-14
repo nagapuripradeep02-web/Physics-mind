@@ -55,9 +55,9 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.33, printed question 41. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. BOOK ERROR, corrected on this card: the guide's p.33 figure labels BOTH panels \"In absence of inducer\". The second panel is the INDUCED state — its own content proves it, since lac mRNA is being transcribed, the three enzymes are being made and the repressor is drawn inactivated. The card labels it \"In the presence of inducer\". The guide also prints the gene map as \"p i p o z y a\"; the card uses the standard NCERT order i-p-o-z-y-a.\nThis is the second of only TWO questions in the paper whose marks sit on the drawing (the other is the chloroplast, global 17): the book prints no written answer here."
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.33, printed question 41. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. BOOK ERROR, corrected on this card: the guide's p.33 figure labels BOTH panels \"In absence of inducer\". The second panel is the INDUCED state — its own content proves it, since lac mRNA is being transcribed, the three enzymes are being made and the repressor is drawn inactivated. The card labels it \"In the presence of inducer\". The guide also prints the gene map as \"p i p o z y a\"; the card uses the standard NCERT order i-p-o-z-y-a.\nThis is the second of only TWO questions in the paper whose marks sit on the drawing (the other is the chloroplast, global 17): the book prints no written answer here. Figure revision (figure audit, 2026-09-05): the first phase caption no longer calls all six boxes genes, since p is a promoter and o an operator, and the legend now reads \"z, y, a = structural genes\". Text revision (examiner audit, 2026-09-05): the insider note no longer says both panels or nothing, and the s1_diagram margin note and memory tip no longer say that only the repressor moves between the panels, since the second panel also carries the inducer, the lac mRNA and the three enzymes."
   },
-  "insider_note": "Both panels or nothing. A single panel of the repressed operon answers half the question, because the whole point of an operon is that it switches.",
+  "insider_note": "Draw both panels. A single panel of the repressed operon shows only half of what an operon does — the whole point is that it switches. The second panel, with the inducer, is the one students leave out.",
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",
@@ -70,7 +70,7 @@
         "label": "Schematic of the lac operon",
         "marks": 4,
         "mark_note": "Both panels, labelled",
-        "margin_note": "All four marks are here. Draw both panels the same width and directly under each other, so an examiner can see at a glance that only the repressor has moved.",
+        "margin_note": "All four marks are here. Draw both panels the same width and directly under each other. In the second panel the inducer binds the repressor and the operator is left free, so the lac mRNA and the three enzymes have to be drawn as well.",
         "figure": {
           "id": "b2_mbi_lac_operon",
           "width": 620,
@@ -79,7 +79,7 @@
             {
               "type": "pause",
               "id": "lo_p1",
-              "caption": "Step 1 — the six genes of the operon, in order"
+              "caption": "Step 1 — the operon map: i p o z y a"
             },
             {
               "type": "label",
@@ -314,7 +314,7 @@
               "id": "lo_lg3",
               "x": 410,
               "y": 164,
-              "text": "z, y, a = structural",
+              "text": "z, y, a = structural genes",
               "ms": 450,
               "sm": true
             },
@@ -726,7 +726,7 @@
           "Putting the genes in the wrong order. It is i, p, o, z, y, a — regulator, promoter, operator, then the three structural genes.",
           "Labelling both panels 'absence of inducer'. The guide does exactly this; the second panel is the PRESENCE of inducer."
         ],
-        "memory_tip": "Two panels: repressor on the operator, then repressor knocked off it."
+        "memory_tip": "Two panels: repressor on the operator and nothing transcribed, then repressor off it and the lac mRNA being made."
       },
       {
         "id": "s2_checklist",

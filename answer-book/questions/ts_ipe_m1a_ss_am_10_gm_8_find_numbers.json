@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.21, chapter 3 SEQUENCES & SERIES, Very Short Answer question 8. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sequences and Series is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.21, chapter 3 SEQUENCES & SERIES, Very Short Answer question 8. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sequences and Series is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this — say what the A.M. and the G.M. give you, and what equation you build from them.",
   "answer": {
@@ -53,7 +53,9 @@
             "style": "heading"
           },
           "Let the two numbers be a and b.",
+          "(multiply both sides by 2)",
           "A.M. = (a + b)/2 = 10  ⇒  a + b = 20",
+          "(square both sides)",
           "G.M. = √(ab) = 8  ⇒  ab = 64"
         ],
         "recall": {
@@ -92,8 +94,21 @@
         "margin_note": "Second mark. Check both conditions: (4 + 16)/2 = 10 and √(4 × 16) = √64 = 8.",
         "memory_tip": "x² − (sum)x + product = 0 is the equation whose roots are the two numbers.",
         "lines": [
+          {
+            "text": "(the quadratic with roots a and b is",
+            "added": true
+          },
+          {
+            "text": "  x² − (sum of roots)x + (product of roots) = 0)",
+            "style": "indent",
+            "added": true
+          },
           "a and b are the roots of  x² − (a + b)x + ab = 0",
           "x² − 20x + 64 = 0",
+          {
+            "text": "(two numbers with product 64 and sum 20 are 4 and 16)",
+            "added": true
+          },
           "(x − 4)(x − 16) = 0  ⇒  x = 4  or  x = 16",
           {
             "text": "∴ the two numbers are 4 and 16",
@@ -125,6 +140,15 @@
         "common_mistakes": [
           "Writing x² + 20x + 64 = 0 with the wrong sign on the middle term.",
           "Factorising as (x − 8)(x − 8), which fits the product but not the sum."
+        ],
+        "lines_compact": [
+          "a and b are the roots of  x² − (a + b)x + ab = 0",
+          "x² − 20x + 64 = 0",
+          "(x − 4)(x − 16) = 0  ⇒  x = 4  or  x = 16",
+          {
+            "text": "∴ the two numbers are 4 and 16",
+            "style": "boxed"
+          }
         ]
       }
     ]

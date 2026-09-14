@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.187, chapter 8 LIMITS, Very Short Answer question 28. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.187, chapter 8 LIMITS, Very Short Answer question 28. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say which power of x you divide by, and what happens to the remaining terms.",
   "answer": {
@@ -51,9 +51,25 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "As x → ∞ both lines increase without bound, so this is the indeterminate form ∞/∞.",
-          "The highest power of x present is x². Divide every term of both lines by x² (x ≠ 0):",
-          "(x² + 5x + 2)/(2x² − 5x + 1) = (1 + 5/x + 2/x²)/(2 − 5/x + 1/x²)"
+          "As x → ∞ both lines increase without bound,",
+          "so this is the indeterminate form ∞/∞.",
+          "The highest power of x present is x².",
+          "(dividing the top and the bottom by the same non-zero",
+          {
+            "text": "  number does not change the fraction)",
+            "style": "indent"
+          },
+          "Divide every term of both lines by x² (x ≠ 0):",
+          "(x²/x² = 1, 5x/x² = 5/x, 2/x² stays;",
+          {
+            "text": "  2x²/x² = 2, 5x/x² = 5/x, 1/x² stays)",
+            "style": "indent"
+          },
+          "(x² + 5x + 2)/(2x² − 5x + 1)",
+          {
+            "text": "  = (1 + 5/x + 2/x²)/(2 − 5/x + 1/x²)",
+            "style": "indent"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -92,7 +108,15 @@
         "mark_note": "Answer",
         "margin_note": "Second mark. Box 1/2 — the coefficient of x² on top over the coefficient of x² below.",
         "lines": [
+          {
+            "text": "(a fixed number divided by a growing power of x goes to 0)",
+            "added": true
+          },
           "As x → ∞:  5/x → 0,  2/x² → 0,  1/x² → 0",
+          {
+            "text": "(put 0 for each of these terms)",
+            "added": true
+          },
           "∴ limit = (1 + 0 + 0)/(2 − 0 + 0) = 1/2",
           {
             "text": "∴ lim(x → ∞) (x² + 5x + 2)/(2x² − 5x + 1) = 1/2",
@@ -123,10 +147,18 @@
         },
         "why": "Each term of the form c/xⁿ approaches 0 as x increases without bound, so only the two leading coefficients remain.",
         "common_mistakes": [
-          "Giving 2, by writing the ratio of coefficients upside down.",
+          "Giving 2, by writing the ratio of the coefficients as 2/1 instead of 1/2.",
           "Keeping 5/x in the final answer instead of letting it approach 0."
         ],
-        "memory_tip": "Coefficient of x² on top over coefficient of x² below: 1 over 2."
+        "memory_tip": "Coefficient of x² on top over coefficient of x² below: 1 over 2.",
+        "lines_compact": [
+          "As x → ∞:  5/x → 0,  2/x² → 0,  1/x² → 0",
+          "∴ limit = (1 + 0 + 0)/(2 − 0 + 0) = 1/2",
+          {
+            "text": "∴ lim(x → ∞) (x² + 5x + 2)/(2x² − 5x + 1) = 1/2",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

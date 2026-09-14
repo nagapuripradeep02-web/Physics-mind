@@ -1,0 +1,82 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_abio_fishery",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Applied Biology (Zoology-II)"
+  },
+  "chapter": "Applied Biology",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define the term Fishery.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Scope",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.58, VSAQ 128. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Revision (examiner audit, 2026-09-05): the card's notes ask for 'other aquatic animals', which the boxed line stops short of, so step 2's WHY now gives the fuller wording; the printed line is correct as far as it goes and was left alone, and whether the phrase is required is a question for a board teacher."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Applied Biology · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1",
+        "kind": "text",
+        "label": "What it is",
+        "marks": 1,
+        "mark_note": "Definition",
+        "why": "It is named as an occupation because it covers the whole chain from catching to selling.",
+        "common_mistakes": [
+          "Restricting fishery to catching only.",
+          "Leaving out shell fish and other aquatic animals."
+        ],
+        "memory_tip": "Catch, process, store, sell.",
+        "margin_note": "One sentence, but list all four activities.",
+        "lines": [
+          "Fishery is an occupation, or industry, for",
+          "catching, processing, storing and selling"
+        ]
+      },
+      {
+        "id": "s2",
+        "kind": "boxed_final",
+        "label": "What it covers",
+        "marks": 1,
+        "mark_note": "Scope",
+        "why": "Prawns, crabs and molluscs are the other aquatic animals the industry covers, so the fullest definition names fish, shell fish and other aquatic animals.",
+        "common_mistakes": [
+          "Naming only fin fish.",
+          "Leaving out human consumption."
+        ],
+        "memory_tip": "Fish, shell fish and other aquatic animals.",
+        "margin_note": "Close with what it is all for.",
+        "lines": [
+          {
+            "text": "fish or shell fish for human consumption",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Fishery covers more than fish — shell fish and other aquatic animals count too. Say so and the definition is complete."
+}

@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 5 MATRICES, Short Answer question 9(ii), book p.41. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 split follows the four separate matrices the word 'verify' asks for — the sum, its transpose, the sum of the transposes, and the comparison — because a verification question is marked on both sides being computed independently, not on the final sentence. CHECKED ENTRY BY ENTRY: the left side (A + B)ᵀ was read off as the 3×2 with rows (−2, 6), (8, 3), (7, 7), and the right side Aᵀ + Bᵀ was built separately from Aᵀ and Bᵀ and gives the same six numbers in the same six positions. The transposed-index trap here is Bᵀ: its entry in row 3 column 1 is B's entry in row 1 column 3, which is 0, not B's row 3 (B has no row 3). Related card in the same unit: ts_ipe_m1a_mat_vsaq_reverse_law_transpose verifies (AB)′ = B′A′, a different law with a reversed order; this one is the addition law, where the order does not reverse. Paper position: Maths-1A Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern; Matrices supplies questions to all three sections of this paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 5 MATRICES, Short Answer question 9(ii), book p.41. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 split follows the four separate matrices the word 'verify' asks for — the sum, its transpose, the sum of the transposes, and the comparison — because a verification question is marked on both sides being computed independently, not on the final sentence. CHECKED ENTRY BY ENTRY: the left side (A + B)ᵀ was read off as the 3×2 with rows (−2, 6), (8, 3), (7, 7), and the right side Aᵀ + Bᵀ was built separately from Aᵀ and Bᵀ and gives the same six numbers in the same six positions. The transposed-index trap here is Bᵀ: its entry in row 3 column 1 is B's entry in row 1 column 3, which is 0, not B's row 3 (B has no row 3). Related card in the same unit: ts_ipe_m1a_mat_vsaq_reverse_law_transpose verifies (AB)′ = B′A′, a different law with a reversed order; this one is the addition law, where the order does not reverse. Paper position: Maths-1A Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern; Matrices supplies questions to all three sections of this paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say the four things you would compute to verify (A + B)ᵀ = Aᵀ + Bᵀ.",
   "answer": {
@@ -61,6 +61,7 @@
             "style": "heading"
           },
           "A and B are both 2×3, so A + B is 2×3.",
+          "(add the entries in the same position)",
           {
             "text": "A + B = \\begin{bmatrix} 1-3 & 4+4 & 7+0 \\\\ 2+4 & 5-2 & 8-1 \\end{bmatrix} = \\begin{bmatrix} -2 & 8 & 7 \\\\ 6 & 3 & 7 \\end{bmatrix}",
             "render": "katex",
@@ -105,6 +106,10 @@
         "lines": [
           "Transposing turns the 2×3 into a 3×2.",
           {
+            "text": "(row 1 of A + B becomes column 1)",
+            "added": true
+          },
+          {
             "text": "(A + B)^{T} = \\begin{bmatrix} -2 & 6 \\\\ 8 & 3 \\\\ 7 & 7 \\end{bmatrix}",
             "render": "katex",
             "style": "eq"
@@ -135,6 +140,14 @@
         "common_mistakes": [
           "Writing the transpose still as a 2×3 matrix.",
           "Reversing the order of the rows instead of exchanging rows with columns."
+        ],
+        "lines_compact": [
+          "Transposing turns the 2×3 into a 3×2.",
+          {
+            "text": "(A + B)^{T} = \\begin{bmatrix} -2 & 6 \\\\ 8 & 3 \\\\ 7 & 7 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -150,6 +163,10 @@
             "text": "A^{T} = \\begin{bmatrix} 1 & 2 \\\\ 4 & 5 \\\\ 7 & 8 \\end{bmatrix}, \\quad B^{T} = \\begin{bmatrix} -3 & 4 \\\\ 4 & -2 \\\\ 0 & -1 \\end{bmatrix}",
             "render": "katex",
             "style": "eq"
+          },
+          {
+            "text": "(each row of A and of B becomes a column)",
+            "added": true
           },
           {
             "text": "A^{T} + B^{T} = \\begin{bmatrix} 1-3 & 2+4 \\\\ 4+4 & 5-2 \\\\ 7+0 & 8-1 \\end{bmatrix} = \\begin{bmatrix} -2 & 6 \\\\ 8 & 3 \\\\ 7 & 7 \\end{bmatrix}",
@@ -182,6 +199,18 @@
         "common_mistakes": [
           "Reading Bᵀ off the rows of B instead of its columns.",
           "Copying the left-side answer across instead of computing this side."
+        ],
+        "lines_compact": [
+          {
+            "text": "A^{T} = \\begin{bmatrix} 1 & 2 \\\\ 4 & 5 \\\\ 7 & 8 \\end{bmatrix}, \\quad B^{T} = \\begin{bmatrix} -3 & 4 \\\\ 4 & -2 \\\\ 0 & -1 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "A^{T} + B^{T} = \\begin{bmatrix} 1-3 & 2+4 \\\\ 4+4 & 5-2 \\\\ 7+0 & 8-1 \\end{bmatrix} = \\begin{bmatrix} -2 & 6 \\\\ 8 & 3 \\\\ 7 & 7 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
         ]
       },
       {

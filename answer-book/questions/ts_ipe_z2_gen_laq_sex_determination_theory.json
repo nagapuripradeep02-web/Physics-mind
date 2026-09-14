@@ -1,0 +1,457 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_gen_laq_sex_determination_theory",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Genetics (Zoology-II)"
+  },
+  "chapter": "Genetics",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Describe chromosomal theory of sex determination.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Sex chromosomes and the two methods",
+      "marks": 1
+    },
+    {
+      "label": "XX-XO type",
+      "marks": 1
+    },
+    {
+      "label": "How the grasshopper's sex is decided",
+      "marks": 1
+    },
+    {
+      "label": "XX-XY type",
+      "marks": 1
+    },
+    {
+      "label": "How a human child's sex is decided",
+      "marks": 1
+    },
+    {
+      "label": "ZO-ZZ type",
+      "marks": 1
+    },
+    {
+      "label": "ZW-ZZ type",
+      "marks": 1
+    },
+    {
+      "label": "The human cross diagram",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book pp.21-22, LAQ 7. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Revised 2026-09-05 after the examiner audit: the opening line no longer says the sex pair is always X and Y, which the card's own ZO-ZZ and ZW-ZZ steps contradict, and the insider note now lists the four types instead of claiming a mark cap."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Genetics · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_two_methods",
+        "kind": "text",
+        "label": "The two methods",
+        "marks": 1,
+        "mark_note": "Sex chromosomes",
+        "why": "Whichever sex makes two kinds of gamete is the one that decides the sex of the offspring, and that is what splits the methods in two.",
+        "common_mistakes": [
+          "Calling sex chromosomes autosomes. They are allosomes.",
+          "Naming only one method."
+        ],
+        "memory_tip": "Heterogametic means making two kinds of gamete.",
+        "margin_note": "Name both methods, then take them in turn.",
+        "lines": [
+          "In most animals a pair of chromosomes",
+          "decides the sex. They are called sex",
+          "chromosomes, or allosomes.",
+          "The sex chromosomes are called X and Y in",
+          "some animals, and Z and W in others.",
+          "There are two types of sex chromosomal",
+          "mechanism:",
+          "1. Male heterogametic method",
+          "2. Female heterogametic method"
+        ]
+      },
+      {
+        "id": "s2_xx_xo",
+        "kind": "text",
+        "label": "XX-XO type",
+        "marks": 1,
+        "mark_note": "XX-XO",
+        "why": "The male has no partner for his single X, so half his sperm carry an X and half carry none.",
+        "common_mistakes": [
+          "Giving the grasshopper male a Y chromosome. He has none.",
+          "Writing AAXX for the male. That is the female."
+        ],
+        "memory_tip": "XO means the male has one X and nothing opposite it.",
+        "margin_note": "Karyotypes first, then the gametes.",
+        "lines": [
+          {
+            "text": "Male heterogametic — 1. XX-XO type",
+            "style": "heading"
+          },
+          "It is found in grasshoppers.",
+          "The karyotype of the female is AAXX and",
+          "of the male is AAXO.",
+          "Females have two X chromosomes and males",
+          "have only one.",
+          "The unpaired X chromosome decides the sex",
+          "of the offspring."
+        ]
+      },
+      {
+        "id": "s3_grasshopper_cross",
+        "kind": "text",
+        "label": "The grasshopper cross",
+        "marks": 1,
+        "mark_note": "The cross",
+        "why": "All the ova are alike, so whichever kind of sperm arrives is what settles the sex.",
+        "common_mistakes": [
+          "Making the ovum decide the sex here. The sperm does.",
+          "Forgetting that half the sperm carry no X at all."
+        ],
+        "memory_tip": "AX sperm gives a female, A sperm gives a male.",
+        "margin_note": "Two outcomes, one line each.",
+        "lines": [
+          "The sperms are of two types: 50% carry AX",
+          "and 50% carry only A.",
+          "All the ova carry AX chromosomes.",
+          "The sex of the offspring is decided by the",
+          "sperm that fertilises the ovum.",
+          "If an AX sperm fertilises, the child is",
+          "female. If an AO sperm fertilises, the",
+          "child is male."
+        ]
+      },
+      {
+        "id": "s4_xx_xy",
+        "kind": "text",
+        "label": "XX-XY type",
+        "marks": 1,
+        "mark_note": "XX-XY",
+        "why": "Here the male's second sex chromosome is a Y rather than nothing, so his two kinds of sperm are X-carrying and Y-carrying.",
+        "common_mistakes": [
+          "Calling the human female heterogametic. She is homogametic.",
+          "Writing AAXO for the human male."
+        ],
+        "memory_tip": "Female AAXX is homogametic; male AAXY is heterogametic.",
+        "margin_note": "Same pattern as XX-XO. Keep the layout identical.",
+        "lines": [
+          {
+            "text": "2. XX-XY type",
+            "style": "heading"
+          },
+          "It is found in human beings.",
+          "The female is homogametic with karyotype",
+          "AAXX. The male is heterogametic with",
+          "karyotype AAXY.",
+          "Females have two X chromosomes. Males have",
+          "one X and one Y chromosome.",
+          "The Y chromosome decides the sex of the",
+          "offspring."
+        ]
+      },
+      {
+        "id": "s5_human_cross",
+        "kind": "text",
+        "label": "The human cross",
+        "marks": 1,
+        "mark_note": "The cross",
+        "why": "Since every ovum carries an X, the child's sex depends entirely on whether the sperm brought an X or a Y.",
+        "common_mistakes": [
+          "Blaming the mother for the child's sex. The sperm decides it.",
+          "Leaving out the karyotypes of the children."
+        ],
+        "memory_tip": "AX sperm gives a daughter, AY sperm gives a son.",
+        "margin_note": "Give the child's karyotype in brackets.",
+        "lines": [
+          "50% of the sperms are AX and the other 50%",
+          "are AY. All the ova contain AX.",
+          "The sex of the offspring is decided by the",
+          "sperm that fertilises the ovum.",
+          "If an AX sperm fertilises, the child is",
+          "female (AAXX).",
+          "If an AY sperm fertilises, the child is",
+          "male (AAXY)."
+        ]
+      },
+      {
+        "id": "s6_zo_zz",
+        "kind": "text",
+        "label": "ZO-ZZ type",
+        "marks": 1,
+        "mark_note": "ZO-ZZ",
+        "why": "In these animals it is the female that makes two kinds of gamete, so the letters are changed to Z and W to avoid confusion with X and Y.",
+        "common_mistakes": [
+          "Using X and Y letters here. The female heterogametic types use Z and W.",
+          "Making the male heterogametic in this type."
+        ],
+        "memory_tip": "Z and W are used when the FEMALE is the heterogametic sex.",
+        "margin_note": "Name the animal for each type.",
+        "lines": [
+          {
+            "text": "Female heterogametic — 1. ZO-ZZ type",
+            "style": "heading"
+          },
+          "It is found in Fumea moths.",
+          "The karyotype of the female is AAZO and of",
+          "the male is AAZZ.",
+          "The female is heterogametic with one Z",
+          "chromosome. The male is homogametic with",
+          "two Z chromosomes.",
+          "The sex of the offspring is decided by the",
+          "ovum that is fertilised.",
+          "If an AO ovum is fertilised it will be",
+          "female. If an AZ ovum is fertilised it will",
+          "be male."
+        ]
+      },
+      {
+        "id": "s7_zw_zz",
+        "kind": "text",
+        "label": "ZW-ZZ type",
+        "marks": 1,
+        "mark_note": "ZW-ZZ",
+        "why": "The bird's female carries two different sex chromosomes, so the egg rather than the sperm settles the chick's sex.",
+        "common_mistakes": [
+          "Making the male bird heterogametic. The female is.",
+          "Confusing ZW with ZO."
+        ],
+        "memory_tip": "Birds: hen ZW, cock ZZ.",
+        "margin_note": "Mirror the ZO-ZZ layout exactly.",
+        "lines": [
+          {
+            "text": "2. ZW-ZZ type",
+            "style": "heading"
+          },
+          "It is found in birds.",
+          "The karyotype of the female is AAZW and of",
+          "the male is AAZZ.",
+          "The female is heterogametic with Z and W",
+          "chromosomes. The male is homogametic with",
+          "ZZ chromosomes.",
+          "If an AZ ovum is fertilised it will be",
+          "male. If an AW ovum is fertilised it will",
+          "be female."
+        ]
+      },
+      {
+        "id": "s8_figure",
+        "kind": "diagram",
+        "label": "Diagram — the human cross",
+        "marks": 1,
+        "mark_note": "Cross diagram",
+        "why": "The crossing lines show at a glance that the ovum is always the same and only the sperm varies.",
+        "common_mistakes": [
+          "Drawing two kinds of ovum. All ova carry AX.",
+          "Leaving the karyotypes off the children."
+        ],
+        "memory_tip": "One kind of ovum, two kinds of sperm, two kinds of child.",
+        "margin_note": "Draw the cross for the human XX-XY type.",
+        "figure": {
+          "id": "gen_xx_xy_cross",
+          "width": 520,
+          "height": 404,
+          "elements": [
+            {
+              "type": "pause",
+              "id": "p1",
+              "caption": "Step 1 — the two parents"
+            },
+            {
+              "type": "stroke",
+              "id": "mother_symbol",
+              "d": "M 138 46 A 14 14 0 1 0 166 46 A 14 14 0 1 0 138 46 M 152 60 L 152 84 M 142 74 L 162 74",
+              "ms": 1880
+            },
+            {
+              "type": "stroke",
+              "id": "father_symbol",
+              "d": "M 344 46 A 14 14 0 1 0 372 46 A 14 14 0 1 0 344 46 M 368 36 L 384 20 M 384 20 L 372 20 M 384 20 L 384 32",
+              "ms": 1920
+            },
+            {
+              "type": "label",
+              "id": "lb_mother",
+              "x": 108,
+              "y": 116,
+              "text": "Mother  AA XX",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lb_father",
+              "x": 320,
+              "y": 116,
+              "text": "Father  AA XY",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "pause",
+              "id": "p2",
+              "caption": "Step 2 — the gametes each parent makes"
+            },
+            {
+              "type": "stroke",
+              "id": "ovum",
+              "d": "M 138 148 A 14 14 0 1 0 166 148 A 14 14 0 1 0 138 148 M 148 148 A 4 4 0 1 0 156 148 A 4 4 0 1 0 148 148",
+              "ms": 1620
+            },
+            {
+              "type": "stroke",
+              "id": "sperm_x",
+              "d": "M 330 140 A 8 8 0 1 0 346 140 A 8 8 0 1 0 330 140 M 338 148 C 334 156 342 160 338 168",
+              "ms": 1010
+            },
+            {
+              "type": "stroke",
+              "id": "sperm_y",
+              "d": "M 380 140 A 8 8 0 1 0 396 140 A 8 8 0 1 0 380 140 M 388 148 C 384 156 392 160 388 168",
+              "ms": 1010
+            },
+            {
+              "type": "label",
+              "id": "lb_ovum",
+              "x": 134,
+              "y": 196,
+              "text": "AX",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lb_sperm_x",
+              "x": 326,
+              "y": 196,
+              "text": "AX",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lb_sperm_y",
+              "x": 376,
+              "y": 196,
+              "text": "AY",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "pause",
+              "id": "p3",
+              "caption": "Step 3 — which sperm meets the ovum"
+            },
+            {
+              "type": "stroke",
+              "id": "cross_a",
+              "d": "M 152 208 L 152 268",
+              "ms": 860
+            },
+            {
+              "type": "stroke",
+              "id": "cross_b",
+              "d": "M 152 208 L 356 268",
+              "ms": 3040
+            },
+            {
+              "type": "stroke",
+              "id": "cross_c",
+              "d": "M 336 208 L 158 268",
+              "ms": 2680
+            },
+            {
+              "type": "stroke",
+              "id": "cross_d",
+              "d": "M 388 208 L 362 268",
+              "ms": 930
+            },
+            {
+              "type": "pause",
+              "id": "p4",
+              "caption": "Step 4 — the two possible children"
+            },
+            {
+              "type": "label",
+              "id": "lb_child_f",
+              "x": 108,
+              "y": 294,
+              "text": "AA XX",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lb_child_m",
+              "x": 322,
+              "y": 294,
+              "text": "AA XY",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "daughter_symbol",
+              "d": "M 138 320 A 12 12 0 1 0 162 320 A 12 12 0 1 0 138 320 M 150 332 L 150 352 M 142 344 L 158 344",
+              "ms": 1590
+            },
+            {
+              "type": "stroke",
+              "id": "son_symbol",
+              "d": "M 344 320 A 12 12 0 1 0 368 320 A 12 12 0 1 0 344 320 M 364 312 L 378 298 M 378 298 L 368 298 M 378 298 L 378 308",
+              "ms": 1650
+            },
+            {
+              "type": "label",
+              "id": "lb_female",
+              "x": 118,
+              "y": 386,
+              "text": "Female",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lb_male",
+              "x": 336,
+              "y": 386,
+              "text": "Male",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "insider_note": "Four types, two under each method. The complete answer names all four with the animal each belongs to: XX-XO grasshopper, XX-XY human, ZO-ZZ Fumea moth, ZW-ZZ bird."
+}

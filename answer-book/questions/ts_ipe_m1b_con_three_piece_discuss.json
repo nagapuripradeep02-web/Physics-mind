@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.190, chapter 8 LIMITS AND CONTINUITY, the CONTINUITY sub-section, Short Answer question 5. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4 Marks over this CONTINUITY sub-section) but no per-step allocation on any answer. The 1+1+1+1 shape follows the shape this bank uses for a Maths-1B Section B question, one mark for the three open pieces and one for each of the two junctions, with the verdict carrying the last. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE ON THE ANSWER: f is continuous at x = 1 (left limit, value and right limit all 2) and NOT continuous at x = −2 (left limit 6/(−12) = −1/2, value and right limit both 11). Verified numerically from both sides of both junctions before the card was written. Because the question says discuss, the answer names the three open intervals as well as the two junctions rather than only the failure."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.190, chapter 8 LIMITS AND CONTINUITY, the CONTINUITY sub-section, Short Answer question 5. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4 Marks over this CONTINUITY sub-section) but no per-step allocation on any answer. The 1+1+1+1 shape follows the shape this bank uses for a Maths-1B Section B question, one mark for the three open pieces and one for each of the two junctions, with the verdict carrying the last. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE ON THE ANSWER: f is continuous at x = 1 (left limit, value and right limit all 2) and NOT continuous at x = −2 (left limit 6/(−12) = −1/2, value and right limit both 11). Verified numerically from both sides of both junctions before the card was written. Because the question says discuss, the answer names the three open intervals as well as the two junctions rather than only the failure. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say how many points you have to check and which ones, and say what happens at each.",
   "answer": {
@@ -53,8 +53,8 @@
         "label": "Check each piece on its own interval",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. The question says discuss, so the open intervals have to be dealt with as well as the junctions. Each piece is cleared by naming what it is and where its own formula could fail.",
-        "memory_tip": "A three-piece function has exactly two junctions, and every point that is not a junction is safe if its own formula is defined there.",
+        "margin_note": "First mark. The question says discuss, so the open intervals have to be dealt with as well as the junctions. Each piece is shown to be continuous by naming what it is and where its own formula could fail.",
+        "memory_tip": "Here the three pieces meet at two junctions. At every other point f is continuous, because its formula there is a polynomial or a quotient of continuous functions with a non-zero denominator.",
         "lines": [
           {
             "text": "Sol:",
@@ -63,10 +63,30 @@
           "Given f(x) = (x − 1)/(√x − 1)   for x > 1",
           "f(x) = 5 − 3x   for −2 ≤ x ≤ 1",
           "f(x) = 6/(x − 10)   for x < −2",
-          "For x < −2:  6/(x − 10) is a rational function; its denominator is 0 only at x = 10, which is not in (−∞, −2). So f is continuous on (−∞, −2).",
-          "For −2 < x < 1:  5 − 3x is a polynomial, so f is continuous on (−2, 1).",
-          "For x > 1:  √x − 1 = 0 only at x = 1, so f is continuous on (1, ∞).",
-          "So only the two junction points x = −2 and x = 1 remain to be checked."
+          "(a rational function is continuous wherever its",
+          {
+            "text": "  denominator is not 0)",
+            "style": "indent"
+          },
+          "For x < −2:  6/(x − 10) is a rational function;",
+          "its denominator is 0 only at x = 10,",
+          "which is not in (−∞, −2). So f is continuous on (−∞, −2).",
+          "(a polynomial is continuous at every point)",
+          "For −2 < x < 1:  5 − 3x is a polynomial,",
+          "so f is continuous on (−2, 1).",
+          "(√x and x − 1 are continuous for x > 1,",
+          {
+            "text": "  and a quotient is continuous where its",
+            "style": "indent"
+          },
+          {
+            "text": "  denominator is not 0)",
+            "style": "indent"
+          },
+          "For x > 1:  √x − 1 = 0 only at x = 1,",
+          "so f is continuous on (1, ∞).",
+          "So only the two junction points x = −2",
+          "and x = 1 remain to be checked."
         ],
         "recall": {
           "credit": "say_it",
@@ -90,7 +110,7 @@
             "rational function"
           ]
         },
-        "why": "The word discuss asks for the whole real line, not one point. Clearing the three open intervals first reduces the rest of the question to two ordinary junction tests.",
+        "why": "The word discuss asks for the whole real line, not one point. Showing continuity on the three open intervals first reduces the rest of the question to two junction tests.",
         "common_mistakes": [
           "Checking only x = 1 and never testing x = −2.",
           "Claiming 6/(x − 10) is discontinuous on (−∞, −2) because it is a fraction, when x = 10 is not in that interval."
@@ -106,10 +126,33 @@
         "memory_tip": "x − 1 = (√x)² − 1², so it factorises as (√x − 1)(√x + 1) — a difference of two squares, with √x in place of x.",
         "lines": [
           "At x = 1:",
+          {
+            "text": "(for −2 ≤ x ≤ 1, f(x) = 5 − 3x, a polynomial, so put x = 1)",
+            "added": true
+          },
           "lim(x → 1⁻) f(x) = lim(x → 1⁻) (5 − 3x) = 5 − 3(1) = 2",
-          "f(1) = 5 − 3(1) = 2      (x = 1 belongs to the piece −2 ≤ x ≤ 1)",
+          "f(1) = 5 − 3(1) = 2",
+          "(x = 1 belongs to the piece −2 ≤ x ≤ 1)",
+          {
+            "text": "(write x as (√x)² for x > 0, and use",
+            "added": true
+          },
+          {
+            "text": "  a² − b² = (a − b)(a + b))",
+            "style": "indent",
+            "added": true
+          },
           "For x > 1,  x − 1 = (√x)² − 1² = (√x − 1)(√x + 1)",
-          "∴ (x − 1)/(√x − 1) = (√x − 1)(√x + 1)/(√x − 1) = √x + 1     (√x − 1 ≠ 0 for x > 1)",
+          {
+            "text": "(cancel √x − 1)",
+            "added": true
+          },
+          "∴ (x − 1)/(√x − 1) = (√x − 1)(√x + 1)/(√x − 1) = √x + 1",
+          "(√x − 1 ≠ 0 for x > 1)",
+          {
+            "text": "(√x + 1 is continuous, so put x = 1: √1 = 1)",
+            "added": true
+          },
           "lim(x → 1⁺) f(x) = lim(x → 1⁺) (√x + 1) = √1 + 1 = 2",
           "All three are 2, so f is continuous at x = 1."
         ],
@@ -139,6 +182,17 @@
         "common_mistakes": [
           "Substituting x = 1 into (x − 1)/(√x − 1) and writing 0/0 as the right limit.",
           "Taking f(1) from the piece x > 1, when x = 1 is not in that interval."
+        ],
+        "lines_compact": [
+          "At x = 1:",
+          "lim(x → 1⁻) f(x) = lim(x → 1⁻) (5 − 3x) = 5 − 3(1) = 2",
+          "f(1) = 5 − 3(1) = 2",
+          "(x = 1 belongs to the piece −2 ≤ x ≤ 1)",
+          "For x > 1,  x − 1 = (√x)² − 1² = (√x − 1)(√x + 1)",
+          "∴ (x − 1)/(√x − 1) = (√x − 1)(√x + 1)/(√x − 1) = √x + 1",
+          "(√x − 1 ≠ 0 for x > 1)",
+          "lim(x → 1⁺) f(x) = lim(x → 1⁺) (√x + 1) = √1 + 1 = 2",
+          "All three are 2, so f is continuous at x = 1."
         ]
       },
       {
@@ -147,14 +201,36 @@
         "label": "Test the junction x = −2",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Third mark. x = −2 also belongs to the middle piece, so the value and the right limit agree automatically. The left limit comes from 6/(x − 10) and is the number that breaks the test.",
+        "margin_note": "Third mark. x = −2 also belongs to the middle piece, so the value and the right limit agree automatically. The left limit comes from 6/(x − 10) and is the number that makes the test fail.",
         "memory_tip": "At x = −2 the denominator is −2 − 10 = −12. Both numbers are negative, so they combine to −12, not to −8 or 8.",
         "lines": [
           "At x = −2:",
-          "lim(x → −2⁻) f(x) = lim(x → −2⁻) 6/(x − 10) = 6/(−2 − 10) = 6/(−12) = −1/2",
-          "f(−2) = 5 − 3(−2) = 5 + 6 = 11      (x = −2 belongs to the piece −2 ≤ x ≤ 1)",
-          "lim(x → −2⁺) f(x) = lim(x → −2⁺) (5 − 3x) = 5 − 3(−2) = 11",
-          "−1/2 ≠ 11, so the left limit and the right limit are different and lim(x → −2) f(x) does not exist.",
+          {
+            "text": "(for x < −2, f(x) = 6/(x − 10), and x − 10 ≠ 0 at x = −2)",
+            "added": true
+          },
+          "lim(x → −2⁻) f(x) = lim(x → −2⁻) 6/(x − 10)",
+          {
+            "text": "  = 6/(−2 − 10) = 6/(−12) = −1/2",
+            "style": "indent"
+          },
+          {
+            "text": "(3(−2) = −6, and 5 − (−6) = 11)",
+            "added": true
+          },
+          "f(−2) = 5 − 3(−2) = 5 + 6 = 11",
+          "(x = −2 belongs to the piece −2 ≤ x ≤ 1)",
+          {
+            "text": "(for x > −2 near −2, f(x) = 5 − 3x, a polynomial)",
+            "added": true
+          },
+          "lim(x → −2⁺) f(x) = lim(x → −2⁺) (5 − 3x)",
+          {
+            "text": "  = 5 − 3(−2) = 11",
+            "style": "indent"
+          },
+          "−1/2 ≠ 11, so the left limit and the right limit are different",
+          "and lim(x → −2) f(x) does not exist.",
           "∴ f is not continuous at x = −2."
         ],
         "recall": {
@@ -183,6 +259,24 @@
         "common_mistakes": [
           "Taking f(−2) from 6/(x − 10), when x = −2 belongs to the middle piece.",
           "Computing 5 − 3(−2) as 5 − 6 = −1 by dropping the sign of the negative input."
+        ],
+        "lines_compact": [
+          "At x = −2:",
+          "lim(x → −2⁻) f(x) = lim(x → −2⁻) 6/(x − 10)",
+          {
+            "text": "  = 6/(−2 − 10) = 6/(−12) = −1/2",
+            "style": "indent"
+          },
+          "f(−2) = 5 − 3(−2) = 5 + 6 = 11",
+          "(x = −2 belongs to the piece −2 ≤ x ≤ 1)",
+          "lim(x → −2⁺) f(x) = lim(x → −2⁺) (5 − 3x)",
+          {
+            "text": "  = 5 − 3(−2) = 11",
+            "style": "indent"
+          },
+          "−1/2 ≠ 11, so the left limit and the right limit are different",
+          "and lim(x → −2) f(x) does not exist.",
+          "∴ f is not continuous at x = −2."
         ]
       },
       {
@@ -191,20 +285,47 @@
         "label": "State where f is continuous",
         "marks": 1,
         "mark_note": "Solution",
-        "margin_note": "Last mark. The verdict has to cover the whole line: three open intervals plus the two junctions, one of which passes and one of which fails. A one-word answer earns nothing here.",
+        "margin_note": "Last mark. The verdict has to cover the whole line: three open intervals plus the two junctions, one of which passes and one of which fails. A yes or a no alone is not enough here.",
         "memory_tip": "For a discuss question, write the verdict as everywhere except the listed points — that form covers the whole line in one line.",
         "lines": [
-          "f is continuous on (−∞, −2), on (−2, 1) and on (1, ∞).",
-          "f is continuous at x = 1, since the left limit, f(1) and the right limit are all 2.",
-          "f is not continuous at x = −2, since the left limit is −1/2 and the right limit is 11.",
           {
-            "text": "∴ f is continuous at every real number except x = −2",
+            "text": "(from step 1)",
+            "added": true
+          },
+          "f is continuous on (−∞, −2), on (−2, 1) and on (1, ∞).",
+          {
+            "text": "(from step 2)",
+            "added": true
+          },
+          "f is continuous at x = 1, since the left limit, f(1)",
+          "and the right limit are all 2.",
+          {
+            "text": "(from step 3)",
+            "added": true
+          },
+          "f is not continuous at x = −2, since the left limit is −1/2",
+          "and the right limit is 11.",
+          {
+            "text": "(every real number is in one of the three",
+            "added": true
+          },
+          {
+            "text": "  intervals or is −2 or 1)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "∴ f is continuous",
+            "style": "boxed"
+          },
+          {
+            "text": "at every real number except x = −2",
             "style": "boxed"
           }
         ],
         "recall": {
           "credit": "say_it",
-          "must_convey": "That f is continuous everywhere on ℝ except at the single point x = −2.",
+          "must_convey": "That f is continuous everywhere on R except at the single point x = −2.",
           "accept": [
             "f is continuous everywhere except at x equals minus two",
             "the only point of discontinuity is minus two",
@@ -224,10 +345,25 @@
             "one is fine"
           ]
         },
-        "why": "The question asks for a discussion of continuity, so the answer is a description of the whole domain, not a yes or a no. Naming the one failing point is the complete answer.",
+        "why": "The question asks for a discussion of continuity, so the answer is a description of the whole domain, not a yes or a no. Stating that f is continuous at every real number except the one failing point is the complete answer.",
         "common_mistakes": [
           "Answering only that f is not continuous, without saying where.",
           "Listing x = 1 as a point of discontinuity because two formulas meet there, when the test passes."
+        ],
+        "lines_compact": [
+          "f is continuous on (−∞, −2), on (−2, 1) and on (1, ∞).",
+          "f is continuous at x = 1, since the left limit, f(1)",
+          "and the right limit are all 2.",
+          "f is not continuous at x = −2, since the left limit is −1/2",
+          "and the right limit is 11.",
+          {
+            "text": "∴ f is continuous",
+            "style": "boxed"
+          },
+          {
+            "text": "at every real number except x = −2",
+            "style": "boxed"
+          }
         ]
       }
     ]

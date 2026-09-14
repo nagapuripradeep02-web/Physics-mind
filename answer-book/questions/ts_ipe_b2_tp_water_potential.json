@@ -51,9 +51,9 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.21, printed question 7. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.21, printed question 7. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. Revised 2026-09-05 after the examiner audit: the insider note no longer states what a printed answer scores, and its pressure-potential sign now matches the corrected s3 step."
   },
-  "insider_note": "Two components, two signs. Solute potential is ALWAYS negative and pressure potential is positive — an answer that gives both values without their signs loses the easiest mark here.",
+  "insider_note": "Two components, two signs. Write the sign with each: solute potential is always negative, and pressure potential is positive in a turgid cell.",
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",
@@ -120,13 +120,13 @@
           "The cell becomes turgid (swollen).",
           "This rise in water potential is called",
           "pressure potential.",
-          "It is always positive.",
-          "It is seen in the ascent of water through the",
-          "stem."
+          "It is usually positive.",
+          "In a turgid cell the wall presses back, so the",
+          "pressure potential is positive."
         ],
         "why": "The wall pushes back on the water inside, and that push adds to the potential — the opposite sign to solute potential, which is why the two are listed as a pair.",
         "common_mistakes": [
-          "Writing pressure potential as negative. It is POSITIVE.",
+          "Writing pressure potential as negative inside a turgid cell. Inside a cell it is POSITIVE; in the xylem it turns negative (tension), which is what helps water rise.",
           "Leaving out turgidity. The pressure comes from the swollen cell pushing on its wall."
         ],
         "memory_tip": "Pressure pushes the value up; solute pulls it down. Opposite causes, opposite signs."

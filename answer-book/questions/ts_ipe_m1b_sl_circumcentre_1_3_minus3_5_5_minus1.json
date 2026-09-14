@@ -46,7 +46,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.14 — LAQ chapter 1 The Straight Line, answer 1.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 17 · TS 18. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this LAQ chapter. It is not a bare guess: the book prints its own numbered 'Step-1 / Step-2 / Step-3' structure against this very answer, and the split follows those printed steps, giving the two long eliminations two marks each and the closing solve two, with one for setting up. The only printed splits in this UNIT are on SAQ answer 59 (book p.63, 1+1+2) and VSAQ answer 98 (p.83, 1+1) — both shorter cuts, so neither fixes a 7-mark shape. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Solve the pair."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.14 — LAQ chapter 1 The Straight Line, answer 1.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 17 · TS 18. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this LAQ chapter. It is not a bare guess: the book prints its own numbered 'Step-1 / Step-2 / Step-3' structure against this very answer, and the split follows those printed steps, giving the two long eliminations two marks each and the closing solve two, with one for setting up. The only printed splits in this UNIT are on SAQ answer 59 (book p.63, 1+1+2) and VSAQ answer 98 (p.83, 1+1) — both shorter cuts, so neither fixes a 7-mark shape. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Solve the pair. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say what property defines the circumcentre, and how many equations you need.",
   "answer": {
@@ -60,12 +60,17 @@
         "kind": "text",
         "label": "Set up the equal-distance condition",
         "marks": 1,
-        "margin_note": "First mark. The circumcentre is the one point equally far from all three vertices, so the whole answer is the single line SA = SB = SC turned into algebra.",
-        "memory_tip": "Equally far from all three vertices — the whole answer is SA = SB = SC in algebra.",
+        "margin_note": "First mark. The circumcentre is the one point equally far from all three vertices, so the method is to write SA = SB = SC as equations.",
+        "memory_tip": "Equally far from all three vertices: write SA = SB = SC as equations.",
         "lines": [
           {
             "text": "Sol:",
             "style": "heading"
+          },
+          "(the circumcentre is the centre of the circle through",
+          {
+            "text": "  the three vertices, so it is equally far from each)",
+            "style": "indent"
           },
           "Take S(x, y) as circumcentre",
           "Vertices A = (1, 3), B = (−3, 5), C = (5, −1)",
@@ -93,7 +98,7 @@
             "all three vertices"
           ]
         },
-        "why": "The circumcentre is DEFINED by being equidistant from the vertices, so that definition is the equation. Two of the three equalities are enough to pin one point.",
+        "why": "The circumcentre is DEFINED by being equidistant from the vertices, so that definition is the equation. Two of the three equalities are enough to fix one point.",
         "common_mistakes": [
           "Confusing the circumcentre with the centroid and averaging the coordinates.",
           "Using only one equality, which leaves a whole line of possible points."
@@ -265,16 +270,59 @@
         "kind": "equation",
         "label": "First equation from SA = SB",
         "marks": 2,
-        "margin_note": "Two marks. Square both sides at once — the square roots vanish and, better, the x² and y² terms cancel across the equals sign, so a SECOND-degree statement collapses to a FIRST-degree line. That collapse is the whole reason this method works.",
+        "margin_note": "Two marks. Square both sides at once — the square roots go, and the x² and y² terms cancel from the two sides, so the second-degree equation becomes a FIRST-degree equation, which is a straight line.",
         "memory_tip": "Squaring makes the x² and y² terms cancel, leaving a first-degree line.",
         "lines": [
           "Step-1: Take SA = SB",
+          {
+            "text": "(the distance formula, with A(1, 3) and B(−3, 5))",
+            "added": true
+          },
           "⇒ √((x−1)² + (y−3)²) = √((x+3)² + (y−5)²)",
+          {
+            "text": "(distances are never negative, so squaring keeps",
+            "added": true
+          },
+          {
+            "text": "  the same solutions)",
+            "style": "indent",
+            "added": true
+          },
           "Squaring on both sides, we get",
           "(x−1)² + (y−3)² = (x+3)² + (y−5)²",
-          "⇒ (x² + 1 − 2x) + (y² + 9 − 6y) = (x² + 9 + 6x) + (y² + 25 − 10y)",
+          {
+            "text": "((x − 1)² = x² + 1 − 2x, (y − 3)² = y² + 9 − 6y,",
+            "added": true
+          },
+          {
+            "text": "  (x + 3)² = x² + 9 + 6x, (y − 5)² = y² + 25 − 10y)",
+            "style": "indent",
+            "added": true
+          },
+          "⇒ (x² + 1 − 2x) + (y² + 9 − 6y) = (x² + 9 + 6x)",
+          {
+            "text": "  + (y² + 25 − 10y)",
+            "style": "indent"
+          },
+          {
+            "text": "(x² and y² cancel; 1 + 9 = 10 and 9 + 25 = 34)",
+            "added": true
+          },
           "⇒ −2x − 6y + 10 = 6x − 10y + 34",
+          {
+            "text": "(take −2x − 6y + 10 to the right: 6x + 2x = 8x,",
+            "added": true
+          },
+          {
+            "text": "  −10y + 6y = −4y and 34 − 10 = 24)",
+            "style": "indent",
+            "added": true
+          },
           "⇒ 8x − 4y + 24 = 0   ⇒   4(2x − y + 6) = 0",
+          {
+            "text": "(divide both sides by 4)",
+            "added": true
+          },
           "⇒ 2x − y + 6 = 0  ……(1)"
         ],
         "recall": {
@@ -299,12 +347,26 @@
             "linear"
           ]
         },
-        "why": "Both sides carry x² + y², so subtracting removes them. What survives is the perpendicular bisector of AB — a line, which is far easier to work with than a circle.",
+        "why": "Both sides contain x² + y², so these terms cancel. What is left is the equation of the perpendicular bisector of AB, which is a straight line.",
         "common_mistakes": [
           "Squaring only one side of the equality.",
           "Forgetting to cancel and carrying x² terms into the next step."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "lines_compact": [
+          "Step-1: Take SA = SB",
+          "⇒ √((x−1)² + (y−3)²) = √((x+3)² + (y−5)²)",
+          "Squaring on both sides, we get",
+          "(x−1)² + (y−3)² = (x+3)² + (y−5)²",
+          "⇒ (x² + 1 − 2x) + (y² + 9 − 6y) = (x² + 9 + 6x)",
+          {
+            "text": "  + (y² + 25 − 10y)",
+            "style": "indent"
+          },
+          "⇒ −2x − 6y + 10 = 6x − 10y + 34",
+          "⇒ 8x − 4y + 24 = 0   ⇒   4(2x − y + 6) = 0",
+          "⇒ 2x − y + 6 = 0  ……(1)"
+        ]
       },
       {
         "id": "s3_second_equation",
@@ -315,12 +377,50 @@
         "memory_tip": "Same move on a different pair; SB = SC reuses the B expansion.",
         "lines": [
           "Step-2: Take SB = SC",
+          {
+            "text": "(the distance formula, with C(5, −1))",
+            "added": true
+          },
           "⇒ √((x+3)² + (y−5)²) = √((x−5)² + (y+1)²)",
+          {
+            "text": "(distances are never negative, so squaring keeps",
+            "added": true
+          },
+          {
+            "text": "  the same solutions)",
+            "style": "indent",
+            "added": true
+          },
           "Squaring on both sides, we get",
           "(x+3)² + (y−5)² = (x−5)² + (y+1)²",
-          "⇒ (x² + 9 + 6x) + (y² + 25 − 10y) = (x² + 25 − 10x) + (y² + 1 + 2y)",
+          {
+            "text": "((x − 5)² = x² + 25 − 10x and (y + 1)² = y² + 1 + 2y)",
+            "added": true
+          },
+          "⇒ (x² + 9 + 6x) + (y² + 25 − 10y) = (x² + 25 − 10x)",
+          {
+            "text": "  + (y² + 1 + 2y)",
+            "style": "indent"
+          },
+          {
+            "text": "(x² and y² cancel; 9 + 25 = 34 and 25 + 1 = 26)",
+            "added": true
+          },
           "⇒ 6x − 10y + 34 = −10x + 2y + 26",
+          {
+            "text": "(take −10x + 2y + 26 to the left: 6x + 10x = 16x,",
+            "added": true
+          },
+          {
+            "text": "  −10y − 2y = −12y and 34 − 26 = 8)",
+            "style": "indent",
+            "added": true
+          },
           "⇒ 16x − 12y + 8 = 0   ⇒   4(4x − 3y + 2) = 0",
+          {
+            "text": "(divide both sides by 4)",
+            "added": true
+          },
           "⇒ 4x − 3y + 2 = 0  ……(2)"
         ],
         "recall": {
@@ -347,10 +447,24 @@
         },
         "why": "Two perpendicular bisectors meet at exactly one point, so two equations are enough — the third equality carries no new information.",
         "common_mistakes": [
-          "Using SA = SC and redoing the A expansion for no benefit.",
+          "Expanding (x − 5)² as x² − 5x + 25, with the middle term not doubled.",
           "Sign slip when expanding a bracket with a negative coordinate."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "lines_compact": [
+          "Step-2: Take SB = SC",
+          "⇒ √((x+3)² + (y−5)²) = √((x−5)² + (y+1)²)",
+          "Squaring on both sides, we get",
+          "(x+3)² + (y−5)² = (x−5)² + (y+1)²",
+          "⇒ (x² + 9 + 6x) + (y² + 25 − 10y) = (x² + 25 − 10x)",
+          {
+            "text": "  + (y² + 1 + 2y)",
+            "style": "indent"
+          },
+          "⇒ 6x − 10y + 34 = −10x + 2y + 26",
+          "⇒ 16x − 12y + 8 = 0   ⇒   4(4x − 3y + 2) = 0",
+          "⇒ 4x − 3y + 2 = 0  ……(2)"
+        ]
       },
       {
         "id": "s4_solve_the_pair",
@@ -362,10 +476,78 @@
         "lines": [
           "Step-3: Solving (1) and (2), we get S;",
           "(1) ⇒ 2x − y + 6 = 0;   (2) ⇒ 4x − 3y + 2 = 0",
-          "x / [(−1)(2) − (−3)(6)] = y / [6(4) − 2(2)] = 1 / [2(−3) − 4(−1)]",
+          {
+            "text": "(the cross-multiplication rule: for a₁x + b₁y + c₁ = 0",
+            "added": true
+          },
+          {
+            "text": "  and a₂x + b₂y + c₂ = 0,",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  x/(b₁c₂ − b₂c₁) = y/(c₁a₂ − c₂a₁)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  = 1/(a₁b₂ − a₂b₁))",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "(here a₁ = 2, b₁ = −1, c₁ = 6",
+            "added": true
+          },
+          {
+            "text": "  and a₂ = 4, b₂ = −3, c₂ = 2)",
+            "style": "indent",
+            "added": true
+          },
+          "x / [(−1)(2) − (−3)(6)] = y / [6(4) − 2(2)]",
+          {
+            "text": "  = 1 / [2(−3) − 4(−1)]",
+            "style": "indent"
+          },
+          {
+            "text": "((−1)(2) = −2, (−3)(6) = −18; 6(4) = 24, 2(2) = 4;",
+            "added": true
+          },
+          {
+            "text": "  2(−3) = −6, 4(−1) = −4)",
+            "style": "indent",
+            "added": true
+          },
           "⇒ x / (−2 + 18) = y / (24 − 4) = 1 / (−6 + 4)",
+          {
+            "text": "(−2 + 18 = 16, 24 − 4 = 20 and −6 + 4 = −2)",
+            "added": true
+          },
           "⇒ x/16 = y/20 = 1/(−2)",
+          {
+            "text": "(x/16 = 1/(−2) gives x = 16/(−2);",
+            "added": true
+          },
+          {
+            "text": "  y/20 = 1/(−2) gives y = 20/(−2))",
+            "style": "indent",
+            "added": true
+          },
           "⇒ x = −16/2 = −8,  y = −20/2 = −10",
+          {
+            "text": "(check: SA² = (−9)² + (−13)² = 81 + 169 = 250,",
+            "added": true
+          },
+          {
+            "text": "  SB² = (−5)² + (−15)² = 250",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  and SC² = (−13)² + (−9)² = 250)",
+            "style": "indent",
+            "added": true
+          },
           {
             "text": "∴ Circumcentre S(x, y) = (−8, −10)",
             "style": "boxed"
@@ -393,14 +575,30 @@
             "the point"
           ]
         },
-        "why": "The circumcentre can sit outside the triangle when the triangle is obtuse, so an answer far from the vertices is not automatically wrong.",
+        "why": "The circumcentre can lie outside the triangle when the triangle is obtuse, so an answer far from the vertices is not automatically wrong.",
         "common_mistakes": [
           "Arithmetic slip in the cross-multiplication denominators.",
           "Writing the coordinates the wrong way round."
         ],
-        "mark_note": "Solution"
+        "mark_note": "Solution",
+        "lines_compact": [
+          "Step-3: Solving (1) and (2), we get S;",
+          "(1) ⇒ 2x − y + 6 = 0;   (2) ⇒ 4x − 3y + 2 = 0",
+          "x / [(−1)(2) − (−3)(6)] = y / [6(4) − 2(2)]",
+          {
+            "text": "  = 1 / [2(−3) − 4(−1)]",
+            "style": "indent"
+          },
+          "⇒ x / (−2 + 18) = y / (24 − 4) = 1 / (−6 + 4)",
+          "⇒ x/16 = y/20 = 1/(−2)",
+          "⇒ x = −16/2 = −8,  y = −20/2 = −10",
+          {
+            "text": "∴ Circumcentre S(x, y) = (−8, −10)",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },
-  "insider_note": "The answer (−8, −10) sits well outside the triangle, which is correct for an obtuse one — a distant answer is not a sign of error. Check it by confirming SA² = SB² = SC² = 250 rather than by redoing the algebra."
+  "insider_note": "The answer (−8, −10) lies well outside the triangle, which is correct for an obtuse one — a distant answer is not a sign of error. Check it by confirming SA² = SB² = SC² = 250 rather than by redoing the algebra."
 }

@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.109, chapter 9 TRIGONOMETRIC EQUATIONS, Short Answer question 7. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 shape rewards the four moves that turn two unknowns into one — quote the sum-to-product identity, feed the given sum into its half-sum factor, solve the resulting cosine equation for x − y, and recombine with x + y. Nothing is squared and no denominator is cleared, so no extraneous root can enter; the ± in the cosine general solution simply swaps x and y, which is why the answer is a PAIR and either member may be called x. The pair was checked against both given facts: π/2 + π/6 = 2π/3 and sin(π/2) + sin(π/6) = 1 + 1/2 = 3/2. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Trigonometric Equations supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.109, chapter 9 TRIGONOMETRIC EQUATIONS, Short Answer question 7. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 shape rewards the four moves that turn two unknowns into one — quote the sum-to-product identity, feed the given sum into its half-sum factor, solve the resulting cosine equation for x − y, and recombine with x + y. Nothing is squared and no denominator is cleared, so no extraneous root can enter; the ± in the cosine general solution simply swaps x and y, which is why the answer is a PAIR and either member may be called x. The pair was checked against both given facts: π/2 + π/6 = 2π/3 and sin(π/2) + sin(π/6) = 1 + 1/2 = 3/2. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Trigonometric Equations supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — name each move in order, and say which identity turns the sum of two sines into a product.",
   "answer": {
@@ -64,6 +64,7 @@
           "and sin x + sin y = 3/2   …(2)",
           "Now sinC + sinD",
           "  = 2 sin((C+D)/2) cos((C−D)/2)",
+          "(use it with C = x and D = y)",
           "⇒ sin x + sin y",
           "  = 2 sin((x+y)/2) cos((x−y)/2)"
         ],
@@ -89,7 +90,7 @@
             "sum to product"
           ]
         },
-        "why": "The question gives the SUM of the angles, and the sum-to-product form is the only shape that puts (x+y)/2 into the working as a single factor.",
+        "why": "The question gives the SUM of the angles, and the sum-to-product form puts (x+y)/2 into the working as a single factor.",
         "common_mistakes": [
           "Using the sinC − sinD formula, which gives a cosine and sine the wrong way round.",
           "Writing sin x + sin y = sin(x + y)."
@@ -105,10 +106,22 @@
         "memory_tip": "Half of 2π/3 is π/3, and sin(π/3) = √3/2. That factor is now just a number.",
         "lines": [
           "From (1), (x+y)/2 = π/3",
+          {
+            "text": "(half of 2π/3 is π/3)",
+            "added": true
+          },
           "So (2) becomes",
           "⇒ 2 sin(π/3) cos((x−y)/2) = 3/2",
+          {
+            "text": "(sin(π/3) = √3/2)",
+            "added": true
+          },
           "⇒ 2 × (√3/2) × cos((x−y)/2) = 3/2",
           "⇒ √3 cos((x−y)/2) = 3/2",
+          {
+            "text": "(divide by √3; 3/(2√3) = √3/2)",
+            "added": true
+          },
           "⇒ cos((x−y)/2) = 3/(2√3) = √3/2"
         ],
         "recall": {
@@ -137,6 +150,14 @@
         "common_mistakes": [
           "Taking sin((x+y)/2) as sin(2π/3) and forgetting to halve.",
           "Simplifying 3/(2√3) to 3√3/2."
+        ],
+        "lines_compact": [
+          "From (1), (x+y)/2 = π/3",
+          "So (2) becomes",
+          "⇒ 2 sin(π/3) cos((x−y)/2) = 3/2",
+          "⇒ 2 × (√3/2) × cos((x−y)/2) = 3/2",
+          "⇒ √3 cos((x−y)/2) = 3/2",
+          "⇒ cos((x−y)/2) = 3/(2√3) = √3/2"
         ]
       },
       {
@@ -150,7 +171,15 @@
         "lines": [
           "Now √3/2 = cos(π/6), so α = π/6",
           "For cosθ = cosα, θ = 2nπ ± α",
+          {
+            "text": "(here the angle is (x − y)/2 and α = π/6)",
+            "added": true
+          },
           "⇒ (x − y)/2 = 2nπ ± π/6,  n ∈ Z",
+          {
+            "text": "(multiply by 2)",
+            "added": true
+          },
           "⇒ x − y = 4nπ ± π/3   …(3)"
         ],
         "recall": {
@@ -179,6 +208,12 @@
         "common_mistakes": [
           "Doubling only the π/6 term and leaving 2nπ unchanged.",
           "Taking α = π/3 because √3/2 is read as sin(π/3)."
+        ],
+        "lines_compact": [
+          "Now √3/2 = cos(π/6), so α = π/6",
+          "For cosθ = cosα, θ = 2nπ ± α",
+          "⇒ (x − y)/2 = 2nπ ± π/6,  n ∈ Z",
+          "⇒ x − y = 4nπ ± π/3   …(3)"
         ]
       },
       {
@@ -187,19 +222,31 @@
         "label": "Solve the pair",
         "marks": 1,
         "mark_note": "Solution",
-        "margin_note": "Last mark. Add (1) and (3) for x, then take y from (1). The stem sets no interval, so the general family above is the full answer; n = 0 gives the pair in [0, 2π) that a board answer quotes, and the two signs give that same pair with x and y exchanged.",
-        "memory_tip": "Add the sum and the difference to get 2x. The ± only swaps x and y, so the answer is one pair.",
+        "margin_note": "Last mark. Add (1) and (3) for x, then take y from (1). The stem sets no interval, so the general family above is the full answer; n = 0 gives the two solutions in [0, 2π) that a board answer quotes: x = π/2, y = π/6 and x = π/6, y = π/2.",
+        "memory_tip": "Add the sum and the difference to get 2x. The ± exchanges the values of x and y, so write both: x = π/2, y = π/6 or x = π/6, y = π/2.",
         "lines": [
           "Adding (1) and (3):",
           "⇒ 2x = 2π/3 + 4nπ ± π/3",
+          {
+            "text": "(divide by 2)",
+            "added": true
+          },
           "⇒ x = π/3 + 2nπ ± π/6",
+          {
+            "text": "(from (1), y = 2π/3 − x)",
+            "added": true
+          },
           "⇒ y = 2π/3 − x = π/3 − 2nπ ∓ π/6",
           "Taking n = 0 with the upper signs:",
           "x = π/3 + π/6 = π/2, y = π/3 − π/6 = π/6",
           "Check: sin(π/2) + sin(π/6) = 1 + 1/2 = 3/2",
-          "The lower signs give the same pair swapped.",
+          "The lower signs give x = π/6, y = π/2.",
           {
-            "text": "∴ x = π/2, y = π/6",
+            "text": "∴ x = π/2, y = π/6  (or)",
+            "style": "boxed"
+          },
+          {
+            "text": "x = π/6, y = π/2",
             "style": "boxed"
           }
         ],
@@ -225,11 +272,29 @@
             "same pair swapped"
           ]
         },
-        "why": "The sum and the difference of x and y are now both known, and adding them removes y. The ± sign does not give a new answer — it only decides which of the two angles is called x.",
+        "why": "The sum and the difference of x and y are now both known, and adding them removes y. The ± sign gives the second solution, in which the values of x and y are exchanged.",
         "common_mistakes": [
-          "Presenting the two signs as two different answers.",
+          "Writing only one of the two solutions, x = π/2, y = π/6.",
           "Forgetting to check the pair against sin x + sin y = 3/2.",
           "Leaving the answer as x − y = π/3 without finding x and y."
+        ],
+        "lines_compact": [
+          "Adding (1) and (3):",
+          "⇒ 2x = 2π/3 + 4nπ ± π/3",
+          "⇒ x = π/3 + 2nπ ± π/6",
+          "⇒ y = 2π/3 − x = π/3 − 2nπ ∓ π/6",
+          "Taking n = 0 with the upper signs:",
+          "x = π/3 + π/6 = π/2, y = π/3 − π/6 = π/6",
+          "Check: sin(π/2) + sin(π/6) = 1 + 1/2 = 3/2",
+          "The lower signs give x = π/6, y = π/2.",
+          {
+            "text": "∴ x = π/2, y = π/6  (or)",
+            "style": "boxed"
+          },
+          {
+            "text": "x = π/6, y = π/2",
+            "style": "boxed"
+          }
         ]
       }
     ]

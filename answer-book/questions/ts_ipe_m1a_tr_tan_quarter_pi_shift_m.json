@@ -46,7 +46,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), the TRANSFORMATIONS banner (the book prints TRANSFORMATIONS as a separate un-numbered chapter-style banner immediately after chapter 8's VSAQ run, and restarts its numbering at 1 — we ship both under one unit, ordered by the syllabus, and never mirror the book's arrangement), Long Answer question 11, book p.104. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives two marks to collecting m and two to the pair of sum-to-product conversions, because those are the two places the proof can stall, and one mark each to the set-up, the division and the complementary-angle finish. NOT A TRIANGLE QUESTION: there is no angle condition on α + β + anything, so no substitution of the A + B + C family applies. The route is componendo in the plain form — cross multiply, collect m on one side, then convert the resulting sum and difference of a cosine and a sine into products. THE SOLUTION USES CROSS MULTIPLICATION, NOT THE COMPONENDO-AND-DIVIDENDO SHORTCUT: both reach the same line, but cross multiplication needs no extra non-zero assumption on sin(α + β), which the shortcut silently requires. CONDITIONS ARE ON THE PAGE, NOT ONLY HERE: step 1's lines carry cos(α − β) ≠ 0, 1 + m ≠ 0, cos(π/4 − α) ≠ 0 and cos(π/4 − β) ≠ 0 where the student reads them. NUMERIC CHECK (before authoring and again after), on three witnesses, taking m from the given ratio each time: α = 20°, β = 35° gives m = 0.0822226214 with L.H.S = 0.4663076582 and R.H.S = 0.4663076582; α = 10°, β = −25° gives m = 1.9238044002 with both sides 0.7002075382; α = 48°, β = 12° gives m = −0.0340340098 with both sides −0.0524077793. The printed identity is correct as stated. Paper position: Maths-1A Section C prints 3 long answers and the student answers any 2, at 8 marks each (2026-27 pattern). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), the TRANSFORMATIONS banner (the book prints TRANSFORMATIONS as a separate un-numbered chapter-style banner immediately after chapter 8's VSAQ run, and restarts its numbering at 1 — we ship both under one unit, ordered by the syllabus, and never mirror the book's arrangement), Long Answer question 11, book p.104. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives two marks to collecting m and two to the pair of sum-to-product conversions, because those are the two places the proof can stall, and one mark each to the set-up, the division and the complementary-angle finish. NOT A TRIANGLE QUESTION: there is no angle condition on α + β + anything, so no substitution of the A + B + C family applies. The route is componendo in the plain form — cross multiply, collect m on one side, then convert the resulting sum and difference of a cosine and a sine into products. THE SOLUTION USES CROSS MULTIPLICATION, NOT THE COMPONENDO-AND-DIVIDENDO SHORTCUT: both reach the same line, but cross multiplication needs no extra non-zero assumption on sin(α + β), which the shortcut silently requires. CONDITIONS ARE ON THE PAGE, NOT ONLY HERE: step 1's lines carry cos(α − β) ≠ 0, 1 + m ≠ 0, cos(π/4 − α) ≠ 0 and cos(π/4 − β) ≠ 0 where the student reads them. NUMERIC CHECK (before authoring and again after), on three witnesses, taking m from the given ratio each time: α = 20°, β = 35° gives m = 0.0822226214 with L.H.S = 0.4663076582 and R.H.S = 0.4663076582; α = 10°, β = −25° gives m = 1.9238044002 with both sides 0.7002075382; α = 48°, β = 12° gives m = −0.0340340098 with both sides −0.0524077793. The printed identity is correct as stated. Paper position: Maths-1A Section C prints 3 long answers and the student answers any 2, at 8 marks each (2026-27 pattern). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — name each move in order, and say which two formulas turn the sum and the difference into products.",
   "answer": {
@@ -71,6 +71,11 @@
           "Given sin(α+β)/cos(α−β) = (1−m)/(1+m)",
           "α − β is not an odd multiple of π/2,",
           "so cos(α−β) ≠ 0. Also 1 + m ≠ 0.",
+          "(cos θ = 0 only when θ is an odd multiple",
+          {
+            "text": "  of π/2.)",
+            "style": "indent"
+          },
           "Take cos(π/4 − α) ≠ 0, cos(π/4 − β) ≠ 0,",
           "and cos(π/4 + β) ≠ 0 so the right side exists."
         ],
@@ -112,8 +117,21 @@
         "lines": [
           "Cross multiply:",
           "(1 + m) sin(α+β) = (1 − m) cos(α−β)",
+          {
+            "text": "Open both brackets:",
+            "added": true
+          },
           "sin(α+β) + m sin(α+β)",
           "     = cos(α−β) − m cos(α−β)",
+          {
+            "text": "Bring the m terms to the left and the others",
+            "added": true
+          },
+          {
+            "text": "  to the right, then take out m:",
+            "style": "indent",
+            "added": true
+          },
           "⇒ m [cos(α−β) + sin(α+β)]",
           "     = cos(α−β) − sin(α+β)   … (1)"
         ],
@@ -143,6 +161,14 @@
         "common_mistakes": [
           "Leaving m on both sides, so no product formula can be applied.",
           "Taking reciprocals first, which needs sin(α + β) ≠ 0 as an extra assumption."
+        ],
+        "lines_compact": [
+          "Cross multiply:",
+          "(1 + m) sin(α+β) = (1 − m) cos(α−β)",
+          "sin(α+β) + m sin(α+β)",
+          "     = cos(α−β) − m cos(α−β)",
+          "⇒ m [cos(α−β) + sin(α+β)]",
+          "     = cos(α−β) − sin(α+β)   … (1)"
         ]
       },
       {
@@ -154,6 +180,15 @@
         "margin_note": "Fourth mark. A sum-to-product formula needs two terms of the SAME kind. sin(α+β) is rewritten as a cosine so both terms in each bracket are cosines.",
         "memory_tip": "sin θ = cos(π/2 − θ). Make both terms cosines before reaching for a product formula.",
         "lines": [
+          {
+            "text": "Change sin(α+β) into a cosine, so that both",
+            "added": true
+          },
+          {
+            "text": "  brackets in (1) hold two cosines:",
+            "style": "indent",
+            "added": true
+          },
           "sin(α+β) = cos(π/2 − α − β)",
           "  [∵ sinθ = cos(π/2 − θ)]"
         ],
@@ -182,7 +217,11 @@
         "why": "cos C + cos D and cos C − cos D act on two cosines. A cosine plus a sine matches no standard formula, so the sine is converted first.",
         "common_mistakes": [
           "Trying to apply cos C + cos D to a cosine and a sine directly.",
-          "Writing sin θ = cos(θ − π/2) and then losing track of the sign."
+          "Writing sin θ = cos(θ + π/2), which is −sin θ, and losing the sign."
+        ],
+        "lines_compact": [
+          "sin(α+β) = cos(π/2 − α − β)",
+          "  [∵ sinθ = cos(π/2 − θ)]"
         ]
       },
       {
@@ -194,10 +233,48 @@
         "margin_note": "Two marks. Both brackets in (1) are now cosines, so one sum formula and one difference formula turn them into products. Both half-angles come out as π/4 − β and π/4 − α.",
         "memory_tip": "Both brackets give the same two half-angles, π/4 − β and π/4 − α — the sum gives cosines, the difference gives sines.",
         "lines": [
+          {
+            "text": "Take p = α − β and q = π/2 − α − β:",
+            "added": true
+          },
+          {
+            "text": "p + q = π/2 − 2β, so (p+q)/2 = π/4 − β",
+            "added": true
+          },
+          {
+            "text": "p − q = 2α − π/2, so (p−q)/2 = α − π/4",
+            "added": true
+          },
+          {
+            "text": "Sum formula:",
+            "added": true
+          },
+          {
+            "text": "  cos p + cos q = 2 cos((p+q)/2) cos((p−q)/2)",
+            "style": "indent",
+            "added": true
+          },
           "cos(α−β) + cos(π/2 − α − β)",
           "     = 2 cos(π/4 − β) cos(π/4 − α)",
+          {
+            "text": "(cos(α − π/4) = cos(π/4 − α))",
+            "added": true
+          },
+          {
+            "text": "Difference formula:",
+            "added": true
+          },
+          {
+            "text": "  cos p − cos q = −2 sin((p+q)/2) sin((p−q)/2)",
+            "style": "indent",
+            "added": true
+          },
           "cos(α−β) − cos(π/2 − α − β)",
-          "     = 2 sin(π/4 − β) sin(π/4 − α)"
+          "     = 2 sin(π/4 − β) sin(π/4 − α)",
+          {
+            "text": "(−sin(α − π/4) = sin(π/4 − α))",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -226,6 +303,12 @@
         "common_mistakes": [
           "Using the sine product formula on the sum bracket, which gives the wrong pair of factors.",
           "Writing the difference as 2 sin(π/4 − α) cos(π/4 − β), mixing the two formulas."
+        ],
+        "lines_compact": [
+          "cos(α−β) + cos(π/2 − α − β)",
+          "     = 2 cos(π/4 − β) cos(π/4 − α)",
+          "cos(α−β) − cos(π/2 − α − β)",
+          "     = 2 sin(π/4 − β) sin(π/4 − α)"
         ]
       },
       {
@@ -240,6 +323,19 @@
           "Put both in (1) and cancel the 2:",
           "m cos(π/4 − β) cos(π/4 − α)",
           "     = sin(π/4 − β) sin(π/4 − α)",
+          {
+            "text": "Divide both sides by cos(π/4 − β) cos(π/4 − α),",
+            "added": true
+          },
+          {
+            "text": "  which is not 0:",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "(sin ÷ cos = tan for each angle)",
+            "added": true
+          },
           "⇒ m = tan(π/4 − α) tan(π/4 − β)"
         ],
         "recall": {
@@ -268,6 +364,12 @@
         "common_mistakes": [
           "Dividing without saying the two cosines are not zero.",
           "Cancelling only one of the 2s."
+        ],
+        "lines_compact": [
+          "Put both in (1) and cancel the 2:",
+          "m cos(π/4 − β) cos(π/4 − α)",
+          "     = sin(π/4 − β) sin(π/4 − α)",
+          "⇒ m = tan(π/4 − α) tan(π/4 − β)"
         ]
       },
       {
@@ -280,8 +382,21 @@
         "memory_tip": "(π/4 − β) + (π/4 + β) = π/2, so tan(π/4 − β) tan(π/4 + β) = 1. That is what removes the extra tangent.",
         "lines": [
           "(π/4 − β) + (π/4 + β) = π/2",
+          {
+            "text": "(tan(π/2 − θ) = cot θ, so tan(π/4 − β)",
+            "added": true
+          },
+          {
+            "text": "  = cot(π/4 + β), and tan × cot = 1)",
+            "style": "indent",
+            "added": true
+          },
           "⇒ tan(π/4 − β) tan(π/4 + β) = 1",
           "Multiply both sides by tan(π/4 + β):",
+          {
+            "text": "(on the right, tan(π/4 − β) tan(π/4 + β) = 1)",
+            "added": true
+          },
           {
             "text": "m tan(π/4 + β) = tan(π/4 − α)",
             "style": "boxed"
@@ -313,6 +428,15 @@
         "common_mistakes": [
           "Writing tan(π/4 − β) = tan(π/4 + β), which is only true when β is a multiple of π/2.",
           "Stopping at m = tan(π/4 − α) tan(π/4 − β) without reaching the asked form."
+        ],
+        "lines_compact": [
+          "(π/4 − β) + (π/4 + β) = π/2",
+          "⇒ tan(π/4 − β) tan(π/4 + β) = 1",
+          "Multiply both sides by tan(π/4 + β):",
+          {
+            "text": "m tan(π/4 + β) = tan(π/4 − α)",
+            "style": "boxed"
+          }
         ]
       }
     ]

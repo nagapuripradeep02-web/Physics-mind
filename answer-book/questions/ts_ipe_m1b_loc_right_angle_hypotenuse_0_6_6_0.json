@@ -34,7 +34,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.53 — SAQ chapter 7 Locus, answer 42.2, on a ★★★ SSP (Super Scoring Page). No appearance years are printed against this answer. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer, because it is set two-to-a-page in two columns and the columns take the margin those tags would occupy. It is not a bare guess: the SAME CHAPTER prints 1+1+2 on answers 44 (book p.54) and 46 (book p.55), both times against these exact three moves — write the given condition, substitute the coordinates, simplify to the locus. This answer takes the same three moves, so the shape is the book's own. The chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7. NOTE: Locus is an SAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 4 marks in Section B and nothing in Section A or Section C, and the book has no Locus LAQ chapter (its LAQ chapters are 1-6) and no Locus VSAQ chapter (its VSAQ chapters are 14-20). It is the 1B counterpart of 1A's Units 7 and 8. Chapter scoped by BOUNDARY WALK, not from the TOP 35 SAQ hit list: that list names only 6 of this chapter's 12 questions. Verified by reading book p.57, where SAQ chapter 8 Transformation of Axes begins."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.53 — SAQ chapter 7 Locus, answer 42.2, on a ★★★ SSP (Super Scoring Page). No appearance years are printed against this answer. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer, because it is set two-to-a-page in two columns and the columns take the margin those tags would occupy. It is not a bare guess: the SAME CHAPTER prints 1+1+2 on answers 44 (book p.54) and 46 (book p.55), both times against these exact three moves — write the given condition, substitute the coordinates, simplify to the locus. This answer takes the same three moves, so the shape is the book's own. The chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7. NOTE: Locus is an SAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 4 marks in Section B and nothing in Section A or Section C, and the book has no Locus LAQ chapter (its LAQ chapters are 1-6) and no Locus VSAQ chapter (its VSAQ chapters are 14-20). It is the 1B counterpart of 1A's Units 7 and 8. Chapter scoped by BOUNDARY WALK, not from the TOP 35 SAQ hit list: that list names only 6 of this chapter's 12 questions. Verified by reading book p.57, where SAQ chapter 8 Transformation of Axes begins. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — name the condition you would write for the right angle, and say what shape the locus turns out to be.",
   "answer": {
@@ -55,6 +55,7 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "(a locus is the set of all points P that satisfy the condition)",
           "Let P = (x, y) be a point on the locus.",
           "Given points A = (0, 6), B = (6, 0)"
         ],
@@ -94,6 +95,15 @@
         "margin_note": "First mark. A right angle at P means the triangle APB is right angled AT P, so AB is its hypotenuse and Pythagoras applies as PA² + PB² = AB². Writing this line earns the mark on its own.",
         "memory_tip": "The named HYPOTENUSE tells you where the right angle is: at P. So PA² + PB² = AB².",
         "lines": [
+          {
+            "text": "(the third vertex P is where the right angle is,",
+            "added": true
+          },
+          {
+            "text": "  because AB is the hypotenuse)",
+            "style": "indent",
+            "added": true
+          },
           "Given condition: ∠APB = 90°",
           "⇒ PA² + PB² = AB²   [Pythagoras in △APB]"
         ],
@@ -122,7 +132,11 @@
         "why": "A right angle at a point is almost never used as an angle in this chapter — it is used as Pythagoras. PA² + PB² = AB² turns the angle into distances, and distances are what coordinates can express.",
         "common_mistakes": [
           "Writing PA² + AB² = PB², which puts the right angle at the wrong vertex.",
-          "Writing the slope condition as m₁m₂ = 1 instead of −1; with the minus sign that route is correct and gives the same circle."
+          "Writing the slope condition as m₁m₂ = 1 instead of −1; with the minus sign that method is correct and gives the same circle."
+        ],
+        "lines_compact": [
+          "Given condition: ∠APB = 90°",
+          "⇒ PA² + PB² = AB²   [Pythagoras in △APB]"
         ]
       },
       {
@@ -134,6 +148,10 @@
         "margin_note": "Second mark. Every distance becomes the square of a coordinate difference, and because the condition is already squared there is no square root anywhere in this line.",
         "memory_tip": "Every distance is a squared coordinate difference — no roots here.",
         "lines": [
+          {
+            "text": "(the distance formula, squared, for PA, PB and AB)",
+            "added": true
+          },
           "⇒ [(x−0)² + (y−6)²] + [(x−6)² + (y−0)²] = (0−6)² + (6−0)²"
         ],
         "recall": {
@@ -161,7 +179,10 @@
         "why": "PA² is written straight from the distance formula as (x−x₁)² + (y−y₁)², with no root sign, because the condition was stated in squares.",
         "common_mistakes": [
           "Leaving a square root in, then having to square the whole line again.",
-          "Subtracting the coordinates the wrong way round inside a bracket that is not squared yet."
+          "Writing (y + 6)² instead of (y − 6)² for the fixed y-coordinate 6."
+        ],
+        "lines_compact": [
+          "⇒ [(x−0)² + (y−6)²] + [(x−6)² + (y−0)²] = (0−6)² + (6−0)²"
         ]
       },
       {
@@ -170,13 +191,48 @@
         "label": "Simplify to the locus",
         "marks": 2,
         "mark_note": "Solution",
-        "margin_note": "The last two marks. Expand, cancel, and every x² and y² term survives with the SAME coefficient — that is what identifies the locus as a circle. Divide by that coefficient to finish.",
+        "margin_note": "The last two marks. Expand, cancel, and every x² and y² term has the SAME coefficient — that is what identifies the locus as a circle. Divide by that coefficient to finish.",
         "memory_tip": "Same coefficient on x² and y² — a circle.",
         "lines": [
+          {
+            "text": "((y − 6)² = y² − 12y + 36 and (x − 6)² = x² − 12x + 36;",
+            "added": true
+          },
+          {
+            "text": "  (−6)² + 6² = 72)",
+            "style": "indent",
+            "added": true
+          },
           "⇒ x² + (y² − 12y + 36) + (x² − 12x + 36) + y² = 36 + 36",
+          {
+            "text": "(x² + x² = 2x², y² + y² = 2y², 36 + 36 = 72)",
+            "added": true
+          },
           "⇒ 2x² + 2y² − 12x − 12y + 72 = 72",
+          {
+            "text": "(72 is on both sides and cancels)",
+            "added": true
+          },
           "⇒ 2x² + 2y² − 12x − 12y = 0",
+          {
+            "text": "(take out the common factor 2)",
+            "added": true
+          },
           "⇒ 2(x² + y² − 6x − 6y) = 0",
+          {
+            "text": "(divide both sides by 2; A and B satisfy this equation but",
+            "added": true
+          },
+          {
+            "text": "  are not part of the locus, since there is no angle",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  APB at A or at B)",
+            "style": "indent",
+            "added": true
+          },
           {
             "text": "∴ Locus of P is x² + y² − 6x − 6y = 0",
             "style": "boxed"
@@ -209,6 +265,16 @@
         "common_mistakes": [
           "Forgetting to divide by the common factor 2 at the end.",
           "Losing a sign when expanding (y − 6)², which gives −12y."
+        ],
+        "lines_compact": [
+          "⇒ x² + (y² − 12y + 36) + (x² − 12x + 36) + y² = 36 + 36",
+          "⇒ 2x² + 2y² − 12x − 12y + 72 = 72",
+          "⇒ 2x² + 2y² − 12x − 12y = 0",
+          "⇒ 2(x² + y² − 6x − 6y) = 0",
+          {
+            "text": "∴ Locus of P is x² + y² − 6x − 6y = 0",
+            "style": "boxed"
+          }
         ]
       }
     ]

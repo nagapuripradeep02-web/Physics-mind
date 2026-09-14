@@ -96,7 +96,7 @@
     "check:originality": "npx tsx src/scripts/check_originality.ts",
     "scan:register": "node answer-book/tools/register_scan.mjs",
     "pace:figures": "npx tsx src/scripts/pace_figures.ts",
-    "check:figure-pace": "npx tsx src/scripts/check_figure_pace.ts --strict ts_ipe_c2,ts_ipe_z1,ts_ipe_b2,ts_ipe_m2a,ts_ipe_m2b,ts_ipe_p2",
+    "check:figure-pace": "npx tsx src/scripts/check_figure_pace.ts --strict ts_ipe_c2,ts_ipe_z1,ts_ipe_b2,ts_ipe_z2,ts_ipe_m2a,ts_ipe_m2b,ts_ipe_p2",
     "check:p2cards": "npx tsx answer-book/tools/check_p2_cards.ts",
     "figcheck:m2b": "python answer-book/tools/figcheck_m2b.py",
     "figures:gallery": "python answer-book/tools/render_figures.py",
@@ -112,6 +112,7 @@
     "backtest:zoology": "npx tsx src/scripts/backtest_zoology.ts",
     "labels:clashes": "node answer-book/tools/find_label_clashes.mjs",
     "backtest:botany2": "npx tsx src/scripts/backtest_botany2.ts",
+    "backtest:zoology2": "npx tsx src/scripts/backtest_zoology2.ts",
     "check:xrefs": "npx tsx src/scripts/check_xrefs.ts"
   },
   "dependencies": {

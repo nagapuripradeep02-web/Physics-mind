@@ -1,0 +1,156 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_imm_hiv_aids_mechanism",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Human Anatomy and Physiology-IV (Zoology-II)"
+  },
+  "chapter": "Immune System",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain the mechanism by which HIV multiplies and leads to AIDS.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What HIV is and how it spreads",
+      "marks": 1
+    },
+    {
+      "label": "Entry and reverse transcription",
+      "marks": 1
+    },
+    {
+      "label": "The provirus",
+      "marks": 1
+    },
+    {
+      "label": "Destruction of TH cells",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.37, SAQ 30. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Immune System · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What HIV is",
+        "marks": 1,
+        "mark_note": "What and how it spreads",
+        "why": "The virus attacks the very cells that organise the immune response, so the defence itself is what fails.",
+        "common_mistakes": [
+          "Writing that HIV spreads by touch or by air. It does not.",
+          "Confusing HIV, the virus, with AIDS, the condition."
+        ],
+        "memory_tip": "HIV is the virus; AIDS is what it finally causes.",
+        "margin_note": "Full form, then the routes of spread.",
+        "lines": [
+          "HIV means Human Immunodeficiency Virus.",
+          "It spreads by sexual contact, by blood",
+          "transfusion, by sharing needles with an",
+          "infected person, and from an infected",
+          "mother to her child."
+        ]
+      },
+      {
+        "id": "s2_entry",
+        "kind": "text",
+        "label": "Entry and reverse transcription",
+        "marks": 1,
+        "mark_note": "Reverse transcriptase",
+        "why": "The virus carries RNA but the host works in DNA, so it must copy its RNA backwards into DNA before anything else can happen.",
+        "common_mistakes": [
+          "Writing that HIV carries DNA. It carries single stranded RNA.",
+          "Leaving out reverse transcriptase."
+        ],
+        "memory_tip": "RNA to DNA is backwards, so the enzyme is reverse transcriptase.",
+        "margin_note": "Which cells, then which enzyme.",
+        "lines": [
+          "After entering the host, HIV enters the TH",
+          "cells, macrophages and dendritic cells.",
+          "Its single stranded RNA makes a DNA strand",
+          "complementary to the viral RNA, using the",
+          "enzyme reverse transcriptase.",
+          "The same enzyme makes a second DNA strand,",
+          "so double stranded viral DNA is formed."
+        ]
+      },
+      {
+        "id": "s3_provirus",
+        "kind": "text",
+        "label": "The provirus",
+        "marks": 1,
+        "mark_note": "Provirus",
+        "why": "Once the viral DNA is inside the host's own DNA, the cell copies it as if it were its own, and there is no way to remove it.",
+        "common_mistakes": [
+          "Leaving out integrase, the enzyme that inserts the DNA.",
+          "Forgetting the name provirus."
+        ],
+        "memory_tip": "Integrase integrates it; the inserted DNA is the provirus.",
+        "margin_note": "Name the enzyme and the inserted DNA.",
+        "lines": [
+          "The viral DNA is put into the host DNA by",
+          "the enzyme integrase.",
+          "The inserted DNA is called the provirus.",
+          "The provirus makes RNA, which is",
+          "translated into viral proteins.",
+          "These particles are assembled into new HIV."
+        ]
+      },
+      {
+        "id": "s4_destruction",
+        "kind": "boxed_final",
+        "label": "Destruction of TH cells",
+        "marks": 1,
+        "mark_note": "TH cells destroyed",
+        "why": "Each infected cell turns into a factory and is destroyed making virus, so the count of helper cells falls until infections cannot be resisted.",
+        "common_mistakes": [
+          "Writing that symptoms appear at once. They may take months to ten years.",
+          "Leaving out the destruction of TH cells."
+        ],
+        "memory_tip": "The helper cells become factories, then die.",
+        "margin_note": "End with the time gap and the symptoms.",
+        "lines": [
+          "The infected human cells act as HIV",
+          "generating factories.",
+          "The TH cells are infected and destroyed.",
+          "The time between infection and the first",
+          "symptoms may be a few months to 10 years.",
+          {
+            "text": "Symptoms: fever, diarrhoea and loss of weight",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Reverse transcriptase and integrase are the two enzymes the question is really asking about. Name both, with the step each one performs."
+}

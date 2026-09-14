@@ -34,7 +34,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.189, chapter 8 LIMITS AND CONTINUITY, the CONTINUITY sub-section, Short Answer question 2. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4 Marks over this CONTINUITY sub-section) but no per-step allocation on any answer. The 1+2+1 shape follows the shape this bank uses for a Maths-1B Section B question, weighted so the limit — the only real work here — carries two marks. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE ON THE ANSWER: the question asks whether f is continuous and the honest answer is NO — the limit is 2 while f(0) is given as 1. The discontinuity is removable, and f(0) = 2 would make f continuous; that is stated in the last step so the student sees what the question is testing."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.189, chapter 8 LIMITS AND CONTINUITY, the CONTINUITY sub-section, Short Answer question 2. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4 Marks over this CONTINUITY sub-section) but no per-step allocation on any answer. The 1+2+1 shape follows the shape this bank uses for a Maths-1B Section B question, weighted so the limit — the only real work here — carries two marks. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE ON THE ANSWER: the question asks whether f is continuous and the honest answer is NO — the limit is 2 while f(0) is given as 1. The discontinuity is removable, and f(0) = 2 would make f continuous; that is stated in the last step so the student sees what the question is testing. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say what you would compare, what the limit comes to, and what your answer is.",
   "answer": {
@@ -57,8 +57,10 @@
             "style": "heading"
           },
           "Given f(x) = (sin 2x)/x   for x ≠ 0,   and f(0) = 1",
+          "(the definition of continuity at x = 0)",
           "f is continuous at x = 0 if   lim(x → 0) f(x) = f(0)",
-          "The same formula applies for x < 0 and for x > 0, so one two-sided limit settles it.",
+          "The same formula applies for x < 0 and for x > 0,",
+          "so one two-sided limit is enough.",
           "So the limit must be found and then compared with 1."
         ],
         "recall": {
@@ -98,11 +100,37 @@
         "margin_note": "Two marks. The angle inside the sine is 2x, so the denominator has to be made 2x as well before the standard limit is quoted. The compensating 2 in front is where the answer 2 comes from.",
         "memory_tip": "sin(2x)/x is sin(2x)/(2x) times 2 — write the 2 outside first, then the standard limit is ready to use.",
         "lines": [
+          {
+            "text": "(2 · 1/(2x) = 1/x, so the value is unchanged)",
+            "added": true
+          },
           "For x ≠ 0,   (sin 2x)/x = 2 · (sin 2x)/(2x)",
+          {
+            "text": "(2x → 0 as x → 0)",
+            "added": true
+          },
           "Put θ = 2x. As x → 0, θ → 0 as well.",
           "Standard limit:   lim(θ → 0) (sin θ)/θ = 1",
-          "∴ lim(x → 0) (sin 2x)/x = 2 · lim(θ → 0) (sin θ)/θ = 2 · 1 = 2",
-          "The same value is reached from the left and from the right, so lim(x → 0) f(x) exists and equals 2."
+          {
+            "text": "(put θ = 2x, and the constant 2 comes outside)",
+            "added": true
+          },
+          "∴ lim(x → 0) (sin 2x)/x = 2 · lim(θ → 0) (sin θ)/θ",
+          {
+            "text": "  = 2 · 1 = 2",
+            "style": "indent"
+          },
+          {
+            "text": "(the two-sided limit 2 was found above,",
+            "added": true
+          },
+          {
+            "text": "  so each one-sided limit is also 2)",
+            "style": "indent",
+            "added": true
+          },
+          "The same value is reached from the left and from the right,",
+          "so lim(x → 0) f(x) exists and equals 2."
         ],
         "recall": {
           "credit": "say_it",
@@ -126,10 +154,22 @@
             "multiply and divide by two"
           ]
         },
-        "why": "The standard limit works only when the angle inside the sine matches the expression below it. Making the denominator 2x costs a factor of 2 outside, and that factor is the whole difference between the limit and the given value.",
+        "why": "The standard limit works only when the angle inside the sine matches the expression below it. Making the denominator 2x puts a factor of 2 outside, and that factor of 2 is why the limit is 2.",
         "common_mistakes": [
           "Writing lim (sin 2x)/x = 1 by quoting the standard limit without matching the angle.",
           "Cancelling the 2 wrongly and getting ½ instead of 2."
+        ],
+        "lines_compact": [
+          "For x ≠ 0,   (sin 2x)/x = 2 · (sin 2x)/(2x)",
+          "Put θ = 2x. As x → 0, θ → 0 as well.",
+          "Standard limit:   lim(θ → 0) (sin θ)/θ = 1",
+          "∴ lim(x → 0) (sin 2x)/x = 2 · lim(θ → 0) (sin θ)/θ",
+          {
+            "text": "  = 2 · 1 = 2",
+            "style": "indent"
+          },
+          "The same value is reached from the left and from the right,",
+          "so lim(x → 0) f(x) exists and equals 2."
         ]
       },
       {
@@ -138,12 +178,23 @@
         "label": "Compare with f(0) and answer",
         "marks": 1,
         "mark_note": "Solution",
-        "margin_note": "Last mark. The answer to the question as asked is no. Naming the discontinuity as removable, and saying which value of f(0) would repair it, is what shows the point of the question has been understood.",
+        "margin_note": "Last mark. The answer to the question as asked is no. Naming the discontinuity as removable, and saying which value of f(0) would make f continuous at 0, is what shows the point of the question has been understood.",
         "memory_tip": "When the limit exists but does not match the value, the discontinuity is removable — only the assigned value is different, so redefining f(0) = 2 makes f continuous.",
         "lines": [
+          {
+            "text": "(the limit from step 2 and the value given in the question)",
+            "added": true
+          },
           "lim(x → 0) f(x) = 2,   but the given value is   f(0) = 1",
           "2 ≠ 1, so lim(x → 0) f(x) ≠ f(0)",
-          "The limit exists but does not equal the value, so this is a removable discontinuity: defining f(0) = 2 instead of 1 would make f continuous at 0.",
+          "The limit exists but does not equal the value,",
+          "so this is a removable discontinuity:",
+          "defining f(0) = 2 instead of 1",
+          "would make f continuous at 0.",
+          {
+            "text": "(the limit 2 is not equal to f(0) = 1)",
+            "added": true
+          },
           {
             "text": "∴ f is not continuous at x = 0",
             "style": "boxed"
@@ -175,6 +226,18 @@
         "common_mistakes": [
           "Writing that f is continuous because the limit exists, without comparing it with f(0).",
           "Calling this a jump discontinuity, which needs the two one-sided limits to differ."
+        ],
+        "lines_compact": [
+          "lim(x → 0) f(x) = 2,   but the given value is   f(0) = 1",
+          "2 ≠ 1, so lim(x → 0) f(x) ≠ f(0)",
+          "The limit exists but does not equal the value,",
+          "so this is a removable discontinuity:",
+          "defining f(0) = 2 instead of 1",
+          "would make f continuous at 0.",
+          {
+            "text": "∴ f is not continuous at x = 0",
+            "style": "boxed"
+          }
         ]
       }
     ]

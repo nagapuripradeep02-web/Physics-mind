@@ -46,7 +46,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.59 — SAQ chapter 8 Transformation of Axes, answer 52, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 20 · TS 19. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter. But the four STEPS are the book's own: p.59 prints a boxed 'SOLUTION STEPS' panel beside answers 52 and 53 giving the method in exactly four moves — (1) take the given equation as the original (or as the new one), (2) write the change-of-axes formulas, (3) put them into the given equation, (4) simplify to get the answer. This answer is cut on those four printed moves at one mark each, so the DECOMPOSITION is sourced even though the per-step marks are not. Four equal marks also matches the only 4-mark shape the sister chapter prints (Locus answers 44 and 46 carry printed tags, and this chapter's answers are the same length). This is the answer whose page prints the boxed 'SOLUTION STEPS' panel that the mark split above is cut on. The chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7. NOTE: Transformation of Axes is an SAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 4 marks in Section B and nothing in Section A or Section C, and the book has no Transformation of Axes LAQ chapter (its LAQ chapters are 1-6) and no VSAQ chapter (its VSAQ chapters are 14-20). Chapter scoped by BOUNDARY WALK: book p.61 is SAQ chapter 9, The Straight Line. The book's separate STAR QUESTIONS PLUS bank (pp.104-108, answers 181-196) was also surveyed, and its ONLY Transformation of Axes question is answer 181, authored here as sqp1."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.59 — SAQ chapter 8 Transformation of Axes, answer 52, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 20 · TS 19. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter. But the four STEPS are the book's own: p.59 prints a boxed 'SOLUTION STEPS' panel beside answers 52 and 53 giving the method in exactly four moves — (1) take the given equation as the original (or as the new one), (2) write the change-of-axes formulas, (3) put them into the given equation, (4) simplify to get the answer. This answer is cut on those four printed moves at one mark each, so the DECOMPOSITION is sourced even though the per-step marks are not. Four equal marks also matches the only 4-mark shape the sister chapter prints (Locus answers 44 and 46 carry printed tags, and this chapter's answers are the same length). This is the answer whose page prints the boxed 'SOLUTION STEPS' panel that the mark split above is cut on. The chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7. NOTE: Transformation of Axes is an SAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 4 marks in Section B and nothing in Section A or Section C, and the book has no Transformation of Axes LAQ chapter (its LAQ chapters are 1-6) and no VSAQ chapter (its VSAQ chapters are 14-20). Chapter scoped by BOUNDARY WALK: book p.61 is SAQ chapter 9, The Straight Line. The book's separate STAR QUESTIONS PLUS bank (pp.104-108, answers 181-196) was also surveyed, and its ONLY Transformation of Axes question is answer 181, authored here as sqp1. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say what happens to the two Y terms, and which identity finishes it.",
   "answer": {
@@ -92,7 +92,7 @@
             "same angle"
           ]
         },
-        "why": "The first move is to label which equation you were handed. A transformation question is always one of two shapes — given the original find the new, or given the new find the original — and every later step depends on which.",
+        "why": "The first move is to note which equation you were given. This question is one of two kinds — given the original, find the new; or given the new, find the original — and every later step depends on which.",
         "common_mistakes": [
           "Introducing a second letter for the rotation angle when it is the same α.",
           "Reading p as a variable rather than a constant."
@@ -107,8 +107,21 @@
         "margin_note": "Second mark. The standard rotation formulas with θ = α. Nothing is evaluated, because α stays a letter throughout.",
         "memory_tip": "The standard rotation formulas with θ = α. Nothing is evaluated; α stays a letter.",
         "lines": [
+          {
+            "text": "(rotating the axes through θ: x = X cos θ − Y sin θ,",
+            "added": true
+          },
+          {
+            "text": "  y = X sin θ + Y cos θ)",
+            "style": "indent",
+            "added": true
+          },
           "Angle of rotation θ = α, then",
           "x = Xcosθ − Ysinθ  ⇒  x = Xcosα − Ysinα",
+          {
+            "text": "(put θ = α)",
+            "added": true
+          },
           "y = Ycosθ + Xsinθ  ⇒  y = Ycosα + Xsinα"
         ],
         "recall": {
@@ -132,10 +145,15 @@
             "rotation formulas"
           ]
         },
-        "why": "Under a rotation through θ the old coordinates are mixtures of both new ones: x = Xcosθ − Ysinθ and y = Ycosθ + Xsinθ. Writing them down correctly is most of the work.",
+        "why": "Under a rotation through θ the old coordinates are mixtures of both new ones: x = Xcosθ − Ysinθ and y = Ycosθ + Xsinθ. Every later line depends on writing them down correctly.",
         "common_mistakes": [
           "Putting a number in for α when it must stay general.",
           "Getting the sign of the sine term wrong in x."
+        ],
+        "lines_compact": [
+          "Angle of rotation θ = α, then",
+          "x = Xcosθ − Ysinθ  ⇒  x = Xcosα − Ysinα",
+          "y = Ycosθ + Xsinθ  ⇒  y = Ycosα + Xsinα"
         ]
       },
       {
@@ -147,8 +165,16 @@
         "margin_note": "Third mark. Substituting gives four terms; group the ones carrying X and the ones carrying Y before doing anything else.",
         "memory_tip": "Four terms come out — group the X ones and the Y ones before doing anything else.",
         "lines": [
+          {
+            "text": "(put x and y into (1))",
+            "added": true
+          },
           "From (1), transformed equation is",
           "(Xcosα − Ysinα)cosα + (Ycosα + Xsinα)sinα = p",
+          {
+            "text": "(multiply out each bracket)",
+            "added": true
+          },
           "⇒ Xcos²α − Ysinα cosα + Ycosα sinα + Xsin²α = p"
         ],
         "recall": {
@@ -173,10 +199,15 @@
             "sin squared alpha"
           ]
         },
-        "why": "Substitution is mechanical once the formulas are down. Every x and every y in the given equation is replaced, including the ones inside a squared bracket.",
+        "why": "Substitution is mechanical once the formulas are written. Every x and every y in the given equation is replaced.",
         "common_mistakes": [
           "Multiplying only the first term of each bracket.",
           "Losing one of the two mixed terms before they can cancel."
+        ],
+        "lines_compact": [
+          "From (1), transformed equation is",
+          "(Xcosα − Ysinα)cosα + (Ycosα + Xsinα)sinα = p",
+          "⇒ Xcos²α − Ysinα cosα + Ycosα sinα + Xsin²α = p"
         ]
       },
       {
@@ -188,6 +219,10 @@
         "margin_note": "Last mark. The two Y terms are equal and opposite, so they cancel outright; the two X terms carry cos²α + sin²α, which is 1. What is left is a single letter.",
         "memory_tip": "The two Y terms cancel outright, and cos²α + sin²α = 1 leaves a single letter: X = p.",
         "lines": [
+          {
+            "text": "(take out X from Xcos²α and Xsin²α)",
+            "added": true
+          },
           "⇒ X(cos²α + sin²α) = p      [∵ the two Y terms cancel]",
           "⇒ X(1) = p      [∵ cos²α + sin²α = 1]",
           {
@@ -221,9 +256,17 @@
         "common_mistakes": [
           "Cancelling the X terms instead of the Y terms.",
           "Leaving the answer as X(cos²α + sin²α) = p without using the identity."
+        ],
+        "lines_compact": [
+          "⇒ X(cos²α + sin²α) = p      [∵ the two Y terms cancel]",
+          "⇒ X(1) = p      [∵ cos²α + sin²α = 1]",
+          {
+            "text": "∴ Transformed equation is X = p",
+            "style": "boxed"
+          }
         ]
       }
     ]
   },
-  "insider_note": "The rotation angle is the same α already standing in the equation, so do not bring in a second letter. The two mixed sinα cosα terms cancel and cos²α + sin²α = 1 finishes it: the answer is just X = p."
+  "insider_note": "The rotation angle is the same α that is already in the equation, so do not bring in a second letter. The two mixed sinα cosα terms cancel and cos²α + sin²α = 1 gives the answer X = p."
 }

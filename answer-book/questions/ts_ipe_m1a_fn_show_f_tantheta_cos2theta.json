@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.9, chapter 2 FUNCTIONS, Very Short Answer question 5. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape gives one mark to the substitution and one to the reduction, because a student who writes the substituted fraction and stops has done half the work. The book's own MODEL PAPER-IA prints this same question at Q3 of Section I, its very short answer section. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.9, chapter 2 FUNCTIONS, Very Short Answer question 5. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape gives one mark to the substitution and one to the reduction, because a student who writes the substituted fraction and stops has done half the work. The book's own MODEL PAPER-IA prints this same question at Q3 of Section I, its very short answer section. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would show f(tan θ) = cos 2θ — what you substitute, and how you clear the tangents.",
   "answer": {
@@ -99,8 +99,16 @@
           "Write tan θ = sin θ/cos θ, then multiply the",
           "numerator and the denominator by cos²θ:",
           "= (cos²θ − sin²θ)/(cos²θ + sin²θ)",
+          {
+            "text": "(sin²θ + cos²θ = 1)",
+            "added": true
+          },
           "= (cos²θ − sin²θ)/1",
           "= cos²θ − sin²θ = cos 2θ",
+          {
+            "text": "(cos 2θ = cos²θ − sin²θ)",
+            "added": true
+          },
           {
             "text": "∴ f(tan θ) = cos 2θ",
             "style": "boxed"
@@ -134,6 +142,17 @@
           "Multiplying only the numerator by cos²θ.",
           "Writing cos²θ + sin²θ as 2 instead of 1.",
           "Reading cos²θ − sin²θ as cos²2θ."
+        ],
+        "lines_compact": [
+          "Write tan θ = sin θ/cos θ, then multiply the",
+          "numerator and the denominator by cos²θ:",
+          "= (cos²θ − sin²θ)/(cos²θ + sin²θ)",
+          "= (cos²θ − sin²θ)/1",
+          "= cos²θ − sin²θ = cos 2θ",
+          {
+            "text": "∴ f(tan θ) = cos 2θ",
+            "style": "boxed"
+          }
         ]
       }
     ]

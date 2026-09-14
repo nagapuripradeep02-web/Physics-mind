@@ -1,0 +1,90 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_end_thymus_gland",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Human Anatomy and Physiology-IV (Zoology-II)"
+  },
+  "chapter": "Endocrine System",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Name the gland that increases in size during childhood and decreases in size during adulthood. What important role does it play in case of infection?",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The gland",
+      "marks": 1
+    },
+    {
+      "label": "Its role",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.52, VSAQ 92. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Revised 2026-09-05 (examiner audit Z2-08): the s1 why and memory tip no longer say the gland is barely needed later, since NCERT states that its degeneration weakens the immune response of old persons, and the s2 mistake note now separates making antibodies from promoting their production so it does not contradict the boxed line."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Endocrine System · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_gland",
+        "kind": "text",
+        "label": "The gland",
+        "marks": 1,
+        "mark_note": "The gland",
+        "why": "T-lymphocytes develop in the thymus mainly during childhood, so the gland is largest then. It degenerates later, and with less thymosin the immune response of old persons becomes weaker.",
+        "common_mistakes": [
+          "Naming the thyroid. The thymus is the one that shrinks with age.",
+          "Leaving out when it is largest."
+        ],
+        "memory_tip": "The thymus develops T cells and shrinks after puberty.",
+        "margin_note": "Name the gland and its size pattern.",
+        "lines": [
+          "The thymus gland increases in size during",
+          "childhood and is largest at puberty.",
+          "It degenerates in old persons."
+        ]
+      },
+      {
+        "id": "s2_role",
+        "kind": "boxed_final",
+        "label": "Its role",
+        "marks": 1,
+        "mark_note": "Role in infection",
+        "why": "T cells cannot work until the thymus has selected them, so both kinds of immunity depend on it.",
+        "common_mistakes": [
+          "Writing that the thymus itself makes antibodies. Plasma cells make antibodies; thymosins from the thymus promote their production.",
+          "Naming only one kind of immunity."
+        ],
+        "memory_tip": "T for thymus and for T-lymphocyte.",
+        "margin_note": "Name both kinds of immunity.",
+        "lines": [
+          "It helps T-lymphocytes develop, and these",
+          "give cell mediated immunity.",
+          {
+            "text": "It also promotes antibodies for humoral immunity",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Two questions in one. Name the thymus, then give its immune role — the second half is where most answers stop short."
+}

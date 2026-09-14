@@ -39,7 +39,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.64 — SAQ chapter 8 Ellipse, answer 74. NOT on an SSP page. Printed appearance: AP 15 only. Book p.64 prints no margin mark tags for this proof-style question, so the 1+2+1 split here is OURS — the comparison-of-coefficients step is the largest share of the algebra, so it carries 2 of the 4 marks. Ellipse is an SAQ-ONLY unit on the book's IPE Blue Print (book p.5). No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE BLM on hand; the book's five Guess Papers pp.118-127 are the orchestrator's back-test stand-in). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.64 — SAQ chapter 8 Ellipse, answer 74. NOT on an SSP page. Printed appearance: AP 15 only. Book p.64 prints no margin mark tags for this proof-style question, so the 1+2+1 split here is OURS — the comparison-of-coefficients step is the largest share of the algebra, so it carries 2 of the 4 marks. Ellipse is an SAQ-ONLY unit on the book's IPE Blue Print (book p.5). No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE BLM on hand; the book's five Guess Papers pp.118-127 are the orchestrator's back-test stand-in). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "insider_note": "This condition a²l² + b²m² = n² specialises to the familiar y = mx ± √(a²m² + b²) formula when the line is written as y = mx − c (l = m-value, m-coefficient = −1, n = −c) — recognising that connection is a useful cross-check, not a separate derivation.",
   "answer": {
@@ -61,11 +61,18 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Let lx + my + n",
-          "= 0 be the tangent at the point P(θ)",
-          "= (a cos θ,",
-          "b sin θ) on the ellipse x²/a² + y²/b² = 1",
+          "Let lx + my + n = 0 be the tangent",
+          "at the point P(θ) = (a cos θ, b sin θ)",
+          "on the ellipse x²/a² + y²/b² = 1",
+          "(Every point of the ellipse is (a cos θ, b sin θ)",
+          {
+            "text": "  for some angle θ.)",
+            "style": "indent"
+          },
           "Equation of the tangent at P(θ):",
+          "The tangent at (x₁, y₁) is xx₁/a² + yy₁/b² = 1.",
+          "Put x₁ = a cos θ and y₁ = b sin θ:",
+          "x(a cos θ)/a² + y(b sin θ)/b² = 1, that is",
           "(x cos θ)/a + (y sin θ)/b = 1"
         ],
         "why": "Writing the tangent at the general parametric point P(θ) lets the given line lx + my + n = 0 be matched against it directly, since a tangent line at ANY point on the ellipse has this same form.",
@@ -83,15 +90,61 @@
         "margin_note": "Middle two marks. Match the tangent's coefficients to l, m, n, up to a common ratio.",
         "memory_tip": "Two lines represent the same line exactly when their coefficients of x, y and the constant are all in the same ratio.",
         "lines": [
+          {
+            "text": "The given line can be written lx + my = −n.",
+            "added": true
+          },
+          {
+            "text": "(n ≠ 0: a tangent cannot pass through the",
+            "added": true
+          },
+          {
+            "text": "  centre (0, 0).)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "These are the same line, so their coefficients",
+            "added": true
+          },
+          {
+            "text": "  are in the same ratio:",
+            "style": "indent",
+            "added": true
+          },
           "Comparing (cos θ)/a · x + (sin θ)/b · y = 1",
           "with lx + my = −n:",
           "(cos θ / a) / l = (sin θ / b) / m = −1/n",
+          {
+            "text": "First = third: cos θ / a = −l/n",
+            "added": true
+          },
+          {
+            "text": "  ⇒ cos θ = −al/n",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "Second = third: sin θ / b = −m/n",
+            "added": true
+          },
+          {
+            "text": "  ⇒ sin θ = −bm/n",
+            "style": "indent",
+            "added": true
+          },
           "⇒ cos θ = −al/n,  sin θ = −bm/n"
         ],
         "why": "Since both equations describe the same line, their x-coefficients, y-coefficients and constants must all be in one common ratio — that ratio is set equal to −1/n by comparing the constant terms.",
         "common_mistakes": [
           "Comparing lx + my + n = 0 with the tangent written as = 1 without first moving n to match the −1 form, causing a sign slip.",
           "Losing the a and b when isolating cos θ and sin θ."
+        ],
+        "lines_compact": [
+          "Comparing (cos θ)/a · x + (sin θ)/b · y = 1",
+          "with lx + my = −n:",
+          "(cos θ / a) / l = (sin θ / b) / m = −1/n",
+          "⇒ cos θ = −al/n,  sin θ = −bm/n"
         ]
       },
       {
@@ -103,16 +156,48 @@
         "margin_note": "Last mark. cos²θ + sin²θ = 1 turns the two expressions above into the final condition.",
         "memory_tip": "Whenever cos θ and sin θ are both isolated, squaring and adding using cos²θ + sin²θ = 1 is the natural next step.",
         "lines": [
+          {
+            "text": "Use the identity cos²θ + sin²θ = 1:",
+            "added": true
+          },
           "cos²θ + sin²θ = 1 ⇒ (al/n)² + (bm/n)² = 1",
+          {
+            "text": "(a minus sign squared is +, so (−al/n)² = (al/n)²)",
+            "added": true
+          },
+          {
+            "text": "⇒ a²l²/n² + b²m²/n² = 1",
+            "added": true
+          },
+          {
+            "text": "Multiply every term by n²:",
+            "added": true
+          },
           {
             "text": "a²l² + b²m² = n²",
             "style": "boxed"
+          },
+          {
+            "text": "This is the condition for lx + my + n = 0",
+            "added": true
+          },
+          {
+            "text": "  to touch the ellipse.",
+            "style": "indent",
+            "added": true
           }
         ],
         "why": "Since cos θ and sin θ must satisfy cos²θ + sin²θ = 1 for every angle θ, substituting the expressions found in step 2 gives the condition that l, m, n must satisfy for the line to be a tangent.",
         "common_mistakes": [
           "Forgetting to square both al/n and bm/n before adding.",
           "Writing the final condition with n on the wrong side, e.g. a²l² + b²m² + n² = 0."
+        ],
+        "lines_compact": [
+          "cos²θ + sin²θ = 1 ⇒ (al/n)² + (bm/n)² = 1",
+          {
+            "text": "a²l² + b²m² = n²",
+            "style": "boxed"
+          }
         ]
       }
     ]

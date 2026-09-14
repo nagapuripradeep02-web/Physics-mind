@@ -1,0 +1,157 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_end_addison_cushing",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Human Anatomy and Physiology-IV (Zoology-II)"
+  },
+  "chapter": "Endocrine System",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Write a note on Addison's disease and Cushing's syndrome.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Cause of Addison's disease",
+      "marks": 1
+    },
+    {
+      "label": "Its symptoms",
+      "marks": 1
+    },
+    {
+      "label": "Cause of Cushing's syndrome",
+      "marks": 1
+    },
+    {
+      "label": "Its symptoms",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.34, SAQ 24. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Endocrine System · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_addison_cause",
+        "kind": "text",
+        "label": "Addison's disease",
+        "marks": 1,
+        "mark_note": "Cause",
+        "why": "Glucocorticoids are the hormones that let the body cope with stress, so too little of them leaves a person unable to respond to it.",
+        "common_mistakes": [
+          "Naming the adrenal medulla. Glucocorticoids come from the cortex.",
+          "Writing hypersecretion. Addison's is hyposecretion."
+        ],
+        "memory_tip": "Addison is 'a' for absent: too little glucocorticoid.",
+        "margin_note": "Cause first, symptoms after.",
+        "lines": [
+          {
+            "text": "Addison's disease",
+            "style": "heading"
+          },
+          "It is due to hyposecretion of",
+          "glucocorticoids by the adrenal cortex."
+        ]
+      },
+      {
+        "id": "s2_addison_symptoms",
+        "kind": "text",
+        "label": "Its symptoms",
+        "marks": 1,
+        "mark_note": "Symptoms",
+        "why": "Without glucocorticoids the body cannot mobilise its stores, so weight and strength fall away.",
+        "common_mistakes": [
+          "Giving weight gain. In Addison's disease weight is lost.",
+          "Leaving out the darkening of the skin."
+        ],
+        "memory_tip": "Weight down, pressure down, skin darker.",
+        "margin_note": "List the symptoms. Each one is a tick.",
+        "lines": [
+          "The symptoms are loss of weight, muscle",
+          "weakness, fatigue, reduced blood pressure",
+          "and darkening of the skin colour.",
+          "The patient cannot respond to stress."
+        ]
+      },
+      {
+        "id": "s3_cushing_cause",
+        "kind": "text",
+        "label": "Cushing's syndrome",
+        "marks": 1,
+        "mark_note": "Cause",
+        "why": "Too much of the same hormone drives the body the other way, storing fat and raising blood sugar.",
+        "common_mistakes": [
+          "Writing hyposecretion. Cushing's is hypersecretion.",
+          "Naming a different hormone."
+        ],
+        "memory_tip": "Cushing is the cushion: fat is laid down.",
+        "margin_note": "One line for the cause.",
+        "lines": [
+          {
+            "text": "Cushing's syndrome",
+            "style": "heading"
+          },
+          "It is due to hypersecretion of",
+          "glucocorticoids."
+        ]
+      },
+      {
+        "id": "s4_cushing_symptoms",
+        "kind": "boxed_final",
+        "label": "Its symptoms",
+        "marks": 1,
+        "mark_note": "Symptoms",
+        "why": "Fat is moved to the trunk, face and back while the limbs waste, which gives the shape the disease is known by.",
+        "common_mistakes": [
+          "Giving weight loss. In Cushing's syndrome weight is gained.",
+          "Leaving out the moon face and buffalo hump."
+        ],
+        "memory_tip": "Moon face, buffalo hump, thin arms and legs.",
+        "margin_note": "The named signs are what the examiner ticks.",
+        "lines": [
+          "The symptoms are spindle like arms and",
+          "legs, a round moon face, a buffalo hump on",
+          "the back, a pendulous abdomen, poor wound",
+          "healing and hyperglycaemia.",
+          {
+            "text": "Weight is gained rapidly",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "The two diseases are opposite ends of one hormone. Say hyposecretion for one and hypersecretion for the other in the first line of each — that single word carries the mark."
+}

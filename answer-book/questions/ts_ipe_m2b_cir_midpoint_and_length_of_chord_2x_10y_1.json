@@ -34,7 +34,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.50 — SAQ chapter 6 Circle, answer 46. The book prints the tag \"IPE 14\" beside it. That is the undivided-board year and the appearance list has no value for it, so it is recorded here in prose and NOT in appearances; the card therefore ships with an empty appearances list even though the book does print a year. The mark split is OURS, not the book’s: this answer sits on a two-column or shared page with no printed margin tags. It is patterned on the one printed split in this chapter — book p.51, answer 48, which prints 1 + 1 + 1 + 1 across a four-move 4-mark answer. Star rank: the book gives the CIRCLE SAQ chapter ★★ in its SAQ chapter table (book p.49), in the chapter header (book p.50) and in the SAQ hit list header (book p.9), so every Circle SAQ entry takes stars 2. That rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Circle holds Q11. Every number was re-derived and the book is correct: p = 2/√5, the chord is 22/√5 and the mid point is (7/5, 21/5). FIGURE SCOPE: the question does not say \"draw\", so the diagram step carries NO marks; the book prints a small sketch beside this answer, and it is reproduced because the mid point IS the foot of the perpendicular and the picture is what says so. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book’s five Guess Papers (book pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.50 — SAQ chapter 6 Circle, answer 46. The book prints the tag \"IPE 14\" beside it. That is the undivided-board year and the appearance list has no value for it, so it is recorded here in prose and NOT in appearances; the card therefore ships with an empty appearances list even though the book does print a year. The mark split is OURS, not the book’s: this answer sits on a two-column or shared page with no printed margin tags. It is patterned on the one printed split in this chapter — book p.51, answer 48, which prints 1 + 1 + 1 + 1 across a four-move 4-mark answer. Star rank: the book gives the CIRCLE SAQ chapter ★★ in its SAQ chapter table (book p.49), in the chapter header (book p.50) and in the SAQ hit list header (book p.9), so every Circle SAQ entry takes stars 2. That rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Circle holds Q11. Every number was re-derived and the book is correct: p = 2/√5, the chord is 22/√5 and the mid point is (7/5, 21/5). FIGURE SCOPE: the question does not say \"draw\", so the diagram step carries NO marks; the book prints a small sketch beside this answer, and it is reproduced because the mid point IS the foot of the perpendicular and the picture is what says so. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book’s five Guess Papers (book pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "insider_note": "The mid point of a chord is the foot of the perpendicular from the centre — once that sentence is written, the rest is the standard foot-of-perpendicular formula and needs no new idea.",
   "answer": {
@@ -57,8 +57,12 @@
             "style": "heading"
           },
           "Given circle: x² + y² − 2x − 10y + 1 = 0",
+          "Compare with x² + y² + 2gx + 2fy + c = 0:",
+          "2g = −2 ⇒ g = −1",
+          "2f = −10 ⇒ f = −5",
           "Here g = −1, f = −5, c = 1",
-          "Centre C = (1, 5)",
+          "Centre C = (−g, −f) = (1, 5)",
+          "Radius r = √(g² + f² − c)",
           "r = √(1 + 25 − 1) = √25 = 5"
         ],
         "why": "The centre is used twice: once for the perpendicular distance in the length calculation, and once as the starting point of the perpendicular whose foot is the mid point.",
@@ -76,15 +80,42 @@
         "margin_note": "One mark. p² = 4/5, so r² − p² = 25 − 4/5 = 121/5, and 121 is a perfect square.",
         "memory_tip": "25 − 4/5 = 121/5, and √121 = 11. The answer is 22/√5.",
         "lines": [
+          {
+            "text": "Perpendicular distance from C(1, 5) to",
+            "added": true
+          },
+          {
+            "text": "  the line x − 2y + 7 = 0:",
+            "style": "indent",
+            "added": true
+          },
           "p = |1 − 10 + 7| / √(1² + (−2)²) = 2/√5",
+          {
+            "text": "Half the chord is √(r² − p²).",
+            "added": true
+          },
           "Length of the chord = 2√(r² − p²)",
+          {
+            "text": "p² = 4/5",
+            "added": true
+          },
           "= 2√(25 − 4/5) = 2√(121/5)",
+          {
+            "text": "since 25 − 4/5 = (125 − 4)/5 = 121/5",
+            "added": true
+          },
           "= 2(11)/√5 = 22/√5"
         ],
         "why": "The perpendicular distance from the centre to the line is p, and the chord is 2√(r² − p²). Writing 25 as 125/5 makes the subtraction one step: (125 − 4)/5 = 121/5.",
         "common_mistakes": [
           "Writing √(1 + 4) as 3.",
           "Squaring 2/√5 as 2/5."
+        ],
+        "lines_compact": [
+          "p = |1 − 10 + 7| / √(1² + (−2)²) = 2/√5",
+          "Length of the chord = 2√(r² − p²)",
+          "= 2√(25 − 4/5) = 2√(121/5)",
+          "= 2(11)/√5 = 22/√5"
         ]
       },
       {
@@ -98,9 +129,31 @@
         "lines": [
           "The mid point of the chord is the foot of the",
           "perpendicular (h, k) from C(1, 5) to x − 2y + 7 = 0",
+          {
+            "text": "Foot of the perpendicular from (x₁, y₁) to",
+            "added": true
+          },
+          {
+            "text": "  the line ax + by + c = 0:",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  (h − x₁)/a = (k − y₁)/b = −(ax₁+by₁+c)/(a²+b²)",
+            "style": "indent",
+            "added": true
+          },
           "(h − 1)/1 = (k − 5)/(−2) = −(1 − 10 + 7)/(1 + 4)",
+          {
+            "text": "1 − 10 + 7 = −2, so the right side is 2/5",
+            "added": true
+          },
           "⇒ (h − 1)/1 = (k − 5)/(−2) = 2/5",
           "⇒ h = 1 + 2/5 = 7/5",
+          {
+            "text": "k − 5 = (−2)(2/5) = −4/5",
+            "added": true
+          },
           "⇒ k = 5 − 4/5 = 21/5",
           {
             "text": "∴ Mid point = (7/5, 21/5)",
@@ -111,6 +164,18 @@
         "common_mistakes": [
           "Dropping the minus sign in front of (ax₁ + by₁ + c) and getting −2/5.",
           "Using b = 2 instead of b = −2 in the middle ratio."
+        ],
+        "lines_compact": [
+          "The mid point of the chord is the foot of the",
+          "perpendicular (h, k) from C(1, 5) to x − 2y + 7 = 0",
+          "(h − 1)/1 = (k − 5)/(−2) = −(1 − 10 + 7)/(1 + 4)",
+          "⇒ (h − 1)/1 = (k − 5)/(−2) = 2/5",
+          "⇒ h = 1 + 2/5 = 7/5",
+          "⇒ k = 5 − 4/5 = 21/5",
+          {
+            "text": "∴ Mid point = (7/5, 21/5)",
+            "style": "boxed"
+          }
         ]
       },
       {

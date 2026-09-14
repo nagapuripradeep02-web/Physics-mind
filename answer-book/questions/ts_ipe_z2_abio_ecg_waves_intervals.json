@@ -1,0 +1,361 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_abio_ecg_waves_intervals",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Applied Biology (Zoology-II)"
+  },
+  "chapter": "Applied Biology",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Write briefly about different waves and intervals in an ECG.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "P wave and QRS complex",
+      "marks": 1
+    },
+    {
+      "label": "T wave",
+      "marks": 1
+    },
+    {
+      "label": "The three intervals",
+      "marks": 1
+    },
+    {
+      "label": "Labelled trace",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.44, SAQ 47. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Figure revision (figure audit, 2026-09-05): a second heartbeat was added so the R-R interval named in the answer can be marked, and the P-R and Q-T brackets now start where the card defines them. Revision (examiner audit, 2026-09-05): the insider note no longer says the durations are the marks, since the fourth mark is the labelled trace, and the T wave step's WHY now states that the T wave is ventricular repolarisation, which the printed line does not say."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Applied Biology · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_p_qrs",
+        "kind": "text",
+        "label": "P wave and QRS complex",
+        "marks": 1,
+        "mark_note": "P and QRS",
+        "why": "Each wave is the electrical signal that makes a chamber contract, so the trace is a record of the cardiac cycle.",
+        "common_mistakes": [
+          "Giving the P wave to the ventricles. It is atrial systole.",
+          "Leaving out the three parts of the QRS complex."
+        ],
+        "memory_tip": "P for atria, QRS for ventricles, T for recovery.",
+        "margin_note": "Give a duration with every wave.",
+        "lines": [
+          "ECG stands for electrocardiograph. It",
+          "records electrical changes in the heart.",
+          "Twelve sensors are placed at 12 places and",
+          "the leads are connected to the machine.",
+          {
+            "text": "Waves",
+            "style": "heading"
+          },
+          "P wave represents atrial systole. Its",
+          "duration is 0.1 s.",
+          "QRS complex represents ventricular systole.",
+          "Its duration is 0.08 to 0.1 s.",
+          "Q is a small negative wave, R is a tall",
+          "positive wave and S is a small negative",
+          "wave."
+        ]
+      },
+      {
+        "id": "s2_t_wave",
+        "kind": "text",
+        "label": "T wave",
+        "marks": 1,
+        "mark_note": "T wave",
+        "why": "The T wave represents repolarisation, the electrical recovery of the ventricles after they contract, and the end of the T wave marks the end of ventricular systole.",
+        "common_mistakes": [
+          "Giving the T wave to atrial recovery.",
+          "Leaving out its duration."
+        ],
+        "memory_tip": "T is the ventricles recovering, 0.2 s.",
+        "margin_note": "One line and its duration.",
+        "lines": [
+          "T wave is a positive wave. Its duration is",
+          "0.2 s."
+        ]
+      },
+      {
+        "id": "s3_intervals",
+        "kind": "text",
+        "label": "The three intervals",
+        "marks": 1,
+        "mark_note": "Intervals",
+        "why": "An interval measures the time between two events, so it shows how fast the signal travels through the heart.",
+        "common_mistakes": [
+          "Confusing the QT interval with the QRS complex.",
+          "Leaving out that R-R is one whole cardiac cycle."
+        ],
+        "memory_tip": "PR 0.12-0.2 s, QT 0.4 s, RR 0.8 s — one full beat.",
+        "margin_note": "Three intervals, each with its duration.",
+        "lines": [
+          {
+            "text": "Intervals",
+            "style": "heading"
+          },
+          "P-R interval is the time between the onset",
+          "of the P wave and the onset of the Q wave.",
+          "Its duration is 0.12 to 0.2 s.",
+          "Q-T interval is between the onset of the Q",
+          "wave and the end of the T wave. It depends",
+          "on heart rate and lasts about 0.4 s. If the",
+          "heart beats faster the interval is shorter.",
+          "R-R interval is the duration of one cardiac",
+          "cycle. Its duration is 0.8 s."
+        ]
+      },
+      {
+        "id": "s4_figure",
+        "kind": "diagram",
+        "label": "Diagram — a normal ECG",
+        "marks": 1,
+        "mark_note": "Labelled trace",
+        "why": "The trace shows the waves in the order they occur, which is exactly what makes the intervals easy to read off.",
+        "common_mistakes": [
+          "Drawing the R wave downward. It is the tall positive spike.",
+          "Leaving the intervals unmarked."
+        ],
+        "memory_tip": "Small bump, tall spike, second bump: P, QRS, T.",
+        "margin_note": "Mark the intervals under the trace with brackets.",
+        "figure": {
+          "id": "abio_ecg_trace",
+          "width": 520,
+          "height": 380,
+          "elements": [
+            {
+              "type": "pause",
+              "id": "p1",
+              "caption": "Step 1 — the baseline and the P wave"
+            },
+            {
+              "type": "stroke",
+              "id": "baseline_p",
+              "d": "M 56 200 L 105 200 C 118 168 140 168 152 200 L 182 200",
+              "ms": 2140
+            },
+            {
+              "type": "pause",
+              "id": "p2",
+              "caption": "Step 2 — the QRS complex"
+            },
+            {
+              "type": "stroke",
+              "id": "qrs_up",
+              "d": "M 182 200 L 190 216 L 202 82",
+              "ms": 2180
+            },
+            {
+              "type": "stroke",
+              "id": "qrs_down",
+              "d": "M 202 82 L 214 232 L 226 200",
+              "ms": 2640
+            },
+            {
+              "type": "pause",
+              "id": "p3",
+              "caption": "Step 3 — the ST segment and the T wave"
+            },
+            {
+              "type": "stroke",
+              "id": "st_t",
+              "d": "M 226 200 L 278 200 C 292 156 330 156 344 200 L 362 200 C 372 176 388 176 398 200 L 408 200",
+              "ms": 3210
+            },
+            {
+              "type": "pause",
+              "id": "p3b",
+              "caption": "Step 4 — the start of the next beat"
+            },
+            {
+              "type": "stroke",
+              "id": "qrs2_up",
+              "d": "M 408 200 L 416 216 L 428 82",
+              "ms": 2180
+            },
+            {
+              "type": "stroke",
+              "id": "qrs2_down",
+              "d": "M 428 82 L 440 232 L 452 200",
+              "ms": 2640
+            },
+            {
+              "type": "stroke",
+              "id": "tail2",
+              "d": "M 452 200 L 478 200",
+              "ms": 500
+            },
+            {
+              "type": "pause",
+              "id": "p4",
+              "caption": "Step 5 — naming the waves"
+            },
+            {
+              "type": "label",
+              "id": "lb_p",
+              "x": 118,
+              "y": 158,
+              "text": "P",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lb_q",
+              "x": 176,
+              "y": 236,
+              "text": "Q",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lb_r",
+              "x": 208,
+              "y": 76,
+              "text": "R",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lb_s",
+              "x": 218,
+              "y": 250,
+              "text": "S",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lb_t",
+              "x": 336,
+              "y": 146,
+              "text": "T",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lb_r2",
+              "x": 434,
+              "y": 76,
+              "text": "R",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "pause",
+              "id": "p5",
+              "caption": "Step 6 — the complex, the segments and the intervals"
+            },
+            {
+              "type": "stroke",
+              "id": "qrs_bracket",
+              "d": "M 180 62 L 180 52 L 232 52 L 232 62",
+              "ms": 1030
+            },
+            {
+              "type": "label",
+              "id": "lb_qrs",
+              "x": 158,
+              "y": 42,
+              "text": "QRS complex",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "st_bracket",
+              "d": "M 228 174 L 228 164 L 280 164 L 280 174",
+              "ms": 1030
+            },
+            {
+              "type": "label",
+              "id": "lb_st",
+              "x": 220,
+              "y": 152,
+              "text": "ST segment",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "pr_bracket",
+              "d": "M 105 250 L 105 260 L 182 260 L 182 250",
+              "ms": 1500
+            },
+            {
+              "type": "label",
+              "id": "lb_pr",
+              "x": 100,
+              "y": 282,
+              "text": "PR interval",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "qt_bracket",
+              "d": "M 182 290 L 182 300 L 344 300 L 344 290",
+              "ms": 2540
+            },
+            {
+              "type": "label",
+              "id": "lb_qt",
+              "x": 212,
+              "y": 322,
+              "text": "QT interval",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "rr_bracket",
+              "d": "M 202 330 L 202 340 L 428 340 L 428 330",
+              "ms": 3510
+            },
+            {
+              "type": "label",
+              "id": "lb_rr",
+              "x": 268,
+              "y": 362,
+              "text": "RR interval",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "insider_note": "Give a duration with every wave and every interval — P 0.1 s, QRS 0.08-0.1 s, T 0.2 s, PR 0.12-0.2 s, QT 0.4 s, RR 0.8 s — and finish with the labelled trace."
+}

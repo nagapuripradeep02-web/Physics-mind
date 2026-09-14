@@ -1,0 +1,152 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_oev_neo_darwinism",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Organic Evolution (Zoology-II)"
+  },
+  "chapter": "Organic Evolution",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Write a short note on Neo-Darwinism.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Gene and chromosomal mutations",
+      "marks": 1
+    },
+    {
+      "label": "Genetic recombination",
+      "marks": 1
+    },
+    {
+      "label": "Natural selection",
+      "marks": 1
+    },
+    {
+      "label": "Reproductive isolation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.41, SAQ 39. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Revised 2026-09-05 after the examiner audit: the gene mutation line now says a change in DNA can alter the phenotype, because a change in DNA does not always alter it, and the matching common mistake was reworded."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Organic Evolution · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_mutations",
+        "kind": "text",
+        "label": "The two kinds of mutation",
+        "marks": 1,
+        "mark_note": "Mutations",
+        "why": "Darwin knew variation existed but not where it came from; Neo-Darwinism names mutation as the source.",
+        "common_mistakes": [
+          "Naming only one kind of mutation. Gene and chromosomal are separate factors.",
+          "Leaving out that gene mutations are the source of new variations."
+        ],
+        "memory_tip": "Gene mutation changes a letter; chromosomal mutation moves a whole block.",
+        "margin_note": "Name all five factors, then take them in turn.",
+        "lines": [
+          "According to Neo-Darwinism, five basic",
+          "factors are involved in organic evolution:",
+          "gene mutations, chromosomal mutations,",
+          "genetic recombination, natural selection",
+          "and reproductive isolation.",
+          "1. Gene mutations: a change in the",
+          "structure of DNA, also called point",
+          "mutation. Such a change can alter the",
+          "phenotype and so produce variations.",
+          "2. Chromosomal mutations: addition,",
+          "deletion, inversion and translocation of",
+          "chromosomes. They alter the phenotype."
+        ]
+      },
+      {
+        "id": "s2_recombination",
+        "kind": "text",
+        "label": "Genetic recombination",
+        "marks": 1,
+        "mark_note": "Recombination",
+        "why": "Crossing over reshuffles existing genes into new combinations, so variation appears without any new mutation.",
+        "common_mistakes": [
+          "Placing recombination in mitosis. It happens during meiosis.",
+          "Saying recombination creates new genes. It creates new combinations."
+        ],
+        "memory_tip": "Recombination deals the same cards in a new order.",
+        "margin_note": "Two lines are enough for this factor.",
+        "lines": [
+          "3. Genetic recombination: during meiosis,",
+          "an exchange of chromosomal bits and genes",
+          "takes place and produces heritable",
+          "variations."
+        ]
+      },
+      {
+        "id": "s3_selection",
+        "kind": "text",
+        "label": "Natural selection",
+        "marks": 1,
+        "mark_note": "Natural selection",
+        "why": "Mutation and recombination only supply the variation; selection decides which of it survives.",
+        "common_mistakes": [
+          "Saying natural selection creates variation. It only sorts it.",
+          "Leaving out that the selected variations continue in later generations."
+        ],
+        "memory_tip": "Variation proposes, selection disposes.",
+        "margin_note": "One line for the fourth factor.",
+        "lines": [
+          "4. Natural selection: it favours some",
+          "variations and rejects others. The selected",
+          "variations continue in the next",
+          "generations."
+        ]
+      },
+      {
+        "id": "s4_isolation",
+        "kind": "boxed_final",
+        "label": "Reproductive isolation",
+        "marks": 1,
+        "mark_note": "Isolation",
+        "why": "Two groups that cannot interbreed stop sharing genes, so they drift apart until they are separate species.",
+        "common_mistakes": [
+          "Confusing reproductive isolation with geographical distance alone.",
+          "Leaving out the outcome: new species."
+        ],
+        "memory_tip": "No interbreeding means no shared genes, and in time two species.",
+        "margin_note": "End with the formation of species.",
+        "lines": [
+          "5. Reproductive isolation: any reason that",
+          "stops interbreeding between groups of a",
+          "population is reproductive isolation.",
+          {
+            "text": "Such groups grow into separate species",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Five named factors, four marks. List all five at the top — an answer that names only natural selection has missed the point of the word Neo."
+}

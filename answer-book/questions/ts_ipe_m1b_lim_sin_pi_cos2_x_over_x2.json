@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.188, chapter 8 LIMITS, Very Short Answer question 32. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.188, chapter 8 LIMITS, Very Short Answer question 32. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say which identity turns the angle into a small one, and which standard limit finishes it.",
   "answer": {
@@ -51,8 +51,12 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "At x = 0 the numerator is sin π = 0 and the denominator is 0, so the form is 0/0.",
+          "(cos 0 = 1, so π cos² 0 = π)",
+          "At x = 0 the numerator is sin π = 0",
+          "and the denominator is 0, so the form is 0/0.",
+          "(cos²x + sin²x = 1)",
           "cos²x = 1 − sin²x,  so  π cos²x = π(1 − sin²x) = π − π sin²x",
+          "(sin(π − θ) = sin π cos θ − cos π sin θ = 0 + sin θ)",
           "Using sin(π − θ) = sin θ  with  θ = π sin²x :",
           "∴ sin(π cos²x) = sin(π − π sin²x) = sin(π sin²x)"
         ],
@@ -93,8 +97,35 @@
         "mark_note": "Answer",
         "margin_note": "Second mark. Box π. Checked numerically: at x = 0.001 the expression is 3.14159 to five decimal places.",
         "lines": [
-          "sin(π sin²x)/x² = [sin(π sin²x)/(π sin²x)] · π · ((sin x)/x)²",
-          "As x → 0,  π sin²x → 0, so the first bracket → 1, and (sin x)/x → 1",
+          {
+            "text": "(multiply and divide by π sin²x,",
+            "added": true
+          },
+          {
+            "text": "  which is not 0 for x near 0 with x ≠ 0;",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  sin²x/x² = ((sin x)/x)²)",
+            "style": "indent",
+            "added": true
+          },
+          "sin(π sin²x)/x²",
+          {
+            "text": "  = [sin(π sin²x)/(π sin²x)] · π · ((sin x)/x)²",
+            "style": "indent"
+          },
+          {
+            "text": "(sin 0 = 0; the standard limit with θ = π sin²x)",
+            "added": true
+          },
+          "As x → 0,  π sin²x → 0, so the first bracket → 1,",
+          "and (sin x)/x → 1",
+          {
+            "text": "(put 1, π and 1² for the three factors)",
+            "added": true
+          },
           "∴ limit = 1 · π · 1² = π",
           {
             "text": "∴ lim(x → 0) sin(π cos²x)/x² = π",
@@ -128,9 +159,23 @@
           "Cancelling the sine symbols and writing π cos²x/x².",
           "Giving 1, by losing the factor π that comes out of π sin²x/x²."
         ],
-        "memory_tip": "Multiply and divide by the angle π sin²x, so every sine stands over its own angle."
+        "memory_tip": "Multiply and divide by the angle π sin²x, so every sine stands over its own angle.",
+        "lines_compact": [
+          "sin(π sin²x)/x²",
+          {
+            "text": "  = [sin(π sin²x)/(π sin²x)] · π · ((sin x)/x)²",
+            "style": "indent"
+          },
+          "As x → 0,  π sin²x → 0, so the first bracket → 1,",
+          "and (sin x)/x → 1",
+          "∴ limit = 1 · π · 1² = π",
+          {
+            "text": "∴ lim(x → 0) sin(π cos²x)/x² = π",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },
-  "insider_note": "Replace cos²x by 1 − sin²x so the argument becomes π − π sin²x, then sin(π − θ) = sin θ. Without that step the sine never becomes small and nothing cancels."
+  "insider_note": "Replace cos²x by 1 − sin²x so the argument becomes π − π sin²x, then sin(π − θ) = sin θ. Without that step the angle π cos²x stays close to π, not to 0, so the standard limit cannot be used."
 }

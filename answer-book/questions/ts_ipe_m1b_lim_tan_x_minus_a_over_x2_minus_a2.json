@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.185, chapter 8 LIMITS, Short & Very Short Answer question 10. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.185, chapter 8 LIMITS, Short & Very Short Answer question 10. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say how you factor the denominator and which standard limit you use.",
   "answer": {
@@ -45,14 +45,17 @@
         "label": "Factor x² − a²",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. x² − a² = (x − a)(x + a). The (x − a) matches the angle inside the tangent; the (x + a) is substituted at the end. This needs a ≠ 0, or the denominator limit is 0.",
+        "margin_note": "First mark. x² − a² = (x − a)(x + a). The (x − a) matches the angle inside the tangent; the (x + a) is substituted at the end. This needs a ≠ 0; for a = 0 the factor x + a also tends to 0 and the limit does not exist.",
         "lines": [
           {
             "text": "Sol:",
             "style": "heading"
           },
-          "At x = a, tan(x − a) = tan 0 = 0 and x² − a² = 0, so the form is 0/0. Take a ≠ 0.",
+          "At x = a, tan(x − a) = tan 0 = 0 and x² − a² = 0,",
+          "so the form is 0/0. Take a ≠ 0.",
+          "(u² − v² = (u − v)(u + v), with u = x and v = a)",
           "Factor the denominator:  x² − a² = (x − a)(x + a).",
+          "(1/[(x − a)(x + a)] = [1/(x − a)] · [1/(x + a)])",
           "tan(x − a)/(x² − a²) = [tan(x − a)/(x − a)] · [1/(x + a)]"
         ],
         "recall": {
@@ -92,8 +95,23 @@
         "mark_note": "Answer",
         "margin_note": "Second mark. The angle x − a → 0, so the tangent bracket tends to 1; the factor 1/(x + a) is substituted and gives 1/(2a).",
         "lines": [
-          "As x → a, the angle (x − a) → 0, so lim(x → a) tan(x − a)/(x − a) = 1.",
-          "The factor 1/(x + a) is defined at x = a, so substitute x = a: 1/(a + a) = 1/(2a).",
+          {
+            "text": "(the standard limit lim(θ → 0) (tan θ)/θ = 1",
+            "added": true
+          },
+          {
+            "text": "  with θ = x − a)",
+            "style": "indent",
+            "added": true
+          },
+          "As x → a, the angle (x − a) → 0,",
+          "so lim(x → a) tan(x − a)/(x − a) = 1.",
+          "The factor 1/(x + a) is defined at x = a,",
+          "so substitute x = a: 1/(a + a) = 1/(2a).",
+          {
+            "text": "(multiply the two limits)",
+            "added": true
+          },
           "= 1 · 1/(2a)",
           {
             "text": "∴ lim(x → a) tan(x − a)/(x² − a²) = 1/(2a),  a ≠ 0",
@@ -127,7 +145,18 @@
           "Answering 1 by forgetting the 1/(x + a) factor.",
           "Writing 1/(2a) as 2a by turning the fraction over."
         ],
-        "memory_tip": "The leftover factor at the point is x + a = 2a, so the answer is its reciprocal, 1/(2a)."
+        "memory_tip": "The leftover factor at the point is x + a = 2a, so the answer is its reciprocal, 1/(2a).",
+        "lines_compact": [
+          "As x → a, the angle (x − a) → 0,",
+          "so lim(x → a) tan(x − a)/(x − a) = 1.",
+          "The factor 1/(x + a) is defined at x = a,",
+          "so substitute x = a: 1/(a + a) = 1/(2a).",
+          "= 1 · 1/(2a)",
+          {
+            "text": "∴ lim(x → a) tan(x − a)/(x² − a²) = 1/(2a),  a ≠ 0",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

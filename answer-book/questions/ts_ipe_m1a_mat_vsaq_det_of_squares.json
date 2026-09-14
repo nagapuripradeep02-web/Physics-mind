@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.85 — VSAQ chapter 15 Matrices, answer 110, on a ★★★ SSP (Super Scoring Page). Printed appearances: none — this answer carries no year tag. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess, though: the same chapter DOES print 1+1 against answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark matrices VSAQ, applied here to the two steps of this question. CORRECTION TO AN EARLIER NOTE, recorded rather than quietly fixed: docs/IPE_MATHS_1A_SOURCE.md stated after Unit 1 that this book 'prints a per-step mark split on its LAQ and SAQ pages but NOT on its VSAQ pages'. That held for the Functions VSAQ pages (book pp.79-81) but is FALSE here — the Matrices VSAQ chapter prints [1 mark] tags on p.82. The doc has been corrected. The book's VSAQ chapter header carries ★★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because Matrices holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q3 and Q4 are the two Matrices slots."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.85 — VSAQ chapter 15 Matrices, answer 110, on a ★★★ SSP (Super Scoring Page). Printed appearances: none — this answer carries no year tag. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess, though: the same chapter DOES print 1+1 against answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark matrices VSAQ, applied here to the two steps of this question. CORRECTION TO AN EARLIER NOTE, recorded rather than quietly fixed: docs/IPE_MATHS_1A_SOURCE.md stated after Unit 1 that this book 'prints a per-step mark split on its LAQ and SAQ pages but NOT on its VSAQ pages'. That held for the Functions VSAQ pages (book pp.79-81) but is FALSE here — the Matrices VSAQ chapter prints [1 mark] tags on p.82. The doc has been corrected. The book's VSAQ chapter header carries ★★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because Matrices holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q3 and Q4 are the two Matrices slots. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find this determinant.",
   "answer": {
@@ -56,7 +56,8 @@
             "text": "\\begin{vmatrix} 1^2 & 2^2 & 3^2 \\\\ 2^2 & 3^2 & 4^2 \\\\ 3^2 & 4^2 & 5^2 \\end{vmatrix} = \\begin{vmatrix} 1 & 4 & 9 \\\\ 4 & 9 & 16 \\\\ 9 & 16 & 25 \\end{vmatrix}",
             "render": "katex",
             "style": "eq"
-          }
+          },
+          "(1² = 1, 2² = 4, 3² = 9, 4² = 16, 5² = 25)"
         ],
         "recall": {
           "credit": "say_it",
@@ -95,7 +96,26 @@
         "memory_tip": "No zeros here, so all three terms are needed, and the middle one carries a minus.",
         "lines": [
           "Expanding along R₁:",
+          {
+            "text": "  + (1) × [(9)(25) − (16)(16)]",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  − (4) × [(4)(25) − (16)(9)]",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  + (9) × [(4)(16) − (9)(9)]",
+            "style": "indent",
+            "added": true
+          },
           "= 1(225 − 256) − 4(100 − 144) + 9(64 − 81)",
+          {
+            "text": "(−4 × (−44) = 176 and 9 × (−17) = −153)",
+            "added": true
+          },
           "= −31 + 176 − 153 = −8",
           {
             "text": "∴ The determinant is −8",
@@ -123,10 +143,19 @@
             "first row"
           ]
         },
-        "why": "The sign pattern along the top row is plus, minus, plus. With every minor negative, dropping the middle minus flips the answer entirely.",
+        "why": "The sign pattern along the top row is plus, minus, plus. With every minor negative, dropping the middle minus gives −31 − 176 − 153 = −360 instead of −8.",
         "common_mistakes": [
           "Forgetting the minus in front of the middle term.",
           "Computing 9 × 25 − 16 × 16 as a positive number."
+        ],
+        "lines_compact": [
+          "Expanding along R₁:",
+          "= 1(225 − 256) − 4(100 − 144) + 9(64 − 81)",
+          "= −31 + 176 − 153 = −8",
+          {
+            "text": "∴ The determinant is −8",
+            "style": "boxed"
+          }
         ]
       }
     ]

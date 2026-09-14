@@ -42,7 +42,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.34 — LAQ chapter 3 Matrices, answer 20.4. This answer carries NO printed year tag, so `appearances` is empty; it is in the book on merit rather than on frequency. It is the second of only two questions in the whole Matrices chapter whose answer is not a single triple — the other is answer 20.3, which has infinitely many. The two are a deliberate pair and are best studied together: both end with a row whose coefficients are all zero, and the ONLY thing that separates them is whether the constant after the rule is zero too. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S. Book p.34 sets two questions side by side in two columns, leaving no margin for the [N Marks] tags the chapter uses elsewhere. The 1+2+1+2+1 above is deliberately the same shape used for the other three Gauss-Jordan answers in this unit. The row-operation chain is the book's own. Star rank is the CHAPTER's ★★★, not this question's. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to the \"State that there is no solution\" step."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.34 — LAQ chapter 3 Matrices, answer 20.4. This answer carries NO printed year tag, so `appearances` is empty; it is in the book on merit rather than on frequency. It is the second of only two questions in the whole Matrices chapter whose answer is not a single triple — the other is answer 20.3, which has infinitely many. The two are a deliberate pair and are best studied together: both end with a row whose coefficients are all zero, and the ONLY thing that separates them is whether the constant after the rule is zero too. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S. Book p.34 sets two questions side by side in two columns, leaving no margin for the [N Marks] tags the chapter uses elsewhere. The 1+2+1+2+1 above is deliberately the same shape used for the other three Gauss-Jordan answers in this unit. The row-operation chain is the book's own. Star rank is the CHAPTER's ★★★, not this question's. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to the \"State that there is no solution\" step. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this by the Gauss-Jordan method — and say what it means if a row ends up with all zeros on the left but not on the right.",
   "answer": {
@@ -75,6 +75,11 @@
             "text": "[A \\mid D] = \\left[\\begin{array}{ccc|c} 2 & 4 & -1 & 0 \\\\ 1 & 2 & 2 & 5 \\\\ 3 & 6 & -7 & 2 \\end{array}\\right]",
             "render": "katex",
             "style": "eq"
+          },
+          "(the constants are written as a fourth column,",
+          {
+            "text": "  after the bar; each row is one equation)",
+            "style": "indent"
           }
         ],
         "recall": {
@@ -114,13 +119,64 @@
         "margin_note": "Two marks. Row 2 already starts with a 1, so swap it to the top first. Then clear column 1 as usual — and watch column 2 go to zero along with it.",
         "memory_tip": "Row 2 already starts with a 1, so swap it to the top. Then watch column 2 go to zero along with column 1.",
         "lines": [
+          {
+            "text": "Each row operation below is worked out",
+            "added": true
+          },
+          {
+            "text": "  entry by entry:",
+            "style": "indent",
+            "added": true
+          },
           "R₁ ↔ R₂  (to get a leading 1)",
+          {
+            "text": "R₁ ↔ R₂: rows 1 and 2 change places",
+            "added": true
+          },
           {
             "text": "\\left[\\begin{array}{ccc|c} 1 & 2 & 2 & 5 \\\\ 2 & 4 & -1 & 0 \\\\ 3 & 6 & -7 & 2 \\end{array}\\right]",
             "render": "katex",
             "style": "eq"
           },
           "R₂ → R₂ − 2R₁,  R₃ → R₃ − 3R₁",
+          {
+            "text": "R₂ − 2R₁:",
+            "added": true
+          },
+          {
+            "text": "  (2, 4, −1 | 0)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  − 2(1, 2, 2 | 5)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  = (0, 0, −5 | −10)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "R₃ − 3R₁:",
+            "added": true
+          },
+          {
+            "text": "  (3, 6, −7 | 2)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  − 3(1, 2, 2 | 5)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  = (0, 0, −13 | −13)",
+            "style": "indent",
+            "added": true
+          },
           {
             "text": "\\left[\\begin{array}{ccc|c} 1 & 2 & 2 & 5 \\\\ 0 & 0 & -5 & -10 \\\\ 0 & 0 & -13 & -13 \\end{array}\\right]",
             "render": "katex",
@@ -154,6 +210,20 @@
         "common_mistakes": [
           "Clearing column 1 before getting a leading 1 and introducing fractions.",
           "Assuming the zero second column is an arithmetic error."
+        ],
+        "lines_compact": [
+          "R₁ ↔ R₂  (to get a leading 1)",
+          {
+            "text": "\\left[\\begin{array}{ccc|c} 1 & 2 & 2 & 5 \\\\ 2 & 4 & -1 & 0 \\\\ 3 & 6 & -7 & 2 \\end{array}\\right]",
+            "render": "katex",
+            "style": "eq"
+          },
+          "R₂ → R₂ − 2R₁,  R₃ → R₃ − 3R₁",
+          {
+            "text": "\\left[\\begin{array}{ccc|c} 1 & 2 & 2 & 5 \\\\ 0 & 0 & -5 & -10 \\\\ 0 & 0 & -13 & -13 \\end{array}\\right]",
+            "render": "katex",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -166,6 +236,24 @@
         "memory_tip": "Divide each lower row by its own leading number. Both now claim to fix z — at DIFFERENT values.",
         "lines": [
           "R₂ → R₂ ÷ (−5),  R₃ → R₃ ÷ (−13)",
+          {
+            "text": "R₂ ÷ −5: (0, 0, −5 | −10)",
+            "added": true
+          },
+          {
+            "text": "  → (0, 0, 1 | 2)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "R₃ ÷ −13: (0, 0, −13 | −13)",
+            "added": true
+          },
+          {
+            "text": "  → (0, 0, 1 | 1)",
+            "style": "indent",
+            "added": true
+          },
           {
             "text": "\\left[\\begin{array}{ccc|c} 1 & 2 & 2 & 5 \\\\ 0 & 0 & 1 & 2 \\\\ 0 & 0 & 1 & 1 \\end{array}\\right]",
             "render": "katex",
@@ -201,6 +289,15 @@
           "Dividing the coefficients but not the constant after the rule.",
           "Picking one of the two z values and carrying on with it.",
           "Dividing by the wrong entry."
+        ],
+        "lines_compact": [
+          "R₂ → R₂ ÷ (−5),  R₃ → R₃ ÷ (−13)",
+          {
+            "text": "\\left[\\begin{array}{ccc|c} 1 & 2 & 2 & 5 \\\\ 0 & 0 & 1 & 2 \\\\ 0 & 0 & 1 & 1 \\end{array}\\right]",
+            "render": "katex",
+            "style": "eq"
+          },
+          "Row 2 says z = 2 and row 3 says z = 1."
         ]
       },
       {
@@ -213,6 +310,25 @@
         "memory_tip": "The two rows match on the left of the rule but not on the right, so subtracting leaves 0 = −1.",
         "lines": [
           "R₃ → R₃ − R₂",
+          {
+            "text": "R₃ − R₂:",
+            "added": true
+          },
+          {
+            "text": "  (0, 0, 1 | 1)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  − (0, 0, 1 | 2)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  = (0, 0, 0 | −1)",
+            "style": "indent",
+            "added": true
+          },
           {
             "text": "\\left[\\begin{array}{ccc|c} 1 & 2 & 2 & 5 \\\\ 0 & 0 & 1 & 2 \\\\ 0 & 0 & 0 & -1 \\end{array}\\right]",
             "render": "katex",
@@ -250,6 +366,17 @@
           "Writing 'infinite solutions' because a row went to zeros, without checking the constant.",
           "Crossing the zero row out as though it were empty.",
           "Reporting z = 2 from row 2 as if part of the answer had been salvaged."
+        ],
+        "lines_compact": [
+          "R₃ → R₃ − R₂",
+          {
+            "text": "\\left[\\begin{array}{ccc|c} 1 & 2 & 2 & 5 \\\\ 0 & 0 & 1 & 2 \\\\ 0 & 0 & 0 & -1 \\end{array}\\right]",
+            "render": "katex",
+            "style": "eq"
+          },
+          "Row 3 read back as an equation is",
+          "0(x) + 0(y) + 0(z) = −1,  that is  0 = −1.",
+          "This is impossible."
         ]
       },
       {

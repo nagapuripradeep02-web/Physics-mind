@@ -1,0 +1,84 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_exc_kidney_blood_vessels",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "Human Anatomy and Physiology-II (Zoology-II)"
+  },
+  "chapter": "Excretory Products and their Elimination",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Name the blood vessels that enter and exit the kidney.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Vessel that enters",
+      "marks": 1
+    },
+    {
+      "label": "Vessel that leaves",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.49, VSAQ 67. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Text revision (examiner audit, 2026-09-05): the memory tip no longer says artery in and vein out holds for every organ, because the liver receives most of its blood through the hepatic portal vein."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Excretory Products and their Elimination · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_enter",
+        "kind": "text",
+        "label": "Vessel that enters",
+        "marks": 1,
+        "mark_note": "Renal artery",
+        "why": "The artery brings the blood that is to be filtered, so it must enter before any urine can be made.",
+        "common_mistakes": [
+          "Naming the ureter. That carries urine, not blood.",
+          "Swapping artery and vein."
+        ],
+        "memory_tip": "Artery in, vein out for the kidney.",
+        "margin_note": "One line each. Add the hilum for completeness.",
+        "lines": [
+          "The blood vessel that enters the kidney is",
+          "the renal artery."
+        ]
+      },
+      {
+        "id": "s2_exit",
+        "kind": "boxed_final",
+        "label": "Vessel that leaves",
+        "marks": 1,
+        "mark_note": "Renal vein",
+        "why": "The vein carries away blood that has had its wastes removed, so it leaves by the same notch the artery entered.",
+        "common_mistakes": [
+          "Naming the urethra. That is not a blood vessel.",
+          "Giving only one vessel when two are asked."
+        ],
+        "memory_tip": "Both use the same door, the hilum.",
+        "margin_note": "Name the hilum in the last line.",
+        "lines": [
+          "The blood vessel that leaves the kidney is",
+          "the renal vein.",
+          {
+            "text": "Both pass through the notch called the hilum",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Both vessels enter and leave at the hilum. Naming that notch is a safe extra line."
+}

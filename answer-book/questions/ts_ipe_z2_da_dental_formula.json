@@ -1,0 +1,94 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_da_dental_formula",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Human Anatomy and Physiology-I (Zoology-II)"
+  },
+  "chapter": "Digestion and Absorption",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Give the dental formula of adult human beings.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The formula",
+      "marks": 1
+    },
+    {
+      "label": "What it denotes",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.46, VSAQ 49. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Revised 2026-09-05: the insider note no longer says a single row of digits is read as half an answer; it now states the fraction and what must follow it."
+  },
+  "insider_note": "Write the formula as a fraction, upper jaw over lower: 2123/2123. Each row is one half of one jaw, so follow it with what the digits denote and the total of 32 teeth.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Digestion and Absorption · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_formula",
+        "kind": "text",
+        "label": "The formula",
+        "marks": 1,
+        "mark_note": "The formula",
+        "why": "The formula counts the teeth of one half of the upper jaw over one half of the lower jaw, so the full set is four times the digits shown.",
+        "common_mistakes": [
+          "Writing 2123 alone. It must be written as a fraction, upper over lower.",
+          "Giving the milk teeth formula 2102/2102. That is the child's set."
+        ],
+        "memory_tip": "Two incisors, one canine, two premolars, three molars — 2123.",
+        "margin_note": "Write the fraction clearly. It is the whole first mark.",
+        "lines": [
+          "The dental formula of adult human beings is",
+          {
+            "text": "2123 / 2123",
+            "style": "eq"
+          }
+        ]
+      },
+      {
+        "id": "s2_meaning",
+        "kind": "boxed_final",
+        "label": "What it denotes",
+        "marks": 1,
+        "mark_note": "What it denotes",
+        "why": "Reading the digits back as named teeth shows that the formula is a count and not a code.",
+        "common_mistakes": [
+          "Saying it gives the total teeth. It gives one half of each jaw.",
+          "Naming premolars as molars. They are separate rows."
+        ],
+        "memory_tip": "Front to back: incisor, canine, premolar, molar.",
+        "margin_note": "Expand the four digits. Total 32 teeth is a good close.",
+        "lines": [
+          "It denotes the arrangement of teeth in each",
+          "half of both the jaws:",
+          "Incisors 2/2, canines 1/1, premolars 2/2",
+          "and molars 3/3.",
+          {
+            "text": "An adult has 32 teeth in all",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  }
+}

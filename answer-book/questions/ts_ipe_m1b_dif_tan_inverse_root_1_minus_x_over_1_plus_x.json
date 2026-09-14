@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.201, chapter 9 DIFFERENTIATION, Short Answer question 8. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The mathematics was checked independently before writing: the reduction y = ½cos⁻¹x was confirmed numerically at x = 0.5, x = −0.3 and x = 0.9, and −1/(2√(1 − x²)) matched a central difference quotient at all three (−0.57735027, −0.52414242, −1.14707867). The |x| < 1 restriction printed in the stem is genuine and is used in the card: at x = −1 the fraction under the square root is undefined, and at x = ±1 the derivative of cos⁻¹x does not exist."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.201, chapter 9 DIFFERENTIATION, Short Answer question 8. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The mathematics was checked independently before writing: the reduction y = ½cos⁻¹x was confirmed numerically at x = 0.5, x = −0.3 and x = 0.9, and −1/(2√(1 − x²)) matched a central difference quotient at all three (−0.57735027, −0.52414242, −1.14707867). The |x| < 1 restriction printed in the stem is genuine and is used in the card: at x = −1 the fraction under the square root is undefined, and at x = ±1 the derivative of cos⁻¹x does not exist. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say what you substitute for x, and what the square root becomes after that.",
   "answer": {
@@ -53,15 +53,23 @@
         "label": "Substitute x = cos 2θ",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. Choosing cos 2θ rather than sin θ or tan θ is the whole decision here. It is chosen because 1 − cos 2θ and 1 + cos 2θ are both perfect squares, which is what removes the square root.",
+        "margin_note": "First mark. Choosing cos 2θ rather than sin θ or tan θ is the main decision here. It is chosen because 1 − cos 2θ and 1 + cos 2θ are both perfect squares, which is what removes the square root.",
         "lines": [
           {
             "text": "Sol:",
             "style": "heading"
           },
           "Let y = tan⁻¹√((1 − x)/(1 + x)),  where |x| < 1",
+          "(cos 2θ = x means 2θ = cos⁻¹x, with 2θ in [0, π])",
           "Put x = cos 2θ,  so that 2θ = cos⁻¹x  and  θ = ½cos⁻¹x",
-          "Since |x| < 1, cos⁻¹x lies in (0, π), so 2θ lies in (0, π) and θ lies in (0, π/2)"
+          "(cos⁻¹1 = 0 and cos⁻¹(−1) = π,",
+          {
+            "text": "  so |x| < 1 gives 0 < cos⁻¹x < π)",
+            "style": "indent"
+          },
+          "(divide 0 < 2θ < π by 2)",
+          "Since |x| < 1, cos⁻¹x lies in (0, π), so 2θ lies in (0, π)",
+          "and θ lies in (0, π/2)"
         ],
         "recall": {
           "credit": "say_it",
@@ -88,8 +96,8 @@
         },
         "why": "Differentiating the expression as it stands needs the chain rule three times, on the inverse tangent, the square root and the quotient. The substitution replaces all of that with two half-angle identities and one differentiation. Putting x = cos θ also works, because (1 − cos θ)/(1 + cos θ) = tan²(θ/2); cos 2θ is preferred only because it avoids half-angles.",
         "common_mistakes": [
-          "Substituting x = sin 2θ, which does not turn 1 − x and 1 + x into perfect squares.",
-          "Differentiating directly with three nested chain rules, which is correct but long and easily lost."
+          "Substituting x = cos θ but writing 1 − cos θ = 2sin²θ without the half angle, which gives y = Cos⁻¹x and loses the factor ½.",
+          "Taking θ = cos⁻¹x instead of θ = ½cos⁻¹x, which loses the factor ½ in the answer."
         ],
         "memory_tip": "When 1 − x and 1 + x both appear, put x = cos 2θ. The two half-angle identities then turn the pair into 2sin²θ and 2cos²θ."
       },
@@ -101,9 +109,34 @@
         "mark_note": "Method",
         "margin_note": "Second mark. Quote both half-angle identities. Say why the square root is +tan θ and not ±tan θ: θ lies in (0, π/2), so tan θ is positive there.",
         "lines": [
+          {
+            "text": "(the double angle formulas cos 2θ",
+            "added": true
+          },
+          {
+            "text": "  = 1 − 2sin²θ = 2cos²θ − 1)",
+            "style": "indent",
+            "added": true
+          },
           "1 − cos 2θ = 2sin²θ   and   1 + cos 2θ = 2cos²θ",
-          "√((1 − x)/(1 + x)) = √(2sin²θ/2cos²θ) = √(tan²θ) = |tan θ|",
+          {
+            "text": "(put x = cos 2θ and use the two identities)",
+            "added": true
+          },
+          "√((1 − x)/(1 + x)) = √(2sin²θ/2cos²θ)",
+          {
+            "text": "(the 2s cancel; sin²θ/cos²θ = tan²θ and √(p²) = |p|)",
+            "added": true
+          },
+          {
+            "text": "  = √(tan²θ) = |tan θ|",
+            "style": "indent"
+          },
           "θ lies in (0, π/2), so tan θ > 0",
+          {
+            "text": "(|tan θ| = tan θ, because tan θ > 0)",
+            "added": true
+          },
           "∴ √((1 − x)/(1 + x)) = tan θ"
         ],
         "recall": {
@@ -134,7 +167,17 @@
           "Writing √(tan²θ) as tan θ without checking the sign, which is only true because θ is in (0, π/2).",
           "Mixing the identities up and using 1 − cos 2θ = 2cos²θ."
         ],
-        "memory_tip": "Remember the pair by which function survives: 1 MINUS cos 2θ keeps the SINE, 1 PLUS cos 2θ keeps the COSINE."
+        "memory_tip": "Remember the pair: 1 MINUS cos 2θ = 2 SIN²θ and 1 PLUS cos 2θ = 2 COS²θ.",
+        "lines_compact": [
+          "1 − cos 2θ = 2sin²θ   and   1 + cos 2θ = 2cos²θ",
+          "√((1 − x)/(1 + x)) = √(2sin²θ/2cos²θ)",
+          {
+            "text": "  = √(tan²θ) = |tan θ|",
+            "style": "indent"
+          },
+          "θ lies in (0, π/2), so tan θ > 0",
+          "∴ √((1 − x)/(1 + x)) = tan θ"
+        ]
       },
       {
         "id": "s3_reduce",
@@ -144,9 +187,18 @@
         "mark_note": "Solution",
         "margin_note": "Third mark. tan⁻¹(tan θ) = θ only when θ is inside (−π/2, π/2). That was established in step 1, so this line is justified and not assumed.",
         "lines": [
+          {
+            "text": "(put √((1 − x)/(1 + x)) = tan θ from step 2)",
+            "added": true
+          },
           "y = tan⁻¹(tan θ)",
-          "θ lies in (0, π/2), which is inside the principal range (−π/2, π/2) of tan⁻¹, so",
+          "θ lies in (0, π/2), which is inside",
+          "the principal range (−π/2, π/2) of tan⁻¹, so",
           "y = θ",
+          {
+            "text": "(put θ = ½cos⁻¹x from step 1)",
+            "added": true
+          },
           "∴ y = ½cos⁻¹x"
         ],
         "recall": {
@@ -172,12 +224,19 @@
             "theta"
           ]
         },
-        "why": "The whole point of the substitution is that a complicated inverse tangent becomes a simple inverse cosine. Once y = ½cos⁻¹x is written, the question is a one-line differentiation.",
+        "why": "The substitution is used because it changes a complicated inverse tangent into a simple inverse cosine. Once y = ½cos⁻¹x is written, the question is a one-line differentiation.",
         "common_mistakes": [
           "Writing y = θ without checking that θ lies in the principal range of tan⁻¹.",
           "Forgetting the factor ½ and writing y = cos⁻¹x."
         ],
-        "memory_tip": "The 2 in cos 2θ becomes the ½ in the answer. Track it from the substitution to the last line."
+        "memory_tip": "The 2 in cos 2θ becomes the ½ in the answer. Track it from the substitution to the last line.",
+        "lines_compact": [
+          "y = tan⁻¹(tan θ)",
+          "θ lies in (0, π/2), which is inside",
+          "the principal range (−π/2, π/2) of tan⁻¹, so",
+          "y = θ",
+          "∴ y = ½cos⁻¹x"
+        ]
       },
       {
         "id": "s4_differentiate",
@@ -185,10 +244,18 @@
         "label": "Differentiate",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Last mark. The minus sign belongs to cos⁻¹x and must survive to the final line. The answer is negative for every |x| < 1, which agrees with y decreasing as x increases.",
+        "margin_note": "Last mark. The minus sign belongs to cos⁻¹x and must stay in the final line. The answer is negative for every |x| < 1, which agrees with y decreasing as x increases.",
         "lines": [
           "d/dx (cos⁻¹x) = −1/√(1 − x²),  valid for |x| < 1",
+          {
+            "text": "(d/dx(½cos⁻¹x) = ½ · d/dx(cos⁻¹x))",
+            "added": true
+          },
           "dy/dx = ½ · (−1/√(1 − x²))",
+          {
+            "text": "(½ · (−1/√(1 − x²)) = −1/(2√(1 − x²)))",
+            "added": true
+          },
           {
             "text": "∴ dy/dx = −1/(2√(1 − x²))",
             "style": "boxed"
@@ -222,7 +289,15 @@
           "Dropping the minus sign by using the derivative of sin⁻¹x instead of cos⁻¹x.",
           "Writing the 2 inside the square root as √(2(1 − x²))."
         ],
-        "memory_tip": "sin⁻¹ and cos⁻¹ have the same derivative apart from the sign. This answer came from cos⁻¹, so it is the negative one."
+        "memory_tip": "sin⁻¹ and cos⁻¹ have the same derivative apart from the sign. This answer came from cos⁻¹, so it is the negative one.",
+        "lines_compact": [
+          "d/dx (cos⁻¹x) = −1/√(1 − x²),  valid for |x| < 1",
+          "dy/dx = ½ · (−1/√(1 − x²))",
+          {
+            "text": "∴ dy/dx = −1/(2√(1 − x²))",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

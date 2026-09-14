@@ -1,0 +1,89 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_abio_tomogram",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Applied Biology (Zoology-II)"
+  },
+  "chapter": "Applied Biology",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is tomogram?",
+  "appearances": [
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What it is",
+      "marks": 1
+    },
+    {
+      "label": "Uses",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.60, VSAQ 138. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Applied Biology · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1",
+        "kind": "text",
+        "label": "What it is",
+        "marks": 1,
+        "mark_note": "What it is",
+        "why": "Several X-ray beams from different angles are combined by a computer into a slice through the body.",
+        "common_mistakes": [
+          "Calling a tomogram the scanner itself.",
+          "Saying it is a flat two dimensional X-ray."
+        ],
+        "memory_tip": "A tomogram is a 3-D cross sectional picture from a CAT scan.",
+        "margin_note": "Say what it is and where it comes from.",
+        "lines": [
+          "A tomogram is a 3-D cross sectional picture",
+          "of a part of the body seen on a CAT scan.",
+          "A CAT scan is a medical imaging method using",
+          "several beams of X-rays."
+        ]
+      },
+      {
+        "id": "s2",
+        "kind": "boxed_final",
+        "label": "What it is used for",
+        "marks": 1,
+        "mark_note": "Uses",
+        "why": "Because it shows a slice rather than a shadow, structures hidden behind bone become visible.",
+        "common_mistakes": [
+          "Giving no use.",
+          "Naming only one use."
+        ],
+        "memory_tip": "Clots, tumours, fractures and bone density.",
+        "margin_note": "Two or three named uses are enough.",
+        "lines": [
+          {
+            "text": "It locates clots, tumours and fractures",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "A tomogram is the PICTURE, not the machine. Say that it comes from a CAT scan and what it shows."
+}

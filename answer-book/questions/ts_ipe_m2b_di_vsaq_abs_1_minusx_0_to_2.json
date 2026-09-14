@@ -45,7 +45,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book printed p.91 — VSAQ chapter 17 'Definite Integrals', answer 173.1, the left-hand twin of answer 173.2 (not marked as a Super Scoring Page). Printed appearance: AP 15, 19 and TS 16, 18. Chapter star rank ★★★ applies. No margin mark tags are printed, so the 1+1 split is OURS, patterned on the split used throughout this chapter. This integral is re-answered as a Q8&9 item on the Bullet Model Paper, book p.106 — same value, so no separate card is authored for that appearance. Boundary reading: printed p.89 confirms the Integration VSAQ chapter ends at answer 164 (∫cos√x dx); printed p.93 confirms the Differential Equations VSAQ chapter begins at answer 181 — so this chapter's answers 165–180.2 are the complete VSAQ Definite Integrals set. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book printed p.91 — VSAQ chapter 17 'Definite Integrals', answer 173.1, the left-hand twin of answer 173.2 (not marked as a Super Scoring Page). Printed appearance: AP 15, 19 and TS 16, 18. Chapter star rank ★★★ applies. No margin mark tags are printed, so the 1+1 split is OURS, patterned on the split used throughout this chapter. This integral is re-answered as a Q8&9 item on the Bullet Model Paper, book p.106 — same value, so no separate card is authored for that appearance. Boundary reading: printed p.89 confirms the Integration VSAQ chapter ends at answer 164 (∫cos√x dx); printed p.93 confirms the Differential Equations VSAQ chapter begins at answer 181 — so this chapter's answers 165–180.2 are the complete VSAQ Definite Integrals set. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "insider_note": "A modulus integral is always split at the point where the inside expression is zero — get that point right and the rest is routine integration.",
   "answer": {
@@ -67,6 +67,11 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "The modulus changes its form where 1 − x = 0,",
+          {
+            "text": "  that is at x = 1, so split the range there.",
+            "style": "indent"
+          },
           "From the definition of the modulus function,",
           "|1−x| = 1−x for 1−x ≥ 0, i.e. x ≤ 1",
           "|1−x| = x−1 for 1−x < 0, i.e. x > 1",
@@ -87,8 +92,16 @@
         "margin_note": "Second mark. Both pieces contribute exactly 1/2 each — a useful check on the arithmetic.",
         "memory_tip": "By symmetry about x=1, the two pieces of a V-shaped modulus graph often contribute equal areas.",
         "lines": [
+          {
+            "text": "∫(1−x)dx = x − x²/2 and ∫(x−1)dx = x²/2 − x:",
+            "added": true
+          },
           "= [x − x²/2]₀¹ + [x²/2 − x]₁² = (1 − 1/2) +",
           "[(2 − 2) − (1/2 − 1)]",
+          {
+            "text": "At x = 2: 4/2 − 2 = 0; at x = 1: 1/2 − 1 = −1/2",
+            "added": true
+          },
           {
             "text": "∴ I = 1/2 + 0 + 1/2 = 1",
             "style": "boxed"
@@ -98,6 +111,14 @@
         "common_mistakes": [
           "Sign errors when evaluating the second integral's limits.",
           "Adding the two pieces incorrectly instead of tracking each bracket separately."
+        ],
+        "lines_compact": [
+          "= [x − x²/2]₀¹ + [x²/2 − x]₁² = (1 − 1/2) +",
+          "[(2 − 2) − (1/2 − 1)]",
+          {
+            "text": "∴ I = 1/2 + 0 + 1/2 = 1",
+            "style": "boxed"
+          }
         ]
       }
     ]

@@ -75,9 +75,9 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.12, printed question 2. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. Two spelling slips corrected on this card: the guide prints \"Fumerase\" for FUMARASE and \"Fumeric acid\" and \"FAD⁺\" in its p.13 diagram for fumaric acid and FAD. The guide's mnemonic is printed partly in Telugu script; the product is English-only (Rule 30i), so a plain English memory device is given instead."
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.12, printed question 2. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. Two spelling slips corrected on this card: the guide prints \"Fumerase\" for FUMARASE and \"Fumeric acid\" and \"FAD⁺\" in its p.13 diagram for fumaric acid and FAD. The guide's mnemonic is printed partly in Telugu script; the product is English-only (Rule 30i), so a plain English memory device is given instead. Figure revision (figure audit, 2026-09-05): the citric acid label and leader moved to the upper left, so the leader runs from its own label to the ring and no longer crosses the acetyl CoA arrow. Text revision (examiner audit, 2026-09-05): the insider note now gives the per-turn tally instead of claiming that only four steps are checked, the s2_link margin note no longer names the disclaimer as the mark, and the third s3_steps1 common mistake now separates the four oxidations from the three that reduce NAD+, which the card's own step labels already showed."
   },
-  "insider_note": "Ten steps, but only four of them are the ones examiners check: the three oxidations that make NADH, and the one that makes FADH2. Get the tally right and the answer holds together even if a step name slips.",
+  "insider_note": "Ten steps, and the tally is what holds them together: three oxidations make NADH, one makes FADH2, one step makes ATP, and two carbons leave as CO2. Number every step and name its enzyme, then close with that tally.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",
@@ -116,7 +116,7 @@
         "label": "The link reaction",
         "marks": 1,
         "mark_note": "Link reaction",
-        "margin_note": "Name it, give the equation, and say it is NOT part of the cycle. That last point is the mark.",
+        "margin_note": "Name it, give the equation, and say it is not part of the cycle itself. The equation is the core of the step — the 3C to 2C change with CO2 and NADH.",
         "lines": [
           "Pyruvic acid from glycolysis enters the",
           "mitochondrion first.",
@@ -202,7 +202,7 @@
         "common_mistakes": [
           "Naming the first enzyme 'citric acid'. The enzyme is CITRATE SYNTHASE.",
           "Missing that aconitase catalyses steps 2 AND 3. The same enzyme does both.",
-          "Forgetting the first NADH. Step 4 is the first of three oxidations."
+          "Forgetting the first NADH. Step 4 is the first of the four oxidations, and the first of the three that reduce NAD+ (steps 4, 6 and 10); step 8 reduces FAD instead."
         ],
         "memory_tip": "Condense to six carbons, then lose the first carbon dioxide at step 5."
       },
@@ -393,14 +393,14 @@
             {
               "type": "stroke",
               "id": "kl_citric",
-              "d": "M 383 87.4 L 333.3 155.5",
-              "ms": 1200,
+              "d": "M 290 98 L 334 160",
+              "ms": 1090,
               "w": 1.4
             },
             {
               "type": "label",
               "id": "kb_citric",
-              "x": 268,
+              "x": 196,
               "y": 92,
               "text": "Citric (6C)",
               "ms": 450,

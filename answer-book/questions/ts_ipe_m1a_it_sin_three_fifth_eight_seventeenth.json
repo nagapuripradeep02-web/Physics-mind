@@ -27,14 +27,14 @@
       "marks": 2
     },
     {
-      "label": "Check the range and close",
+      "label": "Check the range and finish",
       "marks": 1
     }
   ],
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.112, chapter 10 INVERSE TRIGONOMETRIC FUNCTIONS, Short Answer question 2(iii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. Half the marks sit on the expansion of cos(A + B), because choosing cosine rather than sine is the decision the whole answer turns on. NOTATION: the book prints the inverse functions in lower case (sin⁻¹, cos⁻¹); they are written here with capitals to match the principal-value convention used across the rest of this unit. Both sides were checked numerically to twelve decimal places: arcsin(0.6) + arcsin(8/17) = arccos(36/85) = 1.133458435047. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, at 4 marks each, under the 2026-27 pattern; Inverse Trigonometric Functions is an SAQ-only unit, so the paper gives it no Section-A and no Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.112, chapter 10 INVERSE TRIGONOMETRIC FUNCTIONS, Short Answer question 2(iii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. Half the marks sit on the expansion of cos(A + B), because choosing cosine rather than sine is the decision the whole answer turns on. NOTATION: the book prints the inverse functions in lower case (sin⁻¹, cos⁻¹); they are written here with capitals to match the principal-value convention used across the rest of this unit. Both sides were checked numerically to twelve decimal places: arcsin(0.6) + arcsin(8/17) = arccos(36/85) = 1.133458435047. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, at 4 marks each, under the 2026-27 pattern; Inverse Trigonometric Functions is an SAQ-only unit, so the paper gives it no Section-A and no Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — name each move in order, and say which formula you reach for and why.",
   "answer": {
@@ -60,6 +60,11 @@
           "Let B = Sin⁻¹(8/17) ⇒ sinB = 8/17",
           "Both values are positive,",
           "so A, B ∈ (0, π/2).",
+          "(cosA = √(1 − 9/25) = 4/5 and",
+          {
+            "text": "  cosB = √(1 − 64/289) = √(225/289) = 15/17)",
+            "style": "indent"
+          },
           "∴ cosA = 4/5 and cosB = 15/17"
         ],
         "recall": {
@@ -99,8 +104,16 @@
         "margin_note": "Half the marks. Choosing cosine is the real decision here; the arithmetic after it is one line.",
         "memory_tip": "The answer is asked as a Cos⁻¹, so expand cos(A + B): cos cos minus sin sin.",
         "lines": [
+          {
+            "text": "(the cos(A + B) formula)",
+            "added": true
+          },
           "cos(A + B) = cosA cosB − sinA sinB",
           "= (4/5)(15/17) − (3/5)(8/17)",
+          {
+            "text": "((4/5)(15/17) = 60/85 and (3/5)(8/17) = 24/85)",
+            "added": true
+          },
           "= 60/85 − 24/85",
           "= 36/85"
         ],
@@ -126,20 +139,26 @@
             "minus sin sin"
           ]
         },
-        "why": "Cosine is used rather than sine because the answer is asked as a Cos⁻¹. Expanding sin(A + B) would give 77/85 and would not match the statement.",
+        "why": "Cosine is used because the answer is asked as a Cos⁻¹. Expanding sin(A + B) gives 77/85, which would need one more step to change Sin⁻¹(77/85) into Cos⁻¹(36/85).",
         "common_mistakes": [
           "Expanding sin(A + B) instead.",
           "Writing a plus sign between the two products."
+        ],
+        "lines_compact": [
+          "cos(A + B) = cosA cosB − sinA sinB",
+          "= (4/5)(15/17) − (3/5)(8/17)",
+          "= 60/85 − 24/85",
+          "= 36/85"
         ]
       },
       {
         "id": "s3_check_the_range_and_close",
         "kind": "boxed_final",
-        "label": "Check the range and close",
+        "label": "Check the range and finish",
         "marks": 1,
         "mark_note": "Conclusion",
-        "margin_note": "Last mark. The range line is not decoration — without it the final equality is only a statement about cosines, not about the angles.",
-        "memory_tip": "Cos⁻¹ returns angles in [0, π]. Two first-quadrant angles add to less than π, so the step is safe.",
+        "margin_note": "Last mark. The range line is needed — without it the final equality is only a statement about cosines, not about the angles.",
+        "memory_tip": "Cos⁻¹ returns angles in [0, π]. Two first-quadrant angles add to less than π, so the step is valid.",
         "lines": [
           "A, B ∈ (0, π/2) ⇒ A + B ∈ (0, π)",
           "[0, π] is the range of Cos⁻¹, so the",

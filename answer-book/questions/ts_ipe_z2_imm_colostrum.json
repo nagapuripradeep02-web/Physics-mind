@@ -1,0 +1,103 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_imm_colostrum",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Human Anatomy and Physiology-IV (Zoology-II)"
+  },
+  "chapter": "Immune System",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "\"Colostrum is very much essential for the new born infants\". Justify.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What colostrum is",
+      "marks": 1
+    },
+    {
+      "label": "Why it protects the infant",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.53, VSAQ 99. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Immune System · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What colostrum is",
+        "marks": 1,
+        "mark_note": "What it is",
+        "why": "A newborn cannot yet make its own antibodies, so it has to be given ready-made ones.",
+        "common_mistakes": [
+          "Describing colostrum as ordinary milk. It is the first milk after delivery.",
+          "Leaving out IgA."
+        ],
+        "memory_tip": "The first milk carries ready-made IgA antibodies.",
+        "margin_note": "Define it, then name the antibody.",
+        "lines": [
+          "Colostrum is the first milk produced by",
+          "the mother after delivery.",
+          "It has plenty of IgA antibodies, which",
+          "protect the infant from infections."
+        ]
+      },
+      {
+        "id": "s2_passive",
+        "kind": "boxed_final",
+        "label": "Why it protects",
+        "marks": 1,
+        "mark_note": "Passive immunity",
+        "why": "Antibodies made by someone else give immediate protection, but only until they are used up.",
+        "common_mistakes": [
+          "Calling it active immunity. Ready-made antibodies give passive immunity.",
+          "Leaving the term out altogether."
+        ],
+        "memory_tip": "The baby receives antibodies, so the immunity is passive and natural.",
+        "margin_note": "Name the kind of immunity. That is the second mark.",
+        "lines": [
+          "These antibodies pass from mother to",
+          "infant.",
+          {
+            "text": "This is called natural passive immunity",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Name the antibody: IgA. An answer that says only 'the first milk is good for the baby' has justified nothing."
+}

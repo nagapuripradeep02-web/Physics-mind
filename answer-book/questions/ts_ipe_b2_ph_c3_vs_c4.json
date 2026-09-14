@@ -55,7 +55,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.25, printed question 18. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.25, printed question 18. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. Examiner audit revision (2026-09-05): the card prints nine rows against a question that asks for any eight, so the s4_yield margin note now says so and neither s2_anatomy nor s4_yield treats the omission of one row as a mistake; the dimorphism point moved into the s2_anatomy why."
   },
   "insider_note": "The question says TABULATE. Draw the two columns and number the rows — an examiner marking eight differences in a paragraph will miss some, and that is entirely avoidable.",
   "answer": {
@@ -100,10 +100,10 @@
           "4. Chloroplast dimorphism is NOT seen.",
           "   | Chloroplast dimorphism IS seen."
         ],
-        "why": "Kranz anatomy is the wreath of bundle sheath cells that lets a C4 plant keep its two reactions apart, so it is the structural reason for every other difference in the table.",
+        "why": "Kranz anatomy is the wreath of bundle sheath cells that keeps the two reactions of a C4 plant apart, so it is the structural reason for every other difference in the table. Chloroplast dimorphism is the row that follows from it: the mesophyll cells and the bundle sheath cells hold different chloroplasts.",
         "common_mistakes": [
           "Giving Kranz anatomy to C3 plants. Only C4 leaves have it.",
-          "Leaving out chloroplast dimorphism. Two kinds of chloroplast is what Kranz anatomy holds."
+          "Calling Kranz anatomy a type of chloroplast. It is the leaf structure: a ring of bundle sheath cells around the vascular bundle."
         ],
         "memory_tip": "Kranz means wreath: only C4 leaves wear one."
       },
@@ -133,7 +133,7 @@
         "label": "Efficiency, biomass and examples",
         "marks": 1,
         "mark_note": "Yield, examples",
-        "margin_note": "Finish with the examples. Eight numbered rows is the target the question sets.",
+        "margin_note": "Finish with the examples. Nine rows are given here; any eight of them answer the question.",
         "lines": [
           {
             "text": "C4 fixes more carbon with less water lost",
@@ -148,7 +148,7 @@
         ],
         "why": "The examples are the check on the whole table: maize and sugarcane are tropical grasses, which is exactly what rows 2 and 3 predict.",
         "common_mistakes": [
-          "Giving no examples. The example row is part of the eight differences asked for.",
+          "Reversing the efficiency row. C4 plants use atmospheric CO2 MORE efficiently and produce more biomass.",
           "Naming a C3 plant as C4. Maize, sugarcane and sorghum are the standard C4 three."
         ],
         "memory_tip": "Tropical grasses are the C4 plants: maize, sugarcane, sorghum."

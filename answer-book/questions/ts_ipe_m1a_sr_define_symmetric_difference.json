@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.7, chapter 1 SETS & RELATIONS, Very Short Answer question 14. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sets and Relations is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.7, chapter 1 SETS & RELATIONS, Very Short Answer question 14. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sets and Relations is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would answer this — give the definition in set form, and say what example you would show it on.",
   "answer": {
@@ -54,7 +54,9 @@
           "Let A and B be two sets.",
           "The symmetric difference of A and B, written A Δ B, is",
           "A Δ B = (A − B) ∪ (B − A)",
-          "So A Δ B is the set of elements that lie in exactly one of A and B."
+          "(A − B: in A but not in B; B − A: in B but not in A)",
+          "So A Δ B is the set of elements that lie in exactly",
+          "one of A and B."
         ],
         "recall": {
           "credit": "say_it",
@@ -96,8 +98,16 @@
         "margin_note": "Second mark. Two small sets are enough. The examiner looks for the shared element being dropped, so choose sets that actually share one.",
         "lines": [
           "Take A = {1, 2, 3} and B = {3, 4}.",
+          {
+            "text": "(A − B takes 3 out of A; B − A takes 3 out of B)",
+            "added": true
+          },
           "A − B = {1, 2}   and   B − A = {4}",
           "3 lies in both sets, so it is not included.",
+          {
+            "text": "(also (A ∪ B) − (A ∩ B) = {1, 2, 3, 4} − {3})",
+            "added": true
+          },
           {
             "text": "∴ A Δ B = (A − B) ∪ (B − A) = {1, 2, 4}",
             "style": "boxed"
@@ -130,7 +140,16 @@
         "common_mistakes": [
           "Keeping 3 in the answer, which gives A ∪ B instead.",
           "Computing only B − A and writing {4} as the answer.",
-          "Choosing two sets with no common element, so the example proves nothing."
+          "Choosing two sets with no common element, so A Δ B equals A ∪ B and the example does not show a shared element being left out."
+        ],
+        "lines_compact": [
+          "Take A = {1, 2, 3} and B = {3, 4}.",
+          "A − B = {1, 2}   and   B − A = {4}",
+          "3 lies in both sets, so it is not included.",
+          {
+            "text": "∴ A Δ B = (A − B) ∪ (B − A) = {1, 2, 4}",
+            "style": "boxed"
+          }
         ]
       }
     ]

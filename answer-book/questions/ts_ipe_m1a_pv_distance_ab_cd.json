@@ -55,7 +55,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.37 — LAQ chapter 4 Product of Vectors, answer 24, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 19 · AP 17,17 (the book prints 17 twice). The same method as answer 23, but the lines are given as PAIRS OF POINTS rather than in r = a + tb form — so the directions have to be built before the formula can be used.⚠ THE MARK SPLIT IS OURS. No [N Marks] tags are printed against this answer, but the book DOES print them for answer 23 on book p.37 — the same method over different data — and that printed 1+1+1+1+1+2 is applied here step for step. The book's chapter header carries ★★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Q22 is the Product of Vectors slot. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Divide to get the distance."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.37 — LAQ chapter 4 Product of Vectors, answer 24, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 19 · AP 17,17 (the book prints 17 twice). The same method as answer 23, but the lines are given as PAIRS OF POINTS rather than in r = a + tb form — so the directions have to be built before the formula can be used.⚠ THE MARK SPLIT IS OURS. No [N Marks] tags are printed against this answer, but the book DOES print them for answer 23 on book p.37 — the same method over different data — and that printed 1+1+1+1+1+2 is applied here step for step. The book's chapter header carries ★★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Q22 is the Product of Vectors slot. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Divide to get the distance. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find the distance between two lines given by four points.",
   "answer": {
@@ -78,6 +78,7 @@
             "style": "heading"
           },
           "Given A(1,−2,−1), B(4,0,−3), C(1,2,−1), D(2,−4,−5)",
+          "(a point (x, y, z) has position vector xi + yj + zk)",
           "OA = i − 2j − k,  OB = 4i − 3k,",
           "OC = i + 2j − k,  OD = 2i − 4j − 5k"
         ],
@@ -119,6 +120,10 @@
         "memory_tip": "A line through two points takes the first as its POINT and the difference as its DIRECTION.",
         "lines": [
           "(i) Line AB is r = a + tb, where",
+          {
+            "text": "(a is a point on AB and b is its direction)",
+            "added": true
+          },
           "  a = OA = i − 2j − k",
           "  b = AB = OB − OA = 3i + 2j − 2k",
           "(ii) Line CD is r = c + sd, where",
@@ -152,6 +157,14 @@
         "common_mistakes": [
           "Using OB as the direction instead of OB − OA.",
           "Subtracting the wrong way round."
+        ],
+        "lines_compact": [
+          "(i) Line AB is r = a + tb, where",
+          "  a = OA = i − 2j − k",
+          "  b = AB = OB − OA = 3i + 2j − 2k",
+          "(ii) Line CD is r = c + sd, where",
+          "  c = OC = i + 2j − k",
+          "  d = CD = OD − OC = i − 6j − 4k"
         ]
       },
       {
@@ -164,6 +177,10 @@
         "memory_tip": "The i and k terms cancel completely, leaving a single j term — which shortens the dot product.",
         "lines": [
           "a − c = (i − 2j − k) − (i + 2j − k)",
+          {
+            "text": "(i − i = 0, −2j − 2j = −4j, −k − (−k) = 0)",
+            "added": true
+          },
           "  = −4j"
         ],
         "recall": {
@@ -192,6 +209,10 @@
         "common_mistakes": [
           "Getting −4j as +4j.",
           "Carrying an i or k term through when both have cancelled to zero."
+        ],
+        "lines_compact": [
+          "a − c = (i − 2j − k) − (i + 2j − k)",
+          "  = −4j"
         ]
       },
       {
@@ -207,6 +228,25 @@
             "text": "b \\times d = \\begin{vmatrix} i & j & k \\\\ 3 & 2 & -2 \\\\ 1 & -6 & -4 \\end{vmatrix}",
             "render": "katex",
             "style": "eq"
+          },
+          {
+            "text": "Expand along the top row, i, j, k (signs + − +):",
+            "added": true
+          },
+          {
+            "text": "  i: (2)(−4) − (−2)(−6) = −20",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  j: (3)(−4) − (−2)(1) = −10, with a minus in front",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  k: (3)(−6) − (2)(1) = −20",
+            "style": "indent",
+            "added": true
           },
           "= i(−8 − 12) − j(−12 + 2) + k(−18 − 2)",
           "= −20i + 10j − 20k"
@@ -237,6 +277,15 @@
         "common_mistakes": [
           "Crossing the position vectors instead of the directions.",
           "Sign slip on the j term."
+        ],
+        "lines_compact": [
+          {
+            "text": "b \\times d = \\begin{vmatrix} i & j & k \\\\ 3 & 2 & -2 \\\\ 1 & -6 & -4 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= i(−8 − 12) − j(−12 + 2) + k(−18 − 2)",
+          "= −20i + 10j − 20k"
         ]
       },
       {
@@ -249,6 +298,10 @@
         "memory_tip": "Because a − c is only a j term, the dot product picks out just the j component of b×d.",
         "lines": [
           "(a − c)·(b × d) = (−4j)·(−20i + 10j − 20k)",
+          {
+            "text": "(only the j parts give a non-zero product)",
+            "added": true
+          },
           "  = −4(10) = −40",
           "|b × d| = √(400 + 100 + 400) = √900 = 30"
         ],
@@ -279,6 +332,11 @@
         "common_mistakes": [
           "Multiplying all three components of b×d by −4.",
           "Forgetting the square root of 900."
+        ],
+        "lines_compact": [
+          "(a − c)·(b × d) = (−4j)·(−20i + 10j − 20k)",
+          "  = −4(10) = −40",
+          "|b × d| = √(400 + 100 + 400) = √900 = 30"
         ]
       },
       {
@@ -290,6 +348,15 @@
         "margin_note": "The last three marks. The modulus makes the −40 positive, and 40/30 cancels to 4/3. Leave it as a fraction — decimals are not expected.",
         "memory_tip": "The modulus makes −40 positive, and 40/30 cancels to 4/3. Leave it as a fraction.",
         "lines": [
+          {
+            "text": "(the shortest distance is the projection of a − c",
+            "added": true
+          },
+          {
+            "text": "  on the common normal b × d)",
+            "style": "indent",
+            "added": true
+          },
           "S.D = |(a−c)·(b×d)| / |b×d|",
           "= |−40| / 30 = 40/30",
           {
@@ -323,6 +390,14 @@
         "common_mistakes": [
           "Reporting −4/3.",
           "Leaving the answer as 40/30 uncancelled."
+        ],
+        "lines_compact": [
+          "S.D = |(a−c)·(b×d)| / |b×d|",
+          "= |−40| / 30 = 40/30",
+          {
+            "text": "∴ Distance = 4/3 units",
+            "style": "boxed"
+          }
         ]
       }
     ]

@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.202, chapter 9 DIFFERENTIATION, Short Answer question 11. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. The printed stem gives no domain; the answer states x ≠ 0, which the expression (√(1 + x²) − 1)/x itself requires. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8 under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.202, chapter 9 DIFFERENTIATION, Short Answer question 11. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. The printed stem gives no domain; the answer states x ≠ 0, which the expression (√(1 + x²) − 1)/x itself requires. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8 under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say what differentiating f with respect to g means, and what substitution you would use.",
   "answer": {
@@ -58,6 +58,11 @@
           {
             "text": "Sol:",
             "style": "heading"
+          },
+          "(by the chain rule df/dx = (df/dg)(dg/dx);",
+          {
+            "text": "  divide by dg/dx, which must not be 0)",
+            "style": "indent"
           },
           "To differentiate one function with respect to another,",
           "df/dg = (df/dx) / (dg/dx)"
@@ -98,9 +103,50 @@
         "mark_note": "Method",
         "margin_note": "Second mark. θ = Tan⁻¹x lies in (−π/2, π/2), so θ/2 lies in (−π/4, π/4) and Tan⁻¹(tan(θ/2)) is exactly θ/2.",
         "lines": [
+          {
+            "text": "(1 + tan²θ = sec²θ; θ in (−π/2, π/2) gives sec θ > 0,",
+            "added": true
+          },
+          {
+            "text": "  so √(sec²θ) = sec θ)",
+            "style": "indent",
+            "added": true
+          },
           "Put x = tan θ, so θ = Tan⁻¹x and √(1 + x²) = sec θ",
+          {
+            "text": "(sec θ = 1/cos θ and tan θ = sin θ/cos θ;",
+            "added": true
+          },
+          {
+            "text": "  multiply the top and the bottom by cos θ)",
+            "style": "indent",
+            "added": true
+          },
           "(√(1 + x²) − 1)/x = (sec θ − 1)/tan θ = (1 − cos θ)/sin θ",
+          {
+            "text": "(1 − cos θ = 2sin²(θ/2) and sin θ = 2 sin(θ/2) cos(θ/2);",
+            "added": true
+          },
+          {
+            "text": "  cancel 2 sin(θ/2))",
+            "style": "indent",
+            "added": true
+          },
           "= 2sin²(θ/2) / (2 sin(θ/2) cos(θ/2)) = tan(θ/2)",
+          {
+            "text": "(θ/2 lies in (−π/4, π/4), inside (−π/2, π/2),",
+            "added": true
+          },
+          {
+            "text": "  so Tan⁻¹(tan(θ/2)) = θ/2;",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  x ≠ 0 because x is in the denominator)",
+            "style": "indent",
+            "added": true
+          },
           "∴ f(x) = Tan⁻¹(tan(θ/2)) = θ/2 = ½ Tan⁻¹x   (x ≠ 0)"
         ],
         "recall": {
@@ -130,7 +176,13 @@
           "Writing √(1 + x²) as sec²θ instead of sec θ.",
           "Cancelling the 1 in (√(1 + x²) − 1)/x term by term."
         ],
-        "memory_tip": "(1 − cos θ)/sin θ = tan(θ/2), because 1 − cos θ = 2sin²(θ/2) and sin θ = 2 sin(θ/2) cos(θ/2)."
+        "memory_tip": "(1 − cos θ)/sin θ = tan(θ/2), because 1 − cos θ = 2sin²(θ/2) and sin θ = 2 sin(θ/2) cos(θ/2).",
+        "lines_compact": [
+          "Put x = tan θ, so θ = Tan⁻¹x and √(1 + x²) = sec θ",
+          "(√(1 + x²) − 1)/x = (sec θ − 1)/tan θ = (1 − cos θ)/sin θ",
+          "= 2sin²(θ/2) / (2 sin(θ/2) cos(θ/2)) = tan(θ/2)",
+          "∴ f(x) = Tan⁻¹(tan(θ/2)) = θ/2 = ½ Tan⁻¹x   (x ≠ 0)"
+        ]
       },
       {
         "id": "s3_two_derivatives",
@@ -140,6 +192,10 @@
         "mark_note": "Solution",
         "margin_note": "Third mark. Both derivatives use d/dx(Tan⁻¹x) = 1/(1 + x²); only the constant ½ separates them.",
         "lines": [
+          {
+            "text": "(d/dx(Tan⁻¹x) = 1/(1 + x²), and f has the factor ½)",
+            "added": true
+          },
           "f(x) = ½ Tan⁻¹x   ⇒   f′(x) = 1 / (2(1 + x²))",
           "g(x) = Tan⁻¹x   ⇒   g′(x) = 1 / (1 + x²)"
         ],
@@ -170,7 +226,11 @@
           "Writing d/dx(Tan⁻¹x) as 1/(1 − x²).",
           "Dropping the ½ from f and getting 1 instead of ½ at the end."
         ],
-        "memory_tip": "f is exactly half of g, so f′ must be exactly half of g′ — check the ½ survives."
+        "memory_tip": "f is exactly half of g, so f′ must be exactly half of g′ — check that the ½ is still there.",
+        "lines_compact": [
+          "f(x) = ½ Tan⁻¹x   ⇒   f′(x) = 1 / (2(1 + x²))",
+          "g(x) = Tan⁻¹x   ⇒   g′(x) = 1 / (1 + x²)"
+        ]
       },
       {
         "id": "s4_divide",
@@ -180,8 +240,20 @@
         "mark_note": "Answer",
         "margin_note": "Last mark. A constant answer is the check that the substitution was right: f is half of g everywhere, so their rates stay in the fixed ratio 1 : 2.",
         "lines": [
+          {
+            "text": "(put f′(x) and g′(x) from step 3)",
+            "added": true
+          },
           "df/dg = f′(x) / g′(x) = [1 / (2(1 + x²))] / [1 / (1 + x²)]",
+          {
+            "text": "(dividing by 1/(1 + x²) is multiplying by 1 + x²)",
+            "added": true
+          },
           "= (1 + x²) / (2(1 + x²))",
+          {
+            "text": "(cancel 1 + x², which is never 0)",
+            "added": true
+          },
           {
             "text": "∴ df/dg = 1/2",
             "style": "boxed"
@@ -209,12 +281,20 @@
             "constant"
           ]
         },
-        "why": "The answer is independent of x, and that is the check on the working: f and g differ only by the factor ½, so no x can survive.",
+        "why": "The answer is independent of x, and that is the check on the working: f and g differ only by the factor ½, so no x can remain.",
         "common_mistakes": [
           "Leaving x in the final answer, which means the simplification in step 2 was not completed.",
           "Giving 2 instead of 1/2 by dividing the wrong way round."
         ],
-        "memory_tip": "Test it at x = 1: f(1) = π/8 and g(1) = π/4, and π/8 is half of π/4."
+        "memory_tip": "Test it at x = 1: f(1) = π/8 and g(1) = π/4, and π/8 is half of π/4.",
+        "lines_compact": [
+          "df/dg = f′(x) / g′(x) = [1 / (2(1 + x²))] / [1 / (1 + x²)]",
+          "= (1 + x²) / (2(1 + x²))",
+          {
+            "text": "∴ df/dg = 1/2",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

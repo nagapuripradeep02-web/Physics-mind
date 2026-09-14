@@ -38,9 +38,9 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Sr. Maths-2B (Sri Publishers, Machilipatnam), book p.81 — VSAQ chapter 13 System of Circles, answer 120. Book p.81 is NOT a Super Scoring Page (the SSP list on book p.76 omits page 81; its header carries no 'SSP' banner). Chapter star rank ★★, per the VSAQ section table (book p.76). Printed appearance tags: AP 18, TS 18. This question reuses the first circle of answer 119.2 exactly, replacing the second circle's fixed x-coefficient 4 with the unknown k, and gives the angle 45° as data instead of asking for it — it is the same formula run in reverse. ⚠ THE MARK SPLIT IS OURS — no [N Marks] margin tags are printed in this VSAQ chapter. Cut 1+1: one mark for the centres, radii and distance (reusing r₁ = 2 and d = √((6+2)²+(3+3)²) directly from 119.2's working, but recomputed here since g is now the unknown k rather than 4), one mark for substituting into the angle formula and solving the resulting equation for k. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Neither the two-book union check nor a board back-test was possible for this subject: there is no TSBIE second-year Maths-2B BLM on hand, and answer-book/papers/ holds first-year physics only — the book's own five Guess Papers (pp.118-127) stand in as the back-test instead. Boundary walked both ways: book p.79 ends the Circle VSAQ chapter at answer 115, and book p.82 opens VSAQ chapter 14 Parabola. Paper position: Maths-2B Section A runs Q1-Q10 at 2 marks each (Q3 = System of Circles, per the QF sheet pp.3-4), answer all 10 (ABC_75). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, Sr. Maths-2B (Sri Publishers, Machilipatnam), book p.81 — VSAQ chapter 13 System of Circles, answer 120. Book p.81 is NOT a Super Scoring Page (the SSP list on book p.76 omits page 81; its header carries no 'SSP' banner). Chapter star rank ★★, per the VSAQ section table (book p.76). Printed appearance tags: AP 18, TS 18. This question reuses the first circle of answer 119.2 exactly, replacing the second circle's fixed x-coefficient 4 with the unknown k, and gives the angle 45° as data instead of asking for it — it is the same formula run in reverse. ⚠ THE MARK SPLIT IS OURS — no [N Marks] margin tags are printed in this VSAQ chapter. Cut 1+1: one mark for the centres, radii and distance (reusing r₁ = 2 and d = √((6+2)²+(3+3)²) directly from 119.2's working, but recomputed here since g is now the unknown k rather than 4), one mark for substituting into the angle formula and solving the resulting equation for k. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Neither the two-book union check nor a board back-test was possible for this subject: there is no TSBIE second-year Maths-2B BLM on hand, and answer-book/papers/ holds first-year physics only — the book's own five Guess Papers (pp.118-127) stand in as the back-test instead. Boundary walked both ways: book p.79 ends the Circle VSAQ chapter at answer 115, and book p.82 opens VSAQ chapter 14 Parabola. Paper position: Maths-2B Section A runs Q1-Q10 at 2 marks each (Q3 = System of Circles, per the QF sheet pp.3-4), answer all 10 (ABC_75). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
-  "insider_note": "Squaring cos 45° = 1/√2 to clear the square root is the only squaring in this answer. After it the surds are gone, so what remains is ordinary algebra: collect the k² terms, divide, and take the square root.",
+  "insider_note": "Squaring √(k²/4 + 68) = 3k/√2 to clear the square root is the only squaring in this answer. After it the surds are gone, so what remains is ordinary algebra: collect the k² terms, divide, and take the square root.",
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",
@@ -53,14 +53,17 @@
         "label": "Find the centres, radii and distance",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. g′ is now the unknown k, so both r₂ and d carry k inside a square root.",
+        "margin_note": "First mark. g′ is now k/2 (half the unknown coefficient k), so r₂ carries k inside a square root.",
         "lines": [
           {
             "text": "Sol:",
             "style": "heading"
           },
+          "Compare each with x² + y² + 2gx + 2fy + c = 0.",
           "From the given circles, g = −6, f = −3, c = 41",
           "and g′ = k/2, f′ = 3, c′ = −59",
+          "(2g′ = k in the second circle, so g′ = k/2)",
+          "The radius is √(g² + f² − c):",
           "r₁ = √(36 + 9 − 41) = 2",
           "r₂ = √(k²/4 + 9 + 59) = √(k²/4 + 68)"
         ],
@@ -79,10 +82,50 @@
         "mark_note": "Solution",
         "margin_note": "Second mark. One squaring clears the surds; after that it is collect, divide and square-root.",
         "lines": [
+          {
+            "text": "With d² − r₁² − r₂² = c + c′ − 2gg′ − 2ff′:",
+            "added": true
+          },
           "cos 45° = (c + c′ − 2gg′ − 2ff′) / (2r₁r₂)",
+          {
+            "text": "Top: c + c′ = 41 − 59 = −18,",
+            "added": true
+          },
+          {
+            "text": "  −2gg′ = −2(−6)(k/2) = 6k,",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  −2ff′ = −2(−3)(3) = 18,",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  so the top is −18 + 6k + 18 = 6k.",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "Bottom: 2 · 2 · √(k²/4 + 68)",
+            "added": true
+          },
           "1/√2 = 6k / (4√(k²/4 + 68))",
+          {
+            "text": "Cross-multiply: 4√(k²/4 + 68) = 6k√2, and",
+            "added": true
+          },
+          {
+            "text": "  6k√2/4 = 3k√2/2 = 3k/√2:",
+            "style": "indent",
+            "added": true
+          },
           "⇒ √(k²/4 + 68) = 3k/√2 · 1",
-          "Squaring, k² + 272 = 18k² ⇒ 17k² = 272",
+          {
+            "text": "Squaring: k²/4 + 68 = 9k²/2; multiply by 4:",
+            "added": true
+          },
+          "⇒ k² + 272 = 18k² ⇒ 17k² = 272",
           "Dividing gives k² = 16, so k = 4 or k = −4.",
           "k = −4 fails √(k²/4 + 68) = 3k/√2:",
           "the left side is ≥ 0, the right side is not.",
@@ -97,7 +140,21 @@
           "Keeping both roots of k² = 16. k = −4 is extraneous: it makes 3k/√2 negative while the square root beside it cannot be, and it gives an angle of 135°, not 45°.",
           "Writing the numerator as 3k. With g = −6 and g′ = k/2, −2gg′ = +6k, so c + c′ − 2gg′ − 2ff′ = 6k."
         ],
-        "memory_tip": "Squaring can create roots. After solving, put each one back into the line BEFORE the squaring and keep only the roots that survive."
+        "memory_tip": "Squaring can create roots. After solving, put each one back into the line BEFORE the squaring and keep only the roots that survive.",
+        "lines_compact": [
+          "cos 45° = (c + c′ − 2gg′ − 2ff′) / (2r₁r₂)",
+          "1/√2 = 6k / (4√(k²/4 + 68))",
+          "⇒ √(k²/4 + 68) = 3k/√2 · 1",
+          "Squaring, k² + 272 = 18k² ⇒ 17k² = 272",
+          "Dividing gives k² = 16, so k = 4 or k = −4.",
+          "k = −4 fails √(k²/4 + 68) = 3k/√2:",
+          "the left side is ≥ 0, the right side is not.",
+          "It gives cos θ = −1/√2, an angle of 135°.",
+          {
+            "text": "∴ k = 4",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   }

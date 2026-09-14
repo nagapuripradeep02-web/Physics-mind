@@ -37,7 +37,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Sr. Maths-2B (Sri Publishers, Machilipatnam), book p.81 — VSAQ chapter 13 System of Circles, answer 119.1. Book p.81 is NOT a Super Scoring Page — the SSP list on book p.76 names pages 77,79,80,82,84,86,90,92,93, and 81 is absent from it, and the page's own header carries no 'SSP' banner (unlike p.80). Chapter star rank ★★, per the VSAQ section table (book p.76). Two printed appearance tags surround this answer — TS 16 beside the question, and a further TS 20 beside the r₁ = a line mid-solution — both are recorded here since no other question sits between them. ⚠ THE MARK SPLIT IS OURS — no [N Marks] margin tags are printed in this VSAQ chapter. Cut 1+1: one mark for finding both centres, radii and the distance between centres, one mark for applying the angle-between-circles formula and identifying the angle. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Neither the two-book union check nor a board back-test was possible for this subject: there is no TSBIE second-year Maths-2B BLM on hand, and answer-book/papers/ holds first-year physics only — the book's own five Guess Papers (pp.118-127) stand in as the back-test instead. Boundary walked both ways: book p.79 ends the Circle VSAQ chapter at answer 115, and book p.82 opens VSAQ chapter 14 Parabola. Paper position: Maths-2B Section A runs Q1-Q10 at 2 marks each (Q3 = System of Circles, per the QF sheet pp.3-4), answer all 10 (ABC_75). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, Sr. Maths-2B (Sri Publishers, Machilipatnam), book p.81 — VSAQ chapter 13 System of Circles, answer 119.1. Book p.81 is NOT a Super Scoring Page — the SSP list on book p.76 names pages 77,79,80,82,84,86,90,92,93, and 81 is absent from it, and the page's own header carries no 'SSP' banner (unlike p.80). Chapter star rank ★★, per the VSAQ section table (book p.76). Two printed appearance tags surround this answer — TS 16 beside the question, and a further TS 20 beside the r₁ = a line mid-solution — both are recorded here since no other question sits between them. ⚠ THE MARK SPLIT IS OURS — no [N Marks] margin tags are printed in this VSAQ chapter. Cut 1+1: one mark for finding both centres, radii and the distance between centres, one mark for applying the angle-between-circles formula and identifying the angle. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Neither the two-book union check nor a board back-test was possible for this subject: there is no TSBIE second-year Maths-2B BLM on hand, and answer-book/papers/ holds first-year physics only — the book's own five Guess Papers (pp.118-127) stand in as the back-test instead. Boundary walked both ways: book p.79 ends the Circle VSAQ chapter at answer 115, and book p.82 opens VSAQ chapter 14 Parabola. Paper position: Maths-2B Section A runs Q1-Q10 at 2 marks each (Q3 = System of Circles, per the QF sheet pp.3-4), answer all 10 (ABC_75). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "insider_note": "cos θ coming out negative is the whole point of this question — a negative cosine means an OBTUSE angle, and 3π/4 (135°) is exactly that, not a sign error to be chased away.",
   "answer": {
@@ -60,8 +60,15 @@
           },
           "Given circles are x² + y² − a² = 0 ...(1)",
           "x² + y² − ax − ay = 0 ...(2)",
+          "(1) has g = 0, f = 0 and c = −a².",
+          "(2) has 2g = −a and 2f = −a, so",
+          {
+            "text": "  g = −a/2, f = −a/2 and c = 0.",
+            "style": "indent"
+          },
           "Centre C₁ = (0, 0), C₂ = (a/2, a/2)",
           "d = C₁C₂ = √(a²/4 + a²/4) = a/√2",
+          "(a²/4 + a²/4 = a²/2, and √(a²/2) = a/√2)",
           "From (1), r₁ = a",
           "From (2), r₂ = √(a²/4 + a²/4) = a/√2"
         ],
@@ -80,9 +87,29 @@
         "mark_note": "Solution",
         "margin_note": "Second mark, for substituting into the angle formula and naming the angle.",
         "lines": [
+          {
+            "text": "The angle θ between two circles is given by",
+            "added": true
+          },
           "cos θ = (d² − r₁² − r₂²) / (2r₁r₂)",
+          {
+            "text": "Here d² = a²/2, r₁² = a² and r₂² = a²/2:",
+            "added": true
+          },
           "= (a²/2 − a² − a²/2) / (2 · a · a/√2)",
+          {
+            "text": "Top: a²/2 − a² − a²/2 = −a²",
+            "added": true
+          },
+          {
+            "text": "Bottom: 2 · a · a/√2 = 2a²/√2 = √2 a²",
+            "added": true
+          },
           "= −a² / (√2 a²) = −1/√2 = cos 135° ⇒ θ = 135°",
+          {
+            "text": "and 135° = 135 × π/180 = 3π/4:",
+            "added": true
+          },
           {
             "text": "∴ Angle between the circles is 3π/4",
             "style": "boxed"
@@ -93,7 +120,16 @@
           "Substituting r₁² as a instead of a², forgetting to square the radius before using it in the formula.",
           "Reporting the final answer only as cos θ = −1/√2 without converting it to the required angle 3π/4."
         ],
-        "memory_tip": "cos θ = −1/√2 is always 135° = 3π/4 — a value worth memorising directly, alongside cos θ = 1/√2 for 45° = π/4."
+        "memory_tip": "cos θ = −1/√2 is always 135° = 3π/4 — a value worth memorising directly, alongside cos θ = 1/√2 for 45° = π/4.",
+        "lines_compact": [
+          "cos θ = (d² − r₁² − r₂²) / (2r₁r₂)",
+          "= (a²/2 − a² − a²/2) / (2 · a · a/√2)",
+          "= −a² / (√2 a²) = −1/√2 = cos 135° ⇒ θ = 135°",
+          {
+            "text": "∴ Angle between the circles is 3π/4",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   }

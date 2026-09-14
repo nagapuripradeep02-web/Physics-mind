@@ -39,7 +39,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.74 — SAQ chapter 11 Differential Equations, answer 99, the second answer on the page. Not on an SSP page (this book's SAQ SSP pages for this chapter are only 72 and 73). Printed appearance tag: AP 20 — no TS tag. The mark split is OURS: this answer carries no printed margin marks. It is patterned on answer 95's printed 1+1+2 shape, since both are direct linear equations with P and Q already given as plain algebraic expressions, with no rewriting step needed first. Star rank: the Differential Equations SAQ chapter is ★★ on the SAQ chapter table (book p.49); every entry takes stars 2, a chapter-level rank. This question does not appear in the Bullet Model Paper's Q17 set (book p.110), so this card is chapter practice for the same linear-equation skill. The book's working was re-derived line by line: the final line multiplies the equation by 5 to write 5x²y = 2x⁵ + c, silently relabelling the earlier constant of integration 5c as c — a standard convenience since the constant is arbitrary either way, kept here as printed. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book's five Guess Papers (pp.118-127) are the only stand-in. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.74 — SAQ chapter 11 Differential Equations, answer 99, the second answer on the page. Not on an SSP page (this book's SAQ SSP pages for this chapter are only 72 and 73). Printed appearance tag: AP 20 — no TS tag. The mark split is OURS: this answer carries no printed margin marks. It is patterned on answer 95's printed 1+1+2 shape, since both are direct linear equations with P and Q already given as plain algebraic expressions, with no rewriting step needed first. Star rank: the Differential Equations SAQ chapter is ★★ on the SAQ chapter table (book p.49); every entry takes stars 2, a chapter-level rank. This question does not appear in the Bullet Model Paper's Q17 set (book p.110), so this card is chapter practice for the same linear-equation skill. The book's working was re-derived line by line: the final line multiplies the equation by 5 to write 5x²y = 2x⁵ + c, silently relabelling the earlier constant of integration 5c as c — a standard convenience since the constant is arbitrary either way, kept here as printed. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book's five Guess Papers (pp.118-127) are the only stand-in. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "insider_note": "The integrating factor here works out to a clean x², not a trig expression — a good check that the working is correct is that ∫(2/x)dx = 2 log x = log x² collapses to a power of x, not a fraction or a log left standing.",
   "answer": {
@@ -65,7 +65,8 @@
           "This is a linear D.E in y.",
           "It is in the form dy/dx + yP(x) = Q(x)",
           "where P(x) = 2/x and Q(x) = 2x²",
-          "∴ ∫P dx = ∫(2/x) dx = 2 log x = log x²"
+          "∴ ∫P dx = ∫(2/x) dx = 2 log x = log x²",
+          "(2 log x = log x² by the power rule for logs)"
         ],
         "why": "The equation is already in the exact standard form, so P and Q can be read off directly, and integrating P = 2/x gives 2 log x, which is more useful written as log x² for the next step.",
         "common_mistakes": [
@@ -79,15 +80,30 @@
         "label": "Find the integrating factor",
         "marks": 1,
         "mark_note": "I.F.",
-        "margin_note": "One mark. e^(log x²) = x² — the exponential and log cancel directly.",
+        "margin_note": "One mark. e to the power log x² = x² — the exponential and log cancel directly.",
         "memory_tip": "Whenever ∫P dx is a log, the I.F. simplifies to the plain expression inside that log.",
         "lines": [
-          "Now, I.F. = e^(∫P(x)dx) = e^(log x²) = x²"
+          {
+            "text": "e to the power log A is A:",
+            "added": true
+          },
+          {
+            "text": "\\text{Now, I.F. }\\ = e^{\\int P(x)dx} = e^{\\log x^{2}} = x^{2}",
+            "render": "katex",
+            "style": "normal"
+          }
         ],
         "why": "Writing ∫P dx as log x² in the previous step means the integrating factor simplifies immediately, since e raised to a log of something returns that something.",
         "common_mistakes": [
           "Writing the I.F. as 2 log x instead of exponentiating it to x².",
           "Computing I.F. as x instead of x², missing the square from log x²."
+        ],
+        "lines_compact": [
+          {
+            "text": "\\text{Now, I.F. }\\ = e^{\\int P(x)dx} = e^{\\log x^{2}} = x^{2}",
+            "render": "katex",
+            "style": "normal"
+          }
         ]
       },
       {
@@ -100,7 +116,15 @@
         "memory_tip": "∫2x⁴ dx = 2x⁵/5 — the standard power rule, one power up and divide by the new power.",
         "lines": [
           "∴ The solution is y·(I.F.) = ∫(I.F.)Q(x)dx + c",
+          {
+            "text": "(x²)(2x²) = 2x⁴ and ∫x⁴ dx = x⁵/5:",
+            "added": true
+          },
           "⇒ y(x²) = ∫(x²)(2x²)dx = 2∫x⁴dx = 2x⁵/5 + c",
+          {
+            "text": "Multiply by 5; 5c is again a constant, c:",
+            "added": true
+          },
           "∴ yx² = 2x⁵/5 + c ⇒ 5yx² = 2x⁵ + c",
           {
             "text": "5x²y = 2x⁵ + c",
@@ -110,7 +134,16 @@
         "why": "Multiplying Q by the integrating factor gives a plain power of x, so the right side integrates by the ordinary power rule; multiplying the whole equation by 5 at the end clears the fraction and matches the book's marked form, with the constant relabelled.",
         "common_mistakes": [
           "Losing the factor of 2 in front of x⁴ when setting up the integral.",
-          "Forgetting to also multiply the constant term by 5 when clearing the /5, and writing 5yx² = 2x⁵ + 5c as if 5c and c were different constants — they are not, since c is arbitrary."
+          "Multiplying only the right side by 5 and writing yx² = 2x⁵ + c, when the left side must also become 5yx²."
+        ],
+        "lines_compact": [
+          "∴ The solution is y·(I.F.) = ∫(I.F.)Q(x)dx + c",
+          "⇒ y(x²) = ∫(x²)(2x²)dx = 2∫x⁴dx = 2x⁵/5 + c",
+          "∴ yx² = 2x⁵/5 + c ⇒ 5yx² = 2x⁵ + c",
+          {
+            "text": "5x²y = 2x⁵ + c",
+            "style": "boxed"
+          }
         ]
       }
     ]

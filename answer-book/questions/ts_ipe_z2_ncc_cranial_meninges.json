@@ -1,0 +1,97 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_ncc_cranial_meninges",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Human Anatomy and Physiology-III (Zoology-II)"
+  },
+  "chapter": "Neural Control and Coordination",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Name the cranial meninges covering the brain of man.",
+  "appearances": [
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The three names",
+      "marks": 1
+    },
+    {
+      "label": "What each is like",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.51, VSAQ 82. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Neural Control and Coordination · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_names",
+        "kind": "text",
+        "label": "The three meninges",
+        "marks": 1,
+        "mark_note": "The three names",
+        "why": "Three layers of different thickness both cushion the brain and carry its blood supply.",
+        "common_mistakes": [
+          "Naming two only. There are three.",
+          "Getting the order wrong. Dura is outer, pia is inner."
+        ],
+        "memory_tip": "Outside in: dura, arachnoid, pia.",
+        "margin_note": "Name all three, then describe each in a few words.",
+        "lines": [
+          "The brain of man is covered and protected",
+          "by three cranial meninges:",
+          "1. Duramater  2. Arachnoid membrane",
+          "3. Piamater"
+        ]
+      },
+      {
+        "id": "s2_each",
+        "kind": "boxed_final",
+        "label": "What each is like",
+        "marks": 1,
+        "mark_note": "Description",
+        "why": "The outer layer is tough for protection and the inner one thin so it can follow every fold of the brain.",
+        "common_mistakes": [
+          "Describing the piamater as thick. It is thin and closely attached.",
+          "Leaving the descriptions out."
+        ],
+        "memory_tip": "Dura is tough, arachnoid is web-like, pia is thin and clinging.",
+        "margin_note": "A few words for each is enough.",
+        "lines": [
+          "Duramater is an outer thick double layered",
+          "membrane.",
+          "Arachnoid membrane is a thin net like",
+          "membrane.",
+          {
+            "text": "Piamater is thin and clings to the brain",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Naming the three earns one mark; a word about each earns the second. Two extra words per line is all it takes."
+}

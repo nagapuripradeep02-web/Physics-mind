@@ -1,0 +1,89 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_beg_vital_capacity",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Human Anatomy and Physiology-I (Zoology-II)"
+  },
+  "chapter": "Breathing and Exchange of Gases",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define vital capacity. What is its significance?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Significance",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.47, VSAQ 54. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Two marks: the definition and the use. Students often write VC = TV + ERV + IRV and stop before the significance.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Breathing and Exchange of Gases · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_def",
+        "kind": "text",
+        "label": "Definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "why": "Vital capacity measures the largest single breath a person can move, so it must be defined from a forced expiration and not a quiet one.",
+        "common_mistakes": [
+          "Defining it as the total air in the lungs. Residual volume is left out.",
+          "Leaving out the word forced. A quiet breath gives a smaller value."
+        ],
+        "memory_tip": "Blow all the way out, then take the biggest breath in.",
+        "margin_note": "Give the definition, then the sum. Both are marked.",
+        "lines": [
+          "Vital capacity is the maximum volume of air",
+          "a person can breathe in after a forced",
+          "expiration.",
+          "It includes tidal volume, expiratory reserve",
+          "volume and inspiratory reserve volume.",
+          {
+            "text": "VC = TV + ERV + IRV",
+            "style": "eq"
+          }
+        ]
+      },
+      {
+        "id": "s2_significance",
+        "kind": "boxed_final",
+        "label": "Significance",
+        "marks": 1,
+        "mark_note": "Significance",
+        "why": "A lung that is stiff, blocked or partly destroyed cannot move as much air, so the figure falls before the patient feels much.",
+        "common_mistakes": [
+          "Writing that it measures oxygen in the blood. It measures a volume of air.",
+          "Giving no use at all. The second mark is for the use."
+        ],
+        "memory_tip": "A small vital capacity points to a lung disease.",
+        "margin_note": "One line is enough for the significance.",
+        "lines": [
+          {
+            "text": "It helps in diagnosing lung diseases",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  }
+}

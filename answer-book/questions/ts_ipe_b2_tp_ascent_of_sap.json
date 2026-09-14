@@ -51,9 +51,9 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.21, printed question 9. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.21, printed question 9. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. Revised 2026-09-05 after the examiner audit: the insider note's mark arithmetic was corrected against this card's own mark split, the s2 heading line no longer counts transpiration pull as a physical property of water, and the s3 memory tip no longer denies that root pressure pushes from below."
   },
-  "insider_note": "Three named physical properties carry three of the four marks. Name all three even if you explain only briefly — a missing name cannot be recovered by a longer sentence about the others.",
+  "insider_note": "Three names carry two of the four marks: cohesion and adhesion share one mark, transpiration pull has its own. Name all three even if you explain only briefly — a missing name cannot be recovered by a longer sentence about the others.",
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",
@@ -88,8 +88,8 @@
         "mark_note": "Cohesion, adhesion",
         "margin_note": "Both names, both meanings, one line each. Do not merge them into one sentence.",
         "lines": [
-          "The ascent depends on three physical",
-          "properties of water.",
+          "The ascent depends on two physical properties",
+          "of water and one driving force.",
           "1. Cohesion: the mutual attraction between",
           "water molecules. It holds the water column",
           "together as one unbroken thread.",
@@ -126,7 +126,7 @@
           "Calling it a push from the roots. Root pressure is small; the main force is a PULL from the top.",
           "Leaving out evaporation. The pull begins when water leaves the leaf."
         ],
-        "memory_tip": "The leaf pulls, the column follows; nothing pushes from below."
+        "memory_tip": "Evaporation at the leaf pulls the column up; root pressure is too small to lift water in a tall tree."
       },
       {
         "id": "s4_tall",

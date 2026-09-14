@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.39, chapter 5 MATRICES, Short Answer question 4. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 shape gives one mark to each of the four moves: the row subtractions, the two common factors, the expansion, and the last factor. Paper position: Maths-1A Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern; Matrices carries a Section B slot and also appears in Section C. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.39, chapter 5 MATRICES, Short Answer question 4. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 shape gives one mark to each of the four moves: the row subtractions, the two common factors, the expansion, and the last factor. Paper position: Maths-1A Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern; Matrices carries a Section B slot and also appears in Section C. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this one — name each row operation in order.",
   "answer": {
@@ -67,6 +67,8 @@
             "style": "eq"
           },
           "Apply R₁ → R₁ − R₂ and R₂ → R₂ − R₃:",
+          "R₁ − R₂: (1 − 1, a − b, a² − b²)",
+          "R₂ − R₃: (1 − 1, b − c, b² − c²)",
           {
             "text": "\\Delta = \\begin{vmatrix} 0 & a-b & a^2-b^2 \\\\ 0 & b-c & b^2-c^2 \\\\ 1 & c & c^2 \\end{vmatrix}",
             "render": "katex",
@@ -157,6 +159,10 @@
           "Expand along C₁. Only the 1 in R₃ gives a",
           "term, with sign (−1)³⁺¹ = +1:",
           {
+            "text": "(its minor deletes row 3 and column 1)",
+            "added": true
+          },
+          {
             "text": "\\Delta = (a-b)(b-c)\\begin{vmatrix} 1 & a+b \\\\ 1 & b+c \\end{vmatrix}",
             "render": "katex",
             "style": "eq"
@@ -187,6 +193,15 @@
         "common_mistakes": [
           "Expanding along the first row, which brings back all three terms.",
           "Using a minus sign for the (3, 1) position, where the sign is plus."
+        ],
+        "lines_compact": [
+          "Expand along C₁. Only the 1 in R₃ gives a",
+          "term, with sign (−1)³⁺¹ = +1:",
+          {
+            "text": "\\Delta = (a-b)(b-c)\\begin{vmatrix} 1 & a+b \\\\ 1 & b+c \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -199,6 +214,11 @@
         "memory_tip": "The 2×2 determinant gives (b+c) − (a+b) = c − a — the third bracket.",
         "lines": [
           "The 2×2 determinant is",
+          {
+            "text": "  (1)(b+c) − (a+b)(1)",
+            "style": "indent",
+            "added": true
+          },
           "(b+c) − (a+b) = c − a.",
           "Multiplying the three factors:",
           {
@@ -231,6 +251,15 @@
         "common_mistakes": [
           "Writing a − c instead of c − a, which flips the sign of the whole answer.",
           "Leaving the answer as (a−b)(b−c) times a 2×2 determinant."
+        ],
+        "lines_compact": [
+          "The 2×2 determinant is",
+          "(b+c) − (a+b) = c − a.",
+          "Multiplying the three factors:",
+          {
+            "text": "∴ Δ = (a−b)(b−c)(c−a)",
+            "style": "boxed"
+          }
         ]
       }
     ]

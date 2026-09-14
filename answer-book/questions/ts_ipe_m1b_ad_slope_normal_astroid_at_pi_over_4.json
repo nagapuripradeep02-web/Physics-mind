@@ -34,7 +34,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.224, chapter 10 APPLICATIONS OF DERIVATIVES, the TANGENTS AND NORMALS sub-section, Short Answer question 19. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4M over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.224, chapter 10 APPLICATIONS OF DERIVATIVES, the TANGENTS AND NORMALS sub-section, Short Answer question 19. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4M over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say how you get dy/dx from a curve given through θ, what it simplifies to, and what you do to it at θ = π/4.",
   "answer": {
@@ -49,7 +49,7 @@
         "label": "Differentiate x and y with respect to θ",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. Both are cubes of a trigonometric function, so the chain rule applies twice over: cube first, then the inner function. The −sin θ inside dx/dθ is what makes the final slope negative.",
+        "margin_note": "First mark. Both are cubes of a trigonometric function, so the chain rule is used once for each of x and y: cube first, then the inner function. The −sin θ in dx/dθ makes the tangent slope −tan θ, which is negative at θ = π/4.",
         "lines": [
           {
             "text": "Sol:",
@@ -57,7 +57,9 @@
           },
           "Given:   x = a cos³θ,   y = a sin³θ",
           "Differentiate each with respect to θ, using the chain rule:",
+          "(chain rule: d/dθ of cos³θ is 3cos²θ · (−sin θ))",
           "dx/dθ = a · 3cos²θ · (−sin θ) = −3a cos²θ sin θ",
+          "(chain rule: d/dθ of sin³θ is 3sin²θ · cos θ)",
           "dy/dθ = a · 3sin²θ · (cos θ) = 3a sin²θ cos θ"
         ],
         "recall": {
@@ -97,12 +99,20 @@
         "label": "Slope of the tangent",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Second mark. 3a cancels, one sin θ and one cos θ cancel, and the minus sign stays. The result −tan θ holds at every point of the curve, so it is worth writing before substituting.",
+        "margin_note": "Second mark. 3a cancels, one sin θ and one cos θ cancel, and the minus sign stays. The result −tan θ holds wherever sin θ cos θ ≠ 0, so it is worth writing before substituting.",
         "lines": [
           "For a curve given through θ:   dy/dx = (dy/dθ) / (dx/dθ)",
+          {
+            "text": "(put dy/dθ and dx/dθ from step 1)",
+            "added": true
+          },
           "dy/dx = 3a sin²θ cos θ / (−3a cos²θ sin θ)",
           "Cancel 3a, one sin θ and one cos θ:",
           "= −sin θ / cos θ",
+          {
+            "text": "(sin θ/cos θ = tan θ)",
+            "added": true
+          },
           "∴ dy/dx = −tan θ"
         ],
         "recall": {
@@ -134,7 +144,14 @@
           "Cancelling both powers and writing dy/dx = −1.",
           "Writing dy/dx = −cot θ, cancelling the wrong function from each."
         ],
-        "memory_tip": "sin²/cos² divided the right way leaves sin/cos, which is tan. The minus comes from dx/dθ and stays."
+        "memory_tip": "sin²θ cos θ divided by cos²θ sin θ leaves sin θ/cos θ, which is tan θ. The minus comes from dx/dθ and stays.",
+        "lines_compact": [
+          "For a curve given through θ:   dy/dx = (dy/dθ) / (dx/dθ)",
+          "dy/dx = 3a sin²θ cos θ / (−3a cos²θ sin θ)",
+          "Cancel 3a, one sin θ and one cos θ:",
+          "= −sin θ / cos θ",
+          "∴ dy/dx = −tan θ"
+        ]
       },
       {
         "id": "s3_normal_slope",
@@ -144,10 +161,23 @@
         "mark_note": "Answer",
         "margin_note": "The last two marks: one for the tangent slope at θ = π/4, one for turning it into the normal's. The question asks only for a SLOPE, so no line equation is needed.",
         "lines": [
+          {
+            "text": "(put θ = π/4 in dy/dx = −tan θ)",
+            "added": true
+          },
           "At θ = π/4:   tan(π/4) = 1, so",
           "slope of the tangent  m = −tan(π/4) = −1",
-          "The normal is perpendicular to the tangent, so its slope is −1/m.",
+          "The normal is perpendicular to the tangent,",
+          "so its slope is −1/m.",
+          {
+            "text": "(m = −1)",
+            "added": true
+          },
           "Slope of the normal = −1/(−1)",
+          {
+            "text": "(−1 divided by −1 is 1)",
+            "added": true
+          },
           {
             "text": "∴ slope of the normal = 1",
             "style": "boxed"
@@ -182,7 +212,18 @@
           "Working in degrees and using tan(π/4) as tan of about 0.785 degrees.",
           "Writing a full line equation when only the slope is asked for."
         ],
-        "memory_tip": "π/4 is 45°, where tan is 1. A slope of −1 and a slope of +1 are always perpendicular."
+        "memory_tip": "π/4 is 45°, where tan is 1. A slope of −1 and a slope of +1 are always perpendicular.",
+        "lines_compact": [
+          "At θ = π/4:   tan(π/4) = 1, so",
+          "slope of the tangent  m = −tan(π/4) = −1",
+          "The normal is perpendicular to the tangent,",
+          "so its slope is −1/m.",
+          "Slope of the normal = −1/(−1)",
+          {
+            "text": "∴ slope of the normal = 1",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

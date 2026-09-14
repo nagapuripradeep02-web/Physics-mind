@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.70 — SAQ chapter 11 Trigonometric Equations, answer 72.1. Printed appearances: none — this answer carries no year tag.  ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter (its pages are set two questions to a page in two columns, which takes the margin those tags would occupy). It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used across this unit are the book's own. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q15 is the Trigonometric Equations slot. NOTE: Trigonometric Equations is an SAQ-ONLY unit — the paper gives it no Section-A and no Section-C slot, and this book has no Trigonometric Equations LAQ chapter (its LAQ chapters are 1-6) and no VSAQ chapter (its VSAQ chapters are 14-19). It is the mirror of Unit 2, which is LAQ-only. Verified by walking to p.72, where SAQ chapter 12 Inverse Trig Functions begins."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.70 — SAQ chapter 11 Trigonometric Equations, answer 72.1. Printed appearances: none — this answer carries no year tag.  ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter (its pages are set two questions to a page in two columns, which takes the margin those tags would occupy). It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used across this unit are the book's own. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q15 is the Trigonometric Equations slot. NOTE: Trigonometric Equations is an SAQ-ONLY unit — the paper gives it no Section-A and no Section-C slot, and this book has no Trigonometric Equations LAQ chapter (its LAQ chapters are 1-6) and no VSAQ chapter (its VSAQ chapters are 14-19). It is the mirror of Unit 2, which is LAQ-only. Verified by walking to p.72, where SAQ chapter 12 Inverse Trig Functions begins. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — name each move in order, and say which general solution formula you would use.",
   "answer": {
@@ -61,8 +61,11 @@
             "style": "heading"
           },
           "Given cos2θ + cos8θ = cos5θ",
+          "(take every term to one side)",
           "⇒ (cos2θ + cos8θ) − cos5θ = 0",
+          "(cos x + cos y = 2 cos((x+y)/2) cos((x−y)/2))",
           "⇒ 2cos((2θ+8θ)/2) cos((2θ−8θ)/2) − cos5θ = 0",
+          "((2θ + 8θ)/2 = 5θ and (2θ − 8θ)/2 = −3θ)",
           "⇒ 2cos5θ cos(−3θ) − cos5θ = 0"
         ],
         "recall": {
@@ -87,7 +90,7 @@
             "pair"
           ]
         },
-        "why": "Pairing the RIGHT two terms is the whole skill: 2θ and 8θ average to 5θ, so a cos5θ appears and the equation gains a common factor. Any other pairing gives nothing.",
+        "why": "Pairing the right two terms is the key step: 2θ and 8θ average to 5θ, so a cos5θ appears and the equation gains a common factor. The other pairings give products with no common factor.",
         "common_mistakes": [
           "Pairing cos8θ with cos5θ instead.",
           "Leaving the cos5θ on the right-hand side."
@@ -104,7 +107,15 @@
         "lines": [
           "⇒ 2cos5θ cos3θ − cos5θ = 0",
           "  [∵ cos(−θ) = cosθ]",
+          {
+            "text": "(take out the common factor cos5θ)",
+            "added": true
+          },
           "⇒ cos5θ (2cos3θ − 1) = 0",
+          {
+            "text": "(a product is 0 only when one factor is 0)",
+            "added": true
+          },
           "⇒ cos5θ = 0  (or)  2cos3θ − 1 = 0"
         ],
         "recall": {
@@ -133,6 +144,12 @@
         "common_mistakes": [
           "Writing cos(−3θ) = −cos3θ.",
           "Cancelling cos5θ instead of factorising, which loses a whole family of solutions."
+        ],
+        "lines_compact": [
+          "⇒ 2cos5θ cos3θ − cos5θ = 0",
+          "  [∵ cos(−θ) = cosθ]",
+          "⇒ cos5θ (2cos3θ − 1) = 0",
+          "⇒ cos5θ = 0  (or)  2cos3θ − 1 = 0"
         ]
       },
       {
@@ -145,7 +162,15 @@
         "memory_tip": "The standard form for cos θ = 0 is (2n + 1)π/2. The equation is in 5θ, so divide every part by 5 at the end.",
         "lines": [
           "(i) If cos5θ = 0 then",
+          {
+            "text": "(cos φ = 0 exactly when φ is an odd multiple of π/2)",
+            "added": true
+          },
           "  5θ = (2n+1) π/2,  n ∈ Z",
+          {
+            "text": "(divide both sides by 5)",
+            "added": true
+          },
           {
             "text": "  θ = (2n+1) π/10,  n ∈ Z",
             "style": "boxed"
@@ -177,6 +202,14 @@
         "common_mistakes": [
           "Writing only 5θ = π/2, so a single angle is given instead of the whole family.",
           "Forgetting to divide the whole right side by 5."
+        ],
+        "lines_compact": [
+          "(i) If cos5θ = 0 then",
+          "  5θ = (2n+1) π/2,  n ∈ Z",
+          {
+            "text": "  θ = (2n+1) π/10,  n ∈ Z",
+            "style": "boxed"
+          }
         ]
       },
       {
@@ -188,9 +221,21 @@
         "margin_note": "Last mark. cos3θ = 1/2 = cos(π/3), so the cosine general solution applies — then divide through by 3.",
         "memory_tip": "cos 3θ = 1/2 = cos(π/3), so θ = 2nπ ± α. Divide EVERY term by 3, the 2nπ included.",
         "lines": [
+          {
+            "text": "(add 1 to both sides and divide by 2)",
+            "added": true
+          },
           "(ii) If 2cos3θ − 1 = 0 then cos3θ = 1/2 = cos(π/3)",
           "  Here α = π/3, and for cosθ = cosα, θ = 2nπ ± α",
+          {
+            "text": "(use it with 3θ in place of θ)",
+            "added": true
+          },
           "  ⇒ 3θ = 2nπ ± π/3",
+          {
+            "text": "(divide both terms on the right by 3)",
+            "added": true
+          },
           {
             "text": "  θ = 2nπ/3 ± π/9,  n ∈ Z",
             "style": "boxed"
@@ -218,13 +263,22 @@
             "divide by three"
           ]
         },
-        "why": "Both terms on the right must be divided by 3, not just one. Dividing only the α is the commonest slip in this whole chapter.",
+        "why": "Both terms on the right must be divided by 3, not just one. Dividing only the α is a common slip.",
         "common_mistakes": [
           "Dividing only the π/3 and leaving 2nπ.",
           "Dropping the ± sign."
+        ],
+        "lines_compact": [
+          "(ii) If 2cos3θ − 1 = 0 then cos3θ = 1/2 = cos(π/3)",
+          "  Here α = π/3, and for cosθ = cosα, θ = 2nπ ± α",
+          "  ⇒ 3θ = 2nπ ± π/3",
+          {
+            "text": "  θ = 2nπ/3 ± π/9,  n ∈ Z",
+            "style": "boxed"
+          }
         ]
       }
     ]
   },
-  "insider_note": "Pair the two terms on the SAME side, cos2θ + cos8θ, so 2cos5θcos3θ appears and cos5θ becomes a common factor. cos(−3θ) = cos3θ, so the minus sign inside does no harm."
+  "insider_note": "Pair the two terms on the SAME side, cos2θ + cos8θ, so 2cos5θcos3θ appears and cos5θ becomes a common factor. cos(−3θ) = cos3θ, so the minus sign inside the bracket does not change the value."
 }

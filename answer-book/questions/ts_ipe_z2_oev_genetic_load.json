@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_oev_genetic_load",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Organic Evolution (Zoology-II)"
+  },
+  "chapter": "Organic Evolution",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is meant by genetic load? Give an example.",
+  "appearances": [
+    {
+      "year": 2020,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Definition and example",
+      "marks": 1
+    },
+    {
+      "label": "Why the allele survives",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.57, VSAQ 122. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Organic Evolution · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_def",
+        "kind": "text",
+        "label": "Definition and example",
+        "marks": 1,
+        "mark_note": "Definition",
+        "why": "Every population carries some harmful alleles, and together they are a burden it cannot get rid of.",
+        "common_mistakes": [
+          "Defining genetic load as the number of genes. It is the harmful ones.",
+          "Giving no example."
+        ],
+        "memory_tip": "The load is the burden of harmful genes a population carries.",
+        "margin_note": "Definition and example in two lines.",
+        "lines": [
+          "Genetic load is the existence of",
+          "deleterious genes within a population.",
+          "Example: sickle cell anaemia."
+        ]
+      },
+      {
+        "id": "s2_why",
+        "kind": "boxed_final",
+        "label": "Why the allele survives",
+        "marks": 1,
+        "mark_note": "Why it survives",
+        "why": "A carrier is protected against malaria, so in malarial regions the harmful allele actually helps its carriers survive.",
+        "common_mistakes": [
+          "Saying carriers are as badly affected as homozygotes. They are not.",
+          "Leaving out the resistance to malaria."
+        ],
+        "memory_tip": "Two copies kill; one copy protects against malaria.",
+        "margin_note": "Both conditions must be contrasted.",
+        "lines": [
+          "People homozygous for the gene die early",
+          "from anaemia.",
+          "Heterozygous people live longer",
+          {
+            "text": "and show resistance to malaria",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Sickle cell anaemia is the example because the heterozygote resists malaria — that is why the harmful allele is not wiped out, and it is the second mark."
+}

@@ -59,7 +59,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.17, printed question 5. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.17, printed question 5. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. Revised 2026-09-05 after the examiner audit: the s1_five mistakes line now names the selection of RECOMBINANTS, because parents are correctly selected in step 2, before hybridisation."
   },
   "insider_note": "Five steps, and the marks follow them. List all five first — an examiner who can see the five headings will find every mark, and the list alone is worth one.",
   "answer": {
@@ -89,7 +89,7 @@
         "why": "The five steps run in one order — gather, choose, cross, select, release — and every later step depends on the one before it.",
         "common_mistakes": [
           "Naming three steps. There are FIVE, and each is a heading in the answer.",
-          "Putting selection before hybridisation. You must cross before you can select recombinants."
+          "Putting the selection of recombinants before hybridisation. Parents are selected in step 2, but recombinants can only be selected after the cross."
         ],
         "memory_tip": "Gather, choose, cross, select, release."
       },

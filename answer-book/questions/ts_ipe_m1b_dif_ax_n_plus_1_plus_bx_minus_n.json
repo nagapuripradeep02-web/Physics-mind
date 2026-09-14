@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.203, chapter 9 DIFFERENTIATION, Short Answer question 14. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8 under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.203, chapter 9 DIFFERENTIATION, Short Answer question 14. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8 under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say which rule you use on each term and what you do after the second derivative.",
   "answer": {
@@ -60,7 +60,9 @@
             "style": "heading"
           },
           "y = axⁿ⁺¹ + bx⁻ⁿ",
-          "Differentiate each power by bringing the index down and reducing it by one:",
+          "Differentiate each power by bringing the index down",
+          "and reducing it by one:",
+          "(d/dx(xⁿ⁺¹) = (n + 1)xⁿ and d/dx(x⁻ⁿ) = −n x⁻ⁿ⁻¹)",
           "y′ = a(n + 1)xⁿ − bn x⁻ⁿ⁻¹"
         ],
         "recall": {
@@ -98,9 +100,22 @@
         "label": "Differentiate again",
         "marks": 1,
         "mark_note": "Solution",
-        "margin_note": "Second mark. Both terms now carry the same factor n(n + 1) — that shared factor is the whole reason the result works.",
+        "margin_note": "Second mark. Both terms now carry the same factor n(n + 1) — that common factor is what gives the result.",
         "lines": [
+          {
+            "text": "(d/dx(xⁿ) = n xⁿ⁻¹ and d/dx(x⁻ⁿ⁻¹)",
+            "added": true
+          },
+          {
+            "text": "  = (−n − 1)x⁻ⁿ⁻²)",
+            "style": "indent",
+            "added": true
+          },
           "y″ = a(n + 1)n xⁿ⁻¹ − bn(−n − 1)x⁻ⁿ⁻²",
+          {
+            "text": "(−bn(−n − 1) = +bn(n + 1), and a(n + 1)n = an(n + 1))",
+            "added": true
+          },
           "y″ = an(n + 1)xⁿ⁻¹ + bn(n + 1)x⁻ⁿ⁻²"
         ],
         "recall": {
@@ -130,7 +145,11 @@
           "Keeping the second term negative by multiplying only one of the two minus signs.",
           "Writing the index of the second term as −n − 1 instead of −n − 2."
         ],
-        "memory_tip": "Two negatives multiply to a positive, which is why both terms end up with the same +n(n + 1)."
+        "memory_tip": "Two negatives multiply to a positive, which is why both terms end up with the same +n(n + 1).",
+        "lines_compact": [
+          "y″ = a(n + 1)n xⁿ⁻¹ − bn(−n − 1)x⁻ⁿ⁻²",
+          "y″ = an(n + 1)xⁿ⁻¹ + bn(n + 1)x⁻ⁿ⁻²"
+        ]
       },
       {
         "id": "s3_multiply_x_squared",
@@ -140,7 +159,20 @@
         "mark_note": "Solution",
         "margin_note": "Third mark. Adding 2 to each index is the move the question is built on: n − 1 becomes n + 1 and −n − 2 becomes −n, the two indices y itself carries.",
         "lines": [
+          {
+            "text": "(multiply both sides of y″ by x²)",
+            "added": true
+          },
           "x²y″ = x²[an(n + 1)xⁿ⁻¹ + bn(n + 1)x⁻ⁿ⁻²]",
+          {
+            "text": "(add the powers: x² · xⁿ⁻¹ = xⁿ⁺¹",
+            "added": true
+          },
+          {
+            "text": "  and x² · x⁻ⁿ⁻² = x⁻ⁿ)",
+            "style": "indent",
+            "added": true
+          },
           "= an(n + 1)xⁿ⁺¹ + bn(n + 1)x⁻ⁿ"
         ],
         "recall": {
@@ -170,7 +202,11 @@
           "Multiplying the coefficients by 2 instead of adding 2 to the indices.",
           "Applying x² to only the first term."
         ],
-        "memory_tip": "Multiplying powers of x adds the indices; it never multiplies them."
+        "memory_tip": "Multiplying powers of x adds the indices; it never multiplies them.",
+        "lines_compact": [
+          "x²y″ = x²[an(n + 1)xⁿ⁻¹ + bn(n + 1)x⁻ⁿ⁻²]",
+          "= an(n + 1)xⁿ⁺¹ + bn(n + 1)x⁻ⁿ"
+        ]
       },
       {
         "id": "s4_factorise",
@@ -180,6 +216,10 @@
         "mark_note": "Answer",
         "margin_note": "Last mark. The bracket left behind must be y written out exactly as the question gives it — say so in words, or the proof is not finished.",
         "lines": [
+          {
+            "text": "(take out the common factor n(n + 1))",
+            "added": true
+          },
           "x²y″ = n(n + 1)[axⁿ⁺¹ + bx⁻ⁿ]",
           "The bracket is y itself, so",
           {
@@ -214,7 +254,15 @@
           "Stopping at the expanded form without saying the bracket is y.",
           "Taking out n(n + 1) from one term only."
         ],
-        "memory_tip": "Check with n = 1 and b = 0: y = ax², y″ = 2a, x²y″ = 2ax² = 1·2·y."
+        "memory_tip": "Check with n = 1 and b = 0: y = ax², y″ = 2a, x²y″ = 2ax² = 1·2·y.",
+        "lines_compact": [
+          "x²y″ = n(n + 1)[axⁿ⁺¹ + bx⁻ⁿ]",
+          "The bracket is y itself, so",
+          {
+            "text": "∴ x²y″ = n(n + 1)y",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

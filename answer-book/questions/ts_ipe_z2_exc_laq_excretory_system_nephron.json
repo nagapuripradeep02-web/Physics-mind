@@ -1,0 +1,979 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_exc_laq_excretory_system_nephron",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "Human Anatomy and Physiology-II (Zoology-II)"
+  },
+  "chapter": "Excretory Products and their Elimination",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Describe the excretory system of man, giving the structure of a nephron.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The four parts and the kidneys",
+      "marks": 1
+    },
+    {
+      "label": "Inside the kidney",
+      "marks": 1
+    },
+    {
+      "label": "Ureters, bladder and urethra",
+      "marks": 1
+    },
+    {
+      "label": "Diagram of the urinary system",
+      "marks": 1
+    },
+    {
+      "label": "Bowman's capsule",
+      "marks": 1
+    },
+    {
+      "label": "PCT and loop of Henle",
+      "marks": 1
+    },
+    {
+      "label": "DCT and collecting duct",
+      "marks": 1
+    },
+    {
+      "label": "Diagram of the nephron",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book pp.14-15, LAQ 3. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Figure revision (figure audit, 2026-09-05): the kidneys are redrawn as beans with a hilum notch that the renal vessels enter, the vena cava and aorta labels moved to the clear band above the vessels so their leaders cross nothing, the phase caption no longer names the wrong side, and on the nephron figure the stacked PCT and DCT labels were re-spaced and the cortex and medulla regions labelled. Text revision (examiner audit, 2026-09-05): the insider note no longer says how many marks a student loses for drawing only the kidney, and names the two diagrams instead. Figure revision (figure audit, 2026-09-05, second pass): each kidney now carries both of its renal vessels, so a renal artery from the aorta and a renal vein to the vena cava reach every hilum; the added artery on the left kidney crosses behind the vena cava and the added vein on the right kidney crosses in front of the aorta, drawn at different heights so the two crossings stay apart, and the single 'Renal vein' and 'Renal artery' labels each point at the clearer instance rather than adding two more label rows to a full canvas."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Excretory Products and their Elimination · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_parts",
+        "kind": "text",
+        "label": "The four parts",
+        "marks": 1,
+        "mark_note": "Parts and kidneys",
+        "why": "Naming the four parts first gives the answer its shape, because everything after it is a description of one of them.",
+        "common_mistakes": [
+          "Naming the skin or lungs. The question asks for the excretory system proper.",
+          "Leaving out the hilum. It is the notch the vessels enter by."
+        ],
+        "memory_tip": "Kidneys, ureters, bladder, urethra — top to bottom.",
+        "margin_note": "Four parts, then the kidney from the outside.",
+        "lines": [
+          "The human excretory system has 4 parts:",
+          "1. A pair of kidneys",
+          "2. A pair of ureters",
+          "3. Urinary bladder",
+          "4. Urethra",
+          {
+            "text": "1. Kidneys",
+            "style": "heading"
+          },
+          "They are reddish brown, bean shaped,",
+          "retroperitoneal organs.",
+          "They lie on either side of the vertebral",
+          "column at the level of the anterior lumbar",
+          "vertebrae.",
+          "The outer surface is convex and the inner",
+          "surface concave with a deep notch, the",
+          "hilum."
+        ]
+      },
+      {
+        "id": "s2_kidney_internal",
+        "kind": "text",
+        "label": "Inside the kidney",
+        "marks": 1,
+        "mark_note": "Cortex and medulla",
+        "why": "The two regions are not just layers: the filtering parts of the nephron sit in the cortex and the concentrating parts in the medulla.",
+        "common_mistakes": [
+          "Swapping the regions. The cortex is outer, the medulla inner.",
+          "Leaving out the columns of Bertini. They are a marked name."
+        ],
+        "memory_tip": "Cortex outside, medulla inside, pyramids in the medulla.",
+        "margin_note": "Four points cover this mark.",
+        "lines": [
+          "Internally the kidney has two regions, the",
+          "outer cortex and the inner medulla.",
+          "The cortex holds the malpighian capsules",
+          "and the proximal and distal convoluted",
+          "tubules of the nephrons.",
+          "The medulla is divided into cone shaped",
+          "masses called renal pyramids.",
+          "Renal columns, the columns of Bertini,",
+          "separate the pyramids. They are",
+          "projections of cortex into the medulla."
+        ]
+      },
+      {
+        "id": "s3_ureter_bladder",
+        "kind": "text",
+        "label": "Ureters, bladder, urethra",
+        "marks": 1,
+        "mark_note": "The other three parts",
+        "why": "Once urine is made it only has to be carried, stored and released, which is what these three parts do in turn.",
+        "common_mistakes": [
+          "Confusing ureter and urethra. Ureters carry urine to the bladder; the urethra carries it out.",
+          "Leaving out the two sphincters of the urethra."
+        ],
+        "memory_tip": "Ureter goes to the bladder, urethra goes to the outside.",
+        "margin_note": "One or two lines each. Do not spend long here.",
+        "lines": [
+          {
+            "text": "2. Ureters",
+            "style": "heading"
+          },
+          "Two slender whitish tubes emerge from the",
+          "pelvis of the kidneys, run downwards and",
+          "open into the urinary bladder.",
+          {
+            "text": "3. Urinary bladder",
+            "style": "heading"
+          },
+          "It is a median storage sac in the lower",
+          "abdominal cavity.",
+          {
+            "text": "4. Urethra",
+            "style": "heading"
+          },
+          "The neck of the bladder leads into the",
+          "urethra, which has an internal and an",
+          "external urethral sphincter."
+        ]
+      },
+      {
+        "id": "s4_urinary_figure",
+        "kind": "diagram",
+        "label": "Diagram — urinary system",
+        "marks": 1,
+        "mark_note": "Diagram of the system",
+        "why": "The diagram shows at a glance what the description cannot: that both kidneys drain into one bladder through separate ureters.",
+        "common_mistakes": [
+          "Drawing one kidney only. Both are needed, with both ureters.",
+          "Leaving off the renal artery and vein."
+        ],
+        "memory_tip": "Two kidneys, two ureters, one bladder, one urethra.",
+        "margin_note": "Show the sectioned kidney on one side so cortex and medulla can be labelled.",
+        "figure": {
+          "id": "exc_urinary_system",
+          "width": 520,
+          "height": 480,
+          "elements": [
+            {
+              "type": "pause",
+              "id": "p1",
+              "caption": "Step 1 — the two kidneys"
+            },
+            {
+              "type": "stroke",
+              "id": "kidney_l",
+              "d": "M 240 88 C 208 86 192 112 192 144 C 192 176 208 202 240 200 C 244 178 242 164 234 154 C 228 148 228 140 234 132 C 242 122 244 108 240 88",
+              "ms": 4090
+            },
+            {
+              "type": "stroke",
+              "id": "kidney_r",
+              "d": "M 344 88 C 376 86 392 112 392 144 C 392 176 376 202 344 200 C 340 178 342 164 350 154 C 356 148 356 140 350 132 C 342 122 340 108 344 88",
+              "ms": 4090
+            },
+            {
+              "type": "stroke",
+              "id": "adrenal_l",
+              "d": "M 200 100 C 202 78 224 68 240 88 C 226 78 208 84 200 100",
+              "ms": 1490
+            },
+            {
+              "type": "stroke",
+              "id": "adrenal_r",
+              "d": "M 384 100 C 382 78 360 68 344 88 C 358 78 376 84 384 100",
+              "ms": 1490
+            },
+            {
+              "type": "pause",
+              "id": "p2",
+              "caption": "Step 2 — the aorta and the vena cava"
+            },
+            {
+              "type": "stroke",
+              "id": "vena_cava",
+              "d": "M 262 24 L 262 286 M 276 24 L 276 286",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "aorta",
+              "d": "M 292 24 L 292 286 M 306 24 L 306 286",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "renal_vein",
+              "d": "M 262 130 L 226 132 M 262 144 L 226 146",
+              "ms": 1030
+            },
+            {
+              "type": "stroke",
+              "id": "renal_artery_l",
+              "d": "M 292 174 L 234 154 M 292 186 L 239 166",
+              "ms": 1690
+            },
+            {
+              "type": "stroke",
+              "id": "renal_artery",
+              "d": "M 306 136 L 358 136 M 306 150 L 358 150",
+              "ms": 1490
+            },
+            {
+              "type": "stroke",
+              "id": "renal_vein_r",
+              "d": "M 276 112 L 346 116 M 276 124 L 348 128",
+              "ms": 2030
+            },
+            {
+              "type": "pause",
+              "id": "p3",
+              "caption": "Step 3 — inside one kidney"
+            },
+            {
+              "type": "stroke",
+              "id": "cortex_line",
+              "d": "M 348 100 C 372 104 382 122 382 144 C 382 166 372 184 348 188",
+              "ms": 1750
+            },
+            {
+              "type": "stroke",
+              "id": "pyramid_1",
+              "d": "M 380 120 L 358 132 L 380 134",
+              "ms": 670
+            },
+            {
+              "type": "stroke",
+              "id": "pyramid_2",
+              "d": "M 382 144 L 356 144 L 382 152",
+              "ms": 760
+            },
+            {
+              "type": "stroke",
+              "id": "pyramid_3",
+              "d": "M 380 168 L 358 154 L 380 158",
+              "ms": 690
+            },
+            {
+              "type": "stroke",
+              "id": "pelvis",
+              "d": "M 366 124 C 356 132 356 156 366 164 L 358 158 L 358 130",
+              "ms": 1170
+            },
+            {
+              "type": "pause",
+              "id": "p4",
+              "caption": "Step 4 — the ureters and the urinary bladder"
+            },
+            {
+              "type": "stroke",
+              "id": "ureter_l",
+              "d": "M 232 178 C 236 244 240 314 244 368 M 242 174 C 246 244 252 314 256 368",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "ureter_r",
+              "d": "M 352 178 C 348 244 334 314 328 368 M 342 174 C 338 244 322 314 316 368",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "bladder",
+              "d": "M 244 370 C 230 388 230 416 246 430 C 264 446 296 444 310 426 C 322 410 320 384 304 370 C 288 358 258 356 244 370",
+              "ms": 3750
+            },
+            {
+              "type": "stroke",
+              "id": "urethra",
+              "d": "M 268 434 L 266 468 M 284 434 L 286 468",
+              "ms": 970
+            },
+            {
+              "type": "pause",
+              "id": "p5",
+              "caption": "Step 5 — the labels"
+            },
+            {
+              "type": "label",
+              "id": "lb_adrenal",
+              "x": 6,
+              "y": 84,
+              "text": "Adrenal gland",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_adrenal",
+              "d": "M 118 78 L 204 90",
+              "ms": 1240,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_vena",
+              "x": 120,
+              "y": 16,
+              "text": "Inferior vena cava",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_vena",
+              "d": "M 262 10 L 270 26",
+              "ms": 300,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_vein",
+              "x": 6,
+              "y": 168,
+              "text": "Renal vein",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_vein",
+              "d": "M 96 162 L 240 138",
+              "ms": 2090,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_kidney",
+              "x": 6,
+              "y": 210,
+              "text": "Kidney",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_kidney",
+              "d": "M 68 204 L 200 176",
+              "ms": 1930,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_aorta",
+              "x": 330,
+              "y": 16,
+              "text": "Dorsal aorta",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_aorta",
+              "d": "M 328 10 L 306 26",
+              "ms": 390,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_bladder",
+              "x": 6,
+              "y": 406,
+              "text": "Urinary bladder",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_bladder",
+              "d": "M 130 400 L 240 400",
+              "ms": 1570,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_cortex",
+              "x": 400,
+              "y": 100,
+              "text": "Cortex",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_cortex",
+              "d": "M 398 94 L 372 110",
+              "ms": 440,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_medulla",
+              "x": 400,
+              "y": 140,
+              "text": "Medulla",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_medulla",
+              "d": "M 398 134 L 374 140",
+              "ms": 350,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_pelvis",
+              "x": 400,
+              "y": 186,
+              "text": "Pelvis",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_pelvis",
+              "d": "M 398 180 L 350 160",
+              "ms": 740,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_artery",
+              "x": 400,
+              "y": 240,
+              "text": "Renal artery",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_artery",
+              "d": "M 398 234 L 332 144",
+              "ms": 1600,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_ureter",
+              "x": 400,
+              "y": 306,
+              "text": "Ureter",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_ureter",
+              "d": "M 398 300 L 334 300",
+              "ms": 910,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_urethra",
+              "x": 400,
+              "y": 460,
+              "text": "Urethra",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_urethra",
+              "d": "M 398 454 L 290 458",
+              "ms": 1540,
+              "w": 1.4
+            }
+          ]
+        }
+      },
+      {
+        "id": "s5_bowmans_capsule",
+        "kind": "text",
+        "label": "Bowman's capsule",
+        "marks": 1,
+        "mark_note": "Bowman's capsule",
+        "why": "The capsule and the tuft of capillaries inside it work as one sieve, which is why blood can be filtered without any energy being spent.",
+        "common_mistakes": [
+          "Calling the glomerulus part of the tubule. It is a tuft of capillaries.",
+          "Leaving out podocytes and filtration slits."
+        ],
+        "memory_tip": "A cup around a knot of capillaries: capsule plus glomerulus is the sieve.",
+        "margin_note": "The nephron has two parts. This is the first.",
+        "lines": [
+          {
+            "text": "Structure of the nephron",
+            "style": "heading"
+          },
+          "A nephron has 2 parts: Bowman's capsule",
+          "and the renal tubule.",
+          {
+            "text": "1. Bowman's capsule",
+            "style": "heading"
+          },
+          "It lies in the cortex and is a double",
+          "walled cup.",
+          "Its inner wall has cells called podocytes,",
+          "which wrap around each capillary and leave",
+          "minute spaces called filtration slits.",
+          "The capsule encloses a tuft of capillaries",
+          "called the glomerulus.",
+          "The glomerulus and the inner wall together",
+          "form a sieve.",
+          "Blood enters by the afferent arteriole and",
+          "leaves by the efferent arteriole."
+        ]
+      },
+      {
+        "id": "s6_pct_henle",
+        "kind": "text",
+        "label": "PCT and loop of Henle",
+        "marks": 1,
+        "mark_note": "PCT and Henle's loop",
+        "why": "The brush border of the proximal tubule is a huge surface for taking back what the body needs, and the hairpin loop is what lets urine be concentrated.",
+        "common_mistakes": [
+          "Placing the loop of Henle in the cortex. It runs into the medulla.",
+          "Forgetting that the ascending limb is thin then thick."
+        ],
+        "memory_tip": "PCT in the cortex, the hairpin dips into the medulla.",
+        "margin_note": "Three segments in the tubule. Take them in order.",
+        "lines": [
+          {
+            "text": "2. Renal tubule",
+            "style": "heading"
+          },
+          "It has 3 segments: PCT, Henle's loop, DCT.",
+          {
+            "text": "Proximal convoluted tubule",
+            "style": "heading"
+          },
+          "It lies in the cortex, is wide and highly",
+          "coiled, and is lined by simple cuboidal",
+          "epithelium with a brush border.",
+          {
+            "text": "Henle's loop",
+            "style": "heading"
+          },
+          "It lies in the medulla and is hairpin",
+          "shaped, with a descending and an ascending",
+          "limb.",
+          "The proximal part of the ascending limb is",
+          "thin and the distal part is thick.",
+          "The thick ascending limb continues into the",
+          "DCT."
+        ]
+      },
+      {
+        "id": "s7_dct_collecting",
+        "kind": "text",
+        "label": "DCT and collecting duct",
+        "marks": 1,
+        "mark_note": "DCT and collecting duct",
+        "why": "Many nephrons pour into one duct, so the last stretch of the path is shared and ends at a single opening in the renal papilla.",
+        "common_mistakes": [
+          "Writing that each nephron has its own duct to the pelvis. Many share one.",
+          "Leaving out the duct of Bellini."
+        ],
+        "memory_tip": "DCT to initial duct to collecting duct to duct of Bellini.",
+        "margin_note": "End at the renal papilla. That is where the urine leaves.",
+        "lines": [
+          {
+            "text": "Distal convoluted tubule",
+            "style": "heading"
+          },
+          "It lies in the cortex and continues as the",
+          "initial collecting duct.",
+          "Some initial collecting ducts join to form",
+          "a straight collecting duct, which passes",
+          "through the medullary pyramid.",
+          "In the medulla the tubes of each pyramid",
+          "join and form the duct of Bellini, which",
+          "opens at the tip of the renal papilla."
+        ]
+      },
+      {
+        "id": "s8_nephron_figure",
+        "kind": "diagram",
+        "label": "Diagram — the nephron",
+        "marks": 1,
+        "mark_note": "Diagram of the nephron",
+        "why": "Only the diagram shows which parts sit in the cortex and which dip into the medulla, which is the point of the loop.",
+        "common_mistakes": [
+          "Drawing the loop of Henle as a circle. It is a hairpin.",
+          "Leaving out the two arterioles."
+        ],
+        "memory_tip": "Capsule, coil, hairpin, coil, duct — in that order down the page.",
+        "margin_note": "Mark the cortex and medulla boundary so the loop's position is clear.",
+        "figure": {
+          "id": "exc_nephron",
+          "width": 520,
+          "height": 470,
+          "elements": [
+            {
+              "type": "pause",
+              "id": "p1",
+              "caption": "Step 1 — Bowman's capsule and the glomerulus"
+            },
+            {
+              "type": "stroke",
+              "id": "capsule_outer",
+              "d": "M 250 92 C 206 84 166 100 166 128 C 166 158 206 176 250 168",
+              "ms": 2960
+            },
+            {
+              "type": "stroke",
+              "id": "capsule_inner",
+              "d": "M 250 106 C 214 100 180 110 180 128 C 180 148 214 158 250 152",
+              "ms": 2320
+            },
+            {
+              "type": "stroke",
+              "id": "glomerulus",
+              "d": "M 198 116 C 208 108 220 114 216 124 C 228 118 238 128 230 138 C 236 148 224 158 214 150 C 206 158 194 152 198 142 C 186 138 186 122 198 116",
+              "ms": 2100
+            },
+            {
+              "type": "pause",
+              "id": "p2",
+              "caption": "Step 2 — the two arterioles"
+            },
+            {
+              "type": "stroke",
+              "id": "afferent",
+              "d": "M 152 90 L 190 110 M 148 100 L 186 118",
+              "ms": 1210
+            },
+            {
+              "type": "stroke",
+              "id": "efferent",
+              "d": "M 148 158 L 188 142 M 152 168 L 192 150",
+              "ms": 1240
+            },
+            {
+              "type": "pause",
+              "id": "p3",
+              "caption": "Step 3 — the proximal convoluted tubule"
+            },
+            {
+              "type": "stroke",
+              "id": "pct",
+              "d": "M 250 168 C 268 176 264 194 252 196 C 240 198 238 214 252 218 C 268 222 272 204 284 202 C 296 200 300 214 288 226",
+              "ms": 2020
+            },
+            {
+              "type": "stroke",
+              "id": "pct2",
+              "d": "M 250 152 C 262 158 258 172 248 174 C 234 178 232 200 250 204 C 266 208 272 190 282 188 C 292 186 296 196 284 210",
+              "ms": 1990
+            },
+            {
+              "type": "pause",
+              "id": "p4",
+              "caption": "Step 4 — the loop of Henle"
+            },
+            {
+              "type": "stroke",
+              "id": "henle_desc",
+              "d": "M 288 226 L 276 360 C 274 380 284 392 298 392",
+              "ms": 2550
+            },
+            {
+              "type": "stroke",
+              "id": "henle_desc2",
+              "d": "M 284 210 L 290 356 C 292 372 300 380 310 378",
+              "ms": 2570
+            },
+            {
+              "type": "stroke",
+              "id": "henle_asc",
+              "d": "M 298 392 C 312 392 320 378 318 356 L 308 224",
+              "ms": 2560
+            },
+            {
+              "type": "stroke",
+              "id": "henle_asc2",
+              "d": "M 310 378 C 318 374 322 364 320 352 L 310 210",
+              "ms": 2460
+            },
+            {
+              "type": "stroke",
+              "id": "cortex_medulla",
+              "d": "M 160 236 L 378 236",
+              "ms": 3110,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "pause",
+              "id": "p5",
+              "caption": "Step 5 — the distal tubule and the collecting duct"
+            },
+            {
+              "type": "stroke",
+              "id": "dct",
+              "d": "M 308 224 C 304 204 318 194 332 200 C 348 206 354 188 344 178 C 336 170 346 156 360 162",
+              "ms": 1610
+            },
+            {
+              "type": "stroke",
+              "id": "dct2",
+              "d": "M 310 210 C 310 194 322 186 334 190 C 348 194 354 180 346 170 C 340 164 348 150 358 154",
+              "ms": 1380
+            },
+            {
+              "type": "stroke",
+              "id": "collecting",
+              "d": "M 360 162 C 372 172 374 192 372 212 L 366 440 M 358 154 C 348 166 348 188 348 212 L 342 440",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "vasa_recta",
+              "d": "M 256 260 C 246 300 250 340 260 366 M 332 262 C 340 302 336 340 326 366",
+              "ms": 3040,
+              "pen": "pencil",
+              "wipe": "y"
+            },
+            {
+              "type": "pause",
+              "id": "p6",
+              "caption": "Step 6 — the labels"
+            },
+            {
+              "type": "label",
+              "id": "lb_afferent",
+              "x": 6,
+              "y": 86,
+              "text": "Afferent arteriole",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_afferent",
+              "d": "M 148 80 L 152 92",
+              "ms": 300,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_glomerulus",
+              "x": 6,
+              "y": 128,
+              "text": "Glomerulus",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_glomerulus",
+              "d": "M 90 122 L 194 128",
+              "ms": 1490,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_capsule",
+              "x": 6,
+              "y": 170,
+              "text": "Bowman's capsule",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_capsule",
+              "d": "M 138 164 L 172 146",
+              "ms": 550,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_efferent",
+              "x": 6,
+              "y": 212,
+              "text": "Efferent arteriole",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_efferent",
+              "d": "M 148 206 L 152 172",
+              "ms": 490,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_desc",
+              "x": 6,
+              "y": 300,
+              "text": "Descending limb",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_desc",
+              "d": "M 130 294 L 280 300",
+              "ms": 2140,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_asc",
+              "x": 6,
+              "y": 344,
+              "text": "Ascending limb",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_asc",
+              "d": "M 122 338 L 314 342",
+              "ms": 2740,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_vasa",
+              "x": 6,
+              "y": 400,
+              "text": "Vasa recta",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_vasa",
+              "d": "M 88 394 L 256 352",
+              "ms": 2470,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_pct",
+              "x": 378,
+              "y": 116,
+              "text": "Proximal",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lb_pct2",
+              "x": 378,
+              "y": 146,
+              "text": "convoluted tubule",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_pct",
+              "d": "M 376 124 L 292 196",
+              "ms": 1600,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_dct",
+              "x": 378,
+              "y": 192,
+              "text": "Distal",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lb_dct2",
+              "x": 378,
+              "y": 222,
+              "text": "convoluted tubule",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_dct",
+              "d": "M 376 200 L 346 178",
+              "ms": 530,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_collecting",
+              "x": 378,
+              "y": 300,
+              "text": "Collecting duct",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_collecting",
+              "d": "M 376 294 L 370 300",
+              "ms": 300
+            },
+            {
+              "type": "label",
+              "id": "lb_cortex_n",
+              "x": 190,
+              "y": 224,
+              "text": "Cortex",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lb_medulla_n",
+              "x": 190,
+              "y": 260,
+              "text": "Medulla",
+              "ms": 450,
+              "sm": true,
+              "w": 1.4
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "insider_note": "The question has two halves and two diagrams. Answer the system first and the nephron second, and draw both — a labelled diagram of the whole urinary system, and a separate labelled diagram of one nephron."
+}

@@ -1,0 +1,92 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_beg_occupational_disorders",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Human Anatomy and Physiology-I (Zoology-II)"
+  },
+  "chapter": "Breathing and Exchange of Gases",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Mention any two occupational respiratory disorders and their causes in humans.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Asbestosis",
+      "marks": 1
+    },
+    {
+      "label": "Black lung disease",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.47, VSAQ 60. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Revised 2026-09-05: the insider note no longer says a bare name earns nothing; it now states that the question asks for the causes as well and pairs each disorder with its dust."
+  },
+  "insider_note": "The question asks for the causes as well as the names, so pair each disorder with its dust: asbestos dust gives asbestosis, coal dust gives black lung disease.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Breathing and Exchange of Gases · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_asbestosis",
+        "kind": "text",
+        "label": "Asbestosis",
+        "marks": 1,
+        "mark_note": "Asbestosis",
+        "why": "Dust breathed in day after day settles in the lung and cannot be cleared, so the disease follows the job.",
+        "common_mistakes": [
+          "Naming the disease without the dust that causes it.",
+          "Naming an infection such as pneumonia. These are dust diseases."
+        ],
+        "memory_tip": "Name the dust and the disease follows: asbestos, asbestosis.",
+        "margin_note": "One line for each disorder, with its cause.",
+        "lines": [
+          "In certain industries harmful particles are",
+          "spread in the air. Long exposure causes",
+          "lung disorders.",
+          "Asbestosis — caused by breathing asbestos",
+          "particles in the asbestos industry."
+        ]
+      },
+      {
+        "id": "s2_black_lung",
+        "kind": "boxed_final",
+        "label": "Black lung disease",
+        "marks": 1,
+        "mark_note": "Black lung disease",
+        "why": "Coal dust stains the lung tissue dark, which is where the common name comes from.",
+        "common_mistakes": [
+          "Writing silicosis for coal miners. Silicosis belongs to quarry workers.",
+          "Giving only one disorder when two are asked."
+        ],
+        "memory_tip": "Coal dust blackens the lung — black lung disease.",
+        "margin_note": "Two named disorders with causes complete the answer.",
+        "lines": [
+          "Black lung disease — found in coal mine",
+          "workers who inhale coal dust.",
+          {
+            "text": "Silicosis and siderosis are two more of them",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  }
+}

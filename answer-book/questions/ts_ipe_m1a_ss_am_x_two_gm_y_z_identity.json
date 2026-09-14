@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.24, chapter 3 SEQUENCES & SERIES, Very Short Answer question 24. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sequences and Series is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.24, chapter 3 SEQUENCES & SERIES, Very Short Answer question 24. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sequences and Series is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say which progression a, y, z, b are in, and what each of y² and z² equals.",
   "answer": {
@@ -46,16 +46,19 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. a + b = 2x, and the two neighbour relations y² = az and z² = yb. Naming a, y, z, b as a G.P. is the key line.",
-        "memory_tip": "In a G.P. every term squared equals the product of the two terms beside it.",
+        "memory_tip": "In a G.P. every middle term squared equals the product of the two terms beside it.",
         "lines": [
           {
             "text": "Sol:",
             "style": "heading"
           },
           "Let the two positive numbers be a and b",
-          "x is the arithmetic mean, so x = (a + b)/2, that is  a + b = 2x",
+          "x is the arithmetic mean, so x = (a + b)/2,",
+          "that is  a + b = 2x",
           "y and z are two geometric means, so a, y, z, b are in G.P.",
-          "In a G.P. each term squared is the product of its neighbours:  y² = az  and  z² = yb"
+          "(a, y, z, b in G.P. means y/a = z/y = b/z)",
+          "In a G.P. each middle term squared is the product",
+          "of its neighbours:  y² = az  and  z² = yb"
         ],
         "recall": {
           "credit": "say_it",
@@ -79,7 +82,7 @@
             "z squared is y b"
           ]
         },
-        "why": "Two geometric means between a and b make a four-term G.P., and in a G.P. each term squared equals the product of its neighbours. Those two relations are all this identity needs.",
+        "why": "Two geometric means between a and b make a four-term G.P., and in a G.P. each middle term squared equals the product of its neighbours. Those two relations, with a + b = 2x, are all this identity needs.",
         "common_mistakes": [
           "Putting a, y, z, b in A.P. instead of G.P. A.P. is the condition for arithmetic means; y and z here are geometric means.",
           "Writing y² = ab, which is the rule for a single geometric mean, not for two."
@@ -94,9 +97,21 @@
         "margin_note": "Second mark. The move is y³ = y × y²; after it the factor yz comes out and a + b = 2x finishes the proof.",
         "memory_tip": "Multiply each square by its own term to make a cube, then take yz outside.",
         "lines": [
+          {
+            "text": "(write each cube as the number times its square)",
+            "added": true
+          },
           "y³ = y × y² = y(az) = ayz",
           "z³ = z × z² = z(yb) = byz",
+          {
+            "text": "(take out the common factor yz)",
+            "added": true
+          },
           "y³ + z³ = ayz + byz = yz(a + b) = yz(2x)",
+          {
+            "text": "(put a + b = 2x from step 1)",
+            "added": true
+          },
           {
             "text": "∴ y³ + z³ = 2xyz",
             "style": "boxed"
@@ -126,8 +141,17 @@
         },
         "why": "Multiplying each squared relation by its own term turns the squares into cubes and leaves yz as a common factor. The bracket that remains is a + b, which the arithmetic mean has already replaced by 2x.",
         "common_mistakes": [
-          "Factorising y³ + z³ as (y + z)(y² − yz + z²): correct algebra, but a dead end here, because neither mean condition fits that bracket.",
+          "Factorising y³ + z³ as (y + z)(y² − yz + z²): correct algebra, but it does not lead to the result here, because neither mean condition can be used on that bracket.",
           "Leaving the answer as yz(a + b) without putting a + b = 2x."
+        ],
+        "lines_compact": [
+          "y³ = y × y² = y(az) = ayz",
+          "z³ = z × z² = z(yb) = byz",
+          "y³ + z³ = ayz + byz = yz(a + b) = yz(2x)",
+          {
+            "text": "∴ y³ + z³ = 2xyz",
+            "style": "boxed"
+          }
         ]
       }
     ]

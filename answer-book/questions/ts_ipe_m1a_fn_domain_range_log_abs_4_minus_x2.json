@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.13, chapter 2 FUNCTIONS, Very Short Answer question 20(i). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The question asks for two things, so the 1+1 shape gives one mark to the domain and one to the range, and the range mark is for the values of |4 − x²| being found, not for the word R on its own. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.13, chapter 2 FUNCTIONS, Very Short Answer question 20(i). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The question asks for two things, so the 1+1 shape gives one mark to the domain and one to the range, and the range mark is for the values of |4 − x²| being found, not for the word R on its own. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find both the domain and the range here — what the log needs, and how you get at the range.",
   "answer": {
@@ -56,6 +56,7 @@
           "log t is real only when t > 0.",
           "So we need |4 − x²| > 0,",
           "which means 4 − x² ≠ 0.",
+          "(|u| > 0 for every u except u = 0)",
           "4 − x² = 0 ⇒ x² = 4 ⇒ x = ±2",
           "∴ Domain = R − {−2, 2}"
         ],
@@ -82,7 +83,7 @@
             "R minus two"
           ]
         },
-        "why": "A logarithm is real only for a positive input. The modulus already makes 4 − x² positive whenever it is not zero, so the inequality |4 − x²| > 0 removes nothing except the two roots of 4 − x² = 0. Solving 4 − x² > 0 instead would wrongly throw away everything outside (−2, 2).",
+        "why": "A logarithm is real only for a positive input. The modulus makes |4 − x²| positive whenever 4 − x² is not zero, so the inequality |4 − x²| > 0 removes nothing except the two roots of 4 − x² = 0. Solving 4 − x² > 0 instead would wrongly throw away everything outside (−2, 2).",
         "common_mistakes": [
           "Solving 4 − x² > 0 and giving (−2, 2); the modulus has already fixed the sign.",
           "Removing only x = 2 and forgetting x = −2.",
@@ -100,7 +101,15 @@
         "lines": [
           "Put t = |4 − x²|, so f(x) = log t.",
           "|x| < 2 ⇒ 4 − x² ∈ (0, 4] ⇒ t ∈ (0, 4]",
+          {
+            "text": "(at x = 0, t = 4; as |x| comes near 2, t comes near 0)",
+            "added": true
+          },
           "|x| > 2 ⇒ x² − 4 > 0 ⇒ t ∈ (0, ∞)",
+          {
+            "text": "(x² − 4 grows without limit as |x| grows)",
+            "added": true
+          },
           "So t takes every positive value.",
           "As t runs over (0, ∞), log t runs over R.",
           {
@@ -136,6 +145,17 @@
           "Giving the range as (0, ∞), which is the range of |4 − x²|, not of its logarithm.",
           "Writing 'Range = R' with no working; the values of the inside have to be found first.",
           "Stopping at t ∈ (0, 4] and missing the values from |x| > 2."
+        ],
+        "lines_compact": [
+          "Put t = |4 − x²|, so f(x) = log t.",
+          "|x| < 2 ⇒ 4 − x² ∈ (0, 4] ⇒ t ∈ (0, 4]",
+          "|x| > 2 ⇒ x² − 4 > 0 ⇒ t ∈ (0, ∞)",
+          "So t takes every positive value.",
+          "As t runs over (0, ∞), log t runs over R.",
+          {
+            "text": "Domain = R − {−2, 2},  Range = R",
+            "style": "boxed"
+          }
         ]
       }
     ]
