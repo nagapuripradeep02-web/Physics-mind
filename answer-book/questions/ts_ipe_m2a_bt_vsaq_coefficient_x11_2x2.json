@@ -103,15 +103,34 @@
         "margin_note": "Second mark. r = 3: ¹³C₃ = 286, 2¹⁰ = 1024, 3³ = 27.",
         "memory_tip": "r = 3: the coefficient is ¹³C₃ · 2¹⁰ · 3³ — everything except the x¹¹.",
         "lines": [
-          "Put r = 3: coefficient = ¹³C₃ · 2¹³⁻³ · 3³",
-          "= ¹³C₃ · 2¹⁰ · 3³",
-          "¹³C₃ = (13·12·11)/(1·2·3) = 1716/6 = 286",
-          "2¹⁰ = 1024, 3³ = 27",
-          "= 286 × 1024 × 27",
-          "286 × 1024 = 292864, 292864 × 27 = 7907328",
+          {
+            "text": "Put r = 3: coefficient = ¹³C₃ · 2¹³⁻³ · 3³",
+            "added": true
+          },
+          {
+            "text": "= ¹³C₃ · 2¹⁰ · 3³",
+            "added": true
+          },
+          {
+            "text": "¹³C₃ = (13·12·11)/(1·2·3) = 1716/6 = 286",
+            "added": true
+          },
+          {
+            "text": "2¹⁰ = 1024, 3³ = 27",
+            "added": true
+          },
+          {
+            "text": "= 286 × 1024 × 27",
+            "added": true
+          },
+          {
+            "text": "286 × 1024 = 292864, 292864 × 27 = 7907328",
+            "added": true
+          },
           {
             "text": "∴ coefficient = ¹³C₃·2¹⁰·3³ = 7907328",
-            "style": "boxed"
+            "style": "boxed",
+            "added": true
           }
         ],
         "recall": {
@@ -139,6 +158,13 @@
         "common_mistakes": [
           "Including x¹¹ in the \"coefficient\".",
           "Writing 2³·3¹⁰ by swapping the exponents."
+        ],
+        "lines_compact": [
+          "Coefficient = ¹³C₃ · 2¹⁰ · 3³ = 286 × 1024 × 27",
+          {
+            "text": "∴ coefficient of x¹¹ = ¹³C₃·2¹⁰·3³",
+            "style": "boxed"
+          }
         ]
       }
     ]

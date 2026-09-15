@@ -101,9 +101,18 @@
         "margin_note": "Second mark. The formula has −(α + β)x, and α + β = −6, so the middle term is +6x. Two minus signs make a plus; this is the line where the sign is lost.",
         "memory_tip": "The formula is −(α + β)x and α + β = −6, so the middle term is +6x. Two minuses make a plus.",
         "lines": [
-          "A quadratic with roots α and β is",
-          "x² − (α + β)x + αβ = 0",
-          "x² − (−6)x + 34 = 0",
+          {
+            "text": "A quadratic with roots α and β is",
+            "added": true
+          },
+          {
+            "text": "x² − (α + β)x + αβ = 0",
+            "added": true
+          },
+          {
+            "text": "x² − (−6)x + 34 = 0",
+            "added": true
+          },
           {
             "text": "∴ x² + 6x + 34 = 0",
             "style": "boxed"
@@ -137,6 +146,13 @@
           "Writing x² − 6x + 34 = 0.",
           "Leaving off '= 0'.",
           "Writing the constant as −34."
+        ],
+        "lines_compact": [
+          "Required equation: x² − (α + β)x + αβ = 0",
+          {
+            "text": "∴ x² + 6x + 34 = 0",
+            "style": "boxed"
+          }
         ]
       }
     ]

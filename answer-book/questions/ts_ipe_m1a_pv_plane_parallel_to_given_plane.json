@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.73, chapter 7 PRODUCT OF VECTORS, Short Answer question 29. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 split rewards reading the normal off the given plane, writing the parallel family with one unknown constant, substituting the point to fix that constant, and stating the finished equation. Paper position: Maths-1A Section B prints 8 short answers at 4 marks each and the student answers any 6; Product of Vectors is one of the units that can fill a Section-B slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.73, chapter 7 PRODUCT OF VECTORS, Short Answer question 29. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 split rewards reading the normal off the given plane, writing the parallel family with one unknown constant, substituting the point to fix that constant, and stating the finished equation. Paper position: Maths-1A Section B prints 8 short answers at 4 marks each and the student answers any 6; Product of Vectors is one of the units that can fill a Section-B slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find the equation of a plane through a given point and parallel to a given plane.",
   "answer": {
@@ -61,6 +61,7 @@
             "style": "heading"
           },
           "Given plane: 4x − 12y − 3z − 7 = 0",
+          "(the coefficients of x, y, z form a normal)",
           "Its normal is n = 4i − 12j − 3k",
           "Parallel planes have the same normal."
         ],
@@ -103,7 +104,11 @@
         "memory_tip": "Same left-hand side, new constant. One unknown k is all that is left.",
         "lines": [
           "Every plane parallel to it has the form",
-          "4x − 12y − 3z = k, where k is a constant."
+          "4x − 12y − 3z = k, where k is a constant.",
+          {
+            "text": "(only the constant term can change)",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -131,6 +136,10 @@
         "common_mistakes": [
           "Writing a new set of coefficients instead of keeping the given ones.",
           "Setting k to 7, which only repeats the given plane."
+        ],
+        "lines_compact": [
+          "Every plane parallel to it has the form",
+          "4x − 12y − 3z = k, where k is a constant."
         ]
       },
       {
@@ -143,6 +152,10 @@
         "memory_tip": "Two coordinates are negative, and both products come out positive.",
         "lines": [
           "The plane passes through A(2, −1, −4), so",
+          {
+            "text": "(put x = 2, y = −1, z = −4 into 4x − 12y − 3z)",
+            "added": true
+          },
           "k = 4(2) − 12(−1) − 3(−4)",
           "= 8 + 12 + 12 = 32"
         ],
@@ -172,6 +185,11 @@
         "common_mistakes": [
           "Sign slips on the two negative coordinates.",
           "Substituting into the given plane instead of the new one."
+        ],
+        "lines_compact": [
+          "The plane passes through A(2, −1, −4), so",
+          "k = 4(2) − 12(−1) − 3(−4)",
+          "= 8 + 12 + 12 = 32"
         ]
       },
       {
@@ -183,6 +201,10 @@
         "margin_note": "Last mark. Move the 32 across so the answer is in the same '= 0' form the question printed, then put A back in as a one-line check.",
         "memory_tip": "Put the point back in. If the four terms do not add to zero, the constant is wrong.",
         "lines": [
+          {
+            "text": "(4x − 12y − 3z = 32, with 32 taken to the left)",
+            "added": true
+          },
           "So the required plane is",
           {
             "text": "4x − 12y − 3z − 32 = 0",
@@ -216,6 +238,14 @@
         "common_mistakes": [
           "Writing the constant with the wrong sign, giving +32 on the left.",
           "Never substituting the point back, so a slip goes unnoticed."
+        ],
+        "lines_compact": [
+          "So the required plane is",
+          {
+            "text": "4x − 12y − 3z − 32 = 0",
+            "style": "boxed"
+          },
+          "Check A(2, −1, −4): 8 + 12 + 12 − 32 = 0"
         ]
       }
     ]

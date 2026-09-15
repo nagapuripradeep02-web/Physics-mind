@@ -39,7 +39,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.58 — SAQ chapter 8 Ellipse, answer 61, on a ★★★ SSP page (book p.49 chapter table). Printed appearance: AP 15 only — no TS tag printed. Book p.58 prints NO margin mark tags for this question, so the 2+1+1 split is OURS: only two results are asked here (eccentricity, foci — no directrices, no latus rectum), so this card gives more weight (2 marks) to the completing-the-square step, which is the larger share of the work when only two short final results follow it. This ellipse is VERTICAL (a < b), same as Q60. Ellipse is an SAQ-ONLY unit on the book's IPE Blue Print (book p.5). No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE BLM on hand; the book's five Guess Papers pp.118-127 are the orchestrator's back-test stand-in). The book writes the intermediate eccentricity step as √(6/9) = √6/9 = √2/3, where the middle term drops the radical over the whole fraction — the final value √2/3 (meaning √(2/3), not (√2)/3) is numerically correct and this card writes it with the radical placed unambiguously over the whole fraction throughout. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.58 — SAQ chapter 8 Ellipse, answer 61, on a ★★★ SSP page (book p.49 chapter table). Printed appearance: AP 15 only — no TS tag printed. Book p.58 prints NO margin mark tags for this question, so the 2+1+1 split is OURS: only two results are asked here (eccentricity, foci — no directrices, no latus rectum), so this card gives more weight (2 marks) to the completing-the-square step, which is the larger share of the work when only two short final results follow it. This ellipse is VERTICAL (a < b), same as Q60. Ellipse is an SAQ-ONLY unit on the book's IPE Blue Print (book p.5). No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE BLM on hand; the book's five Guess Papers pp.118-127 are the orchestrator's back-test stand-in). The book writes the intermediate eccentricity step as √(6/9) = √6/9 = √2/3, where the middle term drops the radical over the whole fraction — the final value √2/3 (meaning √(2/3), not (√2)/3) is numerically correct and this card writes it with the radical placed unambiguously over the whole fraction throughout. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "insider_note": "Only two results are asked here, not four, so half of the four marks are actually earned in the completing-the-square step — get the centre (1, 1) right and the rest follows quickly.",
   "answer": {
@@ -62,9 +62,28 @@
             "style": "heading"
           },
           "3x² + y² − 6x − 2y − 5 = 0",
+          "Group the x terms and the y terms,",
+          {
+            "text": "  and move −5 to the right:",
+            "style": "indent"
+          },
           "⇒ 3(x² − 2x) + (y² − 2y) = 5",
+          "Complete each square:",
+          {
+            "text": "  x² − 2x = (x − 1)² − 1",
+            "style": "indent"
+          },
+          {
+            "text": "  y² − 2y = (y − 1)² − 1",
+            "style": "indent"
+          },
+          "So 3(x − 1)² − 3 + (y − 1)² − 1 = 5",
+          "Move −3 and −1 to the right:",
           "⇒ 3(x − 1)² + (y − 1)² = 5 + 3 + 1 = 9",
-          "⇒ (x − 1)²/3 + (y − 1)²/9 = 1"
+          "Divide every term by 9:",
+          "⇒ (x − 1)²/3 + (y − 1)²/9 = 1",
+          "(3(x − 1)²/9 = (x − 1)²/3)",
+          "Centre (h, k) = (1, 1)."
         ],
         "why": "Completing the square in both x and y gives the shifted standard form, from which a², b² and the centre (h, k) can be read directly.",
         "common_mistakes": [
@@ -83,8 +102,25 @@
         "lines": [
           "Here a² = 3 ⇒ a = √3, b² = 9 ⇒ b = 3.",
           "Since a < b, the ellipse is vertical.",
+          {
+            "text": "(the larger denominator 9 is under (y − 1)²)",
+            "added": true
+          },
+          {
+            "text": "For a vertical ellipse a² = b²(1 − e²),",
+            "added": true
+          },
+          {
+            "text": "  so e² = (b² − a²)/b²:",
+            "style": "indent",
+            "added": true
+          },
           "e = √( (b² − a²) / b² )",
           "= √( (9 − 3) / 9 ) = √(6/9)",
+          {
+            "text": "(√(6/9) = √6/√9 = √6/3)",
+            "added": true
+          },
           {
             "text": "e = √6 / 3",
             "style": "boxed"
@@ -94,6 +130,16 @@
         "common_mistakes": [
           "Taking the square root of the numerator and denominator separately and losing track of which one is under the root.",
           "Using a² − b² instead of b² − a² for a vertical ellipse, which gives a negative value."
+        ],
+        "lines_compact": [
+          "Here a² = 3 ⇒ a = √3, b² = 9 ⇒ b = 3.",
+          "Since a < b, the ellipse is vertical.",
+          "e = √( (b² − a²) / b² )",
+          "= √( (9 − 3) / 9 ) = √(6/9)",
+          {
+            "text": "e = √6 / 3",
+            "style": "boxed"
+          }
         ]
       },
       {
@@ -105,8 +151,21 @@
         "margin_note": "Fourth mark. Foci move along y = k ± be from the shifted centre (1, 1).",
         "memory_tip": "be = b times e — multiply the two numbers found above.",
         "lines": [
+          {
+            "text": "The foci are on the major axis, a distance be",
+            "added": true
+          },
+          {
+            "text": "  above and below the centre (1, 1):",
+            "style": "indent",
+            "added": true
+          },
           "Foci = (h, k ± be)",
           "be = 3 · (√6/3) = √6",
+          {
+            "text": "(the 3s cancel)",
+            "added": true
+          },
           {
             "text": "Foci = (1, 1 ± √6)",
             "style": "boxed"
@@ -116,6 +175,14 @@
         "common_mistakes": [
           "Leaving be unsimplified as 3·√6/3 instead of cancelling to √6.",
           "Writing the foci as (1 ± be, 1), which puts them on the wrong axis for a vertical ellipse."
+        ],
+        "lines_compact": [
+          "Foci = (h, k ± be)",
+          "be = 3 · (√6/3) = √6",
+          {
+            "text": "Foci = (1, 1 ± √6)",
+            "style": "boxed"
+          }
         ]
       }
     ]

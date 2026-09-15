@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 23, book p.86. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards the multiplication and the difference-of-two-squares grouping first and the cancellation that produces x second. The route here uses no half-angle substitution on purpose: tan(θ/2) would add the extra condition cos θ ≠ −1, and the difference-of-two-squares route needs only the two conditions the question already carries. Paper position: Maths-1A Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern; Trigonometric Ratios and Transformations holds two of those ten slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Checked numerically at θ = 50°, 130°, 240° and 310°: x and the asked expression agree to ten decimal places at every one (0.6360297657, 1.3639702343, 4.7320508076 and −1.7474774195)."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 23, book p.86. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards the multiplication and the difference-of-two-squares grouping first and the cancellation that produces x second. The route here uses no half-angle substitution on purpose: tan(θ/2) would add the extra condition cos θ ≠ −1, and the difference-of-two-squares route needs only the two conditions the question already carries. Paper position: Maths-1A Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern; Trigonometric Ratios and Transformations holds two of those ten slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Checked numerically at θ = 50°, 130°, 240° and 310°: x and the asked expression agree to ten decimal places at every one (0.6360297657, 1.3639702343, 4.7320508076 and −1.7474774195). LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say what you would multiply this expression by, and say what value it comes out to.",
   "answer": {
@@ -57,8 +57,15 @@
           "Multiply its top and bottom by",
           "(1 + cos θ + sin θ):",
           "Nr = (1 + sin θ − cos θ)(1 + sin θ + cos θ)",
+          "(this is (p − q)(p + q) = p² − q² with",
+          {
+            "text": "  p = 1 + sin θ and q = cos θ)",
+            "style": "indent"
+          },
           "= (1 + sin θ)² − cos²θ",
+          "(cos²θ = 1 − sin²θ)",
           "= 1 + 2 sin θ + sin²θ − (1 − sin²θ)",
+          "(the 1s cancel, leaving 2 sin θ + 2sin²θ)",
           "= 2 sin θ (1 + sin θ)"
         ],
         "recall": {
@@ -98,7 +105,25 @@
         "margin_note": "Second mark. The factor 1 + sin θ is on the top and the bottom and is not 0, so it cancels. What is left is the given expression for x.",
         "memory_tip": "After the multiplication the factor (1 + sin θ) cancels, and what remains is exactly the given expression for x.",
         "lines": [
+          {
+            "text": "The bottom was only multiplied, not opened:",
+            "added": true
+          },
           "Dr = (1 + sin θ)(1 + cos θ + sin θ)",
+          {
+            "text": "So the expression is",
+            "added": true
+          },
+          {
+            "text": "  [2 sin θ (1 + sin θ)]",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  ÷ [(1 + sin θ)(1 + cos θ + sin θ)]",
+            "style": "indent",
+            "added": true
+          },
           "Since 1 + sin θ ≠ 0 it cancels, leaving",
           "2 sin θ/(1 + cos θ + sin θ), which is x.",
           {
@@ -132,6 +157,15 @@
         "common_mistakes": [
           "Cancelling 1 + sin θ without saying that it is not 0.",
           "Leaving the answer in θ when the question asks for a value in terms of x."
+        ],
+        "lines_compact": [
+          "Dr = (1 + sin θ)(1 + cos θ + sin θ)",
+          "Since 1 + sin θ ≠ 0 it cancels, leaving",
+          "2 sin θ/(1 + cos θ + sin θ), which is x.",
+          {
+            "text": "∴ (1 − cos θ + sin θ)/(1 + sin θ) = x",
+            "style": "boxed"
+          }
         ]
       }
     ]

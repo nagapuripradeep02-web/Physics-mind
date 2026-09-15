@@ -42,7 +42,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Long Answer question 24, book p.162. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split puts two marks on the fixed point, which is the only piece of the answer that uses the two given lines, two on substituting it into the variable line, and two on the algebra that turns that into the printed locus. Setting up the variable line and naming the midpoint take one mark each, because each is a single line of writing. This book prints almost no exam-appearance years, so appearances[] is empty. Paper position: Maths-1B Section C runs Q19 to Q21 at 8 marks each, answer any 2 of 3, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The printed folio is hidden or clipped on this scan, so p.162 is inferred from the strictly consecutive neighbours. AUTHOR NOTE on conditions: the card states a ≠ b in its first step (if a = b the two given lines are the SAME line and there is no single point of intersection) and a + b ≠ 0, and it states that the variable line must actually cut both axes, so neither coordinate of the midpoint is zero. None of these is printed in the stem. The result was checked on four concrete positions of the variable line at a = 2, b = 3."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Long Answer question 24, book p.162. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split puts two marks on the fixed point, which is the only piece of the answer that uses the two given lines, two on substituting it into the variable line, and two on the algebra that turns that into the printed locus. Setting up the variable line and naming the midpoint take one mark each, because each is a single line of writing. This book prints almost no exam-appearance years, so appearances[] is empty. Paper position: Maths-1B Section C runs Q19 to Q21 at 8 marks each, answer any 2 of 3, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The printed folio is hidden or clipped on this scan, so p.162 is inferred from the strictly consecutive neighbours. AUTHOR NOTE on conditions: the card states a ≠ b in its first step (if a = b the two given lines are the SAME line and there is no single point of intersection) and a + b ≠ 0, and it states that the variable line must actually cut both axes, so neither coordinate of the midpoint is zero. None of these is printed in the stem. The result was checked on four concrete positions of the variable line at a = 2, b = 3. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say what stays fixed, what varies, and which point you substitute into which line.",
   "answer": {
@@ -56,7 +56,7 @@
         "kind": "equation",
         "label": "Find the point of intersection",
         "marks": 2,
-        "margin_note": "The first two marks. The two given lines are the same equation with a and b swapped, so subtracting them forces x = y and the fixed point falls out in one more line.",
+        "margin_note": "The first two marks. The two given lines are the same equation with a and b swapped, so subtracting them gives x = y, and the fixed point is found in one more line.",
         "lines": [
           {
             "text": "Sol:",
@@ -64,8 +64,15 @@
           },
           "x/a + y/b = 1 ……(1),  x/b + y/a = 1 ……(2)",
           "Take a ≠ b, so (1) and (2) are different lines.",
+          "((1) − (2): x(1/a − 1/b) + y(1/b − 1/a) = 0,",
+          {
+            "text": "  that is (x − y)(1/a − 1/b) = 0, and 1/a − 1/b ≠ 0)",
+            "style": "indent"
+          },
           "(1) − (2):  (x − y)(1/a − 1/b) = 0  ⇒  x = y",
+          "(put y = x in (1) and multiply by ab: bx + ax = ab)",
           "Then x/a + x/b = 1  ⇒  x(a + b) = ab",
+          "(divide by a + b, which must not be 0)",
           "∴ P = (ab/(a+b), ab/(a+b)),  a + b ≠ 0"
         ],
         "recall": {
@@ -92,7 +99,7 @@
         },
         "why": "Everything in the question varies except this one point, so finding it first is what turns a moving line into a fixed condition.",
         "common_mistakes": [
-          "Solving the pair by cross-multiplication and losing the symmetry.",
+          "Writing x/a + x/b = 1 as x(a + b) = 1, forgetting the denominator ab.",
           "Forgetting that a = b would make the two lines identical."
         ],
         "mark_note": "Method",
@@ -105,8 +112,16 @@
         "marks": 1,
         "margin_note": "One mark. The variable line is described by where it CUTS THE AXES, so the intercept form is the natural one. Both intercepts must be non-zero for A and B to exist.",
         "lines": [
+          {
+            "text": "(the line is fixed by where it meets the two axes)",
+            "added": true
+          },
           "Let the variable line meet the axes at",
           "A(α, 0) and B(0, β), with α ≠ 0, β ≠ 0",
+          {
+            "text": "(the intercept form of a line with intercepts α and β)",
+            "added": true
+          },
           "Its equation is x/α + y/β = 1 ……(3)"
         ],
         "recall": {
@@ -137,17 +152,30 @@
           "Allowing an intercept to be zero, when the line must cut both axes."
         ],
         "mark_note": "Method",
-        "memory_tip": "The line is described by where it CUTS THE AXES, so use the intercept form."
+        "memory_tip": "The line is described by where it CUTS THE AXES, so use the intercept form.",
+        "lines_compact": [
+          "Let the variable line meet the axes at",
+          "A(α, 0) and B(0, β), with α ≠ 0, β ≠ 0",
+          "Its equation is x/α + y/β = 1 ……(3)"
+        ]
       },
       {
         "id": "s3_midpoint",
         "kind": "equation",
         "label": "Write the midpoint and the intercepts",
         "marks": 1,
-        "margin_note": "One mark. Name the midpoint (h, k) and turn it round: the two intercepts are 2h and 2k, so every α and β below can be replaced.",
+        "margin_note": "One mark. Name the midpoint (h, k) and rearrange: the two intercepts are 2h and 2k, so every α and β below can be replaced.",
         "lines": [
           "Let M(h, k) be the midpoint of AB",
+          {
+            "text": "(the midpoint formula ((x₁ + x₂)/2, (y₁ + y₂)/2))",
+            "added": true
+          },
           "h = (α + 0)/2,  k = (0 + β)/2",
+          {
+            "text": "(multiply each equation by 2)",
+            "added": true
+          },
           "∴ α = 2h and β = 2k"
         ],
         "recall": {
@@ -178,7 +206,12 @@
           "Using (x, y) for the midpoint too early, which confuses it with the line's own x and y."
         ],
         "mark_note": "Method",
-        "memory_tip": "Name the moving point (h, k) FIRST, then write everything else in terms of h and k."
+        "memory_tip": "Name the moving point (h, k) FIRST, then write everything else in terms of h and k.",
+        "lines_compact": [
+          "Let M(h, k) be the midpoint of AB",
+          "h = (α + 0)/2,  k = (0 + β)/2",
+          "∴ α = 2h and β = 2k"
+        ]
       },
       {
         "id": "s4_put_p_on_line",
@@ -187,9 +220,21 @@
         "marks": 2,
         "margin_note": "The next two marks. Every position of the variable line passes through P, so P satisfies (3). Substituting P and then α = 2h, β = 2k gives one relation in h and k.",
         "lines": [
+          {
+            "text": "(put x = ab/(a + b) and y = ab/(a + b) in (3))",
+            "added": true
+          },
           "(3) passes through P, so",
           "(ab/(a+b))/α + (ab/(a+b))/β = 1",
-          "⇒ (ab/(a+b))(1/2h + 1/2k) = 1",
+          {
+            "text": "(take out ab/(a + b), and write 2h for α and 2k for β)",
+            "added": true
+          },
+          "⇒ (ab/(a+b))(1/(2h) + 1/(2k)) = 1",
+          {
+            "text": "(1/(2h) + 1/(2k) = k/(2hk) + h/(2hk) = (h + k)/(2hk))",
+            "added": true
+          },
           "⇒ (ab/(a+b)) · (h + k)/(2hk) = 1"
         ],
         "recall": {
@@ -214,13 +259,19 @@
             "relation in h and k"
           ]
         },
-        "why": "Passing through P is the ONLY thing every position of the variable line has in common, so it is the condition that produces the locus.",
+        "why": "Every position of the variable line passes through P, so that is the condition that gives the locus.",
         "common_mistakes": [
           "Substituting the midpoint into the line instead of the fixed point.",
           "Adding the two fractions with denominator hk instead of 2hk."
         ],
         "mark_note": "Method",
-        "memory_tip": "The one thing every position of the line shares is that it passes through P — that is the condition."
+        "memory_tip": "The one thing every position of the line shares is that it passes through P — that is the condition.",
+        "lines_compact": [
+          "(3) passes through P, so",
+          "(ab/(a+b))/α + (ab/(a+b))/β = 1",
+          "⇒ (ab/(a+b))(1/(2h) + 1/(2k)) = 1",
+          "⇒ (ab/(a+b)) · (h + k)/(2hk) = 1"
+        ]
       },
       {
         "id": "s5_clear_and_name",
@@ -229,10 +280,41 @@
         "marks": 2,
         "margin_note": "The last two marks. Cross-multiply, then replace (h, k) by (x, y) because the midpoint is the point whose path is asked for. The check below uses real numbers.",
         "lines": [
+          {
+            "text": "(multiply both sides by 2hk(a + b))",
+            "added": true
+          },
           "⇒ ab(h + k) = 2hk(a + b)",
-          "Replacing (h, k) by (x, y):",
+          {
+            "text": "(with a = 2, b = 3: P = (6/5, 6/5), and",
+            "added": true
+          },
+          {
+            "text": "  (6/5)/2 + (6/5)/3 = 3/5 + 2/5 = 1, so x/2 + y/3 = 1",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  is one position of the line; its midpoint is (1, 3/2))",
+            "style": "indent",
+            "added": true
+          },
           "Check a = 2, b = 3, line x/2 + y/3 = 1:",
+          {
+            "text": "(2(a + b) = 10 and ab = 6)",
+            "added": true
+          },
           "M(1, 3/2) and 10(1)(3/2) = 15 = 6(1 + 3/2)",
+          {
+            "text": "(h and k name the moving point,",
+            "added": true
+          },
+          {
+            "text": "  so write x and y for them)",
+            "style": "indent",
+            "added": true
+          },
+          "Replacing (h, k) by (x, y):",
           {
             "text": "∴ Locus is 2(a + b)xy = ab(x + y)",
             "style": "boxed"
@@ -266,7 +348,17 @@
           "Cancelling (h + k) against hk, which is not a common factor of the two sides."
         ],
         "mark_note": "Method",
-        "memory_tip": "h and k were only a NAME for the moving point — rename them x and y at the very end."
+        "memory_tip": "h and k were only a NAME for the moving point — rename them x and y at the very end.",
+        "lines_compact": [
+          "⇒ ab(h + k) = 2hk(a + b)",
+          "Check a = 2, b = 3, line x/2 + y/3 = 1:",
+          "M(1, 3/2) and 10(1)(3/2) = 15 = 6(1 + 3/2)",
+          "Replacing (h, k) by (x, y):",
+          {
+            "text": "∴ Locus is 2(a + b)xy = ab(x + y)",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   }

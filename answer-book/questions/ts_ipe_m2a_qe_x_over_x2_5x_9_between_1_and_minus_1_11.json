@@ -127,9 +127,18 @@
         "margin_note": "Second mark. a = y, b = −(5y + 1), c = 9y. Squaring removes the minus on b, and 4ac = 36y². Then 25y² − 36y² = −11y².",
         "memory_tip": "Squaring removes the minus on b, and 4ac = 36y². Then 25y² − 36y² = −11y².",
         "lines": [
-          "Here x is real, so this quadratic in x has",
-          "real roots, which needs Δ = b² − 4ac ≥ 0:",
-          "Here a = y, b = −(5y + 1), c = 9y",
+          {
+            "text": "Here x is real, so this quadratic in x has",
+            "added": true
+          },
+          {
+            "text": "real roots, which needs Δ = b² − 4ac ≥ 0:",
+            "added": true
+          },
+          {
+            "text": "Here a = y, b = −(5y + 1), c = 9y",
+            "added": true
+          },
           "Δ = (5y + 1)² − 4(y)(9y) ≥ 0",
           "25y² + 10y + 1 − 36y² ≥ 0",
           "−11y² + 10y + 1 ≥ 0"
@@ -163,6 +172,12 @@
           "Writing b² as (5y + 1) without squaring, or as 25y² + 1.",
           "Computing 4ac as 36y instead of 36y².",
           "Using Δ > 0, which loses the two bounds themselves."
+        ],
+        "lines_compact": [
+          "∴ Δ = b² − 4ac ≥ 0",
+          "⇒ (5y + 1)² − 4(y)(9y) ≥ 0",
+          "⇒ 25y² + 10y + 1 − 36y² ≥ 0",
+          "⇒ −11y² + 10y + 1 ≥ 0"
         ]
       },
       {
@@ -174,14 +189,26 @@
         "margin_note": "Third mark. Multiplying by −1 REVERSES the inequality. Split −10y as −11y + y so the pairs factorise. A product ≤ 0 means y is between the roots: −1/11 and 1.",
         "memory_tip": "Multiplying by −1 reverses the inequality. Split −10y as −11y + y so the pairs factorise.",
         "lines": [
-          "Multiply by −1 and flip the inequality:",
+          {
+            "text": "Multiply by −1 and flip the inequality:",
+            "added": true
+          },
           "11y² − 10y − 1 ≤ 0",
-          "Split −10y as −11y + y:",
+          {
+            "text": "Split −10y as −11y + y:",
+            "added": true
+          },
           "11y² − 11y + y − 1 ≤ 0",
           "11y(y − 1) + 1(y − 1) ≤ 0",
           "(11y + 1)(y − 1) ≤ 0",
-          "The roots are y = −1/11 and y = 1.",
-          "A product is ≤ 0 BETWEEN its roots:",
+          {
+            "text": "The roots are y = −1/11 and y = 1.",
+            "added": true
+          },
+          {
+            "text": "A product is ≤ 0 BETWEEN its roots:",
+            "added": true
+          },
           "−1/11 ≤ y ≤ 1"
         ],
         "recall": {
@@ -215,6 +242,13 @@
           "Keeping ≥ after multiplying by −1 and concluding the opposite (outside the roots).",
           "Factorising with the wrong pair; check 11·1 = 11 and 11(−1) + 1·1 = −10.",
           "Writing the roots as 1/11 and −1."
+        ],
+        "lines_compact": [
+          "⇒ 11y² − 10y − 1 ≤ 0",
+          "⇒ 11y² − 11y + y − 1 ≤ 0",
+          "⇒ 11y(y − 1) + 1(y − 1) ≤ 0",
+          "⇒ (11y + 1)(y − 1) ≤ 0",
+          "⇒ −1/11 ≤ y ≤ 1"
         ]
       },
       {
@@ -226,8 +260,14 @@
         "margin_note": "Last mark. Both bounds are reached: y = 1 at x = 3 and y = −1/11 at x = −3, so 'lies between' here includes the ends. Finish with the sentence the question asked for, in the question's own words.",
         "memory_tip": "Both bounds are reached — y = 1 at x = 3, y = −1/11 at x = −3 — so end with the question's own sentence.",
         "lines": [
-          "So every value of the expression lies",
-          "between −1/11 and 1.",
+          {
+            "text": "So every value of the expression lies",
+            "added": true
+          },
+          {
+            "text": "between −1/11 and 1.",
+            "added": true
+          },
           {
             "text": "∴ −1/11 ≤ x/(x² − 5x + 9) ≤ 1",
             "style": "boxed"
@@ -260,6 +300,13 @@
           "Ending at the inequality in y without saying it proves the claim.",
           "Writing the bounds as 1 and 1/11.",
           "Claiming the expression is strictly between the bounds — both are reached."
+        ],
+        "lines_compact": [
+          "So the expression lies between −1/11 and 1.",
+          {
+            "text": "∴ −1/11 ≤ x/(x² − 5x + 9) ≤ 1",
+            "style": "boxed"
+          }
         ]
       }
     ]

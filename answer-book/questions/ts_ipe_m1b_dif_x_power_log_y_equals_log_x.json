@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.206, chapter 9 DIFFERENTIATION, Long Answer question 6. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section C question: two marks for the logarithm move, two for the implicit differentiation, two for making dy/dx the subject, two for reaching the printed form. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section C runs Q19 to Q21 at 8 marks each, answer any 2 of 3, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The mathematics was checked independently before writing, and the working lands on the printed target exactly. It was also checked numerically: solving the relation for y gives y = exp(log(log x)/log x), and the printed formula agrees with a central difference quotient of that function at x = 3 (0.272567037) and at x = 5 (0.054390375), to nine decimal places at both points."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.206, chapter 9 DIFFERENTIATION, Long Answer question 6. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section C question: two marks for the logarithm move, two for the implicit differentiation, two for making dy/dx the subject, two for reaching the printed form. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section C runs Q19 to Q21 at 8 marks each, answer any 2 of 3, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The mathematics was checked independently before writing, and the working lands on the printed target exactly. It was also checked numerically: solving the relation for y gives y = exp(log(log x)/log x), and the printed formula agrees with a central difference quotient of that function at x = 3 (0.272567037) and at x = 5 (0.054390375), to nine decimal places at both points. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — say what you do to both sides first, and what the right side turns into.",
   "answer": {
@@ -60,11 +60,16 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given  x^(log y) = log x",
-          "The left side has x in the base and log y in the power, so neither the power rule nor the exponential rule applies. Take logarithms of both sides.",
-          "log[x^(log y)] = log(log x)",
+          "Given  xˡᵒᵍʸ = log x",
+          "The left side has x in the base and log y in the power,",
+          "so neither the power rule nor the exponential rule applies.",
+          "Take logarithms of both sides.",
+          "(take log of both sides of xˡᵒᵍʸ = log x)",
+          "log[xˡᵒᵍʸ] = log(log x)",
+          "(log(pᵐ) = m log p, with p = x and m = log y)",
           "∴ (log y)(log x) = log(log x)      …(1)",
-          "This needs x > 1, so that log x is positive and log(log x) exists, and y > 0."
+          "This needs x > 1, so that log x is positive",
+          "and log(log x) exists, and y > 0."
         ],
         "recall": {
           "credit": "say_it",
@@ -92,7 +97,7 @@
         "why": "The logarithm brings the power log y down in front, turning the left side into a product that the product rule can handle. The right side must be logged as well, which is what produces log(log x).",
         "common_mistakes": [
           "Leaving the right side as log x after taking logarithms of the left side.",
-          "Writing log[x^(log y)] as (log x)^(log y), which keeps the power where it was."
+          "Writing log[xˡᵒᵍʸ] as (log x)ˡᵒᵍʸ, which keeps the power where it was."
         ]
       },
       {
@@ -104,8 +109,31 @@
         "margin_note": "Two marks. The left side is a product, so the product rule is used, and log y carries a dy/dx. The right side needs the chain rule on log(log x): one over the inside, times the derivative of the inside, giving 1/(x log x).",
         "memory_tip": "The derivative of log(log x) is one over the inside, times the derivative of the inside: (1/log x) × (1/x).",
         "lines": [
+          {
+            "text": "(the product rule on (log y)(log x): d/dx(log y)",
+            "added": true
+          },
+          {
+            "text": "  = (1/y)(dy/dx) and d/dx(log x) = 1/x;",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  on the right d/dx log(log x) = (1/log x) · (1/x),",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  by the chain rule)",
+            "style": "indent",
+            "added": true
+          },
           "Differentiating (1) with respect to x,",
           "log x · (1/y)(dy/dx) + log y · (1/x) = (1/log x) · (1/x)",
+          {
+            "text": "(log x · (1/y) = log x/y; (1/log x) · (1/x) = 1/(x log x))",
+            "added": true
+          },
           "∴ (log x / y)(dy/dx) + (log y)/x = 1/(x log x)      …(2)"
         ],
         "recall": {
@@ -136,6 +164,11 @@
         "common_mistakes": [
           "Writing the derivative of log(log x) as 1/(log x) and leaving out the 1/x.",
           "Differentiating log y as 1/y without the dy/dx factor."
+        ],
+        "lines_compact": [
+          "Differentiating (1) with respect to x,",
+          "log x · (1/y)(dy/dx) + log y · (1/x) = (1/log x) · (1/x)",
+          "∴ (log x / y)(dy/dx) + (log y)/x = 1/(x log x)      …(2)"
         ]
       },
       {
@@ -147,7 +180,15 @@
         "margin_note": "Two marks. Only one term carries dy/dx, so there is nothing to collect — move the other term across and multiply by y/log x.",
         "memory_tip": "One dy/dx term only, so this is a one-move rearrangement: shift, then multiply by the reciprocal of what stands in front.",
         "lines": [
+          {
+            "text": "(move (log y)/x to the right side of (2))",
+            "added": true
+          },
           "From (2),  (log x / y)(dy/dx) = 1/(x log x) − (log y)/x",
+          {
+            "text": "(y/log x is allowed because log x > 0)",
+            "added": true
+          },
           "Multiplying both sides by y/log x,",
           "∴ dy/dx = (y/log x) [ 1/(x log x) − (log y)/x ]      …(3)"
         ],
@@ -178,6 +219,11 @@
         "common_mistakes": [
           "Multiplying only one of the two terms in the bracket by y/log x.",
           "Keeping the minus sign on the wrong term after the shift."
+        ],
+        "lines_compact": [
+          "From (2),  (log x / y)(dy/dx) = 1/(x log x) − (log y)/x",
+          "Multiplying both sides by y/log x,",
+          "∴ dy/dx = (y/log x) [ 1/(x log x) − (log y)/x ]      …(3)"
         ]
       },
       {
@@ -189,9 +235,31 @@
         "margin_note": "The last two marks. Take 1/x out of the bracket first, then put what is left over the single denominator log x. The two log x factors then meet and give (log x)².",
         "memory_tip": "Pull 1/x out first. What remains is 1/log x − log y, and over one denominator that is (1 − log x log y)/log x.",
         "lines": [
+          {
+            "text": "(1/(x log x) = (1/x) · 1/(log x)",
+            "added": true
+          },
+          {
+            "text": "  and (log y)/x = (1/x) · log y)",
+            "style": "indent",
+            "added": true
+          },
           "Taking 1/x out of the bracket in (3),",
           "dy/dx = (y/log x) · (1/x) [ 1/(log x) − log y ]",
+          {
+            "text": "(1/(log x) − log y = (1 − log x log y)/(log x),",
+            "added": true
+          },
+          {
+            "text": "  over the denominator log x)",
+            "style": "indent",
+            "added": true
+          },
           "= (y/x) · (1/log x) · (1 − log x log y)/(log x)",
+          {
+            "text": "((1/log x) · 1/(log x) = 1/(log x)²)",
+            "added": true
+          },
           {
             "text": "∴ dy/dx = (y/x)[(1 − log x log y)/(log x)²]",
             "style": "boxed"
@@ -224,6 +292,15 @@
         "common_mistakes": [
           "Stopping at (y/log x)[1/(x log x) − (log y)/x], which is correct but is not the form asked for.",
           "Writing (log x)² as log(x²), which is a different quantity."
+        ],
+        "lines_compact": [
+          "Taking 1/x out of the bracket in (3),",
+          "dy/dx = (y/log x) · (1/x) [ 1/(log x) − log y ]",
+          "= (y/x) · (1/log x) · (1 − log x log y)/(log x)",
+          {
+            "text": "∴ dy/dx = (y/x)[(1 − log x log y)/(log x)²]",
+            "style": "boxed"
+          }
         ]
       }
     ]

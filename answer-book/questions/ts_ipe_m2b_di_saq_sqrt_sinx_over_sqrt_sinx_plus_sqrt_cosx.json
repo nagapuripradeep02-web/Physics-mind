@@ -15,7 +15,7 @@
   "marks_total": 4,
   "paper_section": "Section B",
   "expected_time_min": 9,
-  "question_text": "Evaluate ∫_(π/6)^(π/3) √sinx/(√sinx + √cosx) dx.",
+  "question_text": "Evaluate ∫ √sinx/(√sinx + √cosx) dx from π/6 to π/3.",
   "appearances": [
     {
       "year": 2020
@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.69 — SAQ chapter 10 'Definite Integrals', answer 85, directly below answer 84's practice-question box. Printed tags beside the question: TS 20 and IPE 14. The IPE 14 tag (pre-2014 undivided-board paper) is NOT an appearance per the schema's enum and is recorded here only in prose. Chapter star rank ★★★ applies. No margin mark tags are printed, so the 1+1+2 split is OURS, patterned on the printed 1+1+2 splits of answers 82 and 83 in this same chapter. Note the LIMITS here are π/6 to π/3, not 0 to π/2, so the property used is the general ∫ₐ^b f(x)dx = ∫ₐ^b f(a+b−x)dx form with a+b = π/6+π/3 = π/2 — the same sin↔cos swap results, but the property statement itself must show the general form, not the 0-to-a special case. Boundary reading: printed p.67 and printed p.72 confirm the chapter span. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.69 — SAQ chapter 10 'Definite Integrals', answer 85, directly below answer 84's practice-question box. Printed tags beside the question: TS 20 and IPE 14. The IPE 14 tag (pre-2014 undivided-board paper) is NOT an appearance per the schema's enum and is recorded here only in prose. Chapter star rank ★★★ applies. No margin mark tags are printed, so the 1+1+2 split is OURS, patterned on the printed 1+1+2 splits of answers 82 and 83 in this same chapter. Note the LIMITS here are π/6 to π/3, not 0 to π/2, so the property used is the general ∫ₐ^b f(x)dx = ∫ₐ^b f(a+b−x)dx form with a+b = π/6+π/3 = π/2 — the same sin↔cos swap results, but the property statement itself must show the general form, not the 0-to-a special case. Boundary reading: printed p.67 and printed p.72 confirm the chapter span. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "insider_note": "The limits π/6 and π/3 add up to π/2, exactly the angle where sinx and cosx swap under the property — that sum, not 0-to-π/2 itself, is what makes the swap trick work here.",
   "answer": {
@@ -53,16 +53,20 @@
         "label": "Apply the property with a + b = π/2",
         "marks": 1,
         "mark_note": "First form",
-        "margin_note": "One mark. Use the general ∫ₐ^b form here, not the 0-to-a special case — the limits are not 0 and π/2.",
+        "margin_note": "One mark. Use the general ∫ₐᵇ form here, not the 0-to-a special case — the limits are not 0 and π/2.",
         "memory_tip": "π/6 + π/3 = π/2 — check this sum first, it is what makes the sin↔cos swap appear.",
         "lines": [
           {
             "text": "Sol:",
             "style": "heading"
           },
-          "We know ∫ₐ^b f(x)dx = ∫ₐ^b f(a + b − x)dx",
-          "∴ I",
-          "= ∫_(π/6)^(π/3) √sinx/(√sinx + √cosx) dx …(1)"
+          "We know ∫ₐᵇ f(x)dx = ∫ₐᵇ f(a + b − x)dx",
+          "Here a = π/6 and b = π/3, so a + b = π/2.",
+          {
+            "text": "\\therefore I = \\int _{\\pi /6}^{\\pi /3} \\sqrt{\\sin x}/(\\sqrt{\\sin x} + \\sqrt{\\cos x}) dx \\dots (1)",
+            "render": "katex",
+            "style": "normal"
+          }
         ],
         "why": "The general King's property replaces x by (the sum of the two limits, minus x); here π/6 + π/3 = π/2, so the replacement is x → π/2 − x, the same swap that makes sinx and cosx exchange places.",
         "common_mistakes": [
@@ -81,16 +85,61 @@
         "lines": [
           "By x → π/6 + π/3 − x = π/2 − x:",
           "I",
-          "= ∫_(π/6)^(π/3) √sin(π/2−x)/[√sin(π/2−x)",
-          "+ √cos(π/2−x)] dx",
+          {
+            "text": "= \\int _{\\pi /6}^{\\pi /3} \\sqrt{\\sin (\\pi /2-x)}/[\\sqrt{\\sin (\\pi /2-x)}",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "+ \\sqrt{\\cos (\\pi /2-x)}] dx",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "sin(π/2 − x) = cosx and cos(π/2 − x) = sinx:",
+            "added": true
+          },
           "⇒ I",
-          "= ∫_(π/6)^(π/3) √cosx/(√cosx + √sinx) dx",
-          "…(2)"
+          {
+            "text": "= \\int _{\\pi /6}^{\\pi /3} \\sqrt{\\cos x}/(\\sqrt{\\cos x} + \\sqrt{\\sin x}) dx",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "\\dots (2)",
+            "render": "katex",
+            "style": "normal"
+          }
         ],
         "why": "Since π/6 + π/3 = π/2, the swap x → π/2 − x turns sinx into cosx and vice versa, so the numerator and denominator terms exchange places while the limits stay the same.",
         "common_mistakes": [
           "Leaving the numerator unchanged at √sinx instead of turning it into √cosx.",
           "Forgetting that the limits π/6 and π/3 stay exactly as they were — only the integrand changes."
+        ],
+        "lines_compact": [
+          "By x → π/6 + π/3 − x = π/2 − x:",
+          "I",
+          {
+            "text": "= \\int _{\\pi /6}^{\\pi /3} \\sqrt{\\sin (\\pi /2-x)}/[\\sqrt{\\sin (\\pi /2-x)}",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "+ \\sqrt{\\cos (\\pi /2-x)}] dx",
+            "render": "katex",
+            "style": "normal"
+          },
+          "⇒ I",
+          {
+            "text": "= \\int _{\\pi /6}^{\\pi /3} \\sqrt{\\cos x}/(\\sqrt{\\cos x} + \\sqrt{\\sin x}) dx",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "\\dots (2)",
+            "render": "katex",
+            "style": "normal"
+          }
         ]
       },
       {
@@ -102,11 +151,35 @@
         "margin_note": "The last two marks. The added numerator equals the denominator, so the fraction is 1.",
         "memory_tip": "π/3 minus π/6 is π/6 — the length of the original interval survives into the final answer.",
         "lines": [
+          {
+            "text": "The denominators are the same, so add:",
+            "added": true
+          },
           "Adding (1) and (2): I + I",
-          "= ∫_(π/6)^(π/3) (√sinx + √cosx)/(√sinx +",
-          "√cosx) dx",
-          "⇒ 2I = ∫_(π/6)^(π/3) 1 dx = [x]_(π/6)^(π/3)",
+          {
+            "text": "= \\int _{\\pi /6}^{\\pi /3} (\\sqrt{\\sin x} + \\sqrt{\\cos x})/(\\sqrt{\\sin x} +",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "\\sqrt{\\cos x}) dx",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "The top and the bottom are the same sum:",
+            "added": true
+          },
+          {
+            "text": "\\Rightarrow 2I = \\int _{\\pi /6}^{\\pi /3} 1 dx = [x]_{\\pi /6}^{\\pi /3}",
+            "render": "katex",
+            "style": "normal"
+          },
           "= π/3 − π/6 = π/6",
+          {
+            "text": "since π/3 = 2π/6. Divide both sides by 2:",
+            "added": true
+          },
           {
             "text": "∴ I = π/12",
             "style": "boxed"
@@ -116,6 +189,29 @@
         "common_mistakes": [
           "Computing π/3 − π/6 incorrectly instead of the correct π/6.",
           "Forgetting the final division by 2 to isolate I."
+        ],
+        "lines_compact": [
+          "Adding (1) and (2): I + I",
+          {
+            "text": "= \\int _{\\pi /6}^{\\pi /3} (\\sqrt{\\sin x} + \\sqrt{\\cos x})/(\\sqrt{\\sin x} +",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "\\sqrt{\\cos x}) dx",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "\\Rightarrow 2I = \\int _{\\pi /6}^{\\pi /3} 1 dx = [x]_{\\pi /6}^{\\pi /3}",
+            "render": "katex",
+            "style": "normal"
+          },
+          "= π/3 − π/6 = π/6",
+          {
+            "text": "∴ I = π/12",
+            "style": "boxed"
+          }
         ]
       }
     ]

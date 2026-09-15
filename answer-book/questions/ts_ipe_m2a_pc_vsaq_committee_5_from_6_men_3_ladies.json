@@ -102,12 +102,19 @@
         "margin_note": "Second mark. ⁹C₅ = ⁹C₄ = (9·8·7·6)/(1·2·3·4) = 126.",
         "memory_tip": "⁹C₅ = ⁹C₄ = (9·8·7·6)/(1·2·3·4) = 126.",
         "lines": [
-          "⁹C₅ = ⁹C₉₋₅ = ⁹C₄   [ⁿCᵣ = ⁿCₙ₋ᵣ]",
+          {
+            "text": "⁹C₅ = ⁹C₉₋₅ = ⁹C₄   [ⁿCᵣ = ⁿCₙ₋ᵣ]",
+            "added": true
+          },
           "= (9 · 8 · 7 · 6)/(1 · 2 · 3 · 4)",
-          "= 3024/24",
+          {
+            "text": "= 3024/24",
+            "added": true
+          },
           {
             "text": "∴ number of ways = 126",
-            "style": "boxed"
+            "style": "boxed",
+            "added": true
           }
         ],
         "recall": {
@@ -134,6 +141,13 @@
         "common_mistakes": [
           "Computing 9·8·7·6·5 = 15120 and dividing by 24 instead of 120.",
           "Leaving the answer as ⁹C₅."
+        ],
+        "lines_compact": [
+          "⁹C₅ = ⁹C₄ = (9 · 8 · 7 · 6)/(1 · 2 · 3 · 4)",
+          {
+            "text": "= 126",
+            "style": "boxed"
+          }
         ]
       }
     ]

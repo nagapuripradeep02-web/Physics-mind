@@ -46,7 +46,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.81, chapter 7 PRODUCT OF VECTORS, Long Answer question 14. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+2+1+2+1+1 split weights the family of planes and the substitution that fixes λ, because those two moves are what the question is testing; the arithmetic that follows is one mark each. Paper position: Maths-1A Section C prints 3 long answers at 8 marks each and the student answers any 2; Product of Vectors is one of the units that can fill a Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.81, chapter 7 PRODUCT OF VECTORS, Long Answer question 14. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+2+1+2+1+1 split weights the family of planes and the substitution that fixes λ, because those two moves are what the question is testing; the arithmetic that follows is one mark each. Paper position: Maths-1A Section C prints 3 long answers at 8 marks each and the student answers any 2; Product of Vectors is one of the units that can fill a Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find a plane through the line where two given planes meet and through a given point.",
   "answer": {
@@ -112,7 +112,16 @@
           "Any plane through the line where (1) and",
           "(2) meet has the form (1) + λ(2) = 0 :",
           "[r·(i + j + k) − 6]",
-          "   + λ[r·(2i + 3j + 4k) + 5] = 0"
+          "   + λ[r·(2i + 3j + 4k) + 5] = 0",
+          {
+            "text": "(a point on both planes makes both brackets 0,",
+            "added": true
+          },
+          {
+            "text": "  so it satisfies (1) + λ(2) = 0 for every λ)",
+            "style": "indent",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -140,6 +149,12 @@
         "common_mistakes": [
           "Multiplying the two plane equations instead of adding them.",
           "Putting λ on both brackets, which just scales the whole equation."
+        ],
+        "lines_compact": [
+          "Any plane through the line where (1) and",
+          "(2) meet has the form (1) + λ(2) = 0 :",
+          "[r·(i + j + k) − 6]",
+          "   + λ[r·(2i + 3j + 4k) + 5] = 0"
         ]
       },
       {
@@ -153,7 +168,16 @@
         "lines": [
           "Collecting the r terms,",
           "r·[(1 + 2λ)i + (1 + 3λ)j + (1 + 4λ)k]",
-          "= 6 − 5λ    …(3)"
+          "= 6 − 5λ    …(3)",
+          {
+            "text": "(i part 1 + 2λ, j part 1 + 3λ, k part 1 + 4λ; the",
+            "added": true
+          },
+          {
+            "text": "  constants −6 + 5λ move to the right)",
+            "style": "indent",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -181,6 +205,11 @@
         "common_mistakes": [
           "Leaving +5λ on the right instead of −5λ.",
           "Adding the two normals without the λ factor on the second."
+        ],
+        "lines_compact": [
+          "Collecting the r terms,",
+          "r·[(1 + 2λ)i + (1 + 3λ)j + (1 + 4λ)k]",
+          "= 6 − 5λ    …(3)"
         ]
       },
       {
@@ -194,8 +223,20 @@
         "lines": [
           "The plane passes through (1, 1, 1), so",
           "put r = i + j + k in (3) :",
+          {
+            "text": "(dotting with i + j + k adds the three components)",
+            "added": true
+          },
           "(1 + 2λ) + (1 + 3λ) + (1 + 4λ) = 6 − 5λ",
+          {
+            "text": "(1 + 1 + 1 = 3 and 2λ + 3λ + 4λ = 9λ)",
+            "added": true
+          },
           "3 + 9λ = 6 − 5λ",
+          {
+            "text": "(add 5λ to both sides and take away 3)",
+            "added": true
+          },
           "14λ = 3, so λ = 3/14"
         ],
         "recall": {
@@ -224,6 +265,13 @@
         "common_mistakes": [
           "Moving −5λ across as −5λ instead of +5λ.",
           "Dotting the point with the wrong side of equation (3)."
+        ],
+        "lines_compact": [
+          "The plane passes through (1, 1, 1), so",
+          "put r = i + j + k in (3) :",
+          "(1 + 2λ) + (1 + 3λ) + (1 + 4λ) = 6 − 5λ",
+          "3 + 9λ = 6 − 5λ",
+          "14λ = 3, so λ = 3/14"
         ]
       },
       {
@@ -235,9 +283,26 @@
         "margin_note": "Seventh mark. Keep everything over 14 rather than turning it into decimals — the fractions all clear in the next line.",
         "memory_tip": "Keep everything over 14. The fourteens all clear in the next line.",
         "lines": [
+          {
+            "text": "Put λ = 3/14:",
+            "added": true
+          },
           "Normal = (1 + 6/14)i + (1 + 9/14)j",
           "   + (1 + 12/14)k",
+          {
+            "text": "(1 + 6/14 = 20/14 and 1 + 9/14 = 23/14,",
+            "added": true
+          },
+          {
+            "text": "  1 + 12/14 = 26/14)",
+            "style": "indent",
+            "added": true
+          },
           "= (20i + 23j + 26k)/14",
+          {
+            "text": "(5λ = 15/14, and 6 = 84/14)",
+            "added": true
+          },
           "Constant = 6 − 15/14 = 69/14"
         ],
         "recall": {
@@ -266,6 +331,12 @@
         "common_mistakes": [
           "Turning 3/14 into a decimal and losing exactness.",
           "Forgetting the 1 that sits in front of each bracket."
+        ],
+        "lines_compact": [
+          "Normal = (1 + 6/14)i + (1 + 9/14)j",
+          "   + (1 + 12/14)k",
+          "= (20i + 23j + 26k)/14",
+          "Constant = 6 − 15/14 = 69/14"
         ]
       },
       {

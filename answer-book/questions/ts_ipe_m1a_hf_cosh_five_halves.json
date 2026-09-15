@@ -47,7 +47,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.96 — VSAQ chapter 19 Hyperbolic Functions, answer 139.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 17,19 · AP 16,18 (the book prints TS 17 twice). The twin of 139.1 run the other way: the COSH is given, so the identity is rearranged the other way and the surd does not come out whole. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four questions to a page in two columns. It is not a bare guess: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark VSAQ. The book's chapter header carries ★★★ and reads '2 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q10 is the Hyperbolic Functions slot. NOTE: Hyperbolic Functions is a VSAQ-ONLY unit — the paper gives it no Section-B and no Section-C slot, and this book has no hyperbolic LAQ chapter (LAQ chapters are 1-6) and no SAQ chapter (SAQ chapters are 7-13). Chapter 19 is the LAST VSAQ chapter; the boundary was walked to book p.98, where a separate 'Star Questions Plus' section begins."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.96 — VSAQ chapter 19 Hyperbolic Functions, answer 139.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 17,19 · AP 16,18 (the book prints TS 17 twice). The twin of 139.1 run the other way: the COSH is given, so the identity is rearranged the other way and the surd does not come out whole. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four questions to a page in two columns. It is not a bare guess: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark VSAQ. The book's chapter header carries ★★★ and reads '2 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q10 is the Hyperbolic Functions slot. NOTE: Hyperbolic Functions is a VSAQ-ONLY unit — the paper gives it no Section-B and no Section-C slot, and this book has no hyperbolic LAQ chapter (LAQ chapters are 1-6) and no SAQ chapter (SAQ chapters are 7-13). Chapter 19 is the LAST VSAQ chapter; the boundary was walked to book p.98, where a separate 'Star Questions Plus' section begins. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — name the formula or definition you use and how you finish.",
   "answer": {
@@ -62,15 +62,21 @@
         "label": "Find sinh x",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. Rearranged the other way this time: sinh x = √(cosh²x − 1) — a MINUS, because the identity is cosh² − sinh² = 1.",
-        "memory_tip": "cosh x is given, so sinh x = √(cosh²x − 1) — a MINUS, from cosh² − sinh² = 1.",
+        "margin_note": "First mark. Rearranged the other way this time: sinh x = ±√(cosh²x − 1), with + when x > 0 — a MINUS under the root, because the identity is cosh² − sinh² = 1.",
+        "memory_tip": "cosh x is given, so sinh x = ±√(cosh²x − 1), with + when x > 0 — a MINUS under the root, from cosh² − sinh² = 1.",
         "lines": [
           {
             "text": "Sol:",
             "style": "heading"
           },
           "Given cosh x = 5/2",
+          "(sinh²x = cosh²x − 1; take x > 0, so sinh x > 0;",
+          {
+            "text": "  for x < 0, sinh x and sinh 2x are negative)",
+            "style": "indent"
+          },
           "sinh x = √(cosh²x − 1)   [∵ cosh²x − sinh²x = 1]",
+          "(25/4 − 1 = 25/4 − 4/4 = 21/4)",
           "= √((5/2)² − 1) = √(25/4 − 1)",
           "= √(21/4) = √21/2"
         ],
@@ -98,7 +104,7 @@
         },
         "why": "The same identity gives a plus under the root when solving for cosh and a minus when solving for sinh. Which one you need depends on what was given.",
         "common_mistakes": [
-          "Using √(cosh²x + 1), which is the form for a question where sinh x is the given value.",
+          "Putting a plus under the root, √(cosh²x + 1). The plus form is cosh x = √(sinh²x + 1), used when sinh x is the given value.",
           "Getting 25/4 − 1 as 24/4."
         ]
       },
@@ -108,15 +114,24 @@
         "label": "Apply the double-angle formulas",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Second mark. Same two formulas as the question where sinh x is given. The surd survives into sinh2x but cancels out of cosh2x, since only the squares appear there.",
-        "memory_tip": "cosh 2x = cosh²x + sinh²x uses only the squares, so the surd cancels there but survives in sinh 2x.",
+        "margin_note": "Second mark. The surd stays in sinh 2x but not in cosh 2x, because cosh 2x uses only the squares and (√21/2)² = 21/4.",
+        "memory_tip": "cosh 2x = cosh²x + sinh²x uses only the squares, so the surd is not in cosh 2x but stays in sinh 2x.",
         "lines": [
+          {
+            "text": "(cosh²x = 25/4 and sinh²x = 21/4)",
+            "added": true
+          },
           "cosh 2x = cosh²x + sinh²x = 25/4 + 21/4 = 46/4 = 23/2",
+          {
+            "text": "(2 × (√21/2) × (5/2) = 5√21/2)",
+            "added": true
+          },
           "sinh 2x = 2 sinh x cosh x = 2(√21/2)(5/2) = 5√21/2",
           {
             "text": "∴ cosh 2x = 23/2,  sinh 2x = 5√21/2",
             "style": "boxed"
-          }
+          },
+          "(taking x > 0; for x < 0, sinh 2x = −5√21/2)"
         ],
         "recall": {
           "credit": "say_it",
@@ -144,9 +159,18 @@
         "common_mistakes": [
           "Squaring √21/2 as √21/4.",
           "Giving only cosh 2x."
+        ],
+        "lines_compact": [
+          "cosh 2x = cosh²x + sinh²x = 25/4 + 21/4 = 46/4 = 23/2",
+          "sinh 2x = 2 sinh x cosh x = 2(√21/2)(5/2) = 5√21/2",
+          {
+            "text": "∴ cosh 2x = 23/2,  sinh 2x = 5√21/2",
+            "style": "boxed"
+          },
+          "(taking x > 0; for x < 0, sinh 2x = −5√21/2)"
         ]
       }
     ]
   },
-  "insider_note": "cosh x = 5/2 is legal because cosh never drops below 1, and here sinh x = √(cosh²x − 1), the identity used the other way round. The √21 stays in sinh 2x; a tidy whole number is not expected."
+  "insider_note": "cosh x = 5/2 is possible because cosh x is never less than 1, and here sinh x = √(cosh²x − 1) for x > 0, the identity used the other way round. The √21 stays in sinh 2x; a tidy whole number is not expected."
 }

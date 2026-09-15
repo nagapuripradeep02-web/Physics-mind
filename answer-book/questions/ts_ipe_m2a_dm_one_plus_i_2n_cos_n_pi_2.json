@@ -113,13 +113,31 @@
         "memory_tip": "The power 2n goes on both parts: (√2)²ⁿ = 2ⁿ, and 2n · π/4 = nπ/2.",
         "lines": [
           "(1 + i)²ⁿ = [√2(cos π/4 + i sin π/4)]²ⁿ",
-          "= (√2)²ⁿ (cos π/4 + i sin π/4)²ⁿ",
-          "(√2)²ⁿ = ((√2)²)ⁿ = 2ⁿ",
-          "By De Moivre's theorem the angle is multiplied:",
-          "(cos π/4 + i sin π/4)²ⁿ",
+          {
+            "text": "= (√2)²ⁿ (cos π/4 + i sin π/4)²ⁿ",
+            "added": true
+          },
+          {
+            "text": "(√2)²ⁿ = ((√2)²)ⁿ = 2ⁿ",
+            "added": true
+          },
+          {
+            "text": "By De Moivre's theorem the angle is multiplied:",
+            "added": true
+          },
+          {
+            "text": "(cos π/4 + i sin π/4)²ⁿ",
+            "added": true
+          },
           "= cos(2n · π/4) + i sin(2n · π/4)",
-          "= cos(nπ/2) + i sin(nπ/2)",
-          "∴ (1 + i)²ⁿ = 2ⁿ[cos(nπ/2) + i sin(nπ/2)] …(1)"
+          {
+            "text": "= cos(nπ/2) + i sin(nπ/2)",
+            "added": true
+          },
+          {
+            "text": "∴ (1 + i)²ⁿ = 2ⁿ[cos(nπ/2) + i sin(nπ/2)] …(1)",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -149,6 +167,12 @@
           "Raising r to the power but forgetting to multiply the angle by the same power.",
           "Multiplying the angle by the power but leaving r un-raised.",
           "Writing (cos θ + i sin θ)ⁿ = cosⁿ θ + i sinⁿ θ, which is false."
+        ],
+        "lines_compact": [
+          "(1 + i)²ⁿ = [√2(cos π/4 + i sin π/4)]²ⁿ",
+          "= (√2)²ⁿ [cos(2n · π/4) + i sin(2n · π/4)]",
+          "(by De Moivre's theorem)",
+          "= 2ⁿ [cos(nπ/2) + i sin(nπ/2)] …(1)"
         ]
       },
       {
@@ -160,8 +184,14 @@
         "margin_note": "Fifth mark. 1 − i is the conjugate of 1 + i, so raising it to 2n gives the same 2ⁿ with the sine sign reversed. Label it (2); nothing is recomputed.",
         "memory_tip": "1 − i is the conjugate of 1 + i, so the same 2ⁿ with the sine sign reversed.",
         "lines": [
-          "1 − i is the conjugate of 1 + i, so its",
-          "expansion is the same with the sin term negative:",
+          {
+            "text": "1 − i is the conjugate of 1 + i, so its",
+            "added": true
+          },
+          {
+            "text": "expansion is the same with the sin term negative:",
+            "added": true
+          },
           "(1 − i)²ⁿ = 2ⁿ[cos(nπ/2) − i sin(nπ/2)] …(2)"
         ],
         "recall": {
@@ -191,6 +221,10 @@
           "Changing the sign of the cosine as well as the sine.",
           "Recomputing r and θ from scratch and losing time.",
           "Writing equation (2) without the minus sign, so nothing cancels in the next step."
+        ],
+        "lines_compact": [
+          "Similarly,",
+          "(1 − i)²ⁿ = 2ⁿ [cos(nπ/2) − i sin(nπ/2)] …(2)"
         ]
       },
       {
@@ -202,12 +236,19 @@
         "margin_note": "Sixth and seventh marks. Adding (1) and (2) cancels the i sin terms and doubles the cosine: 2ⁿ · 2 cos(nπ/2). Combine the powers of 2 into 2ⁿ⁺¹.",
         "memory_tip": "Adding cancels the sines and doubles the cosine: 2ⁿ · 2 = 2ⁿ⁺¹.",
         "lines": [
-          "Adding (1) and (2), the i sin terms cancel:",
+          {
+            "text": "Adding (1) and (2), the i sin terms cancel:",
+            "added": true
+          },
           "(1 + i)²ⁿ + (1 − i)²ⁿ = 2ⁿ · 2cos(nπ/2)",
-          "2ⁿ · 2 = 2ⁿ⁺¹",
+          {
+            "text": "2ⁿ · 2 = 2ⁿ⁺¹",
+            "added": true
+          },
           {
             "text": "∴ (1 + i)²ⁿ + (1 − i)²ⁿ = 2ⁿ⁺¹ cos(nπ/2)",
-            "style": "boxed"
+            "style": "boxed",
+            "added": true
           }
         ],
         "recall": {
@@ -238,6 +279,14 @@
           "Subtracting instead of adding, which leaves 2i sin instead of 2 cos.",
           "Leaving the answer as 2ⁿ · 2 cos instead of combining into one power of 2.",
           "Dropping the factor that comes from r, which is the whole reason the answer has a power of 2."
+        ],
+        "lines_compact": [
+          "Adding (1) and (2):",
+          "(1 + i)²ⁿ + (1 − i)²ⁿ = 2ⁿ · 2 cos(nπ/2)",
+          {
+            "text": "= 2ⁿ⁺¹ cos(nπ/2)",
+            "style": "boxed"
+          }
         ]
       }
     ]

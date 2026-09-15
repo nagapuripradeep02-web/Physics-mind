@@ -110,16 +110,40 @@
         "margin_note": "Second mark. Numerator: α² + β² = (α + β)² − 2αβ = b²/a² − 2c/a = (b² − 2ac)/a². Denominator: (αβ)² = c²/a². Dividing, the a² cancels and the answer is (b² − 2ac)/c².",
         "memory_tip": "Divide (b² − 2ac)/a² by (αβ)² = c²/a². The a² cancels, so the denominator is c², not a².",
         "lines": [
-          "Add the two fractions:",
+          {
+            "text": "Add the two fractions:",
+            "added": true
+          },
           "1/α² + 1/β² = (β² + α²)/(α²β²)",
-          "= (α² + β²)/(αβ)²",
-          "Now α² + β² = (α + β)² − 2αβ",
-          "= (−b/a)² − 2(c/a) = b²/a² − 2c/a",
-          "= (b² − 2ac)/a²",
-          "and (αβ)² = (c/a)² = c²/a²",
-          "1/α² + 1/β² = [(b² − 2ac)/a²] ÷ (c²/a²)",
+          {
+            "text": "= (α² + β²)/(αβ)²",
+            "added": true
+          },
+          {
+            "text": "Now α² + β² = (α + β)² − 2αβ",
+            "added": true
+          },
+          {
+            "text": "= (−b/a)² − 2(c/a) = b²/a² − 2c/a",
+            "added": true
+          },
+          {
+            "text": "= (b² − 2ac)/a²",
+            "added": true
+          },
+          {
+            "text": "and (αβ)² = (c/a)² = c²/a²",
+            "added": true
+          },
+          {
+            "text": "1/α² + 1/β² = [(b² − 2ac)/a²] ÷ (c²/a²)",
+            "added": true
+          },
           "= [(b² − 2ac)/a²] × (a²/c²)",
-          "The a² cancels:",
+          {
+            "text": "The a² cancels:",
+            "added": true
+          },
           {
             "text": "∴ 1/α² + 1/β² = (b² − 2ac)/c²",
             "style": "boxed"
@@ -152,6 +176,16 @@
           "Writing α² + β² = (α + β)², forgetting the −2αβ.",
           "Leaving the answer as (b² − 2ac)/a² — the denominator is c², not a².",
           "Writing the denominator (αβ)² as αβ."
+        ],
+        "lines_compact": [
+          "1/α² + 1/β² = (α² + β²)/(αβ)²",
+          "= [(α + β)² − 2αβ]/(αβ)²",
+          "= (b²/a² − 2c/a)/(c²/a²)",
+          "= [(b² − 2ac)/a²]·(a²/c²)",
+          {
+            "text": "∴ 1/α² + 1/β² = (b² − 2ac)/c²",
+            "style": "boxed"
+          }
         ]
       }
     ]

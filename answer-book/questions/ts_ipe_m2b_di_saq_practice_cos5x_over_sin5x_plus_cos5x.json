@@ -15,7 +15,7 @@
   "marks_total": 4,
   "paper_section": "Section B",
   "expected_time_min": 9,
-  "question_text": "Evaluate ∫₀^(π/2) cos⁵x/(sin⁵x + cos⁵x) dx.",
+  "question_text": "Evaluate ∫ cos⁵x/(sin⁵x + cos⁵x) dx from 0 to π/2.",
   "appearances": [],
   "mark_split": [
     {
@@ -34,9 +34,9 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.69 — SAQ chapter 10 'Definite Integrals', a printed PQ (Practice Question) box sitting directly under answer 84, giving only the question and the answer '[Ans: π/4]' with no worked solution and no year tag. This card is authored as a PRACTICE QUESTION: the question and final answer are printed in the book, but every line of working below is ours, re-derived using the same King's-property method as the neighbouring answer 84 (this question is, in fact, exactly the corrected second line of answer 84's own working). Chapter star rank ★★★ applies (Star Q+ status is not separately marked for a PQ box; it follows the chapter). No margin mark tags are printed (there is no working printed at all), so the 1+1+2 split is OURS, patterned on the three genuinely printed SAQ splits in this chapter (answers 82, 83: both 1+1+2). Boundary reading: printed p.67 and printed p.72 confirm the chapter span. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.69 — SAQ chapter 10 'Definite Integrals', a printed PQ (Practice Question) box sitting directly under answer 84, giving only the question and the answer '[Ans: π/4]' with no worked solution and no year tag. This card is authored as a PRACTICE QUESTION: the question and final answer are printed in the book, but every line of working below is ours, re-derived using the same King's-property method as the neighbouring answer 84 (this question is, in fact, exactly the corrected second line of answer 84's own working). Chapter star rank ★★★ applies (Star Q+ status is not separately marked for a PQ box; it follows the chapter). No margin mark tags are printed (there is no working printed at all), so the 1+1+2 split is OURS, patterned on the three genuinely printed SAQ splits in this chapter (answers 82, 83: both 1+1+2). Boundary reading: printed p.67 and printed p.72 confirm the chapter span. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
-  "insider_note": "This is the mirror image of ∫₀^(π/2) sin⁵x/(sin⁵x + cos⁵x) dx — swap sin and cos throughout and the same King's-property method gives the same final value, π/4, so the two integrals are equal by symmetry.",
+  "insider_note": "This is the mirror image of ∫ sin⁵x/(sin⁵x + cos⁵x) dx from 0 to π/2 — swap sin and cos throughout and the same King's-property method gives the same final value, π/4, so the two integrals are equal by symmetry.",
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",
@@ -50,14 +50,19 @@
         "marks": 1,
         "mark_note": "First form",
         "margin_note": "One mark. Label the given integral (1).",
-        "memory_tip": "This is the sin/cos mirror of ∫₀^(π/2) sin⁵x/(sin⁵x + cos⁵x) dx — the same method applies with the roles reversed.",
+        "memory_tip": "This is the sin/cos mirror of ∫ sin⁵x/(sin⁵x + cos⁵x) dx from 0 to π/2 — the same method applies with the roles reversed.",
         "lines": [
           {
             "text": "Sol:",
             "style": "heading"
           },
-          "We know ∫₀^a f(x)dx = ∫₀^a f(a − x)dx",
-          "∴ J = ∫₀^(π/2) cos⁵x/(sin⁵x + cos⁵x) dx …(1)"
+          "We know ∫₀ᵃ f(x)dx = ∫₀ᵃ f(a − x)dx",
+          "Here a = π/2.",
+          {
+            "text": "\\therefore J = \\int _{0}^{\\pi /2} \\cos ^{5}x/(\\sin ^{5}x + \\cos ^{5}x) dx \\dots (1)",
+            "render": "katex",
+            "style": "normal"
+          }
         ],
         "why": "Labelling the given integral (1) sets it up for comparison with its transformed second form.",
         "common_mistakes": [
@@ -76,14 +81,49 @@
         "lines": [
           "By x → π/2 − x:",
           "J",
-          "= ∫₀^(π/2) cos⁵(π/2−x)/[sin⁵(π/2−x) +",
-          "cos⁵(π/2−x)] dx",
-          "⇒ J = ∫₀^(π/2) sin⁵x/(cos⁵x + sin⁵x) dx …(2)"
+          {
+            "text": "= \\int _{0}^{\\pi /2} \\cos ^{5}(\\pi /2-x)/[\\sin ^{5}(\\pi /2-x) +",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "\\cos ^{5}(\\pi /2-x)] dx",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "cos(π/2 − x) = sinx and sin(π/2 − x) = cosx:",
+            "added": true
+          },
+          {
+            "text": "\\Rightarrow J = \\int _{0}^{\\pi /2} \\sin ^{5}x/(\\cos ^{5}x + \\sin ^{5}x) dx \\dots (2)",
+            "render": "katex",
+            "style": "normal"
+          }
         ],
         "why": "Under x → π/2 − x, cosx becomes sinx, so cos⁵x becomes sin⁵x in the numerator, while the denominator (a sum of both powers) reappears unchanged.",
         "common_mistakes": [
           "Leaving the numerator as cos⁵x instead of turning it into sin⁵x.",
           "Writing the denominator's two terms in a different order and treating it as a different quantity."
+        ],
+        "lines_compact": [
+          "By x → π/2 − x:",
+          "J",
+          {
+            "text": "= \\int _{0}^{\\pi /2} \\cos ^{5}(\\pi /2-x)/[\\sin ^{5}(\\pi /2-x) +",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "\\cos ^{5}(\\pi /2-x)] dx",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "\\Rightarrow J = \\int _{0}^{\\pi /2} \\sin ^{5}x/(\\cos ^{5}x + \\sin ^{5}x) dx \\dots (2)",
+            "render": "katex",
+            "style": "normal"
+          }
         ]
       },
       {
@@ -95,9 +135,29 @@
         "margin_note": "The last two marks. Adding (1) and (2) makes the integrand 1, so 2J is just the length of the interval.",
         "memory_tip": "cos⁵x + sin⁵x over sin⁵x + cos⁵x is always 1 — the numerator sum always matches the denominator after this swap.",
         "lines": [
+          {
+            "text": "The denominators are the same, so add:",
+            "added": true
+          },
           "Adding (1) and (2): J + J",
-          "= ∫₀^(π/2) [cos⁵x + sin⁵x]/[sin⁵x + cos⁵x] dx",
-          "⇒ 2J = ∫₀^(π/2) 1 dx = [x]₀^(π/2) = π/2",
+          {
+            "text": "= \\int _{0}^{\\pi /2} [\\cos ^{5}x + \\sin ^{5}x]/[\\sin ^{5}x + \\cos ^{5}x] dx",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "The top and the bottom are the same sum:",
+            "added": true
+          },
+          {
+            "text": "\\Rightarrow 2J = \\int _{0}^{\\pi /2} 1 dx = [x]_{0}^{\\pi /2} = \\pi /2",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "Divide both sides by 2:",
+            "added": true
+          },
           {
             "text": "∴ J = π/4",
             "style": "boxed"
@@ -107,6 +167,23 @@
         "common_mistakes": [
           "Reporting a value other than π/4 instead of noticing that 2J = π/2.",
           "Forgetting to divide by 2 at the end."
+        ],
+        "lines_compact": [
+          "Adding (1) and (2): J + J",
+          {
+            "text": "= \\int _{0}^{\\pi /2} [\\cos ^{5}x + \\sin ^{5}x]/[\\sin ^{5}x + \\cos ^{5}x] dx",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "\\Rightarrow 2J = \\int _{0}^{\\pi /2} 1 dx = [x]_{0}^{\\pi /2} = \\pi /2",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "∴ J = π/4",
+            "style": "boxed"
+          }
         ]
       }
     ]

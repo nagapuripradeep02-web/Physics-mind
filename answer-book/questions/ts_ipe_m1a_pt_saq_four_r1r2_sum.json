@@ -35,7 +35,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.111 — from the book's separate \"STAR QUESTIONS PLUS\" bank, answer 179, under its \"PROPERTIES OF TRIANGLES\" heading. That bank (book pp.98-111, answers 142-180) sits AFTER all the numbered chapters and is organised by chapter rather than being part of any chapter's inventory; it is authored into this unit because that is where the question belongs on the paper. ⚠ IT CARRIES NO MARK CUT. The Star Questions Plus headings name the chapter but not the section, so this answer is classed as an SAQ on its length and shape — it is comparable to answers 80-87 in the Properties of Triangles SAQ chapter — and that classification is OURS, not the book's. Printed appearances: TS 19.  ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used in this unit are the book's own. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q17 is the Properties of Triangles slot. Together with Q24 (LAQ) this unit holds TWO slots — one of only two units to do so, Matrices being the other."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.111 — from the book's separate \"STAR QUESTIONS PLUS\" bank, answer 179, under its \"PROPERTIES OF TRIANGLES\" heading. That bank (book pp.98-111, answers 142-180) sits AFTER all the numbered chapters and is organised by chapter rather than being part of any chapter's inventory; it is authored into this unit because that is where the question belongs on the paper. ⚠ IT CARRIES NO MARK CUT. The Star Questions Plus headings name the chapter but not the section, so this answer is classed as an SAQ on its length and shape — it is comparable to answers 80-87 in the Properties of Triangles SAQ chapter — and that classification is OURS, not the book's. Printed appearances: TS 19.  ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used in this unit are the book's own. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q17 is the Properties of Triangles slot. Together with Q24 (LAQ) this unit holds TWO slots — one of only two units to do so, Matrices being the other. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — name each standard result you use and the order you use them in.",
   "answer": {
@@ -58,7 +58,13 @@
             "style": "heading"
           },
           "L.H.S = 4(r₁r₂ + r₂r₃ + r₃r₁)",
+          "(r₁r₂ = Δ/(s−a) × Δ/(s−b), and so on)",
           "= 4[ Δ²/((s−a)(s−b)) + Δ²/((s−b)(s−c)) + Δ²/((s−c)(s−a)) ]",
+          "(common denominator (s−a)(s−b)(s−c): each top",
+          {
+            "text": "  gets the one factor its denominator lacks)",
+            "style": "indent"
+          },
           "= 4Δ²[ (s−c) + (s−a) + (s−b) ] / [(s−a)(s−b)(s−c)]"
         ],
         "recall": {
@@ -100,7 +106,15 @@
         "lines": [
           "= 4Δ² s / [(s−a)(s−b)(s−c)]   [∵ Σ(s−a) = 3s − 2s = s]",
           "Now Δ² = s(s−a)(s−b)(s−c) ⇒ (s−a)(s−b)(s−c) = Δ²/s",
+          {
+            "text": "(dividing by Δ²/s is multiplying by s/Δ²)",
+            "added": true
+          },
           "= 4Δ² s / (Δ²/s) = 4s²",
+          {
+            "text": "(4s² = (2s)², and 2s = a + b + c)",
+            "added": true
+          },
           {
             "text": "= (2s)² = (a + b + c)² = R.H.S",
             "style": "boxed"
@@ -132,6 +146,15 @@
         "common_mistakes": [
           "Not recognising the bracket product in Heron's formula.",
           "Leaving the answer as 4s² without writing (a+b+c)²."
+        ],
+        "lines_compact": [
+          "= 4Δ² s / [(s−a)(s−b)(s−c)]   [∵ Σ(s−a) = 3s − 2s = s]",
+          "Now Δ² = s(s−a)(s−b)(s−c) ⇒ (s−a)(s−b)(s−c) = Δ²/s",
+          "= 4Δ² s / (Δ²/s) = 4s²",
+          {
+            "text": "= (2s)² = (a + b + c)² = R.H.S",
+            "style": "boxed"
+          }
         ]
       }
     ]

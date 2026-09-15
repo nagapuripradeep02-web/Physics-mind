@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.9, chapter 2 FUNCTIONS, Very Short Answer question 6. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape gives one mark to the expansion of (x + 1/x)² and one to building f(x²) + f(1), because the identity is exactly the statement that the middle term of the square equals f(1). Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.9, chapter 2 FUNCTIONS, Very Short Answer question 6. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape gives one mark to the expansion of (x + 1/x)² and one to building f(x²) + f(1), because the identity is exactly the statement that the middle term of the square equals f(1). Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — what you expand first, and what each piece on the right side works out to.",
   "answer": {
@@ -54,7 +54,9 @@
           },
           "f(x) = x + 1/x,  x ≠ 0",
           "LHS = (f(x))² = (x + 1/x)²",
+          "((p + q)² = p² + 2pq + q²)",
           "= x² + 2·x·(1/x) + 1/x²",
+          "(2·x·(1/x) = 2)",
           "= x² + 1/x² + 2"
         ],
         "recall": {
@@ -97,6 +99,10 @@
         "memory_tip": "f(1) = 1 + 1/1 = 2, and 2 is the middle term of the square. That is why the identity holds.",
         "lines": [
           "x ≠ 0 ⇒ x² ≠ 0, so f(x²) is defined.",
+          {
+            "text": "(f(t) = t + 1/t, with t = x² and then t = 1)",
+            "added": true
+          },
           "f(x²) = x² + 1/x²",
           "f(1) = 1 + 1/1 = 2",
           "RHS = f(x²) + f(1) = x² + 1/x² + 2",
@@ -134,6 +140,17 @@
           "Writing f(x²) as (f(x))², which is the left side again.",
           "Writing f(1) as 1 instead of 1 + 1 = 2.",
           "Substituting one number such as x = 2 and stopping; a single value is a check, not a proof."
+        ],
+        "lines_compact": [
+          "x ≠ 0 ⇒ x² ≠ 0, so f(x²) is defined.",
+          "f(x²) = x² + 1/x²",
+          "f(1) = 1 + 1/1 = 2",
+          "RHS = f(x²) + f(1) = x² + 1/x² + 2",
+          "LHS and RHS are the same expression.",
+          {
+            "text": "∴ (f(x))² = f(x²) + f(1)",
+            "style": "boxed"
+          }
         ]
       }
     ]

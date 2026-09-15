@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.7, chapter 1 SETS & RELATIONS, Very Short Answer question 19. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sets and Relations is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.7, chapter 1 SETS & RELATIONS, Very Short Answer question 19. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sets and Relations is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would answer this — give the definition in set form, and say what your example would show.",
   "answer": {
@@ -52,9 +52,11 @@
             "style": "heading"
           },
           "Let A and B be two non-empty sets.",
-          "The Cartesian product of A and B, written A × B, is the set of all ordered pairs",
-          "whose first entry is taken from A and whose second entry is taken from B.",
-          "A × B = {(a, b) : a ∈ A and b ∈ B}"
+          "The Cartesian product of A and B, written A × B, is",
+          "the set of all ordered pairs whose first entry is",
+          "taken from A and whose second entry is taken from B.",
+          "A × B = {(a, b) : a ∈ A and b ∈ B}",
+          "(order matters: (a, b) ≠ (b, a) when a ≠ b)"
         ],
         "recall": {
           "credit": "say_it",
@@ -78,7 +80,7 @@
             "second from B"
           ]
         },
-        "why": "The word ordered is the whole of the definition: (1, 2) and (2, 1) are different elements of a Cartesian product, and that is what makes A × B different from B × A.",
+        "why": "The word ordered is essential: (1, 2) and (2, 1) are different elements of a Cartesian product, so in general A × B ≠ B × A. They are equal only when A = B, or when one of the sets is empty.",
         "memory_tip": "The first entry always comes from the first set — that is why it is A × B and not B × A.",
         "common_mistakes": [
           "Leaving out the word ordered, so the definition would treat (a, b) and (b, a) as the same.",
@@ -95,7 +97,15 @@
         "lines": [
           "Take A = {1, 2} and B = {x, y}.",
           "Pair each element of A with each element of B:",
+          {
+            "text": "((1, x), (1, y) come from 1; (2, x), (2, y) from 2)",
+            "added": true
+          },
           "n(A × B) = n(A) · n(B) = 2 × 2 = 4",
+          {
+            "text": "(the count 4 matches the pairs listed)",
+            "added": true
+          },
           {
             "text": "∴ A × B = {(1, x), (1, y), (2, x), (2, y)}",
             "style": "boxed"
@@ -129,6 +139,15 @@
           "Writing the pairs with curly brackets, which makes each pair a set and loses the order.",
           "Writing only (1, x) and (2, y), one pair per element instead of all four.",
           "Giving B × A instead of A × B."
+        ],
+        "lines_compact": [
+          "Take A = {1, 2} and B = {x, y}.",
+          "Pair each element of A with each element of B:",
+          "n(A × B) = n(A) · n(B) = 2 × 2 = 4",
+          {
+            "text": "∴ A × B = {(1, x), (1, y), (2, x), (2, y)}",
+            "style": "boxed"
+          }
         ]
       }
     ]

@@ -104,12 +104,22 @@
         "memory_tip": "(−2ω)³ = −8ω³ and ω³ = 1. An odd power keeps the minus sign.",
         "lines": [
           "(1 − ω + ω²)³ = (−2ω)³",
-          "= (−2)³ω³ = −8ω³",
-          "ω³ = 1, so",
-          "= −8(1)",
+          {
+            "text": "= (−2)³ω³ = −8ω³",
+            "added": true
+          },
+          {
+            "text": "ω³ = 1, so",
+            "added": true
+          },
+          {
+            "text": "= −8(1)",
+            "added": true
+          },
           {
             "text": "∴ (1 − ω + ω²)³ = −8",
-            "style": "boxed"
+            "style": "boxed",
+            "added": true
           }
         ],
         "recall": {
@@ -139,6 +149,13 @@
           "Writing (−2ω)³ = 8ω³, dropping the sign.",
           "Writing ω³ = −1.",
           "Getting 2³ = 6."
+        ],
+        "lines_compact": [
+          "(1 − ω + ω²)³ = (−2ω)³ = −8ω³",
+          {
+            "text": "= −8(1) = −8",
+            "style": "boxed"
+          }
         ]
       }
     ]

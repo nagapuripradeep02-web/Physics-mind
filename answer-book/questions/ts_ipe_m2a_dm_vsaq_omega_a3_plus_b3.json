@@ -111,11 +111,18 @@
         "memory_tip": "a² − ab + b² is the second factor of a³ + b³. No ω is left in the answer.",
         "lines": [
           "L.H.S. = (a + b)(a² − ab + b²)",
-          "This is the standard identity",
-          "(a + b)(a² − ab + b²) = a³ + b³",
+          {
+            "text": "This is the standard identity",
+            "added": true
+          },
+          {
+            "text": "(a + b)(a² − ab + b²) = a³ + b³",
+            "added": true
+          },
           {
             "text": "∴ L.H.S. = a³ + b³ = R.H.S.",
-            "style": "boxed"
+            "style": "boxed",
+            "added": true
           }
         ],
         "recall": {
@@ -145,6 +152,13 @@
           "Not recognising a² − ab + b² as the a³ + b³ factor and expanding again.",
           "Writing a³ − b³.",
           "Leaving an ω in the final answer."
+        ],
+        "lines_compact": [
+          "L.H.S. = (a + b)(a² − ab + b²)",
+          {
+            "text": "= a³ + b³ = R.H.S.",
+            "style": "boxed"
+          }
         ]
       }
     ]

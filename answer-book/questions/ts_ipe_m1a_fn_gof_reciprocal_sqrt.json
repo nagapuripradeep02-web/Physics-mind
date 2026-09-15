@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.10, chapter 2 FUNCTIONS, Very Short Answer question 11. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape gives one mark to the inner value together with the reason the domain (0, ∞) lets g act on it, and one to the simplified root. The domain is not decoration here: it is the condition that makes gof a real valued function, so it is carried in the written lines and in the boxed answer, not only in this note. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.10, chapter 2 FUNCTIONS, Very Short Answer question 11. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape gives one mark to the inner value together with the reason the domain (0, ∞) lets g act on it, and one to the simplified root. The domain is not decoration here: it is the condition that makes gof a real valued function, so it is carried in the written lines and in the boxed answer, not only in this note. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find (gof)(x) here — which function acts first, and why the domain (0, ∞) matters.",
   "answer": {
@@ -99,6 +99,10 @@
         "lines": [
           "Now apply g to 1/x:",
           "g(1/x) = √(1/x)",
+          {
+            "text": "(√(p/q) = √p/√q when p ≥ 0 and q > 0)",
+            "added": true
+          },
           "= √1/√x = 1/√x",
           {
             "text": "∴ (gof)(x) = 1/√x, x ∈ (0, ∞)",
@@ -131,6 +135,15 @@
         "common_mistakes": [
           "Writing √(1/x) as √x.",
           "Leaving the domain x ∈ (0, ∞) off the final line."
+        ],
+        "lines_compact": [
+          "Now apply g to 1/x:",
+          "g(1/x) = √(1/x)",
+          "= √1/√x = 1/√x",
+          {
+            "text": "∴ (gof)(x) = 1/√x, x ∈ (0, ∞)",
+            "style": "boxed"
+          }
         ]
       }
     ]

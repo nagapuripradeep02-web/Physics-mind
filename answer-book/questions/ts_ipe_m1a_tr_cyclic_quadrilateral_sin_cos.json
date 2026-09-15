@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 29, book p.88. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. Both parts rest on the single cyclic-quadrilateral fact, so the 1 + 1 gives one mark to that fact together with part (i) and one to part (ii), where the sign change under π − θ has to be handled correctly four times. Paper position: Maths-1A Section A prints ten very short answers of 2 marks each and the student writes all ten, under the 2026-27 pattern; Trigonometric Ratios and Transformations supplies two of those ten slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 29, book p.88. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. Both parts rest on the single cyclic-quadrilateral fact, so the 1 + 1 gives one mark to that fact together with part (i) and one to part (ii), where the sign change under π − θ has to be handled correctly four times. Paper position: Maths-1A Section A prints ten very short answers of 2 marks each and the student writes all ten, under the 2026-27 pattern; Trigonometric Ratios and Transformations supplies two of those ten slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove both parts — name the property of a cyclic quadrilateral you use, and what it does to sine and to cosine.",
   "answer": {
@@ -56,7 +56,13 @@
           "angles are supplementary:",
           "A + C = π and B + D = π",
           "(i) C = π − A ⇒ sin C = sin(π − A) = sin A",
+          "(sin(π − θ) = sin θ)",
           "and D = π − B ⇒ sin D = sin B",
+          "(sin A − sin C = sin A − sin A = 0, and the",
+          {
+            "text": "  same for sin D − sin B)",
+            "style": "indent"
+          },
           "∴ sin A − sin C = 0 = sin D − sin B"
         ],
         "recall": {
@@ -99,8 +105,20 @@
         "lines": [
           "(ii) cos C = cos(π − A) = −cos A",
           "and cos D = cos(π − B) = −cos B",
+          {
+            "text": "(cos(π − θ) = −cos θ)",
+            "added": true
+          },
+          {
+            "text": "Put these into the sum:",
+            "added": true
+          },
           "cos A + cos B + cos C + cos D",
           "= cos A + cos B − cos A − cos B",
+          {
+            "text": "(cos A − cos A = 0 and cos B − cos B = 0)",
+            "added": true
+          },
           {
             "text": "= 0",
             "style": "boxed"
@@ -133,6 +151,16 @@
         "common_mistakes": [
           "Writing cos(π − A) = cos A, which gives 2(cos A + cos B) instead of 0.",
           "Using A + B = π in place of A + C = π."
+        ],
+        "lines_compact": [
+          "(ii) cos C = cos(π − A) = −cos A",
+          "and cos D = cos(π − B) = −cos B",
+          "cos A + cos B + cos C + cos D",
+          "= cos A + cos B − cos A − cos B",
+          {
+            "text": "= 0",
+            "style": "boxed"
+          }
         ]
       }
     ]

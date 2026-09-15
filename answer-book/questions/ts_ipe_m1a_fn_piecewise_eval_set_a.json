@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.14, chapter 2 FUNCTIONS, Very Short Answer question 23(a). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape gives one mark to the five points that a branch covers and one to the point 2.5, which no branch covers, because the second is a different piece of reasoning and not one more substitution. The gaps in the definition are carried in the written lines and in the boxed answer, where the student reads them, not only in this note. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.14, chapter 2 FUNCTIONS, Very Short Answer question 23(a). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape gives one mark to the five points that a branch covers and one to the point 2.5, which no branch covers, because the second is a different piece of reasoning and not one more substitution. The gaps in the definition are carried in the written lines and in the boxed answer, where the student reads them, not only in this note. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would answer this — how you pick a branch for each number, and what you do about 2.5.",
   "answer": {
@@ -55,6 +55,7 @@
           "f(x) = 3x − 2 for x ≥ 3 … (1)",
           "f(x) = x² − 2 for −2 ≤ x ≤ 2 … (2)",
           "f(x) = 2x + 1 for x < −3 … (3)",
+          "(for each x, first find which rule's condition it meets)",
           "4 ≥ 3, so use (1): f(4) = 12 − 2 = 10",
           "−2 ≤ −2 ≤ 2, so use (2): f(−2) = 4 − 2 = 2",
           "−4 < −3, so use (3): f(−4) = −8 + 1 = −7",
@@ -109,6 +110,10 @@
           "So no rule covers [−3, −2) or (2, 3),",
           "and the point 2.5 lies in the gap (2, 3).",
           {
+            "text": "(a function has no value outside its domain)",
+            "added": true
+          },
+          {
             "text": "∴ f(2.5) is not defined.",
             "style": "boxed"
           }
@@ -142,6 +147,19 @@
           "Forcing 2.5 into the branch x ≥ 3 because 2.5 is close to 3.",
           "Using x² − 2 at x = 2.5, although that branch stops at x = 2.",
           "Writing f(2.5) = 0 instead of saying that f(2.5) is not defined."
+        ],
+        "lines_compact": [
+          "At x = 2.5 all three conditions fail:",
+          "2.5 ≥ 3 is false, −2 ≤ 2.5 ≤ 2 is false,",
+          "and 2.5 < −3 is false.",
+          "The three branches cover only these x:",
+          "(−∞, −3) ∪ [−2, 2] ∪ [3, ∞).",
+          "So no rule covers [−3, −2) or (2, 3),",
+          "and the point 2.5 lies in the gap (2, 3).",
+          {
+            "text": "∴ f(2.5) is not defined.",
+            "style": "boxed"
+          }
         ]
       }
     ]

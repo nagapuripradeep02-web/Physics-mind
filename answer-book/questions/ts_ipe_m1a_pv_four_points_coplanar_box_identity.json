@@ -34,7 +34,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.69, chapter 7 PRODUCT OF VECTORS, Short Answer question 13. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives half the marks to the multilinear expansion, which is the only real work, and single marks to stating the condition and to the sign bookkeeping that finishes it. The identity was checked numerically on a, b, c, d = (1, 2, 3), (2, 0, 1), (0, 1, 4), (3, 3, 3): the left side [b−a c−a d−a] = −7, and [b c d] + [c a d] + [a b d] − [a b c] = −21 − 6 + 9 + 11 = −7, the same number. It was checked a second time on the tetrahedron a = 0, b = i, c = j, d = k, where both sides give 1 and the four points are correctly reported as NOT coplanar. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Product of Vectors supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.69, chapter 7 PRODUCT OF VECTORS, Short Answer question 13. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives half the marks to the multilinear expansion, which is the only real work, and single marks to stating the condition and to the sign bookkeeping that finishes it. The identity was checked numerically on a, b, c, d = (1, 2, 3), (2, 0, 1), (0, 1, 4), (3, 3, 3): the left side [b−a c−a d−a] = −7, and [b c d] + [c a d] + [a b d] − [a b c] = −21 − 6 + 9 + 11 = −7, the same number. It was checked a second time on the tetrahedron a = 0, b = i, c = j, d = k, where both sides give 1 and the four points are correctly reported as NOT coplanar. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Product of Vectors supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — the condition you start from, how you expand it, and the two sign rules you use.",
   "answer": {
@@ -103,7 +103,20 @@
           "The box product is linear in each slot,",
           "and a bracket with a repeated vector is 0.",
           "[b − a  c − a  d − a]",
+          {
+            "text": "(split the first slot, b − a, into b and −a)",
+            "added": true
+          },
           "= [b  c − a  d − a] − [a  c − a  d − a]",
+          {
+            "text": "(then split c − a and d − a; every bracket with a",
+            "added": true
+          },
+          {
+            "text": "  repeated vector is 0)",
+            "style": "indent",
+            "added": true
+          },
           "= [b c d] − [b c a] − [b a d] − [a c d]"
         ],
         "recall": {
@@ -132,6 +145,13 @@
         "common_mistakes": [
           "Keeping terms such as [b a a], which are zero.",
           "Losing a minus sign when the second or third slot is split."
+        ],
+        "lines_compact": [
+          "The box product is linear in each slot,",
+          "and a bracket with a repeated vector is 0.",
+          "[b − a  c − a  d − a]",
+          "= [b  c − a  d − a] − [a  c − a  d − a]",
+          "= [b c d] − [b c a] − [b a d] − [a c d]"
         ]
       },
       {
@@ -147,6 +167,15 @@
           "[b a d] = −[a b d] and [a c d] = −[c a d],",
           "because one swap flips the sign.",
           "So the bracket equals",
+          {
+            "text": "(−[b c a] − [b a d] − [a c d]",
+            "added": true
+          },
+          {
+            "text": "  = −[a b c] + [a b d] + [c a d])",
+            "style": "indent",
+            "added": true
+          },
           "[b c d] + [c a d] + [a b d] − [a b c].",
           "This is zero exactly when",
           {
@@ -180,6 +209,18 @@
         "common_mistakes": [
           "Treating [b a d] as equal to [a b d].",
           "Stopping at the expansion without naming the two rules used."
+        ],
+        "lines_compact": [
+          "[b c a] = [a b c] (cyclic order).",
+          "[b a d] = −[a b d] and [a c d] = −[c a d],",
+          "because one swap flips the sign.",
+          "So the bracket equals",
+          "[b c d] + [c a d] + [a b d] − [a b c].",
+          "This is zero exactly when",
+          {
+            "text": "[b c d] + [c a d] + [a b d] = [a b c]",
+            "style": "boxed"
+          }
         ]
       }
     ]

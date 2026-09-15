@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.104 — the STAR QUESTIONS PLUS bank, answer 184, under its 'STRAIGHT LINES' heading. Printed appearances: AP,TS 19. ⚠ THIS QUESTION COMES FROM THE STAR QUESTIONS PLUS BANK (book pp.104-108, answers 181-196), NOT from any of the unit's three numbered chapters — the bank sits AFTER every numbered chapter and is organised by chapter, so it is not part of any chapter's own inventory. Boundary walked to book p.109, the Bullet Model Paper. SECTION CLASSIFICATION IS OURS, NOT THE BOOK'S: the bank's headings name the CHAPTER, never the mark cut. This is filed as VSAQ because it is a single short move of exactly the length and shape of VSAQ chapter 14's own answers (compare answers 88.1-96 on book pp.79-82). ⚠ THE MARK SPLIT IS ALSO OURS — the bank prints no [N Marks] tags anywhere; 1+1 follows the shape used across VSAQ chapter 14 and matches the printed 1+1 on VSAQ answer 98 (book p.83). Paper position: Maths-1B Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; The Straight Line holds two of those ten slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.104 — the STAR QUESTIONS PLUS bank, answer 184, under its 'STRAIGHT LINES' heading. Printed appearances: AP,TS 19. ⚠ THIS QUESTION COMES FROM THE STAR QUESTIONS PLUS BANK (book pp.104-108, answers 181-196), NOT from any of the unit's three numbered chapters — the bank sits AFTER every numbered chapter and is organised by chapter, so it is not part of any chapter's own inventory. Boundary walked to book p.109, the Bullet Model Paper. SECTION CLASSIFICATION IS OURS, NOT THE BOOK'S: the bank's headings name the CHAPTER, never the mark cut. This is filed as VSAQ because it is a single short move of exactly the length and shape of VSAQ chapter 14's own answers (compare answers 88.1-96 on book pp.79-82). ⚠ THE MARK SPLIT IS ALSO OURS — the bank prints no [N Marks] tags anywhere; 1+1 follows the shape used across VSAQ chapter 14 and matches the printed 1+1 on VSAQ answer 98 (book p.83). Paper position: Maths-1B Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; The Straight Line holds two of those ten slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say which axis the slope refers to, and what you do to reach the other one.",
   "answer": {
@@ -59,7 +59,17 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "The given equation is in the form y = mx + c  ⇒  slope m = √3",
+          "(compare y = √3x − 4 with y = mx + c)",
+          "The given equation is in the form y = mx + c",
+          {
+            "text": "  ⇒  slope m = √3",
+            "style": "indent"
+          },
+          "(the slope is tan θ, where θ is the angle with the X-axis;",
+          {
+            "text": "  tan 60° = √3)",
+            "style": "indent"
+          },
           "⇒ tanθ = √3 = tan60°",
           "⇒ Angle made by the line with the X-axis is θ = 60°"
         ],
@@ -101,8 +111,21 @@
         "margin_note": "Second mark. The two axes are at right angles, so the angle with the Y-axis is whatever is left of 90° after the X-axis angle.",
         "memory_tip": "The axes are at right angles, so the Y-axis angle is what is left of 90°.",
         "lines": [
+          {
+            "text": "(the line and the two axes form a right triangle,",
+            "added": true
+          },
+          {
+            "text": "  so the two acute angles add to 90°)",
+            "style": "indent",
+            "added": true
+          },
           "The axes are perpendicular, so the two angles add to 90°",
           "∴ Angle made by the line with the Y-axis is 90° − 60°",
+          {
+            "text": "(90° − 60° = 30°)",
+            "added": true
+          },
           {
             "text": "∴ Angle with the Y-axis is 30°",
             "style": "boxed"
@@ -135,9 +158,17 @@
           "Reporting 60° as the answer to the question actually asked.",
           "Subtracting from 180° instead of 90°."
         ],
-        "mark_note": "Solution"
+        "mark_note": "Solution",
+        "lines_compact": [
+          "The axes are perpendicular, so the two angles add to 90°",
+          "∴ Angle made by the line with the Y-axis is 90° − 60°",
+          {
+            "text": "∴ Angle with the Y-axis is 30°",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },
-  "insider_note": "The slope gives the angle with the X-axis, 60°, which is not what was asked. Subtract from 90°, not 180°: the answer is 30°, and stopping at 60° is the standard way this second mark goes."
+  "insider_note": "The slope gives the angle with the X-axis, 60°, which is not what was asked. Subtract from 90°, not 180°: the answer is 30°, and stopping at 60° loses this second mark."
 }

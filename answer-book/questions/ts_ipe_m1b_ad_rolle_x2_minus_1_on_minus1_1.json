@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.228, chapter 10 APPLICATIONS OF DERIVATIVES, the ROLLE'S AND LAGRANGE'S THEOREM sub-section, Very Short Answer question 2(ii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question — one mark for the three conditions, one for producing c. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and we ship it as ONE unit, so the sub-section is named above. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.228, chapter 10 APPLICATIONS OF DERIVATIVES, the ROLLE'S AND LAGRANGE'S THEOREM sub-section, Very Short Answer question 2(ii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question — one mark for the three conditions, one for producing c. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and we ship it as ONE unit, so the sub-section is named above. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say what the two end values are, and where the derivative is zero.",
   "answer": {
@@ -55,7 +55,9 @@
           "f(x) = x² − 1 is a polynomial function, so",
           "(i) f is continuous on the closed interval [−1, 1]",
           "(ii) f is differentiable on the open interval (−1, 1)",
-          "(iii) f(−1) = (−1)² − 1 = 1 − 1 = 0  and  f(1) = 1² − 1 = 1 − 1 = 0",
+          "((−1)² = (−1)(−1) = 1)",
+          "(iii) f(−1) = (−1)² − 1 = 1 − 1 = 0",
+          "and  f(1) = 1² − 1 = 1 − 1 = 0",
           "∴ f(−1) = f(1) = 0, so Rolle's theorem applies on [−1, 1]."
         ],
         "recall": {
@@ -96,7 +98,15 @@
         "margin_note": "Second mark. c must be strictly inside — the theorem never allows c = a or c = b. State the inequality −1 < 0 < 1.",
         "memory_tip": "Between two roots of a differentiable function the derivative is zero somewhere, and here that point is the lowest point of the parabola.",
         "lines": [
+          {
+            "text": "(d/dx of x² is 2x, and d/dx of 1 is 0)",
+            "added": true
+          },
           "f′(x) = 2x",
+          {
+            "text": "(divide 2c = 0 by 2)",
+            "added": true
+          },
           "f′(c) = 0  ⇒  2c = 0  ⇒  c = 0",
           "−1 < 0 < 1, so c = 0 lies in the open interval (−1, 1)",
           {
@@ -126,10 +136,19 @@
             "between minus one and one"
           ]
         },
-        "why": "Between two roots of a differentiable function the derivative must be zero at least once, and that is exactly what Rolle's theorem states. Here the single point where it happens is c = 0.",
+        "why": "Between two roots of a differentiable function the derivative must be zero at least once, and this is a special case of Rolle's theorem, with f(a) = f(b) = 0. Here the single point where it happens is c = 0.",
         "common_mistakes": [
           "Giving c = ±1, which are the endpoints; c must lie strictly inside the interval.",
           "Writing c = 0 without the inequality −1 < 0 < 1 that places it inside."
+        ],
+        "lines_compact": [
+          "f′(x) = 2x",
+          "f′(c) = 0  ⇒  2c = 0  ⇒  c = 0",
+          "−1 < 0 < 1, so c = 0 lies in the open interval (−1, 1)",
+          {
+            "text": "∴ Rolle's theorem is verified, with c = 0 ∈ (−1, 1)",
+            "style": "boxed"
+          }
         ]
       }
     ]

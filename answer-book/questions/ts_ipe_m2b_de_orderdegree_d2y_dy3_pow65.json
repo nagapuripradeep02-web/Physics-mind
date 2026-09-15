@@ -15,7 +15,7 @@
   "marks_total": 2,
   "paper_section": "Section A",
   "expected_time_min": 4,
-  "question_text": "Find the order and degree of the differential equation [d²y/dx² + (dy/dx)³]^(6/5) = 6y.",
+  "question_text": "Find the order and degree of the differential equation [d²y/dx² + (dy/dx)³] raised to the power 6/5 = 6y.",
   "appearances": [
     {
       "year": 2015,
@@ -47,7 +47,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.93 — VSAQ chapter 18 Differential Equations, answer 181, the first answer in the chapter. It sits on a ★★★ SSP (Super Scoring Page): book p.93 carries the SSP banner, the only SSP page this chapter has. Printed appearance tags: AP 15,16; TS 15,17. The mark split 1 + 1 is PRINTED: the book marks the order line and the degree line separately. Star rank: the book's VSAQ chapter table (book p.76) gives the Differential Equations VSAQ chapter ★★, but the chapter header printed on book p.93 shows ★★★ (matching that page's own SSP banner). The two disagree; the TABLE's rank is used, so every Differential Equations VSAQ entry takes stars 2. That rank belongs to the CHAPTER, not to this individual question. Paper position: Maths-2B Section A runs Q1-Q10 at 2 marks each, all compulsory; Differential Equations holds Q10. This exact question is also the Bullet Model Paper's Q10 (book p.106), first item — but p.106 prints the bracket with a MINUS sign, [d²y/dx² − (dy/dx)³]^(6/5) = 6y, while its own worked line underneath switches straight back to a PLUS: \"Given D.E is (d²y/dx²+(dy/dx)³)^(6/5)=6y\". The VSAQ original on this page prints the PLUS form throughout, matching the Model Paper's own working, so this card follows the plus sign as the book actually solves it and records the Model Paper's question-line minus sign as a misprint. The book's working was re-derived line by line and is correct throughout. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book's five Guess Papers (pp.118-127) are the only stand-in. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.93 — VSAQ chapter 18 Differential Equations, answer 181, the first answer in the chapter. It sits on a ★★★ SSP (Super Scoring Page): book p.93 carries the SSP banner, the only SSP page this chapter has. Printed appearance tags: AP 15,16; TS 15,17. The mark split 1 + 1 is PRINTED: the book marks the order line and the degree line separately. Star rank: the book's VSAQ chapter table (book p.76) gives the Differential Equations VSAQ chapter ★★, but the chapter header printed on book p.93 shows ★★★ (matching that page's own SSP banner). The two disagree; the TABLE's rank is used, so every Differential Equations VSAQ entry takes stars 2. That rank belongs to the CHAPTER, not to this individual question. Paper position: Maths-2B Section A runs Q1-Q10 at 2 marks each, all compulsory; Differential Equations holds Q10. This exact question is also the Bullet Model Paper's Q10 (book p.106), first item — but p.106 prints the bracket with a MINUS sign, [d²y/dx² − (dy/dx)³]^(6/5) = 6y, while its own worked line underneath switches straight back to a PLUS: \"Given D.E is (d²y/dx²+(dy/dx)³)^(6/5)=6y\". The VSAQ original on this page prints the PLUS form throughout, matching the Model Paper's own working, so this card follows the plus sign as the book actually solves it and records the Model Paper's question-line minus sign as a misprint. The book's working was re-derived line by line and is correct throughout. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book's five Guess Papers (pp.118-127) are the only stand-in. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "insider_note": "Order and degree are read only after the equation is free of fractional and negative powers of any derivative — the very first move is always to clear those, as this equation's own 6/5 power shows.",
   "answer": {
@@ -69,9 +69,23 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given D.E is [d²y/dx² + (dy/dx)³]^(6/5) = 6y",
+          "The degree needs the D.E free of fractional",
+          {
+            "text": "  powers of the derivatives.",
+            "style": "indent"
+          },
+          {
+            "text": "\\text{Given D.E is }\\ [d^{2}y/dx^{2} + (dy/dx)^{3}]^{6/5} = 6y",
+            "render": "katex",
+            "style": "normal"
+          },
           "Raising both sides to the power 5/6:",
-          "d²y/dx² + (dy/dx)³ = (6y)^(5/6)"
+          "(6/5)·(5/6) = 1, so the bracket has no power:",
+          {
+            "text": "d^{2}y/dx^{2} + (dy/dx)^{3} = (6y)^{5/6}",
+            "render": "katex",
+            "style": "normal"
+          }
         ],
         "why": "Raising both sides to the reciprocal power 5/6 clears the fractional exponent outside the bracket, leaving an equation written as a polynomial in the derivatives, which is what the order and degree are read from.",
         "common_mistakes": [
@@ -94,6 +108,10 @@
           "equation is 1,",
           "so the degree is 1.",
           {
+            "text": "(the power 5/6 is on y, not on a derivative)",
+            "added": true
+          },
+          {
             "text": "∴ Order = 2, Degree = 1",
             "style": "boxed"
           }
@@ -102,6 +120,17 @@
         "common_mistakes": [
           "Confusing the outer exponent 6/5 in the original equation with the degree, instead of clearing it first.",
           "Reading the degree from the (dy/dx)³ term instead of from the highest-order derivative d²y/dx²."
+        ],
+        "lines_compact": [
+          "The highest order derivative present is d²y/dx²,",
+          "so the order is 2.",
+          "The exponent of d²y/dx² in the cleared",
+          "equation is 1,",
+          "so the degree is 1.",
+          {
+            "text": "∴ Order = 2, Degree = 1",
+            "style": "boxed"
+          }
         ]
       }
     ]

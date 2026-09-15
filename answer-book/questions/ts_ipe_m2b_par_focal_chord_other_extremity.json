@@ -35,7 +35,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Maths-2B, book p.82 — VSAQ chapter 14 Parabola, answer 125, printed alone below answers 123/124. Printed appearance: AP 2018. THE MARK SPLIT IS OURS, same page-format reasoning as the rest of this chapter. No two-book union check was possible for Maths-2B (no second-year TSBIE Basic Learning Material is on hand), and no board back-test beyond diffing against this book's own five Guess Papers. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, Senior Maths-2B, book p.82 — VSAQ chapter 14 Parabola, answer 125, printed alone below answers 123/124. Printed appearance: AP 2018. THE MARK SPLIT IS OURS, same page-format reasoning as the rest of this chapter. No two-book union check was possible for Maths-2B (no second-year TSBIE Basic Learning Material is on hand), and no board back-test beyond diffing against this book's own five Guess Papers. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "answer": {
     "page_header": [
@@ -56,8 +56,12 @@
             "style": "heading"
           },
           "Given parabola y² = 8x ⇒ 4a = 8 ⇒ a = 2",
+          "(compare with y² = 4ax)",
+          "Every point of y² = 4ax is (at², 2at) for some t.",
           "Write the given point as (at², 2at)",
-          "= (1/2, 2) ⇒ 2at = 2 ⇒ at = 1 ⇒ t = 1/2"
+          "= (1/2, 2) ⇒ 2at = 2 ⇒ at = 1 ⇒ t = 1/2",
+          "(a = 2, so 2t = 1 and t = 1/2)",
+          "Check: at² = 2 × 1/4 = 1/2, as given."
         ],
         "why": "Matching the given point to the parametric form (at²,2at) is the fastest way to find its own parameter t, and here the second coordinate 2at = 2 gives t directly without even needing the first coordinate.",
         "common_mistakes": [
@@ -76,11 +80,27 @@
         "lines": [
           "For a focal chord, if one end is (at², 2at),",
           "the other end is (a/t², −2a/t).",
+          {
+            "text": "(the ends of a focal chord have parameters t and −1/t)",
+            "added": true
+          },
+          {
+            "text": "Put a = 2 and t = 1/2:",
+            "added": true
+          },
           "Other end = (2/(1/2)², −2(2)/(1/2))",
           "= (2/(1/4), −4/(1/2)) = (8, −8)",
           {
+            "text": "(2 ÷ 1/4 = 2 × 4 = 8 and −4 ÷ 1/2 = −4 × 2 = −8)",
+            "added": true
+          },
+          {
             "text": "∴ the other extremity is (8, −8)",
             "style": "boxed"
+          },
+          {
+            "text": "Check: (−8)² = 64 = 8 × 8, so (8, −8) is on y² = 8x.",
+            "added": true
           }
         ],
         "why": "A focal chord always joins the points with parameters t and −1/t on the curve — substituting −1/t for t in (at²,2at) directly gives the formula (a/t², −2a/t) for the second endpoint.",
@@ -88,7 +108,17 @@
           "Using (a/t², 2a/t) with a positive sign, forgetting that the other end of a focal chord has parameter −1/t, not +1/t.",
           "Dividing 2 by (1/4) incorrectly and getting a wrong first coordinate."
         ],
-        "memory_tip": "A focal chord's two ends always have parameters t and −1/t — the sign flips, which is why the second coordinate's sign flips too."
+        "memory_tip": "A focal chord's two ends always have parameters t and −1/t — the sign flips, which is why the second coordinate's sign flips too.",
+        "lines_compact": [
+          "For a focal chord, if one end is (at², 2at),",
+          "the other end is (a/t², −2a/t).",
+          "Other end = (2/(1/2)², −2(2)/(1/2))",
+          "= (2/(1/4), −4/(1/2)) = (8, −8)",
+          {
+            "text": "∴ the other extremity is (8, −8)",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

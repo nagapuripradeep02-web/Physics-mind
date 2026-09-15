@@ -125,7 +125,10 @@
         "memory_tip": "Write (√2)ⁿ as 2 to the power n/2 on this line — the final exponent is built by adding to it.",
         "lines": [
           "(1 + i)ⁿ = [√2(cos π/4 + i sin π/4)]ⁿ",
-          "By De Moivre's theorem the angle is multiplied:",
+          {
+            "text": "By De Moivre's theorem the angle is multiplied:",
+            "added": true
+          },
           {
             "text": "= (\\sqrt{2})^{n}\\left[\\cos\\tfrac{n\\pi}{4} + i\\sin\\tfrac{n\\pi}{4}\\right]",
             "render": "katex",
@@ -134,7 +137,8 @@
           {
             "text": "(\\sqrt{2})^{n} = (2^{1/2})^{n} = 2^{n/2},\\ \\text{so}",
             "render": "katex",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           },
           {
             "text": "= 2^{n/2}\\left[\\cos\\tfrac{n\\pi}{4} + i\\sin\\tfrac{n\\pi}{4}\\right]\\ \\dots(1)",
@@ -170,6 +174,20 @@
           "Raising √2 to n and leaving it as (√2)ⁿ instead of 2 to the power n/2, which is needed for the final power.",
           "Multiplying the angle by 2n instead of n.",
           "Writing (cos θ + i sin θ)ⁿ = cosⁿ θ + i sinⁿ θ, which is false."
+        ],
+        "lines_compact": [
+          "(1 + i)ⁿ = [√2(cos π/4 + i sin π/4)]ⁿ",
+          {
+            "text": "= (\\sqrt{2})^{n}\\left[\\cos\\tfrac{n\\pi}{4} + i\\sin\\tfrac{n\\pi}{4}\\right]",
+            "render": "katex",
+            "style": "eq"
+          },
+          "(by De Moivre's theorem)",
+          {
+            "text": "= 2^{n/2}\\left[\\cos\\tfrac{n\\pi}{4} + i\\sin\\tfrac{n\\pi}{4}\\right]\\ \\dots(1)",
+            "render": "katex",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -181,8 +199,14 @@
         "margin_note": "Fifth mark. 1 − i is the conjugate of 1 + i, so raising it to n gives the same 2 to the power n/2 with the sine sign reversed. Label it (2); nothing is recomputed.",
         "memory_tip": "Same modulus factor, sine sign reversed. Nothing is recomputed.",
         "lines": [
-          "1 − i is the conjugate of 1 + i, so its",
-          "expansion is the same with the sin term negative:",
+          {
+            "text": "1 − i is the conjugate of 1 + i, so its",
+            "added": true
+          },
+          {
+            "text": "expansion is the same with the sin term negative:",
+            "added": true
+          },
           {
             "text": "(1-i)^{n} = 2^{n/2}\\left[\\cos\\tfrac{n\\pi}{4} - i\\sin\\tfrac{n\\pi}{4}\\right]\\ \\dots(2)",
             "render": "katex",
@@ -216,6 +240,14 @@
           "Changing the sign of the cosine as well as the sine.",
           "Recomputing r and θ from scratch and losing time.",
           "Writing equation (2) without the minus sign, so nothing cancels in the next step."
+        ],
+        "lines_compact": [
+          "Similarly,",
+          {
+            "text": "(1-i)^{n} = 2^{n/2}\\left[\\cos\\tfrac{n\\pi}{4} - i\\sin\\tfrac{n\\pi}{4}\\right]\\ \\dots(2)",
+            "render": "katex",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -227,7 +259,10 @@
         "margin_note": "Sixth and seventh marks. Adding (1) and (2) gives 2 to the power n/2 multiplied by 2 cos(nπ/4). Add the exponents: 1 + n/2 = (n + 2)/2, so the factor is 2 to the power (n + 2)/2, not 2ⁿ.",
         "memory_tip": "Add the exponents, do not multiply: 1 + n/2 = (n + 2)/2, so the factor is 2^((n+2)/2), not 2ⁿ.",
         "lines": [
-          "Adding (1) and (2), the i sin terms cancel:",
+          {
+            "text": "Adding (1) and (2), the i sin terms cancel:",
+            "added": true
+          },
           {
             "text": "(1+i)^{n} + (1-i)^{n} = 2^{n/2}\\cdot 2\\cos\\tfrac{n\\pi}{4}",
             "render": "katex",
@@ -236,12 +271,14 @@
           {
             "text": "2 = 2^{1},\\ \\text{so } 2^{n/2}\\cdot 2 = 2^{n/2 + 1} = 2^{(n+2)/2}",
             "render": "katex",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           },
           {
             "text": "\\therefore (1+i)^{n} + (1-i)^{n} = 2^{(n+2)/2}\\cos\\tfrac{n\\pi}{4}",
             "render": "katex",
-            "style": "boxed"
+            "style": "boxed",
+            "added": true
           }
         ],
         "recall": {
@@ -272,6 +309,19 @@
           "Writing 2 · 2 to the n/2 as 2 to the n instead of adding the exponents: 1 + n/2 = (n + 2)/2.",
           "Subtracting instead of adding, which leaves 2i sin instead of 2 cos.",
           "Dropping the factor that comes from r = √2."
+        ],
+        "lines_compact": [
+          "Adding (1) and (2):",
+          {
+            "text": "(1+i)^{n} + (1-i)^{n} = 2^{n/2}\\cdot 2\\cos\\tfrac{n\\pi}{4}",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "= 2^{(n+2)/2}\\cos\\tfrac{n\\pi}{4}",
+            "render": "katex",
+            "style": "boxed"
+          }
         ]
       }
     ]

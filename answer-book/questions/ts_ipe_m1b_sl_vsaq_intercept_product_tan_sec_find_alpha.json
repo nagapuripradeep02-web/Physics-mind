@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Very Short Answer question 36, book p.146. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split gives one mark for reading both intercepts off the line and one for solving the trigonometric equation the product condition produces. The answer is authored as the general solution α = (2n + 1)π/4 with the acute value π/4 named, because tan²α = 1 has two families and reporting only 45° drops half of them; both were checked by substitution back into the original line. This book prints almost no exam-appearance years, so appearances[] is empty. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Very Short Answer question 36, book p.146. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split gives one mark for reading both intercepts off the line and one for solving the trigonometric equation the product condition produces. The answer is authored as the general solution α = (2n + 1)π/4 with the acute value π/4 named, because tan²α = 1 has two families and reporting only 45° drops half of them; both were checked by substitution back into the original line. This book prints almost no exam-appearance years, so appearances[] is empty. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say how you get each intercept, and what equation the product condition turns into.",
   "answer": {
@@ -53,7 +53,9 @@
             "style": "heading"
           },
           "Given line is  x tanα + y secα = 1",
+          "(on the x-axis y = 0; divide by tan α: 1/tan α = cot α)",
           "Put y = 0:  x tanα = 1  ⇒  x = cotα",
+          "(on the y-axis x = 0; 1/sec α = cos α)",
           "Put x = 0:  y secα = 1  ⇒  y = cosα",
           "∴ x-intercept = cotα, y-intercept = cosα",
           "(tanα ≠ 0 here, so α is not a multiple of π.)"
@@ -96,11 +98,35 @@
         "memory_tip": "cos²α = sin²α is the same as cos 2α = 0. Its solutions are the odd multiples of π/4.",
         "lines": [
           "Product of the intercepts = sinα",
+          {
+            "text": "(the product of the two intercepts from step 1)",
+            "added": true
+          },
           "⇒ cotα · cosα = sinα",
+          {
+            "text": "(cot α = cos α/sin α, so cot α · cos α = cos²α/sin α)",
+            "added": true
+          },
           "⇒ cos²α/sinα = sinα",
+          {
+            "text": "(multiply both sides by sin α, which is not 0)",
+            "added": true
+          },
           "⇒ cos²α = sin²α",
+          {
+            "text": "(cos²α − sin²α = cos 2α)",
+            "added": true
+          },
           "⇒ cos²α − sin²α = 0  ⇒  cos 2α = 0",
+          {
+            "text": "(cos θ = 0 exactly when θ is an odd multiple of π/2)",
+            "added": true
+          },
           "⇒ 2α = (2n + 1)π/2,  n ∈ Z",
+          {
+            "text": "(divide by 2)",
+            "added": true
+          },
           {
             "text": "∴ α = (2n + 1)π/4,  n ∈ Z",
             "style": "boxed"
@@ -136,6 +162,22 @@
         "common_mistakes": [
           "Cancelling to tan α = 1 only, and losing the tan α = −1 family.",
           "Giving 45° alone without the general value."
+        ],
+        "lines_compact": [
+          "Product of the intercepts = sinα",
+          "⇒ cotα · cosα = sinα",
+          "⇒ cos²α/sinα = sinα",
+          "⇒ cos²α = sin²α",
+          "⇒ cos²α − sin²α = 0  ⇒  cos 2α = 0",
+          "⇒ 2α = (2n + 1)π/2,  n ∈ Z",
+          {
+            "text": "∴ α = (2n + 1)π/4,  n ∈ Z",
+            "style": "boxed"
+          },
+          "The acute value is α = π/4, that is 45°.",
+          "Check at α = π/4: the line is x + √2 y = 1,",
+          "with intercepts 1 and 1/√2; their product is",
+          "1/√2, and sin(π/4) = 1/√2."
         ]
       }
     ]

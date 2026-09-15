@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.46, chapter 5 MATRICES, Short Answer question 19(i). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 shape gives the two products a mark each because the definition of an inverse asks for BOTH, and a proof that shows only one side is incomplete unless it names a theorem that allows the other; the opening mark buys the statement of what must be shown, which is what makes the two products mean something. STEM WORDING: the source prints \"if A and B are invertible\"; \"of the same order\" is written into the question text here because AB must be defined and square for the statement to make sense. That is a completion of the hypothesis, not a change to it, and it is recorded rather than made silently. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Matrices supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.46, chapter 5 MATRICES, Short Answer question 19(i). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 shape gives the two products a mark each because the definition of an inverse asks for BOTH, and a proof that shows only one side is incomplete unless it names a theorem that allows the other; the opening mark buys the statement of what must be shown, which is what makes the two products mean something. STEM WORDING: the source prints \"if A and B are invertible\"; \"of the same order\" is written into the question text here because AB must be defined and square for the statement to make sense. That is a completion of the hypothesis, not a change to it, and it is recorded rather than made silently. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Matrices supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — say what a matrix has to satisfy to be the inverse of AB, what two products you form, and what the answer looks like.",
   "answer": {
@@ -64,7 +64,8 @@
           "of the same order, so",
           "AA⁻¹ = A⁻¹A = I and BB⁻¹ = B⁻¹B = I.",
           "A matrix X is the inverse of AB only when",
-          "(AB)X = I and X(AB) = I. Both are needed."
+          "(AB)X = I and X(AB) = I. Both are needed.",
+          "(Same order, so AB is defined and is square.)"
         ],
         "recall": {
           "credit": "say_it",
@@ -106,8 +107,16 @@
         "lines": [
           "Take X = B⁻¹A⁻¹ and multiply on the right:",
           "(AB)(B⁻¹A⁻¹) = A(BB⁻¹)A⁻¹",
+          {
+            "text": "(B and B⁻¹ now stand next to each other)",
+            "added": true
+          },
           "Matrix multiplication is associative, so the",
           "brackets may be moved like this.",
+          {
+            "text": "(BB⁻¹ = I, and AI = A)",
+            "added": true
+          },
           "= A I A⁻¹ = AA⁻¹ = I"
         ],
         "recall": {
@@ -137,6 +146,13 @@
         "common_mistakes": [
           "Trying (AB)(A⁻¹B⁻¹), where the middle pair is B and A⁻¹ and nothing cancels.",
           "Writing A I A⁻¹ as I without saying that AI = A."
+        ],
+        "lines_compact": [
+          "Take X = B⁻¹A⁻¹ and multiply on the right:",
+          "(AB)(B⁻¹A⁻¹) = A(BB⁻¹)A⁻¹",
+          "Matrix multiplication is associative, so the",
+          "brackets may be moved like this.",
+          "= A I A⁻¹ = AA⁻¹ = I"
         ]
       },
       {
@@ -150,7 +166,15 @@
         "lines": [
           "Now multiply in the other order:",
           "(B⁻¹A⁻¹)(AB) = B⁻¹(A⁻¹A)B",
+          {
+            "text": "(A⁻¹ and A now stand next to each other)",
+            "added": true
+          },
           "= B⁻¹ I B = B⁻¹B = I",
+          {
+            "text": "(A⁻¹A = I, and B⁻¹I = B⁻¹)",
+            "added": true
+          },
           "Both products give the identity matrix I."
         ],
         "recall": {
@@ -180,6 +204,12 @@
         "common_mistakes": [
           "Stopping after one product and calling the proof finished.",
           "Assuming the second product must be I because the first one was."
+        ],
+        "lines_compact": [
+          "Now multiply in the other order:",
+          "(B⁻¹A⁻¹)(AB) = B⁻¹(A⁻¹A)B",
+          "= B⁻¹ I B = B⁻¹B = I",
+          "Both products give the identity matrix I."
         ]
       },
       {
@@ -194,6 +224,15 @@
           "AB has a matrix that gives I on both sides, so",
           "AB is invertible and that matrix is its inverse.",
           "Note the reversed order: B⁻¹ comes first.",
+          {
+            "text": "(the inverse of a product is the product of the",
+            "added": true
+          },
+          {
+            "text": "  inverses in the opposite order)",
+            "style": "indent",
+            "added": true
+          },
           {
             "text": "∴ (AB)⁻¹ = B⁻¹A⁻¹",
             "style": "boxed"
@@ -226,6 +265,15 @@
         "common_mistakes": [
           "Writing (AB)⁻¹ = A⁻¹B⁻¹, which is false unless A and B commute.",
           "Concluding without saying that AB is invertible, which is half of what was asked."
+        ],
+        "lines_compact": [
+          "AB has a matrix that gives I on both sides, so",
+          "AB is invertible and that matrix is its inverse.",
+          "Note the reversed order: B⁻¹ comes first.",
+          {
+            "text": "∴ (AB)⁻¹ = B⁻¹A⁻¹",
+            "style": "boxed"
+          }
         ]
       }
     ]

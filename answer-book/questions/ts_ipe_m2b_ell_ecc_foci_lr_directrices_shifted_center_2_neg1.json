@@ -49,7 +49,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.57 — SAQ chapter 8 Ellipse, answer 59, on a ★★★ SSP page (book p.49 also ranks chapter 8 ★★★ on its chapter table). Printed appearances: AP 15 · TS 15,18. The mark split 1+1+1+1 IS THE BOOK'S — each of the four results carries its own printed '1 Mark' margin tag. This is the shifted-centre twin of Q58 (answer 58, same a, b, e once completed to the square): the centre-shift step is folded into this card's step 1 at 0 marks, matching how the book gives it no separate tag. Ellipse is an SAQ-ONLY unit on the book's IPE Blue Print (book p.5) — 4+4 marks in Section B, no VSAQ or LAQ chapter for this unit. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE BLM on hand; the book's five Guess Papers pp.118-127 are the orchestrator's back-test stand-in). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.57 — SAQ chapter 8 Ellipse, answer 59, on a ★★★ SSP page (book p.49 also ranks chapter 8 ★★★ on its chapter table). Printed appearances: AP 15 · TS 15,18. The mark split 1+1+1+1 IS THE BOOK'S — each of the four results carries its own printed '1 Mark' margin tag. This is the shifted-centre twin of Q58 (answer 58, same a, b, e once completed to the square): the centre-shift step is folded into this card's step 1 at 0 marks, matching how the book gives it no separate tag. Ellipse is an SAQ-ONLY unit on the book's IPE Blue Print (book p.5) — 4+4 marks in Section B, no VSAQ or LAQ chapter for this unit. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE BLM on hand; the book's five Guess Papers pp.118-127 are the orchestrator's back-test stand-in). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "insider_note": "Completing the square turns this into the standard ellipse x²/16 + y²/9 = 1 moved to the centre (2, −1) — so the eccentricity and the length of the latus rectum come straight from a = 4, b = 3 and need no re-deriving; only the foci and the directrices need the centre added in, because those are positions, not lengths.",
   "answer": {
@@ -71,9 +71,28 @@
             "style": "heading"
           },
           "9x² + 16y² − 36x + 32y − 92 = 0",
+          "Group the x terms and the y terms, take out",
+          {
+            "text": "  9 and 16, and move −92 to the right:",
+            "style": "indent"
+          },
           "⇒ 9(x² − 4x) + 16(y² + 2y) = 92",
+          "Complete each square:",
+          {
+            "text": "  x² − 4x = (x − 2)² − 4",
+            "style": "indent"
+          },
+          {
+            "text": "  y² + 2y = (y + 1)² − 1",
+            "style": "indent"
+          },
+          "So 9(x − 2)² − 36 + 16(y + 1)² − 16 = 92",
+          "Move −36 and −16 to the right:",
           "⇒ 9(x − 2)² + 16(y + 1)² = 92 + 36 + 16 = 144",
-          "⇒ (x − 2)²/16 + (y + 1)²/9 = 1"
+          "Divide every term by 144:",
+          "⇒ (x − 2)²/16 + (y + 1)²/9 = 1",
+          "Centre (h, k) = (2, −1); a² = 16, b² = 9.",
+          "a > b, so the major axis is horizontal."
         ],
         "why": "Completing the square in x and y turns the general equation into the shifted standard form (x − h)²/a² + (y − k)²/b² = 1, which reads off the same a² = 16, b² = 9 as the centred ellipse x²/16 + y²/9 = 1, but centred at (h, k) = (2, −1).",
         "common_mistakes": [
@@ -90,6 +109,14 @@
         "margin_note": "First mark. a² = 16, b² = 9, a > b, centre (h, k) = (2, −1) — the same a and b as x²/16 + y²/9 = 1.",
         "memory_tip": "The eccentricity never depends on where the centre is — only on a and b.",
         "lines": [
+          {
+            "text": "a = 4 and b = 3.",
+            "added": true
+          },
+          {
+            "text": "For a horizontal ellipse e² = (a² − b²)/a²:",
+            "added": true
+          },
           "e = √(a² − b²) / a",
           "= √(16 − 9) / 4",
           {
@@ -101,6 +128,14 @@
         "common_mistakes": [
           "Trying to fold the centre (2, −1) into the eccentricity formula — it has no effect on e.",
           "Leaving a² in the denominator instead of a."
+        ],
+        "lines_compact": [
+          "e = √(a² − b²) / a",
+          "= √(16 − 9) / 4",
+          {
+            "text": "e = √7 / 4",
+            "style": "boxed"
+          }
         ]
       },
       {
@@ -112,8 +147,21 @@
         "margin_note": "Second mark. Shift both foci by the centre (2, −1); the y-coordinate stays −1 for a horizontal ellipse.",
         "memory_tip": "Foci = (centre x ± ae, centre y).",
         "lines": [
+          {
+            "text": "The foci are on the major axis, a distance ae",
+            "added": true
+          },
+          {
+            "text": "  either side of the centre (2, −1):",
+            "style": "indent",
+            "added": true
+          },
           "Foci = (h ± ae, k)",
           "= (2 ± 4·√7/4, −1)",
+          {
+            "text": "(ae = 4 · √7/4 = √7)",
+            "added": true
+          },
           {
             "text": "Foci = (2 ± √7, −1)",
             "style": "boxed"
@@ -123,6 +171,14 @@
         "common_mistakes": [
           "Forgetting to shift the y-coordinate to −1 and leaving it at 0.",
           "Adding ae to k instead of h."
+        ],
+        "lines_compact": [
+          "Foci = (h ± ae, k)",
+          "= (2 ± 4·√7/4, −1)",
+          {
+            "text": "Foci = (2 ± √7, −1)",
+            "style": "boxed"
+          }
         ]
       },
       {
@@ -134,8 +190,21 @@
         "margin_note": "Third mark. Identical to the centred ellipse — the centre shift never changes a length.",
         "memory_tip": "Latus rectum equals 2 times the smaller square, over the bigger axis length.",
         "lines": [
+          {
+            "text": "The latus rectum is the chord through a focus,",
+            "added": true
+          },
+          {
+            "text": "  perpendicular to the major axis.",
+            "style": "indent",
+            "added": true
+          },
           "Length of latus rectum = 2b² / a",
           "= 2(9) / 4",
+          {
+            "text": "(18/4 = 9/2, dividing top and bottom by 2)",
+            "added": true
+          },
           {
             "text": "= 9/2",
             "style": "boxed"
@@ -145,6 +214,14 @@
         "common_mistakes": [
           "Trying to add the centre coordinates into a length calculation.",
           "Writing 2a²/b instead of 2b²/a."
+        ],
+        "lines_compact": [
+          "Length of latus rectum = 2b² / a",
+          "= 2(9) / 4",
+          {
+            "text": "= 9/2",
+            "style": "boxed"
+          }
         ]
       },
       {
@@ -156,9 +233,26 @@
         "margin_note": "Fourth mark. Shift x = h ± a/e, and multiply through by √7 to clear the fraction.",
         "memory_tip": "Directrices use a/e from the shifted centre x = h, not from the origin.",
         "lines": [
+          {
+            "text": "The directrices are perpendicular to the major",
+            "added": true
+          },
+          {
+            "text": "  axis, at a distance a/e from the centre:",
+            "style": "indent",
+            "added": true
+          },
           "x = h ± a/e",
           "= 2 ± 4/(√7/4) = 2 ± 16/√7",
+          {
+            "text": "(4 ÷ (√7/4) = 4 × 4/√7 = 16/√7)",
+            "added": true
+          },
           "Multiply by √7: √7x = 2√7 ± 16",
+          {
+            "text": "Bring every term to the left:",
+            "added": true
+          },
           {
             "text": "√7x − 2√7 − 16 = 0 and √7x − 2√7 + 16 = 0",
             "style": "boxed"
@@ -168,6 +262,15 @@
         "common_mistakes": [
           "Using x = ±a/e without adding the centre's x-coordinate h = 2.",
           "Multiplying only the a/e term by √7 and forgetting to multiply the shifted 2 as well."
+        ],
+        "lines_compact": [
+          "x = h ± a/e",
+          "= 2 ± 4/(√7/4) = 2 ± 16/√7",
+          "Multiply by √7: √7x = 2√7 ± 16",
+          {
+            "text": "√7x − 2√7 − 16 = 0 and √7x − 2√7 + 16 = 0",
+            "style": "boxed"
+          }
         ]
       }
     ]

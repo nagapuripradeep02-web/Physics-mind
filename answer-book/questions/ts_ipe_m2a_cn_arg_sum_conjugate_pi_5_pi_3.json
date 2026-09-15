@@ -112,8 +112,14 @@
         "memory_tip": "−3π/15 + 5π/15 = 2π/15. An answer of 8π/15 means the conjugate was ignored.",
         "lines": [
           "Arg z₁ + Arg z₂ = −π/5 + π/3",
-          "The common denominator of 5 and 3 is 15:",
-          "= −3π/15 + 5π/15",
+          {
+            "text": "The common denominator of 5 and 3 is 15:",
+            "added": true
+          },
+          {
+            "text": "= −3π/15 + 5π/15",
+            "added": true
+          },
           "= (−3π + 5π)/15",
           {
             "text": "∴ Arg z₁ + Arg z₂ = 2π/15",
@@ -145,6 +151,14 @@
         "common_mistakes": [
           "Adding π/5 + π/3 = 8π/15.",
           "Writing 2/15 without the π."
+        ],
+        "lines_compact": [
+          "Arg z₁ + Arg z₂ = −π/5 + π/3",
+          "= (−3π + 5π)/15",
+          {
+            "text": "∴ Arg z₁ + Arg z₂ = 2π/15",
+            "style": "boxed"
+          }
         ]
       }
     ]

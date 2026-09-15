@@ -101,11 +101,26 @@
         "memory_tip": "(4ac − b²)/(4a), with 4ac = +140. The maximum is NEGATIVE, −34/5 — do not 'correct' the sign.",
         "lines": [
           "Maximum value = (4ac − b²)/(4a)",
-          "4ac = 4(−5)(−7) = 140",
-          "b² = 2² = 4",
-          "4a = 4(−5) = −20",
-          "= (140 − 4)/(−20)",
-          "= 136/(−20) = −34/5",
+          {
+            "text": "4ac = 4(−5)(−7) = 140",
+            "added": true
+          },
+          {
+            "text": "b² = 2² = 4",
+            "added": true
+          },
+          {
+            "text": "4a = 4(−5) = −20",
+            "added": true
+          },
+          {
+            "text": "= (140 − 4)/(−20)",
+            "added": true
+          },
+          {
+            "text": "= 136/(−20) = −34/5",
+            "added": true
+          },
           {
             "text": "∴ maximum value = −34/5",
             "style": "boxed"
@@ -139,6 +154,15 @@
           "Dropping the minus sign and answering 34/5 — a negative expression cannot have a positive maximum.",
           "Computing 4ac as −140.",
           "Answering x = 1/5 (where the maximum occurs) instead of the maximum value."
+        ],
+        "lines_compact": [
+          "Maximum value = (4ac − b²)/(4a)",
+          "= (4(−5)(−7) − 2²)/(4(−5))",
+          "= (140 − 4)/(−20) = 136/(−20)",
+          {
+            "text": "∴ maximum value = −34/5",
+            "style": "boxed"
+          }
         ]
       }
     ]

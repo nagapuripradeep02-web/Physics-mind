@@ -129,11 +129,20 @@
         "margin_note": "Second and third marks. For 1 + i√3: r = √(1 + 3) = 2 and tan θ = √3, so θ = π/3, with x and y both positive. That r = 2 outside the bracket is what produces the power of 2 in the answer.",
         "memory_tip": "r = √(1 + 3) = 2 and tan θ = √3 gives θ = π/3. That r = 2 is what produces the power of 2 in the answer.",
         "lines": [
-          "Write 1 + i√3 in the modulus-amplitude form.",
+          {
+            "text": "Write 1 + i√3 in the modulus-amplitude form.",
+            "added": true
+          },
           "Let 1 + i√3 = x + iy, so x = 1 and y = √3",
           "r = √(x² + y²) = √(1 + 3) = √4 = 2",
-          "tan θ = y/x = √3/1 = √3",
-          "(1, √3) is in the first quadrant, so θ = π/3",
+          {
+            "text": "tan θ = y/x = √3/1 = √3",
+            "added": true
+          },
+          {
+            "text": "(1, √3) is in the first quadrant, so θ = π/3",
+            "added": true
+          },
           "∴ 1 + i√3 = 2(cos π/3 + i sin π/3)"
         ],
         "recall": {
@@ -164,6 +173,12 @@
           "Writing r = √3 or r = 4 instead of √(1 + 3) = 2.",
           "Reading tan θ = √3 as θ = π/6; π/6 has tan = 1/√3.",
           "Forgetting the r = 2 outside the bracket, which is where the 2ⁿ comes from."
+        ],
+        "lines_compact": [
+          "Let 1 + i√3 = x + iy ⇒ x = 1, y = √3",
+          "r = √(x² + y²) = √(1 + 3) = 2",
+          "tan θ = y/x = √3 ⇒ θ = π/3",
+          "∴ 1 + i√3 = 2(cos π/3 + i sin π/3)"
         ]
       },
       {
@@ -176,8 +191,14 @@
         "memory_tip": "The power splits: r is raised as an ordinary number, the angle is multiplied. 2ⁿ outside, nπ/3 inside.",
         "lines": [
           "αⁿ = (1 + i√3)ⁿ = [2(cos π/3 + i sin π/3)]ⁿ",
-          "= 2ⁿ(cos π/3 + i sin π/3)ⁿ",
-          "By De Moivre's theorem the angle is multiplied:",
+          {
+            "text": "= 2ⁿ(cos π/3 + i sin π/3)ⁿ",
+            "added": true
+          },
+          {
+            "text": "By De Moivre's theorem the angle is multiplied:",
+            "added": true
+          },
           "= 2ⁿ[cos(nπ/3) + i sin(nπ/3)] …(1)"
         ],
         "recall": {
@@ -208,6 +229,11 @@
           "Raising r to the power but forgetting to multiply the angle by the same power.",
           "Multiplying the angle by the power but leaving r un-raised.",
           "Writing (cos θ + i sin θ)ⁿ = cosⁿ θ + i sinⁿ θ, which is false."
+        ],
+        "lines_compact": [
+          "αⁿ = (1 + i√3)ⁿ = [2(cos π/3 + i sin π/3)]ⁿ",
+          "= 2ⁿ [cos(nπ/3) + i sin(nπ/3)] …(1)",
+          "(by De Moivre's theorem)"
         ]
       },
       {
@@ -219,8 +245,14 @@
         "margin_note": "Fifth mark. β = 1 − i√3 is the conjugate of α, so βⁿ has the same 2ⁿ and the same angle with the sine sign reversed. Label it (2); nothing is recomputed.",
         "memory_tip": "β is the conjugate of α, so βⁿ carries the same 2ⁿ with only the sine sign flipped.",
         "lines": [
-          "β = 1 − i√3 is the conjugate of α, so its",
-          "expansion is the same with the sin term negative:",
+          {
+            "text": "β = 1 − i√3 is the conjugate of α, so its",
+            "added": true
+          },
+          {
+            "text": "expansion is the same with the sin term negative:",
+            "added": true
+          },
           "βⁿ = (1 − i√3)ⁿ",
           "= 2ⁿ[cos(nπ/3) − i sin(nπ/3)] …(2)"
         ],
@@ -251,6 +283,11 @@
           "Changing the sign of the cosine as well as the sine.",
           "Recomputing r and θ from scratch and losing time.",
           "Writing equation (2) without the minus sign, so nothing cancels in the next step."
+        ],
+        "lines_compact": [
+          "Similarly,",
+          "βⁿ = (1 − i√3)ⁿ",
+          "= 2ⁿ [cos(nπ/3) − i sin(nπ/3)] …(2)"
         ]
       },
       {
@@ -262,9 +299,15 @@
         "margin_note": "Sixth and seventh marks. Adding (1) and (2) cancels the two i sin terms and doubles the cosine: 2ⁿ · 2 cos(nπ/3). Combine the powers of 2 into 2ⁿ⁺¹, the form the question asks for.",
         "memory_tip": "Conjugates ADD to twice the real part, and 2ⁿ · 2 = 2ⁿ⁺¹.",
         "lines": [
-          "Adding (1) and (2), the i sin terms cancel:",
+          {
+            "text": "Adding (1) and (2), the i sin terms cancel:",
+            "added": true
+          },
           "αⁿ + βⁿ = 2ⁿ · 2cos(nπ/3)",
-          "2ⁿ · 2 = 2ⁿ⁺¹",
+          {
+            "text": "2ⁿ · 2 = 2ⁿ⁺¹",
+            "added": true
+          },
           {
             "text": "∴ αⁿ + βⁿ = 2ⁿ⁺¹ cos(nπ/3)",
             "style": "boxed"
@@ -298,6 +341,14 @@
           "Subtracting instead of adding, which leaves 2i sin instead of 2 cos.",
           "Leaving the answer as 2ⁿ · 2 cos instead of combining into one power of 2.",
           "Dropping the factor that comes from r, which is the whole reason the answer has a power of 2."
+        ],
+        "lines_compact": [
+          "Adding (1) and (2):",
+          "αⁿ + βⁿ = 2ⁿ · 2 cos(nπ/3)",
+          {
+            "text": "αⁿ + βⁿ = 2ⁿ⁺¹ cos(nπ/3)",
+            "style": "boxed"
+          }
         ]
       }
     ]

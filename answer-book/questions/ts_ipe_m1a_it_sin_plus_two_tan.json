@@ -47,7 +47,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.73 — SAQ chapter 12 Inverse Trig Functions, answer 77, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 15,20. The ONLY answer in this chapter whose mark split is printed — [1 Mark] against each of four working lines. The doubled Tan⁻¹ is converted into a Cos⁻¹ so that Sin⁻¹x + Cos⁻¹x = π/2 can finish it in one line. THE MARK SPLIT IS PRINTED in that book's margin as [1 Mark] against each of four working lines — a sourced 1+1+1+1, and the ONLY printed split in this chapter. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. ONE PRESENTATION CHOICE, made deliberately: the book draws a small right triangle beside each answer that needs a second ratio (for example sinα = 4/5 giving cosα = 3/5). Those are authored here as the one-line algebraic step instead, with the triangle route named in the margin note — it keeps the nine answers consistent and avoids three near-identical figures where the algebra is a single line. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q16 is the Inverse Trig Functions slot. NOTE: Inverse Trigonometric Functions is an SAQ-ONLY unit — the paper gives it no Section-A and no Section-C slot, and this book has no Inverse Trig LAQ chapter (LAQ chapters are 1-6) and no VSAQ chapter (VSAQ chapters are 14-19). The same shape as Unit 7. Verified by walking to p.75, where SAQ chapter 13 Properties of Triangles begins."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.73 — SAQ chapter 12 Inverse Trig Functions, answer 77, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 15,20. The ONLY answer in this chapter whose mark split is printed — [1 Mark] against each of four working lines. The doubled Tan⁻¹ is converted into a Cos⁻¹ so that Sin⁻¹x + Cos⁻¹x = π/2 can finish it in one line. THE MARK SPLIT IS PRINTED in that book's margin as [1 Mark] against each of four working lines — a sourced 1+1+1+1, and the ONLY printed split in this chapter. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. ONE PRESENTATION CHOICE, made deliberately: the book draws a small right triangle beside each answer that needs a second ratio (for example sinα = 4/5 giving cosα = 3/5). Those are authored here as the one-line algebraic step instead, with the triangle route named in the margin note — it keeps the nine answers consistent and avoids three near-identical figures where the algebra is a single line. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q16 is the Inverse Trig Functions slot. NOTE: Inverse Trigonometric Functions is an SAQ-ONLY unit — the paper gives it no Section-A and no Section-C slot, and this book has no Inverse Trig LAQ chapter (LAQ chapters are 1-6) and no VSAQ chapter (VSAQ chapters are 14-19). The same shape as Unit 7. Verified by walking to p.75, where SAQ chapter 13 Properties of Triangles begins. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — name each move in order, and say which formula you reach for and why.",
   "answer": {
@@ -69,7 +69,8 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "We know 2Tan⁻¹x = Cos⁻¹((1 − x²)/(1 + x²))"
+          "We know 2Tan⁻¹x = Cos⁻¹((1 − x²)/(1 + x²))",
+          "(this holds for x ≥ 0; here x = 1/3)"
         ],
         "recall": {
           "credit": "say_it",
@@ -93,10 +94,10 @@
             "one plus x squared"
           ]
         },
-        "why": "2Tan⁻¹x can be written as a Sin⁻¹, a Cos⁻¹ or a Tan⁻¹. The Cos⁻¹ form is chosen because it matches the Sin⁻¹(4/5) already on the page and closes in one line with Sin⁻¹x + Cos⁻¹x = π/2. The Sin⁻¹ and Tan⁻¹ forms also reach π/2, but each needs one more identity.",
+        "why": "2Tan⁻¹x can be written as a Sin⁻¹, a Cos⁻¹ or a Tan⁻¹. The Cos⁻¹ form is chosen because it matches the Sin⁻¹(4/5) already on the page and finishes in one line with Sin⁻¹x + Cos⁻¹x = π/2. The Sin⁻¹ and Tan⁻¹ forms also reach π/2, but each needs one more identity.",
         "common_mistakes": [
           "Pairing the wrong argument with the wrong inverse: (1 − x²)/(1 + x²) goes with Cos⁻¹, while 2x/(1 + x²) is the Sin⁻¹ form.",
-          "Writing (1+x²)/(1−x²) upside down."
+          "Writing (1+x²)/(1−x²) in place of (1−x²)/(1+x²)."
         ]
       },
       {
@@ -108,7 +109,15 @@
         "margin_note": "Second mark. Substitute and simplify the compound fraction: (1 − 1/9) over (1 + 1/9) is (8/9) over (10/9).",
         "memory_tip": "(1/3)² is 1/9, not 1/6. The fraction becomes (8/9) over (10/9).",
         "lines": [
+          {
+            "text": "(put x = 1/3)",
+            "added": true
+          },
           "∴ 2Tan⁻¹(1/3) = Cos⁻¹((1 − (1/3)²)/(1 + (1/3)²))",
+          {
+            "text": "((1/3)² = 1/9)",
+            "added": true
+          },
           "= Cos⁻¹((1 − 1/9)/(1 + 1/9))"
         ],
         "recall": {
@@ -136,6 +145,10 @@
         "common_mistakes": [
           "Writing (1/3)² as 1/6 or 2/3.",
           "Substituting into the wrong part of the fraction."
+        ],
+        "lines_compact": [
+          "∴ 2Tan⁻¹(1/3) = Cos⁻¹((1 − (1/3)²)/(1 + (1/3)²))",
+          "= Cos⁻¹((1 − 1/9)/(1 + 1/9))"
         ]
       },
       {
@@ -144,10 +157,18 @@
         "label": "Simplify to Cos⁻¹(4/5)",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Third mark. The ninths cancel: (8/9) ÷ (10/9) is 8/10, which reduces to 4/5. That 4/5 matching the other term is the whole design of the question.",
+        "margin_note": "Third mark. The ninths cancel: (8/9) ÷ (10/9) is 8/10, which reduces to 4/5. That 4/5 matches the other term, and this is what lets the last step use Sin⁻¹x + Cos⁻¹x = π/2.",
         "memory_tip": "The ninths cancel: 8/10 reduces to 4/5, matching the other term — that is the design of the question.",
         "lines": [
+          {
+            "text": "(1 − 1/9 = 8/9 and 1 + 1/9 = 10/9; the 9s cancel)",
+            "added": true
+          },
           "= Cos⁻¹((8/9)/(10/9))",
+          {
+            "text": "(8/10 = 4/5)",
+            "added": true
+          },
           "= Cos⁻¹(8/10) = Cos⁻¹(4/5)"
         ],
         "recall": {
@@ -176,6 +197,10 @@
         "common_mistakes": [
           "Leaving the answer as 8/10 unreduced.",
           "Multiplying by 10/9 instead of dividing."
+        ],
+        "lines_compact": [
+          "= Cos⁻¹((8/9)/(10/9))",
+          "= Cos⁻¹(8/10) = Cos⁻¹(4/5)"
         ]
       },
       {
@@ -184,9 +209,13 @@
         "label": "Apply Sin⁻¹x + Cos⁻¹x = π/2",
         "marks": 1,
         "mark_note": "Conclusion",
-        "margin_note": "Last mark. Both terms are now inverses of the SAME value, 4/5 — and Sin⁻¹x + Cos⁻¹x is always π/2, whatever x is.",
-        "memory_tip": "Both terms are now inverses of the SAME value, and Sin⁻¹x + Cos⁻¹x is always π/2.",
+        "margin_note": "Last mark. Both terms are now inverses of the SAME value, 4/5 — and Sin⁻¹x + Cos⁻¹x = π/2 for every x with −1 ≤ x ≤ 1, and 4/5 is in that interval.",
+        "memory_tip": "Both terms are now inverses of the SAME value, and Sin⁻¹x + Cos⁻¹x = π/2 for −1 ≤ x ≤ 1.",
         "lines": [
+          {
+            "text": "(put 2Tan⁻¹(1/3) = Cos⁻¹(4/5) into the left side)",
+            "added": true
+          },
           "∴ L.H.S = Sin⁻¹(4/5) + Cos⁻¹(4/5)",
           "= π/2   [∵ Sin⁻¹x + Cos⁻¹x = π/2]",
           {
@@ -220,9 +249,17 @@
         "common_mistakes": [
           "Applying the identity when the two arguments differ.",
           "Writing π instead of π/2."
+        ],
+        "lines_compact": [
+          "∴ L.H.S = Sin⁻¹(4/5) + Cos⁻¹(4/5)",
+          "= π/2   [∵ Sin⁻¹x + Cos⁻¹x = π/2]",
+          {
+            "text": "∴ Sin⁻¹(4/5) + 2Tan⁻¹(1/3) = π/2",
+            "style": "boxed"
+          }
         ]
       }
     ]
   },
-  "insider_note": "Convert 2Tan⁻¹(1/3) into Cos⁻¹((1 − x²)/(1 + x²)) = Cos⁻¹(4/5), which is chosen to match the 4/5 already present. Then Sin⁻¹x + Cos⁻¹x = π/2 finishes it in a single line."
+  "insider_note": "Convert 2Tan⁻¹(1/3) into Cos⁻¹((1 − 1/9)/(1 + 1/9)) = Cos⁻¹(4/5), which matches the 4/5 already present. Then Sin⁻¹x + Cos⁻¹x = π/2 gives the answer in a single line."
 }

@@ -46,7 +46,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.64 — SAQ chapter 8 Ellipse, answer 75. NOT on an SSP page. Printed appearances: AP 18 · TS 18. Book p.64 prints three empty tick boxes but no numeric mark tags, so the 1+1+1+1 split here is OURS, following the four natural stages of the proof. The book itself draws a small figure beside this answer — an ellipse with axes X, Y, centre C, tangent point P, and the intercepts M (on the major axis) and N (on the minor axis) — so this card reproduces that figure, per the rule that a figure is authored where the book draws one. Ellipse is an SAQ-ONLY unit on the book's IPE Blue Print (book p.5). No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE BLM on hand; the book's five Guess Papers pp.118-127 are the orchestrator's back-test stand-in). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.64 — SAQ chapter 8 Ellipse, answer 75. NOT on an SSP page. Printed appearances: AP 18 · TS 18. Book p.64 prints three empty tick boxes but no numeric mark tags, so the 1+1+1+1 split here is OURS, following the four natural stages of the proof. The book itself draws a small figure beside this answer — an ellipse with axes X, Y, centre C, tangent point P, and the intercepts M (on the major axis) and N (on the minor axis) — so this card reproduces that figure, per the rule that a figure is authored where the book draws one. Ellipse is an SAQ-ONLY unit on the book's IPE Blue Print (book p.5). No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE BLM on hand; the book's five Guess Papers pp.118-127 are the orchestrator's back-test stand-in). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "insider_note": "M and N are the tangent's own x- and y-intercepts, found by the ordinary intercept method (set y = 0 for M, set x = 0 for N) — no separate formula for M and N needs to be memorised.",
   "answer": {
@@ -70,8 +70,15 @@
           },
           "Parametric point on the ellipse:",
           "P(θ) = (a cos θ, b sin θ)",
+          "(it is on the ellipse because cos²θ + sin²θ = 1)",
           "Equation of the tangent at P(θ):",
+          "(put x₁ = a cos θ, y₁ = b sin θ in",
+          {
+            "text": "  xx₁/a² + yy₁/b² = 1)",
+            "style": "indent"
+          },
           "(x cos θ)/a + (y sin θ)/b = 1",
+          "Write it in intercept form x/p + y/q = 1:",
           "⇒ x / (a/cos θ) + y / (b/sin θ) = 1"
         ],
         "why": "Writing the tangent line in intercept form x/p + y/q = 1 makes its x- and y-intercepts p and q directly readable, which is exactly what M and N are.",
@@ -91,13 +98,32 @@
         "lines": [
           "The tangent meets the major axis (X-axis)",
           "at M and the minor axis (Y-axis) at N",
-          "⇒ X-intercept = CM",
-          "= a/cos θ  and  Y-intercept = CN = b/sin θ"
+          {
+            "text": "(C is the centre (0, 0), so CM and CN are",
+            "added": true
+          },
+          {
+            "text": "  the intercepts on the axes.)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "Put y = 0: x = a/cos θ. Put x = 0: y = b/sin θ.",
+            "added": true
+          },
+          "⇒ X-intercept CM = a/cos θ",
+          "and Y-intercept CN = b/sin θ"
         ],
         "why": "Since C is the origin (the centre of the ellipse), the distances CM and CN are exactly the x- and y-intercepts of the tangent line found in step 1.",
         "common_mistakes": [
           "Swapping which intercept is CM and which is CN.",
           "Forgetting that CM and CN are being measured from the centre C, not from the point P(θ)."
+        ],
+        "lines_compact": [
+          "The tangent meets the major axis (X-axis)",
+          "at M and the minor axis (Y-axis) at N",
+          "⇒ X-intercept CM = a/cos θ",
+          "and Y-intercept CN = b/sin θ"
         ]
       },
       {
@@ -110,12 +136,30 @@
         "memory_tip": "Once CM = a/cos θ is known, cos θ = a/CM follows by simply inverting.",
         "lines": [
           "From CM = a/cos θ and CN = b/sin θ:",
+          {
+            "text": "Turn each one over:",
+            "added": true
+          },
+          {
+            "text": "  1/CM = cos θ/a ⇒ cos θ = a/CM",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  1/CN = sin θ/b ⇒ sin θ = b/CN",
+            "style": "indent",
+            "added": true
+          },
           "cos θ = a/CM  and  sin θ = b/CN"
         ],
         "why": "Isolating cos θ and sin θ in terms of the two measurable lengths CM and CN sets up the identity cos²θ + sin²θ = 1 as the final step.",
         "common_mistakes": [
           "Inverting only one of the two relations and leaving the other as CM = a/cos θ.",
           "Mixing up a with CM or b with CN when inverting."
+        ],
+        "lines_compact": [
+          "From CM = a/cos θ and CN = b/sin θ:",
+          "cos θ = a/CM  and  sin θ = b/CN"
         ]
       },
       {
@@ -127,7 +171,15 @@
         "margin_note": "Fourth mark. cos²θ + sin²θ = 1 turns directly into the required identity.",
         "memory_tip": "Whenever cos θ and sin θ are both isolated, squaring and adding using cos²θ + sin²θ = 1 finishes the proof.",
         "lines": [
+          {
+            "text": "Square both and add, using",
+            "added": true
+          },
           "cos²θ + sin²θ = 1",
+          {
+            "text": "⇒ (a/CM)² + (b/CN)² = 1",
+            "added": true
+          },
           {
             "text": "a²/(CM)² + b²/(CN)² = 1",
             "style": "boxed"
@@ -137,6 +189,13 @@
         "common_mistakes": [
           "Squaring a/CM incorrectly, e.g. writing a/CM² instead of a²/(CM)².",
           "Stopping one line early, at cos²θ + sin²θ = 1, without substituting back in terms of CM and CN."
+        ],
+        "lines_compact": [
+          "cos²θ + sin²θ = 1",
+          {
+            "text": "a²/(CM)² + b²/(CN)² = 1",
+            "style": "boxed"
+          }
         ]
       },
       {

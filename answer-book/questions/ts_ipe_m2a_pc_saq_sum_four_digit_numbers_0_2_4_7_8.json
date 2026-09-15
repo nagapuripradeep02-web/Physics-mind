@@ -111,16 +111,40 @@
         "margin_note": "Second mark. Same as the 1, 3, 5, 7, 9 question: 24 × 21 × 1111.",
         "memory_tip": "24 × 21 × 1111, exactly as when none of the digits is zero. This total is too big — say so before correcting it.",
         "lines": [
-          "In the units place each digit appears 24 times,",
-          "so the units place contributes",
-          "24 · (0 + 2 + 4 + 7 + 8) · 1 = 24 · 21 · 1",
-          "In the same way the tens place gives 24 · 21 · 10,",
-          "the hundreds 24 · 21 · 100,",
-          "and the thousands 24 · 21 · 1000",
+          {
+            "text": "In the units place each digit appears 24 times,",
+            "added": true
+          },
+          {
+            "text": "so the units place contributes",
+            "added": true
+          },
+          {
+            "text": "24 · (0 + 2 + 4 + 7 + 8) · 1 = 24 · 21 · 1",
+            "added": true
+          },
+          {
+            "text": "In the same way the tens place gives 24 · 21 · 10,",
+            "added": true
+          },
+          {
+            "text": "the hundreds 24 · 21 · 100,",
+            "added": true
+          },
+          {
+            "text": "and the thousands 24 · 21 · 1000",
+            "added": true
+          },
           "Sum of all 120 arrangements",
           "= 24 · 21 · (1000 + 100 + 10 + 1)",
-          "= 24 · 21 · 1111",
-          "24 · 21 = 504",
+          {
+            "text": "= 24 · 21 · 1111",
+            "added": true
+          },
+          {
+            "text": "24 · 21 = 504",
+            "added": true
+          },
           "= 504 · 1111 = 5,59,944"
         ],
         "recall": {
@@ -149,6 +173,11 @@
         "common_mistakes": [
           "Stopping here and answering 5,59,944.",
           "Using the digit sum 21 but 24 replaced by 18 in an attempt to allow for zero — the correction is a subtraction, not a changed count."
+        ],
+        "lines_compact": [
+          "Sum of all 120 arrangements",
+          "= 24 · 21 · (1000 + 100 + 10 + 1)",
+          "= 504 · 1111 = 5,59,944"
         ]
       },
       {
@@ -160,26 +189,75 @@
         "margin_note": "Two marks. Strings that start with 0 are really 3-digit numbers made from 2, 4, 7, 8; each of those digits sits in each of the three places ³P₂ = 6 times, so their sum is 6 × 21 × 111 = 13,986. Subtract.",
         "memory_tip": "Subtract the SUM of the leading-zero strings, 13,986, not their count. Those are 3-digit numbers, so use 111 and ³P₂ = 6.",
         "lines": [
-          "This total counts strings like 0247,",
-          "which are not four-digit numbers.",
-          "Take the strings with 0 in the thousands place.",
-          "The other three places hold 3 of the digits",
-          "2, 4, 7, 8, so there are ⁴P₃ = 24 such strings.",
-          "Each one has the value of the three-digit",
-          "number written after the 0.",
-          "Fix one of 2, 4, 7, 8 in one of the three places:",
-          "the other two places are filled in",
-          "³P₂ = 3 · 2 = 6 ways",
-          "So each of 2, 4, 7, 8 sits in each place 6 times,",
-          "and 2 + 4 + 7 + 8 = 21",
-          "  (the same 21 as before, since 0 added nothing)",
+          {
+            "text": "This total counts strings like 0247,",
+            "added": true
+          },
+          {
+            "text": "which are not four-digit numbers.",
+            "added": true
+          },
+          {
+            "text": "Take the strings with 0 in the thousands place.",
+            "added": true
+          },
+          {
+            "text": "The other three places hold 3 of the digits",
+            "added": true
+          },
+          {
+            "text": "2, 4, 7, 8, so there are ⁴P₃ = 24 such strings.",
+            "added": true
+          },
+          {
+            "text": "Each one has the value of the three-digit",
+            "added": true
+          },
+          {
+            "text": "number written after the 0.",
+            "added": true
+          },
+          {
+            "text": "Fix one of 2, 4, 7, 8 in one of the three places:",
+            "added": true
+          },
+          {
+            "text": "the other two places are filled in",
+            "added": true
+          },
+          {
+            "text": "³P₂ = 3 · 2 = 6 ways",
+            "added": true
+          },
+          {
+            "text": "So each of 2, 4, 7, 8 sits in each place 6 times,",
+            "added": true
+          },
+          {
+            "text": "and 2 + 4 + 7 + 8 = 21",
+            "added": true
+          },
+          {
+            "text": "  (the same 21 as before, since 0 added nothing)",
+            "added": true
+          },
           "Their sum = 6 · 21 · (100 + 10 + 1)",
-          "= 6 · 21 · 111 = 126 · 111 = 13,986",
-          "Sum of the four-digit numbers",
-          "= 5,59,944 − 13,986",
+          {
+            "text": "= 6 · 21 · 111 = 126 · 111 = 13,986",
+            "added": true
+          },
+          {
+            "text": "Sum of the four-digit numbers",
+            "added": true
+          },
+          {
+            "text": "= 5,59,944 − 13,986",
+            "added": true
+          },
           {
             "text": "∴ sum = 5,45,958",
-            "style": "boxed"
+            "style": "boxed",
+            "added": true
           }
         ],
         "recall": {
@@ -209,6 +287,16 @@
           "Subtracting the COUNT of leading-zero strings (24) instead of their SUM.",
           "Using ⁴P₃ = 24 per place for the three-digit numbers — four digits remain and three places, so a digit sits in a place ³P₂ = 6 times.",
           "Using 1111 instead of 111 for the three-digit numbers."
+        ],
+        "lines_compact": [
+          "Arrangements with 0 in the thousands place are",
+          "3-digit numbers from 2, 4, 7, 8: each digit sits",
+          "in each place ³P₂ = 6 times.",
+          "Their sum = 6 · 21 · (100 + 10 + 1) = 13,986",
+          {
+            "text": "∴ sum = 5,59,944 − 13,986 = 5,45,958",
+            "style": "boxed"
+          }
         ]
       }
     ]

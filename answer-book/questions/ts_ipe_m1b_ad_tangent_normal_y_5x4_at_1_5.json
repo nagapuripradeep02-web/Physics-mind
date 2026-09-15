@@ -34,7 +34,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.221, chapter 10 APPLICATIONS OF DERIVATIVES, the TANGENTS AND NORMALS sub-section, Short Answer question 11(ii). Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4M over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.221, chapter 10 APPLICATIONS OF DERIVATIVES, the TANGENTS AND NORMALS sub-section, Short Answer question 11(ii). Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4M over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say what dy/dx is, what the slope is at x = 1, and what you do to that slope to get the normal.",
   "answer": {
@@ -56,8 +56,11 @@
             "style": "heading"
           },
           "Given curve:  y = 5x⁴",
-          "Check the point: at x = 1,  y = 5(1)⁴ = 5, so (1, 5) lies on the curve.",
+          "(1⁴ = 1)",
+          "Check the point: at x = 1,  y = 5(1)⁴ = 5,",
+          "so (1, 5) lies on the curve.",
           "Differentiate with respect to x:",
+          "(power rule: d/dx of x⁴ is 4x³)",
           "dy/dx = 5(4x³)",
           "∴ dy/dx = 20x³"
         ],
@@ -87,7 +90,7 @@
         "why": "The tangent and the normal both come from this one derivative, so it is written before either line is attempted. A constant multiplier is carried through the power rule unchanged.",
         "common_mistakes": [
           "Differentiating 5x⁴ to 5x³, dropping the factor 4 that the power rule produces.",
-          "Writing 20x⁴, reducing the coefficient but not the index.",
+          "Writing 20x⁴, multiplying the coefficient by 4 but not lowering the index.",
           "Differentiating the number 5 as well and adding a stray term."
         ],
         "memory_tip": "Power rule on 5x⁴: multiply the 5 by the power 4 to get 20, then lower the power to 3."
@@ -101,10 +104,31 @@
         "margin_note": "Two marks: one for m = 20 with its substitution line, one for the tangent written in general form. Quote y − y₁ = m(x − x₁) before putting numbers in.",
         "lines": [
           "The slope of the tangent is dy/dx at the given point.",
+          {
+            "text": "(1³ = 1)",
+            "added": true
+          },
           "At x = 1:   m = 20(1)³ = 20",
           "Tangent at (x₁, y₁) with slope m:   y − y₁ = m(x − x₁)",
+          {
+            "text": "(put x₁ = 1, y₁ = 5 and m = 20)",
+            "added": true
+          },
           "y − 5 = 20(x − 1)",
+          {
+            "text": "(multiply out: 20 × x = 20x and 20 × (−1) = −20)",
+            "added": true
+          },
           "y − 5 = 20x − 20",
+          {
+            "text": "(move 20x − 20 to the left: −20x + y − 5 + 20 = 0;",
+            "added": true
+          },
+          {
+            "text": "  then multiply every term by −1)",
+            "style": "indent",
+            "added": true
+          },
           "∴ 20x − y − 15 = 0"
         ],
         "recall": {
@@ -136,7 +160,15 @@
           "Expanding 20(x − 1) as 20x − 1.",
           "Writing 20x − y + 15 = 0, losing the sign when moving −5 across."
         ],
-        "memory_tip": "At x = 1 every power of x is 1, so the slope is just the coefficient. Here that coefficient is 20."
+        "memory_tip": "At x = 1 every power of x is 1, so the slope is just the coefficient. Here that coefficient is 20.",
+        "lines_compact": [
+          "The slope of the tangent is dy/dx at the given point.",
+          "At x = 1:   m = 20(1)³ = 20",
+          "Tangent at (x₁, y₁) with slope m:   y − y₁ = m(x − x₁)",
+          "y − 5 = 20(x − 1)",
+          "y − 5 = 20x − 20",
+          "∴ 20x − y − 15 = 0"
+        ]
       },
       {
         "id": "s3_normal",
@@ -146,13 +178,43 @@
         "mark_note": "Answer",
         "margin_note": "Fourth mark. The normal's slope is −1/m = −1/20, not −20. Multiply by 20 to clear the fraction, then check: 1 + 100 − 101 = 0 at (1, 5).",
         "lines": [
-          "The normal is perpendicular to the tangent at the same point,",
+          {
+            "text": "(the normal's slope is −1 divided by 20)",
+            "added": true
+          },
+          "The normal is perpendicular to the tangent",
+          "at the same point,",
           "so its slope is −1/m = −1/20.",
+          {
+            "text": "(the point-slope form with slope −1/20 at (1, 5))",
+            "added": true
+          },
           "y − 5 = (−1/20)(x − 1)",
+          {
+            "text": "(multiply both sides by 20)",
+            "added": true
+          },
           "20(y − 5) = −(x − 1)",
+          {
+            "text": "(multiply out both sides)",
+            "added": true
+          },
           "20y − 100 = −x + 1",
           {
-            "text": "∴ Tangent: 20x − y − 15 = 0     Normal: x + 20y − 101 = 0",
+            "text": "(for the normal, move −x + 1 to the left:",
+            "added": true
+          },
+          {
+            "text": "  x + 20y − 100 − 1 = 0)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "∴ Tangent: 20x − y − 15 = 0",
+            "style": "boxed"
+          },
+          {
+            "text": "Normal: x + 20y − 101 = 0",
             "style": "boxed"
           }
         ],
@@ -183,11 +245,27 @@
         "common_mistakes": [
           "Using −20 as the normal's slope instead of −1/20.",
           "Writing +1/20, doing the reciprocal but not the sign change.",
-          "Arithmetic slip on −100 + 1, giving −99 instead of the correct constant."
+          "Moving +1 across without changing its sign, giving −100 + 1 = −99 instead of −101."
         ],
-        "memory_tip": "Turn 20 into 1/20 and change the sign. A steep tangent always has a flat normal."
+        "memory_tip": "Turn 20 into 1/20 and change the sign. A steep tangent has a normal close to horizontal.",
+        "lines_compact": [
+          "The normal is perpendicular to the tangent",
+          "at the same point,",
+          "so its slope is −1/m = −1/20.",
+          "y − 5 = (−1/20)(x − 1)",
+          "20(y − 5) = −(x − 1)",
+          "20y − 100 = −x + 1",
+          {
+            "text": "∴ Tangent: 20x − y − 15 = 0",
+            "style": "boxed"
+          },
+          {
+            "text": "Normal: x + 20y − 101 = 0",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },
-  "insider_note": "m = 20x³ gives 20 at x = 1 — a steep tangent and a very flat normal of slope −1/20. Both equations are asked for, so write both."
+  "insider_note": "m = 20x³ gives 20 at x = 1 — a steep tangent and a normal of small slope −1/20. Both equations are asked for, so write both."
 }

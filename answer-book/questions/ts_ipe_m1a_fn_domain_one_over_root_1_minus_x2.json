@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.81 — VSAQ chapter 14 Functions, question 97.2, on ★★★ SSP 81 (the book calls it 'the most dominating domain page'). Appearance years are printed board-split. UNLIKE the LAQ and SAQ pages, the book prints NO internal mark split on its VSAQ pages: the 1+1 across the two steps is our division of the 2 marks, not the source's. Publisher's claims until a Telangana IPE teacher confirms them."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.81 — VSAQ chapter 14 Functions, question 97.2, on ★★★ SSP 81 (the book calls it 'the most dominating domain page'). Appearance years are printed board-split. UNLIKE the LAQ and SAQ pages, the book prints NO internal mark split on its VSAQ pages: the 1+1 across the two steps is our division of the 2 marks, not the source's. Publisher's claims until a Telangana IPE teacher confirms them. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find this domain — the condition the formula forces, and the answer.",
   "answer": {
@@ -48,7 +48,17 @@
         "margin_note": "One of the two marks is for the condition alone. Write it before any factorising.",
         "memory_tip": "A root in a DENOMINATOR needs > 0, not ≥ 0 — at zero the fraction is undefined.",
         "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "The root needs 1 − x² ≥ 0, and it sits in a",
+          {
+            "text": "  denominator, so it must not be 0 either:",
+            "style": "indent"
+          },
           "f(x) is defined when 1 − x² > 0",
+          "(multiply by −1, which reverses the inequality)",
           "⇒ x² − 1 < 0",
           "⇒ (x + 1)(x − 1) < 0"
         ],
@@ -90,8 +100,20 @@
         "margin_note": "The second mark is the interval itself. Write it in interval form, and check every bracket.",
         "memory_tip": "Open interval (−1, 1). The two end points are exactly where the denominator vanishes.",
         "lines": [
+          {
+            "text": "(the two factors have opposite signs, which",
+            "added": true
+          },
+          {
+            "text": "  happens only for −1 < x < 1)",
+            "style": "indent",
+            "added": true
+          },
           "⇒ x ∈ (−1, 1)",
-          "∴ Domain = (−1, 1)"
+          {
+            "text": "∴ Domain = (−1, 1)",
+            "style": "boxed"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -125,6 +147,13 @@
         "common_mistakes": [
           "Writing [−1, 1] and including the two points where the function is undefined.",
           "Giving the outside intervals, where the inside is negative."
+        ],
+        "lines_compact": [
+          "⇒ x ∈ (−1, 1)",
+          {
+            "text": "∴ Domain = (−1, 1)",
+            "style": "boxed"
+          }
         ]
       }
     ]

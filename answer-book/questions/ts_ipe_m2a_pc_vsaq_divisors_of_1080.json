@@ -110,15 +110,34 @@
         "margin_note": "Second mark. (3 + 1)(3 + 1)(1 + 1) = 4 × 4 × 2 = 32.",
         "memory_tip": "Add 1 to EVERY exponent, the lone 5 included: (3+1)(3+1)(1+1) = 32.",
         "lines": [
-          "A divisor takes 2 to a power 0, 1, 2 or 3",
-          "  (4 choices), 3 to a power 0, 1, 2 or 3",
-          "  (4 choices), and 5 to a power 0 or 1",
-          "  (2 choices).",
-          "Divisors = (3 + 1)(3 + 1)(1 + 1)",
-          "= 4 · 4 · 2",
+          {
+            "text": "A divisor takes 2 to a power 0, 1, 2 or 3",
+            "added": true
+          },
+          {
+            "text": "  (4 choices), 3 to a power 0, 1, 2 or 3",
+            "added": true
+          },
+          {
+            "text": "  (4 choices), and 5 to a power 0 or 1",
+            "added": true
+          },
+          {
+            "text": "  (2 choices).",
+            "added": true
+          },
+          {
+            "text": "Divisors = (3 + 1)(3 + 1)(1 + 1)",
+            "added": true
+          },
+          {
+            "text": "= 4 · 4 · 2",
+            "added": true
+          },
           {
             "text": "∴ number of divisors = 32",
-            "style": "boxed"
+            "style": "boxed",
+            "added": true
           }
         ],
         "recall": {
@@ -145,6 +164,13 @@
         "common_mistakes": [
           "Multiplying the exponents themselves (3 × 3 × 1 = 9).",
           "Forgetting the +1 on the prime 5, giving 16."
+        ],
+        "lines_compact": [
+          "Divisors = (3 + 1)(3 + 1)(1 + 1) = 4 · 4 · 2",
+          {
+            "text": "= 32",
+            "style": "boxed"
+          }
         ]
       }
     ]

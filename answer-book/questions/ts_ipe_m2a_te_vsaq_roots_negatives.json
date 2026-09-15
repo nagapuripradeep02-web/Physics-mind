@@ -101,9 +101,18 @@
         "margin_note": "Second mark. (−x)⁴ = x⁴, (−x)³ = −x³, −x stays. Only the x³ and x terms change sign.",
         "memory_tip": "(−x)⁴ = x⁴ and (−x)³ = −x³. The x² term is missing, so exactly two signs flip.",
         "lines": [
-          "(−x)⁴ = x⁴ (even power keeps the sign)",
-          "(−x)³ = −x³ (odd power changes it)",
-          "x⁴ − 5x³ − 11x + 3 = 0",
+          {
+            "text": "(−x)⁴ = x⁴ (even power keeps the sign)",
+            "added": true
+          },
+          {
+            "text": "(−x)³ = −x³ (odd power changes it)",
+            "added": true
+          },
+          {
+            "text": "x⁴ − 5x³ − 11x + 3 = 0",
+            "added": true
+          },
           {
             "text": "∴ x⁴ − 5x³ − 11x + 3 = 0",
             "style": "boxed"
@@ -135,6 +144,12 @@
         "common_mistakes": [
           "Writing (−x)⁴ = −x⁴.",
           "Changing the sign of the constant 3."
+        ],
+        "lines_compact": [
+          {
+            "text": "∴ x⁴ − 5x³ − 11x + 3 = 0",
+            "style": "boxed"
+          }
         ]
       }
     ]

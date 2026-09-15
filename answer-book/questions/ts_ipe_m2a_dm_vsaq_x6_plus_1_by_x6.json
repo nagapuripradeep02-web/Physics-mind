@@ -117,11 +117,15 @@
         "margin_note": "Second mark. Adding the two cancels the sines and doubles the cosine: x⁶ + 1/x⁶ = 2cos 6θ. No i is left, and the angle stays 6θ.",
         "memory_tip": "Adding cancels the sines and doubles the cosine: 2cos 6θ. Not 2cos⁶θ, and no i left.",
         "lines": [
-          "Adding the two, the i sin 6θ terms cancel:",
+          {
+            "text": "Adding the two, the i sin 6θ terms cancel:",
+            "added": true
+          },
           "x⁶ + 1/x⁶ = 2cos 6θ",
           {
             "text": "∴ x⁶ + 1/x⁶ = 2cos 6θ",
-            "style": "boxed"
+            "style": "boxed",
+            "added": true
           }
         ],
         "recall": {
@@ -150,6 +154,12 @@
           "Writing 2i sin 6θ, the difference instead of the sum.",
           "Writing 2cos⁶ θ.",
           "Leaving a stray i in the answer."
+        ],
+        "lines_compact": [
+          {
+            "text": "x⁶ + 1/x⁶ = 2cos 6θ",
+            "style": "boxed"
+          }
         ]
       }
     ]

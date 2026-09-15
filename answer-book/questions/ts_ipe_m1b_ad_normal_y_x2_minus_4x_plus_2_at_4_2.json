@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.223, chapter 10 APPLICATIONS OF DERIVATIVES, the TANGENTS AND NORMALS sub-section, Short Answer question 17. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4M over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Note on the stem: the printed question uses the plural, \"the equations of the normal\", but only one point is given, so there is exactly one normal. It is reproduced as printed and answered as the single line it is."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.223, chapter 10 APPLICATIONS OF DERIVATIVES, the TANGENTS AND NORMALS sub-section, Short Answer question 17. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4M over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Note on the stem: the printed question uses the plural, \"the equations of the normal\", but only one point is given, so there is exactly one normal. It is reproduced as printed and answered as the single line it is. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say what dy/dx is, what the tangent slope is at (4, 2), and what you do to it to get the normal. Say also what this question does NOT ask for.",
   "answer": {
@@ -60,9 +60,11 @@
             "style": "heading"
           },
           "Given curve:   y = x² − 4x + 2",
+          "(4² = 16 and 4(4) = 16)",
           "Check the point: at x = 4,  y = 16 − 16 + 2 = 2,",
           "so (4, 2) lies on the curve.",
           "Differentiate with respect to x:",
+          "(d/dx of x² is 2x, of 4x is 4, and of 2 is 0)",
           "dy/dx = 2x − 4"
         ],
         "recall": {
@@ -94,7 +96,7 @@
           "Carrying the constant +2 into dy/dx.",
           "Checking the point with y = 4 and x = 2, reading the coordinates the wrong way round."
         ],
-        "memory_tip": "The normal always comes through the tangent. Differentiate first, whichever of the two lines is asked for."
+        "memory_tip": "The normal's slope is found from the tangent's slope. Differentiate first, whichever of the two lines is asked for."
       },
       {
         "id": "s2_tangent_slope",
@@ -106,6 +108,10 @@
         "lines": [
           "The slope of the tangent is dy/dx at the given point.",
           "At x = 4:",
+          {
+            "text": "(put 4 in place of x in dy/dx = 2x − 4)",
+            "added": true
+          },
           "m = 2(4) − 4 = 8 − 4",
           "∴ m = 4"
         ],
@@ -138,7 +144,13 @@
           "Using 4 straight away as the normal's slope.",
           "Substituting into the original curve instead of into dy/dx."
         ],
-        "memory_tip": "The point's x is 4 and the slope also comes to 4 — write the word \"tangent\" beside it so the two 4's are not confused later."
+        "memory_tip": "The point's x is 4 and the slope also comes to 4 — write the word \"tangent\" beside it so the two 4's are not confused later.",
+        "lines_compact": [
+          "The slope of the tangent is dy/dx at the given point.",
+          "At x = 4:",
+          "m = 2(4) − 4 = 8 − 4",
+          "∴ m = 4"
+        ]
       },
       {
         "id": "s3_normal_slope",
@@ -146,11 +158,20 @@
         "label": "Slope of the normal",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Third mark. −1/m, so 4 becomes −1/4. This single line is where most marks are lost on normal questions.",
+        "margin_note": "Third mark. −1/m, so 4 becomes −1/4. Marks are often lost on this line.",
         "lines": [
-          "The normal is perpendicular to the tangent at the same point,",
+          "The normal is perpendicular to the tangent",
+          "at the same point,",
           "so the product of their slopes is −1.",
+          {
+            "text": "(divide −1 by the tangent slope m)",
+            "added": true
+          },
           "Slope of the normal = −1/m",
+          {
+            "text": "(m = 4 from step 2)",
+            "added": true
+          },
           "∴ slope of the normal = −1/4"
         ],
         "recall": {
@@ -182,7 +203,14 @@
           "Using 1/4, inverting but not changing the sign.",
           "Using 4, the tangent's slope, for the normal."
         ],
-        "memory_tip": "Perpendicular slopes multiply to −1. Check it: 4 × (−1/4) = −1."
+        "memory_tip": "Perpendicular slopes multiply to −1. Check it: 4 × (−1/4) = −1.",
+        "lines_compact": [
+          "The normal is perpendicular to the tangent",
+          "at the same point,",
+          "so the product of their slopes is −1.",
+          "Slope of the normal = −1/m",
+          "∴ slope of the normal = −1/4"
+        ]
       },
       {
         "id": "s4_normal_equation",
@@ -192,11 +220,28 @@
         "mark_note": "Answer",
         "margin_note": "Fourth mark. The question asks for the normal ONLY, so do not spend time writing the tangent as well — it earns nothing. Check the boxed line at (4, 2): 4 + 8 − 12 = 0.",
         "lines": [
-          "Normal at (x₁, y₁) with slope −1/m:   y − y₁ = (−1/m)(x − x₁)",
+          "Normal at (x₁, y₁) with slope −1/m:",
+          "y − y₁ = (−1/m)(x − x₁)",
           "Here (x₁, y₁) = (4, 2):",
+          {
+            "text": "(put x₁ = 4, y₁ = 2 and −1/m = −1/4)",
+            "added": true
+          },
           "y − 2 = (−1/4)(x − 4)",
+          {
+            "text": "(multiply both sides by 4)",
+            "added": true
+          },
           "4(y − 2) = −(x − 4)",
+          {
+            "text": "(multiply out both sides)",
+            "added": true
+          },
           "4y − 8 = −x + 4",
+          {
+            "text": "(move −x + 4 to the left: x + 4y − 8 − 4 = 0)",
+            "added": true
+          },
           {
             "text": "∴ Normal: x + 4y − 12 = 0",
             "style": "boxed"
@@ -231,7 +276,19 @@
           "Writing the tangent 4x − y − 14 = 0 as well and presenting it as part of the answer.",
           "Multiplying only the left side by 4 when clearing the fraction."
         ],
-        "memory_tip": "Read the question again before writing the last line. This one names only the normal, so only the normal is marked."
+        "memory_tip": "Read the question again before writing the last line. This one names only the normal, so only the normal is marked.",
+        "lines_compact": [
+          "Normal at (x₁, y₁) with slope −1/m:",
+          "y − y₁ = (−1/m)(x − x₁)",
+          "Here (x₁, y₁) = (4, 2):",
+          "y − 2 = (−1/4)(x − 4)",
+          "4(y − 2) = −(x − 4)",
+          "4y − 8 = −x + 4",
+          {
+            "text": "∴ Normal: x + 4y − 12 = 0",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

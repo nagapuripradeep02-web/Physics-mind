@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.194, chapter 9 DIFFERENTIATION, Very Short Answer question 17. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer x2ˣ[2 log x + x(log 2)(log x) + 1] was checked against a numerical difference quotient before it was written: at x = 0.5 both read −0.4430172, at x = 1.4 both read 7.3872461, and at x = 2.6 both read 73.032533. Both logarithms are to base e, the convention of this paper."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.194, chapter 9 DIFFERENTIATION, Very Short Answer question 17. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer x2ˣ[2 log x + x(log 2)(log x) + 1] was checked against a numerical difference quotient before it was written: at x = 0.5 both read −0.4430172, at x = 1.4 both read 7.3872461, and at x = 2.6 both read 73.032533. Both logarithms are to base e, the convention of this paper. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — name the three factors, say what each one differentiates to, and say what you take out at the end.",
   "answer": {
@@ -54,8 +54,10 @@
           },
           "f(x) = x² · 2ˣ · log x, for x > 0",
           "Take u = x²,  v = 2ˣ,  w = log x",
+          "(the power rule d/dx(xⁿ) = nxⁿ⁻¹)",
           "u′ = 2x",
           "v′ = 2ˣ log 2   [since d/dx(aˣ) = aˣ log a]",
+          "(the standard derivative of log x, for x > 0)",
           "w′ = 1/x"
         ],
         "recall": {
@@ -95,10 +97,41 @@
         "margin_note": "Second mark. The rule is f′ = u′vw + uv′w + uvw′. In the third term x² · (1/x) reduces to x, which is why x2ˣ is common to all three terms.",
         "memory_tip": "In the third term the 1/x cancels one power of x, so that term is x2ˣ and not x²2ˣ.",
         "lines": [
+          {
+            "text": "(the product rule for three functions)",
+            "added": true
+          },
           "f′(x) = u′vw + uv′w + uvw′",
+          {
+            "text": "(put u = x², v = 2ˣ, w = log x and their",
+            "added": true
+          },
+          {
+            "text": "  derivatives from step 1)",
+            "style": "indent",
+            "added": true
+          },
           "= (2x)(2ˣ)(log x) + (x²)(2ˣ log 2)(log x) + (x²)(2ˣ)(1/x)",
+          {
+            "text": "(x² · (1/x) = x)",
+            "added": true
+          },
           "= 2x·2ˣ log x + x²·2ˣ (log 2)(log x) + x·2ˣ",
           "Take x2ˣ common from all three terms:",
+          {
+            "text": "(2x·2ˣ log x = x2ˣ · 2 log x;",
+            "added": true
+          },
+          {
+            "text": "  x²·2ˣ(log 2)(log x) = x2ˣ · x(log 2)(log x);",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  x·2ˣ = x2ˣ · 1)",
+            "style": "indent",
+            "added": true
+          },
           {
             "text": "∴ f′(x) = x2ˣ[2 log x + x(log 2)(log x) + 1]",
             "style": "boxed"
@@ -128,8 +161,18 @@
         },
         "why": "The third term is where marks are usually lost: x² × 1/x cancels to x, so the common factor is x2ˣ and the bracket ends in a plain 1, not in 1/x.",
         "common_mistakes": [
-          "Leaving the third term as x²2ˣ/x and then taking x²2ˣ common, which leaves a wrong 1/x inside the bracket.",
+          "Writing the third term x² · 2ˣ · (1/x) as x²2ˣ, losing the 1/x, so the bracket ends in x instead of 1.",
           "Writing (log 2)(log x) as log(2x), which is a different quantity."
+        ],
+        "lines_compact": [
+          "f′(x) = u′vw + uv′w + uvw′",
+          "= (2x)(2ˣ)(log x) + (x²)(2ˣ log 2)(log x) + (x²)(2ˣ)(1/x)",
+          "= 2x·2ˣ log x + x²·2ˣ (log 2)(log x) + x·2ˣ",
+          "Take x2ˣ common from all three terms:",
+          {
+            "text": "∴ f′(x) = x2ˣ[2 log x + x(log 2)(log x) + 1]",
+            "style": "boxed"
+          }
         ]
       }
     ]

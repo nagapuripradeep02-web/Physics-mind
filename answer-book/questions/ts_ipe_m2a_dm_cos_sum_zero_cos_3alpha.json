@@ -117,10 +117,22 @@
         "margin_note": "Second mark. Because a + b + c = 0, the identity a³ + b³ + c³ − 3abc = (a + b + c)(a² + b² + c² − ab − bc − ca) leaves a³ + b³ + c³ = 3abc. Keep the 3; it is the 3 on the right of results (i) and (ii).",
         "memory_tip": "a + b + c = 0 makes a³ + b³ + c³ = 3abc. Keep the 3 — it is the 3 on the right of (i) and (ii).",
         "lines": [
-          "There is a standard identity: if a + b + c = 0,",
-          "then a³ + b³ + c³ = 3abc.",
-          "Since a + b + c = 0 here,",
-          "a³ + b³ + c³ = 3abc",
+          {
+            "text": "There is a standard identity: if a + b + c = 0,",
+            "added": true
+          },
+          {
+            "text": "then a³ + b³ + c³ = 3abc.",
+            "added": true
+          },
+          {
+            "text": "Since a + b + c = 0 here,",
+            "added": true
+          },
+          {
+            "text": "a³ + b³ + c³ = 3abc",
+            "added": true
+          },
           "(cis α)³ + (cis β)³ + (cis γ)³",
           "  = 3(cis α)(cis β)(cis γ)"
         ],
@@ -151,6 +163,11 @@
           "Cubing a + b + c = 0 by expanding, instead of using the standard identity.",
           "Writing a³ + b³ + c³ = 0.",
           "Forgetting the 3 in 3abc."
+        ],
+        "lines_compact": [
+          "a + b + c = 0 ⇒ a³ + b³ + c³ = 3abc",
+          "⇒ (cis α)³ + (cis β)³ + (cis γ)³",
+          "= 3 (cis α)(cis β)(cis γ)"
         ]
       },
       {
@@ -162,10 +179,19 @@
         "margin_note": "Third mark. De Moivre gives (cis α)³ = cis 3α, and the product rule gives (cis α)(cis β)(cis γ) = cis(α + β + γ). Angles add in a product of cis numbers; they are never multiplied.",
         "memory_tip": "(cis α)³ = cis 3α, and cis α · cis β · cis γ = cis(α + β + γ). Angles add in a product, never multiply.",
         "lines": [
-          "By De Moivre's theorem (cis θ)³ = cis 3θ,",
-          "and multiplying cis numbers adds their angles:",
+          {
+            "text": "By De Moivre's theorem (cis θ)³ = cis 3θ,",
+            "added": true
+          },
+          {
+            "text": "and multiplying cis numbers adds their angles:",
+            "added": true
+          },
           "cis 3α + cis 3β + cis 3γ = 3 cis(α + β + γ)",
-          "Writing each cis in full:",
+          {
+            "text": "Writing each cis in full:",
+            "added": true
+          },
           "(cos 3α + cos 3β + cos 3γ)",
           "  + i(sin 3α + sin 3β + sin 3γ)",
           "= 3cos(α + β + γ) + i · 3 sin(α + β + γ)"
@@ -198,6 +224,13 @@
           "Writing (cis α)³ = cos³ α + i sin³ α.",
           "Multiplying the angles in abc instead of adding them.",
           "Forgetting the 3 on the right-hand side."
+        ],
+        "lines_compact": [
+          "⇒ cis 3α + cis 3β + cis 3γ = 3 cis(α + β + γ)",
+          "(by De Moivre's theorem)",
+          "⇒ (cos 3α + cos 3β + cos 3γ)",
+          "+ i(sin 3α + sin 3β + sin 3γ)",
+          "= 3cos(α + β + γ) + i · 3 sin(α + β + γ)"
         ]
       },
       {
@@ -209,8 +242,14 @@
         "margin_note": "Fourth and fifth marks. Two complex numbers are equal only when both parts agree, so this one line gives (i) from the real parts and (ii) from the imaginary parts. The right side is 3cos(α + β + γ), not cos 3(α + β + γ).",
         "memory_tip": "One complex equation carries both results: real parts give (i), imaginary parts give (ii).",
         "lines": [
-          "Two complex numbers are equal only when both",
-          "parts match.",
+          {
+            "text": "Two complex numbers are equal only when both",
+            "added": true
+          },
+          {
+            "text": "parts match.",
+            "added": true
+          },
           "Equating the real parts:",
           "cos 3α + cos 3β + cos 3γ = 3cos(α + β + γ)",
           "Hence (i) is proved.",
@@ -247,6 +286,14 @@
           "Proving (i) and stopping, forgetting that (ii) is the imaginary part of the same line.",
           "Writing the right-hand side as cos 3(α + β + γ).",
           "Dropping the factor 3."
+        ],
+        "lines_compact": [
+          "Equating real parts:",
+          "cos 3α + cos 3β + cos 3γ = 3cos(α + β + γ)",
+          "Hence (i) is proved.",
+          "Equating imaginary parts:",
+          "sin 3α + sin 3β + sin 3γ = 3 sin(α + β + γ)",
+          "Hence (ii) is proved."
         ]
       },
       {
@@ -258,15 +305,42 @@
         "margin_note": "Sixth and seventh marks. 1/a = cis(−α), so 1/a + 1/b + 1/c is the same given data with the sine sign reversed, and it is 0. Multiply through by abc to get ab + bc + ca = 0; each product is cis of a sum of two angles, and the real parts give result (iii).",
         "memory_tip": "1/a = cis(−α), so the reciprocals sum to 0 as well. Multiply through by abc: ab + bc + ca = 0.",
         "lines": [
-          "1/a = 1/cis α = cis(−α) = cos α − i sin α,",
-          "and the same for b and c. Adding them:",
-          "1/a + 1/b + 1/c = (cos α + cos β + cos γ)",
-          "  − i(sin α + sin β + sin γ)",
-          "= 0 − i(0) = 0",
-          "Adding the three reciprocals over abc:",
-          "(bc + ca + ab)/abc = 0",
-          "abc ≠ 0, so ab + bc + ca = 0",
-          "Each product adds angles, so",
+          {
+            "text": "1/a = 1/cis α = cis(−α) = cos α − i sin α,",
+            "added": true
+          },
+          {
+            "text": "and the same for b and c. Adding them:",
+            "added": true
+          },
+          {
+            "text": "1/a + 1/b + 1/c = (cos α + cos β + cos γ)",
+            "added": true
+          },
+          {
+            "text": "  − i(sin α + sin β + sin γ)",
+            "added": true
+          },
+          {
+            "text": "= 0 − i(0) = 0",
+            "added": true
+          },
+          {
+            "text": "Adding the three reciprocals over abc:",
+            "added": true
+          },
+          {
+            "text": "(bc + ca + ab)/abc = 0",
+            "added": true
+          },
+          {
+            "text": "abc ≠ 0, so ab + bc + ca = 0",
+            "added": true
+          },
+          {
+            "text": "Each product adds angles, so",
+            "added": true
+          },
           "cis(α + β) + cis(β + γ) + cis(γ + α) = 0",
           "Equating the real parts:",
           {
@@ -303,6 +377,18 @@
           "Writing 1/a = cis α with no sign change.",
           "Forgetting to multiply through by abc, and trying to read (iii) off the reciprocal sum directly.",
           "Writing ab = cis(αβ) instead of cis(α + β)."
+        ],
+        "lines_compact": [
+          "1/a + 1/b + 1/c = cis(−α) + cis(−β) + cis(−γ)",
+          "= (cos α + cos β + cos γ)",
+          "− i(sin α + sin β + sin γ) = 0 − i(0) = 0",
+          "⇒ (bc + ca + ab)/abc = 0 ⇒ ab + bc + ca = 0",
+          "⇒ cis(α + β) + cis(β + γ) + cis(γ + α) = 0",
+          "Equating real parts:",
+          {
+            "text": "cos(α + β) + cos(β + γ) + cos(γ + α) = 0",
+            "style": "boxed"
+          }
         ]
       }
     ]

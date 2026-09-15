@@ -108,15 +108,31 @@
         "memory_tip": "(√2)⁸ = 2⁴ = 16, and 8 · π/4 = 2π, where cos = 1 and sin = 0.",
         "lines": [
           "(1 − i)⁸ = (√2)⁸ (cos π/4 − i sin π/4)⁸",
-          "(√2)⁸ = ((√2)²)⁴ = 2⁴ = 16",
-          "By De Moivre's theorem the angle is multiplied:",
-          "(cos π/4 − i sin π/4)⁸ = cos(8π/4) − i sin(8π/4)",
+          {
+            "text": "(√2)⁸ = ((√2)²)⁴ = 2⁴ = 16",
+            "added": true
+          },
+          {
+            "text": "By De Moivre's theorem the angle is multiplied:",
+            "added": true
+          },
+          {
+            "text": "(cos π/4 − i sin π/4)⁸ = cos(8π/4) − i sin(8π/4)",
+            "added": true
+          },
           "= cos 2π − i sin 2π",
-          "2π is one full turn, so cos 2π = 1, sin 2π = 0",
-          "= 16(1 − i · 0)",
+          {
+            "text": "2π is one full turn, so cos 2π = 1, sin 2π = 0",
+            "added": true
+          },
+          {
+            "text": "= 16(1 − i · 0)",
+            "added": true
+          },
           {
             "text": "∴ (1 − i)⁸ = 16",
-            "style": "boxed"
+            "style": "boxed",
+            "added": true
           }
         ],
         "recall": {
@@ -146,6 +162,14 @@
           "Writing (√2)⁸ = 2⁸ = 256, forgetting the square root.",
           "Writing cos 2π = −1.",
           "Leaving the answer as 16(cos 2π − i sin 2π)."
+        ],
+        "lines_compact": [
+          "(1 − i)⁸ = (√2)⁸ (cos π/4 − i sin π/4)⁸",
+          "= 2⁴ (cos 2π − i sin 2π)",
+          {
+            "text": "= 16 (1 − i · 0) = 16",
+            "style": "boxed"
+          }
         ]
       }
     ]

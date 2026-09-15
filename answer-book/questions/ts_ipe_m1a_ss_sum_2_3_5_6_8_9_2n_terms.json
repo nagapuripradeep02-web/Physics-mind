@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.22, chapter 3 SEQUENCES & SERIES, Very Short Answer question 13. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sequences and Series is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.22, chapter 3 SEQUENCES & SERIES, Very Short Answer question 13. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sequences and Series is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this — say why it is not one A.P. and how you split it.",
   "answer": {
@@ -52,10 +52,20 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "The differences run 1, 2, 1, 2, …, so the 2n terms are not one A.P.",
+          "The differences run 1, 2, 1, 2, …, so the 2n terms",
+          "are not one A.P.",
           "Take the terms in alternate positions:",
-          "1st, 3rd, 5th, … give  2, 5, 8, …  : an A.P. with a = 2, d = 3, n terms",
-          "2nd, 4th, 6th, … give  3, 6, 9, …  : an A.P. with a = 3, d = 3, n terms",
+          "1st, 3rd, 5th, … give  2, 5, 8, … :",
+          {
+            "text": "an A.P. with a = 2, d = 3, n terms",
+            "style": "indent"
+          },
+          "2nd, 4th, 6th, … give  3, 6, 9, … :",
+          {
+            "text": "an A.P. with a = 3, d = 3, n terms",
+            "style": "indent"
+          },
+          "(n terms from each A.P. make 2n terms in all)",
           "S = (2 + 5 + 8 + … n terms) + (3 + 6 + 9 + … n terms)"
         ],
         "recall": {
@@ -95,10 +105,30 @@
         "margin_note": "Second mark. Check with n = 2, which is 4 terms: 2 + 3 + 5 + 6 = 16, and 3(2²) + 2(2) = 16.",
         "memory_tip": "Two A.P.s share the factor n/2: add the brackets, then halve 6n + 4.",
         "lines": [
+          {
+            "text": "(the sum of n terms of an A.P.)",
+            "added": true
+          },
           "Sₙ = n/2 [2a + (n − 1)d]",
+          {
+            "text": "(a = 2 and d = 3, so 2a = 4)",
+            "added": true
+          },
           "First A.P.:  n/2 [4 + 3(n − 1)] = n/2 (3n + 1)",
+          {
+            "text": "(a = 3 and d = 3, so 2a = 6)",
+            "added": true
+          },
           "Second A.P.:  n/2 [6 + 3(n − 1)] = n/2 (3n + 3)",
+          {
+            "text": "(take out n/2)",
+            "added": true
+          },
           "S = n/2 [(3n + 1) + (3n + 3)] = n/2 (6n + 4)",
+          {
+            "text": "(n/2 × (6n + 4) = n(3n + 2))",
+            "added": true
+          },
           {
             "text": "∴ S = n(3n + 2) = 3n² + 2n",
             "style": "boxed"
@@ -130,6 +160,16 @@
         "common_mistakes": [
           "Putting 2n into each sum formula as the term count, which totals 4n terms. Each A.P. has only n terms.",
           "Giving the answer in terms of 2n and doubling it a second time."
+        ],
+        "lines_compact": [
+          "Sₙ = n/2 [2a + (n − 1)d]",
+          "First A.P.:  n/2 [4 + 3(n − 1)] = n/2 (3n + 1)",
+          "Second A.P.:  n/2 [6 + 3(n − 1)] = n/2 (3n + 3)",
+          "S = n/2 [(3n + 1) + (3n + 3)] = n/2 (6n + 4)",
+          {
+            "text": "∴ S = n(3n + 2) = 3n² + 2n",
+            "style": "boxed"
+          }
         ]
       }
     ]

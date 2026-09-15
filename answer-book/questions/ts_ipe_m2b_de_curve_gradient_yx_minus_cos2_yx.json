@@ -55,7 +55,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.45 — LAQ chapter 5 Differential Equations, answer 40.1. Not on an SSP page (this chapter carries no Super Scoring Pages at all). Printed appearance tags: TS 16, plus AP 16,19. The mark split is OURS: this chapter prints no margin mark tags. It follows the same five-checkpoint shape as answer 39.1, with the last checkpoint changed from a bare final equation to applying the given initial point and stating the particular solution, since this question asks for the equation of ONE curve through (1, π/4), not the general family. Star rank: the Differential Equations LAQ chapter is ★★ on the LAQ chapter table (book p.13); every entry takes stars 2, a chapter-level rank. The same question is re-answered in the Bullet Model Paper (book p.116, Q24), so it is authored once, here. The book's working was re-derived line by line and is correct throughout, including the cancellation of the two 'x' terms shown as struck-through marks in the printed solution. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book's five Guess Papers (pp.118-127) are the only stand-in. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.45 — LAQ chapter 5 Differential Equations, answer 40.1. Not on an SSP page (this chapter carries no Super Scoring Pages at all). Printed appearance tags: TS 16, plus AP 16,19. The mark split is OURS: this chapter prints no margin mark tags. It follows the same five-checkpoint shape as answer 39.1, with the last checkpoint changed from a bare final equation to applying the given initial point and stating the particular solution, since this question asks for the equation of ONE curve through (1, π/4), not the general family. Star rank: the Differential Equations LAQ chapter is ★★ on the LAQ chapter table (book p.13); every entry takes stars 2, a chapter-level rank. The same question is re-answered in the Bullet Model Paper (book p.116, Q24), so it is authored once, here. The book's working was re-derived line by line and is correct throughout, including the cancellation of the two 'x' terms shown as struck-through marks in the printed solution. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book's five Guess Papers (pp.118-127) are the only stand-in. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "insider_note": "The curve is given by its gradient, not by an equation in x and y, so the very first move is to treat dy/dx = y/x − cos²(y/x) as the differential equation to solve, and the point (1, π/4) is used only at the very last step to fix the constant.",
   "answer": {
@@ -78,8 +78,14 @@
             "style": "heading"
           },
           "Given D.E is dy/dx = y/x − cos²(y/x) … (1)",
-          "(1) is a homogeneous D.E",
-          "Put y = vx ⇒ dy/dx = v + x·dv/dx",
+          "The right side depends only on y/x, so",
+          {
+            "text": "  (1) is a homogeneous D.E.",
+            "style": "indent"
+          },
+          "Put y = vx. By the product rule,",
+          "dy/dx = v·1 + x·dv/dx = v + x·dv/dx",
+          "Also y/x = vx/x = v, so",
           "(1) ⇒ v + x·dv/dx = vx/x − cos²(vx/x)",
           "= v − cos²v"
         ],
@@ -98,13 +104,30 @@
         "margin_note": "One mark. The two copies of v cancel completely, leaving a clean equation in cos²v alone.",
         "memory_tip": "v on both sides of the equation always cancels first, before anything else — look for that cancellation.",
         "lines": [
+          {
+            "text": "Take v to the right side:",
+            "added": true
+          },
           "x·dv/dx = v − cos²v − v = −cos²v",
+          {
+            "text": "Divide both sides by cos²v and by x,",
+            "added": true
+          },
+          {
+            "text": "  and 1/cos²v = sec²v:",
+            "style": "indent",
+            "added": true
+          },
           "⇒ sec²v dv = −dx/x"
         ],
-        "why": "The two v terms cancel exactly, leaving x·dv/dx = −cos²v; dividing by −cos²v and taking the reciprocal gives sec²v dv on the left, separated from dx/x on the right.",
+        "why": "The two v terms cancel exactly, leaving x·dv/dx = −cos²v; dividing by cos²v and by x gives sec²v dv = −dx/x, with v on the left and x on the right.",
         "common_mistakes": [
           "Missing the cancellation of the two v terms and carrying an extra v through the rest of the working.",
           "Writing 1/cos²v as cos²v instead of sec²v."
+        ],
+        "lines_compact": [
+          "x·dv/dx = v − cos²v − v = −cos²v",
+          "⇒ sec²v dv = −dx/x"
         ]
       },
       {
@@ -116,13 +139,25 @@
         "margin_note": "Two marks. ∫sec²v dv = tan v is a standard integral; the right side needs a sign flip.",
         "memory_tip": "sec²v integrates to tan v directly — no substitution needed on the left.",
         "lines": [
+          {
+            "text": "Integrate both sides:",
+            "added": true
+          },
           "∫ sec²v dv = −∫ dx/x",
+          {
+            "text": "∫sec²v dv = tan v and ∫dx/x = log|x|:",
+            "added": true
+          },
           "⇒ tan v = −log|x| + c"
         ],
         "why": "sec²v is the derivative of tan v, so the left side integrates directly; the minus sign carried from the separation step lands on the log|x| term on the right.",
         "common_mistakes": [
           "Dropping the minus sign in front of log|x|.",
           "Writing the integral of sec²v as sec v tan v instead of tan v."
+        ],
+        "lines_compact": [
+          "∫ sec²v dv = −∫ dx/x",
+          "⇒ tan v = −log|x| + c"
         ]
       },
       {
@@ -134,6 +169,10 @@
         "margin_note": "One mark. Move the log term to the left before substituting v = y/x.",
         "memory_tip": "tan v + log|x| = c is the general family — the given point fixes c next.",
         "lines": [
+          {
+            "text": "Take log|x| to the left side:",
+            "added": true
+          },
           "⇒ tan v + log|x| = c … (2)",
           "Put v = y/x: tan(y/x) + log|x| = c"
         ],
@@ -141,6 +180,10 @@
         "common_mistakes": [
           "Forgetting to move the −log|x| across to the left, leaving the sign wrong in the general family.",
           "Substituting v = y/x into the earlier, uncombined line instead of the rearranged one."
+        ],
+        "lines_compact": [
+          "⇒ tan v + log|x| = c … (2)",
+          "Put v = y/x: tan(y/x) + log|x| = c"
         ]
       },
       {
@@ -153,7 +196,15 @@
         "memory_tip": "log|1| = 0 and tan(π/4) = 1 — both simplify away instantly at this point.",
         "lines": [
           "If the curve passes through (x, y) = (1, π/4), then",
+          {
+            "text": "y/x = (π/4)/1 = π/4 at that point, and",
+            "added": true
+          },
           "tan(π/4) + log|1| = c ⇒ 1 + 0 = c ⇒ c = 1",
+          {
+            "text": "since tan(π/4) = 1 and log 1 = 0. Put c = 1:",
+            "added": true
+          },
           {
             "text": "tan(y/x) + log|x| = 1",
             "style": "boxed"
@@ -163,6 +214,14 @@
         "common_mistakes": [
           "Substituting the point into the original differential equation instead of into the integrated family (2).",
           "Evaluating tan(π/4) as an approximate decimal instead of the exact value 1."
+        ],
+        "lines_compact": [
+          "If the curve passes through (x, y) = (1, π/4), then",
+          "tan(π/4) + log|1| = c ⇒ 1 + 0 = c ⇒ c = 1",
+          {
+            "text": "tan(y/x) + log|x| = 1",
+            "style": "boxed"
+          }
         ]
       }
     ]

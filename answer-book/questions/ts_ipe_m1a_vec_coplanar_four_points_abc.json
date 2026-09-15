@@ -63,7 +63,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.57 — SAQ chapter 8 Addition of Vectors, answer 48.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 16,18 · AP 16,17,18,22 — six printed tags, the most-asked question in the unit. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter (its pages are set two questions to a page in two columns, which takes the margin those tags would occupy). The 1+1+1+1 above follows the split the same book prints for the one 4-mark answer that does carry tags, Matrices answer 40 on book p.51. The SAME split and the SAME step ids are used on all four coplanarity answers in this unit, deliberately: they are one method over different vectors. The book's chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q12 is the Addition of Vectors slot. NOTE: Addition of Vectors has NO Section-C slot on the paper and no LAQ chapter in this book — the unit is SAQ and VSAQ only."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.57 — SAQ chapter 8 Addition of Vectors, answer 48.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 16,18 · AP 16,17,18,22 — six printed tags, the most-asked question in the unit. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter (its pages are set two questions to a page in two columns, which takes the margin those tags would occupy). The 1+1+1+1 above follows the split the same book prints for the one 4-mark answer that does carry tags, Matrices answer 40 on book p.51. The SAME split and the SAME step ids are used on all four coplanarity answers in this unit, deliberately: they are one method over different vectors. The book's chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q12 is the Addition of Vectors slot. NOTE: Addition of Vectors has NO Section-C slot on the paper and no LAQ chapter in this book — the unit is SAQ and VSAQ only. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would show four points are coplanar — say what vectors you build first and what test you apply to them.",
   "answer": {
@@ -88,7 +88,12 @@
           "We take",
           "OP = −a + 4b − 3c,  OQ = 3a + 2b − 5c,",
           "OR = −3a + 8b − 5c,  OS = −3a + 2b + c",
-          "where 'O' is the origin."
+          "where 'O' is the origin.",
+          "(four points lie in one plane when the three edges",
+          {
+            "text": "  from one of them lie in one plane)",
+            "style": "indent"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -113,7 +118,7 @@
             "P Q R S"
           ]
         },
-        "why": "A position vector is measured from the origin; the vector BETWEEN two points is the difference of their position vectors. Setting the origin up front is what makes that subtraction legal.",
+        "why": "A position vector is measured from the origin; the vector BETWEEN two points is the difference of their position vectors. Setting the origin up front is what makes that subtraction possible.",
         "common_mistakes": [
           "Treating the given vectors as the sides of the figure rather than as positions.",
           "Never naming an origin, so the differences below have nothing to be measured from."
@@ -128,11 +133,27 @@
         "margin_note": "Second mark. All three vectors must start at the SAME point — P here. Three edges from one corner always works; three edges that use only three of the four points do not, because one of them is then the difference of the other two.",
         "memory_tip": "All three edges from the SAME corner P.",
         "lines": [
+          {
+            "text": "(end point minus start point, part by part)",
+            "added": true
+          },
           "∴ PQ = OQ − OP = (3a + 2b − 5c) − (−a + 4b − 3c)",
+          {
+            "text": "(3 − (−1) = 4, 2 − 4 = −2, −5 − (−3) = −2)",
+            "added": true
+          },
           "  = 4a − 2b − 2c",
           "PR = OR − OP = (−3a + 8b − 5c) − (−a + 4b − 3c)",
+          {
+            "text": "(−3 − (−1) = −2, 8 − 4 = 4, −5 − (−3) = −2)",
+            "added": true
+          },
           "  = −2a + 4b − 2c",
           "PS = OS − OP = (−3a + 2b + c) − (−a + 4b − 3c)",
+          {
+            "text": "(−3 − (−1) = −2, 2 − 4 = −2, 1 − (−3) = 4)",
+            "added": true
+          },
           "  = −2a − 2b + 4c"
         ],
         "recall": {
@@ -164,6 +185,14 @@
           "Using PQ, PR and QR, which involve only P, Q and R; since QR = PR − PQ, that determinant is zero for any four points and proves nothing.",
           "Subtracting the wrong way round; OQ − OP, not OP − OQ.",
           "A sign slip when the subtracted term is already negative."
+        ],
+        "lines_compact": [
+          "∴ PQ = OQ − OP = (3a + 2b − 5c) − (−a + 4b − 3c)",
+          "  = 4a − 2b − 2c",
+          "PR = OR − OP = (−3a + 8b − 5c) − (−a + 4b − 3c)",
+          "  = −2a + 4b − 2c",
+          "PS = OS − OP = (−3a + 2b + c) − (−a + 4b − 3c)",
+          "  = −2a − 2b + 4c"
         ]
       },
       {
@@ -175,11 +204,44 @@
         "margin_note": "Third mark. Write the three vectors as the rows of a determinant, in order, and expand along the top row. Three vectors lie in a plane exactly when this comes out 0.",
         "memory_tip": "Rows of a determinant, expanded along the top. Zero means the three lie in one plane.",
         "lines": [
+          {
+            "text": "(the rows hold the a, b, c coefficients of PQ, PR, PS)",
+            "added": true
+          },
           "Now,",
           {
             "text": "[\\text{PQ PR PS}] = \\begin{vmatrix} 4 & -2 & -2 \\\\ -2 & 4 & -2 \\\\ -2 & -2 & 4 \\end{vmatrix} \\, [\\text{a b c}]",
             "render": "katex",
             "style": "eq"
+          },
+          {
+            "text": "Expand along R₁: each entry times the 2×2",
+            "added": true
+          },
+          {
+            "text": "  determinant left when its row and column",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  are deleted, with signs + − +:",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  + (4) × [(4)(4) − (−2)(−2)]",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  − (−2) × [(−2)(4) − (−2)(−2)]",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  + (−2) × [(−2)(−2) − (4)(−2)]",
+            "style": "indent",
+            "added": true
           },
           "= [4(16−4) + 2(−8−4) − 2(4+8)] [a b c]",
           "= [48 − 24 − 24] [a b c] = 0"
@@ -211,6 +273,16 @@
         "common_mistakes": [
           "Getting the sign pattern wrong when expanding: plus, minus, plus along the top row.",
           "Putting the vectors in as columns and rows inconsistently."
+        ],
+        "lines_compact": [
+          "Now,",
+          {
+            "text": "[\\text{PQ PR PS}] = \\begin{vmatrix} 4 & -2 & -2 \\\\ -2 & 4 & -2 \\\\ -2 & -2 & 4 \\end{vmatrix} \\, [\\text{a b c}]",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= [4(16−4) + 2(−8−4) − 2(4+8)] [a b c]",
+          "= [48 − 24 − 24] [a b c] = 0"
         ]
       },
       {
@@ -222,6 +294,15 @@
         "margin_note": "Last mark, and it is two statements, not one: the VECTORS are coplanar, therefore the POINTS are. Stopping at the vectors leaves the question half answered.",
         "memory_tip": "Vectors coplanar, therefore points coplanar — both statements.",
         "lines": [
+          {
+            "text": "(a zero box product means the three edges lie in one",
+            "added": true
+          },
+          {
+            "text": "  plane, so the four points do too)",
+            "style": "indent",
+            "added": true
+          },
           "So PQ, PR, PS are coplanar.",
           {
             "text": "∴ The four points P, Q, R, S are coplanar.",
@@ -254,6 +335,13 @@
         "common_mistakes": [
           "Writing only that the vectors are coplanar and never mentioning the points.",
           "Writing \"hence proved\" with nothing named."
+        ],
+        "lines_compact": [
+          "So PQ, PR, PS are coplanar.",
+          {
+            "text": "∴ The four points P, Q, R, S are coplanar.",
+            "style": "boxed"
+          }
         ]
       }
     ]

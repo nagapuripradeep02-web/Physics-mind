@@ -53,7 +53,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.59 — SAQ chapter 8 Ellipse, answer 62, on a ★★★ SSP page (book p.49 chapter table). Printed appearances: AP 17,19 · TS 17,19. Book p.59 prints three empty tick boxes (one per sub-part) but NO numeric '1 Mark' tags, so the 1+1+1+1 split here is OURS — patterned on Q58/Q59's printed 'one mark per result' shape in this same chapter, with the shared setup (standard form + the y = mx ± √(a²m² + b²) formula) folded into part (i)'s mark. Note (ii) and (iii) land on the identical tangent pair y = x ± 2√3 because a line perpendicular to x + y + 2 = 0 and a line at 45° to the x-axis both have slope 1 — this is a genuine feature of the question, not a duplication error. Ellipse is an SAQ-ONLY unit on the book's IPE Blue Print (book p.5). No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE BLM on hand; the book's five Guess Papers pp.118-127 are the orchestrator's back-test stand-in). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.59 — SAQ chapter 8 Ellipse, answer 62, on a ★★★ SSP page (book p.49 chapter table). Printed appearances: AP 17,19 · TS 17,19. Book p.59 prints three empty tick boxes (one per sub-part) but NO numeric '1 Mark' tags, so the 1+1+1+1 split here is OURS — patterned on Q58/Q59's printed 'one mark per result' shape in this same chapter, with the shared setup (standard form + the y = mx ± √(a²m² + b²) formula) folded into part (i)'s mark. Note (ii) and (iii) land on the identical tangent pair y = x ± 2√3 because a line perpendicular to x + y + 2 = 0 and a line at 45° to the x-axis both have slope 1 — this is a genuine feature of the question, not a duplication error. Ellipse is an SAQ-ONLY unit on the book's IPE Blue Print (book p.5). No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE BLM on hand; the book's five Guess Papers pp.118-127 are the orchestrator's back-test stand-in). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "insider_note": "Parts (ii) and (iii) both come out to slope m = 1 and give the same pair of tangent lines — writing that observation down, rather than re-deriving from scratch, is the fast way to pick up all four marks.",
   "answer": {
@@ -76,7 +76,13 @@
             "style": "heading"
           },
           "2x² + y² = 8 ⇒ x²/4 + y²/8 = 1",
+          "(divide every term by 8)",
           "⇒ a² = 4, b² = 8",
+          "(a² is the number under x² and b² the number",
+          {
+            "text": "  under y², as the formula below needs)",
+            "style": "indent"
+          },
           "Equation of the tangent with slope m:",
           "y = mx ± √(a²m² + b²)"
         ],
@@ -96,7 +102,28 @@
         "memory_tip": "Parallel lines share the same m; read m straight off the given line's equation.",
         "lines": [
           "Slope of x − 2y − 4 = 0 is m = 1/2",
+          {
+            "text": "(2y = x − 4 ⇒ y = x/2 − 2)",
+            "added": true
+          },
+          {
+            "text": "A parallel tangent has the same slope.",
+            "added": true
+          },
+          {
+            "text": "a²m² + b² = 4 · 1/4 + 8 = 1 + 8 = 9",
+            "added": true
+          },
           "y = ½x ± √(4·¼ + 8) = ½x ± √9 = ½x ± 3",
+          {
+            "text": "Multiply by 2: 2y = x ± 6, then bring every",
+            "added": true
+          },
+          {
+            "text": "  term to the left:",
+            "style": "indent",
+            "added": true
+          },
           {
             "text": "x − 2y + 6 = 0 and x − 2y − 6 = 0",
             "style": "boxed"
@@ -106,6 +133,14 @@
         "common_mistakes": [
           "Using the negative reciprocal of the slope, which is for a perpendicular line, not a parallel one.",
           "Losing the factor of 2 when clearing 2y = x ± 6 to standard form."
+        ],
+        "lines_compact": [
+          "Slope of x − 2y − 4 = 0 is m = 1/2",
+          "y = ½x ± √(4·¼ + 8) = ½x ± √9 = ½x ± 3",
+          {
+            "text": "x − 2y + 6 = 0 and x − 2y − 6 = 0",
+            "style": "boxed"
+          }
         ]
       },
       {
@@ -118,8 +153,24 @@
         "memory_tip": "Perpendicular slopes multiply to −1: flip the fraction and change the sign.",
         "lines": [
           "Slope of x + y + 2 = 0 is −1",
+          {
+            "text": "(y = −x − 2)",
+            "added": true
+          },
           "⇒ slope of its perpendicular is m = 1",
+          {
+            "text": "(perpendicular slopes multiply to −1: (−1)(1) = −1)",
+            "added": true
+          },
           "y = (1)x ± √(4·1 + 8) = x ± √12 = x ± 2√3",
+          {
+            "text": "(√12 = √(4 × 3) = 2√3)",
+            "added": true
+          },
+          {
+            "text": "Bring every term to the left:",
+            "added": true
+          },
           {
             "text": "x − y + 2√3 = 0 and x − y − 2√3 = 0",
             "style": "boxed"
@@ -129,6 +180,15 @@
         "common_mistakes": [
           "Using the same slope as the given line instead of its negative reciprocal.",
           "Simplifying √12 incorrectly instead of 2√3."
+        ],
+        "lines_compact": [
+          "Slope of x + y + 2 = 0 is −1",
+          "⇒ slope of its perpendicular is m = 1",
+          "y = (1)x ± √(4·1 + 8) = x ± √12 = x ± 2√3",
+          {
+            "text": "x − y + 2√3 = 0 and x − y − 2√3 = 0",
+            "style": "boxed"
+          }
         ]
       },
       {
@@ -141,7 +201,15 @@
         "memory_tip": "A line making angle θ with the x-axis has slope m = tan θ.",
         "lines": [
           "θ = 45° ⇒ m = tan 45° = 1",
+          {
+            "text": "(slope = tan of the angle made with the x-axis)",
+            "added": true
+          },
           "y = (1)x ± √(4(1)² + 8) = x ± 2√3",
+          {
+            "text": "(the same slope as in (ii), so the same tangents)",
+            "added": true
+          },
           {
             "text": "x − y + 2√3 = 0 and x − y − 2√3 = 0",
             "style": "boxed"
@@ -151,6 +219,14 @@
         "common_mistakes": [
           "Using sin 45° or cos 45° instead of tan 45° for the slope.",
           "Treating this as a different answer from part (ii) and re-deriving unnecessarily."
+        ],
+        "lines_compact": [
+          "θ = 45° ⇒ m = tan 45° = 1",
+          "y = (1)x ± √(4(1)² + 8) = x ± 2√3",
+          {
+            "text": "x − y + 2√3 = 0 and x − y − 2√3 = 0",
+            "style": "boxed"
+          }
         ]
       }
     ]

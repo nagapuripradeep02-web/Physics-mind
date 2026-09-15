@@ -43,7 +43,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.71 — SAQ chapter 11 Trigonometric Equations, answer 73.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 19 · TS 19. The twin of 73.1, but the quadratic is formed by SQUARING rather than by substitution — because the equation is in θ, not 2θ, so the tangent forms do not apply. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter (its pages are set two questions to a page in two columns, which takes the margin those tags would occupy). It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used across this unit are the book's own. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q15 is the Trigonometric Equations slot. NOTE: Trigonometric Equations is an SAQ-ONLY unit — the paper gives it no Section-A and no Section-C slot, and this book has no Trigonometric Equations LAQ chapter (its LAQ chapters are 1-6) and no VSAQ chapter (its VSAQ chapters are 14-19). It is the mirror of Unit 2, which is LAQ-only. Verified by walking to p.72, where SAQ chapter 12 Inverse Trig Functions begins."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.71 — SAQ chapter 11 Trigonometric Equations, answer 73.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 19 · TS 19. The twin of 73.1, but the quadratic is formed by SQUARING rather than by substitution — because the equation is in θ, not 2θ, so the tangent forms do not apply. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter (its pages are set two questions to a page in two columns, which takes the margin those tags would occupy). It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used across this unit are the book's own. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q15 is the Trigonometric Equations slot. NOTE: Trigonometric Equations is an SAQ-ONLY unit — the paper gives it no Section-A and no Section-C slot, and this book has no Trigonometric Equations LAQ chapter (its LAQ chapters are 1-6) and no VSAQ chapter (its VSAQ chapters are 14-19). It is the mirror of Unit 2, which is LAQ-only. Verified by walking to p.72, where SAQ chapter 12 Inverse Trig Functions begins. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — name each move in order, and say which general solution formula you would use.",
   "answer": {
@@ -59,16 +59,22 @@
         "marks": 2,
         "mark_note": "Method",
         "margin_note": "Half the marks. Move the sine term across so only the cosine is on one side, then square — which turns cos²θ into 1 − sin²θ and leaves everything in sine.",
-        "memory_tip": "Move the sine term across so ONLY the cosine is squared — otherwise a sinθcosθ cross term survives.",
+        "memory_tip": "Move the sine term across so ONLY the cosine is squared — otherwise a sinθcosθ cross term is left.",
         "lines": [
           {
             "text": "Sol:",
             "style": "heading"
           },
           "Given a cosθ + b sinθ = c",
+          "(keep only the cosine term on the left)",
           "⇒ a cosθ = c − b sinθ",
           "Squaring both sides:",
           "⇒ a² cos²θ = (c − b sinθ)²",
+          "(cos²θ = 1 − sin²θ, and",
+          {
+            "text": "  (c − b sinθ)² = c² − 2bc sinθ + b² sin²θ)",
+            "style": "indent"
+          },
           "⇒ a²(1 − sin²θ) = c² + b² sin²θ − 2bc sinθ",
           "⇒ a² − a² sin²θ = c² + b² sin²θ − 2bc sinθ"
         ],
@@ -110,7 +116,15 @@
         "memory_tip": "The two sin²θ terms combine to (a² + b²), which is the denominator of both answers.",
         "lines": [
           "Transposing all terms to one side:",
+          {
+            "text": "(add a² sin²θ to both sides and take a² away)",
+            "added": true
+          },
           "⇒ a² sin²θ + b² sin²θ − 2bc sinθ + c² − a² = 0",
+          {
+            "text": "(take out sin²θ from the first two terms)",
+            "added": true
+          },
           "⇒ (a² + b²) sin²θ − 2bc sinθ + (c² − a²) = 0"
         ],
         "recall": {
@@ -135,10 +149,15 @@
             "quadratic"
           ]
         },
-        "why": "α and β are the two solutions, so sinα and sinβ are the two roots of this quadratic — exactly the same logic as the a cos2θ + b sin2θ = c question, reached by a different route.",
+        "why": "α and β are the two solutions, so sinα and sinβ are the two roots of this quadratic — exactly the same logic as the a cos2θ + b sin2θ = c question, reached in a different way.",
         "common_mistakes": [
           "Sign slip on the c² − a² term.",
           "Failing to gather both sin²θ terms."
+        ],
+        "lines_compact": [
+          "Transposing all terms to one side:",
+          "⇒ a² sin²θ + b² sin²θ − 2bc sinθ + c² − a² = 0",
+          "⇒ (a² + b²) sin²θ − 2bc sinθ + (c² − a²) = 0"
         ]
       },
       {
@@ -150,7 +169,20 @@
         "margin_note": "Last mark. Sum of roots is −B/A and product is C/A. Both denominators are (a²+b²), and the two minus signs on the sum cancel.",
         "memory_tip": "Sum is −B/A and product is C/A. The two minus signs on the sum cancel, so it is +2bc/(a² + b²).",
         "lines": [
+          {
+            "text": "(α and β satisfy the given equation, so sinα and",
+            "added": true
+          },
+          {
+            "text": "  sinβ satisfy this quadratic)",
+            "style": "indent",
+            "added": true
+          },
           "This is a quadratic in sinθ with roots sinα, sinβ.",
+          {
+            "text": "(here A = a² + b², B = −2bc and C = c² − a²)",
+            "added": true
+          },
           "Sum of roots = −B/A:",
           "  sinα + sinβ = 2bc/(a² + b²)",
           "Product of roots = C/A:",
@@ -181,13 +213,23 @@
             "c squared minus a squared"
           ]
         },
-        "why": "Neither α nor β is ever found. The whole method is to recognise them as roots and read the two symmetric functions off the coefficients — which is faster and exact.",
+        "why": "Neither α nor β is ever found. The last part of the method is to recognise them as roots and read the sum and product off the coefficients.",
         "common_mistakes": [
           "Trying to solve for α and β individually.",
           "Keeping the minus on the sum."
+        ],
+        "lines_compact": [
+          "This is a quadratic in sinθ with roots sinα, sinβ.",
+          "Sum of roots = −B/A:",
+          "  sinα + sinβ = 2bc/(a² + b²)",
+          "Product of roots = C/A:",
+          {
+            "text": "  sinα · sinβ = (c² − a²)/(a² + b²)",
+            "style": "boxed"
+          }
         ]
       }
     ]
   },
-  "insider_note": "Isolate the cosθ term BEFORE squaring, so only one squaring is needed and cos²θ becomes 1 − sin²θ. Nothing is actually solved here — the answers are just the sum and product of the roots."
+  "insider_note": "Isolate the cosθ term BEFORE squaring, so no sinθcosθ cross term appears and cos²θ becomes 1 − sin²θ. Nothing is actually solved here — the answers are just the sum and product of the roots."
 }

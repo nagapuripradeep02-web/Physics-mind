@@ -109,14 +109,38 @@
         "margin_note": "Third and fourth marks. ⁿCᵣ/ⁿCᵣ₋₁ = (n − r + 1)/r, so 1 + (n − r + 1)/r = (n + 1)/r.",
         "memory_tip": "ⁿCᵣ/ⁿCᵣ₋₁ = (n − r + 1)/r, so 1 + that is (n + 1)/r. The same numerator every time.",
         "lines": [
-          "The r-th bracket is 1 + Cᵣ/Cᵣ₋₁, where Cᵣ = ⁿCᵣ",
-          "Now ⁿCᵣ/ⁿCᵣ₋₁ = [n!/(r!(n − r)!)]",
-          "  ÷ [n!/((r − 1)!(n − r + 1)!)]",
-          "= (r − 1)!(n − r + 1)!/(r!(n − r)!)",
-          "= (n − r + 1)/r   [r! = r(r − 1)!]",
-          "1 + Cᵣ/Cᵣ₋₁ = 1 + (n − r + 1)/r",
-          "= (r + n − r + 1)/r = (n + 1)/r",
-          "Put r = 1, 2, …, n: the n brackets are",
+          {
+            "text": "The r-th bracket is 1 + Cᵣ/Cᵣ₋₁, where Cᵣ = ⁿCᵣ",
+            "added": true
+          },
+          {
+            "text": "Now ⁿCᵣ/ⁿCᵣ₋₁ = [n!/(r!(n − r)!)]",
+            "added": true
+          },
+          {
+            "text": "  ÷ [n!/((r − 1)!(n − r + 1)!)]",
+            "added": true
+          },
+          {
+            "text": "= (r − 1)!(n − r + 1)!/(r!(n − r)!)",
+            "added": true
+          },
+          {
+            "text": "= (n − r + 1)/r   [r! = r(r − 1)!]",
+            "added": true
+          },
+          {
+            "text": "1 + Cᵣ/Cᵣ₋₁ = 1 + (n − r + 1)/r",
+            "added": true
+          },
+          {
+            "text": "= (r + n − r + 1)/r = (n + 1)/r",
+            "added": true
+          },
+          {
+            "text": "Put r = 1, 2, …, n: the n brackets are",
+            "added": true
+          },
           "(n + 1)/1, (n + 1)/2, …, (n + 1)/n"
         ],
         "recall": {
@@ -143,6 +167,12 @@
         "common_mistakes": [
           "Using (n − r)/(r + 1), which is the ratio one index up.",
           "Adding 1 as (n − r + 1 + 1)/r."
+        ],
+        "lines_compact": [
+          "Cᵣ/Cᵣ₋₁ = ⁿCᵣ/ⁿCᵣ₋₁ = (n − r + 1)/r",
+          "1 + Cᵣ/Cᵣ₋₁ = (r + n − r + 1)/r = (n + 1)/r",
+          "So the n brackets are",
+          "(n + 1)/1, (n + 1)/2, …, (n + 1)/n"
         ]
       },
       {
@@ -157,7 +187,10 @@
           "L.H.S. = C₀C₁…Cₙ₋₁",
           "  × ((n + 1)/1) · ((n + 1)/2) · … · ((n + 1)/n)",
           "= C₀C₁…Cₙ₋₁ · (n + 1)ⁿ/(1 · 2 · … · n)",
-          "  [(n + 1) appears n times on top]",
+          {
+            "text": "  [(n + 1) appears n times on top]",
+            "added": true
+          },
           "= C₀C₁…Cₙ₋₁ · (n + 1)ⁿ/n!"
         ],
         "recall": {
@@ -184,6 +217,12 @@
         "common_mistakes": [
           "Writing (n + 1)ⁿ⁺¹ by counting n + 1 brackets.",
           "Leaving the product 1·2·…·n unnamed instead of writing n!."
+        ],
+        "lines_compact": [
+          "L.H.S. = C₀C₁…Cₙ₋₁",
+          "  × ((n + 1)/1)((n + 1)/2)…((n + 1)/n)",
+          "= C₀C₁…Cₙ₋₁·(n + 1)ⁿ/(1·2·…·n)",
+          "= C₀C₁…Cₙ₋₁·(n + 1)ⁿ/n!"
         ]
       },
       {
@@ -195,8 +234,14 @@
         "margin_note": "Seventh mark. C₀ = Cₙ = 1, so C₀C₁…Cₙ₋₁ = C₁C₂…Cₙ. That is the only difference between the two sides.",
         "memory_tip": "C₀ = Cₙ = 1, so C₀C₁…Cₙ₋₁ equals C₁C₂…Cₙ. That is the only difference between the two sides.",
         "lines": [
-          "Now C₀ = ⁿC₀ = 1 and Cₙ = ⁿCₙ = 1, so C₀ = Cₙ",
-          "C₀C₁C₂…Cₙ₋₁ = C₁C₂…Cₙ₋₁ · Cₙ = C₁C₂…Cₙ",
+          {
+            "text": "Now C₀ = ⁿC₀ = 1 and Cₙ = ⁿCₙ = 1, so C₀ = Cₙ",
+            "added": true
+          },
+          {
+            "text": "C₀C₁C₂…Cₙ₋₁ = C₁C₂…Cₙ₋₁ · Cₙ = C₁C₂…Cₙ",
+            "added": true
+          },
           {
             "text": "∴ L.H.S. = ((n + 1)ⁿ/n!)·C₁C₂…Cₙ = R.H.S.",
             "style": "boxed"
@@ -226,6 +271,13 @@
         "common_mistakes": [
           "Ending with C₀C₁…Cₙ₋₁ and not matching the right side's C₁…Cₙ.",
           "Claiming C₀ = Cₙ without saying both are 1."
+        ],
+        "lines_compact": [
+          "Since C₀ = Cₙ = 1, C₀C₁…Cₙ₋₁ = C₁C₂…Cₙ",
+          {
+            "text": "∴ L.H.S. = ((n + 1)ⁿ/n!)·C₁C₂…Cₙ = R.H.S.",
+            "style": "boxed"
+          }
         ]
       }
     ]

@@ -55,7 +55,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.44 — LAQ chapter 5 Differential Equations, answer 39.1, the first answer of the chapter, under the sub-heading 'HOMOGENEOUS D.E'. Not on an SSP page (this chapter carries no Super Scoring Pages at all, per the LAQ chapter table on book p.13). Printed appearance tag: AP 16,17,20 — no TS tag. The mark split is OURS, not the book's: book pp.44-48 print no margin mark tags anywhere in this Differential Equations LAQ chapter. It is patterned on the general five-checkpoint shape this book uses for a homogeneous-equation derivation — recognise the form and substitute y = vx, separate the new variable v from x, integrate, undo the substitution, and state the final relation — the same checkpoint order the book's own solution follows line by line. Star rank: the book gives the Differential Equations LAQ chapter ★★ in its LAQ chapter table (book p.13), so every Differential Equations LAQ entry takes stars 2 — that rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Differential Equations holds Q24. An LAQ on this paper is 7 marks, never 8 — the 2026-27 move to 8-mark long answers is first year only. The same question is re-answered in the Bullet Model Paper (book p.116, Q24), so it is authored once, here. The book's working was re-derived line by line and is correct throughout. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book's five Guess Papers (pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.44 — LAQ chapter 5 Differential Equations, answer 39.1, the first answer of the chapter, under the sub-heading 'HOMOGENEOUS D.E'. Not on an SSP page (this chapter carries no Super Scoring Pages at all, per the LAQ chapter table on book p.13). Printed appearance tag: AP 16,17,20 — no TS tag. The mark split is OURS, not the book's: book pp.44-48 print no margin mark tags anywhere in this Differential Equations LAQ chapter. It is patterned on the general five-checkpoint shape this book uses for a homogeneous-equation derivation — recognise the form and substitute y = vx, separate the new variable v from x, integrate, undo the substitution, and state the final relation — the same checkpoint order the book's own solution follows line by line. Star rank: the book gives the Differential Equations LAQ chapter ★★ in its LAQ chapter table (book p.13), so every Differential Equations LAQ entry takes stars 2 — that rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Differential Equations holds Q24. An LAQ on this paper is 7 marks, never 8 — the 2026-27 move to 8-mark long answers is first year only. The same question is re-answered in the Bullet Model Paper (book p.116, Q24), so it is authored once, here. The book's working was re-derived line by line and is correct throughout. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book's five Guess Papers (pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "insider_note": "Writing the equation as dy/dx first and checking that the right side is unchanged when x and y are both scaled by the same number is the fast way to confirm a differential equation is homogeneous before committing to the y = vx substitution.",
   "answer": {
@@ -78,10 +78,16 @@
             "style": "heading"
           },
           "Given D.E is (x² + y²)dx = 2xy dy",
+          "Divide both sides by 2xy dx:",
           "⇒ dy/dx = (x² + y²)/(2xy) … (1)",
-          "(1) is a homogeneous D.E",
+          "Every term top and bottom has degree 2, so",
+          {
+            "text": "  (1) is a homogeneous D.E.",
+            "style": "indent"
+          },
           "Put y = vx ⇒ dy/dx = v + x·dv/dx",
           "(1) ⇒ v + x·dv/dx = (x² + v²x²)/(2x²v)",
+          "Take x² out above and below; it cancels:",
           "= (1 + v²)/(2v)"
         ],
         "why": "In a homogeneous equation, every occurrence of x and y can be replaced by the single ratio v = y/x, which turns two unknowns into one and makes the equation separable.",
@@ -99,14 +105,31 @@
         "margin_note": "One mark. Move the plain v to the other side before separating x from v.",
         "memory_tip": "Isolate x·dv/dx alone on one side, then divide by whatever multiplies it.",
         "lines": [
+          {
+            "text": "Take v to the right side:",
+            "added": true
+          },
           "x·dv/dx = (1 + v²)/(2v) − v",
+          {
+            "text": "Write v as 2v²/(2v):",
+            "added": true
+          },
           "= (1 + v² − 2v²)/(2v) = (1 − v²)/(2v)",
+          {
+            "text": "Separate v and x:",
+            "added": true
+          },
           "⇒ 2v/(1 − v²) dv = dx/x"
         ],
         "why": "Once x·dv/dx equals a function of v alone, cross-multiplying puts every v term with dv and every x term with dx, which is the separable form the equation needs before it can be integrated.",
         "common_mistakes": [
           "Sign slip when combining 1 + v² − 2v² into 1 − v².",
           "Leaving the equation as x dv = (1 − v²)/(2v) dx instead of separating v to its own side."
+        ],
+        "lines_compact": [
+          "x·dv/dx = (1 + v²)/(2v) − v",
+          "= (1 + v² − 2v²)/(2v) = (1 − v²)/(2v)",
+          "⇒ 2v/(1 − v²) dv = dx/x"
         ]
       },
       {
@@ -119,13 +142,36 @@
         "memory_tip": "2v/(1−v²) is minus the derivative of log(1−v²), over its own denominator — a standard log-integral shape.",
         "lines": [
           "∫ 2v/(1 − v²) dv = ∫ dx/x",
+          {
+            "text": "The derivative of 1 − v² is −2v, so",
+            "added": true
+          },
+          {
+            "text": "  ∫2v/(1 − v²) dv = −log(1 − v²):",
+            "style": "indent",
+            "added": true
+          },
           "⇒ −log(1 − v²) = log x + log c",
+          {
+            "text": "Take −log(1 − v²) across; −log c is still",
+            "added": true
+          },
+          {
+            "text": "  a constant, so call it log c:",
+            "style": "indent",
+            "added": true
+          },
           "⇒ log x + log(1 − v²) = log c"
         ],
         "why": "The left side is the derivative of −log(1 − v²) with respect to v, since the derivative of the bracket is −2v; the right side is the standard ∫dx/x = log x.",
         "common_mistakes": [
           "Missing the minus sign that comes from differentiating (1 − v²).",
           "Writing the constant of integration as a bare c instead of log c, which makes the next line harder to simplify."
+        ],
+        "lines_compact": [
+          "∫ 2v/(1 − v²) dv = ∫ dx/x",
+          "⇒ −log(1 − v²) = log x + log c",
+          "⇒ log x + log(1 − v²) = log c"
         ]
       },
       {
@@ -137,6 +183,10 @@
         "margin_note": "One mark. Combine the two logs first, then replace v by y/x.",
         "memory_tip": "log x + log(1 − v²) = log(x(1 − v²)) — combine before substituting back.",
         "lines": [
+          {
+            "text": "log p + log q = log(pq):",
+            "added": true
+          },
           "⇒ log(x(1 − v²)) = log c ⇒ x(1 − v²) = c",
           "Put v = y/x: x(1 − y²/x²) = c"
         ],
@@ -144,6 +194,10 @@
         "common_mistakes": [
           "Substituting v = y/x too early, before combining the logs, which leads to a messier expression.",
           "Writing v = x/y instead of v = y/x."
+        ],
+        "lines_compact": [
+          "⇒ log(x(1 − v²)) = log c ⇒ x(1 − v²) = c",
+          "Put v = y/x: x(1 − y²/x²) = c"
         ]
       },
       {
@@ -155,7 +209,15 @@
         "margin_note": "The last mark. Clear the fraction 1/x by multiplying through by x.",
         "memory_tip": "x(1 − y²/x²) = x − y²/x — multiply by x once more to clear the denominator.",
         "lines": [
+          {
+            "text": "Multiply out the bracket:",
+            "added": true
+          },
           "x(1 − y²/x²) = x − y²/x = c",
+          {
+            "text": "Multiply every term by x:",
+            "added": true
+          },
           {
             "text": "x² − y² = cx",
             "style": "boxed"
@@ -165,6 +227,13 @@
         "common_mistakes": [
           "Leaving the answer as x − y²/x = c instead of clearing the denominator.",
           "Writing the final line as y² − x² = cx, with the sign of the squared terms swapped."
+        ],
+        "lines_compact": [
+          "x(1 − y²/x²) = x − y²/x = c",
+          {
+            "text": "x² − y² = cx",
+            "style": "boxed"
+          }
         ]
       }
     ]

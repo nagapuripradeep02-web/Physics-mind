@@ -35,7 +35,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.106 — the STAR QUESTIONS PLUS bank, under its '3D GEOEMTRY' heading, answer 187. Printed appearance: AP 19. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer, whose page is set two and three answers to a page in columns. It is not a bare guess: answer 98 in THIS SAME CHAPTER (book p.83) carries a printed 1+1 against exactly this shape — one mark for the setting-up equation and one for the answer read off it — and every answer in the unit takes those two moves. ⚠ THIS QUESTION COMES FROM THE STAR QUESTIONS PLUS BANK (book pp.104-108, answers 181-196), NOT from VSAQ chapter 15 — the bank sits AFTER every numbered chapter and is organised by chapter, so it is not part of any chapter's own inventory. Boundary walked to book p.109, the Bullet Model Paper. SECTION CLASSIFICATION IS OURS, NOT THE BOOK'S: its headings name the CHAPTER, never the mark cut. This is filed as VSAQ because 3D-Coordinates has ONLY a Section-A slot on the paper, so VSAQ is the only cut this unit admits. The bank prints no [N Marks] tags anywhere. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: 3D-Coordinates is a VSAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 2 marks in Section A and nothing in Section B or Section C, and the book has no 3D LAQ chapter (its LAQ chapters are 1-6) and no 3D SAQ chapter (its SAQ chapters are 7-13). Its chapter header reads '2 Marks' and carries the note 'Just 2 Pages - 2 Marks'. Chapter scoped by BOUNDARY WALK: book p.85 opens VSAQ chapter 16, The Plane. Paper position: Maths-1B Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.106 — the STAR QUESTIONS PLUS bank, under its '3D GEOEMTRY' heading, answer 187. Printed appearance: AP 19. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer, whose page is set two and three answers to a page in columns. It is not a bare guess: answer 98 in THIS SAME CHAPTER (book p.83) carries a printed 1+1 against exactly this shape — one mark for the setting-up equation and one for the answer read off it — and every answer in the unit takes those two moves. ⚠ THIS QUESTION COMES FROM THE STAR QUESTIONS PLUS BANK (book pp.104-108, answers 181-196), NOT from VSAQ chapter 15 — the bank sits AFTER every numbered chapter and is organised by chapter, so it is not part of any chapter's own inventory. Boundary walked to book p.109, the Bullet Model Paper. SECTION CLASSIFICATION IS OURS, NOT THE BOOK'S: its headings name the CHAPTER, never the mark cut. This is filed as VSAQ because 3D-Coordinates has ONLY a Section-A slot on the paper, so VSAQ is the only cut this unit admits. The bank prints no [N Marks] tags anywhere. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: 3D-Coordinates is a VSAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 2 marks in Section A and nothing in Section B or Section C, and the book has no 3D LAQ chapter (its LAQ chapters are 1-6) and no 3D SAQ chapter (its SAQ chapters are 7-13). Its chapter header reads '2 Marks' and carries the note 'Just 2 Pages - 2 Marks'. Chapter scoped by BOUNDARY WALK: book p.85 opens VSAQ chapter 16, The Plane. Paper position: Maths-1B Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say what you compute, and what relation between the three proves collinearity. Also say how the ratio falls out once the distances are known.",
   "answer": {
@@ -58,9 +58,31 @@
             "style": "heading"
           },
           "A(3,2,−4), B(5,4,−6) and C(9,8,−10) are the given points",
-          "AB = √((3−5)² + (2−4)² + (−4+6)²) = √(4 + 4 + 4) = √12 = 2√3",
-          "BC = √((5−9)² + (4−8)² + (−6+10)²) = √(16 + 16 + 16) = √48 = 4√3",
-          "CA = √((9−3)² + (8−2)² + (−10+4)²) = √(36 + 36 + 36) = √108 = 6√3"
+          "(the distance formula in space:",
+          {
+            "text": "  √((x₂ − x₁)² + (y₂ − y₁)² + (z₂ − z₁)²))",
+            "style": "indent"
+          },
+          "AB = √((3−5)² + (2−4)² + (−4+6)²) = √(4 + 4 + 4)",
+          "(√12 = √(4 × 3) = 2√3)",
+          {
+            "text": "  = √12 = 2√3",
+            "style": "indent"
+          },
+          "((−4)² = 16, (−4)² = 16 and 4² = 16)",
+          "BC = √((5−9)² + (4−8)² + (−6+10)²) = √(16 + 16 + 16)",
+          "(√48 = √(16 × 3) = 4√3)",
+          {
+            "text": "  = √48 = 4√3",
+            "style": "indent"
+          },
+          "(6² = 36, 6² = 36 and (−6)² = 36)",
+          "CA = √((9−3)² + (8−2)² + (−10+4)²) = √(36 + 36 + 36)",
+          "(√108 = √(36 × 3) = 6√3)",
+          {
+            "text": "  = √108 = 6√3",
+            "style": "indent"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -86,7 +108,7 @@
             "surd"
           ]
         },
-        "why": "Collinearity and the shape of a triangle are both settled by the same three pairwise distances — only the conclusion drawn from them differs.",
+        "why": "Collinearity and the shape of a triangle are both decided by the same three pairwise distances — only the conclusion drawn from them differs.",
         "common_mistakes": [
           "Forgetting the third squared difference and using the 2D formula.",
           "Simplifying a surd wrongly, which hides the pattern in the three answers."
@@ -101,9 +123,27 @@
         "margin_note": "Second mark. Three points are collinear exactly when the two SHORTER distances add to the longest — the middle point then lies on the segment joining the other two.",
         "memory_tip": "AB + BC = CA proves collinear, and the ratio is AB : BC = 2√3 : 4√3 = 1 : 2.",
         "lines": [
+          {
+            "text": "(three points are collinear when the sum of two distances",
+            "added": true
+          },
+          {
+            "text": "  equals the third)",
+            "style": "indent",
+            "added": true
+          },
           "Now, AB + BC = 2√3 + 4√3 = 6√3 = CA",
           "∴ A, B, C are collinear",
-          "Ratio in which B divides AC is  AB : BC = 2√3 : 4√3 = 2 : 4",
+          {
+            "text": "(B lies between A and C because AB + BC = AC)",
+            "added": true
+          },
+          "Ratio in which B divides AC is",
+          "AB : BC = 2√3 : 4√3 = 2 : 4",
+          {
+            "text": "(divide 2 and 4 by 2)",
+            "added": true
+          },
           {
             "text": "∴ The ratio is 1 : 2",
             "style": "boxed"
@@ -131,13 +171,23 @@
             "one line"
           ]
         },
-        "why": "If the three points were NOT in a line they would form a triangle, and in any triangle two sides are strictly GREATER than the third. Exact equality is what rules a triangle out.",
+        "why": "If the three points were NOT in a line they would form a triangle, and in any triangle the sum of any two sides is strictly GREATER than the third side. So exact equality shows that the points cannot form a triangle.",
         "common_mistakes": [
           "Adding the wrong two distances — the longest must be the sum, not an addend.",
           "Concluding collinear from an approximate rather than exact match."
+        ],
+        "lines_compact": [
+          "Now, AB + BC = 2√3 + 4√3 = 6√3 = CA",
+          "∴ A, B, C are collinear",
+          "Ratio in which B divides AC is",
+          "AB : BC = 2√3 : 4√3 = 2 : 4",
+          {
+            "text": "∴ The ratio is 1 : 2",
+            "style": "boxed"
+          }
         ]
       }
     ]
   },
-  "insider_note": "Two questions in one, and the ratio comes free once the distances are done: AB : BC = 2√3 : 4√3. Reduce it to 1 : 2 — leaving 2 : 4 is an unfinished answer."
+  "insider_note": "Two questions in one, and the ratio follows directly from the distances already found: AB : BC = 2√3 : 4√3. Reduce it to 1 : 2 — leaving 2 : 4 is an unfinished answer."
 }

@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.63, chapter 6 ADDITION OF VECTORS, Short Answer question 2(i). Only the question was taken — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 split rewards the four acts an examiner can see separately — naming the position vectors, building the first edge vector, building the second one and comparing it, and stating the conclusion about the POINTS rather than only about the vectors. The answer was derived twice: once by showing AC = −AB, and once by the independent check OB + OC = 2 OA, which says A is the midpoint of BC. This book prints almost no exam-appearance years, so appearances[] is empty. Paper position: Maths-1A Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern; Addition of Vectors has no Section C slot on the paper, so the unit is SAQ and VSAQ only. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.63, chapter 6 ADDITION OF VECTORS, Short Answer question 2(i). Only the question was taken — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 split rewards the four acts an examiner can see separately — naming the position vectors, building the first edge vector, building the second one and comparing it, and stating the conclusion about the POINTS rather than only about the vectors. The answer was derived twice: once by showing AC = −AB, and once by the independent check OB + OC = 2 OA, which says A is the midpoint of BC. This book prints almost no exam-appearance years, so appearances[] is empty. Paper position: Maths-1A Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern; Addition of Vectors has no Section C slot on the paper, so the unit is SAQ and VSAQ only. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would test three points for collinearity — say which vectors you build and what you look for in them.",
   "answer": {
@@ -53,7 +53,7 @@
         "label": "Write the position vectors",
         "marks": 1,
         "mark_note": "Position vectors",
-        "margin_note": "First mark. Name the three points A, B, C and take O as the origin. Writing the missing a term as 0a is worth the ink — the whole test below is a coefficient comparison, and a missing coefficient is the commonest way to lose it.",
+        "margin_note": "First mark. Name the three points A, B, C and take O as the origin. Write the missing a term as 0a — the whole test below is a coefficient comparison, and a missing coefficient is the commonest way to lose it.",
         "memory_tip": "Name the points A, B, C and write every missing coefficient as 0a, 0b or 0c so no column is empty.",
         "lines": [
           {
@@ -61,6 +61,7 @@
             "style": "heading"
           },
           "Let A, B, C be the points, O the origin.",
+          "(C has no a term, so its a-coefficient is 0)",
           "OA = a − 2b + 3c",
           "OB = 2a + 3b − 4c",
           "OC = 0a − 7b + 10c"
@@ -89,7 +90,7 @@
             "zero a"
           ]
         },
-        "why": "A position vector is measured from the origin, and the vector joining two points is the difference of their position vectors. Fixing an origin first is what makes that subtraction legal.",
+        "why": "A position vector is measured from the origin, and the vector joining two points is the difference of their position vectors. Fixing an origin first is what makes that subtraction possible.",
         "common_mistakes": [
           "Treating the three given vectors as the sides of the figure instead of as positions.",
           "Dropping the missing a term in the third point, which shifts the whole comparison."
@@ -104,8 +105,16 @@
         "margin_note": "Second mark. Subtract in the order OB − OA, and keep the a, b and c coefficients in separate brackets while you subtract. That middle line is where sign slips are caught.",
         "memory_tip": "AB = OB − OA, far point first. Subtract each coefficient in its own bracket.",
         "lines": [
+          {
+            "text": "(a vector between two points is end minus start)",
+            "added": true
+          },
           "AB = OB − OA",
           "  = (2a + 3b − 4c) − (a − 2b + 3c)",
+          {
+            "text": "(subtract matching coefficients)",
+            "added": true
+          },
           "  = (2−1)a + (3+2)b + (−4−3)c",
           "  = a + 5b − 7c"
         ],
@@ -135,6 +144,12 @@
         "common_mistakes": [
           "Subtracting the wrong way round; it is OB − OA, not OA − OB.",
           "A sign slip on the b term, where the subtracted coefficient is already negative."
+        ],
+        "lines_compact": [
+          "AB = OB − OA",
+          "  = (2a + 3b − 4c) − (a − 2b + 3c)",
+          "  = (2−1)a + (3+2)b + (−4−3)c",
+          "  = a + 5b − 7c"
         ]
       },
       {
@@ -143,13 +158,21 @@
         "label": "Find AC and compare",
         "marks": 1,
         "mark_note": "Second edge vector",
-        "margin_note": "Third mark. AC must start at the SAME point A as AB. Once you have it, factor out the common number instead of just staring at the three coefficients — writing −(a + 5b − 7c) is the line that earns the mark.",
+        "margin_note": "Third mark. AC must start at the SAME point A as AB. Once you have it, factor out the common number instead of only looking at the three coefficients — writing −(a + 5b − 7c) is the line that earns the mark.",
         "memory_tip": "Start AC at the same point A, then factor the answer so the multiple of AB is visible.",
         "lines": [
           "AC = OC − OA",
           "  = (0a − 7b + 10c) − (a − 2b + 3c)",
+          {
+            "text": "(subtract matching coefficients)",
+            "added": true
+          },
           "  = (0−1)a + (−7+2)b + (10−3)c",
           "  = −a − 5b + 7c",
+          {
+            "text": "(take out the common factor −1)",
+            "added": true
+          },
           "  = −(a + 5b − 7c) = −AB"
         ],
         "recall": {
@@ -177,8 +200,15 @@
         },
         "why": "Two vectors are parallel exactly when one is a number times the other. Here that number is −1, which means AC points the opposite way to AB along the same line.",
         "common_mistakes": [
-          "Building AC from B instead of from A, so the two vectors no longer share a point.",
+          "Building AC as OA − OC instead of OC − OA, which reverses its sign.",
           "Stopping at −a − 5b + 7c and never showing it is a multiple of AB."
+        ],
+        "lines_compact": [
+          "AC = OC − OA",
+          "  = (0a − 7b + 10c) − (a − 2b + 3c)",
+          "  = (0−1)a + (−7+2)b + (10−3)c",
+          "  = −a − 5b + 7c",
+          "  = −(a + 5b − 7c) = −AB"
         ]
       },
       {
@@ -192,8 +222,16 @@
         "lines": [
           "AC = −AB, so AC is a scalar multiple of AB.",
           "AB and AC both start at the same point A.",
+          {
+            "text": "(two parallel vectors from one point lie on one line)",
+            "added": true
+          },
           "Check: OB + OC = 2a − 4b + 6c = 2 OA,",
           "so A is the midpoint of BC.",
+          {
+            "text": "(OA = (OB + OC)/2 is the midpoint rule)",
+            "added": true
+          },
           {
             "text": "∴ A, B, C are collinear.",
             "style": "boxed"
@@ -226,6 +264,16 @@
         "common_mistakes": [
           "Saying only that the vectors are parallel and never naming the points.",
           "Writing \"hence proved\" with nothing named."
+        ],
+        "lines_compact": [
+          "AC = −AB, so AC is a scalar multiple of AB.",
+          "AB and AC both start at the same point A.",
+          "Check: OB + OC = 2a − 4b + 6c = 2 OA,",
+          "so A is the midpoint of BC.",
+          {
+            "text": "∴ A, B, C are collinear.",
+            "style": "boxed"
+          }
         ]
       }
     ]

@@ -46,7 +46,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.62 — SAQ chapter 9 The Straight Line, answer 57. Printed appearances: TS M-17 · AP M-16. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: the SAME CHAPTER prints 1+1+2 on answer 59 (book p.63), and this answer is cut to the same shape — the two setting-up moves at one mark each and the closing work at two. Where an answer's own shape is four equal moves instead, 1+1+1+1 is used and this note says so. Paper position: Maths-1B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3. RE-CUT 2026-08-31: this card was filed as SAQ at 4 marks and is now LAQ at 8 marks. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya FAST TRACK IPE Mathematics-IB 2026-27 edition files this chapter under the banner 8M + 2 × 2M = 12M, asks this question as Long Answer Question 21 i, and prints no short-answer block for it at all. Only the question was taken; the working, the mark split and every note here are ours (docs/ORIGINALITY_MATHS.md). The mathematics and the steps are unchanged; only the mark scheme moved — the four marks become eight, at 1 + 2 + 2 + 3. The extra four went where the work is: three on solving both branches and reporting both values of k, which is what the question is really testing, and two each on quoting and substituting into the angle formula and on opening the modulus. Reading the two slopes stays at one mark. Still unverified until a Telangana IPE teacher confirms it. AUTHOR DOUBT, recorded rather than hidden: at 8 marks this answer is short. The work in it reads closer to four or five marks, and it is filed long on the book’s section placement alone, not on its own weight. If a Telangana IPE teacher confirms the placement, the right repair is to EXTEND the answer, not to spread these eight marks thinner."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.62 — SAQ chapter 9 The Straight Line, answer 57. Printed appearances: TS M-17 · AP M-16. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: the SAME CHAPTER prints 1+1+2 on answer 59 (book p.63), and this answer is cut to the same shape — the two setting-up moves at one mark each and the closing work at two. Where an answer's own shape is four equal moves instead, 1+1+1+1 is used and this note says so. Paper position: Maths-1B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3. RE-CUT 2026-08-31: this card was filed as SAQ at 4 marks and is now LAQ at 8 marks. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya FAST TRACK IPE Mathematics-IB 2026-27 edition files this chapter under the banner 8M + 2 × 2M = 12M, asks this question as Long Answer Question 21 i, and prints no short-answer block for it at all. Only the question was taken; the working, the mark split and every note here are ours (docs/ORIGINALITY_MATHS.md). The mathematics and the steps are unchanged; only the mark scheme moved — the four marks become eight, at 1 + 2 + 2 + 3. The extra four went where the work is: three on solving both branches and reporting both values of k, which is what the question is really testing, and two each on quoting and substituting into the angle formula and on opening the modulus. Reading the two slopes stays at one mark. Still unverified until a Telangana IPE teacher confirms it. AUTHOR DOUBT, recorded rather than hidden: at 8 marks this answer is short. The work in it reads closer to four or five marks, and it is filed long on the book’s section placement alone, not on its own weight. If a Telangana IPE teacher confirms the placement, the right repair is to EXTEND the answer, not to spread these eight marks thinner. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — name the angle formula, and say why this question has two answers.",
   "answer": {
@@ -60,14 +60,22 @@
         "kind": "equation",
         "label": "Both slopes",
         "marks": 1,
-        "margin_note": "First mark. Read both slopes off the coefficients as −a/b. The second carries the unknown, which is exactly what the angle condition will pin down.",
+        "margin_note": "First mark. Read both slopes off the coefficients as −a/b. The second carries the unknown, which the angle condition will then find.",
         "lines": [
           {
             "text": "Sol:",
             "style": "heading"
           },
-          "Given line is 4x − y + 7 = 0.  Its slope  m₁ = −a/b = −4/(−1) = 4",
-          "Another line is kx − 5y − 9 = 0.  Its slope  m₂ = −a/b = −k/(−5) = k/5"
+          "Given line is 4x − y + 7 = 0.",
+          "(the slope of ax + by + c = 0 is −a/b;",
+          {
+            "text": "  here a = 4 and b = −1)",
+            "style": "indent"
+          },
+          "Its slope  m₁ = −a/b = −4/(−1) = 4",
+          "Another line is kx − 5y − 9 = 0.",
+          "(here a = k and b = −5, and −k/(−5) = k/5)",
+          "Its slope  m₂ = −a/b = −k/(−5) = k/5"
         ],
         "recall": {
           "credit": "say_it",
@@ -105,10 +113,23 @@
         "kind": "equation",
         "label": "Write the angle formula",
         "marks": 2,
-        "margin_note": "The next two marks. The angle between two lines is tanθ = |(m₁ − m₂)/(1 + m₁m₂)|. At 45° the tangent is 1, so the whole modulus equals 1.",
+        "margin_note": "The next two marks. The angle between two lines is tanθ = |(m₁ − m₂)/(1 + m₁m₂)|. At 45° the tangent is 1, so the modulus equals 1.",
         "lines": [
           "Angle between the lines is 45°, then",
+          {
+            "text": "(the formula for the angle θ between two lines",
+            "added": true
+          },
+          {
+            "text": "  with slopes m₁ and m₂)",
+            "style": "indent",
+            "added": true
+          },
           "tanθ = |(m₁ − m₂)/(1 + m₁m₂)|",
+          {
+            "text": "(put θ = 45°, m₁ = 4 and m₂ = k/5)",
+            "added": true
+          },
           "⇒ tan45° = |(4 − k/5)/(1 + 4(k/5))|"
         ],
         "recall": {
@@ -139,7 +160,12 @@
           "Writing the denominator as 1 − m₁m₂."
         ],
         "mark_note": "Method",
-        "memory_tip": "tan θ = |(m₁ − m₂)/(1 + m₁m₂)|, and at 45° the tangent is 1, so the modulus equals 1."
+        "memory_tip": "tan θ = |(m₁ − m₂)/(1 + m₁m₂)|, and at 45° the tangent is 1, so the modulus equals 1.",
+        "lines_compact": [
+          "Angle between the lines is 45°, then",
+          "tanθ = |(m₁ − m₂)/(1 + m₁m₂)|",
+          "⇒ tan45° = |(4 − k/5)/(1 + 4(k/5))|"
+        ]
       },
       {
         "id": "s3_open_the_modulus",
@@ -148,8 +174,30 @@
         "marks": 2,
         "margin_note": "Two more marks. Clear the fractions inside first, then remove the modulus as PLUS OR MINUS — that ± is why this question has two answers rather than one.",
         "lines": [
+          {
+            "text": "(tan 45° = 1; multiply the top and the bottom of",
+            "added": true
+          },
+          {
+            "text": "  the fraction by 5: 5(4 − k/5) = 20 − k",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  and 5(1 + 4k/5) = 5 + 4k)",
+            "style": "indent",
+            "added": true
+          },
           "⇒ 1 = |(20 − k)/(5 + 4k)|",
+          {
+            "text": "(|p/q| = 1 means |p| = |q|, where q = 5 + 4k ≠ 0)",
+            "added": true
+          },
           "⇒ |5 + 4k| = |20 − k|",
+          {
+            "text": "(|p| = |q| means p = q or p = −q)",
+            "added": true
+          },
           "⇒ 5 + 4k = ±(20 − k)"
         ],
         "recall": {
@@ -174,13 +222,18 @@
             "two cases"
           ]
         },
-        "why": "An angle of 45° can be measured to either line, so both branches are genuine answers — dropping one loses half of what the question asks for.",
+        "why": "The modulus stands for two equations. They give two different second lines, one turned 45° each way from 4x − y + 7 = 0, so both values of k are answers — dropping one loses half of what the question asks for.",
         "common_mistakes": [
           "Dropping the ± and finding only one value of k.",
           "Multiplying out the fractions incorrectly and losing the 5."
         ],
         "mark_note": "Method",
-        "memory_tip": "Clear the fractions inside FIRST, then open the modulus as ±. That ± is why there are two answers."
+        "memory_tip": "Clear the fractions inside FIRST, then remove the modulus as ±. That ± is why there are two answers.",
+        "lines_compact": [
+          "⇒ 1 = |(20 − k)/(5 + 4k)|",
+          "⇒ |5 + 4k| = |20 − k|",
+          "⇒ 5 + 4k = ±(20 − k)"
+        ]
       },
       {
         "id": "s4_solve_both_branches",
@@ -189,8 +242,44 @@
         "marks": 3,
         "margin_note": "The last three marks. Solve each branch separately and report both values.",
         "lines": [
+          {
+            "text": "(the + sign: take k to the left and 5 to the right;",
+            "added": true
+          },
+          {
+            "text": "  4k + k = 5k and 20 − 5 = 15; divide by 5)",
+            "style": "indent",
+            "added": true
+          },
           "⇒ 5 + 4k = 20 − k   ⇒   5k = 15   ⇒   k = 3",
-          "(or)  5 + 4k = −(20 − k) = k − 20   ⇒   3k = −25   ⇒   k = −25/3",
+          {
+            "text": "(the − sign: −(20 − k) = k − 20; take k to the left",
+            "added": true
+          },
+          {
+            "text": "  and 5 to the right: 3k = −25; divide by 3)",
+            "style": "indent",
+            "added": true
+          },
+          "(or)  5 + 4k = −(20 − k) = k − 20   ⇒   3k = −25",
+          {
+            "text": "  ⇒   k = −25/3",
+            "style": "indent"
+          },
+          {
+            "text": "(check k = 3: m₂ = 3/5 and tan θ = |(17/5)/(17/5)| = 1;",
+            "added": true
+          },
+          {
+            "text": "  check k = −25/3: m₂ = −5/3",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  and tan θ = |(17/3)/(−17/3)| = 1)",
+            "style": "indent",
+            "added": true
+          },
           {
             "text": "∴ k = 3  or  k = −25/3",
             "style": "boxed"
@@ -224,9 +313,21 @@
           "Sign slip when distributing the minus over (20 − k)."
         ],
         "mark_note": "Solution",
-        "memory_tip": "Solve each branch separately and report BOTH values."
+        "memory_tip": "Solve each branch separately and report BOTH values.",
+        "lines_compact": [
+          "⇒ 5 + 4k = 20 − k   ⇒   5k = 15   ⇒   k = 3",
+          "(or)  5 + 4k = −(20 − k) = k − 20   ⇒   3k = −25",
+          {
+            "text": "  ⇒   k = −25/3",
+            "style": "indent"
+          },
+          {
+            "text": "∴ k = 3  or  k = −25/3",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },
-  "insider_note": "tan45° = 1 turns the formula into |5 + 4k| = |20 − k|, so the modulus opens into TWO equations. Solving both branches carries three of the eight marks, so stopping at the whole number k = 3 loses most of them."
+  "insider_note": "With tan 45° = 1 the formula becomes |5 + 4k| = |20 − k|, and removing the modulus gives TWO equations. Solving both carries the last three of the eight marks, so write both k = 3 and k = −25/3."
 }

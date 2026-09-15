@@ -156,23 +156,28 @@
           },
           {
             "text": "The empty event never happens, so",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "P(E₁ ∩ E₂) = P(∅) = 0",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           },
           {
             "text": "Disjoint events add by the union axiom:",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "P(E₁ ∪ E₂) = P(E₁) + P(E₂)",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           },
           {
             "text": "Adding and subtracting the zero term:",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "= P(E₁) + P(E₂) − 0",
@@ -184,7 +189,8 @@
           },
           {
             "text": "So the result holds in this case.",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           }
         ],
         "recall": {
@@ -215,6 +221,28 @@
           "Skipping this case and starting from the overlapping case.",
           "Not writing P(E₁ ∩ E₂) = 0 before using the formula.",
           "Not naming the union axiom as the reason for P(E₁ ∪ E₂) = P(E₁) + P(E₂)."
+        ],
+        "lines_compact": [
+          {
+            "text": "Proof: Case (i): E₁ ∩ E₂ = ∅",
+            "style": "normal"
+          },
+          {
+            "text": "E₁ ∩ E₂ = ∅ ⇒ P(E₁ ∩ E₂) = 0",
+            "style": "eq"
+          },
+          {
+            "text": "∴ P(E₁ ∪ E₂) = P(E₁) + P(E₂)   [union axiom]",
+            "style": "eq"
+          },
+          {
+            "text": "= P(E₁) + P(E₂) − 0",
+            "style": "eq"
+          },
+          {
+            "text": "= P(E₁) + P(E₂) − P(E₁ ∩ E₂)",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -232,19 +260,23 @@
           },
           {
             "text": "Split E₁ ∪ E₂ into two pieces that do not meet:",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "the part of E₁ outside E₂, and all of E₂.",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "(E₁ − E₂) and E₂ are disjoint and their",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "union is E₁ ∪ E₂, so by the union axiom",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "P(E₁ ∪ E₂) = P(E₁ − E₂) + P(E₂)  …(1)",
@@ -252,15 +284,18 @@
           },
           {
             "text": "Now split E₁ itself in the same way:",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "(E₁ − E₂) and (E₁ ∩ E₂) are disjoint and",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "their union is E₁, so",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "P(E₁) = P(E₁ − E₂) + P(E₁ ∩ E₂)",
@@ -299,6 +334,40 @@
           "Writing E₁ ∪ E₂ = E₁ ∪ E₂ − (E₁ ∩ E₂) type shortcuts with no disjoint splitting shown.",
           "Not saying the sets in each splitting are disjoint — the axiom cannot be used without it.",
           "Splitting E₂ instead of E₁ in the second equation and then not being able to eliminate P(E₁ − E₂)."
+        ],
+        "lines_compact": [
+          {
+            "text": "Case (ii): E₁ ∩ E₂ ≠ ∅",
+            "style": "normal"
+          },
+          {
+            "text": "E₁ ∪ E₂ is the union of the disjoint sets",
+            "style": "normal"
+          },
+          {
+            "text": "(E₁ − E₂) and E₂, so by the union axiom",
+            "style": "normal"
+          },
+          {
+            "text": "P(E₁ ∪ E₂) = P(E₁ − E₂) + P(E₂)  …(1)",
+            "style": "eq"
+          },
+          {
+            "text": "E₁ is the union of the disjoint sets",
+            "style": "normal"
+          },
+          {
+            "text": "(E₁ − E₂) and (E₁ ∩ E₂), so",
+            "style": "normal"
+          },
+          {
+            "text": "P(E₁) = P(E₁ − E₂) + P(E₁ ∩ E₂)",
+            "style": "eq"
+          },
+          {
+            "text": "⇒ P(E₁ − E₂) = P(E₁) − P(E₁ ∩ E₂)  …(2)",
+            "style": "eq"
+          }
         ]
       },
       {

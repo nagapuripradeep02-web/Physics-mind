@@ -96,11 +96,18 @@
         "margin_note": "Second mark. ³⁰C₂ = 30 × 29/2 = 15 × 29 = 435.",
         "memory_tip": "³⁰C₂ = 30 × 29/2 = 15 × 29 = 435. An answer of 870 counted every game twice.",
         "lines": [
-          "³⁰C₂ = (30 · 29)/(1 · 2)",
-          "= 870/2",
+          {
+            "text": "³⁰C₂ = (30 · 29)/(1 · 2)",
+            "added": true
+          },
+          {
+            "text": "= 870/2",
+            "added": true
+          },
           {
             "text": "∴ number of games = 435",
-            "style": "boxed"
+            "style": "boxed",
+            "added": true
           }
         ],
         "recall": {
@@ -127,6 +134,13 @@
         "common_mistakes": [
           "Answering 870 (no halving).",
           "Computing 15 × 29 as 425."
+        ],
+        "lines_compact": [
+          "³⁰C₂ = (30 · 29)/2 = 15 · 29",
+          {
+            "text": "= 435",
+            "style": "boxed"
+          }
         ]
       }
     ]

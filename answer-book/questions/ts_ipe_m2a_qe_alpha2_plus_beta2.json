@@ -102,14 +102,29 @@
         "margin_note": "Second mark. α² + β² = (α + β)² − 2αβ. Substitute: (−b/a)² = b²/a² and 2(c/a) = 2c/a = 2ac/a². The common denominator is a².",
         "memory_tip": "α² + β² = (α + β)² − 2αβ. Over the common denominator a², the 2c/a becomes 2ac/a².",
         "lines": [
-          "α² + β² is not a sum or a product, so",
-          "build it from ones that are:",
-          "(α + β)² = α² + 2αβ + β²",
+          {
+            "text": "α² + β² is not a sum or a product, so",
+            "added": true
+          },
+          {
+            "text": "build it from ones that are:",
+            "added": true
+          },
+          {
+            "text": "(α + β)² = α² + 2αβ + β²",
+            "added": true
+          },
           "α² + β² = (α + β)² − 2αβ",
           "= (−b/a)² − 2(c/a)",
           "= b²/a² − 2c/a",
-          "Take a² as the common denominator:",
-          "= b²/a² − 2ac/a²",
+          {
+            "text": "Take a² as the common denominator:",
+            "added": true
+          },
+          {
+            "text": "= b²/a² − 2ac/a²",
+            "added": true
+          },
           {
             "text": "∴ α² + β² = (b² − 2ac)/a²",
             "style": "boxed"
@@ -142,6 +157,15 @@
           "Writing α² + β² = (α + β)², forgetting the −2αβ.",
           "Writing (−b/a)² as −b²/a².",
           "Combining b²/a² − 2c/a as (b² − 2c)/a² — the second term needs a factor a."
+        ],
+        "lines_compact": [
+          "α² + β² = (α + β)² − 2αβ",
+          "= (−b/a)² − 2(c/a)",
+          "= b²/a² − 2c/a",
+          {
+            "text": "∴ α² + β² = (b² − 2ac)/a²",
+            "style": "boxed"
+          }
         ]
       }
     ]

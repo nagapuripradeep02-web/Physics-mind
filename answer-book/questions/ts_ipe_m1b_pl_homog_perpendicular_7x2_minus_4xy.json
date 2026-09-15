@@ -42,7 +42,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.25 — LAQ chapter 2 Pair of Straight Lines (the HOMOGENISATION run, book pp.24-26), answer 13.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 18 · TS M-16. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is well founded rather than guessed: the two homogenisation answers that ARE tagged (answer 12 on book p.24, printed 1+1+2+1+2, and answer 15 on p.26, printed 1+1+1+1+1+2) fix the shape for this exact method, and this answer is cut to match — a mark for clearing the line to '= 1', a mark for the homogenised equation, two for the algebra, and the rest for the closing condition. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: Pair of Straight Lines holds TWO Section-C slots — the book's chapter header reads '7+7=14 Marks' and the IPE Blue Print (book p.3) gives it 14 marks, all in Section C and none in Section A or B, so it is an LAQ-ONLY unit and the only 1B unit besides Matrices-on-1A to carry two long slots. The chapter runs book pp.19-26 and its boundary was walked: p.27 opens LAQ chapter 3, D.C's & D.R's. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Add the squared coefficients. RE-CUT 2026-08-31: this card was filed as LAQ at 8 marks and is now SAQ at 4 marks. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition) files this chapter under the printed banner \"2 x 4M = 8 M\" followed by \"Short Answer Questions\", lists every one of its questions there, and prints no long-answer block for this chapter at all. A chapter with no 8-mark block cannot hold an 8-mark question. The standing boundary for that book — \"Only the question was taken\" — holds here, and this card takes even less: what was read from it is the chapter’s printed section banner and nothing else. The solution, the step order and the mark split are this answer book’s own work, see docs/ORIGINALITY_MATHS.md. The mathematics and the steps are unchanged; only the mark scheme moved: the steps now carry 0+1+1+2 instead of 1+1+3+3 — rewriting the given line as (something)/(constant) = 1 earns no mark of its own at 4 marks. Paper position now: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. Still unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.25 — LAQ chapter 2 Pair of Straight Lines (the HOMOGENISATION run, book pp.24-26), answer 13.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 18 · TS M-16. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is well founded rather than guessed: the two homogenisation answers that ARE tagged (answer 12 on book p.24, printed 1+1+2+1+2, and answer 15 on p.26, printed 1+1+1+1+1+2) fix the shape for this exact method, and this answer is cut to match — a mark for clearing the line to '= 1', a mark for the homogenised equation, two for the algebra, and the rest for the closing condition. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: Pair of Straight Lines holds TWO Section-C slots — the book's chapter header reads '7+7=14 Marks' and the IPE Blue Print (book p.3) gives it 14 marks, all in Section C and none in Section A or B, so it is an LAQ-ONLY unit and the only 1B unit besides Matrices-on-1A to carry two long slots. The chapter runs book pp.19-26 and its boundary was walked: p.27 opens LAQ chapter 3, D.C's & D.R's. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Add the squared coefficients. RE-CUT 2026-08-31: this card was filed as LAQ at 8 marks and is now SAQ at 4 marks. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition) files this chapter under the printed banner \"2 x 4M = 8 M\" followed by \"Short Answer Questions\", lists every one of its questions there, and prints no long-answer block for this chapter at all. A chapter with no 8-mark block cannot hold an 8-mark question. The standing boundary for that book — \"Only the question was taken\" — holds here, and this card takes even less: what was read from it is the chapter’s printed section banner and nothing else. The solution, the step order and the mark split are this answer book’s own work, see docs/ORIGINALITY_MATHS.md. The mathematics and the steps are unchanged; only the mark scheme moved: the steps now carry 0+1+1+2 instead of 1+1+3+3 — rewriting the given line as (something)/(constant) = 1 earns no mark of its own at 4 marks. Paper position now: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. Still unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say what you homogenise, and what condition proves the lines are perpendicular.",
   "answer": {
@@ -63,6 +63,7 @@
             "style": "heading"
           },
           "Given line is 3x − y = 2",
+          "(divide both sides by 2)",
           "⇒ (3x − y)/2 = 1  ……(1)"
         ],
         "recall": {
@@ -101,9 +102,45 @@
         "margin_note": "First mark. Raise every term of the curve to degree two: the linear terms are multiplied by that 1 once, and the constant term by it TWICE. The second-degree terms are left alone.",
         "lines": [
           "Given curve is 7x² − 4xy + 8y² + 2x − 4y − 8 = 0  ……(2)",
+          {
+            "text": "(the homogenised equation holds at both points",
+            "added": true
+          },
+          {
+            "text": "  of intersection, and a homogeneous second-degree",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  equation with h² ≥ ab is a pair of lines through",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  the origin, so it is the pair through those points)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "(multiply the degree-1 terms by 1 and the constant by 1²,",
+            "added": true
+          },
+          {
+            "text": "  then put 1 = the left side of (1))",
+            "style": "indent",
+            "added": true
+          },
           "Homogenising (1) & (2), we get",
           "7x² − 4xy + 8y² + 2x(1) − 4y(1) − 8(1)² = 0",
-          "⇒ 7x² − 4xy + 8y² + 2x[(3x−y)/2] − 4y[(3x−y)/2] − 8[(3x−y)/2]² = 0"
+          {
+            "text": "(put 1 = (3x − y)/2)",
+            "added": true
+          },
+          "⇒ 7x² − 4xy + 8y² + 2x[(3x−y)/2] − 4y[(3x−y)/2]",
+          {
+            "text": "  − 8[(3x−y)/2]² = 0",
+            "style": "indent"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -127,24 +164,82 @@
             "linear terms"
           ]
         },
-        "why": "A second-degree equation in x and y with NO constant and NO linear term always represents two lines through the ORIGIN — which is exactly what the question asks about. Homogenising manufactures that equation from the curve and the chord.",
+        "why": "A second-degree equation in x and y with NO constant and NO linear term represents a pair of lines through the ORIGIN (real lines when h² ≥ ab) — which is exactly what the question asks about. Homogenising makes that equation from the curve and the chord.",
         "common_mistakes": [
           "Multiplying the constant by the bracket only once.",
           "Multiplying the second-degree terms as well, which raises them to degree four."
         ],
         "mark_note": "Method",
-        "memory_tip": "Linear terms times the 1 once, the constant twice."
+        "memory_tip": "Linear terms times the 1 once, the constant twice.",
+        "lines_compact": [
+          "Given curve is 7x² − 4xy + 8y² + 2x − 4y − 8 = 0  ……(2)",
+          "Homogenising (1) & (2), we get",
+          "7x² − 4xy + 8y² + 2x(1) − 4y(1) − 8(1)² = 0",
+          "⇒ 7x² − 4xy + 8y² + 2x[(3x−y)/2] − 4y[(3x−y)/2]",
+          {
+            "text": "  − 8[(3x−y)/2]² = 0",
+            "style": "indent"
+          }
+        ]
       },
       {
         "id": "s3_simplify",
         "kind": "equation",
         "label": "Simplify to ax² + 2hxy + by² = 0",
         "marks": 1,
-        "margin_note": "One mark. Expand everything and collect. The result must have no constant and no linear term — if either survives, a term was homogenised wrongly.",
+        "margin_note": "One mark. Expand everything and collect. The result must have no constant and no linear term — if either is left, a term was homogenised wrongly.",
         "lines": [
-          "⇒ 7x² − 4xy + 8y² + x(3x − y) − 2y(3x − y) − 8(3x − y)²/4 = 0",
-          "⇒ 7x² − 4xy + 8y² + 3x² − xy − 6xy + 2y² − 2(9x² + y² − 6xy) = 0",
-          "⇒ 7x² − 4xy + 8y² + 3x² − xy − 6xy + 2y² − 18x² − 2y² + 12xy = 0",
+          {
+            "text": "(2x(3x − y)/2 = x(3x − y); 4y(3x − y)/2 = 2y(3x − y);",
+            "added": true
+          },
+          {
+            "text": "  [(3x − y)/2]² = (3x − y)²/4)",
+            "style": "indent",
+            "added": true
+          },
+          "⇒ 7x² − 4xy + 8y² + x(3x − y) − 2y(3x − y)",
+          {
+            "text": "  − 8(3x − y)²/4 = 0",
+            "style": "indent"
+          },
+          {
+            "text": "(x(3x − y) = 3x² − xy; −2y(3x − y) = −6xy + 2y²;",
+            "added": true
+          },
+          {
+            "text": "  8/4 = 2)",
+            "style": "indent",
+            "added": true
+          },
+          "⇒ 7x² − 4xy + 8y² + 3x² − xy − 6xy + 2y²",
+          {
+            "text": "  − 2(9x² + y² − 6xy) = 0",
+            "style": "indent"
+          },
+          {
+            "text": "((3x − y)² = 9x² − 6xy + y², and −2 times it is",
+            "added": true
+          },
+          {
+            "text": "  −18x² + 12xy − 2y²)",
+            "style": "indent",
+            "added": true
+          },
+          "⇒ 7x² − 4xy + 8y² + 3x² − xy − 6xy + 2y²",
+          {
+            "text": "  − 18x² − 2y² + 12xy = 0",
+            "style": "indent"
+          },
+          {
+            "text": "(x²: 7 + 3 − 18 = −8; y²: 8 + 2 − 2 = 8;",
+            "added": true
+          },
+          {
+            "text": "  xy: −4 − 1 − 6 + 12 = 1)",
+            "style": "indent",
+            "added": true
+          },
           "⇒ −8x² + 8y² + xy = 0"
         ],
         "recall": {
@@ -171,19 +266,46 @@
         },
         "why": "The absence of a constant and a linear term is the CHECK that the homogenisation was done right, and it is also what guarantees both lines pass through the origin.",
         "common_mistakes": [
-          "A constant term surviving, which means the squaring was missed.",
+          "Leaving a linear term, which means the constant was multiplied by the bracket only once instead of by its square.",
           "Sign slip when expanding a squared bracket."
         ],
         "mark_note": "Method",
-        "memory_tip": "A surviving constant or linear term means something was homogenised wrongly."
+        "memory_tip": "A constant or linear term left over means something was homogenised wrongly.",
+        "lines_compact": [
+          "⇒ 7x² − 4xy + 8y² + x(3x − y) − 2y(3x − y)",
+          {
+            "text": "  − 8(3x − y)²/4 = 0",
+            "style": "indent"
+          },
+          "⇒ 7x² − 4xy + 8y² + 3x² − xy − 6xy + 2y²",
+          {
+            "text": "  − 2(9x² + y² − 6xy) = 0",
+            "style": "indent"
+          },
+          "⇒ 7x² − 4xy + 8y² + 3x² − xy − 6xy + 2y²",
+          {
+            "text": "  − 18x² − 2y² + 12xy = 0",
+            "style": "indent"
+          },
+          "⇒ −8x² + 8y² + xy = 0"
+        ]
       },
       {
         "id": "s4_apply_the_condition",
         "kind": "boxed_final",
-        "label": "Add the squared coefficients",
+        "label": "Add the x² and y² coefficients",
         "marks": 2,
         "margin_note": "The last two marks. Perpendicular through the origin means the coefficient of x² plus the coefficient of y² is zero. Nothing else needs computing — the cross term is not used at all.",
         "lines": [
+          {
+            "text": "(the pair ax² + 2hxy + by² = 0 is perpendicular",
+            "added": true
+          },
+          {
+            "text": "  when a + b = 0)",
+            "style": "indent",
+            "added": true
+          },
           "Here, coeff. of x² + coeff. of y² = −8 + 8 = 0",
           {
             "text": "∴ The pair of lines are perpendicular",
@@ -212,15 +334,22 @@
             "perpendicular"
           ]
         },
-        "why": "Two lines through the origin given by ax² + 2hxy + by² = 0 are perpendicular exactly when a + b = 0 — the cross term plays no part. That is why only the two squared coefficients are added.",
+        "why": "Two lines through the origin given by ax² + 2hxy + by² = 0 are perpendicular exactly when a + b = 0 — the cross term plays no part. That is why only the coefficients of x² and y² are added.",
         "common_mistakes": [
           "Including the xy coefficient in the sum.",
           "Concluding perpendicular from a + b = 1 or any value other than zero."
         ],
         "mark_note": "Solution",
-        "memory_tip": "Perpendicular through the origin means coefficient of x² plus coefficient of y² is ZERO. The cross term is unused."
+        "memory_tip": "Perpendicular through the origin means coefficient of x² plus coefficient of y² is ZERO. The cross term is unused.",
+        "lines_compact": [
+          "Here, coeff. of x² + coeff. of y² = −8 + 8 = 0",
+          {
+            "text": "∴ The pair of lines are perpendicular",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },
-  "insider_note": "Divide the line by 2 so the right side is 1, and remember the squared term picks up 2² = 4 underneath. Nothing needs solving: coeff x² + coeff y² = −8 + 8 = 0 is the entire proof."
+  "insider_note": "Divide the line by 2 so the right side is 1, and remember the squared term picks up 2² = 4 underneath. Nothing needs solving: coeff x² + coeff y² = −8 + 8 = 0 is the last line of the proof."
 }

@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.61 — SAQ chapter 8 Addition of Vectors, answer 54. Printed appearances: none — this answer carries no year tag. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter. It follows the split the same book prints for the one 4-mark answer that does carry tags, Matrices answer 40 on book p.51. The book's chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q12 is the Addition of Vectors slot. NOTE: Addition of Vectors has NO Section-C slot on the paper and no LAQ chapter in this book — the unit is SAQ and VSAQ only."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.61 — SAQ chapter 8 Addition of Vectors, answer 54. Printed appearances: none — this answer carries no year tag. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter. It follows the split the same book prints for the one 4-mark answer that does carry tags, Matrices answer 40 on book p.51. The book's chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q12 is the Addition of Vectors slot. NOTE: Addition of Vectors has NO Section-C slot on the paper and no LAQ chapter in this book — the unit is SAQ and VSAQ only. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find where two lines meet in vector form.",
   "answer": {
@@ -63,6 +63,11 @@
           "Let P = 2a + 3b − c,  Q = 3a + 4b − 2c",
           "The line through P and Q is",
           "r = (1−t)(2a + 3b − c) + t(3a + 4b − 2c),  t ∈ R",
+          "(a: 2(1 − t) + 3t = 2 + t; b: 3(1 − t) + 4t = 3 + t;",
+          {
+            "text": "  c: −(1 − t) − 2t = −1 − t)",
+            "style": "indent"
+          },
           "⇒ r = (2+t)a + (3+t)b + (−1−t)c   …(1)"
         ],
         "recall": {
@@ -100,12 +105,21 @@
         "label": "Equation of the second line",
         "marks": 1,
         "mark_note": "Second line",
-        "margin_note": "Second mark. Same form, but a DIFFERENT parameter — s, not t. Reusing t would force the two lines to be travelled in step and would find only some of the intersections.",
-        "memory_tip": "Use a DIFFERENT parameter, s. Reusing t would force the two lines to be walked in step.",
+        "margin_note": "Second mark. Same form, but a DIFFERENT parameter — s, not t. Reusing t would force both lines to reach the common point at the same parameter value, so in general it would miss the intersection.",
+        "memory_tip": "Use a DIFFERENT parameter, s. Reusing t would force both lines to reach the common point at the same parameter value.",
         "lines": [
           "Let T = a − 2b + 3c,  S = a − 6b + 6c",
           "The line through T and S is",
           "r = (1−s)(a − 2b + 3c) + s(a − 6b + 6c),  s ∈ R",
+          {
+            "text": "(a: (1 − s) + s = 1; b: −2(1 − s) − 6s = −2 − 4s;",
+            "added": true
+          },
+          {
+            "text": "  c: 3(1 − s) + 6s = 3 + 3s)",
+            "style": "indent",
+            "added": true
+          },
           "⇒ r = a + (−2−4s)b + (3+3s)c   …(2)"
         ],
         "recall": {
@@ -134,6 +148,12 @@
         "common_mistakes": [
           "Reusing t for both lines.",
           "Collecting the a coefficient wrongly; here it is 1 for every s."
+        ],
+        "lines_compact": [
+          "Let T = a − 2b + 3c,  S = a − 6b + 6c",
+          "The line through T and S is",
+          "r = (1−s)(a − 2b + 3c) + s(a − 6b + 6c),  s ∈ R",
+          "⇒ r = a + (−2−4s)b + (3+3s)c   …(2)"
         ]
       },
       {
@@ -149,8 +169,25 @@
           "non-coplanar, ALL THREE coefficients must match:",
           "2 + t = 1  …(i)      3 + t = −2 − 4s  …(ii)",
           "−1 − t = 3 + 3s  …(iii)",
+          {
+            "text": "(take 2 from both sides of (i))",
+            "added": true
+          },
           "From (i):  t = −1",
+          {
+            "text": "(put t = −1 in (ii))",
+            "added": true
+          },
           "From (ii):  3 − 1 = −2 − 4s ⇒ 4s = −4 ⇒ s = −1",
+          {
+            "text": "(the third equation must hold too, or the lines do not",
+            "added": true
+          },
+          {
+            "text": "  meet)",
+            "style": "indent",
+            "added": true
+          },
           "Check (iii):  −1 + 1 = 0  and  3 − 3 = 0  ✓"
         ],
         "recall": {
@@ -180,6 +217,15 @@
           "Solving two of the three equations and stopping, without checking that the third also holds.",
           "Comparing coefficients without saying why it is allowed.",
           "Losing the minus sign in −2 − 4s and solving 4s = 4, which gives s = +1."
+        ],
+        "lines_compact": [
+          "At the point of intersection (1) = (2). Since a, b, c are",
+          "non-coplanar, ALL THREE coefficients must match:",
+          "2 + t = 1  …(i)      3 + t = −2 − 4s  …(ii)",
+          "−1 − t = 3 + 3s  …(iii)",
+          "From (i):  t = −1",
+          "From (ii):  3 − 1 = −2 − 4s ⇒ 4s = −4 ⇒ s = −1",
+          "Check (iii):  −1 + 1 = 0  and  3 − 3 = 0  ✓"
         ]
       },
       {
@@ -194,6 +240,10 @@
           "Substituting t = −1 in (1):",
           "r = (2−1)a + (3−1)b + (−1+1)c",
           "  = a + 2b + 0c",
+          {
+            "text": "(0c is the zero vector, so it is left out)",
+            "added": true
+          },
           {
             "text": "∴ The point of intersection is a + 2b",
             "style": "boxed"
@@ -225,9 +275,18 @@
         "common_mistakes": [
           "Leaving the answer as a value of t instead of a point.",
           "Substituting s into equation (1) or t into (2)."
+        ],
+        "lines_compact": [
+          "Substituting t = −1 in (1):",
+          "r = (2−1)a + (3−1)b + (−1+1)c",
+          "  = a + 2b + 0c",
+          {
+            "text": "∴ The point of intersection is a + 2b",
+            "style": "boxed"
+          }
         ]
       }
     ]
   },
-  "insider_note": "Write both lines in the two-point form, then COLLECT the a, b and c coefficients before comparing. Non-coplanar is what licenses comparing coefficients at all, so say so."
+  "insider_note": "Write both lines in the two-point form, then COLLECT the a, b and c coefficients before comparing. Comparing coefficients is allowed only because a, b, c are non-coplanar, so say so."
 }

@@ -50,7 +50,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.57 — SAQ chapter 8 Transformation of Axes, answer 50, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 16 · AP 17,19. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter. But the four STEPS are the book's own: p.59 prints a boxed 'SOLUTION STEPS' panel beside answers 52 and 53 giving the method in exactly four moves — (1) take the given equation as the original (or as the new one), (2) write the change-of-axes formulas, (3) put them into the given equation, (4) simplify to get the answer. This answer is cut on those four printed moves at one mark each, so the DECOMPOSITION is sourced even though the per-step marks are not. Four equal marks also matches the only 4-mark shape the sister chapter prints (Locus answers 44 and 46 carry printed tags, and this chapter's answers are the same length). The question text prints the transformed equation in SMALL letters; it is written here in capitals (X² + 3XY − 2Y² + 17X − 7Y − 11 = 0) from the answer's own first line, which is what the book's own solution does, so the two sets of axes stay distinguishable on the page. The chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7. NOTE: Transformation of Axes is an SAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 4 marks in Section B and nothing in Section A or Section C, and the book has no Transformation of Axes LAQ chapter (its LAQ chapters are 1-6) and no VSAQ chapter (its VSAQ chapters are 14-20). Chapter scoped by BOUNDARY WALK: book p.61 is SAQ chapter 9, The Straight Line. The book's separate STAR QUESTIONS PLUS bank (pp.104-108, answers 181-196) was also surveyed, and its ONLY Transformation of Axes question is answer 181, authored here as sqp1."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.57 — SAQ chapter 8 Transformation of Axes, answer 50, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 16 · AP 17,19. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter. But the four STEPS are the book's own: p.59 prints a boxed 'SOLUTION STEPS' panel beside answers 52 and 53 giving the method in exactly four moves — (1) take the given equation as the original (or as the new one), (2) write the change-of-axes formulas, (3) put them into the given equation, (4) simplify to get the answer. This answer is cut on those four printed moves at one mark each, so the DECOMPOSITION is sourced even though the per-step marks are not. Four equal marks also matches the only 4-mark shape the sister chapter prints (Locus answers 44 and 46 carry printed tags, and this chapter's answers are the same length). The question text prints the transformed equation in SMALL letters; it is written here in capitals (X² + 3XY − 2Y² + 17X − 7Y − 11 = 0) from the answer's own first line, which is what the book's own solution does, so the two sets of axes stay distinguishable on the page. The chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7. NOTE: Transformation of Axes is an SAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 4 marks in Section B and nothing in Section A or Section C, and the book has no Transformation of Axes LAQ chapter (its LAQ chapters are 1-6) and no VSAQ chapter (its VSAQ chapters are 14-20). Chapter scoped by BOUNDARY WALK: book p.61 is SAQ chapter 9, The Straight Line. The book's separate STAR QUESTIONS PLUS bank (pp.104-108, answers 181-196) was also surveyed, and its ONLY Transformation of Axes question is answer 181, authored here as sqp1. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say which way the shift goes when you want the original equation, and which letters the answer is written in.",
   "answer": {
@@ -65,13 +65,14 @@
         "label": "Take the given equation",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. This time the equation you are handed is the NEW one, so it is written in capital X and capital Y. Number it (1).",
-        "memory_tip": "The equation handed over is the NEW one, so write it in capital X and Y.",
+        "margin_note": "First mark. This time the given equation is the NEW one, so it is written in capital X and capital Y. Number it (1).",
+        "memory_tip": "The given equation is the NEW one, so write it in capital X and Y.",
         "lines": [
           {
             "text": "Sol:",
             "style": "heading"
           },
+          "(the given equation is in the new coordinates X, Y)",
           "Given transformed (new) equation is taken as",
           "X² + 3XY − 2Y² + 17X − 7Y − 11 = 0  ……(1)"
         ],
@@ -97,7 +98,7 @@
             "given equation"
           ]
         },
-        "why": "The first move is to label which equation you were handed. A transformation question is always one of two shapes — given the original find the new, or given the new find the original — and every later step depends on which.",
+        "why": "The first move is to note which equation you were given. This question is one of two kinds — given the original, find the new; or given the new, find the original — and every later step depends on which.",
         "common_mistakes": [
           "Treating the given equation as the original and shifting the wrong way.",
           "Writing it in small letters and then losing track of which is which."
@@ -112,6 +113,15 @@
         "margin_note": "Second mark, and the one that decides the direction. Going BACK to the original means X = x − h and Y = y − k — the signs are the other way round from a forward shift.",
         "memory_tip": "Going BACK means X = x − h and Y = y − k — the signs are the other way round from a forward shift.",
         "lines": [
+          {
+            "text": "(shifting the origin to (h, k): x = X + h and y = Y + k,",
+            "added": true
+          },
+          {
+            "text": "  so X = x − h and Y = y − k)",
+            "style": "indent",
+            "added": true
+          },
           "We take origin (h, k) = (2, 3), then",
           "X = x − h  ⇒  X = x − 2",
           "Y = y − k  ⇒  Y = y − 3"
@@ -138,10 +148,15 @@
             "original"
           ]
         },
-        "why": "Finding the original is the reverse journey, so the shift is subtracted rather than added. Using the forward formulas here is the single commonest error in the chapter.",
+        "why": "Finding the original equation reverses the change, so the shift is subtracted rather than added. Using the formulas for the other direction here is a common error.",
         "common_mistakes": [
           "Using x = X + h when the question asks for the ORIGINAL equation.",
           "Reversing only one of the two formulas."
+        ],
+        "lines_compact": [
+          "We take origin (h, k) = (2, 3), then",
+          "X = x − h  ⇒  X = x − 2",
+          "Y = y − k  ⇒  Y = y − 3"
         ]
       },
       {
@@ -153,8 +168,16 @@
         "margin_note": "Third mark. Put those two lines into equation (1) — every capital X and capital Y is replaced by its small-letter expression.",
         "memory_tip": "Every capital X and Y is replaced by its small-letter expression.",
         "lines": [
+          {
+            "text": "(put X = x − 2 and Y = y − 3 into (1))",
+            "added": true
+          },
           "From (1), original equation is",
-          "(x−2)² + 3(x−2)(y−3) − 2(y−3)² + 17(x−2) − 7(y−3) − 11 = 0"
+          "(x−2)² + 3(x−2)(y−3) − 2(y−3)² + 17(x−2)",
+          {
+            "text": "  − 7(y−3) − 11 = 0",
+            "style": "indent"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -178,10 +201,18 @@
             "put these"
           ]
         },
-        "why": "Substitution is mechanical once the formulas are down. Every x and every y in the given equation is replaced, including the ones inside a squared bracket.",
+        "why": "Substitution is mechanical once the formulas are written. Every X and every Y in the given equation is replaced, including the ones in the squared terms and in the XY term.",
         "common_mistakes": [
           "Substituting into only some of the terms.",
           "Forgetting to substitute inside a product like XY."
+        ],
+        "lines_compact": [
+          "From (1), original equation is",
+          "(x−2)² + 3(x−2)(y−3) − 2(y−3)² + 17(x−2)",
+          {
+            "text": "  − 7(y−3) − 11 = 0",
+            "style": "indent"
+          }
         ]
       },
       {
@@ -193,10 +224,54 @@
         "margin_note": "Last mark. Expand, collect and write the original equation in small x and small y. A capital letter left in the answer means a term was missed.",
         "memory_tip": "A capital letter left in the answer means a term was missed.",
         "lines": [
-          "⇒ (x² + 4 − 4x) + 3(xy − 3x − 2y + 6) − 2(y² + 9 − 6y) + 17x − 34 − 7y + 21 − 11 = 0",
-          "⇒ x² − 4x + 4 + 3xy − 9x − 6y + 18 − 2y² + 12y − 18 + 17x − 34 − 7y + 21 − 11 = 0",
           {
-            "text": "∴ Original equation is x² + 3xy − 2y² + 4x − y − 20 = 0",
+            "text": "((x − 2)² = x² + 4 − 4x; (x − 2)(y − 3) = xy − 3x − 2y + 6;",
+            "added": true
+          },
+          {
+            "text": "  (y − 3)² = y² + 9 − 6y; 17(x − 2) = 17x − 34;",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  −7(y − 3) = −7y + 21)",
+            "style": "indent",
+            "added": true
+          },
+          "⇒ (x² + 4 − 4x) + 3(xy − 3x − 2y + 6) − 2(y² + 9 − 6y)",
+          {
+            "text": "  + 17x − 34 − 7y + 21 − 11 = 0",
+            "style": "indent"
+          },
+          {
+            "text": "(3(xy − 3x − 2y + 6) = 3xy − 9x − 6y + 18",
+            "added": true
+          },
+          {
+            "text": "  and −2(y² + 9 − 6y) = −2y² − 18 + 12y)",
+            "style": "indent",
+            "added": true
+          },
+          "⇒ x² − 4x + 4 + 3xy − 9x − 6y + 18 − 2y² + 12y − 18",
+          {
+            "text": "  + 17x − 34 − 7y + 21 − 11 = 0",
+            "style": "indent"
+          },
+          {
+            "text": "(x: −4 − 9 + 17 = 4; y: −6 + 12 − 7 = −1;",
+            "added": true
+          },
+          {
+            "text": "  constants: 4 + 18 − 18 − 34 + 21 − 11 = −20)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "∴ Original equation is",
+            "style": "boxed"
+          },
+          {
+            "text": "x² + 3xy − 2y² + 4x − y − 20 = 0",
             "style": "boxed"
           }
         ],
@@ -227,6 +302,26 @@
         "common_mistakes": [
           "Leaving a capital X or Y in the final line.",
           "Sign slip when expanding a product of two brackets."
+        ],
+        "lines_compact": [
+          "⇒ (x² + 4 − 4x) + 3(xy − 3x − 2y + 6) − 2(y² + 9 − 6y)",
+          {
+            "text": "  + 17x − 34 − 7y + 21 − 11 = 0",
+            "style": "indent"
+          },
+          "⇒ x² − 4x + 4 + 3xy − 9x − 6y + 18 − 2y² + 12y − 18",
+          {
+            "text": "  + 17x − 34 − 7y + 21 − 11 = 0",
+            "style": "indent"
+          },
+          {
+            "text": "∴ Original equation is",
+            "style": "boxed"
+          },
+          {
+            "text": "x² + 3xy − 2y² + 4x − y − 20 = 0",
+            "style": "boxed"
+          }
         ]
       }
     ]

@@ -28,14 +28,14 @@
       "marks": 1
     },
     {
-      "label": "Substitute x = 5",
+      "label": "Substitute 5 into the formula",
       "marks": 1
     }
   ],
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.96 — VSAQ chapter 19 Hyperbolic Functions, answer 137.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 16. The twin of 137.1 with a different number — same formula, same two steps. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four questions to a page in two columns. It is not a bare guess: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark VSAQ. The book's chapter header carries ★★★ and reads '2 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q10 is the Hyperbolic Functions slot. NOTE: Hyperbolic Functions is a VSAQ-ONLY unit — the paper gives it no Section-B and no Section-C slot, and this book has no hyperbolic LAQ chapter (LAQ chapters are 1-6) and no SAQ chapter (SAQ chapters are 7-13). Chapter 19 is the LAST VSAQ chapter; the boundary was walked to book p.98, where a separate 'Star Questions Plus' section begins."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.96 — VSAQ chapter 19 Hyperbolic Functions, answer 137.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 16. The twin of 137.1 with a different number — same formula, same two steps. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four questions to a page in two columns. It is not a bare guess: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark VSAQ. The book's chapter header carries ★★★ and reads '2 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q10 is the Hyperbolic Functions slot. NOTE: Hyperbolic Functions is a VSAQ-ONLY unit — the paper gives it no Section-B and no Section-C slot, and this book has no hyperbolic LAQ chapter (LAQ chapters are 1-6) and no SAQ chapter (SAQ chapters are 7-13). Chapter 19 is the LAST VSAQ chapter; the boundary was walked to book p.98, where a separate 'Star Questions Plus' section begins. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — name the formula or definition you use and how you finish.",
   "answer": {
@@ -57,7 +57,8 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "We know Sinh⁻¹x = logₑ(x + √(x² + 1))"
+          "We know Sinh⁻¹x = logₑ(x + √(x² + 1))",
+          "(this holds for every real x)"
         ],
         "recall": {
           "credit": "say_it",
@@ -89,15 +90,27 @@
       {
         "id": "s2_answer",
         "kind": "boxed_final",
-        "label": "Substitute x = 5",
+        "label": "Substitute 5 into the formula",
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. 25 + 1 = 26, and √26 does not simplify — the surd is the final form.",
         "memory_tip": "25 + 1 = 26, and √26 does not simplify — the surd is the final form.",
         "lines": [
+          {
+            "text": "(sinh x = 5 means x is the inverse sinh of 5)",
+            "added": true
+          },
           "Given sinh x = 5, so x = Sinh⁻¹(5)",
+          {
+            "text": "(put 5 in place of x in the formula)",
+            "added": true
+          },
           "= logₑ(5 + √(5² + 1))",
           "= logₑ(5 + √(25 + 1))",
+          {
+            "text": "(25 + 1 = 26)",
+            "added": true
+          },
           {
             "text": "∴ x = logₑ(5 + √26)",
             "style": "boxed"
@@ -125,13 +138,22 @@
             "five"
           ]
         },
-        "why": "26 has no square factor, so √26 stands as it is. Trying to simplify it is wasted effort.",
+        "why": "26 has no square factor, so √26 is left as it is. Trying to simplify it gains nothing.",
         "common_mistakes": [
           "Attempting to simplify √26.",
           "Writing √26 as 5.1 and losing exactness."
+        ],
+        "lines_compact": [
+          "Given sinh x = 5, so x = Sinh⁻¹(5)",
+          "= logₑ(5 + √(5² + 1))",
+          "= logₑ(5 + √(25 + 1))",
+          {
+            "text": "∴ x = logₑ(5 + √26)",
+            "style": "boxed"
+          }
         ]
       }
     ]
   },
-  "insider_note": "A quote-and-substitute question: Sinh⁻¹x = logₑ(x + √(x² + 1)). Note the PLUS one inside the root — the cosh and tanh forms differ, and mixing them up is the only real risk here."
+  "insider_note": "A quote-and-substitute question: Sinh⁻¹x = logₑ(x + √(x² + 1)). Note the PLUS one inside the root — the cosh and tanh forms differ, and mixing them up is the main risk here."
 }

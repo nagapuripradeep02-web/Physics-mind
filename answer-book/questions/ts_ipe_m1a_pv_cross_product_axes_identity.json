@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.74, chapter 7 PRODUCT OF VECTORS, Short Answer question 37. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 split rewards the general set-up, the first cross product worked in full, the two that repeat the pattern, and the addition where the factor 2 appears — the set-up carries its own mark because the identity is claimed for EVERY vector, so components must be general and a numerical test alone is not a proof. ESTABLISHED ALGEBRAICALLY and then CHECKED ON A CONCRETE VECTOR: with a = 2i − 3j + 6k, a × i = 6j + 3k, a × j = −6i + 2k and a × k = −3i − 2j; each was dotted with a and with its own axis vector and every one of the six dot products was 0 — for instance (6j + 3k)·a = 0 − 18 + 18 = 0 and (6j + 3k)·i = 0. Their squared lengths are 45, 40 and 13, summing to 98, and 2|a|² = 2(4 + 9 + 36) = 98. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Product of Vectors supplies at least one of those eight on almost every paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.74, chapter 7 PRODUCT OF VECTORS, Short Answer question 37. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 split rewards the general set-up, the first cross product worked in full, the two that repeat the pattern, and the addition where the factor 2 appears — the set-up carries its own mark because the identity is claimed for EVERY vector, so components must be general and a numerical test alone is not a proof. ESTABLISHED ALGEBRAICALLY and then CHECKED ON A CONCRETE VECTOR: with a = 2i − 3j + 6k, a × i = 6j + 3k, a × j = −6i + 2k and a × k = −3i − 2j; each was dotted with a and with its own axis vector and every one of the six dot products was 0 — for instance (6j + 3k)·a = 0 − 18 + 18 = 0 and (6j + 3k)·i = 0. Their squared lengths are 45, 40 and 13, summing to 98, and 2|a|² = 2(4 + 9 + 36) = 98. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Product of Vectors supplies at least one of those eight on almost every paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — say why the factor 2 appears at the end.",
   "answer": {
@@ -104,6 +104,10 @@
           "a × i = a₁(i × i) + a₂(j × i) + a₃(k × i)",
           "= 0 − a₂k + a₃j",
           "= a₃j − a₂k",
+          {
+            "text": "(|a₃j − a₂k|² = a₃² + (−a₂)²)",
+            "added": true
+          },
           "∴ |a × i|² = a₂² + a₃²"
         ],
         "recall": {
@@ -132,6 +136,12 @@
         "common_mistakes": [
           "Keeping an a₁ term in a × i.",
           "Squaring a₃j − a₂k as a₃² − a₂²."
+        ],
+        "lines_compact": [
+          "a × i = a₁(i × i) + a₂(j × i) + a₃(k × i)",
+          "= 0 − a₂k + a₃j",
+          "= a₃j − a₂k",
+          "∴ |a × i|² = a₂² + a₃²"
         ]
       },
       {
@@ -144,10 +154,18 @@
         "memory_tip": "Each of the three results is a pair of squares, and the pair left out is the axis you crossed with.",
         "lines": [
           "The same working with j and with k gives",
+          {
+            "text": "(j × j = 0, k × j = −i, i × j = k)",
+            "added": true
+          },
           "a × j = −a₃i + a₁k, so",
           {
             "text": "|a × j|² = a₃² + a₁²",
             "style": "indent"
+          },
+          {
+            "text": "(k × k = 0, i × k = −j, j × k = i)",
+            "added": true
           },
           "a × k = a₂i − a₁j, so",
           {
@@ -181,6 +199,19 @@
         "common_mistakes": [
           "Getting the sign of i × k wrong: i × k = −j, not j.",
           "Using the same pair of squares twice."
+        ],
+        "lines_compact": [
+          "The same working with j and with k gives",
+          "a × j = −a₃i + a₁k, so",
+          {
+            "text": "|a × j|² = a₃² + a₁²",
+            "style": "indent"
+          },
+          "a × k = a₂i − a₁j, so",
+          {
+            "text": "|a × k|² = a₁² + a₂²",
+            "style": "indent"
+          }
         ]
       },
       {

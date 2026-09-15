@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.213, chapter 10 APPLICATIONS OF DERIVATIVES, the RATE MEASURE sub-section, Very Short Answer question 9. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.213, chapter 10 APPLICATIONS OF DERIVATIVES, the RATE MEASURE sub-section, Very Short Answer question 9. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — name the formula you would write, say which rate is given and which one is asked for, and say what you differentiate with respect to.",
   "answer": {
@@ -53,8 +53,14 @@
           },
           "An air bubble is a sphere, so let r be its radius at time t.",
           "Given: dr/dt = 1/2 cm/sec.  Asked: dV/dt when r = 1 cm.",
+          "(the formula for the volume of a sphere)",
           "Volume of a sphere:  V = (4/3)πr³",
           "Differentiate both sides with respect to time t:",
+          "(chain rule: d/dt of r³ is 3r² · (dr/dt), because",
+          {
+            "text": "  r changes with t; then (4/3) × 3 = 4)",
+            "style": "indent"
+          },
           "dV/dt = (4/3)π·3r²·(dr/dt) = 4πr²(dr/dt)"
         ],
         "recall": {
@@ -87,7 +93,7 @@
           "Differentiating r³ as r² without the factor 3, which loses the cancellation.",
           "Treating 1/2 cm/sec as a volume rate."
         ],
-        "memory_tip": "Differentiating the sphere's volume gives its surface area, 4πr² — write that one line and any sphere rate question is already half done."
+        "memory_tip": "Differentiating the sphere's volume gives its surface area, 4πr² — write that one line and this line is needed in every sphere rate question."
       },
       {
         "id": "s2_substitute",
@@ -98,7 +104,20 @@
         "margin_note": "Second mark. Here the unknown dV/dt is already alone on the left, so this is a direct substitution with no rearranging. Keep the answer as 2π and write cm³/sec.",
         "lines": [
           "Put r = 1 and dr/dt = 1/2:",
+          {
+            "text": "(1² = 1, and 4π × 1/2 = 4π/2 = 2π)",
+            "added": true
+          },
           "dV/dt = 4π(1²)(1/2) = 4π × 1/2 = 2π",
+          {
+            "text": "(π ≈ 3.1416, so 2π ≈ 6.28; a volume per second",
+            "added": true
+          },
+          {
+            "text": "  is measured in cm³/sec)",
+            "style": "indent",
+            "added": true
+          },
           {
             "text": "∴ dV/dt = 2π cm³/sec ≈ 6.28 cm³/sec",
             "style": "boxed"
@@ -133,7 +152,15 @@
           "Dividing by 1/2 instead of multiplying, which gives 8π.",
           "Giving the unit as cm²/sec instead of cm³/sec."
         ],
-        "memory_tip": "With r = 1 the r² factor is just 1, so the whole answer is 4π halved, which is 2π."
+        "memory_tip": "With r = 1 the factor r² is 1, so the answer is 4π × 1/2, which is 2π.",
+        "lines_compact": [
+          "Put r = 1 and dr/dt = 1/2:",
+          "dV/dt = 4π(1²)(1/2) = 4π × 1/2 = 2π",
+          {
+            "text": "∴ dV/dt = 2π cm³/sec ≈ 6.28 cm³/sec",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

@@ -106,9 +106,18 @@
         "memory_tip": "tan θ = −1 fits two angles. (1, −1) is in the fourth quadrant, so θ = −π/4.",
         "lines": [
           "tan θ = y/x = (−1)/1 = −1",
-          "The point (1, −1) lies in the fourth quadrant,",
-          "where θ is negative and tan θ = −1,",
-          "so θ = −π/4",
+          {
+            "text": "The point (1, −1) lies in the fourth quadrant,",
+            "added": true
+          },
+          {
+            "text": "where θ is negative and tan θ = −1,",
+            "added": true
+          },
+          {
+            "text": "so θ = −π/4",
+            "added": true
+          },
           {
             "text": "∴ 1 − i = √2(cos(−π/4) + i sin(−π/4))",
             "style": "boxed"
@@ -143,6 +152,15 @@
           "Taking θ = 3π/4 — that is the second quadrant, the point (−1, 1).",
           "Writing √2(cos π/4 + i sin π/4), which is 1 + i.",
           "Forgetting the r = √2."
+        ],
+        "lines_compact": [
+          "tan θ = y/x = (−1)/1 = −1",
+          "(1, −1) lies in the fourth quadrant ⇒ θ = −π/4",
+          "∴ 1 − i = √2(cos(−π/4) + i sin(−π/4))",
+          {
+            "text": "= √2(cos(π/4) − i sin(π/4))",
+            "style": "boxed"
+          }
         ]
       }
     ]

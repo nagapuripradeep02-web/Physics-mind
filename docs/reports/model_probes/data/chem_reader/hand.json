@@ -1,0 +1,11 @@
+{
+ "hand": {
+  "jm2024-01-feb-shift-2_che_q87|gem_direct": "2",
+  "jm2024-01-feb-shift-2_che_q87|ds_on_read": "2"
+ },
+ "disputed": {
+  "jm2024-01-feb-shift-1_che_q74|gem_direct": "Pauling dEN puts ClF3 (0.82) below SO2 (0.86); both models and DeepSeek agree, the printed key does not",
+  "jm2024-01-feb-shift-1_che_q74|ds_on_read": "Pauling dEN puts ClF3 (0.82) below SO2 (0.86); both models and DeepSeek agree, the printed key does not"
+ },
+ "excluded": {}
+}

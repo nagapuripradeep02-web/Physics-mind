@@ -39,7 +39,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.97 — VSAQ chapter 19 Hyperbolic Functions, answer 140.2. Printed appearances: TS 15 · AP 20. The twin of 140.1 with a minus. This time the eˣ terms cancel and the e⁻ˣ ones survive, so both sides collapse to e to the MINUS nx. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four questions to a page in two columns. It is not a bare guess: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark VSAQ. The book's chapter header carries ★★★ and reads '2 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q10 is the Hyperbolic Functions slot. NOTE: Hyperbolic Functions is a VSAQ-ONLY unit — the paper gives it no Section-B and no Section-C slot, and this book has no hyperbolic LAQ chapter (LAQ chapters are 1-6) and no SAQ chapter (SAQ chapters are 7-13). Chapter 19 is the LAST VSAQ chapter; the boundary was walked to book p.98, where a separate 'Star Questions Plus' section begins."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.97 — VSAQ chapter 19 Hyperbolic Functions, answer 140.2. Printed appearances: TS 15 · AP 20. The twin of 140.1 with a minus. This time the eˣ terms cancel and the e⁻ˣ ones survive, so both sides collapse to e to the MINUS nx. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four questions to a page in two columns. It is not a bare guess: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark VSAQ. The book's chapter header carries ★★★ and reads '2 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q10 is the Hyperbolic Functions slot. NOTE: Hyperbolic Functions is a VSAQ-ONLY unit — the paper gives it no Section-B and no Section-C slot, and this book has no hyperbolic LAQ chapter (LAQ chapters are 1-6) and no SAQ chapter (SAQ chapters are 7-13). Chapter 19 is the LAST VSAQ chapter; the boundary was walked to book p.98, where a separate 'Star Questions Plus' section begins. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — name the formula or definition you use and how you finish.",
   "answer": {
@@ -54,15 +54,17 @@
         "label": "Simplify the left side",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. With a minus between them the eˣ terms cancel instead, leaving e⁻ˣ — the mirror of the (cosh x + sinh x)ⁿ version.",
-        "memory_tip": "With a MINUS between them the eˣ terms cancel, leaving e⁻ˣ — the mirror of the plus version.",
+        "margin_note": "First mark. With a minus between them the eˣ terms cancel instead, leaving e⁻ˣ — the opposite of the (cosh x + sinh x)ⁿ version, which leaves eˣ.",
+        "memory_tip": "With a MINUS between them the eˣ terms cancel, leaving e⁻ˣ — the opposite of the plus version, which leaves eˣ.",
         "lines": [
           {
             "text": "Sol:",
             "style": "heading"
           },
           "L.H.S = (cosh x − sinh x)ⁿ",
+          "(cosh x = (eˣ + e⁻ˣ)/2 and sinh x = (eˣ − e⁻ˣ)/2)",
           "= [(eˣ + e⁻ˣ)/2 − (eˣ − e⁻ˣ)/2]ⁿ",
+          "(the eˣ terms cancel and the e⁻ˣ terms add to 2e⁻ˣ)",
           "= [(2e⁻ˣ)/2]ⁿ = (e⁻ˣ)ⁿ = e⁻ⁿˣ   …(1)"
         ],
         "recall": {
@@ -87,7 +89,7 @@
             "minus"
           ]
         },
-        "why": "Which pair cancels depends on the sign between them. A plus kills the e⁻ˣ terms, a minus kills the eˣ ones — that is the entire difference between this and the (cosh x + sinh x)ⁿ version.",
+        "why": "Which pair cancels depends on the sign between them. A plus cancels the e⁻ˣ terms, a minus cancels the eˣ ones — that is the entire difference between this and the (cosh x + sinh x)ⁿ version.",
         "common_mistakes": [
           "Copying the (cosh x + sinh x)ⁿ version and writing eˣ.",
           "Distributing the minus over only one term of the second bracket."
@@ -99,9 +101,13 @@
         "label": "Simplify the right side and compare",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Second mark. The right side collapses the same way with nx, giving e⁻ⁿˣ, and the two agree.",
-        "memory_tip": "The right side collapses the same way with nx, giving e⁻ⁿˣ. Then say the two sides agree.",
+        "margin_note": "Second mark. The right side simplifies the same way with nx, giving e⁻ⁿˣ, and the two agree.",
+        "memory_tip": "The right side simplifies the same way with nx, giving e⁻ⁿˣ. Then say the two sides agree.",
         "lines": [
+          {
+            "text": "(the same definitions with nx in place of x)",
+            "added": true
+          },
           "R.H.S = cosh nx − sinh nx",
           "= (eⁿˣ + e⁻ⁿˣ)/2 − (eⁿˣ − e⁻ⁿˣ)/2",
           "= (2e⁻ⁿˣ)/2 = e⁻ⁿˣ   …(2)",
@@ -132,13 +138,23 @@
             "from one and two"
           ]
         },
-        "why": "Taken with the plus version, the two results say (cosh x ± sinh x)ⁿ = e^(±nx) — a compact fact worth carrying, since it makes both proofs immediate.",
+        "why": "Taken with the plus version, the two results say (cosh x + sinh x)ⁿ = eⁿˣ and (cosh x − sinh x)ⁿ = e⁻ⁿˣ — a short fact to remember, since it makes both proofs quick.",
         "common_mistakes": [
           "Never stating that the two sides agree.",
           "Losing the minus in the exponent."
+        ],
+        "lines_compact": [
+          "R.H.S = cosh nx − sinh nx",
+          "= (eⁿˣ + e⁻ⁿˣ)/2 − (eⁿˣ − e⁻ⁿˣ)/2",
+          "= (2e⁻ⁿˣ)/2 = e⁻ⁿˣ   …(2)",
+          "From (1) and (2), L.H.S = R.H.S.",
+          {
+            "text": "∴ (cosh x − sinh x)ⁿ = cosh(nx) − sinh(nx)",
+            "style": "boxed"
+          }
         ]
       }
     ]
   },
-  "insider_note": "The bracket collapses before the power is touched: cosh x − sinh x is simply e⁻ˣ. Expanding it with the binomial theorem is a long road to the same place and usually does not arrive."
+  "insider_note": "Simplify the bracket before using the power: cosh x − sinh x is simply e⁻ˣ. Expanding it with the binomial theorem is much longer."
 }

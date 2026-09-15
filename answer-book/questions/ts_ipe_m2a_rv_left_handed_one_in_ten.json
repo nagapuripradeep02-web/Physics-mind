@@ -113,11 +113,20 @@
         "memory_tip": "The ¹⁰C₁ = 10 cancels the 1/10, leaving exactly (9/10)⁹. Say you read it as EXACTLY one.",
         "lines": [
           "P(X = r) = ⁿCᵣ qⁿ⁻ʳ pʳ",
-          "Exactly one left-handed person means r = 1:",
+          {
+            "text": "Exactly one left-handed person means r = 1:",
+            "added": true
+          },
           "P(X = 1) = ¹⁰C₁ (9/10)⁹ (1/10)¹",
-          "¹⁰C₁ = 10, so",
+          {
+            "text": "¹⁰C₁ = 10, so",
+            "added": true
+          },
           "= 10 · (9/10)⁹ · (1/10)",
-          "The 10 and the 1/10 cancel:",
+          {
+            "text": "The 10 and the 1/10 cancel:",
+            "added": true
+          },
           {
             "text": "∴ P(X = 1) = (9/10)⁹",
             "style": "boxed"
@@ -150,6 +159,15 @@
           "Writing (1/10)⁹ (9/10) — the powers on p and q swapped.",
           "Forgetting ¹⁰C₁ and answering (9/10)⁹/10.",
           "Switching to 1 − (9/10)¹⁰ without saying so: that is the 'at least one' reading, while this book reads the question as exactly one. State which reading you are using."
+        ],
+        "lines_compact": [
+          "P(X = r) = ⁿCᵣ qⁿ⁻ʳ pʳ",
+          "P(X = 1) = ¹⁰C₁ (9/10)⁹ (1/10)¹",
+          "= 10 · (9/10)⁹ · (1/10)",
+          {
+            "text": "∴ P(X = 1) = (9/10)⁹",
+            "style": "boxed"
+          }
         ]
       }
     ]

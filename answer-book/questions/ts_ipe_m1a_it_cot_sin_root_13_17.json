@@ -34,7 +34,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.113, chapter 10 INVERSE TRIGONOMETRIC FUNCTIONS, Short Answer question 5. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. Half the marks sit on the left side because it carries the square root and the sign decision; the right side is a single triangle. NOTATION: the book prints the inverse functions in lower case (sin⁻¹, tan⁻¹); they are written here with capitals to match the principal-value convention used across the rest of this unit. Checked numerically to twelve decimal places: cot(arcsin(√(13/17))) = sin(arctan(2/3)) = 0.554700196225 = 2/√13. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, at 4 marks each, under the 2026-27 pattern; Inverse Trigonometric Functions is an SAQ-only unit, so the paper gives it no Section-A and no Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.113, chapter 10 INVERSE TRIGONOMETRIC FUNCTIONS, Short Answer question 5. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. Half the marks sit on the left side because it carries the square root and the sign decision; the right side is a single triangle. NOTATION: the book prints the inverse functions in lower case (sin⁻¹, tan⁻¹); they are written here with capitals to match the principal-value convention used across the rest of this unit. Checked numerically to twelve decimal places: cot(arcsin(√(13/17))) = sin(arctan(2/3)) = 0.554700196225 = 2/√13. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, at 4 marks each, under the 2026-27 pattern; Inverse Trigonometric Functions is an SAQ-only unit, so the paper gives it no Section-A and no Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — name each move in order, and say which formula you reach for and why.",
   "answer": {
@@ -57,10 +57,13 @@
             "style": "heading"
           },
           "Let θ = Sin⁻¹√(13/17)",
+          "(Sin⁻¹ of a number between 0 and 1 lies in (0, π/2))",
           "⇒ sinθ = √(13/17), and θ ∈ (0, π/2)",
+          "(cos²θ = 1 − sin²θ)",
           "cos²θ = 1 − 13/17 = 4/17",
           "θ is first quadrant, so cosθ = 2/√17",
           "L.H.S = cotθ = cosθ/sinθ",
+          "(the √17s cancel)",
           "= (2/√17)/(√13/√17) = 2/√13"
         ],
         "recall": {
@@ -85,7 +88,7 @@
             "two over root thirteen"
           ]
         },
-        "why": "Sin⁻¹ of a positive number is a first-quadrant angle, so the positive square root is the only correct one for cosθ.",
+        "why": "Sin⁻¹ of a number between 0 and 1 is a first-quadrant angle, so the positive square root is the only correct one for cosθ.",
         "common_mistakes": [
           "Taking cosθ as the negative root.",
           "Writing cotθ as sinθ/cosθ."
@@ -102,8 +105,20 @@
         "lines": [
           "Let φ = Tan⁻¹(2/3) ⇒ tanφ = 2/3",
           "φ ∈ (0, π/2), so sinφ is positive.",
+          {
+            "text": "(tan = opposite/adjacent in a right triangle)",
+            "added": true
+          },
           "Opposite 2, adjacent 3,",
+          {
+            "text": "(by Pythagoras)",
+            "added": true
+          },
           "hypotenuse √(2² + 3²) = √13",
+          {
+            "text": "(sin = opposite/hypotenuse)",
+            "added": true
+          },
           "R.H.S = sinφ = 2/√13"
         ],
         "recall": {
@@ -132,6 +147,13 @@
         "common_mistakes": [
           "Writing sinφ as 2/3.",
           "Using √5 instead of √13 for the hypotenuse."
+        ],
+        "lines_compact": [
+          "Let φ = Tan⁻¹(2/3) ⇒ tanφ = 2/3",
+          "φ ∈ (0, π/2), so sinφ is positive.",
+          "Opposite 2, adjacent 3,",
+          "hypotenuse √(2² + 3²) = √13",
+          "R.H.S = sinφ = 2/√13"
         ]
       },
       {
@@ -144,6 +166,10 @@
         "memory_tip": "Both sides come to 2/√13. Rationalise once at the end: 2√13/13.",
         "lines": [
           "Both sides equal 2/√13,",
+          {
+            "text": "(multiply top and bottom by √13)",
+            "added": true
+          },
           "that is 2√13/13.",
           {
             "text": "∴ cot(Sin⁻¹√(13/17)) = sin(Tan⁻¹(2/3))",
@@ -176,6 +202,14 @@
         "common_mistakes": [
           "Leaving the two values side by side without stating they are equal.",
           "Rationalising 2/√13 wrongly as √13/13."
+        ],
+        "lines_compact": [
+          "Both sides equal 2/√13,",
+          "that is 2√13/13.",
+          {
+            "text": "∴ cot(Sin⁻¹√(13/17)) = sin(Tan⁻¹(2/3))",
+            "style": "boxed"
+          }
         ]
       }
     ]

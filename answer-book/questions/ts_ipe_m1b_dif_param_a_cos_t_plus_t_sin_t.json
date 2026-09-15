@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.200, chapter 9 DIFFERENTIATION, Short Answer question 6. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The mathematics was checked independently before writing: with a = 1.7 the ratio of the two numerical derivatives (dy/dt)/(dx/dt) matched tan t at t = 0.6 (0.68413681) and t = 1.1 (1.96475966)."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.200, chapter 9 DIFFERENTIATION, Short Answer question 6. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The mathematics was checked independently before writing: with a = 1.7 the ratio of the two numerical derivatives (dy/dt)/(dx/dt) matched tan t at t = 0.6 (0.68413681) and t = 1.1 (1.96475966). LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say which derivatives you find first, and what cancels when you differentiate x.",
   "answer": {
@@ -102,8 +102,30 @@
         "margin_note": "Second mark. Use the product rule on t sin t and write both of its terms out. The −sin t from cos t and the +sin t from the product cancel — that cancellation is what the question is built around.",
         "lines": [
           "x = a(cos t + t sin t). Use the product rule on t sin t:",
+          {
+            "text": "(the product rule: (uv)′ = u · v′ + v · u′",
+            "added": true
+          },
+          {
+            "text": "  with u = t and v = sin t)",
+            "style": "indent",
+            "added": true
+          },
           "d/dt (t sin t) = t·cos t + sin t·1",
+          {
+            "text": "(d/dt(cos t) = −sin t, and put d/dt(t sin t)",
+            "added": true
+          },
+          {
+            "text": "  = t cos t + sin t)",
+            "style": "indent",
+            "added": true
+          },
           "dx/dt = a[−sin t + t cos t + sin t]",
+          {
+            "text": "(−sin t + sin t = 0)",
+            "added": true
+          },
           "∴ dx/dt = a t cos t"
         ],
         "recall": {
@@ -134,7 +156,13 @@
           "Differentiating t sin t as t cos t and losing the sin t term.",
           "Forgetting that d/dt (cos t) = −sin t and keeping a positive sin t, so nothing cancels."
         ],
-        "memory_tip": "Two sin t terms appear here, one from cos t and one from the product rule, with opposite signs. Expect them to cancel and check that they do."
+        "memory_tip": "Two sin t terms appear here, one from cos t and one from the product rule, with opposite signs. Expect them to cancel and check that they do.",
+        "lines_compact": [
+          "x = a(cos t + t sin t). Use the product rule on t sin t:",
+          "d/dt (t sin t) = t·cos t + sin t·1",
+          "dx/dt = a[−sin t + t cos t + sin t]",
+          "∴ dx/dt = a t cos t"
+        ]
       },
       {
         "id": "s3_dy_dt",
@@ -145,8 +173,33 @@
         "margin_note": "Third mark. The same shape as the previous step, with the signs the other way round. Keep the bracket around the product-rule result — the minus sign in front of t cos t applies to both of its terms.",
         "lines": [
           "y = a(sin t − t cos t). Use the product rule on t cos t:",
+          {
+            "text": "(the product rule with u = t and v = cos t;",
+            "added": true
+          },
+          {
+            "text": "  d/dt(cos t) = −sin t)",
+            "style": "indent",
+            "added": true
+          },
           "d/dt (t cos t) = t·(−sin t) + cos t·1 = −t sin t + cos t",
-          "dy/dt = a[cos t − (−t sin t + cos t)] = a[cos t + t sin t − cos t]",
+          {
+            "text": "(d/dt(sin t) = cos t, and put d/dt(t cos t) = −t sin t + cos t)",
+            "added": true
+          },
+          "dy/dt = a[cos t − (−t sin t + cos t)]",
+          {
+            "text": "(−(−t sin t + cos t) = +t sin t − cos t)",
+            "added": true
+          },
+          {
+            "text": "  = a[cos t + t sin t − cos t]",
+            "style": "indent"
+          },
+          {
+            "text": "(cos t − cos t = 0)",
+            "added": true
+          },
           "∴ dy/dt = a t sin t"
         ],
         "recall": {
@@ -172,12 +225,22 @@
             "product rule"
           ]
         },
-        "why": "The minus sign sits in front of the whole product t cos t, so both terms of its derivative change sign. Missing that is the usual reason a student gets cot t or a stray cos t here.",
+        "why": "The minus sign is in front of the product t cos t, so both terms of its derivative change sign.",
         "common_mistakes": [
           "Applying the minus sign to only the first term of the product-rule result.",
           "Writing d/dt (t cos t) as −t sin t and dropping the cos t term."
         ],
-        "memory_tip": "This step mirrors the dx/dt working: there the sin t terms cancelled, here the cos t terms do. Both leave a single term with a t in it."
+        "memory_tip": "This step is like the dx/dt working: there the sin t terms cancelled, here the cos t terms do. Both leave a single term with a t in it.",
+        "lines_compact": [
+          "y = a(sin t − t cos t). Use the product rule on t cos t:",
+          "d/dt (t cos t) = t·(−sin t) + cos t·1 = −t sin t + cos t",
+          "dy/dt = a[cos t − (−t sin t + cos t)]",
+          {
+            "text": "  = a[cos t + t sin t − cos t]",
+            "style": "indent"
+          },
+          "∴ dy/dt = a t sin t"
+        ]
       },
       {
         "id": "s4_divide",
@@ -187,8 +250,20 @@
         "mark_note": "Answer",
         "margin_note": "Last mark. Both a and t cancel, so the answer depends on t only through tan t. Valid where dx/dt ≠ 0, that is for t ≠ 0 and cos t ≠ 0.",
         "lines": [
+          {
+            "text": "(put dy/dt from step 3 and dx/dt from step 2)",
+            "added": true
+          },
           "dy/dx = (dy/dt)/(dx/dt) = (a t sin t)/(a t cos t)",
+          {
+            "text": "(this needs a ≠ 0, t ≠ 0 and cos t ≠ 0, so that dx/dt ≠ 0)",
+            "added": true
+          },
           "The a and the t cancel, leaving sin t/cos t",
+          {
+            "text": "(sin t/cos t = tan t)",
+            "added": true
+          },
           {
             "text": "∴ dy/dx = tan t",
             "style": "boxed"
@@ -217,12 +292,20 @@
             "divide"
           ]
         },
-        "why": "a cancels because it multiplies both curves equally, and t cancels because both derivatives carry one factor of t. A final answer still containing a would mean an error earlier, since scaling the whole curve cannot change its slope at a given t.",
+        "why": "a cancels because it multiplies both x and y equally, and t cancels because both derivatives carry one factor of t. A final answer still containing a would mean an error earlier, since scaling the whole curve cannot change its slope at a given t.",
         "common_mistakes": [
           "Leaving a or t in the final answer instead of cancelling them.",
           "Writing cot t by dividing the derivatives the wrong way round."
         ],
-        "memory_tip": "If a survives to the last line, go back — a scales both x and y equally, so it can never appear in dy/dx."
+        "memory_tip": "If a is still in the last line, check the working — a scales both x and y equally, so it can never appear in dy/dx.",
+        "lines_compact": [
+          "dy/dx = (dy/dt)/(dx/dt) = (a t sin t)/(a t cos t)",
+          "The a and the t cancel, leaving sin t/cos t",
+          {
+            "text": "∴ dy/dx = tan t",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

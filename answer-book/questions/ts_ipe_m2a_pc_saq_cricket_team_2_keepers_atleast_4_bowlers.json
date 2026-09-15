@@ -110,16 +110,40 @@
         "margin_note": "Two marks. ⁶C₄ = ⁶C₂ = 15, ⁷C₅ = ⁷C₂ = 21, ⁷C₄ = ⁷C₃ = 35. Multiply within each case.",
         "memory_tip": "Multiply the three groups within a case. Use ⁿCᵣ = ⁿCₙ₋ᵣ: ⁷C₅ = ⁷C₂ = 21, not 35.",
         "lines": [
-          "Case 1: 4 bowlers and 5 batsmen:",
-          "⁶C₄ = ⁶C₂ = (6 · 5)/(1 · 2) = 15",
-          "⁷C₅ = ⁷C₂ = (7 · 6)/(1 · 2) = 21",
+          {
+            "text": "Case 1: 4 bowlers and 5 batsmen:",
+            "added": true
+          },
+          {
+            "text": "⁶C₄ = ⁶C₂ = (6 · 5)/(1 · 2) = 15",
+            "added": true
+          },
+          {
+            "text": "⁷C₅ = ⁷C₂ = (7 · 6)/(1 · 2) = 21",
+            "added": true
+          },
           "²C₂ · ⁶C₄ · ⁷C₅ = 1 · 15 · 21 = 315",
-          "Case 2: 5 bowlers and 4 batsmen:",
-          "⁶C₅ = ⁶C₁ = 6",
-          "⁷C₄ = ⁷C₃ = (7 · 6 · 5)/(1 · 2 · 3) = 210/6 = 35",
+          {
+            "text": "Case 2: 5 bowlers and 4 batsmen:",
+            "added": true
+          },
+          {
+            "text": "⁶C₅ = ⁶C₁ = 6",
+            "added": true
+          },
+          {
+            "text": "⁷C₄ = ⁷C₃ = (7 · 6 · 5)/(1 · 2 · 3) = 210/6 = 35",
+            "added": true
+          },
           "²C₂ · ⁶C₅ · ⁷C₄ = 1 · 6 · 35 = 210",
-          "Case 3: 6 bowlers and 3 batsmen:",
-          "⁶C₆ = 1 and ⁷C₃ = 35",
+          {
+            "text": "Case 3: 6 bowlers and 3 batsmen:",
+            "added": true
+          },
+          {
+            "text": "⁶C₆ = 1 and ⁷C₃ = 35",
+            "added": true
+          },
           "²C₂ · ⁶C₆ · ⁷C₃ = 1 · 1 · 35 = 35"
         ],
         "recall": {
@@ -149,6 +173,11 @@
           "Adding the selections inside a case instead of multiplying.",
           "Using ⁷C₅ = 35 — that is ⁷C₃; ⁷C₅ = 21.",
           "Leaving out the batsmen factor in the 6-bowler case; ⁷C₃ = 35 is still needed."
+        ],
+        "lines_compact": [
+          "Case 1: ²C₂ · ⁶C₄ · ⁷C₅ = 1 · 15 · 21 = 315",
+          "Case 2: ²C₂ · ⁶C₅ · ⁷C₄ = 1 · 6 · 35 = 210",
+          "Case 3: ²C₂ · ⁶C₆ · ⁷C₃ = 1 · 1 · 35 = 35"
         ]
       },
       {
@@ -160,12 +189,19 @@
         "margin_note": "Last mark. 315 + 210 + 35 = 560.",
         "memory_tip": "Different bowler counts are different teams, so add: 315 + 210 + 35 = 560.",
         "lines": [
-          "The three cases cannot happen together,",
-          "so add them:",
+          {
+            "text": "The three cases cannot happen together,",
+            "added": true
+          },
+          {
+            "text": "so add them:",
+            "added": true
+          },
           "Number of ways = 315 + 210 + 35",
           {
             "text": "∴ number of ways = 560",
-            "style": "boxed"
+            "style": "boxed",
+            "added": true
           }
         ],
         "recall": {
@@ -193,6 +229,12 @@
         "common_mistakes": [
           "Multiplying the cases instead of adding.",
           "Adding only two of the three cases."
+        ],
+        "lines_compact": [
+          {
+            "text": "∴ number of ways = 315 + 210 + 35 = 560",
+            "style": "boxed"
+          }
         ]
       }
     ]

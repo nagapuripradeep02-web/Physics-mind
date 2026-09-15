@@ -47,7 +47,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.72 — SAQ chapter 11 Differential Equations, answer 92, the first answer of the chapter. On a ★★★ SSP (Super Scoring Page): book p.72 carries the SSP 72 banner. Printed appearance tags: AP 15, TS 20. The mark split is OURS: book p.72 prints margin marks only for answer 94, not for this one. The 1+1+1+1 split here is patterned on the general four-checkpoint shape used for a variables-separable equation in this chapter — spot the factorable/separable form, separate x from y, integrate, state the final relation. Star rank: the book gives the Differential Equations SAQ chapter ★★ in its SAQ chapter table (book p.49), so every Differential Equations SAQ entry takes stars 2 — that rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Differential Equations holds Q17. This exact question is also the Bullet Model Paper's Q17 (book p.110), so it is authored once, here, and covers that paper slot. The book's working was re-derived line by line and is correct throughout. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book's five Guess Papers (pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.72 — SAQ chapter 11 Differential Equations, answer 92, the first answer of the chapter. On a ★★★ SSP (Super Scoring Page): book p.72 carries the SSP 72 banner. Printed appearance tags: AP 15, TS 20. The mark split is OURS: book p.72 prints margin marks only for answer 94, not for this one. The 1+1+1+1 split here is patterned on the general four-checkpoint shape used for a variables-separable equation in this chapter — spot the factorable/separable form, separate x from y, integrate, state the final relation. Star rank: the book gives the Differential Equations SAQ chapter ★★ in its SAQ chapter table (book p.49), so every Differential Equations SAQ entry takes stars 2 — that rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Differential Equations holds Q17. This exact question is also the Bullet Model Paper's Q17 (book p.110), so it is authored once, here, and covers that paper slot. The book's working was re-derived line by line and is correct throughout. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book's five Guess Papers (pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "insider_note": "Both brackets share the common factor x and y respectively — pulling that factor out first is what turns this equation into a separable one, rather than trying to treat it as a homogeneous equation.",
   "answer": {
@@ -70,6 +70,7 @@
             "style": "heading"
           },
           "The given D.E is (xy² + x)dx + (yx² + y)dy = 0",
+          "Factor out x and y:",
           "⇒ x(y² + 1)dx + y(x² + 1)dy = 0",
           "This equation is in the variables-separable",
           "form."
@@ -89,13 +90,25 @@
         "margin_note": "One mark. Move the y-terms to the right side and divide by (x²+1)(y²+1).",
         "memory_tip": "Divide the whole equation by (x²+1)(y²+1) to send x-terms and y-terms to opposite sides.",
         "lines": [
+          {
+            "text": "Take the dy term to the right side:",
+            "added": true
+          },
           "x(y² + 1)dx = −y(x² + 1)dy",
+          {
+            "text": "Divide both sides by (x² + 1)(y² + 1):",
+            "added": true
+          },
           "⇒ x/(x² + 1) dx = −y/(y² + 1) dy"
         ],
         "why": "Dividing both sides by (x² + 1)(y² + 1) leaves x and its differential entirely on one side and y and its differential entirely on the other, which is exactly what separation of variables requires.",
         "common_mistakes": [
           "Dividing only one bracket instead of both, leaving a mixed x and y term.",
           "Losing the minus sign when moving the y(x²+1)dy term across the equals sign."
+        ],
+        "lines_compact": [
+          "x(y² + 1)dx = −y(x² + 1)dy",
+          "⇒ x/(x² + 1) dx = −y/(y² + 1) dy"
         ]
       },
       {
@@ -108,13 +121,31 @@
         "memory_tip": "The numerator on each side is exactly half the derivative of the denominator — a direct log-integral.",
         "lines": [
           "∫ x/(x² + 1) dx = −∫ y/(y² + 1) dy",
+          {
+            "text": "2x is the derivative of x² + 1, so",
+            "added": true
+          },
+          {
+            "text": "  ∫x/(x² + 1) dx = (1/2)log(x² + 1):",
+            "style": "indent",
+            "added": true
+          },
           "⇒ (1/2)log(x² + 1) = −(1/2)log(y² + 1) + c₁",
+          {
+            "text": "Multiply by 2 and write 2c₁ = log c:",
+            "added": true
+          },
           "⇒ log(x² + 1) + log(y² + 1) = log c"
         ],
         "why": "Both integrals are the standard form ∫(a fraction whose numerator is half the derivative of its denominator), giving a log of the denominator directly; combining the two logs on the same side keeps the next step simple.",
         "common_mistakes": [
           "Missing the factor of 1/2 in front of each log.",
           "Leaving the equation with logs on both sides instead of combining them onto one side before the next step."
+        ],
+        "lines_compact": [
+          "∫ x/(x² + 1) dx = −∫ y/(y² + 1) dy",
+          "⇒ (1/2)log(x² + 1) = −(1/2)log(y² + 1) + c₁",
+          "⇒ log(x² + 1) + log(y² + 1) = log c"
         ]
       },
       {
@@ -126,7 +157,15 @@
         "margin_note": "The last mark. Remove the log by exponentiating both sides.",
         "memory_tip": "log(A) = log(B) means A = B directly — no further algebra is needed once the logs match.",
         "lines": [
+          {
+            "text": "log p + log q = log(pq):",
+            "added": true
+          },
           "⇒ log[(x² + 1)(y² + 1)] = log c",
+          {
+            "text": "Equal logs have equal insides:",
+            "added": true
+          },
           {
             "text": "(x² + 1)(y² + 1) = c",
             "style": "boxed"
@@ -136,6 +175,13 @@
         "common_mistakes": [
           "Writing the final answer as x² + y² = c, dropping the +1 terms and the product structure.",
           "Leaving the log on the left side instead of exponentiating to remove it."
+        ],
+        "lines_compact": [
+          "⇒ log[(x² + 1)(y² + 1)] = log c",
+          {
+            "text": "(x² + 1)(y² + 1) = c",
+            "style": "boxed"
+          }
         ]
       }
     ]

@@ -110,14 +110,38 @@
         "margin_note": "Two marks. The pair's sum is 4 and product is 4 − 3i² = 7 (i² = −1, so −3i² = +3). The quadratic with these roots, x² − 4x + 7, divides f(x).",
         "memory_tip": "Sum 4, product 4 − 3i² = 4 + 3 = 7. The factor x² − 4x + 7 has real coefficients.",
         "lines": [
-          "Build the quadratic having those two roots.",
-          "Sum = (2 + i√3) + (2 − i√3) = 4",
-          "  (the i√3 terms cancel)",
-          "Product = (2 + i√3)(2 − i√3)",
-          "= 2² − (i√3)²   [(a + b)(a − b) = a² − b²]",
-          "= 4 − 3i² = 4 − 3(−1) = 4 + 3 = 7",
-          "The quadratic is x² − (sum)x + product:",
-          "x² − 4x + 7, and it is a factor of f(x)."
+          {
+            "text": "Build the quadratic having those two roots.",
+            "added": true
+          },
+          {
+            "text": "Sum = (2 + i√3) + (2 − i√3) = 4",
+            "added": true
+          },
+          {
+            "text": "  (the i√3 terms cancel)",
+            "added": true
+          },
+          {
+            "text": "Product = (2 + i√3)(2 − i√3)",
+            "added": true
+          },
+          {
+            "text": "= 2² − (i√3)²   [(a + b)(a − b) = a² − b²]",
+            "added": true
+          },
+          {
+            "text": "= 4 − 3i² = 4 − 3(−1) = 4 + 3 = 7",
+            "added": true
+          },
+          {
+            "text": "The quadratic is x² − (sum)x + product:",
+            "added": true
+          },
+          {
+            "text": "x² − 4x + 7, and it is a factor of f(x).",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -147,6 +171,13 @@
           "Writing the product as 4 − 3 = 1 (forgetting i² = −1).",
           "Writing x² + 4x + 7 (the sign of the middle term is minus the sum).",
           "Trying to divide by (x − 2 − i√3) directly, which carries i through the whole division."
+        ],
+        "lines_compact": [
+          "Sum of the pair = (2 + i√3) + (2 − i√3) = 4",
+          "Product = (2 + i√3)(2 − i√3) = 4 − 3i²",
+          "= 4 + 3 = 7",
+          "So x² − (sum)x + product = x² − 4x + 7",
+          "is a factor of f(x)."
         ]
       },
       {
@@ -160,12 +191,24 @@
         "lines": [
           "Divide f(x) by x² − 4x + 7.",
           "x² × (x² − 4x + 7) = x⁴ − 4x³ + 7x²",
-          "Subtracting leaves 4x³ − 11x² + 8x + 35",
+          {
+            "text": "Subtracting leaves 4x³ − 11x² + 8x + 35",
+            "added": true
+          },
           "4x × (x² − 4x + 7) = 4x³ − 16x² + 28x",
-          "Subtracting leaves 5x² − 20x + 35",
+          {
+            "text": "Subtracting leaves 5x² − 20x + 35",
+            "added": true
+          },
           "5 × (x² − 4x + 7) = 5x² − 20x + 35",
-          "Subtracting leaves 0, so the division is exact.",
-          "The quotient is x² + 4x + 5, so",
+          {
+            "text": "Subtracting leaves 0, so the division is exact.",
+            "added": true
+          },
+          {
+            "text": "The quotient is x² + 4x + 5, so",
+            "added": true
+          },
           "f(x) = (x² − 4x + 7)(x² + 4x + 5)"
         ],
         "recall": {
@@ -195,6 +238,15 @@
           "Leaving out the 0x³ term, so the columns do not line up.",
           "A sign slip when subtracting (subtracting −4x³ adds 4x³).",
           "Not writing the remainder 0, which is the check the examiner looks for."
+        ],
+        "lines_compact": [
+          "Divide f(x) by x² − 4x + 7:",
+          "x² · (x² − 4x + 7) = x⁴ − 4x³ + 7x²",
+          "left: 4x³ − 11x² + 8x + 35",
+          "4x · (x² − 4x + 7) = 4x³ − 16x² + 28x",
+          "left: 5x² − 20x + 35",
+          "5 · (x² − 4x + 7) = 5x² − 20x + 35, left: 0",
+          "So f(x) = (x² − 4x + 7)(x² + 4x + 5)"
         ]
       },
       {
@@ -207,9 +259,18 @@
         "memory_tip": "√(−4) = 2i, so the last pair is −2 ± i. Box all four; they add to 0, matching the absent x³.",
         "lines": [
           "The other two roots solve x² + 4x + 5 = 0:",
-          "x = (−4 ± √(16 − 20))/2   [quadratic formula]",
-          "= (−4 ± √(−4))/2",
-          "√(−4) = 2i, so",
+          {
+            "text": "x = (−4 ± √(16 − 20))/2   [quadratic formula]",
+            "added": true
+          },
+          {
+            "text": "= (−4 ± √(−4))/2",
+            "added": true
+          },
+          {
+            "text": "√(−4) = 2i, so",
+            "added": true
+          },
           "= (−4 ± 2i)/2 = −2 ± i",
           {
             "text": "∴ roots: 2 ± i√3, −2 ± i",
@@ -244,6 +305,15 @@
           "Writing √(−4) = 2 instead of 2i.",
           "Boxing only the two new roots and leaving out the given pair.",
           "Not checking: the four roots must add to 0 (no x³ term) and multiply to 35 (7 × 5)."
+        ],
+        "lines_compact": [
+          "The other two roots solve x² + 4x + 5 = 0:",
+          "x = (−4 ± √(16 − 20))/2 = (−4 ± √(−4))/2",
+          "= (−4 ± 2i)/2 = −2 ± i",
+          {
+            "text": "∴ roots: 2 ± i√3, −2 ± i",
+            "style": "boxed"
+          }
         ]
       }
     ]

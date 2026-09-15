@@ -95,11 +95,26 @@
         "margin_note": "Second mark. ¹³P₅ = ¹³Pᵣ, so r = 5. Check: 95040 + 5 · 11880 = 154440 = 13·12·11·10·9.",
         "memory_tip": "r matches the FIRST term, so r = 5, not the 4 of the second. Check: 95040 + 59400 = 154440.",
         "lines": [
-          "Given ¹²P₅ + 5·¹²P₄ = ¹³Pᵣ, so ¹³P₅ = ¹³Pᵣ",
-          "Check: ¹²P₅ = 12 · 11 · 10 · 9 · 8 = 95040",
-          "¹²P₄ = 12 · 11 · 10 · 9 = 11880",
-          "95040 + 5 · 11880 = 95040 + 59400 = 154440",
-          "¹³P₅ = 13 · 12 · 11 · 10 · 9 = 154440 ✓",
+          {
+            "text": "Given ¹²P₅ + 5·¹²P₄ = ¹³Pᵣ, so ¹³P₅ = ¹³Pᵣ",
+            "added": true
+          },
+          {
+            "text": "Check: ¹²P₅ = 12 · 11 · 10 · 9 · 8 = 95040",
+            "added": true
+          },
+          {
+            "text": "¹²P₄ = 12 · 11 · 10 · 9 = 11880",
+            "added": true
+          },
+          {
+            "text": "95040 + 5 · 11880 = 95040 + 59400 = 154440",
+            "added": true
+          },
+          {
+            "text": "¹³P₅ = 13 · 12 · 11 · 10 · 9 = 154440 ✓",
+            "added": true
+          },
           {
             "text": "∴ r = 5",
             "style": "boxed"
@@ -130,6 +145,14 @@
         "common_mistakes": [
           "Answering r = 4.",
           "Writing ¹³P₅ and forgetting to state r."
+        ],
+        "lines_compact": [
+          "¹³P₅ = ¹³Pᵣ",
+          "Check: 95040 + 5 · 11880 = 154440 = ¹³P₅",
+          {
+            "text": "∴ r = 5",
+            "style": "boxed"
+          }
         ]
       }
     ]

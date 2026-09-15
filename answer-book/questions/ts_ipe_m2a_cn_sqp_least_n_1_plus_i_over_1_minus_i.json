@@ -100,10 +100,22 @@
         "memory_tip": "Powers of i repeat every four: i, −1, −i, 1. The first that gives 1 is n = 4.",
         "lines": [
           "So the condition becomes iⁿ = 1.",
-          "The powers of i repeat every four steps:",
-          "i¹ = i, i² = −1, i³ = i²·i = −i,",
-          "i⁴ = i²·i² = (−1)(−1) = 1",
-          "The first power that equals 1 is the fourth.",
+          {
+            "text": "The powers of i repeat every four steps:",
+            "added": true
+          },
+          {
+            "text": "i¹ = i, i² = −1, i³ = i²·i = −i,",
+            "added": true
+          },
+          {
+            "text": "i⁴ = i²·i² = (−1)(−1) = 1",
+            "added": true
+          },
+          {
+            "text": "The first power that equals 1 is the fourth.",
+            "added": true
+          },
           {
             "text": "∴ least positive integer n = 4",
             "style": "boxed"
@@ -135,6 +147,14 @@
         "common_mistakes": [
           "Answering n = 2 because i² = −1 'is a unit'.",
           "Answering n = 0 — the question asks for a positive integer."
+        ],
+        "lines_compact": [
+          "So the condition is iⁿ = 1.",
+          "i¹ = i, i² = −1, i³ = −i, i⁴ = 1",
+          {
+            "text": "∴ least positive integer n = 4",
+            "style": "boxed"
+          }
         ]
       }
     ]

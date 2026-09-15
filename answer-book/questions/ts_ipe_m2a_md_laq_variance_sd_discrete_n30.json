@@ -167,8 +167,14 @@
         "margin_note": "Next two marks. Columns: xᵢ, fᵢ, deviation xᵢ − 14 (signed), its square, and fᵢ times the square. Signs disappear on squaring; 300 appears twice because −10 and 10 square to the same 100. The sum is 1374.",
         "memory_tip": "The column is fᵢ × (xᵢ − x̄)², frequency times the square. Squaring drops the signs on its own.",
         "lines": [
-          "Subtract the mean from each value, square it,",
-          "and multiply by the frequency:",
+          {
+            "text": "Subtract the mean from each value, square it,",
+            "added": true
+          },
+          {
+            "text": "and multiply by the frequency:",
+            "added": true
+          },
           {
             "text": "xᵢ     fᵢ     xᵢ − x̄     (xᵢ − x̄)²     fᵢ(xᵢ − x̄)²",
             "style": "indent"
@@ -234,6 +240,45 @@
           "Squaring fᵢ(xᵢ − x̄) instead of multiplying fᵢ by (xᵢ − x̄)².",
           "Using |xᵢ − x̄| (mean deviation) instead of (xᵢ − x̄)².",
           "An addition slip: 300 + 180 + 81 + 45 + 144 + 300 + 324 = 1374."
+        ],
+        "lines_compact": [
+          "With x̄ = 14:",
+          {
+            "text": "xᵢ     fᵢ     xᵢ − x̄     (xᵢ − x̄)²     fᵢ(xᵢ − x̄)²",
+            "style": "indent"
+          },
+          {
+            "text": "4      3      −10        100           300",
+            "style": "indent"
+          },
+          {
+            "text": "8      5      −6         36            180",
+            "style": "indent"
+          },
+          {
+            "text": "11     9      −3         9             81",
+            "style": "indent"
+          },
+          {
+            "text": "17     5      3          9             45",
+            "style": "indent"
+          },
+          {
+            "text": "20     4      6          36            144",
+            "style": "indent"
+          },
+          {
+            "text": "24     3      10         100           300",
+            "style": "indent"
+          },
+          {
+            "text": "32     1      18         324           324",
+            "style": "indent"
+          },
+          {
+            "text": "Σfᵢ(xᵢ − x̄)² = 1374",
+            "style": "indent"
+          }
         ]
       },
       {
@@ -249,8 +294,14 @@
             "text": "Variance σ² = (1/N)·Σfᵢ(xᵢ − x̄)²",
             "style": "eq"
           },
-          "= 1374/30",
-          "= 45.8"
+          {
+            "text": "= 1374/30",
+            "added": true
+          },
+          {
+            "text": "= 45.8",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -279,6 +330,10 @@
           "Dividing by 7 (the number of rows) instead of 30.",
           "Dividing by N − 1 = 29 — the sample formula is not the one this syllabus uses.",
           "Stopping at 1374 and calling it the variance."
+        ],
+        "lines_compact": [
+          "Variance σ² = (1/N)·Σfᵢ(xᵢ − x̄)²",
+          "= 1374/30 = 45.8"
         ]
       },
       {
@@ -292,9 +347,13 @@
         "lines": [
           {
             "text": "Standard deviation σ = √σ²",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           },
-          "= √45.8 = 6.77",
+          {
+            "text": "= √45.8 = 6.77",
+            "added": true
+          },
           {
             "text": "∴ Variance σ² = 45.8, S.D. σ = 6.77",
             "style": "boxed"
@@ -327,6 +386,13 @@
           "Reporting only the variance when the question asks for both.",
           "√45.8 taken as 6.8 — the book's two-decimal convention gives 6.77.",
           "Writing σ = 45.8 and σ² = 6.77 the wrong way round."
+        ],
+        "lines_compact": [
+          "Standard deviation σ = √45.8 = 6.77",
+          {
+            "text": "∴ Variance σ² = 45.8, S.D. σ = 6.77",
+            "style": "boxed"
+          }
         ]
       }
     ]

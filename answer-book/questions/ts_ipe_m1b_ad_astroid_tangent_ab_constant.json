@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.215, chapter 10 APPLICATIONS OF DERIVATIVES, the TANGENTS AND NORMALS sub-section, Short Answer question 1. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. TYPOGRAPHY, NOT A CHANGE OF MEANING: the two-thirds powers are set here in superscript form (x²⁄³), the same expression the book prints with a caret. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4M over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.215, chapter 10 APPLICATIONS OF DERIVATIVES, the TANGENTS AND NORMALS sub-section, Short Answer question 1. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. TYPOGRAPHY, NOT A CHANGE OF MEANING: the two-thirds powers are set here in superscript form (x²⁄³), the same expression the book prints with a caret. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4M over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say what point you take on the curve, how you get the two intercepts, and what has to happen to θ at the end.",
   "answer": {
@@ -60,9 +60,20 @@
             "style": "heading"
           },
           "The curve is x²⁄³ + y²⁄³ = a²⁄³.",
+          "(with this point, x²⁄³ and y²⁄³ become a²⁄³cos²θ",
+          {
+            "text": "  and a²⁄³sin²θ, which add easily)",
+            "style": "indent"
+          },
           "Take the general point P = (a cos³θ, a sin³θ) on the curve.",
           "Check that P lies on it:",
+          "((a cos³θ)²⁄³ = a²⁄³(cos³θ)²⁄³ = a²⁄³cos²θ,",
+          {
+            "text": "  and in the same way for sin³θ)",
+            "style": "indent"
+          },
           "(a cos³θ)²⁄³ + (a sin³θ)²⁄³ = a²⁄³cos²θ + a²⁄³sin²θ",
+          "(take out a²⁄³; cos²θ + sin²θ = 1)",
           "= a²⁄³(cos²θ + sin²θ) = a²⁄³",
           "So P is a point of the curve for every value of θ."
         ],
@@ -96,7 +107,7 @@
           "Writing the point as (a cos²θ, a sin²θ), which does not satisfy the curve.",
           "Skipping the check that P lies on the curve."
         ],
-        "memory_tip": "The power on the curve is 2/3, so the power inside the point is 3 — the cube inside cancels the two-thirds outside."
+        "memory_tip": "The power on the curve is 2/3, so the power inside the point is 3 — the cube inside times the two-thirds outside gives the power 2."
       },
       {
         "id": "s2_slope",
@@ -106,10 +117,48 @@
         "mark_note": "Method",
         "margin_note": "Second mark. Differentiate x and y separately with respect to θ, then divide. The factor 3a cancels, so the slope depends only on θ.",
         "lines": [
-          "x = a cos³θ  ⇒  dx/dθ = 3a cos²θ · (−sinθ) = −3a cos²θ sinθ",
+          {
+            "text": "(chain rule: d/dθ of cos³θ is 3cos²θ · (−sinθ))",
+            "added": true
+          },
+          "x = a cos³θ  ⇒  dx/dθ = 3a cos²θ · (−sinθ)",
+          {
+            "text": "  = −3a cos²θ sinθ",
+            "style": "indent"
+          },
+          {
+            "text": "(chain rule: d/dθ of sin³θ is 3sin²θ · cosθ)",
+            "added": true
+          },
           "y = a sin³θ  ⇒  dy/dθ = 3a sin²θ · cosθ",
-          "dy/dx = (dy/dθ)/(dx/dθ) = (3a sin²θ cosθ)/(−3a cos²θ sinθ)",
+          {
+            "text": "(for x and y given in terms of θ,",
+            "added": true
+          },
+          {
+            "text": "  dy/dx = (dy/dθ)/(dx/dθ))",
+            "style": "indent",
+            "added": true
+          },
+          "dy/dx = (dy/dθ)/(dx/dθ)",
+          {
+            "text": "  = (3a sin²θ cosθ)/(−3a cos²θ sinθ)",
+            "style": "indent"
+          },
+          {
+            "text": "(cancel 3a, one sinθ and one cosθ; this needs",
+            "added": true
+          },
+          {
+            "text": "  sinθ ≠ 0 and cosθ ≠ 0, so P is not on an axis)",
+            "style": "indent",
+            "added": true
+          },
           "= −sinθ/cosθ",
+          {
+            "text": "(sinθ/cosθ = tanθ)",
+            "added": true
+          },
           "∴ slope of the tangent  m = −tanθ"
         ],
         "recall": {
@@ -135,13 +184,28 @@
             "slope"
           ]
         },
-        "why": "For a curve given by a parameter, dy/dx is the ratio of the two θ-derivatives. Writing dy/dθ alone and calling it the slope is the most common error at this line.",
+        "why": "For a curve given by a parameter, dy/dx is the ratio of the two θ-derivatives. Writing dy/dθ alone and calling it the slope is a common error at this line.",
         "common_mistakes": [
-          "Dividing dx/dθ by dy/dθ, which turns the slope upside down.",
+          "Dividing dx/dθ by dy/dθ, which gives the reciprocal of the slope.",
           "Losing the minus sign that comes from differentiating cos³θ.",
           "Calling dy/dθ the slope of the tangent."
         ],
-        "memory_tip": "Top over bottom, both with respect to θ: dy/dθ goes above, dx/dθ goes below."
+        "memory_tip": "Top over bottom, both with respect to θ: dy/dθ goes above, dx/dθ goes below.",
+        "lines_compact": [
+          "x = a cos³θ  ⇒  dx/dθ = 3a cos²θ · (−sinθ)",
+          {
+            "text": "  = −3a cos²θ sinθ",
+            "style": "indent"
+          },
+          "y = a sin³θ  ⇒  dy/dθ = 3a sin²θ · cosθ",
+          "dy/dx = (dy/dθ)/(dx/dθ)",
+          {
+            "text": "  = (3a sin²θ cosθ)/(−3a cos²θ sinθ)",
+            "style": "indent"
+          },
+          "= −sinθ/cosθ",
+          "∴ slope of the tangent  m = −tanθ"
+        ]
       },
       {
         "id": "s3_tangent_intercepts",
@@ -149,14 +213,63 @@
         "label": "Write the tangent and read off A and B",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Third mark. Reduce the tangent to intercept form x/A + y/B = 1. Once it is in that form the two intercepts are read straight off with no further working.",
+        "margin_note": "Third mark. Reduce the tangent to intercept form x/p + y/q = 1, where p and q are the intercepts. Once it is in that form the two intercepts are read straight off with no further working.",
         "lines": [
+          {
+            "text": "(the point-slope form y − y₁ = m(x − x₁))",
+            "added": true
+          },
           "Tangent at P:  y − a sin³θ = −tanθ (x − a cos³θ)",
+          {
+            "text": "(tanθ = sinθ/cosθ, so multiplying by cosθ",
+            "added": true
+          },
+          {
+            "text": "  clears the fraction)",
+            "style": "indent",
+            "added": true
+          },
           "Multiply both sides by cosθ:",
           "y cosθ − a sin³θ cosθ = −x sinθ + a sinθ cos³θ",
+          {
+            "text": "(move −x sinθ to the left and −a sin³θ cosθ",
+            "added": true
+          },
+          {
+            "text": "  to the right)",
+            "style": "indent",
+            "added": true
+          },
           "x sinθ + y cosθ = a sinθ cos³θ + a sin³θ cosθ",
+          {
+            "text": "(take out the common factor a sinθ cosθ;",
+            "added": true
+          },
+          {
+            "text": "  then cos²θ + sin²θ = 1)",
+            "style": "indent",
+            "added": true
+          },
           "= a sinθ cosθ (cos²θ + sin²θ) = a sinθ cosθ",
+          {
+            "text": "(x sinθ/(a sinθ cosθ) = x/(a cosθ) and",
+            "added": true
+          },
+          {
+            "text": "  y cosθ/(a sinθ cosθ) = y/(a sinθ))",
+            "style": "indent",
+            "added": true
+          },
           "Divide by a sinθ cosθ:   x/(a cosθ) + y/(a sinθ) = 1",
+          {
+            "text": "(the line x/p + y/q = 1 meets the x-axis at (p, 0)",
+            "added": true
+          },
+          {
+            "text": "  and the y-axis at (0, q))",
+            "style": "indent",
+            "added": true
+          },
           "This is the intercept form, so the tangent meets the axes at",
           "A = (a cosθ, 0)   and   B = (0, a sinθ)"
         ],
@@ -184,13 +297,23 @@
             "equals one"
           ]
         },
-        "why": "The identity cos²θ + sin²θ = 1 collapses the whole right side to a sinθ cosθ in one line, and dividing by it produces intercept form directly. Putting y = 0 and x = 0 into the unsimplified tangent gives the same two intercepts but takes twice the algebra.",
+        "why": "The identity cos²θ + sin²θ = 1 reduces the right side to a sinθ cosθ in one line, and dividing by it gives the intercept form directly. Putting y = 0 and x = 0 into the unsimplified tangent gives the same two intercepts in a different way.",
         "common_mistakes": [
-          "Forgetting to multiply through by cosθ, so tanθ stays and the algebra does not close.",
+          "Not multiplying both sides by cosθ, so tanθ stays in the equation and it does not reach the intercept form.",
           "Reading the intercepts as a sinθ and a cosθ, with the two swapped.",
           "Dividing by a sinθ cosθ but leaving the right side as something other than 1."
         ],
-        "memory_tip": "Intercept form is x/A + y/B = 1, so whatever sits under x is the x-intercept and whatever sits under y is the y-intercept."
+        "memory_tip": "Intercept form is x/p + y/q = 1, so the number under x is the x-intercept and the number under y is the y-intercept.",
+        "lines_compact": [
+          "Tangent at P:  y − a sin³θ = −tanθ (x − a cos³θ)",
+          "Multiply both sides by cosθ:",
+          "y cosθ − a sin³θ cosθ = −x sinθ + a sinθ cos³θ",
+          "x sinθ + y cosθ = a sinθ cos³θ + a sin³θ cosθ",
+          "= a sinθ cosθ (cos²θ + sin²θ) = a sinθ cosθ",
+          "Divide by a sinθ cosθ:   x/(a cosθ) + y/(a sinθ) = 1",
+          "This is the intercept form, so the tangent meets the axes at",
+          "A = (a cosθ, 0)   and   B = (0, a sinθ)"
+        ]
       },
       {
         "id": "s4_length_ab",
@@ -200,12 +323,36 @@
         "mark_note": "Answer",
         "margin_note": "Last mark. The examiner is looking for θ to disappear. Stopping at √(a²cos²θ + a²sin²θ) does not answer the question, because the question asks for a constant.",
         "lines": [
+          {
+            "text": "(the two points found in step 3)",
+            "added": true
+          },
           "A = (a cosθ, 0),   B = (0, a sinθ)",
+          {
+            "text": "(the distance formula √((x₂ − x₁)² + (y₂ − y₁)²))",
+            "added": true
+          },
           "AB = √((a cosθ − 0)² + (0 − a sinθ)²)",
+          {
+            "text": "((a cosθ)² = a²cos²θ and (−a sinθ)² = a²sin²θ)",
+            "added": true
+          },
           "= √(a²cos²θ + a²sin²θ)",
+          {
+            "text": "(take out a²; cos²θ + sin²θ = 1; √(a²) = |a|)",
+            "added": true
+          },
           "= √(a²(cos²θ + sin²θ)) = √(a²) = |a|",
           {
-            "text": "∴ AB = |a|, which contains no θ — the length AB is the same at every point of the curve, so it is a constant.",
+            "text": "∴ AB = |a|, which contains no θ —",
+            "style": "boxed"
+          },
+          {
+            "text": "the length AB is the same at every point",
+            "style": "boxed"
+          },
+          {
+            "text": "of the curve, so it is a constant.",
             "style": "boxed"
           }
         ],
@@ -239,9 +386,27 @@
           "Leaving the answer as √(a²cos²θ + a²sin²θ) and calling it constant without simplifying.",
           "Using the distance formula between P and A instead of between A and B."
         ],
-        "memory_tip": "A sits on the x-axis and B sits on the y-axis, so AB is the hypotenuse of a right triangle with legs a cosθ and a sinθ — and that hypotenuse is |a|."
+        "memory_tip": "A sits on the x-axis and B sits on the y-axis, so AB is the hypotenuse of a right triangle with legs a cosθ and a sinθ — and that hypotenuse is |a|.",
+        "lines_compact": [
+          "A = (a cosθ, 0),   B = (0, a sinθ)",
+          "AB = √((a cosθ − 0)² + (0 − a sinθ)²)",
+          "= √(a²cos²θ + a²sin²θ)",
+          "= √(a²(cos²θ + sin²θ)) = √(a²) = |a|",
+          {
+            "text": "∴ AB = |a|, which contains no θ —",
+            "style": "boxed"
+          },
+          {
+            "text": "the length AB is the same at every point",
+            "style": "boxed"
+          },
+          {
+            "text": "of the curve, so it is a constant.",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },
-  "insider_note": "Use the parametric point (a cos³θ, a sin³θ) — the implicit form makes the intercepts far messier. AB then comes out as |a|, free of θ, which is the whole claim."
+  "insider_note": "Use the parametric point (a cos³θ, a sin³θ) — the implicit form makes the intercepts far messier. AB then comes out as |a|, free of θ, which proves the claim."
 }

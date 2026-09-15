@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.202, chapter 9 DIFFERENTIATION, Short Answer question 12. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. The printed stem gives no interval; the answer states the range −π/2 < x < π/2, on which sec x and tan x are defined and the principal value of the inverse tangent equals π/4 + x/2. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8 under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.202, chapter 9 DIFFERENTIATION, Short Answer question 12. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. The printed stem gives no interval; the answer states the range −π/2 < x < π/2, on which sec x and tan x are defined and the principal value of the inverse tangent equals π/4 + x/2. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8 under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say what sec x + tan x simplifies to before you differentiate.",
   "answer": {
@@ -60,6 +60,7 @@
             "style": "heading"
           },
           "Let y = Tan⁻¹(sec x + tan x)",
+          "(sec x = 1/cos x and tan x = sin x/cos x; add over cos x)",
           "sec x + tan x = 1/cos x + sin x/cos x = (1 + sin x) / cos x"
         ],
         "recall": {
@@ -89,7 +90,7 @@
           "Differentiating Tan⁻¹(sec x + tan x) directly with the chain rule and stopping at an unsimplified expression.",
           "Writing sec x as cos x rather than 1/cos x."
         ],
-        "memory_tip": "Whenever an inverse trigonometric function has a bracket, simplify the bracket first and differentiate last."
+        "memory_tip": "When the bracket inside an inverse trigonometric function matches a trigonometric identity, simplify the bracket first and differentiate last."
       },
       {
         "id": "s2_half_angles",
@@ -99,9 +100,50 @@
         "mark_note": "Method",
         "margin_note": "Second mark. 1 + sin x is a perfect square in the half angles, and cos x factorises with the same bracket — that shared factor is what cancels.",
         "lines": [
-          "1 + sin x = cos²(x/2) + sin²(x/2) + 2 sin(x/2) cos(x/2) = (cos(x/2) + sin(x/2))²",
-          "cos x = cos²(x/2) − sin²(x/2) = (cos(x/2) + sin(x/2))(cos(x/2) − sin(x/2))",
-          "(1 + sin x)/cos x = (cos(x/2) + sin(x/2)) / (cos(x/2) − sin(x/2))"
+          {
+            "text": "(1 = cos²(x/2) + sin²(x/2) and sin x = 2 sin(x/2) cos(x/2))",
+            "added": true
+          },
+          "1 + sin x = cos²(x/2) + sin²(x/2) + 2 sin(x/2) cos(x/2)",
+          {
+            "text": "((p + q)² = p² + q² + 2pq, with p = cos(x/2)",
+            "added": true
+          },
+          {
+            "text": "  and q = sin(x/2))",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  = (cos(x/2) + sin(x/2))²",
+            "style": "indent"
+          },
+          {
+            "text": "(the double angle formula for the cosine)",
+            "added": true
+          },
+          "cos x = cos²(x/2) − sin²(x/2)",
+          {
+            "text": "(p² − q² = (p + q)(p − q))",
+            "added": true
+          },
+          {
+            "text": "  = (cos(x/2) + sin(x/2))(cos(x/2) − sin(x/2))",
+            "style": "indent"
+          },
+          {
+            "text": "(put the two results into (1 + sin x)/cos x)",
+            "added": true
+          },
+          "(1 + sin x)/cos x",
+          {
+            "text": "(cancel one factor cos(x/2) + sin(x/2), which is not 0 here)",
+            "added": true
+          },
+          {
+            "text": "  = (cos(x/2) + sin(x/2)) / (cos(x/2) − sin(x/2))",
+            "style": "indent"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -131,7 +173,24 @@
           "Writing cos x as cos²(x/2) + sin²(x/2), which equals 1, instead of the difference.",
           "Forgetting the middle term 2 sin(x/2) cos(x/2) when expanding the square."
         ],
-        "memory_tip": "sin x = 2 sin(x/2) cos(x/2) is the middle term of the square, so 1 + sin x is always a perfect square."
+        "memory_tip": "sin x = 2 sin(x/2) cos(x/2) is the middle term of the square, so 1 + sin x is always a perfect square.",
+        "lines_compact": [
+          "1 + sin x = cos²(x/2) + sin²(x/2) + 2 sin(x/2) cos(x/2)",
+          {
+            "text": "  = (cos(x/2) + sin(x/2))²",
+            "style": "indent"
+          },
+          "cos x = cos²(x/2) − sin²(x/2)",
+          {
+            "text": "  = (cos(x/2) + sin(x/2))(cos(x/2) − sin(x/2))",
+            "style": "indent"
+          },
+          "(1 + sin x)/cos x",
+          {
+            "text": "  = (cos(x/2) + sin(x/2)) / (cos(x/2) − sin(x/2))",
+            "style": "indent"
+          }
+        ]
       },
       {
         "id": "s3_recognise_tan_sum",
@@ -142,8 +201,33 @@
         "margin_note": "Third mark. This is the identity the question is built on. For −π/2 < x < π/2 the angle π/4 + x/2 lies in (0, π/2), inside the principal range, so the inverse tangent cancels the tangent exactly.",
         "lines": [
           "Divide numerator and denominator by cos(x/2):",
-          "= (1 + tan(x/2)) / (1 − tan(x/2)) = tan(π/4 + x/2),  since tan(π/4) = 1",
-          "For −π/2 < x < π/2, the angle π/4 + x/2 lies in (0, π/2), so",
+          {
+            "text": "(cos(x/2)/cos(x/2) = 1 and sin(x/2)/cos(x/2) = tan(x/2);",
+            "added": true
+          },
+          {
+            "text": "  tan(A + B) = (tan A + tan B)/(1 − tan A tan B)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  with A = π/4, B = x/2)",
+            "style": "indent",
+            "added": true
+          },
+          "= (1 + tan(x/2)) / (1 − tan(x/2)) = tan(π/4 + x/2),",
+          "since tan(π/4) = 1",
+          {
+            "text": "(divide −π/2 < x < π/2 by 2 and add",
+            "added": true
+          },
+          {
+            "text": "  π/4: 0 < π/4 + x/2 < π/2)",
+            "style": "indent",
+            "added": true
+          },
+          "For −π/2 < x < π/2,",
+          "the angle π/4 + x/2 lies in (0, π/2), so",
           "y = Tan⁻¹(tan(π/4 + x/2)) = π/4 + x/2"
         ],
         "recall": {
@@ -173,7 +257,15 @@
           "Reading (1 + tan(x/2))/(1 − tan(x/2)) as tan(π/4) + tan(x/2).",
           "Cancelling the inverse tangent without checking the angle lies in the principal range."
         ],
-        "memory_tip": "tan(π/4) = 1, so any fraction of the form (1 + tan B)/(1 − tan B) is tan(π/4 + B)."
+        "memory_tip": "tan(π/4) = 1, so any fraction of the form (1 + tan B)/(1 − tan B) is tan(π/4 + B).",
+        "lines_compact": [
+          "Divide numerator and denominator by cos(x/2):",
+          "= (1 + tan(x/2)) / (1 − tan(x/2)) = tan(π/4 + x/2),",
+          "since tan(π/4) = 1",
+          "For −π/2 < x < π/2,",
+          "the angle π/4 + x/2 lies in (0, π/2), so",
+          "y = Tan⁻¹(tan(π/4 + x/2)) = π/4 + x/2"
+        ]
       },
       {
         "id": "s4_differentiate",
@@ -184,7 +276,15 @@
         "margin_note": "Last mark. π/4 is a constant and differentiates to 0, so the whole derivative comes from x/2.",
         "lines": [
           "y = π/4 + x/2, and π/4 is a constant",
+          {
+            "text": "(d/dx(π/4) = 0 and d/dx(x/2) = 1/2)",
+            "added": true
+          },
           "dy/dx = 0 + 1/2",
+          {
+            "text": "(0 + 1/2 = 1/2)",
+            "added": true
+          },
           {
             "text": "∴ dy/dx = 1/2",
             "style": "boxed"
@@ -212,12 +312,20 @@
             "pi by four"
           ]
         },
-        "why": "After the simplification the function is a straight line in x, so its derivative is the constant slope 1/2 — no trigonometric term survives.",
+        "why": "After the simplification the function is a straight line in x, so its derivative is the constant slope 1/2 — no trigonometric term is left.",
         "common_mistakes": [
           "Differentiating π/4 as π/4 rather than 0.",
           "Giving 2 instead of 1/2 by differentiating x/2 as 2x."
         ],
-        "memory_tip": "Check with two values inside the range: y(0) = π/4 and y(π/3) = π/4 + π/6, and the rise π/6 over the run π/3 is 1/2."
+        "memory_tip": "Check with two values inside the range: y(0) = π/4 and y(π/3) = π/4 + π/6, and the rise π/6 over the run π/3 is 1/2.",
+        "lines_compact": [
+          "y = π/4 + x/2, and π/4 is a constant",
+          "dy/dx = 0 + 1/2",
+          {
+            "text": "∴ dy/dx = 1/2",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

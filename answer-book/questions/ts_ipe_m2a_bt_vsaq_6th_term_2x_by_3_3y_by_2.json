@@ -100,12 +100,30 @@
         "margin_note": "Second mark. ⁹C₅ = 126; (2⁴/3⁴)(3⁵/2⁵) = 3/2; 126 × 3/2 = 189.",
         "memory_tip": "The fractions are built to cancel: (2⁴/3⁴)(3⁵/2⁵) = 3/2, and 126 × 3/2 = 189.",
         "lines": [
-          "= ⁹C₅ · (2⁴x⁴/3⁴) · (3⁵y⁵/2⁵)",
-          "= ⁹C₅ · (2⁴/2⁵) · (3⁵/3⁴) · x⁴y⁵",
-          "= ⁹C₅ · 2⁴⁻⁵ · 3⁵⁻⁴ · x⁴y⁵",
-          "= ⁹C₅ · 2⁻¹ · 3 · x⁴y⁵ = ⁹C₅ · (3/2) · x⁴y⁵",
-          "⁹C₅ = ⁹C₄ = (9·8·7·6)/(1·2·3·4) = 3024/24 = 126",
-          "= 126 · (3/2) · x⁴y⁵ = 63 · 3 · x⁴y⁵",
+          {
+            "text": "= ⁹C₅ · (2⁴x⁴/3⁴) · (3⁵y⁵/2⁵)",
+            "added": true
+          },
+          {
+            "text": "= ⁹C₅ · (2⁴/2⁵) · (3⁵/3⁴) · x⁴y⁵",
+            "added": true
+          },
+          {
+            "text": "= ⁹C₅ · 2⁴⁻⁵ · 3⁵⁻⁴ · x⁴y⁵",
+            "added": true
+          },
+          {
+            "text": "= ⁹C₅ · 2⁻¹ · 3 · x⁴y⁵ = ⁹C₅ · (3/2) · x⁴y⁵",
+            "added": true
+          },
+          {
+            "text": "⁹C₅ = ⁹C₄ = (9·8·7·6)/(1·2·3·4) = 3024/24 = 126",
+            "added": true
+          },
+          {
+            "text": "= 126 · (3/2) · x⁴y⁵ = 63 · 3 · x⁴y⁵",
+            "added": true
+          },
           {
             "text": "∴ T₆ = 189 x⁴y⁵",
             "style": "boxed"
@@ -136,6 +154,13 @@
         "common_mistakes": [
           "Cancelling to 2/3 instead of 3/2.",
           "Writing ⁹C₅ = 63."
+        ],
+        "lines_compact": [
+          "= 126 · (2⁴/3⁴) · (3⁵/2⁵) · x⁴y⁵ = 126 · (3/2) · x⁴y⁵",
+          {
+            "text": "∴ T₆ = 189 x⁴y⁵",
+            "style": "boxed"
+          }
         ]
       }
     ]

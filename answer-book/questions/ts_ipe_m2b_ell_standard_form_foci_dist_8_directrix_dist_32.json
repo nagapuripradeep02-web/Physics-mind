@@ -43,7 +43,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.60 — SAQ chapter 8 Ellipse, answer 65, on a ★★★ SSP page (book p.49 chapter table). Printed appearance: AP 17 only — no TS tag printed. Book p.60 prints NO margin mark tags or tick boxes for answers 64-66, so the 1+1+1+1 split here is OURS, patterned on the four natural stages of the derivation, matching the shape used for Q64 in this same chapter. Ellipse is an SAQ-ONLY unit on the book's IPE Blue Print (book p.5). No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE BLM on hand; the book's five Guess Papers pp.118-127 are the orchestrator's back-test stand-in). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.60 — SAQ chapter 8 Ellipse, answer 65, on a ★★★ SSP page (book p.49 chapter table). Printed appearance: AP 17 only — no TS tag printed. Book p.60 prints NO margin mark tags or tick boxes for answers 64-66, so the 1+1+1+1 split here is OURS, patterned on the four natural stages of the derivation, matching the shape used for Q64 in this same chapter. Ellipse is an SAQ-ONLY unit on the book's IPE Blue Print (book p.5). No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE BLM on hand; the book's five Guess Papers pp.118-127 are the orchestrator's back-test stand-in). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "insider_note": "Multiplying the two given conditions together — (ae) times (a/e) — cancels the e and leaves a² directly, which is faster than solving for e first.",
   "answer": {
@@ -67,6 +67,7 @@
           },
           "Let the ellipse be x²/a² + y²/b² = 1,",
           "with foci S(ae, 0), S′(−ae, 0)",
+          "(and directrices x = a/e and x = −a/e)",
           "Distance between foci is 8 ⇒ 2ae = 8",
           "⇒ ae = 4 …(1)"
         ],
@@ -85,6 +86,15 @@
         "margin_note": "Second mark. The two directrices are at x = ±a/e, so their distance apart is 2(a/e).",
         "memory_tip": "Directrices use a/e (division); foci use ae (multiplication) — do not swap them.",
         "lines": [
+          {
+            "text": "The directrices x = a/e and x = −a/e are",
+            "added": true
+          },
+          {
+            "text": "  2a/e apart.",
+            "style": "indent",
+            "added": true
+          },
           "Distance between directrices is 32",
           "⇒ 2(a/e) = 32 ⇒ a/e = 16 …(2)"
         ],
@@ -92,6 +102,10 @@
         "common_mistakes": [
           "Writing a/e = 32 directly, forgetting the factor of 2 between the two directrices.",
           "Using ae instead of a/e for the directrix distance."
+        ],
+        "lines_compact": [
+          "Distance between directrices is 32",
+          "⇒ 2(a/e) = 32 ⇒ a/e = 16 …(2)"
         ]
       },
       {
@@ -103,14 +117,39 @@
         "margin_note": "Third mark. Multiplying equations (1) and (2) cancels e and leaves a² directly.",
         "memory_tip": "(ae) × (a/e) = a² — the e's cancel because one condition multiplies by e and the other divides by e.",
         "lines": [
+          {
+            "text": "e cancels when (1) and (2) are multiplied:",
+            "added": true
+          },
           "Multiplying (1) and (2):",
           "(ae)(a/e) = 4 × 16 = 64 ⇒ a² = 64",
-          "b² = a²(1 − e²) = a² − (ae)² = 64 − 16 = 48"
+          {
+            "text": "(ae × a/e = a², since e/e = 1)",
+            "added": true
+          },
+          {
+            "text": "So a = 8 and e = ae/a = 4/8 = 1/2, which is < 1.",
+            "added": true
+          },
+          {
+            "text": "Now use b² = a²(1 − e²):",
+            "added": true
+          },
+          "b² = a²(1 − e²) = a² − (ae)² = 64 − 16 = 48",
+          {
+            "text": "((ae)² = 4² = 16)",
+            "added": true
+          }
         ],
         "why": "Multiplying the foci condition by the directrix condition cancels the eccentricity e entirely, giving a² in one step; b² then follows from a² − (ae)², since ae is already known.",
         "common_mistakes": [
           "Trying to find e first by dividing instead of multiplying — that is a slower, error-prone route.",
           "Using a² − a²e² but substituting a²e² incorrectly instead of (ae)² = 16."
+        ],
+        "lines_compact": [
+          "Multiplying (1) and (2):",
+          "(ae)(a/e) = 4 × 16 = 64 ⇒ a² = 64",
+          "b² = a²(1 − e²) = a² − (ae)² = 64 − 16 = 48"
         ]
       },
       {
@@ -124,6 +163,10 @@
         "lines": [
           "a² = 64, b² = 48",
           {
+            "text": "Put these in x²/a² + y²/b² = 1:",
+            "added": true
+          },
+          {
             "text": "Equation of the ellipse: x²/64 + y²/48 = 1",
             "style": "boxed"
           }
@@ -132,6 +175,13 @@
         "common_mistakes": [
           "Swapping a² and b² in the final equation.",
           "Leaving the answer as a = 8 instead of squaring to a² = 64 in the denominator."
+        ],
+        "lines_compact": [
+          "a² = 64, b² = 48",
+          {
+            "text": "Equation of the ellipse: x²/64 + y²/48 = 1",
+            "style": "boxed"
+          }
         ]
       }
     ]

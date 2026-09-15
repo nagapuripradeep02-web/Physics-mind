@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.215, chapter 10 APPLICATIONS OF DERIVATIVES, the RATE MEASURE sub-section, Very Short Answer question 17. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; this bank ships the whole chapter as ONE unit. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. The printed stem gives no units for s or t, so the answer is written as units of s per unit of t rather than inventing metres and seconds. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks) over this sub-section but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.215, chapter 10 APPLICATIONS OF DERIVATIVES, the RATE MEASURE sub-section, Very Short Answer question 17. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; this bank ships the whole chapter as ONE unit. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. The printed stem gives no units for s or t, so the answer is written as units of s per unit of t rather than inventing metres and seconds. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks) over this sub-section but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say whether you differentiate here, and what you divide by.",
   "answer": {
@@ -52,10 +52,15 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "This is an average rate of change question. Over an interval the average rate is the",
-          "change in s divided by the change in t, so no differentiation is used here.",
+          "This is an average rate of change question.",
+          "Over an interval the average rate is the",
+          "change in s divided by the change in t,",
+          "so no differentiation is used here.",
+          "(from t = 2 to t = 4: change in s ÷ change in t)",
           "Average rate of change = [f(4) − f(2)] / (4 − 2)",
+          "(put 4 in place of t: 4² = 16 and 2 × 16 = 32)",
           "f(t) = 2t² + 3, so f(4) = 2(4)² + 3 = 32 + 3 = 35",
+          "(put 2 in place of t: 2² = 4 and 2 × 4 = 8)",
           "and f(2) = 2(2)² + 3 = 8 + 3 = 11"
         ],
         "recall": {
@@ -97,10 +102,26 @@
         "margin_note": "Second mark. 24/2 = 12. Divide by 4 − 2 = 2, not by 4. The stem gives no units for s and t, so the answer is written as units of s per unit of t.",
         "memory_tip": "Change in s over change in t — the same shape as the slope of the line joining the two points on the graph.",
         "lines": [
+          {
+            "text": "(put f(4) = 35 and f(2) = 11)",
+            "added": true
+          },
           "Average rate of change = (35 − 11) / (4 − 2)",
+          {
+            "text": "(35 − 11 = 24 and 4 − 2 = 2)",
+            "added": true
+          },
           "= 24 / 2",
           {
-            "text": "∴ average rate of change = 12 units of s per unit of t",
+            "text": "(24 ÷ 2 = 12)",
+            "added": true
+          },
+          {
+            "text": "∴ average rate of change",
+            "style": "boxed"
+          },
+          {
+            "text": "= 12 units of s per unit of t",
             "style": "boxed"
           }
         ],
@@ -130,7 +151,19 @@
         "common_mistakes": [
           "Writing 12t, as if the answer were still a function of t.",
           "Giving 24, the change in s, as the rate.",
-          "Quoting f′(3) = 12 as the method — the number agrees here only because f is a quadratic, and it would not for other functions."
+          "Quoting f′(3) = 12 as the method — the number agrees here because for a quadratic the value of f′ at the midpoint equals the average rate, which is not true for most other functions."
+        ],
+        "lines_compact": [
+          "Average rate of change = (35 − 11) / (4 − 2)",
+          "= 24 / 2",
+          {
+            "text": "∴ average rate of change",
+            "style": "boxed"
+          },
+          {
+            "text": "= 12 units of s per unit of t",
+            "style": "boxed"
+          }
         ]
       }
     ]

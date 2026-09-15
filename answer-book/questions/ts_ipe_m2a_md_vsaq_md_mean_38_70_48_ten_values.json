@@ -106,15 +106,25 @@
         "margin_note": "Second mark. Ten absolute deviations from 50, in the given order: 12, 20, 2, 10, 8, 5, 13, 4, 4, 6. Sum 84, divide by n = 10. 84/10 = 8.4.",
         "memory_tip": "Drop every sign before adding: with signs the deviations from the mean always total 0. 84/10 = 8.4.",
         "lines": [
-          "Take each value's distance from 50,",
-          "always as a positive number:",
+          {
+            "text": "Take each value's distance from 50,",
+            "added": true
+          },
+          {
+            "text": "always as a positive number:",
+            "added": true
+          },
           "|xᵢ − x̄| : 12, 20, 2, 10, 8, 5, 13, 4, 4, 6",
           "Σ|xᵢ − x̄| = 84",
           {
             "text": "M.D. = Σ|xᵢ − x̄|/n",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           },
-          "= 84/10 = 8.4",
+          {
+            "text": "= 84/10 = 8.4",
+            "added": true
+          },
           {
             "text": "∴ M.D. about the mean = 8.4",
             "style": "boxed"
@@ -148,6 +158,15 @@
           "Keeping the signs, which gives 0.",
           "Miscounting a deviation: 63 − 50 = 13, 38 − 50 = −12 → 12.",
           "Dividing 84 by 9 or by 11 — the divisor is n = 10."
+        ],
+        "lines_compact": [
+          "|xᵢ − x̄| : 12, 20, 2, 10, 8, 5, 13, 4, 4, 6",
+          "Σ|xᵢ − x̄| = 84",
+          "M.D. = Σ|xᵢ − x̄|/n = 84/10 = 8.4",
+          {
+            "text": "∴ M.D. about the mean = 8.4",
+            "style": "boxed"
+          }
         ]
       }
     ]

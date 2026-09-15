@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.8, chapter 1 SETS & RELATIONS, Very Short Answer question 26. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sets and Relations is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.8, chapter 1 SETS & RELATIONS, Very Short Answer question 26. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sets and Relations is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would work this out — say the order you test the elements in, and what the condition x < y rules out.",
   "answer": {
@@ -54,6 +54,7 @@
           "A = {1, 2, 3},   B = {1, 3, 6}",
           "For each x in A, keep every y in B with x < y:",
           "x = 1:  y = 3, 6     (y = 1 fails, since 1 < 1 is false)",
+          "(2 < 1 is false; 2 < 3 and 2 < 6 are true)",
           "x = 2:  y = 3, 6",
           "x = 3:  y = 6        (y = 3 fails, since 3 < 3 is false)"
         ],
@@ -79,7 +80,7 @@
             "dropped"
           ]
         },
-        "why": "The condition x < y is strict, so a pair with equal entries is not allowed. Taking each x separately means that check is made three times instead of once, which is where the two rejected pairs are caught.",
+        "why": "The condition x < y is strict, so a pair with equal entries is not allowed. Taking each x separately means that check is made three times instead of once, which is where the two pairs with equal entries, (1, 1) and (3, 3), are caught.",
         "memory_tip": "The condition is x < y, not x ≤ y — equal values are left out.",
         "common_mistakes": [
           "Including (1, 1) and (3, 3), which would need the condition to be x ≤ y.",
@@ -96,7 +97,13 @@
         "margin_note": "Second mark. Five ordered pairs inside one pair of braces, each with its first entry from A. The count 2 + 2 + 1 = 5 checks the list against the three lines above.",
         "lines": [
           "Collect the pairs from the three lines above:",
-          "x = 1 gives (1, 3) and (1, 6);  x = 2 gives (2, 3) and (2, 6);  x = 3 gives (3, 6)",
+          "x = 1 gives (1, 3) and (1, 6);",
+          "x = 2 gives (2, 3) and (2, 6);",
+          "x = 3 gives (3, 6)",
+          {
+            "text": "(2 + 2 + 1 = 5)",
+            "added": true
+          },
           "R has 5 pairs, and R ⊆ A × B, which has 3 × 3 = 9 pairs.",
           {
             "text": "∴ R = {(1, 3), (1, 6), (2, 3), (2, 6), (3, 6)}",
@@ -129,9 +136,20 @@
         "why": "R is a subset of A × B, so every pair must have its first entry in A and its second in B. Writing the count beside the list shows the answer has been checked and not just copied down.",
         "memory_tip": "Count the pairs from your working before writing them: 2 + 2 + 1 = 5.",
         "common_mistakes": [
-          "Writing (3, 1) or (6, 1), whose entries are in the wrong sets.",
+          "Writing reversed pairs such as (3, 1) or (6, 1): 3 < 1 is false, and 6 is not a member of A.",
           "Giving the answer as a list of y values instead of ordered pairs.",
           "Leaving out (3, 6), because 3 is the last element of A and is checked in a hurry."
+        ],
+        "lines_compact": [
+          "Collect the pairs from the three lines above:",
+          "x = 1 gives (1, 3) and (1, 6);",
+          "x = 2 gives (2, 3) and (2, 6);",
+          "x = 3 gives (3, 6)",
+          "R has 5 pairs, and R ⊆ A × B, which has 3 × 3 = 9 pairs.",
+          {
+            "text": "∴ R = {(1, 3), (1, 6), (2, 3), (2, 6), (3, 6)}",
+            "style": "boxed"
+          }
         ]
       }
     ]

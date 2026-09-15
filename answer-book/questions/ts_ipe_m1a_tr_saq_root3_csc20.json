@@ -35,7 +35,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.65 — SAQ chapter 10 T-Ratios upto Transformations, answer 64.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 17. The twin of 64.1 with the √3 on the other term, so the known angles come out as 60° rather than 30°. The book notes the second half is \"same to same\". ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter (its pages are set two questions to a page in two columns). It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used here are the book's own. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q14 is the T-Ratios slot. RE-CUT 2026-08-31: this card was filed as SAQ at 4 marks and is now VSAQ at 2. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya FAST TRACK IPE Mathematics-IA 2026-27 edition files this chapter under a Very Short Answer Questions banner and prints no short answer block for it at all, asking this same question as Very Short Answer question 42 iii. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. The mathematics and the steps are unchanged; only the mark scheme moved: the two marks now sit on the step that takes the 2 out and on the closing cancellation, and the remaining steps stay on the page as unmarked working. Still unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.65 — SAQ chapter 10 T-Ratios upto Transformations, answer 64.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 17. The twin of 64.1 with the √3 on the other term, so the known angles come out as 60° rather than 30°. The book notes the second half is \"same to same\". ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter (its pages are set two questions to a page in two columns). It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used here are the book's own. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q14 is the T-Ratios slot. RE-CUT 2026-08-31: this card was filed as SAQ at 4 marks and is now VSAQ at 2. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya FAST TRACK IPE Mathematics-IA 2026-27 edition files this chapter under a Very Short Answer Questions banner and prints no short answer block for it at all, asking this same question as Very Short Answer question 42 iii. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. The mathematics and the steps are unchanged; only the mark scheme moved: the two marks now sit on the step that takes the 2 out and on the closing cancellation, and the remaining steps stay on the page as unmarked working. Still unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — name each move in order.",
   "answer": {
@@ -56,7 +56,9 @@
             "style": "heading"
           },
           "L.H.S = √3 cosec20° − sec20°",
+          "(cosec θ = 1/sin θ and sec θ = 1/cos θ)",
           "= √3/sin20° − 1/cos20°",
+          "Use the common denominator sin20° cos20°:",
           "= (√3 cos20° − sin20°)/(sin20° cos20°)"
         ],
         "recall": {
@@ -96,6 +98,15 @@
         "mark_note": "Method",
         "margin_note": "First mark. This time √3/2 and 1/2 land as sin 60° and cos 60° — the other way round from the 1/sin 10° − √3/cos 10° question.",
         "lines": [
+          {
+            "text": "Take out 2 from the top, so that √3/2 and 1/2",
+            "added": true
+          },
+          {
+            "text": "  appear — these are sin60° and cos60°:",
+            "style": "indent",
+            "added": true
+          },
           "= 2[(√3/2)cos20° − (1/2)sin20°] / (sin20° cos20°)",
           "= 2[sin60° cos20° − cos60° sin20°] / (sin20° cos20°)"
         ],
@@ -126,7 +137,11 @@
           "Copying the 1/sin 10° − √3/cos 10° question and using 30°.",
           "Not factoring the 2 out first."
         ],
-        "memory_tip": "Here √3/2 and 1/2 land as sin 60° and cos 60° — the other way round from the 1/sin 10° − √3/cos 10° question."
+        "memory_tip": "Here √3/2 and 1/2 land as sin 60° and cos 60° — the other way round from the 1/sin 10° − √3/cos 10° question.",
+        "lines_compact": [
+          "= 2[(√3/2)cos20° − (1/2)sin20°] / (sin20° cos20°)",
+          "= 2[sin60° cos20° − cos60° sin20°] / (sin20° cos20°)"
+        ]
       },
       {
         "id": "s3_apply_sin_a_b",
@@ -135,7 +150,15 @@
         "marks": 0,
         "margin_note": "The numerator collapses to 2 sin 40°.",
         "lines": [
+          {
+            "text": "(sinA cosB − cosA sinB = sin(A − B))",
+            "added": true
+          },
           "= 2 sin(60° − 20°) / (sin20° cos20°)",
+          {
+            "text": "(60° − 20° = 40°)",
+            "added": true
+          },
           "= 2 sin40° / (sin20° cos20°)"
         ],
         "recall": {
@@ -164,7 +187,11 @@
           "Using sin(A+B) and getting sin 80°.",
           "Reversing the subtraction."
         ],
-        "memory_tip": "The numerator collapses to 2 sin 40°."
+        "memory_tip": "The numerator collapses to 2 sin 40°.",
+        "lines_compact": [
+          "= 2 sin(60° − 20°) / (sin20° cos20°)",
+          "= 2 sin40° / (sin20° cos20°)"
+        ]
       },
       {
         "id": "s4_expand_sin40_and_cancel",
@@ -174,7 +201,20 @@
         "mark_note": "Conclusion",
         "margin_note": "Last mark. sin40° = 2 sin20° cos20°, the denominator exactly — so it cancels and leaves 4.",
         "lines": [
+          {
+            "text": "Write sin40° with the double-angle formula:",
+            "added": true
+          },
           "= 2(2 sin20° cos20°) / (sin20° cos20°)",
+          {
+            "text": "sin20° cos20° cancels from top and bottom:",
+            "added": true
+          },
+          {
+            "text": "  2 × 2 = 4",
+            "style": "indent",
+            "added": true
+          },
           {
             "text": "= 4 = R.H.S",
             "style": "boxed"
@@ -206,7 +246,14 @@
           "Cancelling before expanding.",
           "Finishing with 2."
         ],
-        "memory_tip": "sin40° = 2 sin20° cos20°, exactly the denominator — it cancels and leaves 4."
+        "memory_tip": "sin40° = 2 sin20° cos20°, exactly the denominator — it cancels and leaves 4.",
+        "lines_compact": [
+          "= 2(2 sin20° cos20°) / (sin20° cos20°)",
+          {
+            "text": "= 4 = R.H.S",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

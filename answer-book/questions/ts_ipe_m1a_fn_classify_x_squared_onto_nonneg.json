@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.11, chapter 2 FUNCTIONS, Very Short Answer question 18(ii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape gives one mark to the counterexample that kills one one and one to the onto argument, because the question asks about both properties and a student who settles only one still earns half. The verdict line carries no mark and is authored for the student, not for the examiner. The codomain printed in the stem is [0, ∞), not R, and the onto argument is answered against that codomain; the same rule x² read as a map from R to R would NOT be onto, which is the confusion this part tests. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.11, chapter 2 FUNCTIONS, Very Short Answer question 18(ii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape gives one mark to the counterexample that kills one one and one to the onto argument, because the question asks about both properties and a student who settles only one still earns half. The verdict line carries no mark and is authored for the student, not for the examiner. The codomain printed in the stem is [0, ∞), not R, and the onto argument is answered against that codomain; the same rule x² read as a map from R to R would NOT be onto, which is the confusion this part tests. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would decide this — what kills one one, and how the codomain makes the onto part work.",
   "answer": {
@@ -54,6 +54,11 @@
           },
           "f: R→[0, ∞), f(x) = x²",
           "Domain = R, codomain = [0, ∞)",
+          "(to show a function is not one one, one pair of",
+          {
+            "text": "  different inputs with equal images is enough)",
+            "style": "indent"
+          },
           "f(−1) = (−1)² = 1 and f(1) = 1² = 1",
           "So f(−1) = f(1) but −1 ≠ 1.",
           "∴ f is not one one (not an injection)."
@@ -96,8 +101,16 @@
         "margin_note": "Second mark. The codomain is [0, ∞), so y is never negative and √y is always a real number. That is the whole reason this map is onto.",
         "memory_tip": "The codomain is [0, ∞), so y ≥ 0 and √y is real. Take x = √y and the image is y.",
         "lines": [
+          {
+            "text": "(onto: every element of the codomain is an image)",
+            "added": true
+          },
           "Let y ∈ [0, ∞), so y ≥ 0.",
           "Then √y is a real number, so √y ∈ R.",
+          {
+            "text": "(y ≥ 0, so its square root is real)",
+            "added": true
+          },
           "f(√y) = (√y)² = y",
           "So every y in [0, ∞) has a pre-image in R.",
           "∴ f is onto (a surjection)."
@@ -130,6 +143,13 @@
         "common_mistakes": [
           "Answering for the codomain R instead of [0, ∞) and calling f not onto.",
           "Writing x = ±√y; one pre-image is enough, and ±√y is not a single number."
+        ],
+        "lines_compact": [
+          "Let y ∈ [0, ∞), so y ≥ 0.",
+          "Then √y is a real number, so √y ∈ R.",
+          "f(√y) = (√y)² = y",
+          "So every y in [0, ∞) has a pre-image in R.",
+          "∴ f is onto (a surjection)."
         ]
       },
       {

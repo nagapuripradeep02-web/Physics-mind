@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 5 MATRICES, Very Short Answer question 27, book p.36. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split gives one mark to the minor and one to the sign, because the question names two different quantities and the sign is the part students lose. POSITION: 5 is the entry in row 3, column 2, so it is a₃₂; deleting that row and that column leaves the 2×2 determinant with rows (1, −2) and (3, 2). CHECKED: the minor was evaluated twice, as (1)(2) − (−2)(3) = 2 + 6 = 8 and again as the determinant of the remaining block read down its columns, both giving 8; the cofactor is (−1)³⁺² × 8 = −8. Paper position: Maths-1A Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 5 MATRICES, Very Short Answer question 27, book p.36. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split gives one mark to the minor and one to the sign, because the question names two different quantities and the sign is the part students lose. POSITION: 5 is the entry in row 3, column 2, so it is a₃₂; deleting that row and that column leaves the 2×2 determinant with rows (1, −2) and (3, 2). CHECKED: the minor was evaluated twice, as (1)(2) − (−2)(3) = 2 + 6 = 8 and again as the determinant of the remaining block read down its columns, both giving 8; the cofactor is (−1)³⁺² × 8 = −8. Paper position: Maths-1A Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find the minor and the cofactor of the element 5.",
   "answer": {
@@ -54,6 +54,7 @@
           },
           "The element 5 is in row 3, column 2,",
           "so it is a₃₂. Delete row 3 and column 2.",
+          "(rows 1 and 2, and columns 1 and 3, remain)",
           {
             "text": "M_{32} = \\begin{vmatrix} 1 & -2 \\\\ 3 & 2 \\end{vmatrix} = (1)(2) - (-2)(3) = 8",
             "render": "katex",
@@ -98,6 +99,10 @@
         "lines": [
           "The minor carries no sign. The cofactor",
           "is the minor times (−1) to the power i + j.",
+          {
+            "text": "(i = 3 and j = 2, so i + j = 5, an odd number)",
+            "added": true
+          },
           "A₃₂ = (−1)³⁺² × M₃₂ = (−1)⁵ × 8 = −8",
           {
             "text": "∴ minor M₃₂ = 8, cofactor A₃₂ = −8",
@@ -129,6 +134,15 @@
         "common_mistakes": [
           "Giving the same value for both, usually 8 and 8.",
           "Using (−1)²⁺³ from the wrong position, which happens to give the same sign here but is the wrong reason."
+        ],
+        "lines_compact": [
+          "The minor carries no sign. The cofactor",
+          "is the minor times (−1) to the power i + j.",
+          "A₃₂ = (−1)³⁺² × M₃₂ = (−1)⁵ × 8 = −8",
+          {
+            "text": "∴ minor M₃₂ = 8, cofactor A₃₂ = −8",
+            "style": "boxed"
+          }
         ]
       }
     ]

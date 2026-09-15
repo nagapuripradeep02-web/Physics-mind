@@ -118,14 +118,35 @@
         "memory_tip": "The digit sum is 25, not 24. Collect the place values as 1000 + 100 + 10 + 1 = 1111.",
         "lines": [
           "Sum of the digits = 1 + 3 + 5 + 7 + 9 = 25",
-          "In the units place each digit appears 24 times,",
-          "so the units place contributes",
-          "24 · 25 · 1",
-          "In the same way the tens place gives 24 · 25 · 10,",
-          "the hundreds 24 · 25 · 100,",
-          "and the thousands 24 · 25 · 1000",
+          {
+            "text": "In the units place each digit appears 24 times,",
+            "added": true
+          },
+          {
+            "text": "so the units place contributes",
+            "added": true
+          },
+          {
+            "text": "24 · 25 · 1",
+            "added": true
+          },
+          {
+            "text": "In the same way the tens place gives 24 · 25 · 10,",
+            "added": true
+          },
+          {
+            "text": "the hundreds 24 · 25 · 100,",
+            "added": true
+          },
+          {
+            "text": "and the thousands 24 · 25 · 1000",
+            "added": true
+          },
           "Sum = 24 · 25 · (1000 + 100 + 10 + 1)",
-          "= 24 · 25 · 1111"
+          {
+            "text": "= 24 · 25 · 1111",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -154,6 +175,13 @@
           "Multiplying by 1111 but forgetting the 24 — each digit appears 24 times, not once.",
           "Using 11111 (five places) — the numbers have four digits.",
           "Taking the digit sum as 1 + 3 + 5 + 7 + 9 = 24 by slip; it is 25."
+        ],
+        "lines_compact": [
+          "Sum of the digits = 1 + 3 + 5 + 7 + 9 = 25",
+          "Units place contributes 24 · 25 · 1",
+          "Tens place contributes 24 · 25 · 10, and so on.",
+          "Sum = 24 · 25 · (1000 + 100 + 10 + 1)",
+          "= 24 · 25 · 1111 = 600 · 1111"
         ]
       },
       {
@@ -165,11 +193,18 @@
         "margin_note": "Last mark. 600 × 1111 = 666600, written 6,66,600.",
         "memory_tip": "600 × 1111 = 6,66,600. Check it as 6 × 1111 = 6666 with two zeros added.",
         "lines": [
-          "24 · 25 = 600",
-          "Sum = 600 · 1111",
+          {
+            "text": "24 · 25 = 600",
+            "added": true
+          },
+          {
+            "text": "Sum = 600 · 1111",
+            "added": true
+          },
           {
             "text": "∴ required sum = 6,66,600",
-            "style": "boxed"
+            "style": "boxed",
+            "added": true
           }
         ],
         "recall": {
@@ -197,6 +232,12 @@
         "common_mistakes": [
           "Writing 66,660 or 6,66,000 by dropping a digit.",
           "Leaving the answer as 24 × 25 × 1111 without evaluating it."
+        ],
+        "lines_compact": [
+          {
+            "text": "∴ required sum = 600 · 1111 = 6,66,600",
+            "style": "boxed"
+          }
         ]
       }
     ]

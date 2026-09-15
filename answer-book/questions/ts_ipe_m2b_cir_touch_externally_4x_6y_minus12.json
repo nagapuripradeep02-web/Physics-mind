@@ -42,7 +42,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.112 — the Bullet Model Paper, under \"Q18 & 19: CIRCLES\". It is NOT in the numbered LAQ chapter, so it is authored here as an extra; the book also prints it as a practice box on book p.19 with the answers (1/13, −21/13) and 5x + 12y + 19 = 0 only. Its SECTION follows the paper slot: the Bullet Model Paper places it at Q18/Q19, which is Section C, so it is an LAQ. No appearance tag is printed beside it. The mark split is OURS, not the book’s: this answer sits on a two-column page with no printed margin tags. It is patterned on the nearest printed split of the same shape in this chapter — book p.16, answer 3, which prints 1 + 1 + 2 + 2 + 1 for the same two-equations-then-centre-then-circle shape, and book p.17, answer 4, which prints 1 + 1 + 1 + 4. Star rank: the book gives the CIRCLE LAQ chapter ★★★ in its LAQ chapter table (book p.13), in the chapter header (book p.14) and in the LAQ hit list header (book p.7), so every Circle LAQ entry takes stars 3. That rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Circle holds Q18 and Q19. An LAQ on this paper is 7 marks, never 8 — the 2026-27 move to 8-mark long answers is first year only. WHERE THE BOOK IS WRONG: on book p.112 the second circle is printed as \"S′ ≡ x² + y² + 2x − 8y + 13 = 0, Centre C₂ = (−3, −9), radius r₂ = √(1 + 16 − 13) = 2\". That equation and that radius line are copied from answer 5.3 on book p.19 and do not belong to this question. The question's own second circle is x² + y² + 6x + 18y + 26 = 0, which gives C₂ = (−3, −9) and r₂ = √(9 + 81 − 26) = √64 = 8 — and the book's very next lines use r₁ + r₂ = 5 + 8 = 13, so 8 is the value it actually needed. The correct equation and radius are written on this card. Everything else was re-derived and is correct. FIGURE SCOPE: the question does not say \"draw\", so the diagram step carries NO marks. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book’s five Guess Papers (book pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.112 — the Bullet Model Paper, under \"Q18 & 19: CIRCLES\". It is NOT in the numbered LAQ chapter, so it is authored here as an extra; the book also prints it as a practice box on book p.19 with the answers (1/13, −21/13) and 5x + 12y + 19 = 0 only. Its SECTION follows the paper slot: the Bullet Model Paper places it at Q18/Q19, which is Section C, so it is an LAQ. No appearance tag is printed beside it. The mark split is OURS, not the book’s: this answer sits on a two-column page with no printed margin tags. It is patterned on the nearest printed split of the same shape in this chapter — book p.16, answer 3, which prints 1 + 1 + 2 + 2 + 1 for the same two-equations-then-centre-then-circle shape, and book p.17, answer 4, which prints 1 + 1 + 1 + 4. Star rank: the book gives the CIRCLE LAQ chapter ★★★ in its LAQ chapter table (book p.13), in the chapter header (book p.14) and in the LAQ hit list header (book p.7), so every Circle LAQ entry takes stars 3. That rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Circle holds Q18 and Q19. An LAQ on this paper is 7 marks, never 8 — the 2026-27 move to 8-mark long answers is first year only. WHERE THE BOOK IS WRONG: on book p.112 the second circle is printed as \"S′ ≡ x² + y² + 2x − 8y + 13 = 0, Centre C₂ = (−3, −9), radius r₂ = √(1 + 16 − 13) = 2\". That equation and that radius line are copied from answer 5.3 on book p.19 and do not belong to this question. The question's own second circle is x² + y² + 6x + 18y + 26 = 0, which gives C₂ = (−3, −9) and r₂ = √(9 + 81 − 26) = √64 = 8 — and the book's very next lines use r₁ + r₂ = 5 + 8 = 13, so 8 is the value it actually needed. The correct equation and radius are written on this card. Everything else was re-derived and is correct. FIGURE SCOPE: the question does not say \"draw\", so the diagram step carries NO marks. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book’s five Guess Papers (book pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "insider_note": "The radii here are 5 and 8 and the distance between the centres is exactly 13, so the touching is external — the ratio 5 : 8 is not a round number, which is why the point of contact has thirteenths in it.",
   "answer": {
@@ -65,8 +65,17 @@
             "style": "heading"
           },
           "First circle S ≡ x² + y² − 4x − 6y − 12 = 0",
+          "Compare with the general circle",
+          {
+            "text": "  x² + y² + 2gx + 2fy + c = 0:",
+            "style": "indent"
+          },
+          "2g = −4 ⇒ g = −2",
+          "2f = −6 ⇒ f = −3",
           "Here g = −2, f = −3, c = −12",
+          "Centre = (−g, −f)",
           "Centre C₁ = (2, 3)",
+          "Radius = √(g² + f² − c)",
           "r₁ = √(4 + 9 + 12) = √25 = 5"
         ],
         "why": "Comparing with the general form gives g = −2 and f = −3. Since c = −12, the term −c is +12, which is why the radius comes out as a whole number.",
@@ -85,14 +94,36 @@
         "memory_tip": "Halve 6 and 18 to get g = 3 and f = 9, then change both signs for the centre.",
         "lines": [
           "Second circle S′ ≡ x² + y² + 6x + 18y + 26 = 0",
+          {
+            "text": "Compare with x² + y² + 2gx + 2fy + c = 0:",
+            "added": true
+          },
+          {
+            "text": "2g = 6 ⇒ g = 3, and 2f = 18 ⇒ f = 9",
+            "added": true
+          },
           "Here g = 3, f = 9, c = 26",
+          {
+            "text": "Centre = (−g, −f)",
+            "added": true
+          },
           "Centre C₂ = (−3, −9)",
+          {
+            "text": "Radius = √(g² + f² − c)",
+            "added": true
+          },
           "r₂ = √(9 + 81 − 26) = √64 = 8"
         ],
         "why": "The book’s printed line \"S′ ≡ x² + y² + 2x − 8y + 13 = 0 … r₂ = 2\" is copied from a different question and is wrong here. The question’s own circle gives r₂ = 8, which is the value the book’s next line uses when it writes r₁ + r₂ = 5 + 8 = 13.",
         "common_mistakes": [
           "Copying the book’s r₂ = 2 and then failing the touching test.",
           "Reading g = 6 and f = 18 without halving."
+        ],
+        "lines_compact": [
+          "Second circle S′ ≡ x² + y² + 6x + 18y + 26 = 0",
+          "Here g = 3, f = 9, c = 26",
+          "Centre C₂ = (−3, −9)",
+          "r₂ = √(9 + 81 − 26) = √64 = 8"
         ]
       },
       {
@@ -104,6 +135,20 @@
         "margin_note": "Two marks. 5, 12, 13 is a familiar right-triangle triple, so the square root is exact.",
         "memory_tip": "5² + 12² = 13². The distance between the centres works out whole.",
         "lines": [
+          {
+            "text": "Two circles touch when the distance between",
+            "added": true
+          },
+          {
+            "text": "  their centres equals r₁ + r₂ (each one",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  outside the other) or r₂ − r₁ (one inside).",
+            "style": "indent",
+            "added": true
+          },
           "C₁C₂ = √((2+3)² + (3+9)²) = √(25 + 144)",
           "= √169 = 13",
           "Also r₁ + r₂ = 5 + 8 = 13",
@@ -113,7 +158,14 @@
         "why": "The distance between the centres equals the sum of the radii, so the circles meet at exactly one point and neither lies inside the other.",
         "common_mistakes": [
           "Using r₂ = 2 from the book’s misprint and getting 7 instead of 13.",
-          "Writing (3 + 9)² as (3 − 9)², which still gives 144 but by accident."
+          "Writing (3 + 9)² as (3 − 9)², which gives 36 instead of 144."
+        ],
+        "lines_compact": [
+          "C₁C₂ = √((2+3)² + (3+9)²) = √(25 + 144)",
+          "= √169 = 13",
+          "Also r₁ + r₂ = 5 + 8 = 13",
+          "⇒ C₁C₂ = r₁ + r₂",
+          "∴ The circles touch each other externally."
         ]
       },
       {
@@ -127,6 +179,24 @@
         "lines": [
           "P divides C₁C₂ internally in the ratio",
           "r₁ : r₂ = 5 : 8",
+          {
+            "text": "Section formula: the point dividing the join",
+            "added": true
+          },
+          {
+            "text": "  of (x₁, y₁) and (x₂, y₂) in m : n is",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  ((mx₂ + nx₁)/(m + n), (my₂ + ny₁)/(m + n))",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "Here m = 5, n = 8, C₁ = (2, 3), C₂ = (−3, −9)",
+            "added": true
+          },
           "P = ((5(−3) + 8(2))/13, (5(−9) + 8(3))/13)",
           "= ((−15 + 16)/13, (−45 + 24)/13)",
           "∴ P = (1/13, −21/13)"
@@ -135,6 +205,13 @@
         "common_mistakes": [
           "Swapping the centres so that C₂ is multiplied by 8.",
           "Using external division and dividing by 5 − 8 = −3."
+        ],
+        "lines_compact": [
+          "P divides C₁C₂ internally in the ratio",
+          "r₁ : r₂ = 5 : 8",
+          "P = ((5(−3) + 8(2))/13, (5(−9) + 8(3))/13)",
+          "= ((−15 + 16)/13, (−45 + 24)/13)",
+          "∴ P = (1/13, −21/13)"
         ]
       },
       {
@@ -148,6 +225,49 @@
         "lines": [
           "The common tangent at the point of contact",
           "is S − S′ = 0",
+          {
+            "text": "S and S′ both have x² + y², so subtracting",
+            "added": true
+          },
+          {
+            "text": "  leaves a straight line.",
+            "style": "indent",
+            "added": true
+          },
+          "⇒ (x²+y²−4x−6y−12) − (x²+y²+6x+18y+26) = 0",
+          {
+            "text": "−4x − 6x = −10x, −6y − 18y = −24y,",
+            "added": true
+          },
+          {
+            "text": "  and −12 − 26 = −38",
+            "style": "indent",
+            "added": true
+          },
+          "⇒ −10x − 24y − 38 = 0",
+          "⇒ −2(5x + 12y + 19) = 0",
+          {
+            "text": "∴ Common tangent is 5x + 12y + 19 = 0",
+            "style": "boxed"
+          },
+          {
+            "text": "Check P(1/13, −21/13): 5/13 − 252/13 + 19",
+            "added": true
+          },
+          {
+            "text": "  = (5 − 252 + 247)/13 = 0",
+            "style": "indent",
+            "added": true
+          }
+        ],
+        "why": "The x² and y² terms cancel, leaving a straight line that meets both circles only at P. A check: 5(1/13) + 12(−21/13) + 19 = (5 − 252 + 247)/13 = 0, so P lies on it.",
+        "common_mistakes": [
+          "Subtracting −12 and +26 as +14 instead of −38.",
+          "Leaving the answer as −10x − 24y − 38 = 0 without taking out the factor."
+        ],
+        "lines_compact": [
+          "The common tangent at the point of contact",
+          "is S − S′ = 0",
           "⇒ (x²+y²−4x−6y−12) − (x²+y²+6x+18y+26) = 0",
           "⇒ −10x − 24y − 38 = 0",
           "⇒ −2(5x + 12y + 19) = 0",
@@ -155,11 +275,6 @@
             "text": "∴ Common tangent is 5x + 12y + 19 = 0",
             "style": "boxed"
           }
-        ],
-        "why": "The x² and y² terms cancel, leaving a straight line that meets both circles only at P. A check: 5(1/13) + 12(−21/13) + 19 = (5 − 252 + 247)/13 = 0, so P lies on it.",
-        "common_mistakes": [
-          "Subtracting −12 and +26 as +14 instead of −38.",
-          "Leaving the answer as −10x − 24y − 38 = 0 without taking out the factor."
         ]
       },
       {

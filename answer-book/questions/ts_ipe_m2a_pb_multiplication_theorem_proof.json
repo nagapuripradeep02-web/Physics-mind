@@ -129,19 +129,23 @@
         "lines": [
           {
             "text": "Proof. By the definition of conditional",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "probability, with P(A) ≠ 0,",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "P(B|A) = P(A ∩ B)/P(A)",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           },
           {
             "text": "Multiplying both sides by P(A):",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "P(A ∩ B) = P(A)·P(B|A)  …(1)",
@@ -171,6 +175,20 @@
         "why": "The definition of conditional probability is the only thing the proof uses; the theorem is the definition rearranged.",
         "common_mistakes": [
           "Writing the definition as P(B|A) = P(A ∩ B)/P(B)."
+        ],
+        "lines_compact": [
+          {
+            "text": "Proof: By the definition of conditional probability,",
+            "style": "normal"
+          },
+          {
+            "text": "P(B|A) = P(A ∩ B)/P(A)   [P(A) ≠ 0]",
+            "style": "eq"
+          },
+          {
+            "text": "⇒ P(A ∩ B) = P(A)·P(B|A)  …(1)",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -184,19 +202,23 @@
         "lines": [
           {
             "text": "The same definition with the roles swapped,",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "using P(B) ≠ 0, gives",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "P(A|B) = P(A ∩ B)/P(B)",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           },
           {
             "text": "Multiplying both sides by P(B):",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "P(A ∩ B) = P(B)·P(A|B)  …(2)",
@@ -226,6 +248,20 @@
         "why": "The second form of the theorem needs the second conditional probability; P(B) ≠ 0 is what permits this division.",
         "common_mistakes": [
           "Skipping this step and writing the second form without proof."
+        ],
+        "lines_compact": [
+          {
+            "text": "Again, by the definition of conditional probability,",
+            "style": "normal"
+          },
+          {
+            "text": "P(A|B) = P(A ∩ B)/P(B)   [P(B) ≠ 0]",
+            "style": "eq"
+          },
+          {
+            "text": "⇒ P(A ∩ B) = P(B)·P(A|B)  …(2)",
+            "style": "eq"
+          }
         ]
       },
       {

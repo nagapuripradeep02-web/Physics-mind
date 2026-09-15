@@ -15,7 +15,7 @@
   "marks_total": 4,
   "paper_section": "Section B",
   "expected_time_min": 9,
-  "question_text": "Evaluate ∫₀^(π/2) (a sinx + b cosx)/(sinx + cosx) dx.",
+  "question_text": "Evaluate ∫ (a sinx + b cosx)/(sinx + cosx) dx from 0 to π/2.",
   "appearances": [
     {
       "year": 2017,
@@ -39,7 +39,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.68 — SAQ chapter 10 'Definite Integrals' (chapter banner ★★★, 4 Marks), the opening item, answer 82, on a printed Super Scoring Page (SSP 68). Printed appearance: AP 17. This is one of only three SAQ Definite Integrals answers with a genuinely PRINTED margin mark split (book p.13/p.49-equivalent chapter table gives the chapter ★★★): the page prints '1 Mark' beside the first line, '1 Mark' beside the second, and '2 Marks' beside the final combined line — transcribed here exactly. Boundary reading: printed p.67 (last Hyperbola SAQ answers, 80-81) and printed p.72 (Differential Equations SAQ opening, 92) confirm the chapter span on both sides. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.68 — SAQ chapter 10 'Definite Integrals' (chapter banner ★★★, 4 Marks), the opening item, answer 82, on a printed Super Scoring Page (SSP 68). Printed appearance: AP 17. This is one of only three SAQ Definite Integrals answers with a genuinely PRINTED margin mark split (book p.13/p.49-equivalent chapter table gives the chapter ★★★): the page prints '1 Mark' beside the first line, '1 Mark' beside the second, and '2 Marks' beside the final combined line — transcribed here exactly. Boundary reading: printed p.67 (last Hyperbola SAQ answers, 80-81) and printed p.72 (Differential Equations SAQ opening, 92) confirm the chapter span on both sides. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "insider_note": "The book's own note calls the first three SAQ answers in this chapter 'Back 2 Back Same Dead Easy Models' — all three (82, 83, 84) share the identical King's-property-then-add shape, so learning this one teaches the next two almost for free.",
   "answer": {
@@ -61,9 +61,12 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "We know ∫₀^a f(x)dx = ∫₀^a f(a − x)dx",
-          "∴ I",
-          "= ∫₀^(π/2) (a sinx + b cosx)/(sinx + cosx)",
+          "We know ∫₀ᵏ f(x)dx = ∫₀ᵏ f(k − x)dx, k = π/2",
+          {
+            "text": "\\therefore I = \\int _{0}^{\\pi /2} (a \\sin x + b \\cos x)/(\\sin x + \\cos x)",
+            "render": "katex",
+            "style": "normal"
+          },
           "dx …(1)"
         ],
         "why": "Stating the property first, with the given integral labelled (1), sets up the second form that will be added to it.",
@@ -83,16 +86,53 @@
         "lines": [
           "By x → π/2 − x:",
           "I",
-          "= ∫₀^(π/2) [a sin(π/2−x) + b",
-          "cos(π/2−x)]/[sin(π/2−x) + cos(π/2−x)] dx",
+          {
+            "text": "= \\int _{0}^{\\pi /2} [a \\sin (\\pi /2-x) + b",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "\\cos (\\pi /2-x)]/[\\sin (\\pi /2-x) + \\cos (\\pi /2-x)] dx",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "sin(π/2 − x) = cosx and cos(π/2 − x) = sinx:",
+            "added": true
+          },
           "⇒ I",
-          "= ∫₀^(π/2) (a cosx + b sinx)/(cosx + sinx)",
+          {
+            "text": "= \\int _{0}^{\\pi /2} (a \\cos x + b \\sin x)/(\\cos x + \\sin x)",
+            "render": "katex",
+            "style": "normal"
+          },
           "dx …(2)"
         ],
         "why": "Every sinx becomes cosx and every cosx becomes sinx under the substitution, so the numerator's a and b swap partners while the denominator (being symmetric in sinx and cosx) is unchanged.",
         "common_mistakes": [
           "Swapping the numerator but forgetting the denominator is unchanged (it already contains both sinx and cosx).",
           "Swapping only one of the two terms in the numerator."
+        ],
+        "lines_compact": [
+          "By x → π/2 − x:",
+          "I",
+          {
+            "text": "= \\int _{0}^{\\pi /2} [a \\sin (\\pi /2-x) + b",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "\\cos (\\pi /2-x)]/[\\sin (\\pi /2-x) + \\cos (\\pi /2-x)] dx",
+            "render": "katex",
+            "style": "normal"
+          },
+          "⇒ I",
+          {
+            "text": "= \\int _{0}^{\\pi /2} (a \\cos x + b \\sin x)/(\\cos x + \\sin x)",
+            "render": "katex",
+            "style": "normal"
+          },
+          "dx …(2)"
         ]
       },
       {
@@ -104,13 +144,54 @@
         "margin_note": "The last two marks. Adding (1) and (2) makes (a+b) a common factor of the whole numerator.",
         "memory_tip": "a(sinx+cosx) + b(cosx+sinx) = (a+b)(sinx+cosx) — the denominator cancels completely.",
         "lines": [
+          {
+            "text": "The denominators match, so add the tops:",
+            "added": true
+          },
+          {
+            "text": "a sinx + b cosx + a cosx + b sinx",
+            "added": true
+          },
+          {
+            "text": "  = a(sinx + cosx) + b(cosx + sinx)",
+            "style": "indent",
+            "added": true
+          },
           "Adding (1) and (2): I + I",
-          "= ∫₀^(π/2) [a(sinx+cosx) +",
-          "b(cosx+sinx)]/(cosx+sinx) dx",
+          {
+            "text": "= \\int _{0}^{\\pi /2} [a(\\sin x+\\cos x) +",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "b(\\cos x+\\sin x)]/(\\cos x+\\sin x) dx",
+            "render": "katex",
+            "style": "normal"
+          },
           "⇒ 2I",
-          "= ∫₀^(π/2) (a+b)(cosx+sinx)/(cosx+sinx) dx",
-          "= ∫₀^(π/2) (a+b) dx",
-          "⇒ 2I = (a+b)[x]₀^(π/2) = (a+b)(π/2)",
+          {
+            "text": "= \\int _{0}^{\\pi /2} (a+b)(\\cos x+\\sin x)/(\\cos x+\\sin x) dx",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "(cosx + sinx) cancels:",
+            "added": true
+          },
+          {
+            "text": "= \\int _{0}^{\\pi /2} (a+b) dx",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "\\Rightarrow 2I = (a+b)[x]_{0}^{\\pi /2} = (a+b)(\\pi /2)",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "Divide both sides by 2:",
+            "added": true
+          },
           {
             "text": "∴ I = (a + b)π/4",
             "style": "boxed"
@@ -120,6 +201,39 @@
         "common_mistakes": [
           "Not factoring (a+b) out correctly before cancelling with the denominator.",
           "Forgetting the final division by 2 when isolating I from 2I."
+        ],
+        "lines_compact": [
+          "Adding (1) and (2): I + I",
+          {
+            "text": "= \\int _{0}^{\\pi /2} [a(\\sin x+\\cos x) +",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "b(\\cos x+\\sin x)]/(\\cos x+\\sin x) dx",
+            "render": "katex",
+            "style": "normal"
+          },
+          "⇒ 2I",
+          {
+            "text": "= \\int _{0}^{\\pi /2} (a+b)(\\cos x+\\sin x)/(\\cos x+\\sin x) dx",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "= \\int _{0}^{\\pi /2} (a+b) dx",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "\\Rightarrow 2I = (a+b)[x]_{0}^{\\pi /2} = (a+b)(\\pi /2)",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "∴ I = (a + b)π/4",
+            "style": "boxed"
+          }
         ]
       }
     ]

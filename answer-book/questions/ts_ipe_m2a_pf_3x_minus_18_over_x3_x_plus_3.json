@@ -114,10 +114,16 @@
         "margin_note": "Second mark. Multiply by x³(x + 3). A keeps x²(x + 3), B keeps x(x + 3), C keeps (x + 3), D keeps x³. The power of x left with each constant goes down by one each time.",
         "memory_tip": "The power of x left with each constant falls by one: x²(x + 3), x(x + 3), (x + 3), then x³ for D.",
         "lines": [
-          "Multiply both sides by x³(x + 3):",
+          {
+            "text": "Multiply both sides by x³(x + 3):",
+            "added": true
+          },
           "3x − 18 = Ax²(x + 3) + Bx(x + 3)",
           "  + C(x + 3) + Dx³",
-          "This holds for every value of x."
+          {
+            "text": "This holds for every value of x.",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -148,6 +154,11 @@
           "Giving the C term x(x + 3) or x²(x + 3) instead of (x + 3).",
           "Giving the D term (x + 3) instead of x³.",
           "Dropping the left side 3x − 18."
+        ],
+        "lines_compact": [
+          "Multiply by x³(x + 3):",
+          "3x − 18 = Ax²(x + 3) + Bx(x + 3)",
+          "+ C(x + 3) + Dx³"
         ]
       },
       {
@@ -159,18 +170,54 @@
         "margin_note": "Third mark. Two roots, 0 and −3, give C and D. Then compare x³ for A and x² for B. Expand only the coefficients you need; no need to expand everything.",
         "memory_tip": "Two roots give only C and D. A comes from the x³ coefficient and B from the x², where 3A also appears.",
         "lines": [
-          "Substituting a root of one factor",
-          "  makes the other terms 0:",
-          "Put x = −3: −9 − 18 = D(−27)",
-          "−27 = −27D, so D = 1",
-          "Put x = 0: −18 = C(3)",
-          "C = −6",
-          "The two roots do not give A and B, so compare",
-          "the highest terms on both sides.",
-          "x³ terms: left 0, right A + D, so A + D = 0",
-          "A = −D = −1",
-          "x² terms: left 0, right 3A + B, so 3A + B = 0",
-          "B = −3A = 3"
+          {
+            "text": "Substituting a root of one factor",
+            "added": true
+          },
+          {
+            "text": "  makes the other terms 0:",
+            "added": true
+          },
+          {
+            "text": "Put x = −3: −9 − 18 = D(−27)",
+            "added": true
+          },
+          {
+            "text": "−27 = −27D, so D = 1",
+            "added": true
+          },
+          {
+            "text": "Put x = 0: −18 = C(3)",
+            "added": true
+          },
+          {
+            "text": "C = −6",
+            "added": true
+          },
+          {
+            "text": "The two roots do not give A and B, so compare",
+            "added": true
+          },
+          {
+            "text": "the highest terms on both sides.",
+            "added": true
+          },
+          {
+            "text": "x³ terms: left 0, right A + D, so A + D = 0",
+            "added": true
+          },
+          {
+            "text": "A = −D = −1",
+            "added": true
+          },
+          {
+            "text": "x² terms: left 0, right 3A + B, so 3A + B = 0",
+            "added": true
+          },
+          {
+            "text": "B = −3A = 3",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -203,6 +250,12 @@
           "Writing 3(−3) − 18 as −9 + 18 = 9 instead of −27, which makes D come out as −1/3.",
           "Reading the x² coefficient as B alone and forgetting the 3A from Ax²(x + 3).",
           "Stopping after C and D and never finding A and B."
+        ],
+        "lines_compact": [
+          "Put x = −3: −27 = D(−27) ⇒ D = 1",
+          "Put x = 0: −18 = C(3) ⇒ C = −6",
+          "Compare x³: A + D = 0 ⇒ A = −1",
+          "Compare x²: 3A + B = 0 ⇒ B = 3"
         ]
       },
       {

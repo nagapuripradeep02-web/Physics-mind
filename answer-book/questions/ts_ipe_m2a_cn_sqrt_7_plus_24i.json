@@ -105,17 +105,35 @@
         "margin_note": "Second mark. Since b > 0 the two parts have the same sign. (25 + 7)/2 = 16 and (25 − 7)/2 = 9 — both perfect squares, which is the check that the arithmetic is right.",
         "memory_tip": "(25 + 7)/2 = 16 and (25 − 7)/2 = 9, both perfect squares. Keep the ±, and square back to check.",
         "lines": [
-          "Here b = 24, which is positive, and for b > 0",
+          {
+            "text": "Here b = 24, which is positive, and for b > 0",
+            "added": true
+          },
           "√(a + ib) = ±(√((r + a)/2) + i·√((r − a)/2))",
-          "(r + a)/2 = (25 + 7)/2 = 32/2 = 16",
-          "(r − a)/2 = (25 − 7)/2 = 18/2 = 9",
-          "√(7 + 24i) = ±(√16 + i√9)",
+          {
+            "text": "(r + a)/2 = (25 + 7)/2 = 32/2 = 16",
+            "added": true
+          },
+          {
+            "text": "(r − a)/2 = (25 − 7)/2 = 18/2 = 9",
+            "added": true
+          },
+          {
+            "text": "√(7 + 24i) = ±(√16 + i√9)",
+            "added": true
+          },
           {
             "text": "∴ √(7 + 24i) = ±(4 + 3i)",
             "style": "boxed"
           },
-          "Check: (4 + 3i)² = 16 + 24i + 9i²",
-          "= 16 + 24i − 9 = 7 + 24i   [i² = −1]"
+          {
+            "text": "Check: (4 + 3i)² = 16 + 24i + 9i²",
+            "added": true
+          },
+          {
+            "text": "= 16 + 24i − 9 = 7 + 24i   [i² = −1]",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -144,6 +162,23 @@
           "Dropping the ±.",
           "Swapping (r + a)/2 and (r − a)/2 to get ±(3 + 4i), which squares to −7 + 24i.",
           "Not checking by squaring — the check takes one line and catches every sign error."
+        ],
+        "lines_compact": [
+          "For b > 0:",
+          {
+            "text": "√(a + ib) = ±(√((r + a)/2) + i·√((r − a)/2))",
+            "style": "eq"
+          },
+          {
+            "text": "√(7 + 24i) = ±(√((25 + 7)/2) + i·√((25 − 7)/2))",
+            "style": "eq"
+          },
+          "= ±(√16 + i√9)",
+          {
+            "text": "∴ √(7 + 24i) = ±(4 + 3i)",
+            "style": "boxed"
+          },
+          "Check: (4 + 3i)² = 16 + 24i − 9 = 7 + 24i"
         ]
       }
     ]

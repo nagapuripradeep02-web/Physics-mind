@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.187, chapter 8 LIMITS, Very Short Answer question 27, part (ii). **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.187, chapter 8 LIMITS, Very Short Answer question 27, part (ii). **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say what [x] equals just below 2, and what x itself does.",
   "answer": {
@@ -51,8 +51,12 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "[x] is the greatest integer function: [x] is the greatest integer less than or equal to x.",
-          "x → 2⁻ means x takes values slightly less than 2, that is 1 < x < 2.",
+          "[x] is the greatest integer function:",
+          "[x] is the greatest integer less than or equal to x.",
+          "(for example [2.7] = 2, [2] = 2 and [−0.5] = −1)",
+          "x → 2⁻ means x takes values slightly less than 2,",
+          "so we may take 1 < x < 2.",
+          "(1 is the greatest integer that is ≤ x when 1 < x < 2)",
           "For every such x,  [x] = 1",
           "(for example [1.9] = 1 and [1.999] = 1)"
         ],
@@ -83,7 +87,7 @@
           "Writing [x] = 2 by rounding 1.999 up to the nearer integer.",
           "Using [2] = 2, the value AT the point, which the one-sided limit does not use."
         ],
-        "memory_tip": "Just below 2 the step up to 2 has not happened yet, so [x] is still 1."
+        "memory_tip": "For 1 < x < 2 the greatest integer function is 1; it equals 2 only from x = 2 onwards."
       },
       {
         "id": "s2_add_and_limit",
@@ -93,8 +97,20 @@
         "mark_note": "Answer",
         "margin_note": "Second mark. Box 3. Only [x] is held at 1; x itself still approaches 2, so the two terms are different numbers.",
         "lines": [
+          {
+            "text": "(put [x] = 1)",
+            "added": true
+          },
           "So for 1 < x < 2,  [x] + x = 1 + x",
+          {
+            "text": "(the two expressions are equal for 1 < x < 2)",
+            "added": true
+          },
           "lim(x → 2⁻) ([x] + x) = lim(x → 2⁻) (1 + x)",
+          {
+            "text": "(1 + x is a polynomial, so put x = 2)",
+            "added": true
+          },
           "= 1 + 2",
           {
             "text": "∴ lim(x → 2⁻) ([x] + x) = 3",
@@ -128,7 +144,16 @@
           "Giving 4, which is the RIGHT-hand limit, where [x] = 2.",
           "Writing 1 + 1 by letting x approach 1 as well as the floor value."
         ],
-        "memory_tip": "Below 2 the pair is 1 from the step and 2 from x, which is 3."
+        "memory_tip": "Below 2, [x] is 1 and x approaches 2, so [x] + x approaches 1 + 2 = 3.",
+        "lines_compact": [
+          "So for 1 < x < 2,  [x] + x = 1 + x",
+          "lim(x → 2⁻) ([x] + x) = lim(x → 2⁻) (1 + x)",
+          "= 1 + 2",
+          {
+            "text": "∴ lim(x → 2⁻) ([x] + x) = 3",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

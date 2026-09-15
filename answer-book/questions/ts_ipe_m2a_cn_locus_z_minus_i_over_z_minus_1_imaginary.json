@@ -105,20 +105,59 @@
         "margin_note": "Half the marks. The conjugate of the denominator is (x − 1) − iy. The denominator becomes (x − 1)² + y², a real number; the numerator's real part is x(x − 1) + y(y − 1) and it is the only thing needed next.",
         "memory_tip": "The conjugate of (x − 1) + iy is (x − 1) − iy. Only the numerator's real part is needed.",
         "lines": [
-          "Multiply above and below by the conjugate",
-          "of the denominator, (x − 1) − iy:",
+          {
+            "text": "Multiply above and below by the conjugate",
+            "added": true
+          },
+          {
+            "text": "of the denominator, (x − 1) − iy:",
+            "added": true
+          },
           "= [x + i(y − 1)][(x − 1) − iy]",
-          "  ÷ [(x − 1) + iy][(x − 1) − iy]",
-          "Denominator = (x − 1)² + y²",
-          "  [(a + ib)(a − ib) = a² + b²]",
-          "Numerator = x(x − 1) − ixy",
-          "  + i(x − 1)(y − 1) − i²y(y − 1)",
-          "= x(x − 1) + y(y − 1)   [−i² = 1]",
-          "  + i[(x − 1)(y − 1) − xy]",
-          "Real part of the numerator",
-          "= x² − x + y² − y",
-          "∴ real part = (x² + y² − x − y)",
-          "  ÷ ((x − 1)² + y²)"
+          {
+            "text": "  ÷ [(x − 1) + iy][(x − 1) − iy]",
+            "added": true
+          },
+          {
+            "text": "Denominator = (x − 1)² + y²",
+            "added": true
+          },
+          {
+            "text": "  [(a + ib)(a − ib) = a² + b²]",
+            "added": true
+          },
+          {
+            "text": "Numerator = x(x − 1) − ixy",
+            "added": true
+          },
+          {
+            "text": "  + i(x − 1)(y − 1) − i²y(y − 1)",
+            "added": true
+          },
+          {
+            "text": "= x(x − 1) + y(y − 1)   [−i² = 1]",
+            "added": true
+          },
+          {
+            "text": "  + i[(x − 1)(y − 1) − xy]",
+            "added": true
+          },
+          {
+            "text": "Real part of the numerator",
+            "added": true
+          },
+          {
+            "text": "= x² − x + y² − y",
+            "added": true
+          },
+          {
+            "text": "∴ real part = (x² + y² − x − y)",
+            "added": true
+          },
+          {
+            "text": "  ÷ ((x − 1)² + y²)",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -148,6 +187,24 @@
           "Using (x − 1) + iy as the 'conjugate' — the sign of the i term must flip.",
           "Writing −i·iy(y − 1) as −y(y − 1) instead of +y(y − 1).",
           "Spending time simplifying the imaginary part, which is not used."
+        ],
+        "lines_compact": [
+          "Multiply above and below by (x − 1) − iy:",
+          {
+            "text": "= [x + i(y − 1)][(x − 1) − iy]",
+            "style": "eq"
+          },
+          {
+            "text": "/ [(x − 1)² + y²]",
+            "style": "indent"
+          },
+          "Numerator = x(x − 1) − ixy + i(x − 1)(y − 1)",
+          "+ y(y − 1)        (since −i² = 1)",
+          {
+            "text": "= [x² + y² − x − y] + i[(x − 1)(y − 1) − xy]",
+            "style": "eq"
+          },
+          "∴ real part = (x² + y² − x − y)/((x − 1)² + y²)"
         ]
       },
       {
@@ -159,14 +216,35 @@
         "margin_note": "Last mark. Purely imaginary means the real part is 0. The denominator is positive, so only the numerator has to vanish.",
         "memory_tip": "Purely imaginary means the REAL part is 0. The denominator is positive, so only the numerator must vanish.",
         "lines": [
-          "A purely imaginary number has",
-          "no real part, so the real part is 0:",
+          {
+            "text": "A purely imaginary number has",
+            "added": true
+          },
+          {
+            "text": "no real part, so the real part is 0:",
+            "added": true
+          },
           "(x² + y² − x − y)/((x − 1)² + y²) = 0",
-          "A fraction is 0 only when its top is 0:",
-          "x² + y² − x − y = 0",
-          "z = 1 would make the denominator 0,",
-          "and (1, 0) does satisfy this equation,",
-          "so that point is left out.",
+          {
+            "text": "A fraction is 0 only when its top is 0:",
+            "added": true
+          },
+          {
+            "text": "x² + y² − x − y = 0",
+            "added": true
+          },
+          {
+            "text": "z = 1 would make the denominator 0,",
+            "added": true
+          },
+          {
+            "text": "and (1, 0) does satisfy this equation,",
+            "added": true
+          },
+          {
+            "text": "so that point is left out.",
+            "added": true
+          },
           {
             "text": "∴ Locus of P: x² + y² − x − y = 0, z ≠ 1",
             "style": "boxed"
@@ -198,6 +276,15 @@
           "Setting the imaginary part to zero — that is the condition for 'purely real'.",
           "Leaving the denominator in the final answer.",
           "Writing the answer as an inequality — the condition is an equality, so the locus is a circle, not a region. (Leaving it as x² + y² = x + y is the same locus and is not wrong, but the standard '= 0' form is expected.)"
+        ],
+        "lines_compact": [
+          "(z − i)/(z − 1) is purely imaginary",
+          "⇒ real part = 0",
+          "⇒ (x² + y² − x − y)/((x − 1)² + y²) = 0",
+          {
+            "text": "∴ Locus of P: x² + y² − x − y = 0",
+            "style": "boxed"
+          }
         ]
       }
     ]

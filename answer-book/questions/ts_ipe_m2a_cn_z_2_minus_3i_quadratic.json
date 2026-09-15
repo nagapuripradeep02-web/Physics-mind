@@ -107,9 +107,15 @@
         "margin_note": "Second mark. (z − 2)² = z² − 4z + 4. Move the −9 across: 4 + 9 = 13.",
         "memory_tip": "The 13 is 4 + 9 — the 4 from squaring the 2, the 9 from squaring the 3.",
         "lines": [
-          "Expand the left side:",
+          {
+            "text": "Expand the left side:",
+            "added": true
+          },
           "z² − 4z + 4 = −9",
-          "z² − 4z + 4 + 9 = 0",
+          {
+            "text": "z² − 4z + 4 + 9 = 0",
+            "added": true
+          },
           {
             "text": "∴ z² − 4z + 13 = 0",
             "style": "boxed"
@@ -140,6 +146,13 @@
         "common_mistakes": [
           "Expanding (z − 2)² as z² + 4.",
           "Writing z² − 4z − 5 = 0 by taking (−3i)² = +9."
+        ],
+        "lines_compact": [
+          "⇒ z² − 4z + 4 = −9",
+          {
+            "text": "∴ z² − 4z + 13 = 0",
+            "style": "boxed"
+          }
         ]
       }
     ]

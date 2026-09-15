@@ -51,7 +51,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.14 — LAQ chapter 1 Functions, question 2, on a ★★★ SSP. The 3+4 split is printed in that book's margin; appearance years are printed board-split as TS 16,20 and AP 16,17,19. Both are the publisher's claims until a Telangana IPE teacher confirms them. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Both sides give the same value."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.14 — LAQ chapter 1 Functions, question 2, on a ★★★ SSP. The 3+4 split is printed in that book's margin; appearance years are printed board-split as TS 16,20 and AP 16,17,19. Both are the publisher's claims until a Telangana IPE teacher confirms them. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Both sides give the same value. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove the reverse law for inverses — the two things you have to check, and how each one goes.",
   "answer": {
@@ -73,6 +73,7 @@
             "style": "heading"
           },
           "f: A→B and g: B→C are bijective functions.",
+          "(so f⁻¹: B→A and g⁻¹: C→B both exist)",
           "To prove: (gof)⁻¹ = f⁻¹og⁻¹",
           "Two functions are equal when they have the",
           "same domain and the same value everywhere."
@@ -122,8 +123,16 @@
             "style": "heading"
           },
           "gof: A→C is a bijection,",
+          {
+            "text": "(the composition of two bijections is a bijection)",
+            "added": true
+          },
           "so (gof)⁻¹: C→A is also a bijection.",
           "f⁻¹: B→A and g⁻¹: C→B are bijections,",
+          {
+            "text": "(g⁻¹ goes from C to B, then f⁻¹ from B to A)",
+            "added": true
+          },
           "so f⁻¹og⁻¹: C→A is also a bijection.",
           "∴ (gof)⁻¹ and f⁻¹og⁻¹ both have domain C."
         ],
@@ -154,6 +163,17 @@
         "common_mistakes": [
           "Writing the composition in the wrong order, g⁻¹of⁻¹, which does not even have the right domain.",
           "Asserting the domains match without showing each side is a bijection C→A."
+        ],
+        "lines_compact": [
+          {
+            "text": "Part 1 — the two sides have the same domain",
+            "style": "heading"
+          },
+          "gof: A→C is a bijection,",
+          "so (gof)⁻¹: C→A is also a bijection.",
+          "f⁻¹: B→A and g⁻¹: C→B are bijections,",
+          "so f⁻¹og⁻¹: C→A is also a bijection.",
+          "∴ (gof)⁻¹ and f⁻¹og⁻¹ both have domain C."
         ]
       },
       {
@@ -169,8 +189,13 @@
             "text": "Part 2 — the two sides give the same value",
             "style": "heading"
           },
+          "Take any c ∈ C. Let b = g⁻¹(c) and a = f⁻¹(b), so:",
           "f(a) = b ⇒ a = f⁻¹(b)   …(1)",
           "g(b) = c ⇒ b = g⁻¹(c)   …(2)",
+          {
+            "text": "(then (gof)(a) = g(f(a)) = g(b) = c)",
+            "added": true
+          },
           "(gof)(a) = c ⇒ a = (gof)⁻¹(c)   …(3)",
           "Now (f⁻¹og⁻¹)(c) = f⁻¹[g⁻¹(c)]",
           "        = f⁻¹(b)   (from (2))",
@@ -207,6 +232,21 @@
           "Applying f⁻¹ before g⁻¹ — the outer function g must be undone first.",
           "Never stating 'for all c ∈ C', which is what turns two values into an equality of functions.",
           "Using facts (1), (2), (3) without saying which line each step came from."
+        ],
+        "lines_compact": [
+          {
+            "text": "Part 2 — the two sides give the same value",
+            "style": "heading"
+          },
+          "Take any c ∈ C. Let b = g⁻¹(c) and a = f⁻¹(b), so:",
+          "f(a) = b ⇒ a = f⁻¹(b)   …(1)",
+          "g(b) = c ⇒ b = g⁻¹(c)   …(2)",
+          "(gof)(a) = c ⇒ a = (gof)⁻¹(c)   …(3)",
+          "Now (f⁻¹og⁻¹)(c) = f⁻¹[g⁻¹(c)]",
+          "        = f⁻¹(b)   (from (2))",
+          "        = a   (from (1))   …(4)",
+          "∴ (gof)⁻¹(c) = (f⁻¹og⁻¹)(c) for all c ∈ C,",
+          "   from (3) and (4)."
         ]
       },
       {
@@ -218,7 +258,10 @@
         "memory_tip": "The last line must be the equality the question asked for.",
         "lines": [
           "Same domain and same value everywhere.",
-          "∴ (gof)⁻¹ = f⁻¹og⁻¹"
+          {
+            "text": "∴ (gof)⁻¹ = f⁻¹og⁻¹",
+            "style": "boxed"
+          }
         ],
         "recall": {
           "credit": "say_it",

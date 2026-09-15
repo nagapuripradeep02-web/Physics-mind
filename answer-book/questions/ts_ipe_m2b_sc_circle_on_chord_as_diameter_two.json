@@ -34,7 +34,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Sr. Maths-2B (Sri Publishers, Machilipatnam), book p.55 — SAQ chapter 7 System of Circles, answer 55.2, on a ★★★ Super Scoring Page (SSP 55). Chapter star rank ★★★, per the SAQ section table (book p.49). NO appearance year is printed against this answer — the book prints no black tag beside it, unlike its twin 55.1. ⚠ THE MARK SPLIT IS OURS, same 1+1+2 reasoning as the twin answer 55.1 (justified in full in that card's note). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Neither the two-book union check nor a board back-test was possible for this subject: there is no TSBIE second-year Maths-2B BLM on hand, and answer-book/papers/ holds first-year physics only — the book's own five Guess Papers (pp.118-127) stand in as the back-test instead. Boundary: chapter runs book pp.54-56, walked at both ends (p.53 Circle SAQ ends at 52; p.57 opens Ellipse SAQ). Paper position: Maths-2B Section B runs Q1-Q7 at 4 marks each (Q3 = System of Circles), answer any 5 of 7 (ABC_75). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, Sr. Maths-2B (Sri Publishers, Machilipatnam), book p.55 — SAQ chapter 7 System of Circles, answer 55.2, on a ★★★ Super Scoring Page (SSP 55). Chapter star rank ★★★, per the SAQ section table (book p.49). NO appearance year is printed against this answer — the book prints no black tag beside it, unlike its twin 55.1. ⚠ THE MARK SPLIT IS OURS, same 1+1+2 reasoning as the twin answer 55.1 (justified in full in that card's note). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Neither the two-book union check nor a board back-test was possible for this subject: there is no TSBIE second-year Maths-2B BLM on hand, and answer-book/papers/ holds first-year physics only — the book's own five Guess Papers (pp.118-127) stand in as the back-test instead. Boundary: chapter runs book pp.54-56, walked at both ends (p.53 Circle SAQ ends at 52; p.57 opens Ellipse SAQ). Paper position: Maths-2B Section B runs Q1-Q7 at 4 marks each (Q3 = System of Circles), answer any 5 of 7 (ABC_75). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "insider_note": "The circle here is the simple x² + y² = 4, with no linear terms at all — do not let that simplicity skip the family-of-circles setup; the marks are for the METHOD, not just the final line.",
   "answer": {
@@ -59,7 +59,15 @@
           "L ≡ 2x + 3y − 1 = 0",
           "Any circle through the points of intersection",
           "of S = 0 and L = 0 is S + λL = 0",
-          "⇒ x² + y² + 2λx + 3λy − (4 + λ) = 0"
+          "(At a point on both, S = 0 and L = 0, so",
+          {
+            "text": "  S + λL = 0 there, for every number λ.)",
+            "style": "indent"
+          },
+          "S + λL = x² + y² − 4 + λ(2x + 3y − 1)",
+          "= x² + y² + 2λx + 3λy − 4 − λ",
+          "⇒ x² + y² + 2λx + 3λy − (4 + λ) = 0",
+          "Call this equation (1)."
         ],
         "why": "S + λL = 0 is the family of every circle through the same two intersection points as the given circle and line — one member of it will have AB as a diameter.",
         "common_mistakes": [
@@ -76,6 +84,18 @@
         "mark_note": "Method",
         "margin_note": "Second mark. This circle has no cross terms, so the centre comes out simply in terms of λ.",
         "lines": [
+          {
+            "text": "Compare (1) with x² + y² + 2gx + 2fy + c = 0:",
+            "added": true
+          },
+          {
+            "text": "2g = 2λ ⇒ g = λ, and 2f = 3λ ⇒ f = 3λ/2",
+            "added": true
+          },
+          {
+            "text": "The centre (−g, −f) is therefore:",
+            "added": true
+          },
           "Centre of the above circle is",
           "( −λ , −3λ/2 )"
         ],
@@ -84,7 +104,11 @@
           "Writing the y-coordinate as −3λ instead of −3λ/2 — the coefficient of y is 3λ, so half of it is 3λ/2.",
           "Missing the negative sign on either coordinate."
         ],
-        "memory_tip": "Coefficient of x is 2λ, so g = λ and the centre's x-coordinate is −λ — halve, then negate, exactly as always."
+        "memory_tip": "Coefficient of x is 2λ, so g = λ and the centre's x-coordinate is −λ — halve, then negate, exactly as always.",
+        "lines_compact": [
+          "Centre of the above circle is",
+          "( −λ , −3λ/2 )"
+        ]
       },
       {
         "id": "s3_diameter_condition",
@@ -94,11 +118,48 @@
         "mark_note": "Method + Solution",
         "margin_note": "Last two marks: one for solving for λ, one for the final circle, cleared of fractions.",
         "lines": [
+          {
+            "text": "A chord is a diameter exactly when it",
+            "added": true
+          },
+          {
+            "text": "  passes through the centre.",
+            "style": "indent",
+            "added": true
+          },
           "Line L = 0 becomes a diameter if the",
           "centre lies on L ≡ 2x + 3y − 1 = 0",
+          {
+            "text": "Put x = −λ and y = −3λ/2 in L:",
+            "added": true
+          },
           "⇒ 2(−λ) + 3(−3λ/2) − 1 = 0",
+          {
+            "text": "That is −2λ − 9λ/2 − 1 = 0. Multiply by 2:",
+            "added": true
+          },
           "⇒ −4λ − 9λ − 2 = 0 ⇒ 13λ = −2",
+          {
+            "text": "(−4λ − 9λ = −13λ, so −13λ = 2)",
+            "added": true
+          },
           "⇒ λ = −2/13",
+          {
+            "text": "Put λ = −2/13 in (1):",
+            "added": true
+          },
+          {
+            "text": "2λ = −4/13, 3λ = −6/13, 4 + λ = 50/13",
+            "added": true
+          },
+          {
+            "text": "x² + y² − (4/13)x − (6/13)y − 50/13 = 0",
+            "added": true
+          },
+          {
+            "text": "Multiply every term by 13:",
+            "added": true
+          },
           "From (1), the required circle is",
           {
             "text": "13(x² + y²) − 4x − 6y − 50 = 0",
@@ -110,7 +171,19 @@
           "Multiplying the whole equation by 2 (to clear the /2) but forgetting to also clear the /13 that λ introduces.",
           "Leaving the final answer with λ still visible instead of substituting its value back in."
         ],
-        "memory_tip": "Whenever λ comes out as a fraction, multiply the whole final circle through by its denominator so every coefficient is a whole number."
+        "memory_tip": "Whenever λ comes out as a fraction, multiply the whole final circle through by its denominator so every coefficient is a whole number.",
+        "lines_compact": [
+          "Line L = 0 becomes a diameter if the",
+          "centre lies on L ≡ 2x + 3y − 1 = 0",
+          "⇒ 2(−λ) + 3(−3λ/2) − 1 = 0",
+          "⇒ −4λ − 9λ − 2 = 0 ⇒ 13λ = −2",
+          "⇒ λ = −2/13",
+          "From (1), the required circle is",
+          {
+            "text": "13(x² + y²) − 4x − 6y − 50 = 0",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   }

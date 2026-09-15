@@ -55,7 +55,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B, book printed p.27 (PDF page 26) — LAQ chapter 3 ‘Integration’, sub-head INTEGRATION-I continued, answer 17.1, on a ★★★ SSP 27 page (banner printed on this page). Printed appearances: AP 15,16,18 · TS 17. Chapter star rank ★★★. This chapter's own ‘Reduction Models’ tip box on the facing column calls these ‘Tension relievers… a Gun shot model’ — a personified aside, not transcribed here (Rule 41). no printed margin mark tags or tick-box splits appear anywhere in the Integration LAQ chapter (book pp.26-37) — this card's mark split is OURS, patterned on the 7-mark shapes printed elsewhere in the book (e.g. 2+2+2+1, 1+1+2+2+1). This card's two final answers were re-derived independently and match the book's printed lines exactly — no error found here. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B, book printed p.27 (PDF page 26) — LAQ chapter 3 ‘Integration’, sub-head INTEGRATION-I continued, answer 17.1, on a ★★★ SSP 27 page (banner printed on this page). Printed appearances: AP 15,16,18 · TS 17. Chapter star rank ★★★. This chapter's own ‘Reduction Models’ tip box on the facing column calls these ‘Tension relievers… a Gun shot model’ — a personified aside, not transcribed here (Rule 41). no printed margin mark tags or tick-box splits appear anywhere in the Integration LAQ chapter (book pp.26-37) — this card's mark split is OURS, patterned on the 7-mark shapes printed elsewhere in the book (e.g. 2+2+2+1, 1+1+2+2+1). This card's two final answers were re-derived independently and match the book's printed lines exactly — no error found here. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "insider_note": "This reduction needs no integration by parts at all — tanⁿx splits algebraically into a substitutable piece and a lower power, which is faster to write out under exam time pressure than the by-parts chain used for sinⁿ, cosⁿ, secⁿ and cscⁿ.",
   "answer": {
@@ -76,8 +76,15 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Let I_n = ∫ tanⁿx dx = ∫ tanⁿ⁻²x · tan²x dx",
+          "Let Iₙ = ∫ tanⁿx dx = ∫ tanⁿ⁻²x · tan²x dx",
+          "Two powers of tan can be traded for sec²x,",
+          {
+            "text": "  whose integral is known:",
+            "style": "indent"
+          },
           "= ∫ tanⁿ⁻²x(sec²x − 1)dx",
+          "[∵ tan²x = sec²x − 1]",
+          "Split it into two integrals:",
           "= ∫ tanⁿ⁻²x sec²x dx − ∫ tanⁿ⁻²x dx"
         ],
         "why": "Writing tan²x = sec²x − 1 splits the integral into a piece that is directly substitutable (tanⁿ⁻²x sec²x, since sec²x is the derivative of tanx) and a lower power of tanx.",
@@ -96,12 +103,24 @@
         "margin_note": "Result",
         "lines": [
           "In the first integral put t = tanx ⇒ dt = sec²x dx",
+          {
+            "text": "So tanⁿ⁻²x sec²x dx becomes tⁿ⁻²dt:",
+            "added": true
+          },
           "∫ tanⁿ⁻²x sec²x dx = ∫ tⁿ⁻²dt = tⁿ⁻¹/(n−1)",
+          {
+            "text": "Put t = tanx back:",
+            "added": true
+          },
           "= tanⁿ⁻¹x/(n−1)",
+          {
+            "text": "The second integral is Iₙ₋₂ by definition:",
+            "added": true
+          },
           {
             "text": "\\therefore\\ I_n = \\frac{\\tan^{n-1}x}{n-1} - I_{n-2}\\ \\dots(1)",
             "render": "katex",
-            "style": "boxed"
+            "style": "eq"
           }
         ],
         "why": "The substitution t = tanx turns ∫tanⁿ⁻²x sec²x dx into a plain power rule in t, giving the tanⁿ⁻¹x/(n−1) term directly — no by-parts needed anywhere in this reduction.",
@@ -109,7 +128,17 @@
           "Forgetting to convert back from t to tanx after integrating tⁿ⁻².",
           "Writing the power as n instead of n−1 in the exponent after integrating."
         ],
-        "memory_tip": "Power rule in t, then swap t back for tanx — one substitution does the whole job."
+        "memory_tip": "Power rule in t, then swap t back for tanx — one substitution does the whole job.",
+        "lines_compact": [
+          "In the first integral put t = tanx ⇒ dt = sec²x dx",
+          "∫ tanⁿ⁻²x sec²x dx = ∫ tⁿ⁻²dt = tⁿ⁻¹/(n−1)",
+          "= tanⁿ⁻¹x/(n−1)",
+          {
+            "text": "\\therefore\\ I_n = \\frac{\\tan^{n-1}x}{n-1} - I_{n-2}\\ \\dots(1)",
+            "render": "katex",
+            "style": "boxed"
+          }
+        ]
       },
       {
         "id": "s3_tan5",
@@ -123,6 +152,15 @@
           "I₅ = tan⁴x/4 − I₃",
           "I₃ = tan²x/2 − I₁, and I₁ = ∫tanx dx = log|secx| + c",
           {
+            "text": "Substituting I₃ into I₅ — the two minus",
+            "added": true
+          },
+          {
+            "text": "  signs make the log positive:",
+            "style": "indent",
+            "added": true
+          },
+          {
             "text": "∴ I = tan⁴x/4 − tan²x/2 + log|secx| + c",
             "style": "boxed"
           }
@@ -132,7 +170,16 @@
           "Chaining down to I₀ = x by mistake, which is the even-n stopping point, not the odd-n one.",
           "Dropping the modulus bars on log|secx|, which makes the antiderivative undefined wherever secx < 0."
         ],
-        "memory_tip": "Odd n stops at I₁ = log|secx|; even n stops at I₀ = x — never mix the two chains up."
+        "memory_tip": "Odd n stops at I₁ = log|secx|; even n stops at I₀ = x — never mix the two chains up.",
+        "lines_compact": [
+          "Put n = 5, 3 successively in (1):",
+          "I₅ = tan⁴x/4 − I₃",
+          "I₃ = tan²x/2 − I₁, and I₁ = ∫tanx dx = log|secx| + c",
+          {
+            "text": "∴ I = tan⁴x/4 − tan²x/2 + log|secx| + c",
+            "style": "boxed"
+          }
+        ]
       },
       {
         "id": "s4_tan6",
@@ -147,6 +194,10 @@
           "I₂ = tanx − I₀, and I₀ = ∫dx = x",
           "So I₂ = tanx − x, I₄ = tan³x/3 − tanx + x",
           {
+            "text": "Then I₆ = tan⁵x/5 − [tan³x/3 − tanx + x]",
+            "added": true
+          },
+          {
             "text": "∴ I = tan⁵x/5 − tan³x/3 + tanx − x + c",
             "style": "boxed"
           }
@@ -156,7 +207,17 @@
           "Reusing the odd-n answer for tan⁵x by mistake instead of working the even-n chain fresh.",
           "Sign slip when substituting I₂ = tanx − x back into the I₄ line."
         ],
-        "memory_tip": "Work the chain n → n−2 → … ALL the way to I₀ or I₁ before writing the boxed answer — never stop one step early."
+        "memory_tip": "Work the chain n → n−2 → … ALL the way to I₀ or I₁ before writing the boxed answer — never stop one step early.",
+        "lines_compact": [
+          "Put n = 6, 4, 2 successively in (1):",
+          "I₆ = tan⁵x/5 − I₄, I₄ = tan³x/3 − I₂,",
+          "I₂ = tanx − I₀, and I₀ = ∫dx = x",
+          "So I₂ = tanx − x, I₄ = tan³x/3 − tanx + x",
+          {
+            "text": "∴ I = tan⁵x/5 − tan³x/3 + tanx − x + c",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   }

@@ -109,9 +109,18 @@
         "margin_note": "Second mark. Put α = 1 back into either equation: 1 + b + c = 0, which is the required result. One line, but it is the line the question asks for — write it.",
         "memory_tip": "Put α = 1 back into either equation: 1 + b + c = 0. That one line is the asked result.",
         "lines": [
-          "Put α = 1 in (1):",
-          "1² + b(1) + c = 0",
-          "1 + b + c = 0",
+          {
+            "text": "Put α = 1 in (1):",
+            "added": true
+          },
+          {
+            "text": "1² + b(1) + c = 0",
+            "added": true
+          },
+          {
+            "text": "1 + b + c = 0",
+            "added": true
+          },
           {
             "text": "∴ b + c + 1 = 0",
             "style": "boxed"
@@ -145,6 +154,13 @@
           "Stopping at α = 1 and never substituting.",
           "Substituting into (1) − (2) again, which gives 0 = 0.",
           "Writing 1 + b + c = 0 as b + c = 1."
+        ],
+        "lines_compact": [
+          "Put α = 1 in (1): 1 + b + c = 0",
+          {
+            "text": "∴ b + c + 1 = 0",
+            "style": "boxed"
+          }
         ]
       }
     ]

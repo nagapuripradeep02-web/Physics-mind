@@ -118,15 +118,36 @@
         "margin_note": "Second mark. Do NOT expand. 4(y − 1)² is (2y − 2)², so the left side is a² − b² = (a + b)(a − b) with a = y + 1 and b = 2y − 2. That gives the factors directly.",
         "memory_tip": "Do NOT expand. 4(y − 1)² is (2y − 2)², so this is a² − b² = (a + b)(a − b).",
         "lines": [
-          "Here x is real, so this quadratic in x has",
-          "real roots, which needs Δ = b² − 4ac ≥ 0:",
-          "Here a = y − 1, b = −(y + 1), c = y − 1",
-          "Δ = (y + 1)² − 4(y − 1)(y − 1) ≥ 0",
+          {
+            "text": "Here x is real, so this quadratic in x has",
+            "added": true
+          },
+          {
+            "text": "real roots, which needs Δ = b² − 4ac ≥ 0:",
+            "added": true
+          },
+          {
+            "text": "Here a = y − 1, b = −(y + 1), c = y − 1",
+            "added": true
+          },
+          {
+            "text": "Δ = (y + 1)² − 4(y − 1)(y − 1) ≥ 0",
+            "added": true
+          },
           "= (y + 1)² − 4(y − 1)² ≥ 0",
-          "4(y − 1)² = (2y − 2)², so this is a",
-          "difference of two squares:",
+          {
+            "text": "4(y − 1)² = (2y − 2)², so this is a",
+            "added": true
+          },
+          {
+            "text": "difference of two squares:",
+            "added": true
+          },
           "(y + 1)² − (2y − 2)² ≥ 0",
-          "[(y + 1) + (2y − 2)][(y + 1) − (2y − 2)] ≥ 0",
+          {
+            "text": "[(y + 1) + (2y − 2)][(y + 1) − (2y − 2)] ≥ 0",
+            "added": true
+          },
           "(3y − 1)(3 − y) ≥ 0"
         ],
         "recall": {
@@ -159,6 +180,13 @@
           "Expanding everything and then failing to factorise 3y² − 10y + 3.",
           "Writing 4(y − 1)² as (4y − 4)².",
           "Using Δ > 0, which loses the two end values."
+        ],
+        "lines_compact": [
+          "∴ Δ = b² − 4ac ≥ 0",
+          "⇒ (y + 1)² − 4(y − 1)² ≥ 0",
+          "⇒ (y + 1)² − (2y − 2)² ≥ 0",
+          "⇒ (y + 1 + 2y − 2)(y + 1 − 2y + 2) ≥ 0",
+          "⇒ (3y − 1)(3 − y) ≥ 0"
         ]
       },
       {
@@ -170,10 +198,19 @@
         "margin_note": "Third mark. Replacing (3 − y) by −(y − 3) multiplies the product by −1, so ≥ 0 becomes ≤ 0. A product of two linear factors is ≤ 0 between its roots: 1/3 and 3.",
         "memory_tip": "Rewrite (3 − y) as −(y − 3); that multiplies by −1 and flips ≥ to ≤.",
         "lines": [
-          "Multiply by −1 and flip the inequality:",
+          {
+            "text": "Multiply by −1 and flip the inequality:",
+            "added": true
+          },
           "(3y − 1)(y − 3) ≤ 0",
-          "The roots of the left side are y = 1/3 and y = 3.",
-          "A product is ≤ 0 BETWEEN its roots:",
+          {
+            "text": "The roots of the left side are y = 1/3 and y = 3.",
+            "added": true
+          },
+          {
+            "text": "A product is ≤ 0 BETWEEN its roots:",
+            "added": true
+          },
           "1/3 ≤ y ≤ 3"
         ],
         "recall": {
@@ -207,6 +244,10 @@
           "Reading (3y − 1)(3 − y) ≥ 0 as 'outside the roots' — it is between, once the sign of (3 − y) is handled.",
           "Solving 3y − 1 ≥ 0 and 3 − y ≥ 0 separately and stopping there.",
           "Writing the roots as 3 and −1/3."
+        ],
+        "lines_compact": [
+          "⇒ (3y − 1)(y − 3) ≤ 0",
+          "⇒ 1/3 ≤ y ≤ 3"
         ]
       },
       {
@@ -219,7 +260,10 @@
         "memory_tip": "Both ends are reached — y = 3 at x = 1 and y = 1/3 at x = −1 — so the brackets are square.",
         "lines": [
           "So y takes every value from 1/3 to 3,",
-          "and no value outside.",
+          {
+            "text": "and no value outside.",
+            "added": true
+          },
           {
             "text": "∴ range = [1/3, 3]",
             "style": "boxed"
@@ -253,6 +297,13 @@
           "Writing (1/3, 3) with round brackets.",
           "Giving 3 as the minimum and 1/3 as the maximum.",
           "Stopping at the inequality without stating the range."
+        ],
+        "lines_compact": [
+          "y takes every value from 1/3 to 3.",
+          {
+            "text": "∴ range = [1/3, 3]",
+            "style": "boxed"
+          }
         ]
       }
     ]

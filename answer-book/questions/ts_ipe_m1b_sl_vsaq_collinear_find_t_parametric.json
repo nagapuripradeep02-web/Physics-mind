@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Very Short Answer question 25, book p.143. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split gives one mark for setting up the zero-area condition and one for solving the quadratic and reporting BOTH roots. NOTE ON THE ANSWER SET: t = 0 makes the first two points coincide at the origin, so the three points are collinear in the degenerate sense; it is a genuine root of the printed condition and is reported, with the coincidence stated on the page rather than quietly dropped. This book prints almost no exam-appearance years, so appearances[] is empty. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Very Short Answer question 25, book p.143. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split gives one mark for setting up the zero-area condition and one for solving the quadratic and reporting BOTH roots. NOTE ON THE ANSWER SET: t = 0 makes the first two points coincide at the origin, so the three points are collinear in the degenerate sense; it is a genuine root of the printed condition and is reported, with the coincidence stated on the page rather than quietly dropped. This book prints almost no exam-appearance years, so appearances[] is empty. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say which condition you write down for three collinear points, and how many values of t you expect.",
   "answer": {
@@ -54,7 +54,17 @@
           },
           "Let A = (t, 2t), B = (2t, 6t), C = (3, 8)",
           "A, B, C are collinear",
+          "(three points are collinear when the triangle",
+          {
+            "text": "  they form has zero area)",
+            "style": "indent"
+          },
           "⇒ area of ΔABC = 0",
+          "(the area is ½|x₁(y₂ − y₃) + x₂(y₃ − y₁) + x₃(y₁ − y₂)|,",
+          {
+            "text": "  and ½|E| = 0 means E = 0)",
+            "style": "indent"
+          },
           "⇒ x₁(y₂ − y₃) + x₂(y₃ − y₁) + x₃(y₁ − y₂) = 0"
         ],
         "recall": {
@@ -92,12 +102,37 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. The expression factorises as 2t(t − 2), so there are two roots. Cancelling the t instead of factorising is what loses the mark.",
-        "memory_tip": "2t(t − 2) = 0 has TWO roots. Never cancel the t — that throws away t = 0.",
+        "memory_tip": "2t(t − 2) = 0 has TWO roots. Never cancel the t — that loses the root t = 0.",
         "lines": [
+          {
+            "text": "(put x₁ = t, y₁ = 2t; x₂ = 2t, y₂ = 6t; x₃ = 3, y₃ = 8)",
+            "added": true
+          },
           "⇒ t(6t − 8) + 2t(8 − 2t) + 3(2t − 6t) = 0",
+          {
+            "text": "(t(6t − 8) = 6t² − 8t, 2t(8 − 2t) = 16t − 4t²,",
+            "added": true
+          },
+          {
+            "text": "  and 3(2t − 6t) = 3(−4t) = −12t)",
+            "style": "indent",
+            "added": true
+          },
           "⇒ 6t² − 8t + 16t − 4t² − 12t = 0",
+          {
+            "text": "(6t² − 4t² = 2t² and −8t + 16t − 12t = −4t)",
+            "added": true
+          },
           "⇒ 2t² − 4t = 0",
+          {
+            "text": "(take out the common factor 2t)",
+            "added": true
+          },
           "⇒ 2t(t − 2) = 0",
+          {
+            "text": "(a product is 0 only when a factor is 0)",
+            "added": true
+          },
           {
             "text": "∴ t = 0 or t = 2",
             "style": "boxed"
@@ -129,10 +164,24 @@
             "factorise"
           ]
         },
-        "why": "At t = 2 the three points are genuinely different and lie on a line of slope 4. At t = 0 the first two points are the same point, and any three points of which two coincide lie on a line, so t = 0 also satisfies the condition as printed.",
+        "why": "At t = 2 the three points are all different and lie on a line of slope 4. At t = 0 the first two points are the same point, and any three points of which two coincide lie on a line, so t = 0 also satisfies the condition as printed.",
         "common_mistakes": [
           "Cancelling t and reporting only t = 2.",
           "Making a sign slip in 3(2t − 6t) and getting a wrong quadratic."
+        ],
+        "lines_compact": [
+          "⇒ t(6t − 8) + 2t(8 − 2t) + 3(2t − 6t) = 0",
+          "⇒ 6t² − 8t + 16t − 4t² − 12t = 0",
+          "⇒ 2t² − 4t = 0",
+          "⇒ 2t(t − 2) = 0",
+          {
+            "text": "∴ t = 0 or t = 2",
+            "style": "boxed"
+          },
+          "Check at t = 2: A(2, 4), B(4, 12), C(3, 8);",
+          "slope AB = 8/2 = 4 and slope BC = −4/−1 = 4.",
+          "At t = 0 both A and B become (0, 0), so the",
+          "three points still lie on one line."
         ]
       }
     ]

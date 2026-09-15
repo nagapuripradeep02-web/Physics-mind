@@ -42,7 +42,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.55, chapter 5 MATRICES, Long Answer question 9(v), matrix-inversion route. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+3+1+2 split gives three of the eight marks to the nine cofactors and matches every other matrix-inversion answer in this unit. ONE CARD PER METHOD: the book asks this one system by Cramer's rule, by matrix inversion and by the Gauss-Jordan method, and this bank answers each method on its own card so that a student who opens one never has to read another. The siblings are ts_ipe_m1a_mat_cramer_x_minus_y_3z_5_negx and ts_ipe_m1a_mat_gauss_x_minus_y_3z_5_negx, and all three land on the same solution x = 0, y = 1, z = 2. A DIFFERENT system of a similar shape is already in the bank as ts_ipe_m1a_mat_cramer_x_minus_y_3z_5, whose third equation is x + 3y + z = 5 with a positive x; that card is not a duplicate of this one. PRINTED DEFECT IN THE STEM: the book prints the third equation as −x + 3y + 3z = 5, but every matrix it then writes uses the row (−1, 3, 1), that is −x + 3y + z = 5, and the book's own Δ = 50 and answer (0, 1, 2) belong to that version. This card is authored on −x + 3y + z = 5. The arithmetic settles it: with the printed 3z the determinant is 62, not 50, and the solution is x = 10/31, y = 5/31, z = 50/31 — fractions the book never prints; with z the determinant is 50 and the solution is (0, 1, 2), exactly what the book states. The book also mis-sets \"x − y + 33 = 5\" for x − y + 3z = 5 in its Cramer's-rule restatement of the same system. Both misprints are recorded here rather than silently repaired. Working checked twice: det A was expanded along R₁ and again along C₁, both giving 50; A(Adj A) = (det A)I was checked on two entries before the inverse was used; and the solution was substituted back into all three original equations (5 = 5, 0 = 0, 5 = 5). Paper position: Maths-1A Section C prints 3 long answers at 8 marks each and the student answers any 2; Matrices is one of the units that can fill a Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.55, chapter 5 MATRICES, Long Answer question 9(v), matrix-inversion route. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+3+1+2 split gives three of the eight marks to the nine cofactors and matches every other matrix-inversion answer in this unit. ONE CARD PER METHOD: the book asks this one system by Cramer's rule, by matrix inversion and by the Gauss-Jordan method, and this bank answers each method on its own card so that a student who opens one never has to read another. The siblings are ts_ipe_m1a_mat_cramer_x_minus_y_3z_5_negx and ts_ipe_m1a_mat_gauss_x_minus_y_3z_5_negx, and all three land on the same solution x = 0, y = 1, z = 2. A DIFFERENT system of a similar shape is already in the bank as ts_ipe_m1a_mat_cramer_x_minus_y_3z_5, whose third equation is x + 3y + z = 5 with a positive x; that card is not a duplicate of this one. PRINTED DEFECT IN THE STEM: the book prints the third equation as −x + 3y + 3z = 5, but every matrix it then writes uses the row (−1, 3, 1), that is −x + 3y + z = 5, and the book's own Δ = 50 and answer (0, 1, 2) belong to that version. This card is authored on −x + 3y + z = 5. The arithmetic settles it: with the printed 3z the determinant is 62, not 50, and the solution is x = 10/31, y = 5/31, z = 50/31 — fractions the book never prints; with z the determinant is 50 and the solution is (0, 1, 2), exactly what the book states. The book also mis-sets \"x − y + 33 = 5\" for x − y + 3z = 5 in its Cramer's-rule restatement of the same system. Both misprints are recorded here rather than silently repaired. Working checked twice: det A was expanded along R₁ and again along C₁, both giving 50; A(Adj A) = (det A)I was checked on two entries before the inverse was used; and the solution was substituted back into all three original equations (5 = 5, 0 = 0, 5 = 5). Paper position: Maths-1A Section C prints 3 long answers at 8 marks each and the student answers any 2; Matrices is one of the units that can fill a Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this by the matrix inversion method — say what you have to find first, how you build the inverse, what you multiply at the end, and how you check it.",
   "answer": {
@@ -70,7 +70,12 @@
             "render": "katex",
             "style": "eq"
           },
-          "The solution of AX = D is X = A⁻¹D."
+          "The solution of AX = D is X = A⁻¹D.",
+          "(multiply AX = D on the left by A⁻¹; A⁻¹A = I,",
+          {
+            "text": "  so X = A⁻¹D)",
+            "style": "indent"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -115,10 +120,47 @@
             "render": "katex",
             "style": "eq"
           },
+          {
+            "text": "Expand along R₁: each entry times the 2×2",
+            "added": true
+          },
+          {
+            "text": "  determinant left when its row and column",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  are deleted, with signs + − +:",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  + (1) × [(2)(1) − (−1)(3)]",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  − (−1) × [(4)(1) − (−1)(−1)]",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  + (3) × [(4)(3) − (2)(−1)]",
+            "style": "indent",
+            "added": true
+          },
           "= 1(2+3) + 1(4−1) + 3(12+2)",
           "= 5 + 3 + 42 = 50",
+          {
+            "text": "(a second expansion gives the same value — a check)",
+            "added": true
+          },
           "Along C₁: 1(5) − 4(−10) + (−1)(−5) = 50",
-          "det A = 50 ≠ 0, so A⁻¹ exists."
+          "det A = 50 ≠ 0, so A⁻¹ exists.",
+          {
+            "text": "(A⁻¹ = Adj A ÷ det A, so det A must not be 0)",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -148,6 +190,17 @@
           "Computing det A but never writing that it is non-zero.",
           "Getting the sign pattern wrong: plus, minus, plus along the top row.",
           "Confusing det A with the trace or with the sum of a row."
+        ],
+        "lines_compact": [
+          {
+            "text": "\\det A = \\begin{vmatrix} 1 & -1 & 3 \\\\ 4 & 2 & -1 \\\\ -1 & 3 & 1 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= 1(2+3) + 1(4−1) + 3(12+2)",
+          "= 5 + 3 + 42 = 50",
+          "Along C₁: 1(5) − 4(−10) + (−1)(−5) = 50",
+          "det A = 50 ≠ 0, so A⁻¹ exists."
         ]
       },
       {
@@ -163,6 +216,55 @@
           "2×2 determinant, then apply the sign board",
           "+ − + / − + − / + − +. For example,",
           "A₂₁ = −((−1)(1) − 3(3)) = −(−10) = 10.",
+          {
+            "text": "The nine cofactors, one by one:",
+            "added": true
+          },
+          {
+            "text": "  A₁₁ = +[(2)(1) − (−1)(3)] = 5",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  A₁₂ = −[(4)(1) − (−1)(−1)] = −3",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  A₁₃ = +[(4)(3) − (2)(−1)] = 14",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  A₂₁ = −[(−1)(1) − (3)(3)] = 10",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  A₂₂ = +[(1)(1) − (3)(−1)] = 4",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  A₂₃ = −[(1)(3) − (−1)(−1)] = −2",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  A₃₁ = +[(−1)(−1) − (3)(2)] = −5",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  A₃₂ = −[(1)(−1) − (3)(4)] = 13",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  A₃₃ = +[(1)(2) − (−1)(4)] = 6",
+            "style": "indent",
+            "added": true
+          },
           "A₁₁ = 5,  A₁₂ = −3,  A₁₃ = 14",
           "A₂₁ = 10,  A₂₂ = 4,  A₂₃ = −2",
           "A₃₁ = −5,  A₃₂ = 13,  A₃₃ = 6",
@@ -200,6 +302,20 @@
           "Writing the minors and forgetting the sign board entirely.",
           "Applying the signs to the wrong positions; the corners are all plus.",
           "Deleting the wrong row or column for the off-diagonal entries."
+        ],
+        "lines_compact": [
+          "Delete each entry's row and column, take the",
+          "2×2 determinant, then apply the sign board",
+          "+ − + / − + − / + − +. For example,",
+          "A₂₁ = −((−1)(1) − 3(3)) = −(−10) = 10.",
+          "A₁₁ = 5,  A₁₂ = −3,  A₁₃ = 14",
+          "A₂₁ = 10,  A₂₂ = 4,  A₂₃ = −2",
+          "A₃₁ = −5,  A₃₂ = 13,  A₃₃ = 6",
+          {
+            "text": "\\text{Cofactor matrix} = \\begin{bmatrix} 5 & -3 & 14 \\\\ 10 & 4 & -2 \\\\ -5 & 13 & 6 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -218,6 +334,15 @@
             "style": "eq"
           },
           {
+            "text": "(row 1 of Adj A is column 1 of the cofactors,",
+            "added": true
+          },
+          {
+            "text": "  and so on)",
+            "style": "indent",
+            "added": true
+          },
+          {
             "text": "A^{-1} = \\frac{1}{\\det A}(\\text{Adj } A) = \\frac{1}{50} \\begin{bmatrix} 5 & 10 & -5 \\\\ -3 & 4 & 13 \\\\ 14 & -2 & 6 \\end{bmatrix}",
             "render": "katex",
             "style": "eq"
@@ -225,7 +350,7 @@
           "Check A(Adj A) = (det A)I on the top row:",
           "1(5) + (−1)(−3) + 3(14) = 5 + 3 + 42 = 50,",
           "1(10) + (−1)(4) + 3(−2) = 0,",
-          "1(−5) + (−1)(13) + 3(6) = 0.  So A·A⁻¹ = I."
+          "1(−5) + (−1)(13) + 3(6) = 0: row 1 checks out."
         ],
         "recall": {
           "credit": "say_it",
@@ -250,11 +375,28 @@
             "one by det A"
           ]
         },
-        "why": "Forgetting the transpose gives a matrix that looks right and is wrong, and nothing later in the question will reveal it. Multiplying one row of A into one column of Adj A costs three products and proves the inverse before it is used.",
+        "why": "Forgetting the transpose gives a matrix that looks right and is wrong, and nothing later in the question will reveal it. Checking row 1 of A against the columns of Adj A tests the first row of A(Adj A) = (det A)I — a partial check, not a proof.",
         "common_mistakes": [
           "Using the cofactor matrix directly as the adjoint without transposing.",
           "Dividing only one row by det A instead of the whole matrix.",
           "Multiplying by det A instead of dividing."
+        ],
+        "lines_compact": [
+          "Adj A is the transpose of the cofactors:",
+          {
+            "text": "\\text{Adj } A = \\begin{bmatrix} 5 & 10 & -5 \\\\ -3 & 4 & 13 \\\\ 14 & -2 & 6 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "A^{-1} = \\frac{1}{\\det A}(\\text{Adj } A) = \\frac{1}{50} \\begin{bmatrix} 5 & 10 & -5 \\\\ -3 & 4 & 13 \\\\ 14 & -2 & 6 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "Check A(Adj A) = (det A)I on the top row:",
+          "1(5) + (−1)(−3) + 3(14) = 5 + 3 + 42 = 50,",
+          "1(10) + (−1)(4) + 3(−2) = 0,",
+          "1(−5) + (−1)(13) + 3(6) = 0: row 1 checks out."
         ]
       },
       {
@@ -267,6 +409,10 @@
         "memory_tip": "Multiply row by column, divide every entry by det A, then put the three values back into the three original equations.",
         "lines": [
           "X = A⁻¹D. Multiplying row by column:",
+          {
+            "text": "(each row of Adj A times the column D = (5, 0, 5))",
+            "added": true
+          },
           "5(5) + 10(0) − 5(5) = 25 − 25 = 0",
           "−3(5) + 4(0) + 13(5) = −15 + 65 = 50",
           "14(5) − 2(0) + 6(5) = 70 + 30 = 100",
@@ -274,6 +420,10 @@
             "text": "X = \\frac{1}{50} \\begin{bmatrix} 0 \\\\ 50 \\\\ 100 \\end{bmatrix} = \\begin{bmatrix} 0 \\\\ 1 \\\\ 2 \\end{bmatrix}",
             "render": "katex",
             "style": "eq"
+          },
+          {
+            "text": "(divide each entry by det A = 50)",
+            "added": true
           },
           "Check: 0 − 1 + 3(2) = 5  ✓",
           "4(0) + 2(1) − 2 = 0  ✓",
@@ -307,11 +457,29 @@
             "z equals two"
           ]
         },
-        "why": "X comes out as a single column matrix, and its three entries ARE x, y and z in that order. Substituting them back into the original equations is the only check that catches a slip inside the cofactors.",
+        "why": "X comes out as a single column matrix, and its three entries ARE x, y and z in that order. Substituting them back into the original equations is a check that also catches a slip inside the cofactors.",
         "common_mistakes": [
           "Multiplying column by row instead of row by column.",
           "Dividing by det A only once instead of on every entry.",
           "Stopping without substituting the three values back into all three equations."
+        ],
+        "lines_compact": [
+          "X = A⁻¹D. Multiplying row by column:",
+          "5(5) + 10(0) − 5(5) = 25 − 25 = 0",
+          "−3(5) + 4(0) + 13(5) = −15 + 65 = 50",
+          "14(5) − 2(0) + 6(5) = 70 + 30 = 100",
+          {
+            "text": "X = \\frac{1}{50} \\begin{bmatrix} 0 \\\\ 50 \\\\ 100 \\end{bmatrix} = \\begin{bmatrix} 0 \\\\ 1 \\\\ 2 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "Check: 0 − 1 + 3(2) = 5  ✓",
+          "4(0) + 2(1) − 2 = 0  ✓",
+          "−0 + 3(1) + 2 = 5  ✓",
+          {
+            "text": "∴ x = 0, y = 1, z = 2",
+            "style": "boxed"
+          }
         ]
       }
     ]

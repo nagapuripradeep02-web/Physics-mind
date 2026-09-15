@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.12, chapter 2 FUNCTIONS, Very Short Answer question 19 part (a-i). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape rewards the conditions the expression forces and the final interval as two separate pieces of work, which is how a domain question is marked. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.12, chapter 2 FUNCTIONS, Very Short Answer question 19 part (a-i). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape rewards the conditions the expression forces and the final interval as two separate pieces of work, which is how a domain question is marked. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find this domain — the conditions the formula forces, and the answer.",
   "answer": {
@@ -52,8 +52,11 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "(a fraction is undefined only where its denominator is 0)",
           "f(x) is not defined when 6x − x² − 5 = 0",
+          "(multiply by −1)",
           "⇒ x² − 6x + 5 = 0",
+          "(numbers with product 5 and sum −6 are −1 and −5)",
           "⇒ (x − 1)(x − 5) = 0",
           "⇒ x = 1 or x = 5"
         ],
@@ -82,7 +85,7 @@
         },
         "why": "The numerator is the constant 1, so the only way the formula can fail is a zero denominator. Rearranging to x² − 6x + 5 puts the quadratic in the form that factorises directly.",
         "common_mistakes": [
-          "Solving 6x − x² − 5 > 0, which is the condition for a square root, not for a denominator.",
+          "Solving 6x − x² − 5 > 0, which is the condition for a logarithm, not for a denominator.",
           "A sign slip when rearranging −x² + 6x − 5 into x² − 6x + 5."
         ]
       },

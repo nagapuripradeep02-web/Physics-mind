@@ -43,7 +43,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.65 — SAQ chapter 10 T-Ratios upto Transformations, answer 64.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 18 · AP 16 · TS 16. The √3 is not decoration — it is there so that after halving, the coefficients become cos 30° and sin 30°, which is what lets the numerator collapse into a single sine. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter (its pages are set two questions to a page in two columns). It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used here are the book's own. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q14 is the T-Ratios slot. RE-CUT 2026-08-31: this card was filed as SAQ at 4 marks and is now VSAQ at 2. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya FAST TRACK IPE Mathematics-IA 2026-27 edition files this chapter under a Very Short Answer Questions banner and prints no short answer block for it at all, asking this same question as Very Short Answer question 42 i. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. The mathematics and the steps are unchanged; only the mark scheme moved: the two marks now sit on the step that takes the 2 out and on the closing cancellation, and the remaining steps stay on the page as unmarked working. Still unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.65 — SAQ chapter 10 T-Ratios upto Transformations, answer 64.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 18 · AP 16 · TS 16. The √3 is not decoration — it is there so that after halving, the coefficients become cos 30° and sin 30°, which is what lets the numerator collapse into a single sine. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter (its pages are set two questions to a page in two columns). It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used here are the book's own. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q14 is the T-Ratios slot. RE-CUT 2026-08-31: this card was filed as SAQ at 4 marks and is now VSAQ at 2. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya FAST TRACK IPE Mathematics-IA 2026-27 edition files this chapter under a Very Short Answer Questions banner and prints no short answer block for it at all, asking this same question as Very Short Answer question 42 i. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. The mathematics and the steps are unchanged; only the mark scheme moved: the two marks now sit on the step that takes the 2 out and on the closing cancellation, and the remaining steps stay on the page as unmarked working. Still unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — name each move in order.",
   "answer": {
@@ -64,6 +64,7 @@
             "style": "heading"
           },
           "L.H.S = 1/sin10° − √3/cos10°",
+          "Use the common denominator sin10° cos10°:",
           "= (cos10° − √3 sin10°)/(sin10° cos10°)"
         ],
         "recall": {
@@ -103,6 +104,15 @@
         "mark_note": "Method",
         "margin_note": "First mark, and the idea of the question. Taking 2 out turns the coefficients into 1/2 and √3/2 — which are sin 30° and cos 30°.",
         "lines": [
+          {
+            "text": "Take out 2 from the top, so that 1/2 and √3/2",
+            "added": true
+          },
+          {
+            "text": "  appear — these are sin30° and cos30°:",
+            "style": "indent",
+            "added": true
+          },
           "= 2[(1/2)cos10° − (√3/2)sin10°] / (sin10° cos10°)",
           "= 2[sin30° cos10° − cos30° sin10°] / (sin10° cos10°)"
         ],
@@ -134,7 +144,11 @@
           "Failing to take the 2 out and never seeing the known values.",
           "Matching 1/2 to cos 30° instead of sin 30°."
         ],
-        "memory_tip": "Taking 2 out makes the coefficients 1/2 and √3/2 — which are sin 30° and cos 30°."
+        "memory_tip": "Taking 2 out makes the coefficients 1/2 and √3/2 — which are sin 30° and cos 30°.",
+        "lines_compact": [
+          "= 2[(1/2)cos10° − (√3/2)sin10°] / (sin10° cos10°)",
+          "= 2[sin30° cos10° − cos30° sin10°] / (sin10° cos10°)"
+        ]
       },
       {
         "id": "s3_apply_sin_a_b",
@@ -145,6 +159,10 @@
         "lines": [
           "= 2 sin(30° − 10°) / (sin10° cos10°)",
           "  [∵ sinA cosB − cosA sinB = sin(A−B)]",
+          {
+            "text": "(30° − 10° = 20°)",
+            "added": true
+          },
           "= 2 sin20° / (sin10° cos10°)"
         ],
         "recall": {
@@ -173,7 +191,12 @@
           "Using sin(A+B) and getting sin 40°.",
           "Getting the order backwards as sin(10° − 30°)."
         ],
-        "memory_tip": "sinA cosB − cosA sinB = sin(A−B), so the numerator collapses to 2 sin20°."
+        "memory_tip": "sinA cosB − cosA sinB = sin(A−B), so the numerator collapses to 2 sin20°.",
+        "lines_compact": [
+          "= 2 sin(30° − 10°) / (sin10° cos10°)",
+          "  [∵ sinA cosB − cosA sinB = sin(A−B)]",
+          "= 2 sin20° / (sin10° cos10°)"
+        ]
       },
       {
         "id": "s4_expand_sin20_and_cancel",
@@ -183,8 +206,21 @@
         "mark_note": "Conclusion",
         "margin_note": "Last mark. sin20° is 2 sin10° cos10°, which is exactly the denominator — so everything cancels and only the numbers survive.",
         "lines": [
+          {
+            "text": "Write sin20° with the double-angle formula:",
+            "added": true
+          },
           "= 2(2 sin10° cos10°) / (sin10° cos10°)",
           "  [∵ sin2θ = 2 sinθ cosθ]",
+          {
+            "text": "sin10° cos10° cancels from top and bottom:",
+            "added": true
+          },
+          {
+            "text": "  2 × 2 = 4",
+            "style": "indent",
+            "added": true
+          },
           {
             "text": "= 4 = R.H.S",
             "style": "boxed"
@@ -217,7 +253,15 @@
           "Cancelling before expanding sin 20°.",
           "Getting 2 instead of 4 by dropping one of the twos."
         ],
-        "memory_tip": "sin20° = 2 sin10° cos10°, which IS the denominator — everything cancels and 4 survives."
+        "memory_tip": "sin20° = 2 sin10° cos10°, which IS the denominator — everything cancels and 4 survives.",
+        "lines_compact": [
+          "= 2(2 sin10° cos10°) / (sin10° cos10°)",
+          "  [∵ sin2θ = 2 sinθ cosθ]",
+          {
+            "text": "= 4 = R.H.S",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.89 — VSAQ chapter 17 Product of Vectors, answer 118.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: none — this answer carries no year tag. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four questions to a page in two columns. It is not a bare guess: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark VSAQ, applied here to the two steps of this question. The book's chapter header carries ★★★ and reads '2 Marks'. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q7 is the Product of Vectors slot."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.89 — VSAQ chapter 17 Product of Vectors, answer 118.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: none — this answer carries no year tag. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four questions to a page in two columns. It is not a bare guess: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark VSAQ, applied here to the two steps of this question. The book's chapter header carries ★★★ and reads '2 Marks'. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q7 is the Product of Vectors slot. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find the angle from this condition.",
   "answer": {
@@ -53,7 +53,9 @@
             "style": "heading"
           },
           "Given |a + b| = |a − b|",
+          "(both sides are lengths, so their squares are equal too)",
           "⇒ |a + b|² = |a − b|²",
+          "(|a ± b|² = a² + b² ± 2a·b)",
           "⇒ a² + b² + 2a·b = a² + b² − 2a·b"
         ],
         "recall": {
@@ -93,9 +95,17 @@
         "margin_note": "Second mark. Everything cancels except the cross terms, and 4a·b = 0 forces the dot product to zero.",
         "memory_tip": "Everything cancels except the cross terms, and 4a·b = 0 forces the dot product to zero.",
         "lines": [
+          {
+            "text": "(take a² + b² from both sides, then add 2a·b to both sides)",
+            "added": true
+          },
           "⇒ 4a·b = 0  ⇒  a·b = 0",
           "A zero dot product means the vectors are",
           "perpendicular.",
+          {
+            "text": "(for non-zero a and b)",
+            "added": true
+          },
           {
             "text": "∴ The angle between a and b is 90°",
             "style": "boxed"
@@ -127,6 +137,15 @@
         "common_mistakes": [
           "Giving the answer as 0° or 180°.",
           "Stopping at a·b = 0 without naming the angle."
+        ],
+        "lines_compact": [
+          "⇒ 4a·b = 0  ⇒  a·b = 0",
+          "A zero dot product means the vectors are",
+          "perpendicular.",
+          {
+            "text": "∴ The angle between a and b is 90°",
+            "style": "boxed"
+          }
         ]
       }
     ]

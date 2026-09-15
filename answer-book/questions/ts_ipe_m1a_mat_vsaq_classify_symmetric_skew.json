@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.34, chapter 5 MATRICES, Very Short Answer question 17. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards writing the transpose separately from the comparison that names the type, because the transpose is the only real work and a one-word answer shows none of it. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.34, chapter 5 MATRICES, Very Short Answer question 17. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards writing the transpose separately from the comparison that names the type, because the transpose is the only real work and a one-word answer shows none of it. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you decide which of the two it is, and give the answer.",
   "answer": {
@@ -57,6 +57,7 @@
             "style": "eq"
           },
           "Turn the rows into columns to get Aᵀ:",
+          "(row 1 of A, (0, 1, 4), becomes column 1 of Aᵀ)",
           {
             "text": "A^{T} = \\begin{bmatrix} 0 & -1 & -4 \\\\ 1 & 0 & -7 \\\\ 4 & 7 & 0 \\end{bmatrix}",
             "render": "katex",
@@ -102,6 +103,10 @@
           "Aᵀ ≠ A: the (1,2) entry is −1 in Aᵀ but 1 in A.",
           "So A is not symmetric. Now write −A:",
           {
+            "text": "(−A changes the sign of every entry of A)",
+            "added": true
+          },
+          {
             "text": "-A = \\begin{bmatrix} 0 & -1 & -4 \\\\ 1 & 0 & -7 \\\\ 4 & 7 & 0 \\end{bmatrix} = A^{T}",
             "render": "katex",
             "style": "eq"
@@ -140,7 +145,22 @@
           "Deciding from the zero diagonal alone, with no comparison.",
           "Writing −A but comparing it with A instead of with Aᵀ."
         ],
-        "memory_tip": "Mirrored entries equal means symmetric; mirrored entries opposite in sign means skew symmetric."
+        "memory_tip": "Mirrored entries equal means symmetric; mirrored entries opposite in sign means skew symmetric.",
+        "lines_compact": [
+          "Aᵀ ≠ A: the (1,2) entry is −1 in Aᵀ but 1 in A.",
+          "So A is not symmetric. Now write −A:",
+          {
+            "text": "-A = \\begin{bmatrix} 0 & -1 & -4 \\\\ 1 & 0 & -7 \\\\ 4 & 7 & 0 \\end{bmatrix} = A^{T}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "Every entry of −A matches Aᵀ, and the",
+          "principal diagonal is 0, 0, 0.",
+          {
+            "text": "∴ A is a skew symmetric matrix.",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   }

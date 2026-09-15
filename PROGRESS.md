@@ -34,6 +34,208 @@ Maths-2A written out in full (PR #202, 257 cards) and the Botany-II audit repair
 - BiPC FIRST year (Botany 13 ch, Zoology 8 ch — on master, never examiner-audited) still says "written, being checked" on the door. Needs the audit the second-year papers had before its cell goes live.
 - The main checkout `C:\Tutor\physics-mind` master is 19 ahead / 60 behind origin (19 local docs commits about EAPCET probes never pushed). Not touched this session.
 - `viditra-answers-bipc` worker: never existed on the account — nothing to delete.
+## 🧪 SESSION — The AI solver measured: 13 runs, ~3,000 calls, ~$11; routing decided; the reviewer and the generator designed (2026-09-10/11, `master`, local commits only)
+
+**Bottom line: the "student photographs a question" path now rests on measured numbers instead of beliefs. DeepSeek V4.1 Flash solves text questions at ~99% for ~$0.001; Gemini 3.7 Flash solves anything drawn (figures, circuits, organic structures) at 144/148 on the hardest set for ~$0.006 in 5 s; when the two agree they were right 129 of 129 times, and every disagreement contained the wrong model. Two things that sounded like fixes were measured as no-gain (a Python sandbox, retrieval of similar bank questions), one constraint turned out to be free (0 of 506 solutions used a beyond-Class-12 method), and three official EAPCET keys turned out to be wrong.** Everything is in `docs/MODEL_PROBES.md` §1–24 (the living log every future probe appends to) with the raw rows under `docs/reports/model_probes/data/`.
+
+### The measurements (all from a photo + a one-line student ask; regex grade + a hand pass on every miss)
+
+| run | what | result |
+|---|---|---|
+| 1–2 | DeepSeek V4.1 Flash, EAPCET text 90 + JEE Main 2024 90, thinking off/low/high/max | EAPCET 89/90 (`max`; the miss is a wrong key); JEE physics 30/30 `low`, maths 30/30 `max`, chemistry 23–25/29 at **every** effort |
+| 3–4 | figure questions, EAPCET 60 + JEE 60 (official crops redacted; the key leaked twice via tick icons + label colour) | EAPCET physics 25–26/30, chemistry 23–28/30; JEE physics 30/30, chemistry 25/29; thinking 3× text; 6 of 480 calls burnt the 32k cap and returned nothing |
+| 5 | the six chemistry misses re-asked as typed text | 4 of 6 become right → the bottleneck is reading drawn structures, not chemistry |
+| 6–9 | Gemini as reader/solver (2.5 → 404 on new projects; 3.x Flash; free tier caps per model per day; paid tier once the key's own project was linked) | Flash-Lite as reader: worse (100 vs 104). **3.7 Flash direct on all 148 hard figure/organic questions: 144**, DeepSeek `high` 131, the transcribe-then-solve split 140 — the split is dropped |
+| 10 | the six toughest questions, all five conditions, solutions kept verbatim (`docs/reports/model_probes/toughest_six_2026_09_10.md`) | best single condition 3/6; an exam convention (EAPCET summed error) and a drawing-slope read beat every model; 4 of 24 DeepSeek high/max calls blank at the cap |
+| 11 | Gemini `code_execution` ON | hard-148 144 → 145, maths 59 → 59, +55% cost; the model uses the sandbox to ZOOM the figure (42 crops vs 10 computations) — off by default |
+| 12 | three similar bank questions (keys, no workings) in the prompt | 144 → 144; EAPCET 2025 reused earlier questions verbatim (4/60 exact hits) — a bank's value is hits, not solver accuracy |
+| 13 | syllabus sweep of 506 stored solutions ($0.04 judge) | **0 beyond Class 12**; positive control 4/4 planted flagged, 2/2 within passed |
+
+Product numbers computed from the runs (§22): routed single solver ≈ $2.5–3 per 1,000 non-bank questions, pair on everything ≈ $7; the review loop worst case ≈ $36 per 1,000 questions with three uploads each; usage personas (obsessed aspirant ≈ ₹520/month, AIR-1 type ≈ ₹200, blended base ≈ ₹120–130 against ₹199).
+
+### The three documents this produced
+
+- `docs/SOLUTION_GENERATOR_ARCHITECTURE.md` — the Solutions tab photo path: Flash-Lite intake (transcribe, classify figure/text, fingerprint) → bank and cache first → text to DeepSeek `high` (maths `max`) with second-opinion triggers → figures to Gemini 3.7 Flash ∥ DeepSeek `high` → code-owned labels (*checked two ways / once / unsure*) → convention pass → syllabus post-check → response contract, caps cloned from `ep-photo-read`, cost and latency budgets, the measurement gate before ship. Founder confirmed the routing 2026-09-11.
+- `docs/SOLUTION_REVIEWER_ARCHITECTURE.md` — the founder's bar: twice as strong as the generator. Intake gate → strong transcription → deterministic step checks (SymPy + an exam-convention library) → two judges (photo, transcript) → code arbiter → three verdicts; the false-error rate on correct work is the metric; ~$0.014 per review; a 100-page planted-error set is the gate before ship.
+- `docs/PRODUCT_GAPS_AND_BANK_STRATEGY.md` — syllabus-level control (prompt + post-check + examples); what the product is missing (remediation after diagnosis, revision scheduling, mock-test analysis, speed, language, human escalation, privacy-vs-flywheel, copyright); the one-lakh-bank analysis and its order (organic first, public sources second, licensed/authored last, never a competitor's modules).
+
+### Files
+
+`docs/MODEL_PROBES.md` (new, §1–24) · `docs/reports/model_probes/data/{eapcet_text_2026_09_10, jee_main_2026_09_10, eapcet_figures, jee_figures, chem_text_vs_image, chem_reader, chem_reader_lite, chem_reader_37, toughest_six, code_exec, retrieval, syllabus_sweep}/` (`sample.json`, `results.jsonl`, `hand.json`) · `docs/reports/model_probes/toughest_six_2026_09_10.md` · `scripts/model_probes/{ds_probe, jee_extract, jee_final, eapcet_figure_crop, jee_figure_select, figures_final, chem_text_vs_image, gemini_probe, reader_compare, toughest_six, code_exec_probe, retrieval_probe, syllabus_sweep}.py` + `README.md` · the three architecture/strategy docs. Photos stay under gitignored `pdfs/probes/`; `.env.local` now carries the paid-tier Google key as `GOOGLE_GENERATIVE_AI_API_KEY` (+ `_CREDIT300`, `_PREV`) — never tracked. Commits (all local, hooks bypassed, nothing pushed): c21e3657 · 9d077a7b · 55e1d52a · 304a4177 · fc991ea2 · 3a685c13 · 9c980f6f · e53cc0f8 · 16079ae6 · c633ffde · fc52d7a1 · 26e721f7 · 3271a6dd. Memory: `project_deepseek_v41_flash_probe_results.md` carries Runs 1–13. Vault synced 2026-09-11 (`[[physicsmind]]`, `[[decisions]]`, `log.md`).
+
+### Blockers and cautions
+
+- Both new Google API keys were pasted into the chat — rotate them if this log is ever shared.
+- Every score is on typeset crops with a photo effect; real phone photos and handwriting are unmeasured. Numbers will move, probably down.
+- The reviewer cannot be measured until the founder supplies ~30 handwritten solution photos (correct, wrong part-way, unusual method, messy).
+- The 20/day photo cap does not bound cost under the ₹199 plan for a heavy user; the monthly-allowance recommendation is a pricing decision still open.
+
+### ▶ Next session's first task
+
+**Done 2026-09-11 on the app desk (`feat/eapcet-app`, local commit):** the `ep_solve_cache`/`ep_solve_reports` migration, the `ep-solve` function and the Solutions-tab photo flow are built to generator doc §9, curl-proved (lock, three official keys matched, cache hit, report, the 20/day cap) and deployed to the preview worker — details in the app desk's `PROGRESS.md` and memory `project_eapcet_solver_v1_deployed`. Two lessons: the intake transcript of the same photo differs between reads (the cache is trigram similarity + every number equal), and Gemini 3.x rejects `thinkingBudget: 0`.
+
+Next, measure the intake classifier: `has_figure` + subject accuracy of a Flash-Lite structured call on the 238 labelled probe photos already on disk (148 figure, 90 text) — needs nothing from the founder and is gate (a) of the generator doc §8. Then, on the app desk `physics-mind-eapcet-app`, the `ep_solve_cache` migration and the `ep-solve` function from the `ep-photo-read` skeleton, in the order of generator doc §9. The reviewer measurement (Run 14) starts the day the handwriting photos arrive.
+## 📗 SESSION — Maths-1B complete: all ten chapters written out in full, 375 cards (2026-09-14, `feat/answerbook-maths-1b-worked-in-full`)
+
+**Bottom line: every Maths-1B card is written out at the Maths-1A level, with a Simplify button on every mark. Each chapter was examined by sympy-backed Opus examiners and every verified finding was fixed. The founder said "no need for my approval just do the chapters as you did for maths 1A, 2A and 2B", so there was no sample card. Each chapter is three commits: base fix, expansion, examiner fixes.**
+
+| chapter | cards | lines | Simplify buttons | base fixes | examiner findings fixed |
+|---|---|---|---|---|---|
+| Applications of Derivatives | 89 | 1,567 → 2,488 | 146 | reflow (253 lines), ASCII, wording | 134 |
+| The Straight Line | 86 | 1,413 → 2,528 | 182 | reflow (68 lines) + 2 corrected arguments | 90 |
+| Differentiation | 72 | 1,222 → 2,020 | 154 | wording, Unicode powers, reflow | 114 |
+| Limits + Continuity | 36 + 7 | 624 → 971 | 56 | wording, Unicode, reflow | 71 |
+| Pair of Straight Lines | 22 | 516 → 943 | 67 | wording, reflow | 91 |
+| Locus | 17 | 223 → 428 | 49 | wording, reflow | 77 (with Plane) |
+| The Plane | 16 | 159 → 253 | 16 | wording, reflow | (with Locus) |
+| Three Dimensional Coordinates | 13 | 143 → 245 | 13 | wording, reflow | 91 (with TA + DC) |
+| Transformation of Axes | 9 | 139 → 229 | 27 | wording, reflow | (with 3D) |
+| Direction Cosines and Ratios | 8 | 227 → 361 | 29 | wording, reflow | (with 3D) |
+
+### Verified
+`check_cards --prefix ts_ipe_m1b_` 375/375 · measure_wrap 0 of 14,301 lines · `ascii_fields`: 0 outside the question headers (below) · sweep_simplify: every button pressed in every chapter, no defects beyond the CORS font console errors · sweep_typeset_width 0 problems · `find_label_clashes`: no collisions. tsc and vitest were not run, because this branch changes only card JSON.
+
+### Base lines the examiners showed were false (every boxed answer was correct)
+- **Pair of Lines.** `pl_angular_bisectors_proof`: the split now carries a constant k. Without it the identity forces |a|, |b| ≤ 1. `pl_area_triangle_proof`: the split was missing the factor b.
+- **Locus.** `loc_area_*` (two cards): the ½-determinant area formula now carries its modulus on every line. Without it the condition gives one line, not the two in the answer.
+- **Plane.** `pln_dcs_of_normal`: "the d.c's of the plane" now reads "the d.c's of the normal to the plane".
+- **3D.** `td_yz_plane_ratio` now reads "the ratio in which".
+- **Differentiation.**
+  - Sin⁻¹x − Sin⁻¹y = 2 Cot⁻¹a holds only for a > 0, so the constant is now c.
+  - Boxed answers now carry their ranges: 1/2 < x < 1, and x > −1/2.
+  - k ∈ Z; cosec in lower case.
+- **Limits.** x → 2⁻ now reads "so we may take 1 < x < 2", and (aˣ − 1)/x → logₑa carries a > 0.
+- **Straight Line.** 1/2h is written as 1/(2h).
+
+### What the examiners found, in one line
+The same classes as in 1A and 2B:
+- valid methods called mistakes;
+- common mistakes whose slip does not give the stated result;
+- rules missing their conditions: h² ≥ ab for a homogeneous pair, a constant difference less than AB for a hyperbola, a nonzero constant for intercept form, proportional rather than equal coefficients for parallel planes;
+- letter clashes: a as a circle's radius and as a coefficient; p, q next to the distances p₁, p₂;
+- overclaims ("always factors", "the check") and idioms (settle, handed, feed back, lean apart).
+
+### Teacher-verification flags
+- `loc_right_angle_hypotenuse_0_6_6_0` now notes that A and B satisfy the equation but are not on the locus. The boxed equation is unchanged; a teacher should say whether the board expects the exclusion written.
+- `pl_angular_bisectors_proof` now uses k in the split; textbooks print the proof without it.
+- Question headers are not edited. 14 still carry ASCII powers:
+  - `ad_normal_subnormal_catenary`, `ad_rolle_x_x_plus_3_e_minus_x_over_2`, `ad_subtangent_constant_subnormal_y2_over_a`, `ad_tangent_normal_2e_minus_x_over_3_y_axis`
+  - `dif_ax_n_plus_1_plus_bx_minus_n`, `dif_cos_inverse_a_cos_x_plus_b`, `dif_log_diff_fractional_powers`, `dif_sin_x_power_x_plus_x_power_sin_x`, `dif_x_power_log_y_equals_log_x`, `dif_x_power_tan_x_plus_sin_x_power_cos_x`, `dif_x_power_y_plus_y_power_x_equals_ab`, `dif_xy_equals_e_x_minus_y`
+  - `lim_e_power_sin_x_minus_1_over_x`, `lim_e_x_plus_3_minus_e3_over_x`
+- 2 headers write ℝ: `con_k_squared_x_minus_k_find_k`, `con_x2_and_x_on_r`.
+
+### Next session
+Maths-1B is ready for a PR; the founder merges. With 2A, 2B and 1A merged, all four IPE mathematics papers are written out in full once this merges.
+
+## 📗 SESSION — Maths-1A completed: the remaining eight chapters written out in full, 342 cards (2026-09-14, `feat/answerbook-maths-1a-part-2`)
+
+**Review link (all ten chapters):** https://claude.ai/code/artifact/b84d56a4-e960-4c80-b0cf-69199fdd8095
+
+**Bottom line: after PR #206 (Trigonometry, Matrices), the founder said "do a PR first and start with the next chapters". Every remaining Maths-1A chapter is now written out at the Maths-2B level with Simplify on every mark, examined by sympy-backed examiners, and fixed. With #206, all 556 Maths-1A cards are done.**
+
+| chapter | cards | lines | buttons | pages short → full | base fixes | examiner findings fixed |
+|---|---|---|---|---|---|---|
+| Functions | 73 | 795 → 1,060 | 81 | 78 → 82 | 2 | 22 |
+| Products of Vectors | 72 | 1,126 → 1,557 | 160 | 88 → 100 | 2 | 39 |
+| Sets and Relations | 26 | 241 → 413 | 26 | 26 → 28 | reflow (22.8% wrapped) + 1 | 15 |
+| Addition of Vectors (vec + av) | 37 | 530 → 784 | 74 | 46 → 56 | idiom + 2 wide boxes | 49 |
+| Properties of Triangles | 38 | 505 → 790 | 77 | 42 → 52 | reflow (5.5%) + 1 wrong reason | 61 |
+| Sequences and Series | 25 | 228 → 376 | 25 | 25 → 26 | reflow (11%) + 1 wrong ratio | 28 |
+| Trigonometric Equations | 18 | 331 → 480 | 50 | 24 → 31 | wording + 1 wide box | 50 |
+| Inverse Trigonometric Functions | 19 | 269 → 400 | 41 | 20 → 24 | wording + reflow | 43 |
+| Hyperbolic Functions | 17 | 150 → 233 | 18 | 17 → 17 | wording + 2 ASCII powers | 26 |
+| Mathematical Induction | 17 | 371 → 542 | 66 | 25 → 34 | ASCII powers + wording | 38 |
+
+### Verified
+tsc 0 · `check_cards --prefix ts_ipe_m1a` 556/556 · measure_wrap 0.0% across all 556 Maths-1A cards (15,511 lines, after merging #206's branch in) · vitest 459/459 · `find_label_clashes`: no collisions · sweep_simplify every button pressed in every chapter, no straddle · sweep_typeset_width 0 problems.
+
+### What was new in this session
+- **Base first, per chapter, as its own commit.** Three chapters (Sets and Relations 22.8%, Sequences and Series 11%, Properties of Triangles 5.5%) had been authored before the width rule and wrapped; they were reflowed at word boundaries with a token-equality assert (no words changed) before any expansion. Every chapter also got an idiom/overclaim sweep of its notes before expanding, because the examiners flag the same classes every time: collapse, survives, lands on, trap, legal, route, twin, upside down, "the only …", "the commonest …", "the whole …".
+- **Generated cross products.** Products of Vectors expands every i, j, k determinant component by component from the card's own rows (and every 3×3 box product minor by minor), with the generated lines checked against the printed expansion.
+- **Range arguments added where proofs skipped them:** every "α + β = Sin⁻¹/Cos⁻¹/Tan⁻¹(…)" step in Inverse Trig; the right-angle cases of the circumcentre–orthocentre proofs; the rhombus's planarity; the sign choices in every √(x²) step of Properties of Triangles; the x > 0 choice in cosh x = 5/2.
+
+### What the examiners found, in one line each
+Every boxed answer survived except two, both fixed: `te_sum_x_y_sin_sum` listed only one of the two solution pairs, and `te_one_plus_sin_sq` wrote tanθ = 1/2 ⇒ θ = Tan⁻¹(1/2). `fn_fofof` / `fn_fofofof` also now exclude x = 0 (f(0) = −1 lies outside the stated domain). The rest were explanation fields: notes that called valid methods mistakes (AB × BC, pairing sinθ + sin5θ, the quadratic formula), rules missing a condition (non-zero vectors, xy > 1 needing ±π by sign, k > 0 for sides, base ≠ 1 for equal exponents), row numbering in determinants whose top row is i, j, k, notes one line away from the line they explain, and plain-language breaches. About 30 of the 371 findings were in lines written in this session.
+
+### Teacher-verification flags carried forward
+- `pv_sqp_parallelogram_diagonals` boxes the obtuse angle Cos⁻¹(−√3/√10); the notes now say its supplement is also correct — a teacher should say which one the board expects.
+- `pt_a_eq_b_minus_c_sec` now reads tan θ = ±(2√(bc)/|b − c|) sin(A/2) and explains the sign; textbooks print the unsigned form.
+- `te_infinite_exponent_series` has `8^(…)` in the question text itself (question headers are not edited).
+- From Maths-2B: DE order/degree (Degree = 1 vs 6), ellipse equal intercepts, hyperbola x + 2y = 0 asymptote, the 30° asymptote angle reading, the non-real circle in System of Circles.
+
+### Next session
+**Both merged 2026-09-14** — #206 (`ef94d943`) then #207 retargeted to master (`e9069196`). Maths-1A is complete on master: 556 cards.
+
+Maths-1B is the next and last maths paper — **read `MATHS_1B_HANDOFF.md`** (repo root of the main checkout). In short:
+- Desk `feat/answerbook-maths-1b-worked-in-full` is open at `e9069196`, with the helper kit in `.expansion_kit/` (untracked).
+- 375 cards in 10 units. 16.4% of its lines (863) already wrap, most of them equation or boxed lines, so every chapter needs a hand-assisted reflow in its base commit.
+- 40 working lines and 14 question headers have ASCII carets. Ask the founder whether headers may be fixed.
+- The `mpc` build is already 14.3 MB against the 16 MB artifact limit.
+- First step: base-fix Applications of Derivatives, expand one sample card, show the founder, wait.
+
+## 📗 SESSION — Maths-1A opens: Trigonometry and Matrices written out in full, 214 cards (2026-09-14, `feat/answerbook-maths-1a-worked-in-full`)
+
+**Review link:** https://claude.ai/code/artifact/b84d56a4-e960-4c80-b0cf-69199fdd8095
+
+**Bottom line: the founder approved a Trigonometry LAQ sample (cos_half_squares) and said "do the chapter", then "start matrices", then "do a PR first and start with the next chapters". The two largest Maths-1A chapters are written out at the Maths-2B level with Simplify on every mark, examined, and fixed. 342 of 556 Maths-1A cards remain, on a separate branch.**
+
+| chapter | cards | lines | buttons | pages short → full | examiner defects fixed |
+|---|---|---|---|---|---|
+| Trigonometric Ratios and Transformations | 110 | 1,373 → 2,362 | 221 | 117 → 142 | 45 |
+| Matrices | 104 | 1,500 → 2,768 | 236 | 154 → 198 | 41 |
+
+### Verified
+tsc 0 · `check_cards --prefix ts_ipe_m1a` 556/556 · measure_wrap 0.0% in both chapters (3,218 + 3,155 lines) · vitest 459/459 · `find_label_clashes`: no collisions · sweep_simplify 221/221 and 236/236 pressed, no straddle · sweep_typeset_width (Matrices) 731 lines, 0 problems.
+
+### What was new in this session
+- **Generated explanation lines for numeric work, asserted against the card.** Matrices is 3×3 arithmetic, so determinant expansions, all nine cofactors, every row operation, every product entry and every inverse check were generated from the card's own matrices, and each generator asserts its result equals the card's next printed matrix. That independently recomputed all 13 cofactor matrices and every Gauss-Jordan and rank reduction in the chapter before a word was written. The helpers are scratchpad scripts (`matx.py`, `mat_sys.py`); the pattern is worth keeping for Maths-1B and any other arithmetic-heavy chapter.
+- **Base fixes before expanding, per chapter:** formula reasons that reused the triangle's own letters (cos C − cos D inside a proof about angle C) → x, y / p, q; 13 lines that already wrapped; an ASCII power; a zero-row argument that skipped the consistency condition.
+
+### What the examiners found, in one line each
+Every number and boxed answer in both chapters survived. Defects were in explanation fields (common_mistakes naming a valid route as a mistake on symmetric identities; rules stated as always true — "only the π/2 condition gives cosines", "rank is invisible until reduced", "clearing upwards reintroduces fractions"; miscounts), two working lines that concluded more than they showed ("So A·A⁻¹ = I" after checking one row), one letter clash (A as a matrix and an angle), and 3 of my own lines (a triangle assumed where only an angle sum was given ×2, a mislabelled generated check).
+
+### Next session
+Functions (73), Products of Vectors (72), then the six smaller chapters, on a branch cut from master (`feat/answerbook-maths-1a-worked-in-full-2`), so this PR can merge without waiting.
+
+## 📗 SESSION — MATHS-2B IS COMPLETE: all eight chapters written out in full, 271 cards, Simplify on every mark (2026-09-13/14, `feat/answerbook-maths-2b-worked-in-full`)
+
+**Review link:** https://claude.ai/code/artifact/b9d7229b-5463-4c5f-b6d8-03209cef63df
+
+**Bottom line: the founder approved samples for Circle and Integration, then said "do the rest of the chapters… don't be miser when you are expanding a solution". The whole of Maths-2B now reads at the Maths-2A level, and every mark carries the Simplify button: 271 cards, 3,451 written lines → 6,053, 527 Simplify buttons. Steps, marks, mark splits and labels never changed during expansion (one step label was corrected by an examiner finding, below). One PR for the paper, stacked on #203.**
+
+| chapter | cards | lines | buttons | pages short → full | examiner defects fixed |
+|---|---|---|---|---|---|
+| Circle | 57 | 833 → 1,495 | 109 | 79 → 95 | 6 |
+| Integration | 51 | 514 → 934 | 94 | 63 → 72 | 53 |
+| Definite Integrals | 47 | 575 → 877 | 76 | 55 → 64 | 17 |
+| Differential Equations | 36 | 466 → 728 | 84 | 44 → 50 | 29 |
+| System of Circles | 23 | 294 → 552 | 43 | 25 → 35 | 15 |
+| Ellipse | 21 | 309 → 631 | 57 | 29 → 38 | 18 + 1 figure |
+| Parabola | 20 | 270 → 482 | 33 | 26 → 30 | 14 + 1 figure |
+| Hyperbola | 16 | 190 → 354 | 31 | 19 → 22 | 14 + 1 figure |
+
+### How it was done
+Per chapter: a base commit fixing anything the short (Simplify) view would show wrongly (carets → Unicode or KaTeX; lines an old wrap pass had broken at their first "="; one −144xy that should be −48xy) → the expansion written in `lines[]` → `mark_expansion.py --base <that commit>` → `check_cards` → `measure_wrap` → build `--stream=mpc_2` → `sweep_simplify` (and `sweep_typeset_width` where KaTeX lines exist) → commit → one or two Opus examiners with sympy → every finding verified, then fixed in its own commit. Chapter bases: Circle b3a05f93 · Integration 4373382d · Definite Integrals 93e1f07f · Differential Equations 62b170ee · System of Circles ae47f4c5 · Ellipse, Parabola, Hyperbola eb955fd4.
+
+### Verified (paper level)
+tsc 0 · `check_cards --prefix ts_ipe_m2b` 271/271 (225 KaTeX lines) · `measure_wrap` 7,681 lines, 0 wrapping · vitest 459/459 · `find_label_clashes`: no collisions in the book · paper-wide `sweep_simplify` and `sweep_typeset_width`: sweep_simplify 271 cards, 527 buttons, 527 pressed, 340 → 407 pages, no structural defect; sweep_typeset_width 70 cards, 447 typeset lines (both lengths), 0 problems.
+
+### What the examiners found, in one line each
+Every boxed answer survived re-derivation except one: Differential Equations' y² − x² = c²(x² + y²)² lost solutions and is now c(x² + y²)². The defects were almost all in the explanation fields written before this session (common_mistakes describing a slip that does not give the stated result; memory tips and insider notes that turn a special case into a false rule: "equal intercepts always means slope ±1", "not an asymptote slope, so real tangents", "the ± gives the two tangents through P", "an extra 1/2 makes 16a") and in three figures (tangents that did not touch; an axis arrow pointing the wrong way).
+
+### Flags for a teacher
+- `de_orderdegree_d2y_dy3_pow65` gives Degree = 1; some IPE keys give 6.
+- `ell_tangents_equal_intercepts_9x2_16y2_144` keeps the book's y = ±x ± 5; strictly equal intercepts (same sign) give only x + y ± 5 = 0. The card now says which lines have intercepts equal only in length.
+- `hyp_tangents_parallel_perp_line_x_plus2y_x2_minus4y2_4` keeps the book's boxed x + 2y = 0, which is the asymptote, not a tangent; both lengths now say so.
+- `hyp_eccentricity_given_asymptote_angle_30deg` takes 30° as the angle containing the transverse axis (e = √6 − √2); the 150° reading gives √6 + √2.
+- `sc_orthogonal_find_k_two`: the book's x² + y² + 4x + 8 = 0 is not a real circle; the card keeps k = −8 and says so.
+
+### What the next session would otherwise rediscover
+- `npx tsx` hangs — use `~/.npm/_npx/*/node_modules/.bin/tsx`. There is no `timeout` command on this Mac.
+- `mark_expansion.py` is idempotent, but a hand-edit to `lines_compact` (a base defect fixed after marking) is lost if the card is re-marked against the old base. Re-mark only against a base that already carries the fix.
+- The first step of every card is inked (not flagged), so an anchor check must skip s1: every unflagged line in a later step must equal `lines_compact`.
+- A new line added only to `lines_compact` breaks that invariant — add it to `lines[]` unflagged as well.
+- Examiners find the old explanation fields, not the new working. Brief them to read `why`, `common_mistakes`, `memory_tip`, `margin_note`, `insider_note` and figures, and to flag rules that overgeneralise.
 
 ## 📗 SESSION — MATHS-2A IS COMPLETE: all ten chapters written out in full, 257 cards (2026-09-08, `feat/answerbook-binomial-worked-in-full`)
 
@@ -800,7 +1002,7 @@ The structural step-id fix **holds on papers it was never tuned on** — 0 leaks
 
 ---
 
-## ▶ NEXT SESSION'S FIRST TASK — backfill the maths memory tips
+## ✅ (done 2026-09) former NEXT SESSION'S FIRST TASK — backfill the maths memory tips
 
 **The gap.** Measured across the whole bank:
 

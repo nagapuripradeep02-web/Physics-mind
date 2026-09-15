@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.211, chapter 10 APPLICATIONS OF DERIVATIVES, the ERRORS AND APPROXIMATIONS sub-section, Very Short Answer question 7. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box, and the question numbering restarts in each, so the sub-section is named here; we ship the chapter as ONE unit, ordered by the syllabus. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks, printed over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer was checked before it was written: the exact increase (4/3)π[(7.02)³ − 7³] = 3.9312π cm³ against the approximation 3.92π cm³, a difference of under 0.3%."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.211, chapter 10 APPLICATIONS OF DERIVATIVES, the ERRORS AND APPROXIMATIONS sub-section, Very Short Answer question 7. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box, and the question numbering restarts in each, so the sub-section is named here; we ship the chapter as ONE unit, ordered by the syllabus. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks, printed over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer was checked before it was written: the exact increase (4/3)π[(7.02)³ − 7³] = 3.9312π cm³ against the approximation 3.92π cm³, a difference of under 0.3%. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say what dr is here, and what the derivative of the volume formula turns out to be.",
   "answer": {
@@ -52,9 +52,12 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Let r be the radius and V = (4/3)πr³ the volume of the sphere.",
+          "Let r be the radius",
+          "and V = (4/3)πr³ the volume of the sphere.",
           "Here r = 7 cm and dr = 7.02 − 7 = 0.02 cm",
+          "(d/dr of (4/3)πr³ is (4/3)π · 3r² = 4πr²)",
           "dV/dr = (4/3)π · 3r² = 4πr²",
+          "(dV = (dV/dr) · dr)",
           "∴ dV = 4πr² · dr"
         ],
         "recall": {
@@ -79,7 +82,7 @@
             "r cubed"
           ]
         },
-        "why": "dV = (dV/dr)·dr is the approximation being used. The derivative of (4/3)πr³ is 4πr², so the whole question reduces to one substitution once this line is on the page.",
+        "why": "dV = (dV/dr)·dr is the approximation being used. The derivative of (4/3)πr³ is 4πr², so the question reduces to one substitution once this line is on the page.",
         "common_mistakes": [
           "Taking dr = 7.02 instead of the difference 0.02.",
           "Leaving the (4/3) in front and writing dV = (4/3)πr²·dr."
@@ -94,12 +97,32 @@
         "margin_note": "Second mark. 4 × 49 × 0.02 = 3.92, so the answer is 3.92π cm³. Keep π in the answer; the decimal is an extra, not a replacement.",
         "memory_tip": "4 × 49 = 196, and 196 × 0.02 = 3.92. The unit is cm³ because it is a volume.",
         "lines": [
+          {
+            "text": "(put r = 7 and dr = 0.02)",
+            "added": true
+          },
           "dV = 4πr² · dr = 4π(7)²(0.02)",
+          {
+            "text": "(7² = 49)",
+            "added": true
+          },
           "= 4π(49)(0.02)",
+          {
+            "text": "(4 × 49 = 196, and 196 × 0.02 = 3.92)",
+            "added": true
+          },
           "= 3.92π cm³",
+          {
+            "text": "(3.92 × 3.1416 ≈ 12.32)",
+            "added": true
+          },
           "Taking π ≈ 3.1416, dV ≈ 12.32 cm³",
           {
-            "text": "∴ the volume increases by approximately 3.92π cm³ ≈ 12.32 cm³",
+            "text": "∴ the volume increases by approximately 3.92π",
+            "style": "boxed"
+          },
+          {
+            "text": "cm³ ≈ 12.32 cm³",
             "style": "boxed"
           }
         ],
@@ -125,10 +148,24 @@
             "twelve point three two"
           ]
         },
-        "why": "The exact increase is (4/3)π[(7.02)³ − 7³] = 3.9312π cm³, and the approximation gives 3.92π cm³. They agree to two figures and differ by about 0.3%, because dr = 0.02 is small compared with r = 7, which is the condition the method needs. The answer here is the change itself, in cm³; had a percentage been asked, the relative form dV/V = 3(dr/r) would be used, because the volume is r to the power 3.",
+        "why": "The exact increase is (4/3)π[(7.02)³ − 7³] ≈ 3.9312π cm³, and the approximation gives 3.92π cm³. They agree to two figures and differ by about 0.3%, because dr = 0.02 is small compared with r = 7, which is the condition the method needs. The answer here is the change itself, in cm³; had a percentage been asked, the relative form dV/V = 3(dr/r) would be used, because the volume is r to the power 3.",
         "common_mistakes": [
           "Writing the unit as cm² instead of cm³.",
           "Computing the two full volumes and subtracting; the arithmetic is right, but the marks here are for the differential method dV = 4πr²·dr."
+        ],
+        "lines_compact": [
+          "dV = 4πr² · dr = 4π(7)²(0.02)",
+          "= 4π(49)(0.02)",
+          "= 3.92π cm³",
+          "Taking π ≈ 3.1416, dV ≈ 12.32 cm³",
+          {
+            "text": "∴ the volume increases by approximately 3.92π",
+            "style": "boxed"
+          },
+          {
+            "text": "cm³ ≈ 12.32 cm³",
+            "style": "boxed"
+          }
         ]
       }
     ]

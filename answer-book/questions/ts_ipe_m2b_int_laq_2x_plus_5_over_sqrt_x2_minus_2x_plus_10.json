@@ -38,9 +38,9 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B, book printed p.34 (PDF page 33) — LAQ chapter 3 ‘Integration’, answer 27, on a ★★★ SSP 34 page (banner printed on this page). No printed appearance tags legible for this specific question (a black tag sits in the margin but is cropped in the scan). Chapter star rank ★★★. no printed margin mark tags or tick-box splits appear anywhere in the Integration LAQ chapter — this card's mark split is OURS, patterned on the 7-mark shapes printed elsewhere in the book (e.g. 2+2+2+1, 1+1+2+2+1). This card's final answer was re-derived independently and matches the book's printed line exactly — no error found here. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B, book printed p.34 (PDF page 33) — LAQ chapter 3 ‘Integration’, answer 27, on a ★★★ SSP 34 page (banner printed on this page). No printed appearance tags legible for this specific question (a black tag sits in the margin but is cropped in the scan). Chapter star rank ★★★. no printed margin mark tags or tick-box splits appear anywhere in the Integration LAQ chapter — this card's mark split is OURS, patterned on the 7-mark shapes printed elsewhere in the book (e.g. 2+2+2+1, 1+1+2+2+1). This card's final answer was re-derived independently and matches the book's printed line exactly — no error found here. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
-  "insider_note": "Whenever the numerator is linear and the denominator is a square root of a quadratic, write the numerator as A times the quadratic's derivative plus a leftover constant B — the A-part always integrates to 2√(quadratic), no matter what the quadratic is.",
+  "insider_note": "Whenever the numerator is linear and the denominator is a square root of a quadratic, write the numerator as A times the quadratic's derivative plus a leftover constant B — the A-part always integrates to 2A√(quadratic), no matter what the quadratic is.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",
@@ -59,8 +59,25 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "A linear numerator sits over the root of a",
+          {
+            "text": "  quadratic, so write the numerator as A",
+            "style": "indent"
+          },
+          {
+            "text": "  times the derivative of that quadratic,",
+            "style": "indent"
+          },
+          {
+            "text": "  plus a constant B.",
+            "style": "indent"
+          },
+          "Here d/dx(x²−2x+10) = 2x−2",
           "Let 2x+5 = A·d/dx(x²−2x+10) + B",
           "= A(2x−2) + B",
+          "Compare the coefficients of x: 2A=2 ⇒ A=1",
+          "Compare the constants:",
+          "−2A+B=5 ⇒ B=5+2A",
           "Coeff of x: 2A=2 ⇒ A=1; constant:",
           "−2A+B=5 ⇒ B=7"
         ],
@@ -80,9 +97,27 @@
         "margin_note": "Method",
         "lines": [
           "Putting A=1, B=7: 2x+5 = 1·d/dx(x²−2x+10) + 7",
+          {
+            "text": "Divide every term by √(x²−2x+10)",
+            "added": true
+          },
+          {
+            "text": "  and integrate:",
+            "style": "indent",
+            "added": true
+          },
           "I",
           "= ∫[d/dx(x²−2x+10)]/√(x²−2x+10) dx +",
           "7∫dx/√(x²−2x+10)",
+          {
+            "text": "The first integral has the derivative of the",
+            "added": true
+          },
+          {
+            "text": "  quadratic over its own root:",
+            "style": "indent",
+            "added": true
+          },
           "= 2√(x²−2x+10) + 7∫dx/√(x²−2x+10)",
           "[∵ ∫f′(x)/√f(x) dx = 2√f(x)]"
         ],
@@ -91,7 +126,15 @@
           "Trying to complete the square on the WHOLE numerator 2x+5 instead of splitting it into the A and B pieces first.",
           "Missing the factor of 2 in ∫f′(x)/√f(x) dx = 2√f(x), writing just √f(x)."
         ],
-        "memory_tip": "∫f′/√f dx = 2√f — always a factor of 2, easy to drop by habit."
+        "memory_tip": "∫f′/√f dx = 2√f — always a factor of 2, easy to drop by habit.",
+        "lines_compact": [
+          "Putting A=1, B=7: 2x+5 = 1·d/dx(x²−2x+10) + 7",
+          "I",
+          "= ∫[d/dx(x²−2x+10)]/√(x²−2x+10) dx +",
+          "7∫dx/√(x²−2x+10)",
+          "= 2√(x²−2x+10) + 7∫dx/√(x²−2x+10)",
+          "[∵ ∫f′(x)/√f(x) dx = 2√f(x)]"
+        ]
       },
       {
         "id": "s3_square",
@@ -101,15 +144,31 @@
         "mark_note": "Method",
         "margin_note": "Method",
         "lines": [
+          {
+            "text": "For the second integral, complete the square:",
+            "added": true
+          },
           "x²−2x+10 = x²−2x+1−1+10 = (x−1)²+9",
-          "So 7∫dx/√(x²−2x+10) = 7∫dx/√[(x−1)²+3²]"
+          {
+            "text": "9 = 3², so this is (x−1)² + 3²",
+            "added": true
+          },
+          "So 7∫dx/√(x²−2x+10) = 7∫dx/√[(x−1)²+3²]",
+          {
+            "text": "Put u = x − 1 and a = 3, so du = dx",
+            "added": true
+          }
         ],
         "why": "This is now a sum of squares under the root, (x−1)²+3² — the exact shape the standard ∫dx/√(x²+a²) = sinh⁻¹(x/a) formula needs.",
         "common_mistakes": [
           "Sign error: −1+10 is 9, not 11 or 10.",
           "Not recognising 9 = 3² and instead leaving it as a bare constant."
         ],
-        "memory_tip": "−1+10 = 9 = 3² — a is 3 here, not 9."
+        "memory_tip": "−1+10 = 9 = 3² — a is 3 here, not 9.",
+        "lines_compact": [
+          "x²−2x+10 = x²−2x+1−1+10 = (x−1)²+9",
+          "So 7∫dx/√(x²−2x+10) = 7∫dx/√[(x−1)²+3²]"
+        ]
       },
       {
         "id": "s4_final",
@@ -125,6 +184,14 @@
             "style": "eq"
           },
           {
+            "text": "With u = x − 1 and a = 3:",
+            "added": true
+          },
+          {
+            "text": "7∫dx/√[(x−1)²+3²] = 7 sinh⁻¹[(x−1)/3]",
+            "added": true
+          },
+          {
             "text": "∴ I = 2√(x²−2x+10) + 7 sinh⁻¹[(x−1)/3] + c",
             "style": "boxed"
           }
@@ -134,7 +201,18 @@
           "Using Sin⁻¹ (bounded, for a²−x² under the root) instead of Sinh⁻¹ (unbounded, for x²+a² under the root) — the two look alike but are different functions.",
           "Forgetting to multiply the sinh⁻¹ term by B=7."
         ],
-        "memory_tip": "x²+a² under a root ⇒ Sinh⁻¹ (hyperbolic); a²−x² under a root ⇒ Sin⁻¹ (circular) — different letter cases matter here."
+        "memory_tip": "x²+a² under a root ⇒ Sinh⁻¹ (hyperbolic); a²−x² under a root ⇒ Sin⁻¹ (circular) — different letter cases matter here.",
+        "lines_compact": [
+          {
+            "text": "\\int \\frac{dx}{\\sqrt{x^2+a^2}} = \\sinh^{-1}\\left(\\frac{x}{a}\\right)+c",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "∴ I = 2√(x²−2x+10) + 7 sinh⁻¹[(x−1)/3] + c",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   }

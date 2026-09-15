@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.97 — VSAQ chapter 19 Hyperbolic Functions, answer 141.1. Printed appearances: none — this answer carries no year tag. The identity every other question in this unit uses. It is proved from the definitions, and the algebraic shortcut (a+b)² − (a−b)² = 4ab makes it a single line. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four questions to a page in two columns. It is not a bare guess: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark VSAQ. The book's chapter header carries ★★★ and reads '2 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q10 is the Hyperbolic Functions slot. NOTE: Hyperbolic Functions is a VSAQ-ONLY unit — the paper gives it no Section-B and no Section-C slot, and this book has no hyperbolic LAQ chapter (LAQ chapters are 1-6) and no SAQ chapter (SAQ chapters are 7-13). Chapter 19 is the LAST VSAQ chapter; the boundary was walked to book p.98, where a separate 'Star Questions Plus' section begins."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.97 — VSAQ chapter 19 Hyperbolic Functions, answer 141.1. Printed appearances: none — this answer carries no year tag. The identity every other question in this unit uses. It is proved from the definitions, and the algebraic shortcut (a+b)² − (a−b)² = 4ab makes it a single line. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four questions to a page in two columns. It is not a bare guess: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark VSAQ. The book's chapter header carries ★★★ and reads '2 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q10 is the Hyperbolic Functions slot. NOTE: Hyperbolic Functions is a VSAQ-ONLY unit — the paper gives it no Section-B and no Section-C slot, and this book has no hyperbolic LAQ chapter (LAQ chapters are 1-6) and no SAQ chapter (SAQ chapters are 7-13). Chapter 19 is the LAST VSAQ chapter; the boundary was walked to book p.98, where a separate 'Star Questions Plus' section begins. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — name the formula or definition you use and how you finish.",
   "answer": {
@@ -53,7 +53,9 @@
             "style": "heading"
           },
           "L.H.S = cosh²x − sinh²x",
+          "(cosh x = (eˣ + e⁻ˣ)/2 and sinh x = (eˣ − e⁻ˣ)/2)",
           "= ((eˣ + e⁻ˣ)/2)² − ((eˣ − e⁻ˣ)/2)²",
+          "(each square has 4 below it)",
           "= [(eˣ + e⁻ˣ)² − (eˣ − e⁻ˣ)²] / 4"
         ],
         "recall": {
@@ -90,11 +92,23 @@
         "label": "Use (a+b)² − (a−b)² = 4ab",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Second mark. The shortcut does the whole job: with a = eˣ and b = e⁻ˣ the numerator is 4·eˣ·e⁻ˣ, and eˣ·e⁻ˣ is e⁰ = 1.",
+        "margin_note": "Second mark. The identity (a + b)² − (a − b)² = 4ab gives the answer at once: with a = eˣ and b = e⁻ˣ the numerator is 4·eˣ·e⁻ˣ, and eˣ·e⁻ˣ is e⁰ = 1.",
         "memory_tip": "(a + b)² − (a − b)² = 4ab, with a = eˣ and b = e⁻ˣ. Then eˣ·e⁻ˣ = e⁰ = 1.",
         "lines": [
+          {
+            "text": "(put a = eˣ and b = e⁻ˣ)",
+            "added": true
+          },
           "= (4 · eˣ · e⁻ˣ) / 4   [∵ (a+b)² − (a−b)² = 4ab]",
+          {
+            "text": "(add the exponents: x + (−x) = 0)",
+            "added": true
+          },
           "= eˣ · e⁻ˣ = e⁰",
+          {
+            "text": "(e⁰ = 1)",
+            "added": true
+          },
           {
             "text": "= 1 = R.H.S",
             "style": "boxed"
@@ -122,10 +136,18 @@
             "exponentials multiply"
           ]
         },
-        "why": "Adding the exponents gives x + (−x) = 0, and e⁰ = 1. That is the only place the answer of exactly 1 comes from.",
+        "why": "Adding the exponents gives x + (−x) = 0, and e⁰ = 1. That is where the answer of exactly 1 comes from.",
         "common_mistakes": [
           "Expanding both squares in full and making a sign error.",
-          "Writing eˣ · e⁻ˣ as e^(x·−x)."
+          "Multiplying the exponents, so eˣ · e⁻ˣ becomes e to the power x × (−x), instead of adding them."
+        ],
+        "lines_compact": [
+          "= (4 · eˣ · e⁻ˣ) / 4   [∵ (a+b)² − (a−b)² = 4ab]",
+          "= eˣ · e⁻ˣ = e⁰",
+          {
+            "text": "= 1 = R.H.S",
+            "style": "boxed"
+          }
         ]
       }
     ]

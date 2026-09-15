@@ -99,9 +99,15 @@
         "margin_note": "Second mark. 2(n + 1) = 3(n − 4) gives n = 14.",
         "memory_tip": "Cross-multiply in order: 2(n + 1) = 3(n − 4), so n = 14. Swapping the sides gives −11.",
         "lines": [
-          "Cross-multiplying: 2(n + 1) = 3(n − 4)",
+          {
+            "text": "Cross-multiplying: 2(n + 1) = 3(n − 4)",
+            "added": true
+          },
           "2n + 2 = 3n − 12",
-          "2 + 12 = 3n − 2n",
+          {
+            "text": "2 + 12 = 3n − 2n",
+            "added": true
+          },
           {
             "text": "∴ n = 14",
             "style": "boxed"
@@ -131,6 +137,14 @@
         "common_mistakes": [
           "Writing 3(n + 1) = 2(n − 4) with the sides swapped, giving n = −11.",
           "Arithmetic slip: 3n − 2n = 12 + 2 = 14, not 10."
+        ],
+        "lines_compact": [
+          "2(n + 1) = 3(n − 4)",
+          "2n + 2 = 3n − 12",
+          {
+            "text": "∴ n = 14",
+            "style": "boxed"
+          }
         ]
       }
     ]

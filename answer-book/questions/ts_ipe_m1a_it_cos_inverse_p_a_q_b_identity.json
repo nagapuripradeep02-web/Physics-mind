@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.114, chapter 10 INVERSE TRIGONOMETRIC FUNCTIONS, Short Answer question 7. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split is 1+1+1+1 because the four moves are genuinely separate — naming the angles with their domain, expanding the sum, squaring, and rearranging to sin²α. NOTATION: the book prints the inverse functions in lower case (cos⁻¹); they are written here with capitals to match the principal-value convention used across the rest of this unit. The identity was checked numerically to twelve decimal places on four independent quadruples (p,a,q,b) = (3,5,5,13), (1,2,2,3), (−1,4,3,7) and (0.3,1,−0.8,1); left and right sides agreed in every case. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, at 4 marks each, under the 2026-27 pattern; Inverse Trigonometric Functions is an SAQ-only unit, so the paper gives it no Section-A and no Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.114, chapter 10 INVERSE TRIGONOMETRIC FUNCTIONS, Short Answer question 7. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split is 1+1+1+1 because the four moves are genuinely separate — naming the angles with their domain, expanding the sum, squaring, and rearranging to sin²α. NOTATION: the book prints the inverse functions in lower case (cos⁻¹); they are written here with capitals to match the principal-value convention used across the rest of this unit. The identity was checked numerically to twelve decimal places on four independent quadruples (p,a,q,b) = (3,5,5,13), (1,2,2,3), (−1,4,3,7) and (0.3,1,−0.8,1); left and right sides agreed in every case. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, at 4 marks each, under the 2026-27 pattern; Inverse Trigonometric Functions is an SAQ-only unit, so the paper gives it no Section-A and no Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — name each move in order, and say which formula you reach for and why.",
   "answer": {
@@ -54,7 +54,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. The domain lines are part of the answer: without |p/a| ≤ 1 and |q/b| ≤ 1 the two inverse cosines do not exist.",
-        "memory_tip": "Cos⁻¹ gives an angle in [0, π], and sine is never negative there — so both sines take the positive root.",
+        "memory_tip": "Cos⁻¹ gives an angle in [0, π], and sine is never negative there. The proof then works with sin²A and sin²B only.",
         "lines": [
           {
             "text": "Sol:",
@@ -63,6 +63,7 @@
           "Let A = Cos⁻¹(p/a) and B = Cos⁻¹(q/b).",
           "These need a ≠ 0, b ≠ 0,",
           "|p/a| ≤ 1 and |q/b| ≤ 1.",
+          "(Cos⁻¹ takes values in [0, π], where sine is never negative)",
           "A, B ∈ [0, π] ⇒ sinA ≥ 0, sinB ≥ 0",
           "cosA = p/a, cosB = q/b, A + B = α"
         ],
@@ -88,10 +89,10 @@
             "domain"
           ]
         },
-        "why": "Cos⁻¹ returns an angle in [0, π], where the sine is never negative. That is why the positive square root is used for sinA and sinB later.",
+        "why": "Cos⁻¹ returns an angle in [0, π], where sine is never negative. The proof squares sinA sinB, so it uses only sin²A = 1 − cos²A and needs no sign choice.",
         "common_mistakes": [
           "Skipping the conditions |p/a| ≤ 1 and |q/b| ≤ 1.",
-          "Allowing sinA to be negative."
+          "Writing A or B outside [0, π]."
         ]
       },
       {
@@ -104,8 +105,20 @@
         "memory_tip": "Move the sine product to one side by itself. Everything else is already known in p, q, a and b.",
         "lines": [
           "cosα = cos(A + B)",
+          {
+            "text": "(the cos(A + B) formula)",
+            "added": true
+          },
           "= cosA cosB − sinA sinB",
+          {
+            "text": "(cosA cosB = (p/a)(q/b) = pq/(ab))",
+            "added": true
+          },
           "= pq/(ab) − sinA sinB",
+          {
+            "text": "(move sinA sinB and cosα across)",
+            "added": true
+          },
           "⇒ sinA sinB = pq/(ab) − cosα"
         ],
         "recall": {
@@ -130,10 +143,16 @@
             "cos alpha"
           ]
         },
-        "why": "Isolating the product of the sines is what allows both square roots to be removed in a single squaring step.",
+        "why": "Isolating the product of the sines means one squaring step turns it into sin²A sin²B, which can be written with cosA = p/a and cosB = q/b.",
         "common_mistakes": [
           "Writing cos(A + B) with a plus between the two products.",
           "Leaving the sine product mixed with the other terms."
+        ],
+        "lines_compact": [
+          "cosα = cos(A + B)",
+          "= cosA cosB − sinA sinB",
+          "= pq/(ab) − sinA sinB",
+          "⇒ sinA sinB = pq/(ab) − cosα"
         ]
       },
       {
@@ -145,10 +164,26 @@
         "margin_note": "Third mark. Squaring both sides of a true equation always gives a true equation, so nothing extra has to be checked here.",
         "memory_tip": "Square once. The term p²q²/(a²b²) appears on both sides and cancels.",
         "lines": [
+          {
+            "text": "(square both sides of the last line)",
+            "added": true
+          },
           "sin²A sin²B = (pq/(ab) − cosα)²",
+          {
+            "text": "(sin² = 1 − cos²)",
+            "added": true
+          },
           "sin²A = 1 − p²/a², sin²B = 1 − q²/b²",
+          {
+            "text": "(put these into the left side)",
+            "added": true
+          },
           "(1 − p²/a²)(1 − q²/b²)",
           "= p²q²/(a²b²) − (2pq/(ab)) cosα + cos²α",
+          {
+            "text": "(multiply out the left side)",
+            "added": true
+          },
           "⇒ 1 − p²/a² − q²/b² + p²q²/(a²b²)",
           "= p²q²/(a²b²) − (2pq/(ab)) cosα + cos²α"
         ],
@@ -174,10 +209,18 @@
             "middle term"
           ]
         },
-        "why": "Squaring removes both square roots at once. The term p²q²/(a²b²) then appears on both sides and cancels, which is what leaves a clean identity.",
+        "why": "Squaring turns sinA sinB into sin²A sin²B, which can be written with cosA = p/a and cosB = q/b. The term p²q²/(a²b²) then appears on both sides and cancels, which is what leaves a clean identity.",
         "common_mistakes": [
           "Squaring only one side of the equation.",
           "Expanding the square of a difference without its middle term."
+        ],
+        "lines_compact": [
+          "sin²A sin²B = (pq/(ab) − cosα)²",
+          "sin²A = 1 − p²/a², sin²B = 1 − q²/b²",
+          "(1 − p²/a²)(1 − q²/b²)",
+          "= p²q²/(a²b²) − (2pq/(ab)) cosα + cos²α",
+          "⇒ 1 − p²/a² − q²/b² + p²q²/(a²b²)",
+          "= p²q²/(a²b²) − (2pq/(ab)) cosα + cos²α"
         ]
       },
       {
@@ -189,8 +232,16 @@
         "margin_note": "Last mark. Write the three terms in the order the question asks so an examiner can match them line for line.",
         "memory_tip": "Finish with 1 − cos²α = sin²α — the whole right-hand side of the question is only that.",
         "lines": [
+          {
+            "text": "(p²q²/(a²b²) is on both sides, so it cancels)",
+            "added": true
+          },
           "1 − p²/a² − q²/b²",
           "= cos²α − (2pq/(ab)) cosα",
+          {
+            "text": "(move cos²α to the left and the p², q² terms to the right)",
+            "added": true
+          },
           "⇒ 1 − cos²α",
           "= p²/a² − (2pq/(ab)) cosα + q²/b²",
           "and 1 − cos²α = sin²α",
@@ -225,6 +276,17 @@
         "common_mistakes": [
           "Stopping at 1 − cos²α without writing sin²α.",
           "Losing the sign of the middle term."
+        ],
+        "lines_compact": [
+          "1 − p²/a² − q²/b²",
+          "= cos²α − (2pq/(ab)) cosα",
+          "⇒ 1 − cos²α",
+          "= p²/a² − (2pq/(ab)) cosα + q²/b²",
+          "and 1 − cos²α = sin²α",
+          {
+            "text": "∴ p²/a² − (2pq/(ab)) cosα + q²/b² = sin²α",
+            "style": "boxed"
+          }
         ]
       }
     ]

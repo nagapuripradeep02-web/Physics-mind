@@ -34,7 +34,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.83 — VSAQ chapter 15 3-D Coordinates, answer 98, on a ★★★ SSP (Super Scoring Page). Printed appearance: TS M-17 (March 2017). THE MARK SPLIT 1+1 IS THE BOOK'S: answer 98 on book p.83 carries printed margin tags — '1 Mark' against the midpoint equation and '1 Mark' against the fourth vertex. It is the only tagged answer in this chapter, and it fixes the 1+1 shape used across the unit. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: 3D-Coordinates is a VSAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 2 marks in Section A and nothing in Section B or Section C, and the book has no 3D LAQ chapter (its LAQ chapters are 1-6) and no 3D SAQ chapter (its SAQ chapters are 7-13). Its chapter header reads '2 Marks' and carries the note 'Just 2 Pages - 2 Marks'. Chapter scoped by BOUNDARY WALK: book p.85 opens VSAQ chapter 16, The Plane. Paper position: Maths-1B Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.83 — VSAQ chapter 15 3-D Coordinates, answer 98, on a ★★★ SSP (Super Scoring Page). Printed appearance: TS M-17 (March 2017). THE MARK SPLIT 1+1 IS THE BOOK'S: answer 98 on book p.83 carries printed margin tags — '1 Mark' against the midpoint equation and '1 Mark' against the fourth vertex. It is the only tagged answer in this chapter, and it fixes the 1+1 shape used across the unit. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: 3D-Coordinates is a VSAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 2 marks in Section A and nothing in Section B or Section C, and the book has no 3D LAQ chapter (its LAQ chapters are 1-6) and no 3D SAQ chapter (its SAQ chapters are 7-13). Its chapter header reads '2 Marks' and carries the note 'Just 2 Pages - 2 Marks'. Chapter scoped by BOUNDARY WALK: book p.85 opens VSAQ chapter 16, The Plane. Paper position: Maths-1B Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — name the property of a parallelogram you would use, and say which pairs are the diagonals.",
   "answer": {
@@ -56,10 +56,21 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "We take A = (2, 4, −1), B = (3, 6, −1), C = (4, 5, 1) and fourth vertex D = (a, b, c)",
+          "We take A = (2, 4, −1), B = (3, 6, −1), C = (4, 5, 1)",
+          "and fourth vertex D = (a, b, c)",
+          "(the diagonals of a parallelogram bisect each other)",
           "In the parallelogram ABCD,",
           "mid point of AC = mid point of BD",
-          "⇒ ((2+4)/2, (4+5)/2, (−1+1)/2) = ((3+a)/2, (6+b)/2, (−1+c)/2)"
+          "(the midpoint of (x₁, y₁, z₁) and (x₂, y₂, z₂) is",
+          {
+            "text": "  ((x₁ + x₂)/2, (y₁ + y₂)/2, (z₁ + z₂)/2))",
+            "style": "indent"
+          },
+          "⇒ ((2+4)/2, (4+5)/2, (−1+1)/2)",
+          {
+            "text": "  = ((3+a)/2, (6+b)/2, (−1+c)/2)",
+            "style": "indent"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -237,9 +248,30 @@
         "margin_note": "Second mark. The halves cancel on both sides, leaving three short equations that are solved one at a time.",
         "memory_tip": "The halves cancel on both sides, leaving three short equations solved one at a time.",
         "lines": [
+          {
+            "text": "((2 + 4)/2 = 6/2; multiply both sides by 2)",
+            "added": true
+          },
           "⇒ (3 + a)/2 = 6/2  ⇒  a + 3 = 6  ⇒  a = 6 − 3 = 3;",
+          {
+            "text": "((4 + 5)/2 = 9/2; multiply both sides by 2)",
+            "added": true
+          },
           "⇒ (6 + b)/2 = 9/2  ⇒  b + 6 = 9  ⇒  b = 9 − 6 = 3;",
+          {
+            "text": "((−1 + 1)/2 = 0; multiply both sides by 2)",
+            "added": true
+          },
           "⇒ (−1 + c)/2 = 0  ⇒  c − 1 = 0  ⇒  c = 1",
+          {
+            "text": "(check: the midpoint of B(3, 6, −1) and D(3, 3, 1) is",
+            "added": true
+          },
+          {
+            "text": "  (3, 9/2, 0), the midpoint of AC)",
+            "style": "indent",
+            "added": true
+          },
           {
             "text": "∴ Hence, fourth vertex D = (3, 3, 1)",
             "style": "boxed"
@@ -271,6 +303,15 @@
         "common_mistakes": [
           "Forgetting to cancel the 2 and dividing one side twice.",
           "Sign slip on the negative z-coordinate."
+        ],
+        "lines_compact": [
+          "⇒ (3 + a)/2 = 6/2  ⇒  a + 3 = 6  ⇒  a = 6 − 3 = 3;",
+          "⇒ (6 + b)/2 = 9/2  ⇒  b + 6 = 9  ⇒  b = 9 − 6 = 3;",
+          "⇒ (−1 + c)/2 = 0  ⇒  c − 1 = 0  ⇒  c = 1",
+          {
+            "text": "∴ Hence, fourth vertex D = (3, 3, 1)",
+            "style": "boxed"
+          }
         ]
       }
     ]

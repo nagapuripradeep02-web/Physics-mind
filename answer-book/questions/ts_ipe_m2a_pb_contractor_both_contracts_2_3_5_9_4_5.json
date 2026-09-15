@@ -129,11 +129,13 @@
           },
           {
             "text": "P(A ∪ B) = P(A) + P(B) − P(A ∩ B)",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           },
           {
             "text": "Rearranging for the wanted overlap:",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "P(A ∩ B) = P(A) + P(B) − P(A ∪ B)",
@@ -162,6 +164,16 @@
         "why": "The theorem connects the four quantities; three are given, so the fourth — the one asked — follows.",
         "common_mistakes": [
           "Writing P(A ∩ B) = P(A)·P(B) = 10/27."
+        ],
+        "lines_compact": [
+          {
+            "text": "By the addition theorem,",
+            "style": "normal"
+          },
+          {
+            "text": "P(A ∩ B) = P(A) + P(B) − P(A ∪ B)",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -179,11 +191,13 @@
           },
           {
             "text": "The common denominator of 3, 9 and 5 is 45:",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "= 30/45 + 25/45 − 36/45",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           },
           {
             "text": "= (30 + 25 − 36)/45",
@@ -191,7 +205,8 @@
           },
           {
             "text": "= 19/45",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           },
           {
             "text": "∴ P(both contracts) = 19/45",
@@ -221,6 +236,20 @@
         "common_mistakes": [
           "Using 27 as the denominator and dropping the 5.",
           "Getting 30 + 25 − 36 = 29 or 9."
+        ],
+        "lines_compact": [
+          {
+            "text": "= 2/3 + 5/9 − 4/5",
+            "style": "eq"
+          },
+          {
+            "text": "= (30 + 25 − 36)/45",
+            "style": "eq"
+          },
+          {
+            "text": "∴ P(both contracts) = 19/45",
+            "style": "boxed"
+          }
         ]
       }
     ]

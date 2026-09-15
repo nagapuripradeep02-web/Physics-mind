@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.6, chapter 1 SETS & RELATIONS, Very Short Answer question 9. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sets and Relations is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. All three parts (i)–(iii) stay on one card because they are read off the same list of pairs."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.6, chapter 1 SETS & RELATIONS, Very Short Answer question 9. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sets and Relations is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. All three parts (i)–(iii) stay on one card because they are read off the same list of pairs. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say how you test each x, and what the difference is between the range and the codomain.",
   "answer": {
@@ -51,9 +51,12 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "x + y = 5 gives y = 5 − x. Take each x ∈ A and keep the pair only if y ∈ B.",
+          "x + y = 5 gives y = 5 − x. Take each x ∈ A and keep",
+          "the pair only if y ∈ B.",
           "x = 0 → y = 5, and 5 ∉ B, so (0, 5) is rejected.",
-          "x = 1, 2, 3, 4, 5 → y = 4, 3, 2, 1, 0, and all of these are in B.",
+          "(5 − 1 = 4, 5 − 2 = 3, 5 − 3 = 2, 5 − 4 = 1, 5 − 5 = 0)",
+          "x = 1, 2, 3, 4, 5 → y = 4, 3, 2, 1, 0, and all of these",
+          "are in B.",
           "R = {(1, 4), (2, 3), (3, 2), (4, 1), (5, 0)}"
         ],
         "recall": {
@@ -96,9 +99,31 @@
         "lines": [
           "Domain = the set of first members of the pairs.",
           "Range = the set of second members of the pairs.",
-          "Codomain = B, the set the relation goes into, whether or not every member is used.",
           {
-            "text": "∴ (i) domain = {1, 2, 3, 4, 5}   (ii) range = {0, 1, 2, 3, 4}   (iii) codomain = {0, 1, 2, 3, 4}",
+            "text": "(first members: 1, 2, 3, 4, 5; second members:",
+            "added": true
+          },
+          {
+            "text": "  4, 3, 2, 1, 0)",
+            "style": "indent",
+            "added": true
+          },
+          "Codomain = B, the set the relation goes into,",
+          "whether or not every member is used.",
+          {
+            "text": "(here the range uses every member of B, so range = B)",
+            "added": true
+          },
+          {
+            "text": "∴ (i) domain = {1, 2, 3, 4, 5}",
+            "style": "boxed"
+          },
+          {
+            "text": "(ii) range = {0, 1, 2, 3, 4}",
+            "style": "boxed"
+          },
+          {
+            "text": "(iii) codomain = {0, 1, 2, 3, 4}",
             "style": "boxed"
           }
         ],
@@ -131,7 +156,25 @@
           "Including 0 in the domain, when x = 0 gave no pair.",
           "Saying the range and the codomain are always equal; they agree here only because every member of B is used."
         ],
-        "memory_tip": "Domain and range are read off the pairs; the codomain is given in the question as B."
+        "memory_tip": "Domain and range are read off the pairs; the codomain is given in the question as B.",
+        "lines_compact": [
+          "Domain = the set of first members of the pairs.",
+          "Range = the set of second members of the pairs.",
+          "Codomain = B, the set the relation goes into,",
+          "whether or not every member is used.",
+          {
+            "text": "∴ (i) domain = {1, 2, 3, 4, 5}",
+            "style": "boxed"
+          },
+          {
+            "text": "(ii) range = {0, 1, 2, 3, 4}",
+            "style": "boxed"
+          },
+          {
+            "text": "(iii) codomain = {0, 1, 2, 3, 4}",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   }

@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.76 — SAQ chapter 13 Properties of Triangles, answer 84.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: none — this answer carries no year tag. Paired in the book with 84.2. Both are proved by grouping the four radii into TWO pairs and collapsing each pair with a compound-angle formula. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used in this unit are the book's own. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q17 is the Properties of Triangles slot. Together with Q24 (LAQ) this unit holds TWO slots — one of only two units to do so, Matrices being the other."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.76 — SAQ chapter 13 Properties of Triangles, answer 84.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: none — this answer carries no year tag. Paired in the book with 84.2. Both are proved by grouping the four radii into TWO pairs and collapsing each pair with a compound-angle formula. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used in this unit are the book's own. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q17 is the Properties of Triangles slot. Together with Q24 (LAQ) this unit holds TWO slots — one of only two units to do so, Matrices being the other. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — name each standard result you use and the order you use them in.",
   "answer": {
@@ -45,16 +45,30 @@
         "label": "Group into two pairs",
         "marks": 2,
         "mark_note": "Method",
-        "margin_note": "Half the marks, and the choice that makes it work. Group (r₁ + r₂) and (r₃ − r), so each pair shares a factor — 4R cos(C/2) for the first, 4R sin(C/2) for the second.",
+        "margin_note": "Half the marks. Group (r₁ + r₂) and (r₃ − r), so each pair shares a factor — 4R cos(C/2) for the first, 4R sin(C/2) for the second.",
         "memory_tip": "Group (r₁ + r₂) and (r₃ − r), so each pair shares a factor — cos(C/2) then sin(C/2).",
         "lines": [
           {
             "text": "Sol:",
             "style": "heading"
           },
+          "(r₁ = 4R sin(A/2)cos(B/2)cos(C/2), and so on)",
           "L.H.S = (r₁ + r₂) + (r₃ − r)",
-          "= [4R sin(A/2)cos(B/2)cos(C/2) + 4R cos(A/2)sin(B/2)cos(C/2)]",
-          "  + [4R cos(A/2)cos(B/2)sin(C/2) − 4R sin(A/2)sin(B/2)sin(C/2)]",
+          "= [4R sin(A/2)cos(B/2)cos(C/2)",
+          {
+            "text": "+ 4R cos(A/2)sin(B/2)cos(C/2)]",
+            "style": "indent"
+          },
+          "+ [4R cos(A/2)cos(B/2)sin(C/2)",
+          {
+            "text": "− 4R sin(A/2)sin(B/2)sin(C/2)]",
+            "style": "indent"
+          },
+          "(take out 4R cos(C/2) from the first bracket and",
+          {
+            "text": "  4R sin(C/2) from the second)",
+            "style": "indent"
+          },
           "= 4R cos(C/2)[sin(A/2)cos(B/2) + cos(A/2)sin(B/2)]",
           "  + 4R sin(C/2)[cos(A/2)cos(B/2) − sin(A/2)sin(B/2)]"
         ],
@@ -80,9 +94,9 @@
             "common factor"
           ]
         },
-        "why": "Grouping the OTHER way — (r₁ + r₃) and (r₂ − r) — leaves no common factor. Choosing the pairs so the half-angle of C is shared is the whole skill here.",
+        "why": "Pair each ex-radius sum with the difference that shares a half-angle: (r₁ + r₂) and (r₃ − r) both carry C/2. (r₁ + r₃) and (r₂ − r), around B/2, would work the same way.",
         "common_mistakes": [
-          "Grouping the wrong pairs.",
+          "Pairing terms that share no half-angle, such as r₁ with r, so no factor comes out.",
           "Writing r₁ with cos(A/2) instead of sin(A/2)."
         ]
       },
@@ -95,8 +109,20 @@
         "margin_note": "The other half. The first bracket is sin((A+B)/2) and the second cos((A+B)/2); the compound formula combines them into one sine of (A+B+C)/2, which is 90°.",
         "memory_tip": "The two combine into 4R sin((A+B+C)/2) = 4R sin 90° = 4R.",
         "lines": [
+          {
+            "text": "(the brackets are sin((A+B)/2) and cos((A+B)/2))",
+            "added": true
+          },
           "= 4R cos(C/2) sin((A+B)/2) + 4R sin(C/2) cos((A+B)/2)",
-          "= 4R sin((A+B)/2 + C/2)   [∵ sinX cosY + cosX sinY = sin(X+Y)]",
+          "= 4R sin((A+B)/2 + C/2)",
+          {
+            "text": "[∵ sinX cosY + cosX sinY = sin(X+Y)]",
+            "style": "indent"
+          },
+          {
+            "text": "(A + B + C = 180°)",
+            "added": true
+          },
           "= 4R sin((A+B+C)/2) = 4R sin(180°/2)",
           {
             "text": "= 4R sin90° = 4R = R.H.S",
@@ -129,9 +155,22 @@
         "common_mistakes": [
           "Using sin(X−Y) and getting sin((A+B−C)/2).",
           "Writing sin 90° = 0."
+        ],
+        "lines_compact": [
+          "= 4R cos(C/2) sin((A+B)/2) + 4R sin(C/2) cos((A+B)/2)",
+          "= 4R sin((A+B)/2 + C/2)",
+          {
+            "text": "[∵ sinX cosY + cosX sinY = sin(X+Y)]",
+            "style": "indent"
+          },
+          "= 4R sin((A+B+C)/2) = 4R sin(180°/2)",
+          {
+            "text": "= 4R sin90° = 4R = R.H.S",
+            "style": "boxed"
+          }
         ]
       }
     ]
   },
-  "insider_note": "Group as (r₁ + r₂) and (r₃ − r), not in the order written. The two brackets then combine into one sine of (A+B+C)/2 = 90°, so the answer is simply 4R."
+  "insider_note": "Group as (r₁ + r₂) and (r₃ − r). The two brackets then combine into one sine of (A+B+C)/2 = 90°, so the answer is simply 4R."
 }

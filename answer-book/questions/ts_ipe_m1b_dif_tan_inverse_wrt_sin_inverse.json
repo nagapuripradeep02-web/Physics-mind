@@ -42,7 +42,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.208, chapter 9 DIFFERENTIATION, Long Answer question 11. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section C question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section C runs Q19 to Q21 at 8 marks each, answer any 2 of 3, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The mathematics was checked independently before writing: df/dx and dg/dx were each computed as central difference quotients and divided, at x = 0.2, 0.5, 0.8 and −0.6. Every one gave 1.000000000. The stated branch was checked as well, and it is not decoration: at x = 1.5 and x = 2.5 the same ratio is −1.000000000, because outside −1 < x < 1 the function g turns back on itself while f does not. That is why the answer is written with the condition −1 < x < 1 attached rather than as a bare 1."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.208, chapter 9 DIFFERENTIATION, Long Answer question 11. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section C question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section C runs Q19 to Q21 at 8 marks each, answer any 2 of 3, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The mathematics was checked independently before writing: df/dx and dg/dx were each computed as central difference quotients and divided, at x = 0.2, 0.5, 0.8 and −0.6. Every one gave 1.000000000. The stated branch was checked as well, and it is not decoration: at x = 1.5 and x = 2.5 the same ratio is −1.000000000, because outside −1 < x < 1 the function g turns back on itself while f does not. That is why the answer is written with the condition −1 < x < 1 attached rather than as a bare 1. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say what derivative with respect to g means, and what substitution you use.",
   "answer": {
@@ -57,17 +57,21 @@
         "label": "Write what derivative with respect to g means",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark, and the one most often lost. The question does not ask for df/dx. Write the chain rule line before doing any trigonometry.",
+        "margin_note": "First mark. The question does not ask for df/dx. Write the chain rule line before doing any trigonometry.",
         "lines": [
           {
             "text": "Sol:",
             "style": "heading"
           },
-          "Given f(x) = Tan⁻¹(2x/(1 − x²))  and  g(x) = Sin⁻¹(2x/(1 + x²)).",
-          "The derivative of f with respect to g means df/dg, not df/dx.",
-          "By the chain rule,  df/dx = (df/dg)·(dg/dx),  so provided dg/dx ≠ 0,",
+          "Given f(x) = Tan⁻¹(2x/(1 − x²))",
+          "and  g(x) = Sin⁻¹(2x/(1 + x²)).",
+          "The derivative of f with respect to g",
+          "means df/dg, not df/dx.",
+          "By the chain rule,  df/dx = (df/dg)·(dg/dx),",
+          "so provided dg/dx ≠ 0,",
           "∴ df/dg = (df/dx)/(dg/dx)",
-          "So f and g are each differentiated with respect to x, and the two results are divided."
+          "So f and g are each differentiated with respect to x,",
+          "and the two results are divided."
         ],
         "recall": {
           "credit": "say_it",
@@ -92,7 +96,7 @@
             "divide"
           ]
         },
-        "why": "Differentiating with respect to a function rather than with respect to x is what this question tests. The chain rule turns it into two ordinary derivatives in x and one division, and the condition dg/dx ≠ 0 is what makes that division legal.",
+        "why": "Differentiating with respect to a function rather than with respect to x is what this question tests. The chain rule turns it into two ordinary derivatives in x and one division, and the condition dg/dx ≠ 0 is needed for that division.",
         "common_mistakes": [
           "Answering df/dx and stopping, which ignores the words with respect to g entirely.",
           "Writing df/dg = (dg/dx)/(df/dx), which is the reciprocal of the answer."
@@ -107,9 +111,29 @@
         "mark_note": "Method",
         "margin_note": "One mark. Both brackets are standard forms in tan θ, so one substitution serves both. Naming the range −1 < x < 1 here saves the argument in both of the next two steps.",
         "lines": [
+          {
+            "text": "(θ = Tan⁻¹x lies in (−π/2, π/2))",
+            "added": true
+          },
           "Put x = tan θ, so θ = Tan⁻¹x.",
-          "Take −1 < x < 1. Then −π/4 < θ < π/4, so −π/2 < 2θ < π/2.",
-          "That range for 2θ is what both inverse functions need: it is inside (−π/2, π/2) for Tan⁻¹ and inside [−π/2, π/2] for Sin⁻¹."
+          {
+            "text": "(Tan⁻¹ increases: Tan⁻¹(−1) = −π/4",
+            "added": true
+          },
+          {
+            "text": "  and Tan⁻¹1 = π/4)",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "(multiply each part by 2)",
+            "added": true
+          },
+          "Take −1 < x < 1. Then −π/4 < θ < π/4,",
+          "so −π/2 < 2θ < π/2.",
+          "That range for 2θ is what both inverse functions need:",
+          "it is inside (−π/2, π/2) for Tan⁻¹",
+          "and inside [−π/2, π/2] for Sin⁻¹."
         ],
         "recall": {
           "credit": "say_it",
@@ -134,12 +158,20 @@
             "principal range"
           ]
         },
-        "why": "Both 2x/(1 − x²) and 2x/(1 + x²) become simple functions of 2θ under the same substitution, so choosing it once serves the whole question. The range matters because outside −1 < x < 1 the two inverse functions no longer return 2θ in the same way, and the final answer changes sign.",
+        "why": "Both 2x/(1 − x²) and 2x/(1 + x²) become simple functions of 2θ under the same substitution, so one substitution is used for the whole question. The range matters because outside −1 < x < 1 the two inverse functions no longer return 2θ in the same way, and the final answer changes sign.",
         "common_mistakes": [
           "Using a different substitution for each function, which loses the shared angle 2θ that makes the answer come out.",
           "Not stating any range, so the last step cannot say where the answer holds."
         ],
-        "memory_tip": "1 − x² and 1 + x² with a 2x on top are both tan θ forms. The first is tan 2θ and the second is sin 2θ."
+        "memory_tip": "1 − x² and 1 + x² with a 2x on top are both tan θ forms. The first is tan 2θ and the second is sin 2θ.",
+        "lines_compact": [
+          "Put x = tan θ, so θ = Tan⁻¹x.",
+          "Take −1 < x < 1. Then −π/4 < θ < π/4,",
+          "so −π/2 < 2θ < π/2.",
+          "That range for 2θ is what both inverse functions need:",
+          "it is inside (−π/2, π/2) for Tan⁻¹",
+          "and inside [−π/2, π/2] for Sin⁻¹."
+        ]
       },
       {
         "id": "s3_reduce_f",
@@ -149,10 +181,20 @@
         "mark_note": "Method",
         "margin_note": "Two marks. Quote the double angle formula for tangent, cancel the inverse, and only then differentiate. Differentiating Tan⁻¹(2x/(1 − x²)) by the quotient rule is far longer and earns no more.",
         "lines": [
-          "The double angle formula for tangent is  tan 2θ = 2 tan θ/(1 − tan²θ).",
+          "The double angle formula for tangent",
+          "is  tan 2θ = 2 tan θ/(1 − tan²θ).",
+          {
+            "text": "(put tan θ = x)",
+            "added": true
+          },
           "With x = tan θ:  2x/(1 − x²) = tan 2θ",
-          "f = Tan⁻¹(tan 2θ), and 2θ lies in (−π/2, π/2), the principal range of Tan⁻¹, so",
+          "f = Tan⁻¹(tan 2θ), and 2θ lies in (−π/2, π/2),",
+          "the principal range of Tan⁻¹, so",
           "f = 2θ = 2 Tan⁻¹x",
+          {
+            "text": "(d/dx(2 Tan⁻¹x) = 2 · 1/(1 + x²))",
+            "added": true
+          },
           "∴ df/dx = 2/(1 + x²)"
         ],
         "recall": {
@@ -183,7 +225,16 @@
           "Writing f = 2θ but then differentiating with respect to θ, giving 2 instead of 2/(1 + x²).",
           "Reading 2x/(1 − x²) as sin 2θ, which belongs to the other function in this question."
         ],
-        "memory_tip": "The derivative of Tan⁻¹x is 1/(1 + x²). The 2 in front of it is the same 2 that came from the double angle."
+        "memory_tip": "The derivative of Tan⁻¹x is 1/(1 + x²). The 2 in front of it is the same 2 that came from the double angle.",
+        "lines_compact": [
+          "The double angle formula for tangent",
+          "is  tan 2θ = 2 tan θ/(1 − tan²θ).",
+          "With x = tan θ:  2x/(1 − x²) = tan 2θ",
+          "f = Tan⁻¹(tan 2θ), and 2θ lies in (−π/2, π/2),",
+          "the principal range of Tan⁻¹, so",
+          "f = 2θ = 2 Tan⁻¹x",
+          "∴ df/dx = 2/(1 + x²)"
+        ]
       },
       {
         "id": "s4_reduce_g",
@@ -193,11 +244,37 @@
         "mark_note": "Method",
         "margin_note": "Two marks. The step worth showing is 2 tan θ/(1 + tan²θ) = 2 sin θ cos θ, because 1 + tan²θ = sec²θ. Without that line the reduction to sin 2θ has no working to support it.",
         "lines": [
+          {
+            "text": "(put x = tan θ into 2x/(1 + x²))",
+            "added": true
+          },
           "With x = tan θ:  2x/(1 + x²) = 2 tan θ/(1 + tan²θ)",
+          {
+            "text": "(dividing by sec²θ is multiplying by cos²θ;",
+            "added": true
+          },
+          {
+            "text": "  tan θ = sin θ/cos θ)",
+            "style": "indent",
+            "added": true
+          },
           "1 + tan²θ = sec²θ, so",
-          "2 tan θ/sec²θ = 2·(sin θ/cos θ)·cos²θ = 2 sin θ cos θ = sin 2θ",
-          "g = Sin⁻¹(sin 2θ), and 2θ lies in [−π/2, π/2], the principal range of Sin⁻¹, so",
+          "2 tan θ/sec²θ = 2·(sin θ/cos θ)·cos²θ",
+          {
+            "text": "(one cos θ cancels; 2 sin θ cos θ = sin 2θ)",
+            "added": true
+          },
+          {
+            "text": "  = 2 sin θ cos θ = sin 2θ",
+            "style": "indent"
+          },
+          "g = Sin⁻¹(sin 2θ), and 2θ lies in [−π/2, π/2],",
+          "the principal range of Sin⁻¹, so",
           "g = 2θ = 2 Tan⁻¹x",
+          {
+            "text": "(d/dx(2 Tan⁻¹x) = 2 · 1/(1 + x²))",
+            "added": true
+          },
           "∴ dg/dx = 2/(1 + x²)"
         ],
         "recall": {
@@ -223,12 +300,25 @@
             "two sin theta cos theta"
           ]
         },
-        "why": "1 + tan²θ = sec²θ turns the fraction into 2 sin θ cos θ, which is sin 2θ. So g reduces to the same 2θ that f did, and that is the whole reason the final ratio is as simple as it is.",
+        "why": "1 + tan²θ = sec²θ turns the fraction into 2 sin θ cos θ, which is sin 2θ. So g reduces to the same 2θ that f did, and that is why the final ratio is simple.",
         "common_mistakes": [
           "Reading 2x/(1 + x²) as tan 2θ, mixing it up with the first bracket, which has 1 − x² underneath.",
           "Writing g = Sin⁻¹(sin 2θ) = 2θ with no check on the range, which is exactly the check that fails when |x| > 1."
         ],
-        "memory_tip": "1 minus x squared underneath gives a tangent; 1 plus x squared underneath gives a sine. Both have 2x on top and both give the angle 2θ."
+        "memory_tip": "1 minus x squared underneath gives a tangent; 1 plus x squared underneath gives a sine. Both have 2x on top and both give the angle 2θ.",
+        "lines_compact": [
+          "With x = tan θ:  2x/(1 + x²) = 2 tan θ/(1 + tan²θ)",
+          "1 + tan²θ = sec²θ, so",
+          "2 tan θ/sec²θ = 2·(sin θ/cos θ)·cos²θ",
+          {
+            "text": "  = 2 sin θ cos θ = sin 2θ",
+            "style": "indent"
+          },
+          "g = Sin⁻¹(sin 2θ), and 2θ lies in [−π/2, π/2],",
+          "the principal range of Sin⁻¹, so",
+          "g = 2θ = 2 Tan⁻¹x",
+          "∴ dg/dx = 2/(1 + x²)"
+        ]
       },
       {
         "id": "s5_divide",
@@ -238,9 +328,24 @@
         "mark_note": "Answer",
         "margin_note": "Last two marks. State that dg/dx is never zero before dividing, then give the answer with the range attached. An answer of exactly 1 is the sign that both reductions were done on the right branch.",
         "lines": [
-          "dg/dx = 2/(1 + x²), which is not zero for any real x, so the division is allowed.",
+          {
+            "text": "(1 + x² ≥ 1, so 2/(1 + x²) is never 0)",
+            "added": true
+          },
+          "dg/dx = 2/(1 + x²), which is not zero for any real x,",
+          "so the division is allowed.",
+          {
+            "text": "(put df/dx from step 3 and dg/dx from step 4)",
+            "added": true
+          },
           "df/dg = (df/dx)/(dg/dx) = [2/(1 + x²)] ÷ [2/(1 + x²)]",
-          "On −1 < x < 1 both f and g reduce to the same function 2 Tan⁻¹x, so the two derivatives are identical and their ratio is 1.",
+          "On −1 < x < 1 both f and g reduce",
+          "to the same function 2 Tan⁻¹x,",
+          "so the two derivatives are identical and their ratio is 1.",
+          {
+            "text": "(any non-zero number divided by itself is 1)",
+            "added": true
+          },
           {
             "text": "∴ df/dg = 1,  for −1 < x < 1",
             "style": "boxed"
@@ -275,9 +380,21 @@
           "Giving the answer as 1 with no range, which is wrong for |x| > 1.",
           "Multiplying the two derivatives instead of dividing them, giving 4/(1 + x²)²."
         ],
-        "memory_tip": "When two functions reduce to the same expression, their derivative with respect to each other is 1. Any other value means one of the two reductions was on the wrong branch."
+        "memory_tip": "When two functions reduce to the same expression, their derivative with respect to each other is 1. Any other value means one of the two reductions was on the wrong branch.",
+        "lines_compact": [
+          "dg/dx = 2/(1 + x²), which is not zero for any real x,",
+          "so the division is allowed.",
+          "df/dg = (df/dx)/(dg/dx) = [2/(1 + x²)] ÷ [2/(1 + x²)]",
+          "On −1 < x < 1 both f and g reduce",
+          "to the same function 2 Tan⁻¹x,",
+          "so the two derivatives are identical and their ratio is 1.",
+          {
+            "text": "∴ df/dg = 1,  for −1 < x < 1",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },
-  "insider_note": "Both brackets reduce to 2Tan⁻¹x under x = tan θ, so both derivatives are 2/(1 + x²) and the ratio is 1. Simplify each before dividing, never differentiate the fractions as they stand."
+  "insider_note": "For −1 < x < 1 both brackets reduce to 2Tan⁻¹x under x = tan θ, so both derivatives are 2/(1 + x²) and the ratio is 1. Simplifying each bracket first is much shorter than differentiating the fractions as they stand."
 }

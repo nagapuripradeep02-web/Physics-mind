@@ -120,14 +120,23 @@
         "margin_note": "Second and third marks. Multiplying by x raises every power by one so it matches the denominator; multiplying by n + 1 puts (n + 1)/(r + 1) in front of each ⁿCᵣ.",
         "memory_tip": "TWO multiplications: by x to lift each power to match its denominator, then by n + 1.",
         "lines": [
-          "Multiplying both sides by x:",
+          {
+            "text": "Multiplying both sides by x:",
+            "added": true
+          },
           "xS = ⁿC₀x + ⁿC₁(x²/2) + ⁿC₂(x³/3) + …",
           "  + ⁿCₙ(xⁿ⁺¹/(n + 1))",
-          "Multiplying both sides by (n + 1):",
+          {
+            "text": "Multiplying both sides by (n + 1):",
+            "added": true
+          },
           "(n + 1)xS = (n + 1)ⁿC₀x + ((n + 1)/2)ⁿC₁x²",
           "  + ((n + 1)/3)ⁿC₂x³ + …",
           "  + ((n + 1)/(n + 1))ⁿCₙxⁿ⁺¹",
-          "Each term has the shape ((n + 1)/(r + 1))ⁿCᵣ·xʳ⁺¹"
+          {
+            "text": "Each term has the shape ((n + 1)/(r + 1))ⁿCᵣ·xʳ⁺¹",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -153,6 +162,13 @@
         "common_mistakes": [
           "Multiplying by n + 1 alone and leaving the powers one short of the denominators.",
           "Writing the last factor as (n + 1)/n."
+        ],
+        "lines_compact": [
+          "xS = ⁿC₀x + ⁿC₁(x²/2) + ⁿC₂(x³/3) + …",
+          "  + ⁿCₙ(xⁿ⁺¹/(n + 1))",
+          "(n + 1)xS = ((n + 1)/1)ⁿC₀x + ((n + 1)/2)ⁿC₁x²",
+          "  + ((n + 1)/3)ⁿC₂x³ + …",
+          "  + ((n + 1)/(n + 1))ⁿCₙxⁿ⁺¹"
         ]
       },
       {
@@ -164,13 +180,34 @@
         "margin_note": "Fourth and fifth marks. ((n + 1)/(r + 1))·ⁿCᵣ = ⁿ⁺¹Cᵣ₊₁ — one row down, one index along. Every term of the sum becomes a coefficient of (1 + x)ⁿ⁺¹.",
         "memory_tip": "((n + 1)/(r + 1))·ⁿCᵣ = ⁿ⁺¹Cᵣ₊₁. The sum becomes (1 + x)ⁿ⁺¹ with its first term missing.",
         "lines": [
-          "Now ⁿCᵣ = n!/(r!(n − r)!)",
-          "((n + 1)/(r + 1))ⁿCᵣ",
-          "= (n + 1)·n!/((r + 1)·r!·(n − r)!)",
-          "= (n + 1)!/((r + 1)!(n − r)!) = ⁿ⁺¹Cᵣ₊₁",
-          "Using this in each term:",
-          "(n + 1)xS = ⁿ⁺¹C₁x + ⁿ⁺¹C₂x² + ⁿ⁺¹C₃x³ + …",
-          "  + ⁿ⁺¹Cₙ₊₁xⁿ⁺¹"
+          {
+            "text": "Now ⁿCᵣ = n!/(r!(n − r)!)",
+            "added": true
+          },
+          {
+            "text": "((n + 1)/(r + 1))ⁿCᵣ",
+            "added": true
+          },
+          {
+            "text": "= (n + 1)·n!/((r + 1)·r!·(n − r)!)",
+            "added": true
+          },
+          {
+            "text": "= (n + 1)!/((r + 1)!(n − r)!) = ⁿ⁺¹Cᵣ₊₁",
+            "added": true
+          },
+          {
+            "text": "Using this in each term:",
+            "added": true
+          },
+          {
+            "text": "(n + 1)xS = ⁿ⁺¹C₁x + ⁿ⁺¹C₂x² + ⁿ⁺¹C₃x³ + …",
+            "added": true
+          },
+          {
+            "text": "  + ⁿ⁺¹Cₙ₊₁xⁿ⁺¹",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -196,6 +233,10 @@
         "common_mistakes": [
           "Writing ((n + 1)/(r + 1))·ⁿCᵣ = ⁿ⁺¹Cᵣ.",
           "Forgetting that the sum now starts at ⁿ⁺¹C₁, not ⁿ⁺¹C₀."
+        ],
+        "lines_compact": [
+          "= ⁿ⁺¹C₁x + ⁿ⁺¹C₂x² + ⁿ⁺¹C₃x³ + … + ⁿ⁺¹Cₙ₊₁xⁿ⁺¹",
+          "  [((n + 1)/(r + 1))·ⁿCᵣ = ⁿ⁺¹Cᵣ₊₁]"
         ]
       },
       {
@@ -207,11 +248,26 @@
         "margin_note": "Sixth and seventh marks. The new sum is (1 + x)ⁿ⁺¹ without its leading 1. Divide by (n + 1)x.",
         "memory_tip": "The missing term is ⁿ⁺¹C₀ = 1, so subtract it. Then divide by (n + 1)x — both factors, not just n + 1.",
         "lines": [
-          "Now (1 + x)ⁿ⁺¹",
-          "= ⁿ⁺¹C₀ + ⁿ⁺¹C₁x + ⁿ⁺¹C₂x² + … + ⁿ⁺¹Cₙ₊₁xⁿ⁺¹",
-          "ⁿ⁺¹C₁x + ⁿ⁺¹C₂x² + … + ⁿ⁺¹Cₙ₊₁xⁿ⁺¹",
-          "  = (1 + x)ⁿ⁺¹ − ⁿ⁺¹C₀ = (1 + x)ⁿ⁺¹ − 1",
-          "∴ (n + 1)xS = (1 + x)ⁿ⁺¹ − 1",
+          {
+            "text": "Now (1 + x)ⁿ⁺¹",
+            "added": true
+          },
+          {
+            "text": "= ⁿ⁺¹C₀ + ⁿ⁺¹C₁x + ⁿ⁺¹C₂x² + … + ⁿ⁺¹Cₙ₊₁xⁿ⁺¹",
+            "added": true
+          },
+          {
+            "text": "ⁿ⁺¹C₁x + ⁿ⁺¹C₂x² + … + ⁿ⁺¹Cₙ₊₁xⁿ⁺¹",
+            "added": true
+          },
+          {
+            "text": "  = (1 + x)ⁿ⁺¹ − ⁿ⁺¹C₀ = (1 + x)ⁿ⁺¹ − 1",
+            "added": true
+          },
+          {
+            "text": "∴ (n + 1)xS = (1 + x)ⁿ⁺¹ − 1",
+            "added": true
+          },
           {
             "text": "∴ S = ((1 + x)ⁿ⁺¹ − 1)/((n + 1)x)",
             "style": "boxed"
@@ -242,6 +298,14 @@
         "common_mistakes": [
           "Forgetting the −1: the term ⁿ⁺¹C₀ = 1 is not in the sum.",
           "Dividing by n + 1 only and leaving the x."
+        ],
+        "lines_compact": [
+          "= (1 + x)ⁿ⁺¹ − 1",
+          "  [ⁿ⁺¹C₀ + ⁿ⁺¹C₁x + … + ⁿ⁺¹Cₙ₊₁xⁿ⁺¹ = (1 + x)ⁿ⁺¹]",
+          {
+            "text": "∴ S = ((1 + x)ⁿ⁺¹ − 1)/((n + 1)x)",
+            "style": "boxed"
+          }
         ]
       }
     ]

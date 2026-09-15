@@ -5,6 +5,30 @@ Updated every session. Most recent entry at the top.
 
 ---
 
+## Session 90 — The AI solver measured before it is trusted: model routing by what the photo contains, the agreement gate, the reviewer's bar, the syllabus rule, the bank plan (2026-09-10/11, `master`)
+
+*(Decisions only; the measurements behind each are in `docs/MODEL_PROBES.md` §1–24, ~3,000 calls over 358 exam questions, and the designs in `docs/SOLUTION_GENERATOR_ARCHITECTURE.md`, `docs/SOLUTION_REVIEWER_ARCHITECTURE.md`, `docs/PRODUCT_GAPS_AND_BANK_STRATEGY.md`.)*
+
+**1. Route a student's photo by what it contains, not by subject (founder-confirmed 2026-09-11).** Text-only questions go to DeepSeek V4.1 Flash `high` (`max` for maths), one call — measured ~99% on EAPCET text at ~$0.001, 10–15 s. Anything drawn — a figure, graph, circuit, or organic structure — goes to Gemini 3.7 Flash **and** DeepSeek `high` in parallel — Gemini measured 144/148 on the hardest drawn set where DeepSeek managed 131 at any effort, in 5 s, ~$0.006. More thinking does not fix a misread drawing (measured at off/low/high/max); a stronger reader does. On JEE, chemistry goes to Gemini even as text (22/29 vs 28/29).
+
+**2. Every answer carries a label decided by code, and the product never gives a confident wrong answer.** *Checked two ways* when two solvers (or a solver and a verified bank key) agree — measured right 129 of 129 times on the hardest questions; *checked once* on the single-call text path; *unsure* with both workings and no verdict when they disagree — every disagreement in the sample contained the wrong model. A second opinion on text runs only on triggers (hedge, no clean option, thinking cap hit, a drawn structure the intake missed) because it would otherwise multiply text cost by five to catch about one question in a hundred. The known hole — both models agreeing on the same wrong *exam convention* (EAPCET's summed error rule) — is closed by a deterministic convention pass in our code, not a third model.
+
+**3. The solution reviewer must be twice as strong as the generator, because the product is the review.** Three verdicts only (correct / error at step n / unsure); the number to minimise is the false-error rate on correct work; a valid method different from ours is correct by construction; a disputed line must be the student's own line, quoted; nothing ships until measured on ~100 real handwritten pages with planted errors and a correct-by-different-method negative control. Cost ~$0.014 per review — twice a solve, which is what "twice as strong" costs.
+
+**4. Solutions stay at Class 10–12 level — and this is nearly free.** A syllabus sweep of all 506 stored solutions found zero beyond-Class-12 methods (judge $0.0001 per solution; a planted control proved it can flag: 4/4 beyond caught, 2/2 within passed). Enforcement = a syllabus clause in the prompt + the same judge as a post-check, kept on because a student's free-text ask can pull a model off-syllabus.
+
+**5. Two attractive ideas measured as no-gain and set aside.** A Python sandbox for the solver (+1 of 148, 0 of 59 on maths, +55% cost; the model used it to zoom the image, not to compute) — off by default; its surviving form is a deterministic exam-convention library *after* the model, and step-checking inside the reviewer. Retrieval of similar bank questions into the prompt (144 → 144) — a bank's value is exact hits (EAPCET 2025 reused earlier questions verbatim, 4 of 60), reviewer context and similar-question supply, not solver accuracy; revisit only once the bank holds worked solutions.
+
+**6. The bank is built in this order: organic first (every student-sent question solved once and cached by fingerprint), public PYQs + NCERT/Exemplar second, licensed or self-authored coverage only after a measured cross-institute hit rate and legal advice — never a competitor's modules.** Solving a lakh of questions costs ~$800; ingestion, verification of the ~12% disagreements and copyright are the real costs. Founder's Narayana-material idea is deferred behind the 200-question hit-rate measurement and legal advice.
+
+**7. Cost and pricing, from the runs.** Routed single solver ≈ $2.5–3 per 1,000 non-bank questions; pair on everything ≈ $7; the coaching loop (three solution uploads per question) worst case ≈ $36 per 1,000. Personas: an obsessed average aspirant ≈ ₹520/month, an AIR-1 type ≈ ₹200, a blended base ≈ ₹120–130 against ₹199 — viable, carried by light users, thinner as the product succeeds. **Open for the founder:** replace the 20/day photo cap with a monthly allowance (photos + solution reviews) and price the coaching loop as its own tier.
+
+**8. Three official EAPCET keys were found wrong by the models** (Poiseuille radius error, impulse-graph 210 vs 410 m/s, ClF₃/SO₂ ionic order), each with three models agreeing against the key. The solver is now also the bank's cheap second reader; the product needs the "our working differs from the printed key — here is why" flow, and it must be right when used.
+
+**9. What is deliberately not decided yet.** The reviewer's measurement waits on handwriting photos from the founder; real phone photos of printed material are unmeasured (every score is on typeset crops); JEE routing, multi-question photos, Telugu/Hindi explain-again, human escalation, and the consent rule for storing student pages are filed in the gaps document, not built.
+
+---
+
 ## Session 89 — The Answer Book doctrine session: 2026-27 board landscape, the marks arithmetic, the enumeration thesis, tiered authoring, term packs, and TS/AP differentiation (2026-08-20/21, desk `physics-mind-ipe-answerbook`)
 
 *(Numbering note: Session 88 — the Quick Learn exam-first strategy — lives on `feat/quick-learn`'s copy of this file; the branches will reconcile on merge. This entry builds directly on 88's "students buy marks, not understanding" position.)*

@@ -35,7 +35,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.106 — the STAR QUESTIONS PLUS bank, under its '3D GEOEMTRY' heading, answer 188. Printed appearance: AP 19. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer, whose page is set two and three answers to a page in columns. It is not a bare guess: answer 98 in THIS SAME CHAPTER (book p.83) carries a printed 1+1 against exactly this shape — one mark for the setting-up equation and one for the answer read off it — and every answer in the unit takes those two moves. ⚠ THIS QUESTION COMES FROM THE STAR QUESTIONS PLUS BANK (book pp.104-108, answers 181-196), NOT from VSAQ chapter 15 — the bank sits AFTER every numbered chapter and is organised by chapter, so it is not part of any chapter's own inventory. Boundary walked to book p.109, the Bullet Model Paper. SECTION CLASSIFICATION IS OURS, NOT THE BOOK'S: its headings name the CHAPTER, never the mark cut. This is filed as VSAQ because 3D-Coordinates has ONLY a Section-A slot on the paper, so VSAQ is the only cut this unit admits. The bank prints no [N Marks] tags anywhere. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: 3D-Coordinates is a VSAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 2 marks in Section A and nothing in Section B or Section C, and the book has no 3D LAQ chapter (its LAQ chapters are 1-6) and no 3D SAQ chapter (its SAQ chapters are 7-13). Its chapter header reads '2 Marks' and carries the note 'Just 2 Pages - 2 Marks'. Chapter scoped by BOUNDARY WALK: book p.85 opens VSAQ chapter 16, The Plane. Paper position: Maths-1B Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.106 — the STAR QUESTIONS PLUS bank, under its '3D GEOEMTRY' heading, answer 188. Printed appearance: AP 19. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer, whose page is set two and three answers to a page in columns. It is not a bare guess: answer 98 in THIS SAME CHAPTER (book p.83) carries a printed 1+1 against exactly this shape — one mark for the setting-up equation and one for the answer read off it — and every answer in the unit takes those two moves. ⚠ THIS QUESTION COMES FROM THE STAR QUESTIONS PLUS BANK (book pp.104-108, answers 181-196), NOT from VSAQ chapter 15 — the bank sits AFTER every numbered chapter and is organised by chapter, so it is not part of any chapter's own inventory. Boundary walked to book p.109, the Bullet Model Paper. SECTION CLASSIFICATION IS OURS, NOT THE BOOK'S: its headings name the CHAPTER, never the mark cut. This is filed as VSAQ because 3D-Coordinates has ONLY a Section-A slot on the paper, so VSAQ is the only cut this unit admits. The bank prints no [N Marks] tags anywhere. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: 3D-Coordinates is a VSAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 2 marks in Section A and nothing in Section B or Section C, and the book has no 3D LAQ chapter (its LAQ chapters are 1-6) and no 3D SAQ chapter (its SAQ chapters are 7-13). Its chapter header reads '2 Marks' and carries the note 'Just 2 Pages - 2 Marks'. Chapter scoped by BOUNDARY WALK: book p.85 opens VSAQ chapter 16, The Plane. Paper position: Maths-1B Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say what you square, and why there are two answers.",
   "answer": {
@@ -59,8 +59,16 @@
           },
           "We take A(x₁,y₁,z₁) = (5,−1,7) and B(x₂,y₂,z₂) = (x,5,1)",
           "Given distance AB = 9",
+          "(the distance formula in space:",
+          {
+            "text": "  √((x₂ − x₁)² + (y₂ − y₁)² + (z₂ − z₁)²))",
+            "style": "indent"
+          },
           "⇒ √((x₂−x₁)² + (y₂−y₁)² + (z₂−z₁)²) = 9",
-          "⇒ √((x−5)² + (5+1)² + (1−7)²) = 9,  squaring on both sides, we get",
+          "(put x₁ = 5, y₁ = −1, z₁ = 7 and x₂ = x, y₂ = 5, z₂ = 1)",
+          "((5 + 1)² = 36 and (1 − 7)² = (−6)² = 36; 9² = 81)",
+          "⇒ √((x−5)² + (5+1)² + (1−7)²) = 9,",
+          "squaring on both sides, we get",
           "(x−5)² + 36 + 36 = 81"
         ],
         "recall": {
@@ -97,11 +105,23 @@
         "label": "Solve for x",
         "marks": 1,
         "mark_note": "Solution",
-        "margin_note": "Second mark. Isolate the bracket and take the square root — remembering that a square root gives PLUS OR MINUS, which is why there are two answers.",
-        "memory_tip": "A square root gives PLUS OR MINUS, which is why there are two answers.",
+        "margin_note": "Second mark. Isolate the bracket and solve (x − 5)² = 9 — a number whose square is 9 can be 3 or −3, which is why there are two answers.",
+        "memory_tip": "(x − 5)² = 9 gives x − 5 = 3 or x − 5 = −3, which is why there are two answers.",
         "lines": [
+          {
+            "text": "(36 + 36 = 72; move 72 to the right side)",
+            "added": true
+          },
           "⇒ (x−5)² + 72 = 81  ⇒  (x−5)² = 81 − 72 = 9 = 3²",
+          {
+            "text": "(p² = 9 means p = 3 or p = −3)",
+            "added": true
+          },
           "⇒ x − 5 = ±3",
+          {
+            "text": "(add 5 to both sides)",
+            "added": true
+          },
           "⇒ x = 5 + 3 = 8  (or)  x = 5 − 3 = 2",
           {
             "text": "∴ x = 8 or 2",
@@ -134,6 +154,15 @@
         "common_mistakes": [
           "Reporting only x = 8.",
           "Taking the square root of 9 as 4.5."
+        ],
+        "lines_compact": [
+          "⇒ (x−5)² + 72 = 81  ⇒  (x−5)² = 81 − 72 = 9 = 3²",
+          "⇒ x − 5 = ±3",
+          "⇒ x = 5 + 3 = 8  (or)  x = 5 − 3 = 2",
+          {
+            "text": "∴ x = 8 or 2",
+            "style": "boxed"
+          }
         ]
       }
     ]

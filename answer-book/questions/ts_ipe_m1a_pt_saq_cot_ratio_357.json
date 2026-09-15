@@ -35,7 +35,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.76 — SAQ chapter 13 Properties of Triangles, answer 83, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 17. A ratio question run backwards: the cotangent ratio is given and the side ratio wanted. The common s/Δ cancels out of the given ratio immediately. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used in this unit are the book's own. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q17 is the Properties of Triangles slot. Together with Q24 (LAQ) this unit holds TWO slots — one of only two units to do so, Matrices being the other."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.76 — SAQ chapter 13 Properties of Triangles, answer 83, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 17. A ratio question run backwards: the cotangent ratio is given and the side ratio wanted. The common s/Δ cancels out of the given ratio immediately. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used in this unit are the book's own. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q17 is the Properties of Triangles slot. Together with Q24 (LAQ) this unit holds TWO slots — one of only two units to do so, Matrices being the other. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — name each standard result you use and the order you use them in.",
   "answer": {
@@ -58,9 +58,11 @@
             "style": "heading"
           },
           "Given cot(A/2) : cot(B/2) : cot(C/2) = 3 : 5 : 7",
+          "(cot(A/2) = s(s−a)/Δ)",
           "⇒ s(s−a)/Δ : s(s−b)/Δ : s(s−c)/Δ = 3 : 5 : 7",
           "⇒ (s−a) : (s−b) : (s−c) = 3 : 5 : 7   [s/Δ cancels]",
-          "Take s − a = 3k, s − b = 5k, s − c = 7k  (k ≠ 0)"
+          "(equal ratios: each is the same multiple k)",
+          "Take s − a = 3k, s − b = 5k, s − c = 7k  (k > 0)"
         ],
         "recall": {
           "credit": "say_it",
@@ -100,9 +102,17 @@
         "memory_tip": "Adding the three brackets gives 3s − 2s = s = 15k; each side then follows by subtracting from s.",
         "lines": [
           "Adding: (s−a)+(s−b)+(s−c) = 3s − (a+b+c) = 3s − 2s = s",
+          {
+            "text": "(put s − a = 3k, s − b = 5k, s − c = 7k on the left)",
+            "added": true
+          },
           "⇒ s = 3k + 5k + 7k = 15k",
           "a = s − 3k = 15k − 3k = 12k",
           "b = s − 5k = 10k,  c = s − 7k = 8k",
+          {
+            "text": "(divide 12, 10 and 8 by 2)",
+            "added": true
+          },
           {
             "text": "∴ a : b : c = 12 : 10 : 8 = 6 : 5 : 4",
             "style": "boxed"
@@ -134,6 +144,16 @@
         "common_mistakes": [
           "Leaving the answer as 12 : 10 : 8.",
           "Forgetting that the brackets add to s, not to 3s."
+        ],
+        "lines_compact": [
+          "Adding: (s−a)+(s−b)+(s−c) = 3s − (a+b+c) = 3s − 2s = s",
+          "⇒ s = 3k + 5k + 7k = 15k",
+          "a = s − 3k = 15k − 3k = 12k",
+          "b = s − 5k = 10k,  c = s − 7k = 8k",
+          {
+            "text": "∴ a : b : c = 12 : 10 : 8 = 6 : 5 : 4",
+            "style": "boxed"
+          }
         ]
       }
     ]

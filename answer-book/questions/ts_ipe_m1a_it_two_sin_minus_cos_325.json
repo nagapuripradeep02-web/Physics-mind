@@ -31,14 +31,14 @@
       "marks": 1
     },
     {
-      "label": "Check the range and close",
+      "label": "Check the range and finish",
       "marks": 1
     }
   ],
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.112, chapter 10 INVERSE TRIGONOMETRIC FUNCTIONS, Short Answer question 2(i). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split is 1+1+1+1 because the four moves are genuinely separate pieces of work — naming the angles, doubling one of them, expanding the difference, and proving the result lies in the range of Cos⁻¹. NOTATION: the book prints the inverse functions in lower case (sin⁻¹, cos⁻¹); they are written here with capitals to match the principal-value convention used across the rest of this unit. Both sides were checked numerically to twelve decimal places: 2·arcsin(0.6) − arccos(5/13) = arccos(323/325) = 0.110997010491. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, at 4 marks each, under the 2026-27 pattern; Inverse Trigonometric Functions is an SAQ-only unit, so the paper gives it no Section-A and no Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.112, chapter 10 INVERSE TRIGONOMETRIC FUNCTIONS, Short Answer question 2(i). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split is 1+1+1+1 because the four moves are genuinely separate pieces of work — naming the angles, doubling one of them, expanding the difference, and proving the result lies in the range of Cos⁻¹. NOTATION: the book prints the inverse functions in lower case (sin⁻¹, cos⁻¹); they are written here with capitals to match the principal-value convention used across the rest of this unit. Both sides were checked numerically to twelve decimal places: 2·arcsin(0.6) − arccos(5/13) = arccos(323/325) = 0.110997010491. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, at 4 marks each, under the 2026-27 pattern; Inverse Trigonometric Functions is an SAQ-only unit, so the paper gives it no Section-A and no Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — name each move in order, and say which formula you reach for and why.",
   "answer": {
@@ -53,7 +53,7 @@
         "label": "Name the two angles",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. Naming the angles turns the statement into cos(2A − B) = 323/325, which is a plain expansion.",
+        "margin_note": "First mark. Naming the angles means we need cos(2A − B) = 323/325, together with 2A − B ∈ [0, π].",
         "memory_tip": "3-4-5 and 5-12-13 are the two triangles here. Write all four ratios before starting.",
         "lines": [
           {
@@ -61,8 +61,10 @@
             "style": "heading"
           },
           "Let A = Sin⁻¹(3/5) ⇒ sinA = 3/5",
+          "(cosA = √(1 − 9/25) = 4/5)",
           "A ∈ (0, π/2), so cosA = 4/5",
           "Let B = Cos⁻¹(5/13) ⇒ cosB = 5/13",
+          "(sinB = √(1 − 25/169) = 12/13)",
           "B ∈ (0, π/2), so sinB = 12/13",
           "RTP: 2A − B = Cos⁻¹(323/325)"
         ],
@@ -88,7 +90,7 @@
             "first quadrant"
           ]
         },
-        "why": "Both inverse values are positive, so A and B are first-quadrant angles. Every sine and cosine below is then a positive number.",
+        "why": "Both 3/5 and 5/13 are positive, so A and B are first-quadrant angles. Every sine and cosine below is then a positive number.",
         "common_mistakes": [
           "Taking cosA as −4/5.",
           "Reading Sin⁻¹(3/5) as an angle whose cosine is 3/5."
@@ -103,7 +105,15 @@
         "margin_note": "Second mark. Both double-angle values are needed, because the expansion of cos(2A − B) uses each one.",
         "memory_tip": "cos2A = 1 − 2sin²A takes sinA straight in; sin2A = 2 sinA cosA needs both ratios.",
         "lines": [
+          {
+            "text": "(the double-angle formulas)",
+            "added": true
+          },
           "cos2A = 1 − 2sin²A",
+          {
+            "text": "(1 − 18/25 = 7/25)",
+            "added": true
+          },
           "= 1 − 2(9/25) = 7/25",
           "sin2A = 2 sinA cosA",
           "= 2(3/5)(4/5) = 24/25"
@@ -134,6 +144,12 @@
         "common_mistakes": [
           "Using cos2A = 2cos²A − 1 with sinA by mistake.",
           "Writing sin2A as 2 sinA."
+        ],
+        "lines_compact": [
+          "cos2A = 1 − 2sin²A",
+          "= 1 − 2(9/25) = 7/25",
+          "sin2A = 2 sinA cosA",
+          "= 2(3/5)(4/5) = 24/25"
         ]
       },
       {
@@ -142,11 +158,19 @@
         "label": "Expand cos of the difference",
         "marks": 1,
         "mark_note": "Formula",
-        "margin_note": "Third mark. Both products already sit over 325, so they add with no extra work.",
+        "margin_note": "Third mark. Both products already have the denominator 325, so they add with no extra work.",
         "memory_tip": "cos(X − Y) = cosX cosY + sinX sinY — the sign turns to plus for a difference.",
         "lines": [
+          {
+            "text": "(the cos(A − B) formula, with 2A in place of A)",
+            "added": true
+          },
           "cos(2A − B) = cos2A cosB + sin2A sinB",
           "= (7/25)(5/13) + (24/25)(12/13)",
+          {
+            "text": "((7/25)(5/13) = 35/325 and (24/25)(12/13) = 288/325)",
+            "added": true
+          },
           "= 35/325 + 288/325",
           "= 323/325"
         ],
@@ -172,21 +196,36 @@
             "plus sin sin"
           ]
         },
-        "why": "The difference formula for cosine carries a plus sign between the two products. That sign is what produces 323 and not 253.",
+        "why": "The difference formula for cosine carries a plus sign between the two products. That sign is what produces 323 and not −253.",
         "common_mistakes": [
           "Writing a minus sign between the two products.",
           "Using the sine difference formula instead."
+        ],
+        "lines_compact": [
+          "cos(2A − B) = cos2A cosB + sin2A sinB",
+          "= (7/25)(5/13) + (24/25)(12/13)",
+          "= 35/325 + 288/325",
+          "= 323/325"
         ]
       },
       {
         "id": "s4_check_the_range_and_close",
         "kind": "boxed_final",
-        "label": "Check the range and close",
+        "label": "Check the range and finish",
         "marks": 1,
         "mark_note": "Conclusion",
         "margin_note": "Last mark. Cosine decreases as the angle increases on (0, π), so the smaller cosine 7/25 belongs to the bigger angle — that is how 2A > B is proved.",
         "memory_tip": "Cos⁻¹ only returns angles in [0, π]. Show 2A − B is positive and below π before writing the last line.",
         "lines": [
+          {
+            "text": "(A ∈ (0, π/2) gives 2A ∈ (0, π), and a positive cosine",
+            "added": true
+          },
+          {
+            "text": "  there means 2A ∈ (0, π/2))",
+            "style": "indent",
+            "added": true
+          },
           "cos2A = 7/25 > 0 ⇒ 2A ∈ (0, π/2)",
           "7/25 < 5/13 and cos decreases on (0, π/2),",
           "so 2A > B, giving 2A − B ∈ (0, π/2).",
@@ -223,6 +262,17 @@
         "common_mistakes": [
           "Writing the Cos⁻¹ line without checking the range.",
           "Assuming 2A > B with no reason given."
+        ],
+        "lines_compact": [
+          "cos2A = 7/25 > 0 ⇒ 2A ∈ (0, π/2)",
+          "7/25 < 5/13 and cos decreases on (0, π/2),",
+          "so 2A > B, giving 2A − B ∈ (0, π/2).",
+          "This is inside [0, π], the range of Cos⁻¹.",
+          "2Sin⁻¹(3/5) − Cos⁻¹(5/13) = Cos⁻¹(323/325)",
+          {
+            "text": "∴ L.H.S = Cos⁻¹(323/325) = R.H.S",
+            "style": "boxed"
+          }
         ]
       }
     ]

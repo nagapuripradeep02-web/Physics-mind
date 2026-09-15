@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.224, chapter 10 APPLICATIONS OF DERIVATIVES, the TANGENTS AND NORMALS sub-section, Short Answer question 21. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4M over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Note on the stem: the printed condition is a > 0 only, and the working adds a ≠ 1. It has to: at a = 1 the curve is the horizontal line y = 1, dy/dx = 0 and logₑ1 = 0, so y/m is not defined and there is no subtangent to measure. The question itself was not changed."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.224, chapter 10 APPLICATIONS OF DERIVATIVES, the TANGENTS AND NORMALS sub-section, Short Answer question 21. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4M over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Note on the stem: the printed condition is a > 0 only, and the working adds a ≠ 1. It has to: at a = 1 the curve is the horizontal line y = 1, dy/dx = 0 and logₑ1 = 0, so y/m is not defined and there is no subtangent to measure. The question itself was not changed. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would show this — say the formula for the subtangent, what aˣ differentiates to, and what is left after you divide.",
   "answer": {
@@ -60,6 +60,7 @@
             "style": "heading"
           },
           "Given curve:   y = aˣ,   a > 0 and a ≠ 1.",
+          "(the standard formula for the subtangent)",
           "At a point (x, y) on a curve, with m = dy/dx:",
           "length of the subtangent = y/m",
           "So the question asks for the value of y ÷ (dy/dx)."
@@ -93,7 +94,7 @@
           "Using the length of the tangent y√(1 + m²)/m, which carries an extra root.",
           "Starting to differentiate before naming the length asked for."
         ],
-        "memory_tip": "Subtangent divides, subnormal multiplies. The one that divides is the one that can lose y altogether."
+        "memory_tip": "Subtangent divides, subnormal multiplies. Subtangent divides and subnormal multiplies; either can come out free of y, depending on the curve."
       },
       {
         "id": "s2_differentiate",
@@ -103,8 +104,19 @@
         "mark_note": "Method",
         "margin_note": "Second mark. aˣ is a constant raised to a variable power, so the power rule does NOT apply. The standard derivative is aˣ logₑa.",
         "lines": [
-          "Here the base a is a constant and the index x is the variable,",
-          "so the power rule does not apply. The standard result is used:",
+          "Here the base a is a constant",
+          "and the index x is the variable,",
+          "so the power rule does not apply.",
+          "The standard result is used:",
+          {
+            "text": "(aˣ = e to the power x logₑa, and the chain rule",
+            "added": true
+          },
+          {
+            "text": "  gives aˣ · logₑa)",
+            "style": "indent",
+            "added": true
+          },
           "d(aˣ)/dx = aˣ logₑa",
           "∴ dy/dx = aˣ logₑa"
         ],
@@ -137,7 +149,15 @@
           "Writing the derivative as aˣ only, leaving out the logₑa factor.",
           "Writing aˣ log a with the log to base 10 instead of base e."
         ],
-        "memory_tip": "For xⁿ the power comes down; for aˣ a logarithm comes out. The variable in the index always produces a log."
+        "memory_tip": "For xⁿ the power comes down; for aˣ a logarithm comes out. The variable in the index always produces a log.",
+        "lines_compact": [
+          "Here the base a is a constant",
+          "and the index x is the variable,",
+          "so the power rule does not apply.",
+          "The standard result is used:",
+          "d(aˣ)/dx = aˣ logₑa",
+          "∴ dy/dx = aˣ logₑa"
+        ]
       },
       {
         "id": "s3_in_terms_of_y",
@@ -148,6 +168,10 @@
         "margin_note": "Third mark. Replacing aˣ by y is the move that makes the division cancel. Without it the answer still comes out, but with an extra line of cancelling aˣ against aˣ.",
         "lines": [
           "The curve itself says aˣ = y, so replace aˣ in the derivative:",
+          {
+            "text": "(aˣ logₑa = y logₑa)",
+            "added": true
+          },
           "m = dy/dx = y logₑa"
         ],
         "recall": {
@@ -179,7 +203,11 @@
           "Writing m = y + logₑa, adding instead of multiplying.",
           "Writing m = logₑy, replacing the wrong part of the expression."
         ],
-        "memory_tip": "An exponential curve is its own derivative up to a constant. For y = aˣ that constant is logₑa, so m = y logₑa."
+        "memory_tip": "An exponential curve is its own derivative up to a constant. For y = aˣ that constant is logₑa, so m = y logₑa.",
+        "lines_compact": [
+          "The curve itself says aˣ = y, so replace aˣ in the derivative:",
+          "m = dy/dx = y logₑa"
+        ]
       },
       {
         "id": "s4_conclude",
@@ -189,13 +217,36 @@
         "mark_note": "Answer",
         "margin_note": "Fourth mark. y cancels, so nothing about the point is left. Say that in words — a \"show that it is constant\" answer is not complete until the absence of x and y is stated.",
         "lines": [
+          {
+            "text": "(m = y logₑa from step 3)",
+            "added": true
+          },
           "Length of the subtangent = y/m",
           "= y ÷ (y logₑa)",
-          "= 1/logₑa",
-          "logₑa is a fixed number once the base a is fixed, and no x or y is left.",
-          "So the subtangent has the same value at every point of the curve.",
           {
-            "text": "∴ the length of the subtangent = 1/logₑa, a constant",
+            "text": "(y cancels, as y = aˣ > 0)",
+            "added": true
+          },
+          "= 1/logₑa",
+          {
+            "text": "(a ≠ 1, so logₑa ≠ 0 and 1/logₑa is defined; when",
+            "added": true
+          },
+          {
+            "text": "  0 < a < 1 it is negative, so the length is 1/|logₑa|)",
+            "style": "indent",
+            "added": true
+          },
+          "logₑa is a fixed number once the base a is fixed,",
+          "and no x or y is left.",
+          "So the subtangent has the same value",
+          "at every point of the curve.",
+          {
+            "text": "∴ the length of the subtangent = 1/|logₑa|,",
+            "style": "boxed"
+          },
+          {
+            "text": "a constant",
             "style": "boxed"
           }
         ],
@@ -228,9 +279,26 @@
           "Writing y/logₑa, cancelling only one of the two y's.",
           "Giving the value without saying that it does not depend on the point."
         ],
-        "memory_tip": "y over y log a leaves one over log a. The y disappears, and only the base decides the answer."
+        "memory_tip": "y over y log a leaves one over log a. The y disappears, and the answer depends only on the base a.",
+        "lines_compact": [
+          "Length of the subtangent = y/m",
+          "= y ÷ (y logₑa)",
+          "= 1/logₑa",
+          "logₑa is a fixed number once the base a is fixed,",
+          "and no x or y is left.",
+          "So the subtangent has the same value",
+          "at every point of the curve.",
+          {
+            "text": "∴ the length of the subtangent = 1/|logₑa|,",
+            "style": "boxed"
+          },
+          {
+            "text": "a constant",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },
-  "insider_note": "d/dx(aˣ) = aˣ log a, so the aˣ cancels in y/m and leaves 1/log a. The log a is what makes the answer constant rather than 1."
+  "insider_note": "d/dx(aˣ) = aˣ log a, so the aˣ cancels in y/m and leaves 1/log a. y cancels, so the answer is constant, and log a makes that constant 1/log a."
 }

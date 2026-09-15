@@ -114,7 +114,10 @@
         "margin_note": "Second mark. 1 · 1 · α = 4 gives α = 4. Check with the sum: 1 + 1 + 4 = 6 = −a₁/a₀.",
         "memory_tip": "1 · 1 · α = 4 gives α = 4. Check with the sum: 1 + 1 + 4 = 6 = −a₁/a₀.",
         "lines": [
-          "The roots are 1, 1 and α, so their product is",
+          {
+            "text": "The roots are 1, 1 and α, so their product is",
+            "added": true
+          },
           "1 · 1 · α = 4",
           {
             "text": "∴ α = 4",
@@ -145,6 +148,13 @@
         "common_mistakes": [
           "Writing α = −4 from a wrong sign in S₃.",
           "Not checking with the sum (1 + 1 + α = 6 also gives 4)."
+        ],
+        "lines_compact": [
+          "1 · 1 · α = 4",
+          {
+            "text": "∴ α = 4",
+            "style": "boxed"
+          }
         ]
       }
     ]

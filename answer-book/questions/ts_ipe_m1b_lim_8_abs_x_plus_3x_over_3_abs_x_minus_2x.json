@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.187, chapter 8 LIMITS, Very Short Answer question 26. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.187, chapter 8 LIMITS, Very Short Answer question 26. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say what |x| becomes as x increases without bound, and what cancels afterwards.",
   "answer": {
@@ -51,8 +51,11 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "x → ∞ means x takes larger and larger positive values, so x > 0.",
+          "x → ∞ means x takes larger and larger positive values,",
+          "so x > 0.",
+          "(|x| = x when x ≥ 0)",
           "For x > 0,  |x| = x",
+          "(put |x| = x)",
           "∴ 8|x| + 3x = 8x + 3x = 11x",
           "and 3|x| − 2x = 3x − 2x = x"
         ],
@@ -83,7 +86,7 @@
           "Cancelling |x| against x without first stating that x > 0.",
           "Using |x| = −x, which belongs to x → −∞."
         ],
-        "memory_tip": "Infinity lies on the positive side of the number line, so the modulus bars come off with a plus sign."
+        "memory_tip": "x → ∞ means x takes larger and larger positive values, so |x| = x and the modulus is removed with no change of sign."
       },
       {
         "id": "s2_cancel_x",
@@ -93,8 +96,20 @@
         "mark_note": "Answer",
         "margin_note": "Second mark. Box 11. Worth knowing the contrast: at x → −∞ the same expression gives 1, so the two ends do not agree.",
         "lines": [
+          {
+            "text": "(put 11x above and x below)",
+            "added": true
+          },
           "lim(x → ∞) (8|x| + 3x)/(3|x| − 2x) = lim(x → ∞) 11x/x",
+          {
+            "text": "(11x/x = 11 for x ≠ 0)",
+            "added": true
+          },
           "= lim(x → ∞) 11   (x ≠ 0)",
+          {
+            "text": "(the limit of a constant is that constant)",
+            "added": true
+          },
           {
             "text": "∴ lim(x → ∞) (8|x| + 3x)/(3|x| − 2x) = 11",
             "style": "boxed"
@@ -127,9 +142,17 @@
           "Giving 1, which is the value at x → −∞ where |x| = −x makes it (−5x)/(−5x).",
           "Dividing only the numerator by x, leaving 11/x, and reporting 0."
         ],
-        "memory_tip": "Eleven over one: the top adds 8 + 3 and the bottom subtracts 3 − 2."
+        "memory_tip": "Eleven over one: the top adds 8 + 3 and the bottom subtracts 3 − 2.",
+        "lines_compact": [
+          "lim(x → ∞) (8|x| + 3x)/(3|x| − 2x) = lim(x → ∞) 11x/x",
+          "= lim(x → ∞) 11   (x ≠ 0)",
+          {
+            "text": "∴ lim(x → ∞) (8|x| + 3x)/(3|x| − 2x) = 11",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },
-  "insider_note": "x → ∞ means x is POSITIVE, so |x| = x and the modulus simply disappears. The whole question is deciding the sign of x before anything else."
+  "insider_note": "x → ∞ means x is POSITIVE, so |x| = x and the modulus can be removed. Decide the sign of x before anything else."
 }

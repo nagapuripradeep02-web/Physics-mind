@@ -39,7 +39,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.85 — VSAQ chapter 16 The Plane, answer 101, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 19 · AP J-16 (June 2016). ⚠ THE MARK SPLIT 1+1 IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter, whose pages are set two and three answers to a page in columns. It is not a bare guess: VSAQ answer 98 (book p.83, 3-D Coordinates) carries a printed 1+1 against exactly this shape — one mark for the setting-up move and one for the answer read off it — and the chapter header here reads '2 Marks' like that one. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Plane is a VSAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 2 marks in Section A and nothing in Section B or Section C, and the book has no Plane LAQ chapter (its LAQ chapters are 1-6) and no Plane SAQ chapter (its SAQ chapters are 7-13). Chapter scoped by BOUNDARY WALK: book p.87 opens VSAQ chapter 17, Limits. The STAR QUESTIONS PLUS bank (pp.104-108) contributes NOTHING to this unit — it holds no Plane question, so this is one of the three units (with 1 and 6) that receive none. Paper position: Maths-1B Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.85 — VSAQ chapter 16 The Plane, answer 101, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 19 · AP J-16 (June 2016). ⚠ THE MARK SPLIT 1+1 IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter, whose pages are set two and three answers to a page in columns. It is not a bare guess: VSAQ answer 98 (book p.83, 3-D Coordinates) carries a printed 1+1 against exactly this shape — one mark for the setting-up move and one for the answer read off it — and the chapter header here reads '2 Marks' like that one. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Plane is a VSAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 2 marks in Section A and nothing in Section B or Section C, and the book has no Plane LAQ chapter (its LAQ chapters are 1-6) and no Plane SAQ chapter (its SAQ chapters are 7-13). Chapter scoped by BOUNDARY WALK: book p.87 opens VSAQ chapter 17, Limits. The STAR QUESTIONS PLUS bank (pp.104-108) contributes NOTHING to this unit — it holds no Plane question, so this is one of the three units (with 1 and 6) that receive none. Paper position: Maths-1B Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say what must be on the right-hand side, and what the denominators mean.",
   "answer": {
@@ -62,7 +62,9 @@
             "style": "heading"
           },
           "The given equation of the plane is  4x − 4y + 2z + 5 = 0",
+          "(move 5 to the right side)",
           "⇒ 4x − 4y + 2z = −5",
+          "(divide every term by −5, so that the right side is 1)",
           "⇒ 4x/(−5) + (−4y)/(−5) + 2z/(−5) = 1"
         ],
         "recall": {
@@ -87,7 +89,7 @@
             "intercept form"
           ]
         },
-        "why": "Intercept form must have 1 on the right-hand side — that is its whole definition. So the constant is moved across and everything divided by it, and the three denominators that appear ARE the intercepts.",
+        "why": "Intercept form x/a + y/b + z/c = 1 has 1 on the right-hand side, so the constant (which must not be 0) is moved across and every term divided by it, and the three denominators that appear ARE the intercepts.",
         "common_mistakes": [
           "Leaving a number other than 1 on the right.",
           "Dividing only some of the terms."
@@ -99,9 +101,23 @@
         "label": "Read off the intercept form",
         "marks": 1,
         "mark_note": "Solution",
-        "margin_note": "Second mark. Once each term reads x over something, that something IS the intercept on that axis. Take care with signs — a negative intercept is perfectly normal.",
-        "memory_tip": "Once each term reads x over something, that something IS the intercept. A negative intercept is normal.",
+        "margin_note": "Second mark. Once each term is written as a variable over a number, that number IS the intercept on that variable's axis. Take care with signs — a negative intercept is perfectly normal.",
+        "memory_tip": "Once each term is a variable over a number, that number IS the intercept. A negative intercept is normal.",
         "lines": [
+          {
+            "text": "(4x/(−5) = x/(−5/4), (−4y)/(−5) = y/(5/4)",
+            "added": true
+          },
+          {
+            "text": "  and 2z/(−5) = z/(−5/2); so the intercepts are −5/4,",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  5/4 and −5/2)",
+            "style": "indent",
+            "added": true
+          },
           "⇒ x/(−5/4) + y/(5/4) + z/(−5/2) = 1",
           {
             "text": "which is in the intercept form x/a + y/b + z/c = 1",
@@ -134,6 +150,13 @@
         "common_mistakes": [
           "Reading the numerator as the intercept.",
           "Losing a minus sign on a negative intercept."
+        ],
+        "lines_compact": [
+          "⇒ x/(−5/4) + y/(5/4) + z/(−5/2) = 1",
+          {
+            "text": "which is in the intercept form x/a + y/b + z/c = 1",
+            "style": "boxed"
+          }
         ]
       }
     ]

@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.193, chapter 9 DIFFERENTIATION, Very Short Answer question 9. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer was checked numerically before it was written: the central difference quotient reads 2.1995003 at x = 0 and 3.7973654 at x = 0.2; eˣsec²(eˣ)/tan(eˣ) gives 2.1995003 and 3.7973654 at the same two points, and the tidied form 2eˣ·Cosec(2eˣ) gives the identical pair, so both printed forms are the same number."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.193, chapter 9 DIFFERENTIATION, Very Short Answer question 9. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer was checked numerically before it was written: the central difference quotient reads 2.1995003 at x = 0 and 3.7973654 at x = 0.2; eˣsec²(eˣ)/tan(eˣ) gives 2.1995003 and 3.7973654 at the same two points, and the tidied form 2eˣ·Cosec(2eˣ) gives the identical pair, so both printed forms are the same number. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — name the three layers in order and say what each one contributes.",
   "answer": {
@@ -55,7 +55,9 @@
           "f(x) = log(tan eˣ), where log is the natural logarithm.",
           "Here tan eˣ > 0, so the logarithm is defined.",
           "There are three layers: log outside, tan next, eˣ inside.",
+          "(the chain rule for the logarithm)",
           "Take u = tan eˣ. Then d/dx(log u) = (1/u) · du/dx",
+          "(put u = tan eˣ)",
           "∴ f′(x) = (1/tan eˣ) · d/dx(tan eˣ)"
         ],
         "recall": {
@@ -95,11 +97,36 @@
         "margin_note": "Second mark. Two pieces sit here: tan gives sec²(eˣ), and the innermost eˣ gives eˣ again. Both forms of the final answer are accepted.",
         "memory_tip": "eˣ is its own derivative, so the innermost layer appears again as a multiplying factor.",
         "lines": [
-          "d/dx(tan eˣ) = sec²(eˣ) · d/dx(eˣ) = eˣ·sec²(eˣ)",
-          "∴ f′(x) = eˣ·sec²(eˣ)/tan(eˣ)",
-          "This may be tidied, since sec²θ/tan θ = 1/(sin θ cos θ) = 2/sin 2θ",
           {
-            "text": "∴ f′(x) = eˣ·sec²(eˣ)/tan(eˣ) = 2eˣ·Cosec(2eˣ)",
+            "text": "(d/dx(tan v) = sec²v · dv/dx with v = eˣ, and d/dx(eˣ) = eˣ)",
+            "added": true
+          },
+          "d/dx(tan eˣ) = sec²(eˣ) · d/dx(eˣ) = eˣ·sec²(eˣ)",
+          {
+            "text": "(put eˣ·sec²(eˣ) in place of d/dx(tan eˣ))",
+            "added": true
+          },
+          "∴ f′(x) = eˣ·sec²(eˣ)/tan(eˣ)",
+          {
+            "text": "(sec²θ/tan θ = (1/cos²θ) · (cos θ/sin θ) = 1/(sin θ cos θ),",
+            "added": true
+          },
+          {
+            "text": "  and sin θ cos θ = ½ sin 2θ)",
+            "style": "indent",
+            "added": true
+          },
+          "This may be tidied, since sec²θ/tan θ = 1/(sin θ cos θ)",
+          {
+            "text": "  = 2/sin 2θ",
+            "style": "indent"
+          },
+          {
+            "text": "(with θ = eˣ: 2/sin(2eˣ) = 2 cosec(2eˣ))",
+            "added": true
+          },
+          {
+            "text": "∴ f′(x) = eˣ·sec²(eˣ)/tan(eˣ) = 2eˣ·cosec(2eˣ)",
             "style": "boxed"
           }
         ],
@@ -129,9 +156,22 @@
         "common_mistakes": [
           "Writing d/dx(tan eˣ) = sec²(eˣ) and losing the eˣ factor.",
           "Writing sec²x rather than sec²(eˣ), which changes the function."
+        ],
+        "lines_compact": [
+          "d/dx(tan eˣ) = sec²(eˣ) · d/dx(eˣ) = eˣ·sec²(eˣ)",
+          "∴ f′(x) = eˣ·sec²(eˣ)/tan(eˣ)",
+          "This may be tidied, since sec²θ/tan θ = 1/(sin θ cos θ)",
+          {
+            "text": "  = 2/sin 2θ",
+            "style": "indent"
+          },
+          {
+            "text": "∴ f′(x) = eˣ·sec²(eˣ)/tan(eˣ) = 2eˣ·cosec(2eˣ)",
+            "style": "boxed"
+          }
         ]
       }
     ]
   },
-  "insider_note": "Three layers: log, then tan, then eˣ. sec²/tan tidies to 2·Cosec(2eˣ), and either form is acceptable as long as the chain is complete."
+  "insider_note": "Three layers: log, then tan, then eˣ. sec²/tan tidies to 2·cosec(2eˣ), and either form is acceptable as long as the chain is complete."
 }

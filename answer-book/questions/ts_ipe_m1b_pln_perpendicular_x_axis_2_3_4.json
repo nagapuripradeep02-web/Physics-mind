@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 7 THE PLANE, Very Short Answer question 11, book p.183. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The 1+1 split rewards recognising that a plane perpendicular to the X-axis has the X-axis as its normal, and then writing the plane from the point-and-normal form. This book prints almost no exam-appearance years, so appearances[] is empty; the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 7 THE PLANE, Very Short Answer question 11, book p.183. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The 1+1 split rewards recognising that a plane perpendicular to the X-axis has the X-axis as its normal, and then writing the plane from the point-and-normal form. This book prints almost no exam-appearance years, so appearances[] is empty; the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say what perpendicular to the x-axis tells you about the normal, and which coordinate of the point you then use.",
   "answer": {
@@ -55,6 +55,7 @@
           "The plane is perpendicular to the X-axis,",
           "so the X-axis itself is the normal line to",
           "the plane.",
+          "(the X-axis has d.c's (1, 0, 0))",
           "d.r's of the X-axis are (1, 0, 0), so",
           "(a, b, c) = (1, 0, 0)",
           "Here (x₁, y₁, z₁) = (2, 3, 4)"
@@ -93,11 +94,23 @@
         "label": "Write and simplify the plane",
         "marks": 1,
         "mark_note": "Solution",
-        "margin_note": "Second mark. Two of the three coefficients are 0, so the y and z brackets become zero and only the x coordinate of the point is left.",
+        "margin_note": "Second mark. Two of the three coefficients are 0, so the y and z terms become zero and only the x coordinate of the point is left.",
         "memory_tip": "b and c are 0, so the y and z terms become zero and only x = 2 is left.",
         "lines": [
+          {
+            "text": "(the plane through (x₁, y₁, z₁) with normal (a, b, c))",
+            "added": true
+          },
           "a(x − x₁) + b(y − y₁) + c(z − z₁) = 0",
+          {
+            "text": "(put a = 1, b = 0, c = 0 and (x₁, y₁, z₁) = (2, 3, 4))",
+            "added": true
+          },
           "⇒ 1(x − 2) + 0(y − 3) + 0(z − 4) = 0",
+          {
+            "text": "(the terms with 0 are 0)",
+            "added": true
+          },
           "⇒ x − 2 = 0",
           "Check: the point (2, 3, 4) has x = 2, so it",
           "lies on the plane x = 2.",
@@ -132,6 +145,17 @@
         "common_mistakes": [
           "Using the y or z coordinate and writing y = 3 or z = 4.",
           "Writing x = 0, which is the YZ-plane and does not pass through the given point."
+        ],
+        "lines_compact": [
+          "a(x − x₁) + b(y − y₁) + c(z − z₁) = 0",
+          "⇒ 1(x − 2) + 0(y − 3) + 0(z − 4) = 0",
+          "⇒ x − 2 = 0",
+          "Check: the point (2, 3, 4) has x = 2, so it",
+          "lies on the plane x = 2.",
+          {
+            "text": "∴ x = 2,  that is  x − 2 = 0",
+            "style": "boxed"
+          }
         ]
       }
     ]

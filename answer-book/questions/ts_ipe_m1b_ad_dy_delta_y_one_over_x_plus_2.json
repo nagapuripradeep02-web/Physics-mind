@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.209, chapter 10 APPLICATIONS OF DERIVATIVES, Very Short Answer question 1(v), in the ERRORS AND APPROXIMATIONS sub-section. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and the book restarts its question numbering in each sub-section, so \"question 1(v)\" is that sub-section's number and not the chapter's; we ship the five sub-sections as ONE unit, ordered by the syllabus. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks) over this sub-section but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question — one mark for dy and one for Δy, because the question asks for two different numbers. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.209, chapter 10 APPLICATIONS OF DERIVATIVES, Very Short Answer question 1(v), in the ERRORS AND APPROXIMATIONS sub-section. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and the book restarts its question numbering in each sub-section, so \"question 1(v)\" is that sub-section's number and not the chapter's; we ship the five sub-sections as ONE unit, ordered by the syllabus. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks) over this sub-section but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question — one mark for dy and one for Δy, because the question asks for two different numbers. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — say how you get dy, and say what makes Δy a different number.",
   "answer": {
@@ -45,16 +45,24 @@
         "label": "Find dy from the derivative",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. The derivative is negative, so dy is negative too. Keep the minus sign — dropping it is the commonest way this mark is lost.",
+        "margin_note": "First mark. The derivative is negative, so dy is negative too. Keep the minus sign — dropping it loses this mark.",
         "lines": [
           {
             "text": "Sol:",
             "style": "heading"
           },
           "y = 1/(x + 2),  x = 8,  Δx = 0.02",
+          "(y = (x + 2)⁻¹; by the chain rule",
+          {
+            "text": "  dy/dx = −1 · (x + 2)⁻² · 1)",
+            "style": "indent"
+          },
           "dy/dx = −1/(x + 2)²",
+          "(put 8 in place of x: (8 + 2)² = 10² = 100)",
           "At x = 8:  dy/dx = −1/(8 + 2)² = −1/100",
+          "(the differential: dy = (dy/dx) · Δx)",
           "dy = (dy/dx)·Δx = (−1/100)(0.02)",
+          "((−1/100)(0.02) = −0.02/100 = −0.0002)",
           "∴ dy = −0.0002"
         ],
         "recall": {
@@ -82,7 +90,7 @@
         "why": "1/(x + 2) is (x + 2)⁻¹, and the power rule gives −(x + 2)⁻², so the derivative is negative everywhere the function is defined. That sign is part of the answer, not a slip.",
         "common_mistakes": [
           "Writing dy/dx = 1/(x + 2)² without the minus sign.",
-          "Squaring only x instead of the whole bracket (x + 2)."
+          "Squaring only x instead of the bracket (x + 2)."
         ],
         "memory_tip": "dy uses the derivative once. Δy uses the function twice. d for derivative, Δ for difference."
       },
@@ -94,9 +102,25 @@
         "mark_note": "Answer",
         "margin_note": "Second mark. Subtracting the two fractions over a common denominator, 10.02 × 10 = 100.2, is faster and safer than converting each one to a decimal first.",
         "lines": [
+          {
+            "text": "(Δy is the actual change in y)",
+            "added": true
+          },
           "Δy = f(x + Δx) − f(x) = f(8.02) − f(8)",
+          {
+            "text": "(put 8.02 and 8 in place of x in 1/(x + 2))",
+            "added": true
+          },
           "= 1/(8.02 + 2) − 1/(8 + 2) = 1/10.02 − 1/10",
+          {
+            "text": "(common denominator 10.02 × 10 = 100.2)",
+            "added": true
+          },
           "= (10 − 10.02)/(10.02 × 10) = −0.02/100.2",
+          {
+            "text": "(0.02/100.2 = 0.00019960…)",
+            "added": true
+          },
           "Δy = −0.0001996  (to 7 decimal places)",
           {
             "text": "∴ dy = −0.0002  and  Δy = −0.0001996",
@@ -125,12 +149,22 @@
             "minus zero point zero zero zero one nine nine six"
           ]
         },
-        "why": "Δy is the real change in y, so the function is worked out at both points. Both numbers are negative because y falls as x rises here, and they agree to six decimal places, which is why dy is a usable stand-in for Δy.",
+        "why": "Δy is the real change in y, so the function is worked out at both points. Both numbers are negative because y falls as x rises here, and they agree to six decimal places, which is why dy is a good approximation to Δy.",
         "common_mistakes": [
           "Rounding 1/10.02 to 0.0998 and getting Δy = −0.0002 exactly, which hides the difference the question asks about.",
           "Reporting Δy as positive after subtracting in the wrong order."
         ],
-        "memory_tip": "Δy is the after value minus the before value, in that order — a negative Δy is allowed and simply means y went down."
+        "memory_tip": "Δy is the after value minus the before value, in that order — a negative Δy is allowed and simply means y went down.",
+        "lines_compact": [
+          "Δy = f(x + Δx) − f(x) = f(8.02) − f(8)",
+          "= 1/(8.02 + 2) − 1/(8 + 2) = 1/10.02 − 1/10",
+          "= (10 − 10.02)/(10.02 × 10) = −0.02/100.2",
+          "Δy = −0.0001996  (to 7 decimal places)",
+          {
+            "text": "∴ dy = −0.0002  and  Δy = −0.0001996",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   },

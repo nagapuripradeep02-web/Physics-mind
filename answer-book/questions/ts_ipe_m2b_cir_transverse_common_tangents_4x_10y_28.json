@@ -51,7 +51,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.21 — LAQ chapter 1 Circle, answer 7. Printed appearance tags: AP 19 and TS 17,19. The mark split is OURS, not the book’s: this answer sits on a two-column page with no printed margin tags. It is patterned on the nearest printed split of the same shape in this chapter — book p.16, answer 3, which prints 1 + 1 + 2 + 2 + 1 for the same two-equations-then-centre-then-circle shape, and book p.17, answer 4, which prints 1 + 1 + 1 + 4. Star rank: the book gives the CIRCLE LAQ chapter ★★★ in its LAQ chapter table (book p.13), in the chapter header (book p.14) and in the LAQ hit list header (book p.7), so every Circle LAQ entry takes stars 3. That rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Circle holds Q18 and Q19. An LAQ on this paper is 7 marks, never 8 — the 2026-27 move to 8-mark long answers is first year only. Every number was re-derived and the book is correct: I = (1, 9/2), S₁ = −x − y/2 + 7/2, S₁₁ = 1/4, and the pair is 3x² + 4xy − 24x − 4y + 21 = 0 with no y² term, which is correct here and not an omission. FIGURE SCOPE: the question does not say \"draw\", so the diagram step carries NO marks; the figure is included because the crossing point I is what separates this question from the direct-tangent one. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book’s five Guess Papers (book pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.21 — LAQ chapter 1 Circle, answer 7. Printed appearance tags: AP 19 and TS 17,19. The mark split is OURS, not the book’s: this answer sits on a two-column page with no printed margin tags. It is patterned on the nearest printed split of the same shape in this chapter — book p.16, answer 3, which prints 1 + 1 + 2 + 2 + 1 for the same two-equations-then-centre-then-circle shape, and book p.17, answer 4, which prints 1 + 1 + 1 + 4. Star rank: the book gives the CIRCLE LAQ chapter ★★★ in its LAQ chapter table (book p.13), in the chapter header (book p.14) and in the LAQ hit list header (book p.7), so every Circle LAQ entry takes stars 3. That rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Circle holds Q18 and Q19. An LAQ on this paper is 7 marks, never 8 — the 2026-27 move to 8-mark long answers is first year only. Every number was re-derived and the book is correct: I = (1, 9/2), S₁ = −x − y/2 + 7/2, S₁₁ = 1/4, and the pair is 3x² + 4xy − 24x − 4y + 21 = 0 with no y² term, which is correct here and not an omission. FIGURE SCOPE: the question does not say \"draw\", so the diagram step carries NO marks; the figure is included because the crossing point I is what separates this question from the direct-tangent one. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book’s five Guess Papers (book pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false. LINES EXPANDED 2026-09-13 (founder direction, modelled on the Maths-2A expansion): every move is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "insider_note": "The final pair has no y² term at all, which looks like a mistake but is not — one of the two tangents is vertical in effect, and a student who \"corrects\" it by inserting a y² term loses the answer.",
   "answer": {
@@ -74,8 +74,12 @@
             "style": "heading"
           },
           "For x² + y² − 4x − 10y + 28 = 0:",
+          "Compare with x² + y² + 2gx + 2fy + c = 0:",
+          "2g = −4 ⇒ g = −2, 2f = −10 ⇒ f = −5, c = 28",
+          "Centre is (−g, −f), radius is √(g² + f² − c)",
           "C₁ = (2, 5), r₁ = √(4 + 25 − 28) = √1 = 1",
           "For x² + y² + 4x − 6y + 4 = 0:",
+          "2g = 4 ⇒ g = 2, 2f = −6 ⇒ f = −3, c = 4",
           "C₂ = (−2, 3), r₂ = √(4 + 9 − 4) = √9 = 3"
         ],
         "why": "Transverse common tangents cross between the circles, so the circles must lie apart. The centres and radii are what the crossing point is built from.",
@@ -94,8 +98,35 @@
         "memory_tip": "Transverse tangents cross between the circles, so their meeting point divides C₁C₂ internally.",
         "lines": [
           "r₁ : r₂ = 1 : 3",
+          {
+            "text": "The transverse common tangents meet at the",
+            "added": true
+          },
+          {
+            "text": "  internal centre of similitude I, which",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  divides C₁C₂ internally in r₁ : r₂.",
+            "style": "indent",
+            "added": true
+          },
           "The internal centre of similitude I divides",
           "C₁C₂ internally in the ratio 1 : 3",
+          {
+            "text": "Section formula:",
+            "added": true
+          },
+          {
+            "text": "  ((mx₂ + nx₁)/(m + n), (my₂ + ny₁)/(m + n))",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "Here m = 1, n = 3, C₁ = (2, 5), C₂ = (−2, 3)",
+            "added": true
+          },
           "I = ((1(−2) + 3(2))/(1+3), (1(3) + 3(5))/(1+3))",
           "= (4/4, 18/4) = (1, 9/2)"
         ],
@@ -103,6 +134,13 @@
         "common_mistakes": [
           "Using external division, which gives the direct tangents.",
           "Writing 18/4 as 9/4."
+        ],
+        "lines_compact": [
+          "r₁ : r₂ = 1 : 3",
+          "The internal centre of similitude I divides",
+          "C₁C₂ internally in the ratio 1 : 3",
+          "I = ((1(−2) + 3(2))/(1+3), (1(3) + 3(5))/(1+3))",
+          "= (4/4, 18/4) = (1, 9/2)"
         ]
       },
       {
@@ -117,14 +155,39 @@
           "The pair of tangents from I(x₁, y₁) to",
           "S = 0 is S₁² = S₁₁ · S",
           "With S ≡ x²+y²−4x−10y+28 and I = (1, 9/2):",
+          {
+            "text": "S₁ = xx₁ + yy₁ + g(x + x₁) + f(y + y₁) + c,",
+            "added": true
+          },
+          {
+            "text": "  with g = −2, f = −5, c = 28",
+            "style": "indent",
+            "added": true
+          },
           "S₁ = x(1) + y(9/2) − 2(x + 1) − 5(y + 9/2) + 28",
+          {
+            "text": "= x − 2x + 9y/2 − 5y − 2 − 45/2 + 28",
+            "added": true
+          },
           "= −x − y/2 + 7/2",
+          {
+            "text": "S₁₁ = x₁² + y₁² − 4x₁ − 10y₁ + 28",
+            "added": true
+          },
           "S₁₁ = 1 + 81/4 − 4 − 45 + 28 = 1/4"
         ],
         "why": "S₁ is the general form with one point replaced by I, and S₁₁ is S₁ with both points equal to I. Because I lies outside the circle, S₁₁ is positive and the pair is a genuine pair of lines.",
         "common_mistakes": [
           "Writing S₁ with g and f not halved, giving −4(x + 1) instead of −2(x + 1).",
           "Getting S₁₁ = 0 by an arithmetic slip, which would say I is on the circle."
+        ],
+        "lines_compact": [
+          "The pair of tangents from I(x₁, y₁) to",
+          "S = 0 is S₁² = S₁₁ · S",
+          "With S ≡ x²+y²−4x−10y+28 and I = (1, 9/2):",
+          "S₁ = x(1) + y(9/2) − 2(x + 1) − 5(y + 9/2) + 28",
+          "= −x − y/2 + 7/2",
+          "S₁₁ = 1 + 81/4 − 4 − 45 + 28 = 1/4"
         ]
       },
       {
@@ -136,11 +199,44 @@
         "margin_note": "The last two marks. Clear the halves first by writing S₁ over 2, then square.",
         "memory_tip": "Write −x − y/2 + 7/2 as (−2x − y + 7)/2 so the square is a clean quarter.",
         "lines": [
+          {
+            "text": "Write −x − y/2 + 7/2 over 2:",
+            "added": true
+          },
+          {
+            "text": "  = (−2x − y + 7)/2",
+            "style": "indent",
+            "added": true
+          },
           "S₁² = ((−2x − y + 7)/2)² = (2x + y − 7)²/4",
           "S₁₁ · S = (1/4)(x² + y² − 4x − 10y + 28)",
+          {
+            "text": "Both sides carry 1/4, so multiply by 4:",
+            "added": true
+          },
           "⇒ (2x + y − 7)² = x² + y² − 4x − 10y + 28",
+          {
+            "text": "Expand the square:",
+            "added": true
+          },
           "⇒ 4x² + y² + 49 + 4xy − 28x − 14y",
-          "  = x² + y² − 4x − 10y + 28",
+          {
+            "text": "  = x² + y² − 4x − 10y + 28",
+            "style": "indent"
+          },
+          {
+            "text": "y² cancels. Take every term to the left:",
+            "added": true
+          },
+          {
+            "text": "4x² − x² = 3x², −28x + 4x = −24x,",
+            "added": true
+          },
+          {
+            "text": "  −14y + 10y = −4y, 49 − 28 = 21",
+            "style": "indent",
+            "added": true
+          },
           {
             "text": "∴ 3x² + 4xy − 24x − 4y + 21 = 0",
             "style": "boxed"
@@ -150,6 +246,17 @@
         "common_mistakes": [
           "Expanding (2x + y − 7)² without the cross terms 4xy, −28x and −14y.",
           "Inserting a y² term into the final answer because a pair \"should\" have one."
+        ],
+        "lines_compact": [
+          "S₁² = ((−2x − y + 7)/2)² = (2x + y − 7)²/4",
+          "S₁₁ · S = (1/4)(x² + y² − 4x − 10y + 28)",
+          "⇒ (2x + y − 7)² = x² + y² − 4x − 10y + 28",
+          "⇒ 4x² + y² + 49 + 4xy − 28x − 14y",
+          "  = x² + y² − 4x − 10y + 28",
+          {
+            "text": "∴ 3x² + 4xy − 24x − 4y + 21 = 0",
+            "style": "boxed"
+          }
         ]
       },
       {

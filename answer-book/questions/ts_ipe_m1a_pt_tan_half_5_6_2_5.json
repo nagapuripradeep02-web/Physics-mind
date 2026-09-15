@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.125, chapter 12 PROPERTIES OF TRIANGLES, Very Short Answer question 15. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to substituting the two given tangents in the product rule and one to reading the relation a + c = 2b off the result; the derivation and the check are kept in full at zero marks. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory; Properties of Triangles supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.125, chapter 12 PROPERTIES OF TRIANGLES, Very Short Answer question 15. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to substituting the two given tangents in the product rule and one to reading the relation a + c = 2b off the result; the derivation and the check are kept in full at zero marks. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory; Properties of Triangles supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would do this one — name each standard result you use and the order you use them in.",
   "answer": {
@@ -51,8 +51,10 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "(half-angle formulas for tan(A/2) and tan(C/2))",
           "tan(A/2) = √((s−b)(s−c)/(s(s−a)))",
           "tan(C/2) = √((s−a)(s−b)/(s(s−c)))",
+          "(multiply: (s − c) and (s − a) cancel, leaving (s − b)²/s²)",
           "∴ tan(A/2) tan(C/2) = √((s−b)²/s²)",
           "= (s−b)/s   [∵ s > b, both are positive]"
         ],
@@ -78,7 +80,7 @@
             "tan half A"
           ]
         },
-        "why": "Multiplying the two roots cancels (s−a) and (s−c) completely, leaving only the bracket of the angle that was NOT given. That is why the product picks out b.",
+        "why": "Multiplying the two roots cancels (s−a) and (s−c) completely, leaving only the bracket of the angle that was NOT given. That is why only b is left in the product.",
         "common_mistakes": [
           "Writing tan(A/2) tan(C/2) = (s−a)/s or (s−c)/s.",
           "Adding the two tangents instead of multiplying them."
@@ -94,7 +96,15 @@
         "memory_tip": "(5/6)(2/5) = 1/3, so 3(s − b) = s and therefore 2s = 3b.",
         "lines": [
           "(s−b)/s = (5/6)(2/5) = 10/30 = 1/3",
+          {
+            "text": "(cross-multiply)",
+            "added": true
+          },
           "⇒ 3(s − b) = s ⇒ 3s − 3b = s",
+          {
+            "text": "(take s from both sides)",
+            "added": true
+          },
           "⇒ 2s = 3b"
         ],
         "recall": {
@@ -121,8 +131,13 @@
         },
         "why": "The two given numbers multiply to a single fraction, and that fraction is a statement about s and b alone. Clearing it gives one plain equation between the perimeter and b.",
         "common_mistakes": [
-          "Turning the second fraction upside down, so the product reads 25/12 instead of 1/3.",
+          "Using the reciprocal of the second fraction, so the product reads 25/12 instead of 1/3.",
           "Writing s − b = 1/3 instead of (s − b)/s = 1/3."
+        ],
+        "lines_compact": [
+          "(s−b)/s = (5/6)(2/5) = 10/30 = 1/3",
+          "⇒ 3(s − b) = s ⇒ 3s − 3b = s",
+          "⇒ 2s = 3b"
         ]
       },
       {
@@ -139,10 +154,32 @@
             "text": "+ tan(C/2)tan(A/2) = 1",
             "style": "indent"
           },
+          {
+            "text": "(put in the two known tangents; tan(A/2)tan(C/2) = 1/3)",
+            "added": true
+          },
           "⇒ tan(B/2)(5/6 + 2/5) = 1 − 1/3 = 2/3",
+          {
+            "text": "(5/6 + 2/5 = 25/30 + 12/30 = 37/30)",
+            "added": true
+          },
           "⇒ tan(B/2)(37/30) = 2/3 ⇒ tan(B/2) = 20/37",
+          {
+            "text": "(sin θ = 2t/(1 + t²) with t = tan(θ/2) gives",
+            "added": true
+          },
+          {
+            "text": "  sinA : sinB : sinC = 60/61 : 1480/1769 : 20/29,",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  and a : b : c = sinA : sinB : sinC)",
+            "style": "indent",
+            "added": true
+          },
           "These three fix a : b : c = 87 : 74 : 61,",
-          "and 87 + 61 = 2 × 74, which is an A.P."
+          "and 87 + 61 = 2 × 74, so 87, 74, 61 are in A.P."
         ],
         "recall": {
           "credit": "say_it",
@@ -170,6 +207,18 @@
         "common_mistakes": [
           "Using tan(A/2) + tan(B/2) + tan(C/2) = 1, which is not a standard result.",
           "Adding 5/6 and 2/5 as 7/11."
+        ],
+        "lines_compact": [
+          "Check: A/2 + B/2 + C/2 = 90°, so",
+          "tan(A/2)tan(B/2) + tan(B/2)tan(C/2)",
+          {
+            "text": "+ tan(C/2)tan(A/2) = 1",
+            "style": "indent"
+          },
+          "⇒ tan(B/2)(5/6 + 2/5) = 1 − 1/3 = 2/3",
+          "⇒ tan(B/2)(37/30) = 2/3 ⇒ tan(B/2) = 20/37",
+          "These three fix a : b : c = 87 : 74 : 61,",
+          "and 87 + 61 = 2 × 74, so 87, 74, 61 are in A.P."
         ]
       },
       {
@@ -181,7 +230,15 @@
         "margin_note": "The other mark. 2s is the perimeter, so 2s = 3b reads a + b + c = 3b, and removing b gives a + c = 2b.",
         "memory_tip": "2s is the perimeter, so 2s = 3b means a + b + c = 3b and therefore a + c = 2b.",
         "lines": [
+          {
+            "text": "(from step 2)",
+            "added": true
+          },
           "2s = a + b + c, so a + b + c = 3b",
+          {
+            "text": "(take b from both sides)",
+            "added": true
+          },
           "⇒ a + c = 2b",
           {
             "text": "∴ a + c = 2b, so a, b, c are in A.P.",
@@ -214,6 +271,14 @@
         "common_mistakes": [
           "Leaving the answer as 2s = 3b without saying what it means for a, b and c.",
           "Writing a + c = 3b by forgetting to remove b from the perimeter."
+        ],
+        "lines_compact": [
+          "2s = a + b + c, so a + b + c = 3b",
+          "⇒ a + c = 2b",
+          {
+            "text": "∴ a + c = 2b, so a, b, c are in A.P.",
+            "style": "boxed"
+          }
         ]
       }
     ]

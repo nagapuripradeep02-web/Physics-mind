@@ -1,0 +1,23 @@
+{
+ "hand": {
+  "jm2024-31-jan-shift-2_che_q67|gem_rag": 3,
+  "tg_eapcet_2023_20230512_fn_q136|gem_rag": 1,
+  "tg_eapcet_2024_20240511_fn_q158|gem_rag": 1,
+  "tg_eapcet_2025_20250504_fn_q124|gem_rag": 4,
+  "tg_eapcet_2024_20240510_fn_q157|gem_rag": 3,
+  "tg_eapcet_2022_20220720_fn_q138|gem_rag": 3,
+  "tg_eapcet_2024_20240509_fn_q140|gem_rag": 3,
+  "tg_eapcet_2024_20240511_fn_q155|gem_rag": 4,
+  "tg_eapcet_2024_20240509_an_q107|gem_rag": 4,
+  "tg_eapcet_2021_20210806_an_q095|gem_rag": 3,
+  "tg_eapcet_2023_20230514_an_q106|gem_rag": 2,
+  "tg_eapcet_2021_20210806_fn_q119|gem_rag": 4,
+  "jm2024-01-feb-shift-2_che_q87|gem_rag": "2",
+  "jm2024-08-apr-shift-1_phy_q53|gem_rag": "3"
+ },
+ "disputed": {
+  "jm2024-01-feb-shift-1_che_q74|gem_rag": "Pauling dEN puts ClF3 below SO2; key says option 3",
+  "tg_eapcet_2022_20220718_fn_q089|gem_rag": "key says 410 m/s; the impulse graph gives 210"
+ },
+ "excluded": {}
+}

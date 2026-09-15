@@ -39,7 +39,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.88 — VSAQ chapter 16 Addition of Vectors, answer 116.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 16 · TS 18. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four questions to a page in two columns. It is not a bare guess: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark VSAQ, applied here to the two steps of this question. The book's chapter header carries ★★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because Addition of Vectors holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q5 and Q6 are the two Addition of Vectors slots."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.88 — VSAQ chapter 16 Addition of Vectors, answer 116.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 16 · TS 18. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four questions to a page in two columns. It is not a bare guess: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark VSAQ, applied here to the two steps of this question. The book's chapter header carries ★★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because Addition of Vectors holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q5 and Q6 are the two Addition of Vectors slots. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say the vector equation of a line through two given points.",
   "answer": {
@@ -54,7 +54,7 @@
         "label": "Name the two points",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. Both given vectors are POSITIONS — there is no direction given, so the two-point form is needed, not the point-and-direction form.",
+        "margin_note": "First mark. Both given vectors are POSITIONS — neither one is a direction, so use the two-point form, or the point-and-direction form with the direction b − a.",
         "memory_tip": "Both given vectors are POSITIONS here. No direction is handed over, which changes the formula.",
         "lines": [
           {
@@ -62,7 +62,8 @@
             "style": "heading"
           },
           "Given points A(a) = 2i + j + 3k and",
-          "B(b) = −4i + 3j − k"
+          "B(b) = −4i + 3j − k",
+          "(the line has the direction b − a)"
         ],
         "recall": {
           "credit": "say_it",
@@ -102,6 +103,14 @@
           "Vector equation of the line is",
           "r = (1−t)a + tb,  t ∈ R",
           {
+            "text": "(t = 0 gives A and t = 1 gives B)",
+            "added": true
+          },
+          {
+            "text": "(put a = 2i + j + 3k and b = −4i + 3j − k)",
+            "added": true
+          },
+          {
             "text": "∴ r = (1−t)(2i + j + 3k) + t(−4i + 3j − k), t ∈ R",
             "style": "boxed"
           }
@@ -131,6 +140,14 @@
         "common_mistakes": [
           "Writing r = (1−t)a + b.",
           "Using two different parameters for one line."
+        ],
+        "lines_compact": [
+          "Vector equation of the line is",
+          "r = (1−t)a + tb,  t ∈ R",
+          {
+            "text": "∴ r = (1−t)(2i + j + 3k) + t(−4i + 3j − k), t ∈ R",
+            "style": "boxed"
+          }
         ]
       }
     ]

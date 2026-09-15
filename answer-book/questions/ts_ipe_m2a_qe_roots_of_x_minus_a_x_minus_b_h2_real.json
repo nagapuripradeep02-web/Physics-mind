@@ -104,13 +104,28 @@
         "memory_tip": "(a + b)² − 4ab = (a − b)². Write 4h² as (2h)² so Δ is visibly a sum of two squares.",
         "lines": [
           "Δ = [−(a + b)]² − 4(1)(ab − h²)",
-          "= (a + b)² − 4ab + 4h²",
+          {
+            "text": "= (a + b)² − 4ab + 4h²",
+            "added": true
+          },
           "= a² + 2ab + b² − 4ab + 4h²",
-          "= a² − 2ab + b² + 4h²",
+          {
+            "text": "= a² − 2ab + b² + 4h²",
+            "added": true
+          },
           "= (a − b)² + (2h)²",
-          "A square is never negative, so a sum of",
-          "two squares is never negative:",
-          "Δ ≥ 0 for all real a, b, h",
+          {
+            "text": "A square is never negative, so a sum of",
+            "added": true
+          },
+          {
+            "text": "two squares is never negative:",
+            "added": true
+          },
+          {
+            "text": "Δ ≥ 0 for all real a, b, h",
+            "added": true
+          },
           {
             "text": "∴ the roots are always real",
             "style": "boxed"
@@ -144,6 +159,16 @@
           "Writing (a + b)² − 4ab as (a + b)² and never reaching (a − b)².",
           "Dropping the +4h² or writing it as −4h².",
           "Claiming Δ > 0; it can equal zero (a = b, h = 0), and the roots are still real."
+        ],
+        "lines_compact": [
+          "Δ = (a + b)² − 4(ab − h²)",
+          "= a² + 2ab + b² − 4ab + 4h²",
+          "= (a − b)² + (2h)² ≥ 0",
+          "(a sum of two squares is never negative)",
+          {
+            "text": "∴ the roots are always real",
+            "style": "boxed"
+          }
         ]
       }
     ]

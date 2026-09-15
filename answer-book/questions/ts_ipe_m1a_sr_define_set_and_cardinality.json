@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.6, chapter 1 SETS & RELATIONS, Very Short Answer question 12. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Here the 1+1 also matches the question itself, which asks for two definitions. Sets and Relations is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.6, chapter 1 SETS & RELATIONS, Very Short Answer question 12. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Here the 1+1 also matches the question itself, which asks for two definitions. Sets and Relations is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say the two definitions in your own words, and give one short example for the second one.",
   "answer": {
@@ -52,9 +52,16 @@
             "style": "heading"
           },
           "A set is a well-defined collection of distinct objects.",
-          "\"Well-defined\" means that for any given object it can be decided, without doubt, whether that object belongs to the collection or not.",
-          "The objects of a set are called its elements. If x is an element of A we write x ∈ A; if it is not, we write x ∉ A.",
-          "For example, {2, 4, 6, 8} is a set, but \"the tall students of a class\" is not, because \"tall\" fixes no clear test."
+          "(each object is counted once: {2, 2, 4} is the set {2, 4})",
+          "\"Well-defined\" means that for any given object it can",
+          "be decided, without doubt, whether that object",
+          "belongs to the collection or not.",
+          "The objects of a set are called its elements. If x is",
+          "an element of A we write x ∈ A; if it is not, we",
+          "write x ∉ A.",
+          "For example, {2, 4, 6, 8} is a set, but \"the tall",
+          "students of a class\" is not, because \"tall\" fixes",
+          "no clear test."
         ],
         "recall": {
           "credit": "say_it",
@@ -94,11 +101,36 @@
         "mark_note": "Definition",
         "margin_note": "Second mark. Give the symbol n(A) and one short example; a definition without the symbol reads incomplete.",
         "lines": [
-          "A set is finite when its elements can be counted and the counting comes to an end.",
-          "The number of distinct elements in a finite set A is called the cardinality, or the cardinal number, of A, and is written n(A).",
-          "For example, if A = {2, 4, 6, 8} then n(A) = 4, and n(∅) = 0.",
+          "A set is finite when its elements can be counted and",
+          "the counting comes to an end.",
           {
-            "text": "∴ n(A) = the number of distinct elements of the finite set A.",
+            "text": "(n(A) is used only for a finite set; an infinite set",
+            "added": true
+          },
+          {
+            "text": "  such as N has no whole-number count)",
+            "style": "indent",
+            "added": true
+          },
+          "The number of distinct elements in a finite set A is",
+          "called the cardinality, or the cardinal number, of A,",
+          "and is written n(A).",
+          {
+            "text": "(count 2, 4, 6, 8: four elements)",
+            "added": true
+          },
+          "For example, if A = {2, 4, 6, 8} then n(A) = 4,",
+          "and n(∅) = 0.",
+          {
+            "text": "(the empty set ∅ has no elements)",
+            "added": true
+          },
+          {
+            "text": "∴ n(A) = the number of distinct elements",
+            "style": "boxed"
+          },
+          {
+            "text": "of the finite set A.",
             "style": "boxed"
           }
         ],
@@ -130,7 +162,24 @@
           "Confusing n(A) with the number of subsets of A, which is 2 raised to the power n(A).",
           "Giving the answer as a set, such as n(A) = {2, 4, 6, 8}, instead of a number."
         ],
-        "memory_tip": "n(A) is a count, so the answer to a cardinality question is always a number and never a set."
+        "memory_tip": "n(A) is a count, so the answer to a cardinality question is always a number and never a set.",
+        "lines_compact": [
+          "A set is finite when its elements can be counted and",
+          "the counting comes to an end.",
+          "The number of distinct elements in a finite set A is",
+          "called the cardinality, or the cardinal number, of A,",
+          "and is written n(A).",
+          "For example, if A = {2, 4, 6, 8} then n(A) = 4,",
+          "and n(∅) = 0.",
+          {
+            "text": "∴ n(A) = the number of distinct elements",
+            "style": "boxed"
+          },
+          {
+            "text": "of the finite set A.",
+            "style": "boxed"
+          }
+        ]
       }
     ]
   }

@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 17, book p.85. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards isolating cos θ and sin θ as cube roots first and applying cos²θ + sin²θ = 1 second, since the identity is what actually removes θ. Paper position: Maths-1A Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern; Trigonometric Ratios and Transformations holds two of those ten slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Checked numerically with a = 2.7, b = −1.4 and θ = 200°: x = −2.2403775571 and y = 0.0560122592, and (x/a)²⁄³ + (y/b)²⁄³ = 1.0000000000. Negative a, negative b and a third-quadrant θ were used on purpose, because a real cube root keeps the sign of its argument and so the relation carries no ± branch."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 17, book p.85. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards isolating cos θ and sin θ as cube roots first and applying cos²θ + sin²θ = 1 second, since the identity is what actually removes θ. Paper position: Maths-1A Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern; Trigonometric Ratios and Transformations holds two of those ten slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Checked numerically with a = 2.7, b = −1.4 and θ = 200°: x = −2.2403775571 and y = 0.0560122592, and (x/a)²⁄³ + (y/b)²⁄³ = 1.0000000000. Negative a, negative b and a third-quadrant θ were used on purpose, because a real cube root keeps the sign of its argument and so the relation carries no ± branch. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would eliminate θ here — what you take from each equation, and which identity finishes it.",
   "answer": {
@@ -53,6 +53,7 @@
             "style": "heading"
           },
           "Here a ≠ 0 and b ≠ 0, so we may divide.",
+          "Make cos³θ and sin³θ the subjects:",
           "x = a cos³θ ⇒ cos³θ = x/a",
           "y = b sin³θ ⇒ sin³θ = y/b",
           "A real number has exactly one real cube root,",
@@ -96,7 +97,25 @@
         "margin_note": "Second mark. Squaring the two cube roots turns them into two-thirds powers, and cos²θ + sin²θ = 1 holds for every θ, so θ disappears.",
         "memory_tip": "Square both cube roots and add. The identity cos²θ + sin²θ = 1 is what removes θ.",
         "lines": [
+          {
+            "text": "θ must disappear, and sin²θ + cos²θ = 1 is",
+            "added": true
+          },
+          {
+            "text": "  the identity that removes it.",
+            "style": "indent",
+            "added": true
+          },
           "Square both and add:",
+          {
+            "text": "(squaring a ¹⁄³ power gives a ²⁄³ power:",
+            "added": true
+          },
+          {
+            "text": "  ((x/a)¹⁄³)² = (x/a)²⁄³)",
+            "style": "indent",
+            "added": true
+          },
           "cos²θ + sin²θ = (x/a)²⁄³ + (y/b)²⁄³",
           "But cos²θ + sin²θ = 1 for every θ, so",
           {
@@ -130,6 +149,15 @@
         "common_mistakes": [
           "Adding the cube roots instead of their squares.",
           "Writing (x/a)³ + (y/b)³ = 1, which is not what the identity gives."
+        ],
+        "lines_compact": [
+          "Square both and add:",
+          "cos²θ + sin²θ = (x/a)²⁄³ + (y/b)²⁄³",
+          "But cos²θ + sin²θ = 1 for every θ, so",
+          {
+            "text": "∴ (x/a)²⁄³ + (y/b)²⁄³ = 1",
+            "style": "boxed"
+          }
         ]
       }
     ]

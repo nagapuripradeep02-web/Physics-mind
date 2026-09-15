@@ -124,15 +124,18 @@
         "lines": [
           {
             "text": "By the addition theorem,",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "P(A ∪ B) = P(A) + P(B) − P(A ∩ B)",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           },
           {
             "text": "P(Aᶜ ∩ Bᶜ) = 1 − [P(A) + P(B) − P(A ∩ B)]",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           },
           {
             "text": "= 1 − P(A) − P(B) + P(A ∩ B)",
@@ -140,7 +143,8 @@
           },
           {
             "text": "Now use the independence of A and B:",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "= 1 − P(A) − P(B) + P(A)·P(B)",
@@ -171,6 +175,20 @@
         "common_mistakes": [
           "Dropping the sign on P(A ∩ B) when removing the bracket.",
           "Not naming independence as the reason for the product."
+        ],
+        "lines_compact": [
+          {
+            "text": "= 1 − [P(A) + P(B) − P(A ∩ B)]",
+            "style": "eq"
+          },
+          {
+            "text": "= 1 − P(A) − P(B) + P(A)·P(B)",
+            "style": "eq"
+          },
+          {
+            "text": "[A, B independent]",
+            "style": "normal"
+          }
         ]
       },
       {
@@ -184,19 +202,23 @@
         "lines": [
           {
             "text": "Take 1 − P(A) out of the first and last pair:",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "= 1[1 − P(A)] − P(B)[1 − P(A)]",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           },
           {
             "text": "= [1 − P(A)]·[1 − P(B)]",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           },
           {
             "text": "= P(Aᶜ)·P(Bᶜ)",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           },
           {
             "text": "∴ P(Aᶜ ∩ Bᶜ) = P(Aᶜ)·P(Bᶜ)",
@@ -231,6 +253,20 @@
         "common_mistakes": [
           "Stopping at the factored form without saying it proves independence.",
           "Factoring wrongly as (1 + P(A))(1 − P(B))."
+        ],
+        "lines_compact": [
+          {
+            "text": "= [1 − P(A)]·[1 − P(B)] = P(Aᶜ)·P(Bᶜ)",
+            "style": "eq"
+          },
+          {
+            "text": "∴ P(Aᶜ ∩ Bᶜ) = P(Aᶜ)·P(Bᶜ)",
+            "style": "boxed"
+          },
+          {
+            "text": "⇒ Aᶜ, Bᶜ are independent. Hence proved.",
+            "style": "normal"
+          }
         ]
       }
     ]

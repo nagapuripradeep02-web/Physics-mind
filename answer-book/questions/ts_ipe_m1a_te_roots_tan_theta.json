@@ -51,7 +51,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.71 — SAQ chapter 11 Trigonometric Equations, answer 73.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 15,16,19 · AP 17 — four printed tags, the most-asked question in this unit. Nothing is SOLVED here. The equation is turned into a quadratic and the sum and product of its roots are read straight off the coefficients — the two solutions θ₁ and θ₂ are never found individually. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter (its pages are set two questions to a page in two columns, which takes the margin those tags would occupy). It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used across this unit are the book's own. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q15 is the Trigonometric Equations slot. NOTE: Trigonometric Equations is an SAQ-ONLY unit — the paper gives it no Section-A and no Section-C slot, and this book has no Trigonometric Equations LAQ chapter (its LAQ chapters are 1-6) and no VSAQ chapter (its VSAQ chapters are 14-19). It is the mirror of Unit 2, which is LAQ-only. Verified by walking to p.72, where SAQ chapter 12 Inverse Trig Functions begins."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.71 — SAQ chapter 11 Trigonometric Equations, answer 73.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 15,16,19 · AP 17 — four printed tags, the most-asked question in this unit. Nothing is SOLVED here. The equation is turned into a quadratic and the sum and product of its roots are read straight off the coefficients — the two solutions θ₁ and θ₂ are never found individually. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter (its pages are set two questions to a page in two columns, which takes the margin those tags would occupy). It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used across this unit are the book's own. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q15 is the Trigonometric Equations slot. NOTE: Trigonometric Equations is an SAQ-ONLY unit — the paper gives it no Section-A and no Section-C slot, and this book has no Trigonometric Equations LAQ chapter (its LAQ chapters are 1-6) and no VSAQ chapter (its VSAQ chapters are 14-19). It is the mirror of Unit 2, which is LAQ-only. Verified by walking to p.72, where SAQ chapter 12 Inverse Trig Functions begins. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — name each move in order, and say which general solution formula you would use.",
   "answer": {
@@ -66,7 +66,7 @@
         "label": "Form a quadratic in tanθ",
         "marks": 2,
         "mark_note": "Method",
-        "margin_note": "Half the marks. Substitute the tangent forms of cos2θ and sin2θ, clear the denominator, and collect. What comes out is a quadratic in tanθ — which is the whole idea.",
+        "margin_note": "Half the marks. Substitute the tangent forms of cos2θ and sin2θ, clear the denominator, and collect. What comes out is a quadratic in tanθ — which is the main idea.",
         "memory_tip": "Substitute the TANGENT forms of cos 2θ and sin 2θ, clear the denominator, and a quadratic in tanθ appears.",
         "lines": [
           {
@@ -74,10 +74,22 @@
             "style": "heading"
           },
           "Given a cos2θ + b sin2θ = c",
+          "(the formulas for cos2θ and sin2θ in terms of tanθ,",
+          {
+            "text": "  true when cosθ ≠ 0; with c + a ≠ 0, θ = π/2 + nπ",
+            "style": "indent"
+          },
+          {
+            "text": "  is not a solution)",
+            "style": "indent"
+          },
           "Using cos2θ = (1 − tan²θ)/(1 + tan²θ) and",
           "sin2θ = 2tanθ/(1 + tan²θ):",
+          "(multiply both sides by 1 + tan²θ, which is never 0)",
           "⇒ a(1 − tan²θ) + b(2tanθ) = c(1 + tan²θ)",
+          "(open the brackets)",
           "⇒ a − a tan²θ + 2b tanθ = c + c tan²θ",
+          "(take every term to the right side)",
           "⇒ (c + a) tan²θ − 2b tanθ + (c − a) = 0"
         ],
         "recall": {
@@ -118,7 +130,20 @@
         "memory_tip": "Sum is −B/A, and B is −2b here, so the answer is +2b/(c + a).",
         "lines": [
           "This is a quadratic in tanθ with roots tanθ₁, tanθ₂.",
+          {
+            "text": "(θ₁ and θ₂ satisfy the equation, so tanθ₁ and tanθ₂",
+            "added": true
+          },
+          {
+            "text": "  are the roots)",
+            "style": "indent",
+            "added": true
+          },
           "Sum of the roots of Ax² + Bx + C = 0 is −B/A:",
+          {
+            "text": "(here A = c + a and B = −2b)",
+            "added": true
+          },
           {
             "text": "∴ tanθ₁ + tanθ₂ = 2b/(c + a)",
             "style": "boxed"
@@ -149,6 +174,14 @@
         "common_mistakes": [
           "Writing −2b/(c+a) and keeping the minus.",
           "Using B/A without the minus."
+        ],
+        "lines_compact": [
+          "This is a quadratic in tanθ with roots tanθ₁, tanθ₂.",
+          "Sum of the roots of Ax² + Bx + C = 0 is −B/A:",
+          {
+            "text": "∴ tanθ₁ + tanθ₂ = 2b/(c + a)",
+            "style": "boxed"
+          }
         ]
       },
       {
@@ -160,11 +193,36 @@
         "margin_note": "Last mark. The product is C/A. Then tan(θ₁+θ₂) uses the compound formula, and the (c+a) cancels top and bottom, leaving b/a.",
         "memory_tip": "Put the 1 over the common denominator (c + a) before subtracting; then (c + a) cancels and b/a is left.",
         "lines": [
+          {
+            "text": "(here C = c − a)",
+            "added": true
+          },
           "Product of the roots is C/A:",
           "tanθ₁ · tanθ₂ = (c − a)/(c + a)",
+          {
+            "text": "(the tan(A + B) formula)",
+            "added": true
+          },
           "Now tan(θ₁+θ₂) = (tanθ₁ + tanθ₂)/(1 − tanθ₁tanθ₂)",
+          {
+            "text": "(put in the sum and the product)",
+            "added": true
+          },
           "= [2b/(c+a)] / [1 − (c−a)/(c+a)]",
+          {
+            "text": "(1 − (c − a)/(c + a) = [(c + a) − (c − a)]/(c + a)",
+            "added": true
+          },
+          {
+            "text": "  = 2a/(c + a))",
+            "style": "indent",
+            "added": true
+          },
           "= [2b/(c+a)] / [2a/(c+a)]",
+          {
+            "text": "(the (c + a) cancels)",
+            "added": true
+          },
           {
             "text": "∴ tan(θ₁+θ₂) = 2b/2a = b/a",
             "style": "boxed"
@@ -196,9 +254,20 @@
         "common_mistakes": [
           "Failing to put the 1 over a common denominator.",
           "Cancelling before combining, and losing the 2a."
+        ],
+        "lines_compact": [
+          "Product of the roots is C/A:",
+          "tanθ₁ · tanθ₂ = (c − a)/(c + a)",
+          "Now tan(θ₁+θ₂) = (tanθ₁ + tanθ₂)/(1 − tanθ₁tanθ₂)",
+          "= [2b/(c+a)] / [1 − (c−a)/(c+a)]",
+          "= [2b/(c+a)] / [2a/(c+a)]",
+          {
+            "text": "∴ tan(θ₁+θ₂) = 2b/2a = b/a",
+            "style": "boxed"
+          }
         ]
       }
     ]
   },
-  "insider_note": "Write cos2θ and sin2θ in terms of tanθ so the whole equation becomes a quadratic in tanθ. Both parts are then sum and product of roots, and tan(θ₁+θ₂) drops out of the tan(A+B) formula."
+  "insider_note": "Write cos2θ and sin2θ in terms of tanθ so the whole equation becomes a quadratic in tanθ. Both parts are then sum and product of roots, and tan(θ₁+θ₂) follows from the tan(A+B) formula."
 }

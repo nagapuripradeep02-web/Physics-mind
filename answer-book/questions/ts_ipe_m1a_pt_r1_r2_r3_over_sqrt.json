@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.131, chapter 12 PROPERTIES OF TRIANGLES, Short Answer question 11. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to each of the four moves the answer is marked on — writing the ex-radii with Heron, the numerator, the sum of the three products, and the division. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks; Properties of Triangles is one of the units that fills that section. Verified numerically before authoring: for a = 3, b = 4, c = 5 the left side is 3.000000, for a = 4, b = 5, c = 6 it is 4.000000, and for a = 2, b = 3, c = 4 it is 2.000000 — each equal to that triangle's a. The two intermediate results were checked on the same triangles: r₁(r₂ + r₃) = as and r₁r₂ + r₂r₃ + r₃r₁ = s². This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.131, chapter 12 PROPERTIES OF TRIANGLES, Short Answer question 11. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to each of the four moves the answer is marked on — writing the ex-radii with Heron, the numerator, the sum of the three products, and the division. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks; Properties of Triangles is one of the units that fills that section. Verified numerically before authoring: for a = 3, b = 4, c = 5 the left side is 3.000000, for a = 4, b = 5, c = 6 it is 4.000000, and for a = 2, b = 3, c = 4 it is 2.000000 — each equal to that triangle's a. The two intermediate results were checked on the same triangles: r₁(r₂ + r₃) = as and r₁r₂ + r₂r₃ + r₃r₁ = s². This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — name each standard result you use and the order you use them in.",
   "answer": {
@@ -60,9 +60,11 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "(Δ = r₁(s − a), and so on)",
           "r₁ = Δ/(s−a), r₂ = Δ/(s−b),",
           "r₃ = Δ/(s−c)",
           "By Heron, Δ² = s(s−a)(s−b)(s−c)",
+          "(divide both sides by s)",
           "⇒ (s−a)(s−b)(s−c) = Δ²/s   …(1)"
         ],
         "recall": {
@@ -103,8 +105,25 @@
         "memory_tip": "(s−c) + (s−b) = 2s − b − c = a, and the bracket product is Δ²/s, so the numerator is as.",
         "lines": [
           "r₁(r₂ + r₃)",
+          {
+            "text": "(add r₂ and r₃ over the common denominator",
+            "added": true
+          },
+          {
+            "text": "  (s − b)(s − c))",
+            "style": "indent",
+            "added": true
+          },
           "= Δ/(s−a) · Δ[(s−c) + (s−b)]/[(s−b)(s−c)]",
+          {
+            "text": "(multiply the two fractions)",
+            "added": true
+          },
           "= Δ²(2s − b − c)/[(s−a)(s−b)(s−c)]",
+          {
+            "text": "(2s − b − c = a, and (1) replaces the denominator)",
+            "added": true
+          },
           "= Δ²a/(Δ²/s)   [by (1), 2s − b − c = a]",
           "= as"
         ],
@@ -134,6 +153,13 @@
         "common_mistakes": [
           "Adding r₂ + r₃ without a common denominator.",
           "Writing 2s − b − c = a − s."
+        ],
+        "lines_compact": [
+          "r₁(r₂ + r₃)",
+          "= Δ/(s−a) · Δ[(s−c) + (s−b)]/[(s−b)(s−c)]",
+          "= Δ²(2s − b − c)/[(s−a)(s−b)(s−c)]",
+          "= Δ²a/(Δ²/s)   [by (1), 2s − b − c = a]",
+          "= as"
         ]
       },
       {
@@ -142,10 +168,19 @@
         "label": "Simplify the sum of products",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "One mark. Over the common denominator each term keeps the bracket it is missing; those three add to s, and line (1) makes the Δ² cancel.",
+        "margin_note": "One mark. Over the common denominator each term gets the bracket it is missing on top; those three add to s, and line (1) makes the Δ² cancel.",
         "memory_tip": "The three brackets add to 3s − 2s = s, so the sum of the products is s².",
         "lines": [
           "r₁r₂ + r₂r₃ + r₃r₁",
+          {
+            "text": "(r₁r₂ = Δ²(s−c)/[(s−a)(s−b)(s−c)], and the same",
+            "added": true
+          },
+          {
+            "text": "  for r₂r₃ and r₃r₁)",
+            "style": "indent",
+            "added": true
+          },
           "= Δ²[(s−c)+(s−a)+(s−b)]/[(s−a)(s−b)(s−c)]",
           "= Δ²s/(Δ²/s)   [∵ 3s − 2s = s, by (1)]",
           "= s²"
@@ -176,6 +211,12 @@
         "common_mistakes": [
           "Getting the wrong bracket on top of a term.",
           "Writing (s−a) + (s−b) + (s−c) = 3s."
+        ],
+        "lines_compact": [
+          "r₁r₂ + r₂r₃ + r₃r₁",
+          "= Δ²[(s−c)+(s−a)+(s−b)]/[(s−a)(s−b)(s−c)]",
+          "= Δ²s/(Δ²/s)   [∵ 3s − 2s = s, by (1)]",
+          "= s²"
         ]
       },
       {
@@ -189,6 +230,10 @@
         "lines": [
           "√(r₁r₂ + r₂r₃ + r₃r₁) = √(s²) = s",
           "   [s > 0, so the root is +s]",
+          {
+            "text": "(put in the numerator as and the root s)",
+            "added": true
+          },
           "∴ r₁(r₂ + r₃)/√(r₁r₂ + r₂r₃ + r₃r₁)",
           "= as/s",
           {
@@ -219,10 +264,20 @@
             "right hand side"
           ]
         },
-        "why": "The half perimeter s is positive, so the square root is +s and not ±s. The numerator produced the same s, so the two cancel exactly and only the side a survives.",
+        "why": "The half perimeter s is positive, so the square root is +s and not ±s. The numerator produced the same s, so the two cancel exactly and only the side a is left.",
         "common_mistakes": [
           "Writing the square root as ±s — s is a half perimeter, so it is positive.",
           "Leaving the answer as as/s without cancelling."
+        ],
+        "lines_compact": [
+          "√(r₁r₂ + r₂r₃ + r₃r₁) = √(s²) = s",
+          "   [s > 0, so the root is +s]",
+          "∴ r₁(r₂ + r₃)/√(r₁r₂ + r₂r₃ + r₃r₁)",
+          "= as/s",
+          {
+            "text": "= a = R.H.S",
+            "style": "boxed"
+          }
         ]
       }
     ]

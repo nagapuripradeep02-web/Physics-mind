@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 5 MATRICES, Very Short Answer question 12, book p.33. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split gives one mark to writing the transpose and one to the row-by-column product, because writing Aᵀ with the entries in the wrong places is where this question is usually lost. CHECKED TWO WAYS: the four entries were computed position by position (5, 2, 2, 1), and the answer was then tested against two properties it must have — AAᵀ is symmetric, and det(AAᵀ) = (det A)² = (−1)² = 1, which the answer 5(1) − 2(2) = 1 satisfies. Related card in the same unit: ts_ipe_m1a_mat_vsaq_a_plus_transpose asks for A + A′ and AA′ for a different 2×2 matrix, so the two are not duplicates. Paper position: Maths-1A Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 5 MATRICES, Very Short Answer question 12, book p.33. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split gives one mark to writing the transpose and one to the row-by-column product, because writing Aᵀ with the entries in the wrong places is where this question is usually lost. CHECKED TWO WAYS: the four entries were computed position by position (5, 2, 2, 1), and the answer was then tested against two properties it must have — AAᵀ is symmetric, and det(AAᵀ) = (det A)² = (−1)² = 1, which the answer 5(1) − 2(2) = 1 satisfies. Related card in the same unit: ts_ipe_m1a_mat_vsaq_a_plus_transpose asks for A + A′ and AA′ for a different 2×2 matrix, so the two are not duplicates. Paper position: Maths-1A Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find AAᵀ for this 2×2 matrix.",
   "answer": {
@@ -57,6 +57,7 @@
             "render": "katex",
             "style": "eq"
           },
+          "(the rows of A become the columns of Aᵀ)",
           "A is 2×2, so AAᵀ is 2×2 as well."
         ],
         "recall": {
@@ -95,6 +96,30 @@
         "margin_note": "Second mark. Each entry is a row of A times a column of Aᵀ. The answer must come out symmetric — AAᵀ always does — which is a free check.",
         "memory_tip": "AAᵀ is always symmetric. If the two off-diagonal entries differ, one of them is wrong.",
         "lines": [
+          {
+            "text": "Multiply row by column:",
+            "added": true
+          },
+          {
+            "text": "  (1,1): (−1)(−1) + (2)(2) = 5",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  (1,2): (−1)(0) + (2)(1) = 2",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  (2,1): (0)(−1) + (1)(2) = 2",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  (2,2): (0)(0) + (1)(1) = 1",
+            "style": "indent",
+            "added": true
+          },
           {
             "text": "AA^{T} = \\begin{bmatrix} -1 & 2 \\\\ 0 & 1 \\end{bmatrix}\\begin{bmatrix} -1 & 0 \\\\ 2 & 1 \\end{bmatrix} = \\begin{bmatrix} 1+4 & 0+2 \\\\ 0+2 & 0+1 \\end{bmatrix}",
             "render": "katex",
@@ -135,6 +160,22 @@
         "common_mistakes": [
           "Multiplying the matrices entry by entry instead of row by column.",
           "Computing AᵀA, which is a different matrix here."
+        ],
+        "lines_compact": [
+          {
+            "text": "AA^{T} = \\begin{bmatrix} -1 & 2 \\\\ 0 & 1 \\end{bmatrix}\\begin{bmatrix} -1 & 0 \\\\ 2 & 1 \\end{bmatrix} = \\begin{bmatrix} 1+4 & 0+2 \\\\ 0+2 & 0+1 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "= \\begin{bmatrix} 5 & 2 \\\\ 2 & 1 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "∴ AAᵀ has rows (5, 2) and (2, 1)",
+            "style": "boxed"
+          }
         ]
       }
     ]

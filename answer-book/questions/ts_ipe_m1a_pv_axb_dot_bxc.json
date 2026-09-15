@@ -51,7 +51,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.35 — LAQ chapter 4 Product of Vectors, answer 21.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 17 · AP 15,19. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer (its page is set two questions to a page in two columns, which takes the margin those tags would occupy). It follows the shape of the split the same chapter DOES print for answer 23 on book p.37, weighting each cross product against the closing step. The book's chapter header carries ★★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Q22 is the Product of Vectors slot. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Take the dot product."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.35 — LAQ chapter 4 Product of Vectors, answer 21.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 17 · AP 15,19. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer (its page is set two questions to a page in two columns, which takes the margin those tags would occupy). It follows the shape of the split the same chapter DOES print for answer 23 on book p.37, weighting each cross product against the closing step. The book's chapter header carries ★★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Q22 is the Product of Vectors slot. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Take the dot product. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would work out this product — say which pieces you compute first and how you finish.",
   "answer": {
@@ -116,6 +116,25 @@
             "render": "katex",
             "style": "eq"
           },
+          {
+            "text": "Expand along the top row, i, j, k (signs + − +):",
+            "added": true
+          },
+          {
+            "text": "  i: (1)(−4) − (−1)(2) = −2",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  j: (2)(−4) − (−1)(−1) = −9, with a minus in front",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  k: (2)(2) − (1)(−1) = 5",
+            "style": "indent",
+            "added": true
+          },
           "= i(−4 + 2) − j(−8 − 1) + k(4 + 1)",
           "= −2i + 9j + 5k   …(1)"
         ],
@@ -144,8 +163,17 @@
         },
         "why": "The middle term carries a minus sign in front — that is part of the expansion, not part of the numbers, and it is where most sign errors enter.",
         "common_mistakes": [
-          "Writing b on the first row and a on the second, which reverses the answer.",
+          "Writing b on the second row and a on the third, which reverses the answer.",
           "Forgetting the minus in front of the j term."
+        ],
+        "lines_compact": [
+          {
+            "text": "a \\times b = \\begin{vmatrix} i & j & k \\\\ 2 & 1 & -1 \\\\ -1 & 2 & -4 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= i(−4 + 2) − j(−8 − 1) + k(4 + 1)",
+          "= −2i + 9j + 5k   …(1)"
         ]
       },
       {
@@ -161,6 +189,25 @@
             "text": "b \\times c = \\begin{vmatrix} i & j & k \\\\ -1 & 2 & -4 \\\\ 1 & 1 & 1 \\end{vmatrix}",
             "render": "katex",
             "style": "eq"
+          },
+          {
+            "text": "Expand along the top row, i, j, k (signs + − +):",
+            "added": true
+          },
+          {
+            "text": "  i: (2)(1) − (−4)(1) = 6",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  j: (−1)(1) − (−4)(1) = 3, with a minus in front",
+            "style": "indent",
+            "added": true
+          },
+          {
+            "text": "  k: (−1)(1) − (2)(1) = −3",
+            "style": "indent",
+            "added": true
           },
           "= i(2 + 4) − j(−1 + 4) + k(−1 − 2)",
           "= 6i − 3j − 3k   …(2)"
@@ -191,6 +238,15 @@
         "common_mistakes": [
           "Computing c×b instead, which flips every sign.",
           "Reusing a×b by mistake."
+        ],
+        "lines_compact": [
+          {
+            "text": "b \\times c = \\begin{vmatrix} i & j & k \\\\ -1 & 2 & -4 \\\\ 1 & 1 & 1 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= i(2 + 4) − j(−1 + 4) + k(−1 − 2)",
+          "= 6i − 3j − 3k   …(2)"
         ]
       },
       {
@@ -204,8 +260,16 @@
         "lines": [
           "From (1) and (2),",
           "(a×b)·(b×c) = (−2i + 9j + 5k)·(6i − 3j − 3k)",
+          {
+            "text": "(multiply matching components and add)",
+            "added": true
+          },
           "= (−2)(6) + (9)(−3) + (5)(−3)",
-          "= −12 − 27 − 15"
+          "= −12 − 27 − 15",
+          {
+            "text": "(−12 − 27 = −39, and −39 − 15 = −54)",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -233,6 +297,12 @@
         "common_mistakes": [
           "Taking a cross product of the two results.",
           "Adding the components instead of multiplying first."
+        ],
+        "lines_compact": [
+          "From (1) and (2),",
+          "(a×b)·(b×c) = (−2i + 9j + 5k)·(6i − 3j − 3k)",
+          "= (−2)(6) + (9)(−3) + (5)(−3)",
+          "= −12 − 27 − 15"
         ]
       },
       {
@@ -270,7 +340,7 @@
             "negative"
           ]
         },
-        "why": "A scalar triple-style product like this is just a number, and the sign of that number carries meaning — so it must be reported, not dropped.",
+        "why": "A dot product of two cross products is a single number, and its sign carries meaning — so it must be reported, not dropped.",
         "common_mistakes": [
           "Reporting 54 without the sign.",
           "Leaving the answer as three unadded terms."

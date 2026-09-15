@@ -123,12 +123,19 @@
         "margin_note": "Second mark. a/4 = 9 gives a = 36.",
         "memory_tip": "a/4 = 9 gives a = 36. Multiply by 4, do not divide.",
         "lines": [
-          "The product is given as 9:",
+          {
+            "text": "The product is given as 9:",
+            "added": true
+          },
           "a/4 = 9",
-          "Multiply both sides by 4:",
+          {
+            "text": "Multiply both sides by 4:",
+            "added": true
+          },
           {
             "text": "∴ a = 36",
-            "style": "boxed"
+            "style": "boxed",
+            "added": true
           }
         ],
         "recall": {
@@ -155,6 +162,13 @@
         "common_mistakes": [
           "Writing a = 9/4 (dividing instead of multiplying).",
           "Writing a = −36 from the single-minus slip in step 1."
+        ],
+        "lines_compact": [
+          "a/4 = 9",
+          {
+            "text": "∴ a = 4 × 9 = 36",
+            "style": "boxed"
+          }
         ]
       }
     ]

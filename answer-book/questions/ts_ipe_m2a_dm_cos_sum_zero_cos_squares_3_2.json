@@ -133,17 +133,44 @@
         "margin_note": "Second mark. Squaring gives a² + b² + c² + 2(ab + bc + ca) = 0, and ab + bc + ca = abc(1/a + 1/b + 1/c). Since 1/a = cis(−α), that reciprocal sum is the given data with the sine sign reversed, so it is 0 and the cross term goes.",
         "memory_tip": "Squaring brings in a², b², c². Rewrite ab + bc + ca as abc(1/a + 1/b + 1/c), which the given data makes 0.",
         "lines": [
-          "Square both sides of a + b + c = 0:",
-          "(a + b + c)² = 0",
+          {
+            "text": "Square both sides of a + b + c = 0:",
+            "added": true
+          },
+          {
+            "text": "(a + b + c)² = 0",
+            "added": true
+          },
           "a² + b² + c² + 2(ab + bc + ca) = 0",
-          "Write ab + bc + ca over abc:",
-          "ab + bc + ca = abc(1/c + 1/a + 1/b)",
+          {
+            "text": "Write ab + bc + ca over abc:",
+            "added": true
+          },
+          {
+            "text": "ab + bc + ca = abc(1/c + 1/a + 1/b)",
+            "added": true
+          },
           "so a² + b² + c² + 2abc(1/a + 1/b + 1/c) = 0",
-          "1/a = 1/cis α = cis(−α) = cos α − i sin α,",
-          "and the same for b and c. Adding them:",
-          "1/a + 1/b + 1/c = (cos α + cos β + cos γ)",
-          "  − i(sin α + sin β + sin γ)",
-          "= 0 − i(0) = 0"
+          {
+            "text": "1/a = 1/cis α = cis(−α) = cos α − i sin α,",
+            "added": true
+          },
+          {
+            "text": "and the same for b and c. Adding them:",
+            "added": true
+          },
+          {
+            "text": "1/a + 1/b + 1/c = (cos α + cos β + cos γ)",
+            "added": true
+          },
+          {
+            "text": "  − i(sin α + sin β + sin γ)",
+            "added": true
+          },
+          {
+            "text": "= 0 − i(0) = 0",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -173,6 +200,15 @@
           "Expanding (a + b + c)² as a² + b² + c² with no cross terms.",
           "Not rewriting ab + bc + ca through the reciprocals, so the cross term cannot be shown to vanish.",
           "Writing 1/a = cis α instead of cis(−α)."
+        ],
+        "lines_compact": [
+          "a + b + c = 0 ⇒ (a + b + c)² = 0",
+          "⇒ a² + b² + c² + 2(ab + bc + ca) = 0",
+          "⇒ a² + b² + c² + 2abc(1/a + 1/b + 1/c) = 0",
+          "Now 1/a + 1/b + 1/c",
+          "= cis(−α) + cis(−β) + cis(−γ)",
+          "= (cos α + cos β + cos γ)",
+          "− i(sin α + sin β + sin γ) = 0 − i(0) = 0"
         ]
       },
       {
@@ -184,10 +220,22 @@
         "margin_note": "Third mark. a² = cis 2α by De Moivre, so a² + b² + c² = 0 reads cis 2α + cis 2β + cis 2γ = 0. Equate real parts for cos 2α + cos 2β + cos 2γ = 0, and label it (1) — both remaining steps use it.",
         "memory_tip": "a² = cis 2α, so a² + b² + c² = 0 is a statement about doubled angles. Label the real part (1).",
         "lines": [
-          "The bracket is 0, so a² + b² + c² = 0",
-          "By De Moivre's theorem (cis θ)² = cis 2θ:",
-          "cis 2α + cis 2β + cis 2γ = 0",
-          "Writing each cis in full:",
+          {
+            "text": "The bracket is 0, so a² + b² + c² = 0",
+            "added": true
+          },
+          {
+            "text": "By De Moivre's theorem (cis θ)² = cis 2θ:",
+            "added": true
+          },
+          {
+            "text": "cis 2α + cis 2β + cis 2γ = 0",
+            "added": true
+          },
+          {
+            "text": "Writing each cis in full:",
+            "added": true
+          },
           "(cos 2α + cos 2β + cos 2γ)",
           "  + i(sin 2α + sin 2β + sin 2γ) = 0 + i(0)",
           "Equating the real parts:",
@@ -221,6 +269,14 @@
           "Writing a² = cos² α + i sin² α.",
           "Equating imaginary parts and stopping; it is the real parts that lead to the cos² and sin² results.",
           "Forgetting the '(1)' label and having nothing to refer back to."
+        ],
+        "lines_compact": [
+          "∴ a² + b² + c² = 0",
+          "⇒ cis 2α + cis 2β + cis 2γ = 0  (De Moivre)",
+          "⇒ (cos 2α + cos 2β + cos 2γ)",
+          "+ i(sin 2α + sin 2β + sin 2γ) = 0 + i(0)",
+          "Equating real parts:",
+          "cos 2α + cos 2β + cos 2γ = 0 …(1)"
         ]
       },
       {
@@ -232,10 +288,19 @@
         "margin_note": "Fourth and fifth marks. Put cos 2θ = 2cos² θ − 1 into (1): the three −1 terms give 2(cos² α + cos² β + cos² γ) − 3 = 0. Divide by 2 for 3/2.",
         "memory_tip": "cos 2θ = 2cos²θ − 1. The three −1 terms give 2Σcos² = 3, so Σcos² = 3/2.",
         "lines": [
-          "Use cos 2θ = 2cos²θ − 1 in (1):",
+          {
+            "text": "Use cos 2θ = 2cos²θ − 1 in (1):",
+            "added": true
+          },
           "(2cos²α − 1) + (2cos²β − 1)",
-          "  + (2cos²γ − 1) = 0",
-          "2(cos²α + cos²β + cos²γ) − 3 = 0",
+          {
+            "text": "  + (2cos²γ − 1) = 0",
+            "added": true
+          },
+          {
+            "text": "2(cos²α + cos²β + cos²γ) − 3 = 0",
+            "added": true
+          },
           "2(cos²α + cos²β + cos²γ) = 3",
           {
             "text": "∴ cos²α + cos²β + cos²γ = 3/2",
@@ -269,6 +334,15 @@
           "Using cos 2θ = 1 − 2cos² θ, the wrong sign.",
           "Moving the −1's across as −3 instead of +3.",
           "Forgetting to divide by 2 at the end."
+        ],
+        "lines_compact": [
+          "(1) ⇒ (2cos² α − 1) + (2cos² β − 1)",
+          "+ (2cos² γ − 1) = 0  (∵ cos 2θ = 2cos² θ − 1)",
+          "⇒ 2(cos² α + cos² β + cos² γ) = 3",
+          {
+            "text": "cos² α + cos² β + cos² γ = 3/2",
+            "style": "boxed"
+          }
         ]
       },
       {
@@ -280,14 +354,24 @@
         "margin_note": "Sixth and seventh marks. The same equation (1) with the other form, cos 2θ = 1 − 2sin² θ, gives 3 − 2(sin² α + sin² β + sin² γ) = 0. The marks are for showing this second identity, not for subtracting the first result from 3.",
         "memory_tip": "The same equation (1), other form: cos 2θ = 1 − 2sin²θ. The mark is showing this identity, not subtracting from 3.",
         "lines": [
-          "Use the other form cos 2θ = 1 − 2sin²θ in (1):",
-          "(1 − 2sin²α) + (1 − 2sin²β)",
-          "  + (1 − 2sin²γ) = 0",
+          {
+            "text": "Use the other form cos 2θ = 1 − 2sin²θ in (1):",
+            "added": true
+          },
+          {
+            "text": "(1 − 2sin²α) + (1 − 2sin²β)",
+            "added": true
+          },
+          {
+            "text": "  + (1 − 2sin²γ) = 0",
+            "added": true
+          },
           "3 − 2(sin²α + sin²β + sin²γ) = 0",
           "2(sin²α + sin²β + sin²γ) = 3",
           {
             "text": "∴ sin²α + sin²β + sin²γ = 3/2",
-            "style": "boxed"
+            "style": "boxed",
+            "added": true
           }
         ],
         "recall": {
@@ -317,6 +401,15 @@
           "Deriving the sin² result by subtracting the cos² result from 3, which is fine mathematics but skips the marked step.",
           "Using cos 2θ = 2sin² θ − 1, the wrong sign.",
           "Forgetting to divide by 2 at the end."
+        ],
+        "lines_compact": [
+          "Again (1) ⇒ (1 − 2sin² α) + (1 − 2sin² β)",
+          "+ (1 − 2sin² γ) = 0  (∵ cos 2θ = 1 − 2sin² θ)",
+          "⇒ 2(sin² α + sin² β + sin² γ) = 3",
+          {
+            "text": "sin² α + sin² β + sin² γ = 3/2",
+            "style": "boxed"
+          }
         ]
       }
     ]

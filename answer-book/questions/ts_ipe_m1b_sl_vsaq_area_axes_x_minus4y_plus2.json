@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Very Short Answer question 4, book p.140. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The 1+1 split gives the first mark for comparing with ax + by + c = 0 and naming the area formula, and the second for substituting and reaching a positive number. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Answer checked by a second route: the intercepts are x = −2 and y = 1/2, so the area is ½|(−2)(1/2)| = 1/2, which matches the formula result. Related card in the same unit: ts_ipe_m1b_sl_vsaq_area_with_axes asks the same method on 3x − 4y + 12 = 0 and comes from a different source book; the two are separate questions with different numbers, not duplicates."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Very Short Answer question 4, book p.140. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The 1+1 split gives the first mark for comparing with ax + by + c = 0 and naming the area formula, and the second for substituting and reaching a positive number. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Answer checked by a second route: the intercepts are x = −2 and y = 1/2, so the area is ½|(−2)(1/2)| = 1/2, which matches the formula result. Related card in the same unit: ts_ipe_m1b_sl_vsaq_area_with_axes asks the same method on 3x − 4y + 12 = 0 and comes from a different source book; the two are separate questions with different numbers, not duplicates. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — name the area formula for a line with the two axes, then say what you substitute.",
   "answer": {
@@ -55,6 +55,11 @@
           "Given line is x − 4y + 2 = 0",
           "Compare it with ax + by + c = 0",
           "∴ a = 1, b = −4, c = 2",
+          "(the intercepts are −c/a and −c/b, so the area is",
+          {
+            "text": "  ½ · |c/a| · |c/b| = c²/(2|ab|))",
+            "style": "indent"
+          },
           "Area of the triangle is  Δ = c²/(2|ab|)"
         ],
         "recall": {
@@ -94,8 +99,25 @@
         "margin_note": "Second mark. Substitute and simplify. The modulus in the denominator is what keeps the answer positive, and the unit is square units.",
         "memory_tip": "An area is never negative — the modulus sign in the denominator is what guarantees that.",
         "lines": [
+          {
+            "text": "(put a = 1, b = −4 and c = 2)",
+            "added": true
+          },
           "∴ Δ = c²/(2|ab|) = 2²/(2|(1)(−4)|)",
+          {
+            "text": "(2² = 4 and |(1)(−4)| = 4)",
+            "added": true
+          },
           "= 4/(2 × 4) = 4/8 = 1/2",
+          {
+            "text": "(check: the intercepts are −2 and 1/2,",
+            "added": true
+          },
+          {
+            "text": "  and ½ × 2 × 1/2 = 1/2)",
+            "style": "indent",
+            "added": true
+          },
           {
             "text": "∴ Area of the triangle is 1/2 sq.units",
             "style": "boxed"
@@ -127,6 +149,14 @@
         "common_mistakes": [
           "Forgetting the 2 in the denominator and writing 4/4 = 1.",
           "Dropping the square on c and writing 2/(2 × 4)."
+        ],
+        "lines_compact": [
+          "∴ Δ = c²/(2|ab|) = 2²/(2|(1)(−4)|)",
+          "= 4/(2 × 4) = 4/8 = 1/2",
+          {
+            "text": "∴ Area of the triangle is 1/2 sq.units",
+            "style": "boxed"
+          }
         ]
       }
     ]

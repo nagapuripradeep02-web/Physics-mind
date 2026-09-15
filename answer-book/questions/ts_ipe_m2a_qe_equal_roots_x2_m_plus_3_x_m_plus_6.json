@@ -100,9 +100,18 @@
         "memory_tip": "m² + 2m − 15 = (m + 5)(m − 3). The two answers have OPPOSITE signs: 3 and −5.",
         "lines": [
           "m² + 2m − 15 = 0",
-          "Split 2m as 5m − 3m:",
-          "m² + 5m − 3m − 15 = 0",
-          "m(m + 5) − 3(m + 5) = 0",
+          {
+            "text": "Split 2m as 5m − 3m:",
+            "added": true
+          },
+          {
+            "text": "m² + 5m − 3m − 15 = 0",
+            "added": true
+          },
+          {
+            "text": "m(m + 5) − 3(m + 5) = 0",
+            "added": true
+          },
           "(m + 5)(m − 3) = 0",
           {
             "text": "∴ m = 3 or m = −5",
@@ -136,6 +145,14 @@
           "Giving m = −3 and m = 5 by flipping the signs of the factors.",
           "Giving only one of the two values.",
           "Simplifying 9 − 24 to +15."
+        ],
+        "lines_compact": [
+          "⇒ m² + 2m − 15 = 0",
+          "⇒ (m + 5)(m − 3) = 0",
+          {
+            "text": "∴ m = 3 or m = −5",
+            "style": "boxed"
+          }
         ]
       }
     ]

@@ -93,11 +93,26 @@
         "margin_note": "Second mark. For odd n the two middle coefficients are equal and both are largest.",
         "memory_tip": "Odd n has TWO equal largest coefficients. Give both ¹⁹C₉ and ¹⁹C₁₀.",
         "lines": [
-          "(ii) In (1 + x)¹⁹, n = 19 is odd",
-          "When n is odd there are two middle coefficients,",
-          "with r = (n − 1)/2 and r = (n + 1)/2",
-          "r = (19 − 1)/2 = 9 and r = (19 + 1)/2 = 10",
-          "These are equal: ¹⁹C₉ = ¹⁹C₁₉₋₉ = ¹⁹C₁₀",
+          {
+            "text": "(ii) In (1 + x)¹⁹, n = 19 is odd",
+            "added": true
+          },
+          {
+            "text": "When n is odd there are two middle coefficients,",
+            "added": true
+          },
+          {
+            "text": "with r = (n − 1)/2 and r = (n + 1)/2",
+            "added": true
+          },
+          {
+            "text": "r = (19 − 1)/2 = 9 and r = (19 + 1)/2 = 10",
+            "added": true
+          },
+          {
+            "text": "These are equal: ¹⁹C₉ = ¹⁹C₁₉₋₉ = ¹⁹C₁₀",
+            "added": true
+          },
           {
             "text": "∴ (i) ²⁴C₁₂  (ii) ¹⁹C₉ and ¹⁹C₁₀",
             "style": "boxed"
@@ -128,6 +143,14 @@
         "common_mistakes": [
           "Giving only ¹⁹C₉.",
           "Writing ¹⁹C₁₀ and ¹⁹C₁₁."
+        ],
+        "lines_compact": [
+          "(ii) n = 19 is odd, so the two middle coefficients",
+          "are equal and largest: ¹⁹C₉ = ¹⁹C₁₀",
+          {
+            "text": "∴ (i) ²⁴C₁₂  (ii) ¹⁹C₉ and ¹⁹C₁₀",
+            "style": "boxed"
+          }
         ]
       }
     ]

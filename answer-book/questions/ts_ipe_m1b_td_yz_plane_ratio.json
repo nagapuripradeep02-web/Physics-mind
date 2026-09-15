@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.84 — VSAQ chapter 15 3-D Coordinates, answer 99.2, on a ★★★ SSP (Super Scoring Page). No appearance years are printed against this answer. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer, whose page is set two and three answers to a page in columns. It is not a bare guess: answer 98 in THIS SAME CHAPTER (book p.83) carries a printed 1+1 against exactly this shape — one mark for the setting-up equation and one for the answer read off it — and every answer in the unit takes those two moves. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: 3D-Coordinates is a VSAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 2 marks in Section A and nothing in Section B or Section C, and the book has no 3D LAQ chapter (its LAQ chapters are 1-6) and no 3D SAQ chapter (its SAQ chapters are 7-13). Its chapter header reads '2 Marks' and carries the note 'Just 2 Pages - 2 Marks'. Chapter scoped by BOUNDARY WALK: book p.85 opens VSAQ chapter 16, The Plane. Paper position: Maths-1B Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.84 — VSAQ chapter 15 3-D Coordinates, answer 99.2, on a ★★★ SSP (Super Scoring Page). No appearance years are printed against this answer. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer, whose page is set two and three answers to a page in columns. It is not a bare guess: answer 98 in THIS SAME CHAPTER (book p.83) carries a printed 1+1 against exactly this shape — one mark for the setting-up equation and one for the answer read off it — and every answer in the unit takes those two moves. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: 3D-Coordinates is a VSAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 2 marks in Section A and nothing in Section B or Section C, and the book has no 3D LAQ chapter (its LAQ chapters are 1-6) and no 3D SAQ chapter (its SAQ chapters are 7-13). Its chapter header reads '2 Marks' and carries the note 'Just 2 Pages - 2 Marks'. Chapter scoped by BOUNDARY WALK: book p.85 opens VSAQ chapter 16, The Plane. Paper position: Maths-1B Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A, Maths-2B and Maths-1A expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — say what is special about a point on that plane, and what a negative ratio means.",
   "answer": {
@@ -54,7 +54,17 @@
           },
           "We take A(x₁, y₁, z₁) = (2, 4, 5) and",
           "B(x₂, y₂, z₂) = (3, 5, −4)",
-          "The ratio that the YZ plane divides AB is",
+          "(on the YZ-plane x = 0)",
+          "(a point dividing AB in the ratio m : n has",
+          {
+            "text": "  x = (mx₂ + nx₁)/(m + n); x = 0 gives mx₂ = −nx₁,",
+            "style": "indent"
+          },
+          {
+            "text": "  so m : n = −x₁ : x₂)",
+            "style": "indent"
+          },
+          "The ratio in which the YZ plane divides AB is",
           "−x₁ : x₂ = −2 : 3"
         ],
         "recall": {
@@ -94,10 +104,39 @@
         "margin_note": "Second mark. Put that ratio into the section formula. A NEGATIVE ratio means the plane cuts the line EXTERNALLY, outside the segment — a real answer, not an error.",
         "memory_tip": "Put that ratio into the section formula. The negative ratio means an EXTERNAL division.",
         "lines": [
-          "∴ the point which divides A(2,4,5) and B(3,5,−4) in the ratio −2 : 3 is",
-          "P = ((mx₂ + nx₁)/(m+n), (my₂ + ny₁)/(m+n), (mz₂ + nz₁)/(m+n))",
-          "= ((−2×3 + 3×2)/(−2+3), (−2×5 + 3×4)/(−2+3), (−2×−4 + 3×5)/(−2+3))",
+          {
+            "text": "(the ratio is negative, so the division is external;",
+            "added": true
+          },
+          {
+            "text": "  use the section formula with m = −2 and n = 3)",
+            "style": "indent",
+            "added": true
+          },
+          "∴ the point which divides A(2,4,5) and B(3,5,−4)",
+          "in the ratio −2 : 3 is",
+          "P = ((mx₂ + nx₁)/(m+n), (my₂ + ny₁)/(m+n),",
+          "(mz₂ + nz₁)/(m+n))",
+          {
+            "text": "(put x₁ = 2, y₁ = 4, z₁ = 5, x₂ = 3, y₂ = 5, z₂ = −4)",
+            "added": true
+          },
+          "= ((−2×3 + 3×2)/(−2+3), (−2×5 + 3×4)/(−2+3),",
+          "(−2×−4 + 3×5)/(−2+3))",
+          {
+            "text": "(−2 × 3 = −6, −2 × 5 = −10, −2 × −4 = 8;",
+            "added": true
+          },
+          {
+            "text": "  3 × 2 = 6, 3 × 4 = 12, 3 × 5 = 15; −2 + 3 = 1)",
+            "style": "indent",
+            "added": true
+          },
           "= ((−6+6)/1, (−10+12)/1, (8+15)/1)",
+          {
+            "text": "(the x-coordinate is 0, as it must be on the YZ-plane)",
+            "added": true
+          },
           {
             "text": "∴ Point of intersection = (0, 2, 23)",
             "style": "boxed"
@@ -127,7 +166,20 @@
         "why": "A negative ratio marks EXTERNAL division: the cut lies outside the segment AB, not between A and B, which is why the point can come out far from both of them.",
         "common_mistakes": [
           "Swapping m and n in the section formula.",
-          "Treating a negative ratio as an error and flipping its sign."
+          "Treating a negative ratio as an error and changing its sign."
+        ],
+        "lines_compact": [
+          "∴ the point which divides A(2,4,5) and B(3,5,−4)",
+          "in the ratio −2 : 3 is",
+          "P = ((mx₂ + nx₁)/(m+n), (my₂ + ny₁)/(m+n),",
+          "(mz₂ + nz₁)/(m+n))",
+          "= ((−2×3 + 3×2)/(−2+3), (−2×5 + 3×4)/(−2+3),",
+          "(−2×−4 + 3×5)/(−2+3))",
+          "= ((−6+6)/1, (−10+12)/1, (8+15)/1)",
+          {
+            "text": "∴ Point of intersection = (0, 2, 23)",
+            "style": "boxed"
+          }
         ]
       }
     ]

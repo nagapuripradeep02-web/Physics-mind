@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.123, chapter 12 PROPERTIES OF TRIANGLES, Very Short Answer question 12. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to putting the three cotangents over Δ and one to the A.P. condition that reduces them to 2b = a + c. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory; Properties of Triangles supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.123, chapter 12 PROPERTIES OF TRIANGLES, Very Short Answer question 12. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to putting the three cotangents over Δ and one to the A.P. condition that reduces them to 2b = a + c. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory; Properties of Triangles supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — name each standard result you use and the order you use them in.",
   "answer": {
@@ -52,8 +52,11 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "(the half-angle formula)",
           "cot(A/2) = √(s(s−a)/((s−b)(s−c)))",
+          "(multiply top and bottom by √(s(s−a)))",
           "= s(s−a)/√(s(s−a)(s−b)(s−c))",
+          "(Heron: √(s(s−a)(s−b)(s−c)) = Δ)",
           "= s(s−a)/Δ",
           "Similarly cot(B/2) = s(s−b)/Δ",
           "and cot(C/2) = s(s−c)/Δ"
@@ -97,9 +100,17 @@
         "lines": [
           "cot(A/2), cot(B/2), cot(C/2) are in A.P., so",
           "2 cot(B/2) = cot(A/2) + cot(C/2)",
+          {
+            "text": "(in an A.P. x, y, z, the middle term gives 2y = x + z)",
+            "added": true
+          },
           "⇒ 2s(s−b)/Δ = s(s−a)/Δ + s(s−c)/Δ",
           "s > 0 and Δ > 0, so divide by s/Δ:",
           "2(s−b) = (s−a) + (s−c) = 2s − (a+c)",
+          {
+            "text": "(take 2s from both sides and multiply by −1)",
+            "added": true
+          },
           "⇒ 2s − 2b = 2s − (a+c) ⇒ 2b = a + c",
           {
             "text": "∴ a, b, c are in A.P.",
@@ -132,6 +143,18 @@
         "common_mistakes": [
           "Writing cot(A/2) + cot(B/2) = 2cot(C/2), which uses the wrong middle term.",
           "Cancelling the 2s wrongly and finishing with b = a + c."
+        ],
+        "lines_compact": [
+          "cot(A/2), cot(B/2), cot(C/2) are in A.P., so",
+          "2 cot(B/2) = cot(A/2) + cot(C/2)",
+          "⇒ 2s(s−b)/Δ = s(s−a)/Δ + s(s−c)/Δ",
+          "s > 0 and Δ > 0, so divide by s/Δ:",
+          "2(s−b) = (s−a) + (s−c) = 2s − (a+c)",
+          "⇒ 2s − 2b = 2s − (a+c) ⇒ 2b = a + c",
+          {
+            "text": "∴ a, b, c are in A.P.",
+            "style": "boxed"
+          }
         ]
       }
     ]
