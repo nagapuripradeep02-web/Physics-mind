@@ -1,5 +1,27 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 📸 SESSION — The Instagram register + insights analyzer, both halves built (2026-09-15, `feat/instagram-insights` PR #210 + viditra-film `feat/instagram-register` PR #1)
+
+**Bottom line: the founder asked for one system that registers every Instagram post (reel / carousel / story; its hook, keyword, format; posted at which IST AND Berlin time), pulls each post's numbers daily for 10+ days, computes the ratios that tell a hook apart, and compounds the findings into the reel studio's library. Both halves exist and are verified against live Supabase; nothing has posted yet, so every table is empty by design.** Plan: `~/.claude/plans/we-need-to-make-distributed-minsky.md`.
+
+### Decisions (founder, this session)
+Graph API auto-pull daily (Instagram API with Instagram Login — no Facebook Page; token 60 d, refreshed in place) · split location: plumbing here, knowledge in viditra-film · six ratios + hook hold + rank = saves + shares (R0) · the analyst is a sixth, OFF-PIPELINE agent on the subscription (no metered spend) · posting slot evening IST → pull at 12:30 UTC = 18:00 IST · viditra-film now has a private GitHub remote.
+
+### This repo (PR #210)
+- `supabase_migrations/supabase_2026_09_15_instagram_insights.sql` — applied to `dxwpkjfypzxrzgbevfnx`: `ig_posts` (register; API columns by the job, authored columns only via `ig_apply_registrations()`), `ig_insights_daily` (one row per post per IST day; 48 h / 7 d DERIVED by `ig_horizon()` nearest-snapshot ±18 h / ±24 h), `ig_account_daily`, `ig_registrations` (the inbox), `ig_admin_config`; view `ig_post_ratios` (security_invoker + revoked from anon — a plain view would have leaked the register through the anon key); `ig_stats(token, since)` → ONE jsonb.
+- `src/scripts/ig_pull.ts` (`npm run ig:pull`; `--bootstrap` seeds the Meta token into the DB once) + `.github/workflows/ig-pull.yml` (daily; red run = token < 7 d or any error = the free alert). Pure helpers `src/lib/ig/graph.ts`, 19 vitest cases; a rejected metric is dropped + logged + kept in `raw`, never a failed run.
+- `supabase/functions/ig-stats` (deployed, JWT off) + `website/admin/instagram.html` (both clocks per post, 48 h / 7 d / lifetime switch, format league with the kill-rule tag, keyword league, heatmap IST/Berlin, calendar, follower curve). `docs/notes/INSTAGRAM_INSIGHTS_RUNBOOK.md`.
+- Verified: rollback-wrapped SQL fixture (47 h row chosen for 48 h, 168 h for 7 d, every ratio by hand, hostile authored keys ignored, wrong token refused); anon → permission denied; curl 403 / 401 (~1 s) / 200; headless page at 390 px + 1100 px with and without fixtures, 0 console errors; `npm test` 478/478; CI green.
+
+### viditra-film (PR #1 — the repo's first PR; remote created this session)
+`tools/ig_register.mjs` (derives title / keyword / hook / body / pillar / source card / version / length from `script.md`, `SERIES_02_FRESH_START.md`, shot script, RENDER_LOG, ledger — or a carousel's `post.json`; marks the tracker row posted; Series 02 gets its own table), `tools/ledger_measure.mjs --from db|tracker|auto`, `tools/ig_export.mjs`, `tools/ig_r0.mjs` (R0 by script), `tools/lib/ig_parse.mjs` (16 node:test cases — the real V01_LAW script parses), `.agents/marketing_analyst` (+ emission, sync ROLES, cap wording), `marketing/INSIGHTS.md`, carousel 1 `post.json`.
+
+### Founder's steps before the first post (runbook §0–§4)
+1. Make the account **Professional before the first post** (insights only exist for media posted after the switch). 2. Meta app → Generate token → `npm run ig:pull -- --bootstrap`. 3. Repo secrets `NEXT_PUBLIC_SUPABASE_URL` + `SUPABASE_SERVICE_ROLE_KEY`; merge PR #210 (schedules fire only from master); run the workflow once. 4. `npm run deploy:cf-site` from master after the sha1 check. 5. After each post: `npm run ig:register` in viditra-film.
+
+### Not built (named in the plan as Phase 4)
+`?src=ig<nn>` attribution into `ab_events` (the ManyChat DM link → the register's `src_tag` is ready; `notebook.js` does not read `?src=` yet). The retention CURVE (not in the API; completion + hook hold are its two ends).
+
 ## 📗 SESSION — BiPC SECOND YEAR IS LIVE on answers.viditra.co: one artifact, three streams, shared Physics-II and Chemistry-II (2026-09-11, `feat/answerbook-bipc2-one-door`)
 
 **Bottom line: the founder said "deploy second year BiPC botany and zoology to answers.viditra.co", and the door's BiPC → second year cell now opens Botany-II, Zoology-II, Physics-II and Chemistry-II — 910 answers · 56 chapters — from the SAME physics_2/chemistry_2 cards the MPC cell reads.** Cloudflare version `cac315e4`, built 2026-09-11T13:47Z. Vidi edge function v23 → v24 (the PR #200 botany/zoology ladder, which had been merged but never deployed).

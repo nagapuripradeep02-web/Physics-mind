@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Viditra — Instagram</title>
+<!--
+  The Instagram register + insights dashboard (2026-09-15).
+
+  One row per post the Viditra account published: what it is (reel / carousel /
+  story), its authored hook, keyword and format (from viditra-film's register),
+  when it went out in IST AND Berlin time, and how it performed at 48 h and 7 d
+  — snapshotted daily by the ig:pull job, never typed. The ratios in the footer
+  are the founder's definitions; rank = saves + shares is the R0 promotion law.
+
+  Ships NO Supabase key. Everything goes through the ig-stats Edge Function
+  with the dashboard token in the body; the token lives in ig_admin_config
+  (RLS on, zero policies). Runbook: docs/notes/INSTAGRAM_INSIGHTS_RUNBOOK.md.
+-->
+<style>
+  :root{
+    --bg:#1C1B19; --surface:#242220; --surface2:#2b2825; --line:rgba(245,240,230,.10);
+    --clay:#CB6843; --clay-soft:#E3A07F; --clay-dim:#7a4a35; --ink:#ECE9E2; --ink-dim:#A8A299; --ink-faint:#726C63;
+    --good:#6FBF8A; --warn:#E0B65A; --bad:#E58B72;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    padding:24px 16px 60px;line-height:1.45;}
+  .wrap{max-width:1100px;margin:0 auto;}
+  h1{font-size:22px;font-weight:700;letter-spacing:-.01em;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+  .mark{width:30px;height:30px;border-radius:8px;background:var(--clay);flex:none;}
+  .sub{color:var(--ink-dim);font-size:13.5px;margin:6px 0 18px;}
+  .sub a{color:var(--clay-soft);}
+  .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px;}
+  input,button,select{font:inherit;color:var(--ink);}
+  input[type=text],input[type=date]{background:var(--surface);border:1px solid var(--line);
+    border-radius:9px;padding:9px 11px;font-size:14px;}
+  input[type=text]{width:300px;max-width:100%;letter-spacing:.05em;}
+  button{background:var(--clay);border:0;border-radius:9px;padding:8px 14px;font-weight:600;
+    font-size:13.5px;cursor:pointer;}
+  button.ghost{background:transparent;border:1px solid var(--line);color:var(--ink-dim);}
+  button.ghost.on{border-color:var(--clay);color:var(--ink);background:rgba(203,104,67,.12);}
+  button.tiny{padding:4px 9px;font-size:12px;border-radius:7px;}
+  button:hover{filter:brightness(1.06);}
+  .presets{display:flex;gap:6px;flex-wrap:wrap;}
+  .msg{font-size:13px;color:var(--ink-dim);min-height:18px;margin-bottom:12px;}
+  .msg.err{color:var(--bad);}
+  .tokenbar{background:var(--surface2);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:20px;}
+  /* the two chips that are always visible once loaded: liveness + token */
+  .chip{display:inline-flex;align-items:center;flex-wrap:wrap;gap:6px 8px;background:rgba(111,191,138,.10);border:1px solid rgba(111,191,138,.35);
+    color:var(--ink);border-radius:999px;padding:6px 12px;font-size:13px;}
+  .chip b{font-variant-numeric:tabular-nums;}
+  .chip .dot{width:8px;height:8px;border-radius:50%;background:var(--good);}
+  .chip.warn{background:rgba(224,182,90,.10);border-color:rgba(224,182,90,.35);} .chip.warn .dot{background:var(--warn);}
+  .chip.bad{background:rgba(229,139,114,.12);border-color:rgba(229,139,114,.45);} .chip.bad .dot{background:var(--bad);}
+  .tiles{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin:8px 0 22px;}
+  .tile{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 15px;}
+  .tile .lab{font-size:12px;color:var(--ink-dim);letter-spacing:.02em;}
+  .tile .num{font-size:30px;font-weight:600;margin-top:4px;line-height:1.1;}
+  .tile .num small{font-size:14px;color:var(--ink-faint);font-weight:400;}
+  .tile .note{font-size:12px;color:var(--ink-faint);margin-top:4px;min-height:16px;}
+  .tile.hero .num{color:var(--good);}
+  h2{font-size:13px;font-weight:600;color:var(--ink-dim);margin:26px 0 10px;text-transform:uppercase;letter-spacing:.05em;
+    display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;}
+  h2 small{text-transform:none;letter-spacing:0;font-weight:400;color:var(--ink-faint);}
+  h2 .presets{margin-left:auto;}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+  .grid2>div{min-width:0;}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;}
+  th,td{text-align:left;padding:8px 9px;border-bottom:1px solid var(--line);vertical-align:top;}
+  th{color:var(--ink-faint);font-weight:600;font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap;}
+  td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;}
+  td.t{white-space:nowrap;}
+  td .hook{display:block;color:var(--ink-dim);font-size:12px;max-width:260px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  td a{color:var(--ink);}
+  tr.unreg td{color:var(--ink-faint);}
+  tr.unreg td a{color:var(--ink-dim);}
+  .tag{display:inline-block;font-size:11px;padding:2px 7px;border-radius:999px;border:1px solid var(--line);color:var(--ink-dim);margin-left:6px;white-space:nowrap;}
+  .tag.kind{margin-left:0;}
+  .tag.reel{border-color:rgba(203,104,67,.6);color:var(--clay-soft);}
+  .tag.carousel{border-color:rgba(111,191,138,.5);color:var(--good);}
+  .tag.story{border-color:rgba(168,162,153,.4);}
+  .tag.prov{border-color:rgba(224,182,90,.5);color:var(--warn);}
+  .tag.kill{border-color:rgba(229,139,114,.6);color:var(--bad);}
+  .empty{color:var(--ink-faint);font-size:13px;padding:10px 0;}
+  .tw{overflow-x:auto;max-width:100%;-webkit-overflow-scrolling:touch;}
+  /* heatmap: 7 weekday rows × 24 hour columns */
+  .heat{display:grid;grid-template-columns:44px repeat(24,1fr);gap:2px;font-size:10.5px;}
+  .heat .hl{color:var(--ink-faint);text-align:center;}
+  .heat .wl{color:var(--ink-dim);line-height:22px;}
+  .heat .c{height:22px;border-radius:4px;background:var(--surface);color:var(--ink);text-align:center;line-height:22px;font-variant-numeric:tabular-nums;}
+  .heat .c.thin{color:var(--ink-faint);}
+  .chart{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 14px 8px;position:relative;}
+  .chart svg{width:100%;height:auto;display:block;overflow:visible;}
+  .chart .bar{fill:var(--clay);}
+  .chart .grid{stroke:var(--line);stroke-width:1;}
+  .chart .tick{fill:var(--ink-faint);font-size:11px;}
+  .chart .val{fill:var(--ink-dim);font-size:11px;}
+  .foot{margin-top:26px;color:var(--ink-faint);font-size:12px;line-height:1.6;}
+  .foot b{color:var(--ink-dim);}
+  @media(max-width:860px){
+    .tiles{grid-template-columns:repeat(3,1fr)}
+    .grid2{grid-template-columns:1fr}
+    .heat{font-size:9px}
+  }
+  @media(max-width:520px){ .tiles{grid-template-columns:repeat(2,1fr)} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1><span class="mark"></span> Instagram</h1>
+  <p class="sub">The Viditra account — every post, its hook and keyword, when it went out (IST and Berlin), and how it did at 48 h and 7 d. Rank is <b>saves + shares</b>.
+    <a href="/admin/answers">Answer Book usage &rarr;</a> · <a href="/admin/">Teacher funnel &rarr;</a></p>
+
+  <div class="tokenbar" id="tokenbar" style="display:none">
+    <div class="row" style="margin-bottom:0">
+      <input id="token" type="text" placeholder="Paste the Instagram dashboard token" autocomplete="off">
+      <button id="saveTok">Unlock</button>
+    </div>
+  </div>
+
+  <div class="row" id="controls" style="display:none">
+    <label style="font-size:13px;color:var(--ink-dim)">Since <input id="since" type="date"></label>
+    <div class="presets">
+      <button class="ghost" data-days="7">7 days</button>
+      <button class="ghost on" data-days="30">30 days</button>
+      <button class="ghost" data-days="90">90 days</button>
+      <button class="ghost" data-since="2026-09-15">Since launch</button>
+      <button id="refresh">Refresh</button>
+    </div>
+  </div>
+
+  <div class="msg" id="msg"></div>
+
+  <div id="report" style="display:none">
+    <div class="row">
+      <span class="chip" id="liveChip"><span class="dot"></span><span id="liveText">—</span></span>
+      <span class="chip" id="tokChip"><span class="dot"></span><span id="tokText">—</span></span>
+    </div>
+
+    <div class="tiles">
+      <div class="tile hero"><div class="lab">Reels this week</div><div class="num" id="t_reels">—<small> / 3</small></div><div class="note" id="t_week"></div></div>
+      <div class="tile"><div class="lab">Carousels this week</div><div class="num" id="t_car">—<small> / 3</small></div><div class="note">target three</div></div>
+      <div class="tile"><div class="lab">Stories this week</div><div class="num" id="t_sto">—<small> / 7</small></div><div class="note">one VSAQ a day</div></div>
+      <div class="tile"><div class="lab">Posts in period</div><div class="num" id="t_posts">—</div><div class="note" id="t_posts_note"></div></div>
+      <div class="tile"><div class="lab">Followers</div><div class="num" id="t_fol">—</div><div class="note" id="t_fol_note"></div></div>
+      <div class="tile"><div class="lab">Best send rate</div><div class="num" id="t_best">—</div><div class="note" id="t_best_note"></div></div>
+    </div>
+
+    <h2>Posts <small>newest first · numbers at the chosen horizon · <span id="horizonNote"></span></small>
+      <div class="presets">
+        <button class="ghost on" data-h="auto">auto</button>
+        <button class="ghost" data-h="at48">48 h</button>
+        <button class="ghost" data-h="at7d">7 d</button>
+        <button class="ghost" data-h="life">lifetime</button>
+      </div>
+    </h2>
+    <div class="tw"><table>
+      <thead><tr>
+        <th>Post</th><th>Keyword</th><th>Posted IST</th><th>Berlin</th>
+        <th class="n">Views</th><th class="n">Sends</th><th class="n">Saves</th><th class="n">Comments</th><th class="n">Likes</th>
+        <th class="n" title="avg watch time ÷ length">Compl.</th><th class="n" title="1 − skipped in first 3 s">Hook</th>
+        <th class="n" title="shares ÷ views">Send %</th><th class="n" title="saves ÷ views">Save %</th><th class="n" title="comments ÷ likes">Intent</th>
+        <th class="n" title="follows ÷ reach">Follow</th><th class="n" title="saves + shares">Rank</th><th class="n">Snaps</th>
+      </tr></thead>
+      <tbody id="postBody"></tbody>
+    </table></div>
+
+    <div class="grid2">
+      <div>
+        <h2>Format league <small>average at the basis horizon · 3 posts with no saves = drop the format</small></h2>
+        <div class="tw"><table><thead><tr><th>Format</th><th class="n">n</th><th class="n">Send %</th><th class="n">Save %</th><th class="n">Intent</th><th class="n">Compl.</th><th class="n">Hook</th><th class="n">Saves</th><th class="n">Sends</th></tr></thead><tbody id="fmtBody"></tbody></table></div>
+      </div>
+      <div>
+        <h2>Keyword league <small>comments ÷ likes per closing word</small></h2>
+        <div class="tw"><table><thead><tr><th>Keyword</th><th class="n">n</th><th class="n">Intent</th><th class="n">Comments</th><th class="n">Likes</th></tr></thead><tbody id="kwBody"></tbody></table></div>
+        <h2>Top and bottom <small>by rank</small></h2>
+        <div class="tw"><table><thead><tr><th></th><th>Post</th><th class="n">Rank</th><th class="n">Send %</th></tr></thead><tbody id="tbBody"></tbody></table></div>
+      </div>
+    </div>
+
+    <h2>Posting time × send rate <small>weekday · hour · cell = average send rate, small number = posts; grey = fewer than two</small>
+      <div class="presets">
+        <button class="ghost on" data-tz="ist">IST</button>
+        <button class="ghost" data-tz="berlin">Berlin</button>
+      </div>
+    </h2>
+    <div class="tw"><div class="heat" id="heat"></div></div>
+
+    <h2>Posting calendar <small>this period, both clocks</small></h2>
+    <div class="tw"><table><thead><tr><th>Post</th><th>Day (IST)</th><th>IST</th><th>Berlin</th></tr></thead><tbody id="calBody"></tbody></table></div>
+
+    <h2>Followers <small>total by day, from the daily pull</small></h2>
+    <div class="chart" id="folChart"></div>
+
+    <p class="foot" id="foot"></p>
+  </div>
+</div>
+
+<script>
+(function(){
+  var FN = 'https://dxwpkjfypzxrzgbevfnx.supabase.co/functions/v1/ig-stats';
+  var LAUNCH = '2026-09-15';
+  var $ = function(id){ return document.getElementById(id); };
+  var token = '';
+  try { token = localStorage.getItem('pm_ig_stats_token') || ''; } catch(e){}
+  var last = null, horizon = 'auto', tz = 'ist';
+
+  function pad(n){ return (n<10?'0':'')+n; }
+  function iso(d){ return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate()); }
+  function fmt(n){ return (n==null?'—':Number(n).toLocaleString('en-IN')); }
+  function pc(x, digits){ return (x==null) ? '—' : (Number(x)*100).toFixed(digits==null?1:digits)+'%'; }
+  function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g, function(c){ return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]); }); }
+  function when(s){ if(!s) return '—'; var d=new Date(s); return d.toLocaleDateString('en-IN',{day:'numeric',month:'short'})+' '+d.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'}); }
+  function rows(id, html, cols){ $(id).innerHTML = html || '<tr><td colspan="'+cols+'" class="empty">Nothing yet.</td></tr>'; }
+  function kindTag(k){ var c = k==='REEL'?'reel':k==='CAROUSEL'?'carousel':k==='STORY'?'story':''; return '<span class="tag kind '+c+'">'+esc(k)+'</span>'; }
+  function timeOf(s){ return s ? s.slice(11) : '—'; }   // "2026-09-22 19:05" -> "19:05"
+  function dayOf(s){ return s ? s.slice(0,10) : '—'; }
+
+  (function(){ var d=new Date(); d.setDate(d.getDate()-30); $('since').value = iso(d); })();
+  function currentSince(){ var v = $('since').value; return (v || LAUNCH) + 'T00:00:00+05:30'; }
+  function setMsg(t, err){ var m=$('msg'); m.textContent=t||''; m.className='msg'+(err?' err':''); }
+  function showAuthed(on){
+    $('tokenbar').style.display = on ? 'none' : 'block';
+    $('controls').style.display = on ? 'flex' : 'none';
+    $('report').style.display   = on ? 'block' : 'none';
+  }
+
+  function call(body){
+    body.token = token;
+    return fetch(FN, { method:'POST', headers:{ 'Content-Type':'application/json' }, body: JSON.stringify(body) })
+      .then(function(r){
+        if(r.status===401) throw new Error('Invalid token');
+        if(!r.ok) throw new Error('HTTP '+r.status);
+        return r.json();
+      });
+  }
+
+  function load(){
+    if(!token){ showAuthed(false); return; }
+    setMsg('Loading…');
+    call({ since: currentSince() })
+      .then(function(d){ last = d; render(d); showAuthed(true); setMsg(''); })
+      .catch(function(e){
+        if(/Invalid token/.test(e.message)){
+          token=''; try{localStorage.removeItem('pm_ig_stats_token');}catch(x){}
+          showAuthed(false); setMsg('That token was not accepted. Paste the correct one.', true);
+        } else { setMsg('Could not load: '+e.message, true); }
+      });
+  }
+
+  // which horizon object a post row shows: auto = 7 d if present, else 48 h (provisional)
+  function hz(p){
+    if(horizon==='auto') return { h: p.at7d || p.at48 || null, prov: !p.at7d && !!p.at48, name: p.at7d?'7 d':(p.at48?'48 h':'') };
+    return { h: p[horizon] || null, prov: false, name: horizon==='at48'?'48 h':horizon==='at7d'?'7 d':'lifetime' };
+  }
+
+  function isoWeekNow(){
+    // ISO week of today, IST — matches the server's IYYY-"W"IW bucket
+    var now = new Date(Date.now() + 5.5*3600*1000);
+    var d = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()));
+    var day = d.getUTCDay() || 7; d.setUTCDate(d.getUTCDate() + 4 - day);
+    var y0 = new Date(Date.UTC(d.getUTCFullYear(),0,1));
+    return d.getUTCFullYear() + '-W' + pad(Math.ceil((((d - y0)/86400000)+1)/7));
+  }
+
+  function renderPosts(d){
+    var posts = d.posts || [];
+    rows('postBody', posts.map(function(p){
+      var z = hz(p), h = z.h || {};
+      var title = p.title ? esc(p.title) : (p.caption ? esc(String(p.caption).split('\n')[0].slice(0,70)) : esc(p.shortcode));
+      var cls = p.registered ? '' : 'unreg';
+      var tags = (p.registered ? '' : '<span class="tag">unregistered</span>') + (z.prov ? '<span class="tag prov">provisional 48 h</span>' : '') + (!z.h ? '<span class="tag">pending</span>' : '');
+      var fmtTag = p.format ? '<span class="tag">'+esc(p.format)+'</span>' : '';
+      return '<tr class="'+cls+'"><td>'+kindTag(p.kind)+' <a href="'+esc(p.permalink)+'" target="_blank" rel="noopener">'+title+'</a>'+fmtTag+tags+
+        (p.hook_text ? '<span class="hook" title="'+esc(p.hook_text)+'">'+esc(p.hook_text)+'</span>' : '')+'</td>'+
+        '<td>'+esc(p.cta_keyword||'—')+'</td><td class="t">'+esc(p.posted_ist||'—')+'</td><td class="t">'+esc(timeOf(p.posted_berlin))+'</td>'+
+        '<td class="n">'+fmt(h.views)+'</td><td class="n">'+fmt(h.shares)+'</td><td class="n">'+fmt(h.saves)+'</td><td class="n">'+fmt(h.comments)+'</td><td class="n">'+fmt(h.likes)+'</td>'+
+        '<td class="n">'+pc(h.completion,0)+'</td><td class="n">'+pc(h.hook_hold,0)+'</td>'+
+        '<td class="n">'+pc(h.send_rate,2)+'</td><td class="n">'+pc(h.save_rate,2)+'</td><td class="n">'+pc(h.keyword_intent,0)+'</td>'+
+        '<td class="n">'+pc(h.follow_rate,2)+'</td><td class="n"><b>'+fmt(h.rank)+'</b></td><td class="n">'+fmt(p.snapshots)+'</td></tr>';
+    }).join(''), 17);
+    $('horizonNote').textContent = horizon==='auto' ? 'auto = 7 d when it exists, else 48 h (provisional)' : ('showing '+(horizon==='at48'?'48 h':horizon==='at7d'?'7 d':'lifetime'));
+  }
+
+  function renderHeat(d){
+    var cells = (tz==='ist' ? d.heatmap_ist : d.heatmap_berlin) || [];
+    var map = {}; var max = 0;
+    cells.forEach(function(c){ map[c.weekday+'-'+c.hour] = c; if(c.n>=2 && c.avg_send_rate>max) max = Number(c.avg_send_rate); });
+    var days = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+    var s = '<div></div>';
+    for(var h=0;h<24;h++) s += '<div class="hl">'+h+'</div>';
+    for(var w=1;w<=7;w++){
+      s += '<div class="wl">'+days[w-1]+'</div>';
+      for(var hh=0;hh<24;hh++){
+        var c = map[w+'-'+hh];
+        if(!c){ s += '<div class="c"></div>'; continue; }
+        var thin = c.n < 2, v = Number(c.avg_send_rate)||0;
+        var a = (!thin && max>0) ? (0.18 + 0.72*(v/max)) : 0.12;
+        s += '<div class="c'+(thin?' thin':'')+'" style="background:rgba(203,104,67,'+a.toFixed(2)+')" title="'+days[w-1]+' '+hh+':00 · '+c.n+' post'+(c.n===1?'':'s')+' · send '+pc(c.avg_send_rate,2)+' · save '+pc(c.avg_save_rate,2)+' · '+fmt(c.avg_views)+' views">'+c.n+'</div>';
+      }
+    }
+    $('heat').innerHTML = s;
+  }
+
+  function folChart(days){
+    var host = $('folChart');
+    var old = host.querySelector('svg'); if(old) old.remove();
+    var pts = days.filter(function(a){ return a.followers_total!=null; });
+    if(!pts.length){ host.insertAdjacentHTML('beforeend','<p class="empty">No account rows yet — the first daily pull writes one.</p>'); return; }
+    var W = 900, H = 180, padL = 40, padB = 26, padT = 14;
+    var max = Math.max(1, Math.max.apply(null, pts.map(function(a){ return Number(a.followers_total)||0; })));
+    var step = max<=10 ? 2 : max<=50 ? 10 : max<=200 ? 50 : max<=1000 ? 200 : Math.pow(10, Math.floor(Math.log10(max)));
+    var top = Math.ceil(max/step)*step;
+    var slot = (W-padL)/pts.length, bw = Math.min(24, slot*0.7);
+    var y = function(v){ return padT + (H-padB-padT) * (1 - v/top); };
+    var s = '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Followers by day">';
+    for(var t=0;t<=top;t+=step){
+      s += '<line class="grid" x1="'+padL+'" x2="'+W+'" y1="'+y(t)+'" y2="'+y(t)+'"/>';
+      s += '<text class="tick" x="'+(padL-6)+'" y="'+(y(t)+4)+'" text-anchor="end">'+t+'</text>';
+    }
+    pts.forEach(function(a,i){
+      var v = Number(a.followers_total)||0, x = padL + slot*i + (slot-bw)/2, yy = y(v), h = (H-padB) - yy;
+      var lab = new Date(a.day+'T00:00:00').toLocaleDateString('en-IN',{day:'numeric',month:'short'});
+      s += '<rect class="bar" x="'+x+'" y="'+yy+'" width="'+bw+'" height="'+Math.max(0,h)+'" rx="4" ry="4"><title>'+esc(lab)+': '+v+' followers'+(a.follower_count!=null?' ('+(a.follower_count>=0?'+':'')+a.follower_count+' that day)':'')+(a.reach!=null?' · reach '+a.reach:'')+'</title></rect>';
+      if(v>0) s += '<text class="val" x="'+(x+bw/2)+'" y="'+(yy-4)+'" text-anchor="middle">'+v+'</text>';
+      if(pts.length<=16 || i%Math.ceil(pts.length/12)===0)
+        s += '<text class="tick" x="'+(x+bw/2)+'" y="'+(H-8)+'" text-anchor="middle">'+esc(lab)+'</text>';
+    });
+    s += '</svg>';
+    host.insertAdjacentHTML('beforeend', s);
+  }
+
+  function render(d){
+    var lv = d.liveness || {}, tk = d.token || {};
+    // liveness — the row count is the proof the pull is alive
+    var lc = $('liveChip');
+    lc.className = 'chip' + (lv.last_pull_at ? '' : ' warn');
+    $('liveText').innerHTML = 'Last pull <b>'+esc(lv.last_pull_at ? when(lv.last_pull_at) : 'never')+'</b> · <b>'+fmt(lv.snapshot_rows)+'</b> snapshot rows · <b>'+fmt(lv.posts_total)+'</b> posts · <b>'+fmt(lv.posts_unregistered)+'</b> unregistered · <b>'+fmt((lv.registrations_pending||[]).length)+'</b> registrations waiting';
+    var tc = $('tokChip'), dl = tk.days_left;
+    tc.className = 'chip' + (dl==null ? ' warn' : dl < 7 ? ' bad' : dl < 14 ? ' warn' : '');
+    $('tokText').innerHTML = dl==null ? 'Meta token: <b>not set</b> — run ig:pull --bootstrap' : 'Meta token expires in <b>'+Math.floor(dl)+'</b> days' + (dl<14 ? ' — refresh runs at 10, re-authorise if it fails (runbook §2)' : '');
+
+    // this week
+    var wk = isoWeekNow(), w = null;
+    (d.week||[]).forEach(function(x){ if(x.iso_week===wk) w = x; });
+    $('t_reels').innerHTML = fmt(w?w.REEL:0)+'<small> / 3</small>';
+    $('t_car').innerHTML = fmt(w?w.CAROUSEL:0)+'<small> / 3</small>';
+    $('t_sto').innerHTML = fmt(w?w.STORY:0)+'<small> / 7</small>';
+    $('t_week').textContent = 'ISO week '+wk+' (IST)';
+    var posts = d.posts||[];
+    var byKind = {REEL:0,CAROUSEL:0,POST:0,STORY:0};
+    posts.forEach(function(p){ byKind[p.kind] = (byKind[p.kind]||0)+1; });
+    $('t_posts').textContent = fmt(posts.length);
+    $('t_posts_note').textContent = byKind.REEL+' reels · '+byKind.CAROUSEL+' carousels · '+byKind.STORY+' stories'+(byKind.POST?' · '+byKind.POST+' posts':'');
+    var acc = d.account||[], lastAcc = acc.length ? acc[acc.length-1] : null, firstAcc = acc.length ? acc[0] : null;
+    $('t_fol').textContent = lastAcc ? fmt(lastAcc.followers_total) : '—';
+    $('t_fol_note').textContent = (lastAcc && firstAcc && lastAcc.followers_total!=null && firstAcc.followers_total!=null) ? ((lastAcc.followers_total-firstAcc.followers_total>=0?'+':'')+fmt(lastAcc.followers_total-firstAcc.followers_total)+' since '+firstAcc.day) : 'from the daily pull';
+    var best = null;
+    posts.forEach(function(p){ var b = p.at7d||p.at48; if(b && b.send_rate!=null && p.kind!=='STORY' && (!best || Number(b.send_rate)>Number(best.b.send_rate))) best = {p:p,b:b}; });
+    $('t_best').textContent = best ? pc(best.b.send_rate,2) : '—';
+    $('t_best_note').textContent = best ? (best.p.title || best.p.shortcode) : 'no post with a 48 h row yet';
+
+    renderPosts(d);
+
+    var kill = {};
+    (d.kill_flags||[]).forEach(function(k){ kill[k.kind+'|'+k.format] = k; });
+    rows('fmtBody', (d.formats||[]).map(function(f){
+      var k = kill[f.kind+'|'+f.format];
+      return '<tr><td>'+kindTag(f.kind)+' '+esc(f.format)+(k?'<span class="tag kill">'+k.n+' posts, 0 saves — drop</span>':'')+(f.basis==='48h'?'<span class="tag prov">48 h</span>':f.basis==='mixed'?'<span class="tag">mixed</span>':'')+'</td>'+
+        '<td class="n">'+fmt(f.n)+'</td><td class="n">'+pc(f.avg_send_rate,2)+'</td><td class="n">'+pc(f.avg_save_rate,2)+'</td><td class="n">'+pc(f.avg_keyword_intent,0)+'</td><td class="n">'+pc(f.avg_completion,0)+'</td><td class="n">'+pc(f.avg_hook_hold,0)+'</td><td class="n">'+fmt(f.sum_saves)+'</td><td class="n">'+fmt(f.sum_shares)+'</td></tr>';
+    }).join(''), 9);
+
+    rows('kwBody', (d.keywords||[]).map(function(k){
+      return '<tr><td>'+esc(k.cta_keyword)+'</td><td class="n">'+fmt(k.n)+'</td><td class="n">'+pc(k.avg_keyword_intent,0)+'</td><td class="n">'+fmt(k.comments)+'</td><td class="n">'+fmt(k.likes)+'</td></tr>';
+    }).join(''), 5);
+
+    var tb = (d.top||[]).map(function(t){ return '<tr><td><span class="tag" style="color:var(--good)">top</span></td><td>'+kindTag(t.kind)+' '+esc(t.title)+(t.basis==='48h'?'<span class="tag prov">48 h</span>':'')+'</td><td class="n"><b>'+fmt(t.rank)+'</b></td><td class="n">'+pc(t.send_rate,2)+'</td></tr>'; })
+      .concat((d.bottom||[]).map(function(t){ return '<tr><td><span class="tag" style="color:var(--bad)">bottom</span></td><td>'+kindTag(t.kind)+' '+esc(t.title)+(t.basis==='48h'?'<span class="tag prov">48 h</span>':'')+'</td><td class="n">'+fmt(t.rank)+'</td><td class="n">'+pc(t.send_rate,2)+'</td></tr>'; }));
+    rows('tbBody', tb.join(''), 4);
+
+    renderHeat(d);
+
+    rows('calBody', posts.slice().sort(function(a,b){ return a.posted_at < b.posted_at ? 1 : -1; }).map(function(p){
+      var d0 = p.posted_ist ? new Date(p.posted_ist.replace(' ','T')+':00+05:30') : null;
+      var dayName = d0 ? d0.toLocaleDateString('en-IN',{weekday:'short', day:'numeric', month:'short'}) : '—';
+      return '<tr class="'+(p.registered?'':'unreg')+'"><td>'+kindTag(p.kind)+' '+esc(p.title || p.shortcode)+'</td><td class="t">'+esc(dayName)+'</td><td class="t">'+esc(timeOf(p.posted_ist))+'</td><td class="t">'+esc(dayOf(p.posted_berlin)===dayOf(p.posted_ist) ? timeOf(p.posted_berlin) : (p.posted_berlin||'—'))+'</td></tr>';
+    }).join(''), 4);
+
+    folChart(acc);
+
+    var g = d.generated_at ? new Date(d.generated_at).toLocaleString('en-IN') : '';
+    $('foot').innerHTML =
+      '<b>send rate</b> = shares ÷ views · <b>save rate</b> = saves ÷ views · <b>keyword intent</b> = comments ÷ likes · '+
+      '<b>completion</b> = average watch time ÷ reel length · <b>hook hold</b> = 1 − share skipped in the first 3 s · '+
+      '<b>follow rate</b> = follows ÷ reach · <b>rank</b> = saves + shares (R0).<br>'+
+      '48 h = the daily snapshot nearest 48 h (±18 h); 7 d = nearest 168 h (±24 h); lifetime = the latest. Instagram reports lifetime totals, so every horizon is a snapshot the daily pull kept. '+
+      'Authored columns (title, hook, keyword, format, length) come from viditra-film <b>npm run ig:register</b>; a post without them is <i>unregistered</i>. '+
+      'Updated '+esc(g)+'.';
+  }
+
+  $('saveTok').addEventListener('click', function(){
+    token = $('token').value.trim();
+    if(!token) return;
+    try{ localStorage.setItem('pm_ig_stats_token', token); }catch(e){}
+    load();
+  });
+  $('token').addEventListener('keydown', function(e){ if(e.key==='Enter') $('saveTok').click(); });
+  Array.prototype.forEach.call(document.querySelectorAll('#controls .presets .ghost'), function(b){
+    b.addEventListener('click', function(){
+      document.querySelectorAll('#controls .presets .ghost').forEach(function(x){ x.classList.remove('on'); });
+      b.classList.add('on');
+      if(b.dataset.since){ $('since').value = b.dataset.since; }
+      else { var d=new Date(); d.setDate(d.getDate()-Number(b.dataset.days)); $('since').value = iso(d); }
+      load();
+    });
+  });
+  Array.prototype.forEach.call(document.querySelectorAll('[data-h]'), function(b){
+    b.addEventListener('click', function(){
+      document.querySelectorAll('[data-h]').forEach(function(x){ x.classList.remove('on'); });
+      b.classList.add('on'); horizon = b.dataset.h; if(last) renderPosts(last);
+    });
+  });
+  Array.prototype.forEach.call(document.querySelectorAll('[data-tz]'), function(b){
+    b.addEventListener('click', function(){
+      document.querySelectorAll('[data-tz]').forEach(function(x){ x.classList.remove('on'); });
+      b.classList.add('on'); tz = b.dataset.tz; if(last) renderHeat(last);
+    });
+  });
+  $('refresh').addEventListener('click', load);
+  $('since').addEventListener('change', load);
+
+  showAuthed(!!token);
+  if(token) load();
+})();
+</script>
+</body>
+</html>

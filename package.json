@@ -25,6 +25,7 @@
     "quicklearn:chat": "npx tsx --env-file=.env.local src/scripts/quicklearn_chat_server.ts",
     "quicklearn:usage": "npx tsx --env-file=.env.local src/scripts/quicklearn_usage_report.ts",
     "quicklearn:usage:backfill": "npx tsx --env-file=.env.local src/scripts/quicklearn_usage_backfill.ts",
+    "ig:pull": "npx tsx --env-file=.env.local src/scripts/ig_pull.ts",
     "review:all": "npx tsx src/scripts/build_review_site.ts --all",
     "catalog:refresh": "npx tsx src/scripts/build_review_site.ts --catalog",
     "serve:review": "npx --yes http-server review-site -p 8080 -c-1",
