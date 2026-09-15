@@ -47,8 +47,13 @@ const ORIGIN = process.env.VIDI_ORIGIN ?? 'http://localhost:8100';
 const PROBE_TOKEN = process.env.AB_PROBE_TOKEN ?? '';
 // The important half: make the DEFAULT safe. Before this guard, a session that
 // simply forgot the token silently filed 19 probe asks as real student demand.
-if (!PROBE_TOKEN && /supabase\.co/.test(ENDPOINT)) {
-    console.error('refusing: AB_PROBE_TOKEN is unset and VIDI_ENDPOINT is the LIVE function.');
+// Length-matched to the SERVER's own test (answerbook-vidi-chat requires
+// >= 16 chars, so a short token is silently ignored there and every row
+// lands as answerbook_student). Testing only for empty would let
+// AB_PROBE_TOKEN=test123 sail through the guard and reproduce the exact
+// failure this exists to prevent, quietly instead of loudly.
+if (PROBE_TOKEN.length < 16 && /supabase\.co/.test(ENDPOINT)) {
+    console.error('refusing: AB_PROBE_TOKEN is missing or shorter than 16 chars, and VIDI_ENDPOINT is the LIVE function.');
     console.error('  This run would be counted as real students in ai_usage_log.');
     console.error('  Set AB_PROBE_TOKEN (see docs/notes/ANSWER_BOOK_ANALYTICS_RUNBOOK.md), or probe the local mirror.');
     process.exit(1);
