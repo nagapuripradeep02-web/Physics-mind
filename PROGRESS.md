@@ -1,5 +1,39 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 📗 SESSION — BiPC SECOND YEAR IS LIVE on answers.viditra.co: one artifact, three streams, shared Physics-II and Chemistry-II (2026-09-11, `feat/answerbook-bipc2-one-door`)
+
+**Bottom line: the founder said "deploy second year BiPC botany and zoology to answers.viditra.co", and the door's BiPC → second year cell now opens Botany-II, Zoology-II, Physics-II and Chemistry-II — 910 answers · 56 chapters — from the SAME physics_2/chemistry_2 cards the MPC cell reads.** Cloudflare version `cac315e4`, built 2026-09-11T13:47Z. Vidi edge function v23 → v24 (the PR #200 botany/zoology ladder, which had been merged but never deployed).
+
+### What blocked it, and the one decision that unblocked it
+Botany-II and Zoology-II had been audited and on master since PR #173 (2026-09-05), but the live site is ONE artifact built from `--stream=mpc,mpc_2`, and `bipc_2` shares `physics_2` and `chemistry_2` with `mpc_2` — the two-streams guard refused that ("both claim subject"). The interim answer had been a separate workers.dev preview config (`wrangler.answers-bipc.toml`), which was never actually deployed. The founder's ask IS the decision the build script was waiting for: a subject deliberately in two streams of one artifact.
+
+### The change (7 files, 61+/73−)
+- `build_answer_book.ts`: `SHARED_SUBJECTS = {physics_2, chemistry_2}` — the guard still refuses any OTHER subject in two streams. BiPC second-year cell live, note emptied. `PM_STREAM_SHORTS` emitted beside `PM_STREAM_YEARS`.
+- `notebook.js`: `applyYearLens` now sets `EFFECTIVE_STREAM` from `PM_STREAM_SHORTS`; the eyebrow reads it — the first stream's label (`STREAM_KEYS[0]` = "MPC") would otherwise have told a BiPC student they were reading the MPC book. Single-stream builds are unchanged (the lens is a no-op there).
+- `push_answer_content.ts` knows `bipc_2`; `build_og_card.ts` has copy for `mpc,mpc_2,bipc_2` ("MPC both years · BiPC second year" — BiPC first year is NOT in it).
+- `package.json`: `build:answers:gated:live` / `content:push:live` = `mpc,mpc_2,bipc_2`; `deploy:answers` builds that. `wrangler.answers.toml` serves `dist-gated-mpc+mpc_2+bipc_2`. `wrangler.answers-bipc.toml` deleted.
+
+### Deploy chain, in order, with the evidence
+1. Clean desk from origin/master (`fc7bc9ba`), tree clean at every build.
+2. `content:push:live` — 120 units / 2,906 questions upserted; all 8 existing free rows printed by name, unchanged.
+3. `UPDATE ab_content SET free = true` for `botany_2-1` Transport in Plants + `zoology_2-1` Human Anatomy and Physiology-I (founder's pick — chapter 1 of each, mirrors `physics_2-1`). 10 free rows now.
+4. `deploy:answers` → live page parsed: 120 units (botany_2 14, zoology_2 8), BiPC second year live 56/910, `gated:true`, Zoology-II steps in the page carry `{id, marks}` only.
+5. Live content endpoint from a FRESH device: `botany_2-1` and `zoology_2-1` serve full bundles (20 q each, step text present); `botany_2-7` answers `locked`; the unlocked list is the 10 free keys.
+6. `supabase functions deploy answerbook-vidi-chat` → v24; `get_edge_function` read back carries `ts_ipe_b2_ → botany_2` etc.
+
+### Verified before deploying
+tsc 0 · vitest 459/459 · three-stream build 2946/3330 cards, 120 units · headless door walk of the built artifact: every group tile, every year cell, eyebrow "Second year · BiPC" after the BiPC choice and "First year · MPC" / "Second year · MPC" after the MPC ones, choice survives reload, MEC still dead-ends as DIVs, a forwarded Botany-II and Zoology-II link opens the card without the door, 0 page errors.
+
+### Also shipped by this deploy (master since the last deploy, 2026-09-03)
+Maths-2A written out in full (PR #202, 257 cards) and the Botany-II audit repairs (89 cards) — merged content that had not reached the live site.
+
+### Two gated e2e failures — pre-existing, proved by control
+`smoke:answers:gated` (against `dist-gated-mpc`) is 29/31 WITH this change and 29/31 WITHOUT it (reverted in the working tree, rebuilt, re-run — both failures reproduce). Both are stale premises against newer master content, not regressions: (1) "not one answer byte" uses `Statement:` as a leak canary and the new Archimedes card has a `mark_split` label "Statement: upthrust equals weight displaced" — metadata the gated page keeps by design; (2) "never sold as locked" expects physics Unit 14 to have 0 ready, and it is authored 15/15 since 2026-09-02. Left for a follow-up; not widened into this deploy.
+
+### Open
+- BiPC FIRST year (Botany 13 ch, Zoology 8 ch — on master, never examiner-audited) still says "written, being checked" on the door. Needs the audit the second-year papers had before its cell goes live.
+- The main checkout `C:\Tutor\physics-mind` master is 19 ahead / 60 behind origin (19 local docs commits about EAPCET probes never pushed). Not touched this session.
+- `viditra-answers-bipc` worker: never existed on the account — nothing to delete.
 ## 🧪 SESSION — The AI solver measured: 13 runs, ~3,000 calls, ~$11; routing decided; the reviewer and the generator designed (2026-09-10/11, `master`, local commits only)
 
 **Bottom line: the "student photographs a question" path now rests on measured numbers instead of beliefs. DeepSeek V4.1 Flash solves text questions at ~99% for ~$0.001; Gemini 3.7 Flash solves anything drawn (figures, circuits, organic structures) at 144/148 on the hardest set for ~$0.006 in 5 s; when the two agree they were right 129 of 129 times, and every disagreement contained the wrong model. Two things that sounded like fixes were measured as no-gain (a Python sandbox, retrieval of similar bank questions), one constraint turned out to be free (0 of 506 solutions used a beyond-Class-12 method), and three official EAPCET keys turned out to be wrong.** Everything is in `docs/MODEL_PROBES.md` §1–24 (the living log every future probe appends to) with the raw rows under `docs/reports/model_probes/data/`.
