@@ -1,0 +1,56 @@
+name: ig-pull
+
+# The daily Instagram insights snapshot (docs/notes/INSTAGRAM_INSIGHTS_RUNBOOK.md).
+#
+# Instagram reports lifetime totals per post; the 48 h / 7 d numbers the
+# founder ranks on exist only because this runs every day. 12:30 UTC is
+# 18:00 IST / 14:30 Berlin: with the usual evening (~19:00 IST) posting slot a
+# reel is snapshotted at ~23 h, ~47 h, ~71 h … ~167 h, which is what the
+# ±18 h / ±24 h horizon windows in ig_horizon() expect.
+#
+# Schedules fire ONLY from the default branch — merge this file to master
+# before expecting a run. A red run is the founder's free alert: the script
+# exits 1 when the Meta token has under 7 days left or any step failed.
+#
+# Secrets (repo → Settings → Secrets → Actions): NEXT_PUBLIC_SUPABASE_URL and
+# SUPABASE_SERVICE_ROLE_KEY — the same names as .env.local, so the script has
+# one code path. The Meta token is NOT a secret here: it lives in
+# ig_admin_config and the job refreshes it in place.
+on:
+  schedule:
+    - cron: '30 12 * * *'
+    # A second run halves the 48 h error (snapshots ~12 h apart). Enable when
+    # the first week's numbers show it matters — pass `--slot 1` so the row
+    # keys differ:
+    # - cron: '30 0 * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: ig-pull
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  pull:
+    name: ig:pull
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+      SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+      npm_config_yes: 'true'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24.11.0'
+      # No `npm ci`: the script imports only node built-ins and src/lib/ig/*,
+      # so a pinned global tsx is the whole toolchain (~20 s per run).
+      - name: Install tsx
+        run: npm i -g tsx@4.21.0
+      - name: Pull insights
+        run: tsx src/scripts/ig_pull.ts
