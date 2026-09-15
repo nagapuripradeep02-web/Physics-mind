@@ -32,17 +32,33 @@ the R0 promotion table — lives in the reel studio:
    T=<token>; U=<ig_user_id>; V=https://graph.instagram.com/v25.0
    curl -s "$V/$U/media?fields=id,media_type,media_product_type,caption,permalink,timestamp,thumbnail_url,like_count,comments_count&access_token=$T"
    #   -> {"data":[...]} (empty before the first post; HTTP 200)
-   curl -s "$V/<reel-media-id>/insights?metric=views,reach,likes,comments,shares,saved,total_interactions,ig_reels_avg_watch_time,ig_reels_video_view_total_time,reels_skip_rate,reposts&access_token=$T"
+   curl -s "$V/<reel-media-id>/insights?metric=views,reach,likes,comments,shares,saved,total_interactions,ig_reels_avg_watch_time,ig_reels_video_view_total_time,reels_skip_rate&access_token=$T"
    #   -> one entry per metric; note whether reels_skip_rate comes back as 35 or 0.35
-   curl -s "$V/<carousel-media-id>/insights?metric=views,reach,likes,comments,shares,saved,total_interactions,profile_visits,follows,reposts&access_token=$T"
-   curl -s "$V/<story-media-id>/insights?metric=views,reach,replies,shares,follows,profile_visits,link_clicks,reposts&access_token=$T"
+   curl -s "$V/<carousel-media-id>/insights?metric=views,reach,likes,comments,shares,saved,total_interactions,profile_visits,follows&access_token=$T"
+   curl -s "$V/<story-media-id>/insights?metric=views,reach,replies,shares,follows,profile_visits,link_clicks&access_token=$T"
    #   -> stories under 5 views return error code 10 ("no data yet") — expected
    curl -s "$V/$U/insights?metric=reach,profile_views,accounts_engaged,total_interactions&period=day&metric_type=total_value&access_token=$T"
    curl -s "$V/$U/insights?metric=follower_count&period=day&access_token=$T"
-   #   -> rejected under 100 followers — expected; the job falls back to followers_count
+   #   -> under 100 followers it is silently OMITTED from the response (verified 2026-09-15) — the job falls back to followers_count
    curl -s "https://graph.instagram.com/refresh_access_token?grant_type=ig_refresh_token&access_token=$T"
    #   -> {"access_token":"…","token_type":"bearer","expires_in":5183944} (token must be ≥ 24 h old)
    ```
+
+   **Verified 2026-09-15 with the real token (app "Viditra" 1638861014239075, IG app
+   3608351842661937, user 17841434532927112, reel `DdT4onxKIZi`):** the media list and the
+   REEL metric set work; **`reposts` is rejected** ("endpoint does not support the metrics:
+   reposts") so it is no longer requested; `reels_skip_rate` comes back as a PERCENT
+   (`59.4`) and the parser divides by 100; the day-period account insights return
+   `reach, profile_views, accounts_engaged, total_interactions` and **silently omit
+   `follower_count`** under 100 followers (no error — the row's `follower_count` is null,
+   `followers_total` comes from the user node); the refresh endpoint answered at once with
+   `expires_in: 5183738` and the permission list `instagram_business_basic,
+   instagram_business_manage_messages, instagram_business_content_publish,
+   instagram_business_manage_insights, instagram_business_manage_comments`. The token
+   was generated on the dashboard's "API setup with Instagram login" page after adding
+   the account as an **Instagram Tester** (App roles → Add People → Instagram Tester →
+   the account accepts under Instagram Settings → Apps and websites → Tester invitations)
+   — without that role the "Add account" popup completes but no account appears.
 
    A metric the API rejects is not a failure: the job drops it, logs
    `metric rejected: <name>`, retries once, and stores the whole response in

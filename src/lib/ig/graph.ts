@@ -32,14 +32,17 @@ export const MEDIA_FIELDS =
  * (see `rejectedMetric`), so a renamed metric costs one logged line, not a
  * failed run.
  */
+// `reposts` is NOT requested: verified 2026-09-15 against the live reel DdT4onxKIZi — v25.0
+// answers "endpoint does not support the metrics: reposts". The column and the parser
+// mapping stay, so re-adding it is one word here if Meta ships it.
 export const METRICS: Record<PostKind, readonly string[]> = {
     REEL: [
         'views', 'reach', 'likes', 'comments', 'shares', 'saved', 'total_interactions',
-        'ig_reels_avg_watch_time', 'ig_reels_video_view_total_time', 'reels_skip_rate', 'reposts',
+        'ig_reels_avg_watch_time', 'ig_reels_video_view_total_time', 'reels_skip_rate',
     ],
-    CAROUSEL: ['views', 'reach', 'likes', 'comments', 'shares', 'saved', 'total_interactions', 'profile_visits', 'follows', 'reposts'],
-    POST: ['views', 'reach', 'likes', 'comments', 'shares', 'saved', 'total_interactions', 'profile_visits', 'follows', 'reposts'],
-    STORY: ['views', 'reach', 'replies', 'shares', 'follows', 'profile_visits', 'link_clicks', 'reposts'],
+    CAROUSEL: ['views', 'reach', 'likes', 'comments', 'shares', 'saved', 'total_interactions', 'profile_visits', 'follows'],
+    POST: ['views', 'reach', 'likes', 'comments', 'shares', 'saved', 'total_interactions', 'profile_visits', 'follows'],
+    STORY: ['views', 'reach', 'replies', 'shares', 'follows', 'profile_visits', 'link_clicks'],
 };
 
 export function metricSetFor(kind: PostKind): readonly string[] {
