@@ -11,8 +11,16 @@
  * small "wrong answer? tell us" link. Nothing about which model answered is
  * shown (founder, 2026-09-11). When the two workings disagree the card says
  * "Not sure", gives no answer and shows both workings. The image is never
- * stored anywhere. "I tried, here is my work" (the reviewer) is not built yet
- * and is not offered while the solver is on.
+ * stored anywhere.
+ *
+ * With EP_REVIEW_BASE set as well, "I tried, here is my work" (85_review.js)
+ * asks for the student's final answer, then a photo of the working. The
+ * question is solved first, with no card shown (an answer checked once is
+ * confirmed a second way; a "not sure" answer ends in an honest card and no
+ * working is sent). Then the working photo goes ONCE to ep-review, which
+ * reads it and returns a verdict: correct, one line to fix, or not sure.
+ * Three attempts, then the full solution. Without EP_REVIEW_BASE the chip is
+ * not offered and nothing else here changes.
  *
  * Without EP_SOLVE_BASE nothing is sent: the photo is shown back from an
  * object URL, the three original chips show and the flow ends in the
@@ -27,10 +35,20 @@
 var Solutions = (function () {
   var ui = Screens.ui;
   var BASE = (window.EP_SOLVE_BASE || '').trim();
+  // 85_review.js loads after this file: read its base here, call Review.* only at event time.
+  var REVIEW = !!BASE && !!(window.EP_REVIEW_BASE || '').trim();
+  var MAX_ATTEMPTS = 3;
   var MAX_BYTES = 15 * 1024 * 1024;        // a file the page will even open
   var MAX_SEND = 1.5 * 1024 * 1024;        // the function's body cap, after downscaling
   var thread, chips, input, sendBtn, camera, gallery;
-  var ctx = null;          // { ck, stage: 'start' | 'want' | 'work' | 'na' | 'solving' | 'solved', file }
+  /* ctx: { ck, stage, file, work, typedFinal, solved, rv, armed }
+   *   stage: start | want | final | work | na | solving | solved | reviewing | reviewed | value
+   *   file: the question photo (a working photo never lands here); work: the working photo
+   *   typedFinal: the final answer the student typed (null = none yet)
+   *   solved: the hidden solve reply the working is checked against
+   *   rv: { attempt, reviewId, qid, askLine, valueAt } — the review state; attempt is the server's number
+   *   armed: the slot the next photo fills after Retake; otherwise the stage decides */
+  var ctx = null;
   var urls = [];
   var timers = [];
 
@@ -48,8 +66,8 @@ var Solutions = (function () {
   function go(hash) { return function () { location.hash = hash; }; }
   function weaknessChip() { return chip(STR.sol_chip_weakness, 'weakness', go('#/physics')); }
   function photoChips(extra) {
-    setChips([chip(STR.sol_chip_camera, 'camera', function () { camera.click(); }),
-              chip(STR.sol_chip_gallery, 'gallery', function () { gallery.click(); })].concat(extra || []));
+    setChips([chip(STR.sol_chip_camera, 'camera', function () { ctx.armed = null; camera.click(); }),
+              chip(STR.sol_chip_gallery, 'gallery', function () { ctx.armed = null; gallery.click(); })].concat(extra || []));
   }
   function revoke() {
     for (var i = 0; i < urls.length; i++) { try { URL.revokeObjectURL(urls[i]); } catch (e) {} }
@@ -57,6 +75,19 @@ var Solutions = (function () {
   }
   function schedule(fn, ms) { timers.push(setTimeout(fn, ms)); }
   function clearTimers() { for (var i = 0; i < timers.length; i++) clearTimeout(timers[i]); timers = []; }
+  function freshRv() { return { attempt: 0, reviewId: null, qid: null, askLine: null, valueAt: null }; }
+  function resetReview() { ctx.work = null; ctx.typedFinal = null; ctx.solved = null; ctx.rv = freshRv(); }
+  function busy() { return ctx.stage === 'solving' || ctx.stage === 'reviewing'; }
+  /** Back to the start: a new question, nothing kept from the last one. */
+  function restart() {
+    resetReview();
+    ctx.stage = 'start';
+    ctx.file = null;
+    ctx.armed = null;
+    input.placeholder = STR.sol_placeholder;
+    say(STR.sol_hello);
+    photoChips();
+  }
 
   function greet() {
     say(STR.sol_hello);
@@ -65,44 +96,62 @@ var Solutions = (function () {
   }
 
   // ── the photo: shown back; sent only when the student asks for a solution ──
+  // The slot is decided when the file ARRIVES: the working while the desk is
+  // waiting for it (or after Retake on a working photo), else the question.
   function onFile(kind, file) {
     if (!file) return;
-    Track.log('sol_photo', { kind: kind, bytes: file.size, type: file.type || '' });
+    var slot = ctx.armed || (ctx.stage === 'work' ? 'work' : 'file');
+    ctx.armed = null;
+    Track.log('sol_photo', { kind: kind, bytes: file.size, type: file.type || '', slot: slot });
     if (file.size > MAX_BYTES) { say(STR.sol_too_large(Math.round(file.size / 1048576))); photoChips(); return; }
     var url = URL.createObjectURL(file);
     urls.push(url);
     var img = document.createElement('img');
     img.alt = '';
     var wrap = el('div', 'ep-photo');
+    wrap.setAttribute('data-slot', slot);
     wrap.appendChild(img);
-    wrap.appendChild(el('div', 'ep-photo-cap', BASE ? STR.sol_photo_caption_send : STR.sol_photo_caption));
+    wrap.appendChild(el('div', 'ep-photo-cap', slot === 'work' && REVIEW ? STR.rev_photo_caption : BASE ? STR.sol_photo_caption_send : STR.sol_photo_caption));
     var row = el('div', 'ep-photo-row');
-    row.appendChild(ui.button('btn', STR.sol_retake, function () { (kind === 'gallery' ? gallery : camera).click(); }));
+    row.appendChild(ui.button('btn', STR.sol_retake, function () {
+      if (busy()) return;
+      ctx.armed = slot;                                    // the new photo fills the same slot
+      (kind === 'gallery' ? gallery : camera).click();
+    }));
     row.appendChild(ui.button('btn', STR.sol_remove, function () {
+      if (busy()) return;
       if (wrap.parentNode) wrap.parentNode.removeChild(wrap);
-      ctx.stage = 'start';
-      ctx.file = null;
-      say(STR.sol_hello);
-      photoChips();
+      ctx[slot] = null;
+      if (slot === 'work' && REVIEW) { askWork(); return; }
+      restart();
     }));
     wrap.appendChild(row);
     img.onload = function () {
       thread.appendChild(wrap);
       wrap.scrollIntoView({ block: 'end' });
-      ctx.file = file;
-      afterPhoto();
+      ctx[slot] = file;
+      afterPhoto(slot);
     };
     img.onerror = function () { say(STR.sol_bad_file); photoChips(); };
     img.src = url;
   }
-  function afterPhoto() {
-    if (ctx.stage === 'work') { notAvailable(); return; }
+  function afterPhoto(slot) {
+    if (slot === 'work') {
+      ctx.rv.valueAt = null;                               // a new page: a value typed for an old line no longer applies
+      if (REVIEW) startReview(); else notAvailable();
+      return;
+    }
+    resetReview();                                         // a new question: the old working, final and answer are gone
     ctx.stage = 'want';
     say(STR.sol_what);
     if (BASE) {
+      var list = [];
+      if (REVIEW) list.push(chip(STR.sol_chip_tried, 'tried', function () { say(STR.sol_chip_tried, 'student'); tried(); }));
+      list.push(chip(STR.sol_chip_solve, 'solution', function () { say(STR.sol_chip_solve, 'student'); solve('solve'); }));
       var explain = chip(STR.sol_chip_explain, 'stuck', function () { say(STR.sol_chip_explain, 'student'); solve('explain'); });
       explain.cls = 'ep-chip-quiet';
-      setChips([chip(STR.sol_chip_solve, 'solution', function () { say(STR.sol_chip_solve, 'student'); solve('solve'); }), explain]);
+      list.push(explain);
+      setChips(list);
       return;
     }
     setChips([
@@ -133,9 +182,9 @@ var Solutions = (function () {
     return fetch(BASE, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
       .then(function (r) { return r.json().then(function (j) { return { status: r.status, body: j }; }); });
   }
-  function locked() {
+  function locked(text) {
     ctx.stage = 'want';
-    say(STR.sol_locked);
+    say(text || STR.sol_locked);
     var m = el('div', 'ep-sol-msg tutor');
     var a = el('a', 'btn btn-primary ep-sol-unlock', STR.sol_locked_cta);
     a.href = '#/physics/unlock';
@@ -238,6 +287,189 @@ var Solutions = (function () {
     photoChips([weaknessChip()]);
   }
 
+  // ── the reviewer: "I tried, here is my work" (85_review.js) ─────────────
+  /** The chip. The plan is checked before a byte is read. */
+  function tried() {
+    if (typeof Gate !== 'undefined' && Gate.known() && Gate.locked()) { locked(STR.rev_locked); return; }
+    ctx.stage = 'final';
+    say(STR.rev_final_q);
+    input.placeholder = STR.rev_final_placeholder;
+    input.focus();
+    setChips([chip(STR.rev_chip_no_final, 'no_final', function () { say(STR.rev_chip_no_final, 'student'); ctx.typedFinal = null; askWork(); })]);
+  }
+  /** The box, in the two stages that read it: the final answer, or the value at one line. */
+  function typed(text) {
+    text = String(text || '').trim().slice(0, 120);
+    if (!text) return;
+    say(text, 'student');
+    if (ctx.stage === 'value') {
+      Track.log('rev_value', { line: ctx.rv.askLine, chars: text.length, attempt: ctx.rv.attempt });
+      ctx.rv.valueAt = { n: ctx.rv.askLine, value: text };
+      review();
+      return;
+    }
+    Track.log('rev_final', { chars: text.length });
+    ctx.typedFinal = text;
+    askWork();
+  }
+  function askWork(text) {
+    ctx.stage = 'work';
+    ctx.armed = null;
+    input.placeholder = STR.sol_placeholder;
+    say(text || STR.rev_work_photo);
+    photoChips();
+  }
+  /** Downscale a photo for sending; fail(text) on a file the phone cannot send, else ok(b64, mediaType, bytes). */
+  function shrinkThen(file, fail, ok) {
+    Photo.shrink(file, function (b64, mediaType, bytes) {
+      if (!b64) { fail(STR.sol_bad_file); return; }
+      if (bytes > MAX_SEND) { fail(STR.sol_too_large(Math.round(bytes / 1048576))); return; }
+      ok(b64, mediaType, bytes);
+    });
+  }
+  /* The honest card: the answer is not verified (the two workings disagree,
+   * or the reviewer has no reference), so no working is judged against it. */
+  function notVerified(why) {
+    Track.log('rev_noref', { why: why || null });
+    ctx.stage = 'na';
+    var card = el('div', 'ep-na ep-na-review');
+    card.appendChild(el('div', 'ep-eyebrow', STR.rev_noref_eyebrow));
+    card.appendChild(el('div', 'ep-na-title', STR.rev_noref_title));
+    card.appendChild(el('p', 'ep-na-body', STR.rev_noref_body));
+    thread.appendChild(card);
+    card.scrollIntoView({ block: 'end' });
+    setChips([chip(STR.sol_chip_solve, 'solution', function () { say(STR.sol_chip_solve, 'student'); solve('solve'); }), weaknessChip()]);
+  }
+  function merge(a, b) {
+    var o = {}, k;
+    for (k in a) if (Object.prototype.hasOwnProperty.call(a, k)) o[k] = a[k];
+    for (k in b) if (Object.prototype.hasOwnProperty.call(b, k)) o[k] = b[k];
+    return o;
+  }
+  /** The past question the solver's read matches on the phone, when the match is sure. */
+  function bankMatch(b) {
+    var text = String(b.question_text || '').trim();
+    if (!text || typeof Match === 'undefined') return null;
+    var r = Match.find(text, candidates(), ctx.ck);
+    return r.hits.length && r.hits[0].score >= 0.8 ? r.hits[0].qid : null;
+  }
+  /* Solve the question with no card shown, so the review has something sure
+   * to check against: "checked two ways" is kept; "checked once" is confirmed
+   * a second way first; "not sure" (or a confirm that does not settle it)
+   * ends in the honest card. cb() runs once ctx.solved is set. */
+  function solveHidden(cb) {
+    var my = ctx;
+    var file = ctx.file;
+    if (!file) { restart(); return; }
+    ctx.stage = 'solving';
+    setChips([]);
+    var wait = say(STR.rev_checking_q);
+    var t0 = Date.now();
+    schedule(function () { wait.firstChild.textContent = STR.rev_still; }, 22000);
+    function done() { clearTimers(); if (wait.parentNode) wait.parentNode.removeChild(wait); }
+    function fail(text) { done(); say(text); ctx.stage = 'work'; photoChips([weaknessChip()]); }
+    function logIt(action, b, ms, failed) {
+      Track.log('rev_solve', { action: action, ms: ms, locked: !!(b && b.locked), ok: !!(b && b.ok), reason: (b && b.reason) || null,
+                               label: (b && b.label) || null, source: (b && b.source) || null, failed: !!failed });
+    }
+    function settle(b) {
+      ctx.solved = b;
+      ctx.rv.qid = bankMatch(b);
+      cb();
+    }
+    shrinkThen(file, fail, function (b64, mediaType) {
+      post({ action: 'solve', ask: 'solve', image: b64, media_type: mediaType })
+        .then(function (r) {
+          if (my !== ctx) return;
+          var b = r.body || {};
+          logIt('solve', b, Date.now() - t0);
+          if (b.locked) { done(); if (typeof Gate !== 'undefined') Gate.refresh(); locked(STR.rev_locked); return; }
+          if (!b.ok) { fail(STR.sol_reason[b.reason] || STR.sol_down); return; }
+          if (b.label === 'two_ways') { done(); settle(b); return; }
+          if (b.label !== 'once') { done(); notVerified(b.label || 'unsure'); return; }
+          // checked once: have it checked a second way before any working is judged against it
+          var t1 = Date.now();
+          post({ action: 'confirm', fingerprint: b.fingerprint })
+            .then(function (r2) {
+              if (my !== ctx) return;
+              done();
+              var c = r2.body || {};
+              logIt('confirm', c, Date.now() - t1);
+              if (c.locked) { if (typeof Gate !== 'undefined') Gate.refresh(); locked(STR.rev_locked); return; }
+              if (!c.ok || c.label !== 'two_ways') { notVerified(c.ok ? (c.label || 'unsure') : (c.reason || 'confirm_failed')); return; }
+              settle(merge(b, c));
+            })
+            .catch(function () { if (my !== ctx) return; logIt('confirm', null, Date.now() - t1, true); fail(STR.rev_down); });
+        })
+        .catch(function () { if (my !== ctx) return; logIt('solve', null, Date.now() - t0, true); fail(STR.sol_down); });
+    });
+  }
+  function startReview() {
+    if (ctx.solved) { review(); return; }
+    solveHidden(review);
+  }
+  /* ONE review: the working photo, the fingerprint of the hidden solve, the
+   * typed final and the attempt number — never a solve field. A typed value
+   * for one unreadable line re-sends the same photo under the SAME attempt. */
+  function review() {
+    var my = ctx;
+    if (typeof Gate !== 'undefined' && Gate.known() && Gate.locked()) { locked(STR.rev_locked); return; }
+    var file = ctx.work;
+    if (!file || !ctx.solved) { askWork(); return; }
+    ctx.stage = 'reviewing';
+    input.placeholder = STR.sol_placeholder;
+    setChips([]);
+    var wait = say(STR.rev_checking_work);
+    schedule(function () { wait.firstChild.textContent = STR.rev_still; }, 22000);
+    function done() { clearTimers(); if (wait.parentNode) wait.parentNode.removeChild(wait); }
+    var valueAt = ctx.rv.valueAt;
+    ctx.rv.valueAt = null;                                 // sent once; after a failure the desk asks for a new photo
+    shrinkThen(file, function (text) { done(); say(text); ctx.stage = 'work'; photoChips([weaknessChip()]); }, function (b64, mediaType) {
+      var body = { action: 'review', fingerprint: my.solved.fingerprint,
+                   attempt_no: valueAt ? Math.max(1, my.rv.attempt) : my.rv.attempt + 1, image: b64, media_type: mediaType };
+      if (my.typedFinal) body.typed_final = my.typedFinal;
+      if (valueAt) body.typed_value_at_line = valueAt;
+      Review.start(host(my, done), body);
+    });
+  }
+  /* What Review gets of this desk: the thread and its helpers, the state it
+   * may read, and one callback per outcome. `my` is the ctx the request was
+   * made under; live() is false once the student has left the view. */
+  function host(my, done) {
+    return {
+      thread: thread, say: say, chip: chip, setChips: setChips, photoChips: photoChips, weaknessChip: weaknessChip, paper: paper,
+      ck: my.ck, qid: my.rv.qid, max: MAX_ATTEMPTS,
+      attempt: function () { return my.rv.attempt; },
+      live: function () { return my === ctx; },
+      done: done,
+      onLocked: function () { if (typeof Gate !== 'undefined') Gate.refresh(); locked(STR.rev_locked); },
+      onFail: function (reason) {
+        if (reason === 'no_reference' || reason === 'confirm_first') { notVerified(reason); return; }
+        say(STR.rev_reason[reason] || STR.rev_down);
+        if (reason === 'cap' || reason === 'quiet') {
+          // checking is over for today; the solution already in hand costs nothing to show
+          my.stage = 'want';
+          setChips([chip(STR.sol_chip_solve, 'solution', function () { say(STR.sol_chip_solve, 'student'); render(my.solved); }), weaknessChip()]);
+          return;
+        }
+        my.stage = 'work';
+        photoChips([weaknessChip()]);
+      },
+      onVerdict: function (b) {
+        my.rv.attempt = typeof b.attempt_no === 'number' ? b.attempt_no : my.rv.attempt + 1;
+        my.rv.reviewId = b.review_id == null ? null : b.review_id;
+        my.rv.askLine = b.ask_line || null;
+        my.stage = 'reviewed';
+      },
+      onNext: function () { askWork(STR.rev_next_photo); },
+      onRetake: function () { askWork(); },
+      onValue: function (n) { my.stage = 'value'; my.rv.askLine = n; input.placeholder = STR.rev_value_placeholder(n); input.focus(); },
+      onSolution: function () { say(STR.rev_solution_now); render(my.solved); },
+      onExhausted: function () { say(STR.rev_exhausted); render(my.solved); },
+      onRestart: restart
+    };
+  }
+
   // ── typed: matched on the phone against the public pool ────────────────
   /** Every verified question of every chapter: the ones a fix page can open. */
   function candidates() {
@@ -298,8 +530,11 @@ var Solutions = (function () {
     setChips([]);
     revoke();
     clearTimers();
-    ctx = { ck: ck || null, stage: 'start', file: null };
-    sendBtn.onclick = function () { var t = input.value; input.value = ''; ask(t); };
+    ctx = { ck: ck || null, stage: 'start', file: null, work: null, typedFinal: null, solved: null, rv: freshRv(), armed: null };
+    sendBtn.onclick = function () {
+      var t = input.value; input.value = '';
+      if (ctx.stage === 'final' || ctx.stage === 'value') typed(t); else ask(t);
+    };
     input.onkeydown = function (e) { if (e.key === 'Enter') { e.preventDefault(); sendBtn.onclick(); } };
     camera.onchange = function () { var f = camera.files && camera.files[0]; camera.value = ''; onFile('camera', f); };
     gallery.onchange = function () { var f = gallery.files && gallery.files[0]; gallery.value = ''; onFile('gallery', f); };

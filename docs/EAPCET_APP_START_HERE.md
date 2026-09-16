@@ -104,6 +104,7 @@ npx vitest run src/lib/eapcet                                          # 101 uni
 npm run smoke:eapcet                                                   # 13 e2e, the finder
 npm run smoke:eapcet:learn                                             # 9 e2e, lessons and solutions
 npx playwright test e2e/eapcet_photo.spec.ts                           # 2 e2e, show me your working
+npx playwright test e2e/eapcet_review.spec.ts                          # 7 e2e, I tried, here is my work (the reviewer; also in smoke:eapcet:learn)
 npm run smoke:eapcet:students                                          # the three-student spec (3003 draws each)
 npx tsc --noEmit -p tsconfig.json
 npm run content:push:eapcet -- --pool=<release>                        # verified solutions + routes -> ep_solutions

@@ -4,7 +4,7 @@
  * file:// (the founder's phone, the e2e suite), so every module is a classic
  * script concatenated by src/scripts/build_eapcet_app.ts in file-name order:
  * 00_core, 05_strings, 10_track, 20_sync, 30_auth, 40_gate, 50_data, 55_diag,
- * 60_run, 70_panel, 80_screens, 90_boot.
+ * 60_run, 70_panel, 80_screens, 84_solutions, 85_review, 90_boot.
  */
 var $ = function (id) { return document.getElementById(id); };
 

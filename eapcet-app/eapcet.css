@@ -412,7 +412,29 @@
 .ep-solve-foot { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 6px 14px; margin-top: 12px; font-size: 12.5px; color: var(--chrome-dim); }
 .ep-solve-mark { font-weight: 600; letter-spacing: .05em; text-transform: uppercase; }
 .ep-solve-two_ways .ep-solve-mark { color: var(--sage-deep); }
-.ep-solve-report { font: inherit; font-size: 12.5px; color: var(--chrome-dim); background: none; border: 0; padding: 0; min-height: var(--tap); cursor: pointer; text-decoration: underline; text-underline-offset: 2px; margin-left: auto; }
-.ep-solve-report:disabled { text-decoration: none; cursor: default; }
+.ep-solve-report, .ep-review-dispute { font: inherit; font-size: 12.5px; color: var(--chrome-dim); background: none; border: 0; padding: 0; min-height: var(--tap); cursor: pointer; text-decoration: underline; text-underline-offset: 2px; margin-left: auto; }
+.ep-solve-report:disabled, .ep-review-dispute:disabled { text-decoration: none; cursor: default; }
 .ep-chip-quiet { border-color: var(--chrome-line); color: var(--chrome-dim); }
-@media (max-width: 360px) { .ep-paper { font-size: 16px; padding: 10px 12px; } .ep-solve { padding: 14px 14px; } }
+@media (max-width: 360px) { .ep-paper { font-size: 16px; padding: 10px 12px; } .ep-solve, .ep-review { padding: 14px 14px; } }
+
+/* Solutions tab — the reviewer's verdict card (ep-review): correct (sage),
+   one line to fix (the examiner's pen: the student's own line flagged, then
+   what should be there), not sure (gold). The line number sits in the .ep-h3
+   above the paper, never inside the .ep-line (KaTeX replaces that text).
+   The honest "not checked" card reuses .ep-na. Nothing about which model
+   judged is shown. */
+.ep-review { border: 1px solid var(--chrome-line); border-radius: var(--r-card); background: var(--paper); padding: 16px 18px; max-width: 100%; align-self: stretch; }
+.ep-review .ep-eyebrow { margin: 0 0 6px; }
+.ep-review .ep-h3 { margin: 14px 0 6px; }
+.ep-review-correct { border-color: var(--sage); background: var(--sage-wash); }
+.ep-review-correct .ep-eyebrow { color: var(--sage-deep); }
+.ep-review-error { border-color: var(--clay-deep); }
+.ep-review-error .ep-eyebrow { color: var(--clay-deep); }
+.ep-review-unsure { border-color: var(--gold); background: var(--gold-wash); }
+.ep-review-unsure .ep-eyebrow { color: var(--gold-ink); }
+.ep-review-title { font-family: var(--serif); font-size: 18px; font-weight: 600; line-height: 1.3; margin: 0 0 4px; }
+.ep-review-body { font-size: 14.5px; line-height: 1.5; margin: 6px 0 0; }
+.ep-review-class { font-size: 14px; line-height: 1.5; color: var(--chrome-dim); margin: 12px 0 0; }
+.ep-line-flag { border-left: 3px solid var(--clay-deep); background: var(--clay-wash); padding: 2px 8px; border-radius: 0 6px 6px 0; }
+.ep-review-foot { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 6px 14px; margin-top: 12px; font-size: 12.5px; color: var(--chrome-dim); }
+.ep-review-attempt { font-weight: 600; letter-spacing: .05em; text-transform: uppercase; }

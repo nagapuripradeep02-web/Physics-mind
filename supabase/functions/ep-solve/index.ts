@@ -43,6 +43,12 @@
  * Request  {action:'solve', device_id, access_token?, ask:'solve'|'explain',
  *           image:<base64>, media_type, session_id?, internal?}
  *          {action:'report', device_id, fingerprint, option?, label?, note?}
+ *          {action:'confirm', device_id, access_token?, fingerprint, image?, media_type?, session_id?}
+ *              — a `once` row (one clean solver) is re-solved by the OTHER family
+ *                and the arbiter relabels it two_ways | unsure (idempotent on any
+ *                other label; a figure row needs the image again → needs_photo).
+ *                Never consumes a read. The reviewer (ep-review) requires it,
+ *                so a page is never compared against a single-model answer.
  * Reply    {locked:true} | {ok:false, reason} | {ok:true, source, label,
  *           option, answer, answer_tex, format:'tex'|'plain',
  *           working:[{step,text,tex,kind}], working_alt?, models:[…],
@@ -628,6 +634,18 @@ async function solveDeepseek(prompt: string, image: { mime: string; data: string
     return asSolve('solve', TEXT_MODEL, effort, r, options);
 }
 
+// The text-only twins (the confirm action re-solves a cached TEXT row from its
+// transcript, no photo): the same prompt with the question and options appended.
+async function solveGeminiText(prompt: string, options: string[]): Promise<Solve> {
+    const r = await gemini(FIGURE_MODEL, [{ text: prompt }], { maxOutputTokens: 16000 });
+    return asSolve('solve', FIGURE_MODEL, null, r, options);
+}
+
+async function solveDeepseekText(prompt: string, effort: string, options: string[]): Promise<Solve> {
+    const r = await deepseek(prompt, effort, THINK_CAP + ANSWER_ROOM);
+    return asSolve('solve', TEXT_MODEL, effort, r, options);
+}
+
 /** S7: the Run 13 judge on the working the student will see. */
 async function judgeSyllabus(working: Step[]): Promise<{ verdict: string; call: Call }> {
     const text = working.map((s) => `${s.step}. ${s.text}`).join('\n');
@@ -788,14 +806,20 @@ Deno.serve(async (req: Request) => {
         return reply(origin, 200, { ok: true });
     }
 
-    if (body.action !== 'solve') return reply(origin, 400, { error: 'bad action' });
-    const mediaType = typeof body.media_type === 'string' && MEDIA_TYPES.has(body.media_type) ? body.media_type : '';
-    if (!mediaType) return reply(origin, 400, { error: 'bad media type' });
-    const image = typeof body.image === 'string' ? body.image.replace(/^data:[^,]*,/, '').replace(/\s/g, '') : '';
-    if (!image || !/^[A-Za-z0-9+/=]+$/.test(image)) return reply(origin, 400, { error: 'bad image' });
-    const imageBytes = Math.floor(image.length * 3 / 4);
-    if (imageBytes > MAX_BYTES) return reply(origin, 413, { ok: false, reason: 'too_large' });
-    if (imageBytes < 256) return reply(origin, 400, { error: 'bad image' });
+    if (body.action !== 'solve' && body.action !== 'confirm') return reply(origin, 400, { error: 'bad action' });
+    // The image is required for a solve and optional for a confirm (a figure row
+    // needs it again; a text row does not) — validated the same way when sent.
+    const imageOptional = body.action !== 'solve';
+    let mediaType = '', image = '', imageBytes = 0;
+    if (!imageOptional || typeof body.image === 'string') {
+        mediaType = typeof body.media_type === 'string' && MEDIA_TYPES.has(body.media_type) ? body.media_type : '';
+        if (!mediaType) return reply(origin, 400, { error: 'bad media type' });
+        image = typeof body.image === 'string' ? body.image.replace(/^data:[^,]*,/, '').replace(/\s/g, '') : '';
+        if (!image || !/^[A-Za-z0-9+/=]+$/.test(image)) return reply(origin, 400, { error: 'bad image' });
+        imageBytes = Math.floor(image.length * 3 / 4);
+        if (imageBytes > MAX_BYTES) return reply(origin, 413, { ok: false, reason: 'too_large' });
+        if (imageBytes < 256) return reply(origin, 400, { error: 'bad image' });
+    }
     const askKey = body.ask === 'explain' ? 'explain' : 'solve';
 
     // THE LOCK. Before the key check and before the ledger: a locked device
@@ -887,6 +911,68 @@ Deno.serve(async (req: Request) => {
             },
         });
         return deviceInternal;
+    }
+
+    // ── confirm: a `once` row gets its second opinion from the OTHER family ──
+    // The reviewer never solves, and never compares a page against a
+    // single-model answer: it sends the student here first. The prior winner is
+    // rebuilt as a Solve from the cache row, the other family solves the same
+    // question (from the transcript for a text row, from the photo for a figure
+    // row), and the same arbiter that labels a fresh solve relabels the row.
+    if (body.action === 'confirm') {
+        const fp = typeof body.fingerprint === 'string' && HEX64_RE.test(body.fingerprint) ? body.fingerprint : '';
+        if (!fp) return reply(origin, 400, { error: 'bad fingerprint' });
+        const row = await cacheGet(fp);
+        if (row === undefined) return reply(origin, 200, { ok: false, reason: 'down' });
+        if (!row) return reply(origin, 200, { ok: false, reason: 'unknown' });
+        const cardFields = (r: CacheRow, label: string) => ({
+            source: 'cache', label, option: r.option, answer: r.answer, answer_tex: r.answer_tex ?? null, format: FORMAT,
+            working: r.working, working_alt: r.working_alt, winner: r.winner, models: r.models, conventions: r.conventions, similar: r.similar_qs,
+            syllabus: r.syllabus, question_text: r.question_text, options: r.options, subject: r.subject, has_figure: r.has_figure, route: r.route, fingerprint: r.fingerprint,
+        });
+        if (row.label !== 'once') return reply(origin, 200, { ok: true, ...cardFields(row, row.label), confirmed: false, cost_usd: 0, ms: Date.now() - t0 });
+        const options = Array.isArray(row.options) ? row.options.map((o) => String(o ?? '')) : [];
+        const hasOptions = options.length > 0;
+        const priorModel = row.winner || TEXT_MODEL;
+        const prior: Solve = {
+            stage: 'prior', model: priorModel, effort: null, ms: 0, tokens: { prompt: 0, output: 0, thoughts: 0 }, cost_usd: 0, cap_hit: false, error: null,
+            text: (row.working ?? []).map((l) => l.tex || l.text).join('\n') + '\nAnswer: ' + (row.option ? 'option ' + row.option : (row.answer ?? '')),
+            option: row.option, value: row.answer, hedge: false,
+        };
+        const prompt = ASKS.solve + (hasOptions ? '.' : ' and give the final value with its unit.') + '\n\n' + rulesFor('solve') +
+            '\n\nQuestion:\n' + row.question_text + (hasOptions ? '\n\nOptions:\n' + options.map((o, i) => `(${i + 1}) ${o}`).join('\n') : '');
+        const priorIsDeepseek = !priorModel.includes('gemini');
+        let fresh: Solve;
+        if (row.has_figure || row.route === 'figure') {
+            if (!image) return reply(origin, 200, { ok: false, reason: 'needs_photo', fingerprint: fp });
+            const img = { mime: mediaType, data: image };
+            fresh = priorIsDeepseek ? await solveGemini(prompt, img, options) : await solveDeepseek(prompt, img, 'high', options);
+        } else {
+            fresh = priorIsDeepseek ? await solveGeminiText(prompt, options) : await solveDeepseekText(prompt, row.subject === 'maths' ? 'max' : TEXT_EFFORT, options);
+        }
+        calls.push(fresh);
+        const v = arbiter([prior, fresh], hasOptions, priorModel);
+        const models = [...(Array.isArray(row.models) ? row.models : []), modelSummary(fresh)];
+        // The arbiter's label is the row's new label: two solvers agree → two_ways;
+        // both clean and different → unsure; the fresh solver failed or gave no
+        // clean answer → still once (nothing patched; the reviewer keeps waiting).
+        let label = row.label;
+        if (v.label === 'two_ways') {
+            label = 'two_ways';
+            const patch = { label: 'two_ways', models, updated_at: new Date().toISOString() };
+            await cachePatch(fp, patch);
+        } else if (v.label === 'unsure') {
+            label = 'unsure';
+            const patch = { label: 'unsure', option: null, answer: null, answer_tex: null, working_alt: { model: fresh.model, steps: toLines(fresh.text) }, models, updated_at: new Date().toISOString() };
+            await cachePatch(fp, patch);
+        }
+        const after = { ...row, label, models, option: label === 'unsure' ? null : row.option, answer: label === 'unsure' ? null : row.answer, answer_tex: label === 'unsure' ? null : row.answer_tex, working_alt: label === 'unsure' ? { model: fresh.model, steps: toLines(fresh.text) } : row.working_alt };
+        const internal = await ledgerRow(false, {
+            outcome: 'confirm', source: 'model', route: row.route, label, option: after.option, fingerprint: fp, prior_model: priorModel, fresh_model: fresh.model,
+            fresh_option: fresh.option, fresh_value: fresh.value, fresh_error: fresh.error ? true : false, open_door: open,
+        }, fp, false);
+        await writeEvent(deviceId, session, internal || claimsTeam || isLocal, 'solve_confirm', { label, route: row.route, subject: row.subject, ms: Date.now() - t0, prior_model: priorModel, fresh_model: fresh.model });
+        return reply(origin, 200, { ok: true, ...cardFields(after, label), confirmed: label !== 'once', cost_usd: Number(calls.reduce((a, c) => a + c.cost_usd, 0).toFixed(6)), ms: Date.now() - t0 });
     }
 
     // ── S1 intake ────────────────────────────────────────────────────────────
