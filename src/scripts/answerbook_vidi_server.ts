@@ -68,6 +68,52 @@ const PERSONA = [
     '- A "their study plan" line may appear in the situation. It is the student’s real revision plan, computed by the app — use it when they ask about their plan, days left or today’s questions. Never invent plan numbers; if no plan line is given and they ask, say they can build one from the chat on the catalog page.',
     '- If the student says they have already finished a question type (for example all long answers) or only wants to prepare some types, tell them to tap "Change my plan" under this chat — the app re-plans for them. Never change the plan yourself. That button only re-plans by question type or starts over; it cannot add one named question to a revision list, so never tell a student it can.',
 ].join('\n');
+/**
+ * Maths-1A answer style — the drag-to-ask tuning (founder, 2026-09-14 to 09-17).
+ *
+ * PER-REQUEST, never in PERSONA. The persona is the cached prefix every paper
+ * shares, so a rule added there would change botany, physics and chemistry
+ * replies too and re-cost the prefix for all of them. These lines ride next to
+ * the question, where the 2026-08-24 audit measured that steering is actually
+ * obeyed, and they are added ONLY for `mathematics` (Maths-1A) while the style
+ * is proven there. Widen a paper at a time, after reading its replies.
+ *
+ * Tuned live against the drag-to-ask prototype on Maths-1A Matrices and
+ * Trigonometric Ratios, then probed once per chapter across the paper.
+ */
+const MATHS_STYLE = [
+    '- voice: you are an experienced mathematics lecturer talking to ONE average student at your desk. Say "you", keep the sentences short the way speech is, and never call anything easy.',
+    '- layout: never one block of text. Two to four short paragraphs with a blank line between them, one idea each, at most three sentences in a paragraph.',
+    '- a light remark is welcome at most once in a reply, one short sentence, never about the student\'s ability, and never when they sound stuck or are asking about a mistake.',
+    '- ONE everyday comparison is allowed when it genuinely makes a reason clearer: one sentence, something an average student has really handled, then straight back to the mathematics. That is the only comparison permitted — the persona\'s ban on figures of speech stands everywhere else.',
+    '- maths on its own line: any expression longer than a few symbols goes on its OWN line, never buried inside a sentence, and never longer than about forty characters.',
+    '- write the symbols the way the answer on screen writes them: C₁ not "column 1", R₂ − R₁ not "row 2 minus row 1", Δ not "the determinant value".',
+    '- the first time a technical word appears in your reply — minor, cofactor, common factor, row operation — give its meaning in half a sentence, then carry on. Never define a word the student used themselves.',
+    '- shape: a WHY or WHAT question gets a spoken explanation, the reason first. A HOW question, or working with more than one move, gets numbered steps — "1." "2." each on its own line, one small move per step, the working before the result, at most seven steps, and the LAST step is the line they asked about. Never number an answer that has nothing to count.',
+];
+
+/** Added when the student dragged lines of the written answer into the chat. */
+const MATHS_QUOTED_STYLE = [
+    '- they DRAGGED lines of the written answer into this chat. Those exact lines are quoted in their message. Answer about THOSE lines.',
+    '- open with a half-sentence naming the line they dragged, under six words, then the answer.',
+    '- if the quoted line is copied from the question, only names the symbols, or is a choice the answer makes ("Let D be the midpoint of BC"), say so plainly instead of inventing working that produced it.',
+    '- when the line rests on a general rule — a row or column operation, taking a common factor out of a row, an identity such as sin(A+B), cos 2A or 1 + tan²A = sec²A, the sine rule — state that rule ONCE in general letters, in its own short sentence, so it carries to another question. Never invent a rule, and skip this when the step is only arithmetic the student can see.',
+    '- if the rule holds only under a condition (cos A ≠ 0, a quadrant that fixes a sign, A + B + C = 180°, an angle in radians), say the condition in the same sentence as the rule. Never add a condition that is not really needed.',
+    '- end with ONE short sentence naming what the line earns, taken from the marks in the ANSWER FACTS. If the step carries no marks, say it earns nothing by itself and name the step it sets up. Never invent a mark number.',
+    '- order at the end: the rule sentence second to last, the marks sentence last, each on its own line.',
+];
+
+/** Chapter conditions — said only when the question is on that topic. */
+const MATHS_TOPIC_RULES = [
+    '- mathematical induction: name which of the three parts the line belongs to — the base case, the assumption for k, or the step to k+1 — and keep k ONE fixed natural number, never all of them.',
+    '- vectors, dot and cross products: say whether the thing on that line is a vector or a scalar (a dot product is a number, a cross product is a vector, a magnitude is a number), and write vectors the way the page writes them.',
+    '- trigonometric equations: whenever a solution is discussed, give the family form with n ∈ Z, and say plainly whether the question wants the general solution or only the principal value.',
+    '- inverse trigonometric functions: state the input range and the principal value range of the function in use — sin⁻¹ takes inputs in [-1, 1] and returns angles in [-π/2, π/2], tan⁻¹ returns angles in (-π/2, π/2). A root is rejected because of that range, never because it "looks wrong".',
+    '- hyperbolic functions: when an identity looks like a trigonometric one, say where the sign differs — cosh²x − sinh²x = 1, against cos²x + sin²x = 1.',
+    '- properties of triangles: name the standard result in use — the sine rule, the cosine rule, the projection rule, a half-angle formula — and keep the standard letters a, b, c for the sides, s for the semi-perimeter, R and r for the radii, Δ for the area.',
+    '- sets, relations and functions: when a proof shows two sets equal, or a function one one and onto, say which half that line is showing, because each half earns its own mark.',
+];
+
 
 const FRIENDLY_DOWN = 'I could not answer just now. The answer book still works — keep going, and try me again in a moment.';
 const FRIENDLY_QUIET = 'I am resting for today, but the whole answer book still works without me. Keep going!';
@@ -228,6 +274,15 @@ async function handle(raw: string, res: import('http').ServerResponse): Promise<
         return 'the step they are on';
     };
 
+
+    // The page puts dragged lines in front of the question with this exact opener
+    // (answer-book/notebook.js, quotedQuestion). A quoted ask is "I cannot follow
+    // THIS line", which is a different job from a typed question.
+    const quotedLines = /^I am asking about these lines of the answer\./.test(question);
+    const mathsStyle = subjectKey === 'mathematics'
+        ? [...MATHS_STYLE, ...(quotedLines ? [...MATHS_QUOTED_STYLE, ...MATHS_TOPIC_RULES] : [])]
+        : [];
+
     const situation = [
         'Where the student is right now:',
         '- question: ' + String(body.question_id ?? 'unknown'),
@@ -236,9 +291,12 @@ async function handle(raw: string, res: import('http').ServerResponse): Promise<
         body.plan_status ? '- their study plan: ' + String(body.plan_status).slice(0, 400) : '',
         body.step_id ? '- the step they last revealed: ' + stepHuman(rawFacts, String(body.step_id)) + '. If they ask why THIS step is here, how to remember THIS step, or what it earns, answer about that step and not about the answer as a whole.' : '- they have not started writing yet',
         '- the only question you can see is the one named above. If the student asks you for a DIFFERENT question, say you do not have that one open, that you have noted it, and that they can open it from the catalog. Then STOP. Do not outline it, do not name its steps or formulas, do not say which chapter holds it, do not say what an examiner wants in it, and do not give study advice about it — you cannot see it, so anything you add is a guess. Two sentences is the whole reply, and then you stop: do not go on to talk about the question that IS open, do not summarise it, and do not offer anything about it. The student can see it in front of them and will ask if they want it.',
-        walkthroughAsk ? '- reply length: at most three paragraphs, and at most three sentences in each paragraph' : '- reply length: at most 5 sentences, one idea each',
+        // Maths-1A carries its own length rule in the style block below.
+        subjectKey === 'mathematics' ? ''
+            : (walkthroughAsk ? '- reply length: at most three paragraphs, and at most three sentences in each paragraph' : '- reply length: at most 5 sentences, one idea each'),
         subjectKey !== 'physics' ? '- subject: this is a ' + SUBJECT_LABEL[subjectKey] + ' question. Its own subject words are the plain words here — ' + subjectTerms + '. Use them.' : '',
         teluguAsk ? '- language: write the Telugu words in TELUGU SCRIPT, never Telugu in Latin letters. Only the ' + subjectWord + ' terms stay in English — ' + subjectTerms + '.' : '',
+        ...mathsStyle,
     ].filter(Boolean).join('\n');
     const history = (body.recent_messages ?? []).slice(-6).map((m: { role?: string; text?: string }) => ({
         role: m.role === 'student' ? 'user' : 'assistant',
@@ -262,7 +320,9 @@ async function handle(raw: string, res: import('http').ServerResponse): Promise<
     // marks would have missed them. 800 leaves ~60% headroom over the longest
     // surviving reply. Walkthroughs keep 500: zero truncation in 1,836 non-Telugu
     // replies, so raising them would cost tokens on every call and buy nothing.
-    const maxTokens = teluguAsk ? 800 : (walkthroughAsk ? 500 : 300);
+    // 500 for Maths-1A: the numbered-step shape runs longer than prose, and the
+    // 2026-08-25 scar was replies cut mid-word. Every other paper keeps 300.
+    const maxTokens = teluguAsk ? 800 : (walkthroughAsk ? 500 : (subjectKey === 'mathematics' ? 500 : 300));
     const t0 = Date.now();
     try {
         const r = await fetch('https://api.deepseek.com/v1/chat/completions', {

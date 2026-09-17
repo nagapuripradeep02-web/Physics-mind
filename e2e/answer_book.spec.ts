@@ -3234,3 +3234,130 @@ test('a card with no fuller version offers no Simplify button', async ({ page })
         return (window as any).PM_ANSWER.setStepDetail(q.answer.steps[0].id, 'full');
     })).toBe(false);
 });
+
+test('drag-to-ask: a written box dropped into Vidi is asked about, and a drag never writes a step', async ({ page }) => {
+    // A card inside the prototype scope (DRAG_ASK_UNITS). The free-text row only
+    // exists with a chat base, so the base is injected the way the sync gates inject theirs.
+    const VIDI = 'https://vidi.test/functions/v1/answerbook-vidi-chat';
+    const QID = 'ts_ipe_m1a_mat_det_1_a2_a3';
+    const asked: any[] = [];
+    await page.setViewportSize({ width: 1440, height: 920 });
+    await page.addInitScript((base: string) => {
+        Object.defineProperty(window, 'PM_VIDI_BASE', {
+            get: () => base, set: () => {}, configurable: true,
+        });
+    }, VIDI);
+    await page.route('https://vidi.test/**', async (route) => {
+        const req = route.request();
+        const cors = {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'POST, OPTIONS',
+            'Access-Control-Allow-Headers': 'Content-Type',
+        };
+        if (req.method() === 'OPTIONS') return route.fulfill({ status: 204, headers: cors });
+        const body = JSON.parse(req.postData() || '{}');
+        if (body.question) asked.push(body);
+        return route.fulfill({
+            status: 200, headers: { ...cors, 'Content-Type': 'application/json' },
+            body: JSON.stringify({ reply: 'Only the 1 has a non-zero entry in that column.', questions_left: 9 }),
+        });
+    });
+
+    await page.goto(URL);
+    await page.waitForSelector('#catalogView:not([hidden])');
+    await openQ(page, QID);
+    await page.evaluate(() => {
+        (window as any).PM_ANSWER.setStepDetail('s7_expand', 'full');
+        (window as any).PM_ANSWER.revealAll();
+    });
+    await openVidi(page);
+    await expect(page.locator('#notebook.dq-on')).toHaveCount(1);
+
+    const row = (li: number) => page.locator(`.step-block[data-step-id="s7_expand"] .line[data-line-index="${li}"]`);
+    // Revealing the answer ends with a SMOOTH scrollIntoView, so a box measured
+    // while that is still running names a point the page has already moved off.
+    // Wait for the scroll position to stop changing before trusting a rectangle.
+    const settle = async () => {
+        await page.waitForFunction(() => new Promise<boolean>((resolve) => {
+            const y0 = window.scrollY;
+            setTimeout(() => resolve(window.scrollY === y0), 120);
+        }));
+    };
+    const centre = async (li: number) => {
+        await row(li).evaluate((n) => n.scrollIntoView({ block: 'center' }));
+        await settle();
+        const b = (await row(li).boundingBox())!;
+        return { x: b.x + 60, y: b.y + b.height / 2 };
+    };
+
+    // A two-row blue note is ONE box.
+    let p = await centre(2);
+    await page.mouse.move(p.x, p.y);
+    const box = (await page.locator('.dq-hover').boundingBox())!;
+    const r1 = (await row(1).boundingBox())!;
+    const r2 = (await row(2).boundingBox())!;
+    expect(box.y).toBeLessThanOrEqual(r1.y + 2);
+    expect(box.y + box.height).toBeGreaterThanOrEqual(r2.y + r2.height - 2);
+
+    // Cmd-click the heading, Shift-click the equation: one bigger box of three parts.
+    p = await centre(0);
+    await page.keyboard.down('ControlOrMeta'); await page.mouse.click(p.x, p.y); await page.keyboard.up('ControlOrMeta');
+    p = await centre(3);
+    await page.keyboard.down('Shift'); await page.mouse.click(p.x, p.y); await page.keyboard.up('Shift');
+    await expect(page.locator('.dq-sel')).toHaveCount(1);
+    await expect(page.locator('.dq-bar-label')).toHaveText('3 parts');
+
+    // Carry it into the chat.
+    p = await centre(0);
+    const win = (await page.locator('#pm-assistant-slot').boundingBox())!;
+    await page.mouse.move(p.x, p.y);
+    await page.mouse.down();
+    for (let i = 1; i <= 10; i++) {
+        await page.mouse.move(p.x + (win.x + win.width / 2 - p.x) * i / 10, p.y + (win.y + win.height / 2 - p.y) * i / 10);
+    }
+    await expect(page.locator('.dq-ghost')).toHaveCount(1);
+    await page.mouse.up();
+    await expect(page.locator('#vidiAttach .vidi-quote')).toHaveCount(1);
+    await expect(page.locator('.dq-ghost')).toHaveCount(0);
+    await expect(page.locator('.dq-sel')).toHaveCount(0);
+    // the tray is not a chip — the chip gates count .vidi-chip
+    await expect(page.locator('#vidiAttach .vidi-chip')).toHaveCount(0);
+
+    await page.fill('#vidiInput', 'Why does only the 1 give a term?');
+    await page.keyboard.press('Enter');
+    await expect(page.locator('#vidiThread .vidi-msg-quoted')).toHaveCount(1);
+    await expect(page.locator('#vidiThread .vidi-msg.tutor').last()).toHaveText(/non-zero entry/);
+    await expect(page.locator('#vidiAttach')).toBeHidden();
+
+    const q = asked[asked.length - 1];
+    expect(q.question_id).toBe(QID);
+    expect(q.question).toContain('"Expanding along C₁:"');
+    // the continuation row travels as ONE sentence with its first row
+    expect(q.question).toContain('its sign is + and its minor is the lower-right 2×2)');
+    expect(q.question).toContain('Δ = (b−a)(c−a)(c−b)[');
+    expect(q.question).toMatch(/My question: Why does only the 1 give a term\?$/);
+    expect(q.question.length).toBeLessThanOrEqual(1000);
+    // the prompt-cached context is untouched by the quote
+    expect(q.tutor_context).toBe(await page.evaluate(() => (window as any).PM_ANSWER.vidiContext()));
+
+    // A drag that lands back on the page writes nothing; a plain tap still does.
+    await page.evaluate(() => (window as any).PM_ANSWER.goToStep('s2_row_ops'));
+    await page.evaluate(() => (window as any).PM_ANSWER.revealNext());      // finish the typing
+    await page.waitForTimeout(150);
+    const blocks = await page.locator('.step-block').count();
+    const first = page.locator('.step-block[data-step-id="s1_setup"] .line[data-line-index="0"]');
+    await first.evaluate((n) => n.scrollIntoView({ block: 'center' }));
+    const fb = (await first.boundingBox())!;
+    await page.mouse.move(fb.x + 40, fb.y + fb.height / 2);
+    await page.mouse.down();
+    for (let i = 1; i <= 6; i++) await page.mouse.move(fb.x + 40 + 25 * i, fb.y + fb.height / 2 + 12 * i);
+    await page.mouse.up();
+    await page.waitForTimeout(200);
+    expect(await page.locator('.step-block').count()).toBe(blocks);
+    await page.mouse.click(fb.x + 40, fb.y + fb.height / 2);
+    await expect(page.locator('.step-block')).toHaveCount(blocks + 1);
+
+    // Any other card: nothing to pick up.
+    await openFirst(page);
+    await expect(page.locator('#notebook.dq-on')).toHaveCount(0);
+});

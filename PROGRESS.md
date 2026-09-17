@@ -1,5 +1,30 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 🧪 SESSION — Drag a part of the answer into Vidi, and Vidi answers like a lecturer (2026-09-14/17, `feat/answerbook-drag-to-vidi`)
+
+**Bottom line: a student can pick a written line, a blue note or a whole mark off the answer page and drop it into the chat, instead of describing it or sending a screenshot — and for Maths-1A, Vidi's reply was re-tuned with the founder over ~40 live DeepSeek answers.** Scope is Maths-1A only (556 cards, 12 chapters); every other paper is byte-for-byte unchanged.
+
+### The feature (answer-book/notebook.js, notebook.css, shell.html)
+
+- **Boxes, the way a student points.** Each written line is a box; an indented continuation row stays in the box above it, so a two-row blue note is ONE box. A red mark circle carries its whole step. Computed from the step data, never from the DOM, so a Shorten/Simplify rebuild cannot strand a selection.
+- **Mouse:** hover draws a dashed box hugging the ink, press and move picks it up, Cmd/Ctrl-click adds or removes a box, Shift-click takes every box between — adjacent selected boxes draw as ONE bigger box. **Touch:** long-press selects, taps add, a floating bar sends. A plain tap still writes the next step; a drag never does (a one-shot capture listener eats the click that ends a drag).
+- **In the chat:** dropped lines become a quote card in the same hand and ink above the ask row (`#vidiAttach`, its own class — the `.vidi-chip` gates are untouched), and the sent message carries the lines as TEXT inside `question`, trimmed to the server's 1000-char cap. `tutor_context` is untouched, so the prompt-prefix cache still hits and NO new server field was needed.
+- Scope lists, widest to narrowest: `DRAG_ASK_SUBJECTS` (a paper), `DRAG_ASK_UNITS` (a chapter), `DRAG_ASK_QIDS` (one card).
+
+### The reply tuning (both chat servers, `mathematics` only)
+
+Per-request lines beside the question — never in PERSONA, which is the cached prefix every paper shares. Lecturer voice; 2–4 short paragraphs, never one block; ONE everyday comparison allowed (the single relaxation of Rule 41, founder-asked); numbered steps for HOW, spoken explanation for WHY; page notation (C₁, R₂ − R₁, Δ); a term defined on first use; the general rule named once in general letters; its condition when it has one; and a closing sentence naming what the line earns, from the authored mark split. Nine chapter conditions (induction parts, vector vs scalar, n ∈ Z, principal-value ranges, hyperbolic sign, triangle letters, which half of a set/function proof). `max_tokens` 300 → 500 for `mathematics` only: the numbered shape runs longer and a reply cut mid-step is worse than none.
+
+### Evidence
+
+New gate `drag-to-ask: a written box dropped into Vidi is asked about, and a drag never writes a step` (e2e/answer_book.spec.ts) — three consecutive green runs. Full `smoke:answers`: 78 passed, 2 failed, and both failures reproduce on untouched master (the typeset sweep times out at 6 min; the hosted-telemetry gate waits for an ask row that never appears). `npx tsc --noEmit` clean. Probed one card in each of the 12 Maths-1A chapters against live DeepSeek; a probe on the deployed server's twin confirms non-maths replies are unchanged.
+
+**Founder review:** the whole tuning was done against a local one-question, then one-chapter, then whole-paper build wired to a throwaway chat server in the scratchpad (never `answerbook_vidi_server.ts`). An Artifact copy exists for looks only — an Artifact page cannot reach any network.
+
+**Next: founder merges, then `npm run build:answers:gated:mpc-both` + `npm run deploy:answers`, and `supabase functions deploy answerbook-vidi-chat` for the reply tuning.**
+
+---
+
 ## 🧪 SESSION — The AI solver measured: 13 runs, ~3,000 calls, ~$11; routing decided; the reviewer and the generator designed (2026-09-10/11, `master`, local commits only)
 
 **Bottom line: the "student photographs a question" path now rests on measured numbers instead of beliefs. DeepSeek V4.1 Flash solves text questions at ~99% for ~$0.001; Gemini 3.7 Flash solves anything drawn (figures, circuits, organic structures) at 144/148 on the hardest set for ~$0.006 in 5 s; when the two agree they were right 129 of 129 times, and every disagreement contained the wrong model. Two things that sounded like fixes were measured as no-gain (a Python sandbox, retrieval of similar bank questions), one constraint turned out to be free (0 of 506 solutions used a beyond-Class-12 method), and three official EAPCET keys turned out to be wrong.** Everything is in `docs/MODEL_PROBES.md` §1–24 (the living log every future probe appends to) with the raw rows under `docs/reports/model_probes/data/`.
