@@ -3159,7 +3159,7 @@
   var DRAG_ASK_QIDS = {};
   // Maths-1A whole-paper scope (founder, 2026-09-17): the paper's own subject key
   // covers every chapter in it, so a new chapter needs no edit here.
-  var DRAG_ASK_SUBJECTS = { mathematics: 1, mathematics_1b: 1 };
+  var DRAG_ASK_SUBJECTS = { mathematics: 1, mathematics_1b: 1, mathematics_2a: 1 };
   var DRAG_ASK_UNITS = {};
 
   /** Is this card in the drag-to-ask scope? */
