@@ -134,6 +134,15 @@ const MATHS_TOPIC_RULES = [
     '- measures of dispersion: name the measure and the centre it is measured about (mean deviation about the mean or the median, variance and standard deviation about the mean). An assumed mean or a step deviation is a shortcut for the arithmetic and is put back before the answer.',
     '- probability: say whether the events are mutually exclusive or independent, because that is what decides the formula — P(A ∪ B) = P(A) + P(B) - P(A ∩ B), with the overlap subtracted only when both can happen together, and P(A ∩ B) = P(A)P(B) only when they are independent.',
     '- random variables: the probabilities of a distribution add to 1, which is usually the equation that fixes an unknown constant. Name the distribution and its parameters when one is used — binomial with n and p, Poisson with λ — and the mean and variance that go with it.',
+    // Maths-2B topics (2026-09-18, after probing one card in each of its eight
+    // chapters).
+    '- the circle: from x² + y² + 2gx + 2fy + c = 0 the centre is (-g, -f) and the radius is √(g² + f² - c), which needs g² + f² - c > 0 to be a real circle. Tangency is decided by comparing the distance from the centre with the radius.',
+    '- system of circles: S + λL = 0 is every circle through the points where S meets L, and λ is the one number being searched for. S₁ - S₂ = 0 is the radical axis, and it is the common chord when the two circles actually meet.',
+    '- the parabola: say which standard form is in use, because y² = 4ax opens along the x-axis and x² = 4ay along the y-axis. Any point on y² = 4ax is (at², 2at) — one shared a, a different parameter t for each point.',
+    '- the ellipse and the hyperbola: say which axis is the major (or transverse) one before reading a and b. For an ellipse b² = a²(1 - e²) with e < 1; for a hyperbola b² = a²(e² - 1) with e > 1. The sign between the two squared terms is what tells the two curves apart.',
+    '- integration: name the technique — substitution, by parts, partial fractions, or splitting the numerator as A times the derivative of the denominator plus B times the denominator — and say why the integrand invited it. An indefinite integral always ends with + C.',
+    '- definite integrals: there is NO + C, and the limits are part of the answer. Name the property being used (such as ∫₀ᵃ f(x) dx = ∫₀ᵃ f(a - x) dx), and when a substitution changes the variable, say what the limits become.',
+    '- differential equations: name the type — variables separable, homogeneous, linear with an integrating factor, exact — and the substitution it calls for (y = vx for a homogeneous equation). Say whether the answer is the general solution, with its arbitrary constant, or a particular one fixed by a given point.',
 ];
 
 
@@ -303,8 +312,8 @@ async function handle(raw: string, res: import('http').ServerResponse): Promise<
     const quotedLines = /^I am asking about these lines of the answer\./.test(question);
     // The papers whose replies use the lecturer style. Widened one paper at a
     // time, after reading that paper's own replies chapter by chapter:
-    // Maths-1A 2026-09-17, Maths-1B 2026-09-18, Maths-2A 2026-09-18.
-    const MATHS_STYLE_PAPERS = new Set(['mathematics', 'mathematics_1b', 'mathematics_2a']);
+    // Maths-1A 2026-09-17, Maths-1B 2026-09-18, Maths-2A and Maths-2B 2026-09-18.
+    const MATHS_STYLE_PAPERS = new Set(['mathematics', 'mathematics_1b', 'mathematics_2a', 'mathematics_2b']);
     const mathsStyle = MATHS_STYLE_PAPERS.has(subjectKey)
         ? [...MATHS_STYLE, ...(quotedLines ? [...MATHS_QUOTED_STYLE, ...MATHS_TOPIC_RULES] : [])]
         : [];

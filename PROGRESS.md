@@ -1,5 +1,24 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 🧪 SESSION — Drag-to-ask and the lecturer's reply reach Maths-2B — all four maths papers now in (2026-09-18, `feat/answerbook-drag-maths-2b`)
+
+**Bottom line: the fourth and last maths paper is in. 271 Maths-2B cards across its eight chapters, with seven chapter conditions for its own topics — so the drag boxes and the lecturer reply now cover 1,459 maths cards across Maths-1A, 1B, 2A and 2B.** Physics, chemistry, botany and zoology are untouched: their replies still take the short-prose path, and their cards have no drag boxes.
+
+### What changed
+
+- `answer-book/notebook.js`: `DRAG_ASK_SUBJECTS` gains `mathematics_2b`.
+- Both chat servers (byte-identical, diff-verified): `MATHS_STYLE_PAPERS` gains `mathematics_2b`.
+- `MATHS_TOPIC_RULES` gains seven 2B conditions: centre (-g, -f) and radius √(g² + f² - c) with the g² + f² - c > 0 condition, and tangency decided by distance against radius; S + λL = 0 as every circle through two intersection points with λ the one unknown, and S₁ - S₂ = 0 as the radical axis; which standard parabola form is in use and the parametric point (at², 2at); which axis is major or transverse before reading a and b, with b² = a²(1 - e²) and e < 1 for the ellipse against b² = a²(e² - 1) and e > 1 for the hyperbola; the integration technique named and + C never dropped; no + C on a definite integral, the property named, and changed limits stated; and the type of differential equation named with its substitution, general solution against particular.
+- `e2e/answer_book.spec.ts`: the drag gate now checks one card from each of the four maths papers, and that a non-maths paper stays out of scope.
+
+### Evidence
+
+One card probed in each of the eight chapters against live DeepSeek through the real server code, then three re-probed after the conditions landed. The hyperbola recheck is the one worth keeping: asked for the eccentricity while pointing at the line that only names b², the reply said so, then gave the rule that a y²-positive hyperbola divides by b rather than a — the transverse-axis condition doing exactly its job. `npx tsc --noEmit` clean; the drag gate passes; both server copies diff-identical.
+
+**Next: the founder's two deploys — a wrangler deploy for the page (blocked on a Cloudflare login on this machine) and an Edge Function deploy so 1B, 2A and 2B replies reach students; the live function is v27, which carries Maths-1A only.**
+
+---
+
 ## 🧪 SESSION — Drag-to-ask and the lecturer's reply reach Maths-2A (2026-09-18, `feat/answerbook-drag-maths-2a`)
 
 **Bottom line: the third paper is in — all 257 Maths-2A cards across its ten chapters, with ten chapter conditions for 2A's own topics.** Maths-1A and 1B are unchanged; non-maths papers remain untouched.

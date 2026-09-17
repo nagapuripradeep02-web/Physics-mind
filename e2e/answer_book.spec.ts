@@ -3361,8 +3361,10 @@ test('drag-to-ask: a written box dropped into Vidi is asked about, and a drag ne
     // Maths-1B joined 2026-09-18.
     await openQ(page, 'ts_ipe_m1b_sl_angle_45_find_k');
     await expect(page.locator('#notebook.dq-on')).toHaveCount(1);
-    // Maths-2A joined 2026-09-18.
+    // Maths-2A joined 2026-09-18, Maths-2B the same day — all four maths papers.
     await openQ(page, 'ts_ipe_m2a_cn_argand_equilateral_triangle');
+    await expect(page.locator('#notebook.dq-on')).toHaveCount(1);
+    await openQ(page, 'ts_ipe_m2b_par_area_triangle_inscribed_vertices');
     await expect(page.locator('#notebook.dq-on')).toHaveCount(1);
 
     // Any other paper: nothing to pick up.
