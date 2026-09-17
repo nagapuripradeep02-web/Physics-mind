@@ -3357,7 +3357,12 @@ test('drag-to-ask: a written box dropped into Vidi is asked about, and a drag ne
     await page.mouse.click(fb.x + 40, fb.y + fb.height / 2);
     await expect(page.locator('.step-block')).toHaveCount(blocks + 1);
 
-    // Any other card: nothing to pick up.
+    // The scope is a PAPER, so a card in another chapter of it is in too —
+    // Maths-1B joined 2026-09-18.
+    await openQ(page, 'ts_ipe_m1b_sl_angle_45_find_k');
+    await expect(page.locator('#notebook.dq-on')).toHaveCount(1);
+
+    // Any other paper: nothing to pick up.
     await openFirst(page);
     await expect(page.locator('#notebook.dq-on')).toHaveCount(0);
 });

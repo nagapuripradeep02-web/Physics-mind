@@ -1,5 +1,24 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 🧪 SESSION — Drag-to-ask and the lecturer's reply reach Maths-1B (2026-09-18, `feat/answerbook-drag-maths-1b`)
+
+**Bottom line: the second paper is in. All 375 Maths-1B cards across its ten chapters now carry the drag boxes, and Vidi answers them in the same lecturer voice, with seven chapter conditions added for 1B's own topics.** Maths-1A is unchanged; every non-maths paper is still byte-for-byte untouched.
+
+### What changed
+
+- `answer-book/notebook.js`: `DRAG_ASK_SUBJECTS` gains `mathematics_1b` — one line, because the scope is keyed by paper.
+- Both chat servers (kept identical by hand): the style block is now chosen by a `MATHS_STYLE_PAPERS` set (`mathematics`, `mathematics_1b`) rather than a single `===` test — the same switch widens the reply-length rule and the 500-token cap.
+- `MATHS_TOPIC_RULES` gains seven 1B conditions: locus must end in x and y with the parameter gone; the straight line names its form and keeps the modulus; direction RATIOS are not unique while direction COSINES satisfy l² + m² + n² = 1; a plane's coefficients are its normal's direction ratios; limits name the form (0/0, ∞/∞, ∞ − ∞) and the standard limit used, and continuity says which of its three parts is being checked; differentiation names the rule and the variable, and says where the derivative does not exist; applications of derivatives name which test decides, keep the endpoints as candidates for an absolute extremum, and name what is differentiated with respect to time.
+- `e2e/answer_book.spec.ts`: the drag gate now also asserts a Maths-1B card is in scope, and that another paper still is not.
+
+### Evidence
+
+One card probed in each of the ten chapters against live DeepSeek through the REAL server code (not the tuning stand-in), then four re-probed after the new conditions landed. Every reply kept the shape: a named opener, short paragraphs, the general rule in general letters, and the marks sentence last. Two behaviours worth recording — on a Cramer-style aim the model corrects the student ("that line is not where the value comes from, step 2 is"), and a line copied from the question is called out as given rather than explained as working. `npx tsc --noEmit` clean; the drag gate passes; both server copies verified byte-identical by diff.
+
+**Next: founder's go for Maths-2A, then Maths-2B, the same way.**
+
+---
+
 ## 🧪 SESSION — Drag a part of the answer into Vidi, and Vidi answers like a lecturer (2026-09-14/17, `feat/answerbook-drag-to-vidi`)
 
 **Bottom line: a student can pick a written line, a blue note or a whole mark off the answer page and drop it into the chat, instead of describing it or sending a screenshot — and for Maths-1A, Vidi's reply was re-tuned with the founder over ~40 live DeepSeek answers.** Scope is Maths-1A only (556 cards, 12 chapters); every other paper is byte-for-byte unchanged.

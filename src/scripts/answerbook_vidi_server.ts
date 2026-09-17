@@ -112,6 +112,16 @@ const MATHS_TOPIC_RULES = [
     '- hyperbolic functions: when an identity looks like a trigonometric one, say where the sign differs — cosh²x − sinh²x = 1, against cos²x + sin²x = 1.',
     '- properties of triangles: name the standard result in use — the sine rule, the cosine rule, the projection rule, a half-angle formula — and keep the standard letters a, b, c for the sides, s for the semi-perimeter, R and r for the radii, Δ for the area.',
     '- sets, relations and functions: when a proof shows two sets equal, or a function one one and onto, say which half that line is showing, because each half earns its own mark.',
+    // Maths-1B topics (2026-09-18, after probing one card in each of its ten
+    // chapters). Same shape as the 1A rules above: each fires only when the
+    // question is on that topic.
+    '- locus: the answer must end in x and y with the moving point\'s parameters gone — say when a letter is being eliminated rather than solved for.',
+    '- the straight line: name the form being used (slope-intercept, point-slope, intercept, normal) and, when a distance or an angle is taken, keep the modulus that makes it positive.',
+    '- direction cosines and direction ratios: direction RATIOS are not unique, any non-zero multiple names the same direction, while direction COSINES are fixed by l² + m² + n² = 1. Say which of the two the line is carrying.',
+    '- the plane: the coefficients of x, y and z are the direction ratios of the normal, so an angle between planes is an angle between normals. Say that when it decides the step.',
+    '- limits and continuity: name the form that forced the method — 0/0, ∞/∞, ∞ − ∞ — and name the standard limit used (such as (sin x)/x → 1 as x → 0). For continuity at a point say which of the three parts is being checked: f(c) exists, the limit exists, and the two are equal.',
+    '- differentiation: name the rule being applied — chain, product, quotient, implicit, parametric, logarithmic — and say with respect to WHICH variable the derivative is taken. Where the derivative does not exist, say so rather than passing over it.',
+    '- applications of derivatives: say which test decides the answer — the first derivative sign change, or the second derivative at the critical point. For an absolute maximum or minimum on a closed interval, the endpoints are candidates too, not only the critical points. For a rate of change, name what is differentiated with respect to time.',
 ];
 
 
@@ -279,7 +289,11 @@ async function handle(raw: string, res: import('http').ServerResponse): Promise<
     // (answer-book/notebook.js, quotedQuestion). A quoted ask is "I cannot follow
     // THIS line", which is a different job from a typed question.
     const quotedLines = /^I am asking about these lines of the answer\./.test(question);
-    const mathsStyle = subjectKey === 'mathematics'
+    // The papers whose replies use the lecturer style. Widened one paper at a
+    // time, after reading that paper's own replies chapter by chapter:
+    // Maths-1A 2026-09-17, Maths-1B 2026-09-18.
+    const MATHS_STYLE_PAPERS = new Set(['mathematics', 'mathematics_1b']);
+    const mathsStyle = MATHS_STYLE_PAPERS.has(subjectKey)
         ? [...MATHS_STYLE, ...(quotedLines ? [...MATHS_QUOTED_STYLE, ...MATHS_TOPIC_RULES] : [])]
         : [];
 
@@ -292,7 +306,7 @@ async function handle(raw: string, res: import('http').ServerResponse): Promise<
         body.step_id ? '- the step they last revealed: ' + stepHuman(rawFacts, String(body.step_id)) + '. If they ask why THIS step is here, how to remember THIS step, or what it earns, answer about that step and not about the answer as a whole.' : '- they have not started writing yet',
         '- the only question you can see is the one named above. If the student asks you for a DIFFERENT question, say you do not have that one open, that you have noted it, and that they can open it from the catalog. Then STOP. Do not outline it, do not name its steps or formulas, do not say which chapter holds it, do not say what an examiner wants in it, and do not give study advice about it — you cannot see it, so anything you add is a guess. Two sentences is the whole reply, and then you stop: do not go on to talk about the question that IS open, do not summarise it, and do not offer anything about it. The student can see it in front of them and will ask if they want it.',
         // Maths-1A carries its own length rule in the style block below.
-        subjectKey === 'mathematics' ? ''
+        MATHS_STYLE_PAPERS.has(subjectKey) ? ''
             : (walkthroughAsk ? '- reply length: at most three paragraphs, and at most three sentences in each paragraph' : '- reply length: at most 5 sentences, one idea each'),
         subjectKey !== 'physics' ? '- subject: this is a ' + SUBJECT_LABEL[subjectKey] + ' question. Its own subject words are the plain words here — ' + subjectTerms + '. Use them.' : '',
         teluguAsk ? '- language: write the Telugu words in TELUGU SCRIPT, never Telugu in Latin letters. Only the ' + subjectWord + ' terms stay in English — ' + subjectTerms + '.' : '',
@@ -322,7 +336,7 @@ async function handle(raw: string, res: import('http').ServerResponse): Promise<
     // replies, so raising them would cost tokens on every call and buy nothing.
     // 500 for Maths-1A: the numbered-step shape runs longer than prose, and the
     // 2026-08-25 scar was replies cut mid-word. Every other paper keeps 300.
-    const maxTokens = teluguAsk ? 800 : (walkthroughAsk ? 500 : (subjectKey === 'mathematics' ? 500 : 300));
+    const maxTokens = teluguAsk ? 800 : (walkthroughAsk ? 500 : (MATHS_STYLE_PAPERS.has(subjectKey) ? 500 : 300));
     const t0 = Date.now();
     try {
         const r = await fetch('https://api.deepseek.com/v1/chat/completions', {
