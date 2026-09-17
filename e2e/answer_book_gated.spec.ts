@@ -17,22 +17,69 @@ import { test, expect } from '@playwright/test';
 import { existsSync, readFileSync, readdirSync } from 'fs';
 import { join } from 'path';
 
-// The SHIPPED gated artifact is the MPC stream (2026-08-27) — dist-gated-mpc,
-// what wrangler.answers.toml serves. Fall back to the unstreamed dist-gated so
-// a plain `build:answers:gated` still has a spec to run against.
-const GATED_MPC = join(process.cwd(), 'answer-book', 'dist-gated-mpc', 'index.html');
-const GATED_PLAIN = join(process.cwd(), 'answer-book', 'dist-gated', 'index.html');
-const GATED_DIST = existsSync(GATED_MPC) ? GATED_MPC : GATED_PLAIN;
-const FULL_DIST = join(process.cwd(), 'answer-book', 'dist', 'index.html');
-// Bundles are stream-scoped since 2026-08-27 — the shipped gated build is MPC.
-const CONTENT_MPC = join(process.cwd(), 'answer-book', 'content', 'mpc');
-const CONTENT_DIR = existsSync(CONTENT_MPC) ? CONTENT_MPC : join(process.cwd(), 'answer-book', 'content');
+// WHICH artifact this spec asserts is READ FROM THE DEPLOY CONFIG, never pinned
+// here. It used to name dist-gated-mpc, the single-stream build shipped in
+// 2026-08-27 — and when the live artifact grew to mpc+mpc_2 (2026-08-29) and
+// then mpc+mpc_2+bipc_2 (2026-09-11), nothing built that directory any more, so
+// every run of this suite died in beforeAll before asserting one thing. A gate
+// that cannot find the thing it guards is worse than no gate: it goes red for a
+// reason that has nothing to do with the code under test, and gets ignored.
+//
+// wrangler.answers.toml's `directory` is what Cloudflare actually uploads, so
+// it is the one true name. Its stream suffix also names the content folder
+// (dist-gated-<streams> -> content/<streams>), which is how the bundles this
+// spec serves stay the ones production serves.
+const AB = join(process.cwd(), 'answer-book');
+
+function shippedDistDir(): string {
+    try {
+        const toml = readFileSync(join(process.cwd(), 'wrangler.answers.toml'), 'utf8');
+        // the LAST uncommented `directory =` wins, the way TOML itself reads it
+        const hits = toml.split(/\r?\n/)
+            .filter((l) => !l.trim().startsWith('#'))
+            .map((l) => /^\s*directory\s*=\s*"([^"]+)"/.exec(l))
+            .filter(Boolean) as RegExpExecArray[];
+        const dir = hits.length ? hits[hits.length - 1][1] : '';
+        const name = dir.replace(/^\.?\/?/, '').replace(/^answer-book\//, '').replace(/\/$/, '');
+        if (name && existsSync(join(AB, name))) return name;
+    } catch { /* fall through to the built directories below */ }
+    // No config, or it names something nobody has built: take whatever gated
+    // build IS on disk, newest name first.
+    const built = existsSync(AB)
+        ? readdirSync(AB).filter((d) => d.startsWith('dist-gated')).sort((a, b) => b.length - a.length)
+        : [];
+    return built[0] || 'dist-gated';
+}
+
+const GATED_NAME = shippedDistDir();
+const GATED_DIST = join(AB, GATED_NAME, 'index.html');
+const FULL_DIST = join(AB, 'dist', 'index.html');
+// Bundles are stream-scoped since 2026-08-27, and scoped by the SAME suffix the
+// dist directory carries: dist-gated-mpc+mpc_2+bipc_2 -> content/mpc+mpc_2+bipc_2.
+const STREAMS = GATED_NAME.replace(/^dist-gated-?/, '');
+const CONTENT_STREAM = join(AB, 'content', STREAMS);
+const CONTENT_DIR = STREAMS && existsSync(CONTENT_STREAM) ? CONTENT_STREAM : join(AB, 'content');
 const URL = 'file:///' + GATED_DIST.replace(/\\/g, '/');
 const CONTENT = 'https://content.test/functions/v1/answerbook-content';
 
+/** The chapters the SHIPPED artifact lists — parsed from its own data block, so
+    every expectation follows the streams actually built rather than a list that
+    has to be remembered. */
+function shippedUnits(): any[] {
+    const html = readFileSync(GATED_DIST, 'utf8');
+    const key = 'window.PM_UNITS = ';
+    const at = html.indexOf(key);
+    if (at < 0) throw new Error('PM_UNITS missing from ' + GATED_DIST);
+    const start = at + key.length;
+    const end = html.indexOf(';\n', start);
+    return JSON.parse(html.slice(start, end).replace(/\\u003c/g, '<'));
+}
+
+const BUILD_HINT = 'run npm run build:answers:gated:live first (the build wrangler.answers.toml deploys)';
+
 test.beforeAll(() => {
-    if (!existsSync(GATED_DIST)) throw new Error('answer-book/dist-gated-mpc missing — run npm run build:answers:gated:mpc first');
-    if (!existsSync(CONTENT_DIR)) throw new Error('answer-book/content/mpc missing — run npm run build:answers:gated:mpc first');
+    if (!existsSync(GATED_DIST)) throw new Error(`answer-book/${GATED_NAME}/index.html missing — ${BUILD_HINT}`);
+    if (!existsSync(CONTENT_DIR)) throw new Error(`answer-book/content/${STREAMS} missing — ${BUILD_HINT}`);
 });
 
 /** THE DOOR (2026-08-27) stands in front of the bare landing route, so every
@@ -57,8 +104,14 @@ test.beforeEach(async ({ page }) => {
 function leakProbes(): { text: string; tex: string } {
     const phys = JSON.parse(readFileSync(
         join(process.cwd(), 'answer-book', 'questions', 'ts_ipe_p1_vec_parallelogram_law.json'), 'utf8'));
-    const l0 = phys.answer.steps[0].lines[0];
-    const text = typeof l0 === 'string' ? l0 : l0.text;
+    // A REAL sentence, never lines[0]: that is the heading "Statement:", which
+    // also occurs in a mark-split label the catalog ships on purpose — so the
+    // gate went red claiming a leak that was the catalog doing its job. Take the
+    // first line long enough to be answer prose and nothing else.
+    const text = phys.answer.steps
+        .flatMap((st: any) => st.lines ?? [])
+        .map((ln: any) => (typeof ln === 'string' ? ln : ln.text))
+        .find((t: string) => t && t.length >= 30) || '';
     // Any maths bundle carries render:"katex" lines with raw TeX sources. Found
     // by SCANNING the maths bundles, never by a hardcoded unit key: this named
     // mathematics-3 until the 2026-27 book renumbered Maths-1A and chapter 3
@@ -130,10 +183,22 @@ test('the gated page carries the catalog but not one answer byte', async ({ page
     // the page still boots and sells: full catalog, every card
     await bootGated(page, () => ({ ok: true, unlocked: [], free_available: true, sku: { price_inr: null } }));
     await page.waitForSelector('#catalogView:not([hidden])');
-    const r = await page.evaluate(() => ({
-        cards: document.querySelectorAll('.cat-card').length,
-        entries: ((window as any).PM_UNITS as any[]).reduce((n: number, u: any) => n + u.questions.length, 0),
-    }));
+    // Every entry of every chapter ON SCREEN gets a card. Since 2026-08-29 the
+    // artifact carries both years and the catalog draws only the year the
+    // student chose, so PM_UNITS counts rows this student cannot see — the
+    // lensed subjects are the ones the subject picker offers.
+    const r = await page.evaluate(() => {
+        const offered = new Set([...document.querySelectorAll('#subjectSelect option')]
+            .map((o) => (o as HTMLOptionElement).value).filter((v) => v && v !== 'ALL'));
+        const units = ((window as any).PM_UNITS as any[])
+            .filter((u) => offered.has(u.subject || 'physics'));
+        return {
+            cards: document.querySelectorAll('.cat-card').length,
+            entries: units.reduce((n: number, u: any) => n + u.questions.length, 0),
+            offered: [...offered],
+        };
+    });
+    expect(r.offered.length).toBeGreaterThan(0);
     expect(r.cards).toBe(r.entries);
 });
 
@@ -276,21 +341,17 @@ test('the endpoint being down never breaks the catalog — the sheet says try ag
 });
 
 test('every unit has a bundle and every bundle question is the full projection', async () => {
-    const raw = JSON.parse(readFileSync(join(process.cwd(), 'answer-book', 'units.json'), 'utf8'));
-    // The shipped gated build is the MPC stream, and its bundles are scoped to
-    // it (2026-08-27). Compare against the MPC units, not the whole manifest —
-    // Botany's absence from content/mpc is the point of the lens, not drift.
-    const MPC = new Set(['physics', 'chemistry', 'mathematics', 'mathematics_1b']);
-    const streamed = CONTENT_DIR.endsWith('mpc');
-    // A retired unit (status:"retired" — Chemistry-I States of Matter, 2026-09-02)
-    // is stripped by the build before bundles are written: no bundle, no ids.
-    const live = raw.units.filter((u: any) => u.status !== 'retired');
-    const manifest = {
-        units: streamed
-            ? live.filter((u: any) => MPC.has(u.subject || 'physics'))
-            : live,
-    };
+    // The contract is "every chapter the shipped page lists can be fetched", so
+    // the expected set is READ FROM THAT PAGE, not from units.json. The manifest
+    // holds every chapter of every paper; this artifact carries the streams
+    // wrangler.answers.toml ships, and which those are has changed three times
+    // (mpc -> mpc+mpc_2 -> mpc+mpc_2+bipc_2). A hardcoded subject list goes
+    // stale silently and says "drift" when the truth is a new paper shipped.
+    const manifest = { units: shippedUnits() };
     const files = readdirSync(CONTENT_DIR).filter((f) => f.endsWith('.json'));
+    const keyOf = (u: any) => (u.subject || 'physics') + '-' + u.number;
+    expect([...files].map((f) => f.replace(/\.json$/, '')).sort())
+        .toEqual(manifest.units.map(keyOf).sort());
     expect(files.length).toBe(manifest.units.length);
     let total = 0;
     for (const f of files) {
@@ -843,22 +904,28 @@ test('a link to an answer never passes through the door', async ({ page }) => {
     expect(await page.evaluate(() => document.getElementById('notebookView')!.hidden)).toBe(false);
 });
 
-test('every group reaches the year step, and only MPC first year opens anything', async ({ page }) => {
+test('every group reaches the year step, and a year opens exactly when the build says it is live', async ({ page }) => {
     await forgetTrack(page);
     await page.goto(URL);
     await page.waitForFunction(() => (window as any).PM_ANSWER);
     await page.waitForSelector('#doorView:not([hidden])');
 
-    for (const group of ['bipc', 'mec']) {
-        await page.click(`[data-door-group="${group}"]`);
+    // WHICH years open is a property of the build (PM_TRACKS), not a fact to
+    // remember here: BiPC second year went live 2026-09-11 and this gate still
+    // demanded that nothing outside MPC opened. The rule that never changes is
+    // the pairing — a live year is pressable, a dead one is a div saying so.
+    const tracks = await page.evaluate(() => (window as any).PM_TRACKS as any[]);
+    for (const track of tracks.filter((t) => t.id !== 'mpc')) {
+        await page.click(`[data-door-group="${track.id}"]`);
         await page.waitForSelector('#doorStep2:not([hidden])');
         const years = await page.$$eval('[data-door-year]', (ns: Element[]) =>
             ns.map((n) => ({ id: n.getAttribute('data-door-year'), tag: n.tagName, text: n.textContent || '' })));
         expect(years.map((y) => y.id)).toEqual(['first_year', 'second_year']);
-        // Not one of them is pressable: a div, never a button, so nothing looks
-        // like a door that does not open.
-        expect(years.every((y) => y.tag === 'DIV')).toBe(true);
-        expect(years.every((y) => /Coming soon/.test(y.text))).toBe(true);
+        for (const cell of years) {
+            const live = track.years.find((y: any) => y.id === cell.id)?.live;
+            expect(cell.tag).toBe(live ? 'BUTTON' : 'DIV');
+            expect(/Coming soon/.test(cell.text)).toBe(!live);
+        }
         await page.click('#doorBack');
         await page.waitForSelector('#doorStep1:not([hidden])');
     }
@@ -867,7 +934,10 @@ test('every group reaches the year step, and only MPC first year opens anything'
     await page.waitForSelector('#doorStep2:not([hidden])');
     const mpc = await page.$$eval('[data-door-year]', (ns: Element[]) =>
         ns.map((n) => n.tagName + ':' + n.getAttribute('data-door-year')));
-    expect(mpc).toEqual(['BUTTON:first_year', 'DIV:second_year']);
+    // MPC second year went live 2026-08-29, so this is read from the build as
+    // well — the invariant is the pairing, never which cells happen to be lit.
+    const mpcTrack = tracks.find((t) => t.id === 'mpc');
+    expect(mpc).toEqual(mpcTrack.years.map((y: any) => (y.live ? 'BUTTON:' : 'DIV:') + y.id));
     // and nothing was stored by merely looking around
     expect(await page.evaluate(() => localStorage.getItem('pm_track_v1'))).toBeNull();
 });
@@ -941,10 +1011,15 @@ test('the offer is drawn once, immediately below the last chapter that opens', a
             before: txt(kids[i - 1]).slice(0, 80),
             after: txt(kids[i + 1]).slice(0, 80),
             title: (document.querySelector('.cat-wall-title') || { textContent: '' }).textContent,
-            // what the wall may claim: chapters with at least one written answer
-            // (notebook.js sellableUnits) — derived, because the bank grows and a
-            // literal here went stale twice (37 → 42 → 41 within a week).
-            sellable: ((window as any).PM_UNITS as any[]).filter((u) => u.questions.some((e: any) => e.question_id)).length,
+            // What the wall may claim: chapters with at least one written answer,
+            // COUNTED IN THE LENS the student is looking through (notebook.js
+            // sellableUnits walks the lensed UNITS, not PM_UNITS). Since the
+            // artifact carries both years, PM_UNITS holds chapters this student
+            // cannot see, and counting those made the gate demand 116 where the
+            // page honestly says 42. Read it off the catalog on screen instead.
+            sellable: [...document.querySelectorAll('#catSections h2')]
+                .map((h) => /(\d+) of \d+ ready/.exec((h.textContent || '').replace(/\s+/g, ' ')))
+                .filter((m) => m && Number(m[1]) > 0).length,
         };
     });
     expect(shape.i).toBe(4);                       // the four free chapters, then the offer
@@ -1041,17 +1116,28 @@ test('a forwarded link to a retired card shows the syllabus sheet and never asks
 });
 
 test('a chapter with nothing written yet is never sold as locked', async ({ page }) => {
-    // Physics Unit 14 "Physics of Emerging Technologies" is listed for the
-    // chapter's true shape (2026-08-28) but has no answers yet. Labelling it
-    // Locked would invite a student to pay for an empty chapter, and counting
-    // its coming-soon rows into the offer would overstate what the pass buys.
+    // A chapter listed for the syllabus's true shape but carrying no answers yet.
+    // Labelling it Locked would invite a student to pay for an empty chapter, and
+    // counting its coming-soon rows into the offer would overstate what the pass
+    // buys. WHICH chapter is empty changes as the bank is written — this named
+    // Physics Unit 14 until all 15 of its answers landed, and then the gate was
+    // asserting "0 ready" about a finished chapter. Pick an empty one from the
+    // shipped page; if none is left, the case cannot be tested and says so.
+    const empty = shippedUnits().find((u: any) => !u.questions.some((e: any) => e.question_id));
+    test.skip(!empty, 'every chapter in this build has at least one answer');
+    const emptySubject = empty.subject || 'physics';
+    // By NUMBER: the heading reads "Unit 7 — s-Block Elements", while the
+    // manifest name carries a paper suffix ("s-Block Elements (Chemistry)"),
+    // so matching on the name finds nothing.
+    const emptyHead = 'Unit ' + empty.number + ' —';
+
     await bootWith(page, FREE_UNITS);
-    await page.selectOption('#subjectSelect', 'physics');
+    await page.selectOption('#subjectSelect', emptySubject);
     await page.waitForTimeout(150);
 
-    const r = await page.evaluate(() => {
+    const r = await page.evaluate((head: string) => {
         const heads = [...document.querySelectorAll('#catSections h2')].map((h) => h.textContent || '');
-        const u14 = heads.find((h) => h.includes('Physics of Emerging Technologies')) || '';
+        const u14 = heads.find((h) => h.replace(/\s+/g, ' ').includes(head)) || '';
         const wall = document.querySelector('.cat-wall-sub')?.textContent || '';
         const units = (window as any).PM_UNITS as any[];
         // what the offer may honestly claim: authored answers in locked chapters
@@ -1061,9 +1147,9 @@ test('a chapter with nothing written yet is never sold as locked', async ({ page
             if (ready > 0) sellable += ready;
         }
         return { u14, wall, sellable };
-    });
+    }, emptyHead);
 
-    expect(r.u14).toMatch(/0 of \d+ ready/);        // listed honestly (15 rows since 2026-09-02)
+    expect(r.u14).toMatch(/0 of \d+ ready/);        // listed honestly, with its true row count
     expect(r.u14).not.toContain('Locked');         // never sold
     expect(r.u14).not.toContain('Free');           // and never promised either
     const claimed = Number((r.wall.match(/^(\d+)/) || [])[1]);
