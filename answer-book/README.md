@@ -70,6 +70,25 @@ The page opens on a **catalog** — subject chips (Physics · Chemistry · Maths
 then the question cards. A unit's entries come from `units.json`, and the build hard-fails if an
 authored question is missing from that file, or if an entry there resolves to nothing.
 
+## Drag a part of the answer into the chat
+
+On a card in scope, every written line is a **box**: hover it and a dashed outline hugs the ink.
+Drag the box into Vidi and it arrives as a quote card above the ask row, so the student asks about
+THAT line instead of describing it. An indented continuation row belongs to the box above it, so a
+two-row blue note is one box; the red mark circle carries its whole step. Cmd/Ctrl-click adds a box,
+Shift-click takes every box between (adjacent ones draw as one bigger box), and on a touch screen a
+long-press selects and a floating bar sends. A plain tap still writes the next step.
+
+What travels is **text, not a picture**: the authored lines are put in front of the student's
+question inside the existing `question` field, trimmed to the server's 1000-character cap.
+`tutor_context` is untouched, so the prompt-prefix cache still hits and no server field was added.
+
+Scope lives in three lists at the top of `notebook.js`, widest to narrowest —
+`DRAG_ASK_SUBJECTS` (a whole paper, e.g. `mathematics` = Maths-1A), `DRAG_ASK_UNITS` (one chapter,
+`subject-number`), `DRAG_ASK_QIDS` (a single card). Vidi's Maths-1A reply style is the matching
+half and lives per-request in both chat servers (`src/scripts/answerbook_vidi_server.ts` and
+`supabase/functions/answerbook-vidi-chat/index.ts`, kept identical by hand), never in PERSONA.
+
 ## Test yourself
 
 A **Test myself** button sits in the top-right corner. It opens an overlay with two ways to be

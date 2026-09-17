@@ -755,6 +755,122 @@ button.door-tile:hover {
 }
 .vidi-rename-row .btn { padding: 7px 10px; font-size: 12.5px; }
 
+/* ── drag-to-ask — parts of the answer carried into the chat (prototype) ──
+   A box on the page, a ghost under the pointer, a quoted card in the chat.
+   Every box is absolutely positioned inside its step block and never takes a
+   click, so no written line moves off its rule. */
+
+.notebook.dq-on .step-block .line { cursor: grab; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; }
+.notebook.dq-on .step-block .red-mark { pointer-events: auto; cursor: grab; }
+body.dq-dragging, body.dq-dragging * { cursor: grabbing !important; user-select: none; }
+
+.dq-box {
+  position: absolute; z-index: 1; pointer-events: none;
+  border-radius: 9px;
+}
+.dq-hover {
+  border: 1.5px dashed rgba(var(--ink-rgb), 0.42);
+  background: rgba(203, 104, 67, 0.04);
+}
+/* the grip — sits in the page's left margin, beside the box it moves */
+.dq-hover::before {
+  content: '\2807\2807'; position: absolute; left: -30px; top: 50%;
+  transform: translateY(-50%);
+  font: 700 15px/1 system-ui, sans-serif; letter-spacing: -3px;
+  color: rgba(var(--ink-rgb), 0.45);
+}
+.dq-sel {
+  border: 2px solid var(--accent);
+  background: rgba(203, 104, 67, 0.08);
+  box-shadow: 0 0 0 3px rgba(203, 104, 67, 0.12);
+}
+
+.dq-ghost {
+  position: fixed; left: 0; top: 0; z-index: 70; pointer-events: none;
+  width: max-content; max-width: 380px; max-height: 240px; overflow: hidden;
+  padding: 6px 12px 9px;
+  background: var(--paper); border: 1px solid var(--chrome-line);
+  border-left: 3px solid var(--accent); border-radius: 10px;
+  box-shadow: 0 16px 36px rgba(var(--ink-rgb), 0.28), 0 2px 6px rgba(var(--ink-rgb), 0.12);
+  opacity: 0.96;
+}
+.dq-ghost-head, .vq-head {
+  font: 600 11px Inter, system-ui, sans-serif; color: var(--chrome-dim);
+  margin-bottom: 2px;
+}
+
+/* the handwriting, at chat size — the same lines, ink colours kept */
+.dq-ghost-body .line, .vq-body .line {
+  font-size: 17px; line-height: 25px; min-height: 0; height: auto;
+}
+.dq-ghost-body .line.indent, .vq-body .line.indent { padding-left: 22px; }
+.dq-ghost-body .line.eq, .dq-ghost-body .line.boxed,
+.vq-body .line.eq, .vq-body .line.boxed { padding-left: 14px; }
+.dq-ghost-body .line.boxed .boxed-inner, .vq-body .line.boxed .boxed-inner { border-width: 1.5px; padding: 0 8px; }
+.dq-ghost-body .kx-clip .katex, .vq-body .kx-clip .katex { font-size: 13px; }
+.vq-piece + .vq-piece { margin-top: 1px; }
+
+/* the chat as a drop target */
+body.dq-dragging .vidi-win { outline: 2px dashed rgba(203, 104, 67, 0.55); outline-offset: -5px; }
+body.dq-dragging .vidi-win::after {
+  content: 'Drop here to ask Vidi';
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  padding: 9px 16px; border-radius: 999px; white-space: nowrap;
+  font: 700 13px Inter, system-ui, sans-serif;
+  background: var(--brand-dark); color: #fff; opacity: 0.8; pointer-events: none;
+}
+body.dq-dragging .vidi-win.dq-hot { outline: 3px solid var(--accent); }
+body.dq-dragging .vidi-win.dq-hot::after { background: var(--accent); opacity: 1; }
+body.dq-dragging .vidi-fab { box-shadow: 0 0 0 3px rgba(203, 104, 67, 0.45); }
+body.dq-dragging .vidi-fab.dq-hot { box-shadow: 0 0 0 5px var(--accent); }
+
+.vidi-attach {
+  flex: none; display: flex; flex-direction: column; gap: 6px;
+  max-height: 38%; overflow-y: auto;
+  padding: 9px 12px 0;
+}
+.vidi-quote {
+  background: var(--paper); border: 1px solid var(--chrome-line);
+  border-left: 3px solid var(--accent); border-radius: 8px;
+  padding: 5px 9px 7px;
+}
+.vq-head { display: flex; align-items: center; gap: 6px; }
+.vq-title { flex: 1 1 auto; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.vq-x {
+  flex: none; width: 20px; height: 20px; line-height: 18px; padding: 0;
+  border: none; border-radius: 5px; background: none; cursor: pointer;
+  font-size: 16px; color: var(--chrome-dim);
+}
+.vq-x:hover { background: var(--chrome-line); color: var(--ink); }
+.vidi-attach .vq-body { max-height: 170px; overflow-y: auto; }
+.vq-body { overflow-x: auto; }
+
+.vidi-msg.vidi-msg-quoted { display: flex; flex-direction: column; gap: 6px; }
+.vidi-msg-quoted .vidi-quote { background: rgba(255, 253, 247, 0.92); }
+
+/* the selection bar — how a touch screen sends, and a second route on desktop */
+.dq-bar {
+  position: fixed; bottom: 84px; left: 50%; transform: translateX(-50%); z-index: 45;
+  display: flex; align-items: center; gap: 8px;
+  padding: 6px 6px 6px 15px; border-radius: 999px;
+  background: var(--brand-dark); color: var(--brand-dark-ink);
+  box-shadow: 0 10px 28px rgba(var(--ink-rgb), 0.32);
+  font: 600 13px Inter, system-ui, sans-serif; white-space: nowrap;
+}
+.dq-bar-ask {
+  font: 700 13px Inter, system-ui, sans-serif; cursor: pointer;
+  padding: 8px 14px; border-radius: 999px; border: none;
+  background: var(--accent); color: #fff;
+}
+.dq-bar-ask:hover { background: #B0552F; }
+.dq-bar-x {
+  width: 30px; height: 30px; border-radius: 50%; border: none; cursor: pointer;
+  background: rgba(255, 255, 255, 0.12); color: #fff; font-size: 17px; line-height: 1;
+}
+/* phones: the "Ask Vidi" pill already sits at bottom 84px — stack the bar above it */
+@media (max-width: 720px) { .dq-bar { bottom: 146px; } }
+@media print { .dq-box, .dq-bar, .dq-ghost { display: none !important; } }
+
 /* the honest-check verdict line inside the Test-yourself overlay */
 .vidi-verdict {
   margin-top: 10px; padding: 9px 11px; border-radius: 10px;

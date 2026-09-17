@@ -5,6 +5,24 @@ Updated every session. Most recent entry at the top.
 
 ---
 
+## Session 91 — Drag a part of the answer into the chat; Vidi answers Maths-1A like a lecturer (2026-09-14/17, `feat/answerbook-drag-to-vidi`)
+
+**1. The ask: point at the working, do not describe it (founder, 2026-09-14).** "Instead of taking a screenshot, which would make it a lot harder" — a student drags a written line, a blue note, or a whole mark into the chat and asks about THAT. The founder drew the units himself on a screenshot: the black heading is one box, the blue note is one box, and a ring around several of them is the multi-box.
+
+**2. It is text, never a picture.** The card in the chat only looks like handwriting; what travels is the authored line from the question JSON, inside the existing `question` field. So no backend field, no vision model, no deploy of the chat function was needed for the feature itself, and the prompt cache still hits because `tutor_context` is untouched.
+
+**3. Rollout is by scope list, widest to narrowest.** A paper (`DRAG_ASK_SUBJECTS`), a chapter (`DRAG_ASK_UNITS`), or one card (`DRAG_ASK_QIDS`). Maths-1A is the first paper; the founder will call the next.
+
+**4. The reply style was tuned live, by the founder, against real DeepSeek answers.** In order: numbered steps for working ("show it step by step to someone who cannot follow even this"); prose for WHY questions, in "a professional maths lecturer explaining to his average student" voice; short paragraphs, never one block, with the odd light remark; then four of my suggestions — name what the line earns from the mark split, use the page's own notation and define a term once, open by naming the dragged line, and put every equation on its own line. Then the fifth, kept after being judged on its own: name the general rule once, in general letters, so it carries to another question.
+
+**5. One deliberate relaxation of Rule 41.** The plain-language law bans metaphors and comparisons. The founder asked for analogies where they make a reason clearer, so the Maths-1A block permits exactly ONE everyday comparison per reply, one sentence, then back to the mathematics. Everything else in Rule 41 stands, and no other paper is affected. **This is a doctrine change and needs the founder's sign-off in CLAUDE.md before it widens beyond Maths-1A.**
+
+**6. Where the tuning lives, and why it is not in PERSONA.** PERSONA is the cached prefix shared by every paper; a rule added there would change botany and physics replies and re-cost the prefix for all of them. The Maths-1A style rides in the per-request situation block, which the 2026-08-24 audit measured as the place steering is actually obeyed. Widen one paper at a time, after reading that paper's replies.
+
+**7. Review links: an Artifact cannot reach the network.** A published Artifact page is a looks-only demo; anything that must really answer needs a local build plus a throwaway chat server. That pattern is now the standing way to put an answer-book change in front of the founder.
+
+---
+
 ## Session 90 — The AI solver measured before it is trusted: model routing by what the photo contains, the agreement gate, the reviewer's bar, the syllabus rule, the bank plan (2026-09-10/11, `master`)
 
 *(Decisions only; the measurements behind each are in `docs/MODEL_PROBES.md` §1–24, ~3,000 calls over 358 exam questions, and the designs in `docs/SOLUTION_GENERATOR_ARCHITECTURE.md`, `docs/SOLUTION_REVIEWER_ARCHITECTURE.md`, `docs/PRODUCT_GAPS_AND_BANK_STRATEGY.md`.)*

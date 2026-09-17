@@ -1965,6 +1965,7 @@
     if (revealing && finishCurrent) finishCurrent(true);
     revealing = false; finishCurrent = null; completed = false;
     notebook.innerHTML = '';
+    if (DragAsk) DragAsk.reset();
     pageBodies = [];
     stepIndex = -1;
     marksEarned = 0;
@@ -2037,6 +2038,469 @@
     notebook.style.marginBottom = fit < 1 ? (-(natural * (1 - fit))) + 'px' : '';
   }
   window.addEventListener('resize', fitNotebook);
+
+  // ═══ drag-to-ask — pick a part of the answer up, drop it into Vidi ═══════
+  // PROTOTYPE, one card (DRAG_ASK_QIDS). The page is split into boxes the way a
+  // student points at it: each written line is a box, and an indented
+  // continuation row stays in the box above it when both are the same ink — so a
+  // two-row blue note is ONE box. A red mark circle carries its whole step.
+  //
+  //   mouse  hover shows the box · press and move picks it up · Cmd/Ctrl-click
+  //          adds or removes a box · Shift-click takes every box between
+  //   touch  long-press selects a box · taps add more · the bar sends them
+  //
+  // Nothing here changes a line's height, so the ruled grid is untouched, and a
+  // plain tap still writes the next step. Boxes are drawn INSIDE the step block
+  // in its own unscaled pixels, so the phone scale on #notebook applies to them
+  // for free. Selection is keyed by step id + line index, never by DOM node:
+  // renderUpTo wipes the page on every Shorten/Simplify.
+
+  var DragAsk = (function () {
+    var sel = [];              // selected box keys, in page order
+    var anchor = null;         // the last box clicked — where a Shift range starts
+    var hoverBox = null, hoverKey = null;
+    var down = null;           // the press being watched
+    var drag = null;           // the box being carried
+    var swallowClick = false;  // the click that ends a drag must not write a step
+    var pressTimer = null;
+    var touchMode = false;     // a long-press has started a selection on a touch screen
+    var bar = null, barLabel = null;
+
+    function on() {
+      return typeof VidiPanel !== 'undefined' && !!VidiPanel && VidiPanel.canQuote();
+    }
+
+    function sync() { notebook.classList.toggle('dq-on', on()); }
+
+    function stepPos(id) {
+      for (var i = 0; i < steps.length; i++) if (steps[i].id === id) return i;
+      return -1;
+    }
+
+    function blockOf(id) {
+      return notebook.querySelector('.step-block[data-step-id="' + id + '"]');
+    }
+
+    /** The boxes of one step, from the step data as it is on screen now. */
+    function piecesOf(si) {
+      var step = steps[si];
+      if (!step || step.kind === 'diagram' || !step.lines) return [];
+      var out = [], cur = null;
+      step.lines.forEach(function (raw, li) {
+        var spec = lineSpec(raw);
+        var added = !!(spec.added && expandedSteps[step.id]);
+        if (cur && spec.style === 'indent' && added === cur.added) {
+          cur.end = li;
+          cur.texts.push(spec.text);
+          return;
+        }
+        cur = { key: step.id + ':' + li, si: si, start: li, end: li, added: added, texts: [spec.text] };
+        out.push(cur);
+      });
+      return out;
+    }
+
+    /** Every box on the page that is fully written, in page order. */
+    function allPieces() {
+      var out = [];
+      for (var i = 0; i <= stepIndex && i < steps.length; i++) out = out.concat(piecesOf(i));
+      return out;
+    }
+
+    function selectedPieces() {
+      return allPieces().filter(function (p) { return sel.indexOf(p.key) >= 0; });
+    }
+
+    /** What is under the pointer: one box, or a whole step when it is the red mark. */
+    function hitAt(target) {
+      if (!target || !target.closest) return null;
+      var block = target.closest('.step-block[data-step-id]');
+      if (!block || !notebook.contains(block)) return null;
+      var si = stepPos(block.getAttribute('data-step-id'));
+      // Only what is already written: the step still being typed is still moving.
+      if (si < 0 || si > stepIndex) return null;
+      var ps = piecesOf(si);
+      if (!ps.length) return null;
+      if (target.closest('.red-mark')) return { block: block, pieces: ps, whole: true, key: 'step:' + si };
+      var line = target.closest('.line[data-line-index]');
+      if (!line) return null;
+      var li = +line.getAttribute('data-line-index');
+      for (var i = 0; i < ps.length; i++) {
+        if (li >= ps[i].start && li <= ps[i].end) {
+          return { block: block, pieces: [ps[i]], whole: false, key: ps[i].key };
+        }
+      }
+      return null;
+    }
+
+    function rowsOf(block, p) {
+      var rows = [];
+      var ls = block.querySelectorAll('.line[data-line-index]');
+      for (var i = 0; i < ls.length; i++) {
+        var li = +ls[i].getAttribute('data-line-index');
+        if (li >= p.start && li <= p.end) rows.push(ls[i]);
+      }
+      return rows;
+    }
+
+    /** A box that hugs the ink of the given rows, in the block's own pixels. */
+    function paintBox(block, pieces, cls) {
+      var rows = [];
+      pieces.forEach(function (p) { rows = rows.concat(rowsOf(block, p)); });
+      if (!rows.length) return null;
+      var br = block.getBoundingClientRect();
+      var scale = block.offsetWidth ? br.width / block.offsetWidth : 1;
+      var left = Infinity, right = -Infinity;
+      rows.forEach(function (r) {
+        var rg = document.createRange();
+        rg.selectNodeContents(r);
+        var rr = rg.getBoundingClientRect();
+        if (rr.width) { left = Math.min(left, rr.left); right = Math.max(right, rr.right); }
+      });
+      if (left === Infinity) return null;
+      var first = rows[0], last = rows[rows.length - 1];
+      var b = document.createElement('div');
+      b.className = 'dq-box ' + cls;
+      b.style.left = ((left - br.left) / scale - 10) + 'px';
+      b.style.width = ((right - left) / scale + 20) + 'px';
+      b.style.top = (first.offsetTop - 1) + 'px';
+      b.style.height = (last.offsetTop + last.offsetHeight - first.offsetTop + 2) + 'px';
+      block.appendChild(b);
+      return b;
+    }
+
+    function clearHover() {
+      if (hoverBox) hoverBox.remove();
+      hoverBox = null; hoverKey = null;
+    }
+
+    function hover(target) {
+      var hit = on() ? hitAt(target) : null;
+      var k = hit ? hit.key : null;
+      if (k === hoverKey) return;
+      clearHover();
+      hoverKey = k;
+      if (!hit || drag) return;
+      if (!hit.whole && sel.indexOf(k) >= 0) return;       // already boxed
+      hoverBox = paintBox(hit.block, hit.pieces, 'dq-hover');
+    }
+
+    /** Selected boxes that sit next to each other in one step are drawn as ONE
+        bigger box — the "multiple box" the founder drew around a heading, its
+        note and the equation under them. */
+    function paintSelection() {
+      var olds = notebook.querySelectorAll('.dq-box.dq-sel');
+      for (var i = 0; i < olds.length; i++) olds[i].remove();
+      var all = allPieces();
+      var run = [], runSi = -1, prev = -2;
+      function flush() {
+        if (run.length) {
+          var blk = blockOf(steps[runSi].id);
+          if (blk) paintBox(blk, run, 'dq-sel');
+        }
+        run = [];
+      }
+      all.forEach(function (p, idx) {
+        if (sel.indexOf(p.key) < 0) return;
+        if (p.si !== runSi || idx !== prev + 1) { flush(); runSi = p.si; }
+        run.push(p);
+        prev = idx;
+      });
+      flush();
+      syncBar();
+    }
+
+    function inPageOrder() {
+      var keys = allPieces().map(function (p) { return p.key; });
+      sel = keys.filter(function (k) { return sel.indexOf(k) >= 0; });
+    }
+
+    function toggleHit(hit) {
+      var keys = hit.pieces.map(function (p) { return p.key; });
+      var allIn = keys.every(function (k) { return sel.indexOf(k) >= 0; });
+      keys.forEach(function (k) {
+        var at = sel.indexOf(k);
+        if (allIn && at >= 0) sel.splice(at, 1);
+        if (!allIn && at < 0) sel.push(k);
+      });
+      anchor = keys[keys.length - 1];
+      inPageOrder();
+      clearHover();
+      paintSelection();
+    }
+
+    function rangeTo(hit) {
+      var keys = allPieces().map(function (p) { return p.key; });
+      var a = keys.indexOf(anchor);
+      var b = keys.indexOf(hit.pieces[hit.pieces.length - 1].key);
+      var c = keys.indexOf(hit.pieces[0].key);
+      if (a < 0) { toggleHit(hit); return; }
+      var lo = Math.min(a, b, c), hi = Math.max(a, b, c);
+      for (var i = lo; i <= hi; i++) if (sel.indexOf(keys[i]) < 0) sel.push(keys[i]);
+      inPageOrder();
+      clearHover();
+      paintSelection();
+    }
+
+    function clearSel() {
+      sel = []; anchor = null; touchMode = false;
+      paintSelection();
+    }
+
+    /** A snapshot of the boxes for the chat: their cloned ink and their text. */
+    function quoteOf(pieces) {
+      var holder = document.createElement('div');
+      var lines = [], sis = [];
+      pieces.forEach(function (p) {
+        var step = steps[p.si];
+        var blk = blockOf(step.id);
+        var wrap = document.createElement('div');
+        wrap.className = 'vq-piece';
+        var rows = blk ? rowsOf(blk, p) : [];
+        var typeset = rows.some(function (r) { return r.getAttribute('data-render') === 'katex'; });
+        if (rows.length > 1 && !typeset) {
+          // The page breaks a note across rules; a chat card is narrower, so the
+          // same sentence flows as one line of ink instead of two broken halves.
+          var one = document.createElement('div');
+          one.className = rows[0].className;
+          one.textContent = p.texts.map(function (t) { return String(t).trim(); }).join(' ');
+          wrap.appendChild(one);
+        } else {
+          rows.forEach(function (r) {
+            var c = r.cloneNode(true);
+            c.removeAttribute('style');
+            c.removeAttribute('data-line-index');
+            wrap.appendChild(c);
+          });
+        }
+        holder.appendChild(wrap);
+        lines.push({
+          stepNo: p.si + 1,
+          label: step.label || ('Step ' + (p.si + 1)),
+          // A continuation row is one sentence with the row above it.
+          text: p.texts.map(function (t) { return String(t).trim(); }).join(' ')
+        });
+        if (sis.indexOf(p.si) < 0) sis.push(p.si);
+      });
+      var title = sis.length === 1
+        ? 'Step ' + (sis[0] + 1) + ' · ' + (steps[sis[0]].label || '')
+        : 'Steps ' + (sis[0] + 1) + '–' + (sis[sis.length - 1] + 1);
+      return { title: title, html: holder.innerHTML, lines: lines };
+    }
+
+    // ── carrying ────────────────────────────────────────────────────────────
+
+    function targets() {
+      return [$('pm-assistant-slot'), $('vidiFab')];
+    }
+
+    function dropTargetAt(x, y) {
+      var hit = document.elementFromPoint(x, y);
+      if (!hit || !hit.closest) return null;
+      var t = hit.closest('#pm-assistant-slot, #vidiFab');
+      return t && !t.hidden ? t : null;
+    }
+
+    function startDrag(pieces, e) {
+      var q = quoteOf(pieces);
+      var g = el('div', 'dq-ghost');
+      g.appendChild(el('div', 'dq-ghost-head', q.title));
+      var body = el('div', 'dq-ghost-body');
+      body.innerHTML = q.html;
+      g.appendChild(body);
+      document.body.appendChild(g);
+      drag = { ghost: g, quote: q, hot: null };
+      document.body.classList.add('dq-dragging');
+      clearHover();
+      var sel0 = window.getSelection && window.getSelection();
+      if (sel0) sel0.removeAllRanges();
+      moveDrag(e);
+    }
+
+    function moveDrag(e) {
+      // Kept on screen: the chat docks at the right edge, exactly where the
+      // pointer is heading, and a ghost hanging off the glass hides what it carries.
+      // It flips to the other side of the pointer rather than sliding under it,
+      // so it never covers the pill the student is aiming at.
+      var gw = drag.ghost.offsetWidth, gh = drag.ghost.offsetHeight;
+      var gx = e.clientX + 14 + gw > window.innerWidth - 8 ? e.clientX - gw - 14 : e.clientX + 14;
+      var gy = e.clientY + 12 + gh > window.innerHeight - 8 ? e.clientY - gh - 12 : e.clientY + 12;
+      drag.ghost.style.transform = 'translate(' + Math.max(8, gx) + 'px,' + Math.max(8, gy) + 'px)';
+      var t = dropTargetAt(e.clientX, e.clientY);
+      if (t !== drag.hot) {
+        if (drag.hot) drag.hot.classList.remove('dq-hot');
+        if (t) t.classList.add('dq-hot');
+        drag.hot = t;
+      }
+    }
+
+    function endDrag() {
+      if (!drag) return;
+      drag.ghost.remove();
+      targets().forEach(function (t) { if (t) t.classList.remove('dq-hot'); });
+      document.body.classList.remove('dq-dragging');
+      drag = null;
+    }
+
+    // ── the touch bar (and the desktop route when boxes are selected) ───────
+
+    function syncBar() {
+      if (!bar) {
+        bar = el('div', 'dq-bar');
+        bar.hidden = true;
+        barLabel = el('span', 'dq-bar-label');
+        var ask = el('button', 'dq-bar-ask', 'Ask Vidi about this');
+        ask.type = 'button';
+        ask.addEventListener('click', function () {
+          var ps = selectedPieces();
+          if (ps.length && VidiPanel.attachQuote(quoteOf(ps))) clearSel();
+        });
+        var x = el('button', 'dq-bar-x', '×');
+        x.type = 'button';
+        x.setAttribute('aria-label', 'Clear the selection');
+        x.addEventListener('click', clearSel);
+        bar.appendChild(barLabel);
+        bar.appendChild(ask);
+        bar.appendChild(x);
+        document.body.appendChild(bar);
+      }
+      var n = sel.length;
+      bar.hidden = !n || !on();
+      if (bar.hidden) return;
+      barLabel.textContent = n === 1 ? '1 part' : n + ' parts';
+      var col = $('notebookCol').getBoundingClientRect();
+      bar.style.left = Math.round(col.left + col.width / 2) + 'px';
+    }
+
+    // ── events ──────────────────────────────────────────────────────────────
+
+    // A stale flag (a drag that ended over the chat, whose click never reached the
+    // page) must not eat the next real tap.
+    document.addEventListener('pointerdown', function () { swallowClick = false; }, true);
+
+    notebook.addEventListener('pointerdown', function (e) {
+      if (e.button !== 0 || !on()) return;
+      sync();
+      var hit = hitAt(e.target);
+      if (!hit) {
+        // A plain tap beside the boxes puts the selection down, and only that.
+        if (sel.length && e.pointerType !== 'touch') { clearSel(); swallowClick = true; }
+        else if (touchMode) swallowClick = true;
+        return;
+      }
+      if (e.pointerType !== 'touch' && (e.shiftKey || e.metaKey || e.ctrlKey)) {
+        e.preventDefault();
+        swallowClick = true;
+        if (e.shiftKey && !hit.whole) rangeTo(hit); else toggleHit(hit);
+        return;
+      }
+      // No native text selection may start under a carry.
+      if (e.pointerType === 'mouse') e.preventDefault();
+      down = { x: e.clientX, y: e.clientY, id: e.pointerId, type: e.pointerType, hit: hit, held: false };
+      if (e.pointerType === 'touch') {
+        if (touchMode) return;               // the tap toggles on release
+        var d = down;
+        pressTimer = setTimeout(function () {
+          pressTimer = null;
+          if (down !== d) return;
+          d.held = true;
+          touchMode = true;
+          swallowClick = true;
+          toggleHit(hit);
+          if (navigator.vibrate) navigator.vibrate(12);
+        }, 450);
+      }
+    });
+
+    document.addEventListener('pointermove', function (e) {
+      if (down && e.pointerId === down.id) {
+        var dx = e.clientX - down.x, dy = e.clientY - down.y;
+        var far = dx * dx + dy * dy > 36;
+        if (down.type === 'touch') {
+          // Moving before the long-press lands is a scroll, not a press.
+          if (far && pressTimer) { clearTimeout(pressTimer); pressTimer = null; down = null; }
+          return;
+        }
+        if (!drag && far) {
+          var hit = down.hit;
+          var carry = !hit.whole && sel.indexOf(hit.key) >= 0 ? selectedPieces() : hit.pieces;
+          startDrag(carry, e);
+          swallowClick = true;
+        }
+        if (drag) moveDrag(e);
+        return;
+      }
+      if (e.pointerType === 'mouse' && !drag && notebook.contains(e.target)) hover(e.target);
+      else if (hoverBox) clearHover();
+    });
+
+    document.addEventListener('pointerup', function (e) {
+      if (!down || e.pointerId !== down.id) return;
+      if (pressTimer) { clearTimeout(pressTimer); pressTimer = null; }
+      var d = down;
+      down = null;
+      if (drag) {
+        var t = dropTargetAt(e.clientX, e.clientY);
+        var q = drag.quote;
+        endDrag();
+        if (t && VidiPanel.attachQuote(q)) clearSel();
+        return;
+      }
+      if (d.type === 'touch' && touchMode && !d.held) {
+        toggleHit(d.hit);
+        swallowClick = true;
+        if (!sel.length) touchMode = false;
+      } else if (d.type !== 'touch' && sel.length) {
+        clearSel();
+        swallowClick = true;
+      }
+    });
+
+    document.addEventListener('pointercancel', function (e) {
+      if (!down || e.pointerId !== down.id) return;
+      if (pressTimer) { clearTimeout(pressTimer); pressTimer = null; }
+      down = null;
+      endDrag();
+    });
+
+    // Runs before advance (a capture listener on the same element).
+    notebook.addEventListener('click', function (e) {
+      if (!swallowClick) return;
+      swallowClick = false;
+      e.stopImmediatePropagation();
+      e.stopPropagation();
+    }, true);
+
+    notebook.addEventListener('contextmenu', function (e) {
+      if (on() && (touchMode || hitAt(e.target))) e.preventDefault();
+    });
+
+    notebook.addEventListener('pointerleave', function () { if (!drag) clearHover(); });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key !== 'Escape') return;
+      if (drag) { endDrag(); down = null; return; }
+      if (sel.length) clearSel();
+    });
+
+    return {
+      /** The page was rebuilt: every box it drew is gone, and line indexes may
+          now point at different lines. */
+      reset: function () {
+        sel = []; anchor = null; touchMode = false;
+        hoverBox = null; hoverKey = null;
+        if (pressTimer) { clearTimeout(pressTimer); pressTimer = null; }
+        down = null;
+        endDrag();
+        if (bar) bar.hidden = true;
+        sync();
+      },
+      sync: function () {
+        sync();
+        if (!on()) { clearHover(); if (sel.length) clearSel(); }
+      }
+    };
+  })();
 
   // ═══ test yourself (overlay) — DORMANT (founder, 2026-08-23) ═════════
   // The "Test myself" entry is removed for now: #btnTest in shell.html lost its
@@ -2681,6 +3145,30 @@
 
   var VIDI_BASE = (window.PM_VIDI_BASE || '').trim().replace(/\/$/, '');
   var lastSelfCheck = null;
+
+  // Drag-to-ask — the PROTOTYPE scope (founder, 2026-09-14; widened to a whole
+  // chapter 2026-09-17). On these cards a written line, a blue note or a whole
+  // mark can be picked up off the page and dropped into the chat, so a student
+  // asks about THAT part instead of sending a screenshot.
+  //
+  // Three lists, widest to narrowest, because naming 556 cards one by one would
+  // rot the moment a card is added: DRAG_ASK_SUBJECTS keys a whole PAPER by its
+  // subject value ('mathematics' = Maths-1A); DRAG_ASK_UNITS keys one CHAPTER the
+  // way the catalog and telemetry already key one, subject-number ('mathematics-5'
+  // = Maths-1A Matrices); DRAG_ASK_QIDS is a single card ahead of its chapter.
+  var DRAG_ASK_QIDS = {};
+  // Maths-1A whole-paper scope (founder, 2026-09-17): the paper's own subject key
+  // covers every chapter in it, so a new chapter needs no edit here.
+  var DRAG_ASK_SUBJECTS = { mathematics: 1 };
+  var DRAG_ASK_UNITS = {};
+
+  /** Is this card in the drag-to-ask scope? */
+  function dragAskCard(q) {
+    if (!q) return false;
+    if (DRAG_ASK_QIDS[q.question_id]) return true;
+    if (DRAG_ASK_SUBJECTS[q.subject || 'physics']) return true;
+    return !!(q.unit && DRAG_ASK_UNITS[(q.subject || 'physics') + '-' + q.unit.number]);
+  }
 
   // Announced by Vidi whenever stored study data changes. Sync replaces it at
   // init; with no sync endpoint it stays a no-op forever, which is what keeps
@@ -5351,6 +5839,7 @@
       // founder's "there is no chat field" report, 2026-08-23: renderHome never
       // set the row, so the home conversation had no input even when hosted.
       $('vidiAskRow').hidden = !VIDI_BASE || !online;
+      clearQuotes();
       var chips = $('vidiChips');
       chips.innerHTML = '';
       var plan = Vidi.getPlan();
@@ -5536,6 +6025,8 @@
     function friendlyOffline() {
       online = false;
       $('vidiAskRow').hidden = true;
+      clearQuotes();
+      DragAsk.sync();
       say('I cannot answer questions right now. Everything else in the book still works.');
     }
 
@@ -5685,14 +6176,120 @@
       return out.join('\n');
     }
 
+    // ── quoted parts — lines dragged off the page into the chat ─────────────
+    // A quote is a SNAPSHOT: its text and its cloned ink are copied at drop time,
+    // so a Shorten/Simplify rebuild of the page afterwards cannot change what the
+    // student attached. It travels to the model inside `question`, never inside
+    // tutor_context — that string must stay byte-stable per card for the prompt
+    // cache — and no server field is needed, so the deployed function takes it
+    // as it is.
+
+    var quotes = [];
+    var MAX_QUOTES = 3;
+    var QUESTION_CAP = 1000;           // the server's slice on `question`
+
+    function canQuote() {
+      return !!VIDI_BASE && online && currentView === 'notebook' && dragAskCard(question);
+    }
+
+    function quoteCard(q, onRemove) {
+      var card = el('div', 'vidi-quote');
+      var head = el('div', 'vq-head');
+      head.appendChild(el('span', 'vq-title', q.title));
+      if (onRemove) {
+        var x = el('button', 'vq-x', '×');
+        x.type = 'button';
+        x.setAttribute('aria-label', 'Remove this part');
+        x.addEventListener('click', onRemove);
+        head.appendChild(x);
+      }
+      card.appendChild(head);
+      var body = el('div', 'vq-body');
+      body.innerHTML = q.html;         // cloned from the authored page, never user text
+      card.appendChild(body);
+      return card;
+    }
+
+    function renderQuotes() {
+      var tray = $('vidiAttach');
+      tray.innerHTML = '';
+      quotes.forEach(function (q, i) {
+        tray.appendChild(quoteCard(q, function () {
+          quotes.splice(i, 1);
+          renderQuotes();
+        }));
+      });
+      tray.hidden = !quotes.length;
+      $('vidiInput').placeholder = quotes.length
+        ? 'Ask about this part…'
+        : 'Ask me anything about this answer…';
+    }
+
+    function clearQuotes() {
+      if (!quotes.length) return;
+      quotes = [];
+      renderQuotes();
+    }
+
+    function attachQuote(q) {
+      if (!canQuote()) return false;
+      quotes.push(q);
+      if (quotes.length > MAX_QUOTES) quotes = quotes.slice(-MAX_QUOTES);
+      openWin();
+      renderQuotes();
+      var t = threadEl(); t.scrollTop = t.scrollHeight;
+      // A phone keyboard would cover the sheet the student is looking at.
+      if (window.matchMedia('(pointer: fine)').matches) $('vidiInput').focus();
+      Vidi.log('vidi_quote', { qid: question.question_id, parts: q.lines.length });
+      return true;
+    }
+
+    /** The words the model reads: the quoted lines, grouped under their step, then
+        the question. Trimmed so the whole string fits the server's cap — the
+        question is never the part that is cut. */
+    function quotedQuestion(qs, ask) {
+      var rows = [];
+      qs.forEach(function (q) {
+        var lastStep = null;
+        q.lines.forEach(function (ln) {
+          if (ln.stepNo !== lastStep) {
+            rows.push('Step ' + ln.stepNo + ', "' + ln.label + '":');
+            lastStep = ln.stepNo;
+          }
+          rows.push('"' + ln.text + '"');
+        });
+      });
+      var head = 'I am asking about these lines of the answer.\n';
+      var tail = '\n\nMy question: ' + ask;
+      var room = QUESTION_CAP - head.length - tail.length;
+      var body = rows.join('\n');
+      if (body.length > room) body = body.slice(0, Math.max(0, room - 1)) + '…';
+      return head + body + tail;
+    }
+
     function vidiAsk() {
       if (!VIDI_BASE || !online) return;
       var input = $('vidiInput');
       var txt = String(input.value || '').replace(/\s+/g, ' ').trim();
-      if (!txt) return;
+      var qs = quotes.slice();
+      if (!txt && !qs.length) return;
+      if (!txt) txt = 'Explain this part of the answer.';
       input.value = '';
-      bubble(txt, 'student');
-      recentMsgs.push({ role: 'student', text: txt });
+      var sent = txt;
+      if (qs.length) {
+        sent = quotedQuestion(qs, txt);
+        var sb = el('div', 'vidi-msg student vidi-msg-quoted');
+        qs.forEach(function (q) { sb.appendChild(quoteCard(q, null)); });
+        sb.appendChild(el('div', 'vq-ask', txt));
+        threadEl().appendChild(sb);
+        threadEl().scrollTop = threadEl().scrollHeight;
+        clearQuotes();
+      } else {
+        bubble(txt, 'student');
+      }
+      // The quote rides in the history too, so "and the next line?" still knows
+      // which lines the student meant.
+      recentMsgs.push({ role: 'student', text: sent });
       if (recentMsgs.length > 12) recentMsgs = recentMsgs.slice(-12);
       var g = gen;
       var typing = el('div', 'vidi-msg tutor vidi-typing', '· · ·');
@@ -5709,7 +6306,7 @@
         unit: home ? 0 : question.unit.number,
         cut_key: home ? 'home' : cut.key,
         step_id: (!home && stepIndex >= 0) ? steps[stepIndex].id : null,
-        question: txt,
+        question: sent,
         recent_messages: recentMsgs.slice(-6),
         // NOT in tutor_context: that string is byte-stable per question+cut so
         // the model's prompt-prefix cache hits; plan facts change daily, so
@@ -5726,7 +6323,7 @@
       // server treats anything but a literal true as no claim.
       if ((window.PM_SYNC_BASE || '').trim() && typeof Sync !== 'undefined') body.device_id = Sync.deviceId();
       if (Vidi.internal()) body.internal = true;
-      Vidi.log('vidi_ask', { len: txt.length, home: home });
+      Vidi.log('vidi_ask', { len: txt.length, home: home, quoted: qs.length });
       postAsk(body, 1).then(function (res) {
         if (g !== gen) return;
         typing.remove();
@@ -5804,6 +6401,8 @@
         the catalog is where the study-plan conversation happens (the planner,
         2026-08-22). Exam-eve stays chrome-free. */
     function syncView(nb) {
+      DragAsk.sync();
+      if (!nb) clearQuotes();
       var here = nb || currentView === 'catalog';
       if (!here) { winEl().hidden = true; $('vidiFab').hidden = true; syncDock(); return; }
       if (winOpen) { winEl().hidden = false; $('vidiFab').hidden = true; }
@@ -5914,6 +6513,9 @@
         threadEl().innerHTML = '';
         recentMsgs = [];
         $('vidiAskRow').hidden = !VIDI_BASE || !online;
+        // A part quoted from the last card is not a part of this one.
+        clearQuotes();
+        DragAsk.sync();
         updatePlanStrip();
         if (ob.active) {
           resumeOnboarding();                    // mid-onboarding navigation
@@ -5975,6 +6577,8 @@
       initDrag: initDrag,
       initMic: initMic,
       ask: vidiAsk,
+      canQuote: canQuote,
+      attachQuote: attachQuote,
       saveRename: saveRename,
       keepRename: keepRename
     };
