@@ -1,5 +1,24 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 🧪 SESSION — Drag-to-ask and the lecturer's reply reach Maths-2A (2026-09-18, `feat/answerbook-drag-maths-2a`)
+
+**Bottom line: the third paper is in — all 257 Maths-2A cards across its ten chapters, with ten chapter conditions for 2A's own topics.** Maths-1A and 1B are unchanged; non-maths papers remain untouched.
+
+### What changed
+
+- `answer-book/notebook.js`: `DRAG_ASK_SUBJECTS` gains `mathematics_2a`.
+- Both chat servers (byte-identical, diff-verified): `MATHS_STYLE_PAPERS` gains `mathematics_2a`.
+- `MATHS_TOPIC_RULES` gains ten 2A conditions: the Argand point is (real, imaginary) with the principal argument in (-π, π]; De Moivre stated in general letters, one value for a whole-number index and n equally spaced values for a fractional one; a quadratic's sign follows its leading coefficient and a real x needs a non-negative discriminant; relations between roots and coefficients named, with a - d, a, a + d called a choice rather than a result; permutations versus combinations, and cases ADD while stages MULTIPLY; the binomial general term with r counted from 0, and the power set to zero for a term independent of x; each partial-fraction numerator following its factor type, and the identity holding for every x; each dispersion measure named with the centre it is measured about; mutually exclusive versus independent deciding which probability theorem applies; and a distribution's probabilities adding to 1, with its parameters named.
+- `e2e/answer_book.spec.ts`: the drag gate now checks a 2A card is in scope as well as a 1A and a 1B one.
+
+### Evidence
+
+One card probed in each of the ten chapters against live DeepSeek through the real server code, then four re-probed after the conditions landed. The reply shape held everywhere. The behaviour worth recording from this paper: asked "why do we subtract here" about a line containing no subtraction, the model said so plainly and pointed at the addition theorem two steps below — the same correction seen on a Cramer card in 1A. `npx tsc --noEmit` clean; the drag gate passes; both server copies diff-identical.
+
+**Next: founder's go for Maths-2B, the last of the four.**
+
+---
+
 ## 🧪 SESSION — Drag-to-ask and the lecturer's reply reach Maths-1B (2026-09-18, `feat/answerbook-drag-maths-1b`)
 
 **Bottom line: the second paper is in. All 375 Maths-1B cards across its ten chapters now carry the drag boxes, and Vidi answers them in the same lecturer voice, with seven chapter conditions added for 1B's own topics.** Maths-1A is unchanged; every non-maths paper is still byte-for-byte untouched.

@@ -122,6 +122,18 @@ const MATHS_TOPIC_RULES = [
     '- limits and continuity: name the form that forced the method — 0/0, ∞/∞, ∞ − ∞ — and name the standard limit used (such as (sin x)/x → 1 as x → 0). For continuity at a point say which of the three parts is being checked: f(c) exists, the limit exists, and the two are equal.',
     '- differentiation: name the rule being applied — chain, product, quotient, implicit, parametric, logarithmic — and say with respect to WHICH variable the derivative is taken. Where the derivative does not exist, say so rather than passing over it.',
     '- applications of derivatives: say which test decides the answer — the first derivative sign change, or the second derivative at the critical point. For an absolute maximum or minimum on a closed interval, the endpoints are candidates too, not only the critical points. For a rate of change, name what is differentiated with respect to time.',
+    // Maths-2A topics (2026-09-18, after probing one card in each of its ten
+    // chapters).
+    '- complex numbers: say which part is real and which is imaginary, and that a point on the Argand diagram is (real part, imaginary part). The principal argument lies in (-π, π], and a modulus is never negative.',
+    '- De Moivre\'s theorem: state it in general letters, (cos θ + i sin θ)ⁿ = cos nθ + i sin nθ. For a whole-number index there is one value; for a fractional index there are several, and the n nth roots of unity are equally spaced and add to zero.',
+    '- quadratic expressions: the sign of ax² + bx + c away from its roots follows the sign of a, and a ≠ 0 is what makes it quadratic at all. When a range of values is wanted, the condition that a real x exists is that the discriminant is not negative.',
+    '- theory of equations: name the relation between roots and coefficients being used (for a₀xⁿ + a₁xⁿ⁻¹ + …, the sum of the roots is -a₁/a₀). Writing roots as a - d, a, a + d or a/r, a, ar is a CHOICE that makes the sum or product simple, not a result.',
+    '- permutations and combinations: say whether the order matters — a permutation — or not — a combination — and say whether the cases ADD (either this or that) or the stages MULTIPLY (first this, then that). That one distinction is where most marks are lost.',
+    '- binomial theorem: the general term is T(r+1) = nCr x^(n-r) a^r with r counted from 0, so the term asked for is one ahead of its r. For a term independent of x, set the power of x to zero and solve for r.',
+    '- partial fractions: the shape of each numerator follows its factor — a constant over a linear factor, one fraction per power of a repeated factor, and Bx + C over an irreducible quadratic. The identity holds for EVERY x, which is why substituting convenient values is allowed.',
+    '- measures of dispersion: name the measure and the centre it is measured about (mean deviation about the mean or the median, variance and standard deviation about the mean). An assumed mean or a step deviation is a shortcut for the arithmetic and is put back before the answer.',
+    '- probability: say whether the events are mutually exclusive or independent, because that is what decides the formula — P(A ∪ B) = P(A) + P(B) - P(A ∩ B), with the overlap subtracted only when both can happen together, and P(A ∩ B) = P(A)P(B) only when they are independent.',
+    '- random variables: the probabilities of a distribution add to 1, which is usually the equation that fixes an unknown constant. Name the distribution and its parameters when one is used — binomial with n and p, Poisson with λ — and the mean and variance that go with it.',
 ];
 
 
@@ -291,8 +303,8 @@ async function handle(raw: string, res: import('http').ServerResponse): Promise<
     const quotedLines = /^I am asking about these lines of the answer\./.test(question);
     // The papers whose replies use the lecturer style. Widened one paper at a
     // time, after reading that paper's own replies chapter by chapter:
-    // Maths-1A 2026-09-17, Maths-1B 2026-09-18.
-    const MATHS_STYLE_PAPERS = new Set(['mathematics', 'mathematics_1b']);
+    // Maths-1A 2026-09-17, Maths-1B 2026-09-18, Maths-2A 2026-09-18.
+    const MATHS_STYLE_PAPERS = new Set(['mathematics', 'mathematics_1b', 'mathematics_2a']);
     const mathsStyle = MATHS_STYLE_PAPERS.has(subjectKey)
         ? [...MATHS_STYLE, ...(quotedLines ? [...MATHS_QUOTED_STYLE, ...MATHS_TOPIC_RULES] : [])]
         : [];
