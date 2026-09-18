@@ -664,9 +664,23 @@ button.door-tile:hover {
   box-shadow: 0 14px 44px rgba(43, 38, 32, 0.24), 0 2px 8px rgba(62, 50, 25, 0.10);
   overflow: hidden;
 }
+/* The resize grip. 30px of hit area for a thumb over the window's top-left
+   corner, a small diagonal glyph for the eye. Dragging it grows the window
+   toward the page (the bottom-right corner stays put); double-tap resets. Size
+   persists beside the position (pm_vidi_win.w/h). The header's left padding
+   makes room for it; the docked column hides it (fixed width there). */
+.vidi-resize {
+  position: absolute; left: 0; top: 0; width: 44px; height: 44px; z-index: 2;
+  cursor: nwse-resize; touch-action: none; user-select: none;
+}
+.vidi-resize::before {
+  content: ''; position: absolute; left: 9px; top: 9px; width: 16px; height: 16px;
+  background: repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0 2px, transparent 2px 5.5px);
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+}
 .vidi-head {
   display: flex; align-items: baseline; gap: 8px; flex: none;
-  padding: 10px 12px;
+  padding: 10px 12px 10px 38px;
   /* Vidi wears the marketing site's own ground, so the assistant reads as a
      piece of Viditra resting ON the paper rather than part of the answer
      sheet — and clay stays reserved for things you can press. */
@@ -954,11 +968,14 @@ a.eve-card:hover { border-color: rgba(43, 38, 32, 0.35); background: #FFFEF9; }
 @media (min-width: 1180px) {
   .vidi-win {
     top: 61px !important; right: 0 !important; bottom: 0 !important; left: auto !important;
-    width: 344px !important; max-height: none;
+    width: 344px !important; max-height: none !important;
+    /* a height chosen while floating must not shorten the column */
+    height: auto !important;
     border-radius: 0; border-top: none; border-right: none; border-bottom: none;
     box-shadow: -6px 0 24px rgba(62, 50, 25, 0.10);
   }
-  .vidi-head { cursor: default; }
+  .vidi-head { cursor: default; padding-left: 12px; }
+  .vidi-resize { display: none; }
   body.vidi-docked #notebookView { margin-right: 344px; }
 }
 
@@ -972,7 +989,9 @@ a.eve-card:hover { border-color: rgba(43, 38, 32, 0.35); background: #FFFEF9; }
     border-left: none; border-right: none; border-bottom: none;
     box-shadow: 0 -10px 34px rgba(20, 26, 42, 0.30);
   }
-  .vidi-head { cursor: default; }
+  /* on the sheet the header and the grip both pull the sheet taller or shorter */
+  .vidi-head { cursor: ns-resize; }
+  .vidi-resize { cursor: ns-resize; }
 
   /* Lift the pill clear of the step-advance button. Both sit in the bottom
      corner — .vidi-fab is fixed at bottom:20px z-index:38, .btn-next sticky at

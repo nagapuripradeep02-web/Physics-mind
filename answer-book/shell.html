@@ -246,6 +246,11 @@
      in localStorage. Deterministic chips always work; the free-text ask row
      exists only when the build was given a chat base (PM_VIDI_BASE). -->
 <aside id="pm-assistant-slot" class="vidi-win" hidden>
+  <!-- The resize grip: the top-left corner, which is the free corner when the
+       window rests in its default bottom-right place. Drag it to make the chat
+       bigger or smaller; double-tap puts the size back. On the phone sheet it
+       pulls the sheet taller, as the header does. -->
+  <div class="vidi-resize" id="vidiResize" title="Drag to make the chat bigger or smaller. Double-tap to reset." aria-hidden="true"></div>
   <div class="vidi-head" id="vidiHead">
     <span class="vidi-dot"></span>
     <span class="vidi-name">Vidi</span>

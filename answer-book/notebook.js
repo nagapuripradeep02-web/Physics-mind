@@ -6376,12 +6376,103 @@
       fitNotebook();
     }
 
+    // ── resize ──────────────────────────────────────────────────────────────
+    // The window's default 358 × 560 is a postage stamp on a phone in Chrome's
+    // desktop-site view (a 980px viewport, taller than it is wide — the phone
+    // bottom-sheet CSS never applies there). So the window resizes: the top-left
+    // grip everywhere it floats, and on the phone sheet the header too, pulling
+    // the sheet taller. The bottom-right corner stays where it is, so a window
+    // resting in its default corner grows toward the page. Docked (≥1180px) the
+    // column has a fixed width and the grip is hidden by CSS.
+    var MIN_W = 280, MIN_H = 240, EDGE = 6;
+    function isSheet() { return window.innerWidth <= 720; }
+    function isDocked() { return window.innerWidth >= 1180; }
+
+    /** Inline width/height beat the stylesheet's height caps (560px / 74vh);
+        a size the student chose must not be quietly capped back. */
+    function setSize(el2, wPx, hPx) {
+      if (wPx !== null) el2.style.width = Math.max(MIN_W, Math.min(wPx, window.innerWidth - 2 * EDGE)) + 'px';
+      if (hPx !== null) {
+        var h = Math.max(MIN_H, Math.min(hPx, window.innerHeight - 2 * EDGE));
+        el2.style.height = h + 'px';
+        el2.style.maxHeight = h + 'px';
+      }
+    }
+
+    function clearSize(el2) {
+      el2.style.width = ''; el2.style.height = ''; el2.style.maxHeight = '';
+    }
+
+    /** Re-apply a chosen size. The sheet keeps only the height (its width is
+        the screen); the docked column keeps neither. */
+    function applyStoredSize() {
+      if (isDocked()) return;
+      var w = Vidi.getWin();
+      if (!w) return;
+      var el2 = winEl();
+      if (typeof w.h === 'number') setSize(el2, null, w.h);
+      if (typeof w.w === 'number' && !isSheet()) setSize(el2, w.w, null);
+    }
+
+    var WinResize = (function () {
+      var st = null;
+      function begin(e, captureEl) {
+        if (isDocked()) return false;
+        var el2 = winEl();
+        var r = el2.getBoundingClientRect();
+        st = { px: e.clientX, py: e.clientY, left: r.left, top: r.top, right: r.right, bottom: r.bottom, sheet: isSheet() };
+        if (!st.sheet) {
+          // pin the corner that must stay put: position by left/top from here on
+          el2.style.left = r.left + 'px'; el2.style.top = r.top + 'px';
+          el2.style.right = 'auto'; el2.style.bottom = 'auto';
+        }
+        try { captureEl.setPointerCapture(e.pointerId); } catch (err) {}
+        e.preventDefault();
+        return true;
+      }
+      function move(e) {
+        if (!st) return;
+        var el2 = winEl();
+        var top = Math.max(EDGE, Math.min(st.top + (e.clientY - st.py), st.bottom - MIN_H));
+        if (st.sheet) { setSize(el2, null, st.bottom - top); return; }
+        var left = Math.max(EDGE, Math.min(st.left + (e.clientX - st.px), st.right - MIN_W));
+        el2.style.left = left + 'px'; el2.style.top = top + 'px';
+        setSize(el2, st.right - left, st.bottom - top);
+      }
+      function end() {
+        if (!st) return;
+        var sheet = st.sheet;
+        st = null;
+        var r = winEl().getBoundingClientRect();
+        var patch = { h: Math.round(r.height) };
+        if (!sheet) { patch.w = Math.round(r.width); patch.x = Math.round(r.left); patch.y = Math.round(r.top); }
+        saveWin(patch);
+        Vidi.log('vidi_resize', { w: Math.round(r.width), h: Math.round(r.height), sheet: sheet ? 1 : 0 });
+      }
+      function reset() {
+        clearSize(winEl());
+        saveWin({ w: null, h: null });
+        Vidi.log('vidi_resize', { reset: 1 });
+      }
+      return { begin: begin, move: move, end: end, reset: reset, active: function () { return !!st; } };
+    })();
+
+    function initResize() {
+      var grip = $('vidiResize');
+      grip.addEventListener('pointerdown', function (e) { WinResize.begin(e, grip); });
+      grip.addEventListener('pointermove', WinResize.move);
+      grip.addEventListener('pointerup', WinResize.end);
+      grip.addEventListener('pointercancel', WinResize.end);
+      grip.addEventListener('dblclick', WinResize.reset);
+    }
+
     function openWin() {
       winOpen = true;
       winEl().hidden = false;
       $('vidiFab').hidden = true;
       $('vidiFab').classList.remove('vf-unread');
       applyStoredPos();
+      applyStoredSize();
       var t = threadEl(); t.scrollTop = t.scrollHeight;
       saveWin(null);
       syncDock();
@@ -6451,14 +6542,15 @@
       var sx = 0, sy = 0, ox = 0, oy = 0, dragging = false;
       head.addEventListener('pointerdown', function (e) {
         if (e.target && e.target.id === 'vidiClose') return;
-        if (window.innerWidth <= 720) return;        // sheet: no drag
         if (window.innerWidth >= 1180) return;       // docked column: no drag
+        if (window.innerWidth <= 720) { WinResize.begin(e, head); return; }   // sheet: the header pulls it taller
         var r = winEl().getBoundingClientRect();
         dragging = true; sx = e.clientX; sy = e.clientY; ox = r.left; oy = r.top;
         try { head.setPointerCapture(e.pointerId); } catch (err) {}
         e.preventDefault();
       });
       head.addEventListener('pointermove', function (e) {
+        if (WinResize.active()) { WinResize.move(e); return; }
         if (!dragging) return;
         var el2 = winEl();
         var x = Math.max(6, Math.min(ox + e.clientX - sx, window.innerWidth - el2.offsetWidth - 6));
@@ -6466,7 +6558,9 @@
         el2.style.left = x + 'px'; el2.style.top = y + 'px';
         el2.style.right = 'auto'; el2.style.bottom = 'auto';
       });
+      head.addEventListener('pointercancel', function () { if (WinResize.active()) WinResize.end(); });
       head.addEventListener('pointerup', function () {
+        if (WinResize.active()) { WinResize.end(); return; }
         if (!dragging) return;
         dragging = false;
         var r = winEl().getBoundingClientRect();
@@ -6578,6 +6672,7 @@
       minWin: minWin,
       syncView: syncView,
       initDrag: initDrag,
+      initResize: initResize,
       initMic: initMic,
       ask: vidiAsk,
       canQuote: canQuote,
@@ -6710,6 +6805,7 @@
   function initVidi() {
     VidiPanel.syncName();
     VidiPanel.initDrag();
+    VidiPanel.initResize();
     VidiPanel.initMic();
     $('vidiFab').addEventListener('click', VidiPanel.openHome);
     $('vidiClose').addEventListener('click', VidiPanel.minWin);

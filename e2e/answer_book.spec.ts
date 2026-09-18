@@ -1447,6 +1447,71 @@ test('the Vidi window drags by its header and the place sticks', async ({ page }
     }
 });
 
+test('the Vidi window resizes from its corner grip, the far corner stays put, and the size sticks', async ({ page }) => {
+    // 980px is what a phone shows in Chrome's desktop-site view — the band the
+    // resize was built for: the sheet CSS does not apply, and 358 × 560 is a
+    // postage stamp on a screen taller than it is wide (founder, 2026-09-18).
+    await page.setViewportSize({ width: 980, height: 1600 });
+    await openFirst(page);
+    await openVidi(page);
+
+    const before = (await page.locator('#pm-assistant-slot').boundingBox())!;
+    const grip = (await page.locator('#vidiResize').boundingBox())!;
+    expect(grip.width).toBeGreaterThanOrEqual(28);      // a thumb can find it
+    await page.mouse.move(grip.x + grip.width / 2, grip.y + grip.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(grip.x + grip.width / 2 - 300, grip.y + grip.height / 2 - 500, { steps: 8 });
+    await page.mouse.up();
+
+    const after = (await page.locator('#pm-assistant-slot').boundingBox())!;
+    expect(after.width - before.width).toBeGreaterThan(250);
+    expect(after.height - before.height).toBeGreaterThan(400);
+    // the bottom-right corner is the anchor: it does not move
+    expect(Math.abs((after.x + after.width) - (before.x + before.width))).toBeLessThan(3);
+    expect(Math.abs((after.y + after.height) - (before.y + before.height))).toBeLessThan(3);
+    // and the thread grew with it — the size is not just a bigger frame
+    const threadH = await page.evaluate(() => document.getElementById('vidiThread')!.getBoundingClientRect().height);
+    expect(threadH).toBeGreaterThan(400);
+
+    const storageWorks = await page.evaluate(() => {
+        try { localStorage.setItem('pm_vidi_t', '1'); localStorage.removeItem('pm_vidi_t'); return true; }
+        catch { return false; }
+    });
+    if (storageWorks) {
+        await openFirst(page);
+        await openVidi(page);
+        const kept = (await page.locator('#pm-assistant-slot').boundingBox())!;
+        expect(Math.abs(kept.width - after.width)).toBeLessThan(3);
+        expect(Math.abs(kept.height - after.height)).toBeLessThan(3);
+        // double-tap on the grip puts the default size back
+        await page.dblclick('#vidiResize');
+        const reset = (await page.locator('#pm-assistant-slot').boundingBox())!;
+        expect(Math.abs(reset.width - before.width)).toBeLessThan(3);
+        expect(reset.height).toBeLessThan(after.height - 300);
+    }
+});
+
+test('on the phone sheet the header pulls Vidi taller, and never sideways', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await openFirst(page);
+    await openVidi(page);
+
+    const before = (await page.locator('#pm-assistant-slot').boundingBox())!;
+    expect(Math.round(before.width)).toBe(390);          // the sheet is the screen
+    const head = (await page.locator('#vidiHead').boundingBox())!;
+    await page.mouse.move(head.x + head.width / 2, head.y + head.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(head.x + head.width / 2 - 120, head.y + head.height / 2 - 200, { steps: 6 });
+    await page.mouse.up();
+
+    const after = (await page.locator('#pm-assistant-slot').boundingBox())!;
+    expect(after.height - before.height).toBeGreaterThan(150);
+    expect(Math.round(after.width)).toBe(390);           // width is not the student's to change here
+    expect(Math.round(after.x)).toBe(0);                 // the sheet never leaves the edge
+    expect(Math.abs((after.y + after.height) - (before.y + before.height))).toBeLessThan(3);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth + 1)).toBe(false);
+});
+
 test('the ask field and the mic exist exactly when the build has a chat base', async ({ page }) => {
     await openFirst(page);
     await openVidi(page);
