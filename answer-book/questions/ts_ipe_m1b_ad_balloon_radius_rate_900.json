@@ -52,17 +52,33 @@
             "style": "heading"
           },
           "The balloon stays spherical, so let r be its radius at time t.",
-          "Given: dV/dt = 900 cm³/sec.",
-          "Asked: dr/dt when r = 15 cm.",
+          {
+            "text": "\\text{Given}:\\ \\dfrac{dV}{dt}\\ = \\ \\dfrac{900cm^{3}}{\\sec }.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Asked}:\\ \\dfrac{dr}{dt}\\ \\text{when}\\ r\\ = \\ 15cm.",
+            "style": "normal",
+            "render": "katex"
+          },
           "(the formula for the volume of a sphere)",
-          "Volume of a sphere:  V = (4/3)πr³",
+          {
+            "text": "\\text{Volume}\\ \\text{of}\\ a\\ \\text{sphere}:\\ V\\ = \\ \\left(\\dfrac{4}{3}\\right)\\pi r^{3}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Differentiate both sides with respect to time t:",
           "(chain rule: d/dt of r³ is 3r² · (dr/dt);",
           {
             "text": "  then (4/3) × 3 = 4)",
             "style": "indent"
           },
-          "dV/dt = (4/3)π·3r²·(dr/dt) = 4πr²(dr/dt)"
+          {
+            "text": "\\dfrac{dV}{dt}\\ = \\ \\left(\\dfrac{4}{3}\\right)\\pi \\cdot 3r^{2} \\cdot \\left(\\dfrac{dr}{dt}\\right)\\ = \\ 4\\pi r^{2}\\left(\\dfrac{dr}{dt}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -104,24 +120,39 @@
         "mark_note": "Answer",
         "margin_note": "Second mark. Here dr/dt is the unknown, so the equation has to be rearranged after substituting. 4π(15²) = 900π, and the 900 on both sides cancels to leave 1/π.",
         "lines": [
-          "Put r = 15 and dV/dt = 900:",
+          {
+            "text": "\\text{Put}\\ r\\ = \\ 15\\ \\text{and}\\ \\dfrac{dV}{dt}\\ = \\ 900:",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(15² = 225 and 4 × 225 = 900)",
             "added": true
           },
-          "900 = 4π(15²)(dr/dt) = 4π(225)(dr/dt) = 900π(dr/dt)",
+          {
+            "text": "900\\ = \\ 4\\pi \\left(15^{2}\\right)\\left(\\dfrac{dr}{dt}\\right)\\ = \\ 4\\pi \\left(225\\right)\\left(\\dfrac{dr}{dt}\\right)\\ = \\ 900\\pi \\left(\\dfrac{dr}{dt}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(divide both sides by 900π)",
             "added": true
           },
-          "dr/dt = 900/(900π) = 1/π",
           {
-            "text": "(1/π ≈ 1/3.1416 ≈ 0.318)",
+            "text": "\\dfrac{dr}{dt}\\ = \\ \\dfrac{900}{900\\pi } = \\ \\dfrac{1}{\\pi }",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{1}{\\pi } \\approx \\ \\dfrac{1}{3.1416} \\approx \\ 0.318\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ dr/dt = 1/π cm/sec ≈ 0.32 cm/sec",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{dr}{dt}\\ = \\ \\dfrac{\\dfrac{1}{\\pi }cm}{\\sec } \\approx \\ \\dfrac{0.32cm}{\\sec }",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -156,12 +187,25 @@
         ],
         "memory_tip": "4π × 225 is 900π, and the 900 pumped in per second cancels the 900 in 900π — so the answer is exactly 1/π.",
         "lines_compact": [
-          "Put r = 15 and dV/dt = 900:",
-          "900 = 4π(15²)(dr/dt) = 4π(225)(dr/dt) = 900π(dr/dt)",
-          "dr/dt = 900/(900π) = 1/π",
           {
-            "text": "∴ dr/dt = 1/π cm/sec ≈ 0.32 cm/sec",
-            "style": "boxed"
+            "text": "\\text{Put}\\ r\\ = \\ 15\\ \\text{and}\\ \\dfrac{dV}{dt}\\ = \\ 900:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "900\\ = \\ 4\\pi \\left(15^{2}\\right)\\left(\\dfrac{dr}{dt}\\right)\\ = \\ 4\\pi \\left(225\\right)\\left(\\dfrac{dr}{dt}\\right)\\ = \\ 900\\pi \\left(\\dfrac{dr}{dt}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{dr}{dt}\\ = \\ \\dfrac{900}{900\\pi } = \\ \\dfrac{1}{\\pi }",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{dr}{dt}\\ = \\ \\dfrac{\\dfrac{1}{\\pi }cm}{\\sec } \\approx \\ \\dfrac{0.32cm}{\\sec }",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

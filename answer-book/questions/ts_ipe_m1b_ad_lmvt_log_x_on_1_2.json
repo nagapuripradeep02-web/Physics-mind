@@ -55,7 +55,11 @@
           "Lagrange's mean value theorem:",
           "if f is continuous on [a, b] and differentiable on (a, b),",
           "then there is at least one c in (a, b) with",
-          "f′(c) = (f(b) − f(a))/(b − a)",
+          {
+            "text": "f'\\left(c\\right)\\ = \\ \\dfrac{f\\left(b\\right)\\ - \\ f\\left(a\\right)}{b\\ - \\ a}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Here f(x) = logₑ x, a = 1, b = 2",
           "(the derivative of logₑ x is 1/x, for every x > 0)",
           "logₑ x is defined, continuous",
@@ -111,7 +115,11 @@
             "text": "(d/dx of logₑ x is 1/x)",
             "added": true
           },
-          "f′(x) = 1/x,   so f′(c) = 1/c",
+          {
+            "text": "f'\\left(x\\right)\\ = \\ \\dfrac{1}{x},\\ \\text{so}\\ f'\\left(c\\right)\\ = \\ \\dfrac{1}{c}",
+            "style": "normal",
+            "render": "katex"
+          },
           "By the theorem there is c in (1, 2) with f′(c) = logₑ 2",
           {
             "text": "(logₑ 2 ≠ 0, so take the reciprocal of both sides)",
@@ -158,7 +166,11 @@
           "Rounding to 1.4 and losing the exact value in the final line."
         ],
         "lines_compact": [
-          "f′(x) = 1/x,   so f′(c) = 1/c",
+          {
+            "text": "f'\\left(x\\right)\\ = \\ \\dfrac{1}{x},\\ \\text{so}\\ f'\\left(c\\right)\\ = \\ \\dfrac{1}{c}",
+            "style": "normal",
+            "render": "katex"
+          },
           "By the theorem there is c in (1, 2) with f′(c) = logₑ 2",
           "1/c = logₑ 2 ⇒ c = 1/logₑ 2",
           "logₑ 2 ≈ 0.693, so c ≈ 1.443, and 1 < 1.443 < 2",

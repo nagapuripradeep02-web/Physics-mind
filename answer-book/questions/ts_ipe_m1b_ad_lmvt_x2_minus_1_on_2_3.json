@@ -55,14 +55,22 @@
           "Lagrange's mean value theorem:",
           "if f is continuous on [a, b] and differentiable on (a, b),",
           "then there is at least one c in (a, b) with",
-          "f′(c) = (f(b) − f(a))/(b − a)",
+          {
+            "text": "f'\\left(c\\right)\\ = \\ \\dfrac{f\\left(b\\right)\\ - \\ f\\left(a\\right)}{b\\ - \\ a}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Here f(x) = x² − 1, a = 2, b = 3",
           "f is a polynomial, so it is continuous on [2, 3]",
           "and differentiable on (2, 3). Both conditions hold.",
           "(put 2 and 3 in place of x in x² − 1)",
           "f(2) = 2² − 1 = 3,   f(3) = 3² − 1 = 8",
           "(the slope of the chord joining (2, 3) and (3, 8))",
-          "(f(3) − f(2))/(3 − 2) = (8 − 3)/1 = 5"
+          {
+            "text": "\\dfrac{f\\left(3\\right)\\ - \\ f\\left(2\\right)}{3\\ - \\ 2} = \\ \\dfrac{8\\ - \\ 3}{1} = \\ 5",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -105,7 +113,9 @@
         "memory_tip": "For any quadratic the point c is the midpoint of the interval. Here (2 + 3)/2 = 5/2, which matches.",
         "lines": [
           {
-            "text": "(d/dx of x² − 1 is 2x)",
+            "text": "\\left(\\dfrac{d}{dx}\\ \\text{of}\\ x^{2}\\ - \\ 1\\ \\text{is}\\ 2x\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "f′(x) = 2x,   so f′(c) = 2c",
@@ -114,11 +124,20 @@
             "text": "(divide both sides by 2)",
             "added": true
           },
-          "2c = 5 ⇒ c = 5/2",
-          "5/2 = 2.5, and 2 < 2.5 < 3, so c lies inside (2, 3)",
           {
-            "text": "∴ c = 5/2 ∈ (2, 3)",
-            "style": "boxed"
+            "text": "2c\\ = \\ 5\\ \\Rightarrow \\ c\\ = \\ \\dfrac{5}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{5}{2} = \\ 2.5,\\ \\text{and}\\ 2\\ < \\ 2.5\\ < \\ 3,\\ \\text{so}\\ c\\ \\text{lies}\\ \\text{inside}\\ \\left(2,\\ 3\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ c\\ = \\ \\dfrac{5}{2} \\in \\ \\left(2,\\ 3\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -152,11 +171,20 @@
         "lines_compact": [
           "f′(x) = 2x,   so f′(c) = 2c",
           "By the theorem there is c in (2, 3) with f′(c) = 5",
-          "2c = 5 ⇒ c = 5/2",
-          "5/2 = 2.5, and 2 < 2.5 < 3, so c lies inside (2, 3)",
           {
-            "text": "∴ c = 5/2 ∈ (2, 3)",
-            "style": "boxed"
+            "text": "2c\\ = \\ 5\\ \\Rightarrow \\ c\\ = \\ \\dfrac{5}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{5}{2} = \\ 2.5,\\ \\text{and}\\ 2\\ < \\ 2.5\\ < \\ 3,\\ \\text{so}\\ c\\ \\text{lies}\\ \\text{inside}\\ \\left(2,\\ 3\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ c\\ = \\ \\dfrac{5}{2} \\in \\ \\left(2,\\ 3\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

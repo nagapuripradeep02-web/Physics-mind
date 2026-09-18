@@ -62,8 +62,16 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "(π radians = 180°, so π/6 = 180°/6 = 30°)",
-          "Given angle θ = π/6 = 30°"
+          {
+            "text": "\\left(\\pi \\ \\text{radians}\\ = \\ 180^{\\circ},\\ \\text{so}\\ \\dfrac{\\pi }{6} = \\ \\dfrac{180^{\\circ}}{6} = \\ 30^{\\circ}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Given}\\ \\text{angle}\\ \\theta \\ = \\ \\dfrac{\\pi }{6} = \\ 30^{\\circ}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -119,11 +127,21 @@
           },
           "= (√3 + r cos30°, 2 + r sin30°)",
           {
-            "text": "(cos 30° = √3/2 and sin 30° = 1/2)",
+            "text": "\\left(\\cos 30^{\\circ}\\ = \\ \\dfrac{\\sqrt{3}}{2}\\text{and}\\ \\sin 30^{\\circ}\\ = \\ \\dfrac{1}{2}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= (√3 + r(√3/2), 2 + r(1/2))",
-          "∴ P = (√3 + √3r/2, 2 + r/2)"
+          {
+            "text": "= \\ \\left(\\sqrt{3}\\ + \\ r\\left(\\dfrac{\\sqrt{3}}{2}\\right),\\ 2\\ + \\ r\\left(\\dfrac{1}{2}\\right)\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ P\\ = \\ \\left(\\sqrt{3}\\ + \\ \\dfrac{\\sqrt{3}r}{2},\\ 2\\ + \\ \\dfrac{r}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -158,8 +176,16 @@
           "Given point Q(x₁, y₁) = (√3, 2) and distance PQ = r, then",
           "P = (x₁ + r cosθ, y₁ + r sinθ)",
           "= (√3 + r cos30°, 2 + r sin30°)",
-          "= (√3 + r(√3/2), 2 + r(1/2))",
-          "∴ P = (√3 + √3r/2, 2 + r/2)"
+          {
+            "text": "= \\ \\left(\\sqrt{3}\\ + \\ r\\left(\\dfrac{\\sqrt{3}}{2}\\right),\\ 2\\ + \\ r\\left(\\dfrac{1}{2}\\right)\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ P\\ = \\ \\left(\\sqrt{3}\\ + \\ \\dfrac{\\sqrt{3}r}{2},\\ 2\\ + \\ \\dfrac{r}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -174,7 +200,11 @@
             "added": true
           },
           "But P lies on the line √3x − 4y + 8 = 0",
-          "⇒ √3(√3 + √3r/2) − 4(2 + r/2) + 8 = 0",
+          {
+            "text": "\\Rightarrow \\ \\sqrt{3}\\left(\\sqrt{3}\\ + \\ \\dfrac{\\sqrt{3}r}{2}\\right)\\ - \\ 4\\left(2\\ + \\ \\dfrac{r}{2}\\right)\\ + \\ 8\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(√3 · √3 = 3 and √3 · √3r/2 = 3r/2;",
             "added": true
@@ -184,7 +214,11 @@
             "style": "indent",
             "added": true
           },
-          "⇒ 3 + 3r/2 − 8 − 2r + 8 = 0",
+          {
+            "text": "\\Rightarrow \\ 3\\ + \\ \\dfrac{3r}{2} - \\ 8\\ - \\ 2r\\ + \\ 8\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(−8 + 8 = 0; move the r terms to the right",
             "added": true
@@ -194,12 +228,22 @@
             "style": "indent",
             "added": true
           },
-          "⇒ 3 + 3r/2 − 2r = 0   ⇒   2r − 3r/2 = 3",
           {
-            "text": "(2r = 4r/2)",
+            "text": "\\Rightarrow \\ 3\\ + \\ \\dfrac{3r}{2} - \\ 2r\\ = \\ 0\\ \\Rightarrow \\ 2r\\ - \\ \\dfrac{3r}{2} = \\ 3",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(2r\\ = \\ \\dfrac{4r}{2}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "⇒ (4r − 3r)/2 = 3"
+          {
+            "text": "\\Rightarrow \\ \\dfrac{4r\\ - \\ 3r}{2} = \\ 3",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -231,10 +275,26 @@
         "memory_tip": "P lies on the given line, so substituting produces one equation in r alone.",
         "lines_compact": [
           "But P lies on the line √3x − 4y + 8 = 0",
-          "⇒ √3(√3 + √3r/2) − 4(2 + r/2) + 8 = 0",
-          "⇒ 3 + 3r/2 − 8 − 2r + 8 = 0",
-          "⇒ 3 + 3r/2 − 2r = 0   ⇒   2r − 3r/2 = 3",
-          "⇒ (4r − 3r)/2 = 3"
+          {
+            "text": "\\Rightarrow \\ \\sqrt{3}\\left(\\sqrt{3}\\ + \\ \\dfrac{\\sqrt{3}r}{2}\\right)\\ - \\ 4\\left(2\\ + \\ \\dfrac{r}{2}\\right)\\ + \\ 8\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ 3\\ + \\ \\dfrac{3r}{2} - \\ 8\\ - \\ 2r\\ + \\ 8\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ 3\\ + \\ \\dfrac{3r}{2} - \\ 2r\\ = \\ 0\\ \\Rightarrow \\ 2r\\ - \\ \\dfrac{3r}{2} = \\ 3",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\dfrac{4r\\ - \\ 3r}{2} = \\ 3",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -245,7 +305,9 @@
         "margin_note": "The last two marks. The distance PQ IS r, so solving for r finishes the question with no extra work.",
         "lines": [
           {
-            "text": "((4r − 3r)/2 = r/2; multiply both sides by 2)",
+            "text": "\\left(\\dfrac{4r\\ - \\ 3r}{2} = \\ \\dfrac{r}{2};\\ \\text{multiply}\\ \\text{both}\\ \\text{sides}\\ \\text{by}\\ 2\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -258,8 +320,9 @@
             "added": true
           },
           {
-            "text": "∴ r/2 = 3  ⇒  Distance PQ = r = 6",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{r}{2} = \\ 3\\ \\Rightarrow \\ \\text{Distance}\\ PQ\\ = \\ r\\ = \\ 6",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -292,8 +355,9 @@
         "memory_tip": "The distance PQ IS r, so solving for r finishes the question.",
         "lines_compact": [
           {
-            "text": "∴ r/2 = 3  ⇒  Distance PQ = r = 6",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{r}{2} = \\ 3\\ \\Rightarrow \\ \\text{Distance}\\ PQ\\ = \\ r\\ = \\ 6",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

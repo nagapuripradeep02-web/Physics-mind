@@ -106,22 +106,42 @@
         "margin_note": "Second mark. c cancels, and one sec θ cancels with the sec²θ above it. Writing sec θ and tan θ in terms of sin and cos makes the final form obvious.",
         "lines": [
           "For a curve given through θ:   dy/dx = (dy/dθ) / (dx/dθ)",
-          "dy/dx = c sec²θ / (c sec θ tan θ)",
+          {
+            "text": "\\dfrac{dy}{dx}\\ = \\ \\dfrac{c\\sec ^{2} \\theta }{c\\sec \\theta \\tan \\theta }",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(c cancels, and one sec θ cancels)",
             "added": true
           },
-          "= sec θ / tan θ",
           {
-            "text": "(sec θ = 1/cos θ and 1/tan θ = cos θ/sin θ)",
+            "text": "= \\ \\dfrac{\\sec \\theta }{\\tan \\theta }",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\sec \\theta \\ = \\ \\dfrac{1}{\\cos \\theta }\\text{and}\\ \\dfrac{1}{\\tan \\theta } = \\ \\dfrac{\\cos \\theta }{\\sin \\theta }\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= (1/cos θ) · (cos θ / sin θ)",
           {
-            "text": "(cos θ cancels; 1/sin θ = cosec θ)",
+            "text": "= \\ \\left(\\dfrac{1}{\\cos \\theta }\\right)\\ \\cdot \\ \\left(\\dfrac{\\cos \\theta }{\\sin \\theta }\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\cos \\theta \\ \\text{cancels};\\ \\dfrac{1}{\\sin \\theta } = \\ \\cos ec\\theta \\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "∴ dy/dx = 1/sin θ = cosec θ"
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{1}{\\sin \\theta } = \\ \\cos ec\\theta",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -155,10 +175,26 @@
         "memory_tip": "Divide the y-derivative by the x-derivative — the letter on top matches the letter on top of dy/dx.",
         "lines_compact": [
           "For a curve given through θ:   dy/dx = (dy/dθ) / (dx/dθ)",
-          "dy/dx = c sec²θ / (c sec θ tan θ)",
-          "= sec θ / tan θ",
-          "= (1/cos θ) · (cos θ / sin θ)",
-          "∴ dy/dx = 1/sin θ = cosec θ"
+          {
+            "text": "\\dfrac{dy}{dx}\\ = \\ \\dfrac{c\\sec ^{2} \\theta }{c\\sec \\theta \\tan \\theta }",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\sec \\theta }{\\tan \\theta }",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{1}{\\cos \\theta }\\right)\\ \\cdot \\ \\left(\\dfrac{\\cos \\theta }{\\sin \\theta }\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{1}{\\sin \\theta } = \\ \\cos ec\\theta",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -172,13 +208,21 @@
           "The point on the curve at parameter θ is  (c sec θ, c tan θ).",
           "Tangent at (x₁, y₁) with slope m:   y − y₁ = m(x − x₁)",
           {
-            "text": "(put x₁ = c sec θ, y₁ = c tan θ and m = 1/sin θ)",
+            "text": "\\left(\\text{put}\\ x_{1}\\ = \\ c\\sec \\theta ,\\ y_{1}\\ = \\ c\\tan \\theta \\ \\text{and}\\ m\\ = \\ \\dfrac{1}{\\sin \\theta }\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "y − c tan θ = (1/sin θ)(x − c sec θ)",
+          {
+            "text": "y\\ - \\ c\\tan \\theta \\ = \\ \\left(\\dfrac{1}{\\sin \\theta }\\right)\\left(x\\ - \\ c\\sec \\theta \\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "Multiply both sides by sin θ:",
           {
-            "text": "(sin θ × (1/sin θ) = 1)",
+            "text": "\\left(\\sin \\theta \\ \\times \\ \\left(\\dfrac{1}{\\sin \\theta }\\right)\\ = \\ 1\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "y sin θ − c tan θ sin θ = x − c sec θ"
@@ -216,7 +260,11 @@
         "lines_compact": [
           "The point on the curve at parameter θ is  (c sec θ, c tan θ).",
           "Tangent at (x₁, y₁) with slope m:   y − y₁ = m(x − x₁)",
-          "y − c tan θ = (1/sin θ)(x − c sec θ)",
+          {
+            "text": "y\\ - \\ c\\tan \\theta \\ = \\ \\left(\\dfrac{1}{\\sin \\theta }\\right)\\left(x\\ - \\ c\\sec \\theta \\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "Multiply both sides by sin θ:",
           "y sin θ − c tan θ sin θ = x − c sec θ"
         ]
@@ -244,8 +292,9 @@
             "added": true
           },
           {
-            "text": "  tan θ sin θ = (sin²θ/cos²θ) · cos θ;",
+            "text": "\\tan \\theta \\sin \\theta \\ = \\ \\left(\\dfrac{\\sin ^{2} \\theta }{\\cos ^{2} \\theta }\\right)\\ \\cdot \\ \\cos \\theta ;",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           {

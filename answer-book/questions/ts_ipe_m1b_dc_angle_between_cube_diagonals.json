@@ -470,32 +470,46 @@
             "added": true
           },
           "So, angle between the two diagonals is given by",
-          "cosθ = |a₁a₂ + b₁b₂ + c₁c₂| / √((a₁²+b₁²+c₁²)(a₂²+b₂²+c₂²))",
+          {
+            "text": "\\cos \\theta \\ = \\ \\dfrac{\\left|a_{1}a_{2}\\ + \\ b_{1}b_{2}\\ + \\ c_{1}c_{2}\\right|}{\\sqrt{\\left(a_{1}^{2} + b_{1}^{2} + c_{1}^{2}\\right)\\left(a_{2}^{2} + b_{2}^{2} + c_{2}^{2}\\right)}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(put (a, a, a) and (a, a, −a))",
             "added": true
           },
-          "= |a(a) + a(a) + a(−a)| / √((a²+a²+a²)(a²+a²+a²))",
+          {
+            "text": "= \\ \\dfrac{\\left|a\\left(a\\right)\\ + \\ a\\left(a\\right)\\ + \\ a\\left( - a\\right)\\right|}{\\sqrt{\\left(a^{2} + a^{2} + a^{2}\\right)\\left(a^{2} + a^{2} + a^{2}\\right)}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(a² + a² − a² = a²; a² + a² + a² = 3a²; √(3a² · 3a²) = 3a²)",
             "added": true
           },
-          "= a² / √((3a²)(3a²)) = a²/(3a²) = 1/3",
+          {
+            "text": "= \\ \\dfrac{a^{2}}{\\sqrt{\\left(3a^{2}\\right)\\left(3a^{2}\\right)}} = \\ \\dfrac{a^{2}}{3a^{2}} = \\ \\dfrac{1}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(a² cancels, and a ≠ 0)",
             "added": true
           },
           {
-            "text": "∴ cosθ = 1/3",
-            "style": "boxed"
+            "text": "\\therefore \\ \\cos \\theta \\ = \\ \\dfrac{1}{3}",
+            "style": "boxed",
+            "render": "katex"
           },
           {
             "text": "⇒  angle between the diagonals of a cube",
             "style": "boxed"
           },
           {
-            "text": "is Cos⁻¹(1/3)",
-            "style": "boxed"
+            "text": "\\text{is}\\ \\operatorname{Cos}^{-1}\\left(\\dfrac{1}{3}\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -527,20 +541,34 @@
         ],
         "lines_compact": [
           "So, angle between the two diagonals is given by",
-          "cosθ = |a₁a₂ + b₁b₂ + c₁c₂| / √((a₁²+b₁²+c₁²)(a₂²+b₂²+c₂²))",
-          "= |a(a) + a(a) + a(−a)| / √((a²+a²+a²)(a²+a²+a²))",
-          "= a² / √((3a²)(3a²)) = a²/(3a²) = 1/3",
           {
-            "text": "∴ cosθ = 1/3",
-            "style": "boxed"
+            "text": "\\cos \\theta \\ = \\ \\dfrac{\\left|a_{1}a_{2}\\ + \\ b_{1}b_{2}\\ + \\ c_{1}c_{2}\\right|}{\\sqrt{\\left(a_{1}^{2} + b_{1}^{2} + c_{1}^{2}\\right)\\left(a_{2}^{2} + b_{2}^{2} + c_{2}^{2}\\right)}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\left|a\\left(a\\right)\\ + \\ a\\left(a\\right)\\ + \\ a\\left( - a\\right)\\right|}{\\sqrt{\\left(a^{2} + a^{2} + a^{2}\\right)\\left(a^{2} + a^{2} + a^{2}\\right)}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{a^{2}}{\\sqrt{\\left(3a^{2}\\right)\\left(3a^{2}\\right)}} = \\ \\dfrac{a^{2}}{3a^{2}} = \\ \\dfrac{1}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\cos \\theta \\ = \\ \\dfrac{1}{3}",
+            "style": "boxed",
+            "render": "katex"
           },
           {
             "text": "⇒  angle between the diagonals of a cube",
             "style": "boxed"
           },
           {
-            "text": "is Cos⁻¹(1/3)",
-            "style": "boxed"
+            "text": "\\text{is}\\ \\operatorname{Cos}^{-1}\\left(\\dfrac{1}{3}\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

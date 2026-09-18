@@ -57,8 +57,9 @@
           "(on the YZ-plane x = 0)",
           "(a point dividing AB in the ratio m : n has",
           {
-            "text": "  x = (mx₂ + nx₁)/(m + n); x = 0 gives mx₂ = −nx₁,",
-            "style": "indent"
+            "text": "x\\ = \\ \\dfrac{mx_{2}\\ + \\ nx_{1}}{m\\ + \\ n};\\ x\\ = \\ 0\\ \\text{gives}\\ mx_{2}\\ = \\ - nx_{1},",
+            "style": "indent",
+            "render": "katex"
           },
           {
             "text": "  so m : n = −x₁ : x₂)",
@@ -132,7 +133,11 @@
             "style": "indent",
             "added": true
           },
-          "= ((−6+6)/1, (−10+12)/1, (8+15)/1)",
+          {
+            "text": "= \\ \\left(\\dfrac{ - 6 + 6}{1},\\ \\dfrac{ - 10 + 12}{1},\\ \\dfrac{8 + 15}{1}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(the x-coordinate is 0, as it must be on the YZ-plane)",
             "added": true
@@ -175,7 +180,11 @@
           "(mz₂ + nz₁)/(m+n))",
           "= ((−2×3 + 3×2)/(−2+3), (−2×5 + 3×4)/(−2+3),",
           "(−2×−4 + 3×5)/(−2+3))",
-          "= ((−6+6)/1, (−10+12)/1, (8+15)/1)",
+          {
+            "text": "= \\ \\left(\\dfrac{ - 6 + 6}{1},\\ \\dfrac{ - 10 + 12}{1},\\ \\dfrac{8 + 15}{1}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ Point of intersection = (0, 2, 23)",
             "style": "boxed"

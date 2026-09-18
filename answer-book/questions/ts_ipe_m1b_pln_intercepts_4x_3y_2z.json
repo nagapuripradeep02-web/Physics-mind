@@ -64,7 +64,11 @@
           "(move 2 to the right side)",
           "⇒ 4x + 3y − 2z = −2",
           "(divide every term by −2, so that the right side is 1)",
-          "⇒ 4x/(−2) + 3y/(−2) − 2z/(−2) = 1"
+          {
+            "text": "\\Rightarrow \\ \\dfrac{4x}{ - 2} + \\ \\dfrac{3y}{ - 2} - \\ \\dfrac{2z}{ - 2} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -112,15 +116,24 @@
             "style": "indent",
             "added": true
           },
-          "⇒ x/(−1/2) + y/(−2/3) + z/1 = 1",
-          "which is in the intercept form  x/a + y/b + z/c = 1",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{x}{ - \\dfrac{1}{2}} + \\ \\dfrac{y}{ - \\dfrac{2}{3}} + \\ \\dfrac{z}{1} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{which}\\ \\text{is}\\ \\text{in}\\ \\text{the}\\ \\text{intercept}\\ \\text{form}\\ \\dfrac{x}{a} + \\ \\dfrac{y}{b} + \\ \\dfrac{z}{c} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(the denominators are the intercepts a, b, c)",
             "added": true
           },
           {
-            "text": "Hence, x-intercept = −1/2,  y-intercept = −2/3,",
-            "style": "boxed"
+            "text": "\\text{Hence},\\ \\text{x-intercept}\\ = \\ - \\dfrac{1}{2},\\ \\text{y-intercept}\\ = \\ - \\dfrac{2}{3},",
+            "style": "boxed",
+            "render": "katex"
           },
           {
             "text": "z-intercept = 1",
@@ -155,11 +168,20 @@
           "Losing a minus sign on a negative intercept."
         ],
         "lines_compact": [
-          "⇒ x/(−1/2) + y/(−2/3) + z/1 = 1",
-          "which is in the intercept form  x/a + y/b + z/c = 1",
           {
-            "text": "Hence, x-intercept = −1/2,  y-intercept = −2/3,",
-            "style": "boxed"
+            "text": "\\Rightarrow \\ \\dfrac{x}{ - \\dfrac{1}{2}} + \\ \\dfrac{y}{ - \\dfrac{2}{3}} + \\ \\dfrac{z}{1} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{which}\\ \\text{is}\\ \\text{in}\\ \\text{the}\\ \\text{intercept}\\ \\text{form}\\ \\dfrac{x}{a} + \\ \\dfrac{y}{b} + \\ \\dfrac{z}{c} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Hence},\\ \\text{x-intercept}\\ = \\ - \\dfrac{1}{2},\\ \\text{y-intercept}\\ = \\ - \\dfrac{2}{3},",
+            "style": "boxed",
+            "render": "katex"
           },
           {
             "text": "z-intercept = 1",

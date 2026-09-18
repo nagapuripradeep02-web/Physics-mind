@@ -53,17 +53,26 @@
           },
           "(e⁰ = 1 and √1 = 1)",
           "At x = 0, eˣ − 1 = 0 and √(1 + x) − 1 = 0,",
-          "so the expression is of the indeterminate form 0/0.",
+          {
+            "text": "\\text{so}\\ \\text{the}\\ \\text{expression}\\ \\text{is}\\ \\text{of}\\ \\text{the}\\ \\text{indeterminate}\\ \\text{form}\\ \\dfrac{0}{0}.",
+            "style": "normal",
+            "render": "katex"
+          },
           "For x ≠ 0 divide the numerator and the denominator by x.",
           "(dividing the top and the bottom by x ≠ 0 does not",
           {
             "text": "  change the fraction)",
             "style": "indent"
           },
-          "lim(x → 0) (eˣ − 1)/(√(1 + x) − 1)",
           {
-            "text": "  =  lim(x → 0) [(eˣ − 1)/x] / [(√(1 + x) − 1)/x]",
-            "style": "indent"
+            "text": "\\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\left(e^{x}\\ - \\ 1\\right)}{\\sqrt{1\\ + \\ x}\\ - \\ 1}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\left[\\dfrac{e^{x}\\ - \\ 1}{x}\\right]}{\\dfrac{\\sqrt{1\\ + \\ x}\\ - \\ 1}{x}}",
+            "style": "indent",
+            "render": "katex"
           },
           "((√(1 + x) − 1)/x = x/[x(√(1 + x) + 1)]",
           {
@@ -71,8 +80,16 @@
             "style": "indent"
           },
           "The two standard limits are",
-          "lim(x → 0) (eˣ − 1)/x = 1",
-          "and   lim(x → 0) (√(1 + x) − 1)/x = 1/2"
+          {
+            "text": "\\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\left(e^{x}\\ - \\ 1\\right)}{x} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\left(\\sqrt{1\\ + \\ x}\\ - \\ 1\\right)}{x} = \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -114,17 +131,26 @@
           "Both limits exist and the denominator limit 1/2 is not 0,",
           "so the limit of the quotient is the quotient of the limits.",
           {
-            "text": "(put 1 above and 1/2 below)",
-            "added": true
-          },
-          "= 1 / (1/2)",
-          {
-            "text": "(dividing by 1/2 is multiplying by 2)",
+            "text": "\\left(\\text{put}\\ 1\\ \\text{above}\\ \\text{and}\\ \\dfrac{1}{2}\\text{below}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ lim(x → 0) (eˣ − 1)/(√(1 + x) − 1) = 2",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{1}{\\dfrac{1}{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{dividing}\\ \\text{by}\\ \\dfrac{1}{2}\\text{is}\\ \\text{multiplying}\\ \\text{by}\\ 2\\right)",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\left(e^{x}\\ - \\ 1\\right)}{\\sqrt{1\\ + \\ x}\\ - \\ 1} = \\ 2",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -157,10 +183,15 @@
         "lines_compact": [
           "Both limits exist and the denominator limit 1/2 is not 0,",
           "so the limit of the quotient is the quotient of the limits.",
-          "= 1 / (1/2)",
           {
-            "text": "∴ lim(x → 0) (eˣ − 1)/(√(1 + x) − 1) = 2",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{1}{\\dfrac{1}{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\left(e^{x}\\ - \\ 1\\right)}{\\sqrt{1\\ + \\ x}\\ - \\ 1} = \\ 2",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

@@ -53,7 +53,11 @@
           },
           "(√1 − 1 = 0)",
           "At x = 0, √(1 + x) − 1 = 0 and x = 0,",
-          "so the expression is of the indeterminate form 0/0.",
+          {
+            "text": "\\text{so}\\ \\text{the}\\ \\text{expression}\\ \\text{is}\\ \\text{of}\\ \\text{the}\\ \\text{indeterminate}\\ \\text{form}\\ \\dfrac{0}{0}.",
+            "style": "normal",
+            "render": "katex"
+          },
           "Multiply the numerator and the denominator",
           "by the conjugate √(1 + x) + 1.",
           "(multiplying the top and the bottom by the same non-zero",
@@ -61,14 +65,22 @@
             "text": "  number √(1 + x) + 1)",
             "style": "indent"
           },
-          "lim(x → 0) (√(1 + x) − 1)/x",
+          {
+            "text": "\\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\left(\\sqrt{1\\ + \\ x}\\ - \\ 1\\right)}{x}",
+            "style": "normal",
+            "render": "katex"
+          },
           "= lim(x → 0) [(√(1 + x) − 1)(√(1 + x) + 1)]",
           {
             "text": "  / [x(√(1 + x) + 1)]",
             "style": "indent"
           },
           "((p − q)(p + q) = p² − q², with p = √(1 + x) and q = 1)",
-          "= lim(x → 0) (1 + x − 1) / [x(√(1 + x) + 1)]"
+          {
+            "text": "= \\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\left(1\\ + \\ x\\ - \\ 1\\right)}{x\\left(\\sqrt{1\\ + \\ x}\\ + \\ 1\\right)}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -111,21 +123,34 @@
             "text": "(1 + x − 1 = x)",
             "added": true
           },
-          "= lim(x → 0) x / [x(√(1 + x) + 1)]",
+          {
+            "text": "= \\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)x}{x\\left(\\sqrt{1\\ + \\ x}\\ + \\ 1\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(cancel x, which is not 0)",
             "added": true
           },
-          "= lim(x → 0) 1/(√(1 + x) + 1)",
+          {
+            "text": "= \\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)1}{\\sqrt{1\\ + \\ x}\\ + \\ 1}",
+            "style": "normal",
+            "render": "katex"
+          },
           "This expression is defined at x = 0, so substitute x = 0.",
           {
             "text": "(√1 = 1, and 1 + 1 = 2)",
             "added": true
           },
-          "= 1/(√1 + 1) = 1/2",
           {
-            "text": "∴ lim(x → 0) (√(1 + x) − 1)/x = 1/2",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{1}{\\sqrt{1}\\ + \\ 1} = \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\left(\\sqrt{1\\ + \\ x}\\ - \\ 1\\right)}{x} = \\ \\dfrac{1}{2}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -157,13 +182,26 @@
         ],
         "memory_tip": "The denominator ends as √1 + 1 = 2, so this standard result is 1/2. Store it: (√(1 + x) − 1)/x → 1/2 as x → 0.",
         "lines_compact": [
-          "= lim(x → 0) x / [x(√(1 + x) + 1)]",
-          "= lim(x → 0) 1/(√(1 + x) + 1)",
-          "This expression is defined at x = 0, so substitute x = 0.",
-          "= 1/(√1 + 1) = 1/2",
           {
-            "text": "∴ lim(x → 0) (√(1 + x) − 1)/x = 1/2",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)x}{x\\left(\\sqrt{1\\ + \\ x}\\ + \\ 1\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)1}{\\sqrt{1\\ + \\ x}\\ + \\ 1}",
+            "style": "normal",
+            "render": "katex"
+          },
+          "This expression is defined at x = 0, so substitute x = 0.",
+          {
+            "text": "= \\ \\dfrac{1}{\\sqrt{1}\\ + \\ 1} = \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\left(\\sqrt{1\\ + \\ x}\\ - \\ 1\\right)}{x} = \\ \\dfrac{1}{2}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

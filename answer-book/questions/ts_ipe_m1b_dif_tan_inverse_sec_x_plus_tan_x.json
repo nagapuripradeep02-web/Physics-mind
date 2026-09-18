@@ -60,8 +60,16 @@
             "style": "heading"
           },
           "Let y = Tan⁻¹(sec x + tan x)",
-          "(sec x = 1/cos x and tan x = sin x/cos x; add over cos x)",
-          "sec x + tan x = 1/cos x + sin x/cos x = (1 + sin x) / cos x"
+          {
+            "text": "\\left(\\sec x\\ = \\ \\dfrac{1}{\\cos x}\\text{and}\\ \\tan x\\ = \\ \\dfrac{\\sin x}{\\cos x};\\ \\text{add}\\ \\text{over}\\ \\cos x\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\sec x\\ + \\ \\tan x\\ = \\ \\dfrac{1}{\\cos x} + \\ \\dfrac{\\sin x}{\\cos x} = \\ \\dfrac{1\\ + \\ \\sin x}{\\cos x}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -101,10 +109,16 @@
         "margin_note": "Second mark. 1 + sin x is a perfect square in the half angles, and cos x factorises with the same bracket — that shared factor is what cancels.",
         "lines": [
           {
-            "text": "(1 = cos²(x/2) + sin²(x/2) and sin x = 2 sin(x/2) cos(x/2))",
+            "text": "\\left(1\\ = \\ \\cos ^{2}\\left(\\dfrac{x}{2}\\right)\\ + \\ \\sin ^{2}\\left(\\dfrac{x}{2}\\right)\\ \\text{and}\\ \\sin x\\ = \\ 2\\sin \\left(\\dfrac{x}{2}\\right)\\cos \\left(\\dfrac{x}{2}\\right)\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "1 + sin x = cos²(x/2) + sin²(x/2) + 2 sin(x/2) cos(x/2)",
+          {
+            "text": "1\\ + \\ \\sin x\\ = \\ \\cos ^{2}\\left(\\dfrac{x}{2}\\right)\\ + \\ \\sin ^{2}\\left(\\dfrac{x}{2}\\right)\\ + \\ 2\\sin \\left(\\dfrac{x}{2}\\right)\\cos \\left(\\dfrac{x}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "((p + q)² = p² + q² + 2pq, with p = cos(x/2)",
             "added": true
@@ -115,34 +129,49 @@
             "added": true
           },
           {
-            "text": "  = (cos(x/2) + sin(x/2))²",
-            "style": "indent"
+            "text": "= \\ \\left(\\cos \\left(\\dfrac{x}{2}\\right)\\ + \\ \\sin \\left(\\dfrac{x}{2}\\right)\\right)^{2}",
+            "style": "indent",
+            "render": "katex"
           },
           {
             "text": "(the double angle formula for the cosine)",
             "added": true
           },
-          "cos x = cos²(x/2) − sin²(x/2)",
+          {
+            "text": "\\cos x\\ = \\ \\cos ^{2}\\left(\\dfrac{x}{2}\\right)\\ - \\ \\sin ^{2}\\left(\\dfrac{x}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(p² − q² = (p + q)(p − q))",
             "added": true
           },
           {
-            "text": "  = (cos(x/2) + sin(x/2))(cos(x/2) − sin(x/2))",
-            "style": "indent"
+            "text": "= \\ \\left(\\cos \\left(\\dfrac{x}{2}\\right)\\ + \\ \\sin \\left(\\dfrac{x}{2}\\right)\\right)\\left(\\cos \\left(\\dfrac{x}{2}\\right)\\ - \\ \\sin \\left(\\dfrac{x}{2}\\right)\\right)",
+            "style": "indent",
+            "render": "katex"
           },
           {
-            "text": "(put the two results into (1 + sin x)/cos x)",
+            "text": "\\left(\\text{put}\\ \\text{the}\\ \\text{two}\\ \\text{results}\\ \\text{into}\\ \\dfrac{1\\ + \\ \\sin x}{\\cos x}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "(1 + sin x)/cos x",
           {
-            "text": "(cancel one factor cos(x/2) + sin(x/2), which is not 0 here)",
+            "text": "\\dfrac{1\\ + \\ \\sin x}{\\cos x}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{cancel}\\ \\text{one}\\ \\text{factor}\\ \\cos \\left(\\dfrac{x}{2}\\right)\\ + \\ \\sin \\left(\\dfrac{x}{2}\\right),\\ \\text{which}\\ \\text{is}\\ \\text{not}\\ 0\\ \\text{here}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "  = (cos(x/2) + sin(x/2)) / (cos(x/2) − sin(x/2))",
-            "style": "indent"
+            "text": "= \\ \\dfrac{\\cos \\left(\\dfrac{x}{2}\\right)\\ + \\ \\sin \\left(\\dfrac{x}{2}\\right)}{\\cos \\left(\\dfrac{x}{2}\\right)\\ - \\ \\sin \\left(\\dfrac{x}{2}\\right)}",
+            "style": "indent",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -175,20 +204,35 @@
         ],
         "memory_tip": "sin x = 2 sin(x/2) cos(x/2) is the middle term of the square, so 1 + sin x is always a perfect square.",
         "lines_compact": [
-          "1 + sin x = cos²(x/2) + sin²(x/2) + 2 sin(x/2) cos(x/2)",
           {
-            "text": "  = (cos(x/2) + sin(x/2))²",
-            "style": "indent"
+            "text": "1\\ + \\ \\sin x\\ = \\ \\cos ^{2}\\left(\\dfrac{x}{2}\\right)\\ + \\ \\sin ^{2}\\left(\\dfrac{x}{2}\\right)\\ + \\ 2\\sin \\left(\\dfrac{x}{2}\\right)\\cos \\left(\\dfrac{x}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
           },
-          "cos x = cos²(x/2) − sin²(x/2)",
           {
-            "text": "  = (cos(x/2) + sin(x/2))(cos(x/2) − sin(x/2))",
-            "style": "indent"
+            "text": "= \\ \\left(\\cos \\left(\\dfrac{x}{2}\\right)\\ + \\ \\sin \\left(\\dfrac{x}{2}\\right)\\right)^{2}",
+            "style": "indent",
+            "render": "katex"
           },
-          "(1 + sin x)/cos x",
           {
-            "text": "  = (cos(x/2) + sin(x/2)) / (cos(x/2) − sin(x/2))",
-            "style": "indent"
+            "text": "\\cos x\\ = \\ \\cos ^{2}\\left(\\dfrac{x}{2}\\right)\\ - \\ \\sin ^{2}\\left(\\dfrac{x}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\cos \\left(\\dfrac{x}{2}\\right)\\ + \\ \\sin \\left(\\dfrac{x}{2}\\right)\\right)\\left(\\cos \\left(\\dfrac{x}{2}\\right)\\ - \\ \\sin \\left(\\dfrac{x}{2}\\right)\\right)",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{1\\ + \\ \\sin x}{\\cos x}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\cos \\left(\\dfrac{x}{2}\\right)\\ + \\ \\sin \\left(\\dfrac{x}{2}\\right)}{\\cos \\left(\\dfrac{x}{2}\\right)\\ - \\ \\sin \\left(\\dfrac{x}{2}\\right)}",
+            "style": "indent",
+            "render": "katex"
           }
         ]
       },
@@ -200,14 +244,19 @@
         "mark_note": "Solution",
         "margin_note": "Third mark. This is the identity the question is built on. For −π/2 < x < π/2 the angle π/4 + x/2 lies in (0, π/2), inside the principal range, so the inverse tangent cancels the tangent exactly.",
         "lines": [
-          "Divide numerator and denominator by cos(x/2):",
+          {
+            "text": "\\text{Divide}\\ \\text{numerator}\\ \\text{and}\\ \\text{denominator}\\ \\text{by}\\ \\cos \\left(\\dfrac{x}{2}\\right):",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(cos(x/2)/cos(x/2) = 1 and sin(x/2)/cos(x/2) = tan(x/2);",
             "added": true
           },
           {
-            "text": "  tan(A + B) = (tan A + tan B)/(1 − tan A tan B)",
+            "text": "\\tan \\left(A\\ + \\ B\\right)\\ = \\ \\dfrac{\\tan A\\ + \\ \\tan B}{1\\ - \\ \\tan A\\tan B}",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           {
@@ -215,8 +264,16 @@
             "style": "indent",
             "added": true
           },
-          "= (1 + tan(x/2)) / (1 − tan(x/2)) = tan(π/4 + x/2),",
-          "since tan(π/4) = 1",
+          {
+            "text": "= \\ \\dfrac{1\\ + \\ \\tan \\left(\\dfrac{x}{2}\\right)}{1\\ - \\ \\tan \\left(\\dfrac{x}{2}\\right)} = \\ \\tan \\left(\\dfrac{\\pi }{4} + \\ \\dfrac{x}{2}\\right),",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\sin ce\\tan \\left(\\dfrac{\\pi }{4}\\right)\\ = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(divide −π/2 < x < π/2 by 2 and add",
             "added": true
@@ -226,9 +283,21 @@
             "style": "indent",
             "added": true
           },
-          "For −π/2 < x < π/2,",
-          "the angle π/4 + x/2 lies in (0, π/2), so",
-          "y = Tan⁻¹(tan(π/4 + x/2)) = π/4 + x/2"
+          {
+            "text": "\\text{For}\\ - \\dfrac{\\pi }{2} < \\ x\\ < \\ \\dfrac{\\pi }{2},",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{the}\\ \\text{angle}\\ \\dfrac{\\pi }{4} + \\ \\dfrac{x}{2}\\text{lies}\\ \\text{in}\\ \\left(0,\\ \\dfrac{\\pi }{2}\\right),\\ \\text{so}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "y\\ = \\ \\operatorname{Tan}^{-1}\\left(\\tan \\left(\\dfrac{\\pi }{4} + \\ \\dfrac{x}{2}\\right)\\right)\\ = \\ \\dfrac{\\pi }{4} + \\ \\dfrac{x}{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -259,12 +328,36 @@
         ],
         "memory_tip": "tan(π/4) = 1, so any fraction of the form (1 + tan B)/(1 − tan B) is tan(π/4 + B).",
         "lines_compact": [
-          "Divide numerator and denominator by cos(x/2):",
-          "= (1 + tan(x/2)) / (1 − tan(x/2)) = tan(π/4 + x/2),",
-          "since tan(π/4) = 1",
-          "For −π/2 < x < π/2,",
-          "the angle π/4 + x/2 lies in (0, π/2), so",
-          "y = Tan⁻¹(tan(π/4 + x/2)) = π/4 + x/2"
+          {
+            "text": "\\text{Divide}\\ \\text{numerator}\\ \\text{and}\\ \\text{denominator}\\ \\text{by}\\ \\cos \\left(\\dfrac{x}{2}\\right):",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{1\\ + \\ \\tan \\left(\\dfrac{x}{2}\\right)}{1\\ - \\ \\tan \\left(\\dfrac{x}{2}\\right)} = \\ \\tan \\left(\\dfrac{\\pi }{4} + \\ \\dfrac{x}{2}\\right),",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\sin ce\\tan \\left(\\dfrac{\\pi }{4}\\right)\\ = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{For}\\ - \\dfrac{\\pi }{2} < \\ x\\ < \\ \\dfrac{\\pi }{2},",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{the}\\ \\text{angle}\\ \\dfrac{\\pi }{4} + \\ \\dfrac{x}{2}\\text{lies}\\ \\text{in}\\ \\left(0,\\ \\dfrac{\\pi }{2}\\right),\\ \\text{so}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "y\\ = \\ \\operatorname{Tan}^{-1}\\left(\\tan \\left(\\dfrac{\\pi }{4} + \\ \\dfrac{x}{2}\\right)\\right)\\ = \\ \\dfrac{\\pi }{4} + \\ \\dfrac{x}{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -275,19 +368,32 @@
         "mark_note": "Answer",
         "margin_note": "Last mark. π/4 is a constant and differentiates to 0, so the whole derivative comes from x/2.",
         "lines": [
-          "y = π/4 + x/2, and π/4 is a constant",
           {
-            "text": "(d/dx(π/4) = 0 and d/dx(x/2) = 1/2)",
-            "added": true
-          },
-          "dy/dx = 0 + 1/2",
-          {
-            "text": "(0 + 1/2 = 1/2)",
-            "added": true
+            "text": "y\\ = \\ \\dfrac{\\pi }{4} + \\ \\dfrac{x}{2},\\ \\text{and}\\ \\dfrac{\\pi }{4}\\text{is}\\ a\\ \\text{constant}",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "∴ dy/dx = 1/2",
-            "style": "boxed"
+            "text": "\\left(\\dfrac{d}{dx}\\left(\\dfrac{\\pi }{4}\\right)\\ = \\ 0\\ \\text{and}\\ \\dfrac{d}{dx}\\left(\\dfrac{x}{2}\\right)\\ = \\ \\dfrac{1}{2}\\right)",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "\\dfrac{dy}{dx}\\ = \\ 0\\ + \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(0\\ + \\ \\dfrac{1}{2} = \\ \\dfrac{1}{2}\\right)",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{1}{2}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -319,11 +425,20 @@
         ],
         "memory_tip": "Check with two values inside the range: y(0) = π/4 and y(π/3) = π/4 + π/6, and the rise π/6 over the run π/3 is 1/2.",
         "lines_compact": [
-          "y = π/4 + x/2, and π/4 is a constant",
-          "dy/dx = 0 + 1/2",
           {
-            "text": "∴ dy/dx = 1/2",
-            "style": "boxed"
+            "text": "y\\ = \\ \\dfrac{\\pi }{4} + \\ \\dfrac{x}{2},\\ \\text{and}\\ \\dfrac{\\pi }{4}\\text{is}\\ a\\ \\text{constant}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{dy}{dx}\\ = \\ 0\\ + \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{1}{2}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

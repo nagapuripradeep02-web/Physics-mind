@@ -63,8 +63,9 @@
             "style": "indent"
           },
           {
-            "text": "  x/(q₁r₂ − q₂r₁) = y/(r₁p₂ − r₂p₁)",
-            "style": "indent"
+            "text": "\\dfrac{x}{q_{1}r_{2}\\ - \\ q_{2}r_{1}} = \\ \\dfrac{y}{r_{1}p_{2}\\ - \\ r_{2}p_{1}}",
+            "style": "indent",
+            "render": "katex"
           },
           {
             "text": "  = 1/(p₁q₂ − p₂q₁))",
@@ -76,9 +77,17 @@
             "style": "indent"
           },
           "Solving (1) and (2), we get P,",
-          "x / (ba − (c)(c)) = y / (cb − (a)(a)) = 1 / (ac − (b)(b))",
+          {
+            "text": "\\dfrac{x}{ba\\ - \\ \\left(c\\right)\\left(c\\right)} = \\ \\dfrac{y}{cb\\ - \\ \\left(a\\right)\\left(a\\right)} = \\ \\dfrac{1}{ac\\ - \\ \\left(b\\right)\\left(b\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(ba = ab and ac = ca)",
-          "⇒ x/(ab − c²) = y/(bc − a²) = 1/(ca − b²)"
+          {
+            "text": "\\Rightarrow \\ \\dfrac{x}{ab\\ - \\ c^{2}} = \\ \\dfrac{y}{bc\\ - \\ a^{2}} = \\ \\dfrac{1}{ca\\ - \\ b^{2}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -126,9 +135,17 @@
             "style": "indent",
             "added": true
           },
-          "⇒ x = (ab − c²)/(ca − b²)  and  y = (bc − a²)/(ca − b²)",
+          {
+            "text": "\\Rightarrow \\ x\\ = \\ \\dfrac{ab\\ - \\ c^{2}}{ca\\ - \\ b^{2}}\\text{and}\\ y\\ = \\ \\dfrac{bc\\ - \\ a^{2}}{ca\\ - \\ b^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "∴ Point of intersection",
-          "P = ((ab − c²)/(ca − b²), (bc − a²)/(ca − b²))"
+          {
+            "text": "P\\ = \\ \\left(\\dfrac{ab\\ - \\ c^{2}}{ca\\ - \\ b^{2}},\\ \\dfrac{bc\\ - \\ a^{2}}{ca\\ - \\ b^{2}}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -158,9 +175,17 @@
         ],
         "memory_tip": "Both coordinates share the denominator ca − b², which clears on substitution.",
         "lines_compact": [
-          "⇒ x = (ab − c²)/(ca − b²)  and  y = (bc − a²)/(ca − b²)",
+          {
+            "text": "\\Rightarrow \\ x\\ = \\ \\dfrac{ab\\ - \\ c^{2}}{ca\\ - \\ b^{2}}\\text{and}\\ y\\ = \\ \\dfrac{bc\\ - \\ a^{2}}{ca\\ - \\ b^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "∴ Point of intersection",
-          "P = ((ab − c²)/(ca − b²), (bc − a²)/(ca − b²))"
+          {
+            "text": "P\\ = \\ \\left(\\dfrac{ab\\ - \\ c^{2}}{ca\\ - \\ b^{2}},\\ \\dfrac{bc\\ - \\ a^{2}}{ca\\ - \\ b^{2}}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -175,7 +200,11 @@
             "text": "(put the x and y of P into cx + ay + b = 0)",
             "added": true
           },
-          "⇒ c[(ab − c²)/(ca − b²)] + a[(bc − a²)/(ca − b²)] + b = 0",
+          {
+            "text": "\\Rightarrow \\ c\\left[\\dfrac{ab\\ - \\ c^{2}}{ca\\ - \\ b^{2}}\\right]\\ + \\ a\\left[\\dfrac{bc\\ - \\ a^{2}}{ca\\ - \\ b^{2}}\\right]\\ + \\ b\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(multiply every term by ca − b²; the last term b",
             "added": true
@@ -217,7 +246,11 @@
         "memory_tip": "Concurrent means P lies on the third line too, so substituting must give ZERO.",
         "lines_compact": [
           "Given lines are concurrent, so P lies on cx + ay + b = 0",
-          "⇒ c[(ab − c²)/(ca − b²)] + a[(bc − a²)/(ca − b²)] + b = 0",
+          {
+            "text": "\\Rightarrow \\ c\\left[\\dfrac{ab\\ - \\ c^{2}}{ca\\ - \\ b^{2}}\\right]\\ + \\ a\\left[\\dfrac{bc\\ - \\ a^{2}}{ca\\ - \\ b^{2}}\\right]\\ + \\ b\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ c(ab − c²) + a(bc − a²) + b(ca − b²) = 0"
         ]
       },

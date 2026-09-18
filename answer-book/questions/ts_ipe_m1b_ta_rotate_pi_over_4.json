@@ -123,19 +123,35 @@
             "added": true
           },
           {
-            "text": "(cos 45° = sin 45° = 1/√2)",
+            "text": "\\left(\\cos 45^{\\circ}\\ = \\ \\sin 45^{\\circ}\\ = \\ \\dfrac{1}{\\sqrt{2}}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "Angle of rotation θ = π/4 = 45°, then",
-          "x = Xcos45° − Ysin45° = X(1/√2) − Y(1/√2)",
           {
-            "text": "  ⇒  x = (X − Y)/√2",
-            "style": "indent"
+            "text": "\\text{Angle}\\ \\text{of}\\ \\text{rotation}\\ \\theta \\ = \\ \\dfrac{\\pi }{4} = \\ 45^{\\circ},\\ \\text{then}",
+            "style": "normal",
+            "render": "katex"
           },
-          "y = Ycos45° + Xsin45° = Y(1/√2) + X(1/√2)",
           {
-            "text": "  ⇒  y = (X + Y)/√2",
-            "style": "indent"
+            "text": "x\\ = \\ \\text{Xcos}45^{\\circ}\\ - \\ \\text{Ysin}45^{\\circ}\\ = \\ X\\left(\\dfrac{1}{\\sqrt{2}}\\right)\\ - \\ Y\\left(\\dfrac{1}{\\sqrt{2}}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ x\\ = \\ \\dfrac{X\\ - \\ Y}{\\sqrt{2}}",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "y\\ = \\ \\text{Ycos}45^{\\circ}\\ + \\ \\text{Xsin}45^{\\circ}\\ = \\ Y\\left(\\dfrac{1}{\\sqrt{2}}\\right)\\ + \\ X\\left(\\dfrac{1}{\\sqrt{2}}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ y\\ = \\ \\dfrac{X\\ + \\ Y}{\\sqrt{2}}",
+            "style": "indent",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -166,16 +182,30 @@
           "Swapping the two formulas so that y gets the minus sign."
         ],
         "lines_compact": [
-          "Angle of rotation θ = π/4 = 45°, then",
-          "x = Xcos45° − Ysin45° = X(1/√2) − Y(1/√2)",
           {
-            "text": "  ⇒  x = (X − Y)/√2",
-            "style": "indent"
+            "text": "\\text{Angle}\\ \\text{of}\\ \\text{rotation}\\ \\theta \\ = \\ \\dfrac{\\pi }{4} = \\ 45^{\\circ},\\ \\text{then}",
+            "style": "normal",
+            "render": "katex"
           },
-          "y = Ycos45° + Xsin45° = Y(1/√2) + X(1/√2)",
           {
-            "text": "  ⇒  y = (X + Y)/√2",
-            "style": "indent"
+            "text": "x\\ = \\ \\text{Xcos}45^{\\circ}\\ - \\ \\text{Ysin}45^{\\circ}\\ = \\ X\\left(\\dfrac{1}{\\sqrt{2}}\\right)\\ - \\ Y\\left(\\dfrac{1}{\\sqrt{2}}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ x\\ = \\ \\dfrac{X\\ - \\ Y}{\\sqrt{2}}",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "y\\ = \\ \\text{Ycos}45^{\\circ}\\ + \\ \\text{Xsin}45^{\\circ}\\ = \\ Y\\left(\\dfrac{1}{\\sqrt{2}}\\right)\\ + \\ X\\left(\\dfrac{1}{\\sqrt{2}}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ y\\ = \\ \\dfrac{X\\ + \\ Y}{\\sqrt{2}}",
+            "style": "indent",
+            "render": "katex"
           }
         ]
       },
@@ -189,23 +219,37 @@
         "memory_tip": "Everything sits over the same denominator 2 — clear it once at the end.",
         "lines": [
           {
-            "text": "(put x = (X − Y)/√2 and y = (X + Y)/√2 into (1))",
+            "text": "\\left(\\text{put}\\ x\\ = \\ \\dfrac{X\\ - \\ Y}{\\sqrt{2}}\\text{and}\\ y\\ = \\ \\dfrac{X\\ + \\ Y}{\\sqrt{2}}\\text{into}\\ \\left(1\\right)\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "From (1), transformed equation is",
-          "3((X − Y)/√2)² + 10((X − Y)/√2)((X + Y)/√2)",
           {
-            "text": "  + 3((X + Y)/√2)² = 9",
-            "style": "indent"
+            "text": "3\\left(\\dfrac{X\\ - \\ Y}{\\sqrt{2}}\\right)^{2}\\ + \\ 10\\left(\\dfrac{X\\ - \\ Y}{\\sqrt{2}}\\right)\\left(\\dfrac{X\\ + \\ Y}{\\sqrt{2}}\\right)",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "((1/√2)² = 1/2; (X − Y)(X + Y) = X² − Y²)",
+            "text": "+ \\ 3\\left(\\dfrac{X\\ + \\ Y}{\\sqrt{2}}\\right)^{2}\\ = \\ 9",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\left(\\dfrac{1}{\\sqrt{2}}\\right)^{2}\\ = \\ \\dfrac{1}{2};\\ \\left(X\\ - \\ Y\\right)\\left(X\\ + \\ Y\\right)\\ = \\ X^{2}\\ - \\ Y^{2}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "⇒ 3(X² + Y² − 2XY)/2 + 10(X² − Y²)/2",
           {
-            "text": "  + 3(X² + Y² + 2XY)/2 = 9",
-            "style": "indent"
+            "text": "\\Rightarrow \\ \\dfrac{3\\left(X^{2}\\ + \\ Y^{2}\\ - \\ 2XY\\right)}{2} + \\ \\dfrac{10\\left(X^{2}\\ - \\ Y^{2}\\right)}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "+ \\ \\dfrac{3\\left(X^{2}\\ + \\ Y^{2}\\ + \\ 2XY\\right)}{2} = \\ 9",
+            "style": "indent",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -236,15 +280,25 @@
         ],
         "lines_compact": [
           "From (1), transformed equation is",
-          "3((X − Y)/√2)² + 10((X − Y)/√2)((X + Y)/√2)",
           {
-            "text": "  + 3((X + Y)/√2)² = 9",
-            "style": "indent"
+            "text": "3\\left(\\dfrac{X\\ - \\ Y}{\\sqrt{2}}\\right)^{2}\\ + \\ 10\\left(\\dfrac{X\\ - \\ Y}{\\sqrt{2}}\\right)\\left(\\dfrac{X\\ + \\ Y}{\\sqrt{2}}\\right)",
+            "style": "normal",
+            "render": "katex"
           },
-          "⇒ 3(X² + Y² − 2XY)/2 + 10(X² − Y²)/2",
           {
-            "text": "  + 3(X² + Y² + 2XY)/2 = 9",
-            "style": "indent"
+            "text": "+ \\ 3\\left(\\dfrac{X\\ + \\ Y}{\\sqrt{2}}\\right)^{2}\\ = \\ 9",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\dfrac{3\\left(X^{2}\\ + \\ Y^{2}\\ - \\ 2XY\\right)}{2} + \\ \\dfrac{10\\left(X^{2}\\ - \\ Y^{2}\\right)}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "+ \\ \\dfrac{3\\left(X^{2}\\ + \\ Y^{2}\\ + \\ 2XY\\right)}{2} = \\ 9",
+            "style": "indent",
+            "render": "katex"
           }
         ]
       },
@@ -275,7 +329,11 @@
             "style": "indent",
             "added": true
           },
-          "⇒ (16X² − 4Y²)/2 = 9   ⇒   16X² − 4Y² = 18",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{16X^{2}\\ - \\ 4Y^{2}}{2} = \\ 9\\ \\Rightarrow \\ 16X^{2}\\ - \\ 4Y^{2}\\ = \\ 18",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(divide both sides by 2)",
             "added": true
@@ -318,7 +376,11 @@
             "text": "  + 3X² + 3Y² + 6XY] / 2 = 9",
             "style": "indent"
           },
-          "⇒ (16X² − 4Y²)/2 = 9   ⇒   16X² − 4Y² = 18",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{16X^{2}\\ - \\ 4Y^{2}}{2} = \\ 9\\ \\Rightarrow \\ 16X^{2}\\ - \\ 4Y^{2}\\ = \\ 18",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ Transformed equation is 8X² − 2Y² = 9",
             "style": "boxed"

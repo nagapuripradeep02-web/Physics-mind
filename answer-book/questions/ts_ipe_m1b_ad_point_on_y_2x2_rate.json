@@ -52,13 +52,29 @@
             "style": "heading"
           },
           "Given: dx/dt = 4 units/sec.",
-          "Asked: dy/dt at the point (2, 8).",
+          {
+            "text": "\\text{Asked}:\\ \\dfrac{dy}{dt}\\ \\text{at}\\ \\text{the}\\ \\text{point}\\ \\left(2,\\ 8\\right).",
+            "style": "normal",
+            "render": "katex"
+          },
           "P moves on the curve  y = 2x²",
           "Differentiate both sides with respect to time t:",
           "(chain rule: y depends on x, and x depends on t)",
-          "dy/dt = (dy/dx)(dx/dt)",
-          "(d/dx of 2x² is 4x)",
-          "dy/dx = 4x,  so  dy/dt = 4x(dx/dt)"
+          {
+            "text": "\\dfrac{dy}{dt}\\ = \\ \\left(\\dfrac{dy}{dx}\\right)\\left(\\dfrac{dx}{dt}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{d}{dx}\\ \\text{of}\\ 2x^{2}\\ \\text{is}\\ 4x\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{dy}{dx}\\ = \\ 4x,\\ \\text{so}\\ \\dfrac{dy}{dt}\\ = \\ 4x\\left(\\dfrac{dx}{dt}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -103,10 +119,16 @@
           "The point (2, 8) lies on the curve, since 2(2²) = 8,",
           "so x = 2 there.",
           {
-            "text": "(put x = 2 and dx/dt = 4)",
+            "text": "\\left(\\text{put}\\ x\\ = \\ 2\\ \\text{and}\\ \\dfrac{dx}{dt}\\ = \\ 4\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "dy/dt = 4x(dx/dt) = 4(2)(4)",
+          {
+            "text": "\\dfrac{dy}{dt}\\ = \\ 4x\\left(\\dfrac{dx}{dt}\\right)\\ = \\ 4\\left(2\\right)\\left(4\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(4 × 2 × 4 = 32)",
             "added": true
@@ -149,7 +171,11 @@
         "lines_compact": [
           "The point (2, 8) lies on the curve, since 2(2²) = 8,",
           "so x = 2 there.",
-          "dy/dt = 4x(dx/dt) = 4(2)(4)",
+          {
+            "text": "\\dfrac{dy}{dt}\\ = \\ 4x\\left(\\dfrac{dx}{dt}\\right)\\ = \\ 4\\left(2\\right)\\left(4\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ dy/dt = 32 units/sec",
             "style": "boxed"

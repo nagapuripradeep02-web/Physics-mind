@@ -53,9 +53,17 @@
             "style": "heading"
           },
           "(x(x + 3) = x² + 3x)",
-          "f(x) = x(x + 3)e⁻ˣ⁄² = (x² + 3x)e⁻ˣ⁄²",
+          {
+            "text": "f\\left(x\\right)\\ = \\ \\dfrac{x\\left(x\\ + \\ 3\\right)e^{-x}}{^{2}} = \\ \\dfrac{\\left(x^{2}\\ + \\ 3x\\right)e^{-x}}{^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(i) x² + 3x is a polynomial",
-          "and e⁻ˣ⁄² is an exponential function;",
+          {
+            "text": "\\text{and}\\ \\dfrac{e^{-x}}{^{2}}\\text{is}\\ \\text{an}\\ \\text{exponential}\\ \\text{function};",
+            "style": "normal",
+            "render": "katex"
+          },
           "both are continuous for every real x,",
           "so f is continuous on [−3, 0]",
           "(ii) both are differentiable for every real x,",
@@ -65,7 +73,11 @@
             "text": "  the factor x is 0; e⁰ = 1)",
             "style": "indent"
           },
-          "(iii) f(−3) = (−3)(−3 + 3)e³⁄² = (−3)(0)e³⁄² = 0",
+          {
+            "text": "\\left(iii\\right)f\\left( - 3\\right)\\ = \\ \\dfrac{\\left( - 3\\right)\\left( - 3\\ + \\ 3\\right)e^{3}}{^{2}} = \\ \\dfrac{\\left( - 3\\right)\\left(0\\right)e^{3}}{^{2}} = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           "and  f(0) = (0)(0 + 3)e⁰ = 0",
           "∴ f(−3) = f(0) = 0, so Rolle's theorem applies on [−3, 0]."
         ],
@@ -115,10 +127,15 @@
             "style": "indent",
             "added": true
           },
-          "By the product rule, f′(x) = (2x + 3)e⁻ˣ⁄²",
           {
-            "text": "  + (x² + 3x)(−1/2)e⁻ˣ⁄²",
-            "style": "indent"
+            "text": "\\text{By}\\ \\text{the}\\ \\text{product}\\ \\text{rule},\\ f'\\left(x\\right)\\ = \\ \\dfrac{\\left(2x\\ + \\ 3\\right)e^{-x}}{^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "+ \\ \\dfrac{\\left(x^{2}\\ + \\ 3x\\right)\\left( - \\dfrac{1}{2}\\right)e^{-x}}{^{2}}",
+            "style": "indent",
+            "render": "katex"
           },
           {
             "text": "(take out e⁻ˣ⁄²/2 from both terms)",
@@ -139,7 +156,11 @@
             "text": "(a product is 0 only when a factor is 0)",
             "added": true
           },
-          "e⁻ˣ⁄² > 0 for every real x, so f′(x) = 0 ⇒ (x − 3)(x + 2) = 0",
+          {
+            "text": "\\dfrac{e^{-x}}{^{2}} > \\ 0\\ \\text{for}\\ \\text{every}\\ \\text{real}\\ x,\\ \\text{so}\\ f'\\left(x\\right)\\ = \\ 0\\ \\Rightarrow \\ \\left(x\\ - \\ 3\\right)\\left(x\\ + \\ 2\\right)\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "  ⇒ x = 3 or x = −2",
             "style": "indent"
@@ -185,15 +206,24 @@
           "Keeping x = 3 as an answer; it is outside [−3, 0] and must be rejected."
         ],
         "lines_compact": [
-          "By the product rule, f′(x) = (2x + 3)e⁻ˣ⁄²",
           {
-            "text": "  + (x² + 3x)(−1/2)e⁻ˣ⁄²",
-            "style": "indent"
+            "text": "\\text{By}\\ \\text{the}\\ \\text{product}\\ \\text{rule},\\ f'\\left(x\\right)\\ = \\ \\dfrac{\\left(2x\\ + \\ 3\\right)e^{-x}}{^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "+ \\ \\dfrac{\\left(x^{2}\\ + \\ 3x\\right)\\left( - \\dfrac{1}{2}\\right)e^{-x}}{^{2}}",
+            "style": "indent",
+            "render": "katex"
           },
           "= (e⁻ˣ⁄²/2)[2(2x + 3) − (x² + 3x)]",
           "= (e⁻ˣ⁄²/2)(4x + 6 − x² − 3x) = (e⁻ˣ⁄²/2)(−x² + x + 6)",
           "= −(e⁻ˣ⁄²/2)(x − 3)(x + 2)",
-          "e⁻ˣ⁄² > 0 for every real x, so f′(x) = 0 ⇒ (x − 3)(x + 2) = 0",
+          {
+            "text": "\\dfrac{e^{-x}}{^{2}} > \\ 0\\ \\text{for}\\ \\text{every}\\ \\text{real}\\ x,\\ \\text{so}\\ f'\\left(x\\right)\\ = \\ 0\\ \\Rightarrow \\ \\left(x\\ - \\ 3\\right)\\left(x\\ + \\ 2\\right)\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "  ⇒ x = 3 or x = −2",
             "style": "indent"

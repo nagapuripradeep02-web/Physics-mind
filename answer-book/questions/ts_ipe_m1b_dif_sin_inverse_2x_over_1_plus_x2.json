@@ -52,20 +52,44 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "(θ = Tan⁻¹x lies in (−π/2, π/2))",
+          {
+            "text": "\\left(\\theta \\ = \\ \\operatorname{Tan}^{-1} x\\ \\text{lies}\\ \\text{in}\\ \\left( - \\dfrac{\\pi }{2},\\ \\dfrac{\\pi }{2}\\right)\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "Put x = tan θ, so θ = Tan⁻¹x",
-          "(the double angle formula sin 2θ = 2 tan θ/(1 + tan²θ))",
-          "Then 2x/(1 + x²) = 2 tan θ/(1 + tan²θ) = sin 2θ",
+          {
+            "text": "\\left(\\text{the}\\ \\text{double}\\ \\text{angle}\\ \\text{formula}\\ \\sin 2\\theta \\ = \\ \\dfrac{2\\tan \\theta }{1\\ + \\ \\tan ^{2} \\theta }\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Then}\\ \\dfrac{2x}{1\\ + \\ x^{2}} = \\ \\dfrac{2\\tan \\theta }{1\\ + \\ \\tan ^{2} \\theta } = \\ \\sin 2\\theta",
+            "style": "normal",
+            "render": "katex"
+          },
           "[double-angle identity]",
-          "(put sin 2θ in place of 2x/(1 + x²))",
+          {
+            "text": "\\left(\\text{put}\\ \\sin 2\\theta \\ \\text{in}\\ \\text{place}\\ \\text{of}\\ \\dfrac{2x}{1\\ + \\ x^{2}}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "∴ y = Sin⁻¹(sin 2θ)",
           "(Sin⁻¹(sin α) = α when α is in [−π/2, π/2];",
           {
             "text": "  tan(±π/4) = ±1)",
             "style": "indent"
           },
-          "Take θ in [−π/4, π/4], that is −1 ≤ x ≤ 1.",
-          "Then 2θ lies in [−π/2, π/2],",
+          {
+            "text": "\\text{Take}\\ \\theta \\ \\text{in}\\ \\left[ - \\dfrac{\\pi }{4},\\ \\dfrac{\\pi }{4}\\right],\\ \\text{that}\\ \\text{is}\\ - 1\\ \\le \\ x\\ \\le \\ 1.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Then}\\ 2\\theta \\ \\text{lies}\\ \\text{in}\\ \\left[ - \\dfrac{\\pi }{2},\\ \\dfrac{\\pi }{2}\\right],",
+            "style": "normal",
+            "render": "katex"
+          },
           "the principal range of Sin⁻¹, so",
           "y = 2θ = 2 Tan⁻¹x"
         ],
@@ -112,19 +136,32 @@
             "text": "(the standard derivative of Tan⁻¹x)",
             "added": true
           },
-          "We know d/dx(Tan⁻¹x) = 1/(1 + x²)",
           {
-            "text": "(d/dx(2 Tan⁻¹x) = 2 · d/dx(Tan⁻¹x))",
-            "added": true
-          },
-          "∴ dy/dx = 2 × 1/(1 + x²)",
-          {
-            "text": "(2 × 1/(1 + x²) = 2/(1 + x²), for −1 < x < 1)",
-            "added": true
+            "text": "\\text{We}\\ \\text{know}\\ \\dfrac{d}{dx}\\left(\\operatorname{Tan}^{-1} x\\right)\\ = \\ \\dfrac{1}{1\\ + \\ x^{2}}",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "∴ dy/dx = 2/(1 + x²)",
-            "style": "boxed"
+            "text": "\\left(\\dfrac{d}{dx}\\left(2\\operatorname{Tan}^{-1} x\\right)\\ = \\ 2\\ \\cdot \\ \\dfrac{d}{dx}\\left(\\operatorname{Tan}^{-1} x\\right)\\right)",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ 2\\ \\times \\ \\dfrac{1}{1\\ + \\ x^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(2\\ \\times \\ \\dfrac{1}{1\\ + \\ x^{2}} = \\ \\dfrac{2}{1\\ + \\ x^{2}},\\ \\text{for}\\ - 1\\ < \\ x\\ < \\ 1\\right)",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{2}{1\\ + \\ x^{2}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -156,11 +193,20 @@
         ],
         "lines_compact": [
           "y = 2 Tan⁻¹x",
-          "We know d/dx(Tan⁻¹x) = 1/(1 + x²)",
-          "∴ dy/dx = 2 × 1/(1 + x²)",
           {
-            "text": "∴ dy/dx = 2/(1 + x²)",
-            "style": "boxed"
+            "text": "\\text{We}\\ \\text{know}\\ \\dfrac{d}{dx}\\left(\\operatorname{Tan}^{-1} x\\right)\\ = \\ \\dfrac{1}{1\\ + \\ x^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ 2\\ \\times \\ \\dfrac{1}{1\\ + \\ x^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{2}{1\\ + \\ x^{2}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

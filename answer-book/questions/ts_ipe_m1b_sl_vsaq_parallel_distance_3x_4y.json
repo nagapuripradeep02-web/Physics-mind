@@ -112,19 +112,30 @@
             "added": true
           },
           "∴ The distance between (1) & (2) is",
-          "|c₁ − c₂| / √(a² + b²) = |−6 + 1| / √(6² + 8²)",
+          {
+            "text": "\\dfrac{\\left|c_{1}\\ - \\ c_{2}\\right|}{\\sqrt{a^{2}\\ + \\ b^{2}}} = \\ \\dfrac{\\left| - 6\\ + \\ 1\\right|}{\\sqrt{6^{2}\\ + \\ 8^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(−6 + 1 = −5; 6² = 36 and 8² = 64)",
             "added": true
           },
-          "= |−5| / √(36 + 64) = 5/√100 = 5/10",
           {
-            "text": "(5/10 = 1/2)",
+            "text": "= \\ \\dfrac{\\left| - 5\\right|}{\\sqrt{36\\ + \\ 64}} = \\ \\dfrac{5}{\\sqrt{100}} = \\ \\dfrac{5}{10}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{5}{10} = \\ \\dfrac{1}{2}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ Distance is 1/2",
-            "style": "boxed"
+            "text": "\\therefore \\ \\text{Distance}\\ \\text{is}\\ \\dfrac{1}{2}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -157,11 +168,20 @@
         "mark_note": "Solution",
         "lines_compact": [
           "∴ The distance between (1) & (2) is",
-          "|c₁ − c₂| / √(a² + b²) = |−6 + 1| / √(6² + 8²)",
-          "= |−5| / √(36 + 64) = 5/√100 = 5/10",
           {
-            "text": "∴ Distance is 1/2",
-            "style": "boxed"
+            "text": "\\dfrac{\\left|c_{1}\\ - \\ c_{2}\\right|}{\\sqrt{a^{2}\\ + \\ b^{2}}} = \\ \\dfrac{\\left| - 6\\ + \\ 1\\right|}{\\sqrt{6^{2}\\ + \\ 8^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\left| - 5\\right|}{\\sqrt{36\\ + \\ 64}} = \\ \\dfrac{5}{\\sqrt{100}} = \\ \\dfrac{5}{10}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\text{Distance}\\ \\text{is}\\ \\dfrac{1}{2}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

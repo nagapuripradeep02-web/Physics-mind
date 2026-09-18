@@ -60,7 +60,11 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given f(x) = (x² − 4)/2   for 0 < x < 2",
+          {
+            "text": "\\text{Given}\\ f\\left(x\\right)\\ = \\ \\dfrac{x^{2}\\ - \\ 4}{2}\\text{for}\\ 0\\ < \\ x\\ < \\ 2",
+            "style": "normal",
+            "render": "katex"
+          },
           "f(2) = 0",
           "f(x) = 2 − 8x⁻³   for x > 2",
           "The formula on the left of 2 is different from the formula",
@@ -113,12 +117,20 @@
         "margin_note": "Second mark. (x² − 4)/2 is a polynomial in x, so the limit is found by substituting 2 directly. It comes out equal to f(2), which is the half of the test that passes.",
         "memory_tip": "A polynomial has no indeterminate form anywhere — its limit at a point is always just the value at that point.",
         "lines": [
-          "For 0 < x < 2,   f(x) = (x² − 4)/2, a polynomial in x",
+          {
+            "text": "\\text{For}\\ 0\\ < \\ x\\ < \\ 2,\\ f\\left(x\\right)\\ = \\ \\dfrac{x^{2}\\ - \\ 4}{2},\\ a\\ \\text{polynomial}\\ \\text{in}\\ x",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(a polynomial is continuous, so put x = 2)",
             "added": true
           },
-          "lim(x → 2⁻) f(x) = (2² − 4)/2 = (4 − 4)/2 = 0/2 = 0",
+          {
+            "text": "\\lim \\left(x\\ \\to \\ 2^{-}\\right)f\\left(x\\right)\\ = \\ \\dfrac{2^{2}\\ - \\ 4}{2} = \\ \\dfrac{4\\ - \\ 4}{2} = \\ \\dfrac{0}{2} = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           "Given value:   f(2) = 0",
           {
             "text": "(both are 0)",
@@ -155,8 +167,16 @@
           "Writing (x² − 4)/2 as x² − 2 and getting 2 instead of 0."
         ],
         "lines_compact": [
-          "For 0 < x < 2,   f(x) = (x² − 4)/2, a polynomial in x",
-          "lim(x → 2⁻) f(x) = (2² − 4)/2 = (4 − 4)/2 = 0/2 = 0",
+          {
+            "text": "\\text{For}\\ 0\\ < \\ x\\ < \\ 2,\\ f\\left(x\\right)\\ = \\ \\dfrac{x^{2}\\ - \\ 4}{2},\\ a\\ \\text{polynomial}\\ \\text{in}\\ x",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\lim \\left(x\\ \\to \\ 2^{-}\\right)f\\left(x\\right)\\ = \\ \\dfrac{2^{2}\\ - \\ 4}{2} = \\ \\dfrac{4\\ - \\ 4}{2} = \\ \\dfrac{0}{2} = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           "Given value:   f(2) = 0",
           "∴ lim(x → 2⁻) f(x) = f(2) = 0,",
           "so f is continuous from the left at x = 2."
@@ -172,20 +192,34 @@
         "memory_tip": "x⁻³ is 1/x³, so 8x⁻³ at x = 2 is 8/8 = 1 — the two 8s cancel exactly.",
         "lines": [
           {
-            "text": "(x⁻³ = 1/x³)",
+            "text": "\\left(x^{-3}\\ = \\ \\dfrac{1}{x^{3}}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "For x > 2,   f(x) = 2 − 8x⁻³ = 2 − 8/x³",
           {
-            "text": "(2³ = 8 ≠ 0, so 2 − 8/x³ is continuous at x = 2)",
+            "text": "\\text{For}\\ x\\ > \\ 2,\\ f\\left(x\\right)\\ = \\ 2\\ - \\ 8x^{-3}\\ = \\ 2\\ - \\ \\dfrac{8}{x^{3}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(2^{3}\\ = \\ 8\\ \\ne \\ 0,\\ \\text{so}\\ 2\\ - \\ \\dfrac{8}{x^{3}}\\text{is}\\ \\text{continuous}\\ \\text{at}\\ x\\ = \\ 2\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "x³ ≠ 0 near x = 2, so the value can be substituted:",
           {
-            "text": "(8/8 = 1)",
+            "text": "\\left(\\dfrac{8}{8} = \\ 1\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "lim(x → 2⁺) f(x) = 2 − 8/2³ = 2 − 8/8 = 2 − 1 = 1"
+          {
+            "text": "\\lim \\left(x\\ \\to \\ 2^{+}\\right)f\\left(x\\right)\\ = \\ 2\\ - \\ \\dfrac{8}{2^{3}} = \\ 2\\ - \\ \\dfrac{8}{8} = \\ 2\\ - \\ 1\\ = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -215,9 +249,17 @@
           "Writing 8/2³ as 8/6 by multiplying 2 by 3 instead of cubing it."
         ],
         "lines_compact": [
-          "For x > 2,   f(x) = 2 − 8x⁻³ = 2 − 8/x³",
+          {
+            "text": "\\text{For}\\ x\\ > \\ 2,\\ f\\left(x\\right)\\ = \\ 2\\ - \\ 8x^{-3}\\ = \\ 2\\ - \\ \\dfrac{8}{x^{3}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "x³ ≠ 0 near x = 2, so the value can be substituted:",
-          "lim(x → 2⁺) f(x) = 2 − 8/2³ = 2 − 8/8 = 2 − 1 = 1"
+          {
+            "text": "\\lim \\left(x\\ \\to \\ 2^{+}\\right)f\\left(x\\right)\\ = \\ 2\\ - \\ \\dfrac{8}{2^{3}} = \\ 2\\ - \\ \\dfrac{8}{8} = \\ 2\\ - \\ 1\\ = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {

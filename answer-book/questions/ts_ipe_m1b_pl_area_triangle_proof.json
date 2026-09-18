@@ -80,7 +80,11 @@
             "style": "indent"
           },
           "On equating like term coeff., we get",
-          "m₁ + m₂ = −2h/b,   m₁m₂ = a/b  ……(1)"
+          {
+            "text": "m_{1}\\ + \\ m_{2}\\ = \\ - \\dfrac{2h}{b},\\ m_{1}m_{2}\\ = \\ \\dfrac{a}{b}\\dots \\dots \\left(1\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -263,16 +267,25 @@
             "style": "indent",
             "added": true
           },
-          "⇒ x / [m(0) − (−1)(n)] = y / [n(m₁) − l(0)]",
           {
-            "text": "  = 1 / [l(−1) − mm₁]",
-            "style": "indent"
+            "text": "\\Rightarrow \\ \\dfrac{x}{m\\left(0\\right)\\ - \\ \\left( - 1\\right)\\left(n\\right)} = \\ \\dfrac{y}{n\\left(m_{1}\\right)\\ - \\ l\\left(0\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{1}{l\\left( - 1\\right)\\ - \\ mm_{1}}",
+            "style": "indent",
+            "render": "katex"
           },
           {
             "text": "(m(0) + n = n; nm₁ − 0 = nm₁; −l − mm₁)",
             "added": true
           },
-          "⇒ x/n = y/(nm₁) = 1/(−l − mm₁)",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{x}{n} = \\ \\dfrac{y}{nm_{1}} = \\ \\dfrac{1}{ - l\\ - \\ mm_{1}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(x = n/(−l − mm₁) = −n/(l + mm₁),",
             "added": true
@@ -282,7 +295,11 @@
             "style": "indent",
             "added": true
           },
-          "⇒ A = (−n/(l + mm₁),  −nm₁/(l + mm₁))"
+          {
+            "text": "\\Rightarrow \\ A\\ = \\ \\left( - \\dfrac{n}{l\\ + \\ mm_{1}},\\ - \\dfrac{nm_{1}}{l\\ + \\ mm_{1}}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -317,13 +334,26 @@
           "By solving lx + my + n = 0 and m₁x − y = 0 we get A",
           "lx + my + n = 0",
           "m₁x − y + 0 = 0",
-          "⇒ x / [m(0) − (−1)(n)] = y / [n(m₁) − l(0)]",
           {
-            "text": "  = 1 / [l(−1) − mm₁]",
-            "style": "indent"
+            "text": "\\Rightarrow \\ \\dfrac{x}{m\\left(0\\right)\\ - \\ \\left( - 1\\right)\\left(n\\right)} = \\ \\dfrac{y}{n\\left(m_{1}\\right)\\ - \\ l\\left(0\\right)}",
+            "style": "normal",
+            "render": "katex"
           },
-          "⇒ x/n = y/(nm₁) = 1/(−l − mm₁)",
-          "⇒ A = (−n/(l + mm₁),  −nm₁/(l + mm₁))"
+          {
+            "text": "= \\ \\dfrac{1}{l\\left( - 1\\right)\\ - \\ mm_{1}}",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\dfrac{x}{n} = \\ \\dfrac{y}{nm_{1}} = \\ \\dfrac{1}{ - l\\ - \\ mm_{1}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ A\\ = \\ \\left( - \\dfrac{n}{l\\ + \\ mm_{1}},\\ - \\dfrac{nm_{1}}{l\\ + \\ mm_{1}}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -337,7 +367,11 @@
             "text": "(the same working with m₂ in place of m₁)",
             "added": true
           },
-          "Similarly, we get  B = (−n/(l + mm₂),  −nm₂/(l + mm₂))",
+          {
+            "text": "\\text{Similarly},\\ \\text{we}\\ \\text{get}\\ B\\ = \\ \\left( - \\dfrac{n}{l\\ + \\ mm_{2}},\\ - \\dfrac{nm_{2}}{l\\ + \\ mm_{2}}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(with one vertex at the origin,",
             "added": true
@@ -348,7 +382,11 @@
             "added": true
           },
           "The area of the triangle with vertices O(0,0),",
-          "A(x₁,y₁), B(x₂,y₂) is  Δ = ½|x₁y₂ − x₂y₁|",
+          {
+            "text": "A\\left(x_{1},y_{1}\\right),\\ B\\left(x_{2},y_{2}\\right)\\ \\text{is}\\ \\Delta \\ = \\ \\dfrac{1}{2}\\left|x_{1}y_{2}\\ - \\ x_{2}y_{1}\\right|",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(put x₁, y₁ from A and x₂, y₂ from B)",
             "added": true
@@ -367,12 +405,20 @@
             "style": "indent",
             "added": true
           },
-          "= ½ |(n²m₂ − n²m₁) / [(l + mm₁)(l + mm₂)]|",
+          {
+            "text": "= \\ \\dfrac{1}{2}\\left|\\dfrac{n^{2}m_{2}\\ - \\ n^{2}m_{1}}{\\left(l\\ + \\ mm_{1}\\right)\\left(l\\ + \\ mm_{2}\\right)}\\right|",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "((l + mm₁)(l + mm₂) = l² + lmm₂ + lmm₁ + m²m₁m₂)",
             "added": true
           },
-          "= ½ |n²(m₂ − m₁) / [l² + lmm₂ + lmm₁ + m²m₁m₂]|"
+          {
+            "text": "= \\ \\dfrac{1}{2}\\left|\\dfrac{n^{2}\\left(m_{2}\\ - \\ m_{1}\\right)}{l^{2}\\ + \\ lmm_{2}\\ + \\ lmm_{1}\\ + \\ m^{2}m_{1}m_{2}}\\right|",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -404,16 +450,32 @@
         "mark_note": "Method",
         "memory_tip": "With O at the origin the area formula becomes ½|x₁y₂ − x₂y₁| — no third coordinate needed.",
         "lines_compact": [
-          "Similarly, we get  B = (−n/(l + mm₂),  −nm₂/(l + mm₂))",
+          {
+            "text": "\\text{Similarly},\\ \\text{we}\\ \\text{get}\\ B\\ = \\ \\left( - \\dfrac{n}{l\\ + \\ mm_{2}},\\ - \\dfrac{nm_{2}}{l\\ + \\ mm_{2}}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "The area of the triangle with vertices O(0,0),",
-          "A(x₁,y₁), B(x₂,y₂) is  Δ = ½|x₁y₂ − x₂y₁|",
+          {
+            "text": "A\\left(x_{1},y_{1}\\right),\\ B\\left(x_{2},y_{2}\\right)\\ \\text{is}\\ \\Delta \\ = \\ \\dfrac{1}{2}\\left|x_{1}y_{2}\\ - \\ x_{2}y_{1}\\right|",
+            "style": "normal",
+            "render": "katex"
+          },
           "∴ Area of △OAB = ½ |[−n/(l+mm₁)][−nm₂/(l+mm₂)]",
           {
             "text": "  − [−n/(l+mm₂)][−nm₁/(l+mm₁)]|",
             "style": "indent"
           },
-          "= ½ |(n²m₂ − n²m₁) / [(l + mm₁)(l + mm₂)]|",
-          "= ½ |n²(m₂ − m₁) / [l² + lmm₂ + lmm₁ + m²m₁m₂]|"
+          {
+            "text": "= \\ \\dfrac{1}{2}\\left|\\dfrac{n^{2}m_{2}\\ - \\ n^{2}m_{1}}{\\left(l\\ + \\ mm_{1}\\right)\\left(l\\ + \\ mm_{2}\\right)}\\right|",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{1}{2}\\left|\\dfrac{n^{2}\\left(m_{2}\\ - \\ m_{1}\\right)}{l^{2}\\ + \\ lmm_{2}\\ + \\ lmm_{1}\\ + \\ m^{2}m_{1}m_{2}}\\right|",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -427,17 +489,27 @@
             "text": "(|m₂ − m₁| = √((m₁ + m₂)² − 4m₁m₂), see the line below)",
             "added": true
           },
-          "= ½ · n²√((m₁ + m₂)² − 4m₁m₂)",
+          {
+            "text": "= \\ \\dfrac{1}{2}\\ \\cdot \\ n^{2}\\sqrt{\\left(m_{1}\\ + \\ m_{2}\\right)^{2}\\ - \\ 4m_{1}m_{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "  / |l² + lm(m₁ + m₂) + m²(m₁m₂)|",
             "style": "indent"
           },
           "  [∵ |p − q| = √((p + q)² − 4pq), applied to p = m₁, q = m₂]",
           {
-            "text": "(put m₁ + m₂ = −2h/b and m₁m₂ = a/b from (1))",
+            "text": "\\left(\\text{put}\\ m_{1}\\ + \\ m_{2}\\ = \\ - \\dfrac{2h}{b}\\text{and}\\ m_{1}m_{2}\\ = \\ \\dfrac{a}{b}\\text{from}\\ \\left(1\\right)\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= ½ · n²√((−2h/b)² − 4(a/b))",
+          {
+            "text": "= \\ \\dfrac{1}{2}\\ \\cdot \\ n^{2}\\sqrt{\\left( - \\dfrac{2h}{b}\\right)^{2}\\ - \\ 4\\left(\\dfrac{a}{b}\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "  / |l² + lm(−2h/b) + m²(a/b)|",
             "style": "indent"
@@ -451,12 +523,22 @@
             "style": "indent",
             "added": true
           },
-          "= ½ · n²√((4h² − 4ab)/b²) / |(bl² − 2hlm + am²)/b|",
           {
-            "text": "(√((4h² − 4ab)/b²) = 2√(h² − ab)/|b|)",
+            "text": "= \\ \\dfrac{1}{2}\\ \\cdot \\ \\dfrac{n^{2}\\sqrt{\\dfrac{4h^{2}\\ - \\ 4ab}{b^{2}}}}{\\left|\\dfrac{bl^{2}\\ - \\ 2hlm\\ + \\ am^{2}}{b}\\right|}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\sqrt{\\dfrac{4h^{2}\\ - \\ 4ab}{b^{2}}}\\ = \\ \\dfrac{2\\sqrt{h^{2}\\ - \\ ab}}{\\left|b\\right|}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= ½ · n²(2√(h² − ab)/|b|) / (|bl² − 2hlm + am²|/|b|)",
+          {
+            "text": "= \\ \\dfrac{1}{2}\\ \\cdot \\ \\dfrac{n^{2}\\left(\\dfrac{2\\sqrt{h^{2}\\ - \\ ab}}{\\left|b\\right|}\\right)}{\\dfrac{\\left|bl^{2}\\ - \\ 2hlm\\ + \\ am^{2}\\right|}{\\left|b\\right|}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(½ · 2 = 1 and the |b|'s cancel;",
             "added": true
@@ -467,8 +549,9 @@
             "added": true
           },
           {
-            "text": "∴ Area = n²√(h² − ab) / |am² − 2hlm + bl²|",
-            "style": "boxed"
+            "text": "\\therefore \\ \\text{Area}\\ = \\ \\dfrac{n^{2}\\sqrt{h^{2}\\ - \\ ab}}{\\left|am^{2}\\ - \\ 2hlm\\ + \\ bl^{2}\\right|}",
+            "style": "boxed",
+            "render": "katex"
           },
           {
             "text": "sq.units",
@@ -505,22 +588,39 @@
         "mark_note": "Solution",
         "memory_tip": "m₂ − m₁ cannot be written from (1) directly, but (m₁+m₂)² − 4m₁m₂ can — so SQUARE the difference first.",
         "lines_compact": [
-          "= ½ · n²√((m₁ + m₂)² − 4m₁m₂)",
+          {
+            "text": "= \\ \\dfrac{1}{2}\\ \\cdot \\ n^{2}\\sqrt{\\left(m_{1}\\ + \\ m_{2}\\right)^{2}\\ - \\ 4m_{1}m_{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "  / |l² + lm(m₁ + m₂) + m²(m₁m₂)|",
             "style": "indent"
           },
           "  [∵ |p − q| = √((p + q)² − 4pq), applied to p = m₁, q = m₂]",
-          "= ½ · n²√((−2h/b)² − 4(a/b))",
+          {
+            "text": "= \\ \\dfrac{1}{2}\\ \\cdot \\ n^{2}\\sqrt{\\left( - \\dfrac{2h}{b}\\right)^{2}\\ - \\ 4\\left(\\dfrac{a}{b}\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "  / |l² + lm(−2h/b) + m²(a/b)|",
             "style": "indent"
           },
-          "= ½ · n²√((4h² − 4ab)/b²) / |(bl² − 2hlm + am²)/b|",
-          "= ½ · n²(2√(h² − ab)/|b|) / (|bl² − 2hlm + am²|/|b|)",
           {
-            "text": "∴ Area = n²√(h² − ab) / |am² − 2hlm + bl²|",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{1}{2}\\ \\cdot \\ \\dfrac{n^{2}\\sqrt{\\dfrac{4h^{2}\\ - \\ 4ab}{b^{2}}}}{\\left|\\dfrac{bl^{2}\\ - \\ 2hlm\\ + \\ am^{2}}{b}\\right|}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{1}{2}\\ \\cdot \\ \\dfrac{n^{2}\\left(\\dfrac{2\\sqrt{h^{2}\\ - \\ ab}}{\\left|b\\right|}\\right)}{\\dfrac{\\left|bl^{2}\\ - \\ 2hlm\\ + \\ am^{2}\\right|}{\\left|b\\right|}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\text{Area}\\ = \\ \\dfrac{n^{2}\\sqrt{h^{2}\\ - \\ ab}}{\\left|am^{2}\\ - \\ 2hlm\\ + \\ bl^{2}\\right|}",
+            "style": "boxed",
+            "render": "katex"
           },
           {
             "text": "sq.units",

@@ -53,7 +53,11 @@
             "style": "heading"
           },
           "(2(4)² = 32, 7(4) = 28; 2(4) − 1 = 7 and √4 − 2 = 0)",
-          "Putting x = 4 gives (32 − 28 − 4)/(7 · 0) = 0/0,",
+          {
+            "text": "\\text{Putting}\\ x\\ = \\ 4\\ \\text{gives}\\ \\dfrac{32\\ - \\ 28\\ - \\ 4}{7\\ \\cdot \\ 0} = \\ \\dfrac{0}{0},",
+            "style": "normal",
+            "render": "katex"
+          },
           "so the expression is factorised first.",
           "(split −7x as −8x + x, since (−8)(1) = −8 = 2 × (−4))",
           "2x² − 7x − 4 = 2x² − 8x + x − 4 = 2x(x − 4) + 1(x − 4)",
@@ -113,12 +117,20 @@
             "text": "(put the factorised top over the given bottom)",
             "added": true
           },
-          "lim(x → 4) (2x + 1)(√x − 2)(√x + 2) / [(2x − 1)(√x − 2)]",
+          {
+            "text": "\\dfrac{\\lim \\left(x\\ \\to \\ 4\\right)\\left(2x\\ + \\ 1\\right)\\left(\\sqrt{x}\\ - \\ 2\\right)\\left(\\sqrt{x}\\ + \\ 2\\right)}{\\left(2x\\ - \\ 1\\right)\\left(\\sqrt{x}\\ - \\ 2\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(cancel √x − 2 from the top and the bottom)",
             "added": true
           },
-          "= lim(x → 4) (2x + 1)(√x + 2)/(2x − 1)",
+          {
+            "text": "= \\ \\dfrac{\\lim \\left(x\\ \\to \\ 4\\right)\\left(2x\\ + \\ 1\\right)\\left(\\sqrt{x}\\ + \\ 2\\right)}{2x\\ - \\ 1}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(the expression left is defined at x = 4;",
             "added": true
@@ -128,18 +140,24 @@
             "style": "indent",
             "added": true
           },
-          "= (8 + 1)(2 + 2)/(8 − 1) = (9)(4)/7",
+          {
+            "text": "= \\ \\dfrac{\\left(8\\ + \\ 1\\right)\\left(2\\ + \\ 2\\right)}{8\\ - \\ 1} = \\ \\dfrac{\\left(9\\right)\\left(4\\right)}{7}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "((9)(4) = 36)",
             "added": true
           },
           {
-            "text": "∴ lim(x → 4) (2x² − 7x − 4)/((2x − 1)(√x − 2))",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{\\lim \\left(x\\ \\to \\ 4\\right)\\left(2x^{2}\\ - \\ 7x\\ - \\ 4\\right)}{\\left(2x\\ - \\ 1\\right)\\left(\\sqrt{x}\\ - \\ 2\\right)}",
+            "style": "boxed",
+            "render": "katex"
           },
           {
-            "text": "= 36/7",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{36}{7}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -172,16 +190,30 @@
         "lines_compact": [
           "As x → 4 we have x ≠ 4, so √x − 2 ≠ 0",
           "and it may be cancelled:",
-          "lim(x → 4) (2x + 1)(√x − 2)(√x + 2) / [(2x − 1)(√x − 2)]",
-          "= lim(x → 4) (2x + 1)(√x + 2)/(2x − 1)",
-          "= (8 + 1)(2 + 2)/(8 − 1) = (9)(4)/7",
           {
-            "text": "∴ lim(x → 4) (2x² − 7x − 4)/((2x − 1)(√x − 2))",
-            "style": "boxed"
+            "text": "\\dfrac{\\lim \\left(x\\ \\to \\ 4\\right)\\left(2x\\ + \\ 1\\right)\\left(\\sqrt{x}\\ - \\ 2\\right)\\left(\\sqrt{x}\\ + \\ 2\\right)}{\\left(2x\\ - \\ 1\\right)\\left(\\sqrt{x}\\ - \\ 2\\right)}",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "= 36/7",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{\\lim \\left(x\\ \\to \\ 4\\right)\\left(2x\\ + \\ 1\\right)\\left(\\sqrt{x}\\ + \\ 2\\right)}{2x\\ - \\ 1}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\left(8\\ + \\ 1\\right)\\left(2\\ + \\ 2\\right)}{8\\ - \\ 1} = \\ \\dfrac{\\left(9\\right)\\left(4\\right)}{7}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{\\lim \\left(x\\ \\to \\ 4\\right)\\left(2x^{2}\\ - \\ 7x\\ - \\ 4\\right)}{\\left(2x\\ - \\ 1\\right)\\left(\\sqrt{x}\\ - \\ 2\\right)}",
+            "style": "boxed",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{36}{7}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

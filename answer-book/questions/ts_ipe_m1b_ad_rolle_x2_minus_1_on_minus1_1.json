@@ -99,7 +99,9 @@
         "memory_tip": "Between two roots of a differentiable function the derivative is zero somewhere, and here that point is the lowest point of the parabola.",
         "lines": [
           {
-            "text": "(d/dx of x² is 2x, and d/dx of 1 is 0)",
+            "text": "\\left(\\dfrac{d}{dx}\\ \\text{of}\\ x^{2}\\ \\text{is}\\ 2x,\\ \\text{and}\\ \\dfrac{d}{dx}\\ \\text{of}\\ 1\\ \\text{is}\\ 0\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "f′(x) = 2x",

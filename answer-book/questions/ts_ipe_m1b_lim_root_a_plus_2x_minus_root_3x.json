@@ -57,7 +57,11 @@
           "(3a + a = 4a, and √(4a) = 2√a)",
           "At x = a the numerator is √(3a) − √(3a) = 0",
           "and the denominator is √(4a) − 2√a = 0,",
-          "so the form is 0/0.",
+          {
+            "text": "\\text{so}\\ \\text{the}\\ \\text{form}\\ \\text{is}\\ \\dfrac{0}{0}.",
+            "style": "normal",
+            "render": "katex"
+          },
           "Multiply above and below by (√(a + 2x) + √(3x))",
           "and by (√(3a + x) + 2√x):",
           "((p − q)(p + q) = p² − q² for the numerator)",
@@ -144,13 +148,21 @@
             "text": "(cancel a − x, which is not 0 for x ≠ a)",
             "added": true
           },
-          "= (√(3a + x) + 2√x) / (3(√(a + 2x) + √(3x)))",
+          {
+            "text": "= \\ \\dfrac{\\sqrt{3a\\ + \\ x}\\ + \\ 2\\sqrt{x}}{3\\left(\\sqrt{a\\ + \\ 2x}\\ + \\ \\sqrt{3x}\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(x ≠ a, so (a − x) cancels)",
           {
             "text": "(put x = a: 3a + a = 4a and a + 2a = 3a)",
             "added": true
           },
-          "Now put x = a:  = (√(4a) + 2√a)/(3(√(3a) + √(3a)))",
+          {
+            "text": "\\text{Now}\\ \\text{put}\\ x\\ = \\ a:\\ = \\ \\dfrac{\\sqrt{4a}\\ + \\ 2\\sqrt{a}}{3\\left(\\sqrt{3a}\\ + \\ \\sqrt{3a}\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(√(4a) = 2√a; 2√a + 2√a = 4√a;",
             "added": true
@@ -165,9 +177,15 @@
             "style": "indent",
             "added": true
           },
-          "= (2√a + 2√a)/(6√(3a)) = 4√a/(6√(3a)) = 2/(3√3)",
           {
-            "text": "(4/(6√3) = 2/(3√3), and 2/(3√3) · √3/√3 = 2√3/9)",
+            "text": "= \\ \\dfrac{2\\sqrt{a}\\ + \\ 2\\sqrt{a}}{6\\sqrt{3a}} = \\ \\dfrac{4\\sqrt{a}}{6\\sqrt{3a}} = \\ \\dfrac{2}{3\\sqrt{3}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{4}{6\\sqrt{3}} = \\ \\dfrac{2}{3\\sqrt{3}},\\ \\text{and}\\ \\dfrac{2}{3\\sqrt{3}} \\cdot \\ \\dfrac{\\sqrt{3}}{\\sqrt{3}} = \\ \\dfrac{2\\sqrt{3}}{9}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -179,8 +197,9 @@
             "style": "boxed"
           },
           {
-            "text": "= 2/(3√3) = 2√3/9   (a > 0)",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{2}{3\\sqrt{3}} = \\ \\dfrac{2\\sqrt{3}}{9}\\left(a\\ > \\ 0\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -217,10 +236,22 @@
             "text": "  / [3(a − x)(√(a + 2x) + √(3x))]",
             "style": "indent"
           },
-          "= (√(3a + x) + 2√x) / (3(√(a + 2x) + √(3x)))",
+          {
+            "text": "= \\ \\dfrac{\\sqrt{3a\\ + \\ x}\\ + \\ 2\\sqrt{x}}{3\\left(\\sqrt{a\\ + \\ 2x}\\ + \\ \\sqrt{3x}\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(x ≠ a, so (a − x) cancels)",
-          "Now put x = a:  = (√(4a) + 2√a)/(3(√(3a) + √(3a)))",
-          "= (2√a + 2√a)/(6√(3a)) = 4√a/(6√(3a)) = 2/(3√3)",
+          {
+            "text": "\\text{Now}\\ \\text{put}\\ x\\ = \\ a:\\ = \\ \\dfrac{\\sqrt{4a}\\ + \\ 2\\sqrt{a}}{3\\left(\\sqrt{3a}\\ + \\ \\sqrt{3a}\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{2\\sqrt{a}\\ + \\ 2\\sqrt{a}}{6\\sqrt{3a}} = \\ \\dfrac{4\\sqrt{a}}{6\\sqrt{3a}} = \\ \\dfrac{2}{3\\sqrt{3}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ lim(x → a) (√(a + 2x) − √(3x))",
             "style": "boxed"
@@ -230,8 +261,9 @@
             "style": "boxed"
           },
           {
-            "text": "= 2/(3√3) = 2√3/9   (a > 0)",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{2}{3\\sqrt{3}} = \\ \\dfrac{2\\sqrt{3}}{9}\\left(a\\ > \\ 0\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

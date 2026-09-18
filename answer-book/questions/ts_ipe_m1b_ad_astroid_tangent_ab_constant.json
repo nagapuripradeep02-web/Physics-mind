@@ -59,7 +59,11 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "The curve is x²⁄³ + y²⁄³ = a²⁄³.",
+          {
+            "text": "\\text{The}\\ \\text{curve}\\ \\text{is}\\ \\dfrac{x^{2}}{^{3}} + \\ \\dfrac{y^{2}}{^{3}} = \\ \\dfrac{a^{2}}{^{3}}.",
+            "style": "normal",
+            "render": "katex"
+          },
           "(with this point, x²⁄³ and y²⁄³ become a²⁄³cos²θ",
           {
             "text": "  and a²⁄³sin²θ, which add easily)",
@@ -73,7 +77,11 @@
             "style": "indent"
           },
           "(a cos³θ)²⁄³ + (a sin³θ)²⁄³ = a²⁄³cos²θ + a²⁄³sin²θ",
-          "(take out a²⁄³; cos²θ + sin²θ = 1)",
+          {
+            "text": "\\left(\\text{take}\\ \\text{out}\\ \\dfrac{a^{2}}{^{3}};\\ \\cos ^{2} \\theta \\ + \\ \\sin ^{2} \\theta \\ = \\ 1\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "= a²⁄³(cos²θ + sin²θ) = a²⁄³",
           "So P is a point of the curve for every value of θ."
         ],
@@ -142,8 +150,9 @@
           },
           "dy/dx = (dy/dθ)/(dx/dθ)",
           {
-            "text": "  = (3a sin²θ cosθ)/(−3a cos²θ sinθ)",
-            "style": "indent"
+            "text": "= \\ \\dfrac{3a\\sin ^{2} \\theta \\cos \\theta }{ - 3a\\cos ^{2} \\theta \\sin \\theta }",
+            "style": "indent",
+            "render": "katex"
           },
           {
             "text": "(cancel 3a, one sinθ and one cosθ; this needs",
@@ -154,9 +163,15 @@
             "style": "indent",
             "added": true
           },
-          "= −sinθ/cosθ",
           {
-            "text": "(sinθ/cosθ = tanθ)",
+            "text": "= \\ - \\dfrac{\\sin \\theta }{\\cos \\theta }",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{\\sin \\theta }{\\cos \\theta } = \\ \\tan \\theta \\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "∴ slope of the tangent  m = −tanθ"
@@ -200,10 +215,15 @@
           "y = a sin³θ  ⇒  dy/dθ = 3a sin²θ · cosθ",
           "dy/dx = (dy/dθ)/(dx/dθ)",
           {
-            "text": "  = (3a sin²θ cosθ)/(−3a cos²θ sinθ)",
-            "style": "indent"
+            "text": "= \\ \\dfrac{3a\\sin ^{2} \\theta \\cos \\theta }{ - 3a\\cos ^{2} \\theta \\sin \\theta }",
+            "style": "indent",
+            "render": "katex"
           },
-          "= −sinθ/cosθ",
+          {
+            "text": "= \\ - \\dfrac{\\sin \\theta }{\\cos \\theta }",
+            "style": "normal",
+            "render": "katex"
+          },
           "∴ slope of the tangent  m = −tanθ"
         ]
       },
@@ -260,7 +280,11 @@
             "style": "indent",
             "added": true
           },
-          "Divide by a sinθ cosθ:   x/(a cosθ) + y/(a sinθ) = 1",
+          {
+            "text": "\\text{Divide}\\ \\text{by}\\ a\\sin \\theta \\cos \\theta :\\ \\dfrac{x}{a\\cos \\theta } + \\ \\dfrac{y}{a\\sin \\theta } = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(the line x/p + y/q = 1 meets the x-axis at (p, 0)",
             "added": true
@@ -310,7 +334,11 @@
           "y cosθ − a sin³θ cosθ = −x sinθ + a sinθ cos³θ",
           "x sinθ + y cosθ = a sinθ cos³θ + a sin³θ cosθ",
           "= a sinθ cosθ (cos²θ + sin²θ) = a sinθ cosθ",
-          "Divide by a sinθ cosθ:   x/(a cosθ) + y/(a sinθ) = 1",
+          {
+            "text": "\\text{Divide}\\ \\text{by}\\ a\\sin \\theta \\cos \\theta :\\ \\dfrac{x}{a\\cos \\theta } + \\ \\dfrac{y}{a\\sin \\theta } = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           "This is the intercept form, so the tangent meets the axes at",
           "A = (a cosθ, 0)   and   B = (0, a sinθ)"
         ]

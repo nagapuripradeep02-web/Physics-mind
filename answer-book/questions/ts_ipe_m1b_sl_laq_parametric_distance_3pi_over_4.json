@@ -62,15 +62,31 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Angle with the negative X-direction = 3π/4",
+          {
+            "text": "\\text{Angle}\\ \\text{with}\\ \\text{the}\\ \\text{negative}\\ \\text{X-direction}\\ = \\ \\dfrac{3\\pi }{4}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(the inclination is measured from the positive X-direction;",
           {
             "text": "  the angles with the two directions add to π)",
             "style": "indent"
           },
-          "∴ Inclination θ = π − 3π/4 = π/4 = 45°",
-          "(cos 45° = sin 45° = 1/√2)",
-          "cos 45° = 1/√2,  sin 45° = 1/√2"
+          {
+            "text": "\\therefore \\ \\text{Inclination}\\ \\theta \\ = \\ \\pi \\ - \\ \\dfrac{3\\pi }{4} = \\ \\dfrac{\\pi }{4} = \\ 45^{\\circ}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\cos 45^{\\circ}\\ = \\ \\sin 45^{\\circ}\\ = \\ \\dfrac{1}{\\sqrt{2}}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\cos 45^{\\circ}\\ = \\ \\dfrac{1}{\\sqrt{2}},\\ \\sin 45^{\\circ}\\ = \\ \\dfrac{1}{\\sqrt{2}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -126,10 +142,16 @@
           },
           "= (2 + r cos 45°, 3 + r sin 45°)",
           {
-            "text": "(r cos 45° = r/√2 and r sin 45° = r/√2)",
+            "text": "\\left(r\\cos 45^{\\circ}\\ = \\ \\dfrac{r}{\\sqrt{2}}\\text{and}\\ r\\sin 45^{\\circ}\\ = \\ \\dfrac{r}{\\sqrt{2}}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "∴ P = (2 + r/√2, 3 + r/√2)"
+          {
+            "text": "\\therefore \\ P\\ = \\ \\left(2\\ + \\ \\dfrac{r}{\\sqrt{2}},\\ 3\\ + \\ \\dfrac{r}{\\sqrt{2}}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -164,7 +186,11 @@
           "Let PQ = r and Q(x₁, y₁) = (2, 3)",
           "P = (x₁ + r cos θ, y₁ + r sin θ)",
           "= (2 + r cos 45°, 3 + r sin 45°)",
-          "∴ P = (2 + r/√2, 3 + r/√2)"
+          {
+            "text": "\\therefore \\ P\\ = \\ \\left(2\\ + \\ \\dfrac{r}{\\sqrt{2}},\\ 3\\ + \\ \\dfrac{r}{\\sqrt{2}}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -179,17 +205,31 @@
             "added": true
           },
           "P lies on x + y − 7 = 0, so",
-          "(2 + r/√2) + (3 + r/√2) − 7 = 0",
           {
-            "text": "(2 + 3 = 5 and r/√2 + r/√2 = 2r/√2)",
+            "text": "\\left(2\\ + \\ \\dfrac{r}{\\sqrt{2}}\\right)\\ + \\ \\left(3\\ + \\ \\dfrac{r}{\\sqrt{2}}\\right)\\ - \\ 7\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(2\\ + \\ 3\\ = \\ 5\\ \\text{and}\\ \\dfrac{r}{\\sqrt{2}} + \\ \\dfrac{r}{\\sqrt{2}} = \\ \\dfrac{2r}{\\sqrt{2}}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "⇒ 5 + 2r/√2 − 7 = 0",
+          {
+            "text": "\\Rightarrow \\ 5\\ + \\ \\dfrac{2r}{\\sqrt{2}} - \\ 7\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(take 5 − 7 = −2 to the right side)",
             "added": true
           },
-          "⇒ 2r/√2 = 2"
+          {
+            "text": "\\Rightarrow \\ \\dfrac{2r}{\\sqrt{2}} = \\ 2",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -221,9 +261,21 @@
         "memory_tip": "P lies on the given line, so substituting produces one equation in r alone.",
         "lines_compact": [
           "P lies on x + y − 7 = 0, so",
-          "(2 + r/√2) + (3 + r/√2) − 7 = 0",
-          "⇒ 5 + 2r/√2 − 7 = 0",
-          "⇒ 2r/√2 = 2"
+          {
+            "text": "\\left(2\\ + \\ \\dfrac{r}{\\sqrt{2}}\\right)\\ + \\ \\left(3\\ + \\ \\dfrac{r}{\\sqrt{2}}\\right)\\ - \\ 7\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ 5\\ + \\ \\dfrac{2r}{\\sqrt{2}} - \\ 7\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\dfrac{2r}{\\sqrt{2}} = \\ 2",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -234,15 +286,25 @@
         "margin_note": "Two more marks. The equation is linear in r. Write 2/√2 as √2, so r√2 = 2 and r = 2/√2 = √2.",
         "lines": [
           {
-            "text": "(2/√2 = √2, because 2 = √2 · √2)",
+            "text": "\\left(\\dfrac{2}{\\sqrt{2}} = \\ \\sqrt{2},\\ \\text{because}\\ 2\\ = \\ \\sqrt{2}\\ \\cdot \\ \\sqrt{2}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "2r/√2 = r√2,  so  r√2 = 2",
+          {
+            "text": "\\dfrac{2r}{\\sqrt{2}} = \\ r\\sqrt{2},\\ \\text{so}\\ r\\sqrt{2}\\ = \\ 2",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(divide both sides by √2)",
             "added": true
           },
-          "⇒ r = 2/√2 = √2",
+          {
+            "text": "\\Rightarrow \\ r\\ = \\ \\dfrac{2}{\\sqrt{2}} = \\ \\sqrt{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           "r is positive, so P lies where x increases."
         ],
         "recall": {
@@ -274,8 +336,16 @@
         "mark_note": "Method",
         "memory_tip": "r is a SIGNED distance: its sign tells you which side of Q the point is on.",
         "lines_compact": [
-          "2r/√2 = r√2,  so  r√2 = 2",
-          "⇒ r = 2/√2 = √2",
+          {
+            "text": "\\dfrac{2r}{\\sqrt{2}} = \\ r\\sqrt{2},\\ \\text{so}\\ r\\sqrt{2}\\ = \\ 2",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ r\\ = \\ \\dfrac{2}{\\sqrt{2}} = \\ \\sqrt{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           "r is positive, so P lies where x increases."
         ]
       },
@@ -287,10 +357,16 @@
         "margin_note": "Last mark. Putting r back gives P, and substituting P into the given line checks the answer in one line.",
         "lines": [
           {
-            "text": "(put r = √2 in P = (2 + r/√2, 3 + r/√2); √2/√2 = 1)",
+            "text": "\\left(\\text{put}\\ r\\ = \\ \\sqrt{2}\\ \\text{in}\\ P\\ = \\ \\left(2\\ + \\ \\dfrac{r}{\\sqrt{2}},\\ 3\\ + \\ \\dfrac{r}{\\sqrt{2}}\\right);\\ \\dfrac{\\sqrt{2}}{\\sqrt{2}} = \\ 1\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "P = (2 + √2/√2, 3 + √2/√2) = (3, 4)",
+          {
+            "text": "P\\ = \\ \\left(2\\ + \\ \\dfrac{\\sqrt{2}}{\\sqrt{2}},\\ 3\\ + \\ \\dfrac{\\sqrt{2}}{\\sqrt{2}}\\right)\\ = \\ \\left(3,\\ 4\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "Check: 3 + 4 − 7 = 0, so P is on the line.",
           {
             "text": "∴ PQ = r = √2 units",
@@ -327,7 +403,11 @@
         "mark_note": "Method",
         "memory_tip": "The distance PQ IS r — putting P back into the line checks the solving for r.",
         "lines_compact": [
-          "P = (2 + √2/√2, 3 + √2/√2) = (3, 4)",
+          {
+            "text": "P\\ = \\ \\left(2\\ + \\ \\dfrac{\\sqrt{2}}{\\sqrt{2}},\\ 3\\ + \\ \\dfrac{\\sqrt{2}}{\\sqrt{2}}\\right)\\ = \\ \\left(3,\\ 4\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "Check: 3 + 4 − 7 = 0, so P is on the line.",
           {
             "text": "∴ PQ = r = √2 units",

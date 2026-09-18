@@ -65,7 +65,11 @@
           "(move 5 to the right side)",
           "⇒ 4x − 4y + 2z = −5",
           "(divide every term by −5, so that the right side is 1)",
-          "⇒ 4x/(−5) + (−4y)/(−5) + 2z/(−5) = 1"
+          {
+            "text": "\\Rightarrow \\ \\dfrac{4x}{ - 5} + \\ \\dfrac{ - 4y}{ - 5} + \\ \\dfrac{2z}{ - 5} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -109,8 +113,9 @@
             "added": true
           },
           {
-            "text": "  and 2z/(−5) = z/(−5/2); so the intercepts are −5/4,",
+            "text": "\\text{and}\\ \\dfrac{2z}{ - 5} = \\ \\dfrac{z}{ - \\dfrac{5}{2}};\\ \\text{so}\\ \\text{the}\\ \\text{intercepts}\\ \\text{are}\\ - \\dfrac{5}{4},",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           {
@@ -118,10 +123,15 @@
             "style": "indent",
             "added": true
           },
-          "⇒ x/(−5/4) + y/(5/4) + z/(−5/2) = 1",
           {
-            "text": "which is in the intercept form x/a + y/b + z/c = 1",
-            "style": "boxed"
+            "text": "\\Rightarrow \\ \\dfrac{x}{ - \\dfrac{5}{4}} + \\ \\dfrac{y}{\\dfrac{5}{4}} + \\ \\dfrac{z}{ - \\dfrac{5}{2}} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{which}\\ \\text{is}\\ \\text{in}\\ \\text{the}\\ \\text{intercept}\\ \\text{form}\\ \\dfrac{x}{a} + \\ \\dfrac{y}{b} + \\ \\dfrac{z}{c} = \\ 1",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -152,10 +162,15 @@
           "Losing a minus sign on a negative intercept."
         ],
         "lines_compact": [
-          "⇒ x/(−5/4) + y/(5/4) + z/(−5/2) = 1",
           {
-            "text": "which is in the intercept form x/a + y/b + z/c = 1",
-            "style": "boxed"
+            "text": "\\Rightarrow \\ \\dfrac{x}{ - \\dfrac{5}{4}} + \\ \\dfrac{y}{\\dfrac{5}{4}} + \\ \\dfrac{z}{ - \\dfrac{5}{2}} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{which}\\ \\text{is}\\ \\text{in}\\ \\text{the}\\ \\text{intercept}\\ \\text{form}\\ \\dfrac{x}{a} + \\ \\dfrac{y}{b} + \\ \\dfrac{z}{c} = \\ 1",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

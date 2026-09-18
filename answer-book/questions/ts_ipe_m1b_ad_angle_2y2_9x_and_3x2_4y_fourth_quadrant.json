@@ -58,27 +58,59 @@
           "Given curves:  2y² − 9x = 0   …(i)",
           "and   3x² + 4y = 0   …(ii)",
           "(move 9x across and divide both sides by 9)",
-          "From (i):  x = 2y²/9",
-          "Put this in (ii):  3(2y²/9)² + 4y = 0",
-          "((2y²/9)² = 4y⁴/81, and 3 × 4/81 = 12/81 = 4/27)",
-          "3(4y⁴/81) + 4y = 0   ⇒   4y⁴/27 + 4y = 0",
+          {
+            "text": "\\text{From}\\ \\left(i\\right):\\ x\\ = \\ \\dfrac{2y^{2}}{9}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Put}\\ \\text{this}\\ \\text{in}\\ \\left(ii\\right):\\ 3\\left(\\dfrac{2y^{2}}{9}\\right)^{2}\\ + \\ 4y\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\left(\\dfrac{2y^{2}}{9}\\right)^{2}\\ = \\ \\dfrac{4y^{4}}{81},\\ \\text{and}\\ 3\\ \\times \\ \\dfrac{4}{81} = \\ \\dfrac{12}{81} = \\ \\dfrac{4}{27}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "3\\left(\\dfrac{4y^{4}}{81}\\right)\\ + \\ 4y\\ = \\ 0\\ \\Rightarrow \\ \\dfrac{4y^{4}}{27} + \\ 4y\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           "((27/4)(4y⁴/27) = y⁴ and (27/4)(4y) = 27y;",
           {
             "text": "  then take out the common factor y)",
             "style": "indent"
           },
-          "Multiply by 27/4:  y⁴ + 27y = 0  ⇒  y(y³ + 27) = 0",
+          {
+            "text": "\\text{Multiply}\\ \\text{by}\\ \\dfrac{27}{4}:\\ y^{4}\\ + \\ 27y\\ = \\ 0\\ \\Rightarrow \\ y\\left(y^{3}\\ + \\ 27\\right)\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           "(a product is 0 when one factor is 0;",
           {
             "text": "  the only real cube root of −27 is −3)",
             "style": "indent"
           },
           "⇒ y = 0  or  y³ = −27, that is y = −3",
-          "(put y = 0 in x = 2y²/9)",
+          {
+            "text": "\\left(\\text{put}\\ y\\ = \\ 0\\ \\text{in}\\ x\\ = \\ \\dfrac{2y^{2}}{9}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "y = 0 gives x = 0, the origin, which lies on the axes",
           "and not in any quadrant.",
-          "(put y = −3: y² = 9, so x = 2(9)/9)",
-          "y = −3 gives x = 2(9)/9 = 2, so the point is (2, −3),",
+          {
+            "text": "\\left(\\text{put}\\ y\\ = \\ - 3:\\ y^{2}\\ = \\ 9,\\ \\text{so}\\ x\\ = \\ \\dfrac{2\\left(9\\right)}{9}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "y\\ = \\ - 3\\ \\text{gives}\\ x\\ = \\ \\dfrac{2\\left(9\\right)}{9} = \\ 2,\\ \\text{so}\\ \\text{the}\\ \\text{point}\\ \\text{is}\\ \\left(2,\\ - 3\\right),",
+            "style": "normal",
+            "render": "katex"
+          },
           "where x > 0 and y < 0.",
           "(the fourth quadrant is where x > 0 and y < 0)",
           "∴ the fourth-quadrant point of intersection is P(2, −3)."
@@ -132,12 +164,22 @@
             "style": "indent",
             "added": true
           },
-          "From (i):  4y (dy/dx) − 9 = 0  ⇒  dy/dx = 9/(4y)",
           {
-            "text": "(put y = −3: 4(−3) = −12, and 9/(−12) = −3/4)",
+            "text": "\\text{From}\\ \\left(i\\right):\\ 4y\\left(\\dfrac{dy}{dx}\\right)\\ - \\ 9\\ = \\ 0\\ \\Rightarrow \\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{9}{4y}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{put}\\ y\\ = \\ - 3:\\ 4\\left( - 3\\right)\\ = \\ - 12,\\ \\text{and}\\ \\dfrac{9}{ - 12} = \\ - \\dfrac{3}{4}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "At P(2, −3):  m₁ = 9/(4(−3)) = −3/4",
+          {
+            "text": "\\text{At}\\ P\\left(2,\\ - 3\\right):\\ m_{1}\\ = \\ \\dfrac{9}{4\\left( - 3\\right)} = \\ - \\dfrac{3}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(differentiate (ii): d/dx of 3x² is 6x,",
             "added": true
@@ -147,12 +189,22 @@
             "style": "indent",
             "added": true
           },
-          "From (ii):  6x + 4 (dy/dx) = 0  ⇒  dy/dx = −3x/2",
           {
-            "text": "(put x = 2: −3(2)/2 = −6/2)",
+            "text": "\\text{From}\\ \\left(ii\\right):\\ 6x\\ + \\ 4\\left(\\dfrac{dy}{dx}\\right)\\ = \\ 0\\ \\Rightarrow \\ \\dfrac{dy}{dx}\\ = \\ - \\dfrac{3x}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{put}\\ x\\ = \\ 2:\\ - \\dfrac{3\\left(2\\right)}{2} = \\ - \\dfrac{6}{2}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "At P(2, −3):  m₂ = −3(2)/2 = −3"
+          {
+            "text": "\\text{At}\\ P\\left(2,\\ - 3\\right):\\ m_{2}\\ = \\ - \\dfrac{3\\left(2\\right)}{2} = \\ - 3",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -186,10 +238,26 @@
         ],
         "memory_tip": "The curve with y² gives a slope in y; the curve with x² and a plain y gives a slope in x.",
         "lines_compact": [
-          "From (i):  4y (dy/dx) − 9 = 0  ⇒  dy/dx = 9/(4y)",
-          "At P(2, −3):  m₁ = 9/(4(−3)) = −3/4",
-          "From (ii):  6x + 4 (dy/dx) = 0  ⇒  dy/dx = −3x/2",
-          "At P(2, −3):  m₂ = −3(2)/2 = −3"
+          {
+            "text": "\\text{From}\\ \\left(i\\right):\\ 4y\\left(\\dfrac{dy}{dx}\\right)\\ - \\ 9\\ = \\ 0\\ \\Rightarrow \\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{9}{4y}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{At}\\ P\\left(2,\\ - 3\\right):\\ m_{1}\\ = \\ \\dfrac{9}{4\\left( - 3\\right)} = \\ - \\dfrac{3}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{From}\\ \\left(ii\\right):\\ 6x\\ + \\ 4\\left(\\dfrac{dy}{dx}\\right)\\ = \\ 0\\ \\Rightarrow \\ \\dfrac{dy}{dx}\\ = \\ - \\dfrac{3x}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{At}\\ P\\left(2,\\ - 3\\right):\\ m_{2}\\ = \\ - \\dfrac{3\\left(2\\right)}{2} = \\ - 3",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -219,12 +287,22 @@
             "style": "indent",
             "added": true
           },
-          "tanθ = |(m₁ − m₂)/(1 + m₁m₂)|",
           {
-            "text": "(put m₁ = −3/4 and m₂ = −3)",
+            "text": "\\tan \\theta \\ = \\ \\left|\\dfrac{m_{1}\\ - \\ m_{2}}{1\\ + \\ m_{1}m_{2}}\\right|",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{put}\\ m_{1}\\ = \\ - \\dfrac{3}{4}\\text{and}\\ m_{2}\\ = \\ - 3\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= |(−3/4 − (−3))/(1 + (−3/4)(−3))|",
+          {
+            "text": "= \\ \\left|\\dfrac{ - \\dfrac{3}{4} - \\ \\left( - 3\\right)}{1\\ + \\ \\left( - \\dfrac{3}{4}\\right)\\left( - 3\\right)}\\right|",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(−3/4 + 3 = −3/4 + 12/4 = 9/4, and (−3/4)(−3) = 9/4;",
             "added": true
@@ -234,7 +312,11 @@
             "style": "indent",
             "added": true
           },
-          "= |(9/4)/(1 + 9/4)| = |(9/4)/(13/4)| = 9/13",
+          {
+            "text": "= \\ \\left|\\dfrac{\\dfrac{9}{4}}{1\\ + \\ \\dfrac{9}{4}}\\right|\\ = \\ \\left|\\dfrac{\\dfrac{9}{4}}{\\dfrac{13}{4}}\\right|\\ = \\ \\dfrac{9}{13}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "((9/4)/(13/4) = 9/13 ≈ 0.6923; a calculator gives",
             "added": true
@@ -245,8 +327,9 @@
             "added": true
           },
           {
-            "text": "∴ θ = Tan⁻¹(9/13) ≈ 34°42′",
-            "style": "boxed"
+            "text": "\\therefore \\ \\theta \\ = \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{9}{13}\\right)\\ \\approx \\ 34^{\\circ}42'",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -281,12 +364,25 @@
         "memory_tip": "The difference of the slopes on top, one plus their product underneath, and the modulus of the fraction.",
         "lines_compact": [
           "If θ is the angle between the curves at P, then",
-          "tanθ = |(m₁ − m₂)/(1 + m₁m₂)|",
-          "= |(−3/4 − (−3))/(1 + (−3/4)(−3))|",
-          "= |(9/4)/(1 + 9/4)| = |(9/4)/(13/4)| = 9/13",
           {
-            "text": "∴ θ = Tan⁻¹(9/13) ≈ 34°42′",
-            "style": "boxed"
+            "text": "\\tan \\theta \\ = \\ \\left|\\dfrac{m_{1}\\ - \\ m_{2}}{1\\ + \\ m_{1}m_{2}}\\right|",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left|\\dfrac{ - \\dfrac{3}{4} - \\ \\left( - 3\\right)}{1\\ + \\ \\left( - \\dfrac{3}{4}\\right)\\left( - 3\\right)}\\right|",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left|\\dfrac{\\dfrac{9}{4}}{1\\ + \\ \\dfrac{9}{4}}\\right|\\ = \\ \\left|\\dfrac{\\dfrac{9}{4}}{\\dfrac{13}{4}}\\right|\\ = \\ \\dfrac{9}{13}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\theta \\ = \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{9}{13}\\right)\\ \\approx \\ 34^{\\circ}42'",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

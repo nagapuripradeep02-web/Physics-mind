@@ -66,11 +66,27 @@
             "text": "  (1/(2√y)) · dy/dx; d/dx of √a is 0)",
             "style": "indent"
           },
-          "1/(2√x) + 1/(2√y) · dy/dx = 0",
-          "(move 1/(2√x) to the right)",
-          "1/(2√y) · dy/dx = −1/(2√x)",
+          {
+            "text": "\\dfrac{1}{2\\sqrt{x}} + \\ \\dfrac{1}{2\\sqrt{y}} \\cdot \\ \\dfrac{dy}{dx}\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{move}\\ \\dfrac{1}{2\\sqrt{x}}\\text{to}\\ \\text{the}\\ \\text{right}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{1}{2\\sqrt{y}} \\cdot \\ \\dfrac{dy}{dx}\\ = \\ - \\dfrac{1}{2\\sqrt{x}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(multiply both sides by 2√y)",
-          "∴ dy/dx = −√y/√x"
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ - \\dfrac{\\sqrt{y}}{\\sqrt{x}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -119,7 +135,11 @@
             "text": "(put x₁ in place of x and y₁ in place of y)",
             "added": true
           },
-          "m = (dy/dx) at (x₁, y₁) = −√y₁/√x₁"
+          {
+            "text": "m\\ = \\ \\left(\\dfrac{dy}{dx}\\right)\\ \\text{at}\\ \\left(x_{1},\\ y_{1}\\right)\\ = \\ - \\dfrac{\\sqrt{y_{1}}}{\\sqrt{x_{1}}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -155,7 +175,11 @@
           "The point (x₁, y₁) lies on the curve, so",
           "√x₁ + √y₁ = √a     …(i)",
           "Slope of the tangent at (x₁, y₁):",
-          "m = (dy/dx) at (x₁, y₁) = −√y₁/√x₁"
+          {
+            "text": "m\\ = \\ \\left(\\dfrac{dy}{dx}\\right)\\ \\text{at}\\ \\left(x_{1},\\ y_{1}\\right)\\ = \\ - \\dfrac{\\sqrt{y_{1}}}{\\sqrt{x_{1}}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -168,10 +192,16 @@
         "lines": [
           "Tangent at (x₁, y₁):  y − y₁ = m(x − x₁)",
           {
-            "text": "(put m = −√y₁/√x₁)",
+            "text": "\\left(\\text{put}\\ m\\ = \\ - \\dfrac{\\sqrt{y_{1}}}{\\sqrt{x_{1}}}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "y − y₁ = −(√y₁/√x₁)(x − x₁)",
+          {
+            "text": "y\\ - \\ y_{1}\\ = \\ - \\left(\\dfrac{\\sqrt{y_{1}}}{\\sqrt{x_{1}}}\\right)\\left(x\\ - \\ x_{1}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "Multiply both sides by √x₁:",
           {
             "text": "(multiply out both sides)",
@@ -216,7 +246,11 @@
         "memory_tip": "Point-slope first, denominator cleared second, terms collected third — always in that order.",
         "lines_compact": [
           "Tangent at (x₁, y₁):  y − y₁ = m(x − x₁)",
-          "y − y₁ = −(√y₁/√x₁)(x − x₁)",
+          {
+            "text": "y\\ - \\ y_{1}\\ = \\ - \\left(\\dfrac{\\sqrt{y_{1}}}{\\sqrt{x_{1}}}\\right)\\left(x\\ - \\ x_{1}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "Multiply both sides by √x₁:",
           "√x₁ y − √x₁ y₁ = −√y₁ x + √y₁ x₁",
           "∴ √y₁ x + √x₁ y = √y₁ x₁ + √x₁ y₁     …(ii)"
@@ -257,14 +291,21 @@
             "style": "indent",
             "added": true
           },
-          "x/√x₁ + y/√y₁ = √a",
           {
-            "text": "(1/√x₁ = x₁⁻¹⁄² and √a = a¹⁄²)",
+            "text": "\\dfrac{x}{\\sqrt{x_{1}}} + \\ \\dfrac{y}{\\sqrt{y_{1}}} = \\ \\sqrt{a}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{1}{\\sqrt{x_{1}}} = \\ \\dfrac{x_{1}^{-1}}{^{2}}\\text{and}\\ \\sqrt{a}\\ = \\ \\dfrac{a^{1}}{^{2}}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ x·x₁⁻¹⁄² + y·y₁⁻¹⁄² = a¹⁄²,",
-            "style": "boxed"
+            "text": "\\therefore \\ x \\cdot \\dfrac{x_{1}^{-1}}{^{2}} + \\ y \\cdot \\dfrac{y_{1}^{-1}}{^{2}} = \\ \\dfrac{a^{1}}{^{2}},",
+            "style": "boxed",
+            "render": "katex"
           },
           {
             "text": "which is the required equation of the tangent.",
@@ -308,10 +349,15 @@
           "By (i), √x₁ + √y₁ = √a, so the right side is √(x₁y₁)·√a.",
           "So (ii) becomes  √y₁ x + √x₁ y = √(x₁y₁)·√a",
           "Divide both sides by √(x₁y₁) = √x₁·√y₁:",
-          "x/√x₁ + y/√y₁ = √a",
           {
-            "text": "∴ x·x₁⁻¹⁄² + y·y₁⁻¹⁄² = a¹⁄²,",
-            "style": "boxed"
+            "text": "\\dfrac{x}{\\sqrt{x_{1}}} + \\ \\dfrac{y}{\\sqrt{y_{1}}} = \\ \\sqrt{a}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ x \\cdot \\dfrac{x_{1}^{-1}}{^{2}} + \\ y \\cdot \\dfrac{y_{1}^{-1}}{^{2}} = \\ \\dfrac{a^{1}}{^{2}},",
+            "style": "boxed",
+            "render": "katex"
           },
           {
             "text": "which is the required equation of the tangent.",

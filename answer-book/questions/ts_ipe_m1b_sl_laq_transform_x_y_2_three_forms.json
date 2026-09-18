@@ -106,7 +106,11 @@
         "mark_note": "Method",
         "margin_note": "The next two marks. Quote x/a + y/b = 1, move the constant to the right, and divide every term by it.",
         "lines": [
-          "(b) Intercept form is  x/a + y/b = 1",
+          {
+            "text": "\\left(b\\right)\\ \\text{Intercept}\\ \\text{form}\\ \\text{is}\\ \\dfrac{x}{a} + \\ \\dfrac{y}{b} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(move 2 to the right side)",
             "added": true
@@ -116,7 +120,11 @@
             "text": "(divide every term by −2, so that the right side is 1)",
             "added": true
           },
-          "Dividing by −2,  x/(−2) + y/(−2) = 1",
+          {
+            "text": "\\text{Dividing}\\ \\text{by}\\ - 2,\\ \\dfrac{x}{ - 2} + \\ \\dfrac{y}{ - 2} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(the denominators are the intercepts)",
             "added": true
@@ -152,9 +160,17 @@
         ],
         "memory_tip": "x/a + y/b = 1 needs 1 on the right, so divide every term by the constant, sign included.",
         "lines_compact": [
-          "(b) Intercept form is  x/a + y/b = 1",
+          {
+            "text": "\\left(b\\right)\\ \\text{Intercept}\\ \\text{form}\\ \\text{is}\\ \\dfrac{x}{a} + \\ \\dfrac{y}{b} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           "x + y + 2 = 0  ⇒  x + y = −2",
-          "Dividing by −2,  x/(−2) + y/(−2) = 1",
+          {
+            "text": "\\text{Dividing}\\ \\text{by}\\ - 2,\\ \\dfrac{x}{ - 2} + \\ \\dfrac{y}{ - 2} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           "∴ a = −2  and  b = −2"
         ]
       },
@@ -238,16 +254,26 @@
           },
           "Here √((−1)² + (−1)²) = √2.",
           {
-            "text": "(2/√2 = √2, because 2 = √2 · √2)",
+            "text": "\\left(\\dfrac{2}{\\sqrt{2}} = \\ \\sqrt{2},\\ \\text{because}\\ 2\\ = \\ \\sqrt{2}\\ \\cdot \\ \\sqrt{2}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "On dividing by √2, we get",
-          "x(−1/√2) + y(−1/√2) = 2/√2 = √2",
+          {
+            "text": "x\\left( - \\dfrac{1}{\\sqrt{2}}\\right)\\ + \\ y\\left( - \\dfrac{1}{\\sqrt{2}}\\right)\\ = \\ \\dfrac{2}{\\sqrt{2}} = \\ \\sqrt{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(compare with x cos α + y sin α = p)",
             "added": true
           },
-          "∴ cos α = −1/√2,  sin α = −1/√2,  p = √2"
+          {
+            "text": "\\therefore \\ \\cos \\alpha \\ = \\ - \\dfrac{1}{\\sqrt{2}},\\ \\sin \\alpha \\ = \\ - \\dfrac{1}{\\sqrt{2}},\\ p\\ = \\ \\sqrt{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -280,8 +306,16 @@
         "lines_compact": [
           "Here √((−1)² + (−1)²) = √2.",
           "On dividing by √2, we get",
-          "x(−1/√2) + y(−1/√2) = 2/√2 = √2",
-          "∴ cos α = −1/√2,  sin α = −1/√2,  p = √2"
+          {
+            "text": "x\\left( - \\dfrac{1}{\\sqrt{2}}\\right)\\ + \\ y\\left( - \\dfrac{1}{\\sqrt{2}}\\right)\\ = \\ \\dfrac{2}{\\sqrt{2}} = \\ \\sqrt{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\cos \\alpha \\ = \\ - \\dfrac{1}{\\sqrt{2}},\\ \\sin \\alpha \\ = \\ - \\dfrac{1}{\\sqrt{2}},\\ p\\ = \\ \\sqrt{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -310,7 +344,9 @@
           "The related acute angle is 45°,",
           "so α = 180° + 45° = 225°",
           {
-            "text": "(check: cos 225° = sin 225° = −1/√2)",
+            "text": "\\left(\\text{check}:\\ \\cos 225^{\\circ}\\ = \\ \\sin 225^{\\circ}\\ = \\ - \\dfrac{1}{\\sqrt{2}}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {

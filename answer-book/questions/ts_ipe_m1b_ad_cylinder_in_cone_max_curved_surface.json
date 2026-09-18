@@ -77,8 +77,9 @@
           },
           "(the small triangle has height H − h and base x,",
           {
-            "text": "  so (H − h)/H = x/R, that is 1 − h/H = x/R;",
-            "style": "indent"
+            "text": "\\text{so}\\ \\dfrac{H\\ - \\ h}{H} = \\ \\dfrac{x}{R},\\ \\text{that}\\ \\text{is}\\ 1\\ - \\ \\dfrac{h}{H} = \\ \\dfrac{x}{R};",
+            "style": "indent",
+            "render": "katex"
           },
           {
             "text": "  then h/H = 1 − x/R = (R − x)/R; multiply by H)",
@@ -86,7 +87,11 @@
           },
           "The small triangle above the cylinder is similar",
           "to the whole cone's triangle, so",
-          "h/H = (R − x)/R   ⇒   h = H(R − x)/R"
+          {
+            "text": "\\dfrac{h}{H} = \\ \\dfrac{R\\ - \\ x}{R} \\Rightarrow \\ h\\ = \\ \\dfrac{H\\left(R\\ - \\ x\\right)}{R}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -137,10 +142,18 @@
             "style": "indent",
             "added": true
           },
-          "S(x) = 2πx · H(R − x)/R = (2πH/R)(Rx − x²),",
+          {
+            "text": "S\\left(x\\right)\\ = \\ 2\\pi x\\ \\cdot \\ \\dfrac{H\\left(R\\ - \\ x\\right)}{R} = \\ \\left(\\dfrac{2\\pi H}{R}\\right)\\left(Rx\\ - \\ x^{2}\\right),",
+            "style": "normal",
+            "render": "katex"
+          },
           "where 0 < x < R",
           "R and H are fixed by the given cone,",
-          "so 2πH/R is a positive constant."
+          {
+            "text": "\\text{so}\\ \\dfrac{2\\pi H}{R}\\text{is}\\ a\\ \\text{positive}\\ \\text{constant}.",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -174,10 +187,18 @@
         "lines_compact": [
           "Curved surface area of the cylinder:  S = 2πxh",
           "Substitute h from step 1:",
-          "S(x) = 2πx · H(R − x)/R = (2πH/R)(Rx − x²),",
+          {
+            "text": "S\\left(x\\right)\\ = \\ 2\\pi x\\ \\cdot \\ \\dfrac{H\\left(R\\ - \\ x\\right)}{R} = \\ \\left(\\dfrac{2\\pi H}{R}\\right)\\left(Rx\\ - \\ x^{2}\\right),",
+            "style": "normal",
+            "render": "katex"
+          },
           "where 0 < x < R",
           "R and H are fixed by the given cone,",
-          "so 2πH/R is a positive constant."
+          {
+            "text": "\\text{so}\\ \\dfrac{2\\pi H}{R}\\text{is}\\ a\\ \\text{positive}\\ \\text{constant}.",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -197,7 +218,11 @@
             "style": "indent",
             "added": true
           },
-          "S′(x) = (2πH/R)(R − 2x)",
+          {
+            "text": "S'\\left(x\\right)\\ = \\ \\left(\\dfrac{2\\pi H}{R}\\right)\\left(R\\ - \\ 2x\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(a product is 0 only when a factor is 0)",
             "added": true
@@ -207,12 +232,22 @@
             "text": "(add 2x to both sides and divide by 2)",
             "added": true
           },
-          "x = R/2",
           {
-            "text": "(R > 0, so 0 < R/2 < R)",
+            "text": "x\\ = \\ \\dfrac{R}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(R\\ > \\ 0,\\ \\text{so}\\ 0\\ < \\ \\dfrac{R}{2} < \\ R\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "R/2 lies between 0 and R, so it is inside the allowed range."
+          {
+            "text": "\\dfrac{R}{2}\\text{lies}\\ \\text{between}\\ 0\\ \\text{and}\\ R,\\ \\text{so}\\ \\text{it}\\ \\text{is}\\ \\text{inside}\\ \\text{the}\\ \\text{allowed}\\ \\text{range}.",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -244,10 +279,22 @@
         ],
         "memory_tip": "A positive constant multiplying a function never moves its stationary point, so set only the bracket to zero.",
         "lines_compact": [
-          "S′(x) = (2πH/R)(R − 2x)",
+          {
+            "text": "S'\\left(x\\right)\\ = \\ \\left(\\dfrac{2\\pi H}{R}\\right)\\left(R\\ - \\ 2x\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "S′(x) = 0   ⇒   R − 2x = 0      (since 2πH/R ≠ 0)",
-          "x = R/2",
-          "R/2 lies between 0 and R, so it is inside the allowed range."
+          {
+            "text": "x\\ = \\ \\dfrac{R}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{R}{2}\\text{lies}\\ \\text{between}\\ 0\\ \\text{and}\\ R,\\ \\text{so}\\ \\text{it}\\ \\text{is}\\ \\text{inside}\\ \\text{the}\\ \\text{allowed}\\ \\text{range}.",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -267,11 +314,19 @@
             "style": "indent",
             "added": true
           },
-          "S″(x) = (2πH/R)(−2) = −4πH/R",
+          {
+            "text": "S''\\left(x\\right)\\ = \\ \\left(\\dfrac{2\\pi H}{R}\\right)\\left( - 2\\right)\\ = \\ - \\dfrac{4\\pi H}{R}",
+            "style": "normal",
+            "render": "katex"
+          },
           "H and R are positive lengths, so S″(x) < 0 for every x.",
           "A negative second derivative means the stationary point",
           "is a maximum.",
-          "So the curved surface is greatest at x = R/2.",
+          {
+            "text": "\\text{So}\\ \\text{the}\\ \\text{curved}\\ \\text{surface}\\ \\text{is}\\ \\text{greatest}\\ \\text{at}\\ x\\ = \\ \\dfrac{R}{2}.",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(put R/2 in place of x in h = H(R − x)/R:",
             "added": true
@@ -281,16 +336,25 @@
             "style": "indent",
             "added": true
           },
-          "Then h = H(R − R/2)/R = H/2,",
+          {
+            "text": "\\text{Then}\\ h\\ = \\ \\dfrac{H\\left(R\\ - \\ \\dfrac{R}{2}\\right)}{R} = \\ \\dfrac{H}{2},",
+            "style": "normal",
+            "render": "katex"
+          },
           "and the greatest curved surface is",
-          "2π(R/2)(H/2) = πRH/2.",
+          {
+            "text": "2\\pi \\left(\\dfrac{R}{2}\\right)\\left(\\dfrac{H}{2}\\right)\\ = \\ \\dfrac{\\pi RH}{2}.",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ the cylinder of greatest curved surface",
             "style": "boxed"
           },
           {
-            "text": "has radius R/2, that is, half the radius of the cone",
-            "style": "boxed"
+            "text": "has\\ \\text{radius}\\ \\dfrac{R}{2},\\ \\text{that}\\ \\text{is},\\ \\text{half}\\ \\text{the}\\ \\text{radius}\\ \\text{of}\\ \\text{the}\\ \\text{cone}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -323,21 +387,38 @@
         ],
         "memory_tip": "Greatest curved surface gives radius R/2 and height H/2. Greatest volume is a different question with a different answer, radius 2R/3.",
         "lines_compact": [
-          "S″(x) = (2πH/R)(−2) = −4πH/R",
+          {
+            "text": "S''\\left(x\\right)\\ = \\ \\left(\\dfrac{2\\pi H}{R}\\right)\\left( - 2\\right)\\ = \\ - \\dfrac{4\\pi H}{R}",
+            "style": "normal",
+            "render": "katex"
+          },
           "H and R are positive lengths, so S″(x) < 0 for every x.",
           "A negative second derivative means the stationary point",
           "is a maximum.",
-          "So the curved surface is greatest at x = R/2.",
-          "Then h = H(R − R/2)/R = H/2,",
+          {
+            "text": "\\text{So}\\ \\text{the}\\ \\text{curved}\\ \\text{surface}\\ \\text{is}\\ \\text{greatest}\\ \\text{at}\\ x\\ = \\ \\dfrac{R}{2}.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Then}\\ h\\ = \\ \\dfrac{H\\left(R\\ - \\ \\dfrac{R}{2}\\right)}{R} = \\ \\dfrac{H}{2},",
+            "style": "normal",
+            "render": "katex"
+          },
           "and the greatest curved surface is",
-          "2π(R/2)(H/2) = πRH/2.",
+          {
+            "text": "2\\pi \\left(\\dfrac{R}{2}\\right)\\left(\\dfrac{H}{2}\\right)\\ = \\ \\dfrac{\\pi RH}{2}.",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ the cylinder of greatest curved surface",
             "style": "boxed"
           },
           {
-            "text": "has radius R/2, that is, half the radius of the cone",
-            "style": "boxed"
+            "text": "has\\ \\text{radius}\\ \\dfrac{R}{2},\\ \\text{that}\\ \\text{is},\\ \\text{half}\\ \\text{the}\\ \\text{radius}\\ \\text{of}\\ \\text{the}\\ \\text{cone}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

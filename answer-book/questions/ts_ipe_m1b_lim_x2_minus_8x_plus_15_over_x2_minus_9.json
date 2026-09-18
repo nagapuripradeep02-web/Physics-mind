@@ -53,7 +53,11 @@
             "style": "heading"
           },
           "(3² = 9, 8(3) = 24; 9 − 24 + 15 = 0 and 9 − 9 = 0)",
-          "Putting x = 3 gives (9 − 24 + 15)/(9 − 9) = 0/0,",
+          {
+            "text": "\\text{Putting}\\ x\\ = \\ 3\\ \\text{gives}\\ \\dfrac{9\\ - \\ 24\\ + \\ 15}{9\\ - \\ 9} = \\ \\dfrac{0}{0},",
+            "style": "normal",
+            "render": "katex"
+          },
           "so both parts are factorised.",
           "(split −8x as −3x − 5x, since (−3)(−5) = 15)",
           "x² − 8x + 15 = x² − 3x − 5x + 15 = x(x − 3) − 5(x − 3)",
@@ -64,10 +68,15 @@
           "(a² − b² = (a − b)(a + b) with a = x and b = 3)",
           "x² − 9 = x² − 3² = (x − 3)(x + 3)",
           "(put both factorisations into the limit)",
-          "∴ lim(x → 3) (x² − 8x + 15)/(x² − 9)",
           {
-            "text": "  = lim(x → 3) (x − 3)(x − 5)/[(x − 3)(x + 3)]",
-            "style": "indent"
+            "text": "\\therefore \\ \\dfrac{\\lim \\left(x\\ \\to \\ 3\\right)\\left(x^{2}\\ - \\ 8x\\ + \\ 15\\right)}{x^{2}\\ - \\ 9}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\lim \\left(x\\ \\to \\ 3\\right)\\left(x\\ - \\ 3\\right)\\left(x\\ - \\ 5\\right)}{\\left(x\\ - \\ 3\\right)\\left(x\\ + \\ 3\\right)}",
+            "style": "indent",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -112,19 +121,32 @@
             "text": "(cancel x − 3 from the top and the bottom)",
             "added": true
           },
-          "= lim(x → 3) (x − 5)/(x + 3)",
           {
-            "text": "((x − 5)/(x + 3) is defined at x = 3, so put x = 3)",
-            "added": true
-          },
-          "= (3 − 5)/(3 + 3) = −2/6",
-          {
-            "text": "(−2/6 = −1/3, dividing the top and the bottom by 2)",
-            "added": true
+            "text": "= \\ \\dfrac{\\lim \\left(x\\ \\to \\ 3\\right)\\left(x\\ - \\ 5\\right)}{x\\ + \\ 3}",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "∴ lim(x → 3) (x² − 8x + 15)/(x² − 9) = −1/3",
-            "style": "boxed"
+            "text": "\\left(\\dfrac{x\\ - \\ 5}{x\\ + \\ 3}\\text{is}\\ \\text{defined}\\ \\text{at}\\ x\\ = \\ 3,\\ \\text{so}\\ \\text{put}\\ x\\ = \\ 3\\right)",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "= \\ \\dfrac{3\\ - \\ 5}{3\\ + \\ 3} = \\ - \\dfrac{2}{6}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left( - \\dfrac{2}{6} = \\ - \\dfrac{1}{3},\\ \\text{dividing}\\ \\text{the}\\ \\text{top}\\ \\text{and}\\ \\text{the}\\ \\text{bottom}\\ \\text{by}\\ 2\\right)",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{\\lim \\left(x\\ \\to \\ 3\\right)\\left(x^{2}\\ - \\ 8x\\ + \\ 15\\right)}{x^{2}\\ - \\ 9} = \\ - \\dfrac{1}{3}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -156,11 +178,20 @@
         ],
         "lines_compact": [
           "As x → 3 we have x ≠ 3, so (x − 3) may be cancelled:",
-          "= lim(x → 3) (x − 5)/(x + 3)",
-          "= (3 − 5)/(3 + 3) = −2/6",
           {
-            "text": "∴ lim(x → 3) (x² − 8x + 15)/(x² − 9) = −1/3",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{\\lim \\left(x\\ \\to \\ 3\\right)\\left(x\\ - \\ 5\\right)}{x\\ + \\ 3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{3\\ - \\ 5}{3\\ + \\ 3} = \\ - \\dfrac{2}{6}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{\\lim \\left(x\\ \\to \\ 3\\right)\\left(x^{2}\\ - \\ 8x\\ + \\ 15\\right)}{x^{2}\\ - \\ 9} = \\ - \\dfrac{1}{3}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

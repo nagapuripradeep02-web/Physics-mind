@@ -54,7 +54,11 @@
           },
           "The given equation of the plane is  x − 3y + 2z = 9",
           "(divide every term by 9, so that the right side is 1)",
-          "⇒ x/9 + (−3y)/9 + 2z/9 = 1"
+          {
+            "text": "\\Rightarrow \\ \\dfrac{x}{9} + \\ \\dfrac{ - 3y}{9} + \\ \\dfrac{2z}{9} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -94,11 +98,21 @@
         "memory_tip": "Read each denominator as the intercept: 9, −3 and 9/2.",
         "lines": [
           {
-            "text": "((−3y)/9 = y/(−3) and 2z/9 = z/(9/2))",
+            "text": "\\left(\\dfrac{ - 3y}{9} = \\ \\dfrac{y}{ - 3}\\text{and}\\ \\dfrac{2z}{9} = \\ \\dfrac{z}{\\dfrac{9}{2}}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "⇒ x/9 + y/(−3) + z/(9/2) = 1",
-          "which is in the intercept form  x/a + y/b + z/c = 1",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{x}{9} + \\ \\dfrac{y}{ - 3} + \\ \\dfrac{z}{\\dfrac{9}{2}} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{which}\\ \\text{is}\\ \\text{in}\\ \\text{the}\\ \\text{intercept}\\ \\text{form}\\ \\dfrac{x}{a} + \\ \\dfrac{y}{b} + \\ \\dfrac{z}{c} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(the denominators are the intercepts a, b, c)",
             "added": true
@@ -108,8 +122,9 @@
             "style": "boxed"
           },
           {
-            "text": "z-intercept = 9/2",
-            "style": "boxed"
+            "text": "\\text{z-intercept}\\ = \\ \\dfrac{9}{2}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -140,15 +155,24 @@
           "Losing a minus sign on a negative intercept."
         ],
         "lines_compact": [
-          "⇒ x/9 + y/(−3) + z/(9/2) = 1",
-          "which is in the intercept form  x/a + y/b + z/c = 1",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{x}{9} + \\ \\dfrac{y}{ - 3} + \\ \\dfrac{z}{\\dfrac{9}{2}} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{which}\\ \\text{is}\\ \\text{in}\\ \\text{the}\\ \\text{intercept}\\ \\text{form}\\ \\dfrac{x}{a} + \\ \\dfrac{y}{b} + \\ \\dfrac{z}{c} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Hence, x-intercept = 9,  y-intercept = −3,",
             "style": "boxed"
           },
           {
-            "text": "z-intercept = 9/2",
-            "style": "boxed"
+            "text": "\\text{z-intercept}\\ = \\ \\dfrac{9}{2}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

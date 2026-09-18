@@ -58,17 +58,26 @@
           "The term 3axy is a product of x and y,",
           "so it needs the product rule.",
           "(a is a constant, and the derivative of 0 is 0)",
-          "d/dx(x³) + d/dx(y³) − 3a · d/dx(xy) = 0",
+          {
+            "text": "\\dfrac{d}{dx}\\left(x^{3}\\right)\\ + \\ \\dfrac{d}{dx}\\left(y^{3}\\right)\\ - \\ 3a\\ \\cdot \\ \\dfrac{d}{dx}\\left(xy\\right)\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           "(d/dx(x³) = 3x²; d/dx(y³) = 3y² · dy/dx by the chain rule;",
           {
-            "text": "  the product rule gives d/dx(xy)",
-            "style": "indent"
+            "text": "\\text{the}\\ \\text{product}\\ \\text{rule}\\ \\text{gives}\\ \\dfrac{d}{dx}\\left(xy\\right)",
+            "style": "indent",
+            "render": "katex"
           },
           {
             "text": "  = y · 1 + x · dy/dx)",
             "style": "indent"
           },
-          "3x² + 3y²(dy/dx) − 3a[ y · 1 + x · (dy/dx) ] = 0"
+          {
+            "text": "3x^{2}\\ + \\ 3y^{2}\\left(\\dfrac{dy}{dx}\\right)\\ - \\ 3a\\left[y\\ \\cdot \\ 1\\ + \\ x\\ \\cdot \\ \\left(\\dfrac{dy}{dx}\\right)\\right]\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -117,8 +126,16 @@
             "style": "indent",
             "added": true
           },
-          "x² + y²(dy/dx) − ay − ax(dy/dx) = 0",
-          "Take the dy/dx terms to one side:",
+          {
+            "text": "x^{2}\\ + \\ y^{2}\\left(\\dfrac{dy}{dx}\\right)\\ - \\ ay\\ - \\ ax\\left(\\dfrac{dy}{dx}\\right)\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Take}\\ \\text{the}\\ \\dfrac{dy}{dx}\\ \\text{terms}\\ \\text{to}\\ \\text{one}\\ \\text{side}:",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(y²(dy/dx) − ax(dy/dx) = (y² − ax)(dy/dx);",
             "added": true
@@ -128,14 +145,19 @@
             "style": "indent",
             "added": true
           },
-          "(y² − ax)(dy/dx) = ay − x²",
+          {
+            "text": "\\left(y^{2}\\ - \\ ax\\right)\\left(\\dfrac{dy}{dx}\\right)\\ = \\ ay\\ - \\ x^{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(divide both sides by y² − ax, which must not be 0)",
             "added": true
           },
           {
-            "text": "∴ dy/dx = (ay − x²)/(y² − ax),  y² ≠ ax",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{ay\\ - \\ x^{2}}{y^{2}\\ - \\ ax},\\ y^{2}\\ \\ne \\ ax",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -167,12 +189,25 @@
         ],
         "lines_compact": [
           "Divide throughout by 3:",
-          "x² + y²(dy/dx) − ay − ax(dy/dx) = 0",
-          "Take the dy/dx terms to one side:",
-          "(y² − ax)(dy/dx) = ay − x²",
           {
-            "text": "∴ dy/dx = (ay − x²)/(y² − ax),  y² ≠ ax",
-            "style": "boxed"
+            "text": "x^{2}\\ + \\ y^{2}\\left(\\dfrac{dy}{dx}\\right)\\ - \\ ay\\ - \\ ax\\left(\\dfrac{dy}{dx}\\right)\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Take}\\ \\text{the}\\ \\dfrac{dy}{dx}\\ \\text{terms}\\ \\text{to}\\ \\text{one}\\ \\text{side}:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(y^{2}\\ - \\ ax\\right)\\left(\\dfrac{dy}{dx}\\right)\\ = \\ ay\\ - \\ x^{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{ay\\ - \\ x^{2}}{y^{2}\\ - \\ ax},\\ y^{2}\\ \\ne \\ ax",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

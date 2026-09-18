@@ -59,9 +59,17 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Let y = tan⁻¹√((1 − x)/(1 + x)),  where |x| < 1",
+          {
+            "text": "\\text{Let}\\ y\\ = \\ \\tan ^{-1} \\sqrt{\\dfrac{1\\ - \\ x}{1\\ + \\ x}},\\ \\text{where}\\ \\left|x\\right|\\ < \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           "(cos 2θ = x means 2θ = cos⁻¹x, with 2θ in [0, π])",
-          "Put x = cos 2θ,  so that 2θ = cos⁻¹x  and  θ = ½cos⁻¹x",
+          {
+            "text": "\\text{Put}\\ x\\ = \\ \\cos 2\\theta ,\\ \\text{so}\\ \\text{that}\\ 2\\theta \\ = \\ \\cos ^{-1} x\\ \\text{and}\\ \\theta \\ = \\ \\dfrac{1}{2}\\cos ^{-1} x",
+            "style": "normal",
+            "render": "katex"
+          },
           "(cos⁻¹1 = 0 and cos⁻¹(−1) = π,",
           {
             "text": "  so |x| < 1 gives 0 < cos⁻¹x < π)",
@@ -69,7 +77,11 @@
           },
           "(divide 0 < 2θ < π by 2)",
           "Since |x| < 1, cos⁻¹x lies in (0, π), so 2θ lies in (0, π)",
-          "and θ lies in (0, π/2)"
+          {
+            "text": "\\text{and}\\ \\theta \\ \\text{lies}\\ \\text{in}\\ \\left(0,\\ \\dfrac{\\pi }{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -125,19 +137,29 @@
           },
           "√((1 − x)/(1 + x)) = √(2sin²θ/2cos²θ)",
           {
-            "text": "(the 2s cancel; sin²θ/cos²θ = tan²θ and √(p²) = |p|)",
+            "text": "\\left(\\text{the}\\ 2s\\ \\text{cancel};\\ \\dfrac{\\sin ^{2} \\theta }{\\cos ^{2} \\theta } = \\ \\tan ^{2} \\theta \\ \\text{and}\\ \\sqrt{p^{2}}\\ = \\ \\left|p\\right|\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
             "text": "  = √(tan²θ) = |tan θ|",
             "style": "indent"
           },
-          "θ lies in (0, π/2), so tan θ > 0",
+          {
+            "text": "\\theta \\ \\text{lies}\\ \\text{in}\\ \\left(0,\\ \\dfrac{\\pi }{2}\\right),\\ \\text{so}\\ \\tan \\theta \\ > \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(|tan θ| = tan θ, because tan θ > 0)",
             "added": true
           },
-          "∴ √((1 − x)/(1 + x)) = tan θ"
+          {
+            "text": "\\therefore \\ \\sqrt{\\dfrac{1\\ - \\ x}{1\\ + \\ x}}\\ = \\ \\tan \\theta",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -175,8 +197,16 @@
             "text": "  = √(tan²θ) = |tan θ|",
             "style": "indent"
           },
-          "θ lies in (0, π/2), so tan θ > 0",
-          "∴ √((1 − x)/(1 + x)) = tan θ"
+          {
+            "text": "\\theta \\ \\text{lies}\\ \\text{in}\\ \\left(0,\\ \\dfrac{\\pi }{2}\\right),\\ \\text{so}\\ \\tan \\theta \\ > \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\sqrt{\\dfrac{1\\ - \\ x}{1\\ + \\ x}}\\ = \\ \\tan \\theta",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -188,18 +218,34 @@
         "margin_note": "Third mark. tan⁻¹(tan θ) = θ only when θ is inside (−π/2, π/2). That was established in step 1, so this line is justified and not assumed.",
         "lines": [
           {
-            "text": "(put √((1 − x)/(1 + x)) = tan θ from step 2)",
+            "text": "\\left(\\text{put}\\ \\sqrt{\\dfrac{1\\ - \\ x}{1\\ + \\ x}}\\ = \\ \\tan \\theta \\ \\text{from}\\ \\text{step}\\ 2\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "y = tan⁻¹(tan θ)",
-          "θ lies in (0, π/2), which is inside",
-          "the principal range (−π/2, π/2) of tan⁻¹, so",
+          {
+            "text": "\\theta \\ \\text{lies}\\ \\text{in}\\ \\left(0,\\ \\dfrac{\\pi }{2}\\right),\\ \\text{which}\\ \\text{is}\\ \\text{inside}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{the}\\ \\text{principal}\\ \\text{range}\\ \\left( - \\dfrac{\\pi }{2},\\ \\dfrac{\\pi }{2}\\right)\\ \\text{of}\\ \\tan ^{-1},\\ \\text{so}",
+            "style": "normal",
+            "render": "katex"
+          },
           "y = θ",
           {
-            "text": "(put θ = ½cos⁻¹x from step 1)",
+            "text": "\\left(\\text{put}\\ \\theta \\ = \\ \\dfrac{1}{2}\\cos ^{-1} x\\ \\text{from}\\ \\text{step}\\ 1\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "∴ y = ½cos⁻¹x"
+          {
+            "text": "\\therefore \\ y\\ = \\ \\dfrac{1}{2}\\cos ^{-1} x",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -232,10 +278,22 @@
         "memory_tip": "The 2 in cos 2θ becomes the ½ in the answer. Track it from the substitution to the last line.",
         "lines_compact": [
           "y = tan⁻¹(tan θ)",
-          "θ lies in (0, π/2), which is inside",
-          "the principal range (−π/2, π/2) of tan⁻¹, so",
+          {
+            "text": "\\theta \\ \\text{lies}\\ \\text{in}\\ \\left(0,\\ \\dfrac{\\pi }{2}\\right),\\ \\text{which}\\ \\text{is}\\ \\text{inside}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{the}\\ \\text{principal}\\ \\text{range}\\ \\left( - \\dfrac{\\pi }{2},\\ \\dfrac{\\pi }{2}\\right)\\ \\text{of}\\ \\tan ^{-1},\\ \\text{so}",
+            "style": "normal",
+            "render": "katex"
+          },
           "y = θ",
-          "∴ y = ½cos⁻¹x"
+          {
+            "text": "\\therefore \\ y\\ = \\ \\dfrac{1}{2}\\cos ^{-1} x",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -246,19 +304,32 @@
         "mark_note": "Answer",
         "margin_note": "Last mark. The minus sign belongs to cos⁻¹x and must stay in the final line. The answer is negative for every |x| < 1, which agrees with y decreasing as x increases.",
         "lines": [
-          "d/dx (cos⁻¹x) = −1/√(1 − x²),  valid for |x| < 1",
           {
-            "text": "(d/dx(½cos⁻¹x) = ½ · d/dx(cos⁻¹x))",
-            "added": true
-          },
-          "dy/dx = ½ · (−1/√(1 − x²))",
-          {
-            "text": "(½ · (−1/√(1 − x²)) = −1/(2√(1 − x²)))",
-            "added": true
+            "text": "\\dfrac{d}{dx}\\left(\\cos ^{-1} x\\right)\\ = \\ - \\dfrac{1}{\\sqrt{1\\ - \\ x^{2}}},\\ \\text{valid}\\ \\text{for}\\ \\left|x\\right|\\ < \\ 1",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "∴ dy/dx = −1/(2√(1 − x²))",
-            "style": "boxed"
+            "text": "\\left(\\dfrac{d}{dx}\\left(\\dfrac{1}{2}\\cos ^{-1} x\\right)\\ = \\ \\dfrac{1}{2}\\ \\cdot \\ \\dfrac{d}{dx}\\left(\\cos ^{-1} x\\right)\\right)",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "\\dfrac{dy}{dx}\\ = \\ \\dfrac{1}{2}\\ \\cdot \\ \\left( - \\dfrac{1}{\\sqrt{1\\ - \\ x^{2}}}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{1}{2}\\ \\cdot \\ \\left( - \\dfrac{1}{\\sqrt{1\\ - \\ x^{2}}}\\right)\\ = \\ - \\dfrac{1}{2\\sqrt{1\\ - \\ x^{2}}}\\right)",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ - \\dfrac{1}{2\\sqrt{1\\ - \\ x^{2}}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -291,11 +362,20 @@
         ],
         "memory_tip": "sin⁻¹ and cos⁻¹ have the same derivative apart from the sign. This answer came from cos⁻¹, so it is the negative one.",
         "lines_compact": [
-          "d/dx (cos⁻¹x) = −1/√(1 − x²),  valid for |x| < 1",
-          "dy/dx = ½ · (−1/√(1 − x²))",
           {
-            "text": "∴ dy/dx = −1/(2√(1 − x²))",
-            "style": "boxed"
+            "text": "\\dfrac{d}{dx}\\left(\\cos ^{-1} x\\right)\\ = \\ - \\dfrac{1}{\\sqrt{1\\ - \\ x^{2}}},\\ \\text{valid}\\ \\text{for}\\ \\left|x\\right|\\ < \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{dy}{dx}\\ = \\ \\dfrac{1}{2}\\ \\cdot \\ \\left( - \\dfrac{1}{\\sqrt{1\\ - \\ x^{2}}}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ - \\dfrac{1}{2\\sqrt{1\\ - \\ x^{2}}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

@@ -69,8 +69,9 @@
             "style": "indent"
           },
           {
-            "text": "  x/(b₁c₂ − b₂c₁) = y/(c₁a₂ − c₂a₁)",
-            "style": "indent"
+            "text": "\\dfrac{x}{b_{1}c_{2}\\ - \\ b_{2}c_{1}} = \\ \\dfrac{y}{c_{1}a_{2}\\ - \\ c_{2}a_{1}}",
+            "style": "indent",
+            "render": "katex"
           },
           {
             "text": "  = 1/(a₁b₂ − a₂b₁))",
@@ -82,16 +83,32 @@
             "style": "indent"
           },
           "Solving (1) & (2) by cross-multiplication,",
-          "x / [2(−1) − 5(4)] = y / [4(2) − (−1)(3)]",
-          "= 1 / [3(5) − 2(2)]",
+          {
+            "text": "\\dfrac{x}{2\\left( - 1\\right)\\ - \\ 5\\left(4\\right)} = \\ \\dfrac{y}{4\\left(2\\right)\\ - \\ \\left( - 1\\right)\\left(3\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{1}{3\\left(5\\right)\\ - \\ 2\\left(2\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(2(−1) = −2, 5(4) = 20; 4(2) = 8, (−1)(3) = −3;",
           {
             "text": "  3(5) = 15, 2(2) = 4)",
             "style": "indent"
           },
-          "⇒ x/(−2 − 20) = y/(8 + 3) = 1/(15 − 4)",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{x}{ - 2\\ - \\ 20} = \\ \\dfrac{y}{8\\ + \\ 3} = \\ \\dfrac{1}{15\\ - \\ 4}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(−2 − 20 = −22, 8 + 3 = 11 and 15 − 4 = 11)",
-          "⇒ x/(−22) = y/11 = 1/11"
+          {
+            "text": "\\Rightarrow \\ \\dfrac{x}{ - 22} = \\ \\dfrac{y}{11} = \\ \\dfrac{1}{11}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -138,7 +155,11 @@
             "style": "indent",
             "added": true
           },
-          "⇒ x = −22/11 = −2 and y = 11/11 = 1",
+          {
+            "text": "\\Rightarrow \\ x\\ = \\ - \\dfrac{22}{11} = \\ - 2\\ \\text{and}\\ y\\ = \\ \\dfrac{11}{11} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           "∴ P = (−2, 1)",
           {
             "text": "(2(−2) = −4 and 5(1) = 5; −4 + 5 − 1 = 0)",
@@ -175,7 +196,11 @@
         "mark_note": "Method",
         "memory_tip": "Put the point back into one of the given lines — a one-line check catches a slip before the later marks.",
         "lines_compact": [
-          "⇒ x = −22/11 = −2 and y = 11/11 = 1",
+          {
+            "text": "\\Rightarrow \\ x\\ = \\ - \\dfrac{22}{11} = \\ - 2\\ \\text{and}\\ y\\ = \\ \\dfrac{11}{11} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           "∴ P = (−2, 1)",
           "Check in (2):  2(−2) + 5(1) − 1 = 0, correct."
         ]
@@ -192,7 +217,11 @@
             "added": true
           },
           "Perpendicular distance from (x₁, y₁) to",
-          "ax + by + c = 0 is |ax₁ + by₁ + c| / √(a² + b²)"
+          {
+            "text": "ax\\ + \\ \\text{by}\\ + \\ c\\ = \\ 0\\ \\text{is}\\ \\dfrac{\\left|ax_{1}\\ + \\ by_{1}\\ + \\ c\\right|}{\\sqrt{a^{2}\\ + \\ b^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -224,7 +253,11 @@
         "memory_tip": "The numerator carries the POINT, the denominator carries only the LINE.",
         "lines_compact": [
           "Perpendicular distance from (x₁, y₁) to",
-          "ax + by + c = 0 is |ax₁ + by₁ + c| / √(a² + b²)"
+          {
+            "text": "ax\\ + \\ \\text{by}\\ + \\ c\\ = \\ 0\\ \\text{is}\\ \\dfrac{\\left|ax_{1}\\ + \\ by_{1}\\ + \\ c\\right|}{\\sqrt{a^{2}\\ + \\ b^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -240,12 +273,20 @@
             "text": "(put x₁ = −2, y₁ = 1, a = 7, b = 24 and c = −15)",
             "added": true
           },
-          "d = |7(−2) + 24(1) − 15| / √(7² + 24²)",
+          {
+            "text": "d\\ = \\ \\dfrac{\\left|7\\left( - 2\\right)\\ + \\ 24\\left(1\\right)\\ - \\ 15\\right|}{\\sqrt{7^{2}\\ + \\ 24^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(7(−2) = −14 and 24(1) = 24; 7² = 49 and 24² = 576)",
             "added": true
           },
-          "= |−14 + 24 − 15| / √(49 + 576)"
+          {
+            "text": "= \\ \\dfrac{\\left| - 14\\ + \\ 24\\ - \\ 15\\right|}{\\sqrt{49\\ + \\ 576}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -279,8 +320,16 @@
         "lines_compact": [
           "Here (x₁, y₁) = (−2, 1) and the line is",
           "7x + 24y − 15 = 0, so a = 7, b = 24, c = −15",
-          "d = |7(−2) + 24(1) − 15| / √(7² + 24²)",
-          "= |−14 + 24 − 15| / √(49 + 576)"
+          {
+            "text": "d\\ = \\ \\dfrac{\\left|7\\left( - 2\\right)\\ + \\ 24\\left(1\\right)\\ - \\ 15\\right|}{\\sqrt{7^{2}\\ + \\ 24^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\left| - 14\\ + \\ 24\\ - \\ 15\\right|}{\\sqrt{49\\ + \\ 576}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -294,14 +343,21 @@
             "text": "(−14 + 24 − 15 = −5; 49 + 576 = 625 and √625 = 25)",
             "added": true
           },
-          "= |−5| / √625 = 5/25",
           {
-            "text": "(5/25 = 1/5)",
+            "text": "= \\ \\dfrac{\\left| - 5\\right|}{\\sqrt{625}} = \\ \\dfrac{5}{25}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{5}{25} = \\ \\dfrac{1}{5}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ Length of the perpendicular = 1/5 units",
-            "style": "boxed"
+            "text": "\\therefore \\ \\text{Length}\\ \\text{of}\\ \\text{the}\\ \\text{perpendicular}\\ = \\ \\dfrac{1}{5}\\text{units}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -333,10 +389,15 @@
         "mark_note": "Method",
         "memory_tip": "√(7² + 24²) = 25 exactly, so the answer reduces to a clean fraction.",
         "lines_compact": [
-          "= |−5| / √625 = 5/25",
           {
-            "text": "∴ Length of the perpendicular = 1/5 units",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{\\left| - 5\\right|}{\\sqrt{625}} = \\ \\dfrac{5}{25}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\text{Length}\\ \\text{of}\\ \\text{the}\\ \\text{perpendicular}\\ = \\ \\dfrac{1}{5}\\text{units}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

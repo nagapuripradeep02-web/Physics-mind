@@ -55,9 +55,17 @@
           "Let y = Tan⁻¹(log x), where log is the natural logarithm",
           "and x > 0.",
           "(the standard derivative of Tan⁻¹u with the chain rule)",
-          "Take u = log x. Then d/dx(Tan⁻¹u) = 1/(1 + u²) · du/dx",
+          {
+            "text": "\\text{Take}\\ u\\ = \\ \\log x.\\ \\text{Then}\\ \\dfrac{d}{dx}\\left(\\operatorname{Tan}^{-1} u\\right)\\ = \\ \\dfrac{1}{1\\ + \\ u^{2}} \\cdot \\ \\dfrac{du}{dx}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(put u = log x, so u² = (log x)²)",
-          "∴ dy/dx = 1/(1 + (log x)²) · d/dx(log x)"
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{1}{1\\ + \\ \\left(\\log x\\right)^{2}} \\cdot \\ \\dfrac{d}{dx}\\left(\\log x\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -100,19 +108,32 @@
             "text": "(the standard derivative of log x, for x > 0)",
             "added": true
           },
-          "d/dx(log x) = 1/x",
           {
-            "text": "(put 1/x in place of d/dx(log x))",
-            "added": true
-          },
-          "∴ dy/dx = 1/(1 + (log x)²) · (1/x)",
-          {
-            "text": "(1/(1 + (log x)²) · 1/x = 1/(x[1 + (log x)²]))",
-            "added": true
+            "text": "\\dfrac{d}{dx}\\left(\\log x\\right)\\ = \\ \\dfrac{1}{x}",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "∴ d/dx[Tan⁻¹(log x)] = 1/(x[1 + (log x)²])",
-            "style": "boxed"
+            "text": "\\left(\\text{put}\\ \\dfrac{1}{x}\\text{in}\\ \\text{place}\\ \\text{of}\\ \\dfrac{d}{dx}\\left(\\log x\\right)\\right)",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{1}{1\\ + \\ \\left(\\log x\\right)^{2}} \\cdot \\ \\left(\\dfrac{1}{x}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{1}{1\\ + \\ \\left(\\log x\\right)^{2}} \\cdot \\ \\dfrac{1}{x} = \\ \\dfrac{1}{x\\left[1\\ + \\ \\left(\\log x\\right)^{2}\\right]}\\right)",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{d}{dx}\\left[\\operatorname{Tan}^{-1}\\left(\\log x\\right)\\right]\\ = \\ \\dfrac{1}{x\\left[1\\ + \\ \\left(\\log x\\right)^{2}\\right]}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -143,11 +164,20 @@
           "Putting the x in the numerator instead of the denominator."
         ],
         "lines_compact": [
-          "d/dx(log x) = 1/x",
-          "∴ dy/dx = 1/(1 + (log x)²) · (1/x)",
           {
-            "text": "∴ d/dx[Tan⁻¹(log x)] = 1/(x[1 + (log x)²])",
-            "style": "boxed"
+            "text": "\\dfrac{d}{dx}\\left(\\log x\\right)\\ = \\ \\dfrac{1}{x}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{1}{1\\ + \\ \\left(\\log x\\right)^{2}} \\cdot \\ \\left(\\dfrac{1}{x}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{d}{dx}\\left[\\operatorname{Tan}^{-1}\\left(\\log x\\right)\\right]\\ = \\ \\dfrac{1}{x\\left[1\\ + \\ \\left(\\log x\\right)^{2}\\right]}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

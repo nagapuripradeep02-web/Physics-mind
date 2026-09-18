@@ -54,10 +54,22 @@
           },
           "This is a rectilinear motion question.",
           "The particle comes to rest when its velocity is zero,",
-          "so first find v = dS/dt.",
+          {
+            "text": "\\text{so}\\ \\text{first}\\ \\text{find}\\ v\\ = \\ \\dfrac{dS}{dt}.",
+            "style": "normal",
+            "render": "katex"
+          },
           "S = 45t + 11t² − t³",
-          "(d/dt of 45t is 45, of 11t² is 22t, of t³ is 3t²)",
-          "v = dS/dt = 45 + 22t − 3t²",
+          {
+            "text": "\\left(\\dfrac{d}{dt}\\ \\text{of}\\ 45t\\ \\text{is}\\ 45,\\ \\text{of}\\ 11t^{2}\\ \\text{is}\\ 22t,\\ \\text{of}\\ t^{3}\\ \\text{is}\\ 3t^{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "v\\ = \\ \\dfrac{dS}{dt}\\ = \\ 45\\ + \\ 22t\\ - \\ 3t^{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           "At rest, v = 0  ⇒  45 + 22t − 3t² = 0"
         ],
         "recall": {
@@ -122,8 +134,16 @@
             "text": "(take out the common factor (t − 9))",
             "added": true
           },
-          "(t − 9)(3t + 5) = 0  ⇒  t = 9 or t = −5/3",
-          "Time cannot be negative, so t = −5/3 is rejected.",
+          {
+            "text": "\\left(t\\ - \\ 9\\right)\\left(3t\\ + \\ 5\\right)\\ = \\ 0\\ \\Rightarrow \\ t\\ = \\ 9\\ \\text{or}\\ t\\ = \\ - \\dfrac{5}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Time}\\ \\text{cannot}\\ \\text{be}\\ \\text{negative},\\ \\text{so}\\ t\\ = \\ - \\dfrac{5}{3}\\text{is}\\ \\text{rejected}.",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ the particle comes to rest at t = 9 sec",
             "style": "boxed"
@@ -161,8 +181,16 @@
           "3t² − 22t − 45 = 0",
           "3t² − 27t + 5t − 45 = 0",
           "3t(t − 9) + 5(t − 9) = 0",
-          "(t − 9)(3t + 5) = 0  ⇒  t = 9 or t = −5/3",
-          "Time cannot be negative, so t = −5/3 is rejected.",
+          {
+            "text": "\\left(t\\ - \\ 9\\right)\\left(3t\\ + \\ 5\\right)\\ = \\ 0\\ \\Rightarrow \\ t\\ = \\ 9\\ \\text{or}\\ t\\ = \\ - \\dfrac{5}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Time}\\ \\text{cannot}\\ \\text{be}\\ \\text{negative},\\ \\text{so}\\ t\\ = \\ - \\dfrac{5}{3}\\text{is}\\ \\text{rejected}.",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ the particle comes to rest at t = 9 sec",
             "style": "boxed"

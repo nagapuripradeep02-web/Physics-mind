@@ -59,13 +59,37 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given curve:   y = b eˣ⁄ᵃ",
+          {
+            "text": "\\text{Given}\\ \\text{curve}:\\ y\\ = \\ \\dfrac{be^{x}}{^{a}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Differentiate with respect to x.",
-          "(chain rule: d/dx of eᵘ is eᵘ · du/dx, with u = x/a)",
-          "The exponent x/a differentiates to 1/a:",
-          "dy/dx = b · eˣ⁄ᵃ · (1/a) = (1/a)(b eˣ⁄ᵃ)",
-          "But  b eˣ⁄ᵃ = y, so",
-          "∴ m = dy/dx = y/a"
+          {
+            "text": "\\left(\\text{chain}\\ \\text{rule}:\\ \\dfrac{d}{dx}\\ \\text{of}\\ e^{u}\\ \\text{is}\\ e^{u}\\ \\cdot \\ \\dfrac{du}{dx},\\ \\text{with}\\ u\\ = \\ \\dfrac{x}{a}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{The}\\ \\text{exponent}\\ \\dfrac{x}{a}\\text{differentiates}\\ \\text{to}\\ \\dfrac{1}{a}:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{dy}{dx}\\ = \\ b\\ \\cdot \\ \\dfrac{e^{x}}{^{a}} \\cdot \\ \\left(\\dfrac{1}{a}\\right)\\ = \\ \\left(\\dfrac{1}{a}\\right)\\left(\\dfrac{be^{x}}{^{a}}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{But}\\ \\dfrac{be^{x}}{^{a}} = \\ y,\\ \\text{so}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ m\\ = \\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{y}{a}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -110,8 +134,16 @@
             "text": "(the two standard lengths at a point (x, y))",
             "added": true
           },
-          "At a point (x, y) on a curve, with m = dy/dx:",
-          "length of the subtangent = y/m",
+          {
+            "text": "\\text{At}\\ a\\ \\text{point}\\ \\left(x,\\ y\\right)\\ \\text{on}\\ a\\ \\text{curve},\\ \\text{with}\\ m\\ = \\ \\dfrac{dy}{dx}:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{length}\\ \\text{of}\\ \\text{the}\\ \\text{subtangent}\\ = \\ \\dfrac{y}{m}",
+            "style": "normal",
+            "render": "katex"
+          },
           "length of the subnormal = y · m"
         ],
         "recall": {
@@ -145,8 +177,16 @@
         ],
         "memory_tip": "Both start from y. The subtangent divides by the slope, the subnormal multiplies by it.",
         "lines_compact": [
-          "At a point (x, y) on a curve, with m = dy/dx:",
-          "length of the subtangent = y/m",
+          {
+            "text": "\\text{At}\\ a\\ \\text{point}\\ \\left(x,\\ y\\right)\\ \\text{on}\\ a\\ \\text{curve},\\ \\text{with}\\ m\\ = \\ \\dfrac{dy}{dx}:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{length}\\ \\text{of}\\ \\text{the}\\ \\text{subtangent}\\ = \\ \\dfrac{y}{m}",
+            "style": "normal",
+            "render": "katex"
+          },
           "length of the subnormal = y · m"
         ]
       },
@@ -159,18 +199,36 @@
         "margin_note": "Third mark. y cancels completely, which is what makes the length constant. Say so in words — a proof of \"constant\" is not finished until the absence of x and y is stated.",
         "lines": [
           {
-            "text": "(m = y/a from step 1)",
+            "text": "\\left(m\\ = \\ \\dfrac{y}{a}\\text{from}\\ \\text{step}\\ 1\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "Length of the subtangent = y/m",
-          "= y ÷ (y/a)",
           {
-            "text": "(dividing by y/a is multiplying by a/y)",
+            "text": "\\text{Length}\\ \\text{of}\\ \\text{the}\\ \\text{subtangent}\\ = \\ \\dfrac{y}{m}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ y\\ \\div \\ \\left(\\dfrac{y}{a}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{dividing}\\ \\text{by}\\ \\dfrac{y}{a}\\text{is}\\ \\text{multiplying}\\ \\text{by}\\ \\dfrac{a}{y}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= y · (a/y)",
           {
-            "text": "(y/y = 1; y = b eˣ⁄ᵃ is never 0 when b ≠ 0)",
+            "text": "= \\ y\\ \\cdot \\ \\left(\\dfrac{a}{y}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{y}{y} = \\ 1;\\ y\\ = \\ \\dfrac{be^{x}}{^{a}}\\text{is}\\ \\text{never}\\ 0\\ \\text{when}\\ b\\ \\ne \\ 0\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "= a",
@@ -209,9 +267,21 @@
         ],
         "memory_tip": "Dividing by y/a is the same as multiplying by a/y. The two y's then cancel and a is left.",
         "lines_compact": [
-          "Length of the subtangent = y/m",
-          "= y ÷ (y/a)",
-          "= y · (a/y)",
+          {
+            "text": "\\text{Length}\\ \\text{of}\\ \\text{the}\\ \\text{subtangent}\\ = \\ \\dfrac{y}{m}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ y\\ \\div \\ \\left(\\dfrac{y}{a}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ y\\ \\cdot \\ \\left(\\dfrac{a}{y}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "= a",
           "a is a fixed number, and no x or y is left in the result.",
           "∴ the length of the subtangent is a,",
@@ -228,22 +298,33 @@
         "lines": [
           "Length of the subnormal = y · m",
           {
-            "text": "(m = y/a from step 1)",
+            "text": "\\left(m\\ = \\ \\dfrac{y}{a}\\text{from}\\ \\text{step}\\ 1\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= y · (y/a)",
+          {
+            "text": "= \\ y\\ \\cdot \\ \\left(\\dfrac{y}{a}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(y · y = y²)",
             "added": true
           },
-          "= y²/a",
+          {
+            "text": "= \\ \\dfrac{y^{2}}{a}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ (i) subtangent = a, a constant",
             "style": "boxed"
           },
           {
-            "text": "(ii) subnormal = y²/a",
-            "style": "boxed"
+            "text": "\\left(ii\\right)\\ \\text{subnormal}\\ = \\ \\dfrac{y^{2}}{a}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -278,15 +359,24 @@
         "memory_tip": "Part (i) divides, part (ii) multiplies, and the slope y/a is the same in both. One answer keeps y, the other loses it.",
         "lines_compact": [
           "Length of the subnormal = y · m",
-          "= y · (y/a)",
-          "= y²/a",
+          {
+            "text": "= \\ y\\ \\cdot \\ \\left(\\dfrac{y}{a}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{y^{2}}{a}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ (i) subtangent = a, a constant",
             "style": "boxed"
           },
           {
-            "text": "(ii) subnormal = y²/a",
-            "style": "boxed"
+            "text": "\\left(ii\\right)\\ \\text{subnormal}\\ = \\ \\dfrac{y^{2}}{a}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

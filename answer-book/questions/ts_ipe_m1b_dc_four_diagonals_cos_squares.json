@@ -454,12 +454,20 @@
             "text": "(a² + a² + a² = 3a² and l² + m² + n² = 1)",
             "added": true
           },
-          "= a(l + m + n) / √(3a²(1)) = a(l + m + n) / (√3 a)",
+          {
+            "text": "= \\ \\dfrac{a\\left(l\\ + \\ m\\ + \\ n\\right)}{\\sqrt{3a^{2}\\left(1\\right)}} = \\ \\dfrac{a\\left(l\\ + \\ m\\ + \\ n\\right)}{\\sqrt{3}a}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(√(3a²) = √3 a, and a cancels)",
             "added": true
           },
-          "⇒ cosα = (l + m + n)/√3"
+          {
+            "text": "\\Rightarrow \\ \\cos \\alpha \\ = \\ \\dfrac{l\\ + \\ m\\ + \\ n}{\\sqrt{3}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -493,8 +501,16 @@
           "then we have l² + m² + n² = 1",
           "The ray makes angles α, β, γ, δ with OP, CL, NB, AM",
           "∴ cosα = (al + am + an) / √((a²+a²+a²)(l²+m²+n²))",
-          "= a(l + m + n) / √(3a²(1)) = a(l + m + n) / (√3 a)",
-          "⇒ cosα = (l + m + n)/√3"
+          {
+            "text": "= \\ \\dfrac{a\\left(l\\ + \\ m\\ + \\ n\\right)}{\\sqrt{3a^{2}\\left(1\\right)}} = \\ \\dfrac{a\\left(l\\ + \\ m\\ + \\ n\\right)}{\\sqrt{3}a}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\cos \\alpha \\ = \\ \\dfrac{l\\ + \\ m\\ + \\ n}{\\sqrt{3}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -515,8 +531,16 @@
             "style": "indent",
             "added": true
           },
-          "Similarly,  cosβ = (l + m − n)/√3,",
-          "cosγ = (−l + m − n)/√3,   cosδ = (−l + m + n)/√3"
+          {
+            "text": "\\text{Similarly},\\ \\cos \\beta \\ = \\ \\dfrac{l\\ + \\ m\\ - \\ n}{\\sqrt{3}},",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\cos \\gamma \\ = \\ \\dfrac{ - l\\ + \\ m\\ - \\ n}{\\sqrt{3}},\\ \\cos \\delta \\ = \\ \\dfrac{ - l\\ + \\ m\\ + \\ n}{\\sqrt{3}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -546,8 +570,16 @@
           "Giving all four the same expression."
         ],
         "lines_compact": [
-          "Similarly,  cosβ = (l + m − n)/√3,",
-          "cosγ = (−l + m − n)/√3,   cosδ = (−l + m + n)/√3"
+          {
+            "text": "\\text{Similarly},\\ \\cos \\beta \\ = \\ \\dfrac{l\\ + \\ m\\ - \\ n}{\\sqrt{3}},",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\cos \\gamma \\ = \\ \\dfrac{ - l\\ + \\ m\\ - \\ n}{\\sqrt{3}},\\ \\cos \\delta \\ = \\ \\dfrac{ - l\\ + \\ m\\ + \\ n}{\\sqrt{3}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -561,10 +593,16 @@
         "lines": [
           "∴ cos²α + cos²β + cos²γ + cos²δ",
           {
-            "text": "(square each cosine: (p/√3)² = p²/3)",
+            "text": "\\left(\\text{square}\\ \\text{each}\\ \\text{cosine}:\\ \\left(\\dfrac{p}{\\sqrt{3}}\\right)^{2}\\ = \\ \\dfrac{p^{2}}{3}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= ⅓[(l+m+n)² + (l+m−n)² + (−l+m−n)² + (−l+m+n)²]",
+          {
+            "text": "= \\ \\dfrac{1}{3}\\left[\\left(l + m + n\\right)^{2}\\ + \\ \\left(l + m - n\\right)^{2}\\ + \\ \\left( - l + m - n\\right)^{2}\\ + \\ \\left( - l + m + n\\right)^{2}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "((−p)² = p², so (−l + m − n)² = (l − m + n)²",
             "added": true
@@ -574,12 +612,20 @@
             "style": "indent",
             "added": true
           },
-          "= ⅓[(l+m+n)² + (l+m−n)² + (l−m+n)² + (l−m−n)²]",
+          {
+            "text": "= \\ \\dfrac{1}{3}\\left[\\left(l + m + n\\right)^{2}\\ + \\ \\left(l + m - n\\right)^{2}\\ + \\ \\left(l - m + n\\right)^{2}\\ + \\ \\left(l - m - n\\right)^{2}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(pair the first two and the last two)",
             "added": true
           },
-          "= ⅓[2((l+m)² + n²) + 2((l−m)² + n²)]",
+          {
+            "text": "= \\ \\dfrac{1}{3}\\left[2\\left(\\left(l + m\\right)^{2}\\ + \\ n^{2}\\right)\\ + \\ 2\\left(\\left(l - m\\right)^{2}\\ + \\ n^{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "  [∵ (a+b)² + (a−b)² = 2(a² + b²)]",
             "style": "indent"
@@ -588,7 +634,11 @@
             "text": "(take out the common factor 2)",
             "added": true
           },
-          "= ⅔[(l+m)² + (l−m)² + 2n²] = ⅔[2(l² + m²) + 2n²]",
+          {
+            "text": "= \\ \\dfrac{2}{3}\\left[\\left(l + m\\right)^{2}\\ + \\ \\left(l - m\\right)^{2}\\ + \\ 2n^{2}\\right]\\ = \\ \\dfrac{2}{3}\\left[2\\left(l^{2}\\ + \\ m^{2}\\right)\\ + \\ 2n^{2}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "((l + m)² + (l − m)² = 2l² + 2m²;",
             "added": true
@@ -598,10 +648,15 @@
             "style": "indent",
             "added": true
           },
-          "= (4/3)(l² + m² + n²) = (4/3)(1)",
           {
-            "text": "∴ cos²α + cos²β + cos²γ + cos²δ = 4/3",
-            "style": "boxed"
+            "text": "= \\ \\left(\\dfrac{4}{3}\\right)\\left(l^{2}\\ + \\ m^{2}\\ + \\ n^{2}\\right)\\ = \\ \\left(\\dfrac{4}{3}\\right)\\left(1\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\cos ^{2} \\alpha \\ + \\ \\cos ^{2} \\beta \\ + \\ \\cos ^{2} \\gamma \\ + \\ \\cos ^{2} \\delta \\ = \\ \\dfrac{4}{3}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -633,18 +688,39 @@
         ],
         "lines_compact": [
           "∴ cos²α + cos²β + cos²γ + cos²δ",
-          "= ⅓[(l+m+n)² + (l+m−n)² + (−l+m−n)² + (−l+m+n)²]",
-          "= ⅓[(l+m+n)² + (l+m−n)² + (l−m+n)² + (l−m−n)²]",
-          "= ⅓[2((l+m)² + n²) + 2((l−m)² + n²)]",
+          {
+            "text": "= \\ \\dfrac{1}{3}\\left[\\left(l + m + n\\right)^{2}\\ + \\ \\left(l + m - n\\right)^{2}\\ + \\ \\left( - l + m - n\\right)^{2}\\ + \\ \\left( - l + m + n\\right)^{2}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{1}{3}\\left[\\left(l + m + n\\right)^{2}\\ + \\ \\left(l + m - n\\right)^{2}\\ + \\ \\left(l - m + n\\right)^{2}\\ + \\ \\left(l - m - n\\right)^{2}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{1}{3}\\left[2\\left(\\left(l + m\\right)^{2}\\ + \\ n^{2}\\right)\\ + \\ 2\\left(\\left(l - m\\right)^{2}\\ + \\ n^{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "  [∵ (a+b)² + (a−b)² = 2(a² + b²)]",
             "style": "indent"
           },
-          "= ⅔[(l+m)² + (l−m)² + 2n²] = ⅔[2(l² + m²) + 2n²]",
-          "= (4/3)(l² + m² + n²) = (4/3)(1)",
           {
-            "text": "∴ cos²α + cos²β + cos²γ + cos²δ = 4/3",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{2}{3}\\left[\\left(l + m\\right)^{2}\\ + \\ \\left(l - m\\right)^{2}\\ + \\ 2n^{2}\\right]\\ = \\ \\dfrac{2}{3}\\left[2\\left(l^{2}\\ + \\ m^{2}\\right)\\ + \\ 2n^{2}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{4}{3}\\right)\\left(l^{2}\\ + \\ m^{2}\\ + \\ n^{2}\\right)\\ = \\ \\left(\\dfrac{4}{3}\\right)\\left(1\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\cos ^{2} \\alpha \\ + \\ \\cos ^{2} \\beta \\ + \\ \\cos ^{2} \\gamma \\ + \\ \\cos ^{2} \\delta \\ = \\ \\dfrac{4}{3}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

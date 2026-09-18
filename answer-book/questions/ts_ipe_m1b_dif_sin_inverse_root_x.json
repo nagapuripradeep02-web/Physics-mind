@@ -58,10 +58,18 @@
             "text": "  rule, for |u| < 1)",
             "style": "indent"
           },
-          "We know d/dx(Sin⁻¹u) = (1/√(1 − u²)) · du/dx",
+          {
+            "text": "\\text{We}\\ \\text{know}\\ \\dfrac{d}{dx}\\left(\\operatorname{Sin}^{-1} u\\right)\\ = \\ \\left(\\dfrac{1}{\\sqrt{1\\ - \\ u^{2}}}\\right)\\ \\cdot \\ \\dfrac{du}{dx}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Here u² = (√x)² = x",
           "(put u² = x, so 1 − u² = 1 − x)",
-          "∴ dy/dx = (1/√(1 − x)) · d/dx(√x)"
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ \\left(\\dfrac{1}{\\sqrt{1\\ - \\ x}}\\right)\\ \\cdot \\ \\dfrac{d}{dx}\\left(\\sqrt{x}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -104,12 +112,22 @@
             "text": "(√x = x¹ᐟ², so d/dx(√x) = ½x⁻¹ᐟ² = 1/(2√x))",
             "added": true
           },
-          "d/dx(√x) = 1/(2√x)",
           {
-            "text": "(put 1/(2√x) in place of d/dx(√x))",
+            "text": "\\dfrac{d}{dx}\\left(\\sqrt{x}\\right)\\ = \\ \\dfrac{1}{2\\sqrt{x}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{put}\\ \\dfrac{1}{2\\sqrt{x}}\\text{in}\\ \\text{place}\\ \\text{of}\\ \\dfrac{d}{dx}\\left(\\sqrt{x}\\right)\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "∴ dy/dx = (1/√(1 − x)) · 1/(2√x) = 1/(2√x · √(1 − x))",
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ \\left(\\dfrac{1}{\\sqrt{1\\ - \\ x}}\\right)\\ \\cdot \\ \\dfrac{1}{2\\sqrt{x}} = \\ \\dfrac{1}{2\\sqrt{x}\\ \\cdot \\ \\sqrt{1\\ - \\ x}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(√p · √q = √(pq) for p ≥ 0 and q ≥ 0,",
             "added": true
@@ -121,8 +139,9 @@
           },
           "√x · √(1 − x) = √(x(1 − x)) = √(x − x²)",
           {
-            "text": "∴ dy/dx = 1/(2√(x − x²))",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{1}{2\\sqrt{x\\ - \\ x^{2}}}",
+            "style": "boxed",
+            "render": "katex"
           },
           "This holds for 0 < x < 1, where both square roots are real",
           "and non-zero."
@@ -155,12 +174,21 @@
           "Adding under the root as √(1 − x + x), which is not how roots multiply."
         ],
         "lines_compact": [
-          "d/dx(√x) = 1/(2√x)",
-          "∴ dy/dx = (1/√(1 − x)) · 1/(2√x) = 1/(2√x · √(1 − x))",
+          {
+            "text": "\\dfrac{d}{dx}\\left(\\sqrt{x}\\right)\\ = \\ \\dfrac{1}{2\\sqrt{x}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ \\left(\\dfrac{1}{\\sqrt{1\\ - \\ x}}\\right)\\ \\cdot \\ \\dfrac{1}{2\\sqrt{x}} = \\ \\dfrac{1}{2\\sqrt{x}\\ \\cdot \\ \\sqrt{1\\ - \\ x}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "√x · √(1 − x) = √(x(1 − x)) = √(x − x²)",
           {
-            "text": "∴ dy/dx = 1/(2√(x − x²))",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{1}{2\\sqrt{x\\ - \\ x^{2}}}",
+            "style": "boxed",
+            "render": "katex"
           },
           "This holds for 0 < x < 1, where both square roots are real",
           "and non-zero."

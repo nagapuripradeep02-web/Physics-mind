@@ -55,12 +55,32 @@
           "Let y = a²eˣ²",
           "Here a is a constant, so a² is a constant multiplier",
           "and stays outside.",
-          "(for a constant k, d/dx(k · f) = k · d/dx(f))",
-          "∴ dy/dx = a² · d/dx(eˣ²)",
-          "For eᵘ the chain rule gives d/dx(eᵘ) = eᵘ · du/dx,",
+          {
+            "text": "\\left(\\text{for}\\ a\\ \\text{constant}\\ k,\\ \\dfrac{d}{dx}\\left(k\\ \\cdot \\ f\\right)\\ = \\ k\\ \\cdot \\ \\dfrac{d}{dx}\\left(f\\right)\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ a^{2}\\ \\cdot \\ \\dfrac{d}{dx}\\left(e^{x2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{For}\\ e^{u}\\ \\text{the}\\ \\text{chain}\\ \\text{rule}\\ \\text{gives}\\ \\dfrac{d}{dx}\\left(e^{u}\\right)\\ = \\ e^{u}\\ \\cdot \\ \\dfrac{du}{dx},",
+            "style": "normal",
+            "render": "katex"
+          },
           "and here u = x²",
-          "(put u = x²: d/dx(eˣ²) = eˣ² · d/dx(x²))",
-          "∴ dy/dx = a² · eˣ² · d/dx(x²)"
+          {
+            "text": "\\left(\\text{put}\\ u\\ = \\ x^{2}:\\ \\dfrac{d}{dx}\\left(e^{x2}\\right)\\ = \\ e^{x2}\\ \\cdot \\ \\dfrac{d}{dx}\\left(x^{2}\\right)\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ a^{2}\\ \\cdot \\ e^{x2}\\ \\cdot \\ \\dfrac{d}{dx}\\left(x^{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -100,22 +120,35 @@
         "memory_tip": "The 2 in the final 2a²x comes from the power 2 in x², not from the a².",
         "lines": [
           {
-            "text": "(the power rule d/dx(xⁿ) = nxⁿ⁻¹ with n = 2)",
+            "text": "\\left(\\text{the}\\ \\text{power}\\ \\text{rule}\\ \\dfrac{d}{dx}\\left(x^{n}\\right)\\ = \\ nx^{n-1}\\ \\text{with}\\ n\\ = \\ 2\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "d/dx(x²) = 2x",
           {
-            "text": "(put 2x in place of d/dx(x²))",
+            "text": "\\dfrac{d}{dx}\\left(x^{2}\\right)\\ = \\ 2x",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{put}\\ 2x\\ \\text{in}\\ \\text{place}\\ \\text{of}\\ \\dfrac{d}{dx}\\left(x^{2}\\right)\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "∴ dy/dx = a² · eˣ² · 2x",
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ a^{2}\\ \\cdot \\ e^{x2}\\ \\cdot \\ 2x",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(the same product, with the factors in the order 2, a², x, eˣ²)",
             "added": true
           },
           {
-            "text": "∴ d/dx(a²eˣ²) = 2a²x eˣ²",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{d}{dx}\\left(a^{2}e^{x2}\\right)\\ = \\ 2a^{2}xe^{x2}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -146,11 +179,20 @@
           "Writing 2ax instead of 2a²x by dropping one power of a."
         ],
         "lines_compact": [
-          "d/dx(x²) = 2x",
-          "∴ dy/dx = a² · eˣ² · 2x",
           {
-            "text": "∴ d/dx(a²eˣ²) = 2a²x eˣ²",
-            "style": "boxed"
+            "text": "\\dfrac{d}{dx}\\left(x^{2}\\right)\\ = \\ 2x",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ a^{2}\\ \\cdot \\ e^{x2}\\ \\cdot \\ 2x",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{d}{dx}\\left(a^{2}e^{x2}\\right)\\ = \\ 2a^{2}xe^{x2}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

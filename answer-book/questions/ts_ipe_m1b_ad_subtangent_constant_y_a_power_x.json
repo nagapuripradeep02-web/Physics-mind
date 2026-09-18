@@ -61,9 +61,21 @@
           },
           "Given curve:   y = aˣ,   a > 0 and a ≠ 1.",
           "(the standard formula for the subtangent)",
-          "At a point (x, y) on a curve, with m = dy/dx:",
-          "length of the subtangent = y/m",
-          "So the question asks for the value of y ÷ (dy/dx)."
+          {
+            "text": "\\text{At}\\ a\\ \\text{point}\\ \\left(x,\\ y\\right)\\ \\text{on}\\ a\\ \\text{curve},\\ \\text{with}\\ m\\ = \\ \\dfrac{dy}{dx}:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{length}\\ \\text{of}\\ \\text{the}\\ \\text{subtangent}\\ = \\ \\dfrac{y}{m}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{So}\\ \\text{the}\\ \\text{question}\\ \\text{asks}\\ \\text{for}\\ \\text{the}\\ \\text{value}\\ \\text{of}\\ y\\ \\div \\ \\left(\\dfrac{dy}{dx}\\right).",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -221,7 +233,11 @@
             "text": "(m = y logₑa from step 3)",
             "added": true
           },
-          "Length of the subtangent = y/m",
+          {
+            "text": "\\text{Length}\\ \\text{of}\\ \\text{the}\\ \\text{subtangent}\\ = \\ \\dfrac{y}{m}",
+            "style": "normal",
+            "render": "katex"
+          },
           "= y ÷ (y logₑa)",
           {
             "text": "(y cancels, as y = aˣ > 0)",
@@ -281,7 +297,11 @@
         ],
         "memory_tip": "y over y log a leaves one over log a. The y disappears, and the answer depends only on the base a.",
         "lines_compact": [
-          "Length of the subtangent = y/m",
+          {
+            "text": "\\text{Length}\\ \\text{of}\\ \\text{the}\\ \\text{subtangent}\\ = \\ \\dfrac{y}{m}",
+            "style": "normal",
+            "render": "katex"
+          },
           "= y ÷ (y logₑa)",
           "= 1/logₑa",
           "logₑa is a fixed number once the base a is fixed,",

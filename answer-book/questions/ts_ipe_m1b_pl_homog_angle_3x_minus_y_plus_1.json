@@ -65,7 +65,11 @@
           "(move 1 to the right side)",
           "Given line is 3x − y + 1 = 0  ⇒  3x − y = −1",
           "(divide both sides by −1)",
-          "⇒ (3x − y)/(−1) = 1  ……(1)"
+          {
+            "text": "\\Rightarrow \\ \\dfrac{3x\\ - \\ y}{ - 1} = \\ 1\\ \\dots \\dots \\left(1\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -134,13 +138,20 @@
           "Homogenising (1) & (2), we get",
           "x² + 2xy + y² + 2x(1) + 2y(1) − 5(1)² = 0",
           {
-            "text": "(put 1 = (3x − y)/(−1))",
+            "text": "\\left(\\text{put}\\ 1\\ = \\ \\dfrac{3x\\ - \\ y}{ - 1}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "⇒ x² + 2xy + y² + 2x[(3x−y)/(−1)] + 2y[(3x−y)/(−1)]",
           {
-            "text": "  − 5[(3x−y)/(−1)]² = 0",
-            "style": "indent"
+            "text": "\\Rightarrow \\ x^{2}\\ + \\ 2xy\\ + \\ y^{2}\\ + \\ 2x\\left[\\dfrac{3x - y}{ - 1}\\right]\\ + \\ 2y\\left[\\dfrac{3x - y}{ - 1}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "- \\ 5\\left[\\dfrac{3x - y}{ - 1}\\right]^{2}\\ = \\ 0",
+            "style": "indent",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -176,10 +187,15 @@
           "Given curve is x² + 2xy + y² + 2x + 2y − 5 = 0  ……(2)",
           "Homogenising (1) & (2), we get",
           "x² + 2xy + y² + 2x(1) + 2y(1) − 5(1)² = 0",
-          "⇒ x² + 2xy + y² + 2x[(3x−y)/(−1)] + 2y[(3x−y)/(−1)]",
           {
-            "text": "  − 5[(3x−y)/(−1)]² = 0",
-            "style": "indent"
+            "text": "\\Rightarrow \\ x^{2}\\ + \\ 2xy\\ + \\ y^{2}\\ + \\ 2x\\left[\\dfrac{3x - y}{ - 1}\\right]\\ + \\ 2y\\left[\\dfrac{3x - y}{ - 1}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "- \\ 5\\left[\\dfrac{3x - y}{ - 1}\\right]^{2}\\ = \\ 0",
+            "style": "indent",
+            "render": "katex"
           }
         ]
       },
@@ -313,29 +329,45 @@
             "text": "(the angle θ between the lines of ax² + 2hxy + by² = 0)",
             "added": true
           },
-          "∴ cosθ = |a + b| / √((a − b)² + (2h)²),",
+          {
+            "text": "\\therefore \\ \\cos \\theta \\ = \\ \\dfrac{\\left|a\\ + \\ b\\right|}{\\sqrt{\\left(a\\ - \\ b\\right)^{2}\\ + \\ \\left(2h\\right)^{2}}},",
+            "style": "normal",
+            "render": "katex"
+          },
           "where θ is the angle between the required lines",
           {
             "text": "(put a = 25, b = 1, 2h = −14)",
             "added": true
           },
-          "= |25 + 1| / √((25 − 1)² + (−14)²)",
+          {
+            "text": "= \\ \\dfrac{\\left|25\\ + \\ 1\\right|}{\\sqrt{\\left(25\\ - \\ 1\\right)^{2}\\ + \\ \\left( - 14\\right)^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(24² = 576 and (−14)² = 196; 772 = 4 × 193)",
             "added": true
           },
-          "= 26 / √(576 + 196) = 26/√772 = 26/√(4 × 193)",
           {
-            "text": "(√4 = 2, and 26/2 = 13)",
+            "text": "= \\ \\dfrac{26}{\\sqrt{576\\ + \\ 196}} = \\ \\dfrac{26}{\\sqrt{772}} = \\ \\dfrac{26}{\\sqrt{4\\ \\times \\ 193}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\sqrt{4}\\ = \\ 2,\\ \\text{and}\\ \\dfrac{26}{2} = \\ 13\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "  = 26/(2√193) = 13/√193",
-            "style": "indent"
+            "text": "= \\ \\dfrac{26}{2\\sqrt{193}} = \\ \\dfrac{13}{\\sqrt{193}}",
+            "style": "indent",
+            "render": "katex"
           },
           {
-            "text": "∴ Angle between the lines is θ = Cos⁻¹(13/√193)",
-            "style": "boxed"
+            "text": "\\therefore \\ \\text{Angle}\\ \\text{between}\\ \\text{the}\\ \\text{lines}\\ \\text{is}\\ \\theta \\ = \\ \\operatorname{Cos}^{-1}\\left(\\dfrac{13}{\\sqrt{193}}\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -371,17 +403,31 @@
         "lines_compact": [
           "On comparing with ax² + 2hxy + by² = 0, we get",
           "a = 25, b = 1, 2h = −14",
-          "∴ cosθ = |a + b| / √((a − b)² + (2h)²),",
-          "where θ is the angle between the required lines",
-          "= |25 + 1| / √((25 − 1)² + (−14)²)",
-          "= 26 / √(576 + 196) = 26/√772 = 26/√(4 × 193)",
           {
-            "text": "  = 26/(2√193) = 13/√193",
-            "style": "indent"
+            "text": "\\therefore \\ \\cos \\theta \\ = \\ \\dfrac{\\left|a\\ + \\ b\\right|}{\\sqrt{\\left(a\\ - \\ b\\right)^{2}\\ + \\ \\left(2h\\right)^{2}}},",
+            "style": "normal",
+            "render": "katex"
+          },
+          "where θ is the angle between the required lines",
+          {
+            "text": "= \\ \\dfrac{\\left|25\\ + \\ 1\\right|}{\\sqrt{\\left(25\\ - \\ 1\\right)^{2}\\ + \\ \\left( - 14\\right)^{2}}}",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "∴ Angle between the lines is θ = Cos⁻¹(13/√193)",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{26}{\\sqrt{576\\ + \\ 196}} = \\ \\dfrac{26}{\\sqrt{772}} = \\ \\dfrac{26}{\\sqrt{4\\ \\times \\ 193}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{26}{2\\sqrt{193}} = \\ \\dfrac{13}{\\sqrt{193}}",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\text{Angle}\\ \\text{between}\\ \\text{the}\\ \\text{lines}\\ \\text{is}\\ \\theta \\ = \\ \\operatorname{Cos}^{-1}\\left(\\dfrac{13}{\\sqrt{193}}\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

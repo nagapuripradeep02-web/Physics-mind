@@ -64,7 +64,11 @@
             "text": "  ½ · |c/a| · |c/b| = c²/(2|ab|))",
             "style": "indent"
           },
-          "Area of the triangle is  Δ = c²/(2|ab|)"
+          {
+            "text": "\\text{Area}\\ \\text{of}\\ \\text{the}\\ \\text{triangle}\\ \\text{is}\\ \\Delta \\ = \\ \\dfrac{c^{2}}{2\\left|ab\\right|}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -107,14 +111,24 @@
             "text": "(put a = 3, b = −4 and c = 12)",
             "added": true
           },
-          "∴ Δ = c²/(2|ab|) = 12²/(2|(3)(−4)|)",
+          {
+            "text": "\\therefore \\ \\Delta \\ = \\ \\dfrac{c^{2}}{2\\left|ab\\right|} = \\ \\dfrac{12^{2}}{2\\left|\\left(3\\right)\\left( - 4\\right)\\right|}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(12² = 144 and |(3)(−4)| = 12)",
             "added": true
           },
-          "= 144/(2 × 12) = 144/24 = 6",
           {
-            "text": "(check: the intercepts are −4 and 3, and ½ × 4 × 3 = 6)",
+            "text": "= \\ \\dfrac{144}{2\\ \\times \\ 12} = \\ \\dfrac{144}{24} = \\ 6",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{check}:\\ \\text{the}\\ \\text{intercepts}\\ \\text{are}\\ - 4\\ \\text{and}\\ 3,\\ \\text{and}\\ \\dfrac{1}{2}\\ \\times \\ 4\\ \\times \\ 3\\ = \\ 6\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -151,8 +165,16 @@
         ],
         "mark_note": "Solution",
         "lines_compact": [
-          "∴ Δ = c²/(2|ab|) = 12²/(2|(3)(−4)|)",
-          "= 144/(2 × 12) = 144/24 = 6",
+          {
+            "text": "\\therefore \\ \\Delta \\ = \\ \\dfrac{c^{2}}{2\\left|ab\\right|} = \\ \\dfrac{12^{2}}{2\\left|\\left(3\\right)\\left( - 4\\right)\\right|}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{144}{2\\ \\times \\ 12} = \\ \\dfrac{144}{24} = \\ 6",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ Area of the triangle is 6 sq.units",
             "style": "boxed"

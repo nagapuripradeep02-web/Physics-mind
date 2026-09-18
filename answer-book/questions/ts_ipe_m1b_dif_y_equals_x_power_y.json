@@ -116,7 +116,11 @@
             "style": "indent",
             "added": true
           },
-          "(1/y)(dy/dx) = (dy/dx)(log x) + y(1/x)"
+          {
+            "text": "\\left(\\dfrac{1}{y}\\right)\\left(\\dfrac{dy}{dx}\\right)\\ = \\ \\left(\\dfrac{dy}{dx}\\right)\\left(\\log x\\right)\\ + \\ y\\left(\\dfrac{1}{x}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -152,7 +156,11 @@
           "The left side needs the chain rule",
           "and the right side the product rule,",
           "because y is a function of x.",
-          "(1/y)(dy/dx) = (dy/dx)(log x) + y(1/x)"
+          {
+            "text": "\\left(\\dfrac{1}{y}\\right)\\left(\\dfrac{dy}{dx}\\right)\\ = \\ \\left(\\dfrac{dy}{dx}\\right)\\left(\\log x\\right)\\ + \\ y\\left(\\dfrac{1}{x}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -163,22 +171,44 @@
         "mark_note": "Solution",
         "margin_note": "Third mark. The bracket (1/y − log x) is combined over the denominator y before dividing. Doing that in one written line is what makes the y² appear in the numerator.",
         "lines": [
-          "Bring the dy/dx terms to one side:",
           {
-            "text": "(subtract (dy/dx)(log x) from both sides)",
+            "text": "\\text{Bring}\\ \\text{the}\\ \\dfrac{dy}{dx}\\ \\text{terms}\\ \\text{to}\\ \\text{one}\\ \\text{side}:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{subtract}\\ \\left(\\dfrac{dy}{dx}\\right)\\left(\\log x\\right)\\ \\text{from}\\ \\text{both}\\ \\text{sides}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "(1/y)(dy/dx) − (log x)(dy/dx) = y/x",
           {
-            "text": "(take out the common factor dy/dx)",
+            "text": "\\left(\\dfrac{1}{y}\\right)\\left(\\dfrac{dy}{dx}\\right)\\ - \\ \\left(\\log x\\right)\\left(\\dfrac{dy}{dx}\\right)\\ = \\ \\dfrac{y}{x}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{take}\\ \\text{out}\\ \\text{the}\\ \\text{common}\\ \\text{factor}\\ \\dfrac{dy}{dx}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "⇒ (dy/dx)(1/y − log x) = y/x",
           {
-            "text": "(1/y − log x = 1/y − (y log x)/y = (1 − y log x)/y)",
+            "text": "\\Rightarrow \\ \\left(\\dfrac{dy}{dx}\\right)\\left(\\dfrac{1}{y} - \\ \\log x\\right)\\ = \\ \\dfrac{y}{x}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{1}{y} - \\ \\log x\\ = \\ \\dfrac{1}{y} - \\ \\dfrac{y\\log x}{y} = \\ \\dfrac{1\\ - \\ y\\log x}{y}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "⇒ (dy/dx)·(1 − y log x)/y = y/x",
+          {
+            "text": "\\Rightarrow \\ \\left(\\dfrac{dy}{dx}\\right) \\cdot \\dfrac{1\\ - \\ y\\log x}{y} = \\ \\dfrac{y}{x}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(multiply both sides by y/(1 − y log x):",
             "added": true
@@ -188,7 +218,11 @@
             "style": "indent",
             "added": true
           },
-          "∴ dy/dx = y²/(x(1 − y log x))"
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{y^{2}}{x\\left(1\\ - \\ y\\log x\\right)}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -220,11 +254,31 @@
         ],
         "memory_tip": "The y² is not an extra square — it is the y from y/x multiplied by the y released when 1/y − log x is written as one fraction.",
         "lines_compact": [
-          "Bring the dy/dx terms to one side:",
-          "(1/y)(dy/dx) − (log x)(dy/dx) = y/x",
-          "⇒ (dy/dx)(1/y − log x) = y/x",
-          "⇒ (dy/dx)·(1 − y log x)/y = y/x",
-          "∴ dy/dx = y²/(x(1 − y log x))"
+          {
+            "text": "\\text{Bring}\\ \\text{the}\\ \\dfrac{dy}{dx}\\ \\text{terms}\\ \\text{to}\\ \\text{one}\\ \\text{side}:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{1}{y}\\right)\\left(\\dfrac{dy}{dx}\\right)\\ - \\ \\left(\\log x\\right)\\left(\\dfrac{dy}{dx}\\right)\\ = \\ \\dfrac{y}{x}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\left(\\dfrac{dy}{dx}\\right)\\left(\\dfrac{1}{y} - \\ \\log x\\right)\\ = \\ \\dfrac{y}{x}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\left(\\dfrac{dy}{dx}\\right) \\cdot \\dfrac{1\\ - \\ y\\log x}{y} = \\ \\dfrac{y}{x}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{y^{2}}{x\\left(1\\ - \\ y\\log x\\right)}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -242,8 +296,9 @@
           },
           "So the bracket 1 − y log x can be written as 1 − log y",
           {
-            "text": "∴ dy/dx = y²/(x(1 − y log x)) = y²/(x(1 − log y))",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{y^{2}}{x\\left(1\\ - \\ y\\log x\\right)} = \\ \\dfrac{y^{2}}{x\\left(1\\ - \\ \\log y\\right)}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -279,8 +334,9 @@
           "From step 1, log y = y log x",
           "So the bracket 1 − y log x can be written as 1 − log y",
           {
-            "text": "∴ dy/dx = y²/(x(1 − y log x)) = y²/(x(1 − log y))",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{y^{2}}{x\\left(1\\ - \\ y\\log x\\right)} = \\ \\dfrac{y^{2}}{x\\left(1\\ - \\ \\log y\\right)}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

@@ -60,10 +60,26 @@
           },
           "(write 5x − 2y = 7 with 0 on the right)",
           "Given line is 5x − 2y − 7 = 0",
-          "(the slope of ax + by + c = 0 is −a/b; here a = 5, b = −2)",
-          "Its slope  m = −a/b = −5/(−2) = 5/2",
-          "(perpendicular slopes multiply to −1: −1 ÷ (5/2) = −2/5)",
-          "⇒ Slope of its perpendicular is −1/m = −2/5"
+          {
+            "text": "\\left(\\text{the}\\ \\text{slope}\\ \\text{of}\\ ax\\ + \\ \\text{by}\\ + \\ c\\ = \\ 0\\ \\text{is}\\ - \\dfrac{a}{b};\\ \\text{here}\\ a\\ = \\ 5,\\ b\\ = \\ - 2\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Its}\\ \\text{slope}\\ m\\ = \\ - \\dfrac{a}{b} = \\ - \\dfrac{5}{ - 2} = \\ \\dfrac{5}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{perpendicular}\\ \\text{slopes}\\ \\text{multiply}\\ \\text{to}\\ - 1:\\ - 1\\ \\div \\ \\left(\\dfrac{5}{2}\\right)\\ = \\ - \\dfrac{2}{5}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\text{Slope}\\ \\text{of}\\ \\text{its}\\ \\text{perpendicular}\\ \\text{is}\\ - \\dfrac{1}{m} = \\ - \\dfrac{2}{5}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -114,8 +130,9 @@
             "added": true
           },
           {
-            "text": "  x/(b₁c₂ − b₂c₁) = y/(c₁a₂ − c₂a₁)",
+            "text": "\\dfrac{x}{b_{1}c_{2}\\ - \\ b_{2}c_{1}} = \\ \\dfrac{y}{c_{1}a_{2}\\ - \\ c_{2}a_{1}}",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           {
@@ -132,10 +149,15 @@
             "style": "indent",
             "added": true
           },
-          "x / [3(−6) − 4(−1)] = y / [(−1)(3) − (−6)(2)]",
           {
-            "text": "  = 1 / [2(4) − 3(3)]",
-            "style": "indent"
+            "text": "\\dfrac{x}{3\\left( - 6\\right)\\ - \\ 4\\left( - 1\\right)} = \\ \\dfrac{y}{\\left( - 1\\right)\\left(3\\right)\\ - \\ \\left( - 6\\right)\\left(2\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{1}{2\\left(4\\right)\\ - \\ 3\\left(3\\right)}",
+            "style": "indent",
+            "render": "katex"
           },
           {
             "text": "(3(−6) = −18, 4(−1) = −4; (−1)(3) = −3, (−6)(2) = −12;",
@@ -146,12 +168,20 @@
             "style": "indent",
             "added": true
           },
-          "⇒ x/(−18 + 4) = y/(−3 + 12) = 1/(8 − 9)",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{x}{ - 18\\ + \\ 4} = \\ \\dfrac{y}{ - 3\\ + \\ 12} = \\ \\dfrac{1}{8\\ - \\ 9}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(−18 + 4 = −14, −3 + 12 = 9 and 8 − 9 = −1)",
             "added": true
           },
-          "⇒ x/(−14) = y/9 = 1/(−1)   ⇒   x = 14,  y = −9"
+          {
+            "text": "\\Rightarrow \\ \\dfrac{x}{ - 14} = \\ \\dfrac{y}{9} = \\ \\dfrac{1}{ - 1} \\Rightarrow \\ x\\ = \\ 14,\\ y\\ = \\ - 9",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -184,13 +214,26 @@
         "lines_compact": [
           "Given  2x + 3y − 1 = 0 ……(1),  3x + 4y − 6 = 0 ……(2)",
           "Solving (1) & (2) we get P",
-          "x / [3(−6) − 4(−1)] = y / [(−1)(3) − (−6)(2)]",
           {
-            "text": "  = 1 / [2(4) − 3(3)]",
-            "style": "indent"
+            "text": "\\dfrac{x}{3\\left( - 6\\right)\\ - \\ 4\\left( - 1\\right)} = \\ \\dfrac{y}{\\left( - 1\\right)\\left(3\\right)\\ - \\ \\left( - 6\\right)\\left(2\\right)}",
+            "style": "normal",
+            "render": "katex"
           },
-          "⇒ x/(−18 + 4) = y/(−3 + 12) = 1/(8 − 9)",
-          "⇒ x/(−14) = y/9 = 1/(−1)   ⇒   x = 14,  y = −9"
+          {
+            "text": "= \\ \\dfrac{1}{2\\left(4\\right)\\ - \\ 3\\left(3\\right)}",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\dfrac{x}{ - 18\\ + \\ 4} = \\ \\dfrac{y}{ - 3\\ + \\ 12} = \\ \\dfrac{1}{8\\ - \\ 9}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\dfrac{x}{ - 14} = \\ \\dfrac{y}{9} = \\ \\dfrac{1}{ - 1} \\Rightarrow \\ x\\ = \\ 14,\\ y\\ = \\ - 9",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -209,8 +252,16 @@
             "text": "(the point-slope form; y − (−9) = y + 9)",
             "added": true
           },
-          "∴ Perpendicular through P(14, −9) with slope −2/5 is",
-          "y − y₁ = (−1/m)(x − x₁)  ⇒  y + 9 = (−2/5)(x − 14)",
+          {
+            "text": "\\therefore \\ \\text{Perpendicular}\\ \\text{through}\\ P\\left(14,\\ - 9\\right)\\ \\text{with}\\ \\text{slope}\\ - \\dfrac{2}{5}\\text{is}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "y\\ - \\ y_{1}\\ = \\ \\left( - \\dfrac{1}{m}\\right)\\left(x\\ - \\ x_{1}\\right)\\ \\Rightarrow \\ y\\ + \\ 9\\ = \\ \\left( - \\dfrac{2}{5}\\right)\\left(x\\ - \\ 14\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(multiply both sides by 5)",
             "added": true
@@ -257,8 +308,16 @@
         "memory_tip": "y − y₁ = m(x − x₁) with the point and slope just found.",
         "lines_compact": [
           "∴ Point of intersection is P(14, −9)",
-          "∴ Perpendicular through P(14, −9) with slope −2/5 is",
-          "y − y₁ = (−1/m)(x − x₁)  ⇒  y + 9 = (−2/5)(x − 14)",
+          {
+            "text": "\\therefore \\ \\text{Perpendicular}\\ \\text{through}\\ P\\left(14,\\ - 9\\right)\\ \\text{with}\\ \\text{slope}\\ - \\dfrac{2}{5}\\text{is}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "y\\ - \\ y_{1}\\ = \\ \\left( - \\dfrac{1}{m}\\right)\\left(x\\ - \\ x_{1}\\right)\\ \\Rightarrow \\ y\\ + \\ 9\\ = \\ \\left( - \\dfrac{2}{5}\\right)\\left(x\\ - \\ 14\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ 5(y + 9) = −2(x − 14)",
           "⇒ 5y + 45 = −2x + 28"
         ]

@@ -100,9 +100,15 @@
             "text": "(put 11x above and x below)",
             "added": true
           },
-          "lim(x → ∞) (8|x| + 3x)/(3|x| − 2x) = lim(x → ∞) 11x/x",
           {
-            "text": "(11x/x = 11 for x ≠ 0)",
+            "text": "\\dfrac{\\lim \\left(x\\ \\to \\ \\infty \\right)\\left(8\\left|x\\right|\\ + \\ 3x\\right)}{3\\left|x\\right|\\ - \\ 2x} = \\ \\dfrac{\\lim \\left(x\\ \\to \\ \\infty \\right)11x}{x}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{11x}{x} = \\ 11\\ \\text{for}\\ x\\ \\ne \\ 0\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "= lim(x → ∞) 11   (x ≠ 0)",
@@ -111,8 +117,9 @@
             "added": true
           },
           {
-            "text": "∴ lim(x → ∞) (8|x| + 3x)/(3|x| − 2x) = 11",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{\\lim \\left(x\\ \\to \\ \\infty \\right)\\left(8\\left|x\\right|\\ + \\ 3x\\right)}{3\\left|x\\right|\\ - \\ 2x} = \\ 11",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -144,11 +151,16 @@
         ],
         "memory_tip": "Eleven over one: the top adds 8 + 3 and the bottom subtracts 3 − 2.",
         "lines_compact": [
-          "lim(x → ∞) (8|x| + 3x)/(3|x| − 2x) = lim(x → ∞) 11x/x",
+          {
+            "text": "\\dfrac{\\lim \\left(x\\ \\to \\ \\infty \\right)\\left(8\\left|x\\right|\\ + \\ 3x\\right)}{3\\left|x\\right|\\ - \\ 2x} = \\ \\dfrac{\\lim \\left(x\\ \\to \\ \\infty \\right)11x}{x}",
+            "style": "normal",
+            "render": "katex"
+          },
           "= lim(x → ∞) 11   (x ≠ 0)",
           {
-            "text": "∴ lim(x → ∞) (8|x| + 3x)/(3|x| − 2x) = 11",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{\\lim \\left(x\\ \\to \\ \\infty \\right)\\left(8\\left|x\\right|\\ + \\ 3x\\right)}{3\\left|x\\right|\\ - \\ 2x} = \\ 11",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

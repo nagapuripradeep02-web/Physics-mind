@@ -176,25 +176,47 @@
         "margin_note": "One mark. Both f and g carry the same factor (n₁ + n₂), so squaring each and multiplying by the other's coefficient produces the same expression twice.",
         "lines": [
           {
-            "text": "(a = l² and f = m(n₁ + n₂)/2)",
+            "text": "\\left(a\\ = \\ l^{2}\\ \\text{and}\\ f\\ = \\ \\dfrac{m\\left(n_{1}\\ + \\ n_{2}\\right)}{2}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "(ii) af² = l²[m(n₁ + n₂)/2]²",
           {
-            "text": "((m(n₁ + n₂)/2)² = m²(n₁ + n₂)²/4)",
+            "text": "\\left(ii\\right)af^{2}\\ = \\ l^{2}\\left[\\dfrac{m\\left(n_{1}\\ + \\ n_{2}\\right)}{2}\\right]^{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\left(\\dfrac{m\\left(n_{1}\\ + \\ n_{2}\\right)}{2}\\right)^{2}\\ = \\ \\dfrac{m^{2}\\left(n_{1}\\ + \\ n_{2}\\right)^{2}}{4}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= l²m²(n₁ + n₂)²/4",
+          {
+            "text": "= \\ \\dfrac{l^{2}m^{2}\\left(n_{1}\\ + \\ n_{2}\\right)^{2}}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(l²m² = m²l²)",
             "added": true
           },
-          "= m²l²(n₁ + n₂)²/4",
           {
-            "text": "(g = l(n₁ + n₂)/2 and b = m²)",
+            "text": "= \\ \\dfrac{m^{2}l^{2}\\left(n_{1}\\ + \\ n_{2}\\right)^{2}}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(g\\ = \\ \\dfrac{l\\left(n_{1}\\ + \\ n_{2}\\right)}{2}\\text{and}\\ b\\ = \\ m^{2}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= m²[l(n₁ + n₂)/2]² = bg²",
+          {
+            "text": "= \\ m^{2}\\left[\\dfrac{l\\left(n_{1}\\ + \\ n_{2}\\right)}{2}\\right]^{2}\\ = \\ bg^{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ af² = bg²"
         ],
         "recall": {
@@ -227,10 +249,26 @@
         "mark_note": "Method",
         "memory_tip": "Both f and g carry the same (n₁ + n₂), so each side produces the same expression.",
         "lines_compact": [
-          "(ii) af² = l²[m(n₁ + n₂)/2]²",
-          "= l²m²(n₁ + n₂)²/4",
-          "= m²l²(n₁ + n₂)²/4",
-          "= m²[l(n₁ + n₂)/2]² = bg²",
+          {
+            "text": "\\left(ii\\right)af^{2}\\ = \\ l^{2}\\left[\\dfrac{m\\left(n_{1}\\ + \\ n_{2}\\right)}{2}\\right]^{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{l^{2}m^{2}\\left(n_{1}\\ + \\ n_{2}\\right)^{2}}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{m^{2}l^{2}\\left(n_{1}\\ + \\ n_{2}\\right)^{2}}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ m^{2}\\left[\\dfrac{l\\left(n_{1}\\ + \\ n_{2}\\right)}{2}\\right]^{2}\\ = \\ bg^{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ af² = bg²"
         ]
       },
@@ -251,29 +289,50 @@
             "added": true
           },
           "(iii) Distance between lx + my + n₁ = 0",
-          "and lx + my + n₂ = 0 is  |n₁ − n₂| / √(l² + m²)",
+          {
+            "text": "\\text{and}\\ lx\\ + \\ my\\ + \\ n_{2}\\ = \\ 0\\ \\text{is}\\ \\dfrac{\\left|n_{1}\\ - \\ n_{2}\\right|}{\\sqrt{l^{2}\\ + \\ m^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "((n₁ − n₂)² = (n₁ + n₂)² − 4n₁n₂, and l² + m² = a + b)",
             "added": true
           },
-          "= √((n₁ + n₂)² − 4n₁n₂) / √(a + b)",
           {
-            "text": "(n₁ + n₂ = 2g/l and n₁n₂ = c)",
+            "text": "= \\ \\dfrac{\\sqrt{\\left(n_{1}\\ + \\ n_{2}\\right)^{2}\\ - \\ 4n_{1}n_{2}}}{\\sqrt{a\\ + \\ b}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(n_{1}\\ + \\ n_{2}\\ = \\ \\dfrac{2g}{l}\\text{and}\\ n_{1}n_{2}\\ = \\ c\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= √((2g/l)² − 4c) / √(a + b) = √(4g²/l² − 4c) / √(a + b)",
+          {
+            "text": "= \\ \\dfrac{\\sqrt{\\left(\\dfrac{2g}{l}\\right)^{2}\\ - \\ 4c}}{\\sqrt{a\\ + \\ b}} = \\ \\dfrac{\\sqrt{\\dfrac{4g^{2}}{l^{2}} - \\ 4c}}{\\sqrt{a\\ + \\ b}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(l² = a)",
             "added": true
           },
-          "= √(4g²/a − 4c) / √(a + b)",
           {
-            "text": "(4g²/a − 4c = (4g² − 4ac)/a)",
+            "text": "= \\ \\dfrac{\\sqrt{\\dfrac{4g^{2}}{a} - \\ 4c}}{\\sqrt{a\\ + \\ b}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{4g^{2}}{a} - \\ 4c\\ = \\ \\dfrac{4g^{2}\\ - \\ 4ac}{a}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "  = √((4g² − 4ac)/a) / √(a + b)",
-            "style": "indent"
+            "text": "= \\ \\dfrac{\\sqrt{\\dfrac{4g^{2}\\ - \\ 4ac}{a}}}{\\sqrt{a\\ + \\ b}}",
+            "style": "indent",
+            "render": "katex"
           },
           {
             "text": "(√(4(g² − ac)/a) = 2√((g² − ac)/a),",
@@ -284,18 +343,25 @@
             "style": "indent",
             "added": true
           },
-          "= 2√((g² − ac)/(a(a + b)))",
           {
-            "text": "∴ Distance = 2√((g² − ac)/(a(a + b)))",
-            "style": "boxed"
+            "text": "= \\ 2\\sqrt{\\dfrac{g^{2}\\ - \\ ac}{a\\left(a\\ + \\ b\\right)}}",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "or, taking n₁ + n₂ = 2f/m,",
-            "style": "boxed"
+            "text": "\\therefore \\ \\text{Distance}\\ = \\ 2\\sqrt{\\dfrac{g^{2}\\ - \\ ac}{a\\left(a\\ + \\ b\\right)}}",
+            "style": "boxed",
+            "render": "katex"
           },
           {
-            "text": "2√((f² − bc)/(b(a + b)))",
-            "style": "boxed"
+            "text": "\\text{or},\\ \\text{taking}\\ n_{1}\\ + \\ n_{2}\\ = \\ \\dfrac{2f}{m},",
+            "style": "boxed",
+            "render": "katex"
+          },
+          {
+            "text": "2\\sqrt{\\dfrac{f^{2}\\ - \\ bc}{b\\left(a\\ + \\ b\\right)}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -329,26 +395,50 @@
         "memory_tip": "The distance is |n₁ − n₂| over √(l² + m²), and |n₁ − n₂| comes from its SQUARE.",
         "lines_compact": [
           "(iii) Distance between lx + my + n₁ = 0",
-          "and lx + my + n₂ = 0 is  |n₁ − n₂| / √(l² + m²)",
-          "= √((n₁ + n₂)² − 4n₁n₂) / √(a + b)",
-          "= √((2g/l)² − 4c) / √(a + b) = √(4g²/l² − 4c) / √(a + b)",
-          "= √(4g²/a − 4c) / √(a + b)",
           {
-            "text": "  = √((4g² − 4ac)/a) / √(a + b)",
-            "style": "indent"
-          },
-          "= 2√((g² − ac)/(a(a + b)))",
-          {
-            "text": "∴ Distance = 2√((g² − ac)/(a(a + b)))",
-            "style": "boxed"
+            "text": "\\text{and}\\ lx\\ + \\ my\\ + \\ n_{2}\\ = \\ 0\\ \\text{is}\\ \\dfrac{\\left|n_{1}\\ - \\ n_{2}\\right|}{\\sqrt{l^{2}\\ + \\ m^{2}}}",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "or, taking n₁ + n₂ = 2f/m,",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{\\sqrt{\\left(n_{1}\\ + \\ n_{2}\\right)^{2}\\ - \\ 4n_{1}n_{2}}}{\\sqrt{a\\ + \\ b}}",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "2√((f² − bc)/(b(a + b)))",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{\\sqrt{\\left(\\dfrac{2g}{l}\\right)^{2}\\ - \\ 4c}}{\\sqrt{a\\ + \\ b}} = \\ \\dfrac{\\sqrt{\\dfrac{4g^{2}}{l^{2}} - \\ 4c}}{\\sqrt{a\\ + \\ b}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\sqrt{\\dfrac{4g^{2}}{a} - \\ 4c}}{\\sqrt{a\\ + \\ b}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\sqrt{\\dfrac{4g^{2}\\ - \\ 4ac}{a}}}{\\sqrt{a\\ + \\ b}}",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 2\\sqrt{\\dfrac{g^{2}\\ - \\ ac}{a\\left(a\\ + \\ b\\right)}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\text{Distance}\\ = \\ 2\\sqrt{\\dfrac{g^{2}\\ - \\ ac}{a\\left(a\\ + \\ b\\right)}}",
+            "style": "boxed",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{or},\\ \\text{taking}\\ n_{1}\\ + \\ n_{2}\\ = \\ \\dfrac{2f}{m},",
+            "style": "boxed",
+            "render": "katex"
+          },
+          {
+            "text": "2\\sqrt{\\dfrac{f^{2}\\ - \\ bc}{b\\left(a\\ + \\ b\\right)}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

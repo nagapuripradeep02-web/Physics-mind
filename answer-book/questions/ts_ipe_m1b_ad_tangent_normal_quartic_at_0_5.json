@@ -69,7 +69,11 @@
             "text": "  13(2x) = 26x, and 10)",
             "style": "indent"
           },
-          "dy/dx = 4x³ − 18x² + 26x − 10"
+          {
+            "text": "\\dfrac{dy}{dx}\\ = \\ 4x^{3}\\ - \\ 18x^{2}\\ + \\ 26x\\ - \\ 10",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -111,7 +115,11 @@
         "mark_note": "Method",
         "margin_note": "Second mark. Show the substitution line, not only the value. m = −10 must be a plain number before it can go into a line equation.",
         "lines": [
-          "The slope of the tangent is the value of dy/dx",
+          {
+            "text": "\\text{The}\\ \\text{slope}\\ \\text{of}\\ \\text{the}\\ \\text{tangent}\\ \\text{is}\\ \\text{the}\\ \\text{value}\\ \\text{of}\\ \\dfrac{dy}{dx}",
+            "style": "normal",
+            "render": "katex"
+          },
           "at the given point.",
           "At x = 0:",
           {
@@ -152,7 +160,11 @@
         ],
         "memory_tip": "At x = 0 every term carrying an x disappears, so the slope is just the constant term of dy/dx. Here that constant is −10.",
         "lines_compact": [
-          "The slope of the tangent is the value of dy/dx",
+          {
+            "text": "\\text{The}\\ \\text{slope}\\ \\text{of}\\ \\text{the}\\ \\text{tangent}\\ \\text{is}\\ \\text{the}\\ \\text{value}\\ \\text{of}\\ \\dfrac{dy}{dx}",
+            "style": "normal",
+            "render": "katex"
+          },
           "at the given point.",
           "At x = 0:",
           "m = 4(0)³ − 18(0)² + 26(0) − 10",
@@ -228,17 +240,29 @@
         "margin_note": "Fourth mark. Marks are often lost on the normal's slope: it is −1/m, so −10 becomes +1/10, not −1/10. Check the answer by putting (0, 5) back in: 0 − 50 + 50 = 0.",
         "lines": [
           {
-            "text": "(−1/(−10) = 1/10)",
+            "text": "\\left( - \\dfrac{1}{ - 10} = \\ \\dfrac{1}{10}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "The normal is perpendicular to the tangent",
           "at the same point,",
-          "so its slope is −1/m = −1/(−10) = 1/10.",
           {
-            "text": "(the point-slope form with slope 1/10 at (0, 5))",
+            "text": "\\text{so}\\ \\text{its}\\ \\text{slope}\\ \\text{is}\\ - \\dfrac{1}{m} = \\ - \\dfrac{1}{ - 10} = \\ \\dfrac{1}{10}.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{the}\\ \\text{point} - \\text{slope}\\ \\text{form}\\ \\text{with}\\ \\text{slope}\\ \\dfrac{1}{10}\\text{at}\\ \\left(0,\\ 5\\right)\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "y − 5 = (1/10)(x − 0)",
+          {
+            "text": "y\\ - \\ 5\\ = \\ \\left(\\dfrac{1}{10}\\right)\\left(x\\ - \\ 0\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(multiply both sides by 10)",
             "added": true
@@ -296,8 +320,16 @@
         "lines_compact": [
           "The normal is perpendicular to the tangent",
           "at the same point,",
-          "so its slope is −1/m = −1/(−10) = 1/10.",
-          "y − 5 = (1/10)(x − 0)",
+          {
+            "text": "\\text{so}\\ \\text{its}\\ \\text{slope}\\ \\text{is}\\ - \\dfrac{1}{m} = \\ - \\dfrac{1}{ - 10} = \\ \\dfrac{1}{10}.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "y\\ - \\ 5\\ = \\ \\left(\\dfrac{1}{10}\\right)\\left(x\\ - \\ 0\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "10y − 50 = x",
           {
             "text": "∴ Tangent: 10x + y − 5 = 0",

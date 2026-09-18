@@ -58,7 +58,11 @@
           "f(x) = x² − 3x + 8",
           "f is a polynomial, so it is continuous",
           "and differentiable for every real x.",
-          "(d/dx of x² is 2x, of 3x is 3, and of 8 is 0)",
+          {
+            "text": "\\left(\\dfrac{d}{dx}\\ \\text{of}\\ x^{2}\\ \\text{is}\\ 2x,\\ \\text{of}\\ 3x\\ \\text{is}\\ 3,\\ \\text{and}\\ \\text{of}\\ 8\\ \\text{is}\\ 0\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "f′(x) = 2x − 3",
           "The sign of f′ decides where f increases",
           "and where it decreases:",
@@ -113,15 +117,31 @@
             "style": "indent",
             "added": true
           },
-          "2x − 3 > 0   ⇒   2x > 3   ⇒   x > 3/2",
+          {
+            "text": "2x\\ - \\ 3\\ > \\ 0\\ \\Rightarrow \\ 2x\\ > \\ 3\\ \\Rightarrow \\ x\\ > \\ \\dfrac{3}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Decreasing:  f′(x) < 0",
           {
             "text": "(the same steps, with < in place of >)",
             "added": true
           },
-          "2x − 3 < 0   ⇒   2x < 3   ⇒   x < 3/2",
-          "At x = 3/2 the derivative is zero,",
-          "so x = 3/2 separates the two intervals:",
+          {
+            "text": "2x\\ - \\ 3\\ < \\ 0\\ \\Rightarrow \\ 2x\\ < \\ 3\\ \\Rightarrow \\ x\\ < \\ \\dfrac{3}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{At}\\ x\\ = \\ \\dfrac{3}{2}\\text{the}\\ \\text{derivative}\\ \\text{is}\\ \\text{zero},",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{so}\\ x\\ = \\ \\dfrac{3}{2}\\text{separates}\\ \\text{the}\\ \\text{two}\\ \\text{intervals}:",
+            "style": "normal",
+            "render": "katex"
+          },
           "f decreases before it and increases after it."
         ],
         "recall": {
@@ -155,11 +175,27 @@
         "memory_tip": "Set the derivative to zero once to find the boundary, then decide which side is positive. A linear derivative changes sign only at that single value.",
         "lines_compact": [
           "Increasing:  f′(x) > 0",
-          "2x − 3 > 0   ⇒   2x > 3   ⇒   x > 3/2",
+          {
+            "text": "2x\\ - \\ 3\\ > \\ 0\\ \\Rightarrow \\ 2x\\ > \\ 3\\ \\Rightarrow \\ x\\ > \\ \\dfrac{3}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Decreasing:  f′(x) < 0",
-          "2x − 3 < 0   ⇒   2x < 3   ⇒   x < 3/2",
-          "At x = 3/2 the derivative is zero,",
-          "so x = 3/2 separates the two intervals:",
+          {
+            "text": "2x\\ - \\ 3\\ < \\ 0\\ \\Rightarrow \\ 2x\\ < \\ 3\\ \\Rightarrow \\ x\\ < \\ \\dfrac{3}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{At}\\ x\\ = \\ \\dfrac{3}{2}\\text{the}\\ \\text{derivative}\\ \\text{is}\\ \\text{zero},",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{so}\\ x\\ = \\ \\dfrac{3}{2}\\text{separates}\\ \\text{the}\\ \\text{two}\\ \\text{intervals}:",
+            "style": "normal",
+            "render": "katex"
+          },
           "f decreases before it and increases after it."
         ]
       },
@@ -171,10 +207,16 @@
         "mark_note": "Answer",
         "margin_note": "Fourth mark. Write both intervals in interval notation and name which is which. No second derivative is needed anywhere in this question.",
         "lines": [
-          "The boundary value 3/2 belongs to neither interval,",
+          {
+            "text": "\\text{The}\\ \\text{boundary}\\ \\text{value}\\ \\dfrac{3}{2}\\text{belongs}\\ \\text{to}\\ \\text{neither}\\ \\text{interval},",
+            "style": "normal",
+            "render": "katex"
+          },
           "since both intervals are open.",
           {
-            "text": "(put 1, 3/2 and 2 in place of x in x² − 3x + 8)",
+            "text": "\\left(\\text{put}\\ 1,\\ \\dfrac{3}{2}\\text{and}\\ 2\\ \\text{in}\\ \\text{place}\\ \\text{of}\\ x\\ \\text{in}\\ x^{2}\\ - \\ 3x\\ + \\ 8\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -187,17 +229,27 @@
             "added": true
           },
           "Check: f(1) = 1 − 3 + 8 = 6,",
-          "f(3/2) = 9/4 − 9/2 + 8 = 23/4 = 5.75,",
+          {
+            "text": "f\\left(\\dfrac{3}{2}\\right)\\ = \\ \\dfrac{9}{4} - \\ \\dfrac{9}{2} + \\ 8\\ = \\ \\dfrac{23}{4} = \\ 5.75,",
+            "style": "normal",
+            "render": "katex"
+          },
           "f(2) = 4 − 6 + 8 = 6.",
-          "The values fall up to x = 3/2 and rise after it,",
+          {
+            "text": "\\text{The}\\ \\text{values}\\ \\text{fall}\\ \\text{up}\\ \\text{to}\\ x\\ = \\ \\dfrac{3}{2}\\text{and}\\ \\text{rise}\\ \\text{after}\\ \\text{it},",
+            "style": "normal",
+            "render": "katex"
+          },
           "which matches the intervals found.",
           {
-            "text": "∴ f is decreasing on (−∞, 3/2)",
-            "style": "boxed"
+            "text": "\\therefore \\ f\\ \\text{is}\\ \\text{decreasing}\\ \\text{on}\\ \\left( - \\infty ,\\ \\dfrac{3}{2}\\right)",
+            "style": "boxed",
+            "render": "katex"
           },
           {
-            "text": "and increasing on (3/2, ∞)",
-            "style": "boxed"
+            "text": "\\text{and}\\ \\text{increasing}\\ \\text{on}\\ \\left(\\dfrac{3}{2},\\ \\infty \\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -230,20 +282,34 @@
         ],
         "memory_tip": "For an upward parabola the graph falls to the vertex and rises after it, so decreasing always comes first and increasing second.",
         "lines_compact": [
-          "The boundary value 3/2 belongs to neither interval,",
+          {
+            "text": "\\text{The}\\ \\text{boundary}\\ \\text{value}\\ \\dfrac{3}{2}\\text{belongs}\\ \\text{to}\\ \\text{neither}\\ \\text{interval},",
+            "style": "normal",
+            "render": "katex"
+          },
           "since both intervals are open.",
           "Check: f(1) = 1 − 3 + 8 = 6,",
-          "f(3/2) = 9/4 − 9/2 + 8 = 23/4 = 5.75,",
+          {
+            "text": "f\\left(\\dfrac{3}{2}\\right)\\ = \\ \\dfrac{9}{4} - \\ \\dfrac{9}{2} + \\ 8\\ = \\ \\dfrac{23}{4} = \\ 5.75,",
+            "style": "normal",
+            "render": "katex"
+          },
           "f(2) = 4 − 6 + 8 = 6.",
-          "The values fall up to x = 3/2 and rise after it,",
+          {
+            "text": "\\text{The}\\ \\text{values}\\ \\text{fall}\\ \\text{up}\\ \\text{to}\\ x\\ = \\ \\dfrac{3}{2}\\text{and}\\ \\text{rise}\\ \\text{after}\\ \\text{it},",
+            "style": "normal",
+            "render": "katex"
+          },
           "which matches the intervals found.",
           {
-            "text": "∴ f is decreasing on (−∞, 3/2)",
-            "style": "boxed"
+            "text": "\\therefore \\ f\\ \\text{is}\\ \\text{decreasing}\\ \\text{on}\\ \\left( - \\infty ,\\ \\dfrac{3}{2}\\right)",
+            "style": "boxed",
+            "render": "katex"
           },
           {
-            "text": "and increasing on (3/2, ∞)",
-            "style": "boxed"
+            "text": "\\text{and}\\ \\text{increasing}\\ \\text{on}\\ \\left(\\dfrac{3}{2},\\ \\infty \\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

@@ -136,10 +136,15 @@
             "added": true
           },
           "Equation of angular bisectors is",
-          "(x sinα − y cosα)/√(sin²α + cos²α)",
           {
-            "text": "  = ±(x sinβ − y cosβ)/√(sin²β + cos²β)",
-            "style": "indent"
+            "text": "\\dfrac{x\\sin \\alpha \\ - \\ y\\cos \\alpha }{\\sqrt{\\sin ^{2} \\alpha \\ + \\ \\cos ^{2} \\alpha }}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\pm \\dfrac{x\\sin \\beta \\ - \\ y\\cos \\beta }{\\sqrt{\\sin ^{2} \\beta \\ + \\ \\cos ^{2} \\beta }}",
+            "style": "indent",
+            "render": "katex"
           },
           {
             "text": "(sin²α + cos²α = 1, so both denominators are 1)",
@@ -182,10 +187,15 @@
         "memory_tip": "A point on a bisector is EQUALLY far from both lines, so set the two distances equal with a ±.",
         "lines_compact": [
           "Equation of angular bisectors is",
-          "(x sinα − y cosα)/√(sin²α + cos²α)",
           {
-            "text": "  = ±(x sinβ − y cosβ)/√(sin²β + cos²β)",
-            "style": "indent"
+            "text": "\\dfrac{x\\sin \\alpha \\ - \\ y\\cos \\alpha }{\\sqrt{\\sin ^{2} \\alpha \\ + \\ \\cos ^{2} \\alpha }}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\pm \\dfrac{x\\sin \\beta \\ - \\ y\\cos \\beta }{\\sqrt{\\sin ^{2} \\beta \\ + \\ \\cos ^{2} \\beta }}",
+            "style": "indent",
+            "render": "katex"
           },
           "⇒ x sinα − y cosα = ±(x sinβ − y cosβ)",
           {

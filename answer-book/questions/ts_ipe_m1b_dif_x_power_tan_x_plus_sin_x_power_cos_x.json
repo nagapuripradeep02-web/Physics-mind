@@ -66,7 +66,11 @@
           },
           "Let y = u + v,  where u = xᵗᵃⁿˣ  and  v = (sin x)ᶜᵒˢˣ",
           "(the derivative of a sum is the sum of the derivatives)",
-          "Then dy/dx = du/dx + dv/dx",
+          {
+            "text": "\\text{Then}\\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{du}{dx}\\ + \\ \\dfrac{dv}{dx}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Both terms carry x in the base and in the power,",
           "so the power rule and the exponential rule",
           "are both unavailable.",
@@ -124,8 +128,9 @@
             "added": true
           },
           {
-            "text": "  tan x · log x: d/dx(tan x) = sec²x",
+            "text": "\\tan x\\ \\cdot \\ \\log x:\\ \\dfrac{d}{dx}\\left(\\tan x\\right)\\ = \\ \\sec ^{2} x",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           {
@@ -134,12 +139,22 @@
             "added": true
           },
           "Differentiating both sides with respect to x,",
-          "(1/u)(du/dx) = sec²x · log x + tan x · (1/x)",
           {
-            "text": "(multiply both sides by u = xᵗᵃⁿˣ; tan x · (1/x) = (tan x)/x)",
+            "text": "\\left(\\dfrac{1}{u}\\right)\\left(\\dfrac{du}{dx}\\right)\\ = \\ \\sec ^{2} x\\ \\cdot \\ \\log x\\ + \\ \\tan x\\ \\cdot \\ \\left(\\dfrac{1}{x}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{multiply}\\ \\text{both}\\ \\text{sides}\\ \\text{by}\\ u\\ = \\ x^{tanx};\\ \\tan x\\ \\cdot \\ \\left(\\dfrac{1}{x}\\right)\\ = \\ \\dfrac{\\tan x}{x}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "∴ du/dx = xᵗᵃⁿˣ [sec²x · log x + (tan x)/x]"
+          {
+            "text": "\\therefore \\ \\dfrac{du}{dx}\\ = \\ x^{tanx}\\left[\\sec ^{2} x\\ \\cdot \\ \\log x\\ + \\ \\dfrac{\\tan x}{x}\\right]",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -174,8 +189,16 @@
           "u = xᵗᵃⁿˣ",
           "Taking logarithms,   log u = tan x · log x",
           "Differentiating both sides with respect to x,",
-          "(1/u)(du/dx) = sec²x · log x + tan x · (1/x)",
-          "∴ du/dx = xᵗᵃⁿˣ [sec²x · log x + (tan x)/x]"
+          {
+            "text": "\\left(\\dfrac{1}{u}\\right)\\left(\\dfrac{du}{dx}\\right)\\ = \\ \\sec ^{2} x\\ \\cdot \\ \\log x\\ + \\ \\tan x\\ \\cdot \\ \\left(\\dfrac{1}{x}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{du}{dx}\\ = \\ x^{tanx}\\left[\\sec ^{2} x\\ \\cdot \\ \\log x\\ + \\ \\dfrac{\\tan x}{x}\\right]",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -203,16 +226,27 @@
             "added": true
           },
           "Differentiating both sides with respect to x,",
-          "(1/v)(dv/dx) = (−sin x) · log(sin x)",
           {
-            "text": "  + cos x · (cos x)/(sin x)",
-            "style": "indent"
+            "text": "\\left(\\dfrac{1}{v}\\right)\\left(\\dfrac{dv}{dx}\\right)\\ = \\ \\left( - \\sin x\\right)\\ \\cdot \\ \\log \\left(\\sin x\\right)",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "(cos x · (cos x)/(sin x) = (cos²x)/(sin x))",
+            "text": "+ \\ \\cos x\\ \\cdot \\ \\dfrac{\\cos x}{\\sin x}",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\cos x\\ \\cdot \\ \\dfrac{\\cos x}{\\sin x} = \\ \\dfrac{\\cos ^{2} x}{\\sin x}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "(1/v)(dv/dx) = −sin x · log(sin x) + (cos²x)/(sin x)"
+          {
+            "text": "\\left(\\dfrac{1}{v}\\right)\\left(\\dfrac{dv}{dx}\\right)\\ = \\ - \\sin x\\ \\cdot \\ \\log \\left(\\sin x\\right)\\ + \\ \\dfrac{\\cos ^{2} x}{\\sin x}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -247,12 +281,21 @@
           "v = (sin x)ᶜᵒˢˣ",
           "Taking logarithms,   log v = cos x · log(sin x)",
           "Differentiating both sides with respect to x,",
-          "(1/v)(dv/dx) = (−sin x) · log(sin x)",
           {
-            "text": "  + cos x · (cos x)/(sin x)",
-            "style": "indent"
+            "text": "\\left(\\dfrac{1}{v}\\right)\\left(\\dfrac{dv}{dx}\\right)\\ = \\ \\left( - \\sin x\\right)\\ \\cdot \\ \\log \\left(\\sin x\\right)",
+            "style": "normal",
+            "render": "katex"
           },
-          "(1/v)(dv/dx) = −sin x · log(sin x) + (cos²x)/(sin x)"
+          {
+            "text": "+ \\ \\cos x\\ \\cdot \\ \\dfrac{\\cos x}{\\sin x}",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{1}{v}\\right)\\left(\\dfrac{dv}{dx}\\right)\\ = \\ - \\sin x\\ \\cdot \\ \\log \\left(\\sin x\\right)\\ + \\ \\dfrac{\\cos ^{2} x}{\\sin x}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -265,10 +308,16 @@
         "memory_tip": "Split cos²x as cos x · cos x, send one of them over sin x, and cot x appears.",
         "lines": [
           {
-            "text": "(split cos²x as cos x · cos x; (cos x)/(sin x) = cot x)",
+            "text": "\\left(\\text{split}\\ \\cos ^{2} x\\ \\text{as}\\ \\cos x\\ \\cdot \\ \\cos x;\\ \\dfrac{\\cos x}{\\sin x} = \\ \\cot x\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "(cos²x)/(sin x) = cos x · (cos x)/(sin x) = cos x cot x",
+          {
+            "text": "\\dfrac{\\cos ^{2} x}{\\sin x} = \\ \\cos x\\ \\cdot \\ \\dfrac{\\cos x}{\\sin x} = \\ \\cos x\\cot x",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(put cos x cot x in place of (cos²x)/(sin x),",
             "added": true
@@ -278,7 +327,11 @@
             "style": "indent",
             "added": true
           },
-          "So  (1/v)(dv/dx) = cos x cot x − sin x · log(sin x)",
+          {
+            "text": "\\text{So}\\ \\left(\\dfrac{1}{v}\\right)\\left(\\dfrac{dv}{dx}\\right)\\ = \\ \\cos x\\cot x\\ - \\ \\sin x\\ \\cdot \\ \\log \\left(\\sin x\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(multiply both sides by v = (sin x)ᶜᵒˢˣ)",
             "added": true
@@ -314,8 +367,16 @@
           "Multiplying only part of the bracket by v instead of the whole bracket."
         ],
         "lines_compact": [
-          "(cos²x)/(sin x) = cos x · (cos x)/(sin x) = cos x cot x",
-          "So  (1/v)(dv/dx) = cos x cot x − sin x · log(sin x)",
+          {
+            "text": "\\dfrac{\\cos ^{2} x}{\\sin x} = \\ \\cos x\\ \\cdot \\ \\dfrac{\\cos x}{\\sin x} = \\ \\cos x\\cot x",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{So}\\ \\left(\\dfrac{1}{v}\\right)\\left(\\dfrac{dv}{dx}\\right)\\ = \\ \\cos x\\cot x\\ - \\ \\sin x\\ \\cdot \\ \\log \\left(\\sin x\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "∴ dv/dx = (sin x)ᶜᵒˢˣ [cos x cot x − sin x · log(sin x)]"
         ]
       },
@@ -329,17 +390,26 @@
         "memory_tip": "The first bracket is all plus; the second bracket carries the minus. Checking that one sign is a quick check on the answer.",
         "lines": [
           {
-            "text": "(from step 1, dy/dx = du/dx + dv/dx)",
-            "added": true
-          },
-          "dy/dx = du/dx + dv/dx",
-          {
-            "text": "(put du/dx from step 2 and dv/dx from step 4)",
+            "text": "\\left(\\text{from}\\ \\text{step}\\ 1,\\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{du}{dx}\\ + \\ \\dfrac{dv}{dx}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ dy/dx = xᵗᵃⁿˣ [sec²x · log x + (tan x)/x]",
-            "style": "boxed"
+            "text": "\\dfrac{dy}{dx}\\ = \\ \\dfrac{du}{dx}\\ + \\ \\dfrac{dv}{dx}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{put}\\ \\dfrac{du}{dx}\\ \\text{from}\\ \\text{step}\\ 2\\ \\text{and}\\ \\dfrac{dv}{dx}\\ \\text{from}\\ \\text{step}\\ 4\\right)",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ x^{tanx}\\left[\\sec ^{2} x\\ \\cdot \\ \\log x\\ + \\ \\dfrac{\\tan x}{x}\\right]",
+            "style": "boxed",
+            "render": "katex"
           },
           {
             "text": "+ (sin x)ᶜᵒˢˣ [cos x cot x − sin x · log(sin x)]",
@@ -375,10 +445,15 @@
           "Adding the two brackets first and then multiplying by one factor."
         ],
         "lines_compact": [
-          "dy/dx = du/dx + dv/dx",
           {
-            "text": "∴ dy/dx = xᵗᵃⁿˣ [sec²x · log x + (tan x)/x]",
-            "style": "boxed"
+            "text": "\\dfrac{dy}{dx}\\ = \\ \\dfrac{du}{dx}\\ + \\ \\dfrac{dv}{dx}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ x^{tanx}\\left[\\sec ^{2} x\\ \\cdot \\ \\log x\\ + \\ \\dfrac{\\tan x}{x}\\right]",
+            "style": "boxed",
+            "render": "katex"
           },
           {
             "text": "+ (sin x)ᶜᵒˢˣ [cos x cot x − sin x · log(sin x)]",

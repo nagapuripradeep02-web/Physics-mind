@@ -59,10 +59,18 @@
           },
           "(a plane cutting the axes at (a, 0, 0), (0, b, 0) and (0, 0, c))",
           "The equation of the plane with intercepts a, b, c",
-          "is  x/a + y/b + z/c = 1",
+          {
+            "text": "\\text{is}\\ \\dfrac{x}{a} + \\ \\dfrac{y}{b} + \\ \\dfrac{z}{c} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           "(put a = 1, b = 2, c = 4)",
           "∴ the required equation of the plane",
-          "is  x/1 + y/2 + z/4 = 1"
+          {
+            "text": "\\text{is}\\ \\dfrac{x}{1} + \\ \\dfrac{y}{2} + \\ \\dfrac{z}{4} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -110,7 +118,11 @@
             "style": "indent",
             "added": true
           },
-          "⇒ (4x + 2y + z)/4 = 1",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{4x\\ + \\ 2y\\ + \\ z}{4} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(multiply both sides by 4)",
             "added": true
@@ -148,7 +160,11 @@
           "Writing x/1 as x/4 instead of 4x/4 when changing to the common denominator 4."
         ],
         "lines_compact": [
-          "⇒ (4x + 2y + z)/4 = 1",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{4x\\ + \\ 2y\\ + \\ z}{4} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "⇒ 4x + 2y + z = 4",
             "style": "boxed"

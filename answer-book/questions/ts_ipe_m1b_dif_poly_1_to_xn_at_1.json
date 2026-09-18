@@ -58,7 +58,11 @@
             "text": "  d/dx(xⁿ) = nxⁿ⁻¹)",
             "style": "indent"
           },
-          "Using d/dx(xᵏ) = kxᵏ⁻¹ on each of the n + 1 terms,",
+          {
+            "text": "\\text{Using}\\ \\dfrac{d}{dx}\\left(x^{k}\\right)\\ = \\ kx^{k-1}\\ \\text{on}\\ \\text{each}\\ \\text{of}\\ \\text{the}\\ n\\ + \\ 1\\ \\text{terms},",
+            "style": "normal",
+            "render": "katex"
+          },
           "f′(x) = 0 + 1 + 2x + 3x² + ⋯ + nxⁿ⁻¹",
           "(the constant term gives 0, so n of the n + 1 terms are left)",
           "So f′ has exactly n terms, with coefficients 1, 2, 3, …, n."
@@ -113,10 +117,15 @@
             "added": true
           },
           {
-            "text": "∴ f′(1) = n(n+1)/2",
-            "style": "boxed"
+            "text": "\\therefore \\ f'\\left(1\\right)\\ = \\ \\dfrac{n\\left(n + 1\\right)}{2}",
+            "style": "boxed",
+            "render": "katex"
           },
-          "Check with n = 3: f′(1) = 1 + 2 + 3 = 6 and n(n+1)/2 = 6."
+          {
+            "text": "\\text{Check}\\ \\text{with}\\ n\\ = \\ 3:\\ f'\\left(1\\right)\\ = \\ 1\\ + \\ 2\\ + \\ 3\\ = \\ 6\\ \\text{and}\\ \\dfrac{n\\left(n + 1\\right)}{2} = \\ 6.",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -151,10 +160,15 @@
           "f′(1) = 1 + 2 + 3 + ⋯ + n",
           "This is the sum of the first n natural numbers.",
           {
-            "text": "∴ f′(1) = n(n+1)/2",
-            "style": "boxed"
+            "text": "\\therefore \\ f'\\left(1\\right)\\ = \\ \\dfrac{n\\left(n + 1\\right)}{2}",
+            "style": "boxed",
+            "render": "katex"
           },
-          "Check with n = 3: f′(1) = 1 + 2 + 3 = 6 and n(n+1)/2 = 6."
+          {
+            "text": "\\text{Check}\\ \\text{with}\\ n\\ = \\ 3:\\ f'\\left(1\\right)\\ = \\ 1\\ + \\ 2\\ + \\ 3\\ = \\ 6\\ \\text{and}\\ \\dfrac{n\\left(n + 1\\right)}{2} = \\ 6.",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       }
     ]

@@ -53,16 +53,32 @@
             "style": "heading"
           },
           "This is a rectilinear motion question.",
-          "Velocity v = dS/dt and acceleration a = dv/dt.",
+          {
+            "text": "\\text{Velocity}\\ v\\ = \\ \\dfrac{dS}{dt}\\ \\text{and}\\ \\text{acceleration}\\ a\\ = \\ \\dfrac{dv}{dt}.",
+            "style": "normal",
+            "render": "katex"
+          },
           "S = 4t³ − 3t² + 5t − 1",
           "(d/dt of 4t³ is 12t², of 3t² is 6t, of 5t is 5,",
           {
             "text": "  and of 1 is 0)",
             "style": "indent"
           },
-          "v = dS/dt = 12t² − 6t + 5",
-          "(d/dt of 12t² is 24t, of 6t is 6, and of 5 is 0)",
-          "a = dv/dt = 24t − 6"
+          {
+            "text": "v\\ = \\ \\dfrac{dS}{dt}\\ = \\ 12t^{2}\\ - \\ 6t\\ + \\ 5",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{d}{dt}\\ \\text{of}\\ 12t^{2}\\ \\text{is}\\ 24t,\\ \\text{of}\\ 6t\\ \\text{is}\\ 6,\\ \\text{and}\\ \\text{of}\\ 5\\ \\text{is}\\ 0\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "a\\ = \\ \\dfrac{dv}{dt}\\ = \\ 24t\\ - \\ 6",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -114,17 +130,25 @@
           },
           "24t = 6",
           {
-            "text": "(divide both sides by 24; 6/24 = 1/4)",
+            "text": "\\left(\\text{divide}\\ \\text{both}\\ \\text{sides}\\ \\text{by}\\ 24;\\ \\dfrac{6}{24} = \\ \\dfrac{1}{4}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "t = 6/24 = 1/4",
           {
-            "text": "∴ v = 12t² − 6t + 5 m/sec,  a = 24t − 6 m/sec²,",
-            "style": "boxed"
+            "text": "t\\ = \\ \\dfrac{6}{24} = \\ \\dfrac{1}{4}",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "and a = 0 at t = 1/4 sec",
-            "style": "boxed"
+            "text": "\\therefore \\ v\\ = \\ 12t^{2}\\ - \\ 6t\\ + \\ \\dfrac{5m}{\\sec },\\ a\\ = \\ 24t\\ - \\ \\dfrac{6m}{\\sec ^{2}},",
+            "style": "boxed",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ a\\ = \\ 0\\ \\text{at}\\ t\\ = \\ \\dfrac{1}{4}\\sec",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -159,14 +183,20 @@
           "Acceleration is zero when a = 0.",
           "24t − 6 = 0",
           "24t = 6",
-          "t = 6/24 = 1/4",
           {
-            "text": "∴ v = 12t² − 6t + 5 m/sec,  a = 24t − 6 m/sec²,",
-            "style": "boxed"
+            "text": "t\\ = \\ \\dfrac{6}{24} = \\ \\dfrac{1}{4}",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "and a = 0 at t = 1/4 sec",
-            "style": "boxed"
+            "text": "\\therefore \\ v\\ = \\ 12t^{2}\\ - \\ 6t\\ + \\ \\dfrac{5m}{\\sec },\\ a\\ = \\ 24t\\ - \\ \\dfrac{6m}{\\sec ^{2}},",
+            "style": "boxed",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ a\\ = \\ 0\\ \\text{at}\\ t\\ = \\ \\dfrac{1}{4}\\sec",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

@@ -62,9 +62,17 @@
             "text": "  is (1/2)x⁻¹⁄² = 1/(2√x))",
             "style": "indent"
           },
-          "f′(x) = 1/(2√x)",
+          {
+            "text": "f'\\left(x\\right)\\ = \\ \\dfrac{1}{2\\sqrt{x}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(√64 = 8)",
-          "f′(64) = 1/(2 × 8) = 1/16"
+          {
+            "text": "f'\\left(64\\right)\\ = \\ \\dfrac{1}{2\\ \\times \\ 8} = \\ \\dfrac{1}{16}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -109,12 +117,20 @@
           },
           "√65 = f(64 + 1) ≈ f(64) + f′(64)·(1)",
           {
-            "text": "(f(64) = √64 = 8 and f′(64) = 1/16)",
+            "text": "\\left(f\\left(64\\right)\\ = \\ \\sqrt{64}\\ = \\ 8\\ \\text{and}\\ f'\\left(64\\right)\\ = \\ \\dfrac{1}{16}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= 8 + (1/16)(1)",
           {
-            "text": "(1/16 = 0.0625)",
+            "text": "= \\ 8\\ + \\ \\left(\\dfrac{1}{16}\\right)\\left(1\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{1}{16} = \\ 0.0625\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "= 8 + 0.0625",
@@ -153,7 +169,11 @@
         "memory_tip": "New value ≈ old value + slope × step. The step keeps its sign, so an upward move adds.",
         "lines_compact": [
           "√65 = f(64 + 1) ≈ f(64) + f′(64)·(1)",
-          "= 8 + (1/16)(1)",
+          {
+            "text": "= \\ 8\\ + \\ \\left(\\dfrac{1}{16}\\right)\\left(1\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "= 8 + 0.0625",
           {
             "text": "∴ √65 ≈ 8.0625",

@@ -52,7 +52,11 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "f(x) = x² − 3x − 1,   a = −11/7,   b = 13/7",
+          {
+            "text": "f\\left(x\\right)\\ = \\ x^{2}\\ - \\ 3x\\ - \\ 1,\\ a\\ = \\ - \\dfrac{11}{7},\\ b\\ = \\ \\dfrac{13}{7}",
+            "style": "normal",
+            "render": "katex"
+          },
           "f is a polynomial, so it is continuous on [a, b]",
           "and differentiable on (a, b).",
           "(put 13/7 in place of x: (13/7)² = 169/49",
@@ -60,39 +64,70 @@
             "text": "  and 3(13/7) = 39/7)",
             "style": "indent"
           },
-          "f(13/7) = 169/49 − 39/7 − 1",
+          {
+            "text": "f\\left(\\dfrac{13}{7}\\right)\\ = \\ \\dfrac{169}{49} - \\ \\dfrac{39}{7} - \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           "(39/7 = 273/49 and 1 = 49/49;",
           {
             "text": "  169 − 273 − 49 = −153)",
             "style": "indent"
           },
           {
-            "text": "  = 169/49 − 273/49 − 49/49 = −153/49",
-            "style": "indent"
+            "text": "= \\ \\dfrac{169}{49} - \\ \\dfrac{273}{49} - \\ \\dfrac{49}{49} = \\ - \\dfrac{153}{49}",
+            "style": "indent",
+            "render": "katex"
           },
           "(put −11/7 in place of x: (−11/7)² = 121/49",
           {
             "text": "  and −3(−11/7) = 33/7)",
             "style": "indent"
           },
-          "f(−11/7) = 121/49 + 33/7 − 1",
-          "(33/7 = 231/49; 121 + 231 − 49 = 303)",
           {
-            "text": "  = 121/49 + 231/49 − 49/49 = 303/49",
-            "style": "indent"
+            "text": "f\\left( - \\dfrac{11}{7}\\right)\\ = \\ \\dfrac{121}{49} + \\ \\dfrac{33}{7} - \\ 1",
+            "style": "normal",
+            "render": "katex"
           },
-          "(subtracting −11/7 is adding 11/7)",
-          "b − a = 13/7 − (−11/7) = 24/7",
+          {
+            "text": "\\left(\\dfrac{33}{7} = \\ \\dfrac{231}{49};\\ 121\\ + \\ 231\\ - \\ 49\\ = \\ 303\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{121}{49} + \\ \\dfrac{231}{49} - \\ \\dfrac{49}{49} = \\ \\dfrac{303}{49}",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{subtracting}\\ - \\dfrac{11}{7}\\text{is}\\ \\text{adding}\\ \\dfrac{11}{7}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "b\\ - \\ a\\ = \\ \\dfrac{13}{7} - \\ \\left( - \\dfrac{11}{7}\\right)\\ = \\ \\dfrac{24}{7}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(−153 − 303 = −456; dividing by 24/7",
           {
             "text": "  is multiplying by 7/24)",
             "style": "indent"
           },
-          "(f(b) − f(a))/(b − a) = (−153/49 − 303/49)/(24/7)",
-          "(456/24 = 19 and 7/49 = 1/7)",
           {
-            "text": "  = (−456/49)·(7/24) = −19/7",
-            "style": "indent"
+            "text": "\\dfrac{f\\left(b\\right)\\ - \\ f\\left(a\\right)}{b\\ - \\ a} = \\ \\dfrac{ - \\dfrac{153}{49} - \\ \\dfrac{303}{49}}{\\dfrac{24}{7}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{456}{24} = \\ 19\\ \\text{and}\\ \\dfrac{7}{49} = \\ \\dfrac{1}{7}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left( - \\dfrac{456}{49}\\right) \\cdot \\left(\\dfrac{7}{24}\\right)\\ = \\ - \\dfrac{19}{7}",
+            "style": "indent",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -136,29 +171,52 @@
         "memory_tip": "For any quadratic, c is the midpoint of the interval: (−11/7 + 13/7)/2 = 1/7.",
         "lines": [
           {
-            "text": "(d/dx of x² − 3x − 1 is 2x − 3)",
+            "text": "\\left(\\dfrac{d}{dx}\\ \\text{of}\\ x^{2}\\ - \\ 3x\\ - \\ 1\\ \\text{is}\\ 2x\\ - \\ 3\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "f′(x) = 2x − 3,   so f′(c) = 2c − 3",
           {
-            "text": "(put f′(c) equal to the chord slope −19/7)",
+            "text": "\\left(\\text{put}\\ f'\\left(c\\right)\\ \\text{equal}\\ \\text{to}\\ \\text{the}\\ \\text{chord}\\ \\text{slope}\\ - \\dfrac{19}{7}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "2c − 3 = −19/7",
           {
-            "text": "(add 3 to both sides; 3 = 21/7)",
+            "text": "2c\\ - \\ 3\\ = \\ - \\dfrac{19}{7}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{add}\\ 3\\ \\text{to}\\ \\text{both}\\ \\text{sides};\\ 3\\ = \\ \\dfrac{21}{7}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "2c = 3 − 19/7 = (21 − 19)/7 = 2/7",
+          {
+            "text": "2c\\ = \\ 3\\ - \\ \\dfrac{19}{7} = \\ \\dfrac{21\\ - \\ 19}{7} = \\ \\dfrac{2}{7}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(divide both sides by 2)",
             "added": true
           },
-          "c = 1/7",
-          "−11/7 < 1/7 < 13/7, so c lies inside the interval",
           {
-            "text": "∴ c = 1/7",
-            "style": "boxed"
+            "text": "c\\ = \\ \\dfrac{1}{7}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "- \\dfrac{11}{7} < \\ \\dfrac{1}{7} < \\ \\dfrac{13}{7},\\ \\text{so}\\ c\\ \\text{lies}\\ \\text{inside}\\ \\text{the}\\ \\text{interval}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ c\\ = \\ \\dfrac{1}{7}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -191,13 +249,30 @@
         ],
         "lines_compact": [
           "f′(x) = 2x − 3,   so f′(c) = 2c − 3",
-          "2c − 3 = −19/7",
-          "2c = 3 − 19/7 = (21 − 19)/7 = 2/7",
-          "c = 1/7",
-          "−11/7 < 1/7 < 13/7, so c lies inside the interval",
           {
-            "text": "∴ c = 1/7",
-            "style": "boxed"
+            "text": "2c\\ - \\ 3\\ = \\ - \\dfrac{19}{7}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "2c\\ = \\ 3\\ - \\ \\dfrac{19}{7} = \\ \\dfrac{21\\ - \\ 19}{7} = \\ \\dfrac{2}{7}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "c\\ = \\ \\dfrac{1}{7}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "- \\dfrac{11}{7} < \\ \\dfrac{1}{7} < \\ \\dfrac{13}{7},\\ \\text{so}\\ c\\ \\text{lies}\\ \\text{inside}\\ \\text{the}\\ \\text{interval}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ c\\ = \\ \\dfrac{1}{7}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

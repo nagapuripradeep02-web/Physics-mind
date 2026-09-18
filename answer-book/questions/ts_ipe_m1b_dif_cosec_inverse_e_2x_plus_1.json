@@ -58,18 +58,34 @@
             "text": "  with the chain rule)",
             "style": "indent"
           },
-          "d/dx(Cosec⁻¹u) = −1/(|u|√(u² − 1)) · du/dx",
+          {
+            "text": "\\dfrac{d}{dx}\\left(\\operatorname{Cos} ec^{-1}u\\right)\\ = \\ - \\dfrac{1}{\\left|u\\right|\\sqrt{u^{2}\\ - \\ 1}} \\cdot \\ \\dfrac{du}{dx}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(d/dx(eᵛ) = eᵛ · dv/dx with v = 2x + 1,",
           {
             "text": "  and d/dx(2x + 1) = 2)",
             "style": "indent"
           },
-          "du/dx = e²ˣ⁺¹ · d/dx(2x + 1) = 2e²ˣ⁺¹",
+          {
+            "text": "\\dfrac{du}{dx}\\ = \\ e^{2x+1}\\ \\cdot \\ \\dfrac{d}{dx}\\left(2x\\ + \\ 1\\right)\\ = \\ 2e^{2x+1}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(eᵛ > 0 for every real v, so |u| = u)",
           "An exponential is positive for every real x, so u = e²ˣ⁺¹ > 0",
           "and |u| = e²ˣ⁺¹",
-          "(put |u| = e²ˣ⁺¹, u² = (e²ˣ⁺¹)² and du/dx = 2e²ˣ⁺¹)",
-          "∴ dy/dx = −2e²ˣ⁺¹ / (e²ˣ⁺¹ · √((e²ˣ⁺¹)² − 1))"
+          {
+            "text": "\\left(\\text{put}\\ \\left|u\\right|\\ = \\ e^{2x+1},\\ u^{2}\\ = \\ \\left(e^{2x+1}\\right)^{2}\\ \\text{and}\\ \\dfrac{du}{dx}\\ = \\ 2e^{2x+1}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ - \\dfrac{2e^{2x+1}}{e^{2x+1}\\ \\cdot \\ \\sqrt{\\left(e^{2x+1}\\right)^{2}\\ - \\ 1}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -125,8 +141,9 @@
             "added": true
           },
           {
-            "text": "∴ dy/dx = −2/√(e⁴ˣ⁺² − 1),  x > −1/2",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ - \\dfrac{2}{\\sqrt{e^{4x+2}\\ - \\ 1}},\\ x\\ > \\ - \\dfrac{1}{2}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -161,8 +178,9 @@
           "The e²ˣ⁺¹ in the numerator cancels the e²ˣ⁺¹",
           "in the denominator.",
           {
-            "text": "∴ dy/dx = −2/√(e⁴ˣ⁺² − 1),  x > −1/2",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ - \\dfrac{2}{\\sqrt{e^{4x+2}\\ - \\ 1}},\\ x\\ > \\ - \\dfrac{1}{2}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

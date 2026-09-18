@@ -67,8 +67,9 @@
           "(on the XZ-plane y = 0)",
           "(a point dividing AB in the ratio m : n has",
           {
-            "text": "  y = (my₂ + ny₁)/(m + n);",
-            "style": "indent"
+            "text": "y\\ = \\ \\dfrac{my_{2}\\ + \\ ny_{1}}{m\\ + \\ n};",
+            "style": "indent",
+            "render": "katex"
           },
           {
             "text": "  y = 0 gives my₂ = −ny₁, so m : n = −y₁ : y₂)",
@@ -137,7 +138,11 @@
             "text": "(−3 − 4 = −7; −6 + 6 = 0; −9 + 8 = −1; −3 + 2 = −1)",
             "added": true
           },
-          "= (−7/−1, 0/−1, −1/−1)",
+          {
+            "text": "= \\ \\left( - \\dfrac{7}{-1},\\ \\dfrac{0}{-1},\\ - \\dfrac{1}{-1}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(−7/(−1) = 7, 0/(−1) = 0, −1/(−1) = 1;",
             "added": true
@@ -190,7 +195,11 @@
           "(mz₂ + nz₁)/(m+n))",
           "= ((−3×1 + 2×−2)/(−3+2), (−3×2 + 2×3)/(−3+2),",
           "(−3×3 + 2×4)/(−3+2))",
-          "= (−7/−1, 0/−1, −1/−1)",
+          {
+            "text": "= \\ \\left( - \\dfrac{7}{-1},\\ \\dfrac{0}{-1},\\ - \\dfrac{1}{-1}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ Point of intersection = (7, 0, 1)",
             "style": "boxed"

@@ -123,7 +123,11 @@
             "text": "(put f′(x) = 0; move 1 across and divide by 2)",
             "added": true
           },
-          "1 + 2cos 2x = 0   ⇒   cos 2x = −1/2",
+          {
+            "text": "1\\ + \\ 2\\cos 2x\\ = \\ 0\\ \\Rightarrow \\ \\cos 2x\\ = \\ - \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(0 ≤ x ≤ π; multiply each part by 2)",
             "added": true
@@ -138,13 +142,25 @@
             "style": "indent",
             "added": true
           },
-          "In [0, 2π] the equation cos 2x = −1/2 has the solutions",
-          "2x = 2π/3   and   2x = 4π/3",
+          {
+            "text": "\\text{In}\\ \\left[0,\\ 2\\pi \\right]\\ \\text{the}\\ \\text{equation}\\ \\cos 2x\\ = \\ - \\dfrac{1}{2}has\\ \\text{the}\\ \\text{solutions}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "2x\\ = \\ \\dfrac{2\\pi }{3}\\text{and}\\ 2x\\ = \\ \\dfrac{4\\pi }{3}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(divide each value by 2)",
             "added": true
           },
-          "∴ x = π/3  and  x = 2π/3 are the critical points,",
+          {
+            "text": "\\therefore \\ x\\ = \\ \\dfrac{\\pi }{3}\\text{and}\\ x\\ = \\ \\dfrac{2\\pi }{3}\\text{are}\\ \\text{the}\\ \\text{critical}\\ \\text{points},",
+            "style": "normal",
+            "render": "katex"
+          },
           "and both lie in [0, π]."
         ],
         "recall": {
@@ -177,11 +193,27 @@
         ],
         "memory_tip": "Solve for the angle 2x first, over its range [0, 2π], and divide by 2 only at the end.",
         "lines_compact": [
-          "1 + 2cos 2x = 0   ⇒   cos 2x = −1/2",
+          {
+            "text": "1\\ + \\ 2\\cos 2x\\ = \\ 0\\ \\Rightarrow \\ \\cos 2x\\ = \\ - \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           "x lies in [0, π], so 2x lies in [0, 2π].",
-          "In [0, 2π] the equation cos 2x = −1/2 has the solutions",
-          "2x = 2π/3   and   2x = 4π/3",
-          "∴ x = π/3  and  x = 2π/3 are the critical points,",
+          {
+            "text": "\\text{In}\\ \\left[0,\\ 2\\pi \\right]\\ \\text{the}\\ \\text{equation}\\ \\cos 2x\\ = \\ - \\dfrac{1}{2}has\\ \\text{the}\\ \\text{solutions}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "2x\\ = \\ \\dfrac{2\\pi }{3}\\text{and}\\ 2x\\ = \\ \\dfrac{4\\pi }{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ x\\ = \\ \\dfrac{\\pi }{3}\\text{and}\\ x\\ = \\ \\dfrac{2\\pi }{3}\\text{are}\\ \\text{the}\\ \\text{critical}\\ \\text{points},",
+            "style": "normal",
+            "render": "katex"
+          },
           "and both lie in [0, π]."
         ]
       },
@@ -209,7 +241,11 @@
             "style": "indent",
             "added": true
           },
-          "f(π/3) = π/3 + sin(2π/3) = π/3 + √3/2 ≈ 1.9132",
+          {
+            "text": "f\\left(\\dfrac{\\pi }{3}\\right)\\ = \\ \\dfrac{\\pi }{3} + \\ \\sin \\left(\\dfrac{2\\pi }{3}\\right)\\ = \\ \\dfrac{\\pi }{3} + \\ \\dfrac{\\sqrt{3}}{2} \\approx \\ 1.9132",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(sin(4π/3) = sin(π + π/3) = −sin(π/3) = −√3/2;",
             "added": true
@@ -219,7 +255,11 @@
             "style": "indent",
             "added": true
           },
-          "f(2π/3) = 2π/3 + sin(4π/3) = 2π/3 − √3/2 ≈ 1.2284",
+          {
+            "text": "f\\left(\\dfrac{2\\pi }{3}\\right)\\ = \\ \\dfrac{2\\pi }{3} + \\ \\sin \\left(\\dfrac{4\\pi }{3}\\right)\\ = \\ \\dfrac{2\\pi }{3} - \\ \\dfrac{\\sqrt{3}}{2} \\approx \\ 1.2284",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(sin 2π = 0 and π ≈ 3.1416)",
             "added": true
@@ -259,8 +299,16 @@
           "For an absolute extremum on a closed interval,",
           "evaluate f at every critical point AND at both endpoints.",
           "f(0) = 0 + sin 0 = 0",
-          "f(π/3) = π/3 + sin(2π/3) = π/3 + √3/2 ≈ 1.9132",
-          "f(2π/3) = 2π/3 + sin(4π/3) = 2π/3 − √3/2 ≈ 1.2284",
+          {
+            "text": "f\\left(\\dfrac{\\pi }{3}\\right)\\ = \\ \\dfrac{\\pi }{3} + \\ \\sin \\left(\\dfrac{2\\pi }{3}\\right)\\ = \\ \\dfrac{\\pi }{3} + \\ \\dfrac{\\sqrt{3}}{2} \\approx \\ 1.9132",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "f\\left(\\dfrac{2\\pi }{3}\\right)\\ = \\ \\dfrac{2\\pi }{3} + \\ \\sin \\left(\\dfrac{4\\pi }{3}\\right)\\ = \\ \\dfrac{2\\pi }{3} - \\ \\dfrac{\\sqrt{3}}{2} \\approx \\ 1.2284",
+            "style": "normal",
+            "render": "katex"
+          },
           "f(π) = π + sin 2π = π + 0 = π ≈ 3.1416"
         ]
       },

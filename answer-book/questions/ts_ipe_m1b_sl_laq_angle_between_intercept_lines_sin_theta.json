@@ -65,10 +65,26 @@
           "a and b are intercepts, and a > b > 0",
           "(a > b > 0 gives a² > b², and a > 0, b > 0 give 2ab > 0)",
           "⇒ a² − b² > 0 and 2ab > 0",
-          "(multiply x/a + y/b = 1 by ab: bx + ay = ab)",
-          "x/a + y/b = 1  ⇒  bx + ay − ab = 0 ……(1)",
-          "(multiply x/b + y/a = 1 by ab: ax + by = ab)",
-          "x/b + y/a = 1  ⇒  ax + by − ab = 0 ……(2)"
+          {
+            "text": "\\left(\\text{multiply}\\ \\dfrac{x}{a} + \\ \\dfrac{y}{b} = \\ 1\\ \\text{by}\\ ab:\\ bx\\ + \\ ay\\ = \\ ab\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{x}{a} + \\ \\dfrac{y}{b} = \\ 1\\ \\Rightarrow \\ bx\\ + \\ ay\\ - \\ ab\\ = \\ 0\\ \\dots \\dots \\left(1\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{multiply}\\ \\dfrac{x}{b} + \\ \\dfrac{y}{a} = \\ 1\\ \\text{by}\\ ab:\\ ax\\ + \\ \\text{by}\\ = \\ ab\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{x}{b} + \\ \\dfrac{y}{a} = \\ 1\\ \\Rightarrow \\ ax\\ + \\ \\text{by}\\ - \\ ab\\ = \\ 0\\ \\dots \\dots \\left(2\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -116,12 +132,20 @@
             "style": "indent",
             "added": true
           },
-          "Slope of (1) is m₁ = −b/a",
+          {
+            "text": "\\text{Slope}\\ \\text{of}\\ \\left(1\\right)\\ \\text{is}\\ m_{1}\\ = \\ - \\dfrac{b}{a}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(in (2), p = a and q = b)",
             "added": true
           },
-          "Slope of (2) is m₂ = −a/b",
+          {
+            "text": "\\text{Slope}\\ \\text{of}\\ \\left(2\\right)\\ \\text{is}\\ m_{2}\\ = \\ - \\dfrac{a}{b}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(the coefficient of y is a or b, not 0, in each line)",
             "added": true
@@ -158,8 +182,16 @@
         "mark_note": "Method",
         "memory_tip": "The two lines are the same equation with a and b swapped, so their slopes are reciprocals.",
         "lines_compact": [
-          "Slope of (1) is m₁ = −b/a",
-          "Slope of (2) is m₂ = −a/b",
+          {
+            "text": "\\text{Slope}\\ \\text{of}\\ \\left(1\\right)\\ \\text{is}\\ m_{1}\\ = \\ - \\dfrac{b}{a}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Slope}\\ \\text{of}\\ \\left(2\\right)\\ \\text{is}\\ m_{2}\\ = \\ - \\dfrac{a}{b}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Neither line is vertical, so both slopes exist."
         ]
       },
@@ -179,7 +211,11 @@
             "style": "indent",
             "added": true
           },
-          "tan θ = |(m₁ − m₂)/(1 + m₁m₂)|",
+          {
+            "text": "\\tan \\theta \\ = \\ \\left|\\dfrac{m_{1}\\ - \\ m_{2}}{1\\ + \\ m_{1}m_{2}}\\right|",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(−b/a − (−a/b) = −b/a + a/b; common denominator ab:",
             "added": true
@@ -189,12 +225,22 @@
             "style": "indent",
             "added": true
           },
-          "m₁ − m₂ = −b/a + a/b = (a² − b²)/(ab)",
           {
-            "text": "((−b/a)(−a/b) = ab/(ab) = 1)",
+            "text": "m_{1}\\ - \\ m_{2}\\ = \\ - \\dfrac{b}{a} + \\ \\dfrac{a}{b} = \\ \\dfrac{a^{2}\\ - \\ b^{2}}{ab}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\left( - \\dfrac{b}{a}\\right)\\left( - \\dfrac{a}{b}\\right)\\ = \\ \\dfrac{ab}{ab} = \\ 1\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "1 + m₁m₂ = 1 + (−b/a)(−a/b) = 1 + 1 = 2"
+          {
+            "text": "1\\ + \\ m_{1}m_{2}\\ = \\ 1\\ + \\ \\left( - \\dfrac{b}{a}\\right)\\left( - \\dfrac{a}{b}\\right)\\ = \\ 1\\ + \\ 1\\ = \\ 2",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -226,9 +272,21 @@
         "mark_note": "Method",
         "memory_tip": "m₁m₂ = 1 here, so the denominator is always 2.",
         "lines_compact": [
-          "tan θ = |(m₁ − m₂)/(1 + m₁m₂)|",
-          "m₁ − m₂ = −b/a + a/b = (a² − b²)/(ab)",
-          "1 + m₁m₂ = 1 + (−b/a)(−a/b) = 1 + 1 = 2"
+          {
+            "text": "\\tan \\theta \\ = \\ \\left|\\dfrac{m_{1}\\ - \\ m_{2}}{1\\ + \\ m_{1}m_{2}}\\right|",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "m_{1}\\ - \\ m_{2}\\ = \\ - \\dfrac{b}{a} + \\ \\dfrac{a}{b} = \\ \\dfrac{a^{2}\\ - \\ b^{2}}{ab}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "1\\ + \\ m_{1}m_{2}\\ = \\ 1\\ + \\ \\left( - \\dfrac{b}{a}\\right)\\left( - \\dfrac{a}{b}\\right)\\ = \\ 1\\ + \\ 1\\ = \\ 2",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -242,12 +300,20 @@
             "text": "(put the two results of step 3 into the formula)",
             "added": true
           },
-          "tan θ = |((a² − b²)/(ab)) / 2|",
+          {
+            "text": "\\tan \\theta \\ = \\ \\left|\\dfrac{\\dfrac{a^{2}\\ - \\ b^{2}}{ab}}{2}\\right|",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(dividing by 2 puts a 2 into the denominator)",
             "added": true
           },
-          "= |(a² − b²)/(2ab)|",
+          {
+            "text": "= \\ \\left|\\dfrac{a^{2}\\ - \\ b^{2}}{2ab}\\right|",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(a² − b² > 0 and 2ab > 0, so the fraction is positive",
             "added": true
@@ -257,7 +323,11 @@
             "style": "indent",
             "added": true
           },
-          "∴ tan θ = (a² − b²)/(2ab),  as a > b > 0"
+          {
+            "text": "\\therefore \\ \\tan \\theta \\ = \\ \\dfrac{a^{2}\\ - \\ b^{2}}{2ab},\\ \\text{as}\\ a\\ > \\ b\\ > \\ 0",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -289,9 +359,21 @@
         "mark_note": "Method",
         "memory_tip": "The modulus means θ is the ACUTE angle; with a > b > 0 it opens as it stands.",
         "lines_compact": [
-          "tan θ = |((a² − b²)/(ab)) / 2|",
-          "= |(a² − b²)/(2ab)|",
-          "∴ tan θ = (a² − b²)/(2ab),  as a > b > 0"
+          {
+            "text": "\\tan \\theta \\ = \\ \\left|\\dfrac{\\dfrac{a^{2}\\ - \\ b^{2}}{ab}}{2}\\right|",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left|\\dfrac{a^{2}\\ - \\ b^{2}}{2ab}\\right|",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\tan \\theta \\ = \\ \\dfrac{a^{2}\\ - \\ b^{2}}{2ab},\\ \\text{as}\\ a\\ > \\ b\\ > \\ 0",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -336,8 +418,9 @@
             "added": true
           },
           {
-            "text": "∴ sin θ = (a² − b²)/(a² + b²)",
-            "style": "boxed"
+            "text": "\\therefore \\ \\sin \\theta \\ = \\ \\dfrac{a^{2}\\ - \\ b^{2}}{a^{2}\\ + \\ b^{2}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -374,8 +457,9 @@
           "Hypotenuse = √((a² − b²)² + (2ab)²)",
           "= √(a⁴ + 2a²b² + b⁴) = a² + b²",
           {
-            "text": "∴ sin θ = (a² − b²)/(a² + b²)",
-            "style": "boxed"
+            "text": "\\therefore \\ \\sin \\theta \\ = \\ \\dfrac{a^{2}\\ - \\ b^{2}}{a^{2}\\ + \\ b^{2}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

@@ -58,9 +58,17 @@
           "Let f(x) = cot x, where sin x ≠ 0",
           "(the definition of the derivative from the first principle)",
           "By the first principle,",
-          "f′(x) = lim(h → 0) [f(x + h) − f(x)]/h",
+          {
+            "text": "f'\\left(x\\right)\\ = \\ \\dfrac{\\lim \\left(h\\ \\to \\ 0\\right)\\left[f\\left(x\\ + \\ h\\right)\\ - \\ f\\left(x\\right)\\right]}{h}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(f(x + h) = cot(x + h))",
-          "= lim(h → 0) [cot(x + h) − cot x]/h"
+          {
+            "text": "= \\ \\dfrac{\\lim \\left(h\\ \\to \\ 0\\right)\\left[\\cot \\left(x\\ + \\ h\\right)\\ - \\ \\cot x\\right]}{h}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -98,9 +106,17 @@
         "mark_note": "Method",
         "margin_note": "Two marks: one for the common denominator, one for showing that the numerator becomes −sin h. The minus is produced by the order of subtraction, not put in by hand.",
         "lines": [
-          "cot θ = cos θ/sin θ, so",
+          {
+            "text": "\\cot \\theta \\ = \\ \\dfrac{\\cos \\theta }{\\sin \\theta },\\ \\text{so}",
+            "style": "normal",
+            "render": "katex"
+          },
           "cot(x + h) − cot x",
-          "= cos(x+h)/sin(x+h) − cos x/sin x",
+          {
+            "text": "= \\ \\dfrac{\\cos \\left(x + h\\right)}{\\sin \\left(x + h\\right)} - \\ \\dfrac{\\cos x}{\\sin x}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(subtract the fractions over the common denominator",
             "added": true
@@ -131,7 +147,11 @@
             "text": "(dividing by h puts h in the denominator)",
             "added": true
           },
-          "f′(x) = lim(h → 0) (−sin h)/[h sin(x+h) sin x]"
+          {
+            "text": "f'\\left(x\\right)\\ = \\ \\dfrac{\\lim \\left(h\\ \\to \\ 0\\right)\\left( - \\sin h\\right)}{h\\sin \\left(x + h\\right)\\sin x}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -163,13 +183,25 @@
         ],
         "memory_tip": "cot is cos over sin, so the top comes out as sin of (the second angle minus the first). Here that is x − (x + h) = −h.",
         "lines_compact": [
-          "cot θ = cos θ/sin θ, so",
+          {
+            "text": "\\cot \\theta \\ = \\ \\dfrac{\\cos \\theta }{\\sin \\theta },\\ \\text{so}",
+            "style": "normal",
+            "render": "katex"
+          },
           "cot(x + h) − cot x",
-          "= cos(x+h)/sin(x+h) − cos x/sin x",
+          {
+            "text": "= \\ \\dfrac{\\cos \\left(x + h\\right)}{\\sin \\left(x + h\\right)} - \\ \\dfrac{\\cos x}{\\sin x}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Numerator = cos(x+h) sin x − cos x sin(x+h)",
           "= sin(x − (x + h)) = sin(−h) = −sin h",
           "Denominator = sin(x + h) sin x",
-          "f′(x) = lim(h → 0) (−sin h)/[h sin(x+h) sin x]"
+          {
+            "text": "f'\\left(x\\right)\\ = \\ \\dfrac{\\lim \\left(h\\ \\to \\ 0\\right)\\left( - \\sin h\\right)}{h\\sin \\left(x + h\\right)\\sin x}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -180,24 +212,43 @@
         "mark_note": "Answer",
         "margin_note": "Last mark. sin²x sits in the denominator, so the answer is −cosec²x. Write the cosec form: that is the form the answer key uses.",
         "lines": [
-          "Split it as −(sin h)/h · 1/[sin(x+h) sin x]",
           {
-            "text": "(sin is continuous, and lim(h → 0) (sin h)/h = 1)",
-            "added": true
+            "text": "\\text{Split}\\ \\text{it}\\ \\text{as}\\ - \\dfrac{\\sin h}{h} \\cdot \\ \\dfrac{1}{\\sin \\left(x + h\\right)\\sin x}",
+            "style": "normal",
+            "render": "katex"
           },
-          "As h → 0, (sin h)/h → 1 and sin(x + h) → sin x",
           {
-            "text": "(−1 · 1/(sin x · sin x))",
-            "added": true
-          },
-          "f′(x) = −1/(sin x · sin x) = −1/sin²x",
-          {
-            "text": "(1/sin x = cosec x, so 1/sin²x = cosec²x)",
+            "text": "\\left(\\sin \\text{is}\\ \\text{continuous},\\ \\text{and}\\ \\dfrac{\\lim \\left(h\\ \\to \\ 0\\right)\\left(\\sin h\\right)}{h} = \\ 1\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ d/dx (cot x) = −cosec²x",
-            "style": "boxed"
+            "text": "\\text{As}\\ h\\ \\to \\ 0,\\ \\dfrac{\\sin h}{h} \\to \\ 1\\ \\text{and}\\ \\sin \\left(x\\ + \\ h\\right)\\ \\to \\ \\sin x",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left( - 1\\ \\cdot \\ \\dfrac{1}{\\sin x\\ \\cdot \\ \\sin x}\\right)",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "f'\\left(x\\right)\\ = \\ - \\dfrac{1}{\\sin x\\ \\cdot \\ \\sin x} = \\ - \\dfrac{1}{\\sin ^{2} x}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{1}{\\sin x} = \\ \\cos ecx,\\ \\text{so}\\ \\dfrac{1}{\\sin ^{2} x} = \\ \\cos ec^{2}x\\right)",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{d}{dx}\\left(\\cot x\\right)\\ = \\ - \\cos ec^{2}x",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -228,12 +279,25 @@
         ],
         "memory_tip": "One over sine is cosec. sin²x underneath becomes cosec²x on top, with the minus kept.",
         "lines_compact": [
-          "Split it as −(sin h)/h · 1/[sin(x+h) sin x]",
-          "As h → 0, (sin h)/h → 1 and sin(x + h) → sin x",
-          "f′(x) = −1/(sin x · sin x) = −1/sin²x",
           {
-            "text": "∴ d/dx (cot x) = −cosec²x",
-            "style": "boxed"
+            "text": "\\text{Split}\\ \\text{it}\\ \\text{as}\\ - \\dfrac{\\sin h}{h} \\cdot \\ \\dfrac{1}{\\sin \\left(x + h\\right)\\sin x}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{As}\\ h\\ \\to \\ 0,\\ \\dfrac{\\sin h}{h} \\to \\ 1\\ \\text{and}\\ \\sin \\left(x\\ + \\ h\\right)\\ \\to \\ \\sin x",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "f'\\left(x\\right)\\ = \\ - \\dfrac{1}{\\sin x\\ \\cdot \\ \\sin x} = \\ - \\dfrac{1}{\\sin ^{2} x}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{d}{dx}\\left(\\cot x\\right)\\ = \\ - \\cos ec^{2}x",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

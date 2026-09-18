@@ -59,9 +59,17 @@
             "style": "indent"
           },
           "Take u = Cot⁻¹(x³). Then y = u²",
-          "and d/dx(u²) = 2u · du/dx",
+          {
+            "text": "\\text{and}\\ \\dfrac{d}{dx}\\left(u^{2}\\right)\\ = \\ 2u\\ \\cdot \\ \\dfrac{du}{dx}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(put u = Cot⁻¹(x³) back)",
-          "∴ dy/dx = 2·Cot⁻¹(x³) · d/dx(Cot⁻¹(x³))"
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ 2 \\cdot \\operatorname{Cot}^{-1}\\left(x^{3}\\right)\\ \\cdot \\ \\dfrac{d}{dx}\\left(\\operatorname{Cot}^{-1}\\left(x^{3}\\right)\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -109,25 +117,46 @@
             "style": "indent",
             "added": true
           },
-          "For v = x³,  d/dx(Cot⁻¹v) = −1/(1 + v²) · dv/dx",
-          "and  dv/dx = 3x²",
           {
-            "text": "(put v = x³ and dv/dx = 3x²: −1/(1 + x⁶) · 3x²)",
+            "text": "\\text{For}\\ v\\ = \\ x^{3},\\ \\dfrac{d}{dx}\\left(\\operatorname{Cot}^{-1} v\\right)\\ = \\ - \\dfrac{1}{1\\ + \\ v^{2}} \\cdot \\ \\dfrac{dv}{dx}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ \\dfrac{dv}{dx}\\ = \\ 3x^{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{put}\\ v\\ = \\ x^{3}\\ \\text{and}\\ \\dfrac{dv}{dx}\\ = \\ 3x^{2}:\\ - \\dfrac{1}{1\\ + \\ x^{6}} \\cdot \\ 3x^{2}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "(x³)² = x⁶, so d/dx(Cot⁻¹(x³)) = −3x²/(1 + x⁶)",
           {
-            "text": "(put −3x²/(1 + x⁶) in place of d/dx(Cot⁻¹(x³)) in step 1)",
+            "text": "\\left(x^{3}\\right)^{2}\\ = \\ x^{6},\\ \\text{so}\\ \\dfrac{d}{dx}\\left(\\operatorname{Cot}^{-1}\\left(x^{3}\\right)\\right)\\ = \\ - \\dfrac{3x^{2}}{1\\ + \\ x^{6}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{put}\\ - \\dfrac{3x^{2}}{1\\ + \\ x^{6}}\\text{in}\\ \\text{place}\\ \\text{of}\\ \\dfrac{d}{dx}\\left(\\operatorname{Cot}^{-1}\\left(x^{3}\\right)\\right)\\ \\text{in}\\ \\text{step}\\ 1\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "∴ dy/dx = 2·Cot⁻¹(x³) · (−3x²/(1 + x⁶))",
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ 2 \\cdot \\operatorname{Cot}^{-1}\\left(x^{3}\\right)\\ \\cdot \\ \\left( - \\dfrac{3x^{2}}{1\\ + \\ x^{6}}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(2 · (−3x²) = −6x²)",
             "added": true
           },
           {
-            "text": "∴ d/dx[(Cot⁻¹(x³))²] = −6x²·Cot⁻¹(x³)/(1 + x⁶)",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{d}{dx}\\left[\\left(\\operatorname{Cot}^{-1}\\left(x^{3}\\right)\\right)^{2}\\right]\\ = \\ - 6x^{2} \\cdot \\dfrac{\\operatorname{Cot}^{-1}\\left(x^{3}\\right)}{1\\ + \\ x^{6}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -158,13 +187,30 @@
           "Writing 1 + x³ or 1 + x⁹ in the denominator instead of 1 + x⁶."
         ],
         "lines_compact": [
-          "For v = x³,  d/dx(Cot⁻¹v) = −1/(1 + v²) · dv/dx",
-          "and  dv/dx = 3x²",
-          "(x³)² = x⁶, so d/dx(Cot⁻¹(x³)) = −3x²/(1 + x⁶)",
-          "∴ dy/dx = 2·Cot⁻¹(x³) · (−3x²/(1 + x⁶))",
           {
-            "text": "∴ d/dx[(Cot⁻¹(x³))²] = −6x²·Cot⁻¹(x³)/(1 + x⁶)",
-            "style": "boxed"
+            "text": "\\text{For}\\ v\\ = \\ x^{3},\\ \\dfrac{d}{dx}\\left(\\operatorname{Cot}^{-1} v\\right)\\ = \\ - \\dfrac{1}{1\\ + \\ v^{2}} \\cdot \\ \\dfrac{dv}{dx}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ \\dfrac{dv}{dx}\\ = \\ 3x^{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(x^{3}\\right)^{2}\\ = \\ x^{6},\\ \\text{so}\\ \\dfrac{d}{dx}\\left(\\operatorname{Cot}^{-1}\\left(x^{3}\\right)\\right)\\ = \\ - \\dfrac{3x^{2}}{1\\ + \\ x^{6}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ 2 \\cdot \\operatorname{Cot}^{-1}\\left(x^{3}\\right)\\ \\cdot \\ \\left( - \\dfrac{3x^{2}}{1\\ + \\ x^{6}}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{d}{dx}\\left[\\left(\\operatorname{Cot}^{-1}\\left(x^{3}\\right)\\right)^{2}\\right]\\ = \\ - 6x^{2} \\cdot \\dfrac{\\operatorname{Cot}^{-1}\\left(x^{3}\\right)}{1\\ + \\ x^{6}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

@@ -61,11 +61,23 @@
             "text": "  (y₂ − y₁)/(x₂ − x₁))",
             "style": "indent"
           },
-          "(2 − 3 = −1, and (7 − y)/(−1) = −(7 − y) = y − 7)",
-          "Slope of AB is  m₁ = (7 − y)/(2 − 3) = (7 − y)/(−1) = y − 7",
+          {
+            "text": "\\left(2\\ - \\ 3\\ = \\ - 1,\\ \\text{and}\\ \\dfrac{7\\ - \\ y}{ - 1} = \\ - \\left(7\\ - \\ y\\right)\\ = \\ y\\ - \\ 7\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Slope}\\ \\text{of}\\ AB\\ \\text{is}\\ m_{1}\\ = \\ \\dfrac{7\\ - \\ y}{2\\ - \\ 3} = \\ \\dfrac{7\\ - \\ y}{ - 1} = \\ y\\ - \\ 7",
+            "style": "normal",
+            "render": "katex"
+          },
           "Again, we take C = (−1, 4), D = (0, 6);",
           "(6 − 4 = 2 and 0 − (−1) = 1)",
-          "Slope of CD is  m₂ = (6 − 4)/(0 + 1) = 2/1 = 2"
+          {
+            "text": "\\text{Slope}\\ \\text{of}\\ CD\\ \\text{is}\\ m_{2}\\ = \\ \\dfrac{6\\ - \\ 4}{0\\ + \\ 1} = \\ \\dfrac{2}{1} = \\ 2",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",

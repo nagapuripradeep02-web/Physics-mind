@@ -53,7 +53,11 @@
             "style": "heading"
           },
           "This is a rectilinear motion question.",
-          "Velocity v = dS/dt, and the question asks for",
+          {
+            "text": "\\text{Velocity}\\ v\\ = \\ \\dfrac{dS}{dt},\\ \\text{and}\\ \\text{the}\\ \\text{question}\\ \\text{asks}\\ \\text{for}",
+            "style": "normal",
+            "render": "katex"
+          },
           "the times and also the positions at those times.",
           "S = t³ − 9t² + 24t − 18",
           "(d/dt of t³ is 3t², of 9t² is 18t, of 24t is 24;",
@@ -61,7 +65,11 @@
             "text": "  then take out the common factor 3)",
             "style": "indent"
           },
-          "v = dS/dt = 3t² − 18t + 24 = 3(t² − 6t + 8)",
+          {
+            "text": "v\\ = \\ \\dfrac{dS}{dt}\\ = \\ 3t^{2}\\ - \\ 18t\\ + \\ 24\\ = \\ 3\\left(t^{2}\\ - \\ 6t\\ + \\ 8\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "((t − 2)(t − 4) = t² − 6t + 8)",
           "v = 0  ⇒  3(t − 2)(t − 4) = 0  ⇒  t = 2 or t = 4"
         ],

@@ -67,8 +67,16 @@
           },
           "Comparing with ax² + 2hxy + by² + 2gx + 2fy + c = 0",
           "we get",
-          "a = 3, 2h = 7 ⇒ h = 7/2, b = 2,",
-          "2g = 5 ⇒ g = 5/2, 2f = 5 ⇒ f = 5/2, c = 2"
+          {
+            "text": "a\\ = \\ 3,\\ 2h\\ = \\ 7\\ \\Rightarrow \\ h\\ = \\ \\dfrac{7}{2},\\ b\\ = \\ 2,",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "2g\\ = \\ 5\\ \\Rightarrow \\ g\\ = \\ \\dfrac{5}{2},\\ 2f\\ = \\ 5\\ \\Rightarrow \\ f\\ = \\ \\dfrac{5}{2},\\ c\\ = \\ 2",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -113,13 +121,20 @@
           },
           "(i) Δ = abc + 2fgh − af² − bg² − ch²",
           {
-            "text": "(put a = 3, b = 2, c = 2, f = 5/2, g = 5/2, h = 7/2)",
+            "text": "\\left(\\text{put}\\ a\\ = \\ 3,\\ b\\ = \\ 2,\\ c\\ = \\ 2,\\ f\\ = \\ \\dfrac{5}{2},\\ g\\ = \\ \\dfrac{5}{2},\\ h\\ = \\ \\dfrac{7}{2}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= 3(2)(2) + 2(5/2)(5/2)(7/2)",
           {
-            "text": "  − 3(5/2)² − 2(5/2)² − 2(7/2)²",
-            "style": "indent"
+            "text": "= \\ 3\\left(2\\right)\\left(2\\right)\\ + \\ 2\\left(\\dfrac{5}{2}\\right)\\left(\\dfrac{5}{2}\\right)\\left(\\dfrac{7}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "- \\ 3\\left(\\dfrac{5}{2}\\right)^{2}\\ - \\ 2\\left(\\dfrac{5}{2}\\right)^{2}\\ - \\ 2\\left(\\dfrac{7}{2}\\right)^{2}",
+            "style": "indent",
+            "render": "katex"
           },
           {
             "text": "(3(2)(2) = 12 = 48/4; 2(5/2)(5/2)(7/2) = 175/4;",
@@ -130,12 +145,20 @@
             "style": "indent",
             "added": true
           },
-          "= 12 + 175/4 − 75/4 − 50/4 − 98/4",
+          {
+            "text": "= \\ 12\\ + \\ \\dfrac{175}{4} - \\ \\dfrac{75}{4} - \\ \\dfrac{50}{4} - \\ \\dfrac{98}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(48 + 175 = 223, and 75 + 50 + 98 = 223)",
             "added": true
           },
-          "= (48 + 175 − 75 − 50 − 98)/4 = 0/4 = 0"
+          {
+            "text": "= \\ \\dfrac{48\\ + \\ 175\\ - \\ 75\\ - \\ 50\\ - \\ 98}{4} = \\ \\dfrac{0}{4} = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -168,13 +191,26 @@
         "memory_tip": "Δ = abc + 2fgh − af² − bg² − ch² is zero exactly when the equation factors into two linear factors (real or not).",
         "lines_compact": [
           "(i) Δ = abc + 2fgh − af² − bg² − ch²",
-          "= 3(2)(2) + 2(5/2)(5/2)(7/2)",
           {
-            "text": "  − 3(5/2)² − 2(5/2)² − 2(7/2)²",
-            "style": "indent"
+            "text": "= \\ 3\\left(2\\right)\\left(2\\right)\\ + \\ 2\\left(\\dfrac{5}{2}\\right)\\left(\\dfrac{5}{2}\\right)\\left(\\dfrac{7}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
           },
-          "= 12 + 175/4 − 75/4 − 50/4 − 98/4",
-          "= (48 + 175 − 75 − 50 − 98)/4 = 0/4 = 0"
+          {
+            "text": "- \\ 3\\left(\\dfrac{5}{2}\\right)^{2}\\ - \\ 2\\left(\\dfrac{5}{2}\\right)^{2}\\ - \\ 2\\left(\\dfrac{7}{2}\\right)^{2}",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 12\\ + \\ \\dfrac{175}{4} - \\ \\dfrac{75}{4} - \\ \\dfrac{50}{4} - \\ \\dfrac{98}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{48\\ + \\ 175\\ - \\ 75\\ - \\ 50\\ - \\ 98}{4} = \\ \\dfrac{0}{4} = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -185,31 +221,52 @@
         "margin_note": "One mark. Δ = 0 alone is not enough — the three inequalities confirm the factors are REAL rather than complex. All four conditions together prove it.",
         "lines": [
           {
-            "text": "((7/2)² = 49/4, 6 = 24/4)",
+            "text": "\\left(\\left(\\dfrac{7}{2}\\right)^{2}\\ = \\ \\dfrac{49}{4},\\ 6\\ = \\ \\dfrac{24}{4}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "(ii) h² − ab = (7/2)² − 3(2) = 49/4 − 6",
           {
-            "text": "  = (49 − 24)/4 = 25/4 > 0",
-            "style": "indent"
+            "text": "\\left(ii\\right)h^{2}\\ - \\ ab\\ = \\ \\left(\\dfrac{7}{2}\\right)^{2}\\ - \\ 3\\left(2\\right)\\ = \\ \\dfrac{49}{4} - \\ 6",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "((5/2)² = 25/4, 4 = 16/4)",
+            "text": "= \\ \\dfrac{49\\ - \\ 24}{4} = \\ \\dfrac{25}{4} > \\ 0",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\left(\\dfrac{5}{2}\\right)^{2}\\ = \\ \\dfrac{25}{4},\\ 4\\ = \\ \\dfrac{16}{4}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "(iii) f² − bc = (5/2)² − 2(2) = 25/4 − 4",
           {
-            "text": "  = (25 − 16)/4 = 9/4 > 0",
-            "style": "indent"
+            "text": "\\left(iii\\right)f^{2}\\ - \\ bc\\ = \\ \\left(\\dfrac{5}{2}\\right)^{2}\\ - \\ 2\\left(2\\right)\\ = \\ \\dfrac{25}{4} - \\ 4",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "(6 = 24/4)",
+            "text": "= \\ \\dfrac{25\\ - \\ 16}{4} = \\ \\dfrac{9}{4} > \\ 0",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(6\\ = \\ \\dfrac{24}{4}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "(iv) g² − ac = (5/2)² − 3(2) = 25/4 − 6",
           {
-            "text": "  = (25 − 24)/4 = 1/4 > 0",
-            "style": "indent"
+            "text": "\\left(iv\\right)g^{2}\\ - \\ ac\\ = \\ \\left(\\dfrac{5}{2}\\right)^{2}\\ - \\ 3\\left(2\\right)\\ = \\ \\dfrac{25}{4} - \\ 6",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{25\\ - \\ 24}{4} = \\ \\dfrac{1}{4} > \\ 0",
+            "style": "indent",
+            "render": "katex"
           },
           "All the four conditions of a pair of lines are satisfied.",
           "So, the given equation represents a pair of straight lines."
@@ -244,20 +301,35 @@
         "mark_note": "Method",
         "memory_tip": "The three inequalities confirm the factors are real, not complex. All four conditions together prove it.",
         "lines_compact": [
-          "(ii) h² − ab = (7/2)² − 3(2) = 49/4 − 6",
           {
-            "text": "  = (49 − 24)/4 = 25/4 > 0",
-            "style": "indent"
+            "text": "\\left(ii\\right)h^{2}\\ - \\ ab\\ = \\ \\left(\\dfrac{7}{2}\\right)^{2}\\ - \\ 3\\left(2\\right)\\ = \\ \\dfrac{49}{4} - \\ 6",
+            "style": "normal",
+            "render": "katex"
           },
-          "(iii) f² − bc = (5/2)² − 2(2) = 25/4 − 4",
           {
-            "text": "  = (25 − 16)/4 = 9/4 > 0",
-            "style": "indent"
+            "text": "= \\ \\dfrac{49\\ - \\ 24}{4} = \\ \\dfrac{25}{4} > \\ 0",
+            "style": "indent",
+            "render": "katex"
           },
-          "(iv) g² − ac = (5/2)² − 3(2) = 25/4 − 6",
           {
-            "text": "  = (25 − 24)/4 = 1/4 > 0",
-            "style": "indent"
+            "text": "\\left(iii\\right)f^{2}\\ - \\ bc\\ = \\ \\left(\\dfrac{5}{2}\\right)^{2}\\ - \\ 2\\left(2\\right)\\ = \\ \\dfrac{25}{4} - \\ 4",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{25\\ - \\ 16}{4} = \\ \\dfrac{9}{4} > \\ 0",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(iv\\right)g^{2}\\ - \\ ac\\ = \\ \\left(\\dfrac{5}{2}\\right)^{2}\\ - \\ 3\\left(2\\right)\\ = \\ \\dfrac{25}{4} - \\ 6",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{25\\ - \\ 24}{4} = \\ \\dfrac{1}{4} > \\ 0",
+            "style": "indent",
+            "render": "katex"
           },
           "All the four conditions of a pair of lines are satisfied.",
           "So, the given equation represents a pair of straight lines."
@@ -275,15 +347,26 @@
             "added": true
           },
           "(b) Point of intersection",
-          "P = ((hf − bg)/(ab − h²), (gh − af)/(ab − h²))",
           {
-            "text": "(put h = 7/2, f = 5/2, b = 2, g = 5/2, a = 3)",
+            "text": "P\\ = \\ \\left(\\dfrac{hf\\ - \\ bg}{ab\\ - \\ h^{2}},\\ \\dfrac{gh\\ - \\ af}{ab\\ - \\ h^{2}}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{put}\\ h\\ = \\ \\dfrac{7}{2},\\ f\\ = \\ \\dfrac{5}{2},\\ b\\ = \\ 2,\\ g\\ = \\ \\dfrac{5}{2},\\ a\\ = \\ 3\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "(hf − bg)/(ab − h²)",
           {
-            "text": "  = [(7/2)(5/2) − 2(5/2)] / [3(2) − (7/2)²]",
-            "style": "indent"
+            "text": "\\dfrac{hf\\ - \\ bg}{ab\\ - \\ h^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\left(\\dfrac{7}{2}\\right)\\left(\\dfrac{5}{2}\\right)\\ - \\ 2\\left(\\dfrac{5}{2}\\right)}{3\\left(2\\right)\\ - \\ \\left(\\dfrac{7}{2}\\right)^{2}}",
+            "style": "indent",
+            "render": "katex"
           },
           {
             "text": "((7/2)(5/2) = 35/4, 2(5/2) = 10/2;",
@@ -294,14 +377,21 @@
             "style": "indent",
             "added": true
           },
-          "= (35/4 − 10/2) / (6 − 49/4)",
           {
-            "text": "(10/2 = 20/4 and 6 = 24/4)",
+            "text": "= \\ \\dfrac{\\dfrac{35}{4} - \\ \\dfrac{10}{2}}{6\\ - \\ \\dfrac{49}{4}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{10}{2} = \\ \\dfrac{20}{4}\\text{and}\\ 6\\ = \\ \\dfrac{24}{4}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "  = (35/4 − 20/4) / ((24 − 49)/4)",
-            "style": "indent"
+            "text": "= \\ \\dfrac{\\dfrac{35}{4} - \\ \\dfrac{20}{4}}{\\dfrac{24\\ - \\ 49}{4}}",
+            "style": "indent",
+            "render": "katex"
           },
           {
             "text": "(35 − 20 = 15 and 24 − 49 = −25;",
@@ -313,46 +403,67 @@
             "added": true
           },
           {
-            "text": "  = (15/4)/(−25/4) = −3/5",
-            "style": "indent"
+            "text": "= \\ \\dfrac{\\dfrac{15}{4}}{ - \\dfrac{25}{4}} = \\ - \\dfrac{3}{5}",
+            "style": "indent",
+            "render": "katex"
           },
           {
-            "text": "(put g = 5/2, h = 7/2, a = 3, f = 5/2)",
-            "added": true
-          },
-          "(gh − af)/(ab − h²)",
-          {
-            "text": "  = [(5/2)(7/2) − 3(5/2)] / [3(2) − (7/2)²]",
-            "style": "indent"
-          },
-          {
-            "text": "((5/2)(7/2) = 35/4, 3(5/2) = 15/2)",
-            "added": true
-          },
-          "= (35/4 − 15/2) / (6 − 49/4)",
-          {
-            "text": "(15/2 = 30/4)",
+            "text": "\\left(\\text{put}\\ g\\ = \\ \\dfrac{5}{2},\\ h\\ = \\ \\dfrac{7}{2},\\ a\\ = \\ 3,\\ f\\ = \\ \\dfrac{5}{2}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "  = (35/4 − 30/4) / ((24 − 49)/4)",
-            "style": "indent"
+            "text": "\\dfrac{gh\\ - \\ af}{ab\\ - \\ h^{2}}",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "(35 − 30 = 5; 5/(−25) = −1/5)",
+            "text": "= \\ \\dfrac{\\left(\\dfrac{5}{2}\\right)\\left(\\dfrac{7}{2}\\right)\\ - \\ 3\\left(\\dfrac{5}{2}\\right)}{3\\left(2\\right)\\ - \\ \\left(\\dfrac{7}{2}\\right)^{2}}",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\left(\\dfrac{5}{2}\\right)\\left(\\dfrac{7}{2}\\right)\\ = \\ \\dfrac{35}{4},\\ 3\\left(\\dfrac{5}{2}\\right)\\ = \\ \\dfrac{15}{2}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "  = (5/4)/(−25/4) = −1/5",
-            "style": "indent"
+            "text": "= \\ \\dfrac{\\dfrac{35}{4} - \\ \\dfrac{15}{2}}{6\\ - \\ \\dfrac{49}{4}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{15}{2} = \\ \\dfrac{30}{4}\\right)",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "= \\ \\dfrac{\\dfrac{35}{4} - \\ \\dfrac{30}{4}}{\\dfrac{24\\ - \\ 49}{4}}",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(35\\ - \\ 30\\ = \\ 5;\\ \\dfrac{5}{ - 25} = \\ - \\dfrac{1}{5}\\right)",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "= \\ \\dfrac{\\dfrac{5}{4}}{ - \\dfrac{25}{4}} = \\ - \\dfrac{1}{5}",
+            "style": "indent",
+            "render": "katex"
           },
           {
             "text": "(check: the equation factorises as (3x + y + 2)(x + 2y + 1),",
             "added": true
           },
           {
-            "text": "  and (−3/5, −1/5) satisfies both 3x + y = −2",
+            "text": "\\text{and}\\ \\left( - \\dfrac{3}{5},\\ - \\dfrac{1}{5}\\right)\\ \\text{satisfies}\\ \\text{both}\\ 3x\\ + \\ y\\ = \\ - 2",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           {
@@ -361,8 +472,9 @@
             "added": true
           },
           {
-            "text": "∴ Point of intersection = (−3/5, −1/5)",
-            "style": "boxed"
+            "text": "\\therefore \\ \\text{Point}\\ \\text{of}\\ \\text{intersection}\\ = \\ \\left( - \\dfrac{3}{5},\\ - \\dfrac{1}{5}\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -396,38 +508,65 @@
         "memory_tip": "The intersection comes from a formula in the same six coefficients — nothing needs solving.",
         "lines_compact": [
           "(b) Point of intersection",
-          "P = ((hf − bg)/(ab − h²), (gh − af)/(ab − h²))",
-          "(hf − bg)/(ab − h²)",
           {
-            "text": "  = [(7/2)(5/2) − 2(5/2)] / [3(2) − (7/2)²]",
-            "style": "indent"
-          },
-          "= (35/4 − 10/2) / (6 − 49/4)",
-          {
-            "text": "  = (35/4 − 20/4) / ((24 − 49)/4)",
-            "style": "indent"
+            "text": "P\\ = \\ \\left(\\dfrac{hf\\ - \\ bg}{ab\\ - \\ h^{2}},\\ \\dfrac{gh\\ - \\ af}{ab\\ - \\ h^{2}}\\right)",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "  = (15/4)/(−25/4) = −3/5",
-            "style": "indent"
-          },
-          "(gh − af)/(ab − h²)",
-          {
-            "text": "  = [(5/2)(7/2) − 3(5/2)] / [3(2) − (7/2)²]",
-            "style": "indent"
-          },
-          "= (35/4 − 15/2) / (6 − 49/4)",
-          {
-            "text": "  = (35/4 − 30/4) / ((24 − 49)/4)",
-            "style": "indent"
+            "text": "\\dfrac{hf\\ - \\ bg}{ab\\ - \\ h^{2}}",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "  = (5/4)/(−25/4) = −1/5",
-            "style": "indent"
+            "text": "= \\ \\dfrac{\\left(\\dfrac{7}{2}\\right)\\left(\\dfrac{5}{2}\\right)\\ - \\ 2\\left(\\dfrac{5}{2}\\right)}{3\\left(2\\right)\\ - \\ \\left(\\dfrac{7}{2}\\right)^{2}}",
+            "style": "indent",
+            "render": "katex"
           },
           {
-            "text": "∴ Point of intersection = (−3/5, −1/5)",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{\\dfrac{35}{4} - \\ \\dfrac{10}{2}}{6\\ - \\ \\dfrac{49}{4}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\dfrac{35}{4} - \\ \\dfrac{20}{4}}{\\dfrac{24\\ - \\ 49}{4}}",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\dfrac{15}{4}}{ - \\dfrac{25}{4}} = \\ - \\dfrac{3}{5}",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{gh\\ - \\ af}{ab\\ - \\ h^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\left(\\dfrac{5}{2}\\right)\\left(\\dfrac{7}{2}\\right)\\ - \\ 3\\left(\\dfrac{5}{2}\\right)}{3\\left(2\\right)\\ - \\ \\left(\\dfrac{7}{2}\\right)^{2}}",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\dfrac{35}{4} - \\ \\dfrac{15}{2}}{6\\ - \\ \\dfrac{49}{4}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\dfrac{35}{4} - \\ \\dfrac{30}{4}}{\\dfrac{24\\ - \\ 49}{4}}",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\dfrac{5}{4}}{ - \\dfrac{25}{4}} = \\ - \\dfrac{1}{5}",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\text{Point}\\ \\text{of}\\ \\text{intersection}\\ = \\ \\left( - \\dfrac{3}{5},\\ - \\dfrac{1}{5}\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

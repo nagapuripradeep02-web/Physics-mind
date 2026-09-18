@@ -56,9 +56,17 @@
           "The condition x > 0 is given",
           "because log x is defined only for positive x.",
           "Take u = log x. Then f(x) = sin u",
-          "and d/dx(sin u) = cos u · du/dx",
+          {
+            "text": "\\text{and}\\ \\dfrac{d}{dx}\\left(\\sin u\\right)\\ = \\ \\cos u\\ \\cdot \\ \\dfrac{du}{dx}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(put u = log x)",
-          "∴ f′(x) = cos(log x) · d/dx(log x)"
+          {
+            "text": "\\therefore \\ f'\\left(x\\right)\\ = \\ \\cos \\left(\\log x\\right)\\ \\cdot \\ \\dfrac{d}{dx}\\left(\\log x\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -101,19 +109,32 @@
             "text": "(the standard derivative of log x, for x > 0)",
             "added": true
           },
-          "d/dx(log x) = 1/x",
           {
-            "text": "(put 1/x in place of d/dx(log x))",
-            "added": true
-          },
-          "∴ f′(x) = cos(log x) · (1/x)",
-          {
-            "text": "(cos(log x) · (1/x) = cos(log x)/x)",
-            "added": true
+            "text": "\\dfrac{d}{dx}\\left(\\log x\\right)\\ = \\ \\dfrac{1}{x}",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "∴ f′(x) = cos(log x)/x",
-            "style": "boxed"
+            "text": "\\left(\\text{put}\\ \\dfrac{1}{x}\\text{in}\\ \\text{place}\\ \\text{of}\\ \\dfrac{d}{dx}\\left(\\log x\\right)\\right)",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "\\therefore \\ f'\\left(x\\right)\\ = \\ \\cos \\left(\\log x\\right)\\ \\cdot \\ \\left(\\dfrac{1}{x}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\cos \\left(\\log x\\right)\\ \\cdot \\ \\left(\\dfrac{1}{x}\\right)\\ = \\ \\dfrac{\\cos \\left(\\log x\\right)}{x}\\right)",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "\\therefore \\ f'\\left(x\\right)\\ = \\ \\dfrac{\\cos \\left(\\log x\\right)}{x}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -144,11 +165,20 @@
           "Writing the answer as cos(log x)·log x by differentiating log x wrongly."
         ],
         "lines_compact": [
-          "d/dx(log x) = 1/x",
-          "∴ f′(x) = cos(log x) · (1/x)",
           {
-            "text": "∴ f′(x) = cos(log x)/x",
-            "style": "boxed"
+            "text": "\\dfrac{d}{dx}\\left(\\log x\\right)\\ = \\ \\dfrac{1}{x}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ f'\\left(x\\right)\\ = \\ \\cos \\left(\\log x\\right)\\ \\cdot \\ \\left(\\dfrac{1}{x}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ f'\\left(x\\right)\\ = \\ \\dfrac{\\cos \\left(\\log x\\right)}{x}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

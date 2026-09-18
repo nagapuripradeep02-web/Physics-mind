@@ -52,12 +52,32 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "(√(l/g) = √l/√g)",
-          "T = 2π√(l/g) = (2π/√g) · √l",
-          "Here 2π and g are constants, so put k = 2π/√g.",
+          {
+            "text": "\\left(\\sqrt{\\dfrac{l}{g}}\\ = \\ \\dfrac{\\sqrt{l}}{\\sqrt{g}}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "T\\ = \\ 2\\pi \\sqrt{\\dfrac{l}{g}}\\ = \\ \\left(\\dfrac{2\\pi }{\\sqrt{g}}\\right)\\ \\cdot \\ \\sqrt{l}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Here}\\ 2\\pi \\ \\text{and}\\ g\\ \\text{are}\\ \\text{constants},\\ \\text{so}\\ \\text{put}\\ k\\ = \\ \\dfrac{2\\pi }{\\sqrt{g}}.",
+            "style": "normal",
+            "render": "katex"
+          },
           "Then T = k√l",
-          "(d/dl of √l is 1/(2√l); multiply both sides by dl)",
-          "dT/dl = k · 1/(2√l)   ⇒   dT = k · dl/(2√l)"
+          {
+            "text": "\\left(\\dfrac{d}{dl}\\ \\text{of}\\ \\sqrt{l}\\ \\text{is}\\ \\dfrac{1}{2\\sqrt{l}};\\ \\text{multiply}\\ \\text{both}\\ \\text{sides}\\ \\text{by}\\ dl\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{dT}{dl}\\ = \\ k\\ \\cdot \\ \\dfrac{1}{2\\sqrt{l}} \\Rightarrow \\ dT\\ = \\ k\\ \\cdot \\ \\dfrac{dl}{2\\sqrt{l}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -100,19 +120,39 @@
             "text": "(divide the result of step 1 by T = k√l)",
             "added": true
           },
-          "dT/T = [k · dl/(2√l)] / (k√l)",
-          "k cancels, and 1/(√l · √l) = 1/l, so",
-          "dT/T = (1/2) · (dl/l)",
+          {
+            "text": "\\dfrac{dT}{T} = \\ \\dfrac{k\\ \\cdot \\ \\dfrac{dl}{2\\sqrt{l}}}{k\\sqrt{l}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "k\\ \\text{cancels},\\ \\text{and}\\ \\dfrac{1}{\\sqrt{l}\\ \\cdot \\ \\sqrt{l}} = \\ \\dfrac{1}{l},\\ \\text{so}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{dT}{T} = \\ \\left(\\dfrac{1}{2}\\right)\\ \\cdot \\ \\left(\\dfrac{dl}{l}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(multiply both sides by 100)",
             "added": true
           },
-          "Percentage error in T = (1/2) × percentage error in l",
+          {
+            "text": "\\text{Percentage}\\ \\text{error}\\ \\text{in}\\ T\\ = \\ \\left(\\dfrac{1}{2}\\right)\\ \\times \\ \\text{percentage}\\ \\text{error}\\ \\text{in}\\ l",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(the percentage error in l is 1)",
             "added": true
           },
-          "= (1/2) × 1 = 0.5",
+          {
+            "text": "= \\ \\left(\\dfrac{1}{2}\\right)\\ \\times \\ 1\\ = \\ 0.5",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ the approximate percentage error in T is 0.5%",
             "style": "boxed"
@@ -146,11 +186,31 @@
           "Giving 2% by multiplying by 2 instead of by ½."
         ],
         "lines_compact": [
-          "dT/T = [k · dl/(2√l)] / (k√l)",
-          "k cancels, and 1/(√l · √l) = 1/l, so",
-          "dT/T = (1/2) · (dl/l)",
-          "Percentage error in T = (1/2) × percentage error in l",
-          "= (1/2) × 1 = 0.5",
+          {
+            "text": "\\dfrac{dT}{T} = \\ \\dfrac{k\\ \\cdot \\ \\dfrac{dl}{2\\sqrt{l}}}{k\\sqrt{l}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "k\\ \\text{cancels},\\ \\text{and}\\ \\dfrac{1}{\\sqrt{l}\\ \\cdot \\ \\sqrt{l}} = \\ \\dfrac{1}{l},\\ \\text{so}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{dT}{T} = \\ \\left(\\dfrac{1}{2}\\right)\\ \\cdot \\ \\left(\\dfrac{dl}{l}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Percentage}\\ \\text{error}\\ \\text{in}\\ T\\ = \\ \\left(\\dfrac{1}{2}\\right)\\ \\times \\ \\text{percentage}\\ \\text{error}\\ \\text{in}\\ l",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{1}{2}\\right)\\ \\times \\ 1\\ = \\ 0.5",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ the approximate percentage error in T is 0.5%",
             "style": "boxed"

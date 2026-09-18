@@ -157,9 +157,15 @@
             "style": "indent",
             "added": true
           },
-          "cos θ₁ = (l²+m²) / [√(l²+m²) · 2√(l²+m²)] = ½",
           {
-            "text": "(cos 60° = ½)",
+            "text": "\\cos \\theta _{1}\\ = \\ \\dfrac{l^{2} + m^{2}}{\\sqrt{l^{2} + m^{2}}\\ \\cdot \\ 2\\sqrt{l^{2} + m^{2}}} = \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\cos 60^{\\circ}\\ = \\ \\dfrac{1}{2}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "∴ θ₁ = 60°"
@@ -197,7 +203,11 @@
           "Dot product = l² − √3lm + m² + √3lm = l² + m²",
           "(l−√3m)² + (m+√3l)² = 4l² + 4m²",
           "So the length of L₁'s normal is 2√(l² + m²)",
-          "cos θ₁ = (l²+m²) / [√(l²+m²) · 2√(l²+m²)] = ½",
+          {
+            "text": "\\cos \\theta _{1}\\ = \\ \\dfrac{l^{2} + m^{2}}{\\sqrt{l^{2} + m^{2}}\\ \\cdot \\ 2\\sqrt{l^{2} + m^{2}}} = \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           "∴ θ₁ = 60°"
         ]
       },
@@ -227,10 +237,16 @@
           },
           "(l+√3m)² + (m−√3l)² = 4l² + 4m² again",
           {
-            "text": "(the same working as step 2 gives cos θ₂ = ½)",
+            "text": "\\left(\\text{the}\\ \\text{same}\\ \\text{working}\\ \\text{as}\\ \\text{step}\\ 2\\ \\text{gives}\\ \\cos \\theta _{2}\\ = \\ \\dfrac{1}{2}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "∴ cos θ₂ = ½, so θ₂ = 60°",
+          {
+            "text": "\\therefore \\ \\cos \\theta _{2}\\ = \\ \\dfrac{1}{2},\\ \\text{so}\\ \\theta _{2}\\ = \\ 60^{\\circ}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(the angles of a triangle add to 180°)",
             "added": true
@@ -271,7 +287,11 @@
           "and (l + √3m, m − √3l).",
           "Dot product = l² + √3lm + m² − √3lm = l² + m²",
           "(l+√3m)² + (m−√3l)² = 4l² + 4m² again",
-          "∴ cos θ₂ = ½, so θ₂ = 60°",
+          {
+            "text": "\\therefore \\ \\cos \\theta _{2}\\ = \\ \\dfrac{1}{2},\\ \\text{so}\\ \\theta _{2}\\ = \\ 60^{\\circ}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Third angle = 180° − 60° − 60° = 60°",
           "All three angles are 60°, so the triangle",
           "is equilateral."
@@ -295,30 +315,55 @@
             "added": true
           },
           "L₁ and L₂ meet at O(0, 0), so the height",
-          "from O to L is d = |n| / √(l² + m²)",
           {
-            "text": "(the height of an equilateral triangle of side s is (√3/2)s)",
+            "text": "\\text{from}\\ O\\ \\text{to}\\ L\\ \\text{is}\\ d\\ = \\ \\dfrac{\\left|n\\right|}{\\sqrt{l^{2}\\ + \\ m^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{the}\\ \\text{height}\\ \\text{of}\\ \\text{an}\\ \\text{equilateral}\\ \\text{triangle}\\ \\text{of}\\ \\text{side}\\ s\\ \\text{is}\\ \\left(\\dfrac{\\sqrt{3}}{2}\\right)s\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "(multiply both sides by 2/√3)",
+            "text": "\\left(\\text{multiply}\\ \\text{both}\\ \\text{sides}\\ \\text{by}\\ \\dfrac{2}{\\sqrt{3}}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "For an equilateral triangle of side s,",
-          "d = (√3/2)s ⇒ s = 2d/√3",
           {
-            "text": "(s² = 4d²/3; (√3/4)(4/3) = √3/3 = 1/√3)",
+            "text": "d\\ = \\ \\left(\\dfrac{\\sqrt{3}}{2}\\right)s\\ \\Rightarrow \\ s\\ = \\ \\dfrac{2d}{\\sqrt{3}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(s^{2}\\ = \\ \\dfrac{4d^{2}}{3};\\ \\left(\\dfrac{\\sqrt{3}}{4}\\right)\\left(\\dfrac{4}{3}\\right)\\ = \\ \\dfrac{\\sqrt{3}}{3} = \\ \\dfrac{1}{\\sqrt{3}}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "Area = (√3/4)s² = (√3/4)(4d²/3) = d²/√3",
           {
-            "text": "(put d² = n²/(l² + m²))",
+            "text": "\\text{Area}\\ = \\ \\left(\\dfrac{\\sqrt{3}}{4}\\right)s^{2}\\ = \\ \\left(\\dfrac{\\sqrt{3}}{4}\\right)\\left(\\dfrac{4d^{2}}{3}\\right)\\ = \\ \\dfrac{d^{2}}{\\sqrt{3}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{put}\\ d^{2}\\ = \\ \\dfrac{n^{2}}{l^{2}\\ + \\ m^{2}}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= n² / [√3(l² + m²)]",
           {
-            "text": "∴ Area = n² / (√3(l² + m²)) sq.units",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{n^{2}}{\\sqrt{3}\\left(l^{2}\\ + \\ m^{2}\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\text{Area}\\ = \\ \\dfrac{n^{2}}{\\sqrt{3}\\left(l^{2}\\ + \\ m^{2}\\right)}sq.\\text{units}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -350,14 +395,31 @@
         ],
         "lines_compact": [
           "L₁ and L₂ meet at O(0, 0), so the height",
-          "from O to L is d = |n| / √(l² + m²)",
-          "For an equilateral triangle of side s,",
-          "d = (√3/2)s ⇒ s = 2d/√3",
-          "Area = (√3/4)s² = (√3/4)(4d²/3) = d²/√3",
-          "= n² / [√3(l² + m²)]",
           {
-            "text": "∴ Area = n² / (√3(l² + m²)) sq.units",
-            "style": "boxed"
+            "text": "\\text{from}\\ O\\ \\text{to}\\ L\\ \\text{is}\\ d\\ = \\ \\dfrac{\\left|n\\right|}{\\sqrt{l^{2}\\ + \\ m^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          "For an equilateral triangle of side s,",
+          {
+            "text": "d\\ = \\ \\left(\\dfrac{\\sqrt{3}}{2}\\right)s\\ \\Rightarrow \\ s\\ = \\ \\dfrac{2d}{\\sqrt{3}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Area}\\ = \\ \\left(\\dfrac{\\sqrt{3}}{4}\\right)s^{2}\\ = \\ \\left(\\dfrac{\\sqrt{3}}{4}\\right)\\left(\\dfrac{4d^{2}}{3}\\right)\\ = \\ \\dfrac{d^{2}}{\\sqrt{3}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{n^{2}}{\\sqrt{3}\\left(l^{2}\\ + \\ m^{2}\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\text{Area}\\ = \\ \\dfrac{n^{2}}{\\sqrt{3}\\left(l^{2}\\ + \\ m^{2}\\right)}sq.\\text{units}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

@@ -130,9 +130,17 @@
             "added": true
           },
           "Perpendicular distance from (α, β) to l₁x + m₁y = 0",
-          "is  p₁ = |l₁α + m₁β| / √(l₁² + m₁²)",
+          {
+            "text": "\\text{is}\\ p_{1}\\ = \\ \\dfrac{\\left|l_{1}\\alpha \\ + \\ m_{1}\\beta \\right|}{\\sqrt{l_{1}^{2}\\ + \\ m_{1}^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Perpendicular distance from (α, β) to l₂x + m₂y = 0",
-          "is  p₂ = |l₂α + m₂β| / √(l₂² + m₂²)"
+          {
+            "text": "\\text{is}\\ p_{2}\\ = \\ \\dfrac{\\left|l_{2}\\alpha \\ + \\ m_{2}\\beta \\right|}{\\sqrt{l_{2}^{2}\\ + \\ m_{2}^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -164,9 +172,17 @@
         "memory_tip": "Each line passes through the origin, so there is no constant: the distance is |lα + mβ| over the root.",
         "lines_compact": [
           "Perpendicular distance from (α, β) to l₁x + m₁y = 0",
-          "is  p₁ = |l₁α + m₁β| / √(l₁² + m₁²)",
+          {
+            "text": "\\text{is}\\ p_{1}\\ = \\ \\dfrac{\\left|l_{1}\\alpha \\ + \\ m_{1}\\beta \\right|}{\\sqrt{l_{1}^{2}\\ + \\ m_{1}^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Perpendicular distance from (α, β) to l₂x + m₂y = 0",
-          "is  p₂ = |l₂α + m₂β| / √(l₂² + m₂²)"
+          {
+            "text": "\\text{is}\\ p_{2}\\ = \\ \\dfrac{\\left|l_{2}\\alpha \\ + \\ m_{2}\\beta \\right|}{\\sqrt{l_{2}^{2}\\ + \\ m_{2}^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -177,13 +193,25 @@
         "margin_note": "One mark. Multiply the two fractions, then multiply out both numerator and denominator so that everything is written in the products that the matched coefficients name.",
         "lines": [
           "∴ Product of perpendiculars",
-          "is  p₁·p₂ = [|l₁α + m₁β| / √(l₁² + m₁²)]",
-          "· [|l₂α + m₂β| / √(l₂² + m₂²)]",
+          {
+            "text": "\\text{is}\\ p_{1} \\cdot p_{2}\\ = \\ \\left[\\dfrac{\\left|l_{1}\\alpha \\ + \\ m_{1}\\beta \\right|}{\\sqrt{l_{1}^{2}\\ + \\ m_{1}^{2}}}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\cdot \\ \\left[\\dfrac{\\left|l_{2}\\alpha \\ + \\ m_{2}\\beta \\right|}{\\sqrt{l_{2}^{2}\\ + \\ m_{2}^{2}}}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(|u| · |v| = |uv| and √U · √V = √(UV))",
             "added": true
           },
-          "= |(l₁α + m₁β)(l₂α + m₂β)| / √((l₁² + m₁²)(l₂² + m₂²))",
+          {
+            "text": "= \\ \\dfrac{\\left|\\left(l_{1}\\alpha \\ + \\ m_{1}\\beta \\right)\\left(l_{2}\\alpha \\ + \\ m_{2}\\beta \\right)\\right|}{\\sqrt{\\left(l_{1}^{2}\\ + \\ m_{1}^{2}\\right)\\left(l_{2}^{2}\\ + \\ m_{2}^{2}\\right)}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(multiply out (l₁α + m₁β)(l₂α + m₂β)",
             "added": true
@@ -230,9 +258,21 @@
         "memory_tip": "Multiply the two fractions and expand both parts into the products that the matched coefficients name.",
         "lines_compact": [
           "∴ Product of perpendiculars",
-          "is  p₁·p₂ = [|l₁α + m₁β| / √(l₁² + m₁²)]",
-          "· [|l₂α + m₂β| / √(l₂² + m₂²)]",
-          "= |(l₁α + m₁β)(l₂α + m₂β)| / √((l₁² + m₁²)(l₂² + m₂²))",
+          {
+            "text": "\\text{is}\\ p_{1} \\cdot p_{2}\\ = \\ \\left[\\dfrac{\\left|l_{1}\\alpha \\ + \\ m_{1}\\beta \\right|}{\\sqrt{l_{1}^{2}\\ + \\ m_{1}^{2}}}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\cdot \\ \\left[\\dfrac{\\left|l_{2}\\alpha \\ + \\ m_{2}\\beta \\right|}{\\sqrt{l_{2}^{2}\\ + \\ m_{2}^{2}}}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\left|\\left(l_{1}\\alpha \\ + \\ m_{1}\\beta \\right)\\left(l_{2}\\alpha \\ + \\ m_{2}\\beta \\right)\\right|}{\\sqrt{\\left(l_{1}^{2}\\ + \\ m_{1}^{2}\\right)\\left(l_{2}^{2}\\ + \\ m_{2}^{2}\\right)}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "= |l₁l₂α² + l₁m₂αβ + l₂m₁αβ + m₁m₂β²|",
           {
             "text": "  / √(l₁²l₂² + l₁²m₂² + l₂²m₁² + m₁²m₂²)",
@@ -279,14 +319,19 @@
             "text": "(2l₁l₂m₁m₂ − 2l₁m₂l₂m₁ = 0)",
             "added": true
           },
-          "= |aα² + 2hαβ + bβ²| / √((l₁l₂ − m₁m₂)² + (l₁m₂ + l₂m₁)²)",
+          {
+            "text": "= \\ \\dfrac{\\left|a\\alpha ^{2}\\ + \\ 2h\\alpha \\beta \\ + \\ b\\beta ^{2}\\right|}{\\sqrt{\\left(l_{1}l_{2}\\ - \\ m_{1}m_{2}\\right)^{2}\\ + \\ \\left(l_{1}m_{2}\\ + \\ l_{2}m_{1}\\right)^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(l₁l₂ − m₁m₂ = a − b and l₁m₂ + l₂m₁ = 2h, so (2h)² = 4h²)",
             "added": true
           },
           {
-            "text": "∴ p₁·p₂ = |aα² + 2hαβ + bβ²| / √((a − b)² + 4h²)",
-            "style": "boxed"
+            "text": "\\therefore \\ p_{1} \\cdot p_{2}\\ = \\ \\dfrac{\\left|a\\alpha ^{2}\\ + \\ 2h\\alpha \\beta \\ + \\ b\\beta ^{2}\\right|}{\\sqrt{\\left(a\\ - \\ b\\right)^{2}\\ + \\ 4h^{2}}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -328,10 +373,15 @@
             "text": "  + (l₁m₂ + l₂m₁)² − 2l₁m₂l₂m₁)",
             "style": "indent"
           },
-          "= |aα² + 2hαβ + bβ²| / √((l₁l₂ − m₁m₂)² + (l₁m₂ + l₂m₁)²)",
           {
-            "text": "∴ p₁·p₂ = |aα² + 2hαβ + bβ²| / √((a − b)² + 4h²)",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{\\left|a\\alpha ^{2}\\ + \\ 2h\\alpha \\beta \\ + \\ b\\beta ^{2}\\right|}{\\sqrt{\\left(l_{1}l_{2}\\ - \\ m_{1}m_{2}\\right)^{2}\\ + \\ \\left(l_{1}m_{2}\\ + \\ l_{2}m_{1}\\right)^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ p_{1} \\cdot p_{2}\\ = \\ \\dfrac{\\left|a\\alpha ^{2}\\ + \\ 2h\\alpha \\beta \\ + \\ b\\beta ^{2}\\right|}{\\sqrt{\\left(a\\ - \\ b\\right)^{2}\\ + \\ 4h^{2}}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

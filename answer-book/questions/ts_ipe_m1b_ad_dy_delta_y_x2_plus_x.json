@@ -71,10 +71,26 @@
             "style": "heading"
           },
           "y = x² + x,  x = 10,  Δx = 0.1",
-          "(d/dx of x² is 2x, and d/dx of x is 1)",
-          "dy/dx = 2x + 1",
-          "(the differential: dy = (dy/dx) · Δx)",
-          "dy = (dy/dx)·Δx = (2x + 1)Δx",
+          {
+            "text": "\\left(\\dfrac{d}{dx}\\ \\text{of}\\ x^{2}\\ \\text{is}\\ 2x,\\ \\text{and}\\ \\dfrac{d}{dx}\\ \\text{of}\\ x\\ \\text{is}\\ 1\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{dy}{dx}\\ = \\ 2x\\ + \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{the}\\ \\text{differential}:\\ dy\\ = \\ \\left(\\dfrac{dy}{dx}\\right)\\ \\cdot \\ \\Delta x\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "dy\\ = \\ \\left(\\dfrac{dy}{dx}\\right) \\cdot \\Delta x\\ = \\ \\left(2x\\ + \\ 1\\right)\\Delta x",
+            "style": "normal",
+            "render": "katex"
+          },
           "(put 10 in place of x: 2(10) + 1 = 21)",
           "= (2(10) + 1)(0.1) = 21 × 0.1",
           "(21 × 0.1 = 2.1)",

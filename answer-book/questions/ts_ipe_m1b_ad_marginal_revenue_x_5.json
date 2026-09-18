@@ -54,10 +54,22 @@
           },
           "This is a rate measure question.",
           "Marginal revenue is the rate of change of total revenue,",
-          "so marginal revenue = dR/dx.",
+          {
+            "text": "\\text{so}\\ \\text{marginal}\\ \\text{revenue}\\ = \\ \\dfrac{dR}{dx}.",
+            "style": "normal",
+            "render": "katex"
+          },
           "R(x) = 3x² + 36x + 5",
-          "(d/dx of 3x² is 3(2x), of 36x is 36, and of 5 is 0)",
-          "dR/dx = 3(2x) + 36",
+          {
+            "text": "\\left(\\dfrac{d}{dx}\\ \\text{of}\\ 3x^{2}\\ \\text{is}\\ 3\\left(2x\\right),\\ \\text{of}\\ 36x\\ \\text{is}\\ 36,\\ \\text{and}\\ \\text{of}\\ 5\\ \\text{is}\\ 0\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{dR}{dx}\\ = \\ 3\\left(2x\\right)\\ + \\ 36",
+            "style": "normal",
+            "render": "katex"
+          },
           "(3 × 2x = 6x)",
           "= 6x + 36"
         ],
@@ -104,7 +116,11 @@
             "added": true
           },
           "At x = 5,",
-          "dR/dx = 6(5) + 36",
+          {
+            "text": "\\dfrac{dR}{dx}\\ = \\ 6\\left(5\\right)\\ + \\ 36",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(6 × 5 = 30)",
             "added": true
@@ -149,7 +165,11 @@
         ],
         "lines_compact": [
           "At x = 5,",
-          "dR/dx = 6(5) + 36",
+          {
+            "text": "\\dfrac{dR}{dx}\\ = \\ 6\\left(5\\right)\\ + \\ 36",
+            "style": "normal",
+            "render": "katex"
+          },
           "= 30 + 36",
           {
             "text": "∴ marginal revenue at x = 5 is 66 rupees per unit",

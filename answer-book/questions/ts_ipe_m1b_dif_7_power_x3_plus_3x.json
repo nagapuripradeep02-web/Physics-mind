@@ -107,9 +107,15 @@
             "style": "indent",
             "added": true
           },
-          "d/dx(x³ + 3x) = 3x² + 3 = 3(x² + 1)",
           {
-            "text": "(put 3(x² + 1) in place of d/dx(x³ + 3x))",
+            "text": "\\dfrac{d}{dx}\\left(x^{3}\\ + \\ 3x\\right)\\ = \\ 3x^{2}\\ + \\ 3\\ = \\ 3\\left(x^{2}\\ + \\ 1\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{put}\\ 3\\left(x^{2}\\ + \\ 1\\right)\\ \\text{in}\\ \\text{place}\\ \\text{of}\\ \\dfrac{d}{dx}\\left(x^{3}\\ + \\ 3x\\right)\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "∴ dy/dx = 7ˣ³⁺³ˣ · logₑ7 · 3(x² + 1)",
@@ -150,7 +156,11 @@
           "Writing the exponent's derivative as 3x² only, dropping the 3."
         ],
         "lines_compact": [
-          "d/dx(x³ + 3x) = 3x² + 3 = 3(x² + 1)",
+          {
+            "text": "\\dfrac{d}{dx}\\left(x^{3}\\ + \\ 3x\\right)\\ = \\ 3x^{2}\\ + \\ 3\\ = \\ 3\\left(x^{2}\\ + \\ 1\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "∴ dy/dx = 7ˣ³⁺³ˣ · logₑ7 · 3(x² + 1)",
           {
             "text": "∴ d/dx(7ˣ³⁺³ˣ) = 3(x² + 1)·7ˣ³⁺³ˣ·logₑ7",

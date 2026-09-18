@@ -58,7 +58,11 @@
             "text": "  d/dx(x¹⁰⁰) = 100x⁹⁹)",
             "style": "indent"
           },
-          "Using d/dx(xⁿ) = nxⁿ⁻¹ on each term,",
+          {
+            "text": "\\text{Using}\\ \\dfrac{d}{dx}\\left(x^{n}\\right)\\ = \\ nx^{n-1}\\ \\text{on}\\ \\text{each}\\ \\text{term},",
+            "style": "normal",
+            "render": "katex"
+          },
           "f′(x) = 0 + 1 + 2x + 3x² + ⋯ + 100x⁹⁹"
         ],
         "recall": {
@@ -105,13 +109,21 @@
             "added": true
           },
           "f′(1) = 1 + 2 + 3 + ⋯ + 100",
-          "Sum of the first n natural numbers = n(n+1)/2,",
+          {
+            "text": "\\text{Sum}\\ \\text{of}\\ \\text{the}\\ \\text{first}\\ n\\ \\text{natural}\\ \\text{numbers}\\ = \\ \\dfrac{n\\left(n + 1\\right)}{2},",
+            "style": "normal",
+            "render": "katex"
+          },
           "with n = 100",
           {
             "text": "(put n = 100: n + 1 = 101)",
             "added": true
           },
-          "= (100 × 101)/2 = 10100/2",
+          {
+            "text": "= \\ \\dfrac{100\\ \\times \\ 101}{2} = \\ \\dfrac{10100}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(10100 ÷ 2 = 5050)",
             "added": true
@@ -152,9 +164,17 @@
           "Put x = 1. Every power of 1 equals 1,",
           "so each term reduces to its coefficient.",
           "f′(1) = 1 + 2 + 3 + ⋯ + 100",
-          "Sum of the first n natural numbers = n(n+1)/2,",
+          {
+            "text": "\\text{Sum}\\ \\text{of}\\ \\text{the}\\ \\text{first}\\ n\\ \\text{natural}\\ \\text{numbers}\\ = \\ \\dfrac{n\\left(n + 1\\right)}{2},",
+            "style": "normal",
+            "render": "katex"
+          },
           "with n = 100",
-          "= (100 × 101)/2 = 10100/2",
+          {
+            "text": "= \\ \\dfrac{100\\ \\times \\ 101}{2} = \\ \\dfrac{10100}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ f′(1) = 5050",
             "style": "boxed"

@@ -113,13 +113,15 @@
             "added": true
           },
           {
-            "text": "  = y · (1/x) + log x · (dy/dx);",
+            "text": "= \\ y\\ \\cdot \\ \\left(\\dfrac{1}{x}\\right)\\ + \\ \\log x\\ \\cdot \\ \\left(\\dfrac{dy}{dx}\\right);",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "  right: x · d/dx(log y) + log y · d/dx(x)",
+            "text": "\\text{right}:\\ x\\ \\cdot \\ \\dfrac{d}{dx}\\left(\\log y\\right)\\ + \\ \\log y\\ \\cdot \\ \\dfrac{d}{dx}\\left(x\\right)",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           {
@@ -129,12 +131,22 @@
           },
           "Differentiating (1) with respect to x,",
           "using the product rule on each side,",
-          "y · (1/x) + log x · (dy/dx) = x · (1/y)(dy/dx) + log y · 1",
           {
-            "text": "(y · (1/x) = y/x and x · (1/y) = x/y)",
+            "text": "y\\ \\cdot \\ \\left(\\dfrac{1}{x}\\right)\\ + \\ \\log x\\ \\cdot \\ \\left(\\dfrac{dy}{dx}\\right)\\ = \\ x\\ \\cdot \\ \\left(\\dfrac{1}{y}\\right)\\left(\\dfrac{dy}{dx}\\right)\\ + \\ \\log y\\ \\cdot \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(y\\ \\cdot \\ \\left(\\dfrac{1}{x}\\right)\\ = \\ \\dfrac{y}{x}\\text{and}\\ x\\ \\cdot \\ \\left(\\dfrac{1}{y}\\right)\\ = \\ \\dfrac{x}{y}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "∴ (y/x) + log x · (dy/dx) = (x/y)(dy/dx) + log y      …(2)"
+          {
+            "text": "\\therefore \\ \\left(\\dfrac{y}{x}\\right)\\ + \\ \\log x\\ \\cdot \\ \\left(\\dfrac{dy}{dx}\\right)\\ = \\ \\left(\\dfrac{x}{y}\\right)\\left(\\dfrac{dy}{dx}\\right)\\ + \\ \\log y\\ \\dots \\left(2\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -168,8 +180,16 @@
         "lines_compact": [
           "Differentiating (1) with respect to x,",
           "using the product rule on each side,",
-          "y · (1/x) + log x · (dy/dx) = x · (1/y)(dy/dx) + log y · 1",
-          "∴ (y/x) + log x · (dy/dx) = (x/y)(dy/dx) + log y      …(2)"
+          {
+            "text": "y\\ \\cdot \\ \\left(\\dfrac{1}{x}\\right)\\ + \\ \\log x\\ \\cdot \\ \\left(\\dfrac{dy}{dx}\\right)\\ = \\ x\\ \\cdot \\ \\left(\\dfrac{1}{y}\\right)\\left(\\dfrac{dy}{dx}\\right)\\ + \\ \\log y\\ \\cdot \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\left(\\dfrac{y}{x}\\right)\\ + \\ \\log x\\ \\cdot \\ \\left(\\dfrac{dy}{dx}\\right)\\ = \\ \\left(\\dfrac{x}{y}\\right)\\left(\\dfrac{dy}{dx}\\right)\\ + \\ \\log y\\ \\dots \\left(2\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -190,14 +210,28 @@
             "style": "indent",
             "added": true
           },
-          "From (2), bringing the dy/dx terms to the left",
-          "and the rest to the right,",
-          "log x · (dy/dx) − (x/y)(dy/dx) = log y − (y/x)",
           {
-            "text": "(take out the common factor dy/dx)",
+            "text": "\\text{From}\\ \\left(2\\right),\\ \\text{bringing}\\ \\text{the}\\ \\dfrac{dy}{dx}\\ \\text{terms}\\ \\text{to}\\ \\text{the}\\ \\text{left}",
+            "style": "normal",
+            "render": "katex"
+          },
+          "and the rest to the right,",
+          {
+            "text": "\\log x\\ \\cdot \\ \\left(\\dfrac{dy}{dx}\\right)\\ - \\ \\left(\\dfrac{x}{y}\\right)\\left(\\dfrac{dy}{dx}\\right)\\ = \\ \\log y\\ - \\ \\left(\\dfrac{y}{x}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{take}\\ \\text{out}\\ \\text{the}\\ \\text{common}\\ \\text{factor}\\ \\dfrac{dy}{dx}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "∴ (dy/dx)[log x − (x/y)] = log y − (y/x)      …(3)"
+          {
+            "text": "\\therefore \\ \\left(\\dfrac{dy}{dx}\\right)\\left[\\log x\\ - \\ \\left(\\dfrac{x}{y}\\right)\\right]\\ = \\ \\log y\\ - \\ \\left(\\dfrac{y}{x}\\right)\\ \\dots \\left(3\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -229,10 +263,22 @@
           "Taking dy/dx outside but leaving one of its terms behind on the right."
         ],
         "lines_compact": [
-          "From (2), bringing the dy/dx terms to the left",
+          {
+            "text": "\\text{From}\\ \\left(2\\right),\\ \\text{bringing}\\ \\text{the}\\ \\dfrac{dy}{dx}\\ \\text{terms}\\ \\text{to}\\ \\text{the}\\ \\text{left}",
+            "style": "normal",
+            "render": "katex"
+          },
           "and the rest to the right,",
-          "log x · (dy/dx) − (x/y)(dy/dx) = log y − (y/x)",
-          "∴ (dy/dx)[log x − (x/y)] = log y − (y/x)      …(3)"
+          {
+            "text": "\\log x\\ \\cdot \\ \\left(\\dfrac{dy}{dx}\\right)\\ - \\ \\left(\\dfrac{x}{y}\\right)\\left(\\dfrac{dy}{dx}\\right)\\ = \\ \\log y\\ - \\ \\left(\\dfrac{y}{x}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\left(\\dfrac{dy}{dx}\\right)\\left[\\log x\\ - \\ \\left(\\dfrac{x}{y}\\right)\\right]\\ = \\ \\log y\\ - \\ \\left(\\dfrac{y}{x}\\right)\\ \\dots \\left(3\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -245,17 +291,33 @@
         "memory_tip": "The y that was under the bracket on the left ends up on top of the answer, and the x that was under the right side ends up on the bottom.",
         "lines": [
           {
-            "text": "(log x − x/y = (y log x)/y − x/y)",
+            "text": "\\left(\\log x\\ - \\ \\dfrac{x}{y} = \\ \\dfrac{y\\log x}{y} - \\ \\dfrac{x}{y}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "(log y − y/x = (x log y)/x − y/x)",
+            "text": "\\left(\\log y\\ - \\ \\dfrac{y}{x} = \\ \\dfrac{x\\log y}{x} - \\ \\dfrac{y}{x}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "Writing each side over a single denominator,",
-          "log x − (x/y) = (y log x − x)/y",
-          "and     log y − (y/x) = (x log y − y)/x",
-          "So (3) becomes  (dy/dx) · (y log x − x)/y = (x log y − y)/x",
+          {
+            "text": "\\log x\\ - \\ \\left(\\dfrac{x}{y}\\right)\\ = \\ \\dfrac{y\\log x\\ - \\ x}{y}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ \\log y\\ - \\ \\left(\\dfrac{y}{x}\\right)\\ = \\ \\dfrac{x\\log y\\ - \\ y}{x}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{So}\\ \\left(3\\right)\\ \\text{becomes}\\ \\left(\\dfrac{dy}{dx}\\right)\\ \\cdot \\ \\dfrac{y\\log x\\ - \\ x}{y} = \\ \\dfrac{x\\log y\\ - \\ y}{x}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(multiply both sides by y/(y log x − x),",
             "added": true
@@ -265,7 +327,11 @@
             "style": "indent",
             "added": true
           },
-          "∴ dy/dx = [(x log y − y)/x] · [y/(y log x − x)]",
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ \\left[\\dfrac{x\\log y\\ - \\ y}{x}\\right]\\ \\cdot \\ \\left[\\dfrac{y}{y\\log x\\ - \\ x}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(multiply the two fractions: numerator y(x log y − y),",
             "added": true
@@ -276,8 +342,9 @@
             "added": true
           },
           {
-            "text": "∴ dy/dx = y(x log y − y) / (x(y log x − x))",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{y\\left(x\\log y\\ - \\ y\\right)}{x\\left(y\\log x\\ - \\ x\\right)}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -311,13 +378,30 @@
         ],
         "lines_compact": [
           "Writing each side over a single denominator,",
-          "log x − (x/y) = (y log x − x)/y",
-          "and     log y − (y/x) = (x log y − y)/x",
-          "So (3) becomes  (dy/dx) · (y log x − x)/y = (x log y − y)/x",
-          "∴ dy/dx = [(x log y − y)/x] · [y/(y log x − x)]",
           {
-            "text": "∴ dy/dx = y(x log y − y) / (x(y log x − x))",
-            "style": "boxed"
+            "text": "\\log x\\ - \\ \\left(\\dfrac{x}{y}\\right)\\ = \\ \\dfrac{y\\log x\\ - \\ x}{y}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ \\log y\\ - \\ \\left(\\dfrac{y}{x}\\right)\\ = \\ \\dfrac{x\\log y\\ - \\ y}{x}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{So}\\ \\left(3\\right)\\ \\text{becomes}\\ \\left(\\dfrac{dy}{dx}\\right)\\ \\cdot \\ \\dfrac{y\\log x\\ - \\ x}{y} = \\ \\dfrac{x\\log y\\ - \\ y}{x}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ \\left[\\dfrac{x\\log y\\ - \\ y}{x}\\right]\\ \\cdot \\ \\left[\\dfrac{y}{y\\log x\\ - \\ x}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{y\\left(x\\log y\\ - \\ y\\right)}{x\\left(y\\log x\\ - \\ x\\right)}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

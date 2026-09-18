@@ -54,14 +54,22 @@
           },
           "This is a rate measure question.",
           "Marginal cost is the rate of change of total cost,",
-          "so marginal cost = dC/dx.",
+          {
+            "text": "\\text{so}\\ \\text{marginal}\\ \\cos t\\ = \\ \\dfrac{dC}{dx}.",
+            "style": "normal",
+            "render": "katex"
+          },
           "C(x) = 0.005x³ − 0.02x² + 30x + 500",
           "(power rule on each term: d/dx of x³ is 3x²,",
           {
             "text": "  of x² is 2x, of 30x is 30, and of 500 is 0)",
             "style": "indent"
           },
-          "dC/dx = 0.005(3x²) − 0.02(2x) + 30",
+          {
+            "text": "\\dfrac{dC}{dx}\\ = \\ 0.005\\left(3x^{2}\\right)\\ - \\ 0.02\\left(2x\\right)\\ + \\ 30",
+            "style": "normal",
+            "render": "katex"
+          },
           "(0.005 × 3 = 0.015 and 0.02 × 2 = 0.04)",
           "= 0.015x² − 0.04x + 30"
         ],
@@ -108,7 +116,11 @@
             "added": true
           },
           "At x = 3,",
-          "dC/dx = 0.015(3)² − 0.04(3) + 30",
+          {
+            "text": "\\dfrac{dC}{dx}\\ = \\ 0.015\\left(3\\right)^{2}\\ - \\ 0.04\\left(3\\right)\\ + \\ 30",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(3² = 9, and 0.04 × 3 = 0.12)",
             "added": true
@@ -162,7 +174,11 @@
         ],
         "lines_compact": [
           "At x = 3,",
-          "dC/dx = 0.015(3)² − 0.04(3) + 30",
+          {
+            "text": "\\dfrac{dC}{dx}\\ = \\ 0.015\\left(3\\right)^{2}\\ - \\ 0.04\\left(3\\right)\\ + \\ 30",
+            "style": "normal",
+            "render": "katex"
+          },
           "= 0.015(9) − 0.12 + 30",
           "= 0.135 − 0.12 + 30",
           {

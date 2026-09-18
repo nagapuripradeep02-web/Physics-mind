@@ -464,12 +464,22 @@
             "text": "(adding removes y: −y + y = 0; x + 2x = 3x)",
             "added": true
           },
-          "(4) + (5) ⇒ 3x + 1 = 0   ⇒   3x = −1   ⇒   x = −1/3",
           {
-            "text": "(put x = −1/3 in (5), which gives y = −2x)",
+            "text": "\\left(4\\right)\\ + \\ \\left(5\\right)\\ \\Rightarrow \\ 3x\\ + \\ 1\\ = \\ 0\\ \\Rightarrow \\ 3x\\ = \\ - 1\\ \\Rightarrow \\ x\\ = \\ - \\dfrac{1}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{put}\\ x\\ = \\ - \\dfrac{1}{3}\\text{in}\\ \\left(5\\right),\\ \\text{which}\\ \\text{gives}\\ y\\ = \\ - 2x\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "(5) ⇒ y = −2x = −2(−1/3) = 2/3",
+          {
+            "text": "\\left(5\\right)\\ \\Rightarrow \\ y\\ = \\ - 2x\\ = \\ - 2\\left( - \\dfrac{1}{3}\\right)\\ = \\ \\dfrac{2}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(check: SA² = (−1/3)² + (8/3)² = 65/9",
             "added": true
@@ -480,8 +490,9 @@
             "added": true
           },
           {
-            "text": "∴ Circumcentre S = (−1/3, 2/3)",
-            "style": "boxed"
+            "text": "\\therefore \\ \\text{Circumcentre}\\ S\\ = \\ \\left( - \\dfrac{1}{3},\\ \\dfrac{2}{3}\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -513,11 +524,20 @@
         "mark_note": "Solution",
         "lines_compact": [
           "Step-6: Solving (4) & (5) we get S;",
-          "(4) + (5) ⇒ 3x + 1 = 0   ⇒   3x = −1   ⇒   x = −1/3",
-          "(5) ⇒ y = −2x = −2(−1/3) = 2/3",
           {
-            "text": "∴ Circumcentre S = (−1/3, 2/3)",
-            "style": "boxed"
+            "text": "\\left(4\\right)\\ + \\ \\left(5\\right)\\ \\Rightarrow \\ 3x\\ + \\ 1\\ = \\ 0\\ \\Rightarrow \\ 3x\\ = \\ - 1\\ \\Rightarrow \\ x\\ = \\ - \\dfrac{1}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(5\\right)\\ \\Rightarrow \\ y\\ = \\ - 2x\\ = \\ - 2\\left( - \\dfrac{1}{3}\\right)\\ = \\ \\dfrac{2}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\text{Circumcentre}\\ S\\ = \\ \\left( - \\dfrac{1}{3},\\ \\dfrac{2}{3}\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

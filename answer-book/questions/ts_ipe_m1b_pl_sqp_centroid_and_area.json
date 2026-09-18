@@ -193,17 +193,29 @@
           },
           "∴ The centroid of the triangle formed by",
           "O(0,0), A(6, 6), B(−6, −18) is",
-          "G = ((x₁ + x₂ + x₃)/3, (y₁ + y₂ + y₃)/3)",
+          {
+            "text": "G\\ = \\ \\left(\\dfrac{x_{1}\\ + \\ x_{2}\\ + \\ x_{3}}{3},\\ \\dfrac{y_{1}\\ + \\ y_{2}\\ + \\ y_{3}}{3}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(put the three vertices)",
             "added": true
           },
-          "= ((0 + 6 − 6)/3, (0 + 6 − 18)/3)",
+          {
+            "text": "= \\ \\left(\\dfrac{0\\ + \\ 6\\ - \\ 6}{3},\\ \\dfrac{0\\ + \\ 6\\ - \\ 18}{3}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(0 + 6 − 6 = 0 and 0 + 6 − 18 = −12)",
             "added": true
           },
-          "= (0/3, −12/3) = (0, −4)"
+          {
+            "text": "= \\ \\left(\\dfrac{0}{3},\\ - \\dfrac{12}{3}\\right)\\ = \\ \\left(0,\\ - 4\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -237,9 +249,21 @@
         "lines_compact": [
           "∴ The centroid of the triangle formed by",
           "O(0,0), A(6, 6), B(−6, −18) is",
-          "G = ((x₁ + x₂ + x₃)/3, (y₁ + y₂ + y₃)/3)",
-          "= ((0 + 6 − 6)/3, (0 + 6 − 18)/3)",
-          "= (0/3, −12/3) = (0, −4)"
+          {
+            "text": "G\\ = \\ \\left(\\dfrac{x_{1}\\ + \\ x_{2}\\ + \\ x_{3}}{3},\\ \\dfrac{y_{1}\\ + \\ y_{2}\\ + \\ y_{3}}{3}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{0\\ + \\ 6\\ - \\ 6}{3},\\ \\dfrac{0\\ + \\ 6\\ - \\ 18}{3}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{0}{3},\\ - \\dfrac{12}{3}\\right)\\ = \\ \\left(0,\\ - 4\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -258,12 +282,20 @@
             "text": "(x₁ = 6, y₁ = 6 and x₂ = −6, y₂ = −18)",
             "added": true
           },
-          "= ½ |6(−18) − (−6)(6)|",
+          {
+            "text": "= \\ \\dfrac{1}{2}\\left|6\\left( - 18\\right)\\ - \\ \\left( - 6\\right)\\left(6\\right)\\right|",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(6(−18) = −108 and −(−6)(6) = +36; |−72| = 72)",
             "added": true
           },
-          "= ½ |−108 + 36| = ½ |−72| = ½ (72)",
+          {
+            "text": "= \\ \\dfrac{1}{2}\\left| - 108\\ + \\ 36\\right|\\ = \\ \\dfrac{1}{2}\\left| - 72\\right|\\ = \\ \\dfrac{1}{2}\\left(72\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ Area = 36 sq.units,  and the centroid is (0, −4)",
             "style": "boxed"
@@ -300,8 +332,16 @@
         "memory_tip": "With a vertex at the origin the determinant becomes ½|x₁y₂ − x₂y₁|.",
         "lines_compact": [
           "Area of △OAB = ½ |x₁y₂ − x₂y₁|",
-          "= ½ |6(−18) − (−6)(6)|",
-          "= ½ |−108 + 36| = ½ |−72| = ½ (72)",
+          {
+            "text": "= \\ \\dfrac{1}{2}\\left|6\\left( - 18\\right)\\ - \\ \\left( - 6\\right)\\left(6\\right)\\right|",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{1}{2}\\left| - 108\\ + \\ 36\\right|\\ = \\ \\dfrac{1}{2}\\left| - 72\\right|\\ = \\ \\dfrac{1}{2}\\left(72\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ Area = 36 sq.units,  and the centroid is (0, −4)",
             "style": "boxed"

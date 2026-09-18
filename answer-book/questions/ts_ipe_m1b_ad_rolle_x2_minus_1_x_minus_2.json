@@ -104,7 +104,9 @@
         "memory_tip": "Simplify the surd before dividing: √28 = 2√7 turns (4 ± 2√7)/6 into (2 ± √7)/3.",
         "lines": [
           {
-            "text": "(d/dx of x³ is 3x², of 2x² is 4x, and of x is 1)",
+            "text": "\\left(\\dfrac{d}{dx}\\ \\text{of}\\ x^{3}\\ \\text{is}\\ 3x^{2},\\ \\text{of}\\ 2x^{2}\\ \\text{is}\\ 4x,\\ \\text{and}\\ \\text{of}\\ x\\ \\text{is}\\ 1\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "f′(x) = 3x² − 4x − 1",
@@ -123,14 +125,19 @@
             "style": "indent",
             "added": true
           },
-          "⇒ x = (4 ± √(16 + 12))/6 = (4 ± √28)/6 = (4 ± 2√7)/6",
+          {
+            "text": "\\Rightarrow \\ x\\ = \\ \\dfrac{4\\ \\pm \\ \\sqrt{16\\ + \\ 12}}{6} = \\ \\dfrac{4\\ \\pm \\ \\sqrt{28}}{6} = \\ \\dfrac{4\\ \\pm \\ 2\\sqrt{7}}{6}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(divide the top and the bottom by 2)",
             "added": true
           },
           {
-            "text": "  = (2 ± √7)/3",
-            "style": "indent"
+            "text": "= \\ \\dfrac{2\\ \\pm \\ \\sqrt{7}}{3}",
+            "style": "indent",
+            "render": "katex"
           },
           {
             "text": "((2 + 2.646)/3 = 4.646/3 ≈ 1.549",
@@ -141,8 +148,16 @@
             "style": "indent",
             "added": true
           },
-          "√7 ≈ 2.646, so the roots are (2 + √7)/3 ≈ 1.549",
-          "and (2 − √7)/3 ≈ −0.215",
+          {
+            "text": "\\sqrt{7}\\ \\approx \\ 2.646,\\ \\text{so}\\ \\text{the}\\ \\text{roots}\\ \\text{are}\\ \\dfrac{2\\ + \\ \\sqrt{7}}{3} \\approx \\ 1.549",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ \\dfrac{2\\ - \\ \\sqrt{7}}{3} \\approx \\ - 0.215",
+            "style": "normal",
+            "render": "katex"
+          },
           "−1 < −0.215 < 2 and −1 < 1.549 < 2,",
           "so both roots lie in the open interval (−1, 2)",
           {
@@ -150,8 +165,9 @@
             "style": "boxed"
           },
           {
-            "text": "the derivative vanishes at c = (2 ± √7)/3,",
-            "style": "boxed"
+            "text": "\\text{the}\\ \\text{derivative}\\ \\text{vanishes}\\ \\text{at}\\ c\\ = \\ \\dfrac{2\\ \\pm \\ \\sqrt{7}}{3},",
+            "style": "boxed",
+            "render": "katex"
           },
           {
             "text": "both points lying in (−1, 2)",
@@ -189,13 +205,26 @@
         "lines_compact": [
           "f′(x) = 3x² − 4x − 1",
           "f′(x) = 0  ⇒  3x² − 4x − 1 = 0",
-          "⇒ x = (4 ± √(16 + 12))/6 = (4 ± √28)/6 = (4 ± 2√7)/6",
           {
-            "text": "  = (2 ± √7)/3",
-            "style": "indent"
+            "text": "\\Rightarrow \\ x\\ = \\ \\dfrac{4\\ \\pm \\ \\sqrt{16\\ + \\ 12}}{6} = \\ \\dfrac{4\\ \\pm \\ \\sqrt{28}}{6} = \\ \\dfrac{4\\ \\pm \\ 2\\sqrt{7}}{6}",
+            "style": "normal",
+            "render": "katex"
           },
-          "√7 ≈ 2.646, so the roots are (2 + √7)/3 ≈ 1.549",
-          "and (2 − √7)/3 ≈ −0.215",
+          {
+            "text": "= \\ \\dfrac{2\\ \\pm \\ \\sqrt{7}}{3}",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "\\sqrt{7}\\ \\approx \\ 2.646,\\ \\text{so}\\ \\text{the}\\ \\text{roots}\\ \\text{are}\\ \\dfrac{2\\ + \\ \\sqrt{7}}{3} \\approx \\ 1.549",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ \\dfrac{2\\ - \\ \\sqrt{7}}{3} \\approx \\ - 0.215",
+            "style": "normal",
+            "render": "katex"
+          },
           "−1 < −0.215 < 2 and −1 < 1.549 < 2,",
           "so both roots lie in the open interval (−1, 2)",
           {
@@ -203,8 +232,9 @@
             "style": "boxed"
           },
           {
-            "text": "the derivative vanishes at c = (2 ± √7)/3,",
-            "style": "boxed"
+            "text": "\\text{the}\\ \\text{derivative}\\ \\text{vanishes}\\ \\text{at}\\ c\\ = \\ \\dfrac{2\\ \\pm \\ \\sqrt{7}}{3},",
+            "style": "boxed",
+            "render": "katex"
           },
           {
             "text": "both points lying in (−1, 2)",

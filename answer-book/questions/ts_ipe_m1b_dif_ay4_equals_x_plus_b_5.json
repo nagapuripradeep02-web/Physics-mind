@@ -115,8 +115,9 @@
             "added": true
           },
           {
-            "text": "  d/dx(log y) = (1/y) · y′ by the chain rule;",
+            "text": "\\dfrac{d}{dx}\\left(\\log y\\right)\\ = \\ \\left(\\dfrac{1}{y}\\right)\\ \\cdot \\ y'\\ \\text{by}\\ \\text{the}\\ \\text{chain}\\ \\text{rule};",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           {
@@ -124,12 +125,20 @@
             "style": "indent",
             "added": true
           },
-          "0 + 4(y′/y) = 5/(x + b)",
+          {
+            "text": "0\\ + \\ 4\\left(\\dfrac{y'}{y}\\right)\\ = \\ \\dfrac{5}{x\\ + \\ b}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(divide both sides by 4)",
             "added": true
           },
-          "y′/y = 5 / [4(x + b)]"
+          {
+            "text": "\\dfrac{y'}{y} = \\ \\dfrac{5}{4\\left(x\\ + \\ b\\right)}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -160,8 +169,16 @@
         "memory_tip": "logₑy differentiates to y′/y — the derivative of the inside always sits on top.",
         "lines_compact": [
           "Differentiate both sides with respect to x:",
-          "0 + 4(y′/y) = 5/(x + b)",
-          "y′/y = 5 / [4(x + b)]"
+          {
+            "text": "0\\ + \\ 4\\left(\\dfrac{y'}{y}\\right)\\ = \\ \\dfrac{5}{x\\ + \\ b}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{y'}{y} = \\ \\dfrac{5}{4\\left(x\\ + \\ b\\right)}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -181,10 +198,15 @@
             "style": "indent",
             "added": true
           },
-          "d/dx (y′/y) = [y″·y − y′·y′] / y²",
           {
-            "text": "  = [yy″ − (y′)²] / y²",
-            "style": "indent"
+            "text": "\\dfrac{d}{dx}\\left(\\dfrac{y'}{y}\\right)\\ = \\ \\dfrac{y'' \\cdot y\\ - \\ y' \\cdot y'}{y^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{yy''\\ - \\ \\left(y'\\right)^{2}}{y^{2}}",
+            "style": "indent",
+            "render": "katex"
           },
           {
             "text": "(5/[4(x + b)] = (5/4)(x + b)⁻¹, and its derivative is",
@@ -195,7 +217,11 @@
             "style": "indent",
             "added": true
           },
-          "d/dx {5 / [4(x + b)]} = −5 / [4(x + b)²]",
+          {
+            "text": "\\dfrac{d}{dx}\\ \\dfrac{\\{5}{4\\left(x\\ + \\ b\\right)}\\}\\ = \\ - \\dfrac{5}{4\\left(x\\ + \\ b\\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(the two sides of y′/y = 5/[4(x + b)] are equal,",
             "added": true
@@ -205,7 +231,11 @@
             "style": "indent",
             "added": true
           },
-          "∴ [yy″ − (y′)²] / y² = −5 / [4(x + b)²]"
+          {
+            "text": "\\therefore \\ \\dfrac{yy''\\ - \\ \\left(y'\\right)^{2}}{y^{2}} = \\ - \\dfrac{5}{4\\left(x\\ + \\ b\\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -236,13 +266,26 @@
         ],
         "memory_tip": "The quotient rule on y′/y produces yy″ − (y′)² on top — both pieces of the required result in one move.",
         "lines_compact": [
-          "d/dx (y′/y) = [y″·y − y′·y′] / y²",
           {
-            "text": "  = [yy″ − (y′)²] / y²",
-            "style": "indent"
+            "text": "\\dfrac{d}{dx}\\left(\\dfrac{y'}{y}\\right)\\ = \\ \\dfrac{y'' \\cdot y\\ - \\ y' \\cdot y'}{y^{2}}",
+            "style": "normal",
+            "render": "katex"
           },
-          "d/dx {5 / [4(x + b)]} = −5 / [4(x + b)²]",
-          "∴ [yy″ − (y′)²] / y² = −5 / [4(x + b)²]"
+          {
+            "text": "= \\ \\dfrac{yy''\\ - \\ \\left(y'\\right)^{2}}{y^{2}}",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{d}{dx}\\ \\dfrac{\\{5}{4\\left(x\\ + \\ b\\right)}\\}\\ = \\ - \\dfrac{5}{4\\left(x\\ + \\ b\\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{yy''\\ - \\ \\left(y'\\right)^{2}}{y^{2}} = \\ - \\dfrac{5}{4\\left(x\\ + \\ b\\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -258,8 +301,9 @@
             "added": true
           },
           {
-            "text": "  then square both sides: (4y′/(5y))²",
+            "text": "\\text{then}\\ \\text{square}\\ \\text{both}\\ \\text{sides}:\\ \\left(\\dfrac{4y'}{5y}\\right)^{2}",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           {
@@ -267,8 +311,16 @@
             "style": "indent",
             "added": true
           },
-          "From step 2,  1/(x + b) = 4y′/(5y),",
-          "so  1/(x + b)² = 16(y′)² / (25y²)",
+          {
+            "text": "\\text{From}\\ \\text{step}\\ 2,\\ \\dfrac{1}{x\\ + \\ b} = \\ \\dfrac{4y'}{5y},",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{so}\\ \\dfrac{1}{\\left(x\\ + \\ b\\right)^{2}} = \\ \\dfrac{16\\left(y'\\right)^{2}}{25y^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(write −5/[4(x + b)²] as −(5/4) · 1/(x + b)² and put in",
             "added": true
@@ -278,10 +330,15 @@
             "style": "indent",
             "added": true
           },
-          "[yy″ − (y′)²] / y² = −(5/4) · 16(y′)²/(25y²)",
           {
-            "text": "  = −(4/5)(y′)²/y²",
-            "style": "indent"
+            "text": "\\dfrac{yy''\\ - \\ \\left(y'\\right)^{2}}{y^{2}} = \\ - \\left(\\dfrac{5}{4}\\right)\\ \\cdot \\ \\dfrac{16\\left(y'\\right)^{2}}{25y^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ - \\dfrac{\\left(\\dfrac{4}{5}\\right)\\left(y'\\right)^{2}}{y^{2}}",
+            "style": "indent",
+            "render": "katex"
           },
           {
             "text": "(multiply both sides by y²; then add (y′)² to both",
@@ -292,7 +349,11 @@
             "style": "indent",
             "added": true
           },
-          "yy″ − (y′)² = −(4/5)(y′)²   ⇒   yy″ = (1/5)(y′)²",
+          {
+            "text": "yy''\\ - \\ \\left(y'\\right)^{2}\\ = \\ - \\left(\\dfrac{4}{5}\\right)\\left(y'\\right)^{2}\\ \\Rightarrow \\ yy''\\ = \\ \\left(\\dfrac{1}{5}\\right)\\left(y'\\right)^{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(multiply both sides by 5)",
             "added": true
@@ -331,14 +392,31 @@
         ],
         "memory_tip": "The two indices decide the answer: with 4 logₑy = 5 logₑ(x + b), the coefficient is (5 − 4)/5 = 1/5, so the 5 in 5yy″ is the index of (x + b).",
         "lines_compact": [
-          "From step 2,  1/(x + b) = 4y′/(5y),",
-          "so  1/(x + b)² = 16(y′)² / (25y²)",
-          "[yy″ − (y′)²] / y² = −(5/4) · 16(y′)²/(25y²)",
           {
-            "text": "  = −(4/5)(y′)²/y²",
-            "style": "indent"
+            "text": "\\text{From}\\ \\text{step}\\ 2,\\ \\dfrac{1}{x\\ + \\ b} = \\ \\dfrac{4y'}{5y},",
+            "style": "normal",
+            "render": "katex"
           },
-          "yy″ − (y′)² = −(4/5)(y′)²   ⇒   yy″ = (1/5)(y′)²",
+          {
+            "text": "\\text{so}\\ \\dfrac{1}{\\left(x\\ + \\ b\\right)^{2}} = \\ \\dfrac{16\\left(y'\\right)^{2}}{25y^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{yy''\\ - \\ \\left(y'\\right)^{2}}{y^{2}} = \\ - \\left(\\dfrac{5}{4}\\right)\\ \\cdot \\ \\dfrac{16\\left(y'\\right)^{2}}{25y^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ - \\dfrac{\\left(\\dfrac{4}{5}\\right)\\left(y'\\right)^{2}}{y^{2}}",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "yy''\\ - \\ \\left(y'\\right)^{2}\\ = \\ - \\left(\\dfrac{4}{5}\\right)\\left(y'\\right)^{2}\\ \\Rightarrow \\ yy''\\ = \\ \\left(\\dfrac{1}{5}\\right)\\left(y'\\right)^{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ 5yy″ = (y′)²",
             "style": "boxed"

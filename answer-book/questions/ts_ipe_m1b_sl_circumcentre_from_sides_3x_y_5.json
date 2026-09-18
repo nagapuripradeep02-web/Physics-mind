@@ -483,14 +483,21 @@
           },
           "(5) ⇒ 3(−3y) − 5y + 4 = 0   ⇒   −14y + 4 = 0",
           {
-            "text": "  ⇒   y = 2/7",
-            "style": "indent"
+            "text": "\\Rightarrow \\ y\\ = \\ \\dfrac{2}{7}",
+            "style": "indent",
+            "render": "katex"
           },
           {
-            "text": "(put y = 2/7 in x = −3y)",
+            "text": "\\left(\\text{put}\\ y\\ = \\ \\dfrac{2}{7}\\text{in}\\ x\\ = \\ - 3y\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "⇒ x = −3(2/7) = −6/7",
+          {
+            "text": "\\Rightarrow \\ x\\ = \\ - 3\\left(\\dfrac{2}{7}\\right)\\ = \\ - \\dfrac{6}{7}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(check: SA² = (−20/7)² + (−5/7)² = 425/49",
             "added": true
@@ -501,8 +508,9 @@
             "added": true
           },
           {
-            "text": "∴ Circumcentre S = (−6/7, 2/7)",
-            "style": "boxed"
+            "text": "\\therefore \\ \\text{Circumcentre}\\ S\\ = \\ \\left( - \\dfrac{6}{7},\\ \\dfrac{2}{7}\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -536,13 +544,19 @@
           "Step-6: Solving (4) & (5) we get S;   (4) ⇒ x = −3y",
           "(5) ⇒ 3(−3y) − 5y + 4 = 0   ⇒   −14y + 4 = 0",
           {
-            "text": "  ⇒   y = 2/7",
-            "style": "indent"
+            "text": "\\Rightarrow \\ y\\ = \\ \\dfrac{2}{7}",
+            "style": "indent",
+            "render": "katex"
           },
-          "⇒ x = −3(2/7) = −6/7",
           {
-            "text": "∴ Circumcentre S = (−6/7, 2/7)",
-            "style": "boxed"
+            "text": "\\Rightarrow \\ x\\ = \\ - 3\\left(\\dfrac{2}{7}\\right)\\ = \\ - \\dfrac{6}{7}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\text{Circumcentre}\\ S\\ = \\ \\left( - \\dfrac{6}{7},\\ \\dfrac{2}{7}\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

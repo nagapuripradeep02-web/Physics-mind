@@ -63,14 +63,20 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given y = Tan⁻¹(2x/(1 − x²))",
           {
-            "text": "  + Tan⁻¹((3x − x³)/(1 − 3x²))",
-            "style": "indent"
+            "text": "\\text{Given}\\ y\\ = \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{2x}{1\\ - \\ x^{2}}\\right)",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "  − Tan⁻¹((4x − 4x³)/(1 − 6x² + x⁴)).",
-            "style": "indent"
+            "text": "+ \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{3x\\ - \\ x^{3}}{1\\ - \\ 3x^{2}}\\right)",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "- \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{4x\\ - \\ 4x^{3}}{1\\ - \\ 6x^{2}\\ + \\ x^{4}}\\right).",
+            "style": "indent",
+            "render": "katex"
           },
           "Every bracket is a ratio of a polynomial in x",
           "to another polynomial in x with only even powers",
@@ -117,18 +123,32 @@
         "margin_note": "Two marks. Quote the formula, substitute, and state the result as an angle. The examiner is looking for the named identity, not just the line 2θ.",
         "lines": [
           "The double angle formula for tangent",
-          "is  tan 2θ = 2 tan θ/(1 − tan²θ).",
+          {
+            "text": "\\text{is}\\ \\tan 2\\theta \\ = \\ \\dfrac{2\\tan \\theta }{1\\ - \\ \\tan ^{2} \\theta }.",
+            "style": "normal",
+            "render": "katex"
+          },
           "With x = tan θ:",
           {
             "text": "(put tan θ = x in the formula)",
             "added": true
           },
-          "2x/(1 − x²) = 2 tan θ/(1 − tan²θ) = tan 2θ",
           {
-            "text": "(for |x| < √2 − 1, 2θ lies in (−π/2, π/2); see step 5)",
+            "text": "\\dfrac{2x}{1\\ - \\ x^{2}} = \\ \\dfrac{2\\tan \\theta }{1\\ - \\ \\tan ^{2} \\theta } = \\ \\tan 2\\theta",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{for}\\ \\left|x\\right|\\ < \\ \\sqrt{2}\\ - \\ 1,\\ 2\\theta \\ \\text{lies}\\ \\text{in}\\ \\left( - \\dfrac{\\pi }{2},\\ \\dfrac{\\pi }{2}\\right);\\ \\text{see}\\ \\text{step}\\ 5\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "∴ Tan⁻¹(2x/(1 − x²)) = Tan⁻¹(tan 2θ) = 2θ"
+          {
+            "text": "\\therefore \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{2x}{1\\ - \\ x^{2}}\\right)\\ = \\ \\operatorname{Tan}^{-1}\\left(\\tan 2\\theta \\right)\\ = \\ 2\\theta",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -161,10 +181,22 @@
         "memory_tip": "Two of the angle on top, two of tan θ on top. The count in the numerator matches the multiple of the angle in every one of these three formulas.",
         "lines_compact": [
           "The double angle formula for tangent",
-          "is  tan 2θ = 2 tan θ/(1 − tan²θ).",
+          {
+            "text": "\\text{is}\\ \\tan 2\\theta \\ = \\ \\dfrac{2\\tan \\theta }{1\\ - \\ \\tan ^{2} \\theta }.",
+            "style": "normal",
+            "render": "katex"
+          },
           "With x = tan θ:",
-          "2x/(1 − x²) = 2 tan θ/(1 − tan²θ) = tan 2θ",
-          "∴ Tan⁻¹(2x/(1 − x²)) = Tan⁻¹(tan 2θ) = 2θ"
+          {
+            "text": "\\dfrac{2x}{1\\ - \\ x^{2}} = \\ \\dfrac{2\\tan \\theta }{1\\ - \\ \\tan ^{2} \\theta } = \\ \\tan 2\\theta",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{2x}{1\\ - \\ x^{2}}\\right)\\ = \\ \\operatorname{Tan}^{-1}\\left(\\tan 2\\theta \\right)\\ = \\ 2\\theta",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -176,22 +208,36 @@
         "margin_note": "Two marks. On the top the 3 goes with x and the cube has coefficient 1: 3x − x³. Underneath, the 3 goes with the square: 1 − 3x². Getting them the wrong way round is a common loss here.",
         "lines": [
           "The triple angle formula for tangent",
-          "is  tan 3θ = (3 tan θ − tan³θ)/(1 − 3 tan²θ).",
+          {
+            "text": "\\text{is}\\ \\tan 3\\theta \\ = \\ \\dfrac{3\\tan \\theta \\ - \\ \\tan ^{3} \\theta }{1\\ - \\ 3\\tan ^{2} \\theta }.",
+            "style": "normal",
+            "render": "katex"
+          },
           "With x = tan θ:",
           {
             "text": "(put tan θ = x in the formula)",
             "added": true
           },
-          "(3x − x³)/(1 − 3x²) = (3 tan θ − tan³θ)/(1 − 3 tan²θ)",
+          {
+            "text": "\\dfrac{3x\\ - \\ x^{3}}{1\\ - \\ 3x^{2}} = \\ \\dfrac{3\\tan \\theta \\ - \\ \\tan ^{3} \\theta }{1\\ - \\ 3\\tan ^{2} \\theta }",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "  = tan 3θ",
             "style": "indent"
           },
           {
-            "text": "(for |x| < √2 − 1, 3θ lies in (−π/2, π/2); see step 5)",
+            "text": "\\left(\\text{for}\\ \\left|x\\right|\\ < \\ \\sqrt{2}\\ - \\ 1,\\ 3\\theta \\ \\text{lies}\\ \\text{in}\\ \\left( - \\dfrac{\\pi }{2},\\ \\dfrac{\\pi }{2}\\right);\\ \\text{see}\\ \\text{step}\\ 5\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "∴ Tan⁻¹((3x − x³)/(1 − 3x²)) = Tan⁻¹(tan 3θ) = 3θ"
+          {
+            "text": "\\therefore \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{3x\\ - \\ x^{3}}{1\\ - \\ 3x^{2}}\\right)\\ = \\ \\operatorname{Tan}^{-1}\\left(\\tan 3\\theta \\right)\\ = \\ 3\\theta",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -224,14 +270,26 @@
         "memory_tip": "In tan 3θ the odd power sits on top and the even power sits underneath, and the 3 appears once in each. The minus sign appears in both places too.",
         "lines_compact": [
           "The triple angle formula for tangent",
-          "is  tan 3θ = (3 tan θ − tan³θ)/(1 − 3 tan²θ).",
+          {
+            "text": "\\text{is}\\ \\tan 3\\theta \\ = \\ \\dfrac{3\\tan \\theta \\ - \\ \\tan ^{3} \\theta }{1\\ - \\ 3\\tan ^{2} \\theta }.",
+            "style": "normal",
+            "render": "katex"
+          },
           "With x = tan θ:",
-          "(3x − x³)/(1 − 3x²) = (3 tan θ − tan³θ)/(1 − 3 tan²θ)",
+          {
+            "text": "\\dfrac{3x\\ - \\ x^{3}}{1\\ - \\ 3x^{2}} = \\ \\dfrac{3\\tan \\theta \\ - \\ \\tan ^{3} \\theta }{1\\ - \\ 3\\tan ^{2} \\theta }",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "  = tan 3θ",
             "style": "indent"
           },
-          "∴ Tan⁻¹((3x − x³)/(1 − 3x²)) = Tan⁻¹(tan 3θ) = 3θ"
+          {
+            "text": "\\therefore \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{3x\\ - \\ x^{3}}{1\\ - \\ 3x^{2}}\\right)\\ = \\ \\operatorname{Tan}^{-1}\\left(\\tan 3\\theta \\right)\\ = \\ 3\\theta",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -249,32 +307,52 @@
             "added": true
           },
           "tan 4θ = tan(2·2θ) = 2 tan 2θ/(1 − tan²2θ),",
-          "with  tan 2θ = 2x/(1 − x²)",
           {
-            "text": "(2 · 2x/(1 − x²) = 4x/(1 − x²))",
-            "added": true
+            "text": "\\text{with}\\ \\tan 2\\theta \\ = \\ \\dfrac{2x}{1\\ - \\ x^{2}}",
+            "style": "normal",
+            "render": "katex"
           },
-          "Numerator: 2 tan 2θ = 4x/(1 − x²)",
           {
-            "text": "((2x/(1 − x²))² = 4x²/(1 − x²)²)",
-            "added": true
-          },
-          "Denominator: 1 − tan²2θ = 1 − 4x²/(1 − x²)²",
-          {
-            "text": "(write 1 as (1 − x²)²/(1 − x²)² and subtract)",
+            "text": "\\left(2\\ \\cdot \\ \\dfrac{2x}{1\\ - \\ x^{2}} = \\ \\dfrac{4x}{1\\ - \\ x^{2}}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "  = [(1 − x²)² − 4x²]/(1 − x²)²",
-            "style": "indent"
+            "text": "\\text{Numerator}:\\ 2\\tan 2\\theta \\ = \\ \\dfrac{4x}{1\\ - \\ x^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\left(\\dfrac{2x}{1\\ - \\ x^{2}}\\right)^{2}\\ = \\ \\dfrac{4x^{2}}{\\left(1\\ - \\ x^{2}\\right)^{2}}\\right)",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "\\text{Denominator}:\\ 1\\ - \\ \\tan ^{2} 2\\theta \\ = \\ 1\\ - \\ \\dfrac{4x^{2}}{\\left(1\\ - \\ x^{2}\\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{write}\\ 1\\ \\text{as}\\ \\dfrac{\\left(1\\ - \\ x^{2}\\right)^{2}}{\\left(1\\ - \\ x^{2}\\right)^{2}}\\text{and}\\ \\text{subtract}\\right)",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "= \\ \\dfrac{\\left(1\\ - \\ x^{2}\\right)^{2}\\ - \\ 4x^{2}}{\\left(1\\ - \\ x^{2}\\right)^{2}}",
+            "style": "indent",
+            "render": "katex"
           },
           {
             "text": "((1 − x²)² = 1 − 2x² + x⁴, and −2x² − 4x² = −6x²)",
             "added": true
           },
           {
-            "text": "  = (1 − 6x² + x⁴)/(1 − x²)²",
-            "style": "indent"
+            "text": "= \\ \\dfrac{1\\ - \\ 6x^{2}\\ + \\ x^{4}}{\\left(1\\ - \\ x^{2}\\right)^{2}}",
+            "style": "indent",
+            "render": "katex"
           },
           {
             "text": "(dividing by (1 − 6x² + x⁴)/(1 − x²)² is multiplying",
@@ -285,21 +363,34 @@
             "style": "indent",
             "added": true
           },
-          "tan 4θ = [4x/(1 − x²)] · [(1 − x²)²/(1 − 6x² + x⁴)]",
+          {
+            "text": "\\tan 4\\theta \\ = \\ \\left[\\dfrac{4x}{1\\ - \\ x^{2}}\\right]\\ \\cdot \\ \\left[\\dfrac{\\left(1\\ - \\ x^{2}\\right)^{2}}{1\\ - \\ 6x^{2}\\ + \\ x^{4}}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(one factor 1 − x² cancels)",
             "added": true
           },
           {
-            "text": "  = 4x(1 − x²)/(1 − 6x² + x⁴)",
-            "style": "indent"
+            "text": "= \\ \\dfrac{4x\\left(1\\ - \\ x^{2}\\right)}{1\\ - \\ 6x^{2}\\ + \\ x^{4}}",
+            "style": "indent",
+            "render": "katex"
           },
           {
             "text": "(4x(1 − x²) = 4x − 4x³)",
             "added": true
           },
-          "∴ (4x − 4x³)/(1 − 6x² + x⁴) = tan 4θ,",
-          "so  Tan⁻¹((4x − 4x³)/(1 − 6x² + x⁴)) = 4θ"
+          {
+            "text": "\\therefore \\ \\dfrac{4x\\ - \\ 4x^{3}}{1\\ - \\ 6x^{2}\\ + \\ x^{4}} = \\ \\tan 4\\theta ,",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{so}\\ \\operatorname{Tan}^{-1}\\left(\\dfrac{4x\\ - \\ 4x^{3}}{1\\ - \\ 6x^{2}\\ + \\ x^{4}}\\right)\\ = \\ 4\\theta",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -334,24 +425,51 @@
           "There is no separate formula for tan 4θ,",
           "so build it from the double angle formula applied to 2θ:",
           "tan 4θ = tan(2·2θ) = 2 tan 2θ/(1 − tan²2θ),",
-          "with  tan 2θ = 2x/(1 − x²)",
-          "Numerator: 2 tan 2θ = 4x/(1 − x²)",
-          "Denominator: 1 − tan²2θ = 1 − 4x²/(1 − x²)²",
           {
-            "text": "  = [(1 − x²)² − 4x²]/(1 − x²)²",
-            "style": "indent"
+            "text": "\\text{with}\\ \\tan 2\\theta \\ = \\ \\dfrac{2x}{1\\ - \\ x^{2}}",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "  = (1 − 6x² + x⁴)/(1 − x²)²",
-            "style": "indent"
+            "text": "\\text{Numerator}:\\ 2\\tan 2\\theta \\ = \\ \\dfrac{4x}{1\\ - \\ x^{2}}",
+            "style": "normal",
+            "render": "katex"
           },
-          "tan 4θ = [4x/(1 − x²)] · [(1 − x²)²/(1 − 6x² + x⁴)]",
           {
-            "text": "  = 4x(1 − x²)/(1 − 6x² + x⁴)",
-            "style": "indent"
+            "text": "\\text{Denominator}:\\ 1\\ - \\ \\tan ^{2} 2\\theta \\ = \\ 1\\ - \\ \\dfrac{4x^{2}}{\\left(1\\ - \\ x^{2}\\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
           },
-          "∴ (4x − 4x³)/(1 − 6x² + x⁴) = tan 4θ,",
-          "so  Tan⁻¹((4x − 4x³)/(1 − 6x² + x⁴)) = 4θ"
+          {
+            "text": "= \\ \\dfrac{\\left(1\\ - \\ x^{2}\\right)^{2}\\ - \\ 4x^{2}}{\\left(1\\ - \\ x^{2}\\right)^{2}}",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{1\\ - \\ 6x^{2}\\ + \\ x^{4}}{\\left(1\\ - \\ x^{2}\\right)^{2}}",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "\\tan 4\\theta \\ = \\ \\left[\\dfrac{4x}{1\\ - \\ x^{2}}\\right]\\ \\cdot \\ \\left[\\dfrac{\\left(1\\ - \\ x^{2}\\right)^{2}}{1\\ - \\ 6x^{2}\\ + \\ x^{4}}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{4x\\left(1\\ - \\ x^{2}\\right)}{1\\ - \\ 6x^{2}\\ + \\ x^{4}}",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{4x\\ - \\ 4x^{3}}{1\\ - \\ 6x^{2}\\ + \\ x^{4}} = \\ \\tan 4\\theta ,",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{so}\\ \\operatorname{Tan}^{-1}\\left(\\dfrac{4x\\ - \\ 4x^{3}}{1\\ - \\ 6x^{2}\\ + \\ x^{4}}\\right)\\ = \\ 4\\theta",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -371,8 +489,16 @@
             "style": "indent",
             "added": true
           },
-          "Take |x| < √2 − 1, so that |θ| < π/8",
-          "and 2θ, 3θ, 4θ all lie in (−π/2, π/2),",
+          {
+            "text": "\\text{Take}\\ \\left|x\\right|\\ < \\ \\sqrt{2}\\ - \\ 1,\\ \\text{so}\\ \\text{that}\\ \\left|\\theta \\right|\\ < \\ \\dfrac{\\pi }{8}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ 2\\theta ,\\ 3\\theta ,\\ 4\\theta \\ \\text{all}\\ \\text{lie}\\ \\text{in}\\ \\left( - \\dfrac{\\pi }{2},\\ \\dfrac{\\pi }{2}\\right),",
+            "style": "normal",
+            "render": "katex"
+          },
           "the principal range of Tan⁻¹.",
           {
             "text": "(put 2θ, 3θ and 4θ from steps 2,",
@@ -393,13 +519,18 @@
             "text": "(the standard derivative of Tan⁻¹x)",
             "added": true
           },
-          "dy/dx = 1/(1 + x²)",
+          {
+            "text": "\\dfrac{dy}{dx}\\ = \\ \\dfrac{1}{1\\ + \\ x^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "For any other x each Tan⁻¹(tan nθ) differs",
           "from nθ by a multiple of π, constant on each interval,",
           "whose derivative is 0, so the result is unchanged.",
           {
-            "text": "∴ dy/dx = 1/(1 + x²)",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{1}{1\\ + \\ x^{2}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -432,18 +563,31 @@
         ],
         "memory_tip": "Count the multiples before writing anything else: 2 + 3 − 4 = 1. That sum gives y = θ.",
         "lines_compact": [
-          "Take |x| < √2 − 1, so that |θ| < π/8",
-          "and 2θ, 3θ, 4θ all lie in (−π/2, π/2),",
+          {
+            "text": "\\text{Take}\\ \\left|x\\right|\\ < \\ \\sqrt{2}\\ - \\ 1,\\ \\text{so}\\ \\text{that}\\ \\left|\\theta \\right|\\ < \\ \\dfrac{\\pi }{8}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ 2\\theta ,\\ 3\\theta ,\\ 4\\theta \\ \\text{all}\\ \\text{lie}\\ \\text{in}\\ \\left( - \\dfrac{\\pi }{2},\\ \\dfrac{\\pi }{2}\\right),",
+            "style": "normal",
+            "render": "katex"
+          },
           "the principal range of Tan⁻¹.",
           "y = 2θ + 3θ − 4θ = θ",
           "∴ y = Tan⁻¹x",
-          "dy/dx = 1/(1 + x²)",
+          {
+            "text": "\\dfrac{dy}{dx}\\ = \\ \\dfrac{1}{1\\ + \\ x^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "For any other x each Tan⁻¹(tan nθ) differs",
           "from nθ by a multiple of π, constant on each interval,",
           "whose derivative is 0, so the result is unchanged.",
           {
-            "text": "∴ dy/dx = 1/(1 + x²)",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{1}{1\\ + \\ x^{2}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

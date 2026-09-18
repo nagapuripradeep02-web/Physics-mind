@@ -111,7 +111,9 @@
         "margin_note": "Two marks: one for A′(x) = 0 solved, one for the second derivative test. A stationary point is not a maximum until A″ < 0 is written down.",
         "lines": [
           {
-            "text": "(d/dx of 10x is 10 and d/dx of x² is 2x)",
+            "text": "\\left(\\dfrac{d}{dx}\\ \\text{of}\\ 10x\\ \\text{is}\\ 10\\ \\text{and}\\ \\dfrac{d}{dx}\\ \\text{of}\\ x^{2}\\ \\text{is}\\ 2x\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "A′(x) = 10 − 2x",

@@ -95,7 +95,11 @@
         "margin_note": "First mark. Cross-multiply the ratio first, then square both sides together. Squaring 3PA = 2PB gives 9PA² = 4PB² — the numbers get squared too.",
         "memory_tip": "Cross-multiply first, then square. The numbers get squared as well: 3 and 2 become 9 and 4.",
         "lines": [
-          "Given condition: PA / PB = 2 / 3",
+          {
+            "text": "\\text{Given}\\ \\text{condition}:\\ \\dfrac{PA}{PB} = \\ \\dfrac{2}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(multiply both sides by 3PB)",
             "added": true
@@ -136,7 +140,11 @@
           "Squaring to 3PA² = 2PB² and leaving the numbers unsquared."
         ],
         "lines_compact": [
-          "Given condition: PA / PB = 2 / 3",
+          {
+            "text": "\\text{Given}\\ \\text{condition}:\\ \\dfrac{PA}{PB} = \\ \\dfrac{2}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ 3 PA = 2 PB",
           "⇒ 9 PA² = 4 PB²"
         ]

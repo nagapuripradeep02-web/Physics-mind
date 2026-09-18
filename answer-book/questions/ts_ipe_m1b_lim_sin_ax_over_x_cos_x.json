@@ -52,11 +52,23 @@
             "style": "heading"
           },
           "(sin 0 = 0 and 0 · cos 0 = 0)",
-          "At x = 0, sin ax = 0 and x cos x = 0, so the form is 0/0.",
+          {
+            "text": "\\text{At}\\ x\\ = \\ 0,\\ \\sin ax\\ = \\ 0\\ \\text{and}\\ x\\cos x\\ = \\ 0,\\ \\text{so}\\ \\text{the}\\ \\text{form}\\ \\text{is}\\ \\dfrac{0}{0}.",
+            "style": "normal",
+            "render": "katex"
+          },
           "Split the expression into the indeterminate part",
           "and the ordinary part.",
-          "(1/(x cos x) = (1/x) · (1/cos x))",
-          "sin(ax)/(x cos x) = [sin(ax)/x] · [1/cos x]",
+          {
+            "text": "\\left(\\dfrac{1}{x\\cos x} = \\ \\left(\\dfrac{1}{x}\\right)\\ \\cdot \\ \\left(\\dfrac{1}{\\cos x}\\right)\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{\\sin \\left(ax\\right)}{x\\cos x} = \\ \\left[\\dfrac{\\sin \\left(ax\\right)}{x}\\right]\\ \\cdot \\ \\left[\\dfrac{1}{\\cos x}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           "Multiply and divide the first factor by a",
           "so the angle ax appears below the sine.",
           "(sin(ax)/x = a · sin(ax)/(ax), which needs a ≠ 0;",
@@ -64,7 +76,11 @@
             "text": "  for a = 0, sin(ax)/x is 0 and the answer a is also 0)",
             "style": "indent"
           },
-          "= a · [sin(ax)/(ax)] · [1/cos x]"
+          {
+            "text": "= \\ a\\ \\cdot \\ \\left[\\dfrac{\\sin \\left(ax\\right)}{ax}\\right]\\ \\cdot \\ \\left[\\dfrac{1}{\\cos x}\\right]",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -107,20 +123,29 @@
             "text": "(the standard limit lim(θ → 0) (sin θ)/θ = 1)",
             "added": true
           },
-          "As x → 0, ax → 0, so lim(x → 0) sin(ax)/(ax) = 1.",
+          {
+            "text": "\\text{As}\\ x\\ \\to \\ 0,\\ ax\\ \\to \\ 0,\\ \\text{so}\\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\sin \\left(ax\\right)}{ax} = \\ 1.",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(cos is continuous and cos 0 = 1)",
             "added": true
           },
-          "Also cos x → cos 0 = 1, so 1/cos x → 1.",
+          {
+            "text": "\\text{Also}\\ \\cos x\\ \\to \\ \\cos 0\\ = \\ 1,\\ \\text{so}\\ \\dfrac{1}{\\cos x} \\to \\ 1.",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(put 1 for each limit)",
             "added": true
           },
           "= a · 1 · 1",
           {
-            "text": "∴ lim(x → 0) (sin ax)/(x cos x) = a",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\left(\\sin ax\\right)}{x\\cos x} = \\ a",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -152,12 +177,21 @@
         ],
         "memory_tip": "Read the answer straight off the question: whatever multiplies x inside the sine is the answer, since cos 0 = 1 leaves it unchanged.",
         "lines_compact": [
-          "As x → 0, ax → 0, so lim(x → 0) sin(ax)/(ax) = 1.",
-          "Also cos x → cos 0 = 1, so 1/cos x → 1.",
+          {
+            "text": "\\text{As}\\ x\\ \\to \\ 0,\\ ax\\ \\to \\ 0,\\ \\text{so}\\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\sin \\left(ax\\right)}{ax} = \\ 1.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Also}\\ \\cos x\\ \\to \\ \\cos 0\\ = \\ 1,\\ \\text{so}\\ \\dfrac{1}{\\cos x} \\to \\ 1.",
+            "style": "normal",
+            "render": "katex"
+          },
           "= a · 1 · 1",
           {
-            "text": "∴ lim(x → 0) (sin ax)/(x cos x) = a",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\left(\\sin ax\\right)}{x\\cos x} = \\ a",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

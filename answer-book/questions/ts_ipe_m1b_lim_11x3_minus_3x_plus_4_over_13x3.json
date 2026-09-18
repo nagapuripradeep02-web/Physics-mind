@@ -65,10 +65,15 @@
             "text": "  13x³/x³ = 13, 5x²/x³ = 5/x, 7/x³ stays)",
             "style": "indent"
           },
-          "(11x³ − 3x + 4)/(13x³ − 5x² − 7)",
           {
-            "text": "  = (11 − 3/x² + 4/x³)/(13 − 5/x − 7/x³)",
-            "style": "indent"
+            "text": "\\dfrac{11x^{3}\\ - \\ 3x\\ + \\ 4}{13x^{3}\\ - \\ 5x^{2}\\ - \\ 7}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{11\\ - \\ \\dfrac{3}{x^{2}} + \\ \\dfrac{4}{x^{3}}}{13\\ - \\ \\dfrac{5}{x} - \\ \\dfrac{7}{x^{3}}}",
+            "style": "indent",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -112,19 +117,29 @@
             "text": "(a fixed number divided by a growing power of x goes to 0)",
             "added": true
           },
-          "As x → ∞:  3/x² → 0,  4/x³ → 0,  5/x → 0,  7/x³ → 0",
+          {
+            "text": "\\text{As}\\ x\\ \\to \\ \\infty :\\ \\dfrac{3}{x^{2}} \\to \\ 0,\\ \\dfrac{4}{x^{3}} \\to \\ 0,\\ \\dfrac{5}{x} \\to \\ 0,\\ \\dfrac{7}{x^{3}} \\to \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(put 0 for each of these terms)",
             "added": true
           },
-          "∴ limit = (11 − 0 + 0)/(13 − 0 − 0) = 11/13",
           {
-            "text": "∴ lim(x → ∞) (11x³ − 3x + 4)/(13x³ − 5x² − 7)",
-            "style": "boxed"
+            "text": "\\therefore \\ \\lim \\text{it}\\ = \\ \\dfrac{11\\ - \\ 0\\ + \\ 0}{13\\ - \\ 0\\ - \\ 0} = \\ \\dfrac{11}{13}",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "= 11/13",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{\\lim \\left(x\\ \\to \\ \\infty \\right)\\left(11x^{3}\\ - \\ 3x\\ + \\ 4\\right)}{13x^{3}\\ - \\ 5x^{2}\\ - \\ 7}",
+            "style": "boxed",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{11}{13}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -156,15 +171,25 @@
         ],
         "memory_tip": "Only the x³ coefficients matter: 11 over 13.",
         "lines_compact": [
-          "As x → ∞:  3/x² → 0,  4/x³ → 0,  5/x → 0,  7/x³ → 0",
-          "∴ limit = (11 − 0 + 0)/(13 − 0 − 0) = 11/13",
           {
-            "text": "∴ lim(x → ∞) (11x³ − 3x + 4)/(13x³ − 5x² − 7)",
-            "style": "boxed"
+            "text": "\\text{As}\\ x\\ \\to \\ \\infty :\\ \\dfrac{3}{x^{2}} \\to \\ 0,\\ \\dfrac{4}{x^{3}} \\to \\ 0,\\ \\dfrac{5}{x} \\to \\ 0,\\ \\dfrac{7}{x^{3}} \\to \\ 0",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "= 11/13",
-            "style": "boxed"
+            "text": "\\therefore \\ \\lim \\text{it}\\ = \\ \\dfrac{11\\ - \\ 0\\ + \\ 0}{13\\ - \\ 0\\ - \\ 0} = \\ \\dfrac{11}{13}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{\\lim \\left(x\\ \\to \\ \\infty \\right)\\left(11x^{3}\\ - \\ 3x\\ + \\ 4\\right)}{13x^{3}\\ - \\ 5x^{2}\\ - \\ 7}",
+            "style": "boxed",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{11}{13}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

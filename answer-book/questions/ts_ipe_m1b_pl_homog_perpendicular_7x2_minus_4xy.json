@@ -64,7 +64,11 @@
           },
           "Given line is 3x − y = 2",
           "(divide both sides by 2)",
-          "⇒ (3x − y)/2 = 1  ……(1)"
+          {
+            "text": "\\Rightarrow \\ \\dfrac{3x\\ - \\ y}{2} = \\ 1\\ \\dots \\dots \\left(1\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -133,13 +137,20 @@
           "Homogenising (1) & (2), we get",
           "7x² − 4xy + 8y² + 2x(1) − 4y(1) − 8(1)² = 0",
           {
-            "text": "(put 1 = (3x − y)/2)",
+            "text": "\\left(\\text{put}\\ 1\\ = \\ \\dfrac{3x\\ - \\ y}{2}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "⇒ 7x² − 4xy + 8y² + 2x[(3x−y)/2] − 4y[(3x−y)/2]",
           {
-            "text": "  − 8[(3x−y)/2]² = 0",
-            "style": "indent"
+            "text": "\\Rightarrow \\ 7x^{2}\\ - \\ 4xy\\ + \\ 8y^{2}\\ + \\ 2x\\left[\\dfrac{3x - y}{2}\\right]\\ - \\ 4y\\left[\\dfrac{3x - y}{2}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "- \\ 8\\left[\\dfrac{3x - y}{2}\\right]^{2}\\ = \\ 0",
+            "style": "indent",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -175,10 +186,15 @@
           "Given curve is 7x² − 4xy + 8y² + 2x − 4y − 8 = 0  ……(2)",
           "Homogenising (1) & (2), we get",
           "7x² − 4xy + 8y² + 2x(1) − 4y(1) − 8(1)² = 0",
-          "⇒ 7x² − 4xy + 8y² + 2x[(3x−y)/2] − 4y[(3x−y)/2]",
           {
-            "text": "  − 8[(3x−y)/2]² = 0",
-            "style": "indent"
+            "text": "\\Rightarrow \\ 7x^{2}\\ - \\ 4xy\\ + \\ 8y^{2}\\ + \\ 2x\\left[\\dfrac{3x - y}{2}\\right]\\ - \\ 4y\\left[\\dfrac{3x - y}{2}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "- \\ 8\\left[\\dfrac{3x - y}{2}\\right]^{2}\\ = \\ 0",
+            "style": "indent",
+            "render": "katex"
           }
         ]
       },
@@ -200,8 +216,9 @@
           },
           "⇒ 7x² − 4xy + 8y² + x(3x − y) − 2y(3x − y)",
           {
-            "text": "  − 8(3x − y)²/4 = 0",
-            "style": "indent"
+            "text": "- \\ \\dfrac{8\\left(3x\\ - \\ y\\right)^{2}}{4} = \\ 0",
+            "style": "indent",
+            "render": "katex"
           },
           {
             "text": "(x(3x − y) = 3x² − xy; −2y(3x − y) = −6xy + 2y²;",
@@ -274,8 +291,9 @@
         "lines_compact": [
           "⇒ 7x² − 4xy + 8y² + x(3x − y) − 2y(3x − y)",
           {
-            "text": "  − 8(3x − y)²/4 = 0",
-            "style": "indent"
+            "text": "- \\ \\dfrac{8\\left(3x\\ - \\ y\\right)^{2}}{4} = \\ 0",
+            "style": "indent",
+            "render": "katex"
           },
           "⇒ 7x² − 4xy + 8y² + 3x² − xy − 6xy + 2y²",
           {

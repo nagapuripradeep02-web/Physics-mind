@@ -58,9 +58,17 @@
           "Let f(x) = √(x + 1), where x > −1",
           "(the definition of the derivative from the first principle)",
           "By the first principle,",
-          "f′(x) = lim(h → 0) [f(x + h) − f(x)]/h",
+          {
+            "text": "f'\\left(x\\right)\\ = \\ \\dfrac{\\lim \\left(h\\ \\to \\ 0\\right)\\left[f\\left(x\\ + \\ h\\right)\\ - \\ f\\left(x\\right)\\right]}{h}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(f(x + h) = √((x + h) + 1))",
-          "= lim(h → 0) [√(x + h + 1) − √(x + 1)]/h"
+          {
+            "text": "= \\ \\dfrac{\\lim \\left(h\\ \\to \\ 0\\right)\\left[\\sqrt{x\\ + \\ h\\ + \\ 1}\\ - \\ \\sqrt{x\\ + \\ 1}\\right]}{h}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -107,7 +115,11 @@
             "style": "indent",
             "added": true
           },
-          "Putting h = 0 here gives 0/0, so simplify first.",
+          {
+            "text": "\\text{Putting}\\ h\\ = \\ 0\\ \\text{here}\\ \\text{gives}\\ \\dfrac{0}{0},\\ \\text{so}\\ \\text{simplify}\\ \\text{first}.",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(this is the conjugate of the numerator)",
             "added": true
@@ -123,12 +135,20 @@
             "added": true
           },
           "Numerator = (x + h + 1) − (x + 1) = h",
-          "f′(x) = lim(h → 0) h/[h(√(x+h+1) + √(x+1))]",
+          {
+            "text": "f'\\left(x\\right)\\ = \\ \\dfrac{\\lim \\left(h\\ \\to \\ 0\\right)h}{h\\left(\\sqrt{x + h + 1}\\ + \\ \\sqrt{x + 1}\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(cancel h, which is not 0 while h → 0)",
             "added": true
           },
-          "= lim(h → 0) 1/(√(x + h + 1) + √(x + 1))"
+          {
+            "text": "= \\ \\dfrac{\\lim \\left(h\\ \\to \\ 0\\right)1}{\\sqrt{x\\ + \\ h\\ + \\ 1}\\ + \\ \\sqrt{x\\ + \\ 1}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -160,11 +180,23 @@
         ],
         "memory_tip": "A difference of two square roots on top: multiply by the same two roots added. The roots then go.",
         "lines_compact": [
-          "Putting h = 0 here gives 0/0, so simplify first.",
+          {
+            "text": "\\text{Putting}\\ h\\ = \\ 0\\ \\text{here}\\ \\text{gives}\\ \\dfrac{0}{0},\\ \\text{so}\\ \\text{simplify}\\ \\text{first}.",
+            "style": "normal",
+            "render": "katex"
+          },
           "Multiply top and bottom by √(x+h+1) + √(x+1):",
           "Numerator = (x + h + 1) − (x + 1) = h",
-          "f′(x) = lim(h → 0) h/[h(√(x+h+1) + √(x+1))]",
-          "= lim(h → 0) 1/(√(x + h + 1) + √(x + 1))"
+          {
+            "text": "f'\\left(x\\right)\\ = \\ \\dfrac{\\lim \\left(h\\ \\to \\ 0\\right)h}{h\\left(\\sqrt{x + h + 1}\\ + \\ \\sqrt{x + 1}\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\lim \\left(h\\ \\to \\ 0\\right)1}{\\sqrt{x\\ + \\ h\\ + \\ 1}\\ + \\ \\sqrt{x\\ + \\ 1}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -176,14 +208,19 @@
         "margin_note": "Last mark. The two roots are now equal, so they add to 2√(x + 1). The answer holds for x > −1, where the root is defined.",
         "lines": [
           "As h → 0, √(x + h + 1) → √(x + 1), so",
-          "f′(x) = 1/(√(x + 1) + √(x + 1))",
+          {
+            "text": "f'\\left(x\\right)\\ = \\ \\dfrac{1}{\\sqrt{x\\ + \\ 1}\\ + \\ \\sqrt{x\\ + \\ 1}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(√(x + 1) + √(x + 1) = 2√(x + 1))",
             "added": true
           },
           {
-            "text": "∴ d/dx √(x + 1) = 1/(2√(x + 1))",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{d}{dx}\\sqrt{x\\ + \\ 1}\\ = \\ \\dfrac{1}{2\\sqrt{x\\ + \\ 1}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -215,10 +252,15 @@
         "memory_tip": "Two equal roots add, they do not multiply: √a + √a = 2√a.",
         "lines_compact": [
           "As h → 0, √(x + h + 1) → √(x + 1), so",
-          "f′(x) = 1/(√(x + 1) + √(x + 1))",
           {
-            "text": "∴ d/dx √(x + 1) = 1/(2√(x + 1))",
-            "style": "boxed"
+            "text": "f'\\left(x\\right)\\ = \\ \\dfrac{1}{\\sqrt{x\\ + \\ 1}\\ + \\ \\sqrt{x\\ + \\ 1}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{d}{dx}\\sqrt{x\\ + \\ 1}\\ = \\ \\dfrac{1}{2\\sqrt{x\\ + \\ 1}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

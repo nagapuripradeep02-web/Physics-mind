@@ -61,9 +61,21 @@
           "Any line perpendicular to ax + by + c = 0",
           "has the form  bx − ay + k = 0",
           "∴ Required line is  4x − 3y + k = 0  ……(1)",
-          "(the slope of 4x − 3y + k = 0 is −4/(−3) = 4/3)",
-          "Slopes:  m₁ = −3/4  and  m₂ = 4/3",
-          "Check:  m₁m₂ = (−3/4)(4/3) = −1"
+          {
+            "text": "\\left(\\text{the}\\ \\text{slope}\\ \\text{of}\\ 4x\\ - \\ 3y\\ + \\ k\\ = \\ 0\\ \\text{is}\\ - \\dfrac{4}{ - 3} = \\ \\dfrac{4}{3}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Slopes}:\\ m_{1}\\ = \\ - \\dfrac{3}{4}\\text{and}\\ m_{2}\\ = \\ \\dfrac{4}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Check}:\\ m_{1}m_{2}\\ = \\ \\left( - \\dfrac{3}{4}\\right)\\left(\\dfrac{4}{3}\\right)\\ = \\ - 1",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",

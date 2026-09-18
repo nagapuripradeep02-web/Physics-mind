@@ -61,7 +61,11 @@
           },
           "(1) and (2) are one and the same line,",
           "so their coefficients are proportional:",
-          "l/a = m/b = n/c   (a, b, c all non-zero)"
+          {
+            "text": "\\dfrac{l}{a} = \\ \\dfrac{m}{b} = \\ \\dfrac{n}{c}\\left(a,\\ b,\\ c\\ \\text{all}\\ \\text{non} - \\text{zero}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -104,16 +108,33 @@
             "text": "(the value of r given in the question)",
             "added": true
           },
-          "Given  r = l/a = n/c",
-          "So r is the common ratio of the chain,",
-          "and m/b is that same common ratio.",
           {
-            "text": "∴ r = m/b",
-            "style": "boxed"
+            "text": "\\text{Given}\\ r\\ = \\ \\dfrac{l}{a} = \\ \\dfrac{n}{c}",
+            "style": "normal",
+            "render": "katex"
+          },
+          "So r is the common ratio of the chain,",
+          {
+            "text": "\\text{and}\\ \\dfrac{m}{b}\\text{is}\\ \\text{that}\\ \\text{same}\\ \\text{common}\\ \\text{ratio}.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ r\\ = \\ \\dfrac{m}{b}",
+            "style": "boxed",
+            "render": "katex"
           },
           "Check: 2x + 3y + 4 = 0 and 6x + 9y + 12 = 0 are",
-          "the same line; r = 6/2 = 3, n/c = 12/4 = 3,",
-          "and m/b = 9/3 = 3."
+          {
+            "text": "\\text{the}\\ \\text{same}\\ \\text{line};\\ r\\ = \\ \\dfrac{6}{2} = \\ 3,\\ \\dfrac{n}{c} = \\ \\dfrac{12}{4} = \\ 3,",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ \\dfrac{m}{b} = \\ \\dfrac{9}{3} = \\ 3.",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -142,16 +163,33 @@
           "Answering with l/a again instead of the ratio the question asks for."
         ],
         "lines_compact": [
-          "Given  r = l/a = n/c",
-          "So r is the common ratio of the chain,",
-          "and m/b is that same common ratio.",
           {
-            "text": "∴ r = m/b",
-            "style": "boxed"
+            "text": "\\text{Given}\\ r\\ = \\ \\dfrac{l}{a} = \\ \\dfrac{n}{c}",
+            "style": "normal",
+            "render": "katex"
+          },
+          "So r is the common ratio of the chain,",
+          {
+            "text": "\\text{and}\\ \\dfrac{m}{b}\\text{is}\\ \\text{that}\\ \\text{same}\\ \\text{common}\\ \\text{ratio}.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ r\\ = \\ \\dfrac{m}{b}",
+            "style": "boxed",
+            "render": "katex"
           },
           "Check: 2x + 3y + 4 = 0 and 6x + 9y + 12 = 0 are",
-          "the same line; r = 6/2 = 3, n/c = 12/4 = 3,",
-          "and m/b = 9/3 = 3."
+          {
+            "text": "\\text{the}\\ \\text{same}\\ \\text{line};\\ r\\ = \\ \\dfrac{6}{2} = \\ 3,\\ \\dfrac{n}{c} = \\ \\dfrac{12}{4} = \\ 3,",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ \\dfrac{m}{b} = \\ \\dfrac{9}{3} = \\ 3.",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       }
     ]

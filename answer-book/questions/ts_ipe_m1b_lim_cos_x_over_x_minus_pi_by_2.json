@@ -51,18 +51,38 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "(cos(π/2) = 0)",
-          "At x = π/2, cos x = 0 and x − π/2 = 0, so the form is 0/0.",
+          {
+            "text": "\\left(\\cos \\left(\\dfrac{\\pi }{2}\\right)\\ = \\ 0\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{At}\\ x\\ = \\ \\dfrac{\\pi }{2},\\ \\cos x\\ = \\ 0\\ \\text{and}\\ x\\ - \\ \\dfrac{\\pi }{2} = \\ 0,\\ \\text{so}\\ \\text{the}\\ \\text{form}\\ \\text{is}\\ \\dfrac{0}{0}.",
+            "style": "normal",
+            "render": "katex"
+          },
           "The standard limit lim(θ → 0) sin θ / θ = 1 is stated at 0,",
           "so shift the point to 0.",
-          "Put  x = π/2 + h.  Then x → π/2 means h → 0,",
-          "and x − π/2 = h.",
+          {
+            "text": "\\text{Put}\\ x\\ = \\ \\dfrac{\\pi }{2} + \\ h.\\ \\text{Then}\\ x\\ \\to \\ \\dfrac{\\pi }{2}\\text{means}\\ h\\ \\to \\ 0,",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ x\\ - \\ \\dfrac{\\pi }{2} = \\ h.",
+            "style": "normal",
+            "render": "katex"
+          },
           "(cos(π/2 + h) = cos(π/2) cos h",
           {
             "text": "  − sin(π/2) sin h = 0 − sin h)",
             "style": "indent"
           },
-          "cos x = cos(π/2 + h) = −sin h"
+          {
+            "text": "\\cos x\\ = \\ \\cos \\left(\\dfrac{\\pi }{2} + \\ h\\right)\\ = \\ - \\sin h",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -102,23 +122,34 @@
         "margin_note": "Second mark. The minus sign stays outside the limit. The answer is −1, not 1.",
         "lines": [
           {
-            "text": "(put cos x = −sin h and x − π/2 = h)",
+            "text": "\\left(\\text{put}\\ \\cos x\\ = \\ - \\sin h\\ \\text{and}\\ x\\ - \\ \\dfrac{\\pi }{2} = \\ h\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "lim(x → π/2) (cos x)/(x − π/2) = lim(h → 0) (−sin h)/h",
+          {
+            "text": "\\dfrac{\\lim \\left(x\\ \\to \\ \\dfrac{\\pi }{2}\\right)\\left(\\cos x\\right)}{x\\ - \\ \\dfrac{\\pi }{2}} = \\ \\dfrac{\\lim \\left(h\\ \\to \\ 0\\right)\\left( - \\sin h\\right)}{h}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(the constant −1 comes outside the limit)",
             "added": true
           },
-          "= − lim(h → 0) sin h / h",
+          {
+            "text": "= \\ - \\ \\dfrac{\\lim \\left(h\\ \\to \\ 0\\right)\\sin h}{h}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(the standard limit lim(θ → 0) (sin θ)/θ = 1)",
             "added": true
           },
           "= −(1)",
           {
-            "text": "∴ lim(x → π/2) (cos x)/(x − π/2) = −1",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{\\lim \\left(x\\ \\to \\ \\dfrac{\\pi }{2}\\right)\\left(\\cos x\\right)}{x\\ - \\ \\dfrac{\\pi }{2}} = \\ - 1",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -149,12 +180,21 @@
         ],
         "memory_tip": "The answer is the derivative of cos x at x = π/2, which is −sin(π/2) = −1. That is a quick way to check the sign.",
         "lines_compact": [
-          "lim(x → π/2) (cos x)/(x − π/2) = lim(h → 0) (−sin h)/h",
-          "= − lim(h → 0) sin h / h",
+          {
+            "text": "\\dfrac{\\lim \\left(x\\ \\to \\ \\dfrac{\\pi }{2}\\right)\\left(\\cos x\\right)}{x\\ - \\ \\dfrac{\\pi }{2}} = \\ \\dfrac{\\lim \\left(h\\ \\to \\ 0\\right)\\left( - \\sin h\\right)}{h}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ - \\ \\dfrac{\\lim \\left(h\\ \\to \\ 0\\right)\\sin h}{h}",
+            "style": "normal",
+            "render": "katex"
+          },
           "= −(1)",
           {
-            "text": "∴ lim(x → π/2) (cos x)/(x − π/2) = −1",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{\\lim \\left(x\\ \\to \\ \\dfrac{\\pi }{2}\\right)\\left(\\cos x\\right)}{x\\ - \\ \\dfrac{\\pi }{2}} = \\ - 1",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

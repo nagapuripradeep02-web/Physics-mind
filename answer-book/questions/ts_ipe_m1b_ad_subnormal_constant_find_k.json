@@ -60,10 +60,22 @@
             "style": "heading"
           },
           "Given curve:  y = a¹⁻ᵏxᵏ,  where a and k are constants.",
-          "(power rule: d/dx of xᵏ is kxᵏ⁻¹)",
+          {
+            "text": "\\left(\\text{power}\\ \\text{rule}:\\ \\dfrac{d}{dx}\\ \\text{of}\\ x^{k}\\ \\text{is}\\ kx^{k-1}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "Here a¹⁻ᵏ is a constant multiplier, so",
-          "dy/dx = a¹⁻ᵏ · k xᵏ⁻¹",
-          "∴ m = dy/dx = k a¹⁻ᵏxᵏ⁻¹"
+          {
+            "text": "\\dfrac{dy}{dx}\\ = \\ a^{1-k}\\ \\cdot \\ kx^{k-1}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ m\\ = \\ \\dfrac{dy}{dx}\\ = \\ ka^{1-k}x^{k-1}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -109,7 +121,11 @@
             "added": true
           },
           "At any point (x, y) on the curve,",
-          "Subnormal = y · (dy/dx) = (a¹⁻ᵏxᵏ)(k a¹⁻ᵏxᵏ⁻¹)",
+          {
+            "text": "\\text{Subnormal}\\ = \\ y\\ \\cdot \\ \\left(\\dfrac{dy}{dx}\\right)\\ = \\ \\left(a^{1-k}x^{k}\\right)\\left(ka^{1-k}x^{k-1}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(put the factors side by side)",
             "added": true
@@ -160,7 +176,11 @@
         "memory_tip": "Sub-NORMAL multiplies; sub-TANGENT divides. When two powers of the same letter multiply, their indices add.",
         "lines_compact": [
           "At any point (x, y) on the curve,",
-          "Subnormal = y · (dy/dx) = (a¹⁻ᵏxᵏ)(k a¹⁻ᵏxᵏ⁻¹)",
+          {
+            "text": "\\text{Subnormal}\\ = \\ y\\ \\cdot \\ \\left(\\dfrac{dy}{dx}\\right)\\ = \\ \\left(a^{1-k}x^{k}\\right)\\left(ka^{1-k}x^{k-1}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "= k · a¹⁻ᵏ · a¹⁻ᵏ · xᵏ · xᵏ⁻¹",
           "Adding the indices:  (1 − k) + (1 − k) = 2 − 2k",
           "and  k + (k − 1) = 2k − 1",
@@ -193,7 +213,11 @@
             "text": "(add 1 to both sides and divide by 2)",
             "added": true
           },
-          "∴ k = 1/2"
+          {
+            "text": "\\therefore \\ k\\ = \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -232,7 +256,11 @@
           "only if it does not depend on x.",
           "So the power of x must be zero:",
           "2k − 1 = 0",
-          "∴ k = 1/2"
+          {
+            "text": "\\therefore \\ k\\ = \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -243,13 +271,21 @@
         "mark_note": "Answer",
         "margin_note": "Last mark. Put k = 1/2 back in and read the constant value: the subnormal is a/2. The curve becomes y² = ax, the parabola whose subnormal is the same at every point.",
         "lines": [
-          "Put k = 1/2 in the subnormal:",
+          {
+            "text": "\\text{Put}\\ k\\ = \\ \\dfrac{1}{2}\\text{in}\\ \\text{the}\\ \\text{subnormal}:",
+            "style": "normal",
+            "render": "katex"
+          },
           "2 − 2k = 2 − 1 = 1   and   2k − 1 = 1 − 1 = 0",
           {
             "text": "(a¹ = a and x⁰ = 1)",
             "added": true
           },
-          "Subnormal = (1/2) a¹ x⁰ = (1/2)a = a/2",
+          {
+            "text": "\\text{Subnormal}\\ = \\ \\left(\\dfrac{1}{2}\\right)a^{1}x^{0}\\ = \\ \\left(\\dfrac{1}{2}\\right)a\\ = \\ \\dfrac{a}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           "This has no x in it, so it is the same at every point.",
           {
             "text": "(put k = 1/2 in y = a¹⁻ᵏxᵏ: 1 − 1/2 = 1/2;",
@@ -271,14 +307,20 @@
           },
           "Check on the curve itself: k = 1/2 gives y = a¹⁄²x¹⁄²,",
           "that is y² = ax,",
-          "a parabola, and its subnormal is a/2 at every point.",
           {
-            "text": "∴ k = 1/2,",
-            "style": "boxed"
+            "text": "a\\ \\text{parabola},\\ \\text{and}\\ \\text{its}\\ \\text{subnormal}\\ \\text{is}\\ \\dfrac{a}{2}\\text{at}\\ \\text{every}\\ \\text{point}.",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "and the constant length of the subnormal is a/2.",
-            "style": "boxed"
+            "text": "\\therefore \\ k\\ = \\ \\dfrac{1}{2},",
+            "style": "boxed",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ \\text{the}\\ \\text{constant}\\ \\text{length}\\ \\text{of}\\ \\text{the}\\ \\text{subnormal}\\ \\text{is}\\ \\dfrac{a}{2}.",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -312,20 +354,34 @@
         ],
         "memory_tip": "Among the curves y = a¹⁻ᵏxᵏ, only k = 1/2, the parabola y² = ax, has a constant non-zero subnormal, so k = 1/2 is the power that turns this curve into a parabola.",
         "lines_compact": [
-          "Put k = 1/2 in the subnormal:",
+          {
+            "text": "\\text{Put}\\ k\\ = \\ \\dfrac{1}{2}\\text{in}\\ \\text{the}\\ \\text{subnormal}:",
+            "style": "normal",
+            "render": "katex"
+          },
           "2 − 2k = 2 − 1 = 1   and   2k − 1 = 1 − 1 = 0",
-          "Subnormal = (1/2) a¹ x⁰ = (1/2)a = a/2",
+          {
+            "text": "\\text{Subnormal}\\ = \\ \\left(\\dfrac{1}{2}\\right)a^{1}x^{0}\\ = \\ \\left(\\dfrac{1}{2}\\right)a\\ = \\ \\dfrac{a}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           "This has no x in it, so it is the same at every point.",
           "Check on the curve itself: k = 1/2 gives y = a¹⁄²x¹⁄²,",
           "that is y² = ax,",
-          "a parabola, and its subnormal is a/2 at every point.",
           {
-            "text": "∴ k = 1/2,",
-            "style": "boxed"
+            "text": "a\\ \\text{parabola},\\ \\text{and}\\ \\text{its}\\ \\text{subnormal}\\ \\text{is}\\ \\dfrac{a}{2}\\text{at}\\ \\text{every}\\ \\text{point}.",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "and the constant length of the subnormal is a/2.",
-            "style": "boxed"
+            "text": "\\therefore \\ k\\ = \\ \\dfrac{1}{2},",
+            "style": "boxed",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ \\text{the}\\ \\text{constant}\\ \\text{length}\\ \\text{of}\\ \\text{the}\\ \\text{subnormal}\\ \\text{is}\\ \\dfrac{a}{2}.",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

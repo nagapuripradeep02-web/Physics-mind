@@ -255,18 +255,36 @@
             "style": "indent",
             "added": true
           },
-          "Slope of BC is m = (5 + 1)/(2 − 6) = 6/(−4) = −3/2",
           {
-            "text": "(−1 ÷ (−3/2) = −1 × (−2/3) = 2/3)",
+            "text": "\\text{Slope}\\ \\text{of}\\ BC\\ \\text{is}\\ m\\ = \\ \\dfrac{5\\ + \\ 1}{2\\ - \\ 6} = \\ \\dfrac{6}{ - 4} = \\ - \\dfrac{3}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left( - 1\\ \\div \\ \\left( - \\dfrac{3}{2}\\right)\\ = \\ - 1\\ \\times \\ \\left( - \\dfrac{2}{3}\\right)\\ = \\ \\dfrac{2}{3}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "Its perpendicular slope is −1/m = −1/(−3/2) = 2/3",
+          {
+            "text": "\\text{Its}\\ \\text{perpendicular}\\ \\text{slope}\\ \\text{is}\\ - \\dfrac{1}{m} = \\ - \\dfrac{1}{ - \\dfrac{3}{2}} = \\ \\dfrac{2}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(the point-slope form at A; multiply both sides by 3)",
             "added": true
           },
-          "Eq. of line through A(−2, −1) with slope 2/3 is",
-          "y + 1 = (2/3)(x + 2)   ⇒   3y + 3 = 2x + 4",
+          {
+            "text": "Eq.\\ \\text{of}\\ \\text{line}\\ \\text{through}\\ A\\left( - 2,\\ - 1\\right)\\ \\text{with}\\ \\text{slope}\\ \\dfrac{2}{3}\\text{is}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "y\\ + \\ 1\\ = \\ \\left(\\dfrac{2}{3}\\right)\\left(x\\ + \\ 2\\right)\\ \\Rightarrow \\ 3y\\ + \\ 3\\ = \\ 2x\\ + \\ 4",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(take 3y + 3 to the right: 0 = 2x − 3y + 4 − 3)",
             "added": true
@@ -303,10 +321,26 @@
         "mark_note": "Method",
         "lines_compact": [
           "Step-1: Finding altitude through A(−2, −1):",
-          "Slope of BC is m = (5 + 1)/(2 − 6) = 6/(−4) = −3/2",
-          "Its perpendicular slope is −1/m = −1/(−3/2) = 2/3",
-          "Eq. of line through A(−2, −1) with slope 2/3 is",
-          "y + 1 = (2/3)(x + 2)   ⇒   3y + 3 = 2x + 4",
+          {
+            "text": "\\text{Slope}\\ \\text{of}\\ BC\\ \\text{is}\\ m\\ = \\ \\dfrac{5\\ + \\ 1}{2\\ - \\ 6} = \\ \\dfrac{6}{ - 4} = \\ - \\dfrac{3}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Its}\\ \\text{perpendicular}\\ \\text{slope}\\ \\text{is}\\ - \\dfrac{1}{m} = \\ - \\dfrac{1}{ - \\dfrac{3}{2}} = \\ \\dfrac{2}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "Eq.\\ \\text{of}\\ \\text{line}\\ \\text{through}\\ A\\left( - 2,\\ - 1\\right)\\ \\text{with}\\ \\text{slope}\\ \\dfrac{2}{3}\\text{is}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "y\\ + \\ 1\\ = \\ \\left(\\dfrac{2}{3}\\right)\\left(x\\ + \\ 2\\right)\\ \\Rightarrow \\ 3y\\ + \\ 3\\ = \\ 2x\\ + \\ 4",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ 2x − 3y + 1 = 0  ……(1)"
         ]
       },
@@ -328,18 +362,36 @@
             "style": "indent",
             "added": true
           },
-          "Slope of AC is m = (5 + 1)/(2 + 2) = 6/4 = 3/2",
           {
-            "text": "(−1 ÷ (3/2) = −2/3)",
+            "text": "\\text{Slope}\\ \\text{of}\\ AC\\ \\text{is}\\ m\\ = \\ \\dfrac{5\\ + \\ 1}{2\\ + \\ 2} = \\ \\dfrac{6}{4} = \\ \\dfrac{3}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left( - 1\\ \\div \\ \\left(\\dfrac{3}{2}\\right)\\ = \\ - \\dfrac{2}{3}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "Its perpendicular slope is −1/m = −1/(3/2) = −2/3",
+          {
+            "text": "\\text{Its}\\ \\text{perpendicular}\\ \\text{slope}\\ \\text{is}\\ - \\dfrac{1}{m} = \\ - \\dfrac{1}{\\dfrac{3}{2}} = \\ - \\dfrac{2}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(multiply both sides by 3; −2(x − 6) = −2x + 12)",
             "added": true
           },
-          "Eq. of line through B(6, −1) with slope −2/3 is",
-          "y + 1 = (−2/3)(x − 6)   ⇒   3y + 3 = −2x + 12",
+          {
+            "text": "Eq.\\ \\text{of}\\ \\text{line}\\ \\text{through}\\ B\\left(6,\\ - 1\\right)\\ \\text{with}\\ \\text{slope}\\ - \\dfrac{2}{3}\\text{is}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "y\\ + \\ 1\\ = \\ \\left( - \\dfrac{2}{3}\\right)\\left(x\\ - \\ 6\\right)\\ \\Rightarrow \\ 3y\\ + \\ 3\\ = \\ - 2x\\ + \\ 12",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(take everything to the left: 2x + 3y + 3 − 12 = 0)",
             "added": true
@@ -376,10 +428,26 @@
         "mark_note": "Method",
         "lines_compact": [
           "Step-2: Finding altitude through B(6, −1):",
-          "Slope of AC is m = (5 + 1)/(2 + 2) = 6/4 = 3/2",
-          "Its perpendicular slope is −1/m = −1/(3/2) = −2/3",
-          "Eq. of line through B(6, −1) with slope −2/3 is",
-          "y + 1 = (−2/3)(x − 6)   ⇒   3y + 3 = −2x + 12",
+          {
+            "text": "\\text{Slope}\\ \\text{of}\\ AC\\ \\text{is}\\ m\\ = \\ \\dfrac{5\\ + \\ 1}{2\\ + \\ 2} = \\ \\dfrac{6}{4} = \\ \\dfrac{3}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Its}\\ \\text{perpendicular}\\ \\text{slope}\\ \\text{is}\\ - \\dfrac{1}{m} = \\ - \\dfrac{1}{\\dfrac{3}{2}} = \\ - \\dfrac{2}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "Eq.\\ \\text{of}\\ \\text{line}\\ \\text{through}\\ B\\left(6,\\ - 1\\right)\\ \\text{with}\\ \\text{slope}\\ - \\dfrac{2}{3}\\text{is}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "y\\ + \\ 1\\ = \\ \\left( - \\dfrac{2}{3}\\right)\\left(x\\ - \\ 6\\right)\\ \\Rightarrow \\ 3y\\ + \\ 3\\ = \\ - 2x\\ + \\ 12",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ 2x + 3y − 9 = 0  ……(2)"
         ]
       },
@@ -402,7 +470,11 @@
             "text": "(put x = 2 in (1): 4 + 1 = 5)",
             "added": true
           },
-          "(1) ⇒ 2(2) − 3y + 1 = 0   ⇒   3y = 5   ⇒   y = 5/3",
+          {
+            "text": "\\left(1\\right)\\ \\Rightarrow \\ 2\\left(2\\right)\\ - \\ 3y\\ + \\ 1\\ = \\ 0\\ \\Rightarrow \\ 3y\\ = \\ 5\\ \\Rightarrow \\ y\\ = \\ \\dfrac{5}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(check: AB is horizontal, as A and B both have y = −1,",
             "added": true
@@ -418,8 +490,9 @@
             "added": true
           },
           {
-            "text": "∴ Orthocentre O(x, y) = (2, 5/3)",
-            "style": "boxed"
+            "text": "\\therefore \\ \\text{Orthocentre}\\ O\\left(x,\\ y\\right)\\ = \\ \\left(2,\\ \\dfrac{5}{3}\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -454,10 +527,15 @@
           "Step-3: Solving (1), (2), we get O;",
           "(1) ⇒ 2x − 3y + 1 = 0;   (2) ⇒ 2x + 3y − 9 = 0",
           "(1) + (2) ⇒ 4x − 8 = 0   ⇒   4x = 8   ⇒   x = 2",
-          "(1) ⇒ 2(2) − 3y + 1 = 0   ⇒   3y = 5   ⇒   y = 5/3",
           {
-            "text": "∴ Orthocentre O(x, y) = (2, 5/3)",
-            "style": "boxed"
+            "text": "\\left(1\\right)\\ \\Rightarrow \\ 2\\left(2\\right)\\ - \\ 3y\\ + \\ 1\\ = \\ 0\\ \\Rightarrow \\ 3y\\ = \\ 5\\ \\Rightarrow \\ y\\ = \\ \\dfrac{5}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\text{Orthocentre}\\ O\\left(x,\\ y\\right)\\ = \\ \\left(2,\\ \\dfrac{5}{3}\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

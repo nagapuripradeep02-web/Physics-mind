@@ -56,13 +56,26 @@
           "(log 1 = 0)",
           "Putting x = 0 gives log 1 / 0 = 0/0,",
           "so the expression is rewritten first.",
-          "(5 · 1/(5x) = 1/x, so the value is unchanged)",
-          "log(1 + 5x)/x = 5 · log(1 + 5x)/(5x)",
-          "(the constant 5 comes outside the limit)",
-          "∴ lim(x → 0) log(1 + 5x)/x",
           {
-            "text": "  = 5 · lim(x → 0) log(1 + 5x)/(5x)",
-            "style": "indent"
+            "text": "\\left(5\\ \\cdot \\ \\dfrac{1}{5x} = \\ \\dfrac{1}{x},\\ \\text{so}\\ \\text{the}\\ \\text{value}\\ \\text{is}\\ \\text{unchanged}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{\\log \\left(1\\ + \\ 5x\\right)}{x} = \\ 5\\ \\cdot \\ \\dfrac{\\log \\left(1\\ + \\ 5x\\right)}{5x}",
+            "style": "normal",
+            "render": "katex"
+          },
+          "(the constant 5 comes outside the limit)",
+          {
+            "text": "\\therefore \\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\log \\left(1\\ + \\ 5x\\right)}{x}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 5\\ \\cdot \\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\log \\left(1\\ + \\ 5x\\right)}{5x}",
+            "style": "indent",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -107,15 +120,20 @@
             "text": "(the standard limit lim(t → 0) log(1 + t)/t = 1)",
             "added": true
           },
-          "lim(x → 0) log(1 + 5x)/(5x) = lim(t → 0) log(1 + t)/t = 1",
+          {
+            "text": "\\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\log \\left(1\\ + \\ 5x\\right)}{5x} = \\ \\dfrac{\\lim \\left(t\\ \\to \\ 0\\right)\\log \\left(1\\ + \\ t\\right)}{t} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(5 times the limit 1)",
             "added": true
           },
           "= 5 · 1",
           {
-            "text": "∴ lim(x → 0) log(1 + 5x)/x = 5",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\log \\left(1\\ + \\ 5x\\right)}{x} = \\ 5",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -147,11 +165,16 @@
         ],
         "lines_compact": [
           "Put t = 5x. As x → 0, t → 0.",
-          "lim(x → 0) log(1 + 5x)/(5x) = lim(t → 0) log(1 + t)/t = 1",
+          {
+            "text": "\\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\log \\left(1\\ + \\ 5x\\right)}{5x} = \\ \\dfrac{\\lim \\left(t\\ \\to \\ 0\\right)\\log \\left(1\\ + \\ t\\right)}{t} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           "= 5 · 1",
           {
-            "text": "∴ lim(x → 0) log(1 + 5x)/x = 5",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\log \\left(1\\ + \\ 5x\\right)}{x} = \\ 5",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

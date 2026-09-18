@@ -56,9 +56,17 @@
           "Here tan eˣ > 0, so the logarithm is defined.",
           "There are three layers: log outside, tan next, eˣ inside.",
           "(the chain rule for the logarithm)",
-          "Take u = tan eˣ. Then d/dx(log u) = (1/u) · du/dx",
+          {
+            "text": "\\text{Take}\\ u\\ = \\ \\tan e^{x}.\\ \\text{Then}\\ \\dfrac{d}{dx}\\left(\\log u\\right)\\ = \\ \\left(\\dfrac{1}{u}\\right)\\ \\cdot \\ \\dfrac{du}{dx}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(put u = tan eˣ)",
-          "∴ f′(x) = (1/tan eˣ) · d/dx(tan eˣ)"
+          {
+            "text": "\\therefore \\ f'\\left(x\\right)\\ = \\ \\left(\\dfrac{1}{\\tan e^{x}}\\right)\\ \\cdot \\ \\dfrac{d}{dx}\\left(\\tan e^{x}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -98,15 +106,27 @@
         "memory_tip": "eˣ is its own derivative, so the innermost layer appears again as a multiplying factor.",
         "lines": [
           {
-            "text": "(d/dx(tan v) = sec²v · dv/dx with v = eˣ, and d/dx(eˣ) = eˣ)",
+            "text": "\\left(\\dfrac{d}{dx}\\left(\\tan v\\right)\\ = \\ \\sec ^{2} v\\ \\cdot \\ \\dfrac{dv}{dx}\\ \\text{with}\\ v\\ = \\ e^{x},\\ \\text{and}\\ \\dfrac{d}{dx}\\left(e^{x}\\right)\\ = \\ e^{x}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "d/dx(tan eˣ) = sec²(eˣ) · d/dx(eˣ) = eˣ·sec²(eˣ)",
           {
-            "text": "(put eˣ·sec²(eˣ) in place of d/dx(tan eˣ))",
+            "text": "\\dfrac{d}{dx}\\left(\\tan e^{x}\\right)\\ = \\ \\sec ^{2}\\left(e^{x}\\right)\\ \\cdot \\ \\dfrac{d}{dx}\\left(e^{x}\\right)\\ = \\ e^{x} \\cdot \\sec ^{2}\\left(e^{x}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{put}\\ e^{x} \\cdot \\sec ^{2}\\left(e^{x}\\right)\\ \\text{in}\\ \\text{place}\\ \\text{of}\\ \\dfrac{d}{dx}\\left(\\tan e^{x}\\right)\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "∴ f′(x) = eˣ·sec²(eˣ)/tan(eˣ)",
+          {
+            "text": "\\therefore \\ f'\\left(x\\right)\\ = \\ e^{x} \\cdot \\dfrac{\\sec ^{2}\\left(e^{x}\\right)}{\\tan \\left(e^{x}\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(sec²θ/tan θ = (1/cos²θ) · (cos θ/sin θ) = 1/(sin θ cos θ),",
             "added": true
@@ -122,12 +142,15 @@
             "style": "indent"
           },
           {
-            "text": "(with θ = eˣ: 2/sin(2eˣ) = 2 cosec(2eˣ))",
+            "text": "\\left(\\text{with}\\ \\theta \\ = \\ e^{x}:\\ \\dfrac{2}{\\sin \\left(2e^{x}\\right)} = \\ 2\\cos ec\\left(2e^{x}\\right)\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ f′(x) = eˣ·sec²(eˣ)/tan(eˣ) = 2eˣ·cosec(2eˣ)",
-            "style": "boxed"
+            "text": "\\therefore \\ f'\\left(x\\right)\\ = \\ e^{x} \\cdot \\dfrac{\\sec ^{2}\\left(e^{x}\\right)}{\\tan \\left(e^{x}\\right)} = \\ 2e^{x} \\cdot \\cos ec\\left(2e^{x}\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -158,16 +181,25 @@
           "Writing sec²x rather than sec²(eˣ), which changes the function."
         ],
         "lines_compact": [
-          "d/dx(tan eˣ) = sec²(eˣ) · d/dx(eˣ) = eˣ·sec²(eˣ)",
-          "∴ f′(x) = eˣ·sec²(eˣ)/tan(eˣ)",
+          {
+            "text": "\\dfrac{d}{dx}\\left(\\tan e^{x}\\right)\\ = \\ \\sec ^{2}\\left(e^{x}\\right)\\ \\cdot \\ \\dfrac{d}{dx}\\left(e^{x}\\right)\\ = \\ e^{x} \\cdot \\sec ^{2}\\left(e^{x}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ f'\\left(x\\right)\\ = \\ e^{x} \\cdot \\dfrac{\\sec ^{2}\\left(e^{x}\\right)}{\\tan \\left(e^{x}\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
           "This may be tidied, since sec²θ/tan θ = 1/(sin θ cos θ)",
           {
             "text": "  = 2/sin 2θ",
             "style": "indent"
           },
           {
-            "text": "∴ f′(x) = eˣ·sec²(eˣ)/tan(eˣ) = 2eˣ·cosec(2eˣ)",
-            "style": "boxed"
+            "text": "\\therefore \\ f'\\left(x\\right)\\ = \\ e^{x} \\cdot \\dfrac{\\sec ^{2}\\left(e^{x}\\right)}{\\tan \\left(e^{x}\\right)} = \\ 2e^{x} \\cdot \\cos ec\\left(2e^{x}\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

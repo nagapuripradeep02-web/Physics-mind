@@ -86,10 +86,15 @@
             "style": "indent"
           },
           "(divide every term by n², which is not 0 here)",
-          "⇒ 5m²/n² + 4mn/n² − 3n²/n² = 0",
           {
-            "text": "  ⇒   5(m/n)² + 4(m/n) − 3 = 0",
-            "style": "indent"
+            "text": "\\Rightarrow \\ \\dfrac{5m^{2}}{n^{2}} + \\ \\dfrac{4mn}{n^{2}} - \\ \\dfrac{3n^{2}}{n^{2}} = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ 5\\left(\\dfrac{m}{n}\\right)^{2}\\ + \\ 4\\left(\\dfrac{m}{n}\\right)\\ - \\ 3\\ = \\ 0",
+            "style": "indent",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -128,8 +133,16 @@
         "margin_note": "One mark. For ax² + bx + c = 0 the product of the roots is c/a. The two roots here are m₁/n₁ and m₂/n₂, so their product gives m₁m₂ against n₁n₂.",
         "memory_tip": "For ax² + bx + c = 0 the product of roots is c/a, and the roots here are m₁/n₁ and m₂/n₂.",
         "lines": [
-          "This is a quadratic equation in m/n;",
-          "its roots are taken as  m₁/n₁,  m₂/n₂",
+          {
+            "text": "\\text{This}\\ \\text{is}\\ a\\ \\text{quadratic}\\ \\text{equation}\\ \\text{in}\\ \\dfrac{m}{n};",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{its}\\ \\text{roots}\\ \\text{are}\\ \\text{taken}\\ \\text{as}\\ \\dfrac{m_{1}}{n_{1}},\\ \\dfrac{m_{2}}{n_{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(for ax² + bx + c = 0, the product of the roots is c/a;",
             "added": true
@@ -139,8 +152,16 @@
             "style": "indent",
             "added": true
           },
-          "Product of roots  (m₁/n₁)(m₂/n₂) = c/a = −3/5",
-          "  [∵ Product of roots of ax² + bx + c = 0 is αβ = c/a]",
+          {
+            "text": "\\text{Product}\\ \\text{of}\\ \\text{roots}\\ \\left(\\dfrac{m_{1}}{n_{1}}\\right)\\left(\\dfrac{m_{2}}{n_{2}}\\right)\\ = \\ \\dfrac{c}{a} = \\ - \\dfrac{3}{5}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left[\\because \\ \\text{Product}\\ \\text{of}\\ \\text{roots}\\ \\text{of}\\ ax^{2}\\ + \\ bx\\ + \\ c\\ = \\ 0\\ \\text{is}\\ \\alpha \\beta \\ = \\ \\dfrac{c}{a}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(cross-multiply: 5m₁m₂ = −3n₁n₂;",
             "added": true
@@ -150,7 +171,11 @@
             "style": "indent",
             "added": true
           },
-          "⇒ m₁m₂/(n₁n₂) = −3/5   ⇒   m₁m₂/3 = n₁n₂/(−5)  ……(3)"
+          {
+            "text": "\\Rightarrow \\ \\dfrac{m_{1}m_{2}}{n_{1}n_{2}} = \\ - \\dfrac{3}{5} \\Rightarrow \\ \\dfrac{m_{1}m_{2}}{3} = \\ \\dfrac{n_{1}n_{2}}{ - 5}\\dots \\dots \\left(3\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -180,11 +205,31 @@
           "Losing the minus sign on the 5."
         ],
         "lines_compact": [
-          "This is a quadratic equation in m/n;",
-          "its roots are taken as  m₁/n₁,  m₂/n₂",
-          "Product of roots  (m₁/n₁)(m₂/n₂) = c/a = −3/5",
-          "  [∵ Product of roots of ax² + bx + c = 0 is αβ = c/a]",
-          "⇒ m₁m₂/(n₁n₂) = −3/5   ⇒   m₁m₂/3 = n₁n₂/(−5)  ……(3)"
+          {
+            "text": "\\text{This}\\ \\text{is}\\ a\\ \\text{quadratic}\\ \\text{equation}\\ \\text{in}\\ \\dfrac{m}{n};",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{its}\\ \\text{roots}\\ \\text{are}\\ \\text{taken}\\ \\text{as}\\ \\dfrac{m_{1}}{n_{1}},\\ \\dfrac{m_{2}}{n_{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Product}\\ \\text{of}\\ \\text{roots}\\ \\left(\\dfrac{m_{1}}{n_{1}}\\right)\\left(\\dfrac{m_{2}}{n_{2}}\\right)\\ = \\ \\dfrac{c}{a} = \\ - \\dfrac{3}{5}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left[\\because \\ \\text{Product}\\ \\text{of}\\ \\text{roots}\\ \\text{of}\\ ax^{2}\\ + \\ bx\\ + \\ c\\ = \\ 0\\ \\text{is}\\ \\alpha \\beta \\ = \\ \\dfrac{c}{a}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\dfrac{m_{1}m_{2}}{n_{1}n_{2}} = \\ - \\dfrac{3}{5} \\Rightarrow \\ \\dfrac{m_{1}m_{2}}{3} = \\ \\dfrac{n_{1}n_{2}}{ - 5}\\dots \\dots \\left(3\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -221,23 +266,44 @@
             "text": "(divide every term by m², which is not 0 here)",
             "added": true
           },
-          "⇒ 3l²/m² + 10lm/m² + 2m²/m² = 0",
           {
-            "text": "  ⇒   3(l/m)² + 10(l/m) + 2 = 0",
-            "style": "indent"
+            "text": "\\Rightarrow \\ \\dfrac{3l^{2}}{m^{2}} + \\ \\dfrac{10lm}{m^{2}} + \\ \\dfrac{2m^{2}}{m^{2}} = \\ 0",
+            "style": "normal",
+            "render": "katex"
           },
-          "This is a quadratic equation in l/m;",
-          "its roots are taken as  l₁/m₁,  l₂/m₂",
+          {
+            "text": "\\Rightarrow \\ 3\\left(\\dfrac{l}{m}\\right)^{2}\\ + \\ 10\\left(\\dfrac{l}{m}\\right)\\ + \\ 2\\ = \\ 0",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{This}\\ \\text{is}\\ a\\ \\text{quadratic}\\ \\text{equation}\\ \\text{in}\\ \\dfrac{l}{m};",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{its}\\ \\text{roots}\\ \\text{are}\\ \\text{taken}\\ \\text{as}\\ \\dfrac{l_{1}}{m_{1}},\\ \\dfrac{l_{2}}{m_{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(here a = 3 and c = 2)",
             "added": true
           },
-          "Product of roots  (l₁/m₁)(l₂/m₂) = c/a = 2/3",
+          {
+            "text": "\\text{Product}\\ \\text{of}\\ \\text{roots}\\ \\left(\\dfrac{l_{1}}{m_{1}}\\right)\\left(\\dfrac{l_{2}}{m_{2}}\\right)\\ = \\ \\dfrac{c}{a} = \\ \\dfrac{2}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(cross-multiply: 3l₁l₂ = 2m₁m₂; then divide both sides by 6)",
             "added": true
           },
-          "⇒ l₁l₂/(m₁m₂) = 2/3   ⇒   l₁l₂/2 = m₁m₂/3  ……(4)"
+          {
+            "text": "\\Rightarrow \\ \\dfrac{l_{1}l_{2}}{m_{1}m_{2}} = \\ \\dfrac{2}{3} \\Rightarrow \\ \\dfrac{l_{1}l_{2}}{2} = \\ \\dfrac{m_{1}m_{2}}{3}\\dots \\dots \\left(4\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -275,15 +341,36 @@
             "text": "  ⇒   3l² + 10lm + 2m² = 0",
             "style": "indent"
           },
-          "⇒ 3l²/m² + 10lm/m² + 2m²/m² = 0",
           {
-            "text": "  ⇒   3(l/m)² + 10(l/m) + 2 = 0",
-            "style": "indent"
+            "text": "\\Rightarrow \\ \\dfrac{3l^{2}}{m^{2}} + \\ \\dfrac{10lm}{m^{2}} + \\ \\dfrac{2m^{2}}{m^{2}} = \\ 0",
+            "style": "normal",
+            "render": "katex"
           },
-          "This is a quadratic equation in l/m;",
-          "its roots are taken as  l₁/m₁,  l₂/m₂",
-          "Product of roots  (l₁/m₁)(l₂/m₂) = c/a = 2/3",
-          "⇒ l₁l₂/(m₁m₂) = 2/3   ⇒   l₁l₂/2 = m₁m₂/3  ……(4)"
+          {
+            "text": "\\Rightarrow \\ 3\\left(\\dfrac{l}{m}\\right)^{2}\\ + \\ 10\\left(\\dfrac{l}{m}\\right)\\ + \\ 2\\ = \\ 0",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{This}\\ \\text{is}\\ a\\ \\text{quadratic}\\ \\text{equation}\\ \\text{in}\\ \\dfrac{l}{m};",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{its}\\ \\text{roots}\\ \\text{are}\\ \\text{taken}\\ \\text{as}\\ \\dfrac{l_{1}}{m_{1}},\\ \\dfrac{l_{2}}{m_{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Product}\\ \\text{of}\\ \\text{roots}\\ \\left(\\dfrac{l_{1}}{m_{1}}\\right)\\left(\\dfrac{l_{2}}{m_{2}}\\right)\\ = \\ \\dfrac{c}{a} = \\ \\dfrac{2}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\dfrac{l_{1}l_{2}}{m_{1}m_{2}} = \\ \\dfrac{2}{3} \\Rightarrow \\ \\dfrac{l_{1}l_{2}}{2} = \\ \\dfrac{m_{1}m_{2}}{3}\\dots \\dots \\left(4\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -296,11 +383,17 @@
         "memory_tip": "Chain the results into one string of equal fractions, call it k, and add. Zero means perpendicular.",
         "lines": [
           {
-            "text": "(m₁m₂/3 appears in both (3) and (4))",
+            "text": "\\left(\\dfrac{m_{1}m_{2}}{3}\\text{appears}\\ \\text{in}\\ \\text{both}\\ \\left(3\\right)\\ \\text{and}\\ \\left(4\\right)\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "From (3) and (4), we get",
-          "l₁l₂/2 = m₁m₂/3 = n₁n₂/(−5) = k  (say)",
+          {
+            "text": "\\dfrac{l_{1}l_{2}}{2} = \\ \\dfrac{m_{1}m_{2}}{3} = \\ \\dfrac{n_{1}n_{2}}{ - 5} = \\ k\\left(\\text{say}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(multiply each fraction by its denominator)",
             "added": true
@@ -346,7 +439,11 @@
         ],
         "lines_compact": [
           "From (3) and (4), we get",
-          "l₁l₂/2 = m₁m₂/3 = n₁n₂/(−5) = k  (say)",
+          {
+            "text": "\\dfrac{l_{1}l_{2}}{2} = \\ \\dfrac{m_{1}m_{2}}{3} = \\ \\dfrac{n_{1}n_{2}}{ - 5} = \\ k\\left(\\text{say}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ l₁l₂ = 2k,  m₁m₂ = 3k,  n₁n₂ = −5k",
           "∴ l₁l₂ + m₁m₂ + n₁n₂ = 2k + 3k − 5k = 5k − 5k = 0",
           {

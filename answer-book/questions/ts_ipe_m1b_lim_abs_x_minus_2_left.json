@@ -100,7 +100,11 @@
             "text": "(put −(x − 2) in place of |x − 2|, then cancel x − 2)",
             "added": true
           },
-          "|x − 2|/(x − 2) = −(x − 2)/(x − 2) = −1",
+          {
+            "text": "\\dfrac{\\left|x\\ - \\ 2\\right|}{x\\ - \\ 2} = \\ - \\dfrac{x\\ - \\ 2}{x\\ - \\ 2} = \\ - 1",
+            "style": "normal",
+            "render": "katex"
+          },
           "This holds for every x < 2,",
           "so the value stays −1 as x approaches 2 from the left.",
           {
@@ -108,8 +112,9 @@
             "added": true
           },
           {
-            "text": "∴ lim(x → 2⁻) |x − 2|/(x − 2) = −1",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{\\lim \\left(x\\ \\to \\ 2^{-}\\right)\\left|x\\ - \\ 2\\right|}{x\\ - \\ 2} = \\ - 1",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -142,12 +147,17 @@
         "lines_compact": [
           "For x < 2 we also have x ≠ 2, so (x − 2) ≠ 0",
           "and may be cancelled:",
-          "|x − 2|/(x − 2) = −(x − 2)/(x − 2) = −1",
+          {
+            "text": "\\dfrac{\\left|x\\ - \\ 2\\right|}{x\\ - \\ 2} = \\ - \\dfrac{x\\ - \\ 2}{x\\ - \\ 2} = \\ - 1",
+            "style": "normal",
+            "render": "katex"
+          },
           "This holds for every x < 2,",
           "so the value stays −1 as x approaches 2 from the left.",
           {
-            "text": "∴ lim(x → 2⁻) |x − 2|/(x − 2) = −1",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{\\lim \\left(x\\ \\to \\ 2^{-}\\right)\\left|x\\ - \\ 2\\right|}{x\\ - \\ 2} = \\ - 1",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

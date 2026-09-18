@@ -69,16 +69,25 @@
           "First line:  x sec α + y cosec α − a = 0",
           "(the distance from (x₁, y₁) to Ax + By + C = 0 is",
           {
-            "text": "  |Ax₁ + By₁ + C|/√(A² + B²); from the origin,",
-            "style": "indent"
+            "text": "\\dfrac{\\left|Ax_{1}\\ + \\ By_{1}\\ + \\ C\\right|}{\\sqrt{A^{2}\\ + \\ B^{2}}};\\ \\text{from}\\ \\text{the}\\ \\text{origin},",
+            "style": "indent",
+            "render": "katex"
           },
           {
             "text": "  with A = sec α, B = cosec α, C = −a)",
             "style": "indent"
           },
-          "p = |0 + 0 − a| / √(sec²α + cosec²α)",
+          {
+            "text": "p\\ = \\ \\dfrac{\\left|0\\ + \\ 0\\ - \\ a\\right|}{\\sqrt{\\sec ^{2} \\alpha \\ + \\ \\cos ec^{2}\\alpha }}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(|−a| = |a|)",
-          "⇒ p = |a| / √(sec²α + cosec²α)"
+          {
+            "text": "\\Rightarrow \\ p\\ = \\ \\dfrac{\\left|a\\right|}{\\sqrt{\\sec ^{2} \\alpha \\ + \\ \\cos ec^{2}\\alpha }}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -119,27 +128,49 @@
         "margin_note": "Two marks. Change both terms to sines and cosines, add over the common denominator sin²α cos²α, and use sin²α + cos²α = 1 on the top.",
         "lines": [
           {
-            "text": "(sec α = 1/cos α and cosec α = 1/sin α)",
+            "text": "\\left(\\sec \\alpha \\ = \\ \\dfrac{1}{\\cos \\alpha }\\text{and}\\ \\cos ec\\alpha \\ = \\ \\dfrac{1}{\\sin \\alpha }\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "Now sec²α + cosec²α = 1/cos²α + 1/sin²α",
+          {
+            "text": "\\text{Now}\\ \\sec ^{2} \\alpha \\ + \\ \\cos ec^{2}\\alpha \\ = \\ \\dfrac{1}{\\cos ^{2} \\alpha } + \\ \\dfrac{1}{\\sin ^{2} \\alpha }",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(common denominator sin²α cos²α)",
             "added": true
           },
-          "= (sin²α + cos²α)/(sin²α cos²α)",
+          {
+            "text": "= \\ \\dfrac{\\sin ^{2} \\alpha \\ + \\ \\cos ^{2} \\alpha }{\\sin ^{2} \\alpha \\cos ^{2} \\alpha }",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(sin²α + cos²α = 1)",
             "added": true
           },
-          "= 1/(sin²α cos²α)",
           {
-            "text": "(√(1/(sin²α cos²α)) = 1/√(sin²α cos²α) = 1/|sin α cos α|)",
+            "text": "= \\ \\dfrac{1}{\\sin ^{2} \\alpha \\cos ^{2} \\alpha }",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\sqrt{\\dfrac{1}{\\sin ^{2} \\alpha \\cos ^{2} \\alpha }}\\ = \\ \\dfrac{1}{\\sqrt{\\sin ^{2} \\alpha \\cos ^{2} \\alpha }} = \\ \\dfrac{1}{\\left|\\sin \\alpha \\cos \\alpha \\right|}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "∴ √(sec²α + cosec²α) = 1/|sin α cos α|",
           {
-            "text": "(dividing by 1/|sin α cos α| is multiplying by |sin α cos α|)",
+            "text": "\\therefore \\ \\sqrt{\\sec ^{2} \\alpha \\ + \\ \\cos ec^{2}\\alpha }\\ = \\ \\dfrac{1}{\\left|\\sin \\alpha \\cos \\alpha \\right|}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{dividing}\\ \\text{by}\\ \\dfrac{1}{\\left|\\sin \\alpha \\cos \\alpha \\right|}\\text{is}\\ \\text{multiplying}\\ \\text{by}\\ \\left|\\sin \\alpha \\cos \\alpha \\right|\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "⇒ p = |a| · |sin α cos α|",
@@ -178,10 +209,26 @@
         ],
         "memory_tip": "sec²α + cosec²α = 1/(sin²α cos²α). The top becomes 1 because sin²α + cos²α = 1.",
         "lines_compact": [
-          "Now sec²α + cosec²α = 1/cos²α + 1/sin²α",
-          "= (sin²α + cos²α)/(sin²α cos²α)",
-          "= 1/(sin²α cos²α)",
-          "∴ √(sec²α + cosec²α) = 1/|sin α cos α|",
+          {
+            "text": "\\text{Now}\\ \\sec ^{2} \\alpha \\ + \\ \\cos ec^{2}\\alpha \\ = \\ \\dfrac{1}{\\cos ^{2} \\alpha } + \\ \\dfrac{1}{\\sin ^{2} \\alpha }",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\sin ^{2} \\alpha \\ + \\ \\cos ^{2} \\alpha }{\\sin ^{2} \\alpha \\cos ^{2} \\alpha }",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{1}{\\sin ^{2} \\alpha \\cos ^{2} \\alpha }",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\sqrt{\\sec ^{2} \\alpha \\ + \\ \\cos ec^{2}\\alpha }\\ = \\ \\dfrac{1}{\\left|\\sin \\alpha \\cos \\alpha \\right|}",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ p = |a| · |sin α cos α|",
           "⇒ p = |a sin α cos α|"
         ]
@@ -263,8 +310,9 @@
             "added": true
           },
           {
-            "text": "  |Ax₁ + By₁ + C|/√(A² + B²); from the origin,",
+            "text": "\\dfrac{\\left|Ax_{1}\\ + \\ By_{1}\\ + \\ C\\right|}{\\sqrt{A^{2}\\ + \\ B^{2}}};\\ \\text{from}\\ \\text{the}\\ \\text{origin},",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           {
@@ -272,12 +320,20 @@
             "style": "indent",
             "added": true
           },
-          "q = |0 − 0 − a cos 2α| / √(cos²α + sin²α)",
+          {
+            "text": "q\\ = \\ \\dfrac{\\left|0\\ - \\ 0\\ - \\ a\\cos 2\\alpha \\right|}{\\sqrt{\\cos ^{2} \\alpha \\ + \\ \\sin ^{2} \\alpha }}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(cos²α + sin²α = 1, and √1 = 1)",
             "added": true
           },
-          "= |a cos 2α| / √1",
+          {
+            "text": "= \\ \\dfrac{\\left|a\\cos 2\\alpha \\right|}{\\sqrt{1}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ q = |a cos 2α|",
           {
             "text": "(square both sides)",
@@ -315,8 +371,16 @@
         "memory_tip": "The coefficients are cos α and −sin α, so the bottom is √(cos²α + sin²α) = 1 and q is the modulus of the constant term, |a cos 2α|.",
         "lines_compact": [
           "Second line:  x cos α − y sin α − a cos 2α = 0",
-          "q = |0 − 0 − a cos 2α| / √(cos²α + sin²α)",
-          "= |a cos 2α| / √1",
+          {
+            "text": "q\\ = \\ \\dfrac{\\left|0\\ - \\ 0\\ - \\ a\\cos 2\\alpha \\right|}{\\sqrt{\\cos ^{2} \\alpha \\ + \\ \\sin ^{2} \\alpha }}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\left|a\\cos 2\\alpha \\right|}{\\sqrt{1}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ q = |a cos 2α|",
           "⇒ q² = a² cos²2α   ……(2)"
         ]

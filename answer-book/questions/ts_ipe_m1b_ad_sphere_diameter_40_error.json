@@ -59,9 +59,21 @@
           "so the error in 2r is 0.02 cm.",
           "(the error in 2r is 2 times the error in r)",
           "2 · dr = 0.02   ⇒   dr = 0.01 cm",
-          "(d/dr of (4/3)πr³ is (4/3)π · 3r² = 4πr²)",
-          "V = (4/3)πr³   ⇒   dV = 4πr² · dr",
-          "(d/dr of 4πr² is 8πr)",
+          {
+            "text": "\\left(\\dfrac{d}{dr}\\ \\text{of}\\ \\left(\\dfrac{4}{3}\\right)\\pi r^{3}\\ \\text{is}\\ \\left(\\dfrac{4}{3}\\right)\\pi \\ \\cdot \\ 3r^{2}\\ = \\ 4\\pi r^{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "V\\ = \\ \\left(\\dfrac{4}{3}\\right)\\pi r^{3}\\ \\Rightarrow \\ dV\\ = \\ 4\\pi r^{2}\\ \\cdot \\ dr",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{d}{dr}\\ \\text{of}\\ 4\\pi r^{2}\\ \\text{is}\\ 8\\pi r\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "S = 4πr²   ⇒   dS = 8πr · dr"
         ],
         "recall": {

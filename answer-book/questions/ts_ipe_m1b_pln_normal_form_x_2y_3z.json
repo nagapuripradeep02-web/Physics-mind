@@ -123,8 +123,9 @@
             "added": true
           },
           {
-            "text": "(1/√14)x + (2/√14)y + (−3/√14)z = 6/√14,",
-            "style": "boxed"
+            "text": "\\left(\\dfrac{1}{\\sqrt{14}}\\right)x\\ + \\ \\left(\\dfrac{2}{\\sqrt{14}}\\right)y\\ + \\ \\left( - \\dfrac{3}{\\sqrt{14}}\\right)z\\ = \\ \\dfrac{6}{\\sqrt{14}},",
+            "style": "boxed",
+            "render": "katex"
           },
           {
             "text": "which is in the normal form",
@@ -162,8 +163,9 @@
           "Dividing the above equation by",
           "√(1² + 2² + (−3)²) = √(1 + 4 + 9) = √14, we have",
           {
-            "text": "(1/√14)x + (2/√14)y + (−3/√14)z = 6/√14,",
-            "style": "boxed"
+            "text": "\\left(\\dfrac{1}{\\sqrt{14}}\\right)x\\ + \\ \\left(\\dfrac{2}{\\sqrt{14}}\\right)y\\ + \\ \\left( - \\dfrac{3}{\\sqrt{14}}\\right)z\\ = \\ \\dfrac{6}{\\sqrt{14}},",
+            "style": "boxed",
+            "render": "katex"
           },
           {
             "text": "which is in the normal form",

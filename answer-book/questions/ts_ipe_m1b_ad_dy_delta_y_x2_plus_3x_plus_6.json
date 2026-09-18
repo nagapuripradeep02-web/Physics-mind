@@ -52,10 +52,26 @@
             "style": "heading"
           },
           "y = x² + 3x + 6,  x = 10,  Δx = 0.01",
-          "(d/dx of x² is 2x, of 3x is 3, and of 6 is 0)",
-          "dy/dx = 2x + 3",
-          "(the differential: dy = (dy/dx) · Δx)",
-          "dy = (dy/dx)·Δx = (2x + 3)Δx",
+          {
+            "text": "\\left(\\dfrac{d}{dx}\\ \\text{of}\\ x^{2}\\ \\text{is}\\ 2x,\\ \\text{of}\\ 3x\\ \\text{is}\\ 3,\\ \\text{and}\\ \\text{of}\\ 6\\ \\text{is}\\ 0\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{dy}{dx}\\ = \\ 2x\\ + \\ 3",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{the}\\ \\text{differential}:\\ dy\\ = \\ \\left(\\dfrac{dy}{dx}\\right)\\ \\cdot \\ \\Delta x\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "dy\\ = \\ \\left(\\dfrac{dy}{dx}\\right) \\cdot \\Delta x\\ = \\ \\left(2x\\ + \\ 3\\right)\\Delta x",
+            "style": "normal",
+            "render": "katex"
+          },
           "(put 10 in place of x: 2(10) + 3 = 23)",
           "= (2(10) + 3)(0.01) = 23 × 0.01",
           "(23 × 0.01 = 0.23)",

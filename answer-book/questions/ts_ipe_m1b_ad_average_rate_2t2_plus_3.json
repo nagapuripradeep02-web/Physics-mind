@@ -57,7 +57,11 @@
           "change in s divided by the change in t,",
           "so no differentiation is used here.",
           "(from t = 2 to t = 4: change in s ÷ change in t)",
-          "Average rate of change = [f(4) − f(2)] / (4 − 2)",
+          {
+            "text": "\\text{Average}\\ \\text{rate}\\ \\text{of}\\ \\text{change}\\ = \\ \\dfrac{f\\left(4\\right)\\ - \\ f\\left(2\\right)}{4\\ - \\ 2}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(put 4 in place of t: 4² = 16 and 2 × 16 = 32)",
           "f(t) = 2t² + 3, so f(4) = 2(4)² + 3 = 32 + 3 = 35",
           "(put 2 in place of t: 2² = 4 and 2 × 4 = 8)",
@@ -106,12 +110,20 @@
             "text": "(put f(4) = 35 and f(2) = 11)",
             "added": true
           },
-          "Average rate of change = (35 − 11) / (4 − 2)",
+          {
+            "text": "\\text{Average}\\ \\text{rate}\\ \\text{of}\\ \\text{change}\\ = \\ \\dfrac{35\\ - \\ 11}{4\\ - \\ 2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(35 − 11 = 24 and 4 − 2 = 2)",
             "added": true
           },
-          "= 24 / 2",
+          {
+            "text": "= \\ \\dfrac{24}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(24 ÷ 2 = 12)",
             "added": true
@@ -154,8 +166,16 @@
           "Quoting f′(3) = 12 as the method — the number agrees here because for a quadratic the value of f′ at the midpoint equals the average rate, which is not true for most other functions."
         ],
         "lines_compact": [
-          "Average rate of change = (35 − 11) / (4 − 2)",
-          "= 24 / 2",
+          {
+            "text": "\\text{Average}\\ \\text{rate}\\ \\text{of}\\ \\text{change}\\ = \\ \\dfrac{35\\ - \\ 11}{4\\ - \\ 2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{24}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ average rate of change",
             "style": "boxed"

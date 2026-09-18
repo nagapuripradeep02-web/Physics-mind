@@ -60,14 +60,22 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given f(x) = (x² − 9)/(x² − 2x − 3)   for 0 < x < 5, x ≠ 3,",
+          {
+            "text": "\\text{Given}\\ f\\left(x\\right)\\ = \\ \\dfrac{x^{2}\\ - \\ 9}{x^{2}\\ - \\ 2x\\ - \\ 3}\\text{for}\\ 0\\ < \\ x\\ < \\ 5,\\ x\\ \\ne \\ 3,",
+            "style": "normal",
+            "render": "katex"
+          },
           "and f(3) = 1.5",
           "(the definition of continuity at x = 3)",
           "f is continuous at x = 3 if   lim(x → 3) f(x) = f(3)",
           "(3² = 9; 2(3) = 6, and 9 − 6 − 3 = 0)",
           "At x = 3:  numerator = 3² − 9 = 0",
           "and  denominator = 3² − 2(3) − 3 = 0",
-          "So direct substitution gives 0/0, an indeterminate form,",
+          {
+            "text": "\\text{So}\\ \\text{direct}\\ \\text{substitution}\\ \\text{gives}\\ \\dfrac{0}{0},\\ \\text{an}\\ \\text{indeterminate}\\ \\text{form},",
+            "style": "normal",
+            "render": "katex"
+          },
           "and the limit must be worked out."
         ],
         "recall": {
@@ -126,7 +134,11 @@
             "text": "(put both factorisations into f(x))",
             "added": true
           },
-          "∴ f(x) = (x − 3)(x + 3) / [(x − 3)(x + 1)]   for x ≠ 3"
+          {
+            "text": "\\therefore \\ f\\left(x\\right)\\ = \\ \\dfrac{\\left(x\\ - \\ 3\\right)\\left(x\\ + \\ 3\\right)}{\\left(x\\ - \\ 3\\right)\\left(x\\ + \\ 1\\right)}\\text{for}\\ x\\ \\ne \\ 3",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -159,7 +171,11 @@
           "Numerator:   x² − 9 = x² − 3² = (x − 3)(x + 3)",
           "Denominator:   x² − 2x − 3 = x² − 3x + x − 3",
           "= x(x − 3) + 1(x − 3) = (x − 3)(x + 1)",
-          "∴ f(x) = (x − 3)(x + 3) / [(x − 3)(x + 1)]   for x ≠ 3"
+          {
+            "text": "\\therefore \\ f\\left(x\\right)\\ = \\ \\dfrac{\\left(x\\ - \\ 3\\right)\\left(x\\ + \\ 3\\right)}{\\left(x\\ - \\ 3\\right)\\left(x\\ + \\ 1\\right)}\\text{for}\\ x\\ \\ne \\ 3",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -177,14 +193,24 @@
             "text": "(cancel x − 3 from the top and the bottom)",
             "added": true
           },
-          "f(x) = (x + 3)/(x + 1)   for 0 < x < 5, x ≠ 3",
+          {
+            "text": "f\\left(x\\right)\\ = \\ \\dfrac{x\\ + \\ 3}{x\\ + \\ 1}\\text{for}\\ 0\\ < \\ x\\ < \\ 5,\\ x\\ \\ne \\ 3",
+            "style": "normal",
+            "render": "katex"
+          },
           "The remaining denominator x + 1 is 0 only at x = −1,",
           "which is outside 0 < x < 5",
           {
-            "text": "((x + 3)/(x + 1) is continuous at x = 3, so put x = 3)",
+            "text": "\\left(\\dfrac{x\\ + \\ 3}{x\\ + \\ 1}\\text{is}\\ \\text{continuous}\\ \\text{at}\\ x\\ = \\ 3,\\ \\text{so}\\ \\text{put}\\ x\\ = \\ 3\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "∴ lim(x → 3) f(x) = (3 + 3)/(3 + 1) = 6/4 = 1.5"
+          {
+            "text": "\\therefore \\ \\lim \\left(x\\ \\to \\ 3\\right)f\\left(x\\right)\\ = \\ \\dfrac{3\\ + \\ 3}{3\\ + \\ 1} = \\ \\dfrac{6}{4} = \\ 1.5",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -216,10 +242,18 @@
         "lines_compact": [
           "In lim(x → 3), x is close to 3 but x ≠ 3, so (x − 3) ≠ 0",
           "and it cancels:",
-          "f(x) = (x + 3)/(x + 1)   for 0 < x < 5, x ≠ 3",
+          {
+            "text": "f\\left(x\\right)\\ = \\ \\dfrac{x\\ + \\ 3}{x\\ + \\ 1}\\text{for}\\ 0\\ < \\ x\\ < \\ 5,\\ x\\ \\ne \\ 3",
+            "style": "normal",
+            "render": "katex"
+          },
           "The remaining denominator x + 1 is 0 only at x = −1,",
           "which is outside 0 < x < 5",
-          "∴ lim(x → 3) f(x) = (3 + 3)/(3 + 1) = 6/4 = 1.5"
+          {
+            "text": "\\therefore \\ \\lim \\left(x\\ \\to \\ 3\\right)f\\left(x\\right)\\ = \\ \\dfrac{3\\ + \\ 3}{3\\ + \\ 1} = \\ \\dfrac{6}{4} = \\ 1.5",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -240,7 +274,11 @@
             "style": "indent",
             "added": true
           },
-          "lim(x → 3) f(x) = 6/4 = 3/2 = 1.5",
+          {
+            "text": "\\lim \\left(x\\ \\to \\ 3\\right)f\\left(x\\right)\\ = \\ \\dfrac{6}{4} = \\ \\dfrac{3}{2} = \\ 1.5",
+            "style": "normal",
+            "render": "katex"
+          },
           "Given value:   f(3) = 1.5",
           {
             "text": "(both are 1.5)",
@@ -280,7 +318,11 @@
           "Reporting the answer as 3/2 without noting that the given value 1.5 is the same number."
         ],
         "lines_compact": [
-          "lim(x → 3) f(x) = 6/4 = 3/2 = 1.5",
+          {
+            "text": "\\lim \\left(x\\ \\to \\ 3\\right)f\\left(x\\right)\\ = \\ \\dfrac{6}{4} = \\ \\dfrac{3}{2} = \\ 1.5",
+            "style": "normal",
+            "render": "katex"
+          },
           "Given value:   f(3) = 1.5",
           "∴ lim(x → 3) f(x) = f(3)",
           {

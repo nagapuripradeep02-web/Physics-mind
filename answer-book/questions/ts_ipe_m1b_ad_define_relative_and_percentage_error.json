@@ -59,9 +59,17 @@
             "style": "indent"
           },
           "For a small error the differential dy is used in place of Δy.",
-          "Relative error in y = Δy/y  —",
+          {
+            "text": "\\text{Relative}\\ \\text{error}\\ \\text{in}\\ y\\ = \\ \\dfrac{\\Delta y}{y}\\text{---}",
+            "style": "normal",
+            "render": "katex"
+          },
           "the error measured against the value of y itself.",
-          "Percentage error in y = (Δy/y) × 100  —",
+          {
+            "text": "\\text{Percentage}\\ \\text{error}\\ \\text{in}\\ y\\ = \\ \\left(\\dfrac{\\Delta y}{y}\\right)\\ \\times \\ 100\\ \\text{---}",
+            "style": "normal",
+            "render": "katex"
+          },
           "the same ratio written as a percentage.",
           "(dividing by y needs y ≠ 0; a ratio of two quantities",
           {
@@ -111,27 +119,39 @@
           "For example, let y = 50",
           "and let the error made be Δy = 0.5.",
           {
-            "text": "(0.5/50 = 5/500 = 1/100 = 0.01)",
+            "text": "\\left(\\dfrac{0.5}{50} = \\ \\dfrac{5}{500} = \\ \\dfrac{1}{100} = \\ 0.01\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "Relative error = Δy/y = 0.5/50 = 0.01",
+          {
+            "text": "\\text{Relative}\\ \\text{error}\\ = \\ \\dfrac{\\Delta y}{y} = \\ \\dfrac{0.5}{50} = \\ 0.01",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(0.01 × 100 = 1)",
             "added": true
           },
-          "Percentage error = (Δy/y) × 100 = 0.01 × 100 = 1,",
+          {
+            "text": "\\text{Percentage}\\ \\text{error}\\ = \\ \\left(\\dfrac{\\Delta y}{y}\\right)\\ \\times \\ 100\\ = \\ 0.01\\ \\times \\ 100\\ = \\ 1,",
+            "style": "normal",
+            "render": "katex"
+          },
           "that is, 1%",
           {
             "text": "(the two definitions from step 1)",
             "added": true
           },
           {
-            "text": "∴ relative error = Δy/y",
-            "style": "boxed"
+            "text": "\\therefore \\ \\text{relative}\\ \\text{error}\\ = \\ \\dfrac{\\Delta y}{y}",
+            "style": "boxed",
+            "render": "katex"
           },
           {
-            "text": "and  percentage error = (Δy/y) × 100",
-            "style": "boxed"
+            "text": "\\text{and}\\ \\text{percentage}\\ \\text{error}\\ = \\ \\left(\\dfrac{\\Delta y}{y}\\right)\\ \\times \\ 100",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -164,16 +184,26 @@
         "lines_compact": [
           "For example, let y = 50",
           "and let the error made be Δy = 0.5.",
-          "Relative error = Δy/y = 0.5/50 = 0.01",
-          "Percentage error = (Δy/y) × 100 = 0.01 × 100 = 1,",
-          "that is, 1%",
           {
-            "text": "∴ relative error = Δy/y",
-            "style": "boxed"
+            "text": "\\text{Relative}\\ \\text{error}\\ = \\ \\dfrac{\\Delta y}{y} = \\ \\dfrac{0.5}{50} = \\ 0.01",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "and  percentage error = (Δy/y) × 100",
-            "style": "boxed"
+            "text": "\\text{Percentage}\\ \\text{error}\\ = \\ \\left(\\dfrac{\\Delta y}{y}\\right)\\ \\times \\ 100\\ = \\ 0.01\\ \\times \\ 100\\ = \\ 1,",
+            "style": "normal",
+            "render": "katex"
+          },
+          "that is, 1%",
+          {
+            "text": "\\therefore \\ \\text{relative}\\ \\text{error}\\ = \\ \\dfrac{\\Delta y}{y}",
+            "style": "boxed",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ \\text{percentage}\\ \\text{error}\\ = \\ \\left(\\dfrac{\\Delta y}{y}\\right)\\ \\times \\ 100",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

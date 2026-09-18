@@ -51,12 +51,24 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given: dr/dt = 0.7 cm/sec.  Asked: dC/dt.",
+          {
+            "text": "\\text{Given}:\\ \\dfrac{dr}{dt}\\ = \\ \\dfrac{0.7cm}{\\sec }.\\ \\text{Asked}:\\ \\dfrac{dC}{dt}.",
+            "style": "normal",
+            "render": "katex"
+          },
           "(the formula for the circumference of a circle)",
           "Circumference of a circle of radius r:  C = 2πr",
           "Differentiate both sides with respect to time t:",
-          "(2π is a constant, and d/dt of r is dr/dt)",
-          "dC/dt = 2π(dr/dt)"
+          {
+            "text": "\\left(2\\pi \\ \\text{is}\\ a\\ \\text{constant},\\ \\text{and}\\ \\dfrac{d}{dt}\\ \\text{of}\\ r\\ \\text{is}\\ \\dfrac{dr}{dt}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{dC}{dt}\\ = \\ 2\\pi \\left(\\dfrac{dr}{dt}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -98,12 +110,20 @@
         "mark_note": "Answer",
         "margin_note": "Second mark. 2π × 0.7 = 1.4π. State plainly that the answer holds for a circle of any radius — that observation is what the question is testing.",
         "lines": [
-          "Put dr/dt = 0.7:",
+          {
+            "text": "\\text{Put}\\ \\dfrac{dr}{dt}\\ = \\ 0.7:",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(2 × 0.7 = 1.4)",
             "added": true
           },
-          "dC/dt = 2π(0.7) = 1.4π",
+          {
+            "text": "\\dfrac{dC}{dt}\\ = \\ 2\\pi \\left(0.7\\right)\\ = \\ 1.4\\pi",
+            "style": "normal",
+            "render": "katex"
+          },
           "This value contains no r, so the circumference increases",
           "at this same rate whatever the radius is.",
           {
@@ -111,8 +131,9 @@
             "added": true
           },
           {
-            "text": "∴ dC/dt = 1.4π cm/sec ≈ 4.4 cm/sec",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{dC}{dt}\\ = \\ \\dfrac{1.4\\pi cm}{\\sec } \\approx \\ \\dfrac{4.4cm}{\\sec }",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -146,13 +167,22 @@
         ],
         "memory_tip": "Doubling 0.7 gives 1.4, so the answer is simply 1.4π — the π stays because 2π was the constant in the formula.",
         "lines_compact": [
-          "Put dr/dt = 0.7:",
-          "dC/dt = 2π(0.7) = 1.4π",
+          {
+            "text": "\\text{Put}\\ \\dfrac{dr}{dt}\\ = \\ 0.7:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{dC}{dt}\\ = \\ 2\\pi \\left(0.7\\right)\\ = \\ 1.4\\pi",
+            "style": "normal",
+            "render": "katex"
+          },
           "This value contains no r, so the circumference increases",
           "at this same rate whatever the radius is.",
           {
-            "text": "∴ dC/dt = 1.4π cm/sec ≈ 4.4 cm/sec",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{dC}{dt}\\ = \\ \\dfrac{1.4\\pi cm}{\\sec } \\approx \\ \\dfrac{4.4cm}{\\sec }",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

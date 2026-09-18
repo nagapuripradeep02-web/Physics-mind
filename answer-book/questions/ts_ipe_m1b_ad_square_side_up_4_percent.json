@@ -54,11 +54,27 @@
           },
           "Let x be the side of the square and A its area.",
           "A = x²",
-          "(d/dx of x² is 2x; multiply both sides by dx)",
-          "dA/dx = 2x   ⇒   dA = 2x · dx",
+          {
+            "text": "\\left(\\dfrac{d}{dx}\\ \\text{of}\\ x^{2}\\ \\text{is}\\ 2x;\\ \\text{multiply}\\ \\text{both}\\ \\text{sides}\\ \\text{by}\\ dx\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{dA}{dx}\\ = \\ 2x\\ \\Rightarrow \\ dA\\ = \\ 2x\\ \\cdot \\ dx",
+            "style": "normal",
+            "render": "katex"
+          },
           "Divide both sides by A = x²:",
-          "(2x/x² = 2/x)",
-          "dA/A = 2x · dx / x² = 2 · (dx/x)"
+          {
+            "text": "\\left(\\dfrac{2x}{x^{2}} = \\ \\dfrac{2}{x}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{dA}{A} = \\ 2x\\ \\cdot \\ \\dfrac{dx}{x^{2}} = \\ 2\\ \\cdot \\ \\left(\\dfrac{dx}{x}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -98,21 +114,36 @@
         "memory_tip": "Multiply the percentage by the power: 2 × 4 = 8. Squaring the 4 gives 16, which answers a different question.",
         "lines": [
           {
-            "text": "(a 4% increase means dx/x = 4/100)",
-            "added": true
-          },
-          "The side increases by 4%, so (dx/x) × 100 = 4.",
-          "Percentage change in area = (dA/A) × 100",
-          {
-            "text": "(dA/A = 2 · (dx/x), from step 1)",
+            "text": "\\left(a4\\% \\ \\text{increase}\\ \\text{means}\\ \\dfrac{dx}{x} = \\ \\dfrac{4}{100}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "  = 2 · (dx/x) × 100",
-            "style": "indent"
+            "text": "\\text{The}\\ \\text{side}\\ \\text{increases}\\ \\text{by}\\ 4\\% ,\\ \\text{so}\\ \\left(\\dfrac{dx}{x}\\right)\\ \\times \\ 100\\ = \\ 4.",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "((dx/x) × 100 = 4)",
+            "text": "\\text{Percentage}\\ \\text{change}\\ \\text{in}\\ \\text{area}\\ = \\ \\left(\\dfrac{dA}{A}\\right)\\ \\times \\ 100",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{dA}{A} = \\ 2\\ \\cdot \\ \\left(\\dfrac{dx}{x}\\right),\\ \\text{from}\\ \\text{step}\\ 1\\right)",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "= \\ 2\\ \\cdot \\ \\left(\\dfrac{dx}{x}\\right)\\ \\times \\ 100",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\left(\\dfrac{dx}{x}\\right)\\ \\times \\ 100\\ = \\ 4\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "= 2 × 4 = 8",
@@ -149,11 +180,20 @@
           "Writing 4% by leaving out the factor 2."
         ],
         "lines_compact": [
-          "The side increases by 4%, so (dx/x) × 100 = 4.",
-          "Percentage change in area = (dA/A) × 100",
           {
-            "text": "  = 2 · (dx/x) × 100",
-            "style": "indent"
+            "text": "\\text{The}\\ \\text{side}\\ \\text{increases}\\ \\text{by}\\ 4\\% ,\\ \\text{so}\\ \\left(\\dfrac{dx}{x}\\right)\\ \\times \\ 100\\ = \\ 4.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Percentage}\\ \\text{change}\\ \\text{in}\\ \\text{area}\\ = \\ \\left(\\dfrac{dA}{A}\\right)\\ \\times \\ 100",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 2\\ \\cdot \\ \\left(\\dfrac{dx}{x}\\right)\\ \\times \\ 100",
+            "style": "indent",
+            "render": "katex"
           },
           "= 2 × 4 = 8",
           {

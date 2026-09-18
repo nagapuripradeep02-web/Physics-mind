@@ -60,9 +60,21 @@
           "Check the point: at x = 1,  y = 5(1)⁴ = 5,",
           "so (1, 5) lies on the curve.",
           "Differentiate with respect to x:",
-          "(power rule: d/dx of x⁴ is 4x³)",
-          "dy/dx = 5(4x³)",
-          "∴ dy/dx = 20x³"
+          {
+            "text": "\\left(\\text{power}\\ \\text{rule}:\\ \\dfrac{d}{dx}\\ \\text{of}\\ x^{4}\\ \\text{is}\\ 4x^{3}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{dy}{dx}\\ = \\ 5\\left(4x^{3}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ 20x^{3}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -103,7 +115,11 @@
         "mark_note": "Method",
         "margin_note": "Two marks: one for m = 20 with its substitution line, one for the tangent written in general form. Quote y − y₁ = m(x − x₁) before putting numbers in.",
         "lines": [
-          "The slope of the tangent is dy/dx at the given point.",
+          {
+            "text": "\\text{The}\\ \\text{slope}\\ \\text{of}\\ \\text{the}\\ \\text{tangent}\\ \\text{is}\\ \\dfrac{dy}{dx}\\ \\text{at}\\ \\text{the}\\ \\text{given}\\ \\text{point}.",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(1³ = 1)",
             "added": true
@@ -162,7 +178,11 @@
         ],
         "memory_tip": "At x = 1 every power of x is 1, so the slope is just the coefficient. Here that coefficient is 20.",
         "lines_compact": [
-          "The slope of the tangent is dy/dx at the given point.",
+          {
+            "text": "\\text{The}\\ \\text{slope}\\ \\text{of}\\ \\text{the}\\ \\text{tangent}\\ \\text{is}\\ \\dfrac{dy}{dx}\\ \\text{at}\\ \\text{the}\\ \\text{given}\\ \\text{point}.",
+            "style": "normal",
+            "render": "katex"
+          },
           "At x = 1:   m = 20(1)³ = 20",
           "Tangent at (x₁, y₁) with slope m:   y − y₁ = m(x − x₁)",
           "y − 5 = 20(x − 1)",
@@ -184,12 +204,22 @@
           },
           "The normal is perpendicular to the tangent",
           "at the same point,",
-          "so its slope is −1/m = −1/20.",
           {
-            "text": "(the point-slope form with slope −1/20 at (1, 5))",
+            "text": "\\text{so}\\ \\text{its}\\ \\text{slope}\\ \\text{is}\\ - \\dfrac{1}{m} = \\ - \\dfrac{1}{20}.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{the}\\ \\text{point} - \\text{slope}\\ \\text{form}\\ \\text{with}\\ \\text{slope}\\ - \\dfrac{1}{20}\\text{at}\\ \\left(1,\\ 5\\right)\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "y − 5 = (−1/20)(x − 1)",
+          {
+            "text": "y\\ - \\ 5\\ = \\ \\left( - \\dfrac{1}{20}\\right)\\left(x\\ - \\ 1\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(multiply both sides by 20)",
             "added": true
@@ -251,8 +281,16 @@
         "lines_compact": [
           "The normal is perpendicular to the tangent",
           "at the same point,",
-          "so its slope is −1/m = −1/20.",
-          "y − 5 = (−1/20)(x − 1)",
+          {
+            "text": "\\text{so}\\ \\text{its}\\ \\text{slope}\\ \\text{is}\\ - \\dfrac{1}{m} = \\ - \\dfrac{1}{20}.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "y\\ - \\ 5\\ = \\ \\left( - \\dfrac{1}{20}\\right)\\left(x\\ - \\ 1\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "20(y − 5) = −(x − 1)",
           "20y − 100 = −x + 1",
           {

@@ -486,8 +486,9 @@
             "added": true
           },
           {
-            "text": "  x/(b₁c₂ − b₂c₁) = y/(c₁a₂ − c₂a₁)",
+            "text": "\\dfrac{x}{b_{1}c_{2}\\ - \\ b_{2}c_{1}} = \\ \\dfrac{y}{c_{1}a_{2}\\ - \\ c_{2}a_{1}}",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           {
@@ -504,10 +505,15 @@
             "style": "indent",
             "added": true
           },
-          "x / [(−1)(2) − (−3)(6)] = y / [6(4) − 2(2)]",
           {
-            "text": "  = 1 / [2(−3) − 4(−1)]",
-            "style": "indent"
+            "text": "\\dfrac{x}{\\left( - 1\\right)\\left(2\\right)\\ - \\ \\left( - 3\\right)\\left(6\\right)} = \\ \\dfrac{y}{6\\left(4\\right)\\ - \\ 2\\left(2\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{1}{2\\left( - 3\\right)\\ - \\ 4\\left( - 1\\right)}",
+            "style": "indent",
+            "render": "katex"
           },
           {
             "text": "((−1)(2) = −2, (−3)(6) = −18; 6(4) = 24, 2(2) = 4;",
@@ -518,12 +524,20 @@
             "style": "indent",
             "added": true
           },
-          "⇒ x / (−2 + 18) = y / (24 − 4) = 1 / (−6 + 4)",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{x}{ - 2\\ + \\ 18} = \\ \\dfrac{y}{24\\ - \\ 4} = \\ \\dfrac{1}{ - 6\\ + \\ 4}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(−2 + 18 = 16, 24 − 4 = 20 and −6 + 4 = −2)",
             "added": true
           },
-          "⇒ x/16 = y/20 = 1/(−2)",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{x}{16} = \\ \\dfrac{y}{20} = \\ \\dfrac{1}{ - 2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(x/16 = 1/(−2) gives x = 16/(−2);",
             "added": true
@@ -533,7 +547,11 @@
             "style": "indent",
             "added": true
           },
-          "⇒ x = −16/2 = −8,  y = −20/2 = −10",
+          {
+            "text": "\\Rightarrow \\ x\\ = \\ - \\dfrac{16}{2} = \\ - 8,\\ y\\ = \\ - \\dfrac{20}{2} = \\ - 10",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(check: SA² = (−9)² + (−13)² = 81 + 169 = 250,",
             "added": true
@@ -584,14 +602,31 @@
         "lines_compact": [
           "Step-3: Solving (1) and (2), we get S;",
           "(1) ⇒ 2x − y + 6 = 0;   (2) ⇒ 4x − 3y + 2 = 0",
-          "x / [(−1)(2) − (−3)(6)] = y / [6(4) − 2(2)]",
           {
-            "text": "  = 1 / [2(−3) − 4(−1)]",
-            "style": "indent"
+            "text": "\\dfrac{x}{\\left( - 1\\right)\\left(2\\right)\\ - \\ \\left( - 3\\right)\\left(6\\right)} = \\ \\dfrac{y}{6\\left(4\\right)\\ - \\ 2\\left(2\\right)}",
+            "style": "normal",
+            "render": "katex"
           },
-          "⇒ x / (−2 + 18) = y / (24 − 4) = 1 / (−6 + 4)",
-          "⇒ x/16 = y/20 = 1/(−2)",
-          "⇒ x = −16/2 = −8,  y = −20/2 = −10",
+          {
+            "text": "= \\ \\dfrac{1}{2\\left( - 3\\right)\\ - \\ 4\\left( - 1\\right)}",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\dfrac{x}{ - 2\\ + \\ 18} = \\ \\dfrac{y}{24\\ - \\ 4} = \\ \\dfrac{1}{ - 6\\ + \\ 4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\dfrac{x}{16} = \\ \\dfrac{y}{20} = \\ \\dfrac{1}{ - 2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ x\\ = \\ - \\dfrac{16}{2} = \\ - 8,\\ y\\ = \\ - \\dfrac{20}{2} = \\ - 10",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ Circumcentre S(x, y) = (−8, −10)",
             "style": "boxed"

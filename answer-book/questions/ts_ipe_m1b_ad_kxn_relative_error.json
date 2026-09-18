@@ -59,7 +59,11 @@
             "style": "indent"
           },
           "Differentiating with respect to x,",
-          "dy/dx = k · n xⁿ⁻¹",
+          {
+            "text": "\\dfrac{dy}{dx}\\ = \\ k\\ \\cdot \\ nx^{n-1}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(multiply both sides by dx)",
           "∴ dy = k n xⁿ⁻¹ · dx"
         ],
@@ -100,7 +104,11 @@
         "margin_note": "Second mark. The proof is finished by the division, not by the differentiation. Write that k cancels — that is the sentence the examiner is looking for.",
         "memory_tip": "For any power law, the relative error is multiplied by the power. k never appears in the answer.",
         "lines": [
-          "The relative error in y is dy/y.",
+          {
+            "text": "\\text{The}\\ \\text{relative}\\ \\text{error}\\ \\text{in}\\ y\\ \\text{is}\\ \\dfrac{dy}{y}.",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(divide the result of step 1 by y = kxⁿ;",
             "added": true
@@ -110,7 +118,11 @@
             "style": "indent",
             "added": true
           },
-          "dy/y = (k n xⁿ⁻¹ · dx) / (k xⁿ)",
+          {
+            "text": "\\dfrac{dy}{y} = \\ \\dfrac{knx^{n-1}\\ \\cdot \\ dx}{kx^{n}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(xᵖ/xʳ = xᵖ⁻ʳ with p = n − 1 and r = n:",
             "added": true
@@ -120,11 +132,20 @@
             "style": "indent",
             "added": true
           },
-          "k cancels, and xⁿ⁻¹/xⁿ = 1/x, so",
-          "dy/y = n · (dx/x)",
           {
-            "text": "∴ dy/y = n · (dx/x): the relative error in y",
-            "style": "boxed"
+            "text": "k\\ \\text{cancels},\\ \\text{and}\\ \\dfrac{x^{n-1}}{x^{n}} = \\ \\dfrac{1}{x},\\ \\text{so}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{dy}{y} = \\ n\\ \\cdot \\ \\left(\\dfrac{dx}{x}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{y} = \\ n\\ \\cdot \\ \\left(\\dfrac{dx}{x}\\right):\\ \\text{the}\\ \\text{relative}\\ \\text{error}\\ \\text{in}\\ y",
+            "style": "boxed",
+            "render": "katex"
           },
           {
             "text": "is n times the relative error in x",
@@ -159,13 +180,30 @@
           "Keeping k in the final answer by dividing by xⁿ instead of by y = kxⁿ."
         ],
         "lines_compact": [
-          "The relative error in y is dy/y.",
-          "dy/y = (k n xⁿ⁻¹ · dx) / (k xⁿ)",
-          "k cancels, and xⁿ⁻¹/xⁿ = 1/x, so",
-          "dy/y = n · (dx/x)",
           {
-            "text": "∴ dy/y = n · (dx/x): the relative error in y",
-            "style": "boxed"
+            "text": "\\text{The}\\ \\text{relative}\\ \\text{error}\\ \\text{in}\\ y\\ \\text{is}\\ \\dfrac{dy}{y}.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{dy}{y} = \\ \\dfrac{knx^{n-1}\\ \\cdot \\ dx}{kx^{n}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "k\\ \\text{cancels},\\ \\text{and}\\ \\dfrac{x^{n-1}}{x^{n}} = \\ \\dfrac{1}{x},\\ \\text{so}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{dy}{y} = \\ n\\ \\cdot \\ \\left(\\dfrac{dx}{x}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{y} = \\ n\\ \\cdot \\ \\left(\\dfrac{dx}{x}\\right):\\ \\text{the}\\ \\text{relative}\\ \\text{error}\\ \\text{in}\\ y",
+            "style": "boxed",
+            "render": "katex"
           },
           {
             "text": "is n times the relative error in x",

@@ -53,22 +53,43 @@
           },
           "(cos 0 = 1)",
           "At x = 0 the numerator is 1 − 1 = 0 and x² = 0,",
-          "so the form is 0/0.",
+          {
+            "text": "\\text{so}\\ \\text{the}\\ \\text{form}\\ \\text{is}\\ \\dfrac{0}{0}.",
+            "style": "normal",
+            "render": "katex"
+          },
           "(the usual form is cos C − cos D",
           {
-            "text": "  = −2 sin((C + D)/2) sin((C − D)/2);",
-            "style": "indent"
+            "text": "= \\ - 2\\sin \\left(\\dfrac{C\\ + \\ D}{2}\\right)\\sin \\left(\\dfrac{C\\ - \\ D}{2}\\right);",
+            "style": "indent",
+            "render": "katex"
           },
           {
             "text": "  −sin((C − D)/2) = sin((D − C)/2))",
             "style": "indent"
           },
-          "Use  cos C − cos D = 2 sin((C + D)/2) · sin((D − C)/2)",
+          {
+            "text": "\\text{Use}\\ \\cos C\\ - \\ \\cos D\\ = \\ 2\\sin \\left(\\dfrac{C\\ + \\ D}{2}\\right)\\ \\cdot \\ \\sin \\left(\\dfrac{D\\ - \\ C}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "with C = ax and D = bx.",
-          "((ax + bx)/2 = (a + b)x/2 and (bx − ax)/2 = (b − a)x/2)",
-          "(C + D)/2 = (a + b)x/2   and   (D − C)/2 = (b − a)x/2",
+          {
+            "text": "\\left(\\dfrac{ax\\ + \\ bx}{2} = \\ \\dfrac{\\left(a\\ + \\ b\\right)x}{2}\\text{and}\\ \\dfrac{bx\\ - \\ ax}{2} = \\ \\dfrac{\\left(b\\ - \\ a\\right)x}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{C\\ + \\ D}{2} = \\ \\dfrac{\\left(a\\ + \\ b\\right)x}{2}\\text{and}\\ \\dfrac{D\\ - \\ C}{2} = \\ \\dfrac{\\left(b\\ - \\ a\\right)x}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(put these into the formula)",
-          "∴ cos ax − cos bx = 2 sin((a + b)x/2) · sin((b − a)x/2)"
+          {
+            "text": "\\therefore \\ \\cos ax\\ - \\ \\cos bx\\ = \\ 2\\sin \\left(\\dfrac{\\left(a\\ + \\ b\\right)x}{2}\\right)\\ \\cdot \\ \\sin \\left(\\dfrac{\\left(b\\ - \\ a\\right)x}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -113,8 +134,9 @@
             "added": true
           },
           {
-            "text": "  and sin((b − a)x/2)/x by (b − a)/2;",
+            "text": "\\text{and}\\ \\dfrac{\\sin \\left(\\dfrac{\\left(b\\ - \\ a\\right)x}{2}\\right)}{x}\\text{by}\\ \\dfrac{b\\ - \\ a}{2};",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           {
@@ -137,22 +159,39 @@
             "style": "indent",
             "added": true
           },
-          "(cos ax − cos bx)/x² = 2 · [sin((a + b)x/2) / ((a + b)x/2)]",
-          "· ((a + b)/2) · [sin((b − a)x/2) / ((b − a)x/2)]",
-          "· ((b − a)/2)",
+          {
+            "text": "\\dfrac{\\cos ax\\ - \\ \\cos bx}{x^{2}} = \\ 2\\ \\cdot \\ \\left[\\dfrac{\\sin \\left(\\dfrac{\\left(a\\ + \\ b\\right)x}{2}\\right)}{\\dfrac{\\left(a\\ + \\ b\\right)x}{2}}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\cdot \\ \\left(\\dfrac{a\\ + \\ b}{2}\\right)\\ \\cdot \\ \\left[\\dfrac{\\sin \\left(\\dfrac{\\left(b\\ - \\ a\\right)x}{2}\\right)}{\\dfrac{\\left(b\\ - \\ a\\right)x}{2}}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\cdot \\ \\left(\\dfrac{b\\ - \\ a}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(each bracket → 1 by the standard limit)",
             "added": true
           },
           "Each bracketed quotient tends to 1 as x → 0, so",
-          "= 2 · ((a + b)/2) · ((b − a)/2) = (a + b)(b − a)/2",
+          {
+            "text": "= \\ 2\\ \\cdot \\ \\left(\\dfrac{a\\ + \\ b}{2}\\right)\\ \\cdot \\ \\left(\\dfrac{b\\ - \\ a}{2}\\right)\\ = \\ \\dfrac{\\left(a\\ + \\ b\\right)\\left(b\\ - \\ a\\right)}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "((a + b)(b − a) = b² − a²)",
             "added": true
           },
           {
-            "text": "∴ lim(x → 0) (cos ax − cos bx)/x² = (b² − a²)/2",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\left(\\cos ax\\ - \\ \\cos bx\\right)}{x^{2}} = \\ \\dfrac{b^{2}\\ - \\ a^{2}}{2}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -185,14 +224,31 @@
         "memory_tip": "The other method gives the same result: (cos ax − 1)/x² → −a²/2 and (1 − cos bx)/x² → b²/2, and adding them gives (b² − a²)/2.",
         "lines_compact": [
           "Write x² = x · x and give one x to each sine.",
-          "(cos ax − cos bx)/x² = 2 · [sin((a + b)x/2) / ((a + b)x/2)]",
-          "· ((a + b)/2) · [sin((b − a)x/2) / ((b − a)x/2)]",
-          "· ((b − a)/2)",
-          "Each bracketed quotient tends to 1 as x → 0, so",
-          "= 2 · ((a + b)/2) · ((b − a)/2) = (a + b)(b − a)/2",
           {
-            "text": "∴ lim(x → 0) (cos ax − cos bx)/x² = (b² − a²)/2",
-            "style": "boxed"
+            "text": "\\dfrac{\\cos ax\\ - \\ \\cos bx}{x^{2}} = \\ 2\\ \\cdot \\ \\left[\\dfrac{\\sin \\left(\\dfrac{\\left(a\\ + \\ b\\right)x}{2}\\right)}{\\dfrac{\\left(a\\ + \\ b\\right)x}{2}}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\cdot \\ \\left(\\dfrac{a\\ + \\ b}{2}\\right)\\ \\cdot \\ \\left[\\dfrac{\\sin \\left(\\dfrac{\\left(b\\ - \\ a\\right)x}{2}\\right)}{\\dfrac{\\left(b\\ - \\ a\\right)x}{2}}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\cdot \\ \\left(\\dfrac{b\\ - \\ a}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          "Each bracketed quotient tends to 1 as x → 0, so",
+          {
+            "text": "= \\ 2\\ \\cdot \\ \\left(\\dfrac{a\\ + \\ b}{2}\\right)\\ \\cdot \\ \\left(\\dfrac{b\\ - \\ a}{2}\\right)\\ = \\ \\dfrac{\\left(a\\ + \\ b\\right)\\left(b\\ - \\ a\\right)}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\left(\\cos ax\\ - \\ \\cos bx\\right)}{x^{2}} = \\ \\dfrac{b^{2}\\ - \\ a^{2}}{2}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

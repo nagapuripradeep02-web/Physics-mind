@@ -110,13 +110,17 @@
         "lines": [
           "L₁: x + 2a − √3y = 0. Put x = a:",
           {
-            "text": "(a + 2a = 3a, so 3a − √3y = 0; divide by √3: 3/√3 = √3)",
+            "text": "\\left(a\\ + \\ 2a\\ = \\ 3a,\\ \\text{so}\\ 3a\\ - \\ \\sqrt{3}y\\ = \\ 0;\\ \\text{divide}\\ \\text{by}\\ \\sqrt{3}:\\ \\dfrac{3}{\\sqrt{3}} = \\ \\sqrt{3}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "3a = √3 y ⇒ y = √3 a, so B = (a, √3a)",
           "L₂: x + 2a + √3y = 0. Put x = a:",
           {
-            "text": "(3a + √3y = 0 gives y = −3a/√3 = −√3a)",
+            "text": "\\left(3a\\ + \\ \\sqrt{3}y\\ = \\ 0\\ \\text{gives}\\ y\\ = \\ - \\dfrac{3a}{\\sqrt{3}} = \\ - \\sqrt{3}a\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "3a = −√3 y ⇒ y = −√3a, so C = (a, −√3a)"
@@ -249,9 +253,15 @@
             "text": "(the area of an equilateral triangle of side s)",
             "added": true
           },
-          "Area = (√3/4)s² = (√3/4)(12a²)",
           {
-            "text": "((√3/4)(12a²) = 3√3a²)",
+            "text": "\\text{Area}\\ = \\ \\left(\\dfrac{\\sqrt{3}}{4}\\right)s^{2}\\ = \\ \\left(\\dfrac{\\sqrt{3}}{4}\\right)\\left(12a^{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\left(\\dfrac{\\sqrt{3}}{4}\\right)\\left(12a^{2}\\right)\\ = \\ 3\\sqrt{3}a^{2}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "= 3√3 a²",
@@ -289,7 +299,11 @@
         ],
         "lines_compact": [
           "Side s = 2√3 |a|, so s² = 12a²",
-          "Area = (√3/4)s² = (√3/4)(12a²)",
+          {
+            "text": "\\text{Area}\\ = \\ \\left(\\dfrac{\\sqrt{3}}{4}\\right)s^{2}\\ = \\ \\left(\\dfrac{\\sqrt{3}}{4}\\right)\\left(12a^{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "= 3√3 a²",
           {
             "text": "∴ Area = 3√3 a² sq.units",

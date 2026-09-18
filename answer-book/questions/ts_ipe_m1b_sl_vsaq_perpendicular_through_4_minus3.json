@@ -60,10 +60,26 @@
             "style": "heading"
           },
           "Given line is 5x − 3y + 1 = 0",
-          "(the slope of ax + by + c = 0 is −a/b; here a = 5, b = −3)",
-          "Its slope  m = −a/b = −5/(−3) = 5/3",
-          "(perpendicular slopes multiply to −1: −1 ÷ (5/3) = −3/5)",
-          "⇒ Slope of its perpendicular is −1/m = −3/5"
+          {
+            "text": "\\left(\\text{the}\\ \\text{slope}\\ \\text{of}\\ ax\\ + \\ \\text{by}\\ + \\ c\\ = \\ 0\\ \\text{is}\\ - \\dfrac{a}{b};\\ \\text{here}\\ a\\ = \\ 5,\\ b\\ = \\ - 3\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Its}\\ \\text{slope}\\ m\\ = \\ - \\dfrac{a}{b} = \\ - \\dfrac{5}{ - 3} = \\ \\dfrac{5}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{perpendicular}\\ \\text{slopes}\\ \\text{multiply}\\ \\text{to}\\ - 1:\\ - 1\\ \\div \\ \\left(\\dfrac{5}{3}\\right)\\ = \\ - \\dfrac{3}{5}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\text{Slope}\\ \\text{of}\\ \\text{its}\\ \\text{perpendicular}\\ \\text{is}\\ - \\dfrac{1}{m} = \\ - \\dfrac{3}{5}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -110,13 +126,25 @@
             "style": "indent",
             "added": true
           },
-          "Perpendicular through (4, −3) with slope −3/5 is",
-          "y − y₁ = (−1/m)(x − x₁)",
+          {
+            "text": "\\text{Perpendicular}\\ \\text{through}\\ \\left(4,\\ - 3\\right)\\ \\text{with}\\ \\text{slope}\\ - \\dfrac{3}{5}\\text{is}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "y\\ - \\ y_{1}\\ = \\ \\left( - \\dfrac{1}{m}\\right)\\left(x\\ - \\ x_{1}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(y − (−3) = y + 3)",
             "added": true
           },
-          "⇒ y + 3 = (−3/5)(x − 4)",
+          {
+            "text": "\\Rightarrow \\ y\\ + \\ 3\\ = \\ \\left( - \\dfrac{3}{5}\\right)\\left(x\\ - \\ 4\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(multiply both sides by 5)",
             "added": true
@@ -194,9 +222,21 @@
         ],
         "mark_note": "Solution",
         "lines_compact": [
-          "Perpendicular through (4, −3) with slope −3/5 is",
-          "y − y₁ = (−1/m)(x − x₁)",
-          "⇒ y + 3 = (−3/5)(x − 4)",
+          {
+            "text": "\\text{Perpendicular}\\ \\text{through}\\ \\left(4,\\ - 3\\right)\\ \\text{with}\\ \\text{slope}\\ - \\dfrac{3}{5}\\text{is}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "y\\ - \\ y_{1}\\ = \\ \\left( - \\dfrac{1}{m}\\right)\\left(x\\ - \\ x_{1}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ y\\ + \\ 3\\ = \\ \\left( - \\dfrac{3}{5}\\right)\\left(x\\ - \\ 4\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ 5(y + 3) = −3(x − 4)",
           "⇒ 5y + 15 = −3x + 12",
           {

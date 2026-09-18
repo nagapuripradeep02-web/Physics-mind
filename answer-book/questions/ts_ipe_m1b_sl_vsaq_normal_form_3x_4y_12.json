@@ -116,13 +116,21 @@
             "text": "  = √25 = 5, we get",
             "style": "indent"
           },
-          "−(3/5)x − (4/5)y = 12/5",
+          {
+            "text": "- \\left(\\dfrac{3}{5}\\right)x\\ - \\ \\left(\\dfrac{4}{5}\\right)y\\ = \\ \\dfrac{12}{5}",
+            "style": "normal",
+            "render": "katex"
+          },
           "We write it as x cosα + y sinα = p",
           {
             "text": "(compare the two forms)",
             "added": true
           },
-          "Where cosα = −3/5, sinα = −4/5, p = 12/5",
+          {
+            "text": "\\text{Where}\\ \\cos \\alpha \\ = \\ - \\dfrac{3}{5},\\ \\sin \\alpha \\ = \\ - \\dfrac{4}{5},\\ p\\ = \\ \\dfrac{12}{5}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(tan α = sin α/cos α = (−4/5)/(−3/5) = 4/3; cos α < 0",
             "added": true
@@ -132,19 +140,31 @@
             "style": "indent",
             "added": true
           },
-          "Hence tanα = 4/3, and α lies in Q₃,",
-          "so α = 180° + Tan⁻¹(4/3)",
           {
-            "text": "(check: cos²α + sin²α = 9/25 + 16/25 = 1)",
+            "text": "\\text{Hence}\\ \\tan \\alpha \\ = \\ \\dfrac{4}{3},\\ \\text{and}\\ \\alpha \\ \\text{lies}\\ \\text{in}\\ Q_{3},",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{so}\\ \\alpha \\ = \\ 180^{\\circ}\\ + \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{4}{3}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{check}:\\ \\cos ^{2} \\alpha \\ + \\ \\sin ^{2} \\alpha \\ = \\ \\dfrac{9}{25} + \\ \\dfrac{16}{25} = \\ 1\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "⇒ x(−3/5) + y(−4/5) = 12/5,",
-            "style": "boxed"
+            "text": "\\Rightarrow \\ x\\left( - \\dfrac{3}{5}\\right)\\ + \\ y\\left( - \\dfrac{4}{5}\\right)\\ = \\ \\dfrac{12}{5},",
+            "style": "boxed",
+            "render": "katex"
           },
           {
-            "text": "with α = 180° + Tan⁻¹(4/3)",
-            "style": "boxed"
+            "text": "\\text{with}\\ \\alpha \\ = \\ 180^{\\circ}\\ + \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{4}{3}\\right)",
+            "style": "boxed",
+            "render": "katex"
           },
           {
             "text": "in the third quadrant",
@@ -186,18 +206,36 @@
             "text": "  = √25 = 5, we get",
             "style": "indent"
           },
-          "−(3/5)x − (4/5)y = 12/5",
-          "We write it as x cosα + y sinα = p",
-          "Where cosα = −3/5, sinα = −4/5, p = 12/5",
-          "Hence tanα = 4/3, and α lies in Q₃,",
-          "so α = 180° + Tan⁻¹(4/3)",
           {
-            "text": "⇒ x(−3/5) + y(−4/5) = 12/5,",
-            "style": "boxed"
+            "text": "- \\left(\\dfrac{3}{5}\\right)x\\ - \\ \\left(\\dfrac{4}{5}\\right)y\\ = \\ \\dfrac{12}{5}",
+            "style": "normal",
+            "render": "katex"
+          },
+          "We write it as x cosα + y sinα = p",
+          {
+            "text": "\\text{Where}\\ \\cos \\alpha \\ = \\ - \\dfrac{3}{5},\\ \\sin \\alpha \\ = \\ - \\dfrac{4}{5},\\ p\\ = \\ \\dfrac{12}{5}",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "with α = 180° + Tan⁻¹(4/3)",
-            "style": "boxed"
+            "text": "\\text{Hence}\\ \\tan \\alpha \\ = \\ \\dfrac{4}{3},\\ \\text{and}\\ \\alpha \\ \\text{lies}\\ \\text{in}\\ Q_{3},",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{so}\\ \\alpha \\ = \\ 180^{\\circ}\\ + \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{4}{3}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ x\\left( - \\dfrac{3}{5}\\right)\\ + \\ y\\left( - \\dfrac{4}{5}\\right)\\ = \\ \\dfrac{12}{5},",
+            "style": "boxed",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{with}\\ \\alpha \\ = \\ 180^{\\circ}\\ + \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{4}{3}\\right)",
+            "style": "boxed",
+            "render": "katex"
           },
           {
             "text": "in the third quadrant",

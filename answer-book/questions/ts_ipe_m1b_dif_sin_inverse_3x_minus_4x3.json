@@ -52,7 +52,11 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "(x = sin θ with θ in [−π/2, π/2] gives θ = Sin⁻¹x)",
+          {
+            "text": "\\left(x\\ = \\ \\sin \\theta \\ \\text{with}\\ \\theta \\ \\text{in}\\ \\left[ - \\dfrac{\\pi }{2},\\ \\dfrac{\\pi }{2}\\right]\\ \\text{gives}\\ \\theta \\ = \\ \\operatorname{Sin}^{-1} x\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "Put x = sin θ, so θ = Sin⁻¹x",
           "(the triple angle formula sin 3θ = 3 sin θ − 4sin³θ)",
           "Then 3x − 4x³ = 3 sin θ − 4sin³θ = sin 3θ",
@@ -64,8 +68,16 @@
             "text": "  sin(±π/6) = ±1/2)",
             "style": "indent"
           },
-          "Take θ in [−π/6, π/6], that is −1/2 ≤ x ≤ 1/2.",
-          "Then 3θ lies in [−π/2, π/2],",
+          {
+            "text": "\\text{Take}\\ \\theta \\ \\text{in}\\ \\left[ - \\dfrac{\\pi }{6},\\ \\dfrac{\\pi }{6}\\right],\\ \\text{that}\\ \\text{is}\\ - \\dfrac{1}{2} \\le \\ x\\ \\le \\ \\dfrac{1}{2}.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Then}\\ 3\\theta \\ \\text{lies}\\ \\text{in}\\ \\left[ - \\dfrac{\\pi }{2},\\ \\dfrac{\\pi }{2}\\right],",
+            "style": "normal",
+            "render": "katex"
+          },
           "the principal range of Sin⁻¹, so",
           "y = 3θ = 3 Sin⁻¹x"
         ],
@@ -112,19 +124,32 @@
             "text": "(the standard derivative of Sin⁻¹x, for −1 < x < 1)",
             "added": true
           },
-          "We know d/dx(Sin⁻¹x) = 1/√(1 − x²)",
           {
-            "text": "(d/dx(3 Sin⁻¹x) = 3 · d/dx(Sin⁻¹x))",
-            "added": true
-          },
-          "∴ dy/dx = 3 × 1/√(1 − x²)",
-          {
-            "text": "(3 × 1/√(1 − x²) = 3/√(1 − x²), for −1/2 < x < 1/2)",
-            "added": true
+            "text": "\\text{We}\\ \\text{know}\\ \\dfrac{d}{dx}\\left(\\operatorname{Sin}^{-1} x\\right)\\ = \\ \\dfrac{1}{\\sqrt{1\\ - \\ x^{2}}}",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "∴ dy/dx = 3/√(1 − x²)",
-            "style": "boxed"
+            "text": "\\left(\\dfrac{d}{dx}\\left(3\\operatorname{Sin}^{-1} x\\right)\\ = \\ 3\\ \\cdot \\ \\dfrac{d}{dx}\\left(\\operatorname{Sin}^{-1} x\\right)\\right)",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ 3\\ \\times \\ \\dfrac{1}{\\sqrt{1\\ - \\ x^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(3\\ \\times \\ \\dfrac{1}{\\sqrt{1\\ - \\ x^{2}}} = \\ \\dfrac{3}{\\sqrt{1\\ - \\ x^{2}}},\\ \\text{for}\\ - \\dfrac{1}{2} < \\ x\\ < \\ \\dfrac{1}{2}\\right)",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{3}{\\sqrt{1\\ - \\ x^{2}}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -156,11 +181,20 @@
         ],
         "lines_compact": [
           "y = 3 Sin⁻¹x",
-          "We know d/dx(Sin⁻¹x) = 1/√(1 − x²)",
-          "∴ dy/dx = 3 × 1/√(1 − x²)",
           {
-            "text": "∴ dy/dx = 3/√(1 − x²)",
-            "style": "boxed"
+            "text": "\\text{We}\\ \\text{know}\\ \\dfrac{d}{dx}\\left(\\operatorname{Sin}^{-1} x\\right)\\ = \\ \\dfrac{1}{\\sqrt{1\\ - \\ x^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ 3\\ \\times \\ \\dfrac{1}{\\sqrt{1\\ - \\ x^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{3}{\\sqrt{1\\ - \\ x^{2}}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

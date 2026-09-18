@@ -55,11 +55,19 @@
           "Given y = eᵃ ˢⁱⁿ⁻¹ˣ, that is y = eᵘ where u = a Sin⁻¹x",
           "and a is a constant.",
           "(the chain rule for the exponential)",
-          "d/dx(eᵘ) = eᵘ · du/dx",
+          {
+            "text": "\\dfrac{d}{dx}\\left(e^{u}\\right)\\ = \\ e^{u}\\ \\cdot \\ \\dfrac{du}{dx}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(put u = a Sin⁻¹x)",
           "∴ dy/dx = eᵃ ˢⁱⁿ⁻¹ˣ · d/dx(a Sin⁻¹x)",
           "The exponential factor eᵃ ˢⁱⁿ⁻¹ˣ is y itself,",
-          "so dy/dx = y · d/dx(a Sin⁻¹x)"
+          {
+            "text": "\\text{so}\\ \\dfrac{dy}{dx}\\ = \\ y\\ \\cdot \\ \\dfrac{d}{dx}\\left(a\\operatorname{Sin}^{-1} x\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -102,17 +110,28 @@
             "text": "(the standard derivative of Sin⁻¹x, for −1 < x < 1)",
             "added": true
           },
-          "d/dx(Sin⁻¹x) = 1/√(1 − x²),",
-          "so  d/dx(a Sin⁻¹x) = a/√(1 − x²)",
           {
-            "text": "(put a/√(1 − x²) in place of d/dx(a Sin⁻¹x))",
+            "text": "\\dfrac{d}{dx}\\left(\\operatorname{Sin}^{-1} x\\right)\\ = \\ \\dfrac{1}{\\sqrt{1\\ - \\ x^{2}}},",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{so}\\ \\dfrac{d}{dx}\\left(a\\operatorname{Sin}^{-1} x\\right)\\ = \\ \\dfrac{a}{\\sqrt{1\\ - \\ x^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{put}\\ \\dfrac{a}{\\sqrt{1\\ - \\ x^{2}}}\\text{in}\\ \\text{place}\\ \\text{of}\\ \\dfrac{d}{dx}\\left(a\\operatorname{Sin}^{-1} x\\right)\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "∴ dy/dx = eᵃ ˢⁱⁿ⁻¹ˣ · a/√(1 − x²)",
           "Replacing eᵃ ˢⁱⁿ⁻¹ˣ by y,",
           {
-            "text": "∴ dy/dx = ay/√(1 − x²)",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{ay}{\\sqrt{1\\ - \\ x^{2}}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -143,13 +162,22 @@
           "Dropping the constant a from the numerator."
         ],
         "lines_compact": [
-          "d/dx(Sin⁻¹x) = 1/√(1 − x²),",
-          "so  d/dx(a Sin⁻¹x) = a/√(1 − x²)",
+          {
+            "text": "\\dfrac{d}{dx}\\left(\\operatorname{Sin}^{-1} x\\right)\\ = \\ \\dfrac{1}{\\sqrt{1\\ - \\ x^{2}}},",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{so}\\ \\dfrac{d}{dx}\\left(a\\operatorname{Sin}^{-1} x\\right)\\ = \\ \\dfrac{a}{\\sqrt{1\\ - \\ x^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "∴ dy/dx = eᵃ ˢⁱⁿ⁻¹ˣ · a/√(1 − x²)",
           "Replacing eᵃ ˢⁱⁿ⁻¹ˣ by y,",
           {
-            "text": "∴ dy/dx = ay/√(1 − x²)",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{ay}{\\sqrt{1\\ - \\ x^{2}}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

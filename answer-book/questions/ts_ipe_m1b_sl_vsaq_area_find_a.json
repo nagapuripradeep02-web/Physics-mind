@@ -65,7 +65,11 @@
             "text": "  ½ · |r/p| · |r/q| = r²/(2|pq|))",
             "style": "indent"
           },
-          "Area of the triangle is  Δ = r²/(2|pq|)"
+          {
+            "text": "\\text{Area}\\ \\text{of}\\ \\text{the}\\ \\text{triangle}\\ \\text{is}\\ \\Delta \\ = \\ \\dfrac{r^{2}}{2\\left|pq\\right|}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -108,13 +112,21 @@
             "text": "(put p = 3, q = 4 and r = −a: (−a)² = a² and 2 × 12 = 24)",
             "added": true
           },
-          "Δ = r²/(2|pq|) = (−a)²/(2|(3)(4)|) = a²/24",
+          {
+            "text": "\\Delta \\ = \\ \\dfrac{r^{2}}{2\\left|pq\\right|} = \\ \\dfrac{\\left( - a\\right)^{2}}{2\\left|\\left(3\\right)\\left(4\\right)\\right|} = \\ \\dfrac{a^{2}}{24}",
+            "style": "normal",
+            "render": "katex"
+          },
           "But given Area is 6",
           {
             "text": "(multiply both sides by 24)",
             "added": true
           },
-          "∴ a²/24 = 6  ⇒  a² = 6 × 24 = 144 = 12²",
+          {
+            "text": "\\therefore \\ \\dfrac{a^{2}}{24} = \\ 6\\ \\Rightarrow \\ a^{2}\\ = \\ 6\\ \\times \\ 24\\ = \\ 144\\ = \\ 12^{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(a² = 144 gives a = 12 or a = −12;",
             "added": true
@@ -158,9 +170,17 @@
         ],
         "mark_note": "Solution",
         "lines_compact": [
-          "Δ = r²/(2|pq|) = (−a)²/(2|(3)(4)|) = a²/24",
+          {
+            "text": "\\Delta \\ = \\ \\dfrac{r^{2}}{2\\left|pq\\right|} = \\ \\dfrac{\\left( - a\\right)^{2}}{2\\left|\\left(3\\right)\\left(4\\right)\\right|} = \\ \\dfrac{a^{2}}{24}",
+            "style": "normal",
+            "render": "katex"
+          },
           "But given Area is 6",
-          "∴ a²/24 = 6  ⇒  a² = 6 × 24 = 144 = 12²",
+          {
+            "text": "\\therefore \\ \\dfrac{a^{2}}{24} = \\ 6\\ \\Rightarrow \\ a^{2}\\ = \\ 6\\ \\times \\ 24\\ = \\ 144\\ = \\ 12^{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "⇒ a = ±12,  hence the value of a is ±12",
             "style": "boxed"

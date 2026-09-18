@@ -52,10 +52,26 @@
             "style": "heading"
           },
           "y = eˣ + x,  x = 5,  Δx = 0.02",
-          "(d/dx of eˣ is eˣ, and d/dx of x is 1)",
-          "dy/dx = eˣ + 1",
-          "(the differential: dy = (dy/dx) · Δx)",
-          "dy = (dy/dx)·Δx = (eˣ + 1)Δx",
+          {
+            "text": "\\left(\\dfrac{d}{dx}\\ \\text{of}\\ e^{x}\\ \\text{is}\\ e^{x},\\ \\text{and}\\ \\dfrac{d}{dx}\\ \\text{of}\\ x\\ \\text{is}\\ 1\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{dy}{dx}\\ = \\ e^{x}\\ + \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{the}\\ \\text{differential}:\\ dy\\ = \\ \\left(\\dfrac{dy}{dx}\\right)\\ \\cdot \\ \\Delta x\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "dy\\ = \\ \\left(\\dfrac{dy}{dx}\\right) \\cdot \\Delta x\\ = \\ \\left(e^{x}\\ + \\ 1\\right)\\Delta x",
+            "style": "normal",
+            "render": "katex"
+          },
           "(put 5 in place of x and 0.02 for Δx)",
           "= (e⁵ + 1)(0.02) = 0.02e⁵ + 0.02",
           "(e⁵ ≈ 148.4132, from a calculator or tables)",

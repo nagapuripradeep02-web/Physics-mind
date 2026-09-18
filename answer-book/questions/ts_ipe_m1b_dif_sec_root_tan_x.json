@@ -56,9 +56,17 @@
           "There are three layers: sec is outside, √ is next,",
           "and tan x is inside.",
           "Take u = √(tan x). Then y = sec u",
-          "and d/dx(sec u) = sec u · tan u · du/dx",
+          {
+            "text": "\\text{and}\\ \\dfrac{d}{dx}\\left(\\sec u\\right)\\ = \\ \\sec u\\ \\cdot \\ \\tan u\\ \\cdot \\ \\dfrac{du}{dx}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(put u = √(tan x) back into sec u · tan u)",
-          "∴ dy/dx = sec(√(tan x))·tan(√(tan x)) · d/dx(√(tan x))"
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ \\sec \\left(\\sqrt{\\tan x}\\right) \\cdot \\tan \\left(\\sqrt{\\tan x}\\right)\\ \\cdot \\ \\dfrac{d}{dx}\\left(\\sqrt{\\tan x}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -101,8 +109,16 @@
             "text": "(the chain rule for the square root)",
             "added": true
           },
-          "For v = tan x,  d/dx(√v) = 1/(2√v) · dv/dx",
-          "and  d/dx(tan x) = sec²x",
+          {
+            "text": "\\text{For}\\ v\\ = \\ \\tan x,\\ \\dfrac{d}{dx}\\left(\\sqrt{v}\\right)\\ = \\ \\dfrac{1}{2\\sqrt{v}} \\cdot \\ \\dfrac{dv}{dx}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ \\dfrac{d}{dx}\\left(\\tan x\\right)\\ = \\ \\sec ^{2} x",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(put v = tan x and dv/dx = sec²x: 1/(2√(tan x)) · sec²x;",
             "added": true
@@ -112,14 +128,21 @@
             "style": "indent",
             "added": true
           },
-          "∴ d/dx(√(tan x)) = sec²x / (2√(tan x))",
           {
-            "text": "(put sec²x/(2√(tan x)) into dy/dx from step 1)",
+            "text": "\\therefore \\ \\dfrac{d}{dx}\\left(\\sqrt{\\tan x}\\right)\\ = \\ \\dfrac{\\sec ^{2} x}{2\\sqrt{\\tan x}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{put}\\ \\dfrac{\\sec ^{2} x}{2\\sqrt{\\tan x}}\\text{into}\\ \\dfrac{dy}{dx}\\ \\text{from}\\ \\text{step}\\ 1\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ dy/dx = [sec²x · sec(√(tan x)) · tan(√(tan x))]",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ \\left[\\sec ^{2} x\\ \\cdot \\ \\sec \\left(\\sqrt{\\tan x}\\right)\\ \\cdot \\ \\tan \\left(\\sqrt{\\tan x}\\right)\\right]",
+            "style": "boxed",
+            "render": "katex"
           },
           {
             "text": "/ (2√(tan x))",
@@ -154,12 +177,25 @@
           "Writing the denominator as 2√x instead of 2√(tan x)."
         ],
         "lines_compact": [
-          "For v = tan x,  d/dx(√v) = 1/(2√v) · dv/dx",
-          "and  d/dx(tan x) = sec²x",
-          "∴ d/dx(√(tan x)) = sec²x / (2√(tan x))",
           {
-            "text": "∴ dy/dx = [sec²x · sec(√(tan x)) · tan(√(tan x))]",
-            "style": "boxed"
+            "text": "\\text{For}\\ v\\ = \\ \\tan x,\\ \\dfrac{d}{dx}\\left(\\sqrt{v}\\right)\\ = \\ \\dfrac{1}{2\\sqrt{v}} \\cdot \\ \\dfrac{dv}{dx}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ \\dfrac{d}{dx}\\left(\\tan x\\right)\\ = \\ \\sec ^{2} x",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{d}{dx}\\left(\\sqrt{\\tan x}\\right)\\ = \\ \\dfrac{\\sec ^{2} x}{2\\sqrt{\\tan x}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ \\left[\\sec ^{2} x\\ \\cdot \\ \\sec \\left(\\sqrt{\\tan x}\\right)\\ \\cdot \\ \\tan \\left(\\sqrt{\\tan x}\\right)\\right]",
+            "style": "boxed",
+            "render": "katex"
           },
           {
             "text": "/ (2√(tan x))",

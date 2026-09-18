@@ -62,13 +62,21 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "The given equation is  x/a + y/b = 1",
+          {
+            "text": "\\text{The}\\ \\text{given}\\ \\text{equation}\\ \\text{is}\\ \\dfrac{x}{a} + \\ \\dfrac{y}{b} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           "(common denominator ab on the left, then multiply",
           {
             "text": "  both sides by ab; a ≠ 0 and b ≠ 0)",
             "style": "indent"
           },
-          "⇒ (bx + ay)/ab = 1   ⇒   bx + ay = ab"
+          {
+            "text": "\\Rightarrow \\ \\dfrac{bx\\ + \\ ay}{ab} = \\ 1\\ \\Rightarrow \\ bx\\ + \\ ay\\ = \\ ab",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -117,7 +125,11 @@
             "added": true
           },
           "On dividing by √(a² + b²), we get",
-          "bx/√(a²+b²) + ay/√(a²+b²) = ab/√(a²+b²)"
+          {
+            "text": "\\dfrac{bx}{\\sqrt{a^{2} + b^{2}}} + \\ \\dfrac{ay}{\\sqrt{a^{2} + b^{2}}} = \\ \\dfrac{ab}{\\sqrt{a^{2} + b^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -150,7 +162,11 @@
         "memory_tip": "Divide by √(a²+b²) so the x and y coefficients square-and-add to 1.",
         "lines_compact": [
           "On dividing by √(a² + b²), we get",
-          "bx/√(a²+b²) + ay/√(a²+b²) = ab/√(a²+b²)"
+          {
+            "text": "\\dfrac{bx}{\\sqrt{a^{2} + b^{2}}} + \\ \\dfrac{ay}{\\sqrt{a^{2} + b^{2}}} = \\ \\dfrac{ab}{\\sqrt{a^{2} + b^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -170,8 +186,16 @@
             "added": true
           },
           "This is in the normal form  xcosα + ysinα = p,  where",
-          "cosα = b/√(a²+b²),   sinα = a/√(a²+b²)",
-          "and   p = ab/√(a²+b²)"
+          {
+            "text": "\\cos \\alpha \\ = \\ \\dfrac{b}{\\sqrt{a^{2} + b^{2}}},\\ \\sin \\alpha \\ = \\ \\dfrac{a}{\\sqrt{a^{2} + b^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ p\\ = \\ \\dfrac{ab}{\\sqrt{a^{2} + b^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -204,8 +228,16 @@
         "memory_tip": "cos α goes with b and sin α goes with a, because the x-intercept is a but the x-coefficient is b.",
         "lines_compact": [
           "This is in the normal form  xcosα + ysinα = p,  where",
-          "cosα = b/√(a²+b²),   sinα = a/√(a²+b²)",
-          "and   p = ab/√(a²+b²)"
+          {
+            "text": "\\cos \\alpha \\ = \\ \\dfrac{b}{\\sqrt{a^{2} + b^{2}}},\\ \\sin \\alpha \\ = \\ \\dfrac{a}{\\sqrt{a^{2} + b^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ p\\ = \\ \\dfrac{ab}{\\sqrt{a^{2} + b^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -219,19 +251,30 @@
             "text": "(square p: (ab)² = a²b² and (√(a² + b²))² = a² + b²)",
             "added": true
           },
-          "So, p = ab/√(a²+b²)  ⇒  p² = a²b²/(a²+b²)",
+          {
+            "text": "\\text{So},\\ p\\ = \\ \\dfrac{ab}{\\sqrt{a^{2} + b^{2}}} \\Rightarrow \\ p^{2}\\ = \\ \\dfrac{a^{2}b^{2}}{a^{2} + b^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(take the reciprocal of both sides, then split the fraction)",
             "added": true
           },
-          "⇒ 1/p² = (a² + b²)/(a²b²) = a²/(a²b²) + b²/(a²b²)",
           {
-            "text": "(a²/(a²b²) = 1/b² and b²/(a²b²) = 1/a²)",
+            "text": "\\Rightarrow \\ \\dfrac{1}{p^{2}} = \\ \\dfrac{a^{2}\\ + \\ b^{2}}{a^{2}b^{2}} = \\ \\dfrac{a^{2}}{a^{2}b^{2}} + \\ \\dfrac{b^{2}}{a^{2}b^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{a^{2}}{a^{2}b^{2}} = \\ \\dfrac{1}{b^{2}}\\text{and}\\ \\dfrac{b^{2}}{a^{2}b^{2}} = \\ \\dfrac{1}{a^{2}}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ 1/p² = 1/b² + 1/a² = 1/a² + 1/b²",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{1}{p^{2}} = \\ \\dfrac{1}{b^{2}} + \\ \\dfrac{1}{a^{2}} = \\ \\dfrac{1}{a^{2}} + \\ \\dfrac{1}{b^{2}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -264,11 +307,20 @@
         "mark_note": "Solution",
         "memory_tip": "Square p, invert, and split the fraction — each of a² and b² cancels against the product a²b² in the denominator.",
         "lines_compact": [
-          "So, p = ab/√(a²+b²)  ⇒  p² = a²b²/(a²+b²)",
-          "⇒ 1/p² = (a² + b²)/(a²b²) = a²/(a²b²) + b²/(a²b²)",
           {
-            "text": "∴ 1/p² = 1/b² + 1/a² = 1/a² + 1/b²",
-            "style": "boxed"
+            "text": "\\text{So},\\ p\\ = \\ \\dfrac{ab}{\\sqrt{a^{2} + b^{2}}} \\Rightarrow \\ p^{2}\\ = \\ \\dfrac{a^{2}b^{2}}{a^{2} + b^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\dfrac{1}{p^{2}} = \\ \\dfrac{a^{2}\\ + \\ b^{2}}{a^{2}b^{2}} = \\ \\dfrac{a^{2}}{a^{2}b^{2}} + \\ \\dfrac{b^{2}}{a^{2}b^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{1}{p^{2}} = \\ \\dfrac{1}{b^{2}} + \\ \\dfrac{1}{a^{2}} = \\ \\dfrac{1}{a^{2}} + \\ \\dfrac{1}{b^{2}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

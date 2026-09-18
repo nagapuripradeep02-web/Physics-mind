@@ -114,8 +114,16 @@
             "style": "indent",
             "added": true
           },
-          "f′(x) = 2x/(x² + 2) − 0 = 2x/(x² + 2)",
-          "f′(c) = 0  ⇒  2c/(c² + 2) = 0",
+          {
+            "text": "f'\\left(x\\right)\\ = \\ \\dfrac{2x}{x^{2}\\ + \\ 2} - \\ 0\\ = \\ \\dfrac{2x}{x^{2}\\ + \\ 2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "f'\\left(c\\right)\\ = \\ 0\\ \\Rightarrow \\ \\dfrac{2c}{c^{2}\\ + \\ 2} = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           "c² + 2 is never 0, so the fraction is 0 only",
           "when its numerator is 0",
           "⇒ 2c = 0  ⇒  c = 0",
@@ -155,8 +163,16 @@
           "Setting the denominator to zero as well and inventing extra roots."
         ],
         "lines_compact": [
-          "f′(x) = 2x/(x² + 2) − 0 = 2x/(x² + 2)",
-          "f′(c) = 0  ⇒  2c/(c² + 2) = 0",
+          {
+            "text": "f'\\left(x\\right)\\ = \\ \\dfrac{2x}{x^{2}\\ + \\ 2} - \\ 0\\ = \\ \\dfrac{2x}{x^{2}\\ + \\ 2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "f'\\left(c\\right)\\ = \\ 0\\ \\Rightarrow \\ \\dfrac{2c}{c^{2}\\ + \\ 2} = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           "c² + 2 is never 0, so the fraction is 0 only",
           "when its numerator is 0",
           "⇒ 2c = 0  ⇒  c = 0",

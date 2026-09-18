@@ -52,10 +52,26 @@
             "style": "heading"
           },
           "y = 5x² + 6x + 6,  x = 2,  Δx = 0.001",
-          "(d/dx of 5x² is 10x, of 6x is 6, and of 6 is 0)",
-          "dy/dx = 10x + 6",
-          "(the differential: dy = (dy/dx) · Δx)",
-          "dy = (dy/dx)·Δx = (10x + 6)Δx",
+          {
+            "text": "\\left(\\dfrac{d}{dx}\\ \\text{of}\\ 5x^{2}\\ \\text{is}\\ 10x,\\ \\text{of}\\ 6x\\ \\text{is}\\ 6,\\ \\text{and}\\ \\text{of}\\ 6\\ \\text{is}\\ 0\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{dy}{dx}\\ = \\ 10x\\ + \\ 6",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{the}\\ \\text{differential}:\\ dy\\ = \\ \\left(\\dfrac{dy}{dx}\\right)\\ \\cdot \\ \\Delta x\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "dy\\ = \\ \\left(\\dfrac{dy}{dx}\\right) \\cdot \\Delta x\\ = \\ \\left(10x\\ + \\ 6\\right)\\Delta x",
+            "style": "normal",
+            "render": "katex"
+          },
           "(put 2 in place of x: 10(2) + 6 = 26)",
           "= (10(2) + 6)(0.001) = 26 × 0.001",
           "(26 × 0.001 = 0.026)",
