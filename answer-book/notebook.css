@@ -1083,6 +1083,10 @@ a.eve-card:hover { border-color: rgba(43, 38, 32, 0.35); background: #FFFEF9; }
   color: var(--ink);
   font-size: 24px;          /* sits with Kalam 26px without out-shouting it */
 }
+/* Working the expansion added is BLUE, typeset or not. .katex sets its own
+   colour, which beat the inherited blue the moment a note became a typeset
+   line — so the same sentence was blue as text and black as maths. */
+.line.added .kx-clip .katex { color: var(--added); }
 /* The hand, borrowed. KaTeX keeps its LAYOUT and its big drawn brackets, but the
    math LETTERS are re-set in the notebook's handwriting so a matrix does not read
    as a printed textbook dropped onto a written page.
